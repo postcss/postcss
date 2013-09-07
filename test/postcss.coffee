@@ -20,6 +20,11 @@ describe 'PostCSS', ->
       processor.use(a)
       processor.should.eql { processors: [a] }
 
+    it 'returns itself', ->
+      a = ->
+      b = ->
+      postcss().use(a).use(b).should.eql { processors: [a, b] }
+
   describe '#process()', ->
 
     it 'calls all processors', ->
