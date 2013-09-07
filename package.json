@@ -1,0 +1,25 @@
+{
+  "name": "postcss",
+  "version": "0.0.1",
+  "description": "Framework for CSS postproccessors",
+  "keywords": ["css", "parser", "postproccessor"],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "LGPL 3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ai/postcss.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "coffee-script": "1.6.3",
+    "component":     "0.17.2",
+    "fs-extra":      "0.6.4",
+    "should":        "1.2.2",
+    "mocha":         "1.12.1"
+  },
+  "main": "lib/postcss",
+  "scripts": {
+    "test": "mocha --reporter spec --require should --compilers coffee:coffee-script"
+  }
+}
