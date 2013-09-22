@@ -46,3 +46,13 @@ describe 'PostCSS', ->
     it 'parses CSS', ->
       stylesheet = postcss().parse('a { }')
       stylesheet.should.be.an.instanceof(Stylesheet)
+
+    it 'throws with file name', ->
+      error = null
+      try
+        postcss().parse('a {', file: 'a.css')
+      catch e
+        error = e
+
+      e.file.should.eql    'a.css'
+      e.message.should.eql 'Unclosed block at line 1:1 in a.css'

@@ -15,7 +15,8 @@
 # along with this program.  If not, see <http:#www.gnu.org/licenses/>.
 
 class SyntaxError extends Error
-  constructor: (text, @source, @line, @column) ->
-    @message = "#{text} at line #{@line}:#{@column}"
+  constructor: (text, @source, @line, @column, @file) ->
+    @message = "#{ text } at line #{ @line }:#{ @column }"
+    @message += " in #{ @file }" if @file
 
 module.exports = SyntaxError

@@ -27,8 +27,8 @@ class PostCSS
   parse: require('./postcss/parse')
 
   # Process CSS throw installed processors
-  process: (css) ->
-    parsed = @parse(css)
+  process: (css, options = {}) ->
+    parsed = @parse(css, options)
     i(parsed) for i in @processors
     parsed.toString()
 

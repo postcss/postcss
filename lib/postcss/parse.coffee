@@ -21,12 +21,12 @@ AtRule      = require('./at_rule')
 Rule        = require('./rule')
 
 class Parser
-  @parse = (source) ->
-    parser = new Parser(source)
+  @parse = (source, options = { }) ->
+    parser = new Parser(source, options)
     parser.loop()
     parser.stylesheet
 
-  constructor: (@source) ->
+  constructor: (@source, @options) ->
     @stylesheet = new Stylesheet()
     @current    = @stylesheet
     @parents    = [@current]
@@ -237,7 +237,7 @@ class Parser
   # Helpers
 
   error: (message, line = @line, column = @column) ->
-    throw new SyntexError(message, @source, line, column)
+    throw new SyntexError(message, @source, line, column, @options.file)
 
   move: ->
     @pos    += 1
@@ -302,4 +302,4 @@ class Parser
   trim: (string) ->
     string.replace(/^\s*/, '').replace(/\s*$/, '')
 
-module.exports = (source) -> Parser.parse(source)
+module.exports = Parser.parse
