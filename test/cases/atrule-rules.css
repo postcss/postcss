@@ -1,0 +1,8 @@
+@-custom-keyframe anim {
+    from {
+        color: black;
+    }
+    to {
+        color: white
+    }
+}

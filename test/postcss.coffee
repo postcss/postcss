@@ -1,5 +1,7 @@
 postcss = require('../lib/postcss')
 
+Stylesheet = require('../lib/postcss/stylesheet')
+
 describe 'postcss()', ->
 
   it 'creates processors list', ->
@@ -28,9 +30,19 @@ describe 'PostCSS', ->
   describe '#process()', ->
 
     it 'calls all processors', ->
-      calls = []
-      a = -> calls.push('a')
-      b = -> calls.push('b')
+      calls = ''
+      a = -> calls += 'a'
+      b = -> calls += 'b'
 
       postcss(a, b).process('')
-      calls.should.eql ['a', 'b']
+      calls.should.eql 'ab'
+
+    it 'parses, convert and stringify CSS', ->
+      a = (css) -> css.should.be.an.instanceof(Stylesheet)
+      postcss(a).process('a { }').should.be.a('string')
+
+  describe '#parse()', ->
+
+    it 'parses CSS', ->
+      stylesheet = postcss().parse('a { }')
+      stylesheet.should.be.an.instanceof(Stylesheet)

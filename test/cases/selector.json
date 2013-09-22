@@ -1,0 +1,15 @@
+{
+    "childs": [
+        {
+            "type":        "rule",
+            "decls":       [],
+            "line":        2,
+            "column":      1,
+            "before":      "\n",
+            "rawSelector": "a/* { } */ b ",
+            "selector":    "a b",
+            "after":       ""
+        }
+    ],
+    "after": "\n"
+}

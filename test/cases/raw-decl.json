@@ -1,0 +1,26 @@
+{
+    "childs": [
+        {
+            "type":        "rule",
+            "decls":       [
+                {
+                    "type":     "decl",
+                    "line":     1,
+                    "column":   5,
+                    "before":   " ",
+                    "property": "color",
+                    "between":  "",
+                    "rawValue": " a/* ; */ b",
+                    "value":    "a b"
+                }
+            ],
+            "line":        1,
+            "column":      1,
+            "before":      "",
+            "rawSelector": "a ",
+            "selector":    "a",
+            "after":       " "
+        }
+    ],
+    "after": "\n"
+}

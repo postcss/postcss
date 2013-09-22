@@ -1,0 +1,49 @@
+{
+    "childs": [
+        {
+            "type":     "atrule",
+            "line":      1,
+            "column":    1,
+            "before":    "",
+            "name":      "page",
+            "rawParams": " :left ",
+            "params":    ":left",
+            "decls": [
+                {
+                    "type":     "decl",
+                    "line":     2,
+                    "column":   5,
+                    "before":   "\n    ",
+                    "property": "background",
+                    "between":  "",
+                    "rawValue": " black\n",
+                    "value":    "black"
+                }
+            ],
+            "after":     ""
+        },
+        {
+            "type":     "atrule",
+            "line":      5,
+            "column":    1,
+            "before":    "\n\n",
+            "name":      "font-face",
+            "rawParams": " ",
+            "params":    "",
+            "decls": [
+                {
+                    "type":     "decl",
+                    "line":     6,
+                    "column":   5,
+                    "before":   "\n    ",
+                    "property": "family-name",
+                    "between":  "",
+                    "rawValue": " \"A;' /**/\"",
+                    "value":    "\"A;' /**/\""
+                }
+            ],
+            "after": "\n"
+        }
+    ],
+    "after": "\n"
+}

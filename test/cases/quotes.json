@@ -1,0 +1,36 @@
+{
+    "childs": [
+        {
+            "type":        "rule",
+            "decls":       [
+                {
+                    "type":     "decl",
+                    "line":     2,
+                    "column":   5,
+                    "before":   "\n    ",
+                    "property": "content",
+                    "between":  "",
+                    "rawValue": " \";'@ /**/\\\"\"",
+                    "value":    "\";'@ /**/\\\"\""
+                },
+                {
+                    "type":     "decl",
+                    "line":     3,
+                    "column":   5,
+                    "before":   "\n    ",
+                    "property": "content",
+                    "between":  "",
+                    "rawValue": " '\\'\"\\\\'",
+                    "value":    "'\\'\"\\\\'"
+                }
+            ],
+            "line":        1,
+            "column":      1,
+            "before":      "",
+            "rawSelector": "a::before ",
+            "selector":    "a::before",
+            "after":       "\n"
+        }
+    ],
+    "after": "\n"
+}

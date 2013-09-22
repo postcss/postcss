@@ -1,0 +1,9 @@
+/* a { color: black } */
+div {
+    /* inside */
+    color: black;
+    /* between */
+    background: white
+    /* end */
+}
+/* b */

@@ -1,0 +1,59 @@
+{
+    "childs": [
+        {
+            "type":     "atrule",
+            "line":      1,
+            "column":    1,
+            "before":    "",
+            "name":      "-custom-keyframe",
+            "rawParams": " anim ",
+            "params":    "anim",
+            "childs": [
+                {
+                    "type":       "rule",
+                    "decls":      [
+                        {
+                            "type":     "decl",
+                            "line":     3,
+                            "column":   9,
+                            "before":   "\n        ",
+                            "property": "color",
+                            "between":  "",
+                            "rawValue": " black",
+                            "value":    "black"
+                        }
+                    ],
+                    "line":        2,
+                    "column":      5,
+                    "before":      "\n    ",
+                    "rawSelector": "from ",
+                    "selector":    "from",
+                    "after":        "\n    "
+                },
+                {
+                    "type":       "rule",
+                    "decls":      [
+                        {
+                            "type":     "decl",
+                            "line":     6,
+                            "column":   9,
+                            "before":   "\n        ",
+                            "property": "color",
+                            "between":  "",
+                            "rawValue": " white\n    ",
+                            "value":    "white"
+                        }
+                    ],
+                    "line":        5,
+                    "column":      5,
+                    "before":      "\n    ",
+                    "rawSelector": "to ",
+                    "selector":    "to",
+                    "after":        ""
+                }
+            ],
+            "after": "\n"
+        }
+    ],
+    "after": "\n"
+}

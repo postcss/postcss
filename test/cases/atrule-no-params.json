@@ -1,0 +1,15 @@
+{
+    "childs": [
+        {
+            "type":      "atrule",
+            "line":      1,
+            "column":    1,
+            "before":    "",
+            "name":      "page",
+            "rawParams": "",
+            "params":    "",
+            "after":     " "
+        }
+    ],
+    "after": "\n"
+}

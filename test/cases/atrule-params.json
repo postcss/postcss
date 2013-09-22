@@ -1,0 +1,15 @@
+{
+    "childs": [
+        {
+            "type":     "atrule",
+            "line":      1,
+            "column":    1,
+            "before":    "",
+            "name":      "-moz-document",
+            "rawParams": "/* near */ /* filter */ url(\"example.com/{\") /* a */ ",
+            "params":    "url(\"example.com/{\")",
+            "after":     ""
+        }
+    ],
+    "after": "\n"
+}
