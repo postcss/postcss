@@ -1,8 +1,10 @@
-@-custom-keyframe anim {
-    from {
-        color: black;
-    }
-    to {
-        color: white
+@supports (animation-name: test) {
+    @-custom-keyframe anim {
+        from {
+            color: black;
+        }
+        to {
+            color: white
+        }
     }
 }
