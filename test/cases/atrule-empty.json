@@ -1,5 +1,5 @@
 {
-    "childs": [
+    "rules": [
         {
             "type":     "atrule",
             "line":      1,
@@ -7,7 +7,8 @@
             "before":    "",
             "name":      "charset",
             "rawParams": " \"UTF-8\"",
-            "params":    "\"UTF-8\""
+            "params":    "\"UTF-8\"",
+            "content":   "empty"
         }
     ],
     "after": ";\n"

@@ -1,5 +1,5 @@
 {
-    "childs": [
+    "rules": [
         {
             "type":      "atrule",
             "line":      1,
@@ -8,6 +8,8 @@
             "name":      "page",
             "rawParams": "",
             "params":    "",
+            "content":   "decls",
+            "decls":     [],
             "after":     " "
         }
     ],

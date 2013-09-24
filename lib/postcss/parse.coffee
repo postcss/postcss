@@ -20,17 +20,13 @@ Stylesheet  = require('./stylesheet')
 AtRule      = require('./at_rule')
 Rule        = require('./rule')
 
+# CSS parser
 class Parser
-  @parse = (source, options = { }) ->
-    parser = new Parser(source, options)
-    parser.loop()
-    parser.stylesheet
-
   constructor: (@source, @options) ->
     @stylesheet = new Stylesheet()
     @current    = @stylesheet
     @parents    = [@current]
-    @type       = 'statements'
+    @type       = 'rules'
     @types      = [@type]
 
     @pos    = -1
@@ -93,14 +89,14 @@ class Parser
       true
 
   isWrong: ->
-    if @letter == '{' and (@inside('ruleset') or @inside('value'))
-      @error("Unexpected { in #{ @type }")
+    if @letter == '{' and (@inside('decls') or @inside('value'))
+      @error("Unexpected {")
 
     if @inside('property') and (@letter == '}' or @letter == ';')
       @error('Missing property value')
 
   isAtrule: ->
-    if @letter == '@' and @inside('statements')
+    if @letter == '@' and @inside('rules')
       @init new AtRule()
       @current.name = ''
       @addType('atrule-name')
@@ -120,9 +116,11 @@ class Parser
         @current.params    = ''
 
         if @letter == '{'
-          @setType(@atruleType())
+          @current.setContent(@atruleType())
+          @setType(@current.content)
           @buffer = ''
         else
+          @current.setContentType('empty')
           @pop()
           @buffer = @letter unless finish
 
@@ -136,9 +134,11 @@ class Parser
         @current.params    = @trim @trimmed
 
         if @letter == '{'
-          @setType(@atruleType())
+          @current.setContent(@atruleType())
+          @setType(@current.content)
           @buffer = ''
         else
+          @current.setContent('empty')
           @pop()
           @buffer = @letter unless finish
 
@@ -152,13 +152,13 @@ class Parser
         @current.rawSelector = @prevBuffer()
         @current.selector    = @trim @trimmed
         @buffer = ''
-        @setType('ruleset')
+        @setType('decls')
       else
         @trimmed += @letter
       true
 
   isSelector: ->
-    if not @space() and @inside('statements')
+    if not @space() and @inside('rules')
       @init new Rule()
       @addType('selector')
       @buffer  = @letter
@@ -190,13 +190,13 @@ class Parser
         @setType('value')
         @trimmed = ''
       else if @letter == '{'
-        @error('Unexpected { in ruleset')
+        @error('Unexpected { in decls')
       else
         @trimmed += @letter
       true
 
   isProperty: ->
-    if @inside('ruleset') and not @space() and @letter != ';'
+    if @inside('decls') and not @space() and @letter != ';'
       @init new Declaration()
       @addType('property')
       @buffer = @letter
@@ -292,9 +292,9 @@ class Parser
   atruleType: ->
     name = @current.name.toLowerCase()
     if name == 'page' or name == 'font-face'
-      'ruleset'
+      'decls'
     else
-      'statements'
+      'rules'
 
   checkAtruleName: ->
     @error('At-rule without name') if @current.name == ''
@@ -302,4 +302,7 @@ class Parser
   trim: (string) ->
     string.replace(/^\s*/, '').replace(/\s*$/, '')
 
-module.exports = Parser.parse
+module.exports = (source, options = { }) ->
+  parser = new Parser(source, options)
+  parser.loop()
+  parser.stylesheet

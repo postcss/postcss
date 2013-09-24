@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http:#www.gnu.org/licenses/>.
 
+# Error while CSS parsing
 class SyntaxError extends Error
   constructor: (text, @source, @line, @column, @file) ->
     @message = "#{ text } at line #{ @line }:#{ @column }"

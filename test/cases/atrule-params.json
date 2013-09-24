@@ -1,5 +1,5 @@
 {
-    "childs": [
+    "rules": [
         {
             "type":     "atrule",
             "line":      1,
@@ -8,6 +8,8 @@
             "name":      "-moz-document",
             "rawParams": "/* near */ /* filter */ url(\"example.com/{\") /* a */ ",
             "params":    "url(\"example.com/{\")",
+            "content":   "rules",
+            "rules":     [],
             "after":     ""
         }
     ],

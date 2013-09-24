@@ -14,14 +14,20 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http:#www.gnu.org/licenses/>.
 
-DeclarationsList = require('./declarations_list')
+# Ruby like mixins
+class Mixin
+  # Extend class prototype by mixin methods
+  @include: (klass) ->
+    for name, value of @prototype
+      klass.prototype[name] = value
 
-# CSS rule like “a { }”
-class Rule
-  DeclarationsList.include(@)
+  # Return class prototype copy with mixin methods
+  @copy: (klass) ->
+    clone = {}
+    for name, value of klass.prototype
+      clone[name] = value
+    for name, value of @prototype
+      clone[name] = value
+    clone
 
-  constructor: ->
-    @type = 'rule'
-    @decls = []
-
-module.exports = Rule
+module.exports = Mixin

@@ -13,13 +13,13 @@ describe 'postcss.parse()', ->
   describe 'empty file', ->
 
     it 'parses empty file', ->
-      parse('').should.eql { childs: [], after: '' }
+      parse('').should.eql { rules: [], after: '' }
 
     it 'parses spaces', ->
-      parse(" \n ").should.eql { childs: [], after: " \n " }
+      parse(" \n ").should.eql { rules: [], after: " \n " }
 
     it 'parses comment', ->
-      parse("/* a */").should.eql { childs: [], after: "/* a */" }
+      parse("/* a */").should.eql { rules: [], after: "/* a */" }
 
   describe 'at-rule', ->
 
@@ -48,7 +48,7 @@ describe 'postcss.parse()', ->
       ( -> parse("\na {\n") ).should.throw('Unclosed block at line 2:1')
 
     it 'throws on unclosed blocks', ->
-      ( -> parse("a {{}}") ).should.throw(/^Unexpected \{ in ruleset/)
+      ( -> parse("a {{}}") ).should.throw(/^Unexpected \{/)
 
     it 'throws on property without value', ->
       ( -> parse("a { b;}") ).should.throw(/^Missing property value/)
@@ -64,7 +64,7 @@ describe 'postcss.parse()', ->
       ( -> parse('@') ).should.throw(/^At-rule without name/)
 
     it 'throw on rules in declarations at-rule', ->
-      ( -> parse('@page { a { } }') ).should.throw(/^Unexpected \{ in ruleset/)
+      ( -> parse('@page { a { } }') ).should.throw(/^Unexpected \{/)
 
     it 'adds properties to error', ->
       error = null

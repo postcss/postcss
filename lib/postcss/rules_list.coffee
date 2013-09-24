@@ -14,14 +14,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http:#www.gnu.org/licenses/>.
 
-DeclarationsList = require('./declarations_list')
+Mixin = require('./mixin')
 
-# CSS rule like “a { }”
-class Rule
-  DeclarationsList.include(@)
+# Common methods to work with rules in stylesheet and at-rules with rules
+class RulesList extends Mixin
 
-  constructor: ->
-    @type = 'rule'
-    @decls = []
+  # Add Rule or AtRule statement
+  push: (child) ->
+    @rules.push(child)
 
-module.exports = Rule
+module.exports = RulesList

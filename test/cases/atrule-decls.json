@@ -1,5 +1,5 @@
 {
-    "childs": [
+    "rules": [
         {
             "type":     "atrule",
             "line":      1,
@@ -8,6 +8,7 @@
             "name":      "page",
             "rawParams": " :left ",
             "params":    ":left",
+            "content":   "decls",
             "decls": [
                 {
                     "type":     "decl",
@@ -30,6 +31,7 @@
             "name":      "font-face",
             "rawParams": " ",
             "params":    "",
+            "content":   "decls",
             "decls": [
                 {
                     "type":     "decl",

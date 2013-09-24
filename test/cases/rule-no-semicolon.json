@@ -1,8 +1,8 @@
 {
-    "childs": [
+    "rules": [
         {
-            "type":        "rule",
-            "decls":       [
+            "type":  "rule",
+            "decls": [
                 {
                     "type":     "decl",
                     "line":     1,

@@ -14,13 +14,14 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http:#www.gnu.org/licenses/>.
 
-class Stylesheet
-  constructor: ->
-    @childs = []
+RulesList = require('./rules_list')
 
-  # Add Rule or AtRule statement
-  push: (child) ->
-    @childs.push(child)
+# Root of CSS
+class Stylesheet
+  RulesList.include(@)
+
+  constructor: ->
+    @rules = []
 
   # Stringify styles
   toString: ->

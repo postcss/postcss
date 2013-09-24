@@ -1,14 +1,15 @@
 {
-  "childs": [
-    {
-      "type":     "atrule",
-      "line":      2,
-      "column":    1,
-      "before":    "\n",
-      "name":      "charset",
-      "rawParams": " \"UTF-8\"\n",
-      "params":    "\"UTF-8\""
-    }
-  ],
-  "after": ""
+    "rules": [
+        {
+            "type":     "atrule",
+            "line":      2,
+            "column":    1,
+            "before":    "\n",
+            "name":      "charset",
+            "rawParams": " \"UTF-8\"\n",
+            "params":    "\"UTF-8\"",
+            "content":   "empty"
+        }
+    ],
+    "after": ""
 }
