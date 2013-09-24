@@ -4,7 +4,7 @@
   "description": "Framework for CSS postproccessors",
   "keywords": ["css", "parser", "postproccessor"],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
-  "license": "LGPL 3",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/ai/postcss.git"
