@@ -7,7 +7,9 @@ Raw         = require('./raw')
 
 # CSS parser
 class Parser
-  constructor: (@source, @options) ->
+  constructor: (source, @options) ->
+    @source = source.toString()
+
     @stylesheet = new Stylesheet()
     @current    = @stylesheet
     @parents    = [@current]
