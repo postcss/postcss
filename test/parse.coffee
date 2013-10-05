@@ -1,14 +1,8 @@
 Stylesheet = require('../lib/postcss/stylesheet')
 parse      = require('../lib/postcss/parse')
 
-fs = require('fs')
-
-test = (name) ->
-  file = __dirname + '/cases/' + name
-  css  = fs.readFileSync(file + '.css').toString()
-  json = fs.readFileSync(file + '.json').toString()
-  ast  = parse(css)
-  JSON.stringify(ast, null, 4).should.eql(json)
+fs   = require('fs')
+read = (file) -> fs.readFileSync(__dirname + '/cases/' + file)
 
 describe 'postcss.parse()', ->
 
@@ -27,26 +21,13 @@ describe 'postcss.parse()', ->
     it 'parses comment', ->
       parse("/* a */").should.eql { after: "/* a */", rules: [] }
 
-  describe 'at-rule', ->
+  fs.readdirSync(__dirname + '/cases/').forEach (file) ->
+    return unless file.match(/\.css$/)
 
-    it 'parses',                     -> test('atrule-empty')
-    it 'parses without semicolon',   -> test('atrule-no-semicolon')
-    it 'saves raw params',           -> test('atrule-params')
-    it 'parses without params',      -> test('atrule-no-params')
-    it 'parses declarations inside', -> test('atrule-decls')
-    it 'parses rules inside',        -> test('atrule-rules')
-
-  describe 'rule', ->
-
-    it 'parse selector',           -> test('selector')
-    it 'parse declarations',       -> test('decls')
-    it 'saves raw declaration',    -> test('raw-decl')
-    it 'parses without semicolon', -> test('rule-no-semicolon')
-    it 'ignores hacks',            -> test('prop-hacks')
-    it 'parses many semicolons',   -> test('semicolons')
-    it 'ignores quotes',           -> test('quotes')
-    it 'parses comments',          -> test('comments')
-    it 'parses importants',        -> test('important')
+    it "parses #{ file }", ->
+      css  = parse(read(file))
+      json = read(file.replace(/\.css$/, '.json')).toString()
+      JSON.stringify(css, null, 4).should.eql(json)
 
   describe 'errors', ->
 
