@@ -1,16 +1,13 @@
 {
     "rules": [
         {
-            "type":      "atrule",
-            "line":      1,
-            "column":    1,
-            "before":    "",
-            "name":      "page",
-            "rawParams": "",
-            "params":    "",
-            "content":   "decls",
-            "decls":     [],
-            "after":     " "
+            "type": "atrule",
+            "line": 1,
+            "column": 1,
+            "before": "",
+            "name": "page",
+            "decls": [],
+            "after": " "
         }
     ],
     "after": "\n"

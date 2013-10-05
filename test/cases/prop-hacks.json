@@ -1,45 +1,53 @@
 {
     "rules": [
         {
-            "type":  "rule",
+            "type": "rule",
             "decls": [
                 {
-                    "type":     "decl",
-                    "line":     2,
-                    "column":   5,
-                    "before":   "\n    *",
-                    "property": "color",
-                    "between":  " ",
-                    "rawValue": " black",
-                    "value":    "black"
+                    "type": "decl",
+                    "line": 2,
+                    "column": 5,
+                    "before": "\n    *",
+                    "prop": "color",
+                    "between": " ",
+                    "_value": {
+                        "raw": " black",
+                        "trimmed": "black"
+                    }
                 },
                 {
-                    "type":     "decl",
-                    "line":     3,
-                    "column":   5,
-                    "before":   "\n    _",
-                    "property": "background",
-                    "between":  "",
-                    "rawValue": " white",
-                    "value":    "white"
+                    "type": "decl",
+                    "line": 3,
+                    "column": 5,
+                    "before": "\n    _",
+                    "prop": "background",
+                    "between": "",
+                    "_value": {
+                        "raw": " white",
+                        "trimmed": "white"
+                    }
                 },
                 {
-                    "type":     "decl",
-                    "line":     4,
-                    "column":   5,
-                    "before":   "\n    ",
-                    "property": "font-size",
-                    "between":  "/**/",
-                    "rawValue": " big",
-                    "value":    "big"
+                    "type": "decl",
+                    "line": 4,
+                    "column": 5,
+                    "before": "\n    ",
+                    "prop": "font-size",
+                    "between": "/**/",
+                    "_value": {
+                        "raw": " big",
+                        "trimmed": "big"
+                    }
                 }
             ],
-            "line":        1,
-            "column":      1,
-            "before":      "",
-            "rawSelector": "a ",
-            "selector":    "a",
-            "after":       "\n"
+            "line": 1,
+            "column": 1,
+            "before": "",
+            "_selector": {
+                "raw": "a ",
+                "trimmed": "a"
+            },
+            "after": "\n"
         }
     ],
     "after": "\n"

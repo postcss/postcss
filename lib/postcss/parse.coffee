@@ -1,8 +1,9 @@
-SyntexError = require('./syntax_error')
+SyntexError = require('./syntax-error')
 Declaration = require('./declaration')
 Stylesheet  = require('./stylesheet')
-AtRule      = require('./at_rule')
+AtRule      = require('./at-rule')
 Rule        = require('./rule')
+Raw         = require('./raw')
 
 # CSS parser
 class Parser
@@ -96,15 +97,13 @@ class Parser
 
       else if @letter == ';' or @letter == '{' or finish
         @checkAtruleName()
-        @current.rawParams = ''
-        @current.params    = ''
 
         if @letter == '{'
-          @current.setContent(@atruleType())
-          @setType(@current.content)
+          type = @atruleType()
+          @current.addMixin(type)
+          @setType(type)
           @buffer = ''
         else
-          @current.setContentType('empty')
           @pop()
           @buffer = @letter unless finish
 
@@ -114,15 +113,14 @@ class Parser
 
     else if @inside('atrule-param')
       if @letter == ';' or @letter == '{' or finish
-        @current.rawParams = if finish then @buffer else @prevBuffer()
-        @current.params    = @trim @trimmed
+        @current.params = new Raw(@prevBuffer(), @trim @trimmed)
 
         if @letter == '{'
-          @current.setContent(@atruleType())
-          @setType(@current.content)
+          type = @atruleType()
+          @current.addMixin(type)
+          @setType(type)
           @buffer = ''
         else
-          @current.setContent('empty')
           @pop()
           @buffer = @letter unless finish
 
@@ -133,8 +131,7 @@ class Parser
   inSelector: ->
     if @inside('selector')
       if @letter == '{'
-        @current.rawSelector = @prevBuffer()
-        @current.selector    = @trim @trimmed
+        @current.selector = new Raw(@prevBuffer(), @trim @trimmed)
         @buffer = ''
         @setType('decls')
       else
@@ -167,8 +164,8 @@ class Parser
           @trimmed = @trimmed[1..-1]
           @buffer  = @buffer[1..-1]
 
-        @current.property = @trim @trimmed
-        @current.between  = @prevBuffer()[@current.property.length..-1]
+        @current.prop    = @trim @trimmed
+        @current.between = @prevBuffer()[@current.prop.length..-1]
         @buffer = ''
 
         @setType('value')
@@ -190,13 +187,7 @@ class Parser
   inValue: (finish) ->
     if @inside('value')
       if @letter == ';' or finish
-        @current.rawValue = @prevBuffer()
-        @current.value    = @trim @trimmed
-
-        if @current.value[-11..-1] == ' !important'
-          @current.important = true
-          @current.value = @trim @current.value[0..-11]
-
+        @current.value = new Raw(@prevBuffer(), @trim @trimmed)
         @pop()
       else
         @trimmed += @letter

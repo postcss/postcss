@@ -1,25 +1,29 @@
 {
     "rules": [
         {
-            "type":  "rule",
+            "type": "rule",
             "decls": [
                 {
-                    "type":     "decl",
-                    "line":     1,
-                    "column":   3,
-                    "before":   "",
-                    "property": "color",
-                    "between":  "",
-                    "rawValue": "black",
-                    "value":    "black"
+                    "type": "decl",
+                    "line": 1,
+                    "column": 3,
+                    "before": "",
+                    "prop": "color",
+                    "between": "",
+                    "_value": {
+                        "raw": "black",
+                        "trimmed": "black"
+                    }
                 }
             ],
-            "line":        1,
-            "column":      1,
-            "before":      "",
-            "rawSelector": "a",
-            "selector":    "a",
-            "after":       ""
+            "line": 1,
+            "column": 1,
+            "before": "",
+            "_selector": {
+                "raw": "a",
+                "trimmed": "a"
+            },
+            "after": ""
         }
     ],
     "after": "\n"

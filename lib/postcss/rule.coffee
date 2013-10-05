@@ -1,11 +1,11 @@
-DeclarationsList = require('./declarations_list')
+Container = require('./container')
 
 # CSS rule like “a { }”
-class Rule
-  DeclarationsList.include(@)
-
+class Rule extends Container.WithDecls
   constructor: ->
     @type = 'rule'
-    @decls = []
+    super
+
+  @raw 'selector'
 
 module.exports = Rule

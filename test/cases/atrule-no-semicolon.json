@@ -1,14 +1,15 @@
 {
     "rules": [
         {
-            "type":     "atrule",
-            "line":      2,
-            "column":    1,
-            "before":    "\n",
-            "name":      "charset",
-            "rawParams": " \"UTF-8\"\n",
-            "params":    "\"UTF-8\"",
-            "content":   "empty"
+            "type": "atrule",
+            "line": 2,
+            "column": 1,
+            "before": "\n",
+            "name": "charset",
+            "_params": {
+                "raw": " \"UTF-8\"",
+                "trimmed": "\"UTF-8\""
+            }
         }
     ],
     "after": ""

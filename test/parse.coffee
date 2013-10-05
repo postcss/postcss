@@ -6,20 +6,21 @@ test = (name) ->
   file = __dirname + '/cases/' + name
   css  = fs.readFileSync(file + '.css').toString()
   json = fs.readFileSync(file + '.json').toString()
-  parse(css).should.eql JSON.parse(json)
+  ast  = parse(css)
+  JSON.stringify(ast, null, 4).should.eql(json)
 
 describe 'postcss.parse()', ->
 
   describe 'empty file', ->
 
     it 'parses empty file', ->
-      parse('').should.eql { rules: [], after: '' }
+      parse('').should.eql { after: '', rules: [] }
 
     it 'parses spaces', ->
-      parse(" \n ").should.eql { rules: [], after: " \n " }
+      parse(" \n ").should.eql { after: " \n ", rules: [] }
 
     it 'parses comment', ->
-      parse("/* a */").should.eql { rules: [], after: "/* a */" }
+      parse("/* a */").should.eql { after: "/* a */", rules: [] }
 
   describe 'at-rule', ->
 

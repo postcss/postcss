@@ -1,66 +1,76 @@
 {
     "rules": [
         {
-            "type":     "atrule",
-            "line":      1,
-            "column":    1,
-            "before":    "",
-            "name":      "supports",
-            "rawParams": " (animation-name: test) ",
-            "params":    "(animation-name: test)",
-            "content":   "rules",
+            "type": "atrule",
+            "line": 1,
+            "column": 1,
+            "before": "",
+            "name": "supports",
+            "_params": {
+                "raw": " (animation-name: test) ",
+                "trimmed": "(animation-name: test)"
+            },
             "rules": [
                 {
-                    "type":     "atrule",
-                    "line":      2,
-                    "column":    5,
-                    "before":    "\n    ",
-                    "name":      "-custom-keyframe",
-                    "rawParams": " anim ",
-                    "params":    "anim",
-                    "content":   "rules",
+                    "type": "atrule",
+                    "line": 2,
+                    "column": 5,
+                    "before": "\n    ",
+                    "name": "-custom-keyframe",
+                    "_params": {
+                        "raw": " anim ",
+                        "trimmed": "anim"
+                    },
                     "rules": [
                         {
                             "type": "rule",
                             "decls": [
                                 {
-                                    "type":     "decl",
-                                    "line":     4,
-                                    "column":   13,
-                                    "before":   "\n            ",
-                                    "property": "color",
-                                    "between":  "",
-                                    "rawValue": " black",
-                                    "value":    "black"
+                                    "type": "decl",
+                                    "line": 4,
+                                    "column": 13,
+                                    "before": "\n            ",
+                                    "prop": "color",
+                                    "between": "",
+                                    "_value": {
+                                        "raw": " black",
+                                        "trimmed": "black"
+                                    }
                                 }
                             ],
-                            "line":        3,
-                            "column":      9,
-                            "before":      "\n        ",
-                            "rawSelector": "from ",
-                            "selector":    "from",
-                            "after":        "\n        "
+                            "line": 3,
+                            "column": 9,
+                            "before": "\n        ",
+                            "_selector": {
+                                "raw": "from ",
+                                "trimmed": "from"
+                            },
+                            "after": "\n        "
                         },
                         {
-                            "type":  "rule",
+                            "type": "rule",
                             "decls": [
                                 {
-                                    "type":     "decl",
-                                    "line":     7,
-                                    "column":   13,
-                                    "before":   "\n            ",
-                                    "property": "color",
-                                    "between":  "",
-                                    "rawValue": " white\n        ",
-                                    "value":    "white"
+                                    "type": "decl",
+                                    "line": 7,
+                                    "column": 13,
+                                    "before": "\n            ",
+                                    "prop": "color",
+                                    "between": "",
+                                    "_value": {
+                                        "raw": " white\n        ",
+                                        "trimmed": "white"
+                                    }
                                 }
                             ],
-                            "line":        6,
-                            "column":      9,
-                            "before":      "\n        ",
-                            "rawSelector": "to ",
-                            "selector":    "to",
-                            "after":        ""
+                            "line": 6,
+                            "column": 9,
+                            "before": "\n        ",
+                            "_selector": {
+                                "raw": "to ",
+                                "trimmed": "to"
+                            },
+                            "after": ""
                         }
                     ],
                     "after": "\n    "

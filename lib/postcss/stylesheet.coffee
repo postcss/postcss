@@ -1,15 +1,9 @@
-RulesList = require('./rules_list')
+Container = require('./container')
 
 # Root of CSS
-class Stylesheet
-  RulesList.include(@)
-
+class Stylesheet extends Container.WithRules
   constructor: ->
     @rules = []
-
-  # Stringify styles
-  toString: ->
-    #TODO
-    ''
+    super
 
 module.exports = Stylesheet

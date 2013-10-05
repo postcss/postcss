@@ -1,16 +1,17 @@
 {
     "rules": [
         {
-            "type":     "atrule",
-            "line":      1,
-            "column":    1,
-            "before":    "",
-            "name":      "-moz-document",
-            "rawParams": "/* near */ /* filter */ url(\"example.com/{\") /* a */ ",
-            "params":    "url(\"example.com/{\")",
-            "content":   "rules",
-            "rules":     [],
-            "after":     ""
+            "type": "atrule",
+            "line": 1,
+            "column": 1,
+            "before": "",
+            "name": "-moz-document",
+            "_params": {
+                "raw": "/* near */ /* filter */ url(\"example.com/{\") /* a */ ",
+                "trimmed": "url(\"example.com/{\")"
+            },
+            "rules": [],
+            "after": ""
         }
     ],
     "after": "\n"
