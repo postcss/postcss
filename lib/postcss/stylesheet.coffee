@@ -6,4 +6,8 @@ class Stylesheet extends Container.WithRules
     @rules = []
     super
 
+  # Stringify styles
+  toString: ->
+    @stringifyContent(false)
+
 module.exports = Stylesheet

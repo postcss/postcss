@@ -35,6 +35,7 @@
                 "raw": "a ",
                 "trimmed": "a"
             },
+            "semicolon": true,
             "after": "\n"
         }
     ],

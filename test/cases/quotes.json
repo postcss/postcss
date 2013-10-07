@@ -35,6 +35,7 @@
                 "raw": "a::before ",
                 "trimmed": "a::before"
             },
+            "semicolon": true,
             "after": "\n"
         }
     ],

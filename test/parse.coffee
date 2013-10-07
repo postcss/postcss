@@ -26,7 +26,7 @@ describe 'postcss.parse()', ->
 
     it "parses #{ file }", ->
       css  = parse(read(file))
-      json = read(file.replace(/\.css$/, '.json')).toString()
+      json = read(file.replace(/\.css$/, '.json')).toString().trim()
       JSON.stringify(css, null, 4).should.eql(json)
 
   describe 'errors', ->

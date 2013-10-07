@@ -24,4 +24,13 @@ class AtRule extends Container
 
   @raw 'params'
 
+  # Stringify at-rule
+  toString: (last) ->
+    name = (@before || '') + '@' + @name + @_params.stringify()
+
+    if @rules or @decls
+      name + @stringifyContent()
+    else
+      name + if not last or @semicolon then ';' else ''
+
 module.exports = AtRule

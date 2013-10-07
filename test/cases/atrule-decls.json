@@ -50,6 +50,7 @@
                     }
                 }
             ],
+            "semicolon": true,
             "after": "\n"
         }
     ],

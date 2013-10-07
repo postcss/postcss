@@ -7,4 +7,8 @@ class Declaration extends Node
 
   @raw 'value'
 
+  # Stringify declaration
+  toString: ->
+    (@before || '') + @prop + (@between || '') + ':' + @_value.stringify()
+
 module.exports = Declaration

@@ -8,4 +8,8 @@ class Rule extends Container.WithDecls
 
   @raw 'selector'
 
+  # Stringify rule
+  toString: ->
+    (@before || '') + @_selector.stringify() + @stringifyContent()
+
 module.exports = Rule

@@ -99,15 +99,7 @@ class Parser
 
       else if @letter == ';' or @letter == '{' or finish
         @checkAtruleName()
-
-        if @letter == '{'
-          type = @atruleType()
-          @current.addMixin(type)
-          @setType(type)
-          @buffer = ''
-        else
-          @pop()
-          @buffer = @letter unless finish
+        @endAtruleParams(finish)
 
       else
         @current.name += @letter
@@ -116,15 +108,7 @@ class Parser
     else if @inside('atrule-param')
       if @letter == ';' or @letter == '{' or finish
         @current.params = new Raw(@prevBuffer(), @trim @trimmed)
-
-        if @letter == '{'
-          type = @atruleType()
-          @current.addMixin(type)
-          @setType(type)
-          @buffer = ''
-        else
-          @pop()
-          @buffer = @letter unless finish
+        @endAtruleParams(finish)
 
       else
         @trimmed += @letter
@@ -134,7 +118,8 @@ class Parser
     if @inside('selector')
       if @letter == '{'
         @current.selector = new Raw(@prevBuffer(), @trim @trimmed)
-        @buffer = ''
+        @semicolon = false
+        @buffer    = ''
         @setType('decls')
       else
         @trimmed += @letter
@@ -154,7 +139,8 @@ class Parser
         @error('Unexpected }')
       else
         @inValue(true) if @inside('value')
-        @current.after = @prevBuffer()
+        @current.semicolon = true if @semicolon
+        @current.after     = @prevBuffer()
         @pop()
       true
 
@@ -182,12 +168,16 @@ class Parser
     if @inside('decls') and not @space() and @letter != ';'
       @init new Declaration()
       @addType('property')
-      @buffer = @letter
-      @trimmed = @letter
+      @buffer    = @letter
+      @trimmed   = @letter
+      @semicolon = false
       true
 
   inValue: (finish) ->
     if @inside('value')
+      if @letter == ';'
+        @semicolon = true
+
       if @letter == ';' or finish
         @current.value = new Raw(@prevBuffer(), @trim @trimmed)
         @pop()
@@ -272,6 +262,17 @@ class Parser
       'decls'
     else
       'rules'
+
+  endAtruleParams: (finish) ->
+    if @letter == '{'
+      type = @atruleType()
+      @current.addMixin(type)
+      @setType(type)
+      @buffer = ''
+    else
+      @current.semicolon = true if @letter == ';'
+      @pop()
+      @buffer = @letter if @letter != ';'
 
   checkAtruleName: ->
     @error('At-rule without name') if @current.name == ''

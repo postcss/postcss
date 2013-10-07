@@ -45,6 +45,7 @@
                                 "raw": "from ",
                                 "trimmed": "from"
                             },
+                            "semicolon": true,
                             "after": "\n        "
                         },
                         {
