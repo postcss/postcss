@@ -17,22 +17,20 @@ class Container extends Node
     else
       inside + @after
 
+  # Add child to container
+  append: (rule) ->
+    list = @rules || @decls
+    list.push(rule)
+    this
+
 # Container with another rules, like @media at-rule
 class Container.WithRules extends Container
   constructor: ->
     @rules = []
 
-  # Add rule to container
-  push: (rule) ->
-    @rules.push(rule)
-
 # Container with another rules, like @media at-rule
 class Container.WithDecls extends Container
   constructor: ->
     @decls = []
-
-  # Add declaration to container
-  push: (decl) ->
-    @decls.push(decl)
 
 module.exports = Container

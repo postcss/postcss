@@ -18,9 +18,9 @@ class AtRule extends Container
     mixin.apply(@)
 
   # Detect container type by child type
-  push: (child) ->
+  append: (child) ->
     @addMixin(child.type + 's')
-    @push(child)
+    @append(child)
 
   @raw 'params'
 
