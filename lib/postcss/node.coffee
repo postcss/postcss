@@ -2,6 +2,9 @@ Raw = require('./raw')
 
 # Some common methods for all CSS nodes
 class Node
+  constructor: (defaults = { }) ->
+    for name, value of defaults
+      @[name] = value
 
   # Syntax sugar to create getter/setter
   @prop: (name, params) ->
