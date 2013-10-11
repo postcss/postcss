@@ -2,12 +2,12 @@ Stylesheet = require('../lib/postcss/stylesheet')
 parse      = require('../lib/postcss/parse')
 
 fs   = require('fs')
-read = (file) -> fs.readFileSync(__dirname + '/cases/' + file)
+read = (file) -> fs.readFileSync(__dirname + '/cases/parse/' + file)
 
 describe 'postcss.parse()', ->
 
   it 'works with file reads', ->
-    file = fs.readFileSync(__dirname + '/cases/atrule-empty.css')
+    file = fs.readFileSync(__dirname + '/cases/parse/atrule-empty.css')
     parse(file).should.be.instanceOf(Stylesheet)
 
   describe 'empty file', ->
@@ -21,7 +21,7 @@ describe 'postcss.parse()', ->
     it 'parses comment', ->
       parse("/* a */").should.eql { after: "/* a */", rules: [] }
 
-  fs.readdirSync(__dirname + '/cases/').forEach (file) ->
+  fs.readdirSync(__dirname + '/cases/parse/').forEach (file) ->
     return unless file.match(/\.css$/)
 
     it "parses #{ file }", ->

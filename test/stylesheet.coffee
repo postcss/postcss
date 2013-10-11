@@ -5,11 +5,11 @@ fs = require('fs')
 
 describe 'Stylesheet', ->
 
-  describe '#toString()', ->
+  describe 'toString()', ->
 
-    fs.readdirSync(__dirname + '/cases/').forEach (file) ->
+    fs.readdirSync(__dirname + '/cases/parse/').forEach (file) ->
       return unless file.match(/\.css$/)
 
       it "stringify #{ file }", ->
-        css = fs.readFileSync(__dirname + '/cases/' + file).toString()
+        css = fs.readFileSync(__dirname + '/cases/parse/' + file).toString()
         parse(css).toString().should.eql(css)

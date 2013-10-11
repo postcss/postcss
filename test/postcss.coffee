@@ -14,7 +14,7 @@ describe 'postcss()', ->
 
 describe 'PostCSS', ->
 
-  describe '#use()', ->
+  describe 'use()', ->
 
     it 'adds new processors', ->
       a = -> 1
@@ -27,7 +27,7 @@ describe 'PostCSS', ->
       b = ->
       postcss().use(a).use(b).should.eql { processors: [a, b] }
 
-  describe '#process()', ->
+  describe 'process()', ->
 
     it 'calls all processors', ->
       calls = ''
@@ -41,7 +41,7 @@ describe 'PostCSS', ->
       a = (css) -> css.should.be.an.instanceof(Stylesheet)
       postcss(a).process('a { }').should.be.a('string')
 
-  describe '#parse()', ->
+  describe 'parse()', ->
 
     it 'parses CSS', ->
       stylesheet = postcss().parse('a { }')
