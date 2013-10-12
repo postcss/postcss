@@ -19,6 +19,6 @@
   },
   "main": "lib/postcss",
   "scripts": {
-    "test": "mocha --reporter spec --require should --compilers coffee:coffee-script"
+    "test": "mocha"
   }
 }
