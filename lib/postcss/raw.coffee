@@ -9,9 +9,9 @@ class Raw
       @trimmed = value
 
   # Stringify to CSS raw value if trimmed wasn’t changed
-  stringify: ->
+  stringify: (space = false) ->
     if @changed
-      @trimmed || ''
+      (if space then ' ' else '') + @trimmed || ''
     else
       @raw || ''
 

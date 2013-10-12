@@ -19,3 +19,5 @@ describe 'AtRule', ->
 
     rule.name.should.eql('encoding')
     rule.params.should.eql('"utf-8"')
+
+    rule.toString().should.eql('@encoding "utf-8";')

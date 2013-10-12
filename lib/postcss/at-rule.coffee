@@ -21,7 +21,7 @@ class AtRule extends Container
 
   # Stringify at-rule
   toString: (last) ->
-    name = (@before || '') + '@' + @name + @_params.stringify()
+    name  = (@before || '') + '@' + @name + @_params.stringify(true)
 
     if @rules or @decls
       name + @stringifyContent()

@@ -10,6 +10,6 @@ class Declaration extends Node
 
   # Stringify declaration
   toString: ->
-    (@before || '') + @prop + (@between || '') + ':' + @_value.stringify()
+    (@before || '') + @prop + (@between || '') + ':' + @_value.stringify(true)
 
 module.exports = Declaration
