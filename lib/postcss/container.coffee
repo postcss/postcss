@@ -20,45 +20,52 @@ class Container extends Node
   # Add child to end of list without any checks.
   # Please, use `append()` method, `push()` is mostly for parser.
   push: (child) ->
-    list  = @rules || @decls
-    list.push(child)
+    @list.push(child)
     this
 
   # Add child to container
   append: (child) ->
-    list  = @rules || @decls
-    if not child.before? and list.length > 0
-      child.before = list[list.length - 1].before
-    list.push(child)
+    child = @normalize(child, @list[@list.length - 1])
+    @list.push(child)
     this
 
   # Add child to beginning of container
   prepend: (child) ->
-    list = @rules || @decls
-    if not child.before? and list.length > 0
-      child.before = list[0].before
-    list.unshift(child)
+    child = @normalize(child, @list[0])
+    @list.unshift(child)
     this
 
   # Insert new `added` child before `exist`.
   # You can set node object or node index (it will be faster) in `exist`.
-  insertBefore: (exist, added) ->
-    list  = @rules || @decls
-    exist = list.indexOf(exist) if typeof(exist) != 'number'
-    if not added.before? and list.length > 0
-      added.before = list[exist].before
-    list.splice(exist, 0, added)
+  insertBefore: (exist, add) ->
+    exist = @index(exist)
+    add   = @normalize(add, @list[exist])
+    @list.splice(exist, 0, add)
     this
 
   # Insert new `added` child after `exist`.
   # You can set node object or node index (it will be faster) in `exist`.
-  insertAfter: (exist, added) ->
-    list  = @rules || @decls
-    exist = list.indexOf(exist) if typeof(exist) != 'number'
-    if not added.before? and list.length > 0
-      added.before = list[exist].before
-    list.splice(exist + 1, 0, added)
+  insertAfter: (exist, add) ->
+    exist = @index(exist)
+    add   = @normalize(add, @list[exist])
+    @list.splice(exist + 1, 0, add)
     this
+
+  # Return index of child
+  index: (child) ->
+    if typeof(child) == 'number'
+      child
+    else
+      @list.indexOf(child)
+
+  # Shortcut to get current list
+  @prop 'list', get: -> @rules || @decls
+
+  # Normalize child before insert. Copy before from `sample`.
+  normalize: (child, sample) ->
+    if not child.before? and sample
+      child.before = sample.before
+    child
 
 # Container with another rules, like @media at-rule
 class Container.WithRules extends Container

@@ -7,73 +7,67 @@ fs = require('fs')
 read = (file) ->
   fs.readFileSync(__dirname + "/cases/container/#{ file }.css").toString()
 
+compare = (css, ideal) ->
+  css.toString().should.eql read(ideal)
+
 describe 'Container', ->
   beforeEach ->
     @css  = parse read('base')
     @rule = @css.rules[0]
 
+    @new  = new Declaration()
+    @new.prop  = 'new'
+    @new.value = 'value'
+
   describe 'push()', ->
 
     it 'adds child without checks', ->
-      child = new Declaration()
-      child.prop  = 'new'
-      child.value = 'value'
-      @rule.push(child)
-
-      @css.toString().should.eql read('push')
+      @rule.push(@new)
+      compare(@css, 'push')
 
   describe 'append()', ->
 
     it 'appends child', ->
-      child = new Declaration()
-      child.prop  = 'new'
-      child.value = 'value'
-      @rule.append(child)
-
-      @css.toString().should.eql read('append')
+      @rule.append(@new)
+      compare(@css, 'append')
 
   describe 'prepend()', ->
 
     it 'prepends child', ->
-      child = new Declaration()
-      child.prop  = 'new'
-      child.value = 'value'
-      @rule.prepend(child)
-
-      @css.toString().should.eql read('prepend')
+      @rule.prepend(@new)
+      compare(@css, 'prepend')
 
   describe 'insertBefore()', ->
 
     it 'inserts child', ->
-      child = new Declaration()
-      child.prop  = 'new'
-      child.value = 'value'
-      @rule.insertBefore(1, child)
-
-      @css.toString().should.eql read('insert')
+      @rule.insertBefore(1, @new)
+      compare(@css, 'insert')
 
     it 'works with nodes too', ->
-      child = new Declaration()
-      child.prop  = 'new'
-      child.value = 'value'
-      @rule.insertBefore(@rule.decls[1], child)
-
-      @css.toString().should.eql read('insert')
+      @rule.insertBefore(@rule.decls[1], @new)
+      compare(@css, 'insert')
 
   describe 'insertAfter()', ->
 
     it 'inserts child', ->
-      child = new Declaration()
-      child.prop  = 'new'
-      child.value = 'value'
-      @rule.insertAfter(0, child)
-
-      @css.toString().should.eql read('insert')
+      @rule.insertAfter(0, @new)
+      compare(@css, 'insert')
 
     it 'works with nodes too', ->
-      child = new Declaration()
-      child.prop  = 'new'
-      child.value = 'value'
-      @rule.insertAfter(@rule.decls[0], child)
+      @rule.insertAfter(@rule.decls[0], @new)
+      compare(@css, 'insert')
 
-      @css.toString().should.eql read('insert')
+  describe 'index()', ->
+
+    it 'returns child index', ->
+      @rule.index( @rule.decls[1] ).should.eql(1)
+
+    it 'returns argument if it is number', ->
+      @rule.index(2).should.eql(2)
+
+  describe 'normalize()', ->
+
+    it "doesn't normalize new childs with exists before", ->
+      @new.before = "\n        "
+      @rule.append(@new)
+      compare(@css, 'indent')
