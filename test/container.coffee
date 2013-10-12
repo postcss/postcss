@@ -31,10 +31,18 @@ describe 'Container', ->
       @rule.append(@new)
       compare(@css, 'append')
 
+    it 'receive hash instead of declaration', ->
+      @rule.append(prop: 'new', value: 'value')
+      compare(@css, 'append')
+
   describe 'prepend()', ->
 
     it 'prepends child', ->
       @rule.prepend(@new)
+      compare(@css, 'prepend')
+
+    it 'receive hash instead of declaration', ->
+      @rule.prepend(prop: 'new', value: 'value')
       compare(@css, 'prepend')
 
   describe 'insertBefore()', ->
@@ -47,6 +55,10 @@ describe 'Container', ->
       @rule.insertBefore(@rule.decls[1], @new)
       compare(@css, 'insert')
 
+    it 'receive hash instead of declaration', ->
+      @rule.insertBefore(1, prop: 'new', value: 'value')
+      compare(@css, 'insert')
+
   describe 'insertAfter()', ->
 
     it 'inserts child', ->
@@ -55,6 +67,10 @@ describe 'Container', ->
 
     it 'works with nodes too', ->
       @rule.insertAfter(@rule.decls[0], @new)
+      compare(@css, 'insert')
+
+    it 'receive hash instead of declaration', ->
+      @rule.insertAfter(0, prop: 'new', value: 'value')
       compare(@css, 'insert')
 
   describe 'index()', ->

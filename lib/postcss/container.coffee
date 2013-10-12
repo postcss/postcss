@@ -1,4 +1,5 @@
-Node = require('./node')
+Node        = require('./node')
+Declaration = require('./declaration')
 
 # CSS node, that contain another nodes (like at-rules or rules with selectors)
 class Container extends Node
@@ -23,13 +24,25 @@ class Container extends Node
     @list.push(child)
     this
 
-  # Add child to container
+  # Add child to container.
+  #
+  #   css.append(rule)
+  #
+  # You can add declaration by hash:
+  #
+  #   rule.append(prop: 'color', value: 'black')
   append: (child) ->
     child = @normalize(child, @list[@list.length - 1])
     @list.push(child)
     this
 
   # Add child to beginning of container
+  #
+  #   css.prepend(rule)
+  #
+  # You can add declaration by hash:
+  #
+  #   rule.prepend(prop: 'color', value: 'black')
   prepend: (child) ->
     child = @normalize(child, @list[0])
     @list.unshift(child)
@@ -37,6 +50,12 @@ class Container extends Node
 
   # Insert new `added` child before `exist`.
   # You can set node object or node index (it will be faster) in `exist`.
+  #
+  #   css.insertAfter(1, rule)
+  #
+  # You can add declaration by hash:
+  #
+  #   rule.insertBefore(1, prop: 'color', value: 'black')
   insertBefore: (exist, add) ->
     exist = @index(exist)
     add   = @normalize(add, @list[exist])
@@ -45,6 +64,12 @@ class Container extends Node
 
   # Insert new `added` child after `exist`.
   # You can set node object or node index (it will be faster) in `exist`.
+  #
+  #   css.insertAfter(1, rule)
+  #
+  # You can add declaration by hash:
+  #
+  #   rule.insertAfter(1, prop: 'color', value: 'black')
   insertAfter: (exist, add) ->
     exist = @index(exist)
     add   = @normalize(add, @list[exist])
@@ -65,6 +90,7 @@ class Container extends Node
   normalize: (child, sample) ->
     if not child.before? and sample
       child.before = sample.before
+
     child
 
 # Container with another rules, like @media at-rule
@@ -78,5 +104,10 @@ class Container.WithDecls extends Container
   constructor: ->
     @decls = []
     super
+
+  # Allow to define new declaration as hash
+  normalize: (child, sample) ->
+    child = new Declaration(child) unless child.type
+    super(child, sample)
 
 module.exports = Container
