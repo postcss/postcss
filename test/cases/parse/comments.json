@@ -23,7 +23,7 @@
                     "prop": "background",
                     "between": "",
                     "_value": {
-                        "raw": " white\n    /* end */\n",
+                        "raw": " white\n    /* end */",
                         "trimmed": "white"
                     }
                 }
@@ -35,7 +35,7 @@
                 "raw": "div ",
                 "trimmed": "div"
             },
-            "after": ""
+            "after": "\n"
         }
     ],
     "after": "\n/* b */\n"

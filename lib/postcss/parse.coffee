@@ -138,9 +138,17 @@ class Parser
       if @parents.length == 1
         @error('Unexpected }')
       else
-        @inValue(true) if @inside('value')
-        @current.semicolon = true if @semicolon
-        @current.after     = @prevBuffer()
+        if @inside('value')
+          start = @buffer.search(/\s*\}$/)
+          after = @buffer[start..-2]
+
+          @buffer = @buffer[0..start]
+          @inValue(true)
+
+          @current.after = after
+        else
+          @current.semicolon = true if @semicolon
+          @current.after     = @prevBuffer()
         @pop()
       true
 

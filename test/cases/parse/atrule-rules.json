@@ -59,7 +59,7 @@
                                     "prop": "color",
                                     "between": "",
                                     "_value": {
-                                        "raw": " white\n        ",
+                                        "raw": " white",
                                         "trimmed": "white"
                                     }
                                 }
@@ -71,7 +71,7 @@
                                 "raw": "to ",
                                 "trimmed": "to"
                             },
-                            "after": ""
+                            "after": "\n        "
                         }
                     ],
                     "after": "\n    "

@@ -19,12 +19,12 @@
                     "prop": "background",
                     "between": "",
                     "_value": {
-                        "raw": " black\n",
+                        "raw": " black",
                         "trimmed": "black"
                     }
                 }
             ],
-            "after": ""
+            "after": "\n"
         },
         {
             "type": "atrule",
