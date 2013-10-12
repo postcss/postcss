@@ -12,4 +12,10 @@ class Declaration extends Node
   toString: ->
     (@before || '') + @prop + (@between || '') + ':' + @_value.stringify(true)
 
+  # Clean `before` property in clone to copy it from new parent rule
+  clone: (obj) ->
+    clone = super
+    delete clone.before
+    clone
+
 module.exports = Declaration

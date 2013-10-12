@@ -1,5 +1,6 @@
 Node = require('../lib/postcss/node')
 Raw  = require('../lib/postcss/raw')
+Rule = require('../lib/postcss/rule')
 
 describe 'Node', ->
 
@@ -41,3 +42,15 @@ describe 'Node', ->
       b.one = '1'
       b.one.should.eql('1')
       b._one.stringify().should.eql('1')
+
+  describe 'clone()', ->
+
+    it 'clones nodes', ->
+      rule = new Rule(selector: new Raw(' a ', 'a'))
+      rule.append(prop: 'color', value: new Raw(' black ', 'black'))
+
+      clone = rule.clone()
+      clone.append(prop: 'display', value: 'none')
+
+      rule.toString().should.eql(' a {color: black }')
+      clone.toString().should.eql(' a {color: black ;display: none}')

@@ -13,10 +13,12 @@ class Container extends Node
     else if @decls
       @decls.map( (i) -> i.toString() ).join(';') + if @semicolon then ';' else ''
 
+    inside += @after if @after?
+
     if brackets
-      '{' + inside + @after + '}'
+      '{' + inside + '}'
     else
-      inside + @after
+      inside
 
   # Add child to end of list without any checks.
   # Please, use `append()` method, `push()` is mostly for parser.

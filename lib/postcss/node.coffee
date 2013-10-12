@@ -1,4 +1,5 @@
-Raw = require('./raw')
+Raw   = require('./raw')
+clone = require('./clone')
 
 # Some common methods for all CSS nodes
 class Node
@@ -25,5 +26,9 @@ class Node
         else
           @[hidden] = new Raw() if @[hidden] == Raw.empty
           @[hidden].set(value)
+
+  # Clone current node
+  clone: ->
+    clone(@)
 
 module.exports = Node
