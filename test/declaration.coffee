@@ -2,7 +2,7 @@ Declaration = require('../lib/postcss/declaration')
 
 describe 'Declaration', ->
 
-  it 'fast sets properties', ->
+  it 'initializes with properties', ->
     decl = new Declaration(prop: 'color', value: 'black')
 
     decl.prop.should.eql('color')

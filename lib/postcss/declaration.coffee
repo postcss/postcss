@@ -4,6 +4,7 @@ Node = require('./node')
 class Declaration extends Node
   constructor: ->
     @type = 'decl'
+    super
 
   @raw 'value'
 

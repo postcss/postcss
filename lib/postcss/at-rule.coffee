@@ -17,11 +17,6 @@ class AtRule extends Container
       @[name] = value
     mixin.apply(@)
 
-  # Detect container type by child type
-  append: (child) ->
-    @addMixin(child.type + 's')
-    @append(child)
-
   @raw 'params'
 
   # Stringify at-rule
@@ -32,5 +27,12 @@ class AtRule extends Container
       name + @stringifyContent()
     else
       name + if not last or @semicolon then ';' else ''
+
+# Detect container type by child type
+for name in ['append', 'prepend']
+  do (name) ->
+    AtRule.prototype[name] = (child) ->
+      @addMixin(child.type + 's')
+      @[name](child)
 
 module.exports = AtRule

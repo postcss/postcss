@@ -229,7 +229,7 @@ class Parser
     @letter == ' ' or @letter == "\n" or @letter == "\f" or @letter == "\r"
 
   init: (node) ->
-    @current.append(node)
+    @current.push(node)
     @parents.push(node)
     @current = node
 
