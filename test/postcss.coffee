@@ -39,7 +39,7 @@ describe 'PostCSS', ->
 
     it 'parses, convert and stringify CSS', ->
       a = (css) -> css.should.be.an.instanceof(Stylesheet)
-      postcss(a).process('a { }').should.be.a('string')
+      postcss(a).process('a { }').should.have.type('string')
 
   describe 'parse()', ->
 
