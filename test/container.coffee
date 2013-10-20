@@ -73,6 +73,16 @@ describe 'Container', ->
       @rule.insertAfter(0, prop: 'new', value: 'value')
       compare(@css, 'insert')
 
+  describe 'remove()', ->
+
+    it 'should remove by index', ->
+      @rule.remove(1)
+      compare(@css, 'remove')
+
+    it 'should remove by nide', ->
+      @rule.remove( @rule.decls[1] )
+      compare(@css, 'remove')
+
   describe 'index()', ->
 
     it 'returns child index', ->

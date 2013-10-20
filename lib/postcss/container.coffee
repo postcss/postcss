@@ -78,6 +78,13 @@ class Container extends Node
     @list.splice(exist + 1, 0, add)
     this
 
+  # Remove `child` by index or node.
+  #
+  #   css.remove(2)
+  remove: (child) ->
+    child = @index(child)
+    @list.splice(child, 1)
+
   # Return index of child
   index: (child) ->
     if typeof(child) == 'number'
