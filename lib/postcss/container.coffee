@@ -25,10 +25,11 @@ class Container extends Node
     @list.push(child)
     this
 
-  # Execute `callback` on every child element:
+  # Execute `callback` on every child element. First arguments will be child
+  # node, second will be index.
   #
   #   css.each (rule, i) ->
-  #     console.log( rule.type + ' at ' + i )
+  #     console.log(rule.type + ' at ' + i)
   #
   # It is safe for add and remove elements to list while iterating:
   #
@@ -53,6 +54,20 @@ class Container extends Node
       @indexes[id] += 1
 
     delete @indexes[id]
+    this
+
+  # Execute callback on every declaration in all rules inside.
+  # It will goes inside at-rules recursivelly.
+  #
+  # First argument will be declaration node, second will be parent rule and
+  # third will be index inside parent rule.
+  #
+  #   css.eachDecl (decl, rule, i) ->
+  #     console.log('Decl ' + decl.prop + ' in ' + rule.selector + ' at ' + i)
+  #
+  # Also as `each` it is safe of insert/remove nodes inside iterating.
+  eachDecl: (callback) ->
+    # Different realization will be inside subclasses
 
   # Add child to container.
   #
@@ -153,6 +168,14 @@ class Container.WithRules extends Container
     @rules = []
     super
 
+  # Execute callback on every declaration in all rules inside.
+  # It will goes inside at-rules recursivelly.
+  #
+  # See documentation in `Container#eachDecl`.
+  eachDecl: (callback) ->
+    @each (child) -> child.eachDecl(callback)
+    this
+
 # Container with another rules, like @media at-rule
 class Container.WithDecls extends Container
   constructor: ->
@@ -163,5 +186,12 @@ class Container.WithDecls extends Container
   normalize: (child, sample) ->
     child = new Declaration(child) unless child.type
     super(child, sample)
+
+  # Execute callback on every declaration.
+  #
+  # See documentation in `Container#eachDecl`.
+  eachDecl: (callback) ->
+    @each (decl, i) => callback(decl, this, i)
+    this
 
 module.exports = Container

@@ -1,0 +1,14 @@
+a {
+    a: 1;
+    b: 2;
+}
+
+@keyframes anim {
+    to {
+        c: 3;
+    }
+}
+
+@page {
+    d: 4;
+}

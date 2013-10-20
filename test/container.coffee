@@ -27,40 +27,65 @@ describe 'Container', ->
 
   describe 'each()', ->
 
-    it 'should iterate', ->
+    it 'iterates', ->
       indexes = []
       @rule.each (decl, i) =>
         indexes.push(i)
         decl.should.eql( @rule.decls[i] )
       indexes.should.eql [0, 1]
 
-    it 'should iterate with prepend', ->
+    it 'iterates with prepend', ->
       size = 0
       @rule.each =>
         @rule.prepend({ prop: 'color', value: 'black' })
         size += 1
       size.should.eql(2)
 
-    it 'should iterate with insertBefore', ->
+    it 'iterates with insertBefore', ->
       size = 0
       @rule.each (decl) =>
         @rule.insertBefore(decl, { prop: 'color', value: 'black' })
         size += 1
       size.should.eql(2)
 
-    it 'should iterate with insertAfter', ->
+    it 'iterates with insertAfter', ->
       size = 0
       @rule.each (decl, i) =>
         @rule.insertBefore(i - 1, { prop: 'color', value: 'black' })
         size += 1
       size.should.eql(2)
 
-    it 'should iterate with remove', ->
+    it 'iterates with remove', ->
       size = 0
       @rule.each =>
         @rule.remove(0)
         size += 1
       size.should.eql(2)
+
+  describe 'eachDecl()', ->
+    beforeEach ->
+      @css = parse read('each-decl')
+
+    it 'iterates', ->
+      rules   = []
+      props   = []
+      indexes = []
+
+      @css.eachDecl (decl, rule, i) ->
+        rules.push(rule.selector)
+        props.push(decl.prop)
+        indexes.push(i)
+
+      rules.should.eql   ['a', 'a', 'to', undefined]
+      props.should.eql   ['a', 'b', 'c', 'd']
+      indexes.should.eql [0, 1, 0, 0]
+
+    it 'iterates with changes', ->
+      size = 0
+      @css.eachDecl (decl, rule, i) ->
+        rule.remove(i)
+        size += 1
+      size.should.eql(4)
 
   describe 'append()', ->
 
