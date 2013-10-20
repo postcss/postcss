@@ -112,6 +112,31 @@ describe 'Container', ->
         size += 1
       size.should.eql(3)
 
+  describe 'eachAtRule()', ->
+    beforeEach ->
+      @css = parse read('each-recursivelly')
+
+    it 'iterates', ->
+      parents = []
+      names   = []
+      indexes = []
+
+      @css.eachAtRule (atrule, parent, i) ->
+        parents.push(parent.name)
+        names.push(atrule.name)
+        indexes.push(i)
+
+      parents.should.eql [undefined, undefined, 'media']
+      names.should.eql   ['keyframes', 'media', 'page']
+      indexes.should.eql [1, 2, 1]
+
+    it 'iterates with changes', ->
+      size = 0
+      @css.eachAtRule (atrule, parent, i) ->
+        parent.remove(i)
+        size += 1
+      size.should.eql(3)
+
   describe 'append()', ->
 
     it 'appends child', ->

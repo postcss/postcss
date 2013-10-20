@@ -176,7 +176,7 @@ class Container.WithRules extends Container
     @each (child) -> child.eachDecl(callback)
     this
 
-  # Execute `callback` on every rule inside conatiner and inside child at-rules.
+  # Execute `callback` on every rule in conatiner and inside child at-rules.
   #
   # First argument will be rule node, second will be parent and third will be
   # index inside parent.
@@ -187,12 +187,28 @@ class Container.WithRules extends Container
   #     else
   #       console.log(rule.selector + ' at ' + i)
   eachRule: (callback) ->
-    return this unless @rules
     @each (child, i) =>
       if child.type == 'rule'
         callback(child, this, i)
       else if child.eachRule
         child.eachRule(callback)
+    this
+
+  # Execute `callback` on every at-rule in conatiner and inside at-rules.
+  #
+  # First argument will be at-rule node, second will be parent and third will be
+  # index inside parent.
+  #
+  #   css.eachAtRule (atrule, parent, i) ->
+  #     if parent.type == 'atrule'
+  #       console.log(atrule.name + ' in ' + parent.name + ' at ' + i)
+  #     else
+  #       console.log(atrule.name + ' at ' + i)
+  eachAtRule: (callback) ->
+    @each (child, i) =>
+      if child.type == 'atrule'
+        callback(child, this, i)
+        child.eachAtRule(callback) if child.eachAtRule
     this
 
 # Container with another rules, like @media at-rule
