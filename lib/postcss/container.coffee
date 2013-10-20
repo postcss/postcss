@@ -3,7 +3,6 @@ Declaration = require('./declaration')
 
 # CSS node, that contain another nodes (like at-rules or rules with selectors)
 class Container extends Node
-
   # Return container block with childs inside
   stringifyContent: (brackets = true) ->
     return if not @rules and not @decls
@@ -25,6 +24,35 @@ class Container extends Node
   push: (child) ->
     @list.push(child)
     this
+
+  # Execute `callback` on every child element:
+  #
+  #   css.each (rule, i) ->
+  #     console.log( rule.type + ' at ' + i )
+  #
+  # It is safe for add and remove elements to list while iterating:
+  #
+  #  css.each (rule) ->
+  #    css.insertBefore( rule, addPrefix(rule) )
+  #    # On next iteration will be next rule, regardless of that list size
+  #    # was increased
+  each: (callback) ->
+    @lastEach ||= 0
+    @indexes  ||= { }
+
+    @lastEach += 1
+    id = @lastEach
+    @indexes[id] = 0
+
+    list = @list
+    while @indexes[id] < list.length
+
+      index = @indexes[id]
+      callback(list[index], index)
+
+      @indexes[id] += 1
+
+    delete @indexes[id]
 
   # Add child to container.
   #
@@ -48,6 +76,10 @@ class Container extends Node
   prepend: (child) ->
     child = @normalize(child, @list[0])
     @list.unshift(child)
+
+    for id, index of @indexes
+      @indexes[id] = index + 1
+
     this
 
   # Insert new `added` child before `exist`.
@@ -62,6 +94,10 @@ class Container extends Node
     exist = @index(exist)
     add   = @normalize(add, @list[exist])
     @list.splice(exist, 0, add)
+
+    for id, index of @indexes
+      @indexes[id] = index + 1 if index >= exist
+
     this
 
   # Insert new `added` child after `exist`.
@@ -76,6 +112,10 @@ class Container extends Node
     exist = @index(exist)
     add   = @normalize(add, @list[exist])
     @list.splice(exist + 1, 0, add)
+
+    for id, index of @indexes
+      @indexes[id] = index + 1 if index > exist
+
     this
 
   # Remove `child` by index or node.
@@ -84,6 +124,11 @@ class Container extends Node
   remove: (child) ->
     child = @index(child)
     @list.splice(child, 1)
+
+    for id, index of @indexes
+      @indexes[id] = index - 1 if index >= child
+
+    this
 
   # Return index of child
   index: (child) ->

@@ -25,6 +25,43 @@ describe 'Container', ->
       @rule.push(@new)
       compare(@css, 'push')
 
+  describe 'each()', ->
+
+    it 'should iterate', ->
+      indexes = []
+      @rule.each (decl, i) =>
+        indexes.push(i)
+        decl.should.eql( @rule.decls[i] )
+      indexes.should.eql [0, 1]
+
+    it 'should iterate with prepend', ->
+      size = 0
+      @rule.each =>
+        @rule.prepend({ prop: 'color', value: 'black' })
+        size += 1
+      size.should.eql(2)
+
+    it 'should iterate with insertBefore', ->
+      size = 0
+      @rule.each (decl) =>
+        @rule.insertBefore(decl, { prop: 'color', value: 'black' })
+        size += 1
+      size.should.eql(2)
+
+    it 'should iterate with insertAfter', ->
+      size = 0
+      @rule.each (decl, i) =>
+        @rule.insertBefore(i - 1, { prop: 'color', value: 'black' })
+        size += 1
+      size.should.eql(2)
+
+    it 'should iterate with remove', ->
+      size = 0
+      @rule.each =>
+        @rule.remove(0)
+        size += 1
+      size.should.eql(2)
+
   describe 'append()', ->
 
     it 'appends child', ->
