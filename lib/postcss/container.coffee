@@ -63,7 +63,7 @@ class Container extends Node
   # third will be index inside parent rule.
   #
   #   css.eachDecl (decl, rule, i) ->
-  #     console.log('Decl ' + decl.prop + ' in ' + rule.selector + ' at ' + i)
+  #     console.log(decl.prop + ' in ' + rule.selector + ' at ' + i)
   #
   # Also as `each` it is safe of insert/remove nodes inside iterating.
   eachDecl: (callback) ->
@@ -168,12 +168,31 @@ class Container.WithRules extends Container
     @rules = []
     super
 
-  # Execute callback on every declaration in all rules inside.
+  # Execute `callback` on every declaration in all rules inside.
   # It will goes inside at-rules recursivelly.
   #
   # See documentation in `Container#eachDecl`.
   eachDecl: (callback) ->
     @each (child) -> child.eachDecl(callback)
+    this
+
+  # Execute `callback` on every rule inside conatiner and inside child at-rules.
+  #
+  # First argument will be rule node, second will be parent and third will be
+  # index inside parent.
+  #
+  #   css.eachRule (rule, parent, i) ->
+  #     if parent.type == 'atrule'
+  #       console.log(rule.selector + ' in ' + parent.name + ' at ' + i)
+  #     else
+  #       console.log(rule.selector + ' at ' + i)
+  eachRule: (callback) ->
+    return this unless @rules
+    @each (child, i) =>
+      if child.type == 'rule'
+        callback(child, this, i)
+      else if child.eachRule
+        child.eachRule(callback)
     this
 
 # Container with another rules, like @media at-rule

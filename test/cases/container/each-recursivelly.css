@@ -9,6 +9,12 @@ a {
     }
 }
 
+@media all and (min-width: 100) {
+    em {
+        d: 4;
+    }
+}
+
 @page {
-    d: 4;
+    e: 5;
 }

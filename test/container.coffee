@@ -64,7 +64,7 @@ describe 'Container', ->
 
   describe 'eachDecl()', ->
     beforeEach ->
-      @css = parse read('each-decl')
+      @css = parse read('each-recursivelly')
 
     it 'iterates', ->
       rules   = []
@@ -76,16 +76,41 @@ describe 'Container', ->
         props.push(decl.prop)
         indexes.push(i)
 
-      rules.should.eql   ['a', 'a', 'to', undefined]
-      props.should.eql   ['a', 'b', 'c', 'd']
-      indexes.should.eql [0, 1, 0, 0]
+      rules.should.eql   ['a', 'a', 'to', 'em', undefined]
+      props.should.eql   ['a', 'b', 'c', 'd', 'e']
+      indexes.should.eql [0, 1, 0, 0, 0]
 
     it 'iterates with changes', ->
       size = 0
       @css.eachDecl (decl, rule, i) ->
         rule.remove(i)
         size += 1
-      size.should.eql(4)
+      size.should.eql(5)
+
+  describe 'eachRule()', ->
+    beforeEach ->
+      @css = parse read('each-recursivelly')
+
+    it 'iterates', ->
+      parents   = []
+      selectors = []
+      indexes   = []
+
+      @css.eachRule (rule, parent, i) ->
+        parents.push(parent.name)
+        selectors.push(rule.selector)
+        indexes.push(i)
+
+      parents.should.eql   [undefined, 'keyframes', 'media']
+      selectors.should.eql ['a', 'to', 'em']
+      indexes.should.eql   [0, 0, 0]
+
+    it 'iterates with changes', ->
+      size = 0
+      @css.eachRule (rule, parent, i) ->
+        parent.remove(i)
+        size += 1
+      size.should.eql(3)
 
   describe 'append()', ->
 
