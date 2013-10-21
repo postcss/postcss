@@ -7,12 +7,9 @@ class PostCSS
     @processors.push(processor)
     this
 
-  # Compile CSS to nodes
-  parse: require('./postcss/parse')
-
   # Process CSS throw installed processors
   process: (css, options = {}) ->
-    parsed = @parse(css, options)
+    parsed = postcss.parse(css, options)
     i(parsed) for i in @processors
     parsed.toString()
 
@@ -24,5 +21,8 @@ class PostCSS
 # processor.process(css)
 postcss = (processors...) ->
   new PostCSS(processors)
+
+# Compile CSS to nodes
+postcss.parse = require('./postcss/parse')
 
 module.exports = postcss

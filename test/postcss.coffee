@@ -12,6 +12,22 @@ describe 'postcss()', ->
     b = -> 2
     postcss(a, b).should.eql { processors: [a, b] }
 
+  describe 'parse()', ->
+
+    it 'parses CSS', ->
+      stylesheet = postcss.parse('a { }')
+      stylesheet.should.be.an.instanceof(Stylesheet)
+
+    it 'throws with file name', ->
+      error = null
+      try
+        postcss.parse('a {', file: 'a.css')
+      catch e
+        error = e
+
+      e.file.should.eql    'a.css'
+      e.message.should.eql 'Unclosed block at line 1:1 in a.css'
+
 describe 'PostCSS', ->
 
   describe 'use()', ->
@@ -40,19 +56,3 @@ describe 'PostCSS', ->
     it 'parses, convert and stringify CSS', ->
       a = (css) -> css.should.be.an.instanceof(Stylesheet)
       postcss(a).process('a { }').should.have.type('string')
-
-  describe 'parse()', ->
-
-    it 'parses CSS', ->
-      stylesheet = postcss().parse('a { }')
-      stylesheet.should.be.an.instanceof(Stylesheet)
-
-    it 'throws with file name', ->
-      error = null
-      try
-        postcss().parse('a {', file: 'a.css')
-      catch e
-        error = e
-
-      e.file.should.eql    'a.css'
-      e.message.should.eql 'Unclosed block at line 1:1 in a.css'
