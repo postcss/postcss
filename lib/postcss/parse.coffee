@@ -183,14 +183,18 @@ class Parser
 
   inValue: (finish) ->
     if @inside('value')
-      if @letter == ';'
-        @semicolon = true
+      if @letter == '('
+        @inBrackets = true
+      else if @inBrackets and @letter == ')'
+        @inBrackets = false
 
-      if @letter == ';' or finish
+      if (@letter == ';' and not @inBrackets) or finish
+        @semicolon = true if @letter == ';'
         @current.value = new Raw(@prevBuffer(), @trim @trimmed)
         @pop()
       else
         @trimmed += @letter
+
       true
 
   unknown: ->
