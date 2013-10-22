@@ -1,6 +1,6 @@
 # PostCSS
 
-PostCSS is a framework for CSS postproccessors. You gives custom JS function
+PostCSS is a framework for CSS postprocessors. You gives custom JS function
 to modify CSS and PostCSS parses CSS, gives your usable JS API to edit CSS nodes
 tree and then save modified nodes tree to new CSS.
 

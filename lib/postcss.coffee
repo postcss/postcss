@@ -13,7 +13,7 @@ class PostCSS
     i(parsed) for i in @processors
     parsed.toString()
 
-# Framework for CSS postproccessors
+# Framework for CSS postprocessors
 #
 # var processor = postcss(function (css) {
 #     // Change nodes in css
