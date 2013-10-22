@@ -277,7 +277,7 @@ class Parser
 
   atruleType: ->
     name = @current.name.toLowerCase()
-    if name == 'page' or name == 'font-face'
+    if name == 'page' or name == 'font-face' or name[-8..-1] == 'viewport'
       'decls'
     else
       'rules'

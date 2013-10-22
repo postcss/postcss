@@ -5,3 +5,11 @@
 @font-face {
     family-name: "A;' /**/";
 }
+
+@viewport {
+    width: 110px;
+}
+
+@-ms-viewport {
+    width: 100px;
+}

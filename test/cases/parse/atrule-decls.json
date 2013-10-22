@@ -52,6 +52,60 @@
             ],
             "semicolon": true,
             "after": "\n"
+        },
+        {
+            "type": "atrule",
+            "line": 9,
+            "column": 1,
+            "before": "\n\n",
+            "name": "viewport",
+            "_params": {
+                "raw": " ",
+                "trimmed": ""
+            },
+            "decls": [
+                {
+                    "type": "decl",
+                    "line": 10,
+                    "column": 5,
+                    "before": "\n    ",
+                    "prop": "width",
+                    "between": "",
+                    "_value": {
+                        "raw": " 110px",
+                        "trimmed": "110px"
+                    }
+                }
+            ],
+            "semicolon": true,
+            "after": "\n"
+        },
+        {
+            "type": "atrule",
+            "line": 13,
+            "column": 1,
+            "before": "\n\n",
+            "name": "-ms-viewport",
+            "_params": {
+                "raw": " ",
+                "trimmed": ""
+            },
+            "decls": [
+                {
+                    "type": "decl",
+                    "line": 14,
+                    "column": 5,
+                    "before": "\n    ",
+                    "prop": "width",
+                    "between": "",
+                    "_value": {
+                        "raw": " 100px",
+                        "trimmed": "100px"
+                    }
+                }
+            ],
+            "semicolon": true,
+            "after": "\n"
         }
     ],
     "after": "\n"
