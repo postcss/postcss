@@ -50,17 +50,17 @@ task 'integration', 'Test parser/stringifier on real CSS', ->
       print('.')
       nextLink()
 
-  sites = ['github.com', 'twitter.com', 'http://habrahabr.ru']
+  sites = [{ name: 'GitHub',    url: 'https://github.com/' }
+           { name: 'Twitter',   url: 'https://twitter.com/' }
+           { name: 'Habrahabr', url: 'http://habrahabr.ru/' }
+           { name: 'Bootstrap', url: 'http://getbootstrap.com/' }]
   nextSite = ->
     return if sites.length == 0
     site = sites.shift()
 
-    site = 'https://' + site unless site.match(/https?:/)
-    print('Test ' + site.replace(/https?:\/\//, '') + ' styles')
-
-    get site, (html) ->
-      links = html.match(/[^"]+\.css/g).map (i) ->
-        if i[0] == '/' then site + i else i
+    print('Test ' + site.name + ' styles')
+    get site.url, (html) ->
+      links = html.match(/[^"]+\.css/g).map (i) -> i.replace(/^\.?\//, site.url)
       nextLink()
 
   nextSite()
