@@ -2,7 +2,7 @@
 
 PostCSS is a framework for CSS postproccessors. You gives custom JS function
 to modify CSS and PostCSS parses CSS, gives your usable JS API to edit CSS nodes
-tree and then save medify nodes tree to new CSS.
+tree and then save modified nodes tree to new CSS.
 
 For example, lets fix forgotten `content` ptopery in `::before` and `::after`:
 
@@ -24,13 +24,13 @@ var postprocessor = postcss(function (css) {
 });
 ```
 
-And CSS with forgotten `content`:
+And then CSS with forgotten `content`:
 
 ```css
 a::before {
     width: 10px;
     height: 10px;
-    background: black;
+    background: black
 }
 ```
 
@@ -47,6 +47,8 @@ a::before {
     content: "";
     width: 10px;
     height: 10px;
-    background: black;
+    background: black
 }
 ```
+
+Sponsored by [Evil Martians](http://evilmartians.com/).
