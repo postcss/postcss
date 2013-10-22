@@ -6,9 +6,69 @@ sh = (cmd, callback) ->
     process.exit(1) if error
     callback()
 
+task 'integration', 'Test parser/stringifier on real CSS', ->
+  invoke('clean')
+
+  print = (text) ->
+    process.stdout.write(text)
+  error = (text) ->
+    process.stderr.write("\n\n" + text + "\n")
+    process.exit(1)
+
+  https = require('https')
+  http  = require('http')
+  get = (url, callback) ->
+    protocol = if url.match(/^https/) then https else http
+    protocol.get url, (res) ->
+      data = ''
+      res.on 'data', (chunk) -> data += chunk
+      res.on 'end', -> callback(data)
+
+  postcss = require(__dirname + '/lib/postcss')
+  test = (css) ->
+    try
+      processed = postcss.parse(css).toString()
+    catch e
+      fs.writeFileSync(__dirname + '/fail.css', css)
+      error("Parsing error: #{ e.message }\nBad file was saved to fail.css")
+
+    if processed != css
+      fs.writeFileSync(__dirname + '/origin.css', css)
+      fs.writeFileSync(__dirname + '/fail.css', processed)
+      error("Wrong stringifing\n" +
+            "Check difference between origin.css and fail.css")
+
+  links = []
+  nextLink = ->
+    if links.length == 0
+      print("\n")
+      nextSite()
+      return
+
+    get links.shift(), (css) ->
+      test(css)
+      print('.')
+      nextLink()
+
+  sites = ['github.com', 'twitter.com', 'http://habrahabr.ru']
+  nextSite = ->
+    return if sites.length == 0
+    site = sites.shift()
+
+    site = 'https://' + site unless site.match(/https?:/)
+    print('Test ' + site.replace(/https?:\/\//, '') + ' styles')
+
+    get site, (html) ->
+      links = html.match(/[^"]+\.css/g).map (i) ->
+        if i[0] == '/' then site + i else i
+      nextLink()
+
+  nextSite()
+
 task 'clean', 'Remove all temporary files', ->
   fs.removeSync(__dirname + '/build')
-  fs.removeSync(__dirname + '/autoprefixer.js')
+  fs.removeSync(__dirname + '/fail.css')
+  fs.removeSync(__dirname + '/origin.css')
 
 task 'compile', 'Compile CoffeeScript to JS', ->
   invoke('clean')
