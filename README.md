@@ -11,14 +11,15 @@ var postcss = require('postcss');
 
 var postprocessor = postcss(function (css) {
     css.eachRule(function (rule) {
-        if ( rule.selector.match(/::(before|after/) ) {
-            var good = rule.decls.some(function (decl) {
-                return decl.prop == 'content';
-            });
+        if ( rule.selector.match(/::(before|after)/) ) {
 
+            var good = rule.decls.some(function (i) {
+                return i.prop == 'content';
+            });
             if ( !good ) {
                 rule.prepend({ prop: 'content', value: '""' });
             }
+
         }
     });
 });
