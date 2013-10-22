@@ -128,9 +128,15 @@ class Parser
   isSelector: ->
     if not @space() and @inside('rules')
       @init new Rule()
-      @addType('selector')
-      @buffer  = @letter
-      @trimmed = @letter
+      if @letter == '{'
+        @addType('decls')
+        @current.selector = new Raw('', '')
+        @semicolon = false
+        @buffer    = ''
+      else
+        @addType('selector')
+        @buffer  = @letter
+        @trimmed = @letter
       true
 
   isBlockEnd: ->

@@ -1,0 +1,17 @@
+{
+    "rules": [
+        {
+            "type": "rule",
+            "decls": [],
+            "line": 1,
+            "column": 1,
+            "before": "",
+            "_selector": {
+                "raw": "",
+                "trimmed": ""
+            },
+            "after": ""
+        }
+    ],
+    "after": "\n"
+}
