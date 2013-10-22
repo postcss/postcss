@@ -12,6 +12,15 @@ describe 'postcss()', ->
     b = -> 2
     postcss(a, b).should.eql { processors: [a, b] }
 
+  it 'processes CSS', ->
+    processor = postcss (css) ->
+      css.eachRule (rule) ->
+        return unless rule.selector.match(/::(before|after)/)
+        unless rule.decls.some( (i) -> i.prop == 'content' )
+          rule.prepend(prop: 'content', value: '""')
+
+    processor.process('a::before{}').should.eql('a::before{content: ""}')
+
   describe 'parse()', ->
 
     it 'parses CSS', ->
