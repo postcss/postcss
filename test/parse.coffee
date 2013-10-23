@@ -32,26 +32,26 @@ describe 'postcss.parse()', ->
   describe 'errors', ->
 
     it 'throws on unclosed blocks', ->
-      ( -> parse("\na {\n") ).should.throw('Unclosed block at line 2:1')
+      ( -> parse("\na {\n") ).should.throw(/Unclosed block at line 2:1/)
 
     it 'throws on unclosed blocks', ->
-      ( -> parse("a {{}}") ).should.throw(/^Unexpected \{/)
+      ( -> parse("a {{}}") ).should.throw(/Unexpected \{/)
 
     it 'throws on property without value', ->
-      ( -> parse("a { b;}") ).should.throw(/^Missing property value/)
-      ( -> parse("a { b }") ).should.throw(/^Missing property value/)
+      ( -> parse("a { b;}") ).should.throw(/Missing property value/)
+      ( -> parse("a { b }") ).should.throw(/Missing property value/)
 
     it 'throws on unclosed comment', ->
-      ( -> parse('\n/*\n\n ') ).should.throw('Unclosed comment at line 2:1')
+      ( -> parse('\n/*\n\n ') ).should.throw(/Unclosed comment at line 2:1/)
 
     it 'throws on unclosed quote', ->
-      ( -> parse('\n"\n\n ') ).should.throw('Unclosed quote at line 2:1')
+      ( -> parse('\n"\n\n ') ).should.throw(/Unclosed quote at line 2:1/)
 
     it 'throws on nameless at-rule', ->
-      ( -> parse('@') ).should.throw(/^At-rule without name/)
+      ( -> parse('@') ).should.throw(/At-rule without name/)
 
     it 'throw on rules in declarations at-rule', ->
-      ( -> parse('@page { a { } }') ).should.throw(/^Unexpected \{/)
+      ( -> parse('@page { a { } }') ).should.throw(/Unexpected \{/)
 
     it 'adds properties to error', ->
       error = null

@@ -30,12 +30,12 @@ describe 'postcss()', ->
     it 'throws with file name', ->
       error = null
       try
-        postcss.parse('a {', file: 'a.css')
+        postcss.parse('a {', file: 'A')
       catch e
         error = e
 
-      e.file.should.eql    'a.css'
-      e.message.should.eql 'Unclosed block at line 1:1 in a.css'
+      e.file.should.eql    'A'
+      e.message.should.eql 'Can\'t parse CSS: Unclosed block at line 1:1 in A'
 
 describe 'PostCSS', ->
 
