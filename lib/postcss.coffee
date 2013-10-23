@@ -1,3 +1,5 @@
+Stylesheet = require('./postcss/stylesheet')
+
 # List of functions to process CSS
 class PostCSS
   constructor: (@processors = []) ->
@@ -10,7 +12,9 @@ class PostCSS
   # Process CSS throw installed processors
   process: (css, options = {}) ->
     parsed = postcss.parse(css, options)
-    i(parsed) for i in @processors
+    for processor in @processors
+      returned = processor(parsed)
+      parsed   = returned if returned instanceof Stylesheet
     parsed.toString()
 
 # Framework for CSS postprocessors

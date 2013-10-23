@@ -21,6 +21,10 @@ describe 'postcss()', ->
 
     processor.process('a::before{}').should.eql('a::before{content: ""}')
 
+  it 'allows to replace Stylesheet', ->
+    processor = postcss -> new Stylesheet()
+    processor.process('a {}').should.eql('')
+
   describe 'parse()', ->
 
     it 'parses CSS', ->
