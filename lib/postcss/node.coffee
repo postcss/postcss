@@ -41,9 +41,18 @@ class Node
           @[hidden] = new Raw() if @[hidden] == Raw.empty
           @[hidden].set(value)
 
-  # Clone current node
-  clone: ->
-    clone(@)
+  # Clone current node.
+  #
+  #   rule.append decl.clone()
+  #
+  # You can override properties while cloning:
+  #
+  #   rule.append decl.clone(value: '0')
+  clone: (overrides = { }) ->
+    cloned = clone(@)
+    for name, value of overrides
+      cloned[name] = value
+    cloned
 
   # Remove `parent` node on cloning to fix circular structures
   toJSON: ->

@@ -58,6 +58,10 @@ describe 'Node', ->
       rule.toString().should.eql(' a {color: black}')
       clone.toString().should.eql(' a {color: black;display: none}')
 
+    it 'overrides properties', ->
+      clone = ( new Rule(selector: 'a') ).clone(selector: 'b')
+      clone.selector.should.eql('b')
+
   describe 'toJSON()', ->
 
     it 'cleans parents inside', ->
