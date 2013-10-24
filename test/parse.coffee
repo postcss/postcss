@@ -29,6 +29,19 @@ describe 'postcss.parse()', ->
       json = read(file.replace(/\.css$/, '.json')).toString().trim()
       JSON.stringify(css, null, 4).should.eql(json)
 
+  it 'sets parent node', ->
+    css = parse(read('atrule-rules.css'))
+
+    support   = css.rules[0]
+    keyframes = support.rules[0]
+    from      = keyframes.rules[0]
+    decl      = from.decls[0]
+
+    decl.parent.should.equal(from)
+    from.parent.should.equal(keyframes)
+    keyframes.parent.should.equal(support)
+    support.parent.should.equal(css)
+
   describe 'errors', ->
 
     it 'throws on unclosed blocks', ->

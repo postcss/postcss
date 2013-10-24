@@ -47,10 +47,27 @@ describe 'Node', ->
 
     it 'clones nodes', ->
       rule = new Rule(selector: new Raw(' a ', 'a'))
-      rule.append(prop: 'color', value: new Raw(' black ', 'black'))
+      rule.append(prop: 'color', value: new Raw(' black', 'black'))
 
       clone = rule.clone()
       clone.append(prop: 'display', value: 'none')
 
-      rule.toString().should.eql(' a {color: black }')
-      clone.toString().should.eql(' a {color: black ;display: none}')
+      clone.decls[0].parent.should.equal clone
+      rule.decls[0].parent.should.equal  rule
+
+      rule.toString().should.eql(' a {color: black}')
+      clone.toString().should.eql(' a {color: black;display: none}')
+
+  describe 'toJSON()', ->
+
+    it 'cleans parents inside', ->
+      rule = new Rule(selector: new Raw('a', 'a'))
+      rule.append(prop: 'color', value: new Raw('b', 'b'))
+
+      json = rule.toJSON()
+      (json.parent == undefined).should.be.true
+      (json.decls[0].parent == undefined).should.be.true
+
+      JSON.stringify(rule).should.eql('{"type":"rule","decls":[' +
+        '{"type":"decl","prop":"color","_value":{"raw":"b","trimmed":"b"}}' +
+      '],"_selector":{"raw":"a","trimmed":"a"}}')

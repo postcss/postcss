@@ -1,5 +1,19 @@
-Raw   = require('./raw')
-clone = require('./clone')
+Raw = require('./raw')
+
+# Recursivly clone objects
+clone = (obj, parent) ->
+  return obj unless typeof(obj) == 'object'
+  cloned = new obj.constructor()
+
+  for own name, value of obj
+    if name == 'parent' and typeof(value) == 'object'
+      cloned[name] = parent if parent
+    else if value instanceof Array
+      cloned[name] = value.map (i) -> clone(i, cloned)
+    else
+      cloned[name] = clone(value, cloned)
+
+  cloned
 
 # Some common methods for all CSS nodes
 class Node
@@ -30,5 +44,21 @@ class Node
   # Clone current node
   clone: ->
     clone(@)
+
+  # Remove `parent` node on cloning to fix circular structures
+  toJSON: ->
+    fixed = { }
+    for own name, value of this
+      continue if name == 'parent'
+
+      fixed[name] = if value instanceof Array
+        value.map (i) ->
+          if typeof(i) == 'object' and i.toJSON then i.toJSON() else i
+      else if typeof(value) == 'object' and value.toJSON
+        value.toJSON()
+      else
+        value
+
+    fixed
 
 module.exports = Node

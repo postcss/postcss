@@ -22,6 +22,7 @@ class Container extends Node
   # Add child to end of list without any checks.
   # Please, use `append()` method, `push()` is mostly for parser.
   push: (child) ->
+    child.parent = this
     @list.push(child)
     this
 
@@ -157,6 +158,8 @@ class Container extends Node
 
   # Normalize child before insert. Copy before from `sample`.
   normalize: (child, sample) ->
+    child.parent = this
+
     if not child.before? and sample
       child.before = sample.before
 

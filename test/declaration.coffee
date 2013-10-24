@@ -10,7 +10,9 @@ describe 'Declaration', ->
 
   describe 'clone()', ->
 
-    it 'cleans before', ->
+    it 'cleans parent and before', ->
       decl  = new Declaration(prop: 'color', value: 'black', before: "\n    ")
       clone = decl.clone()
+
+      (clone.parent == undefined).should.be.true
       (clone.before == undefined).should.be.true

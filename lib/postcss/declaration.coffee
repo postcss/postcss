@@ -14,8 +14,8 @@ class Declaration extends Node
 
   # Clean `before` property in clone to copy it from new parent rule
   clone: (obj) ->
-    clone = super
-    delete clone.before
-    clone
+    cloned = super
+    delete cloned.before
+    cloned
 
 module.exports = Declaration
