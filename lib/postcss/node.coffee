@@ -41,6 +41,18 @@ class Node
           @[hidden] = new Raw() if @[hidden] == Raw.empty
           @[hidden].set(value)
 
+  # Remove this node from parent.
+  #
+  #   decl.remove()
+  #
+  # Note, that removing by index is faster:
+  #
+  #   rule.each (decl, i) ->
+  #     rule.remove(i)
+  remove: ->
+    return unless @parent
+    @parent.remove(@)
+
   # Clone current node.
   #
   #   rule.append decl.clone()
