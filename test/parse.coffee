@@ -37,10 +37,10 @@ describe 'postcss.parse()', ->
     from      = keyframes.rules[0]
     decl      = from.decls[0]
 
-    decl.parent.should.equal(from)
-    from.parent.should.equal(keyframes)
-    keyframes.parent.should.equal(support)
-    support.parent.should.equal(css)
+    decl.parent.should.exactly(from)
+    from.parent.should.exactly(keyframes)
+    keyframes.parent.should.exactly(support)
+    support.parent.should.exactly(css)
 
   describe 'errors', ->
 

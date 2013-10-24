@@ -52,8 +52,8 @@ describe 'Node', ->
       clone = rule.clone()
       clone.append(prop: 'display', value: 'none')
 
-      clone.decls[0].parent.should.equal clone
-      rule.decls[0].parent.should.equal  rule
+      clone.decls[0].parent.should.exactly clone
+      rule.decls[0].parent.should.exactly  rule
 
       rule.toString().should.eql(' a {color: black}')
       clone.toString().should.eql(' a {color: black;display: none}')
