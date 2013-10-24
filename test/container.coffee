@@ -67,23 +67,20 @@ describe 'Container', ->
       @css = parse read('each-recursivelly')
 
     it 'iterates', ->
-      rules   = []
       props   = []
       indexes = []
 
-      @css.eachDecl (decl, rule, i) ->
-        rules.push(rule.selector)
+      @css.eachDecl (decl, i) ->
         props.push(decl.prop)
         indexes.push(i)
 
-      rules.should.eql   ['a', 'a', 'to', 'em', undefined]
       props.should.eql   ['a', 'b', 'c', 'd', 'e']
       indexes.should.eql [0, 1, 0, 0, 0]
 
     it 'iterates with changes', ->
       size = 0
-      @css.eachDecl (decl, rule, i) ->
-        rule.remove(i)
+      @css.eachDecl (decl, i) ->
+        decl.parent.remove(i)
         size += 1
       size.should.eql(5)
 
@@ -92,23 +89,20 @@ describe 'Container', ->
       @css = parse read('each-recursivelly')
 
     it 'iterates', ->
-      parents   = []
       selectors = []
       indexes   = []
 
-      @css.eachRule (rule, parent, i) ->
-        parents.push(parent.name)
+      @css.eachRule (rule, i) ->
         selectors.push(rule.selector)
         indexes.push(i)
 
-      parents.should.eql   [undefined, 'keyframes', 'media']
       selectors.should.eql ['a', 'to', 'em']
       indexes.should.eql   [0, 0, 0]
 
     it 'iterates with changes', ->
       size = 0
-      @css.eachRule (rule, parent, i) ->
-        parent.remove(i)
+      @css.eachRule (rule, i) ->
+        rule.parent.remove(i)
         size += 1
       size.should.eql(3)
 
@@ -117,23 +111,20 @@ describe 'Container', ->
       @css = parse read('each-recursivelly')
 
     it 'iterates', ->
-      parents = []
       names   = []
       indexes = []
 
-      @css.eachAtRule (atrule, parent, i) ->
-        parents.push(parent.name)
+      @css.eachAtRule (atrule, i) ->
         names.push(atrule.name)
         indexes.push(i)
 
-      parents.should.eql [undefined, undefined, 'media']
       names.should.eql   ['keyframes', 'media', 'page']
       indexes.should.eql [1, 2, 1]
 
     it 'iterates with changes', ->
       size = 0
-      @css.eachAtRule (atrule, parent, i) ->
-        parent.remove(i)
+      @css.eachAtRule (atrule, i) ->
+        atrule.parent.remove(i)
         size += 1
       size.should.eql(3)
 

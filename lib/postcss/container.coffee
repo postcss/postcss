@@ -60,11 +60,11 @@ class Container extends Node
   # Execute callback on every declaration in all rules inside.
   # It will goes inside at-rules recursivelly.
   #
-  # First argument will be declaration node, second will be parent rule and
-  # third will be index inside parent rule.
+  # First argument will be declaration node, second will be index inside
+  # parent rule.
   #
-  #   css.eachDecl (decl, rule, i) ->
-  #     console.log(decl.prop + ' in ' + rule.selector + ' at ' + i)
+  #   css.eachDecl (decl, i) ->
+  #     console.log(decl.prop + ' in ' + decl.parent.selector + ' at ' + i)
   #
   # Also as `each` it is safe of insert/remove nodes inside iterating.
   eachDecl: (callback) ->
@@ -181,36 +181,34 @@ class Container.WithRules extends Container
 
   # Execute `callback` on every rule in conatiner and inside child at-rules.
   #
-  # First argument will be rule node, second will be parent and third will be
-  # index inside parent.
+  # First argument will be rule node, second will be index inside parent.
   #
-  #   css.eachRule (rule, parent, i) ->
+  #   css.eachRule (rule, i) ->
   #     if parent.type == 'atrule'
-  #       console.log(rule.selector + ' in ' + parent.name + ' at ' + i)
+  #       console.log(rule.selector + ' in ' + rule.parent.name + ' at ' + i)
   #     else
   #       console.log(rule.selector + ' at ' + i)
   eachRule: (callback) ->
     @each (child, i) =>
       if child.type == 'rule'
-        callback(child, this, i)
+        callback(child, i)
       else if child.eachRule
         child.eachRule(callback)
     this
 
   # Execute `callback` on every at-rule in conatiner and inside at-rules.
   #
-  # First argument will be at-rule node, second will be parent and third will be
-  # index inside parent.
+  # First argument will be at-rule node, second will be index inside parent.
   #
   #   css.eachAtRule (atrule, parent, i) ->
   #     if parent.type == 'atrule'
-  #       console.log(atrule.name + ' in ' + parent.name + ' at ' + i)
+  #       console.log(atrule.name + ' in ' + atrule.parent.name + ' at ' + i)
   #     else
   #       console.log(atrule.name + ' at ' + i)
   eachAtRule: (callback) ->
     @each (child, i) =>
       if child.type == 'atrule'
-        callback(child, this, i)
+        callback(child, i)
         child.eachAtRule(callback) if child.eachAtRule
     this
 
@@ -229,7 +227,7 @@ class Container.WithDecls extends Container
   #
   # See documentation in `Container#eachDecl`.
   eachDecl: (callback) ->
-    @each (decl, i) => callback(decl, this, i)
+    @each (decl, i) => callback(decl, i)
     this
 
 module.exports = Container
