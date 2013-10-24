@@ -1,10 +1,10 @@
 # PostCSS
 
-PostCSS is a framework for CSS postprocessors. You gives custom JS function
-to modify CSS and PostCSS parses CSS, gives your usable JS API to edit CSS nodes
-tree and then save modified nodes tree to new CSS.
+PostCSS is a framework for CSS postprocessors. You get a custom JS function
+to modify CSS, and PostCSS parses CSS, gives you usable JS API to edit CSS node
+tree and then save modified node tree to new CSS.
 
-For example, lets fix forgotten `content` ptopery in `::before` and `::after`:
+For example, let's fix forgotten `content` propery in `::before` and `::after`:
 
 ```js
 var postcss = require('postcss');
