@@ -146,6 +146,16 @@ class Container extends Node
 
     this
 
+  # Return true if all childs return true in `condition`.
+  # Just shorcut for `list.every`.
+  every: (condition) ->
+    @list.every(condition)
+
+  # Return true if one or more childs return true in `condition`.
+  # Just shorcut for `list.some`.
+  some: (condition) ->
+    @list.some(condition)
+
   # Return index of child
   index: (child) ->
     if typeof(child) == 'number'

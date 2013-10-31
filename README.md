@@ -13,7 +13,7 @@ var postprocessor = postcss(function (css) {
     css.eachRule(function (rule) {
         if ( rule.selector.match(/::(before|after)/) ) {
 
-            var good = rule.decls.some(function (i) {
+            var good = rule.some(function (i) {
                 return i.prop == 'content';
             });
             if ( !good ) {

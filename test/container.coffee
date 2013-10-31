@@ -186,6 +186,18 @@ describe 'Container', ->
       @rule.remove( @rule.decls[1] )
       compare(@css, 'remove')
 
+  describe 'any()', ->
+
+    it 'return true if all childs return true', ->
+      @rule.every( (i) -> i.prop.match(/a|b/) ).should.be.true
+      @rule.every( (i) -> i.prop.match(/b/) ).should.be.false
+
+  describe 'some()', ->
+
+    it 'return true if all childs return true', ->
+      @rule.some( (i) -> i.prop == 'b' ).should.be.true
+      @rule.some( (i) -> i.prop == 'c' ).should.be.false
+
   describe 'index()', ->
 
     it 'returns child index', ->
