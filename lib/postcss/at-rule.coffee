@@ -14,6 +14,7 @@ class AtRule extends Container
     return unless mixin
 
     for name, value of mixin.prototype
+      continue if name == 'constructor'
       @[name] = value
     mixin.apply(@)
 

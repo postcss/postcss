@@ -1,4 +1,5 @@
 AtRule = require('../lib/postcss/at-rule')
+Rule   = require('../lib/postcss/rule')
 
 describe 'AtRule', ->
 
@@ -21,3 +22,11 @@ describe 'AtRule', ->
     rule.params.should.eql('"utf-8"')
 
     rule.toString().should.eql('@encoding "utf-8";')
+
+  describe 'clone()', ->
+
+    it 'clones with mixin', ->
+      rule = new AtRule(name: 'page')
+      rule.append(new Rule(selector: 'a'))
+
+      rule.clone().toString().should.eql('@page{a{}}')

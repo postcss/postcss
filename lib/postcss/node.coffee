@@ -52,6 +52,7 @@ class Node
   remove: ->
     return unless @parent
     @parent.remove(@)
+    this
 
   # Clone current node.
   #
