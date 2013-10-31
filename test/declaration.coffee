@@ -8,6 +8,15 @@ describe 'Declaration', ->
     decl.prop.should.eql('color')
     decl.value.should.eql('black')
 
+  describe 'unprefixed', ->
+
+    it 'should remove vendor prefix', ->
+      decl = new Declaration(prop: '-webkit-filter', value: 'none')
+      decl.unprefixed.should.eql('filter')
+
+      decl = new Declaration(prop: 'color', value: 'black')
+      decl.unprefixed.should.eql('color')
+
   describe 'clone()', ->
 
     it 'cleans parent and before', ->
