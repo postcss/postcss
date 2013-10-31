@@ -1,4 +1,4 @@
-Declaration = require('../lib/postcss/declaration')
+Declaration = require('../lib/declaration')
 
 describe 'Declaration', ->
 

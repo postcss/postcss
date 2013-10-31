@@ -1,6 +1,6 @@
-Declaration = require('../lib/postcss/declaration')
-Container   = require('../lib/postcss/container')
-parse       = require('../lib/postcss/parse')
+Declaration = require('../lib/declaration')
+Container   = require('../lib/container')
+parse       = require('../lib/parse')
 
 fs = require('fs')
 

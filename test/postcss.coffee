@@ -1,6 +1,5 @@
 postcss = require('../lib/postcss')
-
-Stylesheet = require('../lib/postcss/stylesheet')
+Root    = require('../lib/root')
 
 describe 'postcss()', ->
 
@@ -21,15 +20,15 @@ describe 'postcss()', ->
 
     processor.process('a::before{}').should.eql('a::before{content: ""}')
 
-  it 'allows to replace Stylesheet', ->
-    processor = postcss -> new Stylesheet()
+  it 'allows to replace Root', ->
+    processor = postcss -> new Root()
     processor.process('a {}').should.eql('')
 
   describe 'parse()', ->
 
     it 'parses CSS', ->
-      stylesheet = postcss.parse('a { }')
-      stylesheet.should.be.an.instanceof(Stylesheet)
+      css = postcss.parse('a { }')
+      css.should.be.an.instanceof(Root)
 
     it 'throws with file name', ->
       error = null
@@ -67,5 +66,5 @@ describe 'PostCSS', ->
       calls.should.eql 'ab'
 
     it 'parses, convert and stringify CSS', ->
-      a = (css) -> css.should.be.an.instanceof(Stylesheet)
+      a = (css) -> css.should.be.an.instanceof(Root)
       postcss(a).process('a { }').should.have.type('string')

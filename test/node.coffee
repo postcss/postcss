@@ -1,6 +1,6 @@
-Node = require('../lib/postcss/node')
-Raw  = require('../lib/postcss/raw')
-Rule = require('../lib/postcss/rule')
+Node = require('../lib/node')
+Raw  = require('../lib/raw')
+Rule = require('../lib/rule')
 
 describe 'Node', ->
 

@@ -1,4 +1,4 @@
-vendor = require('../lib/postcss/vendor')
+vendor = require('../lib/vendor')
 
 describe 'vendor', ->
 

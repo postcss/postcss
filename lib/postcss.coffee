@@ -1,4 +1,4 @@
-Stylesheet = require('./postcss/stylesheet')
+Root = require('./root')
 
 # List of functions to process CSS
 class PostCSS
@@ -14,7 +14,7 @@ class PostCSS
     parsed = postcss.parse(css, options)
     for processor in @processors
       returned = processor(parsed)
-      parsed   = returned if returned instanceof Stylesheet
+      parsed   = returned if returned instanceof Root
     parsed.toString()
 
 # Framework for CSS postprocessors
@@ -27,6 +27,6 @@ postcss = (processors...) ->
   new PostCSS(processors)
 
 # Compile CSS to nodes
-postcss.parse = require('./postcss/parse')
+postcss.parse = require('./parse')
 
 module.exports = postcss

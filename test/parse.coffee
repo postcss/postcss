@@ -1,5 +1,5 @@
-Stylesheet = require('../lib/postcss/stylesheet')
-parse      = require('../lib/postcss/parse')
+Root  = require('../lib/root')
+parse = require('../lib/parse')
 
 fs   = require('fs')
 read = (file) -> fs.readFileSync(__dirname + '/cases/parse/' + file)
@@ -8,7 +8,7 @@ describe 'postcss.parse()', ->
 
   it 'works with file reads', ->
     file = fs.readFileSync(__dirname + '/cases/parse/atrule-empty.css')
-    parse(file).should.be.instanceOf(Stylesheet)
+    parse(file).should.be.instanceOf(Root)
 
   describe 'empty file', ->
 

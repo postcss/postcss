@@ -1,7 +1,7 @@
 Container = require('./container')
 
 # Root of CSS
-class Stylesheet extends Container.WithRules
+class Root extends Container.WithRules
   constructor: ->
     @type  = 'root'
     @rules = []
@@ -11,4 +11,4 @@ class Stylesheet extends Container.WithRules
   toString: ->
     @stringifyContent(false)
 
-module.exports = Stylesheet
+module.exports = Root

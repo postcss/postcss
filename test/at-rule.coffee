@@ -1,5 +1,5 @@
-AtRule = require('../lib/postcss/at-rule')
-Rule   = require('../lib/postcss/rule')
+AtRule = require('../lib/at-rule')
+Rule   = require('../lib/rule')
 
 describe 'AtRule', ->
 

@@ -1,9 +1,9 @@
-Stylesheet = require('../lib/postcss/stylesheet')
-parse      = require('../lib/postcss/parse')
+Root  = require('../lib/root')
+parse = require('../lib/parse')
 
 fs = require('fs')
 
-describe 'Stylesheet', ->
+describe 'Root', ->
 
   describe 'toString()', ->
 

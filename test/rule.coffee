@@ -1,4 +1,4 @@
-Rule = require('../lib/postcss/rule')
+Rule = require('../lib/rule')
 
 describe 'Rule', ->
 

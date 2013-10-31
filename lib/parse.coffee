@@ -1,7 +1,7 @@
 SyntexError = require('./syntax-error')
 Declaration = require('./declaration')
-Stylesheet  = require('./stylesheet')
 AtRule      = require('./at-rule')
+Root        = require('./root')
 Rule        = require('./rule')
 Raw         = require('./raw')
 
@@ -10,11 +10,11 @@ class Parser
   constructor: (source, @options) ->
     @source = source.toString()
 
-    @stylesheet = new Stylesheet()
-    @current    = @stylesheet
-    @parents    = [@current]
-    @type       = 'rules'
-    @types      = [@type]
+    @root    = new Root()
+    @current = @root
+    @parents = [@current]
+    @type    = 'rules'
+    @types   = [@type]
 
     @pos    = -1
     @line   = 1
@@ -217,7 +217,7 @@ class Parser
     else if @quote
       @error('Unclosed quote', @quotePos.line, @quotePos.column)
     else
-      @stylesheet.after = @buffer
+      @root.after = @buffer
 
   # Helpers
 
@@ -302,4 +302,4 @@ class Parser
 module.exports = (source, options = { }) ->
   parser = new Parser(source, options)
   parser.loop()
-  parser.stylesheet
+  parser.root
