@@ -13,13 +13,13 @@ describe 'postcss.parse()', ->
   describe 'empty file', ->
 
     it 'parses empty file', ->
-      parse('').should.eql { after: '', rules: [] }
+      parse('').should.eql { type: 'root', rules: [], after: '' }
 
     it 'parses spaces', ->
-      parse(" \n ").should.eql { after: " \n ", rules: [] }
+      parse(" \n ").should.eql { type: 'root', rules: [], after: " \n " }
 
     it 'parses comment', ->
-      parse("/* a */").should.eql { after: "/* a */", rules: [] }
+      parse("/* a */").should.eql { type: 'root', rules: [], after: "/* a */" }
 
   fs.readdirSync(__dirname + '/cases/parse/').forEach (file) ->
     return unless file.match(/\.css$/)
