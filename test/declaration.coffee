@@ -8,6 +8,15 @@ describe 'Declaration', ->
     decl.prop.should.eql('color')
     decl.value.should.eql('black')
 
+  describe 'prefix', ->
+
+    it 'should remove vendor prefix', ->
+      decl = new Declaration(prop: '-webkit-filter', value: 'none')
+      decl.prefix.should.eql('-webkit-')
+
+      decl = new Declaration(prop: 'color', value: 'black')
+      decl.prefix.should.eql('')
+
   describe 'unprefixed', ->
 
     it 'should remove vendor prefix', ->

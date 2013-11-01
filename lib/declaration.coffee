@@ -9,6 +9,9 @@ class Declaration extends Node
 
   @raw 'value'
 
+  @prop 'prefix', get: ->
+    @prefixCache ||= vendor.split(@prop).prefix
+
   @prop 'unprefixed', get: ->
     @unprefixedCache ||= vendor.split(@prop).name
 
