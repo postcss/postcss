@@ -35,3 +35,9 @@ describe 'Declaration', ->
       clone.value.should.eql('white')
       (clone.parent == undefined).should.be.true
       (clone.before == undefined).should.be.true
+
+  describe 'toString()', ->
+
+    it 'inserts default spaces', ->
+      decl = new Declaration(prop: 'color', value: 'black')
+      decl.toString().should.eql('color: black')

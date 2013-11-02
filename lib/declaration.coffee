@@ -17,7 +17,8 @@ class Declaration extends Node
 
   # Stringify declaration
   toString: ->
-    (@before || '') + @prop + (@between || '') + ':' + @_value.stringify(true)
+    (@before || '') + @prop + (@between || '') + ':' +
+      @_value.stringify(before: ' ')
 
   # Clean `before` property in clone to copy it from new parent rule
   clone: (obj) ->

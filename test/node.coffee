@@ -43,6 +43,14 @@ describe 'Node', ->
       b.one.should.eql('1')
       b._one.stringify().should.eql('1')
 
+    it 'clone spaces on changes', ->
+      b = new B()
+      b.one = new Raw(' 1 ', '1')
+      b.one = '2'
+
+      b.one.should.eql('2')
+      b._one.stringify().should.eql(' 2 ')
+
   describe 'remove()', ->
 
     it 'removes node from parent', ->

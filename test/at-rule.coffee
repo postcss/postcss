@@ -29,4 +29,10 @@ describe 'AtRule', ->
       rule = new AtRule(name: 'page')
       rule.append(new Rule(selector: 'a'))
 
-      rule.clone().toString().should.eql('@page{a{}}')
+      rule.clone().toString().should.eql('@page{a {}}')
+
+  describe 'toString()', ->
+
+    it 'inserts default spaces', ->
+      rule = new AtRule(name: 'page', params: 1, decls: [])
+      rule.toString().should.eql('@page 1 {}')

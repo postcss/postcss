@@ -9,11 +9,15 @@ class Raw
       @trimmed = value
 
   # Stringify to CSS raw value if trimmed wasn’t changed
-  stringify: (space = false) ->
-    if @changed
-      (if space then ' ' else '') + @trimmed || ''
-    else
+  stringify: (opts = { }) ->
+    if not @changed
       @raw || ''
+    else if not @raw
+      (opts.before || '') + @trimmed + (opts.after || '')
+    else
+      (if @raw[0] == ' ' then ' ' else '') +
+      @trimmed +
+      (if @raw[-1..-1] == ' ' then ' ' else '')
 
 Raw.empty = new Raw()
 

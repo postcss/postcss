@@ -11,6 +11,6 @@ class Rule extends Container.WithDecls
 
   # Stringify rule
   toString: ->
-    (@before || '') + @_selector.stringify() + @stringifyContent()
+    (@before || '') + @_selector.stringify(after: ' ') + @stringifyContent()
 
 module.exports = Rule

@@ -22,12 +22,13 @@ class AtRule extends Container
 
   # Stringify at-rule
   toString: (last) ->
-    name  = (@before || '') + '@' + @name + @_params.stringify(true)
+    name = (@before || '') + '@' + @name
 
     if @rules or @decls
-      name + @stringifyContent()
+      name + @_params.stringify(before: ' ', after: ' ') + @stringifyContent()
     else
-      name + if not last or @semicolon then ';' else ''
+      semicolon = if not last or @semicolon then ';' else ''
+      name + @_params.stringify(before: ' ') + semicolon
 
 # Detect container type by child type
 for name in ['append', 'prepend']
