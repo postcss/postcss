@@ -90,7 +90,7 @@ class Container extends Node
   #
   #   rule.prepend(prop: 'color', value: 'black')
   prepend: (child) ->
-    child = @normalize(child, @list[0])
+    child = @normalize(child, @list[0], 'prepend')
     @list.unshift(child)
 
     for id, index of @indexes
@@ -108,7 +108,7 @@ class Container extends Node
   #   rule.insertBefore(1, prop: 'color', value: 'black')
   insertBefore: (exist, add) ->
     exist = @index(exist)
-    add   = @normalize(add, @list[exist])
+    add   = @normalize(add, @list[exist], if exist == 0 then 'prepend')
     @list.splice(exist, 0, add)
 
     for id, index of @indexes
