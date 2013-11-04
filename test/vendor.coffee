@@ -2,10 +2,14 @@ vendor = require('../lib/vendor')
 
 describe 'vendor', ->
 
-  describe '.split()', ->
+  describe '.prefix()', ->
 
-    it 'splits prefixed property', ->
-      vendor.split('-moz-color').should.eql(prefix: '-moz-', name: 'color')
+    it 'returns prefix', ->
+      vendor.prefix('-moz-color').should.eql '-moz-'
+      vendor.prefix('color'     ).should.eql ''
 
-    it 'splits unprefixed property', ->
-      vendor.split('color').should.eql(prefix: '', name: 'color')
+  describe '.unprefixed()', ->
+
+    it 'returns unprefixed version', ->
+      vendor.unprefixed('-moz-color').should.eql 'color'
+      vendor.unprefixed('color'     ).should.eql 'color'

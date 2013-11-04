@@ -1,19 +1,26 @@
 # Methods to work with vendor prefixes
 vendor =
 
-  # Split property name to vendor prefix and unprefixed origin name
+  # Return vendor prefix from property name, if it exists
   #
-  #   vendor.split('-moz-color').prefix  #=> '-moz-'
-  #   vendor.split('-moz-color').name    #=> 'color'
-  #
-  #   vendor.split('color').name #=> 'color'
-  split: (prop) ->
+  #   vendor.prefix('-moz-box-sizing') #=> '-moz-'
+  #   vendor.prefix('box-sizing')      #=> ''
+  prefix: (prop) ->
     if prop[0] == '-'
-      separator  = prop.indexOf('-', 1) + 1
-      prefix     = prop[0...separator]
-      unprefixed = prop[separator..-1]
-      { prefix: prefix, name: unprefixed }
+      separator = prop.indexOf('-', 1) + 1
+      prop[0...separator]
     else
-      { prefix: '', name: prop }
+      ''
+
+  # Remove prefix from property name
+  #
+  #   vendor.prefix('-moz-box-sizing') #=> 'box-sizing'
+  #   vendor.prefix('box-sizing')      #=> 'box-sizing'
+  unprefixed: (prop) ->
+    if prop[0] == '-'
+      separator = prop.indexOf('-', 1) + 1
+      prop[separator..-1]
+    else
+      prop
 
 module.exports = vendor
