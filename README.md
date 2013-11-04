@@ -68,7 +68,7 @@ CSS parser on real-world sites. Right now parser is tested on GitHub, Twitter,
 Bootstrap and Habrahabr styles.
 
 Also PostCSS parser is very flexible and, for example, can parse any custom
-or future at-rules, instead of build-in list.
+or future at-rules, instead of built-in list.
 
 ### High-level API
 
