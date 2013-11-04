@@ -53,3 +53,27 @@ a::before {
 ```
 
 Sponsored by [Evil Martians](http://evilmartians.com/).
+
+## Features
+
+### Preserves code formatting and indentations
+
+PostCSS saves all spaces if you don’t change CSS node and try to copy your
+coding style if you modify it.
+
+### Parses everything
+
+In addition to the unit tests, PostCSS has integration tests to check
+CSS parser on real-world sites. Right now parser is tested on GitHub, Twitter,
+Bootstrap and Habrahabr styles.
+
+Also PostCSS parser is very flexible and, for example, can parse any custom
+or future at-rules, instead of build-in list.
+
+### High-level API
+
+PostCSS is not only parser and stringifier. It contains useful tools, which
+can be used in most of postprocessor:
+
+1. Safe iterator, which allow to change list inside iteration.
+2. Module to split value list by spaces or commas.
