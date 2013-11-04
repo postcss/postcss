@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Framework for CSS postprocessors",
   "keywords": ["css", "parser", "postproccessor"],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
