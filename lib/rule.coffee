@@ -10,7 +10,9 @@ class Rule extends Container.WithDecls
   @raw 'selector'
 
   # Stringify rule
-  toString: ->
-    (@before || '') + @_selector.stringify(after: ' ') + @stringifyContent()
+  stringify: (builder) ->
+    builder((@before || '') + @_selector.stringify(after: ' ') + '{')
+    @stringifyContent(builder)
+    builder('}')
 
 module.exports = Rule

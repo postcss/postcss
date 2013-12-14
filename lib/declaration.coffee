@@ -10,9 +10,9 @@ class Declaration extends Node
   @raw 'value'
 
   # Stringify declaration
-  toString: ->
-    (@before || '') + @prop + (@between || '') + ':' +
-      @_value.stringify(before: ' ')
+  stringify: (builder) ->
+    builder((@before || '') + @prop + (@between || '') + ':' +
+      @_value.stringify(before: ' '))
 
   # Clean `before` property in clone to copy it from new parent rule
   clone: (obj) ->

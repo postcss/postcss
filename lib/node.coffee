@@ -54,6 +54,15 @@ class Node
     @parent.remove(@)
     this
 
+  # Return CSS string of current node.
+  #
+  #   decl.toString() #=> "  color: black"
+  toString: ->
+    result  = ''
+    builder = (str) -> result += str
+    @stringify(builder)
+    result
+
   # Clone current node.
   #
   #   rule.append decl.clone()
