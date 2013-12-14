@@ -1,4 +1,5 @@
 postcss = require('../lib/postcss')
+Result  = require('../lib/result')
 Root    = require('../lib/root')
 
 describe 'postcss()', ->
@@ -18,11 +19,11 @@ describe 'postcss()', ->
         unless rule.some( (i) -> i.prop == 'content' )
           rule.prepend(prop: 'content', value: '""')
 
-    processor.process('a::before{}').should.eql('a::before{content: ""}')
+    processor.process('a::before{}').css.should.eql('a::before{content: ""}')
 
   it 'allows to replace Root', ->
     processor = postcss -> new Root()
-    processor.process('a {}').should.eql('')
+    processor.process('a {}').css.should.eql('')
 
   describe 'parse()', ->
 
@@ -57,6 +58,12 @@ describe 'PostCSS', ->
 
   describe 'process()', ->
 
+    it 'returns Result object', ->
+      result = postcss().process('a{}')
+      result.should.be.an.instanceOf(Result)
+      result.css.should.eql        'a{}'
+      result.toString().should.eql 'a{}'
+
     it 'calls all processors', ->
       calls = ''
       a = -> calls += 'a'
@@ -67,4 +74,4 @@ describe 'PostCSS', ->
 
     it 'parses, convert and stringify CSS', ->
       a = (css) -> css.should.be.an.instanceof(Root)
-      postcss(a).process('a { }').should.have.type('string')
+      postcss(a).process('a { }').css.should.have.type('string')

@@ -1,4 +1,5 @@
-Root = require('./root')
+Result = require('./result')
+Root   = require('./root')
 
 # List of functions to process CSS
 class PostCSS
@@ -15,7 +16,7 @@ class PostCSS
     for processor in @processors
       returned = processor(parsed)
       parsed   = returned if returned instanceof Root
-    parsed.toString()
+    new Result(parsed)
 
 # Framework for CSS postprocessors
 #
