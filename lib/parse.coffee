@@ -7,7 +7,7 @@ Raw         = require('./raw')
 
 # CSS parser
 class Parser
-  constructor: (source, @options) ->
+  constructor: (source, @opts) ->
     @source = source.toString()
 
     @root    = new Root()
@@ -222,7 +222,7 @@ class Parser
   # Helpers
 
   error: (message, line = @line, column = @column) ->
-    throw new SyntexError(message, @source, line, column, @options.file)
+    throw new SyntexError(message, @source, line, column, @opts.file)
 
   move: ->
     @pos    += 1
@@ -299,7 +299,7 @@ class Parser
   trim: (string) ->
     string.replace(/^\s*/, '').replace(/\s*$/, '')
 
-module.exports = (source, options = { }) ->
-  parser = new Parser(source, options)
+module.exports = (source, opts = { }) ->
+  parser = new Parser(source, opts)
   parser.loop()
   parser.root
