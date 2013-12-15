@@ -61,9 +61,16 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 PostCSS generate source map for it’s transformation:
 
 ```js
-result = processor.process(css, { from: 'from.css', to: 'to.css' });
+result = processor.process(css, { from: 'from.css', to: 'to.css', map: true });
 result.css // String with processed CSS
-result.map // Source map string
+result.map // Source map
+```
+
+And apply source map from preprocessors (like Sass):
+
+```js
+sassMap = fs.readFileSync('from.sass.map')
+processor.process(css, { from: 'from.sass.css', to: 'to.css', map: sassMap })
 ```
 
 ### Preserves code formatting and indentations

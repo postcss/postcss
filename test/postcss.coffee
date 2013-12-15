@@ -89,8 +89,8 @@ describe 'PostCSS', ->
           changed = decl.clone(prop: 'background')
           decl.parent.prepend(changed)
 
-      map = processor.process(css, map: true, from: 'a.css', to: 'b.css').map
-      map = new SourceMap.SourceMapConsumer(JSON.parse(map))
+      result = processor.process(css, from: 'a.css', to: 'b.css', map: true)
+      map    = new SourceMap.SourceMapConsumer(result.map)
 
       map.file.should.eql('b.css')
 
@@ -108,4 +108,29 @@ describe 'PostCSS', ->
         source: 'a.css'
         line:   2
         column: 2
+        name:   null
+
+    it 'changes previous source map', ->
+      css = 'a { color: black }'
+
+      doubler = postcss (css) ->
+        css.eachDecl (decl) -> decl.parent.prepend(decl.clone())
+      doubled = doubler.process css,
+        from: 'a.css'
+        to:   'b.css'
+        map:  true
+
+      lighter = postcss (css) ->
+        css.eachDecl (decl) -> decl.value = 'white'
+      lighted = lighter.process doubled.css,
+        from: 'b.css'
+        to:   'c.css'
+        map:  doubled.map
+
+      map = new SourceMap.SourceMapConsumer(lighted.map)
+
+      map.originalPositionFor(line: 1, column: 18).should.eql
+        source: 'a.css'
+        line:   1
+        column: 4
         name:   null

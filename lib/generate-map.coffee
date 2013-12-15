@@ -41,7 +41,10 @@ generateMap = (css, opts) ->
           column: column
 
   css.stringify(builder)
-  console.log(map)
+
+  if typeof(opts.map) == 'string'
+    prev = new SourceMap.SourceMapConsumer(opts.map)
+    map.applySourceMap(prev)
 
   result.map = map.toString()
   result
