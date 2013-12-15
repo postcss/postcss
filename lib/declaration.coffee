@@ -10,9 +10,11 @@ class Declaration extends Node
   @raw 'value'
 
   # Stringify declaration
-  stringify: (builder) ->
-    builder((@before || '') + @prop + (@between || '') + ':' +
-      @_value.stringify(before: ' '))
+  stringify: (builder, semicolon) ->
+    builder(@before) if @before
+    string  = @prop + (@between || '') + ':' + @_value.stringify(before: ' ')
+    string += ';' if semicolon
+    builder(string, @)
 
   # Clean `before` property in clone to copy it from new parent rule
   clone: (obj) ->

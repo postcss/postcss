@@ -1,6 +1,7 @@
-postcss = require('../lib/postcss')
-Result  = require('../lib/result')
-Root    = require('../lib/root')
+SourceMap = require('source-map')
+postcss   = require('../lib/postcss')
+Result    = require('../lib/result')
+Root      = require('../lib/root')
 
 describe 'postcss()', ->
 
@@ -74,4 +75,41 @@ describe 'PostCSS', ->
 
     it 'parses, convert and stringify CSS', ->
       a = (css) -> css.should.be.an.instanceof(Root)
-      postcss(a).process('a { }').css.should.have.type('string')
+      postcss(a).process('a {}').css.should.have.type('string')
+
+    it 'adds map field only on request', ->
+      postcss().process('a {}').should.not.have.property('map')
+
+    it 'generates source map', ->
+      result = postcss().process('a {}', map: true)
+      result.map.should.be.type('string')
+
+    it 'generate right source map', ->
+      css       = "a {\n  color: black;\n  }"
+      processor = postcss (css) ->
+        css.eachRule (rule) ->
+          rule.selector = 'strong'
+        css.eachDecl (decl) ->
+          changed = decl.clone(prop: 'background')
+          decl.parent.prepend(changed)
+
+      map = processor.process(css, map: true, file: 'a.css', to: 'b.css').map
+      map = new SourceMap.SourceMapConsumer(JSON.parse(map))
+
+      map.file.should.eql('b.css')
+
+      map.originalPositionFor(line: 1, column: 0).should.eql
+        source: 'a.css'
+        line:   1
+        column: 0
+        name:   null
+      map.originalPositionFor(line: 2, column: 2).should.eql
+        source: 'a.css'
+        line:   2
+        column: 2
+        name:   null
+      map.originalPositionFor(line: 3, column: 2).should.eql
+        source: 'a.css'
+        line:   2
+        column: 2
+        name:   null

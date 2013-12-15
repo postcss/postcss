@@ -38,7 +38,7 @@ a::before {
 will be fixed by our new `postprocessor`:
 
 ```js
-var fixed = postprocessor.process(css);
+var fixed = postprocessor.process(css).css;
 ```
 
 to:
@@ -55,6 +55,16 @@ a::before {
 Sponsored by [Evil Martians](http://evilmartians.com/).
 
 ## Features
+
+### Source map support
+
+PostCSS generate source map for it’s transformation:
+
+```js
+result = processor.process(css, { file: 'from.css', to: 'to.css' });
+result.css // String with processed CSS
+result.map // Source map string
+```
 
 ### Preserves code formatting and indentations
 

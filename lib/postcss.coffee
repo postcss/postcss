@@ -1,5 +1,6 @@
-Result = require('./result')
-Root   = require('./root')
+generateMap = require('./generate-map')
+Result      = require('./result')
+Root        = require('./root')
 
 # List of functions to process CSS
 class PostCSS
@@ -11,19 +12,24 @@ class PostCSS
     this
 
   # Process CSS throw installed processors
-  process: (css, options = {}) ->
-    parsed = postcss.parse(css, options)
+  process: (css, opts = { }) ->
+    parsed = postcss.parse(css, opts)
+
     for processor in @processors
       returned = processor(parsed)
       parsed   = returned if returned instanceof Root
-    new Result(parsed)
+
+    if opts.map
+      generateMap(parsed, opts)
+    else
+      new Result(parsed, parsed.toString())
 
 # Framework for CSS postprocessors
 #
-# var processor = postcss(function (css) {
-#     // Change nodes in css
-# });
-# processor.process(css)
+#   var processor = postcss(function (css) {
+#       // Change nodes in css
+#   });
+#   processor.process(css)
 postcss = (processors...) ->
   new PostCSS(processors)
 

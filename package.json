@@ -10,6 +10,7 @@
     "url": "https://github.com/ai/postcss.git"
   },
   "dependencies": {
+    "source-map": "*"
   },
   "devDependencies": {
     "coffee-script": "1.6.3",

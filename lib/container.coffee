@@ -3,7 +3,7 @@ Declaration = require('./declaration')
 
 # CSS node, that contain another nodes (like at-rules or rules with selectors)
 class Container extends Node
-  # Return container block with childs inside
+  # Stringify container childs
   stringifyContent: (builder) ->
     return if not @rules and not @decls
 
@@ -15,10 +15,18 @@ class Container extends Node
     else if @decls
       last = @decls.length - 1
       @decls.map (decl, i) =>
-        decl.stringify(builder)
-        builder(';') if last != i or @semicolon
+        decl.stringify(builder, last != i or @semicolon)
 
-    builder(@after) if @after?
+  # Stringify node with start (for example, selector) and brackets block
+  # with child inside
+  stringifyBlock: (builder, start) ->
+    builder(@before) if @before
+    builder(start, @, 'start')
+
+    @stringifyContent(builder)
+
+    builder(@after) if @after
+    builder('}', @, 'end')
 
   # Add child to end of list without any checks.
   # Please, use `append()` method, `push()` is mostly for parser.

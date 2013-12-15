@@ -1,7 +1,6 @@
-# Object with compiled CSS
+# Object with processed CSS
 class Result
-  constructor: (@root) ->
-    @css = @root.toString()
+  constructor: (@parsed, @css) ->
 
   # Return CSS string on any try to print
   toString: ->

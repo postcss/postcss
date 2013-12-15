@@ -17,5 +17,6 @@ class Root extends Container.WithRules
   # Stringify styles
   stringify: (builder) ->
     @stringifyContent(builder)
+    builder(@after) if @after
 
 module.exports = Root
