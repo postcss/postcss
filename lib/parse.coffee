@@ -217,7 +217,7 @@ class Parser
   # Helpers
 
   error: (message, position = { line: @line, column: @column }) ->
-    throw new SyntexError(message, @source, position, @opts.file)
+    throw new SyntexError(message, @source, position, @opts.from)
 
   move: ->
     @pos    += 1
@@ -252,7 +252,7 @@ class Parser
       start:
         line:   @line
         column: @column
-    @current.source.file = @opts.file if @opts.file
+    @current.source.file = @opts.from if @opts.from
     @current.before = @buffer[0..-2]
     @buffer = ''
 

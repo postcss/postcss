@@ -61,7 +61,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 PostCSS generate source map for it’s transformation:
 
 ```js
-result = processor.process(css, { file: 'from.css', to: 'to.css' });
+result = processor.process(css, { from: 'from.css', to: 'to.css' });
 result.css // String with processed CSS
 result.map // Source map string
 ```

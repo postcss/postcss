@@ -35,7 +35,7 @@ describe 'postcss()', ->
     it 'throws with file name', ->
       error = null
       try
-        postcss.parse('a {', file: 'A')
+        postcss.parse('a {', from: 'A')
       catch e
         error = e
 
@@ -80,10 +80,6 @@ describe 'PostCSS', ->
     it 'adds map field only on request', ->
       postcss().process('a {}').should.not.have.property('map')
 
-    it 'generates source map', ->
-      result = postcss().process('a {}', map: true)
-      result.map.should.be.type('string')
-
     it 'generate right source map', ->
       css       = "a {\n  color: black;\n  }"
       processor = postcss (css) ->
@@ -93,7 +89,7 @@ describe 'PostCSS', ->
           changed = decl.clone(prop: 'background')
           decl.parent.prepend(changed)
 
-      map = processor.process(css, map: true, file: 'a.css', to: 'b.css').map
+      map = processor.process(css, map: true, from: 'a.css', to: 'b.css').map
       map = new SourceMap.SourceMapConsumer(JSON.parse(map))
 
       map.file.should.eql('b.css')

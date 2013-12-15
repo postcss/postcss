@@ -30,7 +30,7 @@ describe 'postcss.parse()', ->
       JSON.stringify(css, null, 4).should.eql(json)
 
   it 'saves source file', ->
-    css = parse('a {}', file: 'a.css')
+    css = parse('a {}', from: 'a.css')
     css.rules[0].source.file.should.eql('a.css')
 
   it 'sets parent node', ->
