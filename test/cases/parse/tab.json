@@ -10,6 +10,10 @@
                         "start": {
                             "line": 2,
                             "column": 2
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 13
                         }
                     },
                     "before": "\n\t",
@@ -24,6 +28,10 @@
             "source": {
                 "start": {
                     "line": 1,
+                    "column": 1
+                },
+                "end": {
+                    "line": 3,
                     "column": 1
                 }
             },

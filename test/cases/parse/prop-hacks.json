@@ -10,6 +10,10 @@
                         "start": {
                             "line": 2,
                             "column": 5
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 19
                         }
                     },
                     "before": "\n    *",
@@ -26,6 +30,10 @@
                         "start": {
                             "line": 3,
                             "column": 5
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 23
                         }
                     },
                     "before": "\n    _",
@@ -42,6 +50,10 @@
                         "start": {
                             "line": 4,
                             "column": 5
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 23
                         }
                     },
                     "before": "\n    ",
@@ -56,6 +68,10 @@
             "source": {
                 "start": {
                     "line": 1,
+                    "column": 1
+                },
+                "end": {
+                    "line": 5,
                     "column": 1
                 }
             },

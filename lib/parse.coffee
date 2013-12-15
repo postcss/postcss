@@ -18,6 +18,7 @@ class Parser
 
     @pos    = -1
     @line   = 1
+    @lines  = []
     @column = 0
     @buffer = ''
 
@@ -145,12 +146,7 @@ class Parser
         @error('Unexpected }')
       else
         if @inside('value')
-          start   = @buffer.search(/\s*\}$/)
-          after   = @buffer[start..-2]
-          @buffer = @buffer[0..start]
-
-          @inValue('close')
-          @current.after = after
+          @fixEnd -> @inValue('close')
         else
           @current.semicolon = true if @semicolon
           @current.after     = @prevBuffer()
@@ -207,12 +203,7 @@ class Parser
 
   endFile: ->
     if @inside('atrule-param') or @inside('atrule-name')
-      start   = @buffer.search(/\s*$/)
-      after   = @buffer[start..-1]
-      @buffer = @buffer[0..start]
-
-      @inAtrule('close')
-      @buffer = after
+      @fixEnd -> @inAtrule('close')
 
     if @parents.length > 1
       @error('Unclosed block', @current.source.start)
@@ -235,6 +226,7 @@ class Parser
     @buffer += @letter
 
     if @letter == "\n"
+      @lines[@line] = @column - 1
       @line  += 1
       @column = 0
 
@@ -264,7 +256,36 @@ class Parser
     @current.before = @buffer[0..-2]
     @buffer = ''
 
+  fixEnd: (callback) ->
+    if @letter == '}'
+      start   = @buffer.search(/\s*\}$/)
+      after   = @buffer[start..-2]
+    else
+      start   = @buffer.search(/\s*$/)
+      after   = @buffer[start..-1]
+    @buffer = @buffer[0..start]
+
+    el = @current
+    callback.apply(@)
+
+    lines = after.match(/\n/g)
+    if lines
+      el.source.end.line  -= lines.length
+      all  = @lines[el.source.end.line]
+      last = after.indexOf("\n")
+      last = after.length if last == -1
+      el.source.end.column = all - last
+    else
+      el.source.end.column -= after.length
+
+    @current.after = after
+    @buffer = after
+
   pop: ->
+    @current.source.end =
+      line:   @line
+      column: @column
+
     @popType()
     @parents.pop()
     @current = @parents[@parents.length - 1]

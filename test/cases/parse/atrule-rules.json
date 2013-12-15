@@ -7,6 +7,10 @@
                 "start": {
                     "line": 1,
                     "column": 1
+                },
+                "end": {
+                    "line": 10,
+                    "column": 1
                 }
             },
             "before": "",
@@ -21,6 +25,10 @@
                     "source": {
                         "start": {
                             "line": 2,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 9,
                             "column": 5
                         }
                     },
@@ -40,6 +48,10 @@
                                         "start": {
                                             "line": 4,
                                             "column": 13
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 25
                                         }
                                     },
                                     "before": "\n            ",
@@ -54,6 +66,10 @@
                             "source": {
                                 "start": {
                                     "line": 3,
+                                    "column": 9
+                                },
+                                "end": {
+                                    "line": 5,
                                     "column": 9
                                 }
                             },
@@ -74,6 +90,10 @@
                                         "start": {
                                             "line": 7,
                                             "column": 13
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 24
                                         }
                                     },
                                     "before": "\n            ",
@@ -88,6 +108,10 @@
                             "source": {
                                 "start": {
                                     "line": 6,
+                                    "column": 9
+                                },
+                                "end": {
+                                    "line": 8,
                                     "column": 9
                                 }
                             },
