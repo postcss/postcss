@@ -89,7 +89,7 @@ class Parser
       @addType('atrule-name')
       true
 
-  inAtrule: (finish) ->
+  inAtrule: (close) ->
     if @inside('atrule-name')
       if @space()
         @checkAtruleName()
@@ -97,18 +97,18 @@ class Parser
         @trimmed = ''
         @setType('atrule-param')
 
-      else if @letter == ';' or @letter == '{' or finish
+      else if @letter == ';' or @letter == '{' or close
         @checkAtruleName()
-        @endAtruleParams(finish)
+        @endAtruleParams()
 
       else
         @current.name += @letter
       true
 
     else if @inside('atrule-param')
-      if @letter == ';' or @letter == '{' or finish
+      if @letter == ';' or @letter == '{' or close
         @current.params = new Raw(@prevBuffer(), @trim @trimmed)
-        @endAtruleParams(finish)
+        @endAtruleParams()
 
       else
         @trimmed += @letter
@@ -145,12 +145,11 @@ class Parser
         @error('Unexpected }')
       else
         if @inside('value')
-          start = @buffer.search(/\s*\}$/)
-          after = @buffer[start..-2]
-
+          start   = @buffer.search(/\s*\}$/)
+          after   = @buffer[start..-2]
           @buffer = @buffer[0..start]
-          @inValue(true)
 
+          @inValue('close')
           @current.after = after
         else
           @current.semicolon = true if @semicolon
@@ -187,14 +186,14 @@ class Parser
       @semicolon = false
       true
 
-  inValue: (finish) ->
+  inValue: (close) ->
     if @inside('value')
       if @letter == '('
         @inBrackets = true
       else if @inBrackets and @letter == ')'
         @inBrackets = false
 
-      if (@letter == ';' and not @inBrackets) or finish
+      if (@letter == ';' and not @inBrackets) or close
         @semicolon = true if @letter == ';'
         @current.value = new Raw(@prevBuffer(), @trim @trimmed)
         @pop()
@@ -208,21 +207,26 @@ class Parser
 
   endFile: ->
     if @inside('atrule-param') or @inside('atrule-name')
-      @inAtrule(true)
+      start   = @buffer.search(/\s*$/)
+      after   = @buffer[start..-1]
+      @buffer = @buffer[0..start]
+
+      @inAtrule('close')
+      @buffer = after
 
     if @parents.length > 1
-      @error('Unclosed block', @current.line, @current.column)
+      @error('Unclosed block', @current.source.start)
     else if @inside('comment')
-      @error('Unclosed comment', @commentPos.line, @commentPos.column)
+      @error('Unclosed comment', @commentPos)
     else if @quote
-      @error('Unclosed quote', @quotePos.line, @quotePos.column)
+      @error('Unclosed quote', @quotePos)
     else
       @root.after = @buffer
 
   # Helpers
 
-  error: (message, line = @line, column = @column) ->
-    throw new SyntexError(message, @source, line, column, @opts.file)
+  error: (message, position = { line: @line, column: @column }) ->
+    throw new SyntexError(message, @source, position, @opts.file)
 
   move: ->
     @pos    += 1
@@ -252,9 +256,12 @@ class Parser
     @parents.push(node)
     @current = node
 
-    node.line   = @line
-    node.column = @column
-    node.before = @buffer[0..-2]
+    @current.source =
+      start:
+        line:   @line
+        column: @column
+    @current.source.file = @opts.file if @opts.file
+    @current.before = @buffer[0..-2]
     @buffer = ''
 
   pop: ->
@@ -282,7 +289,7 @@ class Parser
     else
       'rules'
 
-  endAtruleParams: (finish) ->
+  endAtruleParams: ->
     if @letter == '{'
       type = @atruleType()
       @current.addMixin(type)
@@ -291,7 +298,6 @@ class Parser
     else
       @current.semicolon = true if @letter == ';'
       @pop()
-      @buffer = @letter if @letter != ';'
 
   checkAtruleName: ->
     @error('At-rule without name') if @current.name == ''

@@ -3,8 +3,12 @@
     "rules": [
         {
             "type": "atrule",
-            "line": 1,
-            "column": 1,
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                }
+            },
             "before": "",
             "name": "page",
             "_params": {
@@ -14,8 +18,12 @@
             "decls": [
                 {
                     "type": "decl",
-                    "line": 2,
-                    "column": 5,
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        }
+                    },
                     "before": "\n    ",
                     "prop": "background",
                     "between": "",
@@ -29,8 +37,12 @@
         },
         {
             "type": "atrule",
-            "line": 5,
-            "column": 1,
+            "source": {
+                "start": {
+                    "line": 5,
+                    "column": 1
+                }
+            },
             "before": "\n\n",
             "name": "font-face",
             "_params": {
@@ -40,8 +52,12 @@
             "decls": [
                 {
                     "type": "decl",
-                    "line": 6,
-                    "column": 5,
+                    "source": {
+                        "start": {
+                            "line": 6,
+                            "column": 5
+                        }
+                    },
                     "before": "\n    ",
                     "prop": "family-name",
                     "between": "",
@@ -56,8 +72,12 @@
         },
         {
             "type": "atrule",
-            "line": 9,
-            "column": 1,
+            "source": {
+                "start": {
+                    "line": 9,
+                    "column": 1
+                }
+            },
             "before": "\n\n",
             "name": "viewport",
             "_params": {
@@ -67,8 +87,12 @@
             "decls": [
                 {
                     "type": "decl",
-                    "line": 10,
-                    "column": 5,
+                    "source": {
+                        "start": {
+                            "line": 10,
+                            "column": 5
+                        }
+                    },
                     "before": "\n    ",
                     "prop": "width",
                     "between": "",
@@ -83,8 +107,12 @@
         },
         {
             "type": "atrule",
-            "line": 13,
-            "column": 1,
+            "source": {
+                "start": {
+                    "line": 13,
+                    "column": 1
+                }
+            },
             "before": "\n\n",
             "name": "-ms-viewport",
             "_params": {
@@ -94,8 +122,12 @@
             "decls": [
                 {
                     "type": "decl",
-                    "line": 14,
-                    "column": 5,
+                    "source": {
+                        "start": {
+                            "line": 14,
+                            "column": 5
+                        }
+                    },
                     "before": "\n    ",
                     "prop": "width",
                     "between": "",

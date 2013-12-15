@@ -3,8 +3,12 @@
     "rules": [
         {
             "type": "atrule",
-            "line": 1,
-            "column": 1,
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                }
+            },
             "before": "",
             "name": "supports",
             "_params": {
@@ -14,8 +18,12 @@
             "rules": [
                 {
                     "type": "atrule",
-                    "line": 2,
-                    "column": 5,
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        }
+                    },
                     "before": "\n    ",
                     "name": "-custom-keyframe",
                     "_params": {
@@ -28,8 +36,12 @@
                             "decls": [
                                 {
                                     "type": "decl",
-                                    "line": 4,
-                                    "column": 13,
+                                    "source": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 13
+                                        }
+                                    },
                                     "before": "\n            ",
                                     "prop": "color",
                                     "between": "",
@@ -39,8 +51,12 @@
                                     }
                                 }
                             ],
-                            "line": 3,
-                            "column": 9,
+                            "source": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 9
+                                }
+                            },
                             "before": "\n        ",
                             "_selector": {
                                 "raw": "from ",
@@ -54,8 +70,12 @@
                             "decls": [
                                 {
                                     "type": "decl",
-                                    "line": 7,
-                                    "column": 13,
+                                    "source": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 13
+                                        }
+                                    },
                                     "before": "\n            ",
                                     "prop": "color",
                                     "between": "",
@@ -65,8 +85,12 @@
                                     }
                                 }
                             ],
-                            "line": 6,
-                            "column": 9,
+                            "source": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 9
+                                }
+                            },
                             "before": "\n        ",
                             "_selector": {
                                 "raw": "to ",

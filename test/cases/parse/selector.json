@@ -4,8 +4,12 @@
         {
             "type": "rule",
             "decls": [],
-            "line": 2,
-            "column": 1,
+            "source": {
+                "start": {
+                    "line": 2,
+                    "column": 1
+                }
+            },
             "before": "\n",
             "_selector": {
                 "raw": "a/* { } */ b ",

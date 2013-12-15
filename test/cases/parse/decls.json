@@ -6,8 +6,12 @@
             "decls": [
                 {
                     "type": "decl",
-                    "line": 2,
-                    "column": 5,
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        }
+                    },
                     "before": "\n    ",
                     "prop": "color",
                     "between": "",
@@ -18,8 +22,12 @@
                 },
                 {
                     "type": "decl",
-                    "line": 3,
-                    "column": 5,
+                    "source": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        }
+                    },
                     "before": "\n    ",
                     "prop": "background",
                     "between": "",
@@ -29,8 +37,12 @@
                     }
                 }
             ],
-            "line": 1,
-            "column": 1,
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                }
+            },
             "before": "",
             "_selector": {
                 "raw": "a ",

@@ -3,8 +3,12 @@
     "rules": [
         {
             "type": "atrule",
-            "line": 1,
-            "column": 1,
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                }
+            },
             "before": "",
             "name": "charset",
             "_params": {

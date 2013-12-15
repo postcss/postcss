@@ -29,6 +29,10 @@ describe 'postcss.parse()', ->
       json = read(file.replace(/\.css$/, '.json')).toString().trim()
       JSON.stringify(css, null, 4).should.eql(json)
 
+  it 'saves source file', ->
+    css = parse('a {}', file: 'a.css')
+    css.rules[0].source.file.should.eql('a.css')
+
   it 'sets parent node', ->
     css = parse(read('atrule-rules.css'))
 
