@@ -162,3 +162,69 @@ Instead of it, PostCSS will preserves all spaces and code formatting. If you
 didn’t change rule, output will be byte-to-byte equal.
 
 [Rework]: https://github.com/visionmedia/rework
+
+## Usage
+
+### Processor
+
+Function `postcss(fn)` creates processor by your function:
+
+```js
+var postcss = require('postcss');
+
+var processor = postcss(function (css) {
+    // Code to modify CSS
+});
+```
+
+If you want to combine several processors (to parse CSS only once),
+you can create empty processor and add several functions by `use(fn)` method:
+
+```js
+var all = postcss().
+          use(prefixer).
+          use(minifing);
+```
+
+Processor function can just change current CSS node tree:
+
+```js
+postcss(function (css) {
+    css.append( /* new rule */ )
+});
+```
+
+or create totally new CSS root and return it:
+
+```js
+postcss(function (css) {
+    var newCSS = postcss.root()
+    // Add rules and declarations
+    return newCSS;
+});
+```
+
+Processor will transform some CSS by `process(css, opts)` method:
+
+```js
+var doubler = postcss(function (css) {
+    // Clone each declaration
+    css.eachDecl(function (decl) {
+        decl.parent.prepend( decl.clone() );
+    });
+});
+
+var css    = "a { color: black; }";
+var result = processor.process(css);
+
+result.css //=> "a { color: black; color: black; }"
+```
+
+You can set original CSS filename by `from` options and syntax error messages
+will be much helpful:
+
+```js
+var wrong = "a {"
+processor.process(wrong, { from: 'main.css' });
+#=> Can't parse CSS: Unclosed block at line 1:1 in main.css
+```
