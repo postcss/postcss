@@ -88,8 +88,8 @@ result.map // Source map
 And modify source map from previuos step (like Sass preprocessor):
 
 ```js
-sassMap = fs.readFileSync('from.sass.map')
-processor.process(css, { from: 'from.sass.css', to: 'to.css', map: sassMap })
+var sassMap = fs.readFileSync('from.sass.map');
+processor.process(css, { from: 'from.sass.css', to: 'to.css', map: sassMap });
 ```
 
 ### Preserves code formatting and indentations
@@ -226,5 +226,42 @@ will be much helpful:
 ```js
 var wrong = "a {"
 processor.process(wrong, { from: 'main.css' });
-#=> Can't parse CSS: Unclosed block at line 1:1 in main.css
+//=> Can't parse CSS: Unclosed block at line 1:1 in main.css
+```
+### Source Map
+
+PostCSS will generate source map of it’s modifictaion, if you set true to `map`
+option in `process(css, opts)` method.
+
+But you must set input and output CSS files pathes (by `from` and `to` options)
+to generate correct map.
+
+```css
+var result = processor.process(css, {
+    map:  true,
+    from: 'main.css',
+    to:   'main.out.css'
+});
+
+result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
+
+fs.writeFileSync('main.out.map', result.map);
+```
+
+PostCSS can also modify previous source map (for example, from Sass
+compilation). So, if you compile: Sass to CSS and then minify CSS
+by postprocessor, final source map will conains mapping from Sass code
+to minified CSS.
+
+Just set original source map content (in string on in JS object)
+to `map` option:
+
+```js
+var result = minifier.process(css, {
+    map:   fs.readFileSync('main.sass.map'),
+    from: 'main.css',
+    to:   'main.out.css'
+});
+
+result.map //=> Source map from Sass to minified CSS
 ```
