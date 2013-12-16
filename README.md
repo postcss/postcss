@@ -2,10 +2,30 @@
 
 PostCSS is a framework for CSS postprocessors, to modify CSS by your JS fuction.
 
-PostCSS parses CSS, gives you usable JS API to edit CSS node tree and then save
-modified node tree to new CSS.
+It takes care of most of common tasks for CSS tool:
 
-For example, let's fix forgotten `content` propery in `::before` and `::after`:
+1. parses CSS;
+2. gives you usable JS API to edit CSS node tree;
+3. saves modified node tree to new CSS;
+4. generates (or modify exists) source map for your changes;
+
+You can use this framework to write you own:
+
+* CSS minifier or beautifizer.
+* Grunt plugin to generate sprites, include `data-uri` images or any other work.
+* Text editor plugin to automate CSS routine.
+* Command-line CSS tool.
+
+[Autoprefixer] uses PostCSS to add actual prefixes in CSS.
+
+Sponsored by [Evil Martians].
+
+[Autoprefixer]:  https://github.com/ai/autoprefixer
+[Evil Martians]: http://evilmartians.com/
+
+## Quick Example
+
+Let’s fix forgotten `content` property in `::before` and `::after`:
 
 ```js
 var postcss = require('postcss');
@@ -15,7 +35,7 @@ var contenter = postcss(function (css) {
         if ( rule.selector.match(/::(before|after)/) ) {
             // In every ::before/::after rule
 
-            // Check, did we forget content declaration
+            // Did we forget content property?
             var good = rule.some(function (i) { return i.prop == 'content'; });
 
             // Add content: '' if we forget it
@@ -53,13 +73,11 @@ a::before {
 }
 ```
 
-Sponsored by [Evil Martians](http://evilmartians.com/).
-
 ## Features
 
-### Source map support
+### Source Map
 
-PostCSS generate source map for it’s transformation:
+PostCSS generates source map for it’s transformations:
 
 ```js
 result = processor.process(css, { from: 'from.css', to: 'to.css', map: true });
@@ -67,7 +85,7 @@ result.css // String with processed CSS
 result.map // Source map
 ```
 
-And apply source map from preprocessors (like Sass):
+And modify source map from previuos step (like Sass preprocessor):
 
 ```js
 sassMap = fs.readFileSync('from.sass.map')
@@ -76,22 +94,71 @@ processor.process(css, { from: 'from.sass.css', to: 'to.css', map: sassMap })
 
 ### Preserves code formatting and indentations
 
-PostCSS saves all spaces if you don’t change CSS node and try to copy your
-coding style if you modify it.
+PostCSS will not change any byte of rule if you didn’t modify it:
 
-### Parses everything
+```js
+postcss(function (css) { }).process(css).css == css;
+```
 
-In addition to the unit tests, PostCSS has integration tests to check
-CSS parser on real-world sites. Right now parser is tested on GitHub, Twitter,
-Bootstrap and Habrahabr styles.
+When you modify CSS nodes, PostCSS will try to copy coding style:
 
-Also PostCSS parser is very flexible and, for example, can parse any custom
-or future at-rules, instead of built-in list.
+```js
+contenter.process("a::before{color: black}")
+// a::before{content: '';color: black}
 
-### High-level API
+contenter.process("a::before {\n  color: black;\n  }")
+// a::before {
+//   content: '';
+//   color: black;
+//   }
+```
 
-PostCSS is not only parser and stringifier. It contains useful tools, which
-can be used in most of postprocessor:
+## Why PostCSS Better That …
 
-1. Safe iterator, which allow to change list inside iteration.
-2. Module to split value list by spaces or commas.
+### Preprocessors
+
+Preprocessors (like Sass or Stylus) give us special language with variables,
+mixins, statements and compile it to CSS. Compass, nib and other mixins
+libraries use this languages to work with prefixes, sprites and inline images.
+
+But Sass and Stylus languages was created like syntax-sugar for CSS.
+Write really complicated programs on preporcessor languages is very difficult.
+[Autoprefixer] is totally impossible on Sass.
+
+With PostCSS you can work with CSS from comfort and powerful JS or CoffeeScript.
+You can do really magic things with wide range of [npm] libraries.
+
+But postprocessors is not a enemy for preprocessors. Sass and Stylus is still
+best way to add reability and some sugar to CSS syntax. You can easily
+combine preprocessors and postprocessors.
+
+[npm]: https://npmjs.org/
+
+### RegExp
+
+Some Grunt plugins modify CSS by regular expressions. But CSS parsering
+and working with CSS node tree is much safer way.
+
+Also regexps can broke source map from preprocessor step.
+
+### CSS Parsers
+
+There are a lot of good CSS parsers, like [Gonzales]. But they help you only
+with first step.
+
+Instead of them, PostCSS also gives you useful high level API (for example,
+safe iterators) and will generate source map for changes (or modify exists
+source map from Sass).
+
+[Gonzales]: https://github.com/css/gonzales
+
+### Rework
+
+[Rework] was a first CSS postprocessors framework and very similar to PostCSS.
+
+But Rework has much simplier API and will destroy your CSS code style and indentations. So we can’t use it in text editor plugins.
+
+Instead of it, PostCSS will preserves all spaces and code formatting. If you
+didn’t change rule, output will be byte-to-byte equal.
+
+[Rework]: https://github.com/visionmedia/rework
