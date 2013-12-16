@@ -36,4 +36,10 @@ postcss = (processors...) ->
 # Compile CSS to nodes
 postcss.parse = require('./parse')
 
+# Nodes shortcuts
+postcss.Declaration = require('./declaration')
+postcss.AtRule      = require('./at-rule')
+postcss.Rule        = require('./rule')
+postcss.Root        = require('./root')
+
 module.exports = postcss

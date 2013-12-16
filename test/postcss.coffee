@@ -26,7 +26,17 @@ describe 'postcss()', ->
     processor = postcss -> new Root()
     processor.process('a {}').css.should.eql('')
 
-  describe 'parse()', ->
+  describe '.Root', ->
+
+    it 'allows to build own CSS', ->
+      root = new postcss.Root()
+      rule = new postcss.Rule(selector: 'a')
+      rule.append( new postcss.Declaration(prop: 'color', value: 'black') )
+      root.append( rule )
+
+      root.toString().should.eql 'a {color: black}'
+
+  describe '.parse()', ->
 
     it 'parses CSS', ->
       css = postcss.parse('a { }')
