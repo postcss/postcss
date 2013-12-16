@@ -1,7 +1,16 @@
 SourceMap = require('source-map')
 postcss   = require('../lib/postcss')
 Result    = require('../lib/result')
-Root      = require('../lib/root')
+
+describe 'postcss.Root', ->
+
+  it 'allows to build own CSS', ->
+    root = new postcss.Root()
+    rule = new postcss.Rule(selector: 'a')
+    rule.append( new postcss.Declaration(prop: 'color', value: 'black') )
+    root.append( rule )
+
+    root.toString().should.eql 'a {color: black}'
 
 describe 'postcss()', ->
 
@@ -12,47 +21,6 @@ describe 'postcss()', ->
     a = -> 1
     b = -> 2
     postcss(a, b).should.eql { processors: [a, b] }
-
-  it 'processes CSS', ->
-    processor = postcss (css) ->
-      css.eachRule (rule) ->
-        return unless rule.selector.match(/::(before|after)/)
-        unless rule.some( (i) -> i.prop == 'content' )
-          rule.prepend(prop: 'content', value: '""')
-
-    processor.process('a::before{}').css.should.eql('a::before{content: ""}')
-
-  it 'allows to replace Root', ->
-    processor = postcss -> new Root()
-    processor.process('a {}').css.should.eql('')
-
-  describe '.Root', ->
-
-    it 'allows to build own CSS', ->
-      root = new postcss.Root()
-      rule = new postcss.Rule(selector: 'a')
-      rule.append( new postcss.Declaration(prop: 'color', value: 'black') )
-      root.append( rule )
-
-      root.toString().should.eql 'a {color: black}'
-
-  describe '.parse()', ->
-
-    it 'parses CSS', ->
-      css = postcss.parse('a { }')
-      css.should.be.an.instanceof(Root)
-
-    it 'throws with file name', ->
-      error = null
-      try
-        postcss.parse('a {', from: 'A')
-      catch e
-        error = e
-
-      e.file.should.eql    'A'
-      e.message.should.eql 'Can\'t parse CSS: Unclosed block at line 1:1 in A'
-
-describe 'PostCSS', ->
 
   describe 'use()', ->
 
@@ -69,6 +37,29 @@ describe 'PostCSS', ->
 
   describe 'process()', ->
 
+    it 'processes CSS', ->
+      processor = postcss (css) ->
+        css.eachRule (rule) ->
+          return unless rule.selector.match(/::(before|after)/)
+          unless rule.some( (i) -> i.prop == 'content' )
+            rule.prepend(prop: 'content', value: '""')
+
+      processor.process('a::before{}').css.should.eql('a::before{content: ""}')
+
+    it 'throws with file name', ->
+      error = null
+      try
+        postcss().process('a {', from: 'A')
+      catch e
+        error = e
+
+      e.file.should.eql    'A'
+      e.message.should.eql 'Can\'t parse CSS: Unclosed block at line 1:1 in A'
+
+    it 'allows to replace Root', ->
+      processor = postcss -> new postcss.Root()
+      processor.process('a {}').css.should.eql('')
+
     it 'returns Result object', ->
       result = postcss().process('a{}')
       result.should.be.an.instanceOf(Result)
@@ -84,7 +75,7 @@ describe 'PostCSS', ->
       calls.should.eql 'ab'
 
     it 'parses, convert and stringify CSS', ->
-      a = (css) -> css.should.be.an.instanceof(Root)
+      a = (css) -> css.should.be.an.instanceof(postcss.Root)
       postcss(a).process('a {}').css.should.have.type('string')
 
     it 'adds map field only on request', ->
