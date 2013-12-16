@@ -1,5 +1,8 @@
 generateMap = require('./generate-map')
+Declaration = require('./declaration')
+AtRule      = require('./at-rule')
 Result      = require('./result')
+Rule        = require('./rule')
 Root        = require('./root')
 
 # List of functions to process CSS
@@ -37,9 +40,13 @@ postcss = (processors...) ->
 postcss.parse = require('./parse')
 
 # Nodes shortcuts
-postcss.Declaration = require('./declaration')
-postcss.AtRule      = require('./at-rule')
-postcss.Rule        = require('./rule')
-postcss.Root        = require('./root')
+postcss.decl = (defaults) ->
+  new Declaration(defaults)
+postcss.atRule = (defaults) ->
+  new AtRule(defaults)
+postcss.rule = (defaults) ->
+  new Rule(defaults)
+postcss.root = (defaults) ->
+  new Root(defaults)
 
 module.exports = postcss

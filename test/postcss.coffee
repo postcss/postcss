@@ -1,13 +1,14 @@
 SourceMap = require('source-map')
 postcss   = require('../lib/postcss')
 Result    = require('../lib/result')
+Root      = require('../lib/root')
 
-describe 'postcss.Root', ->
+describe 'postcss.root()', ->
 
   it 'allows to build own CSS', ->
-    root = new postcss.Root()
-    rule = new postcss.Rule(selector: 'a')
-    rule.append( new postcss.Declaration(prop: 'color', value: 'black') )
+    root = postcss.root()
+    rule = postcss.rule(selector: 'a')
+    rule.append( postcss.decl(prop: 'color', value: 'black') )
     root.append( rule )
 
     root.toString().should.eql 'a {color: black}'
@@ -57,7 +58,7 @@ describe 'postcss()', ->
       e.message.should.eql 'Can\'t parse CSS: Unclosed block at line 1:1 in A'
 
     it 'allows to replace Root', ->
-      processor = postcss -> new postcss.Root()
+      processor = postcss -> new Root()
       processor.process('a {}').css.should.eql('')
 
     it 'returns Result object', ->
@@ -75,7 +76,7 @@ describe 'postcss()', ->
       calls.should.eql 'ab'
 
     it 'parses, convert and stringify CSS', ->
-      a = (css) -> css.should.be.an.instanceof(postcss.Root)
+      a = (css) -> css.should.be.an.instanceof(Root)
       postcss(a).process('a {}').css.should.have.type('string')
 
     it 'adds map field only on request', ->
