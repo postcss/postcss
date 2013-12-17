@@ -16,9 +16,7 @@ You can use this framework to write you own:
 * Text editor plugin to automate CSS routine.
 * Command-line CSS tool.
 
-Sponsored by [Evil Martians].
-
-[Evil Martians]: http://evilmartians.com/
+Sponsored by [Evil Martians](http://evilmartians.com/).
 
 ## Build with PostCSS
 
@@ -357,6 +355,9 @@ Some nodes contain child nodes. There are common method to work with them:
 * `insertAfter(existsChild, newChild)` to insert new child before some
    extist child.
 * `remove(child)` to remove child.
+* `index(child)` to return child index.
+* `some(fn)` to return true if `fn` return true on any of childs.
+* `every(fn)` to return true if `fn` return true on all of childs.
 
 Methods `insertBefore`, `insertAfter` and `remove` can receive child node
 or child index number as exists child argument, but index is much faster.
