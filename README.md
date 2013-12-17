@@ -1,14 +1,14 @@
 # PostCSS
 
 PostCSS is a framework for CSS postprocessors,
-to modify CSS by your JS function.
+to modify CSS by your JS function.
 
 It takes care of most common CSS tool tasks:
 
 1. parses CSS;
 2. gives you usable JS API to edit CSS node tree;
 3. saves modified node tree to new CSS;
-4. generates (or modifies existent) source map for your changes;
+4. generates (or modifies existent) source map for your changes;
 
 You can use this framework to write you own:
 
@@ -87,7 +87,7 @@ result.css // String with processed CSS
 result.map // Source map
 ```
 
-And modifies source map from previous step (like Sass preprocessor):
+And modifies source map from previous step (like Sass preprocessor):
 
 ```js
 var sassMap = fs.readFileSync('from.sass.map');
@@ -102,7 +102,7 @@ PostCSS will not change any byte of rule if you don't modify node:
 postcss(function (css) { }).process(css).css == css;
 ```
 
-And when you modify CSS nodes, PostCSS will try to copy coding style:
+And when you modify CSS nodes, PostCSS will try to copy coding style:
 
 ```js
 contenter.process("a::before{color: black}")
@@ -125,14 +125,13 @@ libraries use this languages to work with prefixes, sprites and inline images.
 
 But Sass and Stylus languages were created to be syntax-sugar for CSS.
 Writing really complicated programs using preporcessor languages is very difficult.
-[Autoprefixer] is absolutely impossible on Sass.
+[Autoprefixer] is absolutely impossible on Sass.
 
-PostCSS gives you comfort and power of JS or CoffeeScript working with CSS.
+PostCSS gives you comfort and power of JS or CoffeeScript to working with CSS.
 You can do really magic things with wide range of [npm] libraries.
 
 But postprocessors are not enemies for preprocessors. Sass and Stylus is still
-the best way to improve readability and add some syntax sugar to CSS. You can easily 
-combine preprocessors and postprocessors.
+the best way to improve readability and add some syntax sugar to CSS. You can easily combine preprocessors and postprocessors.
 
 [Autoprefixer]: https://github.com/ai/autoprefixer
 [npm]:          https://npmjs.org/
@@ -150,19 +149,20 @@ with first step.
 
 Unlike them PostCSS gives you useful high level API (for example,
 safe iterators), changes source map generator (or modifier for existing
-source map from preprocessors).
+source map from preprocessors).
 
 [Gonzales]: https://github.com/css/gonzales
 
 ### Rework
 
-[Rework] was a first CSS postprocessors framework. It was very similar to PostCSS.
+[Rework] was a first CSS postprocessors framework. PostCSS is very similar
+to it.
 
-But Rework has no high level API and pays no attention to your CSS code style
-and indentations. So it can’t be used in text editor plugins.
+But Rework has no high level API and rewrite CSS code style and indentations.
+So it can’t be used in text editor plugins.
 
-Unlike it PostCSS preserves all spaces and code formatting. If you
-don't change rule, output will be byte-to-byte equal.
+Unlike it PostCSS preserves all spaces and code formatting
+If you don't change rule, output will be byte-to-byte equal.
 
 [Rework]: https://github.com/visionmedia/rework
 
@@ -170,7 +170,7 @@ don't change rule, output will be byte-to-byte equal.
 
 ### Processor
 
-Function `postcss(fn)` creates processor by your function:
+Function `postcss(fn)` creates processor by your function:
 
 ```js
 var postcss = require('postcss');
@@ -180,7 +180,7 @@ var processor = postcss(function (css) {
 });
 ```
 
-If you want to combine multiple processors (and parse CSS only once),
+If you want to combine multiple processors (and parse CSS only once),
 you can create empty processor and add several functions by `use(fn)` method:
 
 ```js
@@ -251,12 +251,12 @@ result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"name
 fs.writeFileSync('main.out.map', result.map);
 ```
 
-PostCSS can also modify previous source map (for example, from Sass
+PostCSS can also modify previous source map (for example, from Sass
 compilation). So, if you compile: Sass to CSS and then minify CSS
 by postprocessor, final source map will contain mapping from Sass code
-to minified CSS.
+to minified CSS.
 
-Just set original source map content (as string in JS object)
+Just set original source map content (as string or JS object)
 to `map` option:
 
 ```js
@@ -271,7 +271,7 @@ result.map //=> Source map from main.sass to main.min.css
 
 ### Nodes
 
-Processor function will receive `Root` node with CSS node tree inside.
+Processor function will receive `Root` node with CSS node tree inside.
 
 ```js
 var processor = postcss(function (cssRoot) {
@@ -327,7 +327,7 @@ minifier.process(css).css //=> "a{color:black}"
 
 ### Raw Properties
 
-Some CSS values (like selectors, at-rule params and declaration values) can
+Some CSS values (like selectors, at-rule params and declaration values) can
 contain comments. PostCSS will clean them for you:
 
 ```js
@@ -339,7 +339,7 @@ ab.selector //=> 'a  b' trimmed and cleaned from comments
 
 But PostCSS saves raw content to stringify it to CSS, if you don’t
 set new value. As you can remember, PostCSS tries to save origin CSS
-byte-to-byte, when it's possible:
+byte-to-byte, when it’s possible:
 
 ```js
 ab.toString() //=> 'a /**/ b {}' with comment
@@ -386,7 +386,7 @@ All children has `removeSelf()` method:
 rule.decls[0].removeSelf();
 ```
 
-But `remove(index)` in parent with child index is much faster:
+But `remove(index)` in parent with child index is much faster:
 
 ```js
 rule.each(function (decl, i) {
@@ -479,11 +479,11 @@ root.toString() == css;
 ```
 
 As you see, some at-rules don’t contain any children (like `@charset`
-or `@import`), some of at-rules can contain only declarations (like `@font-face`
-or `@page`), but most of them can contain rules and nested at-rules
-(like `@media`, `@keyframes` and others).
+or `@import`), some of at-rules can contain only declarations
+(like `@font-face` or `@page`), but most of them can contain rules
+and nested at-rules (like `@media`, `@keyframes` and others).
 
-Parser select `AtRule` content type by its name. If you create `AtRule`
+Parser select `AtRule` content type by its name. If you create `AtRule`
 node manually, it will detect own content type with new child type on first
 `append` or other add method call:
 
