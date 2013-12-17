@@ -113,7 +113,7 @@ contenter.process("a::before {\n  color: black;\n  }")
 //   }
 ```
 
-## Why PostCSS Better That …
+## Why PostCSS Better Than …
 
 ### Preprocessors
 
@@ -286,7 +286,7 @@ var postcss = require('postcss');
 var cssRoot = postcss.parse('a { }');
 ```
 
-### Spaces
+### Whitespaces
 
 All nodes (exclude `Root`) has `before` property with spaces and comments,
 which was before node.
