@@ -479,6 +479,12 @@ atRule.rules.length //=> 1
 atRule.decls        //=> undefined
 ```
 
+You can create new at-rule by shortcut:
+
+```js
+var atRule = postcss.atRule({ name: 'charset', params: 'utf-8' });
+```
+
 ### Rule Node
 
 Rule has `selector` and `Declaration` childs in `decls` property:
@@ -505,10 +511,28 @@ var root = postcss.parse('a { color: black; }');
 root.rules[0].semicolon //=> true
 ```
 
+You can create new rule by shortcut:
+
+```js
+var rule = postcss.rule({ selector: 'a' });
+```
+
 ### Declaration Node
 
 `Declaration` node has `prop` and `value` properties.
 
 ```css
 color: black
+```
+
+You can create new declaration by shortcut:
+
+```js
+var decl = postcss.decl({ prop: 'color', value: 'black' });
+```
+
+Or use short form in `append()` and other add methods:
+
+```js
+rule.append(prop: 'color', value: 'black');
 ```
