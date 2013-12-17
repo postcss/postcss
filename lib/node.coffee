@@ -43,13 +43,13 @@ class Node
 
   # Remove this node from parent.
   #
-  #   decl.remove()
+  #   decl.removeSelf()
   #
   # Note, that removing by index is faster:
   #
   #   rule.each (decl, i) ->
   #     rule.remove(i)
-  remove: ->
+  removeSelf: ->
     return unless @parent
     @parent.remove(@)
     this

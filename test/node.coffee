@@ -51,13 +51,13 @@ describe 'Node', ->
       b.one.should.eql('2')
       b._one.stringify().should.eql(' 2 ')
 
-  describe 'remove()', ->
+  describe 'removeSelf()', ->
 
     it 'removes node from parent', ->
       rule = new Rule(selector: new Raw(' a ', 'a'))
       rule.append(prop: 'color', value: new Raw(' black', 'black'))
 
-      rule.decls[0].remove()
+      rule.decls[0].removeSelf()
       rule.decls.should.be.empty
 
   describe 'clone()', ->
