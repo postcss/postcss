@@ -159,10 +159,10 @@ source map from preprocessors).
 to it.
 
 But Rework has no high level API and rewrite your CSS code style
-and indentations. So it can’t be used in text editor plugins.
+and indentations. So it can’t be used in text editor plugins.
 
 Unlike it PostCSS preserves all spaces and code formatting.
-If you don't change rule, output will be byte-to-byte equal.
+If you don't change rule, output will be byte‑to‑byte equal.
 
 [Rework]: https://github.com/visionmedia/rework
 
