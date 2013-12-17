@@ -38,8 +38,8 @@ var contenter = postcss(function (css) {
             // Did we forget content property?
             var good = rule.some(function (i) { return i.prop == 'content'; });
 
-            // Add content: '' if we forget it
             if ( !good ) {
+                // Add content: '' if we forget it
                 rule.prepend({ prop: 'content', value: '""' });
             }
 
@@ -80,7 +80,7 @@ a::before {
 PostCSS generates source map for it’s transformations:
 
 ```js
-result = processor.process(css, { from: 'from.css', to: 'to.css', map: true });
+result = processor.process(css, { map: true, from: 'from.css', to: 'to.css' });
 result.css // String with processed CSS
 result.map // Source map
 ```
@@ -89,18 +89,18 @@ And modify source map from previuos step (like Sass preprocessor):
 
 ```js
 var sassMap = fs.readFileSync('from.sass.map');
-processor.process(css, { from: 'from.sass.css', to: 'to.css', map: sassMap });
+processor.process(css, { map: sassMap, from: 'from.sass.css', to: 'to.css' });
 ```
 
 ### Preserves code formatting and indentations
 
-PostCSS will not change any byte of rule if you didn’t modify it:
+PostCSS will not change any byte of rule if you didn’t modify node:
 
 ```js
 postcss(function (css) { }).process(css).css == css;
 ```
 
-When you modify CSS nodes, PostCSS will try to copy coding style:
+And when you modify CSS nodes, PostCSS will try to copy coding style:
 
 ```js
 contenter.process("a::before{color: black}")
@@ -118,28 +118,29 @@ contenter.process("a::before {\n  color: black;\n  }")
 ### Preprocessors
 
 Preprocessors (like Sass or Stylus) give us special language with variables,
-mixins, statements and compile it to CSS. Compass, nib and other mixins
-libraries use this languages to work with prefixes, sprites and inline images.
+mixins, statements and compile it to CSS. Compass, nib and other mixins
+libraries use this languages to work with prefixes, sprites and inline images.
 
-But Sass and Stylus languages was created like syntax-sugar for CSS.
-Write really complicated programs on preporcessor languages is very difficult.
+But Sass and Stylus languages was created to be syntax-sugar for CSS.
+Writing really complicated programs on preporcessor languages is very difficult.
 [Autoprefixer] is totally impossible on Sass.
 
-With PostCSS you can work with CSS from comfort and powerful JS or CoffeeScript.
+With PostCSS you can work with CSS by comfort and powerful JS or CoffeeScript.
 You can do really magic things with wide range of [npm] libraries.
 
-But postprocessors is not a enemy for preprocessors. Sass and Stylus is still
+But postprocessors are not a enemy for preprocessors. Sass and Stylus is still
 best way to add reability and some sugar to CSS syntax. You can easily
 combine preprocessors and postprocessors.
 
-[npm]: https://npmjs.org/
+[Autoprefixer]: https://github.com/ai/autoprefixer
+[npm]:          https://npmjs.org/
 
 ### RegExp
 
-Some Grunt plugins modify CSS by regular expressions. But CSS parsering
-and working with CSS node tree is much safer way.
+Some Grunt plugins modify CSS by regular expressions. But CSS parser and
+CSS node tree is much safer way.
 
-Also regexps can broke source map from preprocessor step.
+Also regexps will broke source map from preprocessors.
 
 ### CSS Parsers
 
@@ -156,7 +157,7 @@ source map from Sass).
 
 [Rework] was a first CSS postprocessors framework and very similar to PostCSS.
 
-But Rework has much simplier API and will destroy your CSS code style and indentations. So we can’t use it in text editor plugins.
+But Rework has much simplier API and will destroy your CSS code style and indentations. So we can’t use it in text editor plugins.
 
 Instead of it, PostCSS will preserves all spaces and code formatting. If you
 didn’t change rule, output will be byte-to-byte equal.
