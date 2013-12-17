@@ -476,10 +476,10 @@ root.toString() == css;
 ```
 
 As you see, some doesn’t contain any childs (like `@charset` or `@import`),
-some of at-rules can contain only declarations (like `@font-face` or `@page`),but most of them can contain rules and nested at-rules (like `@media`,
+some of at-rules can contain only declarations (like `@font-face` or `@page`),but most of them can contain rules and nested at-rules (like `@media`,
 `@keyframes` and other).
 
-Parser select `AtRule` content type by it name. If you create `AtRule` node manually, it will detect own content type by new child type on first `append`
+Parser select `AtRule` content type by it name. If you create `AtRule` node manually, it will detect own content type by new child type on first `append`
 or other add method call:
 
 ```js
@@ -500,7 +500,8 @@ var atRule = postcss.atRule({ name: 'charset', params: 'utf-8' });
 
 ### Rule Node
 
-Rule has `selector` and `Declaration` childs in `decls` property:
+`Rule` node has `selector` property and contains `Declaration` childs
+in `decls` property:
 
 ```css
 a {
@@ -508,13 +509,13 @@ a {
 }
 ```
 
-You can use miss `Declaration` constuctor in `append` and other add methods:
+You can miss `Declaration` constuctor in `append` and other add methods:
 
 ```js
-rule.append(prop: 'color', value: 'black');
+rule.append({ prop: 'color', value: 'black' });
 ```
 
-Property `semicolon` mark, does last declaration in rule should have semicolon:
+Property `semicolon` marks, does last declaration in rule should have semicolon:
 
 ```js
 var root = postcss.parse('a { color: black }');
@@ -547,5 +548,5 @@ var decl = postcss.decl({ prop: 'color', value: 'black' });
 Or use short form in `append()` and other add methods:
 
 ```js
-rule.append(prop: 'color', value: 'black');
+rule.append({ prop: 'color', value: 'black' });
 ```
