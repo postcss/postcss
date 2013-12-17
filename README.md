@@ -2,7 +2,7 @@
 
 PostCSS is a framework for CSS postprocessors, to modify CSS by your JS fuction.
 
-It takes care of most of common tasks for CSS tool:
+It takes care about most of common CSS tool task:
 
 1. parses CSS;
 2. gives you usable JS API to edit CSS node tree;
@@ -16,12 +16,14 @@ You can use this framework to write you own:
 * Text editor plugin to automate CSS routine.
 * Command-line CSS tool.
 
-[Autoprefixer] uses PostCSS to add actual prefixes in CSS.
-
 Sponsored by [Evil Martians].
 
-[Autoprefixer]:  https://github.com/ai/autoprefixer
 [Evil Martians]: http://evilmartians.com/
+
+## Build with PostCSS
+
+* [Autoprefixer](https://github.com/ai/autoprefixer)
+* [grunt-pixrem](https://github.com/robwierzbowski/grunt-pixrem)
 
 ## Quick Example
 
