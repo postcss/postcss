@@ -1,6 +1,7 @@
 # PostCSS
 
-PostCSS is a framework for CSS postprocessors, to modify CSS by your JS fuction.
+PostCSS is a framework for CSS postprocessors,
+to modify CSS by your JS function.
 
 It takes care about most of common CSS tool task:
 
@@ -85,7 +86,7 @@ result.css // String with processed CSS
 result.map // Source map
 ```
 
-And modify source map from previuos step (like Sass preprocessor):
+And modify source map from previous step (like Sass preprocessor):
 
 ```js
 var sassMap = fs.readFileSync('from.sass.map');
@@ -156,7 +157,7 @@ source map from Sass).
 
 [Rework] was a first CSS postprocessors framework and very similar to PostCSS.
 
-But Rework has much simplier API and will destroy your CSS code style and indentations. So we can’t use it in text editor plugins.
+But Rework hasn’t high level API and will destroy your CSS code style and indentations. So we can’t use it in text editor plugins.
 
 Instead of it, PostCSS will preserves all spaces and code formatting. If you
 didn’t change rule, output will be byte-to-byte equal.
@@ -233,7 +234,7 @@ processor.process(wrong, { from: 'main.css' });
 PostCSS will generate source map, if you set true to `map` option
 in `process(css, opts)` method.
 
-You must set input and output CSS files pathes (by `from` and `to` options)
+You must set input and output CSS files paths (by `from` and `to` options)
 to generate correct map.
 
 ```js
@@ -250,7 +251,7 @@ fs.writeFileSync('main.out.map', result.map);
 
 PostCSS can also modify previous source map (for example, from Sass
 compilation). So, if you compile: Sass to CSS and then minify CSS
-by postprocessor, final source map will conains mapping from Sass code
+by postprocessor, final source map will contains mapping from Sass code
 to minified CSS.
 
 Just set original source map content (in string on in JS object)
@@ -291,7 +292,7 @@ var cssRoot = postcss.parse('a { }');
 All nodes (exclude `Root`) has `before` property with spaces and comments,
 which was before node.
 
-Nodes with childs (`Root`, `AtRule` and `Rule`) contain also `after` property
+Nodes with children (`Root`, `AtRule` and `Rule`) contain also `after` property
 with spaces after last child and before `}` or end of file.
 
 ```js
@@ -348,36 +349,36 @@ ab.toString() //=> '.link b' you change value and magic was gone
 
 ### Containers
 
-`Root`, `AtRule` and `Rule` nodes can contain childs in `rules` or `decls`
+`Root`, `AtRule` and `Rule` nodes can contain children in `rules` or `decls`
 property.
 
-There are common method to work with childs:
+There are common method to work with children:
 
-* `append(newChild)` to add child to end of childs list.
-* `prepend(newChild)` to add child to start of childs list.
+* `append(newChild)` to add child to end of children list.
+* `prepend(newChild)` to add child to start of children list.
 * `insertBefore(existsChild, newChild)` to insert new child before some
    extists child.
 * `insertAfter(existsChild, newChild)` to insert new child before some
    extists child.
 * `remove(child)` to remove child.
 * `index(child)` to return child index.
-* `some(fn)` to return true if `fn` return true on any of childs.
-* `every(fn)` to return true if `fn` return true on all of childs.
+* `some(fn)` to return true if `fn` return true on any of children.
+* `every(fn)` to return true if `fn` return true on all of children.
 
 Methods `insertBefore`, `insertAfter` and `remove` can receive child node
 or child index number as exists child argument, but index is much faster.
 
-### Childs
+### Children
 
 `AtRule`, `Rule` and `Declaration` nodes will be inside other nodes.
 
-All childs contain `parent` property with parent node:
+All children contain `parent` property with parent node:
 
 ```js
 rule.decls[0].parent == rule;
 ```
 
-All childs has `removeSelf()` method:
+All children has `removeSelf()` method:
 
 ```js
 rule.decls[0].removeSelf();
@@ -393,7 +394,7 @@ rule.each(function (decl, i) {
 
 ### Iterators
 
-All containers node has `each` method, to iterate it childs nodes:
+All containers node has `each` method, to iterate it children nodes:
 
 ```js
 root = postcss.parse('a { color: black; display: none }');
@@ -408,7 +409,7 @@ root.rules[0].each(function (decl, i) {
 ```
 
 Instead of simple `for` or `Array#forEach()` this iterator is safe.
-You can change childs inside iteration and it will fix current index:
+You can change children inside iteration and it will fix current index:
 
 ```js
 rule.rules.forEach(function (decl, i) {
@@ -443,7 +444,7 @@ root.eachAtRule(function (atRule, i) {
 
 ### Root Node
 
-`Root` node contains all CSS tree. It childs can be only `AtRule` or `Rule`
+`Root` node contains all CSS tree. It children can be only `AtRule` or `Rule`
 nodes in `rules` property.
 
 You can create new root by shortcut:
@@ -475,7 +476,7 @@ root.toString() == css;
 }
 ```
 
-As you see, some doesn’t contain any childs (like `@charset` or `@import`),
+As you see, some doesn’t contain any children (like `@charset` or `@import`),
 some of at-rules can contain only declarations (like `@font-face` or `@page`),but most of them can contain rules and nested at-rules (like `@media`,
 `@keyframes` and other).
 
@@ -509,7 +510,7 @@ a {
 }
 ```
 
-You can miss `Declaration` constuctor in `append` and other add methods:
+You can miss `Declaration` constructor in `append` and other add methods:
 
 ```js
 rule.append({ prop: 'color', value: 'black' });
