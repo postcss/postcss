@@ -3,7 +3,7 @@
 PostCSS is a framework for CSS postprocessors,
 to modify CSS by your JS function.
 
-It takes care about most of common CSS tool task:
+It takes care about most common CSS tool tasks:
 
 1. parses CSS;
 2. gives you usable JS API to edit CSS node tree;
@@ -78,7 +78,7 @@ a::before {
 
 ### Source Map
 
-PostCSS generates source map for it’s transformations:
+PostCSS generates source map for its transformations:
 
 ```js
 result = processor.process(css, { map: true, from: 'from.css', to: 'to.css' });
@@ -122,15 +122,15 @@ Preprocessors (like Sass or Stylus) give us special language with variables,
 mixins, statements and compile it to CSS. Compass, nib and other mixins
 libraries use this languages to work with prefixes, sprites and inline images.
 
-But Sass and Stylus languages was created to be syntax-sugar for CSS.
+But Sass and Stylus languages were created to be syntax-sugar for CSS.
 Writing really complicated programs on preporcessor languages is very difficult.
 [Autoprefixer] is totally impossible on Sass.
 
-With PostCSS you can work with CSS by comfort and powerful JS or CoffeeScript.
+With PostCSS you can work with CSS with comfort and power of JS or CoffeeScript.
 You can do really magic things with wide range of [npm] libraries.
 
-But postprocessors are not a enemy for preprocessors. Sass and Stylus is still
-best way to add reability and some sugar to CSS syntax. You can easily
+But postprocessors are not enemies for preprocessors. Sass and Stylus is still
+best way to add readability and some sugar to CSS syntax. You can easily
 combine preprocessors and postprocessors.
 
 [Autoprefixer]: https://github.com/ai/autoprefixer
@@ -157,7 +157,7 @@ source map from Sass).
 
 [Rework] was a first CSS postprocessors framework and very similar to PostCSS.
 
-But Rework hasn’t high level API and will destroy your CSS code style and indentations. So we can’t use it in text editor plugins.
+But Rework has no high level API and will destroy your CSS code style and indentations. So we can’t use it in text editor plugins.
 
 Instead of it, PostCSS will preserves all spaces and code formatting. If you
 didn’t change rule, output will be byte-to-byte equal.
@@ -222,7 +222,7 @@ result.css //=> "a { color: black; color: black; }"
 ```
 
 You can set original CSS filename by `from` options and syntax error messages
-will be much helpful:
+will be much more helpful:
 
 ```js
 var wrong = "a {";
@@ -354,8 +354,8 @@ property.
 
 There are common method to work with children:
 
-* `append(newChild)` to add child to end of children list.
-* `prepend(newChild)` to add child to start of children list.
+* `append(newChild)` to add child at the end of children list.
+* `prepend(newChild)` to add child at the beginning of children list.
 * `insertBefore(existsChild, newChild)` to insert new child before some
    extists child.
 * `insertAfter(existsChild, newChild)` to insert new child before some
@@ -476,12 +476,13 @@ root.toString() == css;
 }
 ```
 
-As you see, some doesn’t contain any children (like `@charset` or `@import`),
-some of at-rules can contain only declarations (like `@font-face` or `@page`),but most of them can contain rules and nested at-rules (like `@media`,
+As you see, some at-rules doesn’t contain any children (like `@charset` or `@import`),
+some of at-rules can contain only declarations (like `@font-face` or `@page`), 
+but most of them can contain rules and nested at-rules (like `@media`,
 `@keyframes` and other).
 
-Parser select `AtRule` content type by it name. If you create `AtRule` node manually, it will detect own content type by new child type on first `append`
-or other add method call:
+Parser select `AtRule` content type by it name. If you create `AtRule` node manually, 
+it will detect own content type by new child type on first `append` or other add method call:
 
 ```js
 var atRule = postcss.atRule({ name: '-x-animations' });
