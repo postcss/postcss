@@ -278,8 +278,7 @@ var processor = postcss(function (cssRoot) {
 There are 3 types of nodes can be inside: `AtRule`, `Rule` and `Declaration`.
 All nodes contain `toString()` and `clone()` methods.
 
-Tou can parse CSS and get `Root` node without postprocessor function
-by `postcss.parse(css, opts)` method:
+You can parse CSS and get `Root` node by `postcss.parse(css, opts)` method:
 
 ```js
 var postcss = require('postcss');
@@ -293,7 +292,7 @@ All nodes (exclude `Root`) has `before` property with spaces and comments,
 which was before node.
 
 Nodes with childs (`Root`, `AtRule` and `Rule`) contain also `after` property
-with spaces after last child and before `}` or end of file.
+with spaces after last child and before `}` or end of file.
 
 ```js
 var root = postcss.parse("a {\n  color: black;\n}\n");
@@ -349,14 +348,17 @@ ab.toString() //=> '.link b' you change value and magic was gone
 
 ### Containers
 
-Some nodes contain child nodes. There are common method to work with them:
+`Root`, `AtRule` and `Rule` nodes can contain childs in `rules` or `decls`
+property.
+
+There are common method to work with childs:
 
 * `append(newChild)` to add child to end of childs list.
 * `prepend(newChild)` to add child to start of childs list.
 * `insertBefore(existsChild, newChild)` to insert new child before some
-   extist child.
+   extists child.
 * `insertAfter(existsChild, newChild)` to insert new child before some
-   extist child.
+   extists child.
 * `remove(child)` to remove child.
 * `index(child)` to return child index.
 * `some(fn)` to return true if `fn` return true on any of childs.
@@ -365,13 +367,17 @@ Some nodes contain child nodes. There are common method to work with them:
 Methods `insertBefore`, `insertAfter` and `remove` can receive child node
 or child index number as exists child argument, but index is much faster.
 
-All nodes (except `Root`) contain `parent` property with parent node:
+### Childs
+
+`AtRule`, `Rule` and `Declaration` nodes will be inside other nodes.
+
+All childs contain `parent` property with parent node:
 
 ```js
 rule.decls[0].parent == rule;
 ```
 
-All nodes has `removeSelf()` method:
+All childs has `removeSelf()` method:
 
 ```js
 rule.decls[0].removeSelf();
@@ -387,28 +393,28 @@ rule.each(function (decl, i) {
 
 ### Iterators
 
-All containers node has `each` method, to iterate this node childs:
+All containers node has `each` method, to iterate it childs nodes:
 
 ```js
 root = postcss.parse('a { color: black; display: none }');
 
 root.each(function (rule, i) {
-    console.log(rule.selector, i); // Will log only "a 0"
+    console.log(rule.selector, i); // Will log "a 0"
 });
 
 root.rules[0].each(function (decl, i) {
-    console.log(decl.prop, i); // Will log only "color 0" and "display 1"
+    console.log(decl.prop, i); // Will log "color 0" and "display 1"
 });
 ```
 
-Instead of simple `for` or `forEach()` this iterator is safe and you can change
-childs inside iteration, iterator will fix current index:
+Instead of simple `for` or `Array#forEach()` this iterator is safe.
+You can change childs inside iteration and it will fix current index:
 
 ```js
 rule.rules.forEach(function (decl, i) {
     rule.prepend( decl.clone() );
-    // Will be infinity cycle, because on prepend current decl become second
-    // and next index will go to current decl again
+    // Will be infinity cycle, because on prepend current declaration become
+    // second and next index will go to current declaration again
 });
 
 rule.each(function (decl, i) {
@@ -423,7 +429,7 @@ by node type:
 
 ```js
 root.eachDecl(function (decl, i) {
-    // Each declaration inside any root
+    // Each declaration inside root
 });
 
 root.eachRule(function (rule, i) {
