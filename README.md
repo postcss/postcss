@@ -289,6 +289,20 @@ var postcss = require('postcss');
 var cssRoot = postcss.parse('a { }');
 ```
 
+### Node Source
+
+Every node stores it origin file (if you set `from` option to `process`
+or `parse` method) and position at `source` property:
+
+```
+var root = postcss.parse(css, { from: 'main.css' });
+var rule = root.rules[1];
+
+rule.source.file  //=> 'main.css'
+rule.source.start //=> { line: 5,  position: 1 }
+rule.source.end   //=> { line: 10, position: 5 }
+```
+
 ### Whitespaces
 
 All nodes (exclude `Root`) have `before` property with all earlier spaces and comments.
