@@ -129,7 +129,7 @@ With PostCSS you can work with CSS by comfort and powerful JS or CoffeeScript.
 You can do really magic things with wide range of [npm] libraries.
 
 But postprocessors are not a enemy for preprocessors. Sass and Stylus is still
-best way to add reability and some sugar to CSS syntax. You can easily
+best way to add reability and some sugar to CSS syntax. You can easily
 combine preprocessors and postprocessors.
 
 [Autoprefixer]: https://github.com/ai/autoprefixer
@@ -138,9 +138,8 @@ combine preprocessors and postprocessors.
 ### RegExp
 
 Some Grunt plugins modify CSS by regular expressions. But CSS parser and
-CSS node tree is much safer way.
-
-Also regexps will broke source map from preprocessors.
+node tree is much safer way to edit CSS. Also regexps will broke source map
+from preprocessors.
 
 ### CSS Parsers
 
@@ -160,7 +159,7 @@ source map from Sass).
 But Rework has much simplier API and will destroy your CSS code style and indentations. So we can’t use it in text editor plugins.
 
 Instead of it, PostCSS will preserves all spaces and code formatting. If you
-didn’t change rule, output will be byte-to-byte equal.
+didn’t change rule, output will be byte-to-byte equal.
 
 [Rework]: https://github.com/visionmedia/rework
 
@@ -178,8 +177,8 @@ var processor = postcss(function (css) {
 });
 ```
 
-If you want to combine several processors (to parse CSS only once),
-you can create empty processor and add several functions by `use(fn)` method:
+If you want to combine several processors (and parse CSS only once),
+you can create empty processor and add several functions by `use(fn)` method:
 
 ```js
 var all = postcss().
@@ -225,16 +224,16 @@ You can set original CSS filename by `from` options and syntax error messages
 will be much helpful:
 
 ```js
-var wrong = "a {"
+var wrong = "a {";
 processor.process(wrong, { from: 'main.css' });
 //=> Can't parse CSS: Unclosed block at line 1:1 in main.css
 ```
 ### Source Map
 
-PostCSS will generate source map of it’s modifictaion, if you set true to `map`
-option in `process(css, opts)` method.
+PostCSS will generate source map, if you set true to `map` option
+in `process(css, opts)` method.
 
-But you must set input and output CSS files pathes (by `from` and `to` options)
+You must set input and output CSS files pathes (by `from` and `to` options)
 to generate correct map.
 
 ```js
@@ -250,7 +249,7 @@ fs.writeFileSync('main.out.map', result.map);
 ```
 
 PostCSS can also modify previous source map (for example, from Sass
-compilation). So, if you compile: Sass to CSS and then minify CSS
+compilation). So, if you compile: Sass to CSS and then minify CSS
 by postprocessor, final source map will conains mapping from Sass code
 to minified CSS.
 
@@ -260,22 +259,27 @@ to `map` option:
 ```js
 var result = minifier.process(css, {
     map:   fs.readFileSync('main.sass.map'),
-    from: 'main.css',
-    to:   'main.out.css'
+    from: 'main.sass.css',
+    to:   'main.min.css'
 });
 
-result.map //=> Source map from Sass to minified CSS
+result.map //=> Source map from main.sass to main.min.css
 ```
 
 ### Nodes
 
-Processor function will receive `Root` node with all CSS node tree.
-There are 4 types of nodes: `Root`, `AtRule`, `Rule` and `Declaration`.
+Processor function will receive `Root` node with CSS node tree inside.
 
+```js
+var processor = postcss(function (cssRoot) {
+});
+```
+
+There are 3 types of nodes can be inside: `AtRule`, `Rule` and `Declaration`.
 All nodes contain `toString()` and `clone()` methods.
 
 Tou can parse CSS and get `Root` node without postprocessor function
-by `postcss.parse()` method:
+by `postcss.parse(css, opts)` method:
 
 ```js
 var postcss = require('postcss');
@@ -288,14 +292,14 @@ var cssRoot = postcss.parse('a { }');
 All nodes (exclude `Root`) has `before` property with spaces and comments,
 which was before node.
 
-Nodes with content (`Root`, `AtRule` and `Rule`) contain also `after` property
-with spaces after last child and before `}` of end of file.
+Nodes with childs (`Root`, `AtRule` and `Rule`) contain also `after` property
+with spaces after last child and before `}` or end of file.
 
 ```js
 var root = postcss.parse("a {\n  color: black;\n}\n");
 
 root.after                    //=> "\n" from end of file
-root.rules[0].after           //=> "\n" from }
+root.rules[0].after           //=> "\n" before }
 root.rules[0].decls[0].before //=> "\n  " before color: black
 ```
 
@@ -323,18 +327,16 @@ minifier.process(css).css //=> "a{color:black}"
 ### Raw Properties
 
 Some CSS values (like selectors, at-rule params and declaration values) can
-contain comments. PostCSS will clean them for you, but also will save origin
-raw content:
+contain comments. PostCSS will clean them for you:
 
 ```js
-var css  = "a /**/ b {}";
-var root = postcss.parse(css);
+var root = postcss.parse("a /**/ b {}");
 var ab   = root.rules[0];
 
 ab.selector //=> 'a  b' trimmed and cleaned from comments
 ```
 
-But PostCSS wil save origin raw content to stringify it to CSS, if you didn’t
+But PostCSS saves origin raw content to stringify it to CSS, if you didn’t
 set new value. As you remember, PostCSS try to save origin CSS byte-to-byte,
 when it is possible:
 
