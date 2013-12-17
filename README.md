@@ -408,7 +408,7 @@ root.rules[0].each(function (decl, i) {
 ```
 
 Instead of simple `for` or `Array#forEach()` this iterator is safe.
-You can change childs inside iteration and it will fix current index:
+You can change childs inside iteration and it will fix current index:
 
 ```js
 rule.rules.forEach(function (decl, i) {
@@ -443,8 +443,8 @@ root.eachAtRule(function (atRule, i) {
 
 ### Root Node
 
-`Root` node contains all CSS tree. It child can be only `AtRule` or `Rule` nodes
-in `.rules` property.
+`Root` node contains all CSS tree. It childs can be only `AtRule` or `Rule`
+nodes in `rules` property.
 
 You can create new root by shortcut:
 
@@ -464,29 +464,30 @@ root.toString() == css;
 `AtRule` has two own property: `name` and `params`.
 
 ```css
-@media print {
-    img { display: none }
-}
+@charset 'utf-8';
 
 @font-face {
     font-family: 'Cool'
 }
+
+@media print {
+    img { display: none }
+}
 ```
 
-As you see, some of at-rules can contain only declarations (like `@font-face`
-or `@page`), some doesn’t contain any childs (like `@charset`), but most
-of at-rules can contain rules and nested at-rules (like `@media`, `@keyframes`
-and other).
+As you see, some doesn’t contain any childs (like `@charset` or `@import`),
+some of at-rules can contain only declarations (like `@font-face` or `@page`),but most of them can contain rules and nested at-rules (like `@media`,
+`@keyframes` and other).
 
-Parser select `AtRule` content type by it name. If you create `AtRule` node manually, it will find own content type by new child type on first call of
-`append` ot other add method:
+Parser select `AtRule` content type by it name. If you create `AtRule` node manually, it will detect own content type by new child type on first `append`
+or other add method call:
 
 ```js
-var atRule = postcss.atRule(name: '-x-animations');
+var atRule = postcss.atRule({ name: '-x-animations' });
 atRule.rules        //=> undefined
 atRule.decls        //=> undefined
 
-atRule.append( postcss.rule(selector: 'from') );
+atRule.append( postcss.rule({ selector: 'from' }) );
 atRule.rules.length //=> 1
 atRule.decls        //=> undefined
 ```
