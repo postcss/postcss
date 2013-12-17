@@ -148,7 +148,7 @@ There are a lot of good CSS parsers, like [Gonzales]. But they help you only
 with first step.
 
 Unlike them PostCSS gives you useful high level API (for example,
-safe iterators), changes source map generator (or modifier for existing
+safe iterators) and changes source map generator (or modifier for existing
 source map from preprocessors).
 
 [Gonzales]: https://github.com/css/gonzales
@@ -158,10 +158,10 @@ source map from preprocessors).
 [Rework] was a first CSS postprocessors framework. PostCSS is very similar
 to it.
 
-But Rework has no high level API and rewrite CSS code style and indentations.
-So it can’t be used in text editor plugins.
+But Rework has no high level API and rewrite your CSS code style
+and indentations. So it can’t be used in text editor plugins.
 
-Unlike it PostCSS preserves all spaces and code formatting
+Unlike it PostCSS preserves all spaces and code formatting.
 If you don't change rule, output will be byte-to-byte equal.
 
 [Rework]: https://github.com/visionmedia/rework
@@ -359,7 +359,7 @@ There are common method to work with children:
 * `prepend(newChild)` to add child at the beginning of children list.
 * `insertBefore(existsChild, newChild)` to insert new child before some
    existent children.
-* `insertAfter(existsChild, newChild)` to insert new child before some
+* `insertAfter(existsChild, newChild)` to insert new child after some
    existent children.
 * `remove(child)` to remove child.
 * `index(child)` to return child index.
@@ -464,8 +464,6 @@ root.toString() == css;
 
 ### AtRule Node
 
-`AtRule` has two own properties: `name` and `params`.
-
 ```css
 @charset 'utf-8';
 
@@ -477,6 +475,8 @@ root.toString() == css;
     img { display: none }
 }
 ```
+
+`AtRule` has two own properties: `name` and `params`.
 
 As you see, some at-rules don’t contain any children (like `@charset`
 or `@import`), some of at-rules can contain only declarations
@@ -505,14 +505,14 @@ var atRule = postcss.atRule({ name: 'charset', params: 'utf-8' });
 
 ### Rule Node
 
-`Rule` node has `selector` property and contains `Declaration` children
-in `decls` property:
-
 ```css
 a {
     color: black;
 }
 ```
+
+`Rule` node has `selector` property and contains `Declaration` children
+in `decls` property.
 
 You can miss `Declaration` constructor in `append` and other insert methods:
 
@@ -538,11 +538,11 @@ var rule = postcss.rule({ selector: 'a' });
 
 ### Declaration Node
 
-`Declaration` node has `prop` and `value` properties.
-
 ```css
 color: black
 ```
+
+`Declaration` node has `prop` and `value` properties.
 
 You can create new declaration by shortcut:
 
