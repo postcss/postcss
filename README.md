@@ -297,7 +297,7 @@ var cssRoot = postcss.parse('a { }');
 Every node stores its origin file (if you set `from` option to `process`
 or `parse` method) and position at `source` property:
 
-```
+```js
 var root = postcss.parse(css, { from: 'main.css' });
 var rule = root.rules[1];
 
