@@ -7,7 +7,7 @@ It takes care of most common CSS tool tasks:
 
 1. parses CSS;
 2. gives you usable JS API to edit CSS node tree;
-3. saves modified node tree to new CSS;
+3. dumps modified node tree into CSS string;
 4. generates (or modifies existent) source map for your changes;
 
 You can use this framework to write you own:
@@ -96,7 +96,7 @@ processor.process(css, { map: sassMap, from: 'from.sass.css', to: 'to.css' });
 
 ### Preserves code formatting and indentations
 
-PostCSS will not change any byte of rule if you don't modify node:
+PostCSS will not change any byte of a rule if you don't modify its node:
 
 ```js
 postcss(function (css) { }).process(css).css == css;
@@ -121,16 +121,16 @@ contenter.process("a::before {\n  color: black;\n  }")
 
 Preprocessors (like Sass or Stylus) give us special language with variables,
 mixins, statements and compile it to CSS. Compass, nib and other mixins
-libraries use this languages to work with prefixes, sprites and inline images.
+libraries use these languages to work with prefixes, sprites and inline images.
 
 But Sass and Stylus languages were created to be syntax-sugar for CSS.
 Writing really complicated programs using preporcessor languages is very difficult.
-[Autoprefixer] is absolutely impossible on Sass.
+[Autoprefixer] is absolutely impossible to implement on top of Sass.
 
 PostCSS gives you comfort and power of JS or CoffeeScript to working with CSS.
 You can do really magic things with wide range of [npm] libraries.
 
-But postprocessors are not enemies for preprocessors. Sass and Stylus is still
+But postprocessors are not enemies for preprocessors. Sass and Stylus are still
 the best way to improve readability and add some syntax sugar to CSS. You can easily combine preprocessors and postprocessors.
 
 [Autoprefixer]: https://github.com/ai/autoprefixer
@@ -158,8 +158,8 @@ source map from preprocessors).
 [Rework] was a first CSS postprocessors framework. PostCSS is very similar
 to it.
 
-But Rework has no high level API and rewrite your CSS code style
-and indentations. So it can’t be used in text editor plugins.
+But Rework has no high level API and doesn't preserve formatting
+and indentations while transforming your CSS. Thus it can’t be used to implement text editor plugins.
 
 Unlike it PostCSS preserves all spaces and code formatting.
 If you don't change rule, output will be byte‑to‑byte equal.
@@ -170,7 +170,7 @@ If you don't change rule, output will be byte‑to‑byte equal.
 
 ### Processor
 
-Function `postcss(fn)` creates processor by your function:
+Function `postcss(fn)` creates a processor from your function:
 
 ```js
 var postcss = require('postcss');
@@ -181,7 +181,7 @@ var processor = postcss(function (css) {
 ```
 
 If you want to combine multiple processors (and parse CSS only once),
-you can create empty processor and add several functions by `use(fn)` method:
+you can create an empty processor and add several functions using `use(fn)` method:
 
 ```js
 var all = postcss().
@@ -189,7 +189,7 @@ var all = postcss().
           use(minifing);
 ```
 
-Processor function can just change current CSS node tree:
+Processor function can change just the current CSS node tree:
 
 ```js
 postcss(function (css) {
@@ -197,7 +197,7 @@ postcss(function (css) {
 });
 ```
 
-or create totally new CSS root and return it:
+or create a completely new CSS root node and return it instead:
 
 ```js
 postcss(function (css) {
@@ -207,7 +207,7 @@ postcss(function (css) {
 });
 ```
 
-Processor will transform some CSS by `process(css, opts)` method:
+Processor transforms some CSS using `process(css, opts)` method:
 
 ```js
 var doubler = postcss(function (css) {
@@ -218,12 +218,12 @@ var doubler = postcss(function (css) {
 });
 
 var css    = "a { color: black; }";
-var result = processor.process(css);
+var result = doubler.process(css);
 
 result.css //=> "a { color: black; color: black; }"
 ```
 
-You can set original CSS filename by `from` options and make syntax error
+You can set original CSS filename via `from` option and make syntax error
 messages much more helpful:
 
 ```js
@@ -233,11 +233,11 @@ processor.process(wrong, { from: 'main.css' });
 ```
 ### Source Map
 
-PostCSS will generate source map, if you set `map` option to `true`
+PostCSS generates source map, if you set `map` option to `true`
 in `process(css, opts)` method.
 
-You must set input and output CSS files paths (by `from` and `to` options)
-to generate correct map.
+You must set input and output CSS files paths (using `from` and `to` options respectively)
+to generate correct source map.
 
 ```js
 var result = processor.process(css, {
@@ -252,12 +252,11 @@ fs.writeFileSync('main.out.map', result.map);
 ```
 
 PostCSS can also modify previous source map (for example, from Sass
-compilation). So, if you compile: Sass to CSS and then minify CSS
+compilation). So if you compile: Sass to CSS and then minify CSS
 by postprocessor, final source map will contain mapping from Sass code
 to minified CSS.
 
-Just set original source map content (as string or JS object)
-to `map` option:
+Just set `map` option to an original source map (a string or a JS object):
 
 ```js
 var result = minifier.process(css, {
@@ -271,7 +270,7 @@ result.map //=> Source map from main.sass to main.min.css
 
 ### Nodes
 
-Processor function will receive `Root` node with CSS node tree inside.
+Processor function receives `Root` node with CSS node tree inside.
 
 ```js
 var processor = postcss(function (cssRoot) {
@@ -279,9 +278,9 @@ var processor = postcss(function (cssRoot) {
 ```
 
 There are 3 types of child nodes: `AtRule`, `Rule` and `Declaration`.
-All nodes contain `toString()` and `clone()` methods.
+All nodes have `toString()` and `clone()` methods.
 
-You can parse CSS and get `Root` node by `postcss.parse(css, opts)` method:
+You can parse CSS and get a `Root` node by `postcss.parse(css, opts)` method:
 
 ```js
 var postcss = require('postcss');
@@ -291,7 +290,7 @@ var cssRoot = postcss.parse('a { }');
 
 ### Node Source
 
-Every node stores it origin file (if you set `from` option to `process`
+Every node stores its origin file (if you set `from` option to `process`
 or `parse` method) and position at `source` property:
 
 ```
@@ -318,7 +317,7 @@ root.rules[0].after           //=> "\n" before }
 root.rules[0].decls[0].before //=> "\n  " before color: black
 ```
 
-So, the simplest way to minify CSS is to clean `before` and `after` properties:
+The simplest way to minify CSS is to set `before` and `after` properties to an empty string:
 
 ```js
 var minifier = postcss(function (css) {
@@ -372,16 +371,16 @@ There are common method to work with children:
 * `append(newChild)` to add child at the end of children list.
 * `prepend(newChild)` to add child at the beginning of children list.
 * `insertBefore(existsChild, newChild)` to insert new child before some
-   existent children.
+   existent child.
 * `insertAfter(existsChild, newChild)` to insert new child after some
-   existent children.
+   existent child.
 * `remove(child)` to remove child.
 * `index(child)` to return child index.
-* `some(fn)` to return true if `fn` return true on any child.
-* `every(fn)` to return true if `fn` return true on all children.
+* `some(fn)` to return true if `fn` returns true on any child.
+* `every(fn)` to return true if `fn` returns true on all children.
 
 Methods `insertBefore`, `insertAfter` and `remove` can receive child node
-or child index number as existent child argument.
+or child index as an `existsChild` argument.
 Have in mind that `index` works much faster.
 
 ### Children
@@ -410,7 +409,7 @@ rule.each(function (decl, i) {
 
 ### Iterators
 
-All parent nodes have `each` method to iterate through children nodes:
+All parent nodes have `each` method to iterate over children nodes:
 
 ```js
 root = postcss.parse('a { color: black; display: none }');
@@ -424,8 +423,8 @@ root.rules[0].each(function (decl, i) {
 });
 ```
 
-Instead of simple `for` or `Array#forEach()` this iterator is safe.
-You can change children inside iteration and it will fix current index:
+Unlike `for {}`-cycle construct or `Array#forEach()` this iterator is safe.
+You can mutate children while iteration and it will fix current index:
 
 ```js
 rule.rules.forEach(function (decl, i) {
@@ -441,8 +440,8 @@ rule.each(function (decl, i) {
 });
 ```
 
-Because CSS is nested structure, PostCSS contains recursive iterator
-by node type:
+Because CSS have nested structure, PostCSS contains recursive iterators
+for different node types:
 
 ```js
 root.eachDecl(function (decl, i) {
@@ -460,16 +459,16 @@ root.eachAtRule(function (atRule, i) {
 
 ### Root Node
 
-`Root` node contains all CSS tree. Its children can be only `AtRule` or `Rule`
+`Root` node contains entire CSS tree. Its children can be only `AtRule` or `Rule`
 nodes in `rules` property.
 
-You can create new root by shortcut:
+You can create a new root using shortcut:
 
 ```js
 var root = postcss.root();
 ```
 
-Method `toString()` will stringify all current CSS:
+Method `toString()` stringifies entire node tree to CSS string:
 
 ```js
 root = postcss.parse(css);
@@ -497,7 +496,7 @@ or `@import`), some of at-rules can contain only declarations
 (like `@font-face` or `@page`), but most of them can contain rules
 and nested at-rules (like `@media`, `@keyframes` and others).
 
-Parser select `AtRule` content type by its name. If you create `AtRule`
+Parser selects `AtRule` content type by its name. If you create `AtRule`
 node manually, it will detect own content type with new child type on first
 `append` or other add method call:
 
@@ -511,7 +510,7 @@ atRule.rules.length //=> 1
 atRule.decls        //=> undefined
 ```
 
-You can create new at-rule by shortcut:
+You can create a new at-rule using shortcut:
 
 ```js
 var atRule = postcss.atRule({ name: 'charset', params: 'utf-8' });
@@ -534,7 +533,7 @@ You can miss `Declaration` constructor in `append` and other insert methods:
 rule.append({ prop: 'color', value: 'black' });
 ```
 
-Property `semicolon` marks does last declaration in rule has semicolon or not:
+Property `semicolon` indicates if last declaration in rule has semicolon or not:
 
 ```js
 var root = postcss.parse('a { color: black }');
@@ -544,7 +543,7 @@ var root = postcss.parse('a { color: black; }');
 root.rules[0].semicolon //=> true
 ```
 
-You can create new rule by shortcut:
+You can create a new rule using shortcut:
 
 ```js
 var rule = postcss.rule({ selector: 'a' });
@@ -558,7 +557,7 @@ color: black
 
 `Declaration` node has `prop` and `value` properties.
 
-You can create new declaration by shortcut:
+You can create a new declaration using shortcut:
 
 ```js
 var decl = postcss.decl({ prop: 'color', value: 'black' });
