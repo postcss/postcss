@@ -96,7 +96,7 @@ processor.process(css, { map: sassMap, from: 'from.sass.css', to: 'to.css' });
 
 ### Preserves code formatting and indentations
 
-PostCSS will not change any byte of a rule if you don't modify its node:
+PostCSS will not change any byte of a rule if you don’t modify its node:
 
 ```js
 postcss(function (css) { }).process(css).css == css;
@@ -126,7 +126,7 @@ libraries use these languages to work with prefixes, sprites and inline images
 But Sass and Stylus languages were created to be syntax-sugar for CSS.
 Writing really complicated programs using preporcessor languages
 is very difficult. [Autoprefixer] is absolutely impossible to implement
-on top of Sass.
+on top of Sass.
 
 PostCSS gives you comfort and power of JS or CoffeeScript to working with CSS.
 You can do really magic things with wide range of [npm] libraries.
@@ -160,12 +160,12 @@ source map from preprocessors).
 [Rework] was a first CSS postprocessors framework. PostCSS is very similar
 to it.
 
-But Rework has no high level API and doesn't preserve formatting
-and indentations while transforming your CSS. Thus it can’t be used
+But Rework has no high level API and doesn’t preserve formatting
+and indentations while transforming your CSS. Thus it can’t be used
 to implement text editor plugins.
 
 Unlike it PostCSS preserves all spaces and code formatting.
-If you don't change rule, output will be byte‑to‑byte equal.
+If you don’t change rule, output will be byte‑to‑byte equal.
 
 [Rework]: https://github.com/visionmedia/rework
 
@@ -380,14 +380,14 @@ There are common method to work with children:
    existent child.
 * `insertAfter(existsChild, newChild)` to insert new child after some
    existent child.
-* `remove(child)` to remove child.
-* `index(child)` to return child index.
+* `remove(existsChild)` to remove child.
+* `index(existsChild)` to return child index.
 * `some(fn)` to return true if `fn` returns true on any child.
 * `every(fn)` to return true if `fn` returns true on all children.
 
 Methods `insertBefore`, `insertAfter` and `remove` can receive child node
-or child index as an `existsChild` argument.
-Have in mind that `index` works much faster.
+or child index as an `existsChild` argument. Have in mind that `index` works
+much faster.
 
 ### Children
 
