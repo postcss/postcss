@@ -252,7 +252,7 @@ var result = processor.process(css, {
 
 result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
 
-fs.writeFileSync('main.out.map', result.map);
+fs.writeFileSync('main.out.css.map', result.map);
 ```
 
 PostCSS can also modify previous source map (for example, from Sass
