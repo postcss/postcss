@@ -124,14 +124,16 @@ mixins, statements and compile it to CSS. Compass, nib and other mixins
 libraries use these languages to work with prefixes, sprites and inline images.
 
 But Sass and Stylus languages were created to be syntax-sugar for CSS.
-Writing really complicated programs using preporcessor languages is very difficult.
-[Autoprefixer] is absolutely impossible to implement on top of Sass.
+Writing really complicated programs using preporcessor languages
+is very difficult. [Autoprefixer] is absolutely impossible to implement
+on top of Sass.
 
 PostCSS gives you comfort and power of JS or CoffeeScript to working with CSS.
 You can do really magic things with wide range of [npm] libraries.
 
 But postprocessors are not enemies for preprocessors. Sass and Stylus are still
-the best way to improve readability and add some syntax sugar to CSS. You can easily combine preprocessors and postprocessors.
+the best way to improve readability and add some syntax sugar to CSS.
+You can easily combine preprocessors and postprocessors.
 
 [Autoprefixer]: https://github.com/ai/autoprefixer
 [npm]:          https://npmjs.org/
@@ -159,7 +161,8 @@ source map from preprocessors).
 to it.
 
 But Rework has no high level API and doesn't preserve formatting
-and indentations while transforming your CSS. Thus it can’t be used to implement text editor plugins.
+and indentations while transforming your CSS. Thus it can’t be used
+to implement text editor plugins.
 
 Unlike it PostCSS preserves all spaces and code formatting.
 If you don't change rule, output will be byte‑to‑byte equal.
@@ -181,7 +184,8 @@ var processor = postcss(function (css) {
 ```
 
 If you want to combine multiple processors (and parse CSS only once),
-you can create an empty processor and add several functions using `use(fn)` method:
+you can create an empty processor and add several functions
+using `use(fn)` method:
 
 ```js
 var all = postcss().
@@ -236,8 +240,8 @@ processor.process(wrong, { from: 'main.css' });
 PostCSS generates source map, if you set `map` option to `true`
 in `process(css, opts)` method.
 
-You must set input and output CSS files paths (using `from` and `to` options respectively)
-to generate correct source map.
+You must set input and output CSS files paths (using `from` and `to`
+options respectively) to generate correct source map.
 
 ```js
 var result = processor.process(css, {
@@ -304,7 +308,8 @@ rule.source.end   //=> { line: 10, position: 5 }
 
 ### Whitespaces
 
-All nodes (exclude `Root`) have `before` property with all earlier spaces and comments.
+All nodes (exclude `Root`) have `before` property with all earlier spaces
+and comments.
 
 Nodes with children (`Root`, `AtRule` and `Rule`) contain also `after` property
 with spaces after last child and before `}` or end of file.
@@ -317,7 +322,8 @@ root.rules[0].after           //=> "\n" before }
 root.rules[0].decls[0].before //=> "\n  " before color: black
 ```
 
-The simplest way to minify CSS is to set `before` and `after` properties to an empty string:
+The simplest way to minify CSS is to set `before` and `after` properties
+to an empty string:
 
 ```js
 var minifier = postcss(function (css) {
