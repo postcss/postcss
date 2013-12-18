@@ -90,7 +90,7 @@ result.map // Source map
 And modifies source map from previous step (like Sass preprocessor):
 
 ```js
-var sassMap = fs.readFileSync('from.sass.map');
+var sassMap = fs.readFileSync('from.sass.css.map');
 processor.process(css, { map: sassMap, from: 'from.sass.css', to: 'to.css' });
 ```
 
@@ -264,7 +264,7 @@ Just set `map` option to an original source map (a string or a JS object):
 
 ```js
 var result = minifier.process(css, {
-    map:   fs.readFileSync('main.sass.map'),
+    map:   fs.readFileSync('main.sass.css.map'),
     from: 'main.sass.css',
     to:   'main.min.css'
 });
