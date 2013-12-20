@@ -355,7 +355,8 @@ contain comments. PostCSS will clean them for you:
 var root = postcss.parse("a /**/ b {}");
 var ab   = root.rules[0];
 
-ab.selector //=> 'a  b' trimmed and cleaned from comments
+ab.selector      //=> 'a  b' trimmed and cleaned from comments
+ab._selector.raw //=> 'a /**/ b ' original raw value
 ```
 
 But PostCSS saves raw content to stringify it to CSS, if you don’t
