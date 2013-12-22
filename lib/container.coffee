@@ -190,6 +190,12 @@ class Container extends Node
     else
       @list.indexOf(child)
 
+  # Shortcut to get first child
+  @prop 'first', get: -> @list[0]
+
+  # Shortcut to get first child
+  @prop 'last', get: -> @list[@list.length - 1]
+
   # Shortcut to get current list
   @prop 'list', get: -> @rules || @decls
 

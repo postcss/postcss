@@ -228,6 +228,16 @@ describe 'Container', ->
     it 'returns argument if it is number', ->
       @rule.index(2).should.eql(2)
 
+  describe 'first', ->
+
+    it 'returns first child', ->
+      @rule.first.prop.should.eql 'a'
+
+  describe 'last', ->
+
+    it 'returns last child', ->
+      @rule.last.prop.should.eql 'b'
+
   describe 'normalize()', ->
 
     it "doesn't normalize new childs with exists before", ->

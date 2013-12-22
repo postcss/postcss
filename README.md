@@ -419,6 +419,13 @@ Methods `insertBefore`, `insertAfter` and `remove` can receive child node
 or child index as an `existsChild` argument. Have in mind that `index` works
 much faster.
 
+There are two shorcuts to get first and last child:
+
+```js
+rule.first //=> First declaration in rule
+rule.last  //=> Last declaration in rule
+```
+
 ### Children
 
 `Comment`, `AtRule`, `Rule` and `Declaration` nodes should be wrapped
