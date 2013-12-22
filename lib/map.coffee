@@ -16,10 +16,8 @@ map =
   comment: (css, path) ->
     file      = path.match(/[^\/]+$/)[0]
     directive = "# sourceMappingURL=#{ file }.map"
-    comment   = new Comment(text: new Raw(directive + ' ', directive))
-
-    if css.last?.before?.indexOf("\n") != -1
-      comment.before = "\n"
+    directive = new Raw(directive + ' ', directive)
+    comment   = new Comment(text: directive, before: "\n")
 
     css.append(comment)
 

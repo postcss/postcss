@@ -144,16 +144,7 @@ describe 'postcss()', ->
         to:   'b.css'
         map:  true
 
-      result.css.should.eql 'a { }/*# sourceMappingURL=b.css.map */'
-
-    it 'adds source map directive with user code style', ->
-      css    = "a {}\nb {}\n/*# sourceMappingURL=a.css.map */"
-      result = postcss().process css,
-        from: 'a.css'
-        to:   'b.css'
-        map:  true
-
-      result.css.should.eql 'a {}\nb {}\n/*# sourceMappingURL=b.css.map */'
+      result.css.should.eql "a { }\n/*# sourceMappingURL=b.css.map */"
 
     it 'misses source map directive, if user ask', ->
       css    = 'a { }/*# sourceMappingURL=a.css.map */'
@@ -163,4 +154,4 @@ describe 'postcss()', ->
         map:          true
         mapDirective: false
 
-      result.css.should.eql 'a { }/*# sourceMappingURL=a.css.map */'
+      result.css.should.eql(css)
