@@ -294,6 +294,12 @@ var postcss = require('postcss');
 var cssRoot = postcss.parse('a { }');
 ```
 
+All node‘s methods return node, so you can build nice method chains:
+
+```js
+root.append( rule1 ).append( rule2 ).toString();
+```
+
 ### Node Source
 
 Every node stores its origin file (if you set `from` option to `process`
