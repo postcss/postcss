@@ -84,6 +84,28 @@ describe 'Container', ->
         size += 1
       size.should.eql(5)
 
+  describe 'eachComment()', ->
+    beforeEach ->
+      @css = parse read('each-recursivelly')
+
+    it 'iterates', ->
+      texts   = []
+      indexes = []
+
+      @css.eachComment (comment, i) ->
+        texts.push(comment.content)
+        indexes.push(i)
+
+      texts.should.eql   ['a', 'b', 'c']
+      indexes.should.eql [1, 0, 1]
+
+    it 'iterates with changes', ->
+      size = 0
+      @css.eachComment (comment, i) ->
+        comment.parent.remove(i)
+        size += 1
+      size.should.eql(3)
+
   describe 'eachRule()', ->
     beforeEach ->
       @css = parse read('each-recursivelly')
@@ -97,7 +119,7 @@ describe 'Container', ->
         indexes.push(i)
 
       selectors.should.eql ['a', 'to', 'em']
-      indexes.should.eql   [0, 0, 0]
+      indexes.should.eql   [0, 1, 0]
 
     it 'iterates with changes', ->
       size = 0
@@ -119,7 +141,7 @@ describe 'Container', ->
         indexes.push(i)
 
       names.should.eql   ['keyframes', 'media', 'page']
-      indexes.should.eql [1, 2, 1]
+      indexes.should.eql [2, 3, 1]
 
     it 'iterates with changes', ->
       size = 0

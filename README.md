@@ -470,6 +470,10 @@ root.eachRule(function (rule, i) {
 root.eachAtRule(function (atRule, i) {
     // Each at-rule inside root and any nested at-rules
 });
+
+root.eachComment(function (comment, i) {
+    // Each comment inside root
+})
 ```
 
 ### Root Node

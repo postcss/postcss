@@ -79,6 +79,24 @@ class Container extends Node
   eachDecl: (callback) ->
     # Different realization will be inside subclasses
 
+  # Execute callback on every block comment (only between rules
+  # and declarations, not inside selectors and values) in all rules inside.
+  #
+  # First argument will be comment node, second will be index inside
+  # parent rule.
+  #
+  #   css.eachComment (comment, i) ->
+  #     console.log(comment.content + ' at ' + i)
+  #
+  # Also as `each` it is safe of insert/remove nodes inside iterating.
+  eachComment: (callback) ->
+    @each (child, i) =>
+      if child.type == 'comment'
+        callback(child, i)
+      else if child.eachComment
+        child.eachComment(callback)
+    this
+
   # Add child to container.
   #
   #   css.append(rule)
@@ -195,7 +213,8 @@ class Container.WithRules extends Container
   #
   # See documentation in `Container#eachDecl`.
   eachDecl: (callback) ->
-    @each (child) -> child.eachDecl(callback)
+    @each (child) ->
+      child.eachDecl(callback) if child.eachDecl
     this
 
   # Execute `callback` on every rule in conatiner and inside child at-rules.
@@ -246,7 +265,8 @@ class Container.WithDecls extends Container
   #
   # See documentation in `Container#eachDecl`.
   eachDecl: (callback) ->
-    @each (decl, i) => callback(decl, i)
+    @each (node, i) =>
+      callback(node, i) if node.type == 'decl'
     this
 
 module.exports = Container
