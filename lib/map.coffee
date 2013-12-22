@@ -17,6 +17,11 @@ map =
     file      = path.match(/[^\/]+$/)[0]
     directive = "# sourceMappingURL=#{ file }.map"
     comment   = new Comment(text: new Raw(directive + ' ', directive))
+
+    last = css.rules[css.rules.length - 1]
+    if last?.before?.indexOf("\n") != -1
+      comment.before = "\n"
+
     css.append(comment)
 
   # Return CSS string and source map
