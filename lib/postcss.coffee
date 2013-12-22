@@ -1,10 +1,10 @@
-generateMap = require('./generate-map')
 Declaration = require('./declaration')
 Comment     = require('./comment')
 AtRule      = require('./at-rule')
 Result      = require('./result')
 Rule        = require('./rule')
 Root        = require('./root')
+map         = require('./map')
 
 # List of functions to process CSS
 class PostCSS
@@ -24,7 +24,7 @@ class PostCSS
       parsed   = returned if returned instanceof Root
 
     if opts.map
-      generateMap(parsed, opts)
+      map.generate(parsed, opts)
     else
       new Result(parsed, parsed.toString())
 

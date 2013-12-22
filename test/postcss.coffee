@@ -136,3 +136,22 @@ describe 'postcss()', ->
         line:   1
         column: 4
         name:   null
+
+    it 'adds source map directive', ->
+      css    = 'a { }/*# sourceMappingURL=a.css.map */'
+      result = postcss().process css,
+        from: 'a.css'
+        to:   'b.css'
+        map:  true
+
+      result.css.should.eql 'a { }/*# sourceMappingURL=b.css.map */'
+
+    it 'miss source map directive, if user ask', ->
+      css    = 'a { }/*# sourceMappingURL=a.css.map */'
+      result = postcss().process css,
+        from:         'a.css'
+        to:           'b.css'
+        map:          true
+        mapDirective: false
+
+      result.css.should.eql 'a { }/*# sourceMappingURL=a.css.map */'
