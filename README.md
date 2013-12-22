@@ -274,6 +274,26 @@ var result = minifier.process(css, {
 result.map //=> Source map from main.sass to main.min.css
 ```
 
+PostCSS by default will remove previous source map comment directive
+add will add new directive with path to new source map file.
+
+So, when you process `main.css` to `main.out.css`, this CSS:
+
+```css
+a { }
+/*# sourceMappingURL=main.css.map */
+```
+
+will be changed to:
+
+```
+a { }
+/*# sourceMappingURL=main.out.css.map */
+```
+
+If you want to disable any changes of source map directive, set `mapDirective`
+option to `false`.
+
 ### Nodes
 
 Processor function receives `Root` node with CSS node tree inside.
