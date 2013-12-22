@@ -1,4 +1,4 @@
-SourceMap = require('source-map')
+sourceMap = require('source-map')
 postcss   = require('../lib/postcss')
 Result    = require('../lib/result')
 Root      = require('../lib/root')
@@ -92,7 +92,7 @@ describe 'postcss()', ->
           decl.parent.prepend(changed)
 
       result = processor.process(css, from: 'a.css', to: 'b.css', map: true)
-      map    = new SourceMap.SourceMapConsumer(result.map)
+      map    = new sourceMap.SourceMapConsumer(result.map)
 
       map.file.should.eql('b.css')
 
@@ -129,7 +129,7 @@ describe 'postcss()', ->
         to:   'c.css'
         map:  doubled.map
 
-      map = new SourceMap.SourceMapConsumer(lighted.map)
+      map = new sourceMap.SourceMapConsumer(lighted.map)
 
       map.originalPositionFor(line: 1, column: 18).should.eql
         source: 'a.css'

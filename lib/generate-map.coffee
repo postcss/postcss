@@ -1,9 +1,9 @@
-SourceMap = require('source-map')
+sourceMap = require('source-map')
 Result    = require('./result')
 
 # Stringify CSS with source map
 generateMap = (css, opts) ->
-  map = new SourceMap.SourceMapGenerator(file: opts.to || 'to.css')
+  map = new sourceMap.SourceMapGenerator(file: opts.to || 'to.css')
 
   result = new Result(css, '')
   line   = 1
@@ -43,7 +43,7 @@ generateMap = (css, opts) ->
   css.stringify(builder)
 
   if typeof(opts.map) == 'string'
-    prev = new SourceMap.SourceMapConsumer(opts.map)
+    prev = new sourceMap.SourceMapConsumer(opts.map)
     map.applySourceMap(prev)
 
   result.map = map.toString()
