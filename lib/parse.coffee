@@ -1,5 +1,6 @@
 SyntexError = require('./syntax-error')
 Declaration = require('./declaration')
+Comment     = require('./comment')
 AtRule      = require('./at-rule')
 Root        = require('./root')
 Rule        = require('./rule')
@@ -65,22 +66,35 @@ class Parser
   inComment: ->
     if @inside('comment')
       if @next('*/')
+        content = @prevBuffer()
+        @current.content = new Raw(content, @trim content)
+        @move()
+        @pop()
+      true
+    else if @inside('value-comment')
+      if @next('*/')
         @popType()
         @move()
       true
 
   isComment: ->
     if @next('/*')
-      @commentPos = line: @line, column: @column
-      @addType('comment')
-      @move()
-      true
+      if @inside('rules') or @inside('decls')
+        @init new Comment()
+        @addType('comment')
+        @move()
+        @buffer = ''
+      else
+        @commentPos = line: @line, column: @column
+        @addType('value-comment')
+        @move()
+        true
 
   isWrong: ->
     if @letter == '{' and (@inside('decls') or @inside('value'))
       @error("Unexpected {")
 
-    if @inside('property') and (@letter == '}' or @letter == ';')
+    if @inside('prop') and (@letter == '}' or @letter == ';')
       @error('Missing property value')
 
   isAtrule: ->
@@ -154,7 +168,7 @@ class Parser
       true
 
   inProperty: ->
-    if @inside('property')
+    if @inside('prop')
       if @letter == ':'
         if @buffer[0] == '*' or @buffer[0] == '_'
           @current.before += @buffer[0]
@@ -176,7 +190,7 @@ class Parser
   isProperty: ->
     if @inside('decls') and not @space() and @letter != ';'
       @init new Declaration()
-      @addType('property')
+      @addType('prop')
       @buffer    = @letter
       @trimmed   = @letter
       @semicolon = false
@@ -205,9 +219,11 @@ class Parser
     if @inside('atrule-param') or @inside('atrule-name')
       @fixEnd -> @inAtrule('close')
 
-    if @parents.length > 1
+    if @inside('comment')
+      @error('Unclosed comment', @current.source.start)
+    else if @parents.length > 1
       @error('Unclosed block', @current.source.start)
-    else if @inside('comment')
+    else if @inside('value-comment')
       @error('Unclosed comment', @commentPos)
     else if @quote
       @error('Unclosed quote', @quotePos)

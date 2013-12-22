@@ -18,9 +18,6 @@ describe 'postcss.parse()', ->
     it 'parses spaces', ->
       parse(" \n ").should.eql { type: 'root', rules: [], after: " \n " }
 
-    it 'parses comment', ->
-      parse("/* a */").should.eql { type: 'root', rules: [], after: "/* a */" }
-
   fs.readdirSync(__dirname + '/cases/parse/').forEach (file) ->
     return unless file.match(/\.css$/)
 

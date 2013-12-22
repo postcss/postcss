@@ -2,8 +2,44 @@
     "type": "root",
     "rules": [
         {
+            "type": "comment",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "end": {
+                    "line": 1,
+                    "column": 24
+                }
+            },
+            "before": "",
+            "_content": {
+                "raw": " a { color: black } ",
+                "trimmed": "a { color: black }"
+            }
+        },
+        {
             "type": "rule",
             "decls": [
+                {
+                    "type": "comment",
+                    "source": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 16
+                        }
+                    },
+                    "before": "\n    ",
+                    "_content": {
+                        "raw": " inside ",
+                        "trimmed": "inside"
+                    }
+                },
                 {
                     "type": "decl",
                     "source": {
@@ -16,12 +52,30 @@
                             "column": 17
                         }
                     },
-                    "before": "\n    /* inside */\n    ",
+                    "before": "\n    ",
                     "prop": "color",
                     "between": "",
                     "_value": {
                         "raw": " black",
                         "trimmed": "black"
+                    }
+                },
+                {
+                    "type": "comment",
+                    "source": {
+                        "start": {
+                            "line": 5,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 17
+                        }
+                    },
+                    "before": "\n    ",
+                    "_content": {
+                        "raw": " between ",
+                        "trimmed": "between"
                     }
                 },
                 {
@@ -36,7 +90,7 @@
                             "column": 13
                         }
                     },
-                    "before": "\n    /* between */\n    ",
+                    "before": "\n    ",
                     "prop": "background",
                     "between": "",
                     "_value": {
@@ -55,13 +109,31 @@
                     "column": 1
                 }
             },
-            "before": "/* a { color: black } */\n",
+            "before": "\n",
             "_selector": {
                 "raw": "div ",
                 "trimmed": "div"
             },
             "after": "\n"
+        },
+        {
+            "type": "comment",
+            "source": {
+                "start": {
+                    "line": 9,
+                    "column": 1
+                },
+                "end": {
+                    "line": 9,
+                    "column": 7
+                }
+            },
+            "before": "\n",
+            "_content": {
+                "raw": " b ",
+                "trimmed": "b"
+            }
         }
     ],
-    "after": "\n/* b */\n"
+    "after": "\n"
 }

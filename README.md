@@ -283,7 +283,7 @@ var processor = postcss(function (cssRoot) {
 });
 ```
 
-There are 3 types of child nodes: `AtRule`, `Rule` and `Declaration`.
+There are 3 types of child nodes: `Comment`, `AtRule`, `Rule` and `Declaration`.
 All nodes have `toString()` and `clone()` methods.
 
 You can parse CSS and get a `Root` node by `postcss.parse(css, opts)` method:
@@ -310,8 +310,8 @@ rule.source.end   //=> { line: 10, position: 5 }
 
 ### Whitespaces
 
-All nodes (exclude `Root`) have `before` property with all earlier spaces
-and comments.
+All nodes (exclude `Root`) have `before` property with indentation
+and all earlier spaces.
 
 Nodes with children (`Root`, `AtRule` and `Rule`) contain also `after` property
 with spaces after last child and before `}` or end of file.
@@ -348,8 +348,9 @@ minifier.process(css).css //=> "a{color:black}"
 
 ### Raw Properties
 
-Some CSS values (like selectors, at-rule params and declaration values) can
-contain comments. PostCSS will clean them for you:
+Some CSS values (selectors, comment content, at-rule params
+and declaration values) can contain trailing spaces and comments.
+PostCSS will clean them for you:
 
 ```js
 var root = postcss.parse("a /**/ b {}");
@@ -394,7 +395,8 @@ much faster.
 
 ### Children
 
-`AtRule`, `Rule` and `Declaration` nodes should be wrapped in other nodes.
+`Comment`, `AtRule`, `Rule` and `Declaration` nodes should be wrapped
+in other nodes.
 
 All children contain `parent` property with parent node:
 
@@ -424,11 +426,15 @@ All parent nodes have `each` method to iterate over children nodes:
 root = postcss.parse('a { color: black; display: none }');
 
 root.each(function (rule, i) {
-    console.log(rule.selector, i); // Will log "a 0"
+    if ( rule.type == 'rule' ) {
+        console.log(rule.selector, i); // Will log "a 0"
+    }
 });
 
 root.rules[0].each(function (decl, i) {
-    console.log(decl.prop, i); // Will log "color 0" and "display 1"
+    if ( rule.type != 'comment' ) {
+        console.log(decl.prop, i); // Will log "color 0" and "display 1"
+    }
 });
 ```
 
@@ -468,8 +474,8 @@ root.eachAtRule(function (atRule, i) {
 
 ### Root Node
 
-`Root` node contains entire CSS tree. Its children can be only `AtRule` or `Rule`
-nodes in `rules` property.
+`Root` node contains entire CSS tree. Its children can be only `Comment`,
+`AtRule` or `Rule` nodes in `rules` property.
 
 You can create a new root using shortcut:
 
@@ -482,6 +488,28 @@ Method `toString()` stringifies entire node tree to CSS string:
 ```js
 root = postcss.parse(css);
 root.toString() == css;
+```
+
+### Comment Node
+
+```css
+/* Block comment */
+```
+
+PostCSS create `Comment` nodes only for comments between rules or declarations.
+Comments inside selectors, at-rules params, declaration values will be stored
+in Raw property.
+
+`Comment` has only one property: `content` with trimmed text inside comment.
+
+```js
+comment.content //=> "Block comment"
+```
+
+You can create a new comment using shortcut:
+
+```js
+var comment = postcss.comment({ content: 'New comment' });
 ```
 
 ### AtRule Node
@@ -533,8 +561,7 @@ a {
 }
 ```
 
-`Rule` node has `selector` property and contains `Declaration` children
-in `decls` property.
+`Rule` node has `selector` property and contains `Declaration` and `Comment`children in `decls` property.
 
 You can miss `Declaration` constructor in `append` and other insert methods:
 

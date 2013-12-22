@@ -1,5 +1,6 @@
 generateMap = require('./generate-map')
 Declaration = require('./declaration')
+Comment     = require('./comment')
 AtRule      = require('./at-rule')
 Result      = require('./result')
 Rule        = require('./rule')
@@ -40,10 +41,12 @@ postcss = (processors...) ->
 postcss.parse = require('./parse')
 
 # Nodes shortcuts
-postcss.decl = (defaults) ->
-  new Declaration(defaults)
+postcss.comment = (defaults) ->
+  new Comment(defaults)
 postcss.atRule = (defaults) ->
   new AtRule(defaults)
+postcss.decl = (defaults) ->
+  new Declaration(defaults)
 postcss.rule = (defaults) ->
   new Rule(defaults)
 postcss.root = (defaults) ->
