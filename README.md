@@ -504,16 +504,16 @@ PostCSS create `Comment` nodes only for comments between rules or declarations.
 Comments inside selectors, at-rules params, declaration values will be stored
 in Raw property.
 
-`Comment` has only one property: `content` with trimmed text inside comment.
+`Comment` has only one property: `text` with trimmed text inside comment.
 
 ```js
-comment.content //=> "Block comment"
+comment.text //=> "Block comment"
 ```
 
 You can create a new comment using shortcut:
 
 ```js
-var comment = postcss.comment({ content: 'New comment' });
+var comment = postcss.comment({ text: 'New comment' });
 ```
 
 ### AtRule Node

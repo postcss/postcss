@@ -14,7 +14,7 @@
                 }
             },
             "before": "",
-            "_content": {
+            "_text": {
                 "raw": " a { color: black } ",
                 "trimmed": "a { color: black }"
             }
@@ -35,7 +35,7 @@
                         }
                     },
                     "before": "\n    ",
-                    "_content": {
+                    "_text": {
                         "raw": " inside ",
                         "trimmed": "inside"
                     }
@@ -73,7 +73,7 @@
                         }
                     },
                     "before": "\n    ",
-                    "_content": {
+                    "_text": {
                         "raw": " between ",
                         "trimmed": "between"
                     }
@@ -129,7 +129,7 @@
                 }
             },
             "before": "\n",
-            "_content": {
+            "_text": {
                 "raw": " b ",
                 "trimmed": "b"
             }

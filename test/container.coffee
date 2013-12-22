@@ -93,7 +93,7 @@ describe 'Container', ->
       indexes = []
 
       @css.eachComment (comment, i) ->
-        texts.push(comment.content)
+        texts.push(comment.text)
         indexes.push(i)
 
       texts.should.eql   ['a', 'b', 'c']
