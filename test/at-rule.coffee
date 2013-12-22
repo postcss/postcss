@@ -1,17 +1,23 @@
-AtRule = require('../lib/at-rule')
-Rule   = require('../lib/rule')
+Declaration = require('../lib/declaration')
+AtRule      = require('../lib/at-rule')
+Rule        = require('../lib/rule')
 
 describe 'AtRule', ->
 
   it 'includes mixin by first child type', ->
     for name in ['append', 'prepend']
       rule = new AtRule()
-      rule[name]({ type: 'rule' })
+      rule[name]( new Rule() )
       rule.rules.should.be.instanceOf(Array)
       rule.rules.length.should.eql(1)
 
       rule = new AtRule()
-      rule[name]({ type: 'decl' })
+      rule[name]( new AtRule() )
+      rule.rules.should.be.instanceOf(Array)
+      rule.rules.length.should.eql(1)
+
+      rule = new AtRule()
+      rule[name]( new Declaration() )
       rule.decls.should.be.instanceOf(Array)
       rule.decls.length.should.eql(1)
 

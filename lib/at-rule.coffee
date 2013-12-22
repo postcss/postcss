@@ -34,7 +34,8 @@ class AtRule extends Container
 for name in ['append', 'prepend']
   do (name) ->
     AtRule.prototype[name] = (child) ->
-      @addMixin(child.type + 's')
+      mixin = if child.type == 'decl' then 'decls' else 'rules'
+      @addMixin(mixin)
       @[name](child)
 
 module.exports = AtRule
