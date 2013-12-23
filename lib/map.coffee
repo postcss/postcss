@@ -5,19 +5,19 @@ Raw       = require('./raw')
 
 # Functions to create source map
 map =
-  # Clean CSS from any source map directive comments
+  # Clean CSS from any source map annotation comments
   clean: (css) ->
     css.eachComment (comment, i) ->
-      directive = '# sourceMappingURL='
-      if comment.text[0..directive.length-1] == directive
+      annotation = '# sourceMappingURL='
+      if comment.text[0..annotation.length-1] == annotation
         comment.parent.remove(i)
 
-  # Add source map directive comment to CSS
-  comment: (css, path) ->
-    file      = path.match(/[^\/]+$/)[0]
-    directive = "# sourceMappingURL=#{ file }.map"
-    directive = new Raw(directive + ' ', directive)
-    comment   = new Comment(text: directive, before: "\n")
+  # Add source map annotation cpmment to CSS
+  annotation: (css, path) ->
+    file       = path.match(/[^\/]+$/)[0]
+    annotation = "# sourceMappingURL=#{ file }.map"
+    annotation = new Raw(annotation + ' ', annotation)
+    comment    = new Comment(text: annotation, before: "\n")
 
     css.append(comment)
 
@@ -66,7 +66,7 @@ map =
   generate: (css, opts) ->
     to = opts.to || 'to.css'
 
-    if opts.mapDirective != false
+    if opts.mapAnnotation != false
       @clean(css)
       @comment(css, to)
 

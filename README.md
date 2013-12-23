@@ -274,8 +274,8 @@ var result = minifier.process(css, {
 result.map //=> Source map from main.sass to main.min.css
 ```
 
-PostCSS by default will remove previous source map comment directive
-add will add new directive with path to new source map file.
+PostCSS by default will remove previous source map annotation comment
+add will add new annotation with path to new source map file.
 
 So, when you process `main.css` to `main.out.css`, this CSS:
 
@@ -291,7 +291,7 @@ a { }
 /*# sourceMappingURL=main.out.css.map */
 ```
 
-If you want to disable any changes of source map directive, set `mapDirective`
+If you want to disable any changes of source map annotation, set `mapAnnotation`
 option to `false`.
 
 ### Nodes
