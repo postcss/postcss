@@ -160,7 +160,8 @@ source map from preprocessors).
 [Rework] was a first CSS postprocessors framework. PostCSS is very similar
 to it.
 
-But Rework right now doesn’t support source maps.
+But Rework generate source map only for it own changes. It doesn’t apply
+previous source map (for example, from Sass).
 
 Also Rework has no high level API and doesn’t preserve formatting
 and indentations while transforming your CSS. Thus it can’t be used
