@@ -68,7 +68,7 @@ map =
 
     if opts.mapAnnotation != false
       @clean(css)
-      @comment(css, to)
+      @annotation(css, to)
 
     [str, map] = @stringify(css, to)
     result     = new Result(css, str)
