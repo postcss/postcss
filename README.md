@@ -629,7 +629,7 @@ var rule = postcss.rule({ selector: 'a' });
 color: black
 ```
 
-`Declaration` node has `prop` and `value` properties.
+`Declaration` node has `prop`, `value` and `important` properties.
 
 You can create a new declaration using shortcut:
 
