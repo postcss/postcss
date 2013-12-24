@@ -205,7 +205,16 @@ class Parser
 
       if (@letter == ';' and not @inBrackets) or close
         @semicolon = true if @letter == ';'
-        @current.value = new Raw(@prevBuffer(), @trim @trimmed)
+        raw  = @prevBuffer()
+        trim = @trim(@trimmed)
+
+        if match = raw.match(/\s+!important\s*$/)
+          @current._important = match[0]
+          end  = -match[0].length - 1
+          raw  = raw[0..end]
+          trim = trim.replace(/\s+!important\s*$/, '')
+
+        @current.value = new Raw(raw, trim)
         @pop()
       else
         @trimmed += @letter
