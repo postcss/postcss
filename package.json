@@ -16,7 +16,7 @@
     "coffee-script": "1.6.3",
     "fs-extra":      "0.8.1",
     "should":        "2.1.1",
-    "mocha":         "1.16.1"
+    "mocha":         "1.16.2"
   },
   "main": "lib/postcss",
   "scripts": {
