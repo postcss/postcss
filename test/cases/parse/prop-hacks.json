@@ -77,9 +77,10 @@
             },
             "before": "",
             "_selector": {
-                "raw": "a ",
+                "raw": "a",
                 "trimmed": "a"
             },
+            "between": " ",
             "semicolon": true,
             "after": "\n"
         }

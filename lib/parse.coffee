@@ -132,7 +132,9 @@ class Parser
   inSelector: ->
     if @inside('selector')
       if @letter == '{'
-        @current.selector = new Raw(@prevBuffer(), @trim @trimmed)
+        [raw, spaces]     = @endSpaces(@prevBuffer())
+        @current.selector = new Raw(raw, @trim @trimmed)
+        @current.between  = spaces
         @semicolon = false
         @buffer    = ''
         @setType('decls')
@@ -146,6 +148,7 @@ class Parser
       if @letter == '{'
         @addType('decls')
         @current.selector = new Raw('', '')
+        @current.between  = ''
         @semicolon = false
         @buffer    = ''
       else
@@ -347,6 +350,14 @@ class Parser
 
   checkAtruleName: ->
     @error('At-rule without name') if @current.name == ''
+
+  endSpaces: (string) ->
+    match = string.match(/\s*$/)
+    if match
+      pos = -match[0].length - 1
+      [string[0..pos], match[0]]
+    else
+      [string, '']
 
   trim: (string) ->
     string.replace(/^\s*/, '').replace(/\s*$/, '')

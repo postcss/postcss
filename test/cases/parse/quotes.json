@@ -57,9 +57,10 @@
             },
             "before": "",
             "_selector": {
-                "raw": "a::before ",
+                "raw": "a::before",
                 "trimmed": "a::before"
             },
+            "between": " ",
             "semicolon": true,
             "after": "\n"
         }

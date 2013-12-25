@@ -63,7 +63,7 @@ describe 'Node', ->
   describe 'clone()', ->
 
     it 'clones nodes', ->
-      rule = new Rule(selector: new Raw(' a ', 'a'))
+      rule = new Rule(selector: new Raw(' a', 'a'))
       rule.append(prop: 'color', value: new Raw(' black', 'black'))
 
       clone = rule.clone()

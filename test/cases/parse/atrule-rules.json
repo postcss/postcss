@@ -75,9 +75,10 @@
                             },
                             "before": "\n        ",
                             "_selector": {
-                                "raw": "from ",
+                                "raw": "from",
                                 "trimmed": "from"
                             },
+                            "between": " ",
                             "semicolon": true,
                             "after": "\n        "
                         },
@@ -117,9 +118,10 @@
                             },
                             "before": "\n        ",
                             "_selector": {
-                                "raw": "to ",
+                                "raw": "to",
                                 "trimmed": "to"
                             },
+                            "between": " ",
                             "after": "\n        "
                         }
                     ],

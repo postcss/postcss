@@ -111,9 +111,10 @@
             },
             "before": "\n",
             "_selector": {
-                "raw": "div ",
+                "raw": "div",
                 "trimmed": "div"
             },
+            "between": " ",
             "after": "\n"
         },
         {
