@@ -35,9 +35,9 @@
                     },
                     "before": "\n    ",
                     "prop": "background",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " black",
+                        "raw": "black",
                         "trimmed": "black"
                     }
                 }
@@ -78,9 +78,9 @@
                     },
                     "before": "\n    ",
                     "prop": "family-name",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " \"A;' /**/\"",
+                        "raw": "\"A;' /**/\"",
                         "trimmed": "\"A;' /**/\""
                     }
                 }
@@ -122,9 +122,9 @@
                     },
                     "before": "\n    ",
                     "prop": "width",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " 110px",
+                        "raw": "110px",
                         "trimmed": "110px"
                     }
                 }
@@ -166,9 +166,9 @@
                     },
                     "before": "\n    ",
                     "prop": "width",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " 100px",
+                        "raw": "100px",
                         "trimmed": "100px"
                     }
                 }

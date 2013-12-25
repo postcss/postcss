@@ -18,9 +18,9 @@
                     },
                     "before": "\n    ",
                     "prop": "content",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " \";'@ /**/\\\"\"",
+                        "raw": "\";'@ /**/\\\"\"",
                         "trimmed": "\";'@ /**/\\\"\""
                     }
                 },
@@ -38,9 +38,9 @@
                     },
                     "before": "\n    ",
                     "prop": "content",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " '\\'\"\\\\'",
+                        "raw": "'\\'\"\\\\'",
                         "trimmed": "'\\'\"\\\\'"
                     }
                 }

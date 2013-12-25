@@ -24,7 +24,7 @@ class Declaration extends Node
   # Stringify declaration
   stringify: (builder, semicolon) ->
     builder(@before) if @before
-    string  = @prop + (@between || '') + ':' + @_value.stringify(before: ' ')
+    string  = @prop + (@between || ': ') + @_value.stringify()
     string += @_important || ''
     string += ';' if semicolon
     builder(string, @)

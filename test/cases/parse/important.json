@@ -18,10 +18,10 @@
                     },
                     "before": "\n    ",
                     "prop": "color",
-                    "between": "",
+                    "between": ": ",
                     "_important": "  !important ",
                     "_value": {
-                        "raw": " black",
+                        "raw": "black",
                         "trimmed": "black"
                     }
                 }

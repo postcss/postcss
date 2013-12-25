@@ -211,8 +211,8 @@ class Parser
 
       if (@letter == ';' and not @inBrackets) or close
         @semicolon = true if @letter == ';'
-        raw  = @prevBuffer()
-        trim = @trim(@trimmed)
+        [raw, spaces] = @startSpaces(@prevBuffer())
+        trim          = @trim(@trimmed)
 
         if match = raw.match(/\s+!important\s*$/)
           @current._important = match[0]
@@ -220,7 +220,8 @@ class Parser
           raw  = raw[0..end]
           trim = trim.replace(/\s+!important\s*$/, '')
 
-        @current.value = new Raw(raw, trim)
+        @current.value    = new Raw(raw, trim)
+        @current.between += ':' + spaces
         @pop()
       else
         @trimmed += @letter
@@ -354,11 +355,19 @@ class Parser
   checkAtruleName: ->
     @error('At-rule without name') if @current.name == ''
 
+  startSpaces: (string) ->
+    match = string.match(/^\s*/)
+    if match
+      pos = match[0].length
+      [string[pos..-1], match[0]]
+    else
+      [string, '']
+
   endSpaces: (string) ->
     match = string.match(/\s*$/)
     if match
-      pos = -match[0].length - 1
-      [string[0..pos], match[0]]
+      pos = match[0].length + 1
+      [string[0..-pos], match[0]]
     else
       [string, '']
 

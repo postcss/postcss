@@ -64,7 +64,7 @@ describe 'Node', ->
 
     it 'clones nodes', ->
       rule = new Rule(selector: new Raw(' a', 'a'))
-      rule.append(prop: 'color', value: new Raw(' black', 'black'))
+      rule.append(prop: 'color', value: new Raw('black ', 'black'))
 
       clone = rule.clone()
       clone.append(prop: 'display', value: 'none')
@@ -72,8 +72,8 @@ describe 'Node', ->
       clone.decls[0].parent.should.exactly clone
       rule.decls[0].parent.should.exactly  rule
 
-      rule.toString().should.eql(' a {color: black}')
-      clone.toString().should.eql(' a {color: black;display: none}')
+      rule.toString().should.eql(' a {color: black }')
+      clone.toString().should.eql(' a {color: black ;display: none}')
 
     it 'overrides properties', ->
       clone = ( new Rule(selector: 'a') ).clone(selector: 'b')

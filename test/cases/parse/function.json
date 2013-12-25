@@ -18,9 +18,9 @@
                     },
                     "before": "\n    ",
                     "prop": "background-image",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)",
+                        "raw": "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)",
                         "trimmed": "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"
                     }
                 }

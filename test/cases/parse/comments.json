@@ -54,9 +54,9 @@
                     },
                     "before": "\n    ",
                     "prop": "color",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " black",
+                        "raw": "black",
                         "trimmed": "black"
                     }
                 },
@@ -92,9 +92,9 @@
                     },
                     "before": "\n    ",
                     "prop": "background",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " white\n    /* end */",
+                        "raw": "white\n    /* end */",
                         "trimmed": "white"
                     }
                 }

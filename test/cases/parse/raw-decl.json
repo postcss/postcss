@@ -18,9 +18,9 @@
                     },
                     "before": " ",
                     "prop": "color",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " a/* ; */ b",
+                        "raw": "a/* ; */ b",
                         "trimmed": "a b"
                     }
                 }

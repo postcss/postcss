@@ -18,9 +18,9 @@
                     },
                     "before": "\n\t",
                     "prop": "color",
-                    "between": "",
+                    "between": ": ",
                     "_value": {
-                        "raw": " black",
+                        "raw": "black",
                         "trimmed": "black"
                     }
                 }
