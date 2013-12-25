@@ -16,9 +16,10 @@
             "before": "",
             "name": "-moz-document",
             "_params": {
-                "raw": "/* near */ /* filter */ url(\"example.com/{\") /* a */ ",
+                "raw": "/* near */ /* filter */ url(\"example.com/{\") /* a */",
                 "trimmed": "url(\"example.com/{\")"
             },
+            "between": " ",
             "rules": [],
             "after": ""
         }

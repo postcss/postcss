@@ -16,9 +16,10 @@
             "before": "",
             "name": "supports",
             "_params": {
-                "raw": " (animation-name: test) ",
+                "raw": " (animation-name: test)",
                 "trimmed": "(animation-name: test)"
             },
+            "between": " ",
             "rules": [
                 {
                     "type": "atrule",
@@ -35,9 +36,10 @@
                     "before": "\n    ",
                     "name": "-custom-keyframe",
                     "_params": {
-                        "raw": " anim ",
+                        "raw": " anim",
                         "trimmed": "anim"
                     },
+                    "between": " ",
                     "rules": [
                         {
                             "type": "rule",

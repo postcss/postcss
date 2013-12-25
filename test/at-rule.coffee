@@ -35,7 +35,7 @@ describe 'AtRule', ->
       rule = new AtRule(name: 'page')
       rule.append(new Rule(selector: 'a'))
 
-      rule.clone().toString().should.eql('@page{a {}}')
+      rule.clone().toString().should.eql('@page {a {}}')
 
   describe 'toString()', ->
 

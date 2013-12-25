@@ -16,9 +16,10 @@
             "before": "",
             "name": "page",
             "_params": {
-                "raw": " :left ",
+                "raw": " :left",
                 "trimmed": ":left"
             },
+            "between": " ",
             "decls": [
                 {
                     "type": "decl",
@@ -58,9 +59,10 @@
             "before": "\n\n",
             "name": "font-face",
             "_params": {
-                "raw": " ",
+                "raw": "",
                 "trimmed": ""
             },
+            "between": " ",
             "decls": [
                 {
                     "type": "decl",
@@ -101,9 +103,10 @@
             "before": "\n\n",
             "name": "viewport",
             "_params": {
-                "raw": " ",
+                "raw": "",
                 "trimmed": ""
             },
+            "between": " ",
             "decls": [
                 {
                     "type": "decl",
@@ -144,9 +147,10 @@
             "before": "\n\n",
             "name": "-ms-viewport",
             "_params": {
-                "raw": " ",
+                "raw": "",
                 "trimmed": ""
             },
+            "between": " ",
             "decls": [
                 {
                     "type": "decl",

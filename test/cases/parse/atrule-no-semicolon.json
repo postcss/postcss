@@ -18,7 +18,8 @@
             "_params": {
                 "raw": " \"UTF-8\"",
                 "trimmed": "\"UTF-8\""
-            }
+            },
+            "between": ""
         }
     ],
     "after": "\n\n"

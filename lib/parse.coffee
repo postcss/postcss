@@ -113,6 +113,7 @@ class Parser
         @setType('atrule-param')
 
       else if @letter == ';' or @letter == '{' or close
+        @current.between = ''
         @checkAtruleName()
         @endAtruleParams()
 
@@ -122,7 +123,9 @@ class Parser
 
     else if @inside('atrule-param')
       if @letter == ';' or @letter == '{' or close
-        @current.params = new Raw(@prevBuffer(), @trim @trimmed)
+        [raw, spaces]    = @endSpaces(@prevBuffer())
+        @current.params  = new Raw(raw, @trim @trimmed)
+        @current.between = spaces
         @endAtruleParams()
 
       else
