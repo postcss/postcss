@@ -56,6 +56,8 @@ class Container extends Node
     @indexes[id] = 0
 
     list = @list
+    return unless list
+
     while @indexes[id] < list.length
 
       index = @indexes[id]

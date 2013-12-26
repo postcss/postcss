@@ -34,10 +34,10 @@ task 'integration', 'Test parser/stringifier on real CSS', ->
   postcss = require(__dirname + '/lib/postcss')
   test = (css) ->
     try
-      processed = postcss.parse(css).toString()
+      processed = postcss().process(css, map: true, mapAnnotation: false).css
     catch e
       fs.writeFileSync(__dirname + '/fail.css', css)
-      error("Parsing error: #{ e.message }\nBad file was saved to fail.css")
+      error("Parsing error: #{ e.stack }\nBad file was saved to fail.css")
 
     if processed != css
       fs.writeFileSync(__dirname + '/origin.css', css)
