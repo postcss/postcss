@@ -6,13 +6,21 @@ vendor =
   #   vendor.prefix('-moz-box-sizing') #=> '-moz-'
   #   vendor.prefix('box-sizing')      #=> ''
   prefix: (prop) ->
-    prop.match(/^(-\w+-)/)?[1] || ''
+    if prop[0] == '-'
+      separator = prop.indexOf('-', 1) + 1
+      prop[0...separator]
+    else
+      ''
 
   # Remove prefix from property name
   #
   #   vendor.prefix('-moz-box-sizing') #=> 'box-sizing'
   #   vendor.prefix('box-sizing')      #=> 'box-sizing'
   unprefixed: (prop) ->
-    prop.match(/^(?:-\w+-)?(.+)/)?[1] || ''
+    if prop[0] == '-'
+      separator = prop.indexOf('-', 1) + 1
+      prop[separator..-1]
+    else
+      prop
 
 module.exports = vendor
