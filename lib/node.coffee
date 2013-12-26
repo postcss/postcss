@@ -39,8 +39,6 @@ class Node
       set: (value) ->
         if value instanceof Raw
           @[hidden] = value
-        else if @[hidden] instanceof Raw
-          @[hidden].set(value)
         else
           @[hidden] = value
 

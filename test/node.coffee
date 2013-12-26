@@ -22,18 +22,12 @@ describe 'Node', ->
     class B extends Node
       @raw 'one'
 
-    it 'creates hack only if it necessary', ->
-      b = new B()
-      b.one = Raw.load('a', 'a')
-
-      b._one.should.eql('a')
-
     it 'creates trimmed/raw property', ->
       b = new B()
 
       (b.one == undefined).should.true
 
-      b.one = Raw.load('trim', 'raw')
+      b.one = new Raw('trim', 'raw')
       b.one.should.eql('trim')
       b._one.toString().should.eql('raw')
 

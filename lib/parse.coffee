@@ -129,7 +129,7 @@ class Parser
         [raw, left]          = @startSpaces(@prevBuffer())
         [raw, right]         = @endSpaces(raw)
         @current.afterName   = left
-        @current.params      = Raw.load(@trimmed.trim(), raw)
+        @current.params      = @raw(@trimmed.trim(), raw)
         @current.afterParams = right
         @endAtruleParams()
 
@@ -141,7 +141,7 @@ class Parser
     if @inside('selector')
       if @letter == '{'
         [raw, spaces]     = @endSpaces(@prevBuffer())
-        @current.selector = Raw.load(@trimmed.trim(), raw)
+        @current.selector = @raw(@trimmed.trim(), raw)
         @current.between  = spaces
         @semicolon = false
         @buffer    = ''
@@ -223,9 +223,9 @@ class Parser
           @current._important = match[0]
           end  = -match[0].length - 1
           raw  = raw[0..end]
-          trim = trim.replace(/\s+!important\s*$/, '')
+          trim = trim.replace(/\s+!important$/, '')
 
-        @current.value    = Raw.load(trim, raw)
+        @current.value    = @raw(trim, raw)
         @current.between += ':' + spaces
         @pop()
       else
@@ -292,6 +292,12 @@ class Parser
     @current.source.file = @opts.from if @opts.from
     @current.before = @buffer[0..-2]
     @buffer = ''
+
+  raw: (value, raw) ->
+    if value != raw
+      new Raw(value, raw)
+    else
+      value
 
   fixEnd: (callback) ->
     if @letter == '}'

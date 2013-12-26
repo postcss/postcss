@@ -376,8 +376,7 @@ minifier.process(css).css //=> "a{color:black}"
 ### Raw Properties
 
 Some CSS values (selectors, comment content, at-rule params
-and declaration values) can contain trailing spaces and comments.
-PostCSS will clean them for you:
+and declaration values) can contain comments. PostCSS will clean them for you:
 
 ```js
 var root = postcss.parse("a /**/ b {}");
@@ -395,7 +394,7 @@ byte-to-byte, when it’s possible:
 ab.toString() //=> 'a /**/ b {}' with comment
 
 ab.selector = '.link b';
-ab.toString() //=> '.link b' you change value and magic was gone
+ab.toString() //=> '.link b' you change value and origin comment was gone
 ```
 
 ### Containers
