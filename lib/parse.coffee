@@ -254,7 +254,7 @@ class Parser
   # Helpers
 
   error: (message, position = { line: @line, column: @column }) ->
-    throw new SyntexError(message, @source, position, @opts.from)
+    throw new SyntexError(message, @source, @opts.from, position.line, position.column)
 
   move: ->
     @pos    += 1
