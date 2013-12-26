@@ -15,8 +15,11 @@
   "devDependencies": {
     "coffee-script": "1.6.3",
     "fs-extra":      "0.8.1",
+    "gonzales":      "1.0.7",
+    "rework":        "0.20.1",
     "should":        "2.1.1",
-    "mocha":         "1.16.2"
+    "mocha":         "1.16.2",
+    "cssom":         "0.3.0"
   },
   "main": "lib/postcss",
   "scripts": {

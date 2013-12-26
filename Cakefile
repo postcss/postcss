@@ -6,23 +6,30 @@ sh = (cmd, callback) ->
     process.exit(1) if error
     callback()
 
+print = (text) ->
+  process.stdout.write(text)
+error = (text) ->
+  process.stderr.write("\n\n" + text + "\n")
+  process.exit(1)
+
+https = require('https')
+http  = require('http')
+get = (url, callback) ->
+  protocol = if url.match(/^https/) then https else http
+  protocol.get url, (res) ->
+    data = ''
+    res.on 'data', (chunk) -> data += chunk
+    res.on 'end', -> callback(data)
+
+getStyles = (url, callback) ->
+  get url, (html) ->
+    styles = html.match(/[^"]+\.css/g)
+    error("Wrong answer from #{ url }") unless styles
+    styles = styles.map (i) -> i.replace(/^\.?\//, url)
+    callback(styles)
+
 task 'integration', 'Test parser/stringifier on real CSS', ->
   invoke('clean')
-
-  print = (text) ->
-    process.stdout.write(text)
-  error = (text) ->
-    process.stderr.write("\n\n" + text + "\n")
-    process.exit(1)
-
-  https = require('https')
-  http  = require('http')
-  get = (url, callback) ->
-    protocol = if url.match(/^https/) then https else http
-    protocol.get url, (res) ->
-      data = ''
-      res.on 'data', (chunk) -> data += chunk
-      res.on 'end', -> callback(data)
 
   postcss = require(__dirname + '/lib/postcss')
   test = (css) ->
@@ -59,8 +66,8 @@ task 'integration', 'Test parser/stringifier on real CSS', ->
     site = sites.shift()
 
     print('Test ' + site.name + ' styles')
-    get site.url, (html) ->
-      links = html.match(/[^"]+\.css/g).map (i) -> i.replace(/^\.?\//, site.url)
+    getStyles site.url, (styles) ->
+      links = styles
       nextLink()
 
   nextSite()
@@ -106,6 +113,50 @@ task 'compile', 'Compile CoffeeScript to JS', ->
         fs.copy(sourcePath, buildPath)
 
   compile()
+
+task 'bench', 'Benchmark on GitHub styles', ->
+  invoke('compile')
+
+  indent = (max, current) ->
+    diff = max.toString().length - current.toString().length
+    for i in [0...diff]
+      print(' ')
+
+  times = { }
+  bench = (title, callback) ->
+    print("#{ title }: ")
+    indent('Gonzales', title)
+
+    start = new Date()
+    callback()
+    time  = (new Date()) - start
+    print(time + " ms")
+
+    if times.PostCSS
+      slower = time / times.PostCSS
+      if slower < 1
+        print(" (#{ (1 / slower).toFixed(1) } times faster)")
+      else
+        print(" (#{ slower.toFixed(1) } times slower)")
+    times[title] = time
+    print("\n")
+
+  print("Load GitHub styles")
+  getStyles 'https://github.com/', (styles) ->
+    get styles[0], (css) ->
+      print("\n")
+
+      postcss  = require(__dirname + '/build')
+      bench 'PostCSS', -> postcss().process(css)
+
+      CSSOM  = require('cssom')
+      bench 'CSSOM', -> CSSOM.parse(css).toString()
+
+      rework  = require('rework')
+      bench 'Rework', -> rework(css).toString()
+
+      gonzales = require('gonzales')
+      bench 'Gonzales', -> gonzales.csspToSrc( gonzales.srcToCSSP(css) )
 
 task 'publish', 'Publish new version to npm', ->
   invoke('compile')
