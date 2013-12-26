@@ -16,10 +16,7 @@
             "before": "",
             "name": "supports",
             "afterName": " ",
-            "_params": {
-                "raw": "(animation-name: test)",
-                "trimmed": "(animation-name: test)"
-            },
+            "_params": "(animation-name: test)",
             "afterParams": " ",
             "rules": [
                 {
@@ -37,10 +34,7 @@
                     "before": "\n    ",
                     "name": "-custom-keyframe",
                     "afterName": " ",
-                    "_params": {
-                        "raw": "anim",
-                        "trimmed": "anim"
-                    },
+                    "_params": "anim",
                     "afterParams": " ",
                     "rules": [
                         {
@@ -61,10 +55,7 @@
                                     "before": "\n            ",
                                     "prop": "color",
                                     "between": ": ",
-                                    "_value": {
-                                        "raw": "black",
-                                        "trimmed": "black"
-                                    }
+                                    "_value": "black"
                                 }
                             ],
                             "source": {
@@ -78,10 +69,7 @@
                                 }
                             },
                             "before": "\n        ",
-                            "_selector": {
-                                "raw": "from",
-                                "trimmed": "from"
-                            },
+                            "_selector": "from",
                             "between": " ",
                             "semicolon": true,
                             "after": "\n        "
@@ -104,10 +92,7 @@
                                     "before": "\n            ",
                                     "prop": "color",
                                     "between": ": ",
-                                    "_value": {
-                                        "raw": "white",
-                                        "trimmed": "white"
-                                    }
+                                    "_value": "white"
                                 }
                             ],
                             "source": {
@@ -121,10 +106,7 @@
                                 }
                             },
                             "before": "\n        ",
-                            "_selector": {
-                                "raw": "to",
-                                "trimmed": "to"
-                            },
+                            "_selector": "to",
                             "between": " ",
                             "after": "\n        "
                         }

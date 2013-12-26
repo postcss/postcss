@@ -19,10 +19,7 @@
                     "before": "\n    *",
                     "prop": "color",
                     "between": " : ",
-                    "_value": {
-                        "raw": "black",
-                        "trimmed": "black"
-                    }
+                    "_value": "black"
                 },
                 {
                     "type": "decl",
@@ -39,10 +36,7 @@
                     "before": "\n    _",
                     "prop": "background",
                     "between": ": ",
-                    "_value": {
-                        "raw": "white",
-                        "trimmed": "white"
-                    }
+                    "_value": "white"
                 },
                 {
                     "type": "decl",
@@ -59,10 +53,7 @@
                     "before": "\n    ",
                     "prop": "font-size",
                     "between": "/**/: ",
-                    "_value": {
-                        "raw": "big",
-                        "trimmed": "big"
-                    }
+                    "_value": "big"
                 }
             ],
             "source": {
@@ -76,10 +67,7 @@
                 }
             },
             "before": "",
-            "_selector": {
-                "raw": "a",
-                "trimmed": "a"
-            },
+            "_selector": "a",
             "between": " ",
             "semicolon": true,
             "after": "\n"

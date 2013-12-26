@@ -29,17 +29,20 @@ class Node
   @raw: (name) ->
     hidden = '_' + name
 
-    @prototype[hidden] = Raw.empty
-
     @prop name,
       get: ->
-        @[hidden]?.trimmed
+        prop = @[hidden]
+        if prop instanceof Raw
+          prop.value
+        else
+          prop
       set: (value) ->
         if value instanceof Raw
           @[hidden] = value
-        else
-          @[hidden] = new Raw() if @[hidden] == Raw.empty
+        else if @[hidden] instanceof Raw
           @[hidden].set(value)
+        else
+          @[hidden] = value
 
   # Remove this node from parent.
   #

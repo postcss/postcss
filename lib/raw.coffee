@@ -1,24 +1,26 @@
 # Property with trimmed and raw value (with comments and spaces)
 class Raw
-  constructor: (@raw, @trimmed) ->
+  # Return Raw only if it necessary
+  @load: (value, raw) ->
+    if raw? and value != raw
+      new Raw(value, raw)
+    else
+      value
+
+  constructor: (@value, @raw) ->
 
   # Set new trimmed value and mark property as changed
   set: (value) ->
-    if @trimmed != value
+    if @value != value
+      @raw     = @value
       @changed = true
-      @trimmed = value
+      @value   = value
 
   # Stringify to CSS raw value if trimmed wasn’t changed
-  stringify: (opts = { }) ->
-    if not @changed
-      @raw || ''
-    else if not @raw
-      (opts.before || '') + @trimmed + (opts.after || '')
+  toString: ->
+    if @changed
+      @value || ''
     else
-      (if @raw[0] == ' ' then ' ' else '') +
-      @trimmed +
-      (if @raw[-1..-1] == ' ' then ' ' else '')
-
-Raw.empty = new Raw()
+      @raw || @value || ''
 
 module.exports = Raw

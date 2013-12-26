@@ -19,10 +19,7 @@
                     "before": "\n    ",
                     "prop": "content",
                     "between": ": ",
-                    "_value": {
-                        "raw": "\";'@ /**/\\\"\"",
-                        "trimmed": "\";'@ /**/\\\"\""
-                    }
+                    "_value": "\";'@ /**/\\\"\""
                 },
                 {
                     "type": "decl",
@@ -39,10 +36,7 @@
                     "before": "\n    ",
                     "prop": "content",
                     "between": ": ",
-                    "_value": {
-                        "raw": "'\\'\"\\\\'",
-                        "trimmed": "'\\'\"\\\\'"
-                    }
+                    "_value": "'\\'\"\\\\'"
                 }
             ],
             "source": {
@@ -56,10 +50,7 @@
                 }
             },
             "before": "",
-            "_selector": {
-                "raw": "a::before",
-                "trimmed": "a::before"
-            },
+            "_selector": "a::before",
             "between": " ",
             "semicolon": true,
             "after": "\n"

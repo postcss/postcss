@@ -19,10 +19,7 @@
                     "before": "\n    ",
                     "prop": "color",
                     "between": ": ",
-                    "_value": {
-                        "raw": "black",
-                        "trimmed": "black"
-                    }
+                    "_value": "black"
                 },
                 {
                     "type": "decl",
@@ -39,10 +36,7 @@
                     "before": "\n    ",
                     "prop": "background",
                     "between": ": ",
-                    "_value": {
-                        "raw": "white",
-                        "trimmed": "white"
-                    }
+                    "_value": "white"
                 }
             ],
             "source": {
@@ -56,10 +50,7 @@
                 }
             },
             "before": "",
-            "_selector": {
-                "raw": "a",
-                "trimmed": "a"
-            },
+            "_selector": "a",
             "between": " ",
             "semicolon": true,
             "after": "\n"

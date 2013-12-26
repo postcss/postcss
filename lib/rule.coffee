@@ -11,8 +11,7 @@ class Rule extends Container.WithDecls
 
   # Stringify rule
   stringify: (builder) ->
-    selector = @_selector.stringify()
     between  = if @between? then @between else ' '
-    @stringifyBlock(builder, selector + between + '{')
+    @stringifyBlock(builder, "#{ @_selector + between }{")
 
 module.exports = Rule

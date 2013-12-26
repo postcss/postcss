@@ -15,10 +15,7 @@
                 }
             },
             "before": "",
-            "_selector": {
-                "raw": "",
-                "trimmed": ""
-            },
+            "_selector": "",
             "between": "",
             "after": ""
         }

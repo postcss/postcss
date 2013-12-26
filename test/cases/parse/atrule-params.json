@@ -17,8 +17,8 @@
             "name": "-moz-document",
             "afterName": "",
             "_params": {
-                "raw": "/* near */ /* filter */ url(\"example.com/{\") /* a */",
-                "trimmed": "url(\"example.com/{\")"
+                "value": "url(\"example.com/{\")",
+                "raw": "/* near */ /* filter */ url(\"example.com/{\") /* a */"
             },
             "afterParams": " ",
             "rules": [],

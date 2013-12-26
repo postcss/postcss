@@ -20,8 +20,8 @@
                     "prop": "color",
                     "between": ": ",
                     "_value": {
-                        "raw": "a/* ; */ b",
-                        "trimmed": "a b"
+                        "value": "a b",
+                        "raw": "a/* ; */ b"
                     }
                 }
             ],
@@ -36,10 +36,7 @@
                 }
             },
             "before": "",
-            "_selector": {
-                "raw": "a",
-                "trimmed": "a"
-            },
+            "_selector": "a",
             "between": " ",
             "semicolon": true,
             "after": " "

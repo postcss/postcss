@@ -23,7 +23,7 @@ class AtRule extends Container
   # Stringify at-rule
   stringify: (builder, last) ->
     name   = '@' + @name + if @afterName? then @afterName else ' '
-    params = @_params.stringify()
+    params = if @_params then @_params.toString() else ''
 
     if @rules or @decls
       params +=  if @afterParams?

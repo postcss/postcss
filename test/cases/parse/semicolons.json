@@ -19,10 +19,7 @@
                     "before": ";;\n    ",
                     "prop": "color",
                     "between": ": ",
-                    "_value": {
-                        "raw": "black",
-                        "trimmed": "black"
-                    }
+                    "_value": "black"
                 }
             ],
             "source": {
@@ -36,10 +33,7 @@
                 }
             },
             "before": "",
-            "_selector": {
-                "raw": "a",
-                "trimmed": "a"
-            },
+            "_selector": "a",
             "between": " ",
             "semicolon": true,
             "after": "\n    ; ;\n"

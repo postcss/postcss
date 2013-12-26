@@ -129,7 +129,7 @@ class Parser
         [raw, left]          = @startSpaces(@prevBuffer())
         [raw, right]         = @endSpaces(raw)
         @current.afterName   = left
-        @current.params      = new Raw(raw, @trim @trimmed)
+        @current.params      = Raw.load(@trimmed.trim(), raw)
         @current.afterParams = right
         @endAtruleParams()
 
@@ -141,7 +141,7 @@ class Parser
     if @inside('selector')
       if @letter == '{'
         [raw, spaces]     = @endSpaces(@prevBuffer())
-        @current.selector = new Raw(raw, @trim @trimmed)
+        @current.selector = Raw.load(@trimmed.trim(), raw)
         @current.between  = spaces
         @semicolon = false
         @buffer    = ''
@@ -155,7 +155,7 @@ class Parser
       @init new Rule()
       if @letter == '{'
         @addType('decls')
-        @current.selector = new Raw('', '')
+        @current.selector = ''
         @current.between  = ''
         @semicolon = false
         @buffer    = ''
@@ -186,7 +186,7 @@ class Parser
           @trimmed = @trimmed[1..-1]
           @buffer  = @buffer[1..-1]
 
-        @current.prop    = @trim @trimmed
+        @current.prop    = @trimmed.trim()
         @current.between = @prevBuffer()[@current.prop.length..-1]
         @buffer = ''
 
@@ -217,7 +217,7 @@ class Parser
       if (@letter == ';' and not @inBrackets) or close
         @semicolon = true if @letter == ';'
         [raw, spaces] = @startSpaces(@prevBuffer())
-        trim          = @trim(@trimmed)
+        trim          = @trimmed.trim()
 
         if match = raw.match(/\s+!important\s*$/)
           @current._important = match[0]
@@ -225,7 +225,7 @@ class Parser
           raw  = raw[0..end]
           trim = trim.replace(/\s+!important\s*$/, '')
 
-        @current.value    = new Raw(raw, trim)
+        @current.value    = Raw.load(trim, raw)
         @current.between += ':' + spaces
         @pop()
       else
@@ -375,9 +375,6 @@ class Parser
       [string[0..-pos], match[0]]
     else
       [string, '']
-
-  trim: (string) ->
-    string.replace(/^\s*/, '').replace(/\s*$/, '')
 
 module.exports = (source, opts = { }) ->
   parser = new Parser(source, opts)

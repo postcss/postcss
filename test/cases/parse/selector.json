@@ -16,8 +16,8 @@
             },
             "before": "\n",
             "_selector": {
-                "raw": "a/* { } */ b",
-                "trimmed": "a b"
+                "value": "a b",
+                "raw": "a/* { } */ b"
             },
             "between": " ",
             "after": ""
