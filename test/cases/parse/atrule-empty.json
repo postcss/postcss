@@ -15,11 +15,12 @@
             },
             "before": "",
             "name": "charset",
+            "afterName": " ",
             "_params": {
-                "raw": " \"UTF-8\"",
+                "raw": "\"UTF-8\"",
                 "trimmed": "\"UTF-8\""
             },
-            "between": "",
+            "afterParams": "",
             "semicolon": true
         }
     ],

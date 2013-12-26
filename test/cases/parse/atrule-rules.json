@@ -15,11 +15,12 @@
             },
             "before": "",
             "name": "supports",
+            "afterName": " ",
             "_params": {
-                "raw": " (animation-name: test)",
+                "raw": "(animation-name: test)",
                 "trimmed": "(animation-name: test)"
             },
-            "between": " ",
+            "afterParams": " ",
             "rules": [
                 {
                     "type": "atrule",
@@ -35,11 +36,12 @@
                     },
                     "before": "\n    ",
                     "name": "-custom-keyframe",
+                    "afterName": " ",
                     "_params": {
-                        "raw": " anim",
+                        "raw": "anim",
                         "trimmed": "anim"
                     },
-                    "between": " ",
+                    "afterParams": " ",
                     "rules": [
                         {
                             "type": "rule",

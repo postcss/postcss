@@ -15,11 +15,12 @@
             },
             "before": "",
             "name": "page",
+            "afterName": " ",
             "_params": {
-                "raw": " :left",
+                "raw": ":left",
                 "trimmed": ":left"
             },
-            "between": " ",
+            "afterParams": " ",
             "decls": [
                 {
                     "type": "decl",
@@ -58,11 +59,12 @@
             },
             "before": "\n\n",
             "name": "font-face",
+            "afterName": " ",
             "_params": {
                 "raw": "",
                 "trimmed": ""
             },
-            "between": " ",
+            "afterParams": "",
             "decls": [
                 {
                     "type": "decl",
@@ -102,11 +104,12 @@
             },
             "before": "\n\n",
             "name": "viewport",
+            "afterName": " ",
             "_params": {
                 "raw": "",
                 "trimmed": ""
             },
-            "between": " ",
+            "afterParams": "",
             "decls": [
                 {
                     "type": "decl",
@@ -146,11 +149,12 @@
             },
             "before": "\n\n",
             "name": "-ms-viewport",
+            "afterName": " ",
             "_params": {
                 "raw": "",
                 "trimmed": ""
             },
-            "between": " ",
+            "afterParams": "",
             "decls": [
                 {
                     "type": "decl",

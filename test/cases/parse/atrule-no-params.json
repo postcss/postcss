@@ -15,7 +15,7 @@
             },
             "before": "",
             "name": "page",
-            "between": "",
+            "afterName": "",
             "decls": [],
             "after": " "
         }
