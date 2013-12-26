@@ -66,8 +66,11 @@ class Parser
   inComment: ->
     if @inside('comment')
       if @next('*/')
-        text = @prevBuffer()
-        @current.text = new Raw(text, @trim text)
+        [text, left]   = @startSpaces(@prevBuffer())
+        [text, right]  = @endSpaces(text)
+        @current.text  = text
+        @current.left  = left
+        @current.right = right
         @move()
         @pop()
       true

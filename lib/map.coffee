@@ -16,8 +16,7 @@ map =
   annotation: (css, path) ->
     file       = path.match(/[^\/]+$/)[0]
     annotation = "# sourceMappingURL=#{ file }.map"
-    annotation = new Raw(annotation + ' ', annotation)
-    comment    = new Comment(text: annotation, before: "\n")
+    comment    = new Comment(text: annotation, left: '', before: "\n")
 
     css.append(comment)
 

@@ -14,10 +14,9 @@
                 }
             },
             "before": "",
-            "_text": {
-                "raw": " a { color: black } ",
-                "trimmed": "a { color: black }"
-            }
+            "text": "a { color: black }",
+            "left": " ",
+            "right": " "
         },
         {
             "type": "rule",
@@ -35,10 +34,9 @@
                         }
                     },
                     "before": "\n    ",
-                    "_text": {
-                        "raw": " inside ",
-                        "trimmed": "inside"
-                    }
+                    "text": "inside",
+                    "left": " ",
+                    "right": " "
                 },
                 {
                     "type": "decl",
@@ -73,10 +71,9 @@
                         }
                     },
                     "before": "\n    ",
-                    "_text": {
-                        "raw": " between ",
-                        "trimmed": "between"
-                    }
+                    "text": "between",
+                    "left": " ",
+                    "right": " "
                 },
                 {
                     "type": "decl",
@@ -130,10 +127,9 @@
                 }
             },
             "before": "\n",
-            "_text": {
-                "raw": " b ",
-                "trimmed": "b"
-            }
+            "text": "b",
+            "left": " ",
+            "right": " "
         }
     ],
     "after": "\n"

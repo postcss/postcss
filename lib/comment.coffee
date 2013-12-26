@@ -6,12 +6,11 @@ class Comment extends Node
     @type = 'comment'
     super
 
-  @raw 'text'
-
   # Stringify declaration
   stringify: (builder) ->
     builder(@before) if @before
-    text = @_text.stringify(before: ' ', after: ' ')
-    builder("/*#{ text }*/", @)
+    left  = if @left? then @left else ' '
+    right = if @right? then @right else ' '
+    builder("/*#{ left + @text + right }*/", @)
 
 module.exports = Comment
