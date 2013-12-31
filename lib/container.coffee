@@ -60,8 +60,9 @@ class Container extends Node
 
     while @indexes[id] < list.length
 
-      index = @indexes[id]
-      callback(list[index], index)
+      index  = @indexes[id]
+      result = callback(list[index], index)
+      break if result == false
 
       @indexes[id] += 1
 

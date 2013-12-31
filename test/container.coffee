@@ -34,6 +34,13 @@ describe 'Container', ->
         decl.should.eql( @rule.decls[i] )
       indexes.should.eql [0, 1]
 
+    it 'breaks iteration', ->
+      indexes = []
+      @rule.each (decl, i) =>
+        indexes.push(i)
+        return false
+      indexes.should.eql [0]
+
     it 'iterates with prepend', ->
       size = 0
       @rule.each =>
