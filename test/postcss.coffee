@@ -55,7 +55,7 @@ describe 'postcss()', ->
         error = e
 
       e.file.should.eql    'A'
-      e.message.should.eql 'Can\'t parse CSS: Unclosed block at line 1:1 in A'
+      e.message.should.eql "Can't parse CSS: Unclosed block at A:1:1"
 
     it 'allows to replace Root', ->
       processor = postcss -> new Root()
