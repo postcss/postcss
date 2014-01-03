@@ -48,25 +48,7 @@ class Container extends Node
   #    # On next iteration will be next rule, regardless of that list size
   #    # was increased
   each: (callback) ->
-    @lastEach ||= 0
-    @indexes  ||= { }
-
-    @lastEach += 1
-    id = @lastEach
-    @indexes[id] = 0
-
-    list = @list
-    return unless list
-
-    while @indexes[id] < list.length
-
-      index  = @indexes[id]
-      result = callback(list[index], index)
-      break if result == false
-
-      @indexes[id] += 1
-
-    delete @indexes[id]
+    @iterate(callback)
     this
 
   # Execute callback on every declaration in all rules inside.
@@ -80,7 +62,8 @@ class Container extends Node
   #
   # Also as `each` it is safe of insert/remove nodes inside iterating.
   eachDecl: (callback) ->
-    # Different realization will be inside subclasses
+    @iterateDecl(callback)
+    this
 
   # Execute callback on every block comment (only between rules
   # and declarations, not inside selectors and values) in all rules inside.
@@ -93,11 +76,7 @@ class Container extends Node
   #
   # Also as `each` it is safe of insert/remove nodes inside iterating.
   eachComment: (callback) ->
-    @each (child, i) =>
-      if child.type == 'comment'
-        callback(child, i)
-      else if child.eachComment
-        child.eachComment(callback)
+    @iterateComments(callback)
     this
 
   # Add child to container.
@@ -211,20 +190,55 @@ class Container extends Node
 
     child
 
+  # Internal realization `each` to be able break recursivelly iteration
+  iterate: (callback) ->
+    @lastEach ||= 0
+    @indexes  ||= { }
+
+    @lastEach += 1
+    id = @lastEach
+    @indexes[id] = 0
+
+    list = @list
+    return unless list
+
+    while @indexes[id] < list.length
+
+      index  = @indexes[id]
+      result = callback(list[index], index)
+      break if result == false
+
+      @indexes[id] += 1
+
+    delete @indexes[id]
+
+    return false if result == false
+
+  # Internal realization `eachDecl` to be able break recursivelly iteration
+  iterateDecl: (callback) ->
+    # Different realization will be inside subclasses
+
+  # Internal realization `eachComment` to be able break recursivelly iteration
+  iterateComments: (callback) ->
+    @iterate (child, i) =>
+      result = if child.type == 'comment'
+        callback(child, i)
+      else if child.iterateComments
+        child.iterateComments(callback)
+      return result if result == false
+
 # Container with another rules, like @media at-rule
 class Container.WithRules extends Container
   constructor: ->
     @rules = []
     super
 
-  # Execute `callback` on every declaration in all rules inside.
-  # It will goes inside at-rules recursivelly.
-  #
-  # See documentation in `Container#eachDecl`.
-  eachDecl: (callback) ->
-    @each (child) ->
-      child.eachDecl(callback) if child.eachDecl
-    this
+  # Internal realization `eachDecl` to be able break recursivelly iteration
+  iterateDecl: (callback) ->
+    @iterate (child) ->
+      return unless child.iterateDecl
+      result = child.iterateDecl(callback)
+      return result if result == false
 
   # Execute `callback` on every rule in conatiner and inside child at-rules.
   #
@@ -236,11 +250,7 @@ class Container.WithRules extends Container
   #     else
   #       console.log(rule.selector + ' at ' + i)
   eachRule: (callback) ->
-    @each (child, i) =>
-      if child.type == 'rule'
-        callback(child, i)
-      else if child.eachRule
-        child.eachRule(callback)
+    @iterateRule(callback)
     this
 
   # Execute `callback` on every at-rule in conatiner and inside at-rules.
@@ -253,11 +263,29 @@ class Container.WithRules extends Container
   #     else
   #       console.log(atrule.name + ' at ' + i)
   eachAtRule: (callback) ->
-    @each (child, i) =>
-      if child.type == 'atrule'
-        callback(child, i)
-        child.eachAtRule(callback) if child.eachAtRule
+    @iterateAtRule(callback)
     this
+
+  # Internal realization `eachRule` to be able break recursivelly iteration
+  iterateRule: (callback) ->
+    @iterate (child, i) =>
+      result = if child.type == 'rule'
+        callback(child, i)
+      else if child.eachRule
+        child.iterateRule(callback)
+      return result if result == false
+
+  # Internal realization `eachAtRule` to be able break recursivelly iteration
+  iterateAtRule: (callback) ->
+    @iterate (child, i) =>
+      return if child.type != 'atrule'
+
+      result = callback(child, i)
+      return result if result == false
+
+      if child.eachAtRule
+        result = child.iterateAtRule(callback)
+        return result if result == false
 
 # Container with another rules, like @media at-rule
 class Container.WithDecls extends Container
@@ -270,12 +298,11 @@ class Container.WithDecls extends Container
     child = new Declaration(child) unless child.type
     super(child, sample)
 
-  # Execute callback on every declaration.
-  #
-  # See documentation in `Container#eachDecl`.
-  eachDecl: (callback) ->
-    @each (node, i) =>
-      callback(node, i) if node.type == 'decl'
-    this
+  # Internal realization `eachDecl` to be able break recursivelly iteration
+  iterateDecl: (callback) ->
+    @iterate (node, i) =>
+      return if node.type != 'decl'
+      result = callback(node, i)
+      return result if result == false
 
 module.exports = Container

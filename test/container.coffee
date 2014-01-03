@@ -34,13 +34,6 @@ describe 'Container', ->
         decl.should.eql( @rule.decls[i] )
       indexes.should.eql [0, 1]
 
-    it 'breaks iteration', ->
-      indexes = []
-      @rule.each (decl, i) =>
-        indexes.push(i)
-        return false
-      indexes.should.eql [0]
-
     it 'iterates with prepend', ->
       size = 0
       @rule.each =>
@@ -69,6 +62,13 @@ describe 'Container', ->
         size += 1
       size.should.eql(2)
 
+    it 'breaks iteration', ->
+      indexes = []
+      @rule.each (decl, i) =>
+        indexes.push(i)
+        return false
+      indexes.should.eql [0]
+
   describe 'eachDecl()', ->
     beforeEach ->
       @css = parse read('each-recursivelly')
@@ -90,6 +90,13 @@ describe 'Container', ->
         decl.parent.remove(i)
         size += 1
       size.should.eql(5)
+
+    it 'breaks iteration', ->
+      indexes = []
+      @css.eachDecl (decl, i) =>
+        indexes.push(i)
+        return false
+      indexes.should.eql [0]
 
   describe 'eachComment()', ->
     beforeEach ->
@@ -113,6 +120,13 @@ describe 'Container', ->
         size += 1
       size.should.eql(3)
 
+    it 'breaks iteration', ->
+      indexes = []
+      @css.eachComment (comment, i) =>
+        indexes.push(i)
+        return false
+      indexes.should.eql [1]
+
   describe 'eachRule()', ->
     beforeEach ->
       @css = parse read('each-recursivelly')
@@ -135,6 +149,13 @@ describe 'Container', ->
         size += 1
       size.should.eql(3)
 
+    it 'breaks iteration', ->
+      indexes = []
+      @css.eachRule (rule, i) =>
+        indexes.push(i)
+        return false
+      indexes.should.eql [0]
+
   describe 'eachAtRule()', ->
     beforeEach ->
       @css = parse read('each-recursivelly')
@@ -156,6 +177,13 @@ describe 'Container', ->
         atrule.parent.remove(i)
         size += 1
       size.should.eql(3)
+
+    it 'breaks iteration', ->
+      indexes = []
+      @css.eachAtRule (atrule, i) =>
+        indexes.push(i)
+        return false
+      indexes.should.eql [2]
 
   describe 'append()', ->
 
