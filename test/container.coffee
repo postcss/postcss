@@ -29,9 +29,12 @@ describe 'Container', ->
 
     it 'iterates', ->
       indexes = []
-      @rule.each (decl, i) =>
+
+      result = @rule.each (decl, i) =>
         indexes.push(i)
         decl.should.eql( @rule.decls[i] )
+
+      (result == undefined).should.be.true
       indexes.should.eql [0, 1]
 
     it 'iterates with prepend', ->
@@ -64,9 +67,12 @@ describe 'Container', ->
 
     it 'breaks iteration', ->
       indexes = []
-      @rule.each (decl, i) =>
+
+      result = @rule.each (decl, i) =>
         indexes.push(i)
         return false
+
+      result.should.be.false
       indexes.should.eql [0]
 
   describe 'eachDecl()', ->
@@ -77,10 +83,11 @@ describe 'Container', ->
       props   = []
       indexes = []
 
-      @css.eachDecl (decl, i) ->
+      result = @css.eachDecl (decl, i) ->
         props.push(decl.prop)
         indexes.push(i)
 
+      (result == undefined).should.be.true
       props.should.eql   ['a', 'b', 'c', 'd', 'e']
       indexes.should.eql [0, 1, 0, 0, 0]
 
@@ -93,9 +100,12 @@ describe 'Container', ->
 
     it 'breaks iteration', ->
       indexes = []
-      @css.eachDecl (decl, i) =>
+
+      result = @css.eachDecl (decl, i) =>
         indexes.push(i)
         return false
+
+      result.should.be.false
       indexes.should.eql [0]
 
   describe 'eachComment()', ->
@@ -106,10 +116,12 @@ describe 'Container', ->
       texts   = []
       indexes = []
 
-      @css.eachComment (comment, i) ->
+      result = @css.eachComment (comment, i) ->
         texts.push(comment.text)
         indexes.push(i)
 
+
+      (result == undefined).should.be.true
       texts.should.eql   ['a', 'b', 'c']
       indexes.should.eql [1, 0, 1]
 
@@ -122,9 +134,12 @@ describe 'Container', ->
 
     it 'breaks iteration', ->
       indexes = []
-      @css.eachComment (comment, i) =>
+
+      result = @css.eachComment (comment, i) =>
         indexes.push(i)
         return false
+
+      result.should.be.false
       indexes.should.eql [1]
 
   describe 'eachRule()', ->
@@ -135,10 +150,11 @@ describe 'Container', ->
       selectors = []
       indexes   = []
 
-      @css.eachRule (rule, i) ->
+      result = @css.eachRule (rule, i) ->
         selectors.push(rule.selector)
         indexes.push(i)
 
+      (result == undefined).should.be.true
       selectors.should.eql ['a', 'to', 'em']
       indexes.should.eql   [0, 1, 0]
 
@@ -151,9 +167,12 @@ describe 'Container', ->
 
     it 'breaks iteration', ->
       indexes = []
-      @css.eachRule (rule, i) =>
+
+      result = @css.eachRule (rule, i) =>
         indexes.push(i)
         return false
+
+      result.should.be.false
       indexes.should.eql [0]
 
   describe 'eachAtRule()', ->
@@ -164,10 +183,11 @@ describe 'Container', ->
       names   = []
       indexes = []
 
-      @css.eachAtRule (atrule, i) ->
+      result = @css.eachAtRule (atrule, i) ->
         names.push(atrule.name)
         indexes.push(i)
 
+      (result == undefined).should.be.true
       names.should.eql   ['keyframes', 'media', 'page']
       indexes.should.eql [2, 3, 1]
 
@@ -180,9 +200,12 @@ describe 'Container', ->
 
     it 'breaks iteration', ->
       indexes = []
-      @css.eachAtRule (atrule, i) =>
+
+      result = @css.eachAtRule (atrule, i) =>
         indexes.push(i)
         return false
+
+      result.should.be.false
       indexes.should.eql [2]
 
   describe 'append()', ->
