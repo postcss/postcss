@@ -9,6 +9,13 @@ class Rule extends Container.WithDecls
 
   @raw 'selector'
 
+  # Shortcut to get selectors as array
+  @prop 'selectors',
+    get: ->
+      @selector.split(/\s*,\s*/)
+    set: (values) ->
+      @selector = values.join(', ')
+
   # Stringify rule
   stringify: (builder) ->
     between  = if @between? then @between else ' '

@@ -600,6 +600,13 @@ a {
 
 `Rule` node has `selector` property and contains `Declaration` and `Comment`children in `decls` property.
 
+There is `selectors` shortcut, which return array:
+
+```js
+rule.selector  #=> "a, b"
+rule.selectors #=> ['a', 'b']
+```
+
 You can miss `Declaration` constructor in `append` and other insert methods:
 
 ```js
