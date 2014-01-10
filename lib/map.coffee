@@ -5,12 +5,19 @@ Raw       = require('./raw')
 
 # Functions to create source map
 map =
+  # Return true if comment is source map annotation
+  isAnnotation: (comment) ->
+    annotation = '# sourceMappingURL='
+    comment.text[0..annotation.length-1] == annotation
+
   # Clean CSS from any source map annotation comments
   clean: (css) ->
-    css.eachComment (comment, i) ->
-      annotation = '# sourceMappingURL='
-      if comment.text[0..annotation.length-1] == annotation
+    prev = false
+    css.eachComment (comment, i) =>
+      if @isAnnotation(comment)
         comment.parent.remove(i)
+        prev = true
+    prev
 
   # Add source map annotation cpmment to CSS
   annotation: (css, path) ->
@@ -63,16 +70,22 @@ map =
 
   # Stringify CSS with source map
   generate: (css, opts) ->
-    to = opts.to || 'to.css'
+    to      = opts.to || 'to.css'
+    prevMap = typeof(opts.map) != 'boolean'
 
-    if opts.mapAnnotation != false
-      @clean(css)
-      @annotation(css, to)
+    prevAnnotation = @clean(css)
+    addAnnotation  = if opts.mapAnnotation?
+      opts.mapAnnotation
+    else if prevMap and not prevAnnotation
+      false
+    else
+      true
+    @annotation(css, to) if addAnnotation
 
     [str, map] = @stringify(css, to)
     result     = new Result(css, str)
 
-    if typeof(opts.map) == 'string'
+    if prevMap
       prev = new sourceMap.SourceMapConsumer(opts.map)
       map.applySourceMap(prev)
 
