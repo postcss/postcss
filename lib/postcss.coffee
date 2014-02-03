@@ -1,10 +1,9 @@
-Declaration = require('./declaration')
-Comment     = require('./comment')
-AtRule      = require('./at-rule')
-Result      = require('./result')
-Rule        = require('./rule')
-Root        = require('./root')
-map         = require('./map')
+MapGenerator = require('./map-generator')
+Declaration  = require('./declaration')
+Comment      = require('./comment')
+AtRule       = require('./at-rule')
+Rule         = require('./rule')
+Root         = require('./root')
 
 # List of functions to process CSS
 class PostCSS
@@ -23,10 +22,8 @@ class PostCSS
       returned = processor(parsed)
       parsed   = returned if returned instanceof Root
 
-    if opts.map
-      map.generate(parsed, opts)
-    else
-      new Result(parsed, parsed.toString())
+    map = new MapGenerator(parsed, opts)
+    map.getResult()
 
 # Framework for CSS postprocessors
 #

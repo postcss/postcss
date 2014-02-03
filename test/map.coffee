@@ -95,3 +95,65 @@ describe 'source maps', ->
       map:  step1.map
 
     step2.css.should.eql(css)
+
+  it 'generates inline map', ->
+    css = 'a { }'
+
+    common = postcss().process css,
+      from: 'a.css'
+      to:   'b.css'
+      map:   true
+
+    inline = postcss().process css,
+      from:     'a.css'
+      to:       'b.css'
+      inlineMap: true
+
+    inline.should.not.have.property('map')
+    inline.css.should.match(/# sourceMappingURL=data:/)
+
+    base64 = new Buffer(common.map).toString('base64')
+    inline.css.should.endWith(base64 + ' */')
+
+  it 'generates inline map if previous map was inline', ->
+    css     = 'a { color: black }'
+    doubler = postcss (css) ->
+      css.eachDecl (decl) -> decl.parent.prepend(decl.clone())
+    lighter = postcss (css) ->
+      css.eachDecl (decl) -> decl.value = 'white'
+
+    common1 = doubler.process css,
+      from: 'a.css'
+      to:   'b.css'
+      map:   true
+    common2 = lighter.process common1.css,
+      from: 'b.css'
+      to:   'c.css'
+      map:   common1.map
+
+    inline1 = doubler.process css,
+      from:     'a.css'
+      to:       'b.css'
+      inlineMap: true
+    inline2 = lighter.process inline1.css,
+      from: 'b.css'
+      to:   'c.css'
+
+    base64 = new Buffer(common2.map).toString('base64')
+    inline2.css.should.endWith(base64 + ' */')
+
+  it 'allows change map type', ->
+    css = 'a { }'
+
+    step1 = postcss().process css,
+      from:     'a.css'
+      to:       'b.css'
+      inlineMap: true
+
+    step2 = postcss().process step1.css,
+      from:     'b.css'
+      to:       'c.css'
+      inlineMap: false
+
+    step2.should.have.property('map')
+    step2.css.should.not.match(/# sourceMappingURL=data:/)

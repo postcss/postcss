@@ -1,6 +1,7 @@
 # Object with processed CSS
 class Result
-  constructor: (@parsed, @css) ->
+  constructor: (@css, map) ->
+    @map = map if map
 
   # Return CSS string on any try to print
   toString: ->
