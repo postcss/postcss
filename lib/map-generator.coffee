@@ -1,6 +1,8 @@
 mozilla = require('source-map')
-Result  = require('./result')
 base64  = require('base64-js')
+
+Result = require('./result')
+lazy   = require('./lazy')
 
 # All tools to generate source maps
 class MapGenerator
@@ -15,23 +17,20 @@ class MapGenerator
     !!@opts.map || !!@opts.inlineMap || @prevMap()
 
   # Should we inline source map to annotation comment
-  isInline: ->
+  lazy @, 'isInline', ->
     return @opts.inlineMap if @opts.inlineMap?
     @isPrevInline()
 
   # Is source map from previous compilation step is inline to annotation comment
-  isPrevInline: ->
+  lazy @, 'isPrevInline', ->
     return false unless @prevAnnotation()
 
     text = @prevAnnotation().text
     @startWith(text, '# sourceMappingURL=data:')
 
   # Source map from previous compilation step (like Sass)
-  prevMap: ->
-    return @prevMapCache if @prevMapCache?
-
-    if @opts.map and typeof(@opts.map) != 'boolean'
-      return @prevMapCache = @opts.map
+  lazy @, 'prevMap', ->
+    return @opts.map if @opts.map and typeof(@opts.map) != 'boolean'
 
     if @isPrevInline()
       start = '# sourceMappingURL=data:application/json;base64,'
@@ -39,21 +38,19 @@ class MapGenerator
       text  = text[start.length..-1]
       bytes = base64.toByteArray(text)
 
-      @prevMapCache = (String.fromCharCode(byte) for byte in bytes).join('')
+      (String.fromCharCode(byte) for byte in bytes).join('')
     else
-      @prevMapCache = false
+      false
 
   # Lazy load for annotation comment from previous compilation step
-  prevAnnotation: ->
-    return @prevAnnotationCache if @prevAnnotationCache?
-
+  lazy @, 'prevAnnotation', ->
     last = @root.last
-    return @prevAnnotationCache = null unless last
+    return null unless last
 
     if last.type == 'comment' and @startWith(last.text, '# sourceMappingURL=')
-      @prevAnnotationCache = last
+      last
     else
-      @prevAnnotationCache = null
+      null
 
   # Clear source map annotation comment
   clearAnnotation: ->
