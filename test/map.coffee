@@ -202,3 +202,22 @@ describe 'source maps', ->
       map:  false
 
     step2.should.not.have.property('map')
+
+  it 'uses map from subdir', ->
+    step1 = @doubler.process 'a { }',
+      from: 'a.css'
+      to:   'out/b.css'
+      map:   true
+
+    step2 = @doubler.process 'a { }',
+      from: 'b.css'
+      to:   'c.css'
+      map:   step1.map
+
+
+    map = new sourceMap.SourceMapConsumer(step2.map)
+    map.originalPositionFor(line: 1, column: 0).should.eql
+      source: 'a.css'
+      line:   1
+      column: 0
+      name:   null

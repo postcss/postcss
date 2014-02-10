@@ -71,6 +71,7 @@ class MapGenerator
   applyPrevMap: ->
     if @prevMap()
       prev = new mozilla.SourceMapConsumer(@prevMap())
+      prev.file = @opts.from if @opts.from
       @map.applySourceMap(prev)
 
   # Add source map annotation comment if it is needed
