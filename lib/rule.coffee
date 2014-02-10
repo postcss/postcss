@@ -7,6 +7,8 @@ class Rule extends Container.WithDecls
     @type = 'rule'
     super
 
+  defaults: -> { between: ' ' }
+
   @raw 'selector'
 
   # Shortcut to get selectors as array
@@ -18,7 +20,6 @@ class Rule extends Container.WithDecls
 
   # Stringify rule
   stringify: (builder) ->
-    between  = if @between? then @between else ' '
-    @stringifyBlock(builder, "#{ @_selector + between }{")
+    @stringifyBlock(builder, "#{ @_selector + @style().between }{")
 
 module.exports = Rule

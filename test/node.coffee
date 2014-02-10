@@ -1,6 +1,7 @@
 Node = require('../lib/node')
-Raw  = require('../lib/raw')
+Root = require('../lib/root')
 Rule = require('../lib/rule')
+Raw  = require('../lib/raw')
 
 describe 'Node', ->
 
@@ -83,3 +84,26 @@ describe 'Node', ->
       JSON.stringify(rule).should.eql('{"type":"rule","decls":[' +
         '{"type":"decl","prop":"color","_value":"b"}' +
       '],"_selector":"a"}')
+
+  describe 'style()', ->
+
+    it 'uses defaults without parent', ->
+      rule = new Rule(selector: 'a')
+      rule.style().should.eql { between: ' ' }
+
+    it 'uses defaults for artificial nodes', ->
+      root = new Root()
+      root.append(new Rule(selector: 'a'))
+      root.first.style().should.eql { between: ' ' }
+
+    it 'uses nodes style', ->
+      root = new Root()
+      root.append(new Rule(selector: 'a', between: '' ))
+      root.first.style().should.eql { between: '' }
+
+    it 'clones style from first node', ->
+      root = new Root()
+      root.append(new Rule(selector: 'a', between: '' ))
+      root.append(new Rule(selector: 'b' ))
+
+      root.last.style().should.eql { between: '' }

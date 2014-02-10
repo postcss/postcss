@@ -1,4 +1,5 @@
 Declaration = require('../lib/declaration')
+parse       = require('../lib/parse')
 
 describe 'Declaration', ->
 
@@ -49,3 +50,10 @@ describe 'Declaration', ->
     it 'inserts default spaces', ->
       decl = new Declaration(prop: 'color', value: 'black')
       decl.toString().should.eql('color: black')
+
+    it 'clone spaces from another declaration', ->
+      root = parse('a{color:black}')
+      decl = new Declaration(prop: 'margin', value: '0')
+      root.first.append(decl)
+
+      decl.toString().should.eql('margin:0')

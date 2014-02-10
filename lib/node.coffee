@@ -15,6 +15,19 @@ clone = (obj, parent) ->
 
   cloned
 
+# Is `obj` has all keys from `keys`. Return `false` of object with keys from
+# `keys` and values from `obj`.
+keys = (obj, keys) ->
+  all = { }
+
+  for key of keys
+    if obj[key]?
+      all[key] = obj[key]
+    else
+      return false
+
+  all
+
 # Some common methods for all CSS nodes
 class Node
   constructor: (defaults = { }) ->
@@ -92,5 +105,39 @@ class Node
         value
 
     fixed
+
+  # Default code style
+  defaults: -> { }
+
+  # Copy code style from first node with same type
+  style: ->
+    all = keys(@, @defaults())
+    return all if all
+
+    return @defaults() unless @parent
+
+    root = @
+    root = root.parent while root.parent
+
+    root.styleCache ||= { }
+    if root.styleCache[@type]
+      style = root.styleCache[@type]
+    else
+      style = @defaults()
+      root.eachType @type, (another) ->
+        return if @ == another
+
+        all = keys(another, style)
+        if all
+          style = all
+          return false
+
+      root.styleCache[@type] = style
+
+    merge = { }
+    for key of style
+      merge[key] = @[key] || style[key]
+
+    merge
 
 module.exports = Node

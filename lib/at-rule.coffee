@@ -26,7 +26,7 @@ class AtRule extends Container
     params = if @_params then @_params.toString() else ''
 
     if @rules or @decls
-      params +=  if @afterParams?
+      params += if @afterParams?
         @afterParams
       else if params
         ' '

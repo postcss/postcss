@@ -1,4 +1,5 @@
-Rule = require('../lib/rule')
+parse = require('../lib/parse')
+Rule  = require('../lib/rule')
 
 describe 'Rule', ->
 
@@ -26,3 +27,10 @@ describe 'Rule', ->
     it 'inserts default spaces', ->
       rule = new Rule(selector: 'a')
       rule.toString().should.eql('a {}')
+
+    it 'clone spaces from another rule', ->
+      root = parse('a{}')
+      rule = new Rule(selector: 'b')
+      root.append(rule)
+
+      rule.toString().should.eql('b{}')

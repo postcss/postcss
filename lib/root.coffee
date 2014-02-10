@@ -1,4 +1,8 @@
-Container = require('./container')
+Declaration = require('./declaration')
+Container   = require('./container')
+Comment     = require('./comment')
+AtRule      = require('./at-rule')
+Rule        = require('./rule')
 
 # Root of CSS
 class Root extends Container.WithRules
