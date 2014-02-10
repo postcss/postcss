@@ -75,6 +75,75 @@ describe 'Container', ->
       result.should.be.false
       indexes.should.eql [0]
 
+  describe 'eachType()', ->
+    beforeEach ->
+      @css = parse read('each-recursivelly')
+
+    it 'iterates declarations', ->
+      props   = []
+      indexes = []
+
+      result = @css.eachType 'decl', (decl, i) ->
+        props.push(decl.prop)
+        indexes.push(i)
+
+      (result == undefined).should.be.true
+      props.should.eql   ['a', 'b', 'c', 'd', 'e']
+      indexes.should.eql [0, 1, 0, 0, 0]
+
+    it 'iterates comments', ->
+      texts   = []
+      indexes = []
+
+      result = @css.eachType 'comment', (comment, i) ->
+        texts.push(comment.text)
+        indexes.push(i)
+
+      (result == undefined).should.be.true
+      texts.should.eql   ['a', 'b', 'c']
+      indexes.should.eql [1, 0, 1]
+
+    it 'iterates rules', ->
+      selectors = []
+      indexes   = []
+
+      result = @css.eachType 'rule', (rule, i) ->
+        selectors.push(rule.selector)
+        indexes.push(i)
+
+      (result == undefined).should.be.true
+      selectors.should.eql ['a', 'to', 'em']
+      indexes.should.eql   [0, 1, 0]
+
+    it 'iterates at-rule', ->
+      names   = []
+      indexes = []
+
+      result = @css.eachType 'atrule', (atrule, i) ->
+        names.push(atrule.name)
+        indexes.push(i)
+
+      (result == undefined).should.be.true
+      names.should.eql   ['keyframes', 'media', 'page']
+      indexes.should.eql [2, 3, 1]
+
+    it 'iterates with changes', ->
+      size = 0
+      @css.eachType 'decl', (decl, i) ->
+        decl.parent.remove(i)
+        size += 1
+      size.should.eql(5)
+
+    it 'breaks iteration', ->
+      indexes = []
+
+      result = @css.eachType 'decl', (decl, i) ->
+        indexes.push(i)
+        return false
+
+      result.should.be.false
+      indexes.should.eql [0]
+
   describe 'eachDecl()', ->
     beforeEach ->
       @css = parse read('each-recursivelly')
@@ -119,7 +188,6 @@ describe 'Container', ->
       result = @css.eachComment (comment, i) ->
         texts.push(comment.text)
         indexes.push(i)
-
 
       (result == undefined).should.be.true
       texts.should.eql   ['a', 'b', 'c']

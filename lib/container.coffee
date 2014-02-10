@@ -94,11 +94,24 @@ class Container extends Node
   #
   # Also as `each` it is safe of insert/remove nodes inside iterating.
   eachComment: (callback) ->
+    @eachType('comment', callback)
+
+  # Execute callback on every child with specified type in all rules inside.
+  #
+  # First argument will be child node, second will be index inside parent.
+  #
+  #   css.eachType 'comment', (comment, i) ->
+  #     console.log(comment.content + ' at ' + i)
+  #
+  # Also as `each` it is safe of insert/remove nodes inside iterating.
+  eachType: (type, callback) ->
     @each (child, i) =>
-      result = if child.type == 'comment'
-        callback(child, i)
-      else if child.eachComment
-        child.eachComment(callback)
+      if child.type == type
+        result = callback(child, i)
+
+      if result != false and child.eachType
+        result = child.eachType(type, callback)
+
       return result if result == false
 
   # Add child to container.
@@ -255,15 +268,7 @@ class Container.WithRules extends Container
   #     else
   #       console.log(atrule.name + ' at ' + i)
   eachAtRule: (callback) ->
-    @each (child, i) =>
-      return if child.type != 'atrule'
-
-      result = callback(child, i)
-      return result if result == false
-
-      if child.eachAtRule
-        result = child.eachAtRule(callback)
-        return result if result == false
+    @eachType('atrule', callback)
 
 # Container with another rules, like @media at-rule
 class Container.WithDecls extends Container
