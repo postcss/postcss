@@ -3,6 +3,8 @@ base64  = require('base64-js')
 
 Result = require('./result')
 lazy   = require('./lazy')
+path   = require('path')
+fs     = require('fs')
 
 # All tools to generate source maps
 class MapGenerator
@@ -14,7 +16,8 @@ class MapGenerator
 
   # Should map be generated
   isMap: ->
-    !!@opts.map || !!@opts.inlineMap || @prevMap()
+    return @opts.map if typeof(@opts.map) == 'boolean'
+    !!@opts.inlineMap || !!@prevMap()
 
   # Should we inline source map to annotation comment
   lazy @, 'isInline', ->
@@ -39,8 +42,16 @@ class MapGenerator
       bytes = base64.toByteArray(text)
 
       (String.fromCharCode(byte) for byte in bytes).join('')
-    else
-      false
+    else if @opts.from
+      map = @opts.from + '.map'
+      if @prevAnnotation()
+        file = @prevAnnotation().text.replace('# sourceMappingURL=', '')
+        map  = path.join(path.dirname(@opts.from), file)
+
+      if fs.existsSync(map)
+        fs.readFileSync(map).toString()
+      else
+        false
 
   # Lazy load for annotation comment from previous compilation step
   lazy @, 'prevAnnotation', ->

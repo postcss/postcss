@@ -1,7 +1,18 @@
 sourceMap = require('source-map')
 postcss   = require('../lib/postcss')
+fs        = require('fs-extra')
 
 describe 'source maps', ->
+  before ->
+    @dir = __dirname + '/fixtures'
+
+    @doubler = postcss (css) ->
+      css.eachDecl (decl) -> decl.parent.prepend(decl.clone())
+    @lighter = postcss (css) ->
+      css.eachDecl (decl) -> decl.value = 'white'
+
+  afterEach ->
+    fs.removeSync(@dir) if fs.existsSync(@dir)
 
   it 'adds map field only on request', ->
     postcss().process('a {}').should.not.have.property('map')
@@ -39,16 +50,12 @@ describe 'source maps', ->
   it 'changes previous source map', ->
     css = 'a { color: black }'
 
-    doubler = postcss (css) ->
-      css.eachDecl (decl) -> decl.parent.prepend(decl.clone())
-    doubled = doubler.process css,
+    doubled = @doubler.process css,
       from: 'a.css'
       to:   'b.css'
       map:  true
 
-    lighter = postcss (css) ->
-      css.eachDecl (decl) -> decl.value = 'white'
-    lighted = lighter.process doubled.css,
+    lighted = @lighter.process doubled.css,
       from: 'b.css'
       to:   'c.css'
       map:  doubled.map
@@ -117,25 +124,21 @@ describe 'source maps', ->
 
   it 'generates inline map if previous map was inline', ->
     css     = 'a { color: black }'
-    doubler = postcss (css) ->
-      css.eachDecl (decl) -> decl.parent.prepend(decl.clone())
-    lighter = postcss (css) ->
-      css.eachDecl (decl) -> decl.value = 'white'
 
-    common1 = doubler.process css,
+    common1 = @doubler.process css,
       from: 'a.css'
       to:   'b.css'
       map:   true
-    common2 = lighter.process common1.css,
+    common2 = @lighter.process common1.css,
       from: 'b.css'
       to:   'c.css'
       map:   common1.map
 
-    inline1 = doubler.process css,
+    inline1 = @doubler.process css,
       from:     'a.css'
       to:       'b.css'
       inlineMap: true
-    inline2 = lighter.process inline1.css,
+    inline2 = @lighter.process inline1.css,
       from: 'b.css'
       to:   'c.css'
 
@@ -157,3 +160,45 @@ describe 'source maps', ->
 
     step2.should.have.property('map')
     step2.css.should.not.match(/# sourceMappingURL=data:/)
+
+  it 'checks map file near CSS', ->
+    step1 = @doubler.process 'a { }',
+      from: 'a.css'
+      to:    @dir + '/a.css'
+      map:   true
+
+    fs.outputFileSync(@dir + '/a.css.map', step1.map)
+    step2 = @lighter.process step1.css,
+      from: @dir + '/a.css'
+      to:  'b.css'
+
+    step2.should.have.property('map')
+
+  it 'read map file from annotation', ->
+    step1 = @doubler.process 'a { }',
+      from: 'a.css'
+      to:    @dir + '/a.css'
+      map:   true
+
+    fs.outputFileSync(@dir + '/b.css.map', step1.map)
+    css = step1.css.replace('a.css.map', 'b.css.map')
+
+    step2 = @lighter.process css,
+      from: @dir + '/a.css'
+      to:  'c.css'
+
+    step2.should.have.property('map')
+
+  it 'miss check files on requires', ->
+    step1 = @doubler.process 'a { }',
+      from: 'a.css'
+      to:    @dir + '/a.css'
+      map:   true
+
+    fs.outputFileSync(@dir + '/a.css.map', step1.map)
+    step2 = @lighter.process step1.css,
+      from: @dir + '/a.css'
+      to:  'b.css'
+      map:  false
+
+    step2.should.not.have.property('map')
