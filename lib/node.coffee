@@ -107,14 +107,16 @@ class Node
     fixed
 
   # Default code style
-  defaults: -> { }
+  defaultStyle: -> { }
 
   # Copy code style from first node with same type
   style: ->
-    all = keys(@, @defaults())
+    defaults = @defaultStyle()
+
+    all = keys(@, defaults)
     return all if all
 
-    return @defaults() unless @parent
+    return defaults unless @parent
 
     root = @
     root = root.parent while root.parent
@@ -123,7 +125,7 @@ class Node
     if root.styleCache[@type]
       style = root.styleCache[@type]
     else
-      style = @defaults()
+      style = defaults
       root.eachType @type, (another) ->
         return if @ == another
 

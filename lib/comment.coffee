@@ -6,7 +6,7 @@ class Comment extends Node
     @type = 'comment'
     super
 
-  defaults: -> { left: ' ', right: ' ' }
+  defaultStyle: -> { left: ' ', right: ' ' }
 
   # Stringify declaration
   stringify: (builder) ->

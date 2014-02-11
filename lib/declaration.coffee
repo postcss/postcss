@@ -7,7 +7,7 @@ class Declaration extends Node
     @type = 'decl'
     super
 
-  defaults: -> { between: ': ' }
+  defaultStyle: -> { between: ': ' }
 
   @raw 'value'
 

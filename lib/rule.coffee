@@ -7,7 +7,7 @@ class Rule extends Container.WithDecls
     @type = 'rule'
     super
 
-  defaults: -> { between: ' ' }
+  defaultStyle: -> { between: ' ' }
 
   @raw 'selector'
 
