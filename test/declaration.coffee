@@ -20,7 +20,7 @@ describe 'Declaration', ->
       decl.important.should.be.true
 
     it 'adds virtual property', ->
-      decl = new Declaration(prop: 'color', value: 'black')
+      decl = new Declaration(prop: 'color', value: 'black', before: '')
       decl.important.should.be.false
 
       decl.important = true
@@ -49,7 +49,7 @@ describe 'Declaration', ->
 
     it 'inserts default spaces', ->
       decl = new Declaration(prop: 'color', value: 'black')
-      decl.toString().should.eql('color: black')
+      decl.toString().should.eql("\n    color: black")
 
     it 'clone spaces from another declaration', ->
       root = parse('a{color:black}')

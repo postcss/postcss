@@ -29,8 +29,28 @@ describe 'Rule', ->
       rule.toString().should.eql('a {}')
 
     it 'clone spaces from another rule', ->
-      root = parse('a{}')
+      root = parse("a{\n  }")
       rule = new Rule(selector: 'b')
       root.append(rule)
 
-      rule.toString().should.eql('b{}')
+      rule.toString().should.eql("b{\n  }")
+
+    it 'use different spaces for empty rules', ->
+      root = parse("a { }\nb {\n  color: black\n  }")
+      rule = new Rule(selector: 'em')
+      root.append(rule)
+
+      rule.toString().should.eql("\nem { }")
+
+      rule.append(prop: 'top', value: '0')
+      rule.toString().should.eql("\nem {\n  top: 0\n  }")
+
+    it 'calculates after depends on childs', ->
+      rule = new Rule(selector: 'a')
+      rule.toString().should.eql 'a {}'
+
+      rule.append(prop: 'color', value: 'black', before: ' ')
+      rule.toString().should.eql 'a { color: black }'
+
+      rule.first.before = "\n  "
+      rule.toString().should.eql "a {\n  color: black\n}"

@@ -17,15 +17,25 @@ class Container extends Node
       @decls.map (decl, i) =>
         decl.stringify(builder, last != i or @semicolon)
 
+  defaultAfter: ->
+    if @list.length == 0
+      ''
+    else if @list[0].before?.indexOf("\n") == -1
+      @list[0].before
+    else
+      "\n"
+
   # Stringify node with start (for example, selector) and brackets block
   # with child inside
   stringifyBlock: (builder, start) ->
+    style = @style()
+
     builder(@before) if @before
     builder(start, @, 'start')
 
     @stringifyContent(builder)
 
-    builder(@after) if @after
+    builder(style.after) if style.after
     builder('}', @, 'end')
 
   # Add child to end of list without any checks.

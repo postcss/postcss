@@ -23,7 +23,8 @@ describe 'Container', ->
 
     it 'adds child without checks', ->
       @rule.push(@new)
-      compare(@css, 'push')
+      @rule.list.length.should.eql(3)
+      @rule.last.should.not.have.property('before')
 
   describe 'each()', ->
 

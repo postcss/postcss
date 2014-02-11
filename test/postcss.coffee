@@ -10,7 +10,7 @@ describe 'postcss.root()', ->
     rule.append( postcss.decl(prop: 'color', value: 'black') )
     root.append( rule )
 
-    root.toString().should.eql 'a {color: black}'
+    root.toString().should.eql "a {\n    color: black\n}"
 
 describe 'postcss()', ->
 
@@ -44,7 +44,8 @@ describe 'postcss()', ->
           unless rule.some( (i) -> i.prop == 'content' )
             rule.prepend(prop: 'content', value: '""')
 
-      processor.process('a::before{}').css.should.eql('a::before{content: ""}')
+      result = processor.process('a::before{top:0}')
+      result.css.should.eql 'a::before{content:"";top:0}'
 
     it 'throws with file name', ->
       error = null

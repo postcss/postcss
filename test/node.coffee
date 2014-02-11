@@ -57,7 +57,7 @@ describe 'Node', ->
 
     it 'clones nodes', ->
       rule = new Rule(selector: 'a')
-      rule.append(prop: 'color', value: '/**/black')
+      rule.append(prop: 'color', value: '/**/black', before: '')
 
       clone = rule.clone()
       clone.append(prop: 'display', value: 'none')
@@ -90,29 +90,29 @@ describe 'Node', ->
 
     it 'uses defaults without parent', ->
       rule = new Rule(selector: 'a')
-      rule.style().should.eql { between: ' ' }
+      rule.style().should.eql { between: ' ', after: '' }
 
     it 'uses defaults for artificial nodes', ->
       root = new Root()
       root.append(new Rule(selector: 'a'))
-      root.first.style().should.eql { between: ' ' }
+      root.first.style().should.eql { between: ' ', after: '' }
 
     it 'uses nodes style', ->
       root = new Root()
-      root.append(new Rule(selector: 'a', between: '' ))
-      root.first.style().should.eql { between: '' }
+      root.append(new Rule(selector: 'a', between: '', after: ''))
+      root.first.style().should.eql { between: '', after: '' }
 
     it 'clones style from first node', ->
       root = new Root()
-      root.append(new Rule(selector: 'a', between: '' ))
+      root.append(new Rule(selector: 'a', between: '', after: ' ' ))
       root.append(new Rule(selector: 'b' ))
 
-      root.last.style().should.eql { between: '' }
+      root.last.style().should.eql { between: '', after: ' ' }
 
     it 'uses different style for different node style type', ->
       root = new Root()
       root.append(new AtRule(name: 'page', rules: []))
       root.append(new AtRule(name: 'import'))
 
-      root.first.style().should.eql { between: ' ' }
+      root.first.style().should.eql { between: ' ', after: '' }
       root.last.style().should.eql  { between: '' }

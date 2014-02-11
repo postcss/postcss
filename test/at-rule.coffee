@@ -33,7 +33,7 @@ describe 'AtRule', ->
   describe 'clone()', ->
 
     it 'clones with mixin', ->
-      rule = new AtRule(name: 'page')
+      rule = new AtRule(name: 'page', after: '')
       rule.append(new Rule(selector: 'a'))
 
       rule.clone().toString().should.eql('@page {a {}}')

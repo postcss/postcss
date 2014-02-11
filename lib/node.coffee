@@ -121,31 +121,31 @@ class Node
     all = keys(@, defaults)
     return all if all
 
-    return defaults unless @parent
+    style = defaults
+    if @parent
 
-    root = @
-    root = root.parent while root.parent
+      root = @
+      root = root.parent while root.parent
 
-    root.styleCache ||= { }
-    if root.styleCache[type]
-      style = root.styleCache[type]
-    else
+      root.styleCache ||= { }
+      if root.styleCache[type]
+        style = root.styleCache[type]
+      else
 
-      style = defaults
-      root.eachInside (another) ->
-        return if another.styleType() != type
-        return if @ == another
+        root.eachInside (another) ->
+          return if another.styleType() != type
+          return if @ == another
 
-        all = keys(another, style)
-        if all
-          style = all
-          return false
+          all = keys(another, style)
+          if all
+            style = all
+            return false
 
-      root.styleCache[type] = style
+        root.styleCache[type] = style
 
     merge = { }
     for key of style
-      merge[key] = @[key] || style[key]
+      merge[key] = if @[key]? then @[key] else style[key]
 
     merge
 

@@ -7,7 +7,7 @@ class Declaration extends Node
     @type = 'decl'
     super
 
-  defaultStyle: -> { between: ': ' }
+  defaultStyle: -> { before: "\n    ", between: ': ' }
 
   @raw 'value'
 
@@ -25,8 +25,10 @@ class Declaration extends Node
 
   # Stringify declaration
   stringify: (builder, semicolon) ->
-    builder(@before) if @before
-    string  = @prop + @style().between + @_value.toString()
+    style = @style()
+
+    builder(style.before) if style.before
+    string  = @prop + style.between + @_value.toString()
     string += @_important || ''
     string += ';' if semicolon
     builder(string, @)

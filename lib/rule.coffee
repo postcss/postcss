@@ -7,7 +7,18 @@ class Rule extends Container.WithDecls
     @type = 'rule'
     super
 
-  defaultStyle: -> { between: ' ' }
+  # Different style for empty and non-empty rules
+  styleType: ->
+    @type + if @decls.length
+      '-body'
+    else
+      '-empty'
+
+  defaultStyle: (type) ->
+    if type == 'rule-body'
+      { between: ' ', after: @defaultAfter() }
+    else
+      { between: ' ', after: '' }
 
   @raw 'selector'
 
@@ -20,6 +31,6 @@ class Rule extends Container.WithDecls
 
   # Stringify rule
   stringify: (builder) ->
-    @stringifyBlock(builder, "#{ @_selector + @style().between }{")
+    @stringifyBlock(builder, @_selector + @style().between + '{')
 
 module.exports = Rule

@@ -17,7 +17,7 @@ class AtRule extends Container
 
   defaultStyle: (type) ->
     if type == 'atrule-body'
-      { between: ' ' }
+      { between: ' ', after: @defaultAfter() }
     else
       { between: '' }
 
