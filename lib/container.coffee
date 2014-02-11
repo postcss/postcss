@@ -70,6 +70,24 @@ class Container extends Node
 
     return false if result == false
 
+
+  # Execute callback on every child in all rules inside.
+  #
+  # First argument will be child node, second will be index inside parent.
+  #
+  #   css.eachInside (node, i) ->
+  #     console.log(node.type + ' at ' + i)
+  #
+  # Also as `each` it is safe of insert/remove nodes inside iterating.
+  eachInside: (callback) ->
+    @each (child, i) =>
+      result = callback(child, i)
+
+      if result != false and child.eachInside
+        result = child.eachInside(callback)
+
+      return result if result == false
+
   # Execute callback on every declaration in all rules inside.
   # It will goes inside at-rules recursivelly.
   #
@@ -94,24 +112,8 @@ class Container extends Node
   #
   # Also as `each` it is safe of insert/remove nodes inside iterating.
   eachComment: (callback) ->
-    @eachType('comment', callback)
-
-  # Execute callback on every child with specified type in all rules inside.
-  #
-  # First argument will be child node, second will be index inside parent.
-  #
-  #   css.eachType 'comment', (comment, i) ->
-  #     console.log(comment.content + ' at ' + i)
-  #
-  # Also as `each` it is safe of insert/remove nodes inside iterating.
-  eachType: (type, callback) ->
-    @each (child, i) =>
-      if child.type == type
-        result = callback(child, i)
-
-      if result != false and child.eachType
-        result = child.eachType(type, callback)
-
+    @eachInside (child, i) =>
+      result = if child.type == 'comment' then callback(child, i)
       return result if result == false
 
   # Add child to container.
@@ -268,7 +270,9 @@ class Container.WithRules extends Container
   #     else
   #       console.log(atrule.name + ' at ' + i)
   eachAtRule: (callback) ->
-    @eachType('atrule', callback)
+    @eachInside (child, i) =>
+      result = if child.type == 'atrule' then callback(child, i)
+      return result if result == false
 
 # Container with another rules, like @media at-rule
 class Container.WithDecls extends Container

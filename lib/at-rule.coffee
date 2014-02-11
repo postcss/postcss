@@ -10,13 +10,13 @@ class AtRule extends Container
 
   # Different style for @encoding and @page at-rules.
   styleType: ->
-    if @rules? or @decls?
-      'body'
+    @type + if @rules? or @decls?
+      '-body'
     else
-      'bodiless'
+      '-bodiless'
 
   defaultStyle: (type) ->
-    if type == 'body'
+    if type == 'atrule-body'
       { between: ' ' }
     else
       { between: '' }
