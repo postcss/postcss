@@ -157,19 +157,22 @@ source map from preprocessors).
 
 ### Rework
 
-[Rework] was the first CSS postprocessor framework and PostCSS is very similar
-to it.
+[Rework] and PostCSS are very similar, but they has different targets.
 
-However, Rework generates source map only for it own changes. It doesn’t apply
-previous source maps (for example, from Sass).
+Rework was created to build new CSS sublanguage to replace Stylus (like [Myth]).
+PostCSS was created for CSS tools, that works in chain with legacy CSS code
+(like Autoprefixer).
 
-Also Rework has no high level API and doesn’t preserve formatting
-and indentations while transforming your CSS. Thus it can’t be used
-to implement text editor plugins.
+Because of this background difference, PostCSS and Rework have API difference:
 
-Unlike Rework, PostCSS preserves all spaces and code formatting.
-If you don’t change any rules, output will be byte‑to‑byte equal.
+* PostCSS better works with source map, because it should update map from
+  previous step (like Sass compiling).
+* PostCSS saves all your spaces and code style, because it can be worked
+  in text editor plugins.
+* PostCSS has safer parser, because it can be used for legacy code.
+* PostCSS has high level API to clean your processor from common tasks.
 
+[Myth]:   http://www.myth.io/
 [Rework]: https://github.com/visionmedia/rework
 
 ## Usage
