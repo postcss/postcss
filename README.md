@@ -291,25 +291,35 @@ var result = minifier.process(css, {
 result.map //=> Source map from main.sass to main.min.css
 ```
 
-PostCSS, by default, will remove previous source map annotation comment
-add will add new annotation with path to new source map file.
-
-So, when you process `main.css` to `main.out.css`, this CSS:
-
-```css
-a { }
-/*# sourceMappingURL=main.css.map */
-```
-
-will be changed to:
+PostCSS, by default, will add annotation comment with path new source map file:
 
 ```
 a { }
 /*# sourceMappingURL=main.out.css.map */
 ```
 
-If you want to disable changing the source map annotation, set `mapAnnotation`
-option to `false`.
+If you want to remove annotation, set `mapAnnotation` option to `false`.
+
+If you miss `map` option and set `from` option, PostCSS will try to autodetect
+previous map file. For example, if you process `a.css` and `a.css.map`
+is placed in same dir, PostCSS will read previous map and generate new one.
+
+Inline maps are also supported. If input CSS will contain annotation
+from previous step with map in `data:uri`, PostCSS will update source map
+with yours changes and inine new map back to output CSS.
+
+Option `inlineMap` will force PostCSS to inline map to CSS:
+
+```
+var result = minifier.process(css, {
+    from:     'main.css',
+    to:       'main.min.css',
+    inlineMap: true
+});
+
+result.map #=> undefined, because map is in CSS
+result.css #=> "a{}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5taW4uY3NzIiwic291cmNlcyI6WyJtYWluLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFLIn0= */"
+```
 
 ### Nodes
 
