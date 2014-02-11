@@ -8,6 +8,19 @@ class AtRule extends Container
     @type = 'atrule'
     super
 
+  # Different style for @encoding and @page at-rules.
+  styleType: ->
+    if @rules? or @decls?
+      'body'
+    else
+      'bodiless'
+
+  defaultStyle: (type) ->
+    if type == 'body'
+      { between: ' ' }
+    else
+      { between: '' }
+
   # Load into at-rule mixin for selected content type
   addMixin: (type) ->
     mixin = if type == 'rules' then Container.WithRules else Container.WithDecls
@@ -15,6 +28,11 @@ class AtRule extends Container
 
     for name, value of mixin.prototype
       continue if name == 'constructor'
+
+      container = Container.prototype[name] == value
+      detector  = name == 'append' or name == 'prepend'
+      continue if container and not detector
+
       @[name] = value
     mixin.apply(@)
 
@@ -22,24 +40,25 @@ class AtRule extends Container
 
   # Stringify at-rule
   stringify: (builder, last) ->
-    name   = '@' + @name + if @afterName? then @afterName else ' '
+    style = @style()
+
+    name   = '@' + @name
     params = if @_params then @_params.toString() else ''
 
-    if @rules or @decls
-      params += if @afterParams?
-        @afterParams
-      else if params
-        ' '
-      else
-        ''
+    name += if @afterName?
+      @afterName
+    else if params
+      ' '
+    else
+      ''
 
-      @stringifyBlock(builder, name + params + '{')
+    if @rules? or @decls?
+      @stringifyBlock(builder, name + params + style.between + '{')
 
     else
       builder(@before) if @before
-      params   += if @afterParams? then @afterParams else ''
       semicolon = if not last or @semicolon then ';' else ''
-      builder(name + params + semicolon, @)
+      builder(name + params + style.between + semicolon, @)
 
 # Detect container type by child type
 for name in ['append', 'prepend']

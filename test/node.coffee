@@ -1,7 +1,8 @@
-Node = require('../lib/node')
-Root = require('../lib/root')
-Rule = require('../lib/rule')
-Raw  = require('../lib/raw')
+AtRule = require('../lib/at-rule')
+Node   = require('../lib/node')
+Root   = require('../lib/root')
+Rule   = require('../lib/rule')
+Raw    = require('../lib/raw')
 
 describe 'Node', ->
 
@@ -107,3 +108,11 @@ describe 'Node', ->
       root.append(new Rule(selector: 'b' ))
 
       root.last.style().should.eql { between: '' }
+
+    it 'uses different style for different node style type', ->
+      root = new Root()
+      root.append(new AtRule(name: 'page', rules: []))
+      root.append(new AtRule(name: 'import'))
+
+      root.first.style().should.eql { between: ' ' }
+      root.last.style().should.eql  { between: '' }

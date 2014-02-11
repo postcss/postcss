@@ -109,9 +109,14 @@ class Node
   # Default code style
   defaultStyle: -> { }
 
+  # Allow to split node with same type by other critera.
+  # For example, to use different style for bodiless at-rules.
+  styleType: -> 'common'
+
   # Copy code style from first node with same type
   style: ->
-    defaults = @defaultStyle()
+    type     = @styleType()
+    defaults = @defaultStyle(type)
 
     all = keys(@, defaults)
     return all if all
@@ -122,11 +127,14 @@ class Node
     root = root.parent while root.parent
 
     root.styleCache ||= { }
-    if root.styleCache[@type]
-      style = root.styleCache[@type]
+    cacheKey = @type + '-' + type
+
+    if root.styleCache[cacheKey]
+      style = root.styleCache[cacheKey]
     else
       style = defaults
       root.eachType @type, (another) ->
+        return if another.styleType() != type
         return if @ == another
 
         all = keys(another, style)
@@ -134,7 +142,7 @@ class Node
           style = all
           return false
 
-      root.styleCache[@type] = style
+      root.styleCache[cacheKey] = style
 
     merge = { }
     for key of style

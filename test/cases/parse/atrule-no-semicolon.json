@@ -15,9 +15,9 @@
             },
             "before": "\n",
             "name": "charset",
-            "afterName": " ",
             "_params": "\"UTF-8\"",
-            "afterParams": ""
+            "afterName": " ",
+            "between": ""
         }
     ],
     "after": "\n\n"

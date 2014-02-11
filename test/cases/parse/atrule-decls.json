@@ -15,9 +15,9 @@
             },
             "before": "",
             "name": "page",
-            "afterName": " ",
             "_params": ":left",
-            "afterParams": " ",
+            "afterName": " ",
+            "between": " ",
             "decls": [
                 {
                     "type": "decl",
@@ -53,9 +53,9 @@
             },
             "before": "\n\n",
             "name": "font-face",
-            "afterName": " ",
             "_params": "",
-            "afterParams": "",
+            "afterName": "",
+            "between": " ",
             "decls": [
                 {
                     "type": "decl",
@@ -92,9 +92,9 @@
             },
             "before": "\n\n",
             "name": "viewport",
-            "afterName": " ",
             "_params": "",
-            "afterParams": "",
+            "afterName": "",
+            "between": " ",
             "decls": [
                 {
                     "type": "decl",
@@ -131,9 +131,9 @@
             },
             "before": "\n\n",
             "name": "-ms-viewport",
-            "afterName": " ",
             "_params": "",
-            "afterParams": "",
+            "afterName": "",
+            "between": " ",
             "decls": [
                 {
                     "type": "decl",

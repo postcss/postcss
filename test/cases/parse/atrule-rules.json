@@ -15,9 +15,9 @@
             },
             "before": "",
             "name": "supports",
-            "afterName": " ",
             "_params": "(animation-name: test)",
-            "afterParams": " ",
+            "afterName": " ",
+            "between": " ",
             "rules": [
                 {
                     "type": "atrule",
@@ -33,9 +33,9 @@
                     },
                     "before": "\n    ",
                     "name": "-custom-keyframe",
-                    "afterName": " ",
                     "_params": "anim",
-                    "afterParams": " ",
+                    "afterName": " ",
+                    "between": " ",
                     "rules": [
                         {
                             "type": "rule",

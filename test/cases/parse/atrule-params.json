@@ -15,12 +15,12 @@
             },
             "before": "",
             "name": "-moz-document",
-            "afterName": "",
             "_params": {
                 "value": "url(\"example.com/{\")",
                 "raw": "/* near */ /* filter */ url(\"example.com/{\") /* a */"
             },
-            "afterParams": " ",
+            "afterName": "",
+            "between": " ",
             "rules": [],
             "after": ""
         }

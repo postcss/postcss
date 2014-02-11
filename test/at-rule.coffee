@@ -1,5 +1,6 @@
 Declaration = require('../lib/declaration')
 AtRule      = require('../lib/at-rule')
+parse       = require('../lib/parse')
 Rule        = require('../lib/rule')
 
 describe 'AtRule', ->
@@ -42,3 +43,10 @@ describe 'AtRule', ->
     it 'inserts default spaces', ->
       rule = new AtRule(name: 'page', params: 1, decls: [])
       rule.toString().should.eql('@page 1 {}')
+
+    it 'clone spaces from another comment', ->
+      root = parse('@page{}')
+      rule = new AtRule(name: 'keyframes', params: 'anim', rules: [])
+      root.append(rule)
+
+      rule.toString().should.eql('@keyframes anim{}')
