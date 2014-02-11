@@ -238,6 +238,22 @@ var wrong = "a {";
 processor.process(wrong, { from: 'main.css' });
 //=> Can't parse CSS: Unclosed block at line 1:1 in main.css
 ```
+
+### Multiple Inputs
+
+Function `postcss()` generates processor only for one input.
+If you need process several inputs (like in styles concatenation) you can use
+little bit lower API:
+
+```js
+var file1 = postcss.parse(css1, { from: 'a.css' });
+var file2 = postcss.parse(css2, { from: 'b.css' });
+
+file1.rules = file1.rules.concat( file2.rules );
+
+var result = file1.toResult({ to: 'app.css', map: true });
+```
+
 ### Source Map
 
 PostCSS will generate a source map, if you set `map` option to `true`

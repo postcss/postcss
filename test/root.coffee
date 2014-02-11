@@ -1,6 +1,7 @@
-Root  = require('../lib/root')
-Rule  = require('../lib/rule')
-parse = require('../lib/parse')
+Root   = require('../lib/root')
+Rule   = require('../lib/rule')
+parse  = require('../lib/parse')
+Result = require('../lib/result')
 
 fs = require('fs')
 
@@ -32,3 +33,13 @@ describe 'Root', ->
       css.insertBefore(css.rules[0], new Rule(selector: 'em'))
 
       css.toString().should.eql("em {}\na {}\n")
+
+  describe 'toResult()', ->
+
+    it 'generates result with map', ->
+      root   = parse('a {}')
+      result = root.toResult(map: true)
+
+      result.should.be.a.instanceOf(Result)
+      result.css.should.eql "a {}\n/*# sourceMappingURL=to.css.map */"
+      result.should.have.property('map')

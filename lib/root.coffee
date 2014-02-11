@@ -1,8 +1,9 @@
-Declaration = require('./declaration')
-Container   = require('./container')
-Comment     = require('./comment')
-AtRule      = require('./at-rule')
-Rule        = require('./rule')
+MapGenerator = require('./map-generator')
+Declaration  = require('./declaration')
+Container    = require('./container')
+Comment      = require('./comment')
+AtRule       = require('./at-rule')
+Rule         = require('./rule')
 
 # Root of CSS
 class Root extends Container.WithRules
@@ -22,5 +23,10 @@ class Root extends Container.WithRules
   stringify: (builder) ->
     @stringifyContent(builder)
     builder(@after) if @after
+
+  # Generate processing result with optional source map
+  toResult: (opts = { }) ->
+    map = new MapGenerator(@, opts)
+    map.getResult()
 
 module.exports = Root

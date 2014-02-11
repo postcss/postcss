@@ -1,4 +1,3 @@
-MapGenerator = require('./map-generator')
 Declaration  = require('./declaration')
 Comment      = require('./comment')
 AtRule       = require('./at-rule')
@@ -22,8 +21,7 @@ class PostCSS
       returned = processor(parsed)
       parsed   = returned if returned instanceof Root
 
-    map = new MapGenerator(parsed, opts)
-    map.getResult()
+    parsed.toResult(opts)
 
 # Framework for CSS postprocessors
 #
