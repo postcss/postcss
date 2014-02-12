@@ -48,7 +48,7 @@ class MapGenerator
         file = @prevAnnotation().text.replace('# sourceMappingURL=', '')
         map  = path.join(path.dirname(@opts.from), file)
 
-      if fs.existsSync(map)
+      if fs.existsSync?(map)
         fs.readFileSync(map).toString()
       else
         false
