@@ -82,9 +82,7 @@ class MapGenerator
       bytes = (char.charCodeAt(0) for char in @map.toString())
       "data:application/json;base64," + base64.fromByteArray(bytes)
     else
-      parts = @outputFile().split('/')
-      file  = parts[parts.length - 1]
-      file + '.map'
+      @outputFile() + '.map'
 
     @css += "\n/*# sourceMappingURL=#{ content } */"
 
