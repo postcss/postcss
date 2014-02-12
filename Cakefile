@@ -16,6 +16,7 @@ https = require('https')
 http  = require('http')
 get = (url, callback) ->
   protocol = if url.match(/^https/) then https else http
+
   protocol.get url, (res) ->
     data = ''
     res.on 'data', (chunk) -> data += chunk
@@ -25,12 +26,13 @@ getStyles = (url, callback) ->
   get url, (html) ->
     styles = html.match(/[^"]+\.css/g)
     error("Wrong answer from #{ url }") unless styles
-    styles = styles.map (i) -> i.replace(/^\.?\//, url)
+    styles = styles.map (i) -> i.replace(/^\.?\.?\//, url)
     callback(styles)
 
 task 'integration', 'Test parser/stringifier on real CSS', ->
   invoke('clean')
 
+  require('coffee-script/register')
   postcss = require(__dirname + '/lib/postcss')
   test = (css) ->
     try
