@@ -105,8 +105,8 @@ postcss(function (css) { }).process(css).css == css;
 And when you modify CSS nodes, PostCSS will try to copy coding style:
 
 ```js
-contenter.process("a::before{color: black}")
-// a::before{content: '';color: black}
+contenter.process("a::before{color:black}")
+// a::before{content:'';color:black}
 
 contenter.process("a::before {\n  color: black;\n  }")
 // a::before {
@@ -163,14 +163,14 @@ Rework was created to build new CSS sublanguage to replace Stylus (like [Myth]).
 PostCSS was created for CSS tools, that works in chain with legacy CSS code
 (like Autoprefixer).
 
-Because of this background difference, PostCSS and Rework have API difference:
+Because of this background difference, PostCSS:
 
-* PostCSS better works with source map, because it should update map from
-  previous step (like Sass compiling).
-* PostCSS saves all your spaces and code style, because it can be worked
-  in text editor plugins.
-* PostCSS has safer parser, because it can be used for legacy code.
-* PostCSS has high level API to clean your processor from common tasks.
+* better works with source map, because it should update map from previous step
+  (like Sass compiling)
+* saves all your spaces and code style, because it can be worked in text editor
+  plugins
+* has safer parser, because it can be used for legacy code
+* has high level API to clean your processor from common tasks
 
 [Myth]:   http://www.myth.io/
 [Rework]: https://github.com/visionmedia/rework
@@ -246,7 +246,9 @@ processor.process(wrong, { from: 'main.css' });
 
 Function `postcss()` generates processor only for one input.
 If you need process several inputs (like in styles concatenation) you can use
-little bit lower API:
+`postcss.parse()`.
+
+Let’s join two CSS with source map support in 5 lines of code:
 
 ```js
 var file1 = postcss.parse(css1, { from: 'a.css' });
@@ -294,7 +296,8 @@ var result = minifier.process(css, {
 result.map //=> Source map from main.sass to main.min.css
 ```
 
-PostCSS, by default, will add annotation comment with path new source map file:
+PostCSS, by default, will add annotation comment with path to new source map
+file:
 
 ```
 a { }
@@ -303,9 +306,10 @@ a { }
 
 If you want to remove annotation, set `mapAnnotation` option to `false`.
 
-If you miss `map` option and set `from` option, PostCSS will try to autodetect
-previous map file. For example, if you process `a.css` and `a.css.map`
-is placed in same dir, PostCSS will read previous map and generate new one.
+If you miss `map` option, PostCSS will try to autodetect previous map file.
+For example, if you process `a.css` and `a.css.map` is placed in same dir,
+PostCSS will read previous map and generate new one. You can disable
+autodetection by `map: false`.
 
 Inline maps are also supported. If input CSS will contain annotation
 from previous step with map in `data:uri`, PostCSS will update source map
@@ -380,21 +384,32 @@ root.rules[0].after           //=> "\n" before }
 root.rules[0].decls[0].before //=> "\n  " before color: black
 ```
 
+Every `Declaration` has `between` property with colon, spaces and comments
+between property name and value. `Rule` stores spaces and comments between
+selector and `{` in `between` property. `AtRule` uses same `between` also
+to store spaces and comments before `{` or `;` for bodiless at-rule.
+
 The simplest way to minify CSS is to set `before` and `after` properties
 to an empty string:
 
 ```js
 var minifier = postcss(function (css) {
     css.eachDecl(function (decl) {
-        decl.before = '';
+        decl.before  = '';
+        decl.between = ':';
     });
     css.eachRule(function (rule) {
-        rule.before = '';
-        rule.after  = '';
+        rule.before  = '';
+        rule.between = '';
+        rule.after   = '';
     });
     css.eachAtRule(function (atRule) {
-        atRule.before = '';
-        atRule.after  = '';
+        atRule.before  = '';
+        atRule.between = '';
+        atRule.after   = '';
+    });
+    css.eachComment(function (comment) {
+        comment.removeSelf();
     });
 });
 
@@ -517,8 +532,16 @@ rule.each(function (decl, i) {
 });
 ```
 
-Because CSS have nested structure, PostCSS contains recursive iterators
-for different node types:
+Because CSS have nested structure, PostCSS contains also recursive iterator
+`eachInside`:
+
+```js
+root.eachInside(function (node, i) {
+    console.log(node.type ' inside ' + parent.type);
+});
+```
+
+There are also shortcuts to recursive iterate all nodes of specific type:
 
 ```js
 root.eachDecl(function (decl, i) {
