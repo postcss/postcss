@@ -203,21 +203,36 @@ describe 'source maps', ->
 
     step2.should.not.have.property('map')
 
+  it 'works in subdirs', ->
+    result = @doubler.process 'a { }',
+      from: 'from/a.css'
+      to:   'out/b.css'
+      map:   true
+
+    result.css.should.match(/sourceMappingURL=b.css.map/)
+
+    map = new sourceMap.SourceMapConsumer(result.map)
+    map.file.should.eql 'b.css'
+    map.sources.should.eql ['../from/a.css']
+
   it 'uses map from subdir', ->
     step1 = @doubler.process 'a { }',
       from: 'a.css'
       to:   'out/b.css'
       map:   true
 
-    step2 = @doubler.process 'a { }',
-      from: 'b.css'
-      to:   'c.css'
+    step2 = @doubler.process step1.css,
+      from: 'out/b.css'
+      to:   'out/c.css'
       map:   step1.map
 
-
     map = new sourceMap.SourceMapConsumer(step2.map)
-    map.originalPositionFor(line: 1, column: 0).should.eql
-      source: 'a.css'
-      line:   1
-      column: 0
-      name:   null
+    map.originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
+
+    step3 = @doubler.process step2.css,
+      from: 'c.css'
+      to:   'd.css'
+      map:   step2.map
+
+    map = new sourceMap.SourceMapConsumer(step3.map)
+    map.originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'

@@ -71,7 +71,7 @@ class MapGenerator
   applyPrevMap: ->
     if @prevMap()
       prev = new mozilla.SourceMapConsumer(@prevMap())
-      @map.applySourceMap(prev, @opts.from)
+      @map.applySourceMap(prev, @relative(@opts.from))
 
   # Add source map annotation comment if it is needed
   addAnnotation: () ->
@@ -90,7 +90,7 @@ class MapGenerator
 
   # Return output CSS file path
   outputFile: ->
-    @opts.to || 'to.css'
+    if @opts.to then path.basename(@opts.to) else 'to.css'
 
   # Return Result object with map
   generateMap: ->
@@ -102,6 +102,17 @@ class MapGenerator
       new Result(@css)
     else
       new Result(@css, @map.toString())
+
+  # Return path relative from output CSS file
+  relative: (file) ->
+    from = if @opts.to then path.dirname(@opts.to) else '.'
+    file = path.relative(from, file)
+    file = file.replace('\\', '/') if path.sep == '\\'
+    file
+
+  # Return path of node source for map
+  sourcePath: (node) ->
+    @relative(node.source.file || 'from.css')
 
   # Return CSS string and source map
   stringify: () ->
@@ -115,7 +126,7 @@ class MapGenerator
 
       if node?.source?.start and type != 'end'
         @map.addMapping
-          source:   node.source.file || 'from.css'
+          source:   @sourcePath(node)
           original:
             line:   node.source.start.line
             column: node.source.start.column - 1
@@ -133,7 +144,7 @@ class MapGenerator
 
       if node?.source?.end and type != 'start'
         @map.addMapping
-          source:   node.source.file || 'from.css'
+          source:   @sourcePath(node)
           original:
             line:   node.source.end.line
             column: node.source.end.column
