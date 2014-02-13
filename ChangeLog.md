@@ -1,3 +1,20 @@
+## 0.3 “Prince Seere”
+* Add `Comment` node for comments between declarations or rules.
+* Add source map annotation comment to output CSS.
+* Allow to inline source map to annotation comment by data:uri.
+* Fix source maps on Windows.
+* Fix source maps for styles in subdirectory (by @nDmitry and @lydell).
+* Autodetect previous source map.
+* Add `first` and `last` shortcuts to container nodes.
+* Parse `!important` to separated property in `Declaration`.
+* Allow to break iteration by returning `false`.
+* Copy code style to new nodes.
+* Add `eachInside` method to recursivelly iterate all nodes.
+* Add `selectors` shortcut to get selectors array.
+* Add `toResult` method to `Rule` to simplify work with several input files.
+* Clean declaration’s `value`, rule’s `selector` and at-rule’s `params`
+  by storing spaces in `between` property.
+
 ## 0.2 “Duke Dantalion”
 * Add source map support.
 * Add shortcuts to create nodes.
