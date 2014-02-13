@@ -296,8 +296,8 @@ result.map //=> Source map from main.sass to main.min.css
 ```
 
 PostCSS try to autodetect previous map file. For example, if you process `a.css`
-and `a.css.map` is placed in same dir, PostCSS will read previous map and
-generate new one. You can disable autodetection by `map: false`.
+and `a.css.map` is placed in same dir, PostCSS will read previous map and
+generate new one. You can disable autodetection by `map: false`.
 
 PostCSS, by default, will add annotation comment with path to new source map
 file:
@@ -322,8 +322,8 @@ var result = minifier.process(css, {
     inlineMap: true
 });
 
-result.map #=> undefined, because map is in CSS
-result.css #=> "a{}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5taW4uY3NzIiwic291cmNlcyI6WyJtYWluLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFLIn0= */"
+result.map //=> undefined, because map is in CSS
+result.css //=> "a{}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5taW4uY3NzIiwic291cmNlcyI6WyJtYWluLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFLIn0= */"
 ```
 
 ### Nodes
@@ -372,18 +372,20 @@ and all earlier spaces.
 Nodes with children (`Root`, `AtRule` and `Rule`) contain also `after` property
 with spaces after last child and before `}` or end of file.
 
-```js
-var root = postcss.parse("a {\n  color: black;\n}\n");
-
-root.rules[0].decls[0].before //=> "\n  " before color: black
-root.rules[0].after           //=> "\n" before }
-root.after                    //=> "\n" from end of file
-```
-
 Every `Declaration` has `between` property with colon, spaces and comments
 between property name and value. `Rule` stores spaces and comments between
 selector and `{` in `between` property. `AtRule` uses `between` also to store
 spaces and comments before `{` or `;` for bodiless at-rule.
+
+```js
+var root = postcss.parse("a {\n  color: black;\n}\n");
+
+root.rules[0].between          //=> " " between selector and {
+root.rules[0].decls[0].before  //=> "\n  " before color: black
+root.rules[0].decls[0].between //=> ": " between property name and value
+root.rules[0].after            //=> "\n" before }
+root.after                     //=> "\n" from end of file
+```
 
 The simplest way to minify CSS is to set `before`, `between` and `after`
 properties to an empty string:
@@ -427,7 +429,7 @@ rule._selector.raw //=> 'a /**/ b' original raw value
 ```
 
 But PostCSS saves raw content to be able to stringify it to CSS, if you don’t
-change origin value. As you can remember, PostCSS tries to save origin CSS
+change origin value. As you can remember, PostCSS tries to save origin CSS
 byte-to-byte, when it’s possible:
 
 ```js
@@ -456,7 +458,7 @@ There are common method to work with children:
 * `every(fn)` to return true if `fn` returns true on all children.
 
 Methods `insertBefore`, `insertAfter` and `remove` can receive child node
-or child index as an `existsChild` argument. Have in mind that child index works
+or child index as an `existsChild` argument. Have in mind that child index works
 much faster.
 
 There are two shorcuts to get first and last child:
