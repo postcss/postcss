@@ -17,6 +17,12 @@ describe 'Rule', ->
       rule = new Rule(selector: ".a\n, .b  , .c")
       rule.selectors.should.eql ['.a', '.b', '.c']
 
+    it 'is smart about commas', ->
+      # Note: We don’t have to care about unquoted attribute values
+      # (such as `[foo=a,b]`), because that is invalid CSS.
+      rule = new Rule(selector: "[foo='a, b'], a:-moz-any(:hover, :focus, [href*=','])")
+      rule.selectors.should.eql ["[foo='a, b']", "a:-moz-any(:hover, :focus, [href*=','])"]
+
     it 'receive array', ->
       rule = new Rule(selector: 'a,b')
       rule.selectors = ['em', 'strong']
