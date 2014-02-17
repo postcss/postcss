@@ -347,7 +347,8 @@ vendor.unprefixed('-moz-tab-size') //=> 'tab-size'
 
 #### List
 
-To split `background-image` or `transform` values you can use `list` helper:
+To safely split comma- or space-separated values (like in `background-image`
+or `transform` ) with brackets and quotes support you can use `list` helper:
 
 ```js
 var list = require('postcss/lib/list');
