@@ -1,5 +1,6 @@
 Container   = require('./container')
 Declaration = require('./declaration')
+list        = require('./list')
 
 # CSS rule like “a { }”
 class Rule extends Container.WithDecls
@@ -25,7 +26,7 @@ class Rule extends Container.WithDecls
   # Shortcut to get selectors as array
   @prop 'selectors',
     get: ->
-      @selector.split(/\s*,\s*/)
+      list.comma(@selector)
     set: (values) ->
       @selector = values.join(', ')
 
