@@ -70,7 +70,22 @@ class MapGenerator
   # Apply source map from previous compilation step (like Sass)
   applyPrevMap: ->
     if @prevMap()
-      prev = new mozilla.SourceMapConsumer(@prevMap())
+      prev = @prevMap()
+
+      prev = if typeof(prev) == 'string'
+        JSON.parse(prev)
+      else if prev instanceof mozilla.SourceMapConsumer
+        mozilla.SourceMapGenerator.fromSourceMap(prev).toJSON()
+      else if typeof(prev) == 'object' and prev.toJSON
+        prev.toJSON()
+      else
+        prev
+
+      from = path.dirname(@opts.from)
+      prev.sources = for source in prev.sources
+        @relative( path.resolve(from, source) )
+
+      prev = new mozilla.SourceMapConsumer(prev)
       @map.applySourceMap(prev, @relative(@opts.from))
 
   # Add source map annotation comment if it is needed

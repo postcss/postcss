@@ -1,6 +1,8 @@
-sourceMap = require('source-map')
-postcss   = require('../lib/postcss')
-fs        = require('fs-extra')
+mozilla = require('source-map')
+postcss = require('../lib/postcss')
+fs      = require('fs-extra')
+
+parseMap = (str) -> new mozilla.SourceMapConsumer(str)
 
 describe 'source maps', ->
   before ->
@@ -27,7 +29,7 @@ describe 'source maps', ->
         decl.parent.prepend(changed)
 
     result = processor.process(css, from: 'a.css', to: 'b.css', map: true)
-    map    = new sourceMap.SourceMapConsumer(result.map)
+    map    = parseMap(result.map)
 
     map.file.should.eql('b.css')
 
@@ -60,7 +62,7 @@ describe 'source maps', ->
       to:   'c.css'
       map:  doubled.map
 
-    map = new sourceMap.SourceMapConsumer(lighted.map)
+    map = parseMap(lighted.map)
 
     map.originalPositionFor(line: 1, column: 18).should.eql
       source: 'a.css'
@@ -211,7 +213,7 @@ describe 'source maps', ->
 
     result.css.should.match(/sourceMappingURL=b.css.map/)
 
-    map = new sourceMap.SourceMapConsumer(result.map)
+    map = parseMap(result.map)
     map.file.should.eql 'b.css'
     map.sources.should.eql ['../from/a.css']
 
@@ -223,16 +225,37 @@ describe 'source maps', ->
 
     step2 = @doubler.process step1.css,
       from: 'out/b.css'
-      to:   'out/c.css'
+      to:   'out/two/c.css'
       map:   step1.map
 
-    map = new sourceMap.SourceMapConsumer(step2.map)
-    map.originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
+    map = parseMap(step2.map)
+    map.originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
 
     step3 = @doubler.process step2.css,
       from: 'c.css'
       to:   'd.css'
       map:   step2.map
 
-    map = new sourceMap.SourceMapConsumer(step3.map)
-    map.originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
+    map = parseMap(step3.map)
+    map.originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
+
+  it 'works with different types of maps', ->
+    step1 = @doubler.process 'a { }',
+      from: 'a.css'
+      to:   'out/b.css'
+      map:   true
+
+    maps = [
+      JSON.parse(step1.map)
+      parseMap(step1.map)
+      mozilla.SourceMapGenerator.fromSourceMap(parseMap(step1.map))
+    ]
+
+    for map in maps
+      step2 = @doubler.process step1.css,
+        from: 'out/b.css'
+        to:   'out/c.css'
+        map:   map
+
+      map = parseMap(step2.map)
+      map.originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
