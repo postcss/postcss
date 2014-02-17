@@ -13,6 +13,7 @@ It takes care of most common CSS tool tasks:
 You can use this framework to write you own:
 
 * CSS minifier or beautifizer.
+* CSS polyfills.
 * Grunt plugin to generate sprites, include `data-uri` images
   or any other works.
 * Text editor plugin to automate CSS routine.
@@ -22,9 +23,13 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 
 ## Built with PostCSS
 
-* [Autoprefixer](https://github.com/ai/autoprefixer)
-* [grunt-pixrem](https://github.com/robwierzbowski/grunt-pixrem)
-* [CSS MQPacker](https://github.com/hail2u/node-css-mqpacker)
+* [Autoprefixer] adds vendor prefixes by Can I Use data.
+* [grunt-pixrem], `rem` unit polyfill.
+* [CSS MQPacker] joins same media queries.
+
+[Autoprefixer]: https://github.com/ai/autoprefixer)
+[grunt-pixrem]: https://github.com/robwierzbowski/grunt-pixrem)
+[CSS MQPacker]: https://github.com/hail2u/node-css-mqpacker)
 
 ## Quick Example
 
