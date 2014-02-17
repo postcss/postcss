@@ -332,6 +332,30 @@ result.map //=> undefined, because map is in CSS
 result.css //=> "a{}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5taW4uY3NzIiwic291cmNlcyI6WyJtYWluLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFLIn0= */"
 ```
 
+### Helpers
+
+#### Vendor
+
+PostCSS contains heigh optimized code to split vendor prefix:
+
+```js
+var vendor = require('postcss/lib/vendor');
+
+vendor.prefix('-moz-tab-size')     //=> '-moz-'
+vendor.unprefixed('-moz-tab-size') //=> 'tab-size'
+```
+
+#### List
+
+To split `background-image` or `transform` values you can use `list` helper:
+
+```js
+var list = require('postcss/lib/list');
+
+list.space(image.value)     //=> ['linear-gradient(white, black)', 'blue']
+list.comma(transform.value) //=> ['color 200ms', 'background 200ms']
+```
+
 ### Nodes
 
 Processor function receives `Root` node with CSS node tree inside.
