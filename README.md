@@ -27,9 +27,9 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [grunt-pixrem], `rem` unit polyfill.
 * [CSS MQPacker] joins same media queries.
 
-[Autoprefixer]: https://github.com/ai/autoprefixer)
-[grunt-pixrem]: https://github.com/robwierzbowski/grunt-pixrem)
-[CSS MQPacker]: https://github.com/hail2u/node-css-mqpacker)
+[Autoprefixer]: https://github.com/ai/autoprefixer
+[grunt-pixrem]: https://github.com/robwierzbowski/grunt-pixrem
+[CSS MQPacker]: https://github.com/hail2u/node-css-mqpacker
 
 ## Quick Example
 
