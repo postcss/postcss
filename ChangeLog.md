@@ -1,3 +1,7 @@
+## 0.3.1
+* Fix relative paths from previous source map.
+* Safer space split in `Rule#selectors` (by Simon Lydell).
+
 ## 0.3 “Prince Seere”
 * Add `Comment` node for comments between declarations or rules.
 * Add source map annotation comment to output CSS.
