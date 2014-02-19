@@ -1,5 +1,5 @@
-mozilla = require('source-map')
-base64  = require('base64-js')
+base64js = require('base64-js')
+mozilla  = require('source-map')
 
 Result = require('./result')
 lazy   = require('./lazy')
@@ -36,12 +36,7 @@ class MapGenerator
     return @opts.map if @opts.map and typeof(@opts.map) != 'boolean'
 
     if @isPrevInline()
-      start = '# sourceMappingURL=data:application/json;base64,'
-      text  = @prevAnnotation().text
-      text  = text[start.length..-1]
-      bytes = base64.toByteArray(text)
-
-      (String.fromCharCode(byte) for byte in bytes).join('')
+      @encodeInline(@prevAnnotation().text)
     else if @opts.from
       map = @opts.from + '.map'
       if @prevAnnotation()
@@ -62,6 +57,22 @@ class MapGenerator
       last
     else
       null
+
+  # Encode different type of inline
+  encodeInline: (text) ->
+    uri    = '# sourceMappingURL=data:application/json,'
+    base64 = '# sourceMappingURL=data:application/json;base64,'
+
+    if @startWith(text, uri)
+      decodeURIComponent( text[uri.length..-1] )
+
+    else if @startWith(text, base64)
+      text  = text[base64.length..-1]
+      bytes = base64js.toByteArray(text)
+      (String.fromCharCode(byte) for byte in bytes).join('')
+
+    else
+      throw new Error('Unknown source map encoding')
 
   # Clear source map annotation comment
   clearAnnotation: ->
@@ -95,7 +106,7 @@ class MapGenerator
 
     content = if @isInline()
       bytes = (char.charCodeAt(0) for char in @map.toString())
-      "data:application/json;base64," + base64.fromByteArray(bytes)
+      "data:application/json;base64," + base64js.fromByteArray(bytes)
     else
       @outputFile() + '.map'
 

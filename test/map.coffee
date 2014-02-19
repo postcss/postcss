@@ -147,6 +147,27 @@ describe 'source maps', ->
     base64 = new Buffer(common2.map).toString('base64')
     inline2.css.should.endWith(base64 + ' */')
 
+  it 'supports uri encoding in inline map', ->
+    css = "a {\n" +
+          "  color: #000000;\n" +
+          "}\n" +
+          "/*# sourceMappingURL=data:application/json,%7B%22version%22%3A3%2C" +
+          "%22file%22%3A%22test.css%22%2C%22sources%22%3A%5B%22test.less%22" +
+          "%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22AAAA%3BEAAI%2CcAA" +
+          "A%22%7D */"
+
+    result = @doubler.process(css, from: 'test.css', to: 'test.css')
+
+    result.should.not.have.property('map')
+    result.css.should.match(/# sourceMappingURL=data:/)
+
+  it 'raises on unknown inline encoding', ->
+    css = "a { }\n" +
+          "/*# sourceMappingURL=data:application/json;" +
+          "md5,68b329da9893e34099c7d8ad5cb9c940*/"
+
+    ( => @doubler.process(css) ).should.throw('Unknown source map encoding')
+
   it 'allows change map type', ->
     css = 'a { }'
 
