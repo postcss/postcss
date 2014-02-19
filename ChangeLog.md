@@ -1,3 +1,6 @@
+## 0.3.2
+* Add URI encoding support for inline source maps.
+
 ## 0.3.1
 * Fix relative paths from previous source map.
 * Safer space split in `Rule#selectors` (by Simon Lydell).
