@@ -92,12 +92,9 @@ class MapGenerator
       else
         prev
 
-      from = path.dirname(@opts.from)
-      prev.sources = for source in prev.sources
-        @relative( path.resolve(from, source) )
-
       prev = new mozilla.SourceMapConsumer(prev)
-      @map.applySourceMap(prev, @relative(@opts.from))
+      from = @relative(@opts.from)
+      @map.applySourceMap(prev, from, path.dirname(from))
 
   # Add source map annotation comment if it is needed
   addAnnotation: () ->
