@@ -10,7 +10,7 @@
     "url": "https://github.com/ai/postcss.git"
   },
   "dependencies": {
-    "source-map": "~0.1.32",
+    "source-map": "~0.1.33",
     "base64-js":  "0.0.6"
   },
   "devDependencies": {
