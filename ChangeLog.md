@@ -1,3 +1,6 @@
+## 0.3.3
+* Remove source map hacks by using new Mozilla’s `source-map` (by Simon Lydell).
+
 ## 0.3.2
 * Add URI encoding support for inline source maps.
 
