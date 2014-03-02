@@ -18,7 +18,7 @@
     "fs-extra":      "0.8.1",
     "gonzales":      "1.0.7",
     "rework":        "0.20.2",
-    "should":        "3.1.2",
+    "should":        "3.1.3",
     "mocha":         "1.17.1",
     "cssom":         "0.3.0"
   },
