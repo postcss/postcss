@@ -130,8 +130,9 @@ task 'bench', 'Benchmark on GitHub styles', ->
     indent('Gonzales', title)
 
     start = new Date()
-    callback()
+    callback() for i in [0..10]
     time  = (new Date()) - start
+    time  = Math.round(time / 10)
     print(time + " ms")
 
     if times.PostCSS
