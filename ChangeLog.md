@@ -1,3 +1,6 @@
+## 0.3.4
+* Better space symbol detect to read UTF-8 BOM correctly.
+
 ## 0.3.3
 * Remove source map hacks by using new Mozilla’s `source-map` (by Simon Lydell).
 
