@@ -281,8 +281,7 @@ class Parser
     @source[@pos..@pos + string.length - 1] == string
 
   space: ->
-    @letter == ' '  or @letter == "\t" or @letter == "\n" or
-    @letter == "\f" or @letter == "\r"
+    @letter.match(/\s/)
 
   init: (node) ->
     @current.push(node)

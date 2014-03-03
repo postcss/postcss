@@ -12,6 +12,9 @@ describe 'postcss.parse()', ->
 
   describe 'empty file', ->
 
+    it 'parses UTF-8 BOM', ->
+      parse('\uFEFF@host { a {\f} }')
+
     it 'parses empty file', ->
       parse('').should.eql { type: 'root', rules: [], after: '' }
 
