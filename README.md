@@ -26,10 +26,12 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [Autoprefixer] adds vendor prefixes by Can I Use data.
 * [grunt-pixrem], `rem` unit polyfill.
 * [CSS MQPacker] joins same media queries.
+* [RTLCSS] framework for transforming CSS from LTR to RTL and vice versa.
 
 [Autoprefixer]: https://github.com/ai/autoprefixer
 [grunt-pixrem]: https://github.com/robwierzbowski/grunt-pixrem
 [CSS MQPacker]: https://github.com/hail2u/node-css-mqpacker
+[RTLCSS]: https://github.com/MohammadYounes/rtlcss
 
 ## Quick Example
 
