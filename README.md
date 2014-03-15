@@ -568,7 +568,7 @@ Because CSS have nested structure, PostCSS also contains recursive iterator
 
 ```js
 root.eachInside(function (node, i) {
-    console.log(node.type ' inside ' + parent.type);
+    console.log(node.type + ' inside ' + node.parent.type);
 });
 ```
 
