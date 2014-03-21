@@ -27,10 +27,12 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [grunt-pixrem], `rem` unit polyfill.
 * [CSS MQPacker] joins same media queries.
 * [RTLCSS] mirrors styles for right-to-left locales.
+* [CSSWring] with full source map support.
 
 [Autoprefixer]: https://github.com/ai/autoprefixer
 [grunt-pixrem]: https://github.com/robwierzbowski/grunt-pixrem
 [CSS MQPacker]: https://github.com/hail2u/node-css-mqpacker
+[CSSWring]:     https://github.com/hail2u/node-csswring
 [RTLCSS]:       https://github.com/MohammadYounes/rtlcss
 
 ## Quick Example
