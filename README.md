@@ -594,6 +594,8 @@ root.eachComment(function (comment, i) {
 })
 ```
 
+You can break iteration by `return false`.
+
 ### Root Node
 
 `Root` node contains entire CSS tree. Its children can be only `Comment`,
