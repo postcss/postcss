@@ -187,6 +187,39 @@ Because of this background difference, PostCSS:
 
 ## Usage
 
+You can parse CSS by `postcss.parse()` method, which returns CSS AST:
+
+```js
+var postcss = require('postcss');
+
+var css = postcss.parse('a { color: black }');
+```
+
+Then you can change this AST. Use `css.list` to get childs.
+Properties `rule.selector`, `decl.prop`, `decl.value`, `atrule.name`
+and `atrule.params` contain data.
+
+Don’t use underscore properties (like `_selector`, `_params` and `_value`),
+because they are only for comments save magic
+(See [Raw Properties](#Raw Properties) below). Use getters and setters instead
+(like `selector`, `selectors`, `params` and `value`).
+
+```js
+css.list[0].value = 'white';
+```
+
+After changes you can get new CSS and modification’s source map:
+
+```js
+var result = css.toResult(options);
+
+result.css //=> 'a { color: white }'
+result.map //=> '{"version":3, … }'
+```
+
+Methods `postcss.parse()` and `CSS#toResult()` are low level API, for most cases
+it will be better to create processors with simplier API and chaining.
+
 ### Processor
 
 The function `postcss(fn)` creates a processor from your function:
