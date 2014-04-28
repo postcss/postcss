@@ -1,4 +1,4 @@
-SyntexError = require('./syntax-error')
+SyntaxError = require('./syntax-error')
 Declaration = require('./declaration')
 Comment     = require('./comment')
 AtRule      = require('./at-rule')
@@ -258,7 +258,7 @@ class Parser
   # Helpers
 
   error: (message, position = { line: @line, column: @column }) ->
-    throw new SyntexError(message, @source, position, @opts.from)
+    throw new SyntaxError(message, @source, position, @opts.from)
 
   move: ->
     @pos    += 1
