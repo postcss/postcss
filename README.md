@@ -27,13 +27,16 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [grunt-pixrem], `rem` unit polyfill.
 * [CSS MQPacker] joins same media queries.
 * [RTLCSS] mirrors styles for right-to-left locales.
-* [CSSWring] CSS minifier with full source map support.
+* [CSSWring] and [grunt-csswring] CSS minifier with full source map support.
+* [Grunt-webpcss] to duplicate images in CSS to WebP for supported browsers.
 
-[Autoprefixer]: https://github.com/ai/autoprefixer
-[grunt-pixrem]: https://github.com/robwierzbowski/grunt-pixrem
-[CSS MQPacker]: https://github.com/hail2u/node-css-mqpacker
-[CSSWring]:     https://github.com/hail2u/node-csswring
-[RTLCSS]:       https://github.com/MohammadYounes/rtlcss
+[grunt-csswring]: https://github.com/princed/grunt-csswring
+[Grunt-webpcss]:  https://github.com/lexich/grunt-webpcss
+[Autoprefixer]:   https://github.com/ai/autoprefixer
+[grunt-pixrem]:   https://github.com/robwierzbowski/grunt-pixrem
+[CSS MQPacker]:   https://github.com/hail2u/node-css-mqpacker
+[CSSWring]:       https://github.com/hail2u/node-csswring
+[RTLCSS]:         https://github.com/MohammadYounes/rtlcss
 
 ## Quick Example
 
