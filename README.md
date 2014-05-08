@@ -29,12 +29,14 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [RTLCSS] mirrors styles for right-to-left locales.
 * [CSSWring] and [grunt-csswring] CSS minifier with full source map support.
 * [Grunt-webpcss] to duplicate images in CSS to WebP for supported browsers.
+* [Pleeease] is a pack of various postprocessors.
 
 [grunt-csswring]: https://github.com/princed/grunt-csswring
 [Grunt-webpcss]:  https://github.com/lexich/grunt-webpcss
 [Autoprefixer]:   https://github.com/ai/autoprefixer
 [grunt-pixrem]:   https://github.com/robwierzbowski/grunt-pixrem
 [CSS MQPacker]:   https://github.com/hail2u/node-css-mqpacker
+[Pleeease]:       http://pleeease.io/
 [CSSWring]:       https://github.com/hail2u/node-csswring
 [RTLCSS]:         https://github.com/MohammadYounes/rtlcss
 
