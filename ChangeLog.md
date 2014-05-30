@@ -1,3 +1,7 @@
+## 0.3.5
+* Allow to use `Root` or `Result` as first argument in `process()`.
+* Save parsed AST to `Result#root`.
+
 ## 0.3.4
 * Better space symbol detect to read UTF-8 BOM correctly.
 
