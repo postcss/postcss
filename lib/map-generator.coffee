@@ -97,7 +97,7 @@ class MapGenerator
       @map.applySourceMap(prev, from, path.dirname(from))
 
   # Add source map annotation comment if it is needed
-  addAnnotation: () ->
+  addAnnotation: ->
     return if @opts.mapAnnotation == false
     return if @prevMap() and not @prevAnnotation()
 
