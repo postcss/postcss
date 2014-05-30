@@ -120,9 +120,9 @@ class MapGenerator
     @addAnnotation()
 
     if @isInline()
-      new Result(@css)
+      new Result(@root, @css)
     else
-      new Result(@css, @map.toString())
+      new Result(@root, @css, @map.toString())
 
   # Return path relative from output CSS file
   relative: (file) ->
@@ -182,6 +182,6 @@ class MapGenerator
     if @isMap()
       @generateMap()
     else
-      new Result(@root.toString())
+      new Result(@root)
 
 module.exports = MapGenerator
