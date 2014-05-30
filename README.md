@@ -289,6 +289,14 @@ processor.process(wrong, { from: 'main.css' });
 //=> Can't parse CSS: Unclosed block at line 1:1 in main.css
 ```
 
+You can also use result from previous postprocessor or already parsed `Root`
+as argument in next one:
+
+```js
+result = processor1.process(css)
+processor2.process(result)
+```
+
 ### Multiple Inputs
 
 The function `postcss()` generates processor only for one input.

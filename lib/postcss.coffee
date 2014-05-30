@@ -1,6 +1,7 @@
 Declaration  = require('./declaration')
 Comment      = require('./comment')
 AtRule       = require('./at-rule')
+Result       = require('./result')
 Rule         = require('./rule')
 Root         = require('./root')
 
@@ -15,7 +16,12 @@ class PostCSS
 
   # Process CSS throw installed processors
   process: (css, opts = { }) ->
-    parsed = postcss.parse(css, opts)
+    parsed = if css instanceof Root
+      css
+    else if css instanceof Result
+      parsed = css.root
+    else
+      postcss.parse(css, opts)
 
     for processor in @processors
       returned = processor(parsed)

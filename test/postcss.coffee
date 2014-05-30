@@ -36,15 +36,26 @@ describe 'postcss()', ->
       postcss().use(a).use(b).should.eql { processors: [a, b] }
 
   describe 'process()', ->
-
-    it 'processes CSS', ->
-      processor = postcss (css) ->
+    before ->
+      @processor = postcss (css) ->
         css.eachRule (rule) ->
           return unless rule.selector.match(/::(before|after)/)
           unless rule.some( (i) -> i.prop == 'content' )
             rule.prepend(prop: 'content', value: '""')
 
-      result = processor.process('a::before{top:0}')
+    it 'processes CSS', ->
+      result = @processor.process('a::before{top:0}')
+      result.css.should.eql 'a::before{content:"";top:0}'
+
+    it 'processes parsed AST', ->
+      css    = postcss.parse('a::before{top:0}')
+      result = @processor.process(css)
+      result.css.should.eql 'a::before{content:"";top:0}'
+
+    it 'processes previous result', ->
+      empty  = postcss (css) -> css
+      result = empty.process('a::before{top:0}')
+      result = @processor.process(result)
       result.css.should.eql 'a::before{content:"";top:0}'
 
     it 'throws with file name', ->
