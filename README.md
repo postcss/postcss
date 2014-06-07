@@ -12,7 +12,7 @@ It takes care of most common CSS tool tasks:
 
 You can use this framework to write you own:
 
-* CSS minifier or beautifizer.
+* CSS minifier or beautifier.
 * CSS polyfills.
 * Grunt plugin to generate sprites, include `data-uri` images
   or any other works.
