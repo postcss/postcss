@@ -1,105 +1,53 @@
 base64js = require('base64-js')
 mozilla  = require('source-map')
-
-Result = require('./result')
-lazy   = require('./lazy')
-path   = require('path')
-fs     = require('fs')
+Result   = require('./result')
+path     = require('path')
 
 # All tools to generate source maps
 class MapGenerator
   constructor: (@root, @opts) ->
 
-  # Is `string` is starting with `start`
-  startWith: (string, start) ->
-    string[0..start.length-1] == start
-
   # Should map be generated
   isMap: ->
-    return @opts.map if typeof(@opts.map) == 'boolean'
-    !!@opts.inlineMap || !!@prevMap()
+    return !!@opts.map if @opts.map?
+    !!@opts.inlineMap || @previous().length > 0
+
+  # Return source map arrays from previous compilation step (like Sass)
+  previous: ->
+    unless @previousMaps
+      @previousMaps = []
+      @root.eachInside (node) =>
+        if node.source?.map?
+          if @previousMaps.indexOf(node.source.map) == -1
+            @previousMaps.push(node.source.map)
+    @previousMaps
 
   # Should we inline source map to annotation comment
-  lazy @, 'isInline', ->
+  isInline: ->
     return @opts.inlineMap if @opts.inlineMap?
-    @isPrevInline()
-
-  # Is source map from previous compilation step is inline to annotation comment
-  lazy @, 'isPrevInline', ->
-    return false unless @prevAnnotation()
-
-    text = @prevAnnotation().text
-    @startWith(text, '# sourceMappingURL=data:')
-
-  # Source map from previous compilation step (like Sass)
-  lazy @, 'prevMap', ->
-    return @opts.map if @opts.map and typeof(@opts.map) != 'boolean'
-
-    if @isPrevInline()
-      @encodeInline(@prevAnnotation().text)
-    else if @opts.from
-      map = @opts.from + '.map'
-      if @prevAnnotation()
-        file = @prevAnnotation().text.replace('# sourceMappingURL=', '')
-        map  = path.join(path.dirname(@opts.from), file)
-
-      if fs.existsSync?(map)
-        fs.readFileSync(map).toString()
-      else
-        false
-
-  # Lazy load for annotation comment from previous compilation step
-  lazy @, 'prevAnnotation', ->
-    last = @root.last
-    return null unless last
-
-    if last.type == 'comment' and @startWith(last.text, '# sourceMappingURL=')
-      last
-    else
-      null
-
-  # Encode different type of inline
-  encodeInline: (text) ->
-    uri    = '# sourceMappingURL=data:application/json,'
-    base64 = '# sourceMappingURL=data:application/json;base64,'
-
-    if @startWith(text, uri)
-      decodeURIComponent( text[uri.length..-1] )
-
-    else if @startWith(text, base64)
-      text  = text[base64.length..-1]
-      bytes = base64js.toByteArray(text)
-      (String.fromCharCode(byte) for byte in bytes).join('')
-
-    else
-      throw new Error('Unknown source map encoding')
+    @previous().some (i) -> i.inline
 
   # Clear source map annotation comment
   clearAnnotation: ->
-    @prevAnnotation()?.removeSelf()
+    last = @root.last
+    return null unless last
+
+    if last.type == 'comment' and last.text.match(/^# sourceMappingURL=/)
+      last.removeSelf()
 
   # Apply source map from previous compilation step (like Sass)
-  applyPrevMap: ->
-    if @prevMap()
-      prev = @prevMap()
+  applyPrevMaps: ->
+    return if @previous().length == 0
 
-      prev = if typeof(prev) == 'string'
-        JSON.parse(prev)
-      else if prev instanceof mozilla.SourceMapConsumer
-        mozilla.SourceMapGenerator.fromSourceMap(prev).toJSON()
-      else if typeof(prev) == 'object' and prev.toJSON
-        prev.toJSON()
-      else
-        prev
-
-      prev = new mozilla.SourceMapConsumer(prev)
-      from = @relative(@opts.from)
-      @map.applySourceMap(prev, from, path.dirname(from))
+    for prev in @previous()
+      from = @relative(prev.file)
+      map  = new mozilla.SourceMapConsumer(prev.map)
+      @map.applySourceMap(map, from, path.dirname(from))
 
   # Add source map annotation comment if it is needed
   addAnnotation: ->
     return if @opts.mapAnnotation == false
-    return if @prevMap() and not @prevAnnotation()
+    return if @previous().length > 0 and @previous().every (i) -> !i.annotation
 
     content = if @isInline()
       bytes = (char.charCodeAt(0) for char in @map.toString())
@@ -116,7 +64,7 @@ class MapGenerator
   # Return Result object with map
   generateMap: ->
     @stringify()
-    @applyPrevMap()
+    @applyPrevMaps()
     @addAnnotation()
 
     if @isInline()

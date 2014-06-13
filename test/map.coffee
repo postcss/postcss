@@ -147,27 +147,6 @@ describe 'source maps', ->
     base64 = new Buffer(common2.map).toString('base64')
     inline2.css.should.endWith(base64 + ' */')
 
-  it 'supports uri encoding in inline map', ->
-    css = "a {\n" +
-          "  color: #000000;\n" +
-          "}\n" +
-          "/*# sourceMappingURL=data:application/json,%7B%22version%22%3A3%2C" +
-          "%22file%22%3A%22test.css%22%2C%22sources%22%3A%5B%22test.less%22" +
-          "%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22AAAA%3BEAAI%2CcAA" +
-          "A%22%7D */"
-
-    result = @doubler.process(css, from: 'test.css', to: 'test.css')
-
-    result.should.not.have.property('map')
-    result.css.should.match(/# sourceMappingURL=data:/)
-
-  it 'raises on unknown inline encoding', ->
-    css = "a { }\n" +
-          "/*# sourceMappingURL=data:application/json;" +
-          "md5,68b329da9893e34099c7d8ad5cb9c940*/"
-
-    ( => @doubler.process(css) ).should.throw('Unknown source map encoding')
-
   it 'allows change map type', ->
     css = 'a { }'
 
@@ -183,34 +162,6 @@ describe 'source maps', ->
 
     step2.should.have.property('map')
     step2.css.should.not.match(/# sourceMappingURL=data:/)
-
-  it 'checks map file near CSS', ->
-    step1 = @doubler.process 'a { }',
-      from: 'a.css'
-      to:    @dir + '/a.css'
-      map:   true
-
-    fs.outputFileSync(@dir + '/a.css.map', step1.map)
-    step2 = @lighter.process step1.css,
-      from: @dir + '/a.css'
-      to:  'b.css'
-
-    step2.should.have.property('map')
-
-  it 'read map file from annotation', ->
-    step1 = @doubler.process 'a { }',
-      from: 'a.css'
-      to:    @dir + '/a.css'
-      map:   true
-
-    fs.outputFileSync(@dir + '/b.css.map', step1.map)
-    css = step1.css.replace('a.css.map', 'b.css.map')
-
-    step2 = @lighter.process css,
-      from: @dir + '/a.css'
-      to:  'c.css'
-
-    step2.should.have.property('map')
 
   it 'miss check files on requires', ->
     step1 = @doubler.process 'a { }',

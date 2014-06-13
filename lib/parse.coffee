@@ -1,4 +1,5 @@
 SyntaxError = require('./syntax-error')
+PreviousMap  = require('./previous-map')
 Declaration = require('./declaration')
 Comment     = require('./comment')
 AtRule      = require('./at-rule')
@@ -30,6 +31,12 @@ class Parser
       @move()
       @nextLetter()
     @endFile()
+
+  setMap: ->
+    map = new PreviousMap(@root, @opts)
+    if map.map
+      @root.prevMap = map
+      @root.eachInside (i) -> i.source.map = map
 
   nextLetter: ->
     @inString()   ||
@@ -390,4 +397,5 @@ class Parser
 module.exports = (source, opts = { }) ->
   parser = new Parser(source, opts)
   parser.loop()
+  parser.setMap()
   parser.root
