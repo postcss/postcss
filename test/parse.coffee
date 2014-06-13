@@ -2,6 +2,7 @@ Root  = require('../lib/root')
 parse = require('../lib/parse')
 
 fs   = require('fs')
+path = require('path')
 read = (file) -> fs.readFileSync(__dirname + '/cases/parse/' + file)
 
 describe 'postcss.parse()', ->
@@ -32,7 +33,7 @@ describe 'postcss.parse()', ->
 
   it 'saves source file', ->
     css = parse('a {}', from: 'a.css')
-    css.rules[0].source.file.should.eql('a.css')
+    css.rules[0].source.file.should.eql path.resolve('a.css')
 
   it 'sets parent node', ->
     css = parse(read('atrule-rules.css'))

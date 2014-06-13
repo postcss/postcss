@@ -6,6 +6,8 @@ Root        = require('./root')
 Rule        = require('./rule')
 Raw         = require('./raw')
 
+path = require('path')
+
 # CSS parser
 class Parser
   constructor: (source, @opts) ->
@@ -292,7 +294,7 @@ class Parser
       start:
         line:   @line
         column: @column
-    @current.source.file = @opts.from if @opts.from
+    @current.source.file = path.resolve(@opts.from) if @opts.from
     @current.before = @buffer[0..-2]
     @buffer = ''
 
