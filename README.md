@@ -660,6 +660,16 @@ root = postcss.parse(css);
 root.toString() == css;
 ```
 
+If PostCSS found previous source map, it will save all information
+in `Root#prevMap`:
+
+```
+root = postcss.parse(css);
+if (root.prevMap && root.prevMap.inline) {
+    console.log('Inlined map: ' + root.prevMap.annotation)
+}
+```
+
 ### Comment Node
 
 ```css
