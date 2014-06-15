@@ -382,6 +382,9 @@ result.map //=> undefined, because map is in CSS
 result.css //=> "a{}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5taW4uY3NzIiwic291cmNlcyI6WyJtYWluLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFLIn0= */"
 ```
 
+If you want to include origin CSS content to `sourcesContent` in source map,
+set `mapContent` option to `true`.
+
 ### Helpers
 
 #### Vendor
