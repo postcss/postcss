@@ -60,7 +60,7 @@ class PreviousMap
         mozilla.SourceMapGenerator.fromSourceMap(opts.map).toString()
       else if opts.map instanceof mozilla.SourceMapGenerator
         opts.map.toString()
-      else if typeof(opts.map) == 'object' and opts.map.version?
+      else if typeof(opts.map) == 'object' and opts.map.mappings?
         JSON.stringify(opts.map)
       else
         throw new Error("Unsupported previous source map format: #{ opts.map }")
