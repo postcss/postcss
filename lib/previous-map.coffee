@@ -4,7 +4,7 @@ path     = require('path')
 fs       = require('fs')
 
 class PreviousMap
-  constructor: (root, opts) ->
+  constructor: (root, @source, opts) ->
     @file = opts.from
 
     @loadAnnotation(root)

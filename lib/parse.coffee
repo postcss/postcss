@@ -33,7 +33,7 @@ class Parser
     @endFile()
 
   setMap: ->
-    map = new PreviousMap(@root, @opts)
+    map = new PreviousMap(@root, @source, @opts)
     if map.map
       @root.prevMap = map
       @root.eachInside (i) -> i.source.map = map

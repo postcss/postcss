@@ -1,7 +1,7 @@
 parse = require('../lib/parse')
 fs    = require('fs-extra')
 
-describe 'previous map', ->
+describe 'PreviousMap', ->
   before ->
     @map = '{"version":3,"file":null,"sources":[],"names":[],"mappings":""}'
     @dir = __dirname + '/fixtures'
@@ -17,6 +17,10 @@ describe 'previous map', ->
     root = parse('a{}', map: @map)
     root.should.have.property('prevMap')
     root.prevMap.map.should.eql(@map)
+
+  it 'saves origin source', ->
+    root = parse('a{}', map: @map)
+    root.prevMap.source.should.eql('a{}')
 
   it 'sets annotation property', ->
     root = parse('a{}', map: @map)
