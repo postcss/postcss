@@ -13,10 +13,13 @@ class PreviousMap
     text  = @loadMap(opts)
     @text = text if text
 
-    @content = @text and @object().sourcesContent?.length > 0
+  # Return SourceMapConsumer object to read map
+  consumer: ->
+    @consumerCache ||= new mozilla.SourceMapConsumer(@text)
 
-  object: ->
-    @objectCache ||= new mozilla.SourceMapConsumer(@text)
+  # Is map has sources content
+  withContent: ->
+    @consumer().sourcesContent?.length > 0
 
   # Is `string` is starting with `start`
   startWith: (string, start) ->

@@ -39,7 +39,7 @@ class MapGenerator
   # Set origin CSS content
   setSourceContent: ->
     return if @opts.mapContent == false
-    return if !@opts.mapContent? and @previous().every (i) -> not i.content
+    return if !@opts.mapContent? and @previous().every (i) -> !i.withContent()
 
     already = { }
     @root.eachInside (node) =>
@@ -57,7 +57,7 @@ class MapGenerator
         map = new mozilla.SourceMapConsumer(prev.text)
         map.sourcesContent = (null for i in map.sourcesContent)
       else
-        map = prev.object()
+        map = prev.consumer()
       @map.applySourceMap(map, from, path.dirname(from))
 
   # Add source map annotation comment if it is needed

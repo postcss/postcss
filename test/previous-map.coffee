@@ -21,7 +21,7 @@ describe 'PreviousMap', ->
 
   it 'returns consumer', ->
     root = parse('a{}', map: @map)
-    root.prevMap.object().should.be.a.instanceOf(mozilla.SourceMapConsumer)
+    root.prevMap.consumer().should.be.a.instanceOf(mozilla.SourceMapConsumer)
 
   it 'sets annotation property', ->
     root = parse('a{}', map: @map)
@@ -33,11 +33,11 @@ describe 'PreviousMap', ->
   it 'checks previous sources content', ->
     map  = { version: 3, file: 'b', sources: ['a'], names: [], mappings: ''}
     root = parse('a{}', map: map)
-    root.prevMap.content.should.be.false
+    root.prevMap.withContent().should.be.false
 
     map.sourcesContent = ['a{}']
     root = parse('a{}', map: map)
-    root.prevMap.content.should.be.true
+    root.prevMap.withContent().should.be.true
 
   it 'decode base64 maps', ->
     b64  = new Buffer(@map).toString('base64')
