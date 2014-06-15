@@ -8,6 +8,7 @@
                     "line": 1,
                     "column": 1
                 },
+                "content": "@-moz-document/* near */ /* filter */ url(\"example.com/{\") /* a */ {}\n",
                 "end": {
                     "line": 1,
                     "column": 69

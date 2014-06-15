@@ -215,19 +215,50 @@ describe 'source maps', ->
       .originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
 
   it 'works with different types of maps', ->
-    step1 = @doubler.process 'a { }',
-      from: 'a.css'
-      to:   'out/b.css'
-      map:   true
+    step1 = @doubler.process('a { }', from: 'a.css', to: 'b.css', map: true)
 
     map  = step1.map
     maps = [map, consumer(map), map.toJSON(), map.toString()]
 
     for map in maps
-      step2 = @doubler.process step1.css,
-        from: 'out/b.css'
-        to:   'out/c.css'
-        map:   map
-
+      step2 = @doubler.process(step1.css, from: 'b.css' ,to: 'c.css', map: map)
       consumer(step2.map)
-        .originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
+        .originalPositionFor(line: 1, column: 0).source.should.eql 'a.css'
+
+  it 'sets source content on request', ->
+    step1 = @doubler.process 'a { }',
+      from:      'a.css'
+      to:        'out/b.css'
+      mapContent: true
+
+    consumer(step1.map).sourceContentFor('../a.css').should.eql('a { }')
+
+  it 'sets source content if previous have', ->
+    step1 = @doubler.process 'a { }',
+      from:      'a.css'
+      to:        'out/a.css'
+      mapContent: true
+
+    file1 = postcss.parse(step1.css, from: 'a.css', map: step1.map)
+    file2 = postcss.parse('b { }',   from: 'b.css')
+
+    file2.append(file1.rules[0].clone())
+    step2 = file2.toResult(to: 'c.css')
+
+    consumer(step2.map).sourceContentFor('b.css').should.eql('b { }')
+
+  it 'miss source content on request', ->
+    step1 = @doubler.process 'a { }',
+      from:      'a.css'
+      to:        'out/a.css'
+      mapContent: true
+
+    file1 = postcss.parse(step1.css, from: 'a.css', map: step1.map)
+    file2 = postcss.parse('b { }',   from: 'b.css')
+
+    file2.append(file1.rules[0].clone())
+    step2 = file2.toResult(to: 'c.css', mapContent: false)
+
+    map = consumer(step2.map)
+    (!!map.sourceContentFor('b.css')).should.be.false
+    (!!map.sourceContentFor('../a.css')).should.be.false

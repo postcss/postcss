@@ -8,6 +8,7 @@
                     "line": 1,
                     "column": 1
                 },
+                "content": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                 "end": {
                     "line": 10,
                     "column": 1
@@ -26,6 +27,7 @@
                             "line": 2,
                             "column": 5
                         },
+                        "content": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                         "end": {
                             "line": 9,
                             "column": 5
@@ -47,6 +49,7 @@
                                             "line": 4,
                                             "column": 13
                                         },
+                                        "content": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                                         "end": {
                                             "line": 4,
                                             "column": 25
@@ -63,6 +66,7 @@
                                     "line": 3,
                                     "column": 9
                                 },
+                                "content": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                                 "end": {
                                     "line": 5,
                                     "column": 9
@@ -84,6 +88,7 @@
                                             "line": 7,
                                             "column": 13
                                         },
+                                        "content": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                                         "end": {
                                             "line": 7,
                                             "column": 24
@@ -100,6 +105,7 @@
                                     "line": 6,
                                     "column": 9
                                 },
+                                "content": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                                 "end": {
                                     "line": 8,
                                     "column": 9

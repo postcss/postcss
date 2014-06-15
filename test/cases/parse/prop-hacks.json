@@ -11,6 +11,7 @@
                             "line": 2,
                             "column": 5
                         },
+                        "content": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
                         "end": {
                             "line": 2,
                             "column": 19
@@ -28,6 +29,7 @@
                             "line": 3,
                             "column": 5
                         },
+                        "content": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
                         "end": {
                             "line": 3,
                             "column": 23
@@ -45,6 +47,7 @@
                             "line": 4,
                             "column": 5
                         },
+                        "content": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
                         "end": {
                             "line": 4,
                             "column": 23
@@ -61,6 +64,7 @@
                     "line": 1,
                     "column": 1
                 },
+                "content": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
                 "end": {
                     "line": 5,
                     "column": 1

@@ -23,10 +23,6 @@ describe 'PreviousMap', ->
     root = parse('a{}', map: @map)
     root.prevMap.object().should.be.a.instanceOf(mozilla.SourceMapConsumer)
 
-  it 'saves origin source', ->
-    root = parse('a{}', map: @map)
-    root.prevMap.source.should.eql('a{}')
-
   it 'sets annotation property', ->
     root = parse('a{}', map: @map)
     root.prevMap.should.not.have.property('annotation')
@@ -34,14 +30,14 @@ describe 'PreviousMap', ->
     root = parse('a{}/*# sourceMappingURL=a.css.map */', map: @map)
     root.prevMap.annotation.should.eql('# sourceMappingURL=a.css.map')
 
-  it 'checks previous sources', ->
-    map  = { version: 3, file: 'a.css', sources: [], names: [], mappings: ''}
+  it 'checks previous sources content', ->
+    map  = { version: 3, file: 'b', sources: ['a'], names: [], mappings: ''}
     root = parse('a{}', map: map)
-    root.prevMap.withSources.should.be.false
+    root.prevMap.content.should.be.false
 
-    map.sources.push('a{}')
+    map.sourcesContent = ['a{}']
     root = parse('a{}', map: map)
-    root.prevMap.withSources.should.be.true
+    root.prevMap.content.should.be.true
 
   it 'decode base64 maps', ->
     b64  = new Buffer(@map).toString('base64')

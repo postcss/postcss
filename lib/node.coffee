@@ -8,6 +8,8 @@ clone = (obj, parent) ->
   for own name, value of obj
     if name == 'parent' and typeof(value) == 'object'
       cloned[name] = parent if parent
+    else if name == 'source'
+      cloned[name] = value
     else if value instanceof Array
       cloned[name] = value.map (i) -> clone(i, cloned)
     else

@@ -11,6 +11,7 @@
                             "line": 2,
                             "column": 5
                         },
+                        "content": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
                         "end": {
                             "line": 2,
                             "column": 26
@@ -28,6 +29,7 @@
                             "line": 3,
                             "column": 5
                         },
+                        "content": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
                         "end": {
                             "line": 3,
                             "column": 21
@@ -44,6 +46,7 @@
                     "line": 1,
                     "column": 1
                 },
+                "content": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
                 "end": {
                     "line": 4,
                     "column": 1

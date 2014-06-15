@@ -33,7 +33,7 @@ class Parser
     @endFile()
 
   setMap: ->
-    map = new PreviousMap(@root, @source, @opts)
+    map = new PreviousMap(@root, @opts)
     if map.text
       @root.prevMap = map
       @root.eachInside (i) -> i.source.map = map
@@ -301,6 +301,7 @@ class Parser
       start:
         line:   @line
         column: @column
+      content: @source
     @current.source.file = path.resolve(@opts.from) if @opts.from
     @current.before = @buffer[0..-2]
     @buffer = ''

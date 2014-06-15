@@ -10,7 +10,7 @@ class MapGenerator
   # Should map be generated
   isMap: ->
     return !!@opts.map if @opts.map?
-    !!@opts.inlineMap || @previous().length > 0
+    !!@opts.mapContent || !!@opts.inlineMap || @previous().length > 0
 
   # Return source map arrays from previous compilation step (like Sass)
   previous: ->
@@ -20,6 +20,7 @@ class MapGenerator
         if node.source?.map?
           if @previousMaps.indexOf(node.source.map) == -1
             @previousMaps.push(node.source.map)
+
     @previousMaps
 
   # Should we inline source map to annotation comment
@@ -35,13 +36,29 @@ class MapGenerator
     if last.type == 'comment' and last.text.match(/^# sourceMappingURL=/)
       last.removeSelf()
 
+  # Set origin CSS content
+  setSourceContent: ->
+    return if @opts.mapContent == false
+    return if !@opts.mapContent? and @previous().every (i) -> not i.content
+
+    already = { }
+    @root.eachInside (node) =>
+      if node.source and not already[node.source.file]
+        already[node.source.file] = true
+        @map.setSourceContent(@relative(node.source.file), node.source.content)
+
   # Apply source map from previous compilation step (like Sass)
   applyPrevMaps: ->
     return if @previous().length == 0
 
     for prev in @previous()
       from = @relative(prev.file)
-      @map.applySourceMap(prev.object(), from, path.dirname(from))
+      if @opts.mapContent == false
+        map = new mozilla.SourceMapConsumer(prev.text)
+        map.sourcesContent = (null for i in map.sourcesContent)
+      else
+        map = prev.object()
+      @map.applySourceMap(map, from, path.dirname(from))
 
   # Add source map annotation comment if it is needed
   addAnnotation: ->
@@ -63,6 +80,7 @@ class MapGenerator
   # Return Result object with map
   generateMap: ->
     @stringify()
+    @setSourceContent()
     @applyPrevMaps()
     @addAnnotation()
 

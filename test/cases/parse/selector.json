@@ -9,6 +9,7 @@
                     "line": 2,
                     "column": 1
                 },
+                "content": "\na/* { } */ b {}\n",
                 "end": {
                     "line": 2,
                     "column": 15

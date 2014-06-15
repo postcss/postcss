@@ -27,7 +27,6 @@ describe 'postcss.parse()', ->
 
     it "parses #{ file }", ->
       css  = parse(read(file))
-      fs.writeFileSync(__dirname + '/cases/parse/' + file.replace(/\.css$/, '.json'), JSON.stringify(css, null, 4) + "\n")
       json = read(file.replace(/\.css$/, '.json')).toString().trim()
       JSON.stringify(css, null, 4).should.eql(json)
 

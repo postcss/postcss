@@ -8,6 +8,7 @@
                     "line": 1,
                     "column": 1
                 },
+                "content": "@charset \"UTF-8\";\n",
                 "end": {
                     "line": 1,
                     "column": 17

@@ -4,7 +4,7 @@ path     = require('path')
 fs       = require('fs')
 
 class PreviousMap
-  constructor: (root, @source, opts) ->
+  constructor: (root, opts) ->
     @file = opts.from
 
     @loadAnnotation(root)
@@ -13,7 +13,7 @@ class PreviousMap
     text  = @loadMap(opts)
     @text = text if text
 
-    @withSources = @text and @object().sources.length > 0
+    @content = @text and @object().sourcesContent?.length > 0
 
   object: ->
     @objectCache ||= new mozilla.SourceMapConsumer(@text)

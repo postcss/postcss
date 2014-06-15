@@ -8,6 +8,7 @@
                     "line": 1,
                     "column": 1
                 },
+                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
                 "end": {
                     "line": 1,
                     "column": 24
@@ -28,6 +29,7 @@
                             "line": 3,
                             "column": 5
                         },
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
                         "end": {
                             "line": 3,
                             "column": 16
@@ -45,6 +47,7 @@
                             "line": 4,
                             "column": 5
                         },
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
                         "end": {
                             "line": 4,
                             "column": 17
@@ -62,6 +65,7 @@
                             "line": 5,
                             "column": 5
                         },
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
                         "end": {
                             "line": 5,
                             "column": 17
@@ -79,6 +83,7 @@
                             "line": 6,
                             "column": 5
                         },
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
                         "end": {
                             "line": 7,
                             "column": 13
@@ -98,6 +103,7 @@
                     "line": 2,
                     "column": 1
                 },
+                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
                 "end": {
                     "line": 8,
                     "column": 1
@@ -115,6 +121,7 @@
                     "line": 9,
                     "column": 1
                 },
+                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
                 "end": {
                     "line": 9,
                     "column": 7
