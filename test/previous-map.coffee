@@ -1,5 +1,6 @@
-parse = require('../lib/parse')
-fs    = require('fs-extra')
+mozilla = require('source-map')
+parse   = require('../lib/parse')
+fs      = require('fs-extra')
 
 describe 'PreviousMap', ->
   before ->
@@ -16,7 +17,11 @@ describe 'PreviousMap', ->
   it 'creates property if map present', ->
     root = parse('a{}', map: @map)
     root.should.have.property('prevMap')
-    root.prevMap.map.should.eql(@map)
+    root.prevMap.text.should.eql(@map)
+
+  it 'returns consumer', ->
+    root = parse('a{}', map: @map)
+    root.prevMap.object().should.be.a.instanceOf(mozilla.SourceMapConsumer)
 
   it 'saves origin source', ->
     root = parse('a{}', map: @map)
@@ -29,19 +34,27 @@ describe 'PreviousMap', ->
     root = parse('a{}/*# sourceMappingURL=a.css.map */', map: @map)
     root.prevMap.annotation.should.eql('# sourceMappingURL=a.css.map')
 
+  it 'checks previous sources', ->
+    root = parse('a{}', map: @map)
+    root.prevMap.withSources.should.be.false
+
+    map  = '{"version":3,"file":"a","sources":["a{}"],"names":[],"mappings":""}'
+    root = parse('a{}', map: map)
+    root.prevMap.withSources.should.be.true
+
   it 'decode base64 maps', ->
     b64  = new Buffer(@map).toString('base64')
     css  = "a{}\n/*# sourceMappingURL=data:application/json;base64,#{b64} */"
     root = parse(css)
 
-    root.prevMap.map.should.eql(@map)
+    root.prevMap.text.should.eql(@map)
 
   it 'decode URI maps', ->
     uri  = decodeURI(@map)
     css  = "a{}\n/*# sourceMappingURL=data:application/json,#{uri} */"
     root = parse(css)
 
-    root.prevMap.map.should.eql(@map)
+    root.prevMap.text.should.eql(@map)
 
   it 'raises on unknown inline encoding', ->
     css = "a { }\n" +
@@ -58,10 +71,10 @@ describe 'PreviousMap', ->
     fs.outputFileSync(@dir + '/a.css.map', @map)
     root = parse('a{}', from: @dir + '/a.css')
 
-    root.prevMap.map.should.eql(@map)
+    root.prevMap.text.should.eql(@map)
 
   it 'reads map from annotation', ->
     fs.outputFileSync(@dir + '/a.map', @map)
     root = parse("a{}\n/*# sourceMappingURL=a.map */", from: @dir + '/a.css')
 
-    root.prevMap.map.should.eql(@map)
+    root.prevMap.text.should.eql(@map)

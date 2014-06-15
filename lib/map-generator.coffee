@@ -41,8 +41,7 @@ class MapGenerator
 
     for prev in @previous()
       from = @relative(prev.file)
-      map  = new mozilla.SourceMapConsumer(prev.map)
-      @map.applySourceMap(map, from, path.dirname(from))
+      @map.applySourceMap(prev.object(), from, path.dirname(from))
 
   # Add source map annotation comment if it is needed
   addAnnotation: ->

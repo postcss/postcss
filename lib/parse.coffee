@@ -34,7 +34,7 @@ class Parser
 
   setMap: ->
     map = new PreviousMap(@root, @source, @opts)
-    if map.map
+    if map.text
       @root.prevMap = map
       @root.eachInside (i) -> i.source.map = map
 

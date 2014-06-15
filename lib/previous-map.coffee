@@ -8,10 +8,15 @@ class PreviousMap
     @file = opts.from
 
     @loadAnnotation(root)
-    @inline = @startWith(@annotation, '# sourceMappingURL=data:') if @annotation
+    @inline = @startWith(@annotation, '# sourceMappingURL=data:')
 
-    text = @loadMap(opts)
-    @map = text if text
+    text  = @loadMap(opts)
+    @text = text if text
+
+    @withSources = @text and @object().sources.length > 0
+
+  object: ->
+    @objectCache ||= new mozilla.SourceMapConsumer(@text)
 
   # Is `string` is starting with `start`
   startWith: (string, start) ->
