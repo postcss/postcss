@@ -35,10 +35,11 @@ describe 'PreviousMap', ->
     root.prevMap.annotation.should.eql('# sourceMappingURL=a.css.map')
 
   it 'checks previous sources', ->
-    root = parse('a{}', map: @map)
+    map  = { version: 3, file: 'a.css', sources: [], names: [], mappings: ''}
+    root = parse('a{}', map: map)
     root.prevMap.withSources.should.be.false
 
-    map  = '{"version":3,"file":"a","sources":["a{}"],"names":[],"mappings":""}'
+    map.sources.push('a{}')
     root = parse('a{}', map: map)
     root.prevMap.withSources.should.be.true
 
