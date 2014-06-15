@@ -40,7 +40,8 @@ class PreviousMap
       (String.fromCharCode(byte) for byte in bytes).join('')
 
     else
-      throw new Error('Unknown source map encoding')
+      encoding = text.match(/ata:application\/json;([^,]+),/)?[1]
+      throw new Error("Unsupported source map encoding #{ encoding }")
 
   # Load previous map
   loadMap: (opts) ->
@@ -51,8 +52,10 @@ class PreviousMap
         mozilla.SourceMapGenerator.fromSourceMap(opts.map).toString()
       else if opts.map instanceof mozilla.SourceMapGenerator
         opts.map.toString()
-      else
+      else if typeof(opts.map) == 'object' and opts.map.version?
         JSON.stringify(opts.map)
+      else
+        throw new Error("Unsupported previous source map format: #{ opts.map }")
 
     else if @inline
       @decodeInline(@annotation)

@@ -44,7 +44,11 @@ describe 'previous map', ->
           "/*# sourceMappingURL=data:application/json;" +
           "md5,68b329da9893e34099c7d8ad5cb9c940*/"
 
-    ( => parse(css) ).should.throw('Unknown source map encoding')
+    ( -> parse(css) ).should.throw('Unsupported source map encoding md5')
+
+  it 'raises on unknown map format', ->
+    ( -> parse('a{}', map: 1) )
+      .should.throw('Unsupported previous source map format: 1')
 
   it 'reads map near file', ->
     fs.outputFileSync(@dir + '/a.css.map', @map)
