@@ -31,5 +31,5 @@ describe 'Result', ->
       result = new Result(@root, 'a {}')
       result.should.not.have.property('map')
 
-      result = new Result(@root, 'a {}', 'A')
-      result.map.should.eql('A')
+      result = new Result(@root, 'a {}', { one: 1 })
+      result.map.should.eql({ one: 1 })

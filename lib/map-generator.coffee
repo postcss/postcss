@@ -70,7 +70,7 @@ class MapGenerator
     if @isInline()
       new Result(@root, @css)
     else
-      new Result(@root, @css, @map.toString())
+      new Result(@root, @css, @map)
 
   # Return path relative from output CSS file
   relative: (file) ->

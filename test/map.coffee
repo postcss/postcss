@@ -2,7 +2,7 @@ mozilla = require('source-map')
 postcss = require('../lib/postcss')
 fs      = require('fs-extra')
 
-parseMap = (str) -> new mozilla.SourceMapConsumer(str)
+consumer = (map) -> new mozilla.SourceMapConsumer.fromSourceMap(map)
 
 describe 'source maps', ->
   before ->
@@ -19,6 +19,10 @@ describe 'source maps', ->
   it 'adds map field only on request', ->
     postcss().process('a {}').should.not.have.property('map')
 
+  it 'return map generator', ->
+    postcss().process('a {}', map: true).map
+      .should.be.instanceOf(mozilla.SourceMapGenerator)
+
   it 'generate right source map', ->
     css       = "a {\n  color: black;\n  }"
     processor = postcss (css) ->
@@ -29,7 +33,7 @@ describe 'source maps', ->
         decl.parent.prepend(changed)
 
     result = processor.process(css, from: 'a.css', to: 'b.css', map: true)
-    map    = parseMap(result.map)
+    map    = consumer(result.map)
 
     map.file.should.eql('b.css')
 
@@ -62,13 +66,12 @@ describe 'source maps', ->
       to:   'c.css'
       map:  doubled.map
 
-    map = parseMap(lighted.map)
-
-    map.originalPositionFor(line: 1, column: 18).should.eql
-      source: 'a.css'
-      line:   1
-      column: 4
-      name:   null
+    consumer(lighted.map)
+      .originalPositionFor(line: 1, column: 18).should.eql
+        source: 'a.css'
+        line:   1
+        column: 4
+        name:   null
 
   it 'adds source map annotation', ->
     css    = 'a { }/*# sourceMappingURL=a.css.map */'
@@ -185,7 +188,7 @@ describe 'source maps', ->
 
     result.css.should.match(/sourceMappingURL=b.css.map/)
 
-    map = parseMap(result.map)
+    map = consumer(result.map)
     map.file.should.eql 'b.css'
     map.sources.should.eql ['../from/a.css']
 
@@ -200,16 +203,16 @@ describe 'source maps', ->
       to:   'out/two/c.css'
       map:   step1.map
 
-    map = parseMap(step2.map)
-    map.originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
+    consumer(step2.map)
+      .originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
 
     step3 = @doubler.process step2.css,
       from: 'c.css'
       to:   'd.css'
       map:   step2.map
 
-    map = parseMap(step3.map)
-    map.originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
+    consumer(step3.map)
+      .originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
 
   it 'works with different types of maps', ->
     step1 = @doubler.process 'a { }',
@@ -217,11 +220,8 @@ describe 'source maps', ->
       to:   'out/b.css'
       map:   true
 
-    maps = [
-      JSON.parse(step1.map)
-      parseMap(step1.map)
-      mozilla.SourceMapGenerator.fromSourceMap(parseMap(step1.map))
-    ]
+    map  = step1.map
+    maps = [map, consumer(map), map.toJSON(), map.toString()]
 
     for map in maps
       step2 = @doubler.process step1.css,
@@ -229,5 +229,5 @@ describe 'source maps', ->
         to:   'out/c.css'
         map:   map
 
-      map = parseMap(step2.map)
-      map.originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
+      consumer(step2.map)
+        .originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
