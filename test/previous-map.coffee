@@ -71,12 +71,6 @@ describe 'PreviousMap', ->
     ( -> parse('a{}', map: { prev: 1 }) )
       .should.throw('Unsupported previous source map format: 1')
 
-  it 'reads map near file', ->
-    fs.outputFileSync(@dir + '/a.css.map', @map)
-    root = parse('a{}', from: @dir + '/a.css')
-
-    root.prevMap.text.should.eql(@map)
-
   it 'reads map from annotation', ->
     fs.outputFileSync(@dir + '/a.map', @map)
     root = parse("a{}\n/*# sourceMappingURL=a.map */", from: @dir + '/a.css')
