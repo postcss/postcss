@@ -252,11 +252,11 @@ describe 'Container', ->
       css.toString().should.eql 'a {}b {}'
 
     it 'receives array', ->
-      a = parse('a { color: black }')
+      a = parse('a{ color: black }')
       b = parse('b{width:1px;height:2px}')
 
       a.first.append( b.first.decls )
-      a.toString().should.eql 'a { color: black; width:1px; height:2px }'
+      a.toString().should.eql 'a{ color: black; width: 1px; height: 2px }'
       b.toString().should.eql 'b{width:1px;height:2px}'
 
   describe 'prepend()', ->
@@ -275,11 +275,11 @@ describe 'Container', ->
       css.toString().should.eql 'b {}a {}'
 
     it 'receives array', ->
-      a = parse('a { color: black }')
+      a = parse('a{ color: black }')
       b = parse('b{width:1px;height:2px}')
 
       a.first.prepend( b.first.decls )
-      a.toString().should.eql 'a { width:1px; height:2px; color: black }'
+      a.toString().should.eql 'a{ width: 1px; height: 2px; color: black }'
 
   describe 'insertBefore()', ->
 
@@ -296,11 +296,11 @@ describe 'Container', ->
       compare(@css, 'insert')
 
     it 'receives array', ->
-      a = parse('a { color: red; z-index: 1 }')
+      a = parse('a{ color: red; z-index: 1 }')
       b = parse('b{width:1;height:2}')
 
       a.first.insertBefore(1, b.first.decls)
-      a.toString().should.eql 'a { color: red; width:1; height:2; z-index: 1 }'
+      a.toString().should.eql 'a{ color: red; width: 1; height: 2; z-index: 1 }'
 
   describe 'insertAfter()', ->
 
@@ -317,11 +317,11 @@ describe 'Container', ->
       compare(@css, 'insert')
 
     it 'receives array', ->
-      a = parse('a { color: red; z-index: 1 }')
+      a = parse('a{ color: red; z-index: 1 }')
       b = parse('b{width:1;height:2}')
 
       a.first.insertAfter(0, b.first.decls)
-      a.toString().should.eql 'a { color: red; width:1; height:2; z-index: 1 }'
+      a.toString().should.eql 'a{ color: red; width: 1; height: 2; z-index: 1 }'
 
   describe 'remove()', ->
 

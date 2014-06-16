@@ -33,10 +33,12 @@ class Declaration extends Node
     string += ';' if semicolon
     builder(string, @)
 
-  # Clean `before` property in clone to copy it from new parent rule
+  # Clean `before` and `between` property in clone to copy it from new
+  # parent rule
   clone: (obj) ->
     cloned = super
     delete cloned.before
+    delete cloned.between
     cloned
 
 module.exports = Declaration

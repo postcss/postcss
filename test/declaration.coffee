@@ -37,13 +37,19 @@ describe 'Declaration', ->
 
   describe 'clone()', ->
 
-    it 'cleans parent and before', ->
-      decl  = new Declaration(prop: 'color', value: 'black', before: "\n    ")
+    it 'cleans parent, between and before', ->
+      decl = new Declaration
+        prop:    'color'
+        value:   'black'
+        before:  "\n    "
+        between: ' '
+        parent:  { }
       clone = decl.clone(value: 'white')
 
       clone.value.should.eql('white')
-      (clone.parent == undefined).should.be.true
-      (clone.before == undefined).should.be.true
+      (clone.parent  == undefined).should.be.true
+      (clone.before  == undefined).should.be.true
+      (clone.between == undefined).should.be.true
 
   describe 'toString()', ->
 
