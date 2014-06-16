@@ -376,20 +376,28 @@ to `map` option:
 
 * `inline` (boolean): should we inline map to CSS annotation comment.
   By default, PostCSS checks previous CSS, and will inline new maps only if it
-  is inlined there. If you inlined map, `result.map` will be empty,
-  because map will be in `result.css` text.
-* `sourcesContent` (boolean): should we set origin content (for example,
-  Sass source) to map. By default, PostCSS will add content only if previous map
-  contains it.
-* `annotation` (boolean): should we add annotation comment to CSS. By default,
-  PostCSS always adds annotation with path to map. But if all previous have
-  no annotation, PostCSS will miss it too. If you set `inline: true` you will
-  not be able disable annotation.
+  is inlined there.
+
+  If you inlined map, `result.map` will be empty, because map will be
+  in `result.css` text.
 * `prev` (strong or object): map content from previous processing step
   (like Sass compilation). PostCSS will try to read previous map automatically
   by annotation comment in origin CSS, but you can set it manually. Also you can
-  remove previous map by `prev: false`. This is only one map option, which you
-  can be passed to `postcss.parse` to support multiple input CSS.
+  remove previous map by `prev: false`.
+
+  This is only one map option, which you can be passed
+  to `postcss.parse(css, opts)` to support multiple input CSS.
+* `sourcesContent` (boolean): should we set origin content (for example,
+  Sass source) to map. By default, PostCSS will add content only if previous map
+  contains it.
+* `annotation` (boolean or string): should we add annotation comment to CSS.
+  By default, PostCSS always adds annotation with path to map. But if all
+  previous have no annotation, PostCSS will miss it too.
+
+  By default, PostCSS thinks, that you place map to `opts.to + '.map'`, and uses
+  this path in annotation. But you can set another path as string value.
+
+  If you set `inline: true` you will not be able disable annotation.
 
 [source map]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
 

@@ -110,6 +110,15 @@ describe 'source maps', ->
 
     step2.css.should.eql(css)
 
+  it 'uses user path in annotation', ->
+    result = postcss().process 'a { }',
+      from: 'a.css'
+      to:   'b.css'
+      map:
+        annotation: 'b.map'
+
+    result.css.should.eql "a { }\n/*# sourceMappingURL=b.map */"
+
   it 'generates inline map', ->
     css = 'a { }'
 
@@ -239,13 +248,13 @@ describe 'source maps', ->
         .originalPositionFor(line: 1, column: 0).source.should.eql 'a.css'
 
   it 'sets source content on request', ->
-    step1 = @doubler.process 'a { }',
+    result = @doubler.process 'a { }',
       from: 'a.css'
       to:   'out/b.css'
       map:
         sourcesContent: true
 
-    consumer(step1.map).sourceContentFor('../a.css').should.eql('a { }')
+    consumer(result.map).sourceContentFor('../a.css').should.eql('a { }')
 
   it 'sets source content if previous have', ->
     step1 = @doubler.process 'a { }',

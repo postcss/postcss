@@ -78,6 +78,10 @@ class MapGenerator
     content = if @isInline()
       bytes = (char.charCodeAt(0) for char in @map.toString())
       "data:application/json;base64," + base64js.fromByteArray(bytes)
+
+    else if typeof(@mapOpts.annotation) == 'string'
+      @mapOpts.annotation
+
     else
       @outputFile() + '.map'
 
