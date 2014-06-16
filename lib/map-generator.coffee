@@ -1,16 +1,20 @@
+Result = require('./result')
+
 base64js = require('base64-js')
 mozilla  = require('source-map')
-Result   = require('./result')
 path     = require('path')
 
 # All tools to generate source maps
 class MapGenerator
   constructor: (@root, @opts) ->
+    @mapOpts = @opts.map || { }
 
   # Should map be generated
   isMap: ->
-    return !!@opts.map if @opts.map?
-    !!@opts.mapContent || !!@opts.inlineMap || @previous().length > 0
+    if @opts.map?
+      !!@opts.map
+    else
+      @previous().length > 0
 
   # Return source map arrays from previous compilation step (like Sass)
   previous: ->
@@ -25,8 +29,13 @@ class MapGenerator
 
   # Should we inline source map to annotation comment
   isInline: ->
-    return @opts.inlineMap if @opts.inlineMap?
+    return @mapOpts.inline if @mapOpts.inline?
     @previous().some (i) -> i.inline
+
+  # Should we set sourcesContent
+  isSourcesContent: ->
+    return @mapOpts.sourcesContent if @mapOpts.sourcesContent?
+    @previous().some (i) -> i.withContent()
 
   # Clear source map annotation comment
   clearAnnotation: ->
@@ -37,10 +46,7 @@ class MapGenerator
       last.removeSelf()
 
   # Set origin CSS content
-  setSourceContent: ->
-    return if @opts.mapContent == false
-    return if !@opts.mapContent? and @previous().every (i) -> !i.withContent()
-
+  setSourcesContent: ->
     already = { }
     @root.eachInside (node) =>
       if node.source and not already[node.source.file]
@@ -49,22 +55,26 @@ class MapGenerator
 
   # Apply source map from previous compilation step (like Sass)
   applyPrevMaps: ->
-    return if @previous().length == 0
-
     for prev in @previous()
       from = @relative(prev.file)
-      if @opts.mapContent == false
+      if @mapOpts.sourcesContent == false
         map = new mozilla.SourceMapConsumer(prev.text)
         map.sourcesContent = (null for i in map.sourcesContent)
       else
         map = prev.consumer()
       @map.applySourceMap(map, from, path.dirname(from))
 
+  # Should we add annotation comment
+  isAnnotation: ->
+    return true if @isInline()
+    return @mapOpts.annotation if @mapOpts.annotation?
+    if @previous().length
+      @previous().some (i) -> i.annotation
+    else
+      true
+
   # Add source map annotation comment if it is needed
   addAnnotation: ->
-    return if @opts.mapAnnotation == false
-    return if @previous().length > 0 and @previous().every (i) -> !i.annotation
-
     content = if @isInline()
       bytes = (char.charCodeAt(0) for char in @map.toString())
       "data:application/json;base64," + base64js.fromByteArray(bytes)
@@ -80,9 +90,9 @@ class MapGenerator
   # Return Result object with map
   generateMap: ->
     @stringify()
-    @setSourceContent()
-    @applyPrevMaps()
-    @addAnnotation()
+    @setSourcesContent() if @isSourcesContent()
+    @applyPrevMaps()     if @previous().length > 0
+    @addAnnotation()     if @isAnnotation()
 
     if @isInline()
       new Result(@root, @css)

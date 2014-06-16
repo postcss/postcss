@@ -105,8 +105,11 @@ result.map // Source map
 And modifies source map from previous step (like Sass preprocessor):
 
 ```js
-var sassMap = fs.readFileSync('from.sass.css.map');
-processor.process(css, { map: sassMap, from: 'from.sass.css', to: 'to.css' });
+processor.process(css, {
+    map:  { prev: fs.readFileSync('from.sass.css.map') },
+    from: 'from.sass.css',
+    to:   'to.css'
+});
 ```
 
 ### Preserves code formatting and indentations
@@ -316,11 +319,36 @@ var result = file1.toResult({ to: 'app.css', map: true });
 
 ### Source Map
 
-PostCSS will generate a source map, if you set `map` option to `true`
-in the `process(css, opts)` method.
+With [source maps], browser’s development tools will show you origin position
+of your styles. For example, inspector will show position in Sass file,
+if you compile it to CSS, concatenate and minify it.
 
-You must set input and output CSS files paths (using `from` and `to`
-options respectively) to generate correct source map.
+To generate correct source map every CSS processing step should update map from
+previous step. Sass compiler should generate first map, concatenation tool
+should update map from Sass step and minifier should update map from concat.
+
+There is 2 way to store map:
+
+* You can put it to separated file and add special annotation comment
+  with map path to CSS:
+
+  ```css
+ a { }
+ /*# sourceMappingURL=main.out.css.map */
+  ```
+* Or you can inline map to CSS annotation comment by base64:
+
+  ```css
+ a{}
+ /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5taW4uY3NzIiwic291cmNlcyI6WyJtYWluLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFLIn0= */
+  ```
+
+PostCSS has great source map support. You must set input and output CSS files
+paths (using `from` and `to` options respectively) to generate correct source
+map.
+
+To generate new source map with default options just set `map: true` option in
+`processor.process(css, opts)` or `root.toResult(opts)`.
 
 ```js
 var result = processor.process(css, {
@@ -334,56 +362,36 @@ result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"name
 fs.writeFileSync('main.out.css.map', result.map);
 ```
 
-PostCSS can also modify previous source map (for example, from Sass
-compilation). So if you compile Sass to CSS and then minify this CSS
-by postprocessor, final source map will contain mapping from Sass code
-to minified CSS.
-
-Just set `map` option with an original source map (a string or a JS object):
+If PostCSS will find source map in previous CSS, it will automatically update
+it with same options.
 
 ```js
-var result = minifier.process(css, {
-    map:   fs.readFileSync('main.sass.css.map'),
-    from: 'main.sass.css',
-    to:   'main.min.css'
-});
-
+// main.sass.css has annotation comment with link to main.sass.css.map
+var result = minifier.process(css, { from: 'main.sass.css', to: 'main.min.css' });
 result.map //=> Source map from main.sass to main.min.css
 ```
 
-PostCSS try to autodetect previous map file. For example, if you process `a.css`
-and `a.css.map` is placed in same dir, PostCSS will read previous map and
-generate new one. You can disable autodetection by `map: false`.
+If you want to control map generation you can set object with parameters
+to `map` option:
 
-PostCSS, by default, will add annotation comment with path to new source map
-file:
+* `inline` (boolean): should we inline map to CSS annotation comment.
+  By default, PostCSS checks previous CSS, and will inline new maps only if it
+  is inlined there. If you inlined map, `result.map` will be empty,
+  because map will be in `result.css` text.
+* `sourcesContent` (boolean): should we set origin content (for example,
+  Sass source) to map. By default, PostCSS will add content only if previous map
+  contains it.
+* `annotation` (boolean): should we add annotation comment to CSS. By default,
+  PostCSS always adds annotation with path to map. But if all previous have
+  no annotation, PostCSS will miss it too. If you set `inline: true` you will
+  not be able disable annotation.
+* `prev` (strong or object): map content from previous processing step
+  (like Sass compilation). PostCSS will try to read previous map automatically
+  by annotation comment in origin CSS, but you can set it manually. Also you can
+  remove previous map by `prev: false`. This is only one map option, which you
+  can be passed to `postcss.parse` to support multiple input CSS.
 
-```css
-a { }
-/*# sourceMappingURL=main.out.css.map */
-```
-
-If you want to remove annotation, set `mapAnnotation` option to `false`.
-
-Inline maps are also supported. If input CSS will contain annotation
-from previous step with map in `data:uri`, PostCSS will update source map
-with yours changes and inine new map back to output CSS.
-
-Option `inlineMap` will force PostCSS to inline new map to CSS:
-
-```js
-var result = minifier.process(css, {
-    from:     'main.css',
-    to:       'main.min.css',
-    inlineMap: true
-});
-
-result.map //=> undefined, because map is in CSS
-result.css //=> "a{}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5taW4uY3NzIiwic291cmNlcyI6WyJtYWluLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFLIn0= */"
-```
-
-If you want to include origin CSS content to `sourcesContent` in source map,
-set `mapContent` option to `true`.
+[source map]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
 
 ### Helpers
 

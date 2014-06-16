@@ -10,7 +10,7 @@ class PreviousMap
     @loadAnnotation(root)
     @inline = @startWith(@annotation, '# sourceMappingURL=data:')
 
-    text  = @loadMap(opts)
+    text  = @loadMap(opts.map?.prev)
     @text = text if text
 
   # Return SourceMapConsumer object to read map
@@ -52,18 +52,20 @@ class PreviousMap
       throw new Error("Unsupported source map encoding #{ encoding }")
 
   # Load previous map
-  loadMap: (opts) ->
-    if opts.map and typeof(opts.map) != 'boolean'
-      if typeof(opts.map) == 'string'
-        opts.map
-      else if opts.map instanceof mozilla.SourceMapConsumer
-        mozilla.SourceMapGenerator.fromSourceMap(opts.map).toString()
-      else if opts.map instanceof mozilla.SourceMapGenerator
-        opts.map.toString()
-      else if typeof(opts.map) == 'object' and opts.map.mappings?
-        JSON.stringify(opts.map)
+  loadMap: (prev) ->
+    return if prev == false
+
+    if prev
+      if typeof(prev) == 'string'
+        prev
+      else if prev instanceof mozilla.SourceMapConsumer
+        mozilla.SourceMapGenerator.fromSourceMap(prev).toString()
+      else if prev instanceof mozilla.SourceMapGenerator
+        prev.toString()
+      else if typeof(prev) == 'object' and prev.mappings?
+        JSON.stringify(prev)
       else
-        throw new Error("Unsupported previous source map format: #{ opts.map }")
+        throw new Error("Unsupported previous source map format: #{ prev }")
 
     else if @inline
       @decodeInline(@annotation)

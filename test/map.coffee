@@ -64,7 +64,8 @@ describe 'source maps', ->
     lighted = @lighter.process doubled.css,
       from: 'b.css'
       to:   'c.css'
-      map:  doubled.map
+      map:
+        prev: doubled.map
 
     consumer(lighted.map)
       .originalPositionFor(line: 1, column: 18).should.eql
@@ -85,10 +86,10 @@ describe 'source maps', ->
   it 'misses source map annotation, if user ask', ->
     css    = 'a { }'
     result = postcss().process css,
-      from:         'a.css'
-      to:           'b.css'
-      map:           true
-      mapAnnotation: false
+      from: 'a.css'
+      to:   'b.css'
+      map:
+        annotation: false
 
     result.css.should.eql(css)
 
@@ -96,15 +97,16 @@ describe 'source maps', ->
     css = 'a { }'
 
     step1 = postcss().process css,
-      from:         'a.css'
-      to:           'b.css'
-      map:           true
-      mapAnnotation: false
+      from: 'a.css'
+      to:   'b.css'
+      map:
+        annotation: false
 
     step2 = postcss().process step1.css,
       from: 'b.css'
       to:   'c.css'
-      map:  step1.map
+      map:
+        prev: step1.map
 
     step2.css.should.eql(css)
 
@@ -117,9 +119,10 @@ describe 'source maps', ->
       map:   true
 
     inline = postcss().process css,
-      from:     'a.css'
-      to:       'b.css'
-      inlineMap: true
+      from: 'a.css'
+      to:   'b.css'
+      map:
+        inline: true
 
     inline.should.not.have.property('map')
     inline.css.should.match(/# sourceMappingURL=data:/)
@@ -128,7 +131,7 @@ describe 'source maps', ->
     inline.css.should.endWith(base64 + ' */')
 
   it 'generates inline map if previous map was inline', ->
-    css     = 'a { color: black }'
+    css = 'a { color: black }'
 
     common1 = @doubler.process css,
       from: 'a.css'
@@ -137,12 +140,14 @@ describe 'source maps', ->
     common2 = @lighter.process common1.css,
       from: 'b.css'
       to:   'c.css'
-      map:   common1.map
+      map:
+        prev: common1.map
 
     inline1 = @doubler.process css,
-      from:     'a.css'
-      to:       'b.css'
-      inlineMap: true
+      from: 'a.css'
+      to:   'b.css'
+      map:
+        inline: true
     inline2 = @lighter.process inline1.css,
       from: 'b.css'
       to:   'c.css'
@@ -154,14 +159,16 @@ describe 'source maps', ->
     css = 'a { }'
 
     step1 = postcss().process css,
-      from:     'a.css'
-      to:       'b.css'
-      inlineMap: true
+      from: 'a.css'
+      to:   'b.css'
+      map:
+        inline: true
 
     step2 = postcss().process step1.css,
-      from:     'b.css'
-      to:       'c.css'
-      inlineMap: false
+      from: 'b.css'
+      to:   'c.css'
+      map:
+        inline: false
 
     step2.should.have.property('map')
     step2.css.should.not.match(/# sourceMappingURL=data:/)
@@ -201,7 +208,8 @@ describe 'source maps', ->
     step2 = @doubler.process step1.css,
       from: 'out/b.css'
       to:   'out/two/c.css'
-      map:   step1.map
+      map:
+        prev: step1.map
 
     consumer(step2.map)
       .originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
@@ -209,7 +217,8 @@ describe 'source maps', ->
     step3 = @doubler.process step2.css,
       from: 'c.css'
       to:   'd.css'
-      map:   step2.map
+      map:
+        prev: step2.map
 
     consumer(step3.map)
       .originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
@@ -221,25 +230,31 @@ describe 'source maps', ->
     maps = [map, consumer(map), map.toJSON(), map.toString()]
 
     for map in maps
-      step2 = @doubler.process(step1.css, from: 'b.css' ,to: 'c.css', map: map)
+      step2 = @doubler.process step1.css,
+        from: 'b.css'
+        to: 'c.css'
+        map:
+          prev: map
       consumer(step2.map)
         .originalPositionFor(line: 1, column: 0).source.should.eql 'a.css'
 
   it 'sets source content on request', ->
     step1 = @doubler.process 'a { }',
-      from:      'a.css'
-      to:        'out/b.css'
-      mapContent: true
+      from: 'a.css'
+      to:   'out/b.css'
+      map:
+        sourcesContent: true
 
     consumer(step1.map).sourceContentFor('../a.css').should.eql('a { }')
 
   it 'sets source content if previous have', ->
     step1 = @doubler.process 'a { }',
-      from:      'a.css'
-      to:        'out/a.css'
-      mapContent: true
+      from: 'a.css'
+      to:   'out/a.css'
+      map:
+        sourcesContent: true
 
-    file1 = postcss.parse(step1.css, from: 'a.css', map: step1.map)
+    file1 = postcss.parse(step1.css, from: 'a.css', map: { prev: step1.map })
     file2 = postcss.parse('b { }',   from: 'b.css')
 
     file2.append(file1.rules[0].clone())
@@ -249,15 +264,16 @@ describe 'source maps', ->
 
   it 'miss source content on request', ->
     step1 = @doubler.process 'a { }',
-      from:      'a.css'
-      to:        'out/a.css'
-      mapContent: true
+      from: 'a.css'
+      to:   'out/a.css'
+      map:
+        sourcesContent: true
 
-    file1 = postcss.parse(step1.css, from: 'a.css', map: step1.map)
+    file1 = postcss.parse(step1.css, from: 'a.css', map: { prev: step1.map })
     file2 = postcss.parse('b { }',   from: 'b.css')
 
     file2.append(file1.rules[0].clone())
-    step2 = file2.toResult(to: 'c.css', mapContent: false)
+    step2 = file2.toResult(to: 'c.css', map: { sourcesContent: false })
 
     map = consumer(step2.map)
     (!!map.sourceContentFor('b.css')).should.be.false
