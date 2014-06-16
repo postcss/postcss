@@ -133,6 +133,8 @@ contenter.process("a::before {\n  color: black;\n  }")
 //   }
 ```
 
+It allows to use PostCSS in text editor plugin and preserve user code style.
+
 ## Why PostCSS Better Than …
 
 ### Preprocessors
@@ -321,7 +323,7 @@ var result = file1.toResult({ to: 'app.css', map: true });
 
 With [source maps], browser’s development tools will show you origin position
 of your styles. For example, inspector will show position in Sass file,
-if you compile it to CSS, concatenate and minify it.
+even if you compile it to CSS, concatenate and minify it.
 
 To generate correct source map every CSS processing step should update map from
 previous step. Sass compiler should generate first map, concatenation tool
@@ -352,9 +354,9 @@ To generate new source map with default options just set `map: true` option in
 
 ```js
 var result = processor.process(css, {
-    map:  true,
     from: 'main.css',
     to:   'main.out.css'
+    map:  true,
 });
 
 result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
@@ -375,21 +377,22 @@ If you want to control map generation you can set object with parameters
 to `map` option:
 
 * `inline` (boolean): should we inline map to CSS annotation comment.
-  By default, PostCSS checks previous CSS, and will inline new maps only if it
-  is inlined there.
+  By default, PostCSS will inline new maps only if map was inlined
+  in previous CSS.
 
-  If you inlined map, `result.map` will be empty, because map will be
+  If you inline map, `result.map` will be empty, because map will be
   in `result.css` text.
 
-  Yu can shortcut `map { inline: true }` as `map: 'inline'`.
+  You can shortcut `map { inline: true }` to `map: 'inline'`.
 
 * `prev` (strong or object): map content from previous processing step
   (like Sass compilation). PostCSS will try to read previous map automatically
   by annotation comment in origin CSS, but you can set it manually. Also you can
   remove previous map by `prev: false`.
 
-  This is only one map option, which you can be passed
-  to `postcss.parse(css, opts)` to support multiple input CSS.
+  This option is only one map option, which can be passed
+  to `postcss.parse(css, opts)`. Other options is for `toResult(opts)`
+  or `process(css, opts)` method.
 
 * `sourcesContent` (boolean): should we set origin content (for example,
   Sass source) to map. By default, PostCSS will add content only if previous map
@@ -397,14 +400,15 @@ to `map` option:
 
 * `annotation` (boolean or string): should we add annotation comment to CSS.
   By default, PostCSS always adds annotation with path to map. But if all
-  previous have no annotation, PostCSS will miss it too.
+  previous CSS have not annotation, PostCSS will miss it too.
 
-  By default, PostCSS thinks, that you place map to `opts.to + '.map'`, and uses
-  this path in annotation. But you can set another path as string value.
+  By default, PostCSS thinks, that you will save map to `opts.to + '.map'`,
+  and uses this path in annotation. But you can set another path as string value
+  in `annotation` option.
 
-  If you set `inline: true` you will not be able disable annotation.
+  If you set `inline: true`, of cource, you will not be able disable annotation.
 
-[source map]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
+[source maps]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
 
 ### Helpers
 
