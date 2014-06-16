@@ -134,8 +134,8 @@ class Container extends Node
   #
   #   rule.append(prop: 'color', value: 'black')
   append: (child) ->
-    child = @normalize(child, @list[@list.length - 1])
-    @list.push(child)
+    for child in @normalize(child, @list[@list.length - 1])
+      @list.push(child)
     this
 
   # Add child to beginning of container
@@ -146,11 +146,12 @@ class Container extends Node
   #
   #   rule.prepend(prop: 'color', value: 'black')
   prepend: (child) ->
-    child = @normalize(child, @list[0], 'prepend')
-    @list.unshift(child)
+    childs = @normalize(child, @list[0], 'prepend')
+    for child in childs.reverse()
+      @list.unshift(child)
 
     for id, index of @indexes
-      @indexes[id] = index + 1
+      @indexes[id] = index + childs.length
 
     this
 
@@ -163,12 +164,13 @@ class Container extends Node
   #
   #   rule.insertBefore(1, prop: 'color', value: 'black')
   insertBefore: (exist, add) ->
-    exist = @index(exist)
-    add   = @normalize(add, @list[exist], if exist == 0 then 'prepend')
-    @list.splice(exist, 0, add)
+    exist  = @index(exist)
+    childs = @normalize(add, @list[exist], if exist == 0 then 'prepend')
+    for child in childs.reverse()
+      @list.splice(exist, 0, child)
 
     for id, index of @indexes
-      @indexes[id] = index + 1 if index >= exist
+      @indexes[id] = index + childs.length
 
     this
 
@@ -181,12 +183,13 @@ class Container extends Node
   #
   #   rule.insertAfter(1, prop: 'color', value: 'black')
   insertAfter: (exist, add) ->
-    exist = @index(exist)
-    add   = @normalize(add, @list[exist])
-    @list.splice(exist + 1, 0, add)
+    exist  = @index(exist)
+    childs = @normalize(add, @list[exist])
+    for child in childs.reverse()
+      @list.splice(exist + 1, 0, child)
 
     for id, index of @indexes
-      @indexes[id] = index + 1 if index > exist
+      @indexes[id] = index + childs.length
 
     this
 
@@ -230,12 +233,19 @@ class Container extends Node
 
   # Normalize child before insert. Copy before from `sample`.
   normalize: (child, sample) ->
-    child.parent = this
+    if child.type == 'root'
+      @normalize(child.rules, sample)
 
-    if not child.before? and sample
-      child.before = sample.before
+    else
+      childs = if Array.isArray(child)
+        i.clone() for i in child
+      else
+        [child]
 
-    child
+      for child in childs
+        child.parent = this
+        child.before = sample.before if not child.before? and sample
+        child
 
 # Container with another rules, like @media at-rule
 class Container.WithRules extends Container
@@ -292,7 +302,8 @@ class Container.WithDecls extends Container
 
   # Allow to define new declaration as hash
   normalize: (child, sample) ->
-    child = new Declaration(child) unless child.type
+    if not child.type and not Array.isArray(child)
+      child = new Declaration(child)
     super(child, sample)
 
   # Execute callback on every declaration.

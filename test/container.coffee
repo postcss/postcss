@@ -242,9 +242,22 @@ describe 'Container', ->
       @rule.append(@new)
       compare(@css, 'append')
 
-    it 'receive hash instead of declaration', ->
+    it 'receives hash instead of declaration', ->
       @rule.append(prop: 'new', value: 'value')
       compare(@css, 'append')
+
+    it 'receives root', ->
+      css = parse('a {}')
+      css.append( parse('b {}') )
+      css.toString().should.eql 'a {}b {}'
+
+    it 'receives array', ->
+      a = parse('a { color: black }')
+      b = parse('b{width:1px;height:2px}')
+
+      a.first.append( b.first.decls )
+      a.toString().should.eql 'a { color: black; width:1px; height:2px }'
+      b.toString().should.eql 'b{width:1px;height:2px}'
 
   describe 'prepend()', ->
 
@@ -255,6 +268,18 @@ describe 'Container', ->
     it 'receive hash instead of declaration', ->
       @rule.prepend(prop: 'new', value: 'value')
       compare(@css, 'prepend')
+
+    it 'receives root', ->
+      css = parse('a {}')
+      css.prepend( parse('b {}') )
+      css.toString().should.eql 'b {}a {}'
+
+    it 'receives array', ->
+      a = parse('a { color: black }')
+      b = parse('b{width:1px;height:2px}')
+
+      a.first.prepend( b.first.decls )
+      a.toString().should.eql 'a { width:1px; height:2px; color: black }'
 
   describe 'insertBefore()', ->
 
@@ -270,6 +295,13 @@ describe 'Container', ->
       @rule.insertBefore(1, prop: 'new', value: 'value')
       compare(@css, 'insert')
 
+    it 'receives array', ->
+      a = parse('a { color: red; z-index: 1 }')
+      b = parse('b{width:1;height:2}')
+
+      a.first.insertBefore(1, b.first.decls)
+      a.toString().should.eql 'a { color: red; width:1; height:2; z-index: 1 }'
+
   describe 'insertAfter()', ->
 
     it 'inserts child', ->
@@ -283,6 +315,13 @@ describe 'Container', ->
     it 'receive hash instead of declaration', ->
       @rule.insertAfter(0, prop: 'new', value: 'value')
       compare(@css, 'insert')
+
+    it 'receives array', ->
+      a = parse('a { color: red; z-index: 1 }')
+      b = parse('b{width:1;height:2}')
+
+      a.first.insertAfter(0, b.first.decls)
+      a.toString().should.eql 'a { color: red; width:1; height:2; z-index: 1 }'
 
   describe 'remove()', ->
 

@@ -312,7 +312,7 @@ Let’s join two CSS with source map support in 5 lines of code:
 var file1 = postcss.parse(css1, { from: 'a.css' });
 var file2 = postcss.parse(css2, { from: 'b.css' });
 
-file1.rules = file1.rules.concat( file2.rules );
+file1.append( file2 );
 
 var result = file1.toResult({ to: 'app.css', map: true });
 ```
@@ -559,6 +559,9 @@ There are common method to work with children:
 * `index(existsChild)` to return child index.
 * `some(fn)` to return true if `fn` returns true on any child.
 * `every(fn)` to return true if `fn` returns true on all children.
+
+Methods `append`, `prepend`, `insertBefore` and `insertAfter` can receive
+arrays and `Root` as new child argument.
 
 Methods `insertBefore`, `insertAfter` and `remove` can receive child node
 or child index as an `existsChild` argument. Have in mind that child index works
