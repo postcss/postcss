@@ -381,6 +381,8 @@ to `map` option:
   If you inlined map, `result.map` will be empty, because map will be
   in `result.css` text.
 
+  Yu can shortcut `map { inline: true }` as `map: 'inline'`.
+
 * `prev` (strong or object): map content from previous processing step
   (like Sass compilation). PostCSS will try to read previous map automatically
   by annotation comment in origin CSS, but you can set it manually. Also you can

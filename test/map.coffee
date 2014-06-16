@@ -139,6 +139,14 @@ describe 'source maps', ->
     base64 = new Buffer(common.map).toString('base64')
     inline.css.should.endWith(base64 + ' */')
 
+  it 'generates inline map by shortcut', ->
+    inline = postcss().process 'a { }',
+      from: 'a.css'
+      to:   'b.css'
+      map:  'inline'
+
+    inline.css.should.match(/# sourceMappingURL=data:/)
+
   it 'generates inline map if previous map was inline', ->
     css = 'a { color: black }'
 

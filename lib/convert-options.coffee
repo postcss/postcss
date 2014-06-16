@@ -7,7 +7,9 @@ module.exports = (old) ->
   for name, value of old
 
     if name == 'map'
-      if typeof(value) == 'string'
+      if value == 'inline'
+        map.inline = true
+      else if typeof(value) == 'string'
         map.prev = value
       else if value instanceof mozilla.SourceMapConsumer
         map.prev = value
