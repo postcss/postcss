@@ -341,7 +341,7 @@ There is 2 way to store map:
 * Or you can inline map to CSS annotation comment by base64:
 
   ```css
- a{}
+ a { }
  /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5taW4uY3NzIiwic291cmNlcyI6WyJtYWluLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFLIn0= */
   ```
 
