@@ -380,6 +380,7 @@ to `map` option:
 
   If you inlined map, `result.map` will be empty, because map will be
   in `result.css` text.
+
 * `prev` (strong or object): map content from previous processing step
   (like Sass compilation). PostCSS will try to read previous map automatically
   by annotation comment in origin CSS, but you can set it manually. Also you can
@@ -387,9 +388,11 @@ to `map` option:
 
   This is only one map option, which you can be passed
   to `postcss.parse(css, opts)` to support multiple input CSS.
+
 * `sourcesContent` (boolean): should we set origin content (for example,
   Sass source) to map. By default, PostCSS will add content only if previous map
   contains it.
+
 * `annotation` (boolean or string): should we add annotation comment to CSS.
   By default, PostCSS always adds annotation with path to map. But if all
   previous have no annotation, PostCSS will miss it too.
