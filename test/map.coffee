@@ -115,9 +115,13 @@ describe 'source maps', ->
       from: 'a.css'
       to:   'b.css'
       map:
-        annotation: 'b.map'
+        annotation: 'build/b.map'
 
-    result.css.should.eql "a { }\n/*# sourceMappingURL=b.map */"
+    result.css.should.eql "a { }\n/*# sourceMappingURL=build/b.map */"
+
+    map = consumer(result.map)
+    map.file.should.eql('../b.css')
+    map.originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
 
   it 'generates inline map', ->
     css = 'a { }'
