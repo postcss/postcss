@@ -57,12 +57,14 @@ class MapGenerator
   applyPrevMaps: ->
     for prev in @previous()
       from = @relative(prev.file)
+
       if @mapOpts.sourcesContent == false
         map = new mozilla.SourceMapConsumer(prev.text)
         map.sourcesContent = (null for i in map.sourcesContent)
       else
         map = prev.consumer()
-      @map.applySourceMap(map, from, path.dirname(from))
+
+      @map.applySourceMap(map, from, from.replace(/(^|\/)[^\/]+$/, ''))
 
   # Should we add annotation comment
   isAnnotation: ->
