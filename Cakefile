@@ -115,6 +115,7 @@ task 'compile', 'Compile CoffeeScript to JS', ->
         continue
       else if path == '/package.json'
         data = JSON.parse(fs.readFileSync(sourcePath))
+        data['main'] = 'lib/postcss'
         delete data['dependencies']['coffee-script']
         fs.writeFileSync(buildPath, JSON.stringify(data, null, 2))
       else
