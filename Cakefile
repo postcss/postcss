@@ -111,6 +111,12 @@ task 'compile', 'Compile CoffeeScript to JS', ->
         compiled = compileCoffee(sourcePath)
         jsPath   = buildPath.replace(/\.coffee$/, '.js')
         fs.writeFileSync(jsPath, compiled)
+      else if path == '/index.js'
+        continue
+      else if path == '/package.json'
+        data = JSON.parse(fs.readFileSync(sourcePath))
+        delete data['dependencies']['coffee-script']
+        fs.writeFileSync(buildPath, JSON.stringify(data, null, 2))
       else
         fs.copy(sourcePath, buildPath)
 

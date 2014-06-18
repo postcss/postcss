@@ -10,11 +10,11 @@
     "url": "https://github.com/ai/postcss.git"
   },
   "dependencies": {
-    "source-map": "~0.1.33",
-    "base64-js":  "~0.0.6"
+    "coffee-script": "1.7.1",
+    "source-map":    "~0.1.33",
+    "base64-js":     "~0.0.6"
   },
   "devDependencies": {
-    "coffee-script": "1.7.1",
     "fs-extra":      "0.9.1",
     "gonzales":      "1.0.7",
     "rework":        "0.20.3",
@@ -22,7 +22,6 @@
     "mocha":         "1.20.0",
     "cssom":         "0.3.0"
   },
-  "main": "lib/postcss",
   "scripts": {
     "test": "mocha"
   }
