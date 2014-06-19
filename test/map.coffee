@@ -251,6 +251,42 @@ describe 'source maps', ->
     consumer(step3.map)
       .originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
 
+  it 'uses map from subdir - inlined', ->
+    step1 = @doubler.process 'a { }',
+      from: 'a.css'
+      to:   'out/b.css'
+      map:
+        inline: true
+
+    step2 = @doubler.process step1.css,
+      from: 'out/b.css'
+      to:   'out/two/c.css'
+      map:
+        inline: false
+
+    consumer(step2.map)
+      .originalPositionFor(line: 1, column: 0).source.should.eql '../../a.css'
+
+  it 'uses map from subdir - written as a file', ->
+    step1 = @doubler.process 'a { }',
+      from: 'source/a.css'
+      to:   'one/b.css'
+      map:
+        annotation: 'maps/b.css.map'
+
+    consumer(step1.map)
+      .originalPositionFor(line: 1, column: 0).source.should.eql '../../source/a.css'
+
+    fs.outputFileSync(@dir + '/one/maps/b.css.map', step1.map)
+
+    step2 = @doubler.process step1.css,
+      from: @dir + '/one/b.css'
+      to:   @dir + '/two/c.css'
+      map:  true
+
+    consumer(step2.map)
+      .originalPositionFor(line: 1, column: 0).source.should.eql '../source/a.css'
+
   it 'works with different types of maps', ->
     step1 = @doubler.process('a { }', from: 'a.css', to: 'b.css', map: true)
 
