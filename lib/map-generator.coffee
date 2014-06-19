@@ -57,7 +57,7 @@ class MapGenerator
   applyPrevMaps: ->
     for prev in @previous()
       from = prev.file
-      relativeTo = prev.sourcesRelativeTo || path.dirname(from)
+      root = prev.root || path.dirname(from)
 
       if @mapOpts.sourcesContent == false
         map = new mozilla.SourceMapConsumer(prev.text)
@@ -65,7 +65,7 @@ class MapGenerator
       else
         map = prev.consumer()
 
-      @map.applySourceMap(map, @relative(from), @relative(relativeTo))
+      @map.applySourceMap(map, @relative(from), @relative(root))
 
   # Should we add annotation comment
   isAnnotation: ->

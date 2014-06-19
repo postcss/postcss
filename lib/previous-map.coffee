@@ -71,9 +71,9 @@ class PreviousMap
       @decodeInline(@annotation)
 
     else if @annotation
-      map = @annotation.replace('# sourceMappingURL=', '')
-      map = path.join(path.dirname(@file), map) if @file
-      @sourcesRelativeTo = path.dirname(map)
+      map   = @annotation.replace('# sourceMappingURL=', '')
+      map   = path.join(path.dirname(@file), map) if @file
+      @root = path.dirname(map)
       fs.readFileSync(map).toString() if fs.existsSync?(map)
 
 module.exports = PreviousMap
