@@ -76,3 +76,4 @@ describe 'PreviousMap', ->
     root = parse("a{}\n/*# sourceMappingURL=a.map */", from: @dir + '/a.css')
 
     root.prevMap.text.should.eql(@map)
+    root.prevMap.root.should.eql(@dir)
