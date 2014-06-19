@@ -56,7 +56,8 @@ class MapGenerator
   # Apply source map from previous compilation step (like Sass)
   applyPrevMaps: ->
     for prev in @previous()
-      from = @relative(prev.file)
+      from = prev.file
+      relativeTo = prev.sourcesRelativeTo || path.dirname(from)
 
       if @mapOpts.sourcesContent == false
         map = new mozilla.SourceMapConsumer(prev.text)
@@ -64,7 +65,7 @@ class MapGenerator
       else
         map = prev.consumer()
 
-      @map.applySourceMap(map, from, from.replace(/(^|\/)[^\/]+$/, ''))
+      @map.applySourceMap(map, @relative(from), @relative(relativeTo))
 
   # Should we add annotation comment
   isAnnotation: ->
