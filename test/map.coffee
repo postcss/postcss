@@ -110,18 +110,25 @@ describe 'source maps', ->
 
     step2.css.should.eql(css)
 
-  it 'uses user path in annotation', ->
+  it 'uses user path in annotation, relative to `options.to`', ->
+    # source/
+    #   a.css
+    # build/
+    #   b.css
+    #   maps/
+    #     b.map
+    #
     result = postcss().process 'a { }',
-      from: 'a.css'
-      to:   'b.css'
+      from: 'source/a.css'
+      to:   'build/b.css'
       map:
-        annotation: 'build/b.map'
+        annotation: 'maps/b.map'
 
-    result.css.should.eql "a { }\n/*# sourceMappingURL=build/b.map */"
+    result.css.should.eql "a { }\n/*# sourceMappingURL=maps/b.map */"
 
     map = consumer(result.map)
     map.file.should.eql('../b.css')
-    map.originalPositionFor(line: 1, column: 0).source.should.eql '../a.css'
+    map.originalPositionFor(line: 1, column: 0).source.should.eql '../../source/a.css'
 
   it 'generates inline map', ->
     css = 'a { }'

@@ -107,12 +107,9 @@ class MapGenerator
 
   # Return path relative from output CSS file
   relative: (file) ->
-    from = if typeof(@mapOpts.annotation) == 'string'
-      path.dirname(@mapOpts.annotation)
-    else if @opts.to
-      path.dirname(@opts.to)
-    else
-      '.'
+    from = if @opts.to then path.dirname(@opts.to) else '.'
+    if typeof(@mapOpts.annotation) == 'string'
+      from = path.dirname(path.resolve(from, @mapOpts.annotation))
     file = path.relative(from, file)
     file = file.replace('\\', '/') if path.sep == '\\'
     file
