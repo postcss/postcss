@@ -105,8 +105,10 @@ result.map // Source map
 And modifies source map from previous step (like Sass preprocessor):
 
 ```js
-processor.process(css, {
-    map:  { prev: fs.readFileSync('from.sass.css.map') },
+var sass = compiler.compile(sass);
+
+processor.process(sass.css, {
+    map:  { prev: sass.map },
     from: 'from.sass.css',
     to:   'to.css'
 });
