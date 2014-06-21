@@ -17,7 +17,7 @@ describe 'source maps', ->
     fs.removeSync(@dir) if fs.existsSync(@dir)
 
   it 'adds map field only on request', ->
-    postcss().process('a {}').should.not.have.property('map')
+    (postcss().process('a {}').map == undefined).should.be.true
 
   it 'return map generator', ->
     postcss().process('a {}', map: true).map
@@ -144,7 +144,7 @@ describe 'source maps', ->
       map:
         inline: true
 
-    inline.should.not.have.property('map')
+    (inline.map == undefined).should.be.true
     inline.css.should.match(/# sourceMappingURL=data:/)
 
     base64 = new Buffer(common.map).toString('base64')
@@ -213,7 +213,7 @@ describe 'source maps', ->
       to:  'b.css'
       map:  false
 
-    step2.should.not.have.property('map')
+    (step2.map == undefined).should.be.true
 
   it 'works in subdirs', ->
     result = @doubler.process 'a { }',

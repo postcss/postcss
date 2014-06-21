@@ -1,9 +1,9 @@
-MapGenerator = require('./map-generator')
-Declaration  = require('./declaration')
-Container    = require('./container')
-Comment      = require('./comment')
-AtRule       = require('./at-rule')
-Rule         = require('./rule')
+Declaration = require('./declaration')
+Container   = require('./container')
+Comment     = require('./comment')
+AtRule      = require('./at-rule')
+Result      = require('./result')
+Rule        = require('./rule')
 
 # Root of CSS
 class Root extends Container.WithRules
@@ -26,7 +26,6 @@ class Root extends Container.WithRules
 
   # Generate processing result with optional source map
   toResult: (opts = { }) ->
-    map = new MapGenerator(@, opts)
-    map.getResult()
+    new Result(this, opts)
 
 module.exports = Root

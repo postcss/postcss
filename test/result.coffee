@@ -1,6 +1,8 @@
 Result = require('../lib/result')
 parse  = require('../lib/parse')
 
+mozilla = require('source-map')
+
 describe 'Result', ->
   beforeEach ->
     @root = parse('a {}')
@@ -17,10 +19,6 @@ describe 'Result', ->
       result = new Result(@root)
       result.css.should.eql('a {}')
 
-    it 'contains CSS', ->
-      result = new Result(@root, 'b {}')
-      result.css.should.eql('b {}')
-
     it 'stringifies', ->
       result = new Result(@root, 'a {}')
       ('' + result).should.eql(result.css)
@@ -28,8 +26,8 @@ describe 'Result', ->
   describe 'map', ->
 
     it 'exists only if necessary', ->
-      result = new Result(@root, 'a {}')
-      result.should.not.have.property('map')
+      result = new Result(@root)
+      (result.map == undefined).should.be.true
 
-      result = new Result(@root, 'a {}', { one: 1 })
-      result.map.should.eql({ one: 1 })
+      result = new Result(@root, map: true)
+      result.map.should.be.a.instanceOf(mozilla.SourceMapGenerator)
