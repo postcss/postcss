@@ -1,7 +1,7 @@
 # PostCSS
 
 PostCSS is a framework for CSS postprocessors,
-to modify CSS with JavaScript.
+to modify CSS with JavaScript with full source map support.
 
 It takes care of most common CSS tool tasks:
 
