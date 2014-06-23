@@ -1,21 +1,21 @@
 ## 1.0 “Marquis Decarabia”
-* Save previous source map for each node to support CSS concatenation
+- Save previous source map for each node to support CSS concatenation
   with multiple previous maps.
-* Add `map.sourcesContent` option to add origin content to `sourcesContent`
+- Add `map.sourcesContent` option to add origin content to `sourcesContent`
   inside map.
-* Allow to set different place of output map in annotation comment.
-* Allow to use arrays and `Root` in `Container#append` and same methods.
-* Add `Root#prevMap` with information about previous map.
-* Allow to use latest PostCSS from GitHub by npm.
-* `Result` now is lazy and it will stringify output CSS only if you use `css` or
+- Allow to set different place of output map in annotation comment.
+- Allow to use arrays and `Root` in `Container#append` and same methods.
+- Add `Root#prevMap` with information about previous map.
+- Allow to use latest PostCSS from GitHub by npm.
+- `Result` now is lazy and it will stringify output CSS only if you use `css` or
   `map` property.
-* Use separated `map.prev` option to set previous map.
-* Rename `inlineMap` option to `map.inline`.
-* Rename `mapAnnotation` option to `map.annotation`.
-* `Result#map` now return `SourceMapGenerator` object, instead of string.
-* Run previous map autodetect only if input CSS contains annotation comment.
-* Add `map: 'inline'` shortcut for `map: { inline: true }` option.
-* `Node#source.file` now will contains absolute path.
+- Use separated `map.prev` option to set previous map.
+- Rename `inlineMap` option to `map.inline`.
+- Rename `mapAnnotation` option to `map.annotation`.
+- `Result#map` now return `SourceMapGenerator` object, instead of string.
+- Run previous map autodetect only if input CSS contains annotation comment.
+- Add `map: 'inline'` shortcut for `map: { inline: true }` option.
+* `Node#source.file` now will contain absolute path.
 * Clean `Declaration#between` style on node clone.
 
 ## 0.3.5
