@@ -17,6 +17,7 @@
   "devDependencies": {
     "fs-extra": "0.9.1",
     "gonzales": "1.0.7",
+    "request":  "2.36.0",
     "rework":   "1.0.0",
     "should":   "4.0.4",
     "mocha":    "1.20.1",

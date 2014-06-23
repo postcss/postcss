@@ -1,4 +1,6 @@
-fs = require('fs-extra')
+fs      = require('fs-extra')
+zlib    = require('zlib')
+request = require('request')
 
 sh = (cmd, callback) ->
   require('child_process').exec cmd, (error, stdout, stderr) ->
@@ -12,15 +14,22 @@ error = (text) ->
   process.stderr.write("\n\n" + text + "\n")
   process.exit(1)
 
-https = require('https')
-http  = require('http')
 get = (url, callback) ->
-  protocol = if url.match(/^https/) then https else http
+  request.get(url: url, headers: { 'accept-encoding': 'gzip,deflate' })
+    .on 'response', (res) ->
+      chunks = []
+      res.on 'data', (chunk) -> chunks.push(chunk)
+      res.on 'end', ->
+        buffer = Buffer.concat(chunks)
 
-  protocol.get url, (res) ->
-    data = ''
-    res.on 'data', (chunk) -> data += chunk
-    res.on 'end', -> callback(data)
+        if res.headers['content-encoding'] == 'gzip'
+          zlib.gunzip buffer,  (_, decoded) -> callback(decoded.toString())
+
+        else if res.headers['content-encoding'] == 'deflate'
+          zlib.inflate buffer, (_, decoded) -> callback(decoded.toString())
+
+        else
+          callback(buffer.toString())
 
 getStyles = (url, callback) ->
   get url, (html) ->
@@ -54,15 +63,20 @@ task 'integration', 'Test parser/stringifier on real CSS', ->
       nextSite()
       return
 
-    get links.shift(), (css) ->
+    url = links.shift()
+    if url.indexOf('&quot;') != -1
+      nextLink()
+      return
+
+    get url, (css) ->
       test(css)
       print('.')
       nextLink()
 
   sites = [{ name: 'GitHub',    url: 'https://github.com/' }
            { name: 'Twitter',   url: 'https://twitter.com/' }
-           { name: 'Habrahabr', url: 'http://habrahabr.ru/' }
-           { name: 'Bootstrap', url: 'http://getbootstrap.com/' }]
+           { name: 'Bootstrap', url: 'http://getbootstrap.com/' }
+           { name: 'Habrahabr', url: 'http://habrahabr.ru/' }]
   nextSite = ->
     return if sites.length == 0
     site = sites.shift()
