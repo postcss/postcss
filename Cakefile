@@ -36,7 +36,7 @@ task 'integration', 'Test parser/stringifier on real CSS', ->
   postcss = require(__dirname + '/lib/postcss')
   test = (css) ->
     try
-      processed = postcss().process(css, map: true, mapAnnotation: false).css
+      processed = postcss().process(css, map: { annotation: false }).css
     catch e
       fs.writeFileSync(__dirname + '/fail.css', css)
       error("Parsing error: #{ e.stack }\nBad file was saved to fail.css")
