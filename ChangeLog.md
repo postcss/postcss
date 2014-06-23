@@ -9,6 +9,7 @@
 * Allow to use latest PostCSS from GitHub by npm.
 * `Result` now is lazy and it will stringify output CSS only if you use `css` or
   `map` property.
+* Use separated `map.prev` option to set previous map.
 * Rename `inlineMap` option to `map.inline`.
 * Rename `mapAnnotation` option to `map.annotation`.
 * `Result#map` now return `SourceMapGenerator` object, instead of string.
