@@ -1,4 +1,4 @@
-## 1.0.0 “Marquis Decarabia”
+## 1.0 “Marquis Decarabia”
 * Save previous source map for each node to support CSS concatenation
   with multiple previous maps.
 * Add `map.sourcesContent` option to add origin content to `sourcesContent`
