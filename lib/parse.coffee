@@ -10,6 +10,8 @@ Raw            = require('./raw')
 
 path = require('path')
 
+isSpace = /\s/
+
 # CSS parser
 class Parser
   constructor: (source, @opts) ->
@@ -28,7 +30,8 @@ class Parser
     @buffer = ''
 
   loop: ->
-    while @pos < @source.length - 1
+    length = @source.length - 1
+    while @pos < length
       @move()
       @nextLetter()
     @endFile()
@@ -291,7 +294,7 @@ class Parser
     @source[@pos..@pos + string.length - 1] == string
 
   space: ->
-    @letter.match(/\s/)
+    @letter == ' ' or @letter == "\n" or @letter.match(isSpace)
 
   init: (node) ->
     @current.push(node)
