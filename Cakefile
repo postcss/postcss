@@ -157,7 +157,7 @@ task 'bench', 'Benchmark on GitHub styles', ->
       print("\n")
 
       postcss  = require(__dirname + '/build')
-      bench 'PostCSS', -> postcss().process(css)
+      bench 'PostCSS', -> postcss().process(css).css
 
       CSSOM  = require('cssom')
       bench 'CSSOM', -> CSSOM.parse(css).toString()
