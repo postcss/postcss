@@ -1,8 +1,8 @@
 {
   "name": "postcss",
   "version": "0.3.5",
-  "description": "Framework for CSS postprocessors",
-  "keywords": ["css", "parser", "postproccessor"],
+  "description": "Framework for CSS postprocessors with full source map support",
+  "keywords": ["css", "parser", "postproccessor", "source map"],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": {
