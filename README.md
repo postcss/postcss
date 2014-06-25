@@ -213,7 +213,7 @@ and `atrule.params` contain data.
 
 Don’t use underscore properties (like `_selector`, `_params` and `_value`),
 because they are only for comments save magic
-(See [Raw Properties](#Raw Properties) below). Use getters and setters instead
+(See [Raw Properties](#raw-properties) below). Use getters and setters instead
 (like `selector`, `selectors`, `params` and `value`).
 
 ```js
