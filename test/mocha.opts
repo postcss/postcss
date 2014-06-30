@@ -1,4 +1,5 @@
 --inline-diffs
 --reporter spec
 --require should
- --compilers coffee:coffee-script/register
+--require ./index
+--compilers coffee:coffee-script/register

@@ -12,7 +12,8 @@
   "dependencies": {
     "coffee-script": "1.7.1",
     "source-map":    "~0.1.34",
-    "base64-js":     "~0.0.7"
+    "base64-js":     "~0.0.7",
+    "traceur":       "0.0.49"
   },
   "devDependencies": {
     "fs-extra": "0.9.1",
