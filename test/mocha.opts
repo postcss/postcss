@@ -2,4 +2,3 @@
 --reporter spec
 --require should
 --require ./index
---compilers coffee:coffee-script/register
