@@ -1,7 +1,7 @@
 var Declaration = require('../lib/declaration');
 var parse       = require('../lib/parse');
 
-var should = require('should')
+var should = require('should');
 
 describe('Declaration', () => {
 
