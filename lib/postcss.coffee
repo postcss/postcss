@@ -1,10 +1,9 @@
-convertOptions = require('./convert-options')
-Declaration    = require('./declaration')
-Comment        = require('./comment')
-AtRule         = require('./at-rule')
-Result         = require('./result')
-Rule           = require('./rule')
-Root           = require('./root')
+Declaration = require('./declaration')
+Comment     = require('./comment')
+AtRule      = require('./at-rule')
+Result      = require('./result')
+Rule        = require('./rule')
+Root        = require('./root')
 
 # List of functions to process CSS
 class PostCSS
@@ -17,7 +16,7 @@ class PostCSS
 
   # Process CSS throw installed processors
   process: (css, opts = { }) ->
-    opts = convertOptions(opts)
+    opts.map = { inline: true } if opts.map == 'inline'
 
     parsed = if css instanceof Root
       css

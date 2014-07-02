@@ -1,12 +1,11 @@
-convertOptions = require('./convert-options')
-SyntaxError    = require('./syntax-error')
-PreviousMap    = require('./previous-map')
-Declaration    = require('./declaration')
-Comment        = require('./comment')
-AtRule         = require('./at-rule')
-Root           = require('./root')
-Rule           = require('./rule')
-Raw            = require('./raw')
+SyntaxError = require('./syntax-error')
+PreviousMap = require('./previous-map')
+Declaration = require('./declaration')
+Comment     = require('./comment')
+AtRule      = require('./at-rule')
+Root        = require('./root')
+Rule        = require('./rule')
+Raw         = require('./raw')
 
 path = require('path')
 
@@ -14,7 +13,7 @@ isSpace = /\s/
 
 # CSS parser
 class Parser
-  constructor: (source, @opts) ->
+  constructor: (source, @opts = { }) ->
     @source = source.toString()
 
     @root    = new Root()
@@ -400,7 +399,7 @@ class Parser
       [string, '']
 
 module.exports = (source, opts = { }) ->
-  opts = convertOptions(opts)
+  opts.map = { inline: true } if opts.map == 'inline'
 
   parser = new Parser(source, opts)
   parser.loop()
