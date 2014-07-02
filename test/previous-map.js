@@ -49,8 +49,8 @@ describe('PreviousMap', () => {
             names:    [],
             mappings: []
         };
-        var opts = { map: { prev: map } };
 
+        var opts = { map: { prev: map } };
         parse('a{}', opts).prevMap.withContent().should.be.false;
 
         map.sourcesContent = ['a{}'];
