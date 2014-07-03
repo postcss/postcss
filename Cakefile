@@ -42,7 +42,7 @@ task 'integration', 'Test parser/stringifier on real CSS', ->
   invoke('clean')
 
   require('coffee-script/register')
-  postcss = require(__dirname + '/lib/postcss')
+  postcss = require(__dirname)
   test = (css) ->
     try
       processed = postcss().process(css, map: { annotation: false }).css
