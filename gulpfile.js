@@ -1,10 +1,8 @@
-var gulp = require('gulp');
+var gulp  = require('gulp');
+var gutil = require('gulp-util');
 
 gulp.task('clean', function () {
-    var fs = require('fs-extra');
-    fs.removeSync(__dirname + '/build');
-    fs.removeSync(__dirname + '/fail.css');
-    fs.removeSync(__dirname + '/origin.css');
+    require('fs-extra').removeSync(__dirname + '/build');
 });
 
 gulp.task('build:lib', function () {
@@ -45,7 +43,8 @@ gulp.task('lint:test', function () {
 
     return gulp.src('test/*.js')
         .pipe(jshint({ esnext: true, expr: true }))
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('lint:lib', function () {
@@ -53,19 +52,11 @@ gulp.task('lint:lib', function () {
 
     return gulp.src(['lib/*.js', 'index.js', 'gulpfile.js'])
         .pipe(jshint({ esnext: true }))
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('lint', ['lint:test', 'lint:lib']);
-
-var print = function (text) {
-    process.stdout.write(text);
-};
-
-var error = function (text) {
-    process.stderr.write("\n\n" + text + "\n");
-    process.exit(1);
-};
 
 var zlib, request;
 var get = function (url, callback) {
@@ -103,7 +94,7 @@ var get = function (url, callback) {
 var styles = function (url, callback) {
     get(url, function (html) {
         var styles = html.match(/[^"]+\.css/g);
-        if ( !styles ) error('Wrong answer from ' + url);
+        if ( !styles ) throw "Can't find CSS links at " + url;
         styles = styles.map(function(i) {
             return i.replace(/^\.?\.?\//, url);
         });
@@ -115,13 +106,13 @@ gulp.task('bench', ['build'], function (done) {
     var indent = function (max, current) {
         var diff = max.toString().length - current.toString().length;
         for ( var i = 0; i < diff; i++ ) {
-            print(' ');
+            process.stdout.write(' ');
         }
     };
 
     var times = { };
     var bench = function (title, callback) {
-        print(title + ': ');
+        process.stdout.write(title + ': ');
         indent('Gonzales', title);
 
         var start = new Date();
@@ -130,25 +121,28 @@ gulp.task('bench', ['build'], function (done) {
 
         time = (new Date()) - start;
         time = Math.round(time / 10);
-        print(time + " ms");
+        process.stdout.write(time + " ms");
 
         if ( times.PostCSS ) {
             var slower = time / times.PostCSS;
-            if ( time < 100 ) print(' ');
+            if ( time < 100 ) process.stdout.write(' ');
+
+            var result;
             if ( slower < 1 ) {
-                print(' (' + (1 / slower).toFixed(1) + ' times faster)');
+                result = ' (' + (1 / slower).toFixed(1) + ' times faster)';
             } else {
-                print(' (' + slower.toFixed(1) + ' times slower)');
+                result = ' (' + slower.toFixed(1) + ' times slower)';
             }
+            process.stdout.write(result);
         }
         times[title] = time;
-        print("\n");
+        process.stdout.write("\n");
     };
 
     styles('https://github.com/', function (styles) {
-        print("\nLoad Github style")
+        gutil.log('Load Github style');
         get(styles[0], function (css) {
-            print("\n");
+            process.stdout.write("\n");
 
             var postcss = require(__dirname + '/build');
             bench('PostCSS', function () {
@@ -170,7 +164,7 @@ gulp.task('bench', ['build'], function (done) {
                 return gonzales.csspToSrc( gonzales.srcToCSSP(css) );
             });
 
-            print("\n");
+            process.stdout.write("\n");
             done();
         });
     });
@@ -185,23 +179,17 @@ gulp.task('integration', function (done) {
                 map: { annotation: false }
             }).css;
         } catch (e) {
-            fs.writeFileSync(__dirname + '/fail.css', css);
-            error('Parsing error: ' + e.stack + "\n" +
-                  'Bad file was saved to fail.css');
+            return 'Parsing error: ' + e.stack;
         }
 
         if ( processed != css ) {
-            fs.writeFileSync(__dirname + '/origin.css', css);
-            fs.writeFileSync(__dirname + '/fail.css', processed);
-            error("Wrong stringifing\n" +
-                  "Check difference between origin.css and fail.css");
+            return 'Output is not equal input';
         }
     };
 
     var links = [];
     var nextLink = function () {
         if ( links.length === 0 ) {
-            print("\n");
             nextSite();
             return;
         }
@@ -213,9 +201,15 @@ gulp.task('integration', function (done) {
         }
 
         get(url, function (css) {
-            test(css);
-            print('.');
-            nextLink();
+            var error = test(css);
+            if ( error ) {
+                done(new gutil.PluginError('integration', {
+                    showStack: false,
+                    message:   "\nFile " + url + "\n\n" + error
+                }));
+            } else {
+                nextLink();
+            }
         });
     };
 
@@ -225,19 +219,27 @@ gulp.task('integration', function (done) {
                  { name: 'Habrahabr', url: 'http://habrahabr.ru/' }];
     var nextSite = function () {
         if ( sites.length === 0 ) {
-            print("\n");
             done();
             return;
         }
         var site = sites.shift();
 
-        print('Test ' + site.name + ' styles');
+        gutil.log('Test ' + site.name + ' styles');
         styles(site.url, function (styles) {
             links = styles;
             nextLink();
         });
     };
 
-    print("\n");
     nextSite();
 });
+
+gulp.task('test', function () {
+    require('./');
+    var mocha = require('gulp-mocha');
+
+    return gulp.src('test/*.js', { read: false })
+        .pipe(mocha());
+});
+
+gulp.task('default', ['lint', 'test', 'integration']);
