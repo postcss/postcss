@@ -97,7 +97,7 @@ describe('PreviousMap', () => {
     it('reads map from annotation', () => {
         fs.outputFileSync(this.dir + '/a.map', this.map);
         root = parse("a{}\n/*# sourceMappingURL=a.map */", {
-          from: this.dir + '/a.css'
+            from: this.dir + '/a.css'
         });
 
         root.prevMap.text.should.eql(this.map);

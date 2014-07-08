@@ -1,13 +1,13 @@
-var fs   = require('fs-extra');
 var gulp = require('gulp');
 
 gulp.task('clean', function () {
-    fs.removeSync(__dirname + '/build');
-    fs.removeSync(__dirname + '/fail.css');
-    fs.removeSync(__dirname + '/origin.css');
+    var rimraf = require('gulp-rimraf');
+
+    return gulp.src('build', { read: false })
+        .pipe(rimraf());
 });
 
-gulp.task('compile', function () {
+gulp.task('build:lib', function () {
     var traceur = require('gulp-traceur');
 
     return gulp.src('lib/*.js')
@@ -15,8 +15,9 @@ gulp.task('compile', function () {
         .pipe(gulp.dest('build/lib'));
 });
 
-gulp.task('docs', function () {
-    var ignore = fs.readFileSync('.npmignore').toString().trim().split(/\n+/)
+gulp.task('build:docs', function () {
+    var ignore = require('fs').readFileSync('.npmignore').toString()
+        .trim().split(/\n+/)
         .concat(['.npmignore', 'package.json', 'index.js'])
         .map(function (i) { return '!' + i; });
 
@@ -24,7 +25,7 @@ gulp.task('docs', function () {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('package.json', function () {
+gulp.task('build:package', function () {
     var editor = require('gulp-json-editor');
 
     return gulp.src('package.json')
@@ -37,7 +38,7 @@ gulp.task('package.json', function () {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['clean', 'compile', 'docs', 'package.json']);
+gulp.task('build', ['clean', 'build:lib', 'build:docs', 'build:package']);
 
 gulp.task('lint:test', function () {
     var jshint = require('gulp-jshint');
