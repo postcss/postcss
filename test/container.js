@@ -5,7 +5,7 @@ var parse       = require('../lib/parse');
 var fs     = require('fs');
 var should = require('should');
 
-var cases = __dirname + '/cases/container/'
+var cases = __dirname + '/cases/container/';
 var read  = i => fs.readFileSync(cases + i + '.css').toString();
 
 var compare = (css, ideal) => css.toString().should.eql( read(ideal) );
@@ -43,7 +43,7 @@ describe('Container', () => {
         });
 
         it('iterates with prepend', () => {
-            var size = 0
+            var size = 0;
             this.rule.each( () => {
                 this.rule.prepend({ prop: 'color', value: 'aqua' });
                 size += 1;
@@ -147,7 +147,7 @@ describe('Container', () => {
         });
 
         it('iterates with changes', () => {
-            var size = 0
+            var size = 0;
             this.css.eachDecl( (decl, i) => {
                 decl.parent.remove(i);
                 size += 1;
@@ -171,7 +171,7 @@ describe('Container', () => {
 
     describe('eachComment()', () => {
         beforeEach( () => {
-            this.css = parse( read('each-recursivelly') )
+            this.css = parse( read('each-recursivelly') );
         });
 
         it('iterates', () => {
@@ -243,8 +243,8 @@ describe('Container', () => {
             var indexes = [];
 
             var result = this.css.eachRule( (rule, i) => {
-                indexes.push(i)
-                return false
+                indexes.push(i);
+                return false;
             });
 
             result.should.be.false;
@@ -317,7 +317,7 @@ describe('Container', () => {
             var a = parse('a{ z-index: 1 }');
             var b = parse('b{width:1px;height:2px}');
 
-            a.first.append( b.first.decls )
+            a.first.append( b.first.decls );
             a.toString().should.eql('a{ z-index: 1; width: 1px; height: 2px }');
             b.toString().should.eql('b{width:1px;height:2px}');
         });

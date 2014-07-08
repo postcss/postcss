@@ -69,7 +69,7 @@ describe('postcss()', () => {
 
         it('processes previous result', () => {
             var empty  = postcss( (css) => css );
-            var result = empty.process('a::before{top:0}')
+            var result = empty.process('a::before{top:0}');
             result = this.processor.process(result);
             result.css.should.eql('a::before{content:"";top:0}');
         });
@@ -100,7 +100,7 @@ describe('postcss()', () => {
         });
 
         it('calls all processors', () => {
-            var calls = ''
+            var calls = '';
             var a = () => calls += 'a';
             var b = () => calls += 'b';
 

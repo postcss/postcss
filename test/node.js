@@ -11,7 +11,7 @@ describe('Node', () => {
     describe('.prop()', () => {
 
         it('defines virtual property', () => {
-            class A extends Node { };
+            class A extends Node { }
 
             A.prop('test', {
                 set: function (v) {
@@ -32,7 +32,7 @@ describe('Node', () => {
     });
 
     describe('.raw()', () => {
-        class B extends Node { };
+        class B extends Node { }
         B.raw('one');
 
         it('creates trimmed/raw property', () => {

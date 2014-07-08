@@ -335,11 +335,11 @@ describe('source maps', () => {
         var map  = step1.map;
         var maps = [map, consumer(map), map.toJSON(), map.toString()];
 
-        for ( var map of maps ) {
+        for ( var i of maps ) {
             var step2 = this.doubler.process(step1.css, {
                 from: 'b.css',
                 to:   'c.css',
-                map: { prev: map }
+                map: { prev: i }
             });
             consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
                 .source.should.eql('a.css');

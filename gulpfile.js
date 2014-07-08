@@ -30,12 +30,30 @@ gulp.task('package.json', function () {
     return gulp.src('package.json')
         .pipe(editor(function (json) {
             json.main = 'lib/postcss';
-            json.devDependencies.traceur = json.dependencies.traceur
+            json.devDependencies.traceur = json.dependencies.traceur;
             delete json.dependencies.traceur;
             return json;
         }))
-        .pipe(gulp.dest('build'))
+        .pipe(gulp.dest('build'));
 });
 
 gulp.task('build', ['clean', 'compile', 'docs', 'package.json']);
+
+gulp.task('lint:test', function () {
+    var jshint = require('gulp-jshint');
+
+    return gulp.src('test/*.js')
+        .pipe(jshint({ esnext: true, expr: true }))
+        .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('lint:lib', function () {
+    var jshint = require('gulp-jshint');
+
+    return gulp.src(['lib/*.js', 'index.js', 'gulpfile.js'])
+        .pipe(jshint({ esnext: true }))
+        .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('lint', ['lint:test', 'lint:lib']);
 

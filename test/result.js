@@ -2,6 +2,7 @@ var Result = require('../lib/result');
 var parse  = require('../lib/parse');
 
 var mozilla = require('source-map');
+var should  = require('should');
 
 describe('Result', () => {
     beforeEach( () => {
@@ -35,7 +36,7 @@ describe('Result', () => {
 
         it('exists only if necessary', () => {
             var result = new Result(this.root);
-            (result.map == undefined).should.be.true;
+            should.not.exists(result.map);
 
             result = new Result(this.root, { map: true });
             result.map.should.be.a.instanceOf(mozilla.SourceMapGenerator);
