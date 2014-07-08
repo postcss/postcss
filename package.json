@@ -19,7 +19,6 @@
     "jshint-stylish":   "0.2.0",
     "gulp-traceur":     "0.8.0",
     "gulp-jshint":      "1.6.4",
-    "gulp-rimraf":      "0.1.0",
     "fs-extra":         "0.9.1",
     "gonzales":         "1.0.7",
     "request":          "2.36.0",
