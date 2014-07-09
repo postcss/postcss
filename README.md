@@ -189,12 +189,13 @@ PostCSS was created for CSS tools, which works in chain with legacy CSS code
 
 Because of this background difference, PostCSS:
 
-* better works with source map, because it should update map from previous step
-  (like Sass compiling)
-* saves all your spaces and code style, because it can be worked in text editor
-  plugins
-* has safer parser, because it can be used for legacy code
-* has high level API to clean your processor from common tasks
+* Better works with source map, because it should update map from previous step
+  (like Sass compiling).
+* Saves all your spaces and code style, because it can be worked in text editor
+  plugins.
+* Has safer parser, because it can be used for legacy code. Only PostCSS can
+  parse all hacks from [Browserhacks.com](http://browserhacks.com/).
+* Has high level API to clean your processor from common tasks.
 
 [Myth]:   http://www.myth.io/
 [Rework]: https://github.com/visionmedia/rework
