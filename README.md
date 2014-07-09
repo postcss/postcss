@@ -194,7 +194,7 @@ Because of this background difference, PostCSS:
 * Saves all your spaces and code style, because it can be worked in text editor
   plugins.
 * Has safer parser, because it can be used for legacy code. Only PostCSS can
-  parse all hacks from [Browserhacks.com](http://browserhacks.com/).
+  parse all hacks from [Browserhacks.com](http://browserhacks.com/).
 * Has high level API to clean your processor from common tasks.
 
 [Myth]:   http://www.myth.io/
