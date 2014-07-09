@@ -2,39 +2,10 @@ var AtRule = require('../lib/at-rule');
 var Node   = require('../lib/node');
 var Root   = require('../lib/root');
 var Rule   = require('../lib/rule');
-var Raw    = require('../lib/raw');
 
 var should = require('should');
 
 describe('Node', () => {
-
-    describe('.raw()', () => {
-        class B extends Node { }
-        B.raw('one');
-
-        it('creates trimmed/raw property', () => {
-            var b = new B();
-
-            should.not.exists(b.one);
-
-            b.one = new Raw('trim', 'raw');
-            b.one.should.eql('trim');
-            b._one.toString().should.eql('raw');
-
-            b.one = 'trim1';
-            b.one.should.eql('trim1');
-            b._one.toString().should.eql('trim1');
-        });
-
-        it('works without magic', () => {
-            var b = new B();
-
-            b.one = '1';
-            b.one.should.eql('1');
-            b._one.toString().should.eql('1');
-        });
-
-    });
 
     describe('removeSelf()', () => {
 
@@ -84,8 +55,8 @@ describe('Node', () => {
 
             JSON.stringify(rule).should.eql(
                 '{"type":"rule","decls":[' +
-                    '{"type":"decl","prop":"color","_value":"b"}' +
-                '],"_selector":"a"}');
+                    '{"type":"decl","prop":"color","value":"b"}' +
+                '],"selector":"a"}');
         });
 
     });
@@ -124,6 +95,27 @@ describe('Node', () => {
 
             root.first.style().should.eql({ between: ' ', after: '' });
             root.last.style().should.eql( { between: '' });
+        });
+
+    });
+
+    describe('stringifyRaw()', () => {
+        it('creates trimmed/raw property', () => {
+            var b = new Node();
+
+            b.one  = 'trim';
+            b._one = { value: 'trim', raw: 'raw' };
+            b.stringifyRaw('one').should.eql('raw');
+
+            b.one = 'trim1';
+            b.stringifyRaw('one').should.eql('trim1');
+        });
+
+        it('works without magic', () => {
+            var b = new Node();
+            b.one = '1';
+            b.one.should.eql('1');
+            b.stringifyRaw('one').should.eql('1');
         });
 
     });

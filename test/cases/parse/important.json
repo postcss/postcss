@@ -21,7 +21,7 @@
                     "prop": "color",
                     "between": ": ",
                     "_important": "  !important ",
-                    "_value": "black"
+                    "value": "black"
                 }
             ],
             "source": {
@@ -36,7 +36,7 @@
                 }
             },
             "before": "",
-            "_selector": "a",
+            "selector": "a",
             "between": " ",
             "semicolon": true,
             "after": "\n"

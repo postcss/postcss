@@ -16,7 +16,7 @@
             },
             "before": "",
             "name": "charset",
-            "_params": "\"UTF-8\"",
+            "params": "\"UTF-8\"",
             "afterName": " ",
             "between": "",
             "semicolon": true

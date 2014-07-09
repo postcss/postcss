@@ -16,6 +16,7 @@
                 }
             },
             "before": "\n",
+            "selector": "a b",
             "_selector": {
                 "value": "a b",
                 "raw": "a/* { } */ b"

@@ -16,6 +16,7 @@
             },
             "before": "",
             "name": "-moz-document",
+            "params": "url(\"example.com/{\")",
             "_params": {
                 "value": "url(\"example.com/{\")",
                 "raw": "/* near */ /* filter */ url(\"example.com/{\") /* a */"

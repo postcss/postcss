@@ -20,7 +20,7 @@
                     "before": ";;\n    ",
                     "prop": "color",
                     "between": ": ",
-                    "_value": "black"
+                    "value": "black"
                 }
             ],
             "source": {
@@ -35,7 +35,7 @@
                 }
             },
             "before": "",
-            "_selector": "a",
+            "selector": "a",
             "between": " ",
             "semicolon": true,
             "after": "\n    ; ;\n"

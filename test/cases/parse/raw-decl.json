@@ -20,6 +20,7 @@
                     "before": " ",
                     "prop": "color",
                     "between": ": ",
+                    "value": "a b",
                     "_value": {
                         "value": "a b",
                         "raw": "a/* ; */ b"
@@ -38,7 +39,7 @@
                 }
             },
             "before": "",
-            "_selector": "a",
+            "selector": "a",
             "between": " ",
             "semicolon": true,
             "after": " "

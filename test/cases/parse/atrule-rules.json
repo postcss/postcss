@@ -16,7 +16,7 @@
             },
             "before": "",
             "name": "supports",
-            "_params": "(animation-name: test)",
+            "params": "(animation-name: test)",
             "afterName": " ",
             "between": " ",
             "rules": [
@@ -35,7 +35,7 @@
                     },
                     "before": "\n    ",
                     "name": "-custom-keyframe",
-                    "_params": "anim",
+                    "params": "anim",
                     "afterName": " ",
                     "between": " ",
                     "rules": [
@@ -58,7 +58,7 @@
                                     "before": "\n            ",
                                     "prop": "color",
                                     "between": ": ",
-                                    "_value": "black"
+                                    "value": "black"
                                 }
                             ],
                             "source": {
@@ -73,7 +73,7 @@
                                 }
                             },
                             "before": "\n        ",
-                            "_selector": "from",
+                            "selector": "from",
                             "between": " ",
                             "semicolon": true,
                             "after": "\n        "
@@ -97,7 +97,7 @@
                                     "before": "\n            ",
                                     "prop": "color",
                                     "between": ": ",
-                                    "_value": "white"
+                                    "value": "white"
                                 }
                             ],
                             "source": {
@@ -112,7 +112,7 @@
                                 }
                             },
                             "before": "\n        ",
-                            "_selector": "to",
+                            "selector": "to",
                             "between": " ",
                             "after": "\n        "
                         }

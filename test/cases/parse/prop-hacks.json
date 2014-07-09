@@ -20,7 +20,7 @@
                     "before": "\n    *",
                     "prop": "color",
                     "between": " : ",
-                    "_value": "black"
+                    "value": "black"
                 },
                 {
                     "type": "decl",
@@ -38,7 +38,7 @@
                     "before": "\n    _",
                     "prop": "background",
                     "between": ": ",
-                    "_value": "white"
+                    "value": "white"
                 },
                 {
                     "type": "decl",
@@ -56,7 +56,7 @@
                     "before": "\n    ",
                     "prop": "font-size",
                     "between": "/**/: ",
-                    "_value": "big"
+                    "value": "big"
                 }
             ],
             "source": {
@@ -71,7 +71,7 @@
                 }
             },
             "before": "",
-            "_selector": "a",
+            "selector": "a",
             "between": " ",
             "semicolon": true,
             "after": "\n"
