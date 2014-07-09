@@ -118,7 +118,7 @@ gulp.task('bench', ['build'], function (done) {
     var times = { };
     var bench = function (title, callback) {
         process.stdout.write(title + ': ');
-        indent('Gonzales', title);
+        indent('Gonzales PE', title);
 
         var start = new Date();
 
@@ -167,6 +167,13 @@ gulp.task('bench', ['build'], function (done) {
             var gonzales = require('gonzales');
             bench('Gonzales', function () {
                 return gonzales.csspToSrc( gonzales.srcToCSSP(css) );
+            });
+
+            var gonzalesPe = require('gonzales-pe');
+            bench('Gonzales PE', function () {
+                return gonzalesPe.astToSrc({
+                    ast: gonzalesPe.srcToAST({ src: css })
+                });
             });
 
             process.stdout.write("\n");
