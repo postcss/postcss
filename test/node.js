@@ -8,29 +8,6 @@ var should = require('should');
 
 describe('Node', () => {
 
-    describe('.prop()', () => {
-
-        it('defines virtual property', () => {
-            class A extends Node { }
-
-            A.prop('test', {
-                set: function (v) {
-                    this.setted = v;
-                },
-                get: function () {
-                    return 1;
-                }
-            });
-
-            var a = new A();
-            a.test.should.eql(1);
-
-            a.test = 2;
-            a.setted.should.eql(2);
-        });
-
-    });
-
     describe('.raw()', () => {
         class B extends Node { }
         B.raw('one');
