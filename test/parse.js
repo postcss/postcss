@@ -58,6 +58,13 @@ describe('postcss.parse()', () => {
         support.parent.should.exactly(css);
     });
 
+    it('parses proprty without value', () => {
+        var root = parse('a { color: white; one }');
+        root.first.decls.length.should.eql(1);
+        root.first.semicolon.should.be.true;
+        root.first.after.should.eql(' one ');
+    });
+
     describe('errors', () => {
 
         it('throws on unclosed blocks', () => {
@@ -67,11 +74,6 @@ describe('postcss.parse()', () => {
 
         it('throws on unclosed blocks', () => {
             ( () => parse("a {{}}") ).should.throw(/Unexpected \{/);
-        });
-
-        it('throws on property without value', () => {
-            ( () => parse("a { b;}") ).should.throw(/Missing property value/);
-            ( () => parse("a { b }") ).should.throw(/Missing property value/);
         });
 
         it('throws on unclosed comment', () => {

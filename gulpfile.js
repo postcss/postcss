@@ -213,10 +213,11 @@ gulp.task('integration', function (done) {
         });
     };
 
-    var sites = [{ name: 'GitHub',    url: 'https://github.com/' },
-                 { name: 'Twitter',   url: 'https://twitter.com/' },
-                 { name: 'Bootstrap', url: 'http://getbootstrap.com/' },
-                 { name: 'Habrahabr', url: 'http://habrahabr.ru/' }];
+    var sites = [{ name: 'GitHub',       url: 'https://github.com/' },
+                 { name: 'Twitter',      url: 'https://twitter.com/' },
+                 { name: 'Bootstrap',    url: 'http://getbootstrap.com/' },
+                 { name: 'Habrahabr',    url: 'http://habrahabr.ru/' },
+                 { name: 'Browserhacks', url: 'http://browserhacks.com/' }];
     var nextSite = function () {
         if ( sites.length === 0 ) {
             done();
