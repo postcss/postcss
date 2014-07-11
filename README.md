@@ -31,9 +31,11 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [Pleeease] is a pack of various postprocessors.
 * [Grunt-webpcss] to duplicate images in CSS to WebP for supported browsers.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
+* [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
 
 [Pleeease Filters]: https://github.com/iamvdo/pleeease-filters
 [grunt-csswring]:   https://github.com/princed/grunt-csswring
+[css2modernizr]:    https://github.com/vovanbo/css2modernizr
 [Grunt-webpcss]:    https://github.com/lexich/grunt-webpcss
 [Autoprefixer]:     https://github.com/ai/autoprefixer
 [grunt-pixrem]:     https://github.com/robwierzbowski/grunt-pixrem
