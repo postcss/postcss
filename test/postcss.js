@@ -77,7 +77,7 @@ describe('postcss()', () => {
         it('throws with file name', () => {
             var error;
             try {
-                postcss().process('a {', { from: 'A' });
+                postcss().process('a {', { from: 'A', strict: true });
             } catch (e) {
                 error = e;
             }

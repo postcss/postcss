@@ -58,17 +58,15 @@ describe('postcss.parse()', () => {
         support.parent.should.exactly(css);
     });
 
-    it('parses proprty without value', () => {
-        var root = parse('a { color: white; one }');
-        root.first.decls.length.should.eql(1);
-        root.first.semicolon.should.be.true;
-        root.first.after.should.eql(' one ');
-    });
-
     describe('errors', () => {
 
-        it('throws on unclosed blocks', () => {
-            ( () => parse("\na {\n") ).should
+        it('fixes unclosed blocks', () => {
+            var root = parse("@media (screen) { a {\n");
+            root.toString().should.eql('@media (screen) { a {\n}}');
+        });
+
+        it('throws on unclosed blocks in strict mode', () => {
+            ( () => parse("\na {\n", { strict: true }) ).should
                 .throw(/Unclosed block at line 2:1/);
         });
 
@@ -84,6 +82,13 @@ describe('postcss.parse()', () => {
         it('throws on unclosed quote', () => {
             ( () => parse('\n"\n\n ') ).should
                 .throw(/Unclosed quote at line 2:1/);
+        });
+
+        it('fixes property without value', () => {
+            var root = parse('a { color: white; one }');
+            root.first.decls.length.should.eql(1);
+            root.first.semicolon.should.be.true;
+            root.first.after.should.eql(' one ');
         });
 
         it('throws on property without value in strict mode', () => {
@@ -104,7 +109,7 @@ describe('postcss.parse()', () => {
         it('adds properties to error', () => {
             var error;
             try {
-                parse('a {');
+                parse('a {', { strict: true });
             } catch (e) {
                 error = e;
             }
