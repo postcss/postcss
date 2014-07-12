@@ -1,8 +1,9 @@
-var gulp  = require('gulp');
 var gutil = require('gulp-util');
+var gulp  = require('gulp');
+var fs    = require('fs-extra');
 
 gulp.task('clean', function () {
-    require('fs-extra').removeSync(__dirname + '/build');
+    fs.removeSync(__dirname + '/build');
 });
 
 gulp.task('build:lib', function () {
@@ -16,27 +17,18 @@ gulp.task('build:lib', function () {
 gulp.task('build:docs', function () {
     var ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
-        .concat(['.npmignore', 'package.json', 'index.js'])
+        .concat(['.npmignore', 'index.js', 'index.build.js'])
         .map(function (i) { return '!' + i; });
 
     return gulp.src(['*'].concat(ignore))
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build:package', function () {
-    var editor = require('gulp-json-editor');
-
-    return gulp.src('package.json')
-        .pipe(editor(function (json) {
-            json.main = 'lib/postcss';
-            json.devDependencies.traceur = json.dependencies.traceur;
-            delete json.dependencies.traceur;
-            return json;
-        }))
-        .pipe(gulp.dest('build'));
+gulp.task('build:index', function (done) {
+    fs.copy('index.build.js', 'build/index.js', done);
 });
 
-gulp.task('build', ['clean', 'build:lib', 'build:docs', 'build:package']);
+gulp.task('build', ['clean', 'build:lib', 'build:docs', 'build:index']);
 
 gulp.task('lint:test', function () {
     var jshint = require('gulp-jshint');
