@@ -86,6 +86,13 @@ describe('postcss.parse()', () => {
                 .throw(/Unclosed quote at line 2:1/);
         });
 
+        it('throws on property without value in strict mode', () => {
+            ( () => parse("a { b;}", { strict: true }) ).should
+                .throw(/Missing property value/);
+            ( () => parse("a { b }", { strict: true }) ).should
+                .throw(/Missing property value/);
+        });
+
         it('throws on nameless at-rule', () => {
             ( () => parse('@') ).should.throw(/At-rule without name/);
         });
