@@ -90,13 +90,18 @@ describe('postcss.parse()', () => {
             root.first.first.text.should.eql('b');
         });
 
-        it('throws on unclosed comment', () => {
+        it('throws on unclosed comment in strict mode', () => {
             ( () => parse('\n/*\n\n ', { strict: true }) ).should
                 .throw(/Unclosed comment at line 2:1/);
         });
 
-        it('throws on unclosed quote', () => {
-            ( () => parse('\n"\n\na ') ).should
+        it('fixes unclosed quote', () => {
+            parse('a { content: "b').
+                toString().should.eql('a { content: "b}');
+        });
+
+        it('throws on unclosed quote in strict mode', () => {
+            ( () => parse('\n"\n\na ', { strict: true }) ).should
                 .throw(/Unclosed quote at line 2:1/);
         });
 
