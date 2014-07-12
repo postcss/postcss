@@ -417,6 +417,19 @@ to `map` option:
 
 [source maps]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
 
+### Strict Mode
+
+By default, PostCSS try to fix broken CSS. So you can use it in interactive
+tools with live input. For example, it will parse `a {` as `a {}`.
+
+It you want to throw errors on any syntax errors, set `strict` option
+in `process(css, opts)` or `parse(css, opts)` methods:
+
+```js
+postcss.parse('a {');                   // will return CSS root for a {}
+postcss.parse('a {', { strict: true }); // will throw "Unclosed block"
+```
+
 ### Helpers
 
 #### Vendor
