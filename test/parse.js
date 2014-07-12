@@ -61,11 +61,11 @@ describe('postcss.parse()', () => {
     describe('errors', () => {
 
         it('fixes unclosed blocks', () => {
-            var root1 = parse('@media (screen) { a {\n');
-            root1.toString().should.eql('@media (screen) { a {\n}}');
+            parse('@media (screen) { a {\n')
+                .toString().should.eql('@media (screen) { a {\n}}');
 
-            var root2 = parse('a { color');
-            root2.first.first.prop.should.eql('color');
+            parse('a { color')
+                .first.first.prop.should.eql('color');
         });
 
         it('throws on unclosed blocks in strict mode', () => {
@@ -84,13 +84,19 @@ describe('postcss.parse()', () => {
                 .throw(/Unexpected } at line 2:3/);
         });
 
+        it('fixes unclosed comment', () => {
+            var root = parse('a { /* b ');
+            root.toString().should.eql('a { /* b */}');
+            root.first.first.text.should.eql('b');
+        });
+
         it('throws on unclosed comment', () => {
-            ( () => parse('\n/*\n\n ') ).should
+            ( () => parse('\n/*\n\n ', { strict: true }) ).should
                 .throw(/Unclosed comment at line 2:1/);
         });
 
         it('throws on unclosed quote', () => {
-            ( () => parse('\n"\n\n ') ).should
+            ( () => parse('\n"\n\na ') ).should
                 .throw(/Unclosed quote at line 2:1/);
         });
 
