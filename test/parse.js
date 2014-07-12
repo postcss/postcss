@@ -61,17 +61,27 @@ describe('postcss.parse()', () => {
     describe('errors', () => {
 
         it('fixes unclosed blocks', () => {
-            var root = parse("@media (screen) { a {\n");
-            root.toString().should.eql('@media (screen) { a {\n}}');
+            var root1 = parse('@media (screen) { a {\n');
+            root1.toString().should.eql('@media (screen) { a {\n}}');
+
+            var root2 = parse('a { color');
+            root2.first.first.prop.should.eql('color');
         });
 
         it('throws on unclosed blocks in strict mode', () => {
-            ( () => parse("\na {\n", { strict: true }) ).should
+            ( () => parse('\na {\n', { strict: true }) ).should
                 .throw(/Unclosed block at line 2:1/);
         });
 
-        it('throws on unclosed blocks', () => {
-            ( () => parse("a {{}}") ).should.throw(/Unexpected \{/);
+        it('fixes unnecessary block close', () => {
+            var root = parse('a {\n} }');
+            root.first.toString().should.eql('a {\n}');
+            root.after.should.eql(' }');
+        });
+
+        it('throws on unnecessary block close', () => {
+            ( () => parse('a {\n} }', { strict: true }) ).should
+                .throw(/Unexpected } at line 2:3/);
         });
 
         it('throws on unclosed comment', () => {
@@ -100,6 +110,10 @@ describe('postcss.parse()', () => {
 
         it('throws on nameless at-rule', () => {
             ( () => parse('@') ).should.throw(/At-rule without name/);
+        });
+
+        it('throws on block inside declarations', () => {
+            ( () => parse("a {{}}") ).should.throw(/Unexpected \{/);
         });
 
         it('throw on rules in declarations at-rule', () => {
