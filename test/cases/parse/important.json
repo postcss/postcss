@@ -20,6 +20,7 @@
                     "before": "\n    ",
                     "prop": "color",
                     "between": ": ",
+                    "important": true,
                     "_important": "  !important ",
                     "value": "black"
                 }

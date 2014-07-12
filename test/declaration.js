@@ -15,34 +15,9 @@ describe('Declaration', () => {
     describe('important', () => {
 
         it('returns boolean', () => {
-            var decl = new Declaration({
-                prop:       'color',
-                value:      'black',
-                _important: '  !important'
-            });
-
-            decl.important.should.be.true;
-        });
-
-        it('adds virtual property', () => {
-            var decl = new Declaration({
-                prop:   'color',
-                value:  'black',
-                before: ''
-            });
-            decl.important.should.be.false;
-
+            var decl = new Declaration({ prop: 'color', value: 'black' });
             decl.important = true;
-            decl.important.should.be.true;
-            decl.toString().should.eql('color: black !important');
-
-            decl.important = ' !important /*very*/';
-            decl.important.should.be.true;
-            decl.toString().should.eql('color: black !important /*very*/');
-
-            decl.important = false;
-            decl.important.should.be.false;
-            decl.toString().should.eql('color: black');
+            decl.toString().should.eql('\n    color: black !important')
         });
 
     });
