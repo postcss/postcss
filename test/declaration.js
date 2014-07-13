@@ -17,7 +17,7 @@ describe('Declaration', () => {
         it('returns boolean', () => {
             var decl = new Declaration({ prop: 'color', value: 'black' });
             decl.important = true;
-            decl.toString().should.eql('\n    color: black !important')
+            decl.toString().should.eql('\n    color: black !important');
         });
 
     });
