@@ -174,8 +174,8 @@ gulp.task('bench', ['build'], function (done) {
     });
 });
 
-gulp.task('integration', function (done) {
-    var postcss = require('./');
+gulp.task('integration', ['build'], function (done) {
+    var postcss = require('./build/');
     var test = function (css) {
         var processed;
         try {
