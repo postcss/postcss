@@ -419,10 +419,10 @@ to `map` option:
 
 ### Strict Mode
 
-By default, PostCSS try to fix broken CSS. So you can use it in interactive
-tools with live input. For example, it will parse `a {` as `a {}`.
+By default, PostCSS tries to fix broken CSS to works with live input
+or legacy code with CSS hacks. For example, `a {` will be parsed `a {}`.
 
-It you want to throw errors on any syntax errors, set `strict` option
+If you want to throw errors on any syntax errors, set `strict` option
 in `process(css, opts)` or `parse(css, opts)` methods:
 
 ```js
