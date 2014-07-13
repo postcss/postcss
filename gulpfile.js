@@ -42,7 +42,7 @@ gulp.task('lint:test', function () {
 gulp.task('lint:lib', function () {
     var jshint = require('gulp-jshint');
 
-    return gulp.src(['lib/*.js', 'index.js', 'gulpfile.js'])
+    return gulp.src(['lib/*.js', 'index.js', 'index.build.js', 'gulpfile.js'])
         .pipe(jshint({ esnext: true }))
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('fail'));
