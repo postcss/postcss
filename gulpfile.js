@@ -141,9 +141,9 @@ gulp.task('bench', ['build'], function (done) {
         get(styles[0], function (css) {
             process.stdout.write("\n");
 
-            var postcss = require(__dirname + '/build');
+            var processor = require(__dirname + '/build')();
             bench('PostCSS', function () {
-                return postcss().process(css).css;
+                return processor.process(css).css;
             });
 
             var CSSOM = require('cssom');
