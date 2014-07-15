@@ -2,8 +2,8 @@ var gutil = require('gulp-util');
 var gulp  = require('gulp');
 var fs    = require('fs-extra');
 
-gulp.task('clean', function () {
-    fs.removeSync(__dirname + '/build');
+gulp.task('clean', function (done) {
+    fs.remove(__dirname + '/build', done);
 });
 
 gulp.task('build:lib', ['clean'], function () {
