@@ -6,7 +6,7 @@ gulp.task('clean', function () {
     fs.removeSync(__dirname + '/build');
 });
 
-gulp.task('build:lib', function () {
+gulp.task('build:lib', ['clean'], function () {
     var traceur = require('gulp-traceur');
 
     return gulp.src('lib/*.js')
@@ -14,7 +14,7 @@ gulp.task('build:lib', function () {
         .pipe(gulp.dest('build/lib'));
 });
 
-gulp.task('build:docs', function () {
+gulp.task('build:docs', ['clean'], function () {
     var ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
         .concat(['.npmignore', 'index.js', 'index.build.js'])
@@ -24,11 +24,11 @@ gulp.task('build:docs', function () {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build:index', function (done) {
+gulp.task('build:index', ['clean'], function (done) {
     fs.copy('index.build.js', 'build/index.js', done);
 });
 
-gulp.task('build', ['clean', 'build:lib', 'build:docs', 'build:index']);
+gulp.task('build', ['build:lib', 'build:docs', 'build:index']);
 
 gulp.task('lint:test', function () {
     var jshint = require('gulp-jshint');
