@@ -180,7 +180,8 @@ gulp.task('integration', ['build'], function (done) {
         var processed;
         try {
             processed = postcss().process(css, {
-                map: { annotation: false }
+                map: { annotation: false },
+                safe:  true
             }).css;
         } catch (e) {
             return 'Parsing error: ' + e.message + "\n\n" + e.stack;

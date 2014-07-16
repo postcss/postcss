@@ -417,18 +417,20 @@ to `map` option:
 
 [source maps]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
 
-### Strict Mode
+### Safe Mode
 
-By default, PostCSS tries to fix broken CSS to works with live input
-or legacy code with CSS hacks. For example, `a {` will be parsed `a {}`.
-
-If you want to throw errors on any syntax errors, set `strict` option
-in `process(css, opts)` or `parse(css, opts)` methods:
+If you will set `safe: true` option to `process` or `parse` methods,
+PostCSS will try to fix any syntax error, that it founds in CSS.
+For example, it will parse `a {` as `a {}`.
 
 ```js
-postcss.parse('a {');                   // will return CSS root for a {}
-postcss.parse('a {', { strict: true }); // will throw "Unclosed block"
+postcss.parse('a {');                 // will throw "Unclosed block"
+postcss.parse('a {', { safe: true }); // will return CSS root for a {}
 ```
+
+It is useful for legacy code with a lot of hack. Other use case is a interactive
+tools with live input, like
+[Autoprefixer demo](http://jsfiddle.net/simevidas/udyTs/show/light/).
 
 ### Helpers
 

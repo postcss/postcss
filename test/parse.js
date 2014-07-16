@@ -60,63 +60,63 @@ describe('postcss.parse()', () => {
 
     describe('errors', () => {
 
-        it('fixes unclosed blocks', () => {
-            parse('@media (screen) { a {\n')
-                .toString().should.eql('@media (screen) { a {\n}}');
-
-            parse('a { color')
-                .first.first.prop.should.eql('color');
-        });
-
-        it('throws on unclosed blocks in strict mode', () => {
-            ( () => parse('\na {\n', { strict: true }) ).should
+        it('throws on unclosed blocks', () => {
+            ( () => parse('\na {\n') ).should
                 .throw(/Unclosed block at line 2:1/);
         });
 
-        it('fixes unnecessary block close', () => {
-            var root = parse('a {\n} }');
+        it('fixes unclosed blocks in safe mode', () => {
+            parse('@media (screen) { a {\n', { safe: true })
+                .toString().should.eql('@media (screen) { a {\n}}');
+
+            parse('a { color', { safe: true })
+                .first.first.prop.should.eql('color');
+        });
+
+        it('throws on unnecessary block close', () => {
+            ( () => parse('a {\n} }') ).should
+                .throw(/Unexpected } at line 2:3/);
+        });
+
+        it('fixes unnecessary block close in safe mode', () => {
+            var root = parse('a {\n} }', { safe: true });
             root.first.toString().should.eql('a {\n}');
             root.after.should.eql(' }');
         });
 
-        it('throws on unnecessary block close', () => {
-            ( () => parse('a {\n} }', { strict: true }) ).should
-                .throw(/Unexpected } at line 2:3/);
+        it('throws on unclosed comment', () => {
+            ( () => parse('\n/*\n\n ') ).should
+                .throw(/Unclosed comment at line 2:1/);
         });
 
-        it('fixes unclosed comment', () => {
-            var root = parse('a { /* b ');
+        it('fixes unclosed comment in safe mode', () => {
+            var root = parse('a { /* b ', { safe: true });
             root.toString().should.eql('a { /* b */}');
             root.first.first.text.should.eql('b');
         });
 
-        it('throws on unclosed comment in strict mode', () => {
-            ( () => parse('\n/*\n\n ', { strict: true }) ).should
-                .throw(/Unclosed comment at line 2:1/);
-        });
-
-        it('fixes unclosed quote', () => {
-            parse('a { content: "b').
-                toString().should.eql('a { content: "b}');
-        });
-
-        it('throws on unclosed quote in strict mode', () => {
-            ( () => parse('\n"\n\na ', { strict: true }) ).should
+        it('throws on unclosed quote', () => {
+            ( () => parse('\n"\n\na ') ).should
                 .throw(/Unclosed quote at line 2:1/);
         });
 
-        it('fixes property without value', () => {
-            var root = parse('a { color: white; one }');
+        it('fixes unclosed quote in safe mode', () => {
+            parse('a { content: "b', { safe: true }).
+                toString().should.eql('a { content: "b}');
+        });
+
+        it('throws on property without value', () => {
+            ( () => parse("a { b;}") ).should
+                .throw(/Missing property value/);
+            ( () => parse("a { b }") ).should
+                .throw(/Missing property value/);
+        });
+
+        it('fixes property without value in safe mode', () => {
+            var root = parse('a { color: white; one }', { safe: true });
             root.first.decls.length.should.eql(1);
             root.first.semicolon.should.be.true;
             root.first.after.should.eql(' one ');
-        });
-
-        it('throws on property without value in strict mode', () => {
-            ( () => parse("a { b;}", { strict: true }) ).should
-                .throw(/Missing property value/);
-            ( () => parse("a { b }", { strict: true }) ).should
-                .throw(/Missing property value/);
         });
 
         it('throws on nameless at-rule', () => {
@@ -134,7 +134,7 @@ describe('postcss.parse()', () => {
         it('adds properties to error', () => {
             var error;
             try {
-                parse('a {', { strict: true });
+                parse('a {');
             } catch (e) {
                 error = e;
             }
