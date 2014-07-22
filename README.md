@@ -32,9 +32,11 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [Grunt-webpcss] to duplicate images in CSS to WebP for supported browsers.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
 * [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
+* [data-separator] splits data-uri into a separate CSS file.
 
 [Pleeease Filters]: https://github.com/iamvdo/pleeease-filters
 [grunt-csswring]:   https://github.com/princed/grunt-csswring
+[data-separator]:   https://github.com/Sebastian-Fitzner/grunt-data-separator
 [css2modernizr]:    https://github.com/vovanbo/css2modernizr
 [Grunt-webpcss]:    https://github.com/lexich/grunt-webpcss
 [Autoprefixer]:     https://github.com/ai/autoprefixer
