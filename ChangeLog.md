@@ -1,3 +1,9 @@
+## 2.0 “King Belial”
+* Project was rewritten from CoffeeScript to ES6.
+* Add Safe Mode to works with live input or with hacks from legacy code.
+* More safer parser to pass all hacks from Browserhacks.com.
+* Use real properties instead of magic getter/setter for raw propeties.
+
 ## 1.0 “Marquis Decarabia”
 * Save previous source map for each node to support CSS concatenation
   with multiple previous maps.
