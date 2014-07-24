@@ -10,25 +10,26 @@
     "url": "https://github.com/ai/postcss.git"
   },
   "dependencies": {
-    "source-map": "~0.1.37",
-    "base64-js":  "~0.0.7",
-    "traceur":    "~0.0.51"
+    "es6-transpiler": "~0.7.14-2",
+    "source-map":     "~0.1.37",
+    "base64-js":      "~0.0.7"
   },
   "devDependencies": {
-    "jshint-stylish": "0.4.0",
-    "gulp-traceur":   "0.8.0",
-    "gulp-jshint":    "1.7.1",
-    "gonzales-pe":    "3.0.0-10",
-    "gulp-mocha":     "0.5.1",
-    "gulp-util":      "3.0.0",
-    "fs-extra":       "0.10.0",
-    "gonzales":       "1.0.7",
-    "request":        "2.37.0",
-    "rework":         "1.0.0",
-    "should":         "4.0.4",
-    "mocha":          "1.20.1",
-    "cssom":          "0.3.0",
-    "gulp":           "3.8.6"
+    "gulp-es6-transpiler": "0.1.4",
+    "gulp-json-editor":    "2.0.2",
+    "jshint-stylish":      "0.4.0",
+    "gulp-jshint":         "1.7.1",
+    "gonzales-pe":         "3.0.0-10",
+    "gulp-mocha":          "0.5.1",
+    "gulp-util":           "3.0.0",
+    "fs-extra":            "0.10.0",
+    "gonzales":            "1.0.7",
+    "request":             "2.39.0",
+    "rework":              "1.0.0",
+    "should":              "4.0.4",
+    "mocha":               "1.21.0",
+    "cssom":               "0.3.0",
+    "gulp":                "3.8.6"
   },
   "scripts": {
     "test": "gulp"

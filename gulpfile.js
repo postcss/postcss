@@ -7,28 +7,38 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('build:lib', ['clean'], function () {
-    var traceur = require('gulp-traceur');
+    var es6transpiler = require('gulp-es6-transpiler');
 
     return gulp.src('lib/*.js')
-        .pipe(traceur())
+        .pipe(es6transpiler())
         .pipe(gulp.dest('build/lib'));
 });
 
 gulp.task('build:docs', ['clean'], function () {
     var ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
-        .concat(['.npmignore', 'index.js', 'index.build.js'])
+        .concat(['.npmignore', 'index.js', 'package.json'])
         .map(function (i) { return '!' + i; });
 
     return gulp.src(['*'].concat(ignore))
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build:index', ['clean'], function (done) {
-    fs.copy('index.build.js', 'build/index.js', done);
+gulp.task('build:package', ['clean'], function () {
+    var editor = require('gulp-json-editor');
+
+    gulp.src('./package.json')
+        .pipe(editor(function (json) {
+            json.main = 'lib/postcss';
+            json.devDependencies['es6-transpiler'] =
+                json.dependencies['es6-transpiler'];
+            delete json.dependencies['es6-transpiler'];
+            return json;
+        }))
+        .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['build:lib', 'build:docs', 'build:index']);
+gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
 
 gulp.task('lint:test', function () {
     var jshint = require('gulp-jshint');
@@ -42,7 +52,7 @@ gulp.task('lint:test', function () {
 gulp.task('lint:lib', function () {
     var jshint = require('gulp-jshint');
 
-    return gulp.src(['lib/*.js', 'index.js', 'index.build.js', 'gulpfile.js'])
+    return gulp.src(['lib/*.js', 'index.js', 'gulpfile.js'])
         .pipe(jshint({ esnext: true }))
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('fail'));
