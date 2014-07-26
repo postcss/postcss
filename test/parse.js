@@ -131,19 +131,6 @@ describe('postcss.parse()', () => {
             ( () => parse('@page { a { } }') ).should.throw(/Unexpected \{/);
         });
 
-        it('adds properties to error', () => {
-            var error;
-            try {
-                parse('a {');
-            } catch (e) {
-                error = e;
-            }
-
-            error.line.should.eql(1);
-            error.column.should.eql(1);
-            error.source.should.eql('a {');
-        });
-
     });
 
 });
