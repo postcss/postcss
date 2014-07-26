@@ -1,5 +1,7 @@
 # PostCSS
 
+<img align="right" width="95" height="95" src="http://ai.github.io/postcss/logo.png" title="Philosopher's stone, logo of PostCSS">
+
 PostCSS is a framework for CSS postprocessors,
 to modify CSS with JavaScript with full source map support.
 
