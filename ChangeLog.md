@@ -1,3 +1,7 @@
+## 2.1 “King Amdusias”
+* Change Traceur ES6 compiler to ES6 Transpiler.
+* Show broken CSS line in syntax error.
+
 ## 2.0 “King Belial”
 * Project was rewritten from CoffeeScript to ES6.
 * Add Safe Mode to works with live input or with hacks from legacy code.
