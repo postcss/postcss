@@ -361,7 +361,7 @@ paths (using `from` and `to` options respectively) to generate correct source
 map.
 
 To generate new source map with default options just set `map: true` option in
-`processor.process(css, opts)` or `root.toResult(opts)`.
+`processor.process(css, opts)`.
 
 ```js
 var result = processor.process(css, {
@@ -372,6 +372,18 @@ var result = processor.process(css, {
 
 result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
 
+fs.writeFileSync('main.out.css',     result.css);
+fs.writeFileSync('main.out.css.map', result.map);
+```
+
+Or set `from` to `postcss.parse(css, opts)` and `to` to `root.toResult(opts)`:
+
+```js
+var root = postcss.parse(css, { from: 'main.css' });
+root.last.removeSelf();
+
+var result = root.toResult({ to: 'main.out.css' });
+fs.writeFileSync('main.out.css',     result.css);
 fs.writeFileSync('main.out.css.map', result.map);
 ```
 
