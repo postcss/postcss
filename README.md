@@ -376,7 +376,7 @@ fs.writeFileSync('main.out.css',     result.css);
 fs.writeFileSync('main.out.css.map', result.map);
 ```
 
-Or set `from` to `postcss.parse(css, opts)` and `to` to `root.toResult(opts)`:
+Or set `from` in `postcss.parse(css, opts)` and `to` in `root.toResult(opts)`:
 
 ```js
 var root = postcss.parse(css, { from: 'main.css' });
