@@ -1,6 +1,6 @@
 # PostCSS [![Build Status](https://travis-ci.org/postcss/postcss.png)](https://travis-ci.org/postcss/postcss)
 
-<img align="right" width="95" height="95" src="http://ai.github.io/postcss/logo.png" title="Philosopher's stone, logo of PostCSS">
+<img align="right" width="95" height="95" src="http://postcss.github.io/postcss/logo.png" title="Philosopher's stone, logo of PostCSS">
 
 PostCSS is a framework for CSS postprocessors,
 to modify CSS with JavaScript with full source map support.
