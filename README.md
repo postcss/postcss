@@ -1,4 +1,4 @@
-# PostCSS
+# PostCSS [![Build Status](https://travis-ci.org/postcss/postcss.png)](https://travis-ci.org/postcss/postcss)
 
 <img align="right" width="95" height="95" src="http://ai.github.io/postcss/logo.png" title="Philosopher's stone, logo of PostCSS">
 
