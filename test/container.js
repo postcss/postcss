@@ -322,6 +322,17 @@ describe('Container', () => {
             b.toString().should.eql('b{width:1px;height:2px}');
         });
 
+        it('clones node on insert', () => {
+            var a = parse('a{}');
+            var b = parse('b{}');
+
+            b.append(a.first);
+            b.last.selector = 'b a';
+
+            a.toString().should.eql('a{}');
+            b.toString().should.eql('b{}b a{}');
+        });
+
     });
 
     describe('prepend()', () => {
