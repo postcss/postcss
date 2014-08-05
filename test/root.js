@@ -42,6 +42,33 @@ describe('Root', () => {
 
     });
 
+    describe('append()', () => {
+
+        it('sets new line between rules in multiline files', () => {
+            var a = parse('a {}\n\na {}\n');
+            var b = parse('b {}\n');
+
+            a.append(b).toString().should.eql('a {}\n\na {}\n\nb {}\n');
+        });
+
+        it('sets new line between rules on last newline', () => {
+            var a = parse('a {}\n');
+            var b = parse('b {}\n');
+
+            a.append(b).toString().should.eql('a {}\nb {}\n');
+        });
+
+        it('saves compressed style', () => {
+            var a1 = parse('a{}');
+            var a2 = parse('a{}a{}');
+            var b  = parse('b{}\n');
+
+            a1.append(b).toString().should.eql('a{}b{}');
+            a2.append(b).toString().should.eql('a{}a{}b{}');
+        });
+
+    });
+
     describe('toResult()', () => {
 
         it('generates result with map', () => {
