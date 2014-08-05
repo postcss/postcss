@@ -12,6 +12,7 @@
                             "column": 5
                         },
                         "content": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
+                        "file": "/quotes.css",
                         "end": {
                             "line": 2,
                             "column": 26
@@ -30,6 +31,7 @@
                             "column": 5
                         },
                         "content": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
+                        "file": "/quotes.css",
                         "end": {
                             "line": 3,
                             "column": 21
@@ -47,6 +49,7 @@
                     "column": 1
                 },
                 "content": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
+                "file": "/quotes.css",
                 "end": {
                     "line": 4,
                     "column": 1

@@ -12,6 +12,7 @@
                             "column": 5
                         },
                         "content": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+                        "file": "/prop-hacks.css",
                         "end": {
                             "line": 2,
                             "column": 19
@@ -30,6 +31,7 @@
                             "column": 5
                         },
                         "content": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+                        "file": "/prop-hacks.css",
                         "end": {
                             "line": 3,
                             "column": 23
@@ -48,6 +50,7 @@
                             "column": 5
                         },
                         "content": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+                        "file": "/prop-hacks.css",
                         "end": {
                             "line": 4,
                             "column": 23
@@ -65,6 +68,7 @@
                     "column": 1
                 },
                 "content": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+                "file": "/prop-hacks.css",
                 "end": {
                     "line": 5,
                     "column": 1

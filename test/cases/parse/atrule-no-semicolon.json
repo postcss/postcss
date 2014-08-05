@@ -9,6 +9,7 @@
                     "column": 1
                 },
                 "content": "\n@charset \"UTF-8\"\n\n",
+                "file": "/atrule-no-semicolon.css",
                 "end": {
                     "line": 2,
                     "column": 16

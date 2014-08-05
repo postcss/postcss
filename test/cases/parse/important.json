@@ -12,6 +12,7 @@
                             "column": 5
                         },
                         "content": "a {\n    color: black  !important ;\n}\n",
+                        "file": "/important.css",
                         "end": {
                             "line": 2,
                             "column": 30
@@ -31,6 +32,7 @@
                     "column": 1
                 },
                 "content": "a {\n    color: black  !important ;\n}\n",
+                "file": "/important.css",
                 "end": {
                     "line": 3,
                     "column": 1

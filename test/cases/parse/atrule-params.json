@@ -9,6 +9,7 @@
                     "column": 1
                 },
                 "content": "@-moz-document/* near */ /* filter */ url(\"example.com/{\") /* a */ {}\n",
+                "file": "/atrule-params.css",
                 "end": {
                     "line": 1,
                     "column": 69

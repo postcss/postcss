@@ -12,6 +12,7 @@
                             "column": 2
                         },
                         "content": "a {\n\tcolor: black\n}\n",
+                        "file": "/tab.css",
                         "end": {
                             "line": 2,
                             "column": 13
@@ -29,6 +30,7 @@
                     "column": 1
                 },
                 "content": "a {\n\tcolor: black\n}\n",
+                "file": "/tab.css",
                 "end": {
                     "line": 3,
                     "column": 1

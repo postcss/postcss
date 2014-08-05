@@ -12,6 +12,7 @@
                             "column": 5
                         },
                         "content": "a {;;\n    color: black;\n    ; ;\n}\n",
+                        "file": "/semicolons.css",
                         "end": {
                             "line": 2,
                             "column": 17
@@ -29,6 +30,7 @@
                     "column": 1
                 },
                 "content": "a {;;\n    color: black;\n    ; ;\n}\n",
+                "file": "/semicolons.css",
                 "end": {
                     "line": 4,
                     "column": 1

@@ -33,7 +33,7 @@ describe('postcss.parse()', () => {
         if ( !file.match(/\.css$/) ) return;
 
         it('parses ' + file, () => {
-            var css  = parse(read(file));
+            var css  = parse(read(file), { from: '/' + file });
             var json = read(file.replace(/\.css$/, '.json')).toString().trim();
             JSON.stringify(css, null, 4).should.eql(json);
         });
@@ -42,6 +42,13 @@ describe('postcss.parse()', () => {
     it('saves source file', () => {
         var css = parse('a {}', { from: 'a.css' });
         css.rules[0].source.file.should.eql(path.resolve('a.css'));
+    });
+
+    it('sets unique ID for file without name', () => {
+        var css1 = parse('a {}');
+        var css2 = parse('a {}');
+        css1.rules[0].source.id.should.match(/^\d+$/);
+        css2.rules[0].source.id.should.not.eql(css1.rules[0].source.id);
     });
 
     it('sets parent node', () => {

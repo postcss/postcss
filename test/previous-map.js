@@ -104,4 +104,19 @@ describe('PreviousMap', () => {
         root.prevMap.root.should.eql(this.dir);
     });
 
+    it('sets uniq name for inline map', () => {
+        var map  = {
+            version:  3,
+            sources:  ['a'],
+            names:    [],
+            mappings: []
+        };
+
+        var opts = { map: { prev: map } };
+        var prev = parse('a{}', opts).prevMap;
+
+        prev.file.should.match(/^\d+$/);
+        prev.file.should.not.eql( parse('a{}', opts).prevMap.file );
+    });
+
 });

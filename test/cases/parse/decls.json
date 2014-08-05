@@ -12,6 +12,7 @@
                             "column": 5
                         },
                         "content": "a {\n    color: black;\n    background: white;\n}\n",
+                        "file": "/decls.css",
                         "end": {
                             "line": 2,
                             "column": 17
@@ -30,6 +31,7 @@
                             "column": 5
                         },
                         "content": "a {\n    color: black;\n    background: white;\n}\n",
+                        "file": "/decls.css",
                         "end": {
                             "line": 3,
                             "column": 22
@@ -47,6 +49,7 @@
                     "column": 1
                 },
                 "content": "a {\n    color: black;\n    background: white;\n}\n",
+                "file": "/decls.css",
                 "end": {
                     "line": 4,
                     "column": 1

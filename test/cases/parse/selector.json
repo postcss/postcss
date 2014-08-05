@@ -10,6 +10,7 @@
                     "column": 1
                 },
                 "content": "\na/* { } */ b {}\n",
+                "file": "/selector.css",
                 "end": {
                     "line": 2,
                     "column": 15
