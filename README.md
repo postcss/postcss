@@ -23,6 +23,11 @@ You can use this framework to write you own:
 
 Sponsored by [Evil Martians](http://evilmartians.com/).
 
+## PostCSS Plugins
+
+* [postcss-custom-properties](https://github.com/postcss/postcss-custom-properties): plugin to polyfill the W3C-style CSS Custom Properties for cascading variables.
+* [postcss-calc](https://github.com/postcss/postcss-calc): plugin to reduce calc() usage (recommanded with `postcss-custom-properties`).
+
 ## Built with PostCSS
 
 * [Autoprefixer] adds vendor prefixes by Can I Use data.
