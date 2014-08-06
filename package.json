@@ -11,25 +11,25 @@
   },
   "dependencies": {
     "es6-transpiler": "~0.7.14-2",
-    "source-map":     "~0.1.37",
+    "source-map":     "~0.1.38",
     "base64-js":      "~0.0.7"
   },
   "devDependencies": {
     "gulp-es6-transpiler": "0.2.0",
     "gulp-json-editor":    "2.0.2",
     "jshint-stylish":      "0.4.0",
-    "gulp-jshint":         "1.8.0",
+    "gulp-jshint":         "1.8.3",
     "gonzales-pe":         "3.0.0-10",
     "gulp-mocha":          "0.5.2",
     "gulp-util":           "3.0.0",
     "fs-extra":            "0.10.0",
     "gonzales":            "1.0.7",
-    "request":             "2.39.0",
+    "request":             "2.40.0",
     "rework":              "1.0.0",
     "should":              "4.0.4",
-    "mocha":               "1.21.1",
+    "mocha":               "1.21.4",
     "cssom":               "0.3.0",
-    "gulp":                "3.8.6"
+    "gulp":                "3.8.7"
   },
   "scripts": {
     "test": "gulp"
