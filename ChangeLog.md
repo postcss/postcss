@@ -1,3 +1,9 @@
+## 2.1.1
+* Allow to miss `to` and `from` options for inline source maps.
+* Add `Node#source.id` if file name is unknown.
+* Better detect splitter between rules in CSS concatination tools.
+* Automatically clone node in insert methods.
+
 ## 2.1 “King Amdusias”
 * Change Traceur ES6 compiler to ES6 Transpiler.
 * Show broken CSS line in syntax error.
