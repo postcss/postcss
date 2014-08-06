@@ -27,38 +27,42 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 
 ### Tools
 
-* [Autoprefixer] adds vendor prefixes by Can I Use data.
-* [grunt-pixrem], `rem` unit polyfill.
+* [Autoprefixer] adds vendor prefixes by [Can I Use] data.
+* [css2modernizr] analyzes your CSS and output only used [Modernizr]’s settings.
 * [CSS MQPacker] joins same media queries.
-* [RTLCSS] mirrors styles for right-to-left locales.
 * [CSSWring] and [grunt-csswring] CSS minifier with full source map support.
-* [Pleeease] is a pack of various postprocessors.
-* [Grunt-webpcss] to duplicate images in CSS to WebP for supported browsers.
-* [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
-* [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
 * [data-separator] splits data-uri into a separate CSS file.
+* [grunt-pixrem], `rem` unit polyfill.
+* [grunt-webpcss] to duplicate images in CSS to WebP for supported browsers.
+* [Pleeease] is a pack of various postprocessors.
+* [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
+* [RTLCSS] mirrors styles for right-to-left locales.
 
-[Pleeease Filters]: https://github.com/iamvdo/pleeease-filters
-[grunt-csswring]:   https://github.com/princed/grunt-csswring
-[data-separator]:   https://github.com/Sebastian-Fitzner/grunt-data-separator
-[css2modernizr]:    https://github.com/vovanbo/css2modernizr
-[Grunt-webpcss]:    https://github.com/lexich/grunt-webpcss
+
 [Autoprefixer]:     https://github.com/ai/autoprefixer
-[grunt-pixrem]:     https://github.com/robwierzbowski/grunt-pixrem
+  [Can I Use]:      http://caniuse.com/
+[css2modernizr]:    https://github.com/vovanbo/css2modernizr
+  [Modernizr]:      http://modernizr.com/
 [CSS MQPacker]:     https://github.com/hail2u/node-css-mqpacker
-[Pleeease]:         http://pleeease.io/
 [CSSWring]:         https://github.com/hail2u/node-csswring
+[data-separator]:   https://github.com/Sebastian-Fitzner/grunt-data-separator
+[grunt-csswring]:   https://github.com/princed/grunt-csswring
+[grunt-pixrem]:     https://github.com/robwierzbowski/grunt-pixrem
+[grunt-webpcss]:    https://github.com/lexich/grunt-webpcss
+[Pleeease]:         http://pleeease.io/
+[Pleeease Filters]: https://github.com/iamvdo/pleeease-filters
 [RTLCSS]:           https://github.com/MohammadYounes/rtlcss
 
 ### Plugins
 
-* [postcss-custom-properties] to polyfill the W3C-style
-  CSS Custom Properties for cascading variables.
 * [postcss-calc] to reduce `calc()` usage (recommanded with
   `postcss-custom-properties`).
+* [postcss-custom-properties] to polyfill the W3C-style
+  CSS Custom Properties for cascading variables.
 
-[postcss-custom-properties]: https://github.com/postcss/postcss-custom-properties
 [postcss-calc]:              https://github.com/postcss/postcss-calc
+[postcss-custom-properties]: https://github.com/postcss/postcss-custom-properties
+
 
 ## Quick Example
 
