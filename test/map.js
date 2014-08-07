@@ -405,4 +405,19 @@ describe('source maps', () => {
         postcss.parse(step2.css).prevMap.file.should.match(/^\d+$/);
     });
 
+    it('supports UTF-8', () => {
+        var step1 = this.doubler.process('a { }', {
+            from: 'вход.css',
+            to:   'шаг1.css',
+            map:  'inline'
+        });
+        var step2 = this.doubler.process(step1.css, {
+            from: 'шаг1.css',
+            to:   'выход.css',
+        });
+
+        var map = postcss.parse(step2.css).prevMap.consumer();
+        map.file.should.eql('выход.css');
+    });
+
 });

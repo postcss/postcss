@@ -12,7 +12,7 @@
   "dependencies": {
     "es6-transpiler": "~0.7.14-2",
     "source-map":     "~0.1.38",
-    "base64-js":      "~0.0.7"
+    "js-base64":      "~2.1.5"
   },
   "devDependencies": {
     "gulp-es6-transpiler": "0.2.0",
