@@ -18,7 +18,7 @@
     "gulp-es6-transpiler": "0.2.0",
     "gulp-json-editor":    "2.0.2",
     "jshint-stylish":      "0.4.0",
-    "gulp-jshint":         "1.8.3",
+    "gulp-jshint":         "1.8.4",
     "gonzales-pe":         "3.0.0-10",
     "gulp-mocha":          "0.5.2",
     "gulp-util":           "3.0.0",
