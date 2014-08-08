@@ -1,3 +1,7 @@
+## 2.1.2
+* Fix UTF-8 support in inline source map.
+* Fix source map `sourcesContent` if there is no `from` and `to` options.
+
 ## 2.1.1
 * Allow to miss `to` and `from` options for inline source maps.
 * Add `Node#source.id` if file name is unknown.
