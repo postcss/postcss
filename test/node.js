@@ -1,7 +1,8 @@
-var AtRule = require('../lib/at-rule');
-var Node   = require('../lib/node');
-var Root   = require('../lib/root');
-var Rule   = require('../lib/rule');
+var Declaration = require('../lib/declaration');
+var AtRule      = require('../lib/at-rule');
+var Node        = require('../lib/node');
+var Root        = require('../lib/root');
+var Rule        = require('../lib/rule');
 
 var should = require('should');
 
@@ -15,6 +16,41 @@ describe('Node', () => {
 
             rule.decls[0].removeSelf();
             rule.decls.should.be.empty;
+        });
+
+    });
+
+    describe('replace()', () => {
+
+        it('inserts new node', () => {
+            var rule = new Rule({ selector: 'a' });
+            rule.append({ prop: 'color', value: 'black' });
+            rule.append({ prop: 'width', value: '1px' });
+            rule.append({ prop: 'height', value: '1px' });
+
+            var node   = new Declaration({ prop: 'min-width', value: '1px' });
+            var width  = rule.decls[1];
+            var result = width.replace(node);
+
+            result.should.eql(width);
+
+            rule.toString().should.eql('a {\n' +
+                                       '    color: black;\n' +
+                                       '    min-width: 1px;\n' +
+                                       '    height: 1px\n' +
+                                       '}');
+        });
+
+        it('inserts new root', () => {
+            var root = new Root();
+            root.append( new AtRule({ name: 'import', params: '"a.css"' }) );
+
+            var a = new Root();
+            a.append( new Rule({ selector: 'a' }) );
+            a.append( new Rule({ selector: 'b' }) );
+
+            root.first.replace(a);
+            root.toString().should.eql('a {}b {}');
         });
 
     });
