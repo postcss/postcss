@@ -19,6 +19,7 @@ describe('CssSyntaxError', () => {
         error.should.be.a.instanceOf(CssSyntaxError);
         error.message.should.be.eql(
             "Can't parse CSS: Unexpected { in decls at line 2:7");
+        error.reason.should.eql('Unexpected { in decls');
         error.line.should.eql(2);
         error.column.should.eql(7);
         error.source.should.eql('a {\n  a b {}\n}');
