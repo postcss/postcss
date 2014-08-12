@@ -69,7 +69,7 @@ describe('postcss.parse()', () => {
 
         it('throws on unclosed blocks', () => {
             ( () => parse('\na {\n') ).should
-                .throw(/Unclosed block at line 2:1/);
+                .throw(/:2:1: Unclosed block/);
         });
 
         it('fixes unclosed blocks in safe mode', () => {
@@ -82,7 +82,7 @@ describe('postcss.parse()', () => {
 
         it('throws on unnecessary block close', () => {
             ( () => parse('a {\n} }') ).should
-                .throw(/Unexpected } at line 2:3/);
+                .throw(/:2:3: Unexpected }/);
         });
 
         it('fixes unnecessary block close in safe mode', () => {
@@ -93,7 +93,7 @@ describe('postcss.parse()', () => {
 
         it('throws on unclosed comment', () => {
             ( () => parse('\n/*\n\n ') ).should
-                .throw(/Unclosed comment at line 2:1/);
+                .throw(/:2:1: Unclosed comment/);
         });
 
         it('fixes unclosed comment in safe mode', () => {
@@ -104,7 +104,7 @@ describe('postcss.parse()', () => {
 
         it('throws on unclosed quote', () => {
             ( () => parse('\n"\n\na ') ).should
-                .throw(/Unclosed quote at line 2:1/);
+                .throw(/:2:1: Unclosed quote/);
         });
 
         it('fixes unclosed quote in safe mode', () => {

@@ -83,8 +83,7 @@ describe('postcss()', () => {
             }
 
             error.file.should.eql('A');
-            error.message.should.eql(
-                "Can't parse CSS: Unclosed block at line 1:1 in A");
+            error.message.should.eql('A:1:1: Unclosed block');
         });
 
         it('allows to replace Root', () => {

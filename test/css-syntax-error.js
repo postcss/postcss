@@ -17,8 +17,7 @@ describe('CssSyntaxError', () => {
         error = parseError('a {\n  a b {}\n}');
 
         error.should.be.a.instanceOf(CssSyntaxError);
-        error.message.should.be.eql(
-            "Can't parse CSS: Unexpected { in decls at line 2:7");
+        error.message.should.be.eql('<css input>:2:7: Unexpected { in decls');
         error.reason.should.eql('Unexpected { in decls');
         error.line.should.eql(2);
         error.column.should.eql(7);
@@ -40,7 +39,7 @@ describe('CssSyntaxError', () => {
 
     it('prints with colored CSS', () => {
         parseError('a {').toString().should.eql(
-            "Can't parse CSS: Unclosed block at line 1:1\n" +
+            "<css input>:1:1: Unclosed block\n" +
             'a {\n' +
             '\u001b[1;31m^\u001b[0m');
     });
