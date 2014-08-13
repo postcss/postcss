@@ -55,13 +55,14 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 
 ### Plugins
 
-* [postcss-calc] to reduce `calc()` usage (recommanded with
-  `postcss-custom-properties`).
+* [postcss-calc] to reduce `calc()` usage (recommanded with `postcss-custom-properties`).
+* [postcss-color] to transform latest W3C CSS color module syntax to more compatible CSS.
 * [postcss-import] to transform @import rules by inlining content.
 * [postcss-custom-media] to transform W3C CSS Custom Media Queries to more compatible CSS.
 * [postcss-custom-properties] to transform W3C CSS Custom Properties for cascading variables to more compatible CSS.
 
 [postcss-calc]:               https://github.com/postcss/postcss-calc
+[postcss-color]:              https://github.com/postcss/postcss-color
 [postcss-import]:             https://github.com/postcss/postcss-import
 [postcss-custom-media]:       https://github.com/postcss/postcss-custom-media
 [postcss-custom-properties]:  https://github.com/postcss/postcss-custom-properties
