@@ -57,11 +57,14 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 
 * [postcss-calc] to reduce `calc()` usage (recommanded with
   `postcss-custom-properties`).
-* [postcss-custom-properties] to polyfill the W3C-style
-  CSS Custom Properties for cascading variables.
+* [postcss-import] to transform @import rules by inlining content.
+* [postcss-custom-media] to transform W3C CSS Custom Media Queries to more compatible CSS.
+* [postcss-custom-properties] to transform W3C CSS Custom Properties for cascading variables to more compatible CSS.
 
-[postcss-calc]:              https://github.com/postcss/postcss-calc
-[postcss-custom-properties]: https://github.com/postcss/postcss-custom-properties
+[postcss-calc]:               https://github.com/postcss/postcss-calc
+[postcss-import]:             https://github.com/postcss/postcss-import
+[postcss-custom-media]:       https://github.com/postcss/postcss-custom-media
+[postcss-custom-properties]:  https://github.com/postcss/postcss-custom-properties
 
 
 ## Quick Example
