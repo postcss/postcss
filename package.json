@@ -15,14 +15,14 @@
     "js-base64":      "~2.1.5"
   },
   "devDependencies": {
-    "gulp-es6-transpiler": "0.2.0",
+    "gulp-es6-transpiler": "1.0.0",
     "gulp-json-editor":    "2.0.2",
     "jshint-stylish":      "0.4.0",
     "gulp-jshint":         "1.8.4",
     "gonzales-pe":         "3.0.0-10",
-    "gulp-mocha":          "0.5.2",
+    "gulp-mocha":          "1.0.0",
     "gulp-util":           "3.0.0",
-    "fs-extra":            "0.10.0",
+    "fs-extra":            "0.11.0",
     "gonzales":            "1.0.7",
     "request":             "2.40.0",
     "rework":              "1.0.0",
