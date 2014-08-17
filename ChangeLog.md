@@ -1,3 +1,8 @@
+## 2.2 “Marquis Cimeies”
+* Use GNU style syntax error messages.
+* Add `Node#replace` method.
+* Add `CssSyntaxError#reason` property.
+
 ## 2.1.2
 * Fix UTF-8 support in inline source map.
 * Fix source map `sourcesContent` if there is no `from` and `to` options.
