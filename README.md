@@ -236,7 +236,7 @@ Because of this background difference, PostCSS:
 
 There is a gulp plugin for postcss called
 [gulp-postcss](https://github.com/w0rm/gulp-postcss)
-that allows to pipe your css files through array of postcss processors.
+that allows to pipe your CSS files through array of PostCSS processors.
 
 External source map is supported
 by [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps).
