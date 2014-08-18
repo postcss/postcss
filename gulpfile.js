@@ -248,10 +248,7 @@ gulp.task('integration', ['build'], function (done) {
 gulp.task('test', function () {
     require('./');
     var mocha = require('gulp-mocha');
-
-    return gulp.src('test/*.js', { read: false })
-        .pipe(mocha())
-        .on('error', process.exit.bind(process, 1));
+    return gulp.src('test/*.js', { read: false }).pipe(mocha());
 });
 
 gulp.task('default', ['lint', 'test', 'integration']);
