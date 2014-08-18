@@ -247,6 +247,8 @@ gulp.task('integration', ['build'], function (done) {
 
 gulp.task('test', function () {
     require('./');
+    require('should');
+
     var mocha = require('gulp-mocha');
     return gulp.src('test/*.js', { read: false }).pipe(mocha());
 });
