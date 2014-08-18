@@ -881,3 +881,31 @@ Or use short form in rule’s `append()` and other add methods:
 ```js
 rule.append({ prop: 'color', value: 'black' });
 ```
+
+## How To
+
+### Use with gulp
+
+There is a gulp plugin for postcss called [gulp-postcss](https://github.com/w0rm/gulp-postcss)
+that allows to pipe your css files through array of postcss processors.
+
+External source map is supported by [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps).
+
+```js
+var gulp = require('gulp');
+var postcss = require('gulp-postcss');
+var sourcemaps = require('gulp-sourcemaps');
+
+gulp.task('css', function () {
+  var processors = [
+    require('autoprefixer')('last 1 version').postcss,
+    require('css-mqpacker').processor,
+    require('csswring').postcss
+  ];
+  return gulp.src('./src/style.css')
+    .pipe(sourcemaps.init())
+    .pipe(postcss(processors))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./dest'));
+});
+```
