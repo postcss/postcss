@@ -39,7 +39,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [RTLCSS] mirrors styles for right-to-left locales.
 
 
-[Autoprefixer]:     https://github.com/ai/autoprefixer
+[Autoprefixer]:     https://github.com/postcss/autoprefixer
 [css2modernizr]:    https://github.com/vovanbo/css2modernizr
 [CSS MQPacker]:     https://github.com/hail2u/node-css-mqpacker
 [CSSWring]:         https://github.com/hail2u/node-csswring
@@ -188,7 +188,7 @@ the best way to improve readability and add some syntax sugar to CSS.
 You can easily combine preprocessors and postprocessors
 (and PostCSS will also update source map from Sass or Stylus).
 
-[Autoprefixer]: https://github.com/ai/autoprefixer
+[Autoprefixer]: https://github.com/postcss/autoprefixer
 [npm]:          https://npmjs.org/
 
 ### RegExp
