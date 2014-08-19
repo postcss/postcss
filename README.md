@@ -27,8 +27,8 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 
 ### Tools
 
-* [Autoprefixer] adds vendor prefixes by [Can I Use] data.
-* [css2modernizr] analyzes your CSS and output only used [Modernizr]’s settings.
+* [Autoprefixer] adds vendor prefixes by Can I Use data.
+* [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
 * [CSS MQPacker] joins same media queries.
 * [CSSWring] and [grunt-csswring] CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
@@ -40,9 +40,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 
 
 [Autoprefixer]:     https://github.com/ai/autoprefixer
-  [Can I Use]:      http://caniuse.com/
 [css2modernizr]:    https://github.com/vovanbo/css2modernizr
-  [Modernizr]:      http://modernizr.com/
 [CSS MQPacker]:     https://github.com/hail2u/node-css-mqpacker
 [CSSWring]:         https://github.com/hail2u/node-csswring
 [data-separator]:   https://github.com/Sebastian-Fitzner/grunt-data-separator
