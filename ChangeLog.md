@@ -1,3 +1,6 @@
+## 2.2.1
+* Send `opts` from `Processor#process(css, opts)` to processors.
+
 ## 2.2 “Marquis Cimeies”
 * Use GNU style syntax error messages.
 * Add `Node#replace` method.
