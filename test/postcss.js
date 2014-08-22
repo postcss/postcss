@@ -112,6 +112,11 @@ describe('postcss()', () => {
             postcss(a).process('a {}').css.should.have.type('string');
         });
 
+        it('send options to processors', () => {
+            var a = (css, opts) => opts.should.eql({ from: 'a.css' });
+            postcss(a).process('a {}', { from: 'a.css' });
+        });
+
     });
 
 });

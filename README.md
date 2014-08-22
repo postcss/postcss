@@ -300,7 +300,7 @@ The function `postcss(fn)` creates a processor from your function:
 ```js
 var postcss = require('postcss');
 
-var processor = postcss(function (css) {
+var processor = postcss(function (css, opts) {
     // Code to modify CSS
 });
 ```
@@ -356,6 +356,9 @@ var wrong = "a {";
 processor.process(wrong, { from: 'main.css' });
 //=> Can't parse CSS: Unclosed block at line 1:1 in main.css
 ```
+
+Options from `process(css, opts)` will be sent to processors
+as seconds argument.
 
 You can also use result from previous postprocessor or already parsed `Root`
 as argument in next one:
