@@ -1,37 +1,37 @@
 {
-  "name": "postcss",
-  "version": "2.2.1",
-  "description": "Framework for CSS postprocessors with full source map support",
-  "keywords": ["css", "parser", "postproccessor", "source map"],
-  "author": "Andrey Sitnik <andrey@sitnik.ru>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url":  "https://github.com/postcss/postcss.git"
-  },
-  "dependencies": {
-    "es6-transpiler": "~0.7.14-2",
-    "source-map":     "~0.1.38",
-    "js-base64":      "~2.1.5"
-  },
-  "devDependencies": {
-    "gulp-es6-transpiler": "1.0.0",
-    "gulp-json-editor":    "2.0.2",
-    "jshint-stylish":      "0.4.0",
-    "gulp-jshint":         "1.8.4",
-    "gonzales-pe":         "3.0.0-10",
-    "gulp-mocha":          "1.0.0",
-    "gulp-util":           "3.0.0",
-    "fs-extra":            "0.11.0",
-    "gonzales":            "1.0.7",
-    "request":             "2.40.0",
-    "rework":              "1.0.0",
-    "should":              "4.0.4",
-    "mocha":               "1.21.4",
-    "cssom":               "0.3.0",
-    "gulp":                "3.8.7"
-  },
-  "scripts": {
-    "test": "gulp"
-  }
+    "name": "postcss",
+    "version": "2.2.1",
+    "description": "Framework for CSS postprocessors with full source map support",
+    "keywords": ["css", "parser", "postproccessor", "source map"],
+    "author": "Andrey Sitnik <andrey@sitnik.ru>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url":  "https://github.com/postcss/postcss.git"
+    },
+    "dependencies": {
+        "es6-transpiler": "~0.7.14-2",
+        "source-map":     "~0.1.38",
+        "js-base64":      "~2.1.5"
+    },
+    "devDependencies": {
+        "gulp-es6-transpiler": "1.0.0",
+        "gulp-json-editor":    "2.0.2",
+        "jshint-stylish":      "0.4.0",
+        "gulp-jshint":         "1.8.4",
+        "gonzales-pe":         "3.0.0-10",
+        "gulp-mocha":          "1.0.0",
+        "gulp-util":           "3.0.0",
+        "fs-extra":            "0.11.0",
+        "gonzales":            "1.0.7",
+        "request":             "2.40.0",
+        "rework":              "1.0.0",
+        "should":              "4.0.4",
+        "mocha":               "1.21.4",
+        "cssom":               "0.3.0",
+        "gulp":                "3.8.7"
+    },
+    "scripts": {
+        "test": "gulp"
+    }
 }
