@@ -37,7 +37,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [Pleeease] is a pack of various postprocessors.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
 * [RTLCSS] mirrors styles for right-to-left locales.
-
+* [cssnext] is a pack of future CSS polyfills.
 
 [Autoprefixer]:     https://github.com/postcss/autoprefixer
 [css2modernizr]:    https://github.com/vovanbo/css2modernizr
@@ -50,6 +50,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 [Pleeease]:         http://pleeease.io/
 [Pleeease Filters]: https://github.com/iamvdo/pleeease-filters
 [RTLCSS]:           https://github.com/MohammadYounes/rtlcss
+[cssnext]:          https://github.com/putaindecode/cssnext
 
 ### Plugins
 
