@@ -5,6 +5,7 @@ build
 
 test
 .travis.yml
+origin.css
+fail.css
 
 gulpfile.js
-Cakefile
