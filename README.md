@@ -63,7 +63,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
   to more compatible CSS.
 * [postcss-custom-properties] to transform W3C CSS Custom Properties
   for cascading variables to more compatible CSS.
-* [postcss-url] to rebase or inline on url().
+* [postcss-url] to rebase or inline on `url()`.
 
 [postcss-calc]:              https://github.com/postcss/postcss-calc
 [postcss-color]:             https://github.com/postcss/postcss-color
