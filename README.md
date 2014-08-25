@@ -28,8 +28,9 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 ### Tools
 
 * [Autoprefixer] adds vendor prefixes by Can I Use data.
-* [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
 * [CSS MQPacker] joins same media queries.
+* [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
+* [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow's CSS syntax today.
 * [CSSWring] and [grunt-csswring] CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
 * [grunt-pixrem], `rem` unit polyfill.
@@ -37,11 +38,11 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [Pleeease] is a pack of various postprocessors.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
 * [RTLCSS] mirrors styles for right-to-left locales.
-* [cssnext] is a pack of future CSS polyfills.
 
 [Autoprefixer]:     https://github.com/postcss/autoprefixer
-[css2modernizr]:    https://github.com/vovanbo/css2modernizr
 [CSS MQPacker]:     https://github.com/hail2u/node-css-mqpacker
+[css2modernizr]:    https://github.com/vovanbo/css2modernizr
+[cssnext]:          https://github.com/putaindecode/cssnext
 [CSSWring]:         https://github.com/hail2u/node-csswring
 [data-separator]:   https://github.com/Sebastian-Fitzner/grunt-data-separator
 [grunt-csswring]:   https://github.com/princed/grunt-csswring
@@ -50,7 +51,6 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 [Pleeease]:         http://pleeease.io/
 [Pleeease Filters]: https://github.com/iamvdo/pleeease-filters
 [RTLCSS]:           https://github.com/MohammadYounes/rtlcss
-[cssnext]:          https://github.com/putaindecode/cssnext
 
 ### Plugins
 
