@@ -1,3 +1,6 @@
+## 2.2.2
+* Add shortcut to set processors in `use()` via object with `.postcss` property.
+
 ## 2.2.1
 * Send `opts` from `Processor#process(css, opts)` to processors.
 
