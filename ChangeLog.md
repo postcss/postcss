@@ -1,3 +1,6 @@
+## 2.2.3
+* Allow to use object shortcut in `use()` with functions like `autoprefixer`.
+
 ## 2.2.2
 * Add shortcut to set processors in `use()` via object with `.postcss` property.
 
