@@ -48,6 +48,15 @@ describe('postcss()', () => {
             processor.should.eql({ processors: [a] });
         });
 
+        it('adds new processor by object-function', () => {
+            var a   = () => 1;
+            var obj = () => 2;
+            obj.postcss = a;
+            var processor = postcss();
+            processor.use(obj);
+            processor.should.eql({ processors: [a] });
+        });
+
         it('returns itself', () => {
             var a = () => 1;
             var b = () => 2;
