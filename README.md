@@ -317,6 +317,13 @@ var all = postcss().
           use(minifing);
 ```
 
+Also you can add processor object with `postcss` function:
+
+```js
+postcss().use( autoprefixer.postcss ); // via function
+postcss().use( autoprefixer );         // via object
+```
+
 Processor function can change the current CSS node tree:
 
 ```js

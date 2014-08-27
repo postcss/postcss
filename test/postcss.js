@@ -27,12 +27,24 @@ describe('postcss()', () => {
         postcss(a, b).should.eql({ processors: [a, b] });
     });
 
+    it('saves processors object list', () => {
+        var a = () => 1;
+        postcss({ postcss: a }).should.eql({ processors: [a] });
+    });
+
     describe('use()', () => {
 
         it('adds new processors', () => {
             var a = () => 1;
             var processor = postcss();
             processor.use(a);
+            processor.should.eql({ processors: [a] });
+        });
+
+        it('adds new processor by object', () => {
+            var a = () => 1;
+            var processor = postcss();
+            processor.use({ postcss: a });
             processor.should.eql({ processors: [a] });
         });
 
