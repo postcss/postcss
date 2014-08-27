@@ -627,6 +627,11 @@ var css = "a {\n  color:black\n}\n";
 minifier.process(css).css //=> "a{color:black}"
 ```
 
+Note, that nodes may have not properties like `before` or `between`:
+
+* If node was created by hand via `postcss.rule()`.
+* `node.clone()` will clean all style properties to use style from new CSS root.
+
 ### Raw Properties
 
 Some CSS values (selectors, comment text, at-rule params and declaration values)
