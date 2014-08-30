@@ -33,7 +33,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow's CSS syntax today.
 * [CSSWring] and [grunt-csswring] CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
-* [grunt-pixrem], `rem` unit polyfill.
+* [pixrem]/[grunt-pixrem] is a `rem` unit polyfill.
 * [grunt-webpcss] to duplicate images in CSS to WebP for supported browsers.
 * [Pleeease] is a pack of various postprocessors.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
@@ -46,6 +46,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 [CSSWring]:         https://github.com/hail2u/node-csswring
 [data-separator]:   https://github.com/Sebastian-Fitzner/grunt-data-separator
 [grunt-csswring]:   https://github.com/princed/grunt-csswring
+[pixrem]:           https://github.com/robwierzbowski/node-pixrem
 [grunt-pixrem]:     https://github.com/robwierzbowski/grunt-pixrem
 [grunt-webpcss]:    https://github.com/lexich/grunt-webpcss
 [Pleeease]:         http://pleeease.io/
