@@ -250,9 +250,9 @@ var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('css', function () {
     var processors = [
-        require('autoprefixer')('last 1 version').postcss,
-        require('css-mqpacker').processor,
-        require('csswring').postcss
+        require('autoprefixer')('last 1 version'),
+        require('css-mqpacker'),
+        require('csswring')
      ];
      return gulp.src('./src/style.css')
         .pipe(sourcemaps.init())
