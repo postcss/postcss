@@ -1,6 +1,7 @@
 var Declaration = require('../lib/declaration');
 var Container   = require('../lib/container');
 var parse       = require('../lib/parse');
+var Rule        = require('../lib/rule');
 
 var fs     = require('fs');
 var should = require('should');
@@ -359,6 +360,12 @@ describe('Container', () => {
 
             a.first.prepend( b.first.decls );
             a.toString().should.eql('a{ width: 1px; height: 2px; z-index: 1 }');
+        });
+
+        it('works on empty container', () => {
+            var root = parse('');
+            root.prepend( new Rule({ selector: 'a' }) );
+            root.toString().should.eql('a {}');
         });
 
     });
