@@ -1,3 +1,6 @@
+## 2.2.4
+* Fix `prepend()` on empty `Root`.
+
 ## 2.2.3
 * Allow to use object shortcut in `use()` with functions like `autoprefixer`.
 
