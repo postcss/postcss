@@ -47,4 +47,26 @@ describe('tokenize', () => {
         ]);
     });
 
+    it('shows file name in errors', () => {
+        ( () => tokenize(' "', { from: 'a.css' }) ).should.throw(/^a.css/);
+    });
+
+    it('throws error on unclosed string', () => {
+        ( () => tokenize(' "') ).should.throw(/:1:2: Unclosed quote/);
+    });
+
+    it('fixes unclosed string in safe smode', () => {
+        tokenize('"', { safe: true }).should.eql([ ['string', '""'] ]);
+    });
+
+    it('throws error on unclosed comment', () => {
+        ( () => tokenize(' /*') ).should.throw(/:1:2: Unclosed comment/);
+    });
+
+    it('fixes unclosed comment in safe smode', () => {
+        tokenize('/*', { safe: true }).should.eql([
+            ['comment', '/**/', { column: 1, line: 1 }, { column: 2, line: 1 }]
+        ]);
+    });
+
 });
