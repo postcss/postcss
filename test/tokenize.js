@@ -7,11 +7,7 @@ describe('tokenize', () => {
     });
 
     it('tokenizes space', () => {
-        tokenize('  ').should.eql([ ['space', '  '] ]);
-    });
-
-    it('tokenizes spaces', () => {
-        tokenize('  \n  ').should.eql([ ['space', '  \n'], ['space', '  '] ]);
+        tokenize('\n ').should.eql([ ['space', '\n '] ]);
     });
 
     it('tokenizes word', () => {
@@ -28,15 +24,13 @@ describe('tokenize', () => {
             ['word', 'a', { column: 1, line: 1 } ],
             ['space', ' '],
             ['{', '{'],
-            ['space', '\n'],
-            ['space', '  '],
+            ['space', '\n  '],
             ['word', 'content', { column: 3, line: 2 }],
             [':', ':'],
             ['space', ' '],
             ['string', '"a"'],
             [';', ';'],
-            ['space', '\n'],
-            ['space', '  '],
+            ['space', '\n  '],
             ['}', '}', { column: 3, line: 3 }],
             ['space', '\n'],
             ['comment', '/* small screen */', { column: 1, line: 4 },
