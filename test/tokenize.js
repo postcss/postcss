@@ -27,17 +27,17 @@ describe('tokenize', () => {
         tokenize(css).should.eql([
             ['word', 'a', { column: 1, line: 1 } ],
             ['space', ' '],
-            ['{'],
+            ['{', '{'],
             ['space', '\n'],
             ['space', '  '],
             ['word', 'content', { column: 3, line: 2 }],
-            [':'],
+            [':', ':'],
             ['space', ' '],
             ['string', '"a"'],
-            [';'],
+            [';', ';'],
             ['space', '\n'],
             ['space', '  '],
-            ['}', { column: 3, line: 3 }],
+            ['}', '}', { column: 3, line: 3 }],
             ['space', '\n'],
             ['comment', '/* small screen */', { column: 1, line: 4 },
                                               { column: 18, line: 4 }],
@@ -46,8 +46,8 @@ describe('tokenize', () => {
             ['space', ' '],
             ['word', 'screen', { column: 8, line: 5 }],
             ['space', ' '],
-            ['{'],
-            ['}', { column: 16, line: 5 }]
+            ['{', '{'],
+            ['}', '}', { column: 16, line: 5 }]
         ]);
     });
 
