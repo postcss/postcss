@@ -10,7 +10,7 @@
         "url":  "https://github.com/postcss/postcss.git"
     },
     "dependencies": {
-        "es6-transpiler": "~0.7.17",
+        "es6-transpiler": "0.7.15",
         "source-map":     "~0.1.39",
         "js-base64":      "~2.1.5"
     },
