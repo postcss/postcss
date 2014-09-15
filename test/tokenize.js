@@ -11,7 +11,8 @@ describe('tokenize', () => {
     });
 
     it('tokenizes word', () => {
-        tokenize('ab').should.eql([ ['word', 'ab', { column: 1, line: 1 }] ]);
+        tokenize('ab').should.eql([ ['word', 'ab', { column: 1, line: 1 },
+                                                   { column: 2, line: 1 }] ]);
     });
 
     it('tokenizes CSS', () => {
@@ -21,11 +22,12 @@ describe('tokenize', () => {
               '/* small screen */\n' +
               '@media screen {}';
         tokenize(css).should.eql([
-            ['word', 'a', { column: 1, line: 1 } ],
+            ['word', 'a', { column: 1, line: 1 }, { column: 2, line: 1 } ],
             ['space', ' '],
             ['{', '{'],
             ['space', '\n  '],
-            ['word', 'content', { column: 3, line: 2 }],
+            ['word', 'content', { column: 3, line: 2 },
+                                { column: 10, line: 2 }],
             [':', ':'],
             ['space', ' '],
             ['string', '"a"'],
@@ -38,7 +40,7 @@ describe('tokenize', () => {
             ['space', '\n'],
             ['at-word', '@media', { column: 1, line: 5 }],
             ['space', ' '],
-            ['word', 'screen', { column: 8, line: 5 }],
+            ['word', 'screen', { column: 8, line: 5 }, { column: 14, line: 5 }],
             ['space', ' '],
             ['{', '{'],
             ['}', '}', { column: 16, line: 5 }]
