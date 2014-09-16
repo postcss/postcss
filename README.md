@@ -446,7 +446,7 @@ Or set `from` in `postcss.parse(css, opts)` and `to` in `root.toResult(opts)`:
 
 ```js
 var root = postcss.parse(css, { from: 'main.css' });
-root.last.removeSelf();
+root.last.removeSelf(); // Example transformation
 
 var result = root.toResult({ to: 'main.out.css' });
 fs.writeFileSync('main.out.css',     result.css);
