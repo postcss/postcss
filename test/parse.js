@@ -77,7 +77,7 @@ describe('postcss.parse()', () => {
                 .toString().should.eql('@media (screen) { a {\n}}');
 
             parse('a { color', { safe: true })
-                .first.first.prop.should.eql('color');
+                .toString().should.eql('a { color}');
         });
 
         it('throws on unnecessary block close', () => {
@@ -109,14 +109,14 @@ describe('postcss.parse()', () => {
 
         it('fixes unclosed quote in safe mode', () => {
             parse('a { content: "b', { safe: true }).
-                toString().should.eql('a { content: "b}');
+                toString().should.eql('a { content: "b"}');
         });
 
         it('throws on property without value', () => {
             ( () => parse("a { b;}") ).should
-                .throw(/Missing property value/);
-            ( () => parse("a { b }") ).should
-                .throw(/Missing property value/);
+                .throw(/:1:5: Unknown word/);
+            ( () => parse("a { b b }") ).should
+                .throw(/:1:5: Unknown word/);
         });
 
         it('fixes property without value in safe mode', () => {
@@ -127,15 +127,7 @@ describe('postcss.parse()', () => {
         });
 
         it('throws on nameless at-rule', () => {
-            ( () => parse('@') ).should.throw(/At-rule without name/);
-        });
-
-        it('throws on block inside declarations', () => {
-            ( () => parse("a {{}}") ).should.throw(/Unexpected \{/);
-        });
-
-        it('throw on rules in declarations at-rule', () => {
-            ( () => parse('@page { a { } }') ).should.throw(/Unexpected \{/);
+            ( () => parse('@') ).should.throw(/:1:1: At-rule without name/);
         });
 
     });

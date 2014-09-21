@@ -11,10 +11,31 @@
                             "line": 2,
                             "column": 5
                         },
-                        "content": "a {\n    color: black  !important ;\n}\n",
+                        "content": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
                         "file": "/important.css",
                         "end": {
                             "line": 2,
+                            "column": 25
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "width",
+                    "between": ": ",
+                    "important": true,
+                    "_important": "!important",
+                    "value": "1px"
+                },
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "content": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
+                        "file": "/important.css",
+                        "end": {
+                            "line": 3,
                             "column": 30
                         }
                     },
@@ -31,16 +52,16 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "a {\n    color: black  !important ;\n}\n",
+                "content": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
                 "file": "/important.css",
                 "end": {
-                    "line": 3,
+                    "line": 4,
                     "column": 1
                 }
             },
             "before": "",
-            "selector": "a",
             "between": " ",
+            "selector": "a",
             "semicolon": true,
             "after": "\n"
         }

@@ -3,6 +3,7 @@
     "rules": [
         {
             "type": "atrule",
+            "name": "supports",
             "source": {
                 "start": {
                     "line": 1,
@@ -16,13 +17,13 @@
                 }
             },
             "before": "",
-            "name": "supports",
-            "params": "(animation-name: test)",
-            "afterName": " ",
             "between": " ",
+            "afterName": " ",
+            "params": "(animation-name: test)",
             "rules": [
                 {
                     "type": "atrule",
+                    "name": "-custom-keyframe",
                     "source": {
                         "start": {
                             "line": 2,
@@ -36,10 +37,9 @@
                         }
                     },
                     "before": "\n    ",
-                    "name": "-custom-keyframe",
-                    "params": "anim",
-                    "afterName": " ",
                     "between": " ",
+                    "afterName": " ",
+                    "params": "anim",
                     "rules": [
                         {
                             "type": "rule",
@@ -77,8 +77,8 @@
                                 }
                             },
                             "before": "\n        ",
-                            "selector": "from",
                             "between": " ",
+                            "selector": "from",
                             "semicolon": true,
                             "after": "\n        "
                         },
@@ -118,8 +118,8 @@
                                 }
                             },
                             "before": "\n        ",
-                            "selector": "to",
                             "between": " ",
+                            "selector": "to",
                             "after": "\n        "
                         }
                     ],

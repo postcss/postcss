@@ -3,6 +3,7 @@
     "rules": [
         {
             "type": "atrule",
+            "name": "charset",
             "source": {
                 "start": {
                     "line": 1,
@@ -16,12 +17,11 @@
                 }
             },
             "before": "",
-            "name": "charset",
-            "params": "\"UTF-8\"",
-            "afterName": " ",
             "between": "",
-            "semicolon": true
+            "afterName": " ",
+            "params": "\"UTF-8\""
         }
     ],
+    "semicolon": true,
     "after": "\n"
 }

@@ -3,6 +3,7 @@
     "rules": [
         {
             "type": "atrule",
+            "name": "page",
             "source": {
                 "start": {
                     "line": 1,
@@ -16,10 +17,9 @@
                 }
             },
             "before": "",
-            "name": "page",
-            "params": ":left",
-            "afterName": " ",
             "between": " ",
+            "afterName": " ",
+            "params": ":left",
             "decls": [
                 {
                     "type": "decl",
@@ -45,6 +45,7 @@
         },
         {
             "type": "atrule",
+            "name": "font-face",
             "source": {
                 "start": {
                     "line": 5,
@@ -58,10 +59,9 @@
                 }
             },
             "before": "\n\n",
-            "name": "font-face",
-            "params": "",
-            "afterName": "",
             "between": " ",
+            "afterName": "",
+            "params": "",
             "decls": [
                 {
                     "type": "decl",
@@ -88,6 +88,7 @@
         },
         {
             "type": "atrule",
+            "name": "viewport",
             "source": {
                 "start": {
                     "line": 9,
@@ -101,10 +102,9 @@
                 }
             },
             "before": "\n\n",
-            "name": "viewport",
-            "params": "",
-            "afterName": "",
             "between": " ",
+            "afterName": "",
+            "params": "",
             "decls": [
                 {
                     "type": "decl",
@@ -131,6 +131,7 @@
         },
         {
             "type": "atrule",
+            "name": "-ms-viewport",
             "source": {
                 "start": {
                     "line": 13,
@@ -144,10 +145,9 @@
                 }
             },
             "before": "\n\n",
-            "name": "-ms-viewport",
-            "params": "",
-            "afterName": "",
             "between": " ",
+            "afterName": "",
+            "params": "",
             "decls": [
                 {
                     "type": "decl",
