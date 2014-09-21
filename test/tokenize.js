@@ -11,8 +11,16 @@ describe('tokenize', () => {
     });
 
     it('tokenizes word', () => {
-        tokenize('ab').should.eql([ ['word', 'ab', { column: 1, line: 1 },
-                                                   { column: 2, line: 1 }] ]);
+        tokenize('ab').should.eql([
+            ['word', 'ab', { column: 1, line: 1 }, { column: 2, line: 1 }]
+        ]);
+    });
+
+    it('splits word by !', () => {
+        tokenize('aa!bb').should.eql([
+            ['word', 'aa',  { column: 1, line: 1 }, { column: 2, line: 1 }],
+            ['word', '!bb', { column: 3, line: 1 }, { column: 5, line: 1 }],
+        ]);
     });
 
     it('tokenizes CSS', () => {
@@ -25,7 +33,7 @@ describe('tokenize', () => {
         tokenize(css).should.eql([
             ['word', 'a', { column: 1, line: 1 }, { column: 1, line: 1 } ],
             ['space', ' '],
-            ['{', '{'],
+            ['{', '{', { column: 3, line: 1 }],
             ['space', '\n  '],
             ['word', 'content', { column: 3, line: 2 }, { column: 9, line: 2 }],
             [':', ':'],
@@ -49,7 +57,7 @@ describe('tokenize', () => {
             ['space', ' '],
             ['word', 'screen', { column: 8, line: 6 }, { column: 13, line: 6 }],
             ['space', ' '],
-            ['{', '{'],
+            ['{', '{', { column: 15, line: 6 }],
             ['}', '}', { column: 16, line: 6 }]
         ]);
     });
