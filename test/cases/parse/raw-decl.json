@@ -21,11 +21,11 @@
                     "before": " ",
                     "prop": "color",
                     "between": ": ",
-                    "value": "a b",
                     "_value": {
                         "value": "a b",
                         "raw": "a/* ; */ b"
-                    }
+                    },
+                    "value": "a b"
                 }
             ],
             "source": {
@@ -41,8 +41,8 @@
                 }
             },
             "before": "",
-            "selector": "a",
             "between": " ",
+            "selector": "a",
             "semicolon": true,
             "after": " "
         }

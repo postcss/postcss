@@ -56,8 +56,8 @@
                 }
             },
             "before": "",
-            "selector": "a::before",
             "between": " ",
+            "selector": "a::before",
             "semicolon": true,
             "after": "\n"
         }

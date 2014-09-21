@@ -14,21 +14,21 @@ parseError = function (css) {
 describe('CssSyntaxError', () => {
 
     it('saves source', () => {
-        error = parseError('a {\n  a b {}\n}');
+        error = parseError('a {\n  content: "\n}');
 
         error.should.be.a.instanceOf(CssSyntaxError);
-        error.message.should.be.eql('<css input>:2:7: Unexpected { in decls');
-        error.reason.should.eql('Unexpected { in decls');
+        error.message.should.be.eql('<css input>:2:12: Unclosed quote');
+        error.reason.should.eql('Unclosed quote');
         error.line.should.eql(2);
-        error.column.should.eql(7);
-        error.source.should.eql('a {\n  a b {}\n}');
+        error.column.should.eql(12);
+        error.source.should.eql('a {\n  content: "\n}');
     });
 
     it('highlights broken line', () => {
-        parseError('a {\n  a b {}\n}')
+        parseError('a {\n  content: "\n}')
             .highlight().should.eql('a {\n' +
-                                    '  a b {}\n' +
-                                    '      \u001b[1;31m^\u001b[0m\n' +
+                                    '  content: "\n' +
+                                    '           \u001b[1;31m^\u001b[0m\n' +
                                     '}');
     });
 

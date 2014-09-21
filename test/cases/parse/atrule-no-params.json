@@ -3,6 +3,7 @@
     "rules": [
         {
             "type": "atrule",
+            "name": "page",
             "source": {
                 "start": {
                     "line": 1,
@@ -16,8 +17,9 @@
                 }
             },
             "before": "",
-            "name": "page",
             "between": "",
+            "afterName": "",
+            "params": "",
             "decls": [],
             "after": " "
         }
