@@ -16,8 +16,8 @@
                 }
             },
             "before": "",
-            "text": "a { color: black }",
             "left": " ",
+            "text": "a { color: black }",
             "right": " "
         },
         {
@@ -38,8 +38,8 @@
                         }
                     },
                     "before": "\n    ",
-                    "text": "inside",
                     "left": " ",
+                    "text": "inside",
                     "right": " "
                 },
                 {
@@ -76,8 +76,8 @@
                         }
                     },
                     "before": "\n    ",
-                    "text": "between",
                     "left": " ",
+                    "text": "between",
                     "right": " "
                 },
                 {
@@ -90,18 +90,33 @@
                         "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
-                            "line": 7,
-                            "column": 13
+                            "line": 6,
+                            "column": 21
                         }
                     },
                     "before": "\n    ",
                     "prop": "background",
                     "between": ": ",
-                    "value": "white",
-                    "_value": {
-                        "value": "white",
-                        "raw": "white\n    /* end */"
-                    }
+                    "value": "white"
+                },
+                {
+                    "type": "comment",
+                    "source": {
+                        "start": {
+                            "line": 7,
+                            "column": 5
+                        },
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                        "file": "/comments.css",
+                        "end": {
+                            "line": 7,
+                            "column": 13
+                        }
+                    },
+                    "before": "\n    ",
+                    "left": " ",
+                    "text": "end",
+                    "right": " "
                 }
             ],
             "source": {
@@ -117,8 +132,8 @@
                 }
             },
             "before": "\n",
-            "selector": "div",
             "between": " ",
+            "selector": "div",
             "after": "\n"
         },
         {
@@ -136,8 +151,8 @@
                 }
             },
             "before": "\n",
-            "text": "b",
             "left": " ",
+            "text": "b",
             "right": " "
         }
     ],

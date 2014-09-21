@@ -3,6 +3,7 @@
     "rules": [
         {
             "type": "atrule",
+            "name": "-moz-document",
             "source": {
                 "start": {
                     "line": 1,
@@ -16,14 +17,9 @@
                 }
             },
             "before": "",
-            "name": "-moz-document",
+            "between": " /* a */ ",
+            "afterName": "/* near */ /* filter */ ",
             "params": "url(\"example.com/{\")",
-            "_params": {
-                "value": "url(\"example.com/{\")",
-                "raw": "/* near */ /* filter */ url(\"example.com/{\") /* a */"
-            },
-            "afterName": "",
-            "between": " ",
             "rules": [],
             "after": ""
         }

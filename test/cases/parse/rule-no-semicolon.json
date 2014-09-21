@@ -15,7 +15,7 @@
                         "file": "/rule-no-semicolon.css",
                         "end": {
                             "line": 1,
-                            "column": 14
+                            "column": 13
                         }
                     },
                     "before": "",
@@ -37,8 +37,8 @@
                 }
             },
             "before": "",
-            "selector": "a",
             "between": "",
+            "selector": "a",
             "after": ""
         }
     ],

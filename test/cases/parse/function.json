@@ -37,8 +37,8 @@
                 }
             },
             "before": "",
-            "selector": "a",
             "between": " ",
+            "selector": "a",
             "after": "\n"
         }
     ],

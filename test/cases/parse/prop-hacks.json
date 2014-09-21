@@ -75,8 +75,8 @@
                 }
             },
             "before": "",
-            "selector": "a",
             "between": " ",
+            "selector": "a",
             "semicolon": true,
             "after": "\n"
         }

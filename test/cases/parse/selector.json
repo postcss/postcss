@@ -17,12 +17,12 @@
                 }
             },
             "before": "\n",
-            "selector": "a b",
+            "between": " ",
             "_selector": {
                 "value": "a b",
                 "raw": "a/* { } */ b"
             },
-            "between": " ",
+            "selector": "a b",
             "after": ""
         }
     ],
