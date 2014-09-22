@@ -1,6 +1,6 @@
 {
     "type": "root",
-    "rules": [
+    "childs": [
         {
             "type": "atrule",
             "name": "-moz-document",
@@ -20,7 +20,7 @@
             "between": " /* a */ ",
             "afterName": "/* near */ /* filter */ ",
             "params": "url(\"example.com/{\")",
-            "rules": [],
+            "childs": [],
             "after": ""
         }
     ],

@@ -14,8 +14,8 @@ describe('Node', () => {
             var rule = new Rule({ selector: 'a' });
             rule.append({ prop: 'color', value: 'black' });
 
-            rule.decls[0].removeSelf();
-            rule.decls.should.be.empty;
+            rule.childs[0].removeSelf();
+            rule.childs.should.be.empty;
         });
 
     });
@@ -29,7 +29,7 @@ describe('Node', () => {
             rule.append({ prop: 'height', value: '1px' });
 
             var node   = new Declaration({ prop: 'min-width', value: '1px' });
-            var width  = rule.decls[1];
+            var width  = rule.childs[1];
             var result = width.replace(node);
 
             result.should.eql(width);
@@ -64,8 +64,8 @@ describe('Node', () => {
             var clone = rule.clone();
             clone.append({ prop: 'display', value: 'none' });
 
-            clone.decls[0].parent.should.exactly(clone);
-            rule.decls[0].parent.should.exactly(rule);
+            clone.childs[0].parent.should.exactly(clone);
+            rule.childs[0].parent.should.exactly(rule);
 
             rule.toString().should.eql('a {color: /**/black}');
             clone.toString().should.eql('a {color: /**/black;display: none}');
@@ -87,10 +87,10 @@ describe('Node', () => {
 
             var json = rule.toJSON();
             should.not.exists(json.parent);
-            should.not.exists(json.decls[0].parent);
+            should.not.exists(json.childs[0].parent);
 
             JSON.stringify(rule).should.eql(
-                '{"type":"rule","decls":[' +
+                '{"type":"rule","childs":[' +
                     '{"type":"decl","prop":"color","value":"b"}' +
                 '],"selector":"a"}');
         });
@@ -126,7 +126,7 @@ describe('Node', () => {
 
         it('uses different style for different node style type', () => {
             var root = new Root();
-            root.append( new AtRule({ name: 'page', rules: [] }) );
+            root.append( new AtRule({ name: 'page', childs: [] }) );
             root.append( new AtRule({ name: 'import' }) );
 
             root.first.style().should.eql({ between: ' ', after: '' });

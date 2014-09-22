@@ -20,11 +20,11 @@ describe('postcss.parse()', () => {
         });
 
         it('parses empty file', () => {
-            parse('').should.eql({ type: 'root', rules: [], after: '' });
+            parse('').should.eql({ type: 'root', childs: [], after: '' });
         });
 
         it('parses spaces', () => {
-            parse(" \n").should.eql({ type: 'root', rules: [], after: " \n" });
+            parse(" \n").should.eql({ type: 'root', childs: [], after: " \n" });
         });
 
     });
@@ -41,23 +41,23 @@ describe('postcss.parse()', () => {
 
     it('saves source file', () => {
         var css = parse('a {}', { from: 'a.css' });
-        css.rules[0].source.file.should.eql(path.resolve('a.css'));
+        css.childs[0].source.file.should.eql(path.resolve('a.css'));
     });
 
     it('sets unique ID for file without name', () => {
         var css1 = parse('a {}');
         var css2 = parse('a {}');
-        css1.rules[0].source.id.should.match(/^\d+$/);
-        css2.rules[0].source.id.should.not.eql(css1.rules[0].source.id);
+        css1.childs[0].source.id.should.match(/^\d+$/);
+        css2.childs[0].source.id.should.not.eql(css1.childs[0].source.id);
     });
 
     it('sets parent node', () => {
         var css = parse(read('atrule-rules.css'));
 
-        var support   = css.rules[0];
-        var keyframes = support.rules[0];
-        var from      = keyframes.rules[0];
-        var decl      = from.decls[0];
+        var support   = css.childs[0];
+        var keyframes = support.childs[0];
+        var from      = keyframes.childs[0];
+        var decl      = from.childs[0];
 
         decl.parent.should.exactly(from);
         from.parent.should.exactly(keyframes);
@@ -121,7 +121,7 @@ describe('postcss.parse()', () => {
 
         it('fixes property without value in safe mode', () => {
             var root = parse('a { color: white; one }', { safe: true });
-            root.first.decls.length.should.eql(1);
+            root.first.childs.length.should.eql(1);
             root.first.semicolon.should.be.true;
             root.first.after.should.eql(' one ');
         });

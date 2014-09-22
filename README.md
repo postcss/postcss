@@ -10,7 +10,8 @@ It takes care of the most common CSS tool tasks:
 1. parses CSS;
 2. provides a usable JS API to edit CSS node trees;
 3. dumps the modified node tree into a CSS string;
-4. generates a source map (or modifies an pre-existing source map) containing your changes;
+4. generates a source map (or modifies an pre-existing source map) containing
+   your changes;
 
 You can use this framework to write your own:
 
@@ -30,7 +31,8 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [Autoprefixer] adds vendor prefixes by Can I Use data.
 * [CSS MQPacker] joins same media queries.
 * [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
-* [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow’s CSS syntax today.
+* [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow’s
+  CSS syntax today.
 * [CSSWring] is a CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
 * [pixrem] is a `rem` unit polyfill.
@@ -70,7 +72,6 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 [postcss-custom-media]:      https://github.com/postcss/postcss-custom-media
 [postcss-custom-properties]: https://github.com/postcss/postcss-custom-properties
 [postcss-url]:               https://github.com/postcss/postcss-url
-
 
 ## Quick Example
 
@@ -134,7 +135,7 @@ result.css // String with processed CSS
 result.map // Source map
 ```
 
-And modifies a source map from previous steps (for example, a Sass preprocessor):
+And modifies a source map from previous steps (for example, Sass preprocessor):
 
 ```js
 var sass = compiler.compile(sass);
@@ -182,9 +183,9 @@ But the Sass and Stylus languages were created to be syntax-sugar for CSS.
 Writing complicated programs using preprocessor languages can be very difficult.
 For example, it would be impossible to implement [Autoprefixer] on top of Sass.
 
-PostCSS gives you the comfort and power of JS or CoffeeScript while you are working
-with CSS. Applying the depth and variety of [npm]’s libraries allows you to perform
-quite magical things using PostCSS.
+PostCSS gives you the comfort and power of JS or CoffeeScript while
+you are working with CSS. Applying the depth and variety of [npm]’s libraries
+allows you to perform quite magical things using PostCSS.
 
 An important point is that postprocessors are not the enemies of preprocessors.
 Preprocessors and postprocessors can be easily combined, so that you can take
@@ -212,16 +213,16 @@ high level API. Safe iterators, and other features, are unique to PostCSS.
 
 [Rework] and PostCSS are very similar, but they have different targets.
 
-Rework was created to build a new CSS sublanguage that replaced Stylus (like [Myth]).
-PostCSS was created for CSS tools which work with legacy CSS code (one such
-tool is Autoprefixer).
+Rework was created to build a new CSS sublanguage that replaced Stylus
+(like [Myth]). PostCSS was created for CSS tools which work with legacy CSS code
+(one such tool is Autoprefixer).
 
 Because of this fundamental difference, PostCSS:
 
 * Handles source map better, because it updates the map from the previous step
   (for example, Sass compilation).
-* Preserves all your spaces and code style, so that it can function in text editor
-  plugins.
+* Preserves all your spaces and code style, so that it can function
+  in text editor plugins.
 * Has a safer parser, so that it can be used for legacy code. Only PostCSS can
   parse all of the hacks from [Browserhacks.com](http://browserhacks.com/).
 * Has a high level API to provide an simple interface for your processor to
@@ -295,17 +296,12 @@ var postcss = require('postcss');
 var css = postcss.parse('a { color: black }');
 ```
 
-You can easily make changes to this AST. Use `css.list` to get children.
+You can easily make changes to this AST. Use `css.childs` to get children.
 Properties `rule.selector`, `decl.prop`, `decl.value`, `atrule.name`
 and `atrule.params` contain data.
 
-Try to avoid using underscore-prefixed properties (such as `_selector`, `_params` and `_value`),
-as they are used for comment-preserving magic
-(See [Raw Properties](#raw-properties) below). Use the getters and setters instead
-(for example, `selector`, `selectors`, `params` and `value`).
-
 ```js
-css.list[0].value = 'white';
+css.childs[0].value = 'white';
 ```
 
 After changes have been made you can get the new CSS and a source map reflecting
@@ -318,8 +314,9 @@ result.css //=> 'a { color: white }'
 result.map //=> '{"version":3, … }'
 ```
 
-The methods `postcss.parse()` and `CSS#toResult()` are part of a low level API, and -
-in most cases - it will be better to create processors with a simpler API and chaining.
+The methods `postcss.parse()` and `CSS#toResult()` are part of a low level API,
+and - in most cases - it will be better to create processors with a simpler API
+and chaining.
 
 ### Processor
 
@@ -367,7 +364,8 @@ postcss(function (css) {
 });
 ```
 
-This generated processor transforms some CSS using the `process(css, opts)` method:
+This generated processor transforms some CSS using
+the `process(css, opts)` method:
 
 ```js
 var doubler = postcss(function (css) {
@@ -427,15 +425,15 @@ original position of your styles before the css file was transformed.
 For example, an inspector will show the position in a Sass file, even if
 the file has been compiled to CSS, concatenated, and minified.
 
-To ensure a correct source map is generated, every CSS processing step should update
-the map generated by the previous step. For example, a Sass compiler will generate
-the first map, a concatenation tool should update the Sass step’s map, and a minifier
-should update the map generated by the concatenation tool.
+To ensure a correct source map is generated, every CSS processing step should
+update the map generated by the previous step. For example, a Sass compiler
+will generate the first map, a concatenation tool should update the Sass step’s
+map, and a minifier should update the map generated by the concatenation tool.
 
 There are two ways to store a source map:
 
-* You can place it in a separate file which contains a special annotation comment
-  pointing to another file:
+* You can place it in a separate file which contains a special annotation
+  comment spointing to another file:
 
   ```css
  a { }
@@ -452,8 +450,8 @@ PostCSS has great source map support. To ensure that you generate the correct
 source map, you must indicate the input and output CSS files
 paths (using the options `from` and `to` respectively).
 
-To generate a new source map with the default options, provide `map: true` in the
-options passed to `processor.process(css, opts)`.
+To generate a new source map with the default options, provide `map: true`
+in the options passed to `processor.process(css, opts)`.
 
 ```js
 var result = processor.process(css, {
@@ -479,8 +477,8 @@ fs.writeFileSync('main.out.css',     result.css);
 fs.writeFileSync('main.out.css.map', result.map);
 ```
 
-If PostCSS is handling CSS and finds source maps from previous transformations, it will
-automatically update the CSS with the same options.
+If PostCSS is handling CSS and finds source maps from previous transformations,
+it will automatically update the CSS with the same options.
 
 ```js
 // main.sass.css has an annotation comment with a link to main.sass.css.map
@@ -488,38 +486,40 @@ var result = minifier.process(css, { from: 'main.sass.css', to: 'main.min.css' }
 result.map //=> Source map from main.sass to main.min.css
 ```
 
-If you want more control over source map generation, you can define the `map` option
-as an object with the following parameters:
+If you want more control over source map generation, you can define the `map`
+option as an object with the following parameters:
 
-* `inline` (boolean): indicates the source map should be inserted into the CSS string as
-  a comment. By default, PostCSS will inline new source maps only if the source map from
-  a previous step inserted an inline source map.
+* `inline` (boolean): indicates the source map should be inserted into the CSS
+  string as a comment. By default, PostCSS will inline new source maps only if
+  the source map from a previous step inserted an inline source map.
 
-  If you inline a source map, `result.map` will be empty, as the source map will be
-  contained within the text of `result.css`.
+  If you inline a source map, `result.map` will be empty, as the source map
+  will be contained within the text of `result.css`.
 
   As a shortcut, `map { inline: true }` is equivalent to `map: 'inline'`.
 
-* `prev` (string, object, or boolean): map content from a previous processing step
-  (for example, Sass compilation). PostCSS will try to read the previous source map
-  automatically from the comment within origin CSS, but you can also set manually.
-  If desired, you can omit the previous map with `prev: false`.
+* `prev` (string, object, or boolean): map content from a previous processing
+  step (for example, Sass compilation). PostCSS will try to read the previous
+  source map automatically from the comment within origin CSS, but you can also
+  set manually. If desired, you can omit the previous map with `prev: false`.
 
   This is a source map option which can be passed to `postcss.parse(css, opts)`.
-  Other options can be passed to the `toResult(opts)` or `process(css, opts)` methods.
+  Other options can be passed to the `toResult(opts)` or `process(css, opts)`
+  methods.
 
 * `sourcesContent` (boolean): indicates that we should set the origin content
   (for example, Sass source) of the source map. By default, PostCSS will add
   content only if previous map contains it.
 
-* `annotation` (boolean or string): indicates if we should add annotation comments
-  to the CSS. By default, PostCSS will always add a comment with a path to the source
-  map. But if the previous CSS does not have an annotation comment, PostCSS will
-  omit it too.
+* `annotation` (boolean or string): indicates if we should add annotation
+  comments to the CSS. By default, PostCSS will always add a comment with a path
+  to the source map. But if the previous CSS does not have an annotation
+  comment, PostCSS will omit it too.
 
   By default, PostCSS presumes that you want to save the source map as
-  `opts.to + '.map'` and will use this path in the annotation comment. But you can
-  set another path by providing a string value as the `annotation` option.
+  `opts.to + '.map'` and will use this path in the annotation comment.
+  But you can set another path by providing a string value as the `annotation`
+  option.
 
   If you set `inline: true`, annotation cannot be disabled.
 
@@ -555,8 +555,9 @@ vendor.unprefixed('-moz-tab-size') //=> 'tab-size'
 
 #### List
 
-To safely split comma- or space-separated values (such as those in `background-image`
-or `transform`) with brackets and quotes support, you can use the `list` helper:
+To safely split comma- or space-separated values (such as those
+in `background-image` or `transform`) with brackets and quotes support,
+you can use the `list` helper:
 
 ```js
 var list = require('postcss/lib/list');
@@ -577,7 +578,8 @@ var processor = postcss(function (cssRoot) {
 There are 4 types of child nodes: `Comment`, `AtRule`, `Rule` and `Declaration`.
 All nodes possess `toString()` and `clone()` methods.
 
-You can parse CSS and get a `Root` node by calling the `postcss.parse(css, opts)` method:
+You can parse CSS and get a `Root` node by calling
+the `postcss.parse(css, opts)` method:
 
 ```js
 var cssRoot = postcss.parse('a { }');
@@ -592,12 +594,12 @@ root.append( rule1 ).append( rule2 ).toString();
 
 ### Node Source
 
-Every node stores its origin file (if you provide the `from` option to the `process`
-or `parse` methods) and position:
+Every node stores its origin file (if you provide the `from` option
+to the `process` or `parse` methods) and position:
 
 ```js
 var root = postcss.parse(css, { from: 'main.css' });
-var rule = root.rules[0];
+var rule = root.childs[0];
 
 rule.source.file  //=> 'main.css'
 rule.source.start //=> { line: 5,  position: 1 }
@@ -614,19 +616,19 @@ property which indicates the spaces after the last child and before a `}`
 character or the end of the file.
 
 Every `Declaration` has a `between` property with colon, spaces and comments
-between the property name and value. `Rule` stores the spaces and comments between
-the selector and `{` in the `between` property. `AtRule` uses `between` to
-indicate the spaces and comments before either a `{` or `;`, if the at-rule
+between the property name and value. `Rule` stores the spaces and comments
+between the selector and `{` in the `between` property. `AtRule` uses `between`
+to indicate the spaces and comments before either a `{` or `;`, if the at-rule
 is bodiless.
 
 ```js
 var root = postcss.parse("a {\n  color: black;\n}\n");
 
-root.rules[0].between          //=> " " between selector and {
-root.rules[0].decls[0].before  //=> "\n  " before color: black
-root.rules[0].decls[0].between //=> ": " between property name and value
-root.rules[0].after            //=> "\n" before }
-root.after                     //=> "\n" from end of file
+root.childs[0].between           //=> " " between selector and {
+root.childs[0].childs[0].before  //=> "\n  " before color: black
+root.childs[0].childs[0].between //=> ": " between property name and value
+root.childs[0].after             //=> "\n" before }
+root.after                       //=> "\n" from end of file
 ```
 
 The simplest way to minify CSS is to set `before`, `between` and `after`
@@ -660,7 +662,8 @@ minifier.process(css).css //=> "a{color:black}"
 Note that nodes may have not `before` or `between` properties:
 
 * If node was created by hand via `postcss.rule()`.
-* `node.clone()` will clean all style properties to use the style for a new CSS root.
+* `node.clone()` will clean all style properties to use the style
+  for a new CSS root.
 
 ### Raw Properties
 
@@ -669,15 +672,15 @@ can contain comments. PostCSS will clean them to remove trailing spaces:
 
 ```js
 var root = postcss.parse("a /**/ b {}");
-var rule  = root.rules[0];
+var rule = root.first;
 
 rule.selector      //=> 'a  b' trimmed and cleaned from comments
 rule._selector.raw //=> 'a /**/ b' original raw value
 ```
 
 But PostCSS preservers the raw content in order to stringify it back to CSS,
-in case you don’t change the original value. In general, PostCSS tries to preserve
-the original CSS byte-to-byte whenever possible:
+in case you don’t change the original value. In general, PostCSS tries
+to preserve the original CSS byte-to-byte whenever possible:
 
 ```js
 rule.toString() //=> 'a /**/ b {}' with comment
@@ -688,8 +691,7 @@ rule.toString() //=> '.link b {}' you change value and origin comment was gone
 
 ### Containers
 
-`Root`, `AtRule` and `Rule` nodes can contain children in `rules` or `decls`
-properties.
+`Root`, `AtRule` and `Rule` nodes can contain children in `childs` property.
 
 There are some common methods to perform work on children:
 
@@ -726,13 +728,13 @@ in other nodes.
 All children contain a `parent` property which indicates the parent node:
 
 ```js
-rule.decls[0].parent == rule;
+rule.childs[0].parent == rule;
 ```
 
 All children have a `removeSelf()` method:
 
 ```js
-rule.decls[0].removeSelf();
+rule.childs[0].removeSelf();
 ```
 
 But invoking the `remove(index)` method on the parent is much faster:
@@ -757,7 +759,7 @@ root.each(function (rule, i) {
     }
 });
 
-root.rules[0].each(function (decl, i) {
+root.first.each(function (decl, i) {
     if ( rule.type != 'comment' ) {
         console.log(decl.prop, i); // Will log "color 0" and "display 1"
     }
@@ -765,10 +767,11 @@ root.rules[0].each(function (decl, i) {
 ```
 
 Unlike `for {}`-cycle construct or `Array#forEach()` this iterator is safe.
-So you can mutate the children during iteration and PostCSS will fix the current index:
+So you can mutate the children during iteration and PostCSS will fix
+the current index:
 
 ```js
-rule.rules.forEach(function (decl, i) {
+rule.childs.forEach(function (decl, i) {
     rule.prepend( decl.clone() );
     // Will infinitely cycle as prepending the current declaration will
     // cause the second and successive indexes to interact with the
@@ -791,8 +794,8 @@ root.eachInside(function (node, i) {
 });
 ```
 
-There are also shortcuts so that you can recursively iterate over nodes of
-a specific type:
+There are also shortcuts so that you can recursively iterate over nodes
+of a specific type:
 
 ```js
 root.eachDecl(function (decl, i) {
@@ -817,7 +820,7 @@ You can break out from the iteration by returning `false`.
 ### Root Node
 
 `Root` node contains the entire CSS tree. Its children can only be `Comment`,
-`AtRule`, or `Rule` nodes in the `rules` property.
+`AtRule`, or `Rule` nodes in the `childs` property.
 
 You can create a new root using the shortcut:
 
@@ -848,11 +851,12 @@ if (root.prevMap && root.prevMap.inline) {
 /* Block comment */
 ```
 
-PostCSS creates `Comment` nodes only for comments found between rules or declarations.
-Comments found within selectors, at-rules params, or declaration values will be stored
-in the Raw property.
+PostCSS creates `Comment` nodes only for comments found between rules
+or declarations. Comments found within selectors, at-rules params,
+or declaration values will be stored in the Raw property.
 
-`Comment` has only one property: `text` which contains the trimmed text inside the comment.
+`Comment` has only one property: `text` which contains the trimmed text inside
+the comment.
 
 ```js
 comment.text //=> "Block comment"
@@ -880,25 +884,11 @@ var comment = postcss.comment({ text: 'New comment' });
 
 `AtRule` has two own properties: `name` and `params`.
 
-As illustrated above, some at-rules do not contain any children 
+As illustrated above, some at-rules do not contain any children
 (for example, `@charset` or `@import`), some at-rules can only contain
-declarations (for example, `@font-face` or `@page`), but most of them 
-can contain rules and nested at-rules (for example, `@media`, `@keyframes` 
+declarations (for example, `@font-face` or `@page`), but most of them
+can contain rules and nested at-rules (for example, `@media`, `@keyframes`
 and others).
-
-The parser selects `AtRule` content type by its name. If you create an `AtRule`
-node manually, it will infer its content type by the first child added via
-the `append` or other methods:
-
-```js
-var atRule = postcss.atRule({ name: '-x-animations' });
-atRule.rules        //=> undefined
-atRule.decls        //=> undefined
-
-atRule.append( postcss.rule({ selector: 'from' }) );
-atRule.rules.length //=> 1
-atRule.decls        //=> undefined
-```
 
 You can create a new at-rule using a shortcut:
 
@@ -914,8 +904,8 @@ a {
 }
 ```
 
-`Rule` nodes have a `selector` property and contain their `Declaration` 
-and `Comment` children within the `decls` property.
+`Rule` nodes have a `selector` property and contain their `Declaration`
+and `Comment` children within the `childs` property.
 
 They also possess a `selectors` shortcut, which returns an array:
 
@@ -924,20 +914,22 @@ rule.selector  //=> "a, b"
 rule.selectors //=> ['a', 'b']
 ```
 
-You can avoid using the `Declaration` constructor for `append` and other insert methods, by:
+You can avoid using the `Declaration` constructor for `append`
+and other insert methods, by:
 
 ```js
 rule.append({ prop: 'color', value: 'black' });
 ```
 
-The property `semicolon` indicates if the last declaration within the rule has a semicolon or not:
+The property `semicolon` indicates if the last declaration within the rule has
+a semicolon or not:
 
 ```js
 var root = postcss.parse('a { color: black }');
-root.rules[0].semicolon //=> false
+root.first.semicolon //=> false
 
 var root = postcss.parse('a { color: black; }');
-root.rules[0].semicolon //=> true
+root.first.semicolon //=> true
 ```
 
 You can create a new rule using a shortcut:
@@ -960,7 +952,8 @@ You can create a new declaration using a shortcut:
 var decl = postcss.decl({ prop: 'color', value: 'black' });
 ```
 
-Or you can use the short form available via a rule’s `append()` and other add methods:
+Or you can use the short form available via a rule’s `append()` and other
+add methods:
 
 ```js
 rule.append({ prop: 'color', value: 'black' });
