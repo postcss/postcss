@@ -186,12 +186,12 @@ gulp.task('bench', ['build'], function (done) {
 
 gulp.task('integration', ['build'], function (done) {
     var postcss = require('./build/');
-    var test = function (css) {
+    var test = function (css, safe) {
         var processed;
         try {
             processed = postcss().process(css, {
                 map: { annotation: false },
-                safe:  true
+                safe:  safe
             }).css;
         } catch (e) {
             return 'Parsing error: ' + e.message + "\n\n" + e.stack;
@@ -211,7 +211,7 @@ gulp.task('integration', ['build'], function (done) {
 
         var url = links.shift();
         get(url, function (css) {
-            var error = test(css);
+            var error = test(css, url.indexOf('browserhacks.com') != -1);
             if ( error ) {
                 done(new gutil.PluginError('integration', {
                     showStack: false,
