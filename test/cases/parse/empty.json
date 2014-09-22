@@ -1,9 +1,9 @@
 {
     "type": "root",
-    "rules": [
+    "childs": [
         {
             "type": "rule",
-            "decls": [],
+            "childs": [],
             "source": {
                 "start": {
                     "line": 1,

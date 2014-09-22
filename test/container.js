@@ -14,7 +14,7 @@ var compare = (css, ideal) => css.toString().should.eql( read(ideal) );
 describe('Container', () => {
     beforeEach( () => {
         this.css  = parse( read('base') );
-        this.rule = this.css.rules[0];
+        this.rule = this.css.childs[0];
 
         this.new  = new Declaration({ prop: 'new', value: 'value' });
     });
@@ -23,7 +23,7 @@ describe('Container', () => {
 
         it('adds child without checks', () => {
             this.rule.push(this.new);
-            this.rule.list.length.should.eql(3);
+            this.rule.childs.length.should.eql(3);
             this.rule.last.should.not.have.property('before');
         });
 
@@ -36,7 +36,7 @@ describe('Container', () => {
 
             var result = this.rule.each( (decl, i) => {
                 indexes.push(i);
-                decl.should.eql( this.rule.decls[i] );
+                decl.should.eql( this.rule.childs[i] );
             });
 
             should.not.exists(result);
@@ -318,7 +318,7 @@ describe('Container', () => {
             var a = parse('a{ z-index: 1 }');
             var b = parse('b{width:1px;height:2px}');
 
-            a.first.append( b.first.decls );
+            a.first.append( b.first.childs );
             a.toString().should.eql('a{ z-index: 1; width: 1px; height: 2px }');
             b.toString().should.eql('b{width:1px;height:2px}');
         });
@@ -358,7 +358,7 @@ describe('Container', () => {
             var a = parse('a{ z-index: 1 }');
             var b = parse('b{width:1px;height:2px}');
 
-            a.first.prepend( b.first.decls );
+            a.first.prepend( b.first.childs );
             a.toString().should.eql('a{ width: 1px; height: 2px; z-index: 1 }');
         });
 
@@ -378,7 +378,7 @@ describe('Container', () => {
         });
 
         it('works with nodes too', () => {
-            this.rule.insertBefore(this.rule.decls[1], this.new);
+            this.rule.insertBefore(this.rule.childs[1], this.new);
             compare(this.css, 'insert');
         });
 
@@ -391,7 +391,7 @@ describe('Container', () => {
             var a = parse('a{ color: red; z-index: 1 }');
             var b = parse('b{width:1;height:2}');
 
-            a.first.insertBefore(1, b.first.decls);
+            a.first.insertBefore(1, b.first.childs);
             a.toString().should.eql(
                 'a{ color: red; width: 1; height: 2; z-index: 1 }');
         });
@@ -406,7 +406,7 @@ describe('Container', () => {
         });
 
         it('works with nodes too', () => {
-            this.rule.insertAfter(this.rule.decls[0], this.new);
+            this.rule.insertAfter(this.rule.childs[0], this.new);
             compare(this.css, 'insert');
         });
 
@@ -419,7 +419,7 @@ describe('Container', () => {
             var a = parse('a{ color: red; z-index: 1 }');
             var b = parse('b{width:1;height:2}');
 
-            a.first.insertAfter(0, b.first.decls);
+            a.first.insertAfter(0, b.first.childs);
             a.toString().should.eql(
                 'a{ color: red; width: 1; height: 2; z-index: 1 }');
         });
@@ -434,7 +434,7 @@ describe('Container', () => {
         });
 
         it('should remove by nide', () => {
-            this.rule.remove( this.rule.decls[1] );
+            this.rule.remove( this.rule.childs[1] );
             compare(this.css, 'remove');
         });
 
@@ -461,7 +461,7 @@ describe('Container', () => {
     describe('index()', () => {
 
         it('returns child index', () => {
-            this.rule.index( this.rule.decls[1] ).should.eql(1);
+            this.rule.index( this.rule.childs[1] ).should.eql(1);
         });
 
         it('returns argument if it(is number', () => {
