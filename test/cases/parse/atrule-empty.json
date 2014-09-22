@@ -1,6 +1,6 @@
 {
     "type": "root",
-    "rules": [
+    "childs": [
         {
             "type": "atrule",
             "name": "charset",

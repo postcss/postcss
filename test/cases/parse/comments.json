@@ -1,6 +1,6 @@
 {
     "type": "root",
-    "rules": [
+    "childs": [
         {
             "type": "comment",
             "source": {
@@ -22,7 +22,7 @@
         },
         {
             "type": "rule",
-            "decls": [
+            "childs": [
                 {
                     "type": "comment",
                     "source": {

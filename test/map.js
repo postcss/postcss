@@ -369,7 +369,7 @@ describe('source maps', () => {
         });
         var file2 = postcss.parse('b { }', { from: 'b.css' });
 
-        file2.append( file1.rules[0].clone() );
+        file2.append( file1.childs[0].clone() );
         var step2 = file2.toResult({ to: 'c.css' });
 
         consumer(step2.map).sourceContentFor('b.css').should.eql('b { }');
@@ -388,7 +388,7 @@ describe('source maps', () => {
         });
         var file2 = postcss.parse('b { }', { from: 'b.css' });
 
-        file2.append( file1.rules[0].clone() );
+        file2.append( file1.childs[0].clone() );
         var step2 = file2.toResult({
             to: 'c.css',
             map: { sourcesContent: false }
