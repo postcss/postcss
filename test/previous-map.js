@@ -115,7 +115,7 @@ describe('PreviousMap', () => {
         var opts = { map: { prev: map } };
         var prev = parse('a{}', opts).prevMap;
 
-        prev.file.should.match(/^\d+$/);
+        prev.file.should.match(/^<input css \d+>$/);
         prev.file.should.not.eql( parse('a{}', opts).prevMap.file );
     });
 
