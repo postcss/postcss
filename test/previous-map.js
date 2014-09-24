@@ -38,7 +38,7 @@ describe('PreviousMap', () => {
         parse('a{}', map)
             .prevMap.should.not.have.property('annotation');
         parse('a{}/*# sourceMappingURL=a.css.map */', map)
-            .prevMap.annotation.should.eql('# sourceMappingURL=a.css.map');
+            .prevMap.annotation.should.eql('a.css.map');
     });
 
     it('checks previous sources content', () => {
