@@ -436,4 +436,14 @@ describe('source maps', () => {
             .should.eql({ source: null, line: null, column: null, name: null });
     });
 
+    it('uses input file name as output file name', () => {
+        var result = this.doubler.process('a{}', { from: 'a.css', map: true });
+        result.map.toJSON().file.should.eql('a.css');
+    });
+
+    it('uses to.css as default output name', () => {
+        var result = this.doubler.process('a{}', { map: true });
+        result.map.toJSON().file.should.eql('to.css');
+    });
+
 });
