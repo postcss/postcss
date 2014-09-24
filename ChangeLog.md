@@ -1,5 +1,5 @@
 ## 2.2.5
-* Fix source map with DOM marker support (by Mohammad Younes).
+* Fix source map with BOM marker support (by Mohammad Younes).
 * Fix source map paths (by Mohammad Younes).
 
 ## 2.2.4
