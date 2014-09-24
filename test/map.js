@@ -399,10 +399,15 @@ describe('source maps', () => {
         should.not.exists(map.sourceContentFor('../a.css'));
     });
 
+    it('detects input file name from map', () => {
+        var one = this.doubler.process('a { }', { to: 'a.css', map: true });
+        var two = this.doubler.process(one.css, { map: { prev: one.map } });
+        two.root.first.source.file.should.eql('a.css')
+    });
+
     it('works without file names for inline maps', () => {
         var step1 = this.doubler.process('a { }', { map: 'inline' });
         var step2 = this.doubler.process(step1.css);
-        postcss.parse(step2.css).prevMap.file.should.match(/^<input css \d+>$/);
     });
 
     it('supports UTF-8', () => {
