@@ -402,7 +402,7 @@ describe('source maps', () => {
     it('works without file names for inline maps', () => {
         var step1 = this.doubler.process('a { }', { map: 'inline' });
         var step2 = this.doubler.process(step1.css);
-        postcss.parse(step2.css).prevMap.file.should.match(/^\d+$/);
+        postcss.parse(step2.css).prevMap.file.should.match(/^<input css \d+>$/);
     });
 
     it('supports UTF-8', () => {

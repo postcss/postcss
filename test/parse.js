@@ -47,7 +47,7 @@ describe('postcss.parse()', () => {
     it('sets unique ID for file without name', () => {
         var css1 = parse('a {}');
         var css2 = parse('a {}');
-        css1.childs[0].source.id.should.match(/^\d+$/);
+        css1.childs[0].source.id.should.match(/^<input css \d+>$/);
         css2.childs[0].source.id.should.not.eql(css1.childs[0].source.id);
     });
 
