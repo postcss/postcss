@@ -402,7 +402,7 @@ describe('source maps', () => {
     it('detects input file name from map', () => {
         var one = this.doubler.process('a { }', { to: 'a.css', map: true });
         var two = this.doubler.process(one.css, { map: { prev: one.map } });
-        two.root.first.source.file.should.eql('a.css')
+        two.root.first.source.file.should.eql('a.css');
     });
 
     it('works without file names for inline maps', () => {
