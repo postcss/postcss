@@ -268,14 +268,12 @@ to pipe your CSS files through an array of PostCSS processors.
 Support for external source maps is provided by [gulp-sourcemaps].
 
 ```js
-var gulp       = require('gulp');
 var postcss    = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('css', function () {
     var processors = [
-        require('autoprefixer')('last 1 version'),
-        require('css-mqpacker'),
+        require('autoprefixer'),
         require('csswring')
      ];
      return gulp.src('./src/style.css')
