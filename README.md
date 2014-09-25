@@ -234,14 +234,38 @@ Because of this fundamental difference, PostCSS:
 
 ## Usage
 
+### Grunt
+
+Grunt plugin [grunt-postcss] allows you to pipe your CSS files through
+an array of PostCSS processors.
+
+```js
+grunt.initConfig({
+    postcss: {
+        options: {
+            map: true,
+            processors: [
+                require('autoprefixer-core').postcss,
+                require('csswring').postcss
+            ]
+        },
+        dist: {
+            src: 'css/*.css'
+        },
+    },
+});
+
+grunt.loadNpmTasks('grunt-postcss');
+```
+
+[grunt-postcss]: https://github.com/nDmitry/grunt-postcss
+
 ### Gulp
 
-There is a gulp plugin for postcss called
-[gulp-postcss](https://github.com/w0rm/gulp-postcss)
-that allows you to pipe your CSS files through an array of PostCSS processors.
+There is a Gulp plugin for PostCSS called [gulp-postcss] that allows you
+to pipe your CSS files through an array of PostCSS processors.
 
-Support for external source maps is provided by
-by [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps).
+Support for external source maps is provided by [gulp-sourcemaps].
 
 ```js
 var gulp       = require('gulp');
@@ -261,6 +285,9 @@ gulp.task('css', function () {
         .pipe(gulp.dest('./dest'));
 });
 ```
+
+[gulp-postcss]:    https://github.com/w0rm/gulp-postcss
+[gulp-sourcemaps]: https://github.com/floridoo/gulp-sourcemaps
 
 ## Write Own Processor
 
