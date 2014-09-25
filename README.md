@@ -251,8 +251,8 @@ grunt.initConfig({
         },
         dist: {
             src: 'css/*.css'
-        },
-    },
+        }
+    }
 });
 
 grunt.loadNpmTasks('grunt-postcss');
