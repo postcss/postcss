@@ -31,7 +31,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [CSS MQPacker] joins same media queries.
 * [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
 * [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow’s CSS syntax today.
-* [CSSWring] and [grunt-csswring] CSS minifier with full source map support.
+* [CSSWring] is a CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
 * [pixrem] is a `rem` unit polyfill.
 * [webpcss-transform] to duplicate images in CSS to WebP for supported browsers.
@@ -45,7 +45,6 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 [cssnext]:           https://github.com/putaindecode/cssnext
 [CSSWring]:          https://github.com/hail2u/node-csswring
 [data-separator]:    https://github.com/Sebastian-Fitzner/grunt-data-separator
-[grunt-csswring]:    https://github.com/princed/grunt-csswring
 [pixrem]:            https://github.com/robwierzbowski/node-pixrem
 [webpcss-transform]: https://github.com/lexich/webpcss-transform
 [Pleeease]:          http://pleeease.io/
