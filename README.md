@@ -33,25 +33,24 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow’s CSS syntax today.
 * [CSSWring] and [grunt-csswring] CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
-* [pixrem]/[grunt-pixrem] is a `rem` unit polyfill.
-* [grunt-webpcss] to duplicate images in CSS to WebP for supported browsers.
+* [pixrem] is a `rem` unit polyfill.
+* [webpcss-transform] to duplicate images in CSS to WebP for supported browsers.
 * [Pleeease] is a pack of various postprocessors.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
 * [RTLCSS] mirrors styles for right-to-left locales.
 
-[Autoprefixer]:     https://github.com/postcss/autoprefixer
-[CSS MQPacker]:     https://github.com/hail2u/node-css-mqpacker
-[css2modernizr]:    https://github.com/vovanbo/css2modernizr
-[cssnext]:          https://github.com/putaindecode/cssnext
-[CSSWring]:         https://github.com/hail2u/node-csswring
-[data-separator]:   https://github.com/Sebastian-Fitzner/grunt-data-separator
-[grunt-csswring]:   https://github.com/princed/grunt-csswring
-[pixrem]:           https://github.com/robwierzbowski/node-pixrem
-[grunt-pixrem]:     https://github.com/robwierzbowski/grunt-pixrem
-[grunt-webpcss]:    https://github.com/lexich/grunt-webpcss
-[Pleeease]:         http://pleeease.io/
-[Pleeease Filters]: https://github.com/iamvdo/pleeease-filters
-[RTLCSS]:           https://github.com/MohammadYounes/rtlcss
+[Autoprefixer]:      https://github.com/postcss/autoprefixer
+[CSS MQPacker]:      https://github.com/hail2u/node-css-mqpacker
+[css2modernizr]:     https://github.com/vovanbo/css2modernizr
+[cssnext]:           https://github.com/putaindecode/cssnext
+[CSSWring]:          https://github.com/hail2u/node-csswring
+[data-separator]:    https://github.com/Sebastian-Fitzner/grunt-data-separator
+[grunt-csswring]:    https://github.com/princed/grunt-csswring
+[pixrem]:            https://github.com/robwierzbowski/node-pixrem
+[webpcss-transform]: https://github.com/lexich/webpcss-transform
+[Pleeease]:          http://pleeease.io/
+[Pleeease Filters]:  https://github.com/iamvdo/pleeease-filters
+[RTLCSS]:            https://github.com/MohammadYounes/rtlcss
 
 ### Plugins
 
