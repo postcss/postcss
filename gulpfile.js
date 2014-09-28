@@ -1,6 +1,9 @@
-var gutil = require('gulp-util');
-var gulp  = require('gulp');
-var fs    = require('fs-extra');
+var gutil    = require('gulp-util');
+var gulp     = require('gulp');
+var fs       = require('fs-extra');
+var bench    = require('gulp-bench');
+var combench = require('./tasks/compare-benchs.js');
+var argv     = require('optimist').argv;
 
 gulp.task('clean', function (done) {
     fs.remove(__dirname + '/build', done);
@@ -108,6 +111,13 @@ var styles = function (url, callback) {
         callback(styles);
     });
 };
+
+gulp.task('perf', ['build'], function() {
+    return gulp.src('./benchmark/*.js')
+        .pipe(bench({outputFormat: 'json', output: argv.name + '.json'}))
+        .pipe(combench('benchmark/results/*.json'))
+        .pipe(gulp.dest('./benchmark/results'));
+});
 
 gulp.task('bench', ['build'], function (done) {
     var indent = function (max, current) {
