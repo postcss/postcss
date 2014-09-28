@@ -35,7 +35,7 @@
     "mocha": "1.21.4",
     "cssom": "0.3.0",
     "gulp": "3.8.8",
-    "gulp-bench": "^1.0.3",
+    "gulp-bench": "git://github.com/Termina1/gulp-bench#patch-1",
     "optimist": "^0.6.1",
     "through2": "^0.6.2",
     "gulp-clean": "^0.3.1"
