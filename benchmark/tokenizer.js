@@ -5,6 +5,6 @@ module.exports = {
   fn: function() {
     tokenizer(style);
   },
-  maxTime: 2,
+  maxTime: 15,
   name: 'Tokenizer'
 };

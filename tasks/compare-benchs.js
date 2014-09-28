@@ -5,7 +5,6 @@ var gulp    = require('gulp');
 
 module.exports = function(results) {
   return through.obj(function(file, type, done) {
-    gutil.log(gutil.colors.green('Starting comparison with previous benchmarks'));
     gulp.src(results).pipe(createPipe(file, done));
     this.push(file);
   });
@@ -37,9 +36,7 @@ function createPipe(file, alldone) {
   var currentBench = buff2json(file);
   return through.obj(function(file, type, done) {
     var prevBench = buff2json(file);
-    if(prevBench.fname !== currentBench.fname) {
-      compare(prevBench, currentBench);
-    }
+    compare(prevBench, currentBench);
     done();
   }, function(cb) {
     alldone();

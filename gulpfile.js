@@ -3,6 +3,7 @@ var gulp     = require('gulp');
 var fs       = require('fs-extra');
 var bench    = require('gulp-bench');
 var combench = require('./tasks/compare-benchs.js');
+var clean    = require('gulp-clean');
 var argv     = require('optimist').argv;
 
 gulp.task('clean', function (done) {
@@ -115,8 +116,14 @@ var styles = function (url, callback) {
 gulp.task('perf', ['build'], function() {
     return gulp.src('./benchmark/*.js')
         .pipe(bench({outputFormat: 'json', output: argv.name + '.json'}))
-        .pipe(combench('benchmark/results/*.json'))
+        .pipe(combench(['!benchmark/results/' + argv.name +
+            '.json', 'benchmark/results/*.json']))
         .pipe(gulp.dest('./benchmark/results'));
+});
+
+gulp.task('perf:clean', function() {
+    return gulp.src('benchmark/results', { read: false })
+        .pipe(clean());
 });
 
 gulp.task('bench', ['build'], function (done) {
