@@ -1,0 +1,26 @@
+{
+    "type": "root",
+    "childs": [
+        {
+            "type": "atrule",
+            "name": "import",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "content": "@import\"test.css\"\n",
+                "file": "/atrule-no-space.css",
+                "end": {
+                    "line": 1,
+                    "column": 17
+                }
+            },
+            "before": "",
+            "between": "",
+            "afterName": "",
+            "params": "\"test.css\""
+        }
+    ],
+    "after": "\n"
+}
