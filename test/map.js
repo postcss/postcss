@@ -446,4 +446,15 @@ describe('source maps', () => {
         result.css.should.eql("a { }\n/*# sourceMappingURL=b.css.map */");
     });
 
+    it('does not update annotation on request', () => {
+        var css    = 'a { }/*# sourceMappingURL=a.css.map */';
+        var result = postcss().process(css, {
+            from: 'a.css',
+            to:   'b.css',
+            map:  { annotation: false }
+        });
+
+        result.css.should.eql("a { }/*# sourceMappingURL=a.css.map */");
+    });
+
 });
