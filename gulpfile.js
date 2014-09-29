@@ -198,6 +198,8 @@ gulp.task('integration', ['build'], function (done) {
         }
 
         if ( processed != css ) {
+            fs.writeFileSync('in.css', css);
+            fs.writeFileSync('out.css', processed);
             return 'Output is not equal input';
         }
     };
@@ -223,11 +225,13 @@ gulp.task('integration', ['build'], function (done) {
         });
     };
 
-    var sites = [{ name: 'GitHub',       url: 'https://github.com/' },
-                 { name: 'Twitter',      url: 'https://twitter.com/' },
-                 { name: 'Bootstrap',    url: 'http://getbootstrap.com/' },
-                 { name: 'Habrahabr',    url: 'http://habrahabr.ru/' },
-                 { name: 'Browserhacks', url: 'http://browserhacks.com/' }];
+    var sites = [
+        { GitHub:       'https://github.com/' },
+        { Twitter:      'https://twitter.com/' },
+        { Bootstrap:    'github:twbs/bootstrap/master/dist/css/bootstrap.css' },
+        { Habrahabr:    'http://habrahabr.ru/' },
+        { Browserhacks: 'http://browserhacks.com/' }
+    ];
     var nextSite = function () {
         if ( sites.length === 0 ) {
             done();
@@ -235,11 +239,19 @@ gulp.task('integration', ['build'], function (done) {
         }
         var site = sites.shift();
 
-        gutil.log('Test ' + site.name + ' styles');
-        styles(site.url, function (styles) {
-            links = styles;
-            nextLink();
-        });
+        for ( var name in site ) {
+            gutil.log('Test ' + name + ' styles');
+            if ( site[name].match(/^http/) ) {
+                styles(site[name], function (styles) {
+                    links = styles;
+                    nextLink();
+                });
+            } else if ( site[name].match(/^github:/) ) {
+                var domain = 'https://raw.githubusercontent.com/';
+                links = [ domain + site[name].split(':')[1] ];
+                nextLink();
+            }
+        }
     };
 
     nextSite();
