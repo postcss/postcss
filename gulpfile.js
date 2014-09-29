@@ -238,19 +238,18 @@ gulp.task('integration', ['build'], function (done) {
             return;
         }
         var site = sites.shift();
+        var name = Object.keys(site)[0];
+        gutil.log('Test ' + name + ' styles');
 
-        for ( var name in site ) {
-            gutil.log('Test ' + name + ' styles');
-            if ( site[name].match(/^http/) ) {
-                styles(site[name], function (styles) {
-                    links = styles;
-                    nextLink();
-                });
-            } else if ( site[name].match(/^github:/) ) {
-                var domain = 'https://raw.githubusercontent.com/';
-                links = [ domain + site[name].split(':')[1] ];
+        if ( site[name].match(/^http/) ) {
+            styles(site[name], function (styles) {
+                links = styles;
                 nextLink();
-            }
+            });
+        } else if ( site[name].match(/^github:/) ) {
+            var domain = 'https://raw.githubusercontent.com/';
+            links = [ domain + site[name].split(':')[1] ];
+            nextLink();
         }
     };
 
