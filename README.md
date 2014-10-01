@@ -34,7 +34,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [CSSWring] is a CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
 * [pixrem] is a `rem` unit polyfill.
-* [webpcss-transform] to duplicate images in CSS to WebP for supported browsers.
+* [webpcss] to duplicate images in CSS to WebP for supported browsers.
 * [Pleeease] is a pack of various postprocessors.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
 * [RTLCSS] mirrors styles for right-to-left locales.
@@ -46,7 +46,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 [CSSWring]:          https://github.com/hail2u/node-csswring
 [data-separator]:    https://github.com/Sebastian-Fitzner/grunt-data-separator
 [pixrem]:            https://github.com/robwierzbowski/node-pixrem
-[webpcss-transform]: https://github.com/lexich/webpcss-transform
+[webpcss]:           https://github.com/lexich/webpcss
 [Pleeease]:          http://pleeease.io/
 [Pleeease Filters]:  https://github.com/iamvdo/pleeease-filters
 [RTLCSS]:            https://github.com/MohammadYounes/rtlcss
