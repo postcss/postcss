@@ -5,6 +5,7 @@ var bench    = require('gulp-bench');
 var combench = require('./tasks/compare-benchs.js');
 var clean    = require('gulp-clean');
 var argv     = require('optimist').argv;
+var gulpif   = require('gulp-if');
 
 gulp.task('clean', function (done) {
     fs.remove(__dirname + '/build', done);
@@ -97,28 +98,22 @@ var get = function (url, callback) {
         });
 };
 
-var styles = function (url, callback) {
-    get(url, function (html) {
-        var styles = html.match(/[^"]+\.css("|')/g);
-        if ( !styles ) throw "Can't find CSS links at " + url;
-        styles = styles.map(function(path) {
-            path = path.slice(0, -1);
-            if ( path.match(/^https?:/) ) {
-                return path;
-            } else {
-                return path.replace(/^\.?\.?\/?/, url);
-            }
-        });
-        callback(styles);
-    });
-};
+var styles = require('./tasks/styles');
+
+function perf(src, comp) {
+    return gulp.src(src)
+        .pipe(bench({outputFormat: 'json', output: argv.name + '.json'}))
+        .pipe(gulpif(comp, combench(['!benchmark/results/' + argv.name +
+            '.json', 'benchmark/results/*.json'])))
+        .pipe(gulp.dest('./benchmark/results'));
+}
 
 gulp.task('perf', ['build'], function() {
-    return gulp.src('./benchmark/*.js')
-        .pipe(bench({outputFormat: 'json', output: argv.name + '.json'}))
-        .pipe(combench(['!benchmark/results/' + argv.name +
-            '.json', 'benchmark/results/*.json']))
-        .pipe(gulp.dest('./benchmark/results'));
+    return perf('./benchmark/*.js', true);
+});
+
+gulp.task('perf:general', ['build'], function() {
+    return perf('./benchmark/general/*.js', false);
 });
 
 gulp.task('perf:clean', function() {
@@ -168,6 +163,11 @@ gulp.task('bench', ['build'], function (done) {
         get(styles[0], function (css) {
             process.stdout.write("\n");
 
+            var rework = require('rework');
+            bench('Rework', function () {
+                return rework(css).toString();
+            });
+
             var processor = require(__dirname + '/build')();
             bench('PostCSS', function () {
                 return processor.process(css).css;
@@ -176,11 +176,6 @@ gulp.task('bench', ['build'], function (done) {
             var CSSOM = require('cssom');
             bench('CSSOM', function () {
                 return CSSOM.parse(css).toString();
-            });
-
-            var rework = require('rework');
-            bench('Rework', function () {
-                return rework(css).toString();
             });
 
             var gonzales = require('gonzales');

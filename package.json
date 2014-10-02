@@ -38,7 +38,8 @@
     "gulp-bench": "git://github.com/Termina1/gulp-bench#patch-1",
     "optimist": "^0.6.1",
     "through2": "^0.6.2",
-    "gulp-clean": "^0.3.1"
+    "gulp-clean": "^0.3.1",
+    "gulp-if": "^1.2.4"
   },
   "scripts": {
     "test": "gulp"
