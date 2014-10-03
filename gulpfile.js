@@ -198,8 +198,8 @@ gulp.task('integration', ['build'], function (done) {
         }
 
         if ( processed != css ) {
-            fs.writeFileSync('in.css', css);
-            fs.writeFileSync('out.css', processed);
+            fs.writeFileSync('origin.css', css);
+            fs.writeFileSync('fail.css', processed);
             return 'Output is not equal input';
         }
     };
