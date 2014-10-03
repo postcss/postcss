@@ -1,9 +1,9 @@
 .gitignore
 
-node_modules
-build
+node_modules/
+build/
 
-test
+test/
 .travis.yml
 origin.css
 fail.css
