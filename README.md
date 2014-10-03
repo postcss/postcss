@@ -271,7 +271,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('css', function () {
     var processors = [
-        require('autoprefixer'),
+        require('autoprefixer-core'),
         require('csswring')
      ];
      return gulp.src('./src/style.css')
@@ -284,6 +284,28 @@ gulp.task('css', function () {
 
 [gulp-postcss]:    https://github.com/w0rm/gulp-postcss
 [gulp-sourcemaps]: https://github.com/floridoo/gulp-sourcemaps
+
+### Webpack
+
+In [webpack] you can use [postcss-loader] to process CSS files through
+an array of PostCSS processors.
+
+```js
+module.exports = {
+    module: {
+        loaders: [
+            {
+                test:   /\.css$/,
+                loader: "style-loader!css-loader!postcss-loader"
+            }
+        ]
+    },
+    postcss: [require('autoprefixer-core'), require('csswring')]
+}
+```
+
+[postcss-loader]: https://github.com/postcss/postcss-loader
+[webpack]:        http://webpack.github.io/
 
 ## Write Own Processor
 
