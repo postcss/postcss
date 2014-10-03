@@ -28,9 +28,11 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 ### Tools
 
 * [Autoprefixer] adds vendor prefixes by Can I Use data.
+* [BEM linter] lints CSS for SUIT CSS methodology.
 * [CSS MQPacker] joins same media queries.
 * [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
-* [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow’s CSS syntax today.
+* [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow’s
+  CSS syntax today.
 * [CSSWring] is a CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
 * [pixrem] is a `rem` unit polyfill.
@@ -40,6 +42,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [RTLCSS] mirrors styles for right-to-left locales.
 
 [Autoprefixer]:      https://github.com/postcss/autoprefixer
+[BEM linter]:        https://github.com/necolas/postcss-bem-linter
 [CSS MQPacker]:      https://github.com/hail2u/node-css-mqpacker
 [css2modernizr]:     https://github.com/vovanbo/css2modernizr
 [cssnext]:           https://github.com/putaindecode/cssnext
