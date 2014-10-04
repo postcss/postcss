@@ -27,6 +27,12 @@ describe('postcss()', () => {
         postcss(a, b).should.eql({ processors: [a, b] });
     });
 
+    it('saves processors list as array', () => {
+        var a = () => 1;
+        var b = () => 2;
+        postcss([a, b]).should.eql({ processors: [a, b] });
+    });
+
     it('saves processors object list', () => {
         var a = () => 1;
         postcss({ postcss: a }).should.eql({ processors: [a] });

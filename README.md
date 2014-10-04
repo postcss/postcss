@@ -29,6 +29,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 ### Tools
 
 * [Autoprefixer] adds vendor prefixes by Can I Use data.
+* [BEM linter] lints CSS for SUIT CSS methodology.
 * [CSS MQPacker] joins same media queries.
 * [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
 * [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow’s
@@ -36,19 +37,20 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [CSSWring] is a CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
 * [pixrem] is a `rem` unit polyfill.
-* [webpcss-transform] to duplicate images in CSS to WebP for supported browsers.
+* [webpcss] to duplicate images in CSS to WebP for supported browsers.
 * [Pleeease] is a pack of various postprocessors.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
 * [RTLCSS] mirrors styles for right-to-left locales.
 
 [Autoprefixer]:      https://github.com/postcss/autoprefixer
+[BEM linter]:        https://github.com/necolas/postcss-bem-linter
 [CSS MQPacker]:      https://github.com/hail2u/node-css-mqpacker
 [css2modernizr]:     https://github.com/vovanbo/css2modernizr
 [cssnext]:           https://github.com/putaindecode/cssnext
 [CSSWring]:          https://github.com/hail2u/node-csswring
 [data-separator]:    https://github.com/Sebastian-Fitzner/grunt-data-separator
 [pixrem]:            https://github.com/robwierzbowski/node-pixrem
-[webpcss-transform]: https://github.com/lexich/webpcss-transform
+[webpcss]:           https://github.com/lexich/webpcss
 [Pleeease]:          http://pleeease.io/
 [Pleeease Filters]:  https://github.com/iamvdo/pleeease-filters
 [RTLCSS]:            https://github.com/MohammadYounes/rtlcss
@@ -272,7 +274,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('css', function () {
     var processors = [
-        require('autoprefixer'),
+        require('autoprefixer-core'),
         require('csswring')
      ];
      return gulp.src('./src/style.css')
@@ -285,6 +287,28 @@ gulp.task('css', function () {
 
 [gulp-postcss]:    https://github.com/w0rm/gulp-postcss
 [gulp-sourcemaps]: https://github.com/floridoo/gulp-sourcemaps
+
+### Webpack
+
+In [webpack] you can use [postcss-loader] to process CSS files through
+an array of PostCSS processors.
+
+```js
+module.exports = {
+    module: {
+        loaders: [
+            {
+                test:   /\.css$/,
+                loader: "style-loader!css-loader!postcss-loader"
+            }
+        ]
+    },
+    postcss: [require('autoprefixer-core'), require('csswring')]
+}
+```
+
+[postcss-loader]: https://github.com/postcss/postcss-loader
+[webpack]:        http://webpack.github.io/
 
 ## Write Own Processor
 
