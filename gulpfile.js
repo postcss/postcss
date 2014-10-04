@@ -97,8 +97,11 @@ gulp.task('bench:bootstrap', function (done) {
 });
 
 gulp.task('bench', ['build', 'bench:bootstrap'], function () {
-    var bench = require('gulp-bench');
-    return gulp.src('./benchmark/general/*.js', { read: false }).pipe(bench());
+    var bench   = require('gulp-bench');
+    var summary = require('./tasks/summary');
+    return gulp.src('./benchmark/general.js', { read: false })
+        .pipe(bench())
+        .pipe(summary);
 });
 
 // Tests
