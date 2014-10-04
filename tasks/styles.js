@@ -1,3 +1,5 @@
+var get = require('./get');
+
 module.exports = function (url, callback) {
     get(url, function (html) {
         var styles = html.match(/[^"]+\.css("|')/g);
