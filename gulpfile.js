@@ -4,7 +4,7 @@ var gulp  = require('gulp');
 // Build
 
 gulp.task('build:clean', function (done) {
-    require('del')(['./build'], done);
+    require('fs-extra').remove(__dirname + '/build', done);
 });
 
 gulp.task('build:lib', ['build:clean'], function () {
@@ -66,7 +66,10 @@ gulp.task('lint', ['lint:test', 'lint:lib']);
 // Benchmark
 
 gulp.task('bench:clean', function (done) {
-    require('del')(['./benchmark/results', './benchmark/cache'], done);
+    var fs = require('fs-extra');
+    fs.remove(__dirname + '/benchmark/results', function () {
+        fs.remove(__dirname + '/benchmark/cache', done);
+    });
 });
 
 ['tokenizer', 'parser'].forEach(function (type) {
@@ -86,13 +89,12 @@ gulp.task('bench:clean', function (done) {
 });
 
 gulp.task('bench:bootstrap', function (done) {
-    var fs = require('fs');
+    var fs = require('fs-extra');
     if ( fs.existsSync('./benchmark/cache/bootstrap.css') ) return done();
 
     var html = require('./tasks/html');
-    fs.mkdirSync('./benchmark/cache/');
     html.get('github:twbs/bootstrap:dist/css/bootstrap.css', function (css) {
-        fs.writeFile('./benchmark/cache/bootstrap.css', css, done);
+        fs.outputFile('./benchmark/cache/bootstrap.css', css, done);
     });
 });
 
