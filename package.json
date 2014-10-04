@@ -11,14 +11,14 @@
     },
     "dependencies": {
         "es6-transpiler": "0.7.16",
-        "source-map":     "~0.1.39",
+        "source-map":     "~0.1.40",
         "js-base64":      "~2.1.5"
     },
     "devDependencies": {
         "gulp-es6-transpiler": "1.0.0",
-        "gulp-json-editor":    "2.0.2",
+        "gulp-json-editor":    "2.0.3",
         "jshint-stylish":      "1.0.0",
-        "gulp-jshint":         "1.8.4",
+        "gulp-jshint":         "1.8.5",
         "gonzales-pe":         "3.0.0-10",
         "gulp-mocha":          "1.1.0",
         "gulp-util":           "3.0.1",
