@@ -6,6 +6,7 @@ var combench = require('./tasks/compare-benchs.js');
 var clean    = require('gulp-clean');
 var argv     = require('optimist').argv;
 var gulpif   = require('gulp-if');
+var filter   = require('gulp-filter');
 
 gulp.task('clean', function (done) {
     fs.remove(__dirname + '/build', done);
@@ -102,6 +103,7 @@ var styles = require('./tasks/styles');
 
 function perf(src, comp) {
     return gulp.src(src)
+        .pipe(filter(argv.test || '**/*'))
         .pipe(bench({outputFormat: 'json', output: argv.name + '.json'}))
         .pipe(gulpif(comp, combench(['!benchmark/results/' + argv.name +
             '.json', 'benchmark/results/*.json'])))

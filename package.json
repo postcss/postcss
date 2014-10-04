@@ -39,7 +39,8 @@
     "optimist": "^0.6.1",
     "through2": "^0.6.2",
     "gulp-clean": "^0.3.1",
-    "gulp-if": "^1.2.4"
+    "gulp-if": "^1.2.4",
+    "gulp-filter": "^1.0.2"
   },
   "scripts": {
     "test": "gulp"
