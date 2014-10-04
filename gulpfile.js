@@ -116,7 +116,7 @@ gulp.task('integration', ['build:lib'], function (done) {
     var error = function (message) {
         done(new gutil.PluginError('integration', {
             showStack: false,
-            message:   "\nFile " + url + "\n\n" + error
+            message:   message
         }));
     };
 
