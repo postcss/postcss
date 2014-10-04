@@ -1,7 +1,10 @@
 .gitignore
 
 node_modules/
+
+benchmark/
 build/
+tasks/
 
 test/
 .travis.yml
