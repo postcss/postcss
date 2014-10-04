@@ -1,10 +1,10 @@
-var gutil = require('gulp-util');
-var gulp  = require('gulp');
+var gulp = require('gulp');
+var fs   = require('fs-extra');
 
 // Build
 
 gulp.task('build:clean', function (done) {
-    require('fs-extra').remove(__dirname + '/build', done);
+    fs.remove(__dirname + '/build', done);
 });
 
 gulp.task('build:lib', ['build:clean'], function () {
@@ -66,7 +66,6 @@ gulp.task('lint', ['lint:test', 'lint:lib']);
 // Benchmark
 
 gulp.task('bench:clean', function (done) {
-    var fs = require('fs-extra');
     fs.remove(__dirname + '/benchmark/results', function () {
         fs.remove(__dirname + '/benchmark/cache', done);
     });
@@ -89,11 +88,10 @@ gulp.task('bench:clean', function (done) {
 });
 
 gulp.task('bench:bootstrap', function (done) {
-    var fs = require('fs-extra');
     if ( fs.existsSync('./benchmark/cache/bootstrap.css') ) return done();
 
-    var html = require('./tasks/html');
-    html.get('github:twbs/bootstrap:dist/css/bootstrap.css', function (css) {
+    var get = require('./tasks/get');
+    get('github:twbs/bootstrap:dist/css/bootstrap.css', function (css) {
         fs.outputFile('./benchmark/cache/bootstrap.css', css, done);
     });
 });
@@ -106,47 +104,17 @@ gulp.task('bench', ['build', 'bench:bootstrap'], function () {
 // Tests
 
 gulp.task('integration', ['build:lib'], function (done) {
+    var gutil = require('gulp-util');
+    var path  = require('path');
+
     var postcss = require('./build/lib/postcss');
-    var html    = require('./tasks/html');
+    var styles  = require('./tasks/styles');
 
-    var test = function (css, safe) {
-        var processed;
-        try {
-            processed = postcss().process(css, {
-                map: { annotation: false },
-                safe:  safe
-            }).css;
-        } catch (e) {
-            return 'Parsing error: ' + e.message + "\n\n" + e.stack;
-        }
-
-        if ( processed != css ) {
-            var fs = require('fs');
-            fs.writeFileSync('origin.css', css);
-            fs.writeFileSync('fail.css', processed);
-            return 'Output is not equal input';
-        }
-    };
-
-    var links = [];
-    var nextLink = function () {
-        if ( links.length === 0 ) {
-            nextSite();
-            return;
-        }
-
-        var url = links.shift();
-        html.get(url, function (css) {
-            var error = test(css, url.match('browserhacks.com'));
-            if ( error ) {
-                done(new gutil.PluginError('integration', {
-                    showStack: false,
-                    message:   "\nFile " + url + "\n\n" + error
-                }));
-            } else {
-                nextLink();
-            }
-        });
+    var error = function (message) {
+        done(new gutil.PluginError('integration', {
+            showStack: false,
+            message:   "\nFile " + url + "\n\n" + error
+        }));
     };
 
     var sites = [
@@ -156,22 +124,33 @@ gulp.task('integration', ['build:lib'], function (done) {
         { Habrahabr:    'http://habrahabr.ru/' },
         { Browserhacks: 'http://browserhacks.com/' }
     ];
-    var nextSite = function () {
-        if ( sites.length === 0 ) {
-            done();
-            return;
-        }
-        var site = sites.shift();
-        var name = Object.keys(site)[0];
-        gutil.log('Test ' + name + ' styles');
 
-        html.styles(site[name], function (files) {
-            links = files;
-            nextLink();
-        });
-    };
+    styles(sites, {
+        site: function (name) {
+            gutil.log('Test ' + name + ' styles');
+        },
+        css: function (css, url) {
+            var processed;
+            try {
+                processed = postcss().process(css, {
+                    map: { annotation: false },
+                    safe:  url.match('browserhacks.com')
+                }).css;
+            } catch (e) {
+                return error('Parsing error: ' + e.message + "\n\n" + e.stack);
+            }
 
-    nextSite();
+            if ( processed != css ) {
+                fs.writeFileSync('origin.css', css);
+                fs.writeFileSync('fail.css', processed);
+                return error('Output is not equal input');
+            }
+
+            gutil.log('     ' + gutil.colors.green(path.basename(url)));
+            return true;
+        },
+        done: done
+    });
 });
 
 gulp.task('test', function () {
