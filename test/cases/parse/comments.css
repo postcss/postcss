@@ -3,7 +3,7 @@ div {
     /* inside */
     color: black;
     /* between */
-    background: white
+    border-radius: 3px / 7px
     /* end */
 }
 /* b */

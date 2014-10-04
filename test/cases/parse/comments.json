@@ -8,7 +8,7 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                 "file": "/comments.css",
                 "end": {
                     "line": 1,
@@ -30,7 +30,7 @@
                             "line": 3,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
                             "line": 3,
@@ -49,7 +49,7 @@
                             "line": 4,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
                             "line": 4,
@@ -68,7 +68,7 @@
                             "line": 5,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
                             "line": 5,
@@ -87,17 +87,17 @@
                             "line": 6,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
                             "line": 6,
-                            "column": 21
+                            "column": 28
                         }
                     },
                     "before": "\n    ",
-                    "prop": "background",
+                    "prop": "border-radius",
                     "between": ": ",
-                    "value": "white"
+                    "value": "3px / 7px"
                 },
                 {
                     "type": "comment",
@@ -106,7 +106,7 @@
                             "line": 7,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
                             "line": 7,
@@ -124,7 +124,7 @@
                     "line": 2,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                 "file": "/comments.css",
                 "end": {
                     "line": 8,
@@ -143,7 +143,7 @@
                     "line": 9,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    background: white\n    /* end */\n}\n/* b */\n",
+                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                 "file": "/comments.css",
                 "end": {
                     "line": 9,
