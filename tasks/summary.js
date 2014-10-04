@@ -1,15 +1,5 @@
 var through = require('through2');
 
-var round2 = function (num) {
-    num = Math.round(num * 10) / 10;
-    num = num.toString();
-    if ( num.indexOf('.') == -1 ) {
-        return num + '.0';
-    } else {
-        return num;
-    }
-};
-
 var indent = function (biggest, current) {
     for ( var i = 0; i < biggest - current.length; i++ ) {
         process.stdout.write(' ');
@@ -45,10 +35,10 @@ module.exports = through.obj(function (file, type, done) {
         if ( i.name != 'PostCSS' ) {
             var times;
             if ( i.hz > postcss ) {
-                times = round2(i.hz / postcss);
+                times = (i.hz / postcss).toFixed(1);
                 process.stdout.write('(' + times + ' times faster)');
             } else {
-                times = round2(postcss / i.hz);
+                times = (postcss / i.hz).toFixed(1);
                 process.stdout.write('(' + times + ' times slower)');
             }
         }
