@@ -16,9 +16,9 @@
     },
     "devDependencies": {
         "gulp-es6-transpiler": "1.0.0",
-        "gulp-json-editor":    "2.0.2",
+        "gulp-json-editor":    "2.0.3",
         "jshint-stylish":      "1.0.0",
-        "gulp-jshint":         "1.8.4",
+        "gulp-jshint":         "1.8.5",
         "gonzales-pe":         "3.0.0-10",
         "gulp-mocha":          "1.1.0",
         "gulp-util":           "3.0.1",
