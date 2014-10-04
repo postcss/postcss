@@ -23,6 +23,16 @@ describe('tokenize', () => {
         ]);
     });
 
+    it('preserves / symbol without *', () => {
+        tokenize('3px / 7px').should.eql([
+            ['word', '3px', { line: 1, column: 1 }, { line: 1, column: 3 }],
+            ['space', ' '],
+            ['word', '/', { line: 1, column: 5 }, { line: 1, column: 5 }],
+            ['space', ' '],
+            ['word', '7px', { line: 1, column: 7 }, { line: 1, column: 9 }]
+        ]);
+    });
+
     it('tokenizes CSS', () => {
         css = 'a {\n' +
               '  content: "a";\n' +
