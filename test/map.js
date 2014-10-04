@@ -456,5 +456,4 @@ describe('source maps', () => {
 
         result.css.should.eql("a { }/*# sourceMappingURL=a.css.map */");
     });
-
 });

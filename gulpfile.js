@@ -1,6 +1,12 @@
-var gutil = require('gulp-util');
-var gulp  = require('gulp');
-var fs    = require('fs-extra');
+var gutil    = require('gulp-util');
+var gulp     = require('gulp');
+var fs       = require('fs-extra');
+var bench    = require('gulp-bench');
+var combench = require('./tasks/compare-benchs.js');
+var clean    = require('gulp-clean');
+var argv     = require('optimist').argv;
+var gulpif   = require('gulp-if');
+var filter   = require('gulp-filter');
 
 gulp.task('clean', function (done) {
     fs.remove(__dirname + '/build', done);
@@ -60,128 +66,30 @@ gulp.task('lint:lib', function () {
 
 gulp.task('lint', ['lint:test', 'lint:lib']);
 
-var zlib, request;
-var get = function (url, callback) {
-    if ( !zlib ) {
-        zlib    = require('zlib');
-        request = require('request');
-    }
 
-    request.get({ url: url, headers: { 'accept-encoding': 'gzip,deflate' } })
-        .on('response', function (res) {
-            var chunks = [];
-            res.on('data', function (i) {
-                chunks.push(i);
-            });
-            res.on('end', function () {
-                var buffer = Buffer.concat(chunks);
+var styles = require('./tasks/styles');
+var get = require('./tasks/get');
 
-                if ( res.headers['content-encoding'] == 'gzip' ) {
-                    zlib.gunzip(buffer, function (err, decoded) {
-                        callback(decoded.toString());
-                    });
+function perf(src, comp) {
+    return gulp.src(src)
+        .pipe(filter(argv.test || '**/*'))
+        .pipe(bench({outputFormat: 'json', output: argv.name + '.json'}))
+        .pipe(gulpif(comp, combench(['!benchmark/results/' + argv.name +
+            '.json', 'benchmark/results/*.json'])))
+        .pipe(gulp.dest('./benchmark/results'));
+}
 
-                } else if ( res.headers['content-encoding'] == 'deflate' ) {
-                    zlib.inflate(buffer, function (err, decoded) {
-                        callback(decoded.toString());
-                    });
+gulp.task('perf', ['build'], function() {
+    return perf('./benchmark/*.js', true);
+});
 
-                } else {
-                    callback(buffer.toString());
-                }
-            });
-        });
-};
+gulp.task('perf:general', ['build'], function() {
+    return perf('./benchmark/general/*.js', false);
+});
 
-var styles = function (url, callback) {
-    get(url, function (html) {
-        var styles = html.match(/[^"]+\.css("|')/g);
-        if ( !styles ) throw "Can't find CSS links at " + url;
-        styles = styles.map(function(path) {
-            path = path.slice(0, -1);
-            if ( path.match(/^https?:/) ) {
-                return path;
-            } else {
-                return path.replace(/^\.?\.?\/?/, url);
-            }
-        });
-        callback(styles);
-    });
-};
-
-gulp.task('bench', ['build'], function (done) {
-    var indent = function (max, current) {
-        var diff = max.toString().length - current.toString().length;
-        for ( var i = 0; i < diff; i++ ) {
-            process.stdout.write(' ');
-        }
-    };
-
-    var times = { };
-    var bench = function (title, callback) {
-        process.stdout.write(title + ': ');
-        indent('Gonzales PE', title);
-
-        var start = new Date();
-
-        for ( var i = 0; i < 10; i++ ) callback();
-
-        time = (new Date()) - start;
-        time = Math.round(time / 10);
-        process.stdout.write(time + " ms");
-
-        if ( times.PostCSS ) {
-            var slower = time / times.PostCSS;
-            if ( time < 100 ) process.stdout.write(' ');
-
-            var result;
-            if ( slower < 1 ) {
-                result = ' (' + (1 / slower).toFixed(1) + ' times faster)';
-            } else {
-                result = ' (' + slower.toFixed(1) + ' times slower)';
-            }
-            process.stdout.write(result);
-        }
-        times[title] = time;
-        process.stdout.write("\n");
-    };
-
-    styles('https://github.com/', function (styles) {
-        gutil.log('Load Github style');
-        get(styles[0], function (css) {
-            process.stdout.write("\n");
-
-            var processor = require(__dirname + '/build')();
-            bench('PostCSS', function () {
-                return processor.process(css).css;
-            });
-
-            var CSSOM = require('cssom');
-            bench('CSSOM', function () {
-                return CSSOM.parse(css).toString();
-            });
-
-            var rework = require('rework');
-            bench('Rework', function () {
-                return rework(css).toString();
-            });
-
-            var gonzales = require('gonzales');
-            bench('Gonzales', function () {
-                return gonzales.csspToSrc( gonzales.srcToCSSP(css) );
-            });
-
-            var gonzalesPe = require('gonzales-pe');
-            bench('Gonzales PE', function () {
-                return gonzalesPe.astToSrc({
-                    ast: gonzalesPe.srcToAST({ src: css })
-                });
-            });
-
-            process.stdout.write("\n");
-            done();
-        });
-    });
+gulp.task('perf:clean', function() {
+    return gulp.src('benchmark/results', { read: false })
+        .pipe(clean());
 });
 
 gulp.task('integration', ['build'], function (done) {

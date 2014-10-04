@@ -3,6 +3,7 @@
 
 node_modules/
 build/
+benchmark/results
 
 origin.css
 fail.css
