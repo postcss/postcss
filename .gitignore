@@ -2,6 +2,9 @@
 *~
 
 node_modules/
+
+benchmark/results/
+benchmark/cache/
 build/
 
 origin.css
