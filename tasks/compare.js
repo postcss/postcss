@@ -6,13 +6,16 @@ var gulp    = require('gulp');
 function compare(prev, current) {
     var prevName    = path.basename(prev.file, '.json');
     var currentName = path.basename(current.file, '.json');
-    prev     = prev.contents;
-    current  = current.contents;
-    for ( var i = 0; i < prev.length; i++ ) {
-        prevResult    = prev[i].hz.toFixed(2);
-        currentResult = current[i].hz.toFixed(2);
-        gutil.log(currentName, gutil.colors.cyan(currentResult), 'vs',
-                  prevName,    gutil.colors.magenta(prevResult));
+    prev    = prev.contents[0].hz;
+    current = current.contents[0].hz;
+    if ( current > prev ) {
+        gutil.log(currentName, 'is',
+            gutil.colors.green( (current / prev).toFixed(2) + ' times faster'),
+            'that', prevName);
+    } else {
+        gutil.log(currentName, 'is',
+            gutil.colors.red( (prev / current).toFixed(2) + ' times slower'),
+            'that', prevName);
     }
 }
 
