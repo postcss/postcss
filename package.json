@@ -20,7 +20,7 @@
         "jshint-stylish":      "1.0.0",
         "gulp-jshint":         "1.8.5",
         "gonzales-pe":         "3.0.0-10",
-        "gulp-bench":          "git://github.com/Termina1/gulp-bench#patch-1",
+        "gulp-bench":          "1.1.0",
         "gulp-mocha":          "1.1.0",
         "gulp-util":           "3.0.1",
         "execSync":            "1.0.2",
