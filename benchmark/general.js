@@ -4,6 +4,7 @@ var css = fs.readFileSync(__dirname + '/cache/bootstrap.css').toString();
 var CSSOM      = require('cssom');
 var postcss    = require('../build');
 var rework     = require('rework');
+var stylecow   = require('stylecow');
 var gonzales   = require('gonzales');
 var gonzalesPe = require('gonzales-pe');
 
@@ -27,6 +28,12 @@ module.exports = {
             name: 'Rework',
             fn: function() {
                 return rework(css).toString();
+            }
+        },
+        {
+            name: 'Stylecow',
+            fn: function() {
+                return stylecow.create(css).toString()
             }
         },
         {
