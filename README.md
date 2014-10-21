@@ -40,6 +40,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 * [Pleeease] is a pack of various postprocessors.
 * [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
 * [RTLCSS] mirrors styles for right-to-left locales.
+* [CSS Byebye] explicitly removes the CSS rules that you don't want.
 
 [Autoprefixer]:      https://github.com/postcss/autoprefixer
 [BEM linter]:        https://github.com/necolas/postcss-bem-linter
@@ -53,6 +54,7 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 [Pleeease]:          http://pleeease.io/
 [Pleeease Filters]:  https://github.com/iamvdo/pleeease-filters
 [RTLCSS]:            https://github.com/MohammadYounes/rtlcss
+[CSS Byebye]:        https://github.com/AoDev/css-byebye
 
 ### Plugins
 
@@ -905,10 +907,10 @@ var comment = postcss.comment({ text: 'New comment' });
 
 `AtRule` has two own properties: `name` and `params`.
 
-As illustrated above, some at-rules do not contain any children 
+As illustrated above, some at-rules do not contain any children
 (for example, `@charset` or `@import`), some at-rules can only contain
-declarations (for example, `@font-face` or `@page`), but most of them 
-can contain rules and nested at-rules (for example, `@media`, `@keyframes` 
+declarations (for example, `@font-face` or `@page`), but most of them
+can contain rules and nested at-rules (for example, `@media`, `@keyframes`
 and others).
 
 The parser selects `AtRule` content type by its name. If you create an `AtRule`
@@ -939,7 +941,7 @@ a {
 }
 ```
 
-`Rule` nodes have a `selector` property and contain their `Declaration` 
+`Rule` nodes have a `selector` property and contain their `Declaration`
 and `Comment` children within the `decls` property.
 
 They also possess a `selectors` shortcut, which returns an array:
