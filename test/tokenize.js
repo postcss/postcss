@@ -24,7 +24,7 @@ describe('tokenize', () => {
     });
 
     it('tokenizes CSS', () => {
-        css = 'a {\n' +
+        var css = 'a {\n' +
               '  content: "a";\n' +
               '  width: calc(1px;)\n' +
               '  }\n' +

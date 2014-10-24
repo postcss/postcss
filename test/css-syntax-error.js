@@ -1,7 +1,7 @@
-CssSyntaxError = require('../lib/css-syntax-error');
-parse          = require('../lib/parse');
+var CssSyntaxError = require('../lib/css-syntax-error');
+var parse          = require('../lib/parse');
 
-parseError = function (css) {
+var parseError = function (css) {
     var error;
     try {
         parse(css);
@@ -14,7 +14,7 @@ parseError = function (css) {
 describe('CssSyntaxError', () => {
 
     it('saves source', () => {
-        error = parseError('a {\n  content: "\n}');
+        var error = parseError('a {\n  content: "\n}');
 
         error.should.be.a.instanceOf(CssSyntaxError);
         error.message.should.be.eql('<css input>:2:12: Unclosed quote');
