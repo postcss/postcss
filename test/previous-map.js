@@ -66,15 +66,15 @@ describe('PreviousMap', () => {
     });
 
     it('decode URI maps', () => {
-        var uri = decodeURI(this.map);
-        var css = `a{}\n/*# sourceMappingURL=data:application/json,${uri} */`;
+        var uri = 'data:application/json,' + decodeURI(this.map);
+        var css = "a{}\n/*# sourceMappingURL=" + uri + " */";
 
         parse(css).prevMap.text.should.eql(this.map);
     });
 
     it('remove map on request', () => {
-        var uri = decodeURI(this.map);
-        var css = `a{}\n/*# sourceMappingURL=data:application/json,${uri} */`;
+        var uri = 'data:application/json,' + decodeURI(this.map);
+        var css = "a{}\n/*# sourceMappingURL=" + uri + " */";
 
         parse(css, { map: { prev: false } })
             .should.not.have.property('prevMap');

@@ -10,30 +10,30 @@
         "url":  "https://github.com/postcss/postcss.git"
     },
     "dependencies": {
-        "es6-transpiler": "0.7.16",
-        "source-map":     "~0.1.40",
-        "js-base64":      "~2.1.5"
+        "source-map": "~0.1.40",
+        "js-base64":  "~2.1.5",
+        "6to5":       "1.9.10"
     },
     "devDependencies": {
-        "gulp-es6-transpiler": "1.0.0",
-        "gulp-json-editor":    "2.0.3",
-        "jshint-stylish":      "1.0.0",
-        "gulp-jshint":         "1.8.5",
-        "gonzales-pe":         "3.0.0-10",
-        "gulp-bench":          "1.1.0",
-        "gulp-mocha":          "1.1.1",
-        "gulp-util":           "3.0.1",
-        "execSync":            "1.0.2",
-        "fs-extra":            "0.12.0",
-        "gonzales":            "1.0.7",
-        "stylecow":            "2.0.1",
-        "through2":            "0.6.3",
-        "request":             "2.46.0",
-        "rework":              "1.0.1",
-        "should":              "4.1.0",
-        "mocha":               "2.0.1",
-        "cssom":               "0.3.0",
-        "gulp":                "3.8.9"
+        "gulp-json-editor": "2.0.3",
+        "jshint-stylish":   "1.0.0",
+        "gulp-jshint":      "1.8.5",
+        "gonzales-pe":      "3.0.0-10",
+        "gulp-bench":       "1.1.0",
+        "gulp-mocha":       "1.1.1",
+        "gulp-util":        "3.0.1",
+        "gulp-6to5":        "1.0.1",
+        "execSync":         "1.0.2",
+        "fs-extra":         "0.12.0",
+        "gonzales":         "1.0.7",
+        "stylecow":         "2.0.1",
+        "through2":         "0.6.3",
+        "request":          "2.46.0",
+        "rework":           "1.0.1",
+        "should":           "4.1.0",
+        "mocha":            "2.0.1",
+        "cssom":            "0.3.0",
+        "gulp":              "3.8.9"
     },
     "scripts": {
         "test": "gulp"

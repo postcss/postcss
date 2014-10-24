@@ -8,10 +8,10 @@ gulp.task('build:clean', function (done) {
 });
 
 gulp.task('build:lib', ['build:clean'], function () {
-    var es6transpiler = require('gulp-es6-transpiler');
+    var es6to5 = require('gulp-6to5');
 
     return gulp.src('lib/*.js')
-        .pipe(es6transpiler())
+        .pipe(es6to5())
         .pipe(gulp.dest('build/lib'));
 });
 
@@ -31,9 +31,8 @@ gulp.task('build:package', ['build:clean'], function () {
     gulp.src('./package.json')
         .pipe(editor(function (json) {
             json.main = 'lib/postcss';
-            json.devDependencies['es6-transpiler'] =
-                json.dependencies['es6-transpiler'];
-            delete json.dependencies['es6-transpiler'];
+            json.devDependencies['6to5'] = json.dependencies['6to5'];
+            delete json.dependencies['6to5'];
             return json;
         }))
         .pipe(gulp.dest('build'));
