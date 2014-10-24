@@ -130,6 +130,22 @@ describe('postcss.parse()', () => {
             ( () => parse('@') ).should.throw(/:1:1: At-rule without name/);
         });
 
+        it('parses IE semicolon', () => {
+            parse('a { filter: progid:DXImageTransform }')
+                .first.first.value.should.eql('progid:DXImageTransform');
+        });
+
+        it('throws on property without semicolon', () => {
+            ( () => parse('a { one: 1 two: 2 }') )
+                .should.throw(/:1:10: Missed semicolon/);
+        });
+
+        it('fixes property without semicolon in safe mode', () => {
+            var root = parse('a { one: 1 two: 2 }', { safe: true });
+            root.first.childs.length.should.eql(2);
+            root.toString().should.eql('a { one: 1; two: 2 }');
+        });
+
     });
 
 });
