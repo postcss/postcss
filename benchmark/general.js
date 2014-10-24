@@ -33,7 +33,7 @@ module.exports = {
         {
             name: 'Stylecow',
             fn: function() {
-                return stylecow.create(css).toString()
+                return stylecow.create(css).toString();
             }
         },
         {
