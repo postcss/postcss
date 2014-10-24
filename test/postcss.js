@@ -103,10 +103,19 @@ describe('postcss()', () => {
         });
 
         it('processes previous result', () => {
-            var empty  = postcss( (css) => css );
-            var result = empty.process('a::before{top:0}');
+            var result = postcss().process('a::before{top:0}');
             result = this.processor.process(result);
             result.css.should.eql('a::before{content:"";top:0}');
+        });
+
+        it('takes maps from previous result', () => {
+            var one = postcss().process('a{}', {
+                from: 'a.css',
+                to:   'b.css',
+                map:   true
+            });
+            var two = postcss().process(one, { to: 'c.css' });
+            two.map.toJSON().sources.should.eql(['a.css']);
         });
 
         it('throws with file name', () => {
@@ -150,6 +159,20 @@ describe('postcss()', () => {
         it('send options to processors', () => {
             var a = (css, opts) => opts.should.eql({ from: 'a.css' });
             postcss(a).process('a {}', { from: 'a.css' });
+        });
+
+        it('accepts source map from PostCSS', () => {
+            var one = postcss().process('a{}', {
+                from: 'a.css',
+                to:   'b.css',
+                map:   true
+            });
+            var two = postcss().process(one.css, {
+                from: 'b.css',
+                to:   'c.css',
+                map: { prev: one.map }
+            });
+            two.map.toJSON().sources.should.eql(['a.css']);
         });
 
     });
