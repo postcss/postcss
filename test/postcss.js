@@ -63,6 +63,14 @@ describe('postcss()', () => {
             processor.should.eql({ processors: [a] });
         });
 
+        it('adds new processors of another postcss instance', () => {
+            var a = () => 1;
+            var processor = postcss();
+            var otherProcessor = postcss(a);
+            processor.use(otherProcessor);
+            processor.should.eql({ processors: [a] });
+        });
+
         it('returns itself', () => {
             var a = () => 1;
             var b = () => 2;
