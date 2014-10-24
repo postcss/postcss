@@ -19,9 +19,13 @@ module.exports = through.obj(function (file, type, done) {
         return Math.round((1 / i.hz) * 1000).toString().length;
     }).sort().reverse()[0];
 
-    var postcss = results.find(function (i) {
-        return i.name == 'PostCSS';
-    }).hz;
+    var postcss;
+    results.forEach(function (i) {
+        if ( i.name == 'PostCSS' ) {
+            postcss = i.hz;
+            return false;
+        }
+    });
 
     process.stdout.write('\n');
     results.forEach(function (i) {
