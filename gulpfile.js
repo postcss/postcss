@@ -139,7 +139,7 @@ gulp.task('integration', ['build:lib'], function (done) {
                     safe:  url.match('browserhacks.com')
                 }).css;
             } catch (e) {
-                return error('Parsing error: ' + e.message + "\n\n" + e.stack);
+                return error('Parsing error: ' + e.message);
             }
 
             if ( processed != css ) {
