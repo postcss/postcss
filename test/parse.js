@@ -130,7 +130,7 @@ describe('postcss.parse()', () => {
             ( () => parse('@') ).should.throw(/:1:1: At-rule without name/);
         });
 
-        it('parses IE semicolon', () => {
+        it('parses IE colon', () => {
             parse('a { filter: progid:DXImageTransform }')
                 .first.first.value.should.eql('progid:DXImageTransform');
         });
