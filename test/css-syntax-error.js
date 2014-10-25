@@ -54,20 +54,23 @@ describe('CssSyntaxError', () => {
     });
 
     it('uses source map', () => {
-        var join = new Concat(true, 'all.css');
-        join.add('a.css', 'a { }');
-        join.add('b.css', 'b {');
+        var concat = new Concat(true, 'all.css');
+        concat.add('a.css', 'a { }');
+        concat.add('b.css', 'b {');
 
-        var error = parseError(join.content, { map: { prev: join.sourceMap } });
+        var error = parseError(concat.content, {
+            from: 'build/all.css',
+            map: { prev: concat.sourceMap }
+        });
 
         error.file.should.eql('b.css');
         error.line.should.eql(1);
         should.not.exists(error.source);
 
         error.generated.should.eql({
-            file: 'all.css',
-            line: 2,
-            column: 1,
+            file:   'build/all.css',
+            line:    2,
+            column:  1,
             source: 'a { }\nb {'
         });
     });
