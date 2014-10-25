@@ -19,15 +19,15 @@ module.exports = {
             }
         },
         {
-            name: 'CSSOM',
-            fn: function() {
-                return CSSOM.parse(css).toString();
-            }
-        },
-        {
             name: 'Rework',
             fn: function() {
                 return rework(css).toString();
+            }
+        },
+        {
+            name: 'CSSOM',
+            fn: function() {
+                return CSSOM.parse(css).toString();
             }
         },
         {
