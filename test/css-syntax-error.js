@@ -1,10 +1,13 @@
 var CssSyntaxError = require('../lib/css-syntax-error');
 var parse          = require('../lib/parse');
 
-var parseError = function (css) {
+var Concat = require('concat-with-sourcemaps');
+var should = require('should');
+
+var parseError = function (css, opts) {
     var error;
     try {
-        parse(css);
+        parse(css, opts);
     } catch (e) {
         error = e;
     }
@@ -42,6 +45,31 @@ describe('CssSyntaxError', () => {
             "<css input>:1:1: Unclosed block\n" +
             'a {\n' +
             '\u001b[1;31m^\u001b[0m');
+    });
+
+    it('miss highlights without source', () => {
+        var error = parseError('a {');
+        error.source = null;
+        error.toString().should.eql('<css input>:1:1: Unclosed block');
+    });
+
+    it('uses source map', () => {
+        var join = new Concat(true, 'all.css');
+        join.add('a.css', 'a { }');
+        join.add('b.css', 'b {');
+
+        var error = parseError(join.content, { map: { prev: join.sourceMap } });
+
+        error.file.should.eql('b.css');
+        error.line.should.eql(1);
+        should.not.exists(error.source);
+
+        error.generated.should.eql({
+            file: 'all.css',
+            line: 2,
+            column: 1,
+            source: 'a { }\nb {'
+        });
     });
 
 });

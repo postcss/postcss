@@ -1,5 +1,5 @@
-var Root  = require('../lib/root');
-var parse = require('../lib/parse');
+var Root    = require('../lib/root');
+var parse   = require('../lib/parse');
 
 var fs   = require('fs');
 var path = require('path');
