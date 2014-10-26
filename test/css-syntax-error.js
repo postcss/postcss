@@ -80,4 +80,19 @@ describe('CssSyntaxError', () => {
         });
     });
 
+    it('do not uses wrong source map', () => {
+        var error = parseError('a { }\nb {', {
+            from: 'build/all.css',
+            map: {
+                prev: {
+                    version: 3,
+                    file: 'build/all.css',
+                    sources: ['a.css', 'b.css'],
+                    mappings: 'A'
+                }
+            }
+        });
+        error.file.should.eql(path.resolve('build/all.css'));
+    });
+
 });
