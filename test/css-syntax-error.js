@@ -3,13 +3,18 @@ var parse          = require('../lib/parse');
 
 var Concat = require('concat-with-sourcemaps');
 var should = require('should');
+var path   = require('path');
 
 var parseError = function (css, opts) {
     var error;
     try {
         parse(css, opts);
     } catch (e) {
-        error = e;
+        if ( e instanceof CssSyntaxError ) {
+            error = e;
+        } else {
+            throw e;
+        }
     }
     return error;
 };
@@ -63,12 +68,12 @@ describe('CssSyntaxError', () => {
             map: { prev: concat.sourceMap }
         });
 
-        error.file.should.eql('b.css');
+        error.file.should.eql(path.resolve('b.css'));
         error.line.should.eql(1);
         should.not.exists(error.source);
 
         error.generated.should.eql({
-            file:   'build/all.css',
+            file:    path.resolve('build/all.css'),
             line:    2,
             column:  1,
             source: 'a { }\nb {'

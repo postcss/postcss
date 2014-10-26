@@ -2,15 +2,16 @@ var fs = require('fs');
 
 var tokenizer = require('../build/lib/tokenize');
 var Parser    = require('../build/lib/parse').Parser;
+var Input     = require('../build/lib/input');
 
-var style  = fs.readFileSync(__dirname + '/test.css').toString();
-var tokens = tokenizer(style);
+var css    = fs.readFileSync(__dirname + '/test.css');
+var input  = new Input(css);
+var tokens = tokenizer(input);
 
 module.exports = {
     fn: function () {
-        var parser = new Parser(style, { });
+        var parser = new Parser(input);
         parser.tokens = tokens.slice();
-        parser.setMap();
         parser.loop();
     },
     maxTime: 15,

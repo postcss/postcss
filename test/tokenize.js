@@ -1,23 +1,24 @@
 var tokenize = require('../lib/tokenize');
+var Input    = require('../lib/input');
 
 describe('tokenize', () => {
 
     it('tokenizes empty string', () => {
-        tokenize('').should.eql([]);
+        tokenize(new Input('')).should.eql([]);
     });
 
     it('tokenizes space', () => {
-        tokenize('\n ').should.eql([ ['space', '\n '] ]);
+        tokenize(new Input('\n ')).should.eql([ ['space', '\n '] ]);
     });
 
     it('tokenizes word', () => {
-        tokenize('ab').should.eql([
+        tokenize(new Input('ab')).should.eql([
             ['word', 'ab', { column: 1, line: 1 }, { column: 2, line: 1 }]
         ]);
     });
 
     it('splits word by !', () => {
-        tokenize('aa!bb').should.eql([
+        tokenize(new Input('aa!bb')).should.eql([
             ['word', 'aa',  { column: 1, line: 1 }, { column: 2, line: 1 }],
             ['word', '!bb', { column: 3, line: 1 }, { column: 5, line: 1 }],
         ]);
@@ -30,7 +31,7 @@ describe('tokenize', () => {
               '  }\n' +
               '/* small screen */\n' +
               '@media screen {}';
-        tokenize(css).should.eql([
+        tokenize(new Input(css)).should.eql([
             ['word', 'a', { column: 1, line: 1 }, { column: 1, line: 1 } ],
             ['space', ' '],
             ['{', '{', { column: 3, line: 1 }],
@@ -62,26 +63,24 @@ describe('tokenize', () => {
         ]);
     });
 
-    it('shows file name in errors', () => {
-        ( () => tokenize(' "', { from: 'a.css' }) ).should.throw(/^a.css/);
-    });
-
     it('throws error on unclosed string', () => {
-        ( () => tokenize(' "') ).should.throw(/:1:2: Unclosed quote/);
+        ( () => tokenize(new Input(' "')) )
+            .should.throw(/:1:2: Unclosed quote/);
     });
 
     it('fixes unclosed string in safe smode', () => {
-        tokenize('"', { safe: true }).should.eql([
+        tokenize(new Input('"', { safe: true })).should.eql([
             ['string', '""', { column: 1, line: 1 }, { column: 1, line: 1 }]
         ]);
     });
 
     it('throws error on unclosed comment', () => {
-        ( () => tokenize(' /*') ).should.throw(/:1:2: Unclosed comment/);
+        ( () => tokenize(new Input(' /*')) )
+            .should.throw(/:1:2: Unclosed comment/);
     });
 
     it('fixes unclosed comment in safe smode', () => {
-        tokenize('/*', { safe: true }).should.eql([
+        tokenize(new Input('/*', { safe: true })).should.eql([
             ['comment', '/**/', { column: 1, line: 1 }, { column: 2, line: 1 }]
         ]);
     });

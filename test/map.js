@@ -2,6 +2,7 @@ var postcss = require('../lib/postcss');
 
 var mozilla = require('source-map');
 var should  = require('should');
+var path    = require('path');
 var fs      = require('fs-extra');
 
 var consumer = map => new mozilla.SourceMapConsumer.fromSourceMap(map);
@@ -402,7 +403,7 @@ describe('source maps', () => {
     it('detects input file name from map', () => {
         var one = this.doubler.process('a { }', { to: 'a.css', map: true });
         var two = this.doubler.process(one.css, { map: { prev: one.map } });
-        two.root.first.source.file.should.eql('a.css');
+        two.root.first.source.file.should.eql(path.resolve('a.css'));
     });
 
     it('works without file names for inline maps', () => {

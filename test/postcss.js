@@ -2,6 +2,8 @@ var postcss = require('../lib/postcss');
 var Result  = require('../lib/result');
 var Root    = require('../lib/root');
 
+var path = require('path');
+
 describe('postcss.root()', () => {
 
     it('allows to build own CSS', () => {
@@ -121,13 +123,13 @@ describe('postcss()', () => {
         it('throws with file name', () => {
             var error;
             try {
-                postcss().process('a {', { from: 'A' });
+                postcss().process('a {', { from: 'a.css' });
             } catch (e) {
                 error = e;
             }
 
-            error.file.should.eql('A');
-            error.message.should.eql('A:1:1: Unclosed block');
+            error.file.should.eql(path.resolve('a.css'));
+            error.message.should.match(/a.css:1:1: Unclosed block$/);
         });
 
         it('allows to replace Root', () => {
