@@ -130,6 +130,12 @@ describe('postcss.parse()', () => {
             ( () => parse('@') ).should.throw(/:1:1: At-rule without name/);
         });
 
+        it('fixes nameless at-rule in safe mode', () => {
+            var root = parse('@', { safe: true });
+            root.first.type.should.eql('atrule');
+            root.first.name.should.eql('');
+        });
+
         it('parses IE colon', () => {
             parse('a { filter: progid:DXImageTransform }')
                 .first.first.value.should.eql('progid:DXImageTransform');
