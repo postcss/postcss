@@ -2,8 +2,9 @@ var fs  = require('fs');
 var css = fs.readFileSync(__dirname + '/cache/bootstrap.css').toString();
 
 var CSSOM      = require('cssom');
-var postcss    = require('../build');
 var rework     = require('rework');
+var mensch     = require('mensch');
+var postcss    = require('../build');
 var stylecow   = require('stylecow');
 var gonzales   = require('gonzales');
 var gonzalesPe = require('gonzales-pe');
@@ -14,37 +15,43 @@ module.exports = {
     tests: [
         {
             name: 'PostCSS',
-            fn: function() {
+            fn: function () {
                 return postcss.parse(css).toResult().css;
             }
         },
         {
             name: 'Rework',
-            fn: function() {
+            fn: function () {
                 return rework(css).toString();
             }
         },
         {
             name: 'CSSOM',
-            fn: function() {
+            fn: function () {
                 return CSSOM.parse(css).toString();
             }
         },
         {
+            name: "Mensch",
+            fn: function () {
+                return mensch.stringify( mensch.parse(css) );
+            }
+        },
+        {
             name: 'Stylecow',
-            fn: function() {
+            fn: function () {
                 return stylecow.create(css).toString();
             }
         },
         {
             name: 'Gonzales',
-            fn: function() {
+            fn: function () {
                 return gonzales.csspToSrc( gonzales.srcToCSSP(css) );
             }
         },
         {
             name: 'Gonzales PE',
-            fn: function() {
+            fn: function () {
                 return gonzalesPe.astToSrc({
                     ast: gonzalesPe.srcToAST({ src: css })
                 });
