@@ -19,7 +19,7 @@ describe('PreviousMap', () => {
         if ( fs.existsSync(this.dir) ) fs.removeSync(this.dir);
     });
 
-    it('miss property if no map', () => {
+    it('misses property if no map', () => {
         parse('a{}').should.not.have.property('prevMap');
     });
 

@@ -230,7 +230,7 @@ describe('source maps', () => {
         step2.css.should.not.match(/# sourceMappingURL=data:/);
     });
 
-    it('miss check files on requires', () => {
+    it('misses check files on requires', () => {
         var step1 = this.doubler.process('a { }', {
             from: 'a.css',
             to:    this.dir + '/a.css',
@@ -347,21 +347,31 @@ describe('source maps', () => {
         }
     });
 
-    it('sets source content on request', () => {
+    it('sets source content by default', () => {
         var result = this.doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
-            map: { sourcesContent: true }
+            map:   true
         });
 
         consumer(result.map).sourceContentFor('../a.css').should.eql('a { }');
     });
 
-    it('sets source content if previous have', () => {
+    it('misses source content on request', () => {
+        var result = this.doubler.process('a { }', {
+            from: 'a.css',
+            to:   'out/b.css',
+            map: { sourcesContent: false }
+        });
+
+        should.not.exists( consumer(result.map).sourceContentFor('../a.css') );
+    });
+
+    it('misses source content if previous not have', () => {
         var step1 = this.doubler.process('a { }', {
           from: 'a.css',
           to:   'out/a.css',
-          map: { sourcesContent: true }
+          map: { sourcesContent: false }
         });
 
         var file1 = postcss.parse(step1.css, {
@@ -373,10 +383,10 @@ describe('source maps', () => {
         file2.append( file1.childs[0].clone() );
         var step2 = file2.toResult({ to: 'c.css' });
 
-        consumer(step2.map).sourceContentFor('b.css').should.eql('b { }');
+        should.not.exists( consumer(step2.map).sourceContentFor('b.css') );
     });
 
-    it('miss source content on request', () => {
+    it('misses source content on request', () => {
         var step1 = this.doubler.process('a { }', {
             from: 'a.css',
             to:   'out/a.css',

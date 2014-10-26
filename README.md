@@ -543,8 +543,9 @@ option as an object with the following parameters:
   methods.
 
 * `sourcesContent` (boolean): indicates that we should set the origin content
-  (for example, Sass source) of the source map. By default, PostCSS will add
-  content only if previous map contains it.
+  (for example, Sass source) of the source map. By default it is `true`.
+  But if all previous map do not contains sources content,
+  PostCSS will miss it too.
 
 * `annotation` (boolean or string): indicates if we should add annotation
   comments to the CSS. By default, PostCSS will always add a comment with a path

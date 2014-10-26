@@ -52,7 +52,7 @@ describe('CssSyntaxError', () => {
             '\u001b[1;31m^\u001b[0m');
     });
 
-    it('miss highlights without source', () => {
+    it('misses highlights without source', () => {
         var error = parseError('a {');
         error.source = null;
         error.toString().should.eql('<css input>:1:1: Unclosed block');
@@ -80,7 +80,7 @@ describe('CssSyntaxError', () => {
         });
     });
 
-    it('do not uses wrong source map', () => {
+    it('does not uses wrong source map', () => {
         var error = parseError('a { }\nb {', {
             from: 'build/all.css',
             map: {
