@@ -58,21 +58,24 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 
 ### Plugins
 
-* [postcss-calc] to reduce `calc()` usage (recommanded with `postcss-custom-properties`).
-* [postcss-color-function] to transform W3C CSS `color()` function to more compatible CSS.
-* [postcss-color-gray] to transform W3C CSS `gray()` function to more compatible CSS.
-* [postcss-color-hex-alpha] to transform W3C CSS RGBA hexadecimal notations (#RRGGBBAA or #RGBA) to more compatible CSS.
-* [postcss-color-hwb] to transform W3C CSS hwb() function to more compatible CSS.
-* [postcss-color-rebeccapurple] to transform W3C CSS rebeccapurple color to more compatible CSS.
-* [postcss-import] to transform @import rules by inlining content.
-* [postcss-custom-media] to transform W3C CSS Custom Media Queries to more compatible CSS.
-* [postcss-custom-properties] to transform W3C CSS Custom Properties for cascading variables to more compatible CSS.
+* [postcss-calc] to reduce `calc()` usage
+  (recommanded with `postcss-custom-properties`).
+* [postcss-color-function] to transform W3C CSS `color()` function.
+* [postcss-color-gray] to transform W3C CSS `gray()` function.
+* [postcss-color-hex-alpha] to transform W3C CSS RGBA hexadecimal notations
+  (`#rrggbbaa` or `#rgba`).
+* [postcss-color-hwb] to transform W3C CSS `hwb()` function.
+* [postcss-color-rebeccapurple] to transform W3C CSS `rebeccapurple` color.
+* [postcss-import] to transform `@import` rules by inlining content.
+* [postcss-custom-media] to add names for CSS Media Queries.
+* [postcss-custom-properties] to transform W3C CSS Custom Properties
+  for cascading variables.
 * [postcss-url] to rebase or inline on `url()`.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
 [postcss-color-gray]:           https://github.com/postcss/postcss-color-gray
-[postcss-color-hex]:            https://github.com/postcss/postcss-color-hex
+[postcss-color-hex-alpha]:      https://github.com/postcss/postcss-color-hex-alpha
 [postcss-color-hwb]:            https://github.com/postcss/postcss-color-hwb
 [postcss-color-rebeccapurple]:  https://github.com/postcss/postcss-color-rebeccapurple
 [postcss-import]:               https://github.com/postcss/postcss-import
