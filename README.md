@@ -60,15 +60,15 @@ Sponsored by [Evil Martians](http://evilmartians.com/).
 
 * [postcss-calc] to reduce `calc()` usage
   (recommanded with `postcss-custom-properties`).
-* [postcss-color-function] to transform W3C CSS `color()` function.
-* [postcss-color-gray] to transform W3C CSS `gray()` function.
-* [postcss-color-hex-alpha] to transform W3C CSS RGBA hexadecimal notations
+* [postcss-color-function] to transform `color()` function.
+* [postcss-color-gray] to transform `gray()` function.
+* [postcss-color-hex-alpha] to transform hexadecimal notations with alpha
   (`#rrggbbaa` or `#rgba`).
-* [postcss-color-hwb] to transform W3C CSS `hwb()` function.
-* [postcss-color-rebeccapurple] to transform W3C CSS `rebeccapurple` color.
+* [postcss-color-hwb] to transform `hwb()` function.
+* [postcss-color-rebeccapurple] to transform `rebeccapurple` color.
 * [postcss-import] to transform `@import` rules by inlining content.
-* [postcss-custom-media] to add names for CSS Media Queries.
-* [postcss-custom-properties] to transform W3C CSS Custom Properties
+* [postcss-custom-media] to add names for Media Queries.
+* [postcss-custom-properties] to transform Custom Properties
   for cascading variables.
 * [postcss-url] to rebase or inline on `url()`.
 
