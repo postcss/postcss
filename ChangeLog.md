@@ -1,3 +1,6 @@
+## 2.2.6
+* Fix map generation for nodes without source (by Josiah Savary).
+
 ## 2.2.5
 * Fix source map with BOM marker support (by Mohammad Younes).
 * Fix source map paths (by Mohammad Younes).
