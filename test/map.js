@@ -440,9 +440,7 @@ describe('source maps', () => {
         var contenter = postcss( (css) => {
             css.first.prepend({ prop: 'content', value: '""' });
         });
-        var result = contenter.process('a:after{\n}', {
-            map: { sourcesContent: true }
-        });
+        var result = contenter.process('a:after{\n}', { map: true });
         consumer(result.map).originalPositionFor({ line: 2, column: 0 })
             .should.eql({ source: null, line: null, column: null, name: null });
     });
