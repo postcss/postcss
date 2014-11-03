@@ -14,15 +14,15 @@ module.exports = {
     maxTime: 15,
     tests: [
         {
-            name: 'PostCSS',
-            fn: function () {
-                return postcss.parse(css).toResult().css;
-            }
-        },
-        {
             name: 'Rework',
             fn: function () {
                 return rework(css).toString();
+            }
+        },
+        {
+            name: 'PostCSS',
+            fn: function () {
+                return postcss.parse(css).toResult().css;
             }
         },
         {
@@ -38,12 +38,6 @@ module.exports = {
             }
         },
         {
-            name: 'Stylecow',
-            fn: function () {
-                return stylecow.create(css).toString();
-            }
-        },
-        {
             name: 'Gonzales',
             fn: function () {
                 return gonzales.csspToSrc( gonzales.srcToCSSP(css) );
@@ -55,6 +49,12 @@ module.exports = {
                 return gonzalesPe.astToSrc({
                     ast: gonzalesPe.srcToAST({ src: css })
                 });
+            }
+        },
+        {
+            name: 'Stylecow',
+            fn: function () {
+                return stylecow.create(css).toString();
             }
         }
     ]

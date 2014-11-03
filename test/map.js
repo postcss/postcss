@@ -378,10 +378,10 @@ describe('source maps', () => {
             from: 'a.css',
             map: { prev: step1.map }
         });
-        var file2 = postcss.parse('b { }', { from: 'b.css' });
+        var file2 = postcss.parse('b { }', { from: 'b.css', map: true });
 
         file2.append( file1.childs[0].clone() );
-        var step2 = file2.toResult({ to: 'c.css' });
+        var step2 = file2.toResult({ to: 'c.css', map: true });
 
         should.not.exists( consumer(step2.map).sourceContentFor('b.css') );
     });
@@ -397,7 +397,7 @@ describe('source maps', () => {
             from: 'a.css',
             map: { prev: step1.map }
         });
-        var file2 = postcss.parse('b { }', { from: 'b.css' });
+        var file2 = postcss.parse('b { }', { from: 'b.css', map: true });
 
         file2.append( file1.childs[0].clone() );
         var step2 = file2.toResult({

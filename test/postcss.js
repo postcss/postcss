@@ -1,6 +1,7 @@
-var postcss = require('../lib/postcss');
-var Result  = require('../lib/result');
-var Root    = require('../lib/root');
+var CssSyntaxError = require('../lib/css-syntax-error');
+var postcss        = require('../lib/postcss');
+var Result         = require('../lib/result');
+var Root           = require('../lib/root');
 
 var path = require('path');
 
@@ -125,7 +126,11 @@ describe('postcss()', () => {
             try {
                 postcss().process('a {', { from: 'a.css' });
             } catch (e) {
-                error = e;
+                if ( e instanceof CssSyntaxError ) {
+                    error = e;
+                } else {
+                    throw e;
+                }
             }
 
             error.file.should.eql(path.resolve('a.css'));

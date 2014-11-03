@@ -12,13 +12,13 @@ describe('tokenize', () => {
     });
 
     it('tokenizes word', () => {
-        tokenize(new Input('ab')).should.eql([
+        tokenize(new Input('ab', { map: true })).should.eql([
             ['word', 'ab', { column: 1, line: 1 }, { column: 2, line: 1 }]
         ]);
     });
 
     it('splits word by !', () => {
-        tokenize(new Input('aa!bb')).should.eql([
+        tokenize(new Input('aa!bb', { map: true })).should.eql([
             ['word', 'aa',  { column: 1, line: 1 }, { column: 2, line: 1 }],
             ['word', '!bb', { column: 3, line: 1 }, { column: 5, line: 1 }],
         ]);
@@ -31,7 +31,7 @@ describe('tokenize', () => {
               '  }\n' +
               '/* small screen */\n' +
               '@media screen {}';
-        tokenize(new Input(css)).should.eql([
+        tokenize(new Input(css, { map: true })).should.eql([
             ['word', 'a', { column: 1, line: 1 }, { column: 1, line: 1 } ],
             ['space', ' '],
             ['{', '{', { column: 3, line: 1 }],
@@ -69,7 +69,7 @@ describe('tokenize', () => {
     });
 
     it('fixes unclosed string in safe smode', () => {
-        tokenize(new Input('"', { safe: true })).should.eql([
+        tokenize(new Input('"', { safe: true, map: true })).should.eql([
             ['string', '""', { column: 1, line: 1 }, { column: 1, line: 1 }]
         ]);
     });
@@ -80,7 +80,7 @@ describe('tokenize', () => {
     });
 
     it('fixes unclosed comment in safe smode', () => {
-        tokenize(new Input('/*', { safe: true })).should.eql([
+        tokenize(new Input('/*', { safe: true, map: true })).should.eql([
             ['comment', '/**/', { column: 1, line: 1 }, { column: 2, line: 1 }]
         ]);
     });

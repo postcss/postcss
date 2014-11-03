@@ -1,8 +1,9 @@
 var Root    = require('../lib/root');
 var parse   = require('../lib/parse');
 
-var fs   = require('fs');
-var path = require('path');
+var fs     = require('fs');
+var path   = require('path');
+var should = require('should');
 
 var read = file => fs.readFileSync(__dirname + '/cases/parse/' + file);
 
@@ -33,31 +34,50 @@ describe('postcss.parse()', () => {
         if ( !file.match(/\.css$/) ) return;
 
         it('parses ' + file, () => {
-            var css  = parse(read(file), { from: '/' + file });
+            var css  = parse(read(file), { from: '/' + file, map: true });
             var json = read(file.replace(/\.css$/, '.json')).toString().trim();
             JSON.stringify(css, null, 4).should.eql(json);
         });
     });
 
-    it('saves source file', () => {
-        var css = parse('a {}', { from: 'a.css' });
-        css.childs[0].source.file.should.eql(path.resolve('a.css'));
+    it('saves source file on map option', () => {
+        var css = parse('a {}', { from: 'a.css', map: true });
+        css.first.source.file.should.eql(path.resolve('a.css'));
+    });
+
+    it('saves source file on previous map', () => {
+        var root1 = parse('a {}', { map: { inline: true } });
+        var css   = root1.toResult({ map: { inline: true } }).css;
+        var root2 = parse(css);
+        root2.first.source.file.should.eql(path.resolve('to.css'));
+    });
+
+    it('misses source file on disabled map', () => {
+        var root1 = parse('a {}', { map: { inline: true } });
+        var css   = root1.toResult({ map: { inline: true } }).css;
+        var root2 = parse(css, { map: false });
+        should.not.exist( root2.first.source );
+    });
+
+    it('misses source file by default', () => {
+        var root = parse('a {}');
+        should.not.exist( root.first.source );
     });
 
     it('sets unique ID for file without name', () => {
-        var css1 = parse('a {}');
-        var css2 = parse('a {}');
-        css1.childs[0].source.id.should.match(/^<input css \d+>$/);
-        css2.childs[0].source.id.should.not.eql(css1.childs[0].source.id);
+        var css1 = parse('a {}', { map: true });
+        var css2 = parse('a {}', { map: true });
+        css1.first.source.id.should.match(/^<input css \d+>$/);
+        css2.first.source.id.should.not.eql(css1.first.source.id);
     });
 
     it('sets parent node', () => {
         var css = parse(read('atrule-rules.css'));
 
-        var support   = css.childs[0];
-        var keyframes = support.childs[0];
-        var from      = keyframes.childs[0];
-        var decl      = from.childs[0];
+        var support   = css.first;
+        var keyframes = support.first;
+        var from      = keyframes.first;
+        var decl      = from.first;
 
         decl.parent.should.exactly(from);
         from.parent.should.exactly(keyframes);
