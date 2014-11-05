@@ -69,6 +69,16 @@ describe('Root', () => {
 
     });
 
+    describe('remove()', () => {
+
+        it('fixes spaces on removing first rule', () => {
+            var css = parse('a{}\nb{}\n');
+            css.first.removeSelf();
+            css.toString().should.eql('b{}\n')
+        });
+
+    });
+
     describe('toResult()', () => {
 
         it('generates result with map', () => {
