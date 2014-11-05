@@ -525,13 +525,11 @@ If you want more control over source map generation, you can define the `map`
 option as an object with the following parameters:
 
 * `inline` (boolean): indicates the source map should be inserted into the CSS
-  string as a comment. By default, PostCSS will inline new source maps only if
-  the source map from a previous step inserted an inline source map.
+  base64 string as a comment. By default it is `true`. But if all previous map
+  are in separated too, PostCSS will not inline map too.
 
   If you inline a source map, `result.map` will be empty, as the source map
   will be contained within the text of `result.css`.
-
-  As a shortcut, `map { inline: true }` is equivalent to `map: 'inline'`.
 
 * `prev` (string, object, or boolean): map content from a previous processing
   step (for example, Sass compilation). PostCSS will try to read the previous
@@ -544,7 +542,7 @@ option as an object with the following parameters:
 
 * `sourcesContent` (boolean): indicates that we should set the origin content
   (for example, Sass source) of the source map. By default it is `true`.
-  But if all previous map do not contains sources content,
+  But if all previous map do not contain sources content,
   PostCSS will miss it too.
 
 * `annotation` (boolean or string): indicates if we should add annotation

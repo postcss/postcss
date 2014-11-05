@@ -115,9 +115,12 @@ describe('postcss()', () => {
             var one = postcss().process('a{}', {
                 from: 'a.css',
                 to:   'b.css',
-                map:   true
+                map: { inline: false }
             });
-            var two = postcss().process(one, { to: 'c.css' });
+            var two = postcss().process(one, {
+                to:   'c.css',
+                map: { inline: false }
+            });
             two.map.toJSON().sources.should.eql(['a.css']);
         });
 
@@ -172,12 +175,12 @@ describe('postcss()', () => {
             var one = postcss().process('a{}', {
                 from: 'a.css',
                 to:   'b.css',
-                map:   true
+                map:   { inline: false }
             });
             var two = postcss().process(one.css, {
                 from: 'b.css',
                 to:   'c.css',
-                map: { prev: one.map }
+                map: { prev: one.map, inline: false }
             });
             two.map.toJSON().sources.should.eql(['a.css']);
         });

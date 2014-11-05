@@ -39,6 +39,9 @@ describe('Result', () => {
             should.not.exists(result.map);
 
             result = new Result(this.root, { map: true });
+            should.not.exists(result.map);
+
+            result = new Result(this.root, { map: { inline: false } });
             result.map.should.be.a.instanceOf(mozilla.SourceMapGenerator);
         });
 

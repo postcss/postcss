@@ -1,4 +1,5 @@
-var postcss = require('../lib/postcss');
+var PreviousMap = require('../lib/previous-map');
+var postcss     = require('../lib/postcss');
 
 var mozilla = require('source-map');
 var should  = require('should');
@@ -6,6 +7,11 @@ var path    = require('path');
 var fs      = require('fs-extra');
 
 var consumer = map => new mozilla.SourceMapConsumer.fromSourceMap(map);
+
+var read = function (result) {
+    var prev = new PreviousMap(result.css, { });
+    return prev.consumer();
+};
 
 describe('source maps', () => {
     before( () => {
@@ -28,7 +34,7 @@ describe('source maps', () => {
     });
 
     it('return map generator', () => {
-        postcss().process('a {}', { map: true }).map
+        postcss().process('a {}', { map: { inline: false } }).map
             .should.be.instanceOf(mozilla.SourceMapGenerator);
     });
 
@@ -48,7 +54,7 @@ describe('source maps', () => {
             to:   'b.css',
             map:  true
         });
-        var map = consumer(result.map);
+        var map = read(result);
 
         map.file.should.eql('b.css');
 
@@ -78,7 +84,7 @@ describe('source maps', () => {
       var doubled = this.doubler.process(css, {
           from: 'a.css',
           to:   'b.css',
-          map:  true
+          map: { inline: false }
       });
 
       var lighted = this.lighter.process(doubled.css, {
@@ -101,7 +107,7 @@ describe('source maps', () => {
         var result = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map:  true
+            map: { inline: false }
         });
 
         result.css.should.eql("a { }\n/*# sourceMappingURL=b.css.map */");
@@ -154,67 +160,62 @@ describe('source maps', () => {
     it('generates inline map', () => {
         var css = 'a { }';
 
-        var common = postcss().process(css, {
+        var inline = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map:   true
-        });
-
-        var inline = postcss().process(css, {
-          from: 'a.css',
-          to:   'b.css',
-          map: { inline: true }
+            map: { inline: true }
         });
 
         should.not.exists(inline.map);
         inline.css.should.match(/# sourceMappingURL=data:/);
 
-        var base64 = new Buffer(common.map).toString('base64');
+        var separated = postcss().process(css, {
+          from: 'a.css',
+          to:   'b.css',
+          map: { inline: false }
+        });
+
+        var base64 = new Buffer(separated.map).toString('base64');
         inline.css.should.endWith(base64 + ' */');
     });
 
-    it('generates inline map by shortcut', () => {
+    it('generates inline map by default', () => {
         var inline = postcss().process('a { }', {
             from: 'a.css',
             to:   'b.css',
-            map:  'inline'
+            map:   true
         });
 
         inline.css.should.match(/# sourceMappingURL=data:/);
     });
 
-    it('generates inline map if previous map was inline', () => {
-        var css = 'a { color: black }';
-
-        var common1 = this.doubler.process(css, {
+    it('generates separated map if previous map was not inlined', () => {
+        var step1 = this.doubler.process('a { color: black }', {
             from: 'a.css',
             to:   'b.css',
-            map:   true
+            map: { inline: false }
         });
-        var common2 = this.lighter.process(common1.css, {
+        var step2 = this.lighter.process(step1.css, {
             from: 'b.css',
             to:   'c.css',
-            map: { prev: common1.map }
+            map: { prev: step1.map }
         });
 
-        var inline1 = this.doubler.process(css, {
+        should.exists(step2.map);
+    });
+
+    it('generates separated map on annotation option', () => {
+        var result = postcss().process('a { }', {
             from: 'a.css',
             to:   'b.css',
-            map: { inline: true }
-        });
-        var inline2 = this.lighter.process(inline1.css, {
-            from: 'b.css',
-            to:   'c.css'
+            map: { annotation: false }
         });
 
-        var base64 = new Buffer(common2.map).toString('base64');
-        inline2.css.should.endWith(base64 + ' */');
+        should.exists(result.map);
     });
 
     it('allows change map type', () => {
-        var css = 'a { }';
-
-        var step1 = postcss().process(css, {
+        var step1 = postcss().process('a { }', {
             from: 'a.css',
             to:   'b.css',
             map: { inline: true }
@@ -251,7 +252,7 @@ describe('source maps', () => {
         var result = this.doubler.process('a { }', {
             from: 'from/a.css',
             to:   'out/b.css',
-            map:   true
+            map: { inline: false }
         });
 
         result.css.should.match(/sourceMappingURL=b.css.map/);
@@ -265,7 +266,7 @@ describe('source maps', () => {
         var step1 = this.doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
-            map:   true
+            map: { inline: false }
         });
 
         var step2 = this.doubler.process(step1.css, {
@@ -291,7 +292,7 @@ describe('source maps', () => {
         var step1 = this.doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
-            map: { inline: true }
+            map:   true
         });
 
         var step2 = this.doubler.process(step1.css, {
@@ -308,7 +309,7 @@ describe('source maps', () => {
         var step1 = this.doubler.process('a { }', {
             from: 'source/a.css',
             to:   'one/b.css',
-            map: { annotation: 'maps/b.css.map' }
+            map: { annotation: 'maps/b.css.map', inline: false }
         });
 
         consumer(step1.map).originalPositionFor({ line: 1, column: 0 })
@@ -330,7 +331,7 @@ describe('source maps', () => {
         var step1 = this.doubler.process('a { }', {
             from: 'a.css',
             to:   'b.css',
-            map:  true
+            map: { inline: false }
         });
 
         var map  = step1.map;
@@ -354,7 +355,7 @@ describe('source maps', () => {
             map:   true
         });
 
-        consumer(result.map).sourceContentFor('../a.css').should.eql('a { }');
+        read(result).sourceContentFor('../a.css').should.eql('a { }');
     });
 
     it('misses source content on request', () => {
@@ -364,7 +365,7 @@ describe('source maps', () => {
             map: { sourcesContent: false }
         });
 
-        should.not.exists( consumer(result.map).sourceContentFor('../a.css') );
+        should.not.exists( read(result).sourceContentFor('../a.css') );
     });
 
     it('misses source content if previous not have', () => {
@@ -383,7 +384,7 @@ describe('source maps', () => {
         file2.append( file1.childs[0].clone() );
         var step2 = file2.toResult({ to: 'c.css', map: true });
 
-        should.not.exists( consumer(step2.map).sourceContentFor('b.css') );
+        should.not.exists( read(step2).sourceContentFor('b.css') );
     });
 
     it('misses source content on request', () => {
@@ -401,11 +402,11 @@ describe('source maps', () => {
 
         file2.append( file1.childs[0].clone() );
         var step2 = file2.toResult({
-            to: 'c.css',
+            to:   'c.css',
             map: { sourcesContent: false }
         });
 
-        var map = consumer(step2.map);
+        var map = read(step2);
         should.not.exists(map.sourceContentFor('b.css'));
         should.not.exists(map.sourceContentFor('../a.css'));
     });
@@ -416,8 +417,8 @@ describe('source maps', () => {
         two.root.first.source.file.should.eql(path.resolve('a.css'));
     });
 
-    it('works without file names for inline maps', () => {
-        var step1 = this.doubler.process('a { }', { map: 'inline' });
+    it('works without file names', () => {
+        var step1 = this.doubler.process('a { }', { map: true });
         var step2 = this.doubler.process(step1.css);
     });
 
@@ -425,15 +426,14 @@ describe('source maps', () => {
         var step1 = this.doubler.process('a { }', {
             from: 'вход.css',
             to:   'шаг1.css',
-            map:  'inline'
+            map:   true
         });
         var step2 = this.doubler.process(step1.css, {
             from: 'шаг1.css',
             to:   'выход.css',
         });
 
-        var map = postcss.parse(step2.css).prevMap.consumer();
-        map.file.should.eql('выход.css');
+        read(step2).file.should.eql('выход.css');
     });
 
     it('generates map for node created manually', () => {
@@ -441,17 +441,20 @@ describe('source maps', () => {
             css.first.prepend({ prop: 'content', value: '""' });
         });
         var result = contenter.process('a:after{\n}', { map: true });
-        consumer(result.map).originalPositionFor({ line: 2, column: 0 })
+        read(result).originalPositionFor({ line: 2, column: 0 })
             .should.eql({ source: null, line: null, column: null, name: null });
     });
 
     it('uses input file name as output file name', () => {
-        var result = this.doubler.process('a{}', { from: 'a.css', map: true });
+        var result = this.doubler.process('a{}', {
+            from: 'a.css',
+            map: { inline: false }
+        });
         result.map.toJSON().file.should.eql('a.css');
     });
 
     it('uses to.css as default output name', () => {
-        var result = this.doubler.process('a{}', { map: true });
+        var result = this.doubler.process('a{}', { map: { inline: false } });
         result.map.toJSON().file.should.eql('to.css');
     });
 
@@ -460,7 +463,7 @@ describe('source maps', () => {
         var result = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map:  true
+            map: { inline: false }
         });
 
         result.css.should.eql("a { }\n/*# sourceMappingURL=b.css.map */");
@@ -471,7 +474,7 @@ describe('source maps', () => {
         var result = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map:  { annotation: false }
+            map: { annotation: false, inline: false }
         });
 
         result.css.should.eql("a { }/*# sourceMappingURL=a.css.map */");
