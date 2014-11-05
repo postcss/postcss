@@ -74,7 +74,7 @@ describe('Root', () => {
         it('fixes spaces on removing first rule', () => {
             var css = parse('a{}\nb{}\n');
             css.first.removeSelf();
-            css.toString().should.eql('b{}\n')
+            css.toString().should.eql('b{}\n');
         });
 
     });
