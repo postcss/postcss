@@ -1,5 +1,6 @@
 var Declaration = require('../lib/declaration');
 var parse       = require('../lib/parse');
+var Rule        = require('../lib/rule');
 
 var should = require('should');
 
@@ -17,7 +18,7 @@ describe('Declaration', () => {
         it('returns boolean', () => {
             var decl = new Declaration({ prop: 'color', value: 'black' });
             decl.important = true;
-            decl.toString().should.eql('\n    color: black !important');
+            decl.toString().should.eql('color: black !important');
         });
 
     });
@@ -46,6 +47,8 @@ describe('Declaration', () => {
 
         it('inserts default spaces', () => {
             var decl = new Declaration({ prop: 'color', value: 'black' });
+            var rule = new Rule({ selector: 'a' });
+            rule.append(decl);
             decl.toString().should.eql("\n    color: black");
         });
 

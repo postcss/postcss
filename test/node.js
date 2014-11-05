@@ -50,7 +50,7 @@ describe('Node', () => {
             a.append( new Rule({ selector: 'b' }) );
 
             root.first.replace(a);
-            root.toString().should.eql('a {}b {}');
+            root.toString().should.eql('a {}\nb {}');
         });
 
     });
@@ -58,7 +58,7 @@ describe('Node', () => {
     describe('clone()', () => {
 
         it('clones nodes', () => {
-            var rule = new Rule({ selector: 'a' });
+            var rule = new Rule({ selector: 'a', after: '' });
             rule.append({ prop: 'color', value: '/**/black', before: '' });
 
             var clone = rule.clone();
@@ -99,38 +99,48 @@ describe('Node', () => {
 
     describe('style()', () => {
 
-        it('uses defaults without parent', () => {
-            var rule = new Rule({ selector: 'a' });
-            rule.style().should.eql({ between: ' ', after: '' });
+        it('uses node style', () => {
+            var rule = new Rule({ selector: 'a', before: ' ' });
+            rule.style('beforeRule').should.eql(' ');
         });
 
-        it('uses defaults for artificial nodes', () => {
+        it('hacks before for nodes without parent', () => {
+            var rule = new Rule({ selector: 'a' });
+            rule.style('beforeRule').should.eql('');
+        });
+
+        it('hacks before for first node', () => {
             var root = new Root();
             root.append(new Rule({ selector: 'a' }));
-            root.first.style().should.eql({ between: ' ', after: '' });
+            root.first.style('beforeRule').should.eql('');
         });
 
-        it('uses nodes style', () => {
+        it('hacks before for first decl', () => {
+            var decl = new Declaration({ prop: 'color', value: 'black' });
+            decl.style('beforeDecl').should.eql('');
+
+            var rule = new Rule({ selector: 'a' });
+            rule.append(decl);
+            decl.style('beforeDecl').should.eql('\n    ');
+        });
+
+        it('uses defaults without parent', () => {
+            var rule = new Rule({ selector: 'a' });
+            rule.style('beforeOpen').should.eql(' ');
+        });
+
+        it('uses defaults for unique node', () => {
             var root = new Root();
-            root.append( new Rule({ selector: 'a', between: '', after: '' }) );
-            root.first.style().should.eql({ between: '', after: '' });
+            root.append(new Rule({ selector: 'a' }));
+            root.first.style('beforeOpen').should.eql(' ');
         });
 
         it('clones style from first node', () => {
             var root = new Root();
-            root.append( new Rule({ selector: 'a', between: '', after: ' ' }) );
+            root.append( new Rule({ selector: 'a', between: '' }) );
             root.append( new Rule({ selector: 'b' }) );
 
-            root.last.style().should.eql({ between: '', after: ' ' });
-        });
-
-        it('uses different style for different node style type', () => {
-            var root = new Root();
-            root.append( new AtRule({ name: 'page', childs: [] }) );
-            root.append( new AtRule({ name: 'import' }) );
-
-            root.first.style().should.eql({ between: ' ', after: '' });
-            root.last.style().should.eql( { between: '' });
+            root.last.style('beforeOpen').should.eql('');
         });
 
     });

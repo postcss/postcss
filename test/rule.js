@@ -44,6 +44,8 @@ describe('Rule', () => {
         it('inserts default spaces', () => {
             var rule = new Rule({ selector: 'a' });
             rule.toString().should.eql('a {}');
+            rule.append({ prop: 'color', value: 'black' });
+            rule.toString().should.eql('a {\n    color: black\n}');
         });
 
         it('clone spaces from another rule', () => {
@@ -63,17 +65,6 @@ describe('Rule', () => {
 
             rule.append({ prop: 'top', value: '0' });
             rule.toString().should.eql("\nem {\n  top: 0\n  }");
-        });
-
-        it('calculates after depends on childs', () => {
-            var rule = new Rule({ selector: 'a' });
-            rule.toString().should.eql('a {}');
-
-            rule.append({ prop: 'color', value: 'black', before: ' ' });
-            rule.toString().should.eql('a { color: black }');
-
-            rule.first.before = "\n  ";
-            rule.toString().should.eql("a {\n  color: black\n}");
         });
 
     });
