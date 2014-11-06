@@ -288,7 +288,7 @@ gulp.task('css', function () {
         require('autoprefixer-core'),
         require('csswring')
      ];
-     return gulp.src('./src/style.css')
+     return gulp.src('./src/*.css')
         .pipe(sourcemaps.init())
         .pipe(postcss(processors))
         .pipe(sourcemaps.write('.'))
