@@ -1,4 +1,5 @@
 # PostCSS [![Build Status](https://travis-ci.org/postcss/postcss.png)](https://travis-ci.org/postcss/postcss)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/postcss/postcss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <img align="right" width="95" height="95" src="http://postcss.github.io/postcss/logo.png" title="Philosopher’s stone, logo of PostCSS">
 
