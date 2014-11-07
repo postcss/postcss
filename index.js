@@ -6,8 +6,12 @@ var escape = function (str) {
 };
 
 var regexp = ['lib', 'test'].map(function (i) {
-    return escape(path.join(__dirname, i));
+    return '^' + escape(path.join(__dirname, i) + path.sep);
 }).join('|');
 
-require('6to5/register')({ only: new RegExp(regexp) });
+require('6to5/register')({
+    only:        new RegExp('(' + regexp + ')'),
+    ignore:      false,
+    ignoreRegex: false
+});
 module.exports = require('./lib/postcss');
