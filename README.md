@@ -22,7 +22,12 @@ You can use this framework to write your own:
 * Text editor plugin to automate CSS routines.
 * Command-line CSS tool.
 
-Sponsored by [Evil Martians](http://evilmartians.com/).
+Twitter account for news, releases and new plugins: [@postcss].
+
+Sponsored by [Evil Martians].
+
+[Evil Martians]: http://evilmartians.com/
+[@postcss]:      https://twitter.com/postcss
 
 ## Built with PostCSS
 
