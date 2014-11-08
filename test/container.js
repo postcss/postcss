@@ -91,6 +91,15 @@ describe('Container', () => {
             indexes.should.eql([0]);
         });
 
+        it('allows to change childs', () => {
+            var props = [];
+            var result = this.rule.each( (decl, i) => {
+                props.push(decl.prop);
+                this.rule.childs = [this.rule.last, this.rule.first];
+            });
+            props.should.eql(['a', 'a']);
+        });
+
     });
 
     describe('eachInside()', () => {
