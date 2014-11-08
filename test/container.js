@@ -52,22 +52,46 @@ describe('Container', () => {
             size.should.eql(2);
         });
 
-        it('iterates with insertBefore', () => {
+        it('iterates with prepend insertBefore', () => {
             var size = 0;
             this.rule.each( (decl) => {
-                this.rule.insertBefore(decl, { prop: 'color', value: 'aqua' });
+                if ( decl.prop == 'a' ) {
+                    this.rule.insertBefore(decl, { prop: 'c', value: '3' });
+                }
                 size += 1;
             });
             size.should.eql(2);
         });
 
-        it('iterates with insertAfter', () => {
+        it('iterates with append insertBefore', () => {
             var size = 0;
             this.rule.each( (decl, i) => {
-                this.rule.insertBefore(i - 1, { prop: 'color', value: 'aqua' });
+                if ( decl.prop == 'a' ) {
+                    this.rule.insertBefore(i + 1, { prop: 'c', value: '3' });
+                }
+                size += 1;
+            });
+            size.should.eql(3);
+        });
+
+        it('iterates with prepend insertAfter', () => {
+            var size = 0;
+            this.rule.each( (decl, i) => {
+                this.rule.insertAfter(i - 1, { prop: 'c', value: '3' });
                 size += 1;
             });
             size.should.eql(2);
+        });
+
+        it('iterates with append insertAfter', () => {
+            var size = 0;
+            this.rule.each( (decl, i) => {
+                if ( decl.prop == 'a' ) {
+                    this.rule.insertAfter(i, { prop: 'c', value: '3' });
+                }
+                size += 1;
+            });
+            size.should.eql(3);
         });
 
         it('iterates with remove', () => {
