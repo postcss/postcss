@@ -27,7 +27,7 @@
         "execSync":               "1.0.2",
         "fs-extra":               "0.12.0",
         "gonzales":               "1.0.7",
-        "stylecow":               "3.0.1",
+        "stylecow":               "3.0.2",
         "through2":               "0.6.3",
         "request":                "2.47.0",
         "rework":                 "1.0.1",
