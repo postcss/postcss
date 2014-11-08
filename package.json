@@ -31,7 +31,7 @@
         "through2":               "0.6.3",
         "request":                "2.47.0",
         "rework":                 "1.0.1",
-        "should":                 "4.2.0",
+        "should":                 "4.2.1",
         "mensch":                 "0.3.1",
         "mocha":                  "2.0.1",
         "cssom":                  "0.3.0",
