@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 var tokenizer = require('../build/lib/tokenize');
-var Parser    = require('../build/lib/parse').Parser;
+var Parser    = require('../build/lib/parser');
 var Input     = require('../build/lib/input');
 
 var css    = fs.readFileSync(__dirname + '/test.css');
