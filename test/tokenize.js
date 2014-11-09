@@ -48,13 +48,19 @@ describe('tokenize', () => {
 
     it('tokenizes brackets', () => {
         tokenize(new Input('("\n\\)")')).should.eql([
-            ['brackets', '("\n\\)")', 1, 0, 2, 2]
+            ['brackets', '("\n\\)")', 1, 0, 2, 3]
         ]);
     });
 
-    it('tokenizes escaped string', () => {
+    it('tokenizes escaped brackets', () => {
         tokenize(new Input('(\\\\)')).should.eql([
             ['brackets', '(\\\\)', 1, 0, 1, 3]
+        ]);
+    });
+
+    it('tokenizes comment', () => {
+        tokenize(new Input('/* a\nb */')).should.eql([
+            ['comment', '/* a\nb */', 1, 0, 2, 3]
         ]);
     });
 
