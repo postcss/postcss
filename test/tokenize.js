@@ -20,7 +20,16 @@ describe('tokenize', () => {
     it('splits word by !', () => {
         tokenize(new Input('aa!bb', { map: true })).should.eql([
             ['word', 'aa',  1, 0, 1, 1],
-            ['word', '!bb', 1, 2, 1, 4],
+            ['word', '!bb', 1, 2, 1, 4]
+        ]);
+    });
+
+    it('tokenizes control chars', () => {
+        tokenize(new Input('{:;}', { map: true })).should.eql([
+            ['{', '{', 1, 0],
+            [':', ':', 1, 1],
+            [';', ';', 1, 2],
+            ['}', '}', 1, 3]
         ]);
     });
 
