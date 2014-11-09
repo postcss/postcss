@@ -13,54 +13,62 @@ describe('tokenize', () => {
 
     it('tokenizes word', () => {
         tokenize(new Input('ab')).should.eql([
-            ['word', 'ab', 1, 0, 1, 1]
+            ['word', 'ab', 1, 1, 1, 2]
         ]);
     });
 
     it('splits word by !', () => {
         tokenize(new Input('aa!bb')).should.eql([
-            ['word', 'aa',  1, 0, 1, 1],
-            ['word', '!bb', 1, 2, 1, 4]
+            ['word', 'aa',  1, 1, 1, 2],
+            ['word', '!bb', 1, 3, 1, 5]
+        ]);
+    });
+
+    it('changes lines', () => {
+        tokenize(new Input('a\nb')).should.eql([
+            ['word',  'a', 1, 1, 1, 1],
+            ['space', '\n'],
+            ['word',  'b', 2, 1, 2, 1]
         ]);
     });
 
     it('tokenizes control chars', () => {
         tokenize(new Input('{:;}')).should.eql([
-            ['{', '{', 1, 0],
-            [':', ':', 1, 1],
-            [';', ';', 1, 2],
-            ['}', '}', 1, 3]
+            ['{', '{', 1, 1],
+            [':', ':', 1, 2],
+            [';', ';', 1, 3],
+            ['}', '}', 1, 4]
         ]);
     });
 
     it('tokenizes string', () => {
         tokenize(new Input('\'"\'"\\""')).should.eql([
-            ['string', "'\"'",  1, 0, 1, 2],
-            ['string', '"\\""', 1, 3, 1, 6]
+            ['string', "'\"'",  1, 1, 1, 3],
+            ['string', '"\\""', 1, 4, 1, 7]
         ]);
     });
 
     it('tokenizes escaped string', () => {
         tokenize(new Input('"\\\\"')).should.eql([
-            ['string', '"\\\\"', 1, 0, 1, 3]
+            ['string', '"\\\\"', 1, 1, 1, 4]
         ]);
     });
 
     it('tokenizes brackets', () => {
         tokenize(new Input('("\n\\)")')).should.eql([
-            ['brackets', '("\n\\)")', 1, 0, 2, 3]
+            ['brackets', '("\n\\)")', 1, 1, 2, 4]
         ]);
     });
 
     it('tokenizes escaped brackets', () => {
         tokenize(new Input('(\\\\)')).should.eql([
-            ['brackets', '(\\\\)', 1, 0, 1, 3]
+            ['brackets', '(\\\\)', 1, 1, 1, 4]
         ]);
     });
 
     it('tokenizes comment', () => {
         tokenize(new Input('/* a\nb */')).should.eql([
-            ['comment', '/* a\nb */', 1, 0, 2, 3]
+            ['comment', '/* a\nb */', 1, 1, 2, 4]
         ]);
     });
 
@@ -72,34 +80,32 @@ describe('tokenize', () => {
               '/* small screen */\n' +
               '@media screen {}';
         tokenize(new Input(css)).should.eql([
-            ['word', 'a', { column: 1, line: 1 }, { column: 1, line: 1 } ],
+            ['word', 'a', 1, 1, 1, 1],
             ['space', ' '],
-            ['{', '{', { column: 3, line: 1 }],
+            ['{', '{', 1, 3],
             ['space', '\n  '],
-            ['word', 'content', { column: 3, line: 2 }, { column: 9, line: 2 }],
-            [':', ':', { column: 10, line: 2 }],
+            ['word', 'content', 2, 3, 2, 9],
+            [':', ':', 2, 10],
             ['space', ' '],
-            ['string', '"a"', { column: 12, line: 2 }, { column: 14, line: 2 }],
-            [';', ';', { column: 15, line: 2 }],
+            ['string', '"a"', 2, 12, 2, 14],
+            [';', ';', 2, 15],
             ['space', '\n  '],
-            ['word', 'width', { column: 3, line: 3 }, { column: 7, line: 3 }],
-            [':', ':', { column: 8, line: 3 }],
+            ['word', 'width', 3, 3, 3, 7],
+            [':', ':', 3, 8],
             ['space', ' '],
-            ['word', 'calc', { column: 10, line: 3 }, { column: 13, line: 3 }],
-            ['brackets', '(1px;)', { column: 14, line: 3 },
-                                   { column: 19, line: 3 }],
+            ['word', 'calc', 3, 10, 3, 13],
+            ['brackets', '(1px;)', 3, 14, 3, 19],
             ['space', '\n  '],
-            ['}', '}', { column: 3, line: 4 }],
+            ['}', '}', 4, 3],
             ['space', '\n'],
-            ['comment', '/* small screen */', { column: 1, line: 5 },
-                                              { column: 18, line: 5 }],
+            ['comment', '/* small screen */', 5, 1, 5, 18],
             ['space', '\n'],
-            ['at-word', '@media', { column: 1, line: 6 }],
+            ['at-word', '@media', 6, 1, 6, 6],
             ['space', ' '],
-            ['word', 'screen', { column: 8, line: 6 }, { column: 13, line: 6 }],
+            ['word', 'screen', 6, 8, 6, 13],
             ['space', ' '],
-            ['{', '{', { column: 15, line: 6 }],
-            ['}', '}', { column: 16, line: 6 }]
+            ['{', '{', 6, 15],
+            ['}', '}', 6, 16]
         ]);
     });
 
@@ -110,7 +116,7 @@ describe('tokenize', () => {
 
     it('fixes unclosed string in safe smode', () => {
         tokenize(new Input('"', { safe: true })).should.eql([
-            ['string', '""', { column: 1, line: 1 }, { column: 1, line: 1 }]
+            ['string', '""', 1, 1, 1, 1]
         ]);
     });
 
@@ -121,7 +127,7 @@ describe('tokenize', () => {
 
     it('fixes unclosed comment in safe smode', () => {
         tokenize(new Input('/*', { safe: true })).should.eql([
-            ['comment', '/**/', { column: 1, line: 1 }, { column: 2, line: 1 }]
+            ['comment', '/**/', 1, 1, 1, 2]
         ]);
     });
 
