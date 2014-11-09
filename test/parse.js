@@ -17,7 +17,8 @@ describe('postcss.parse()', () => {
     describe('empty file', () => {
 
         it('parses UTF-8 BOM', () => {
-            parse('\uFEFF@host { a {\f} }');
+            var css = parse('\uFEFF@host { a {\f} }');
+            css.first.before.should.eql('');
         });
 
         it('parses empty file', () => {
