@@ -12,20 +12,20 @@ describe('tokenize', () => {
     });
 
     it('tokenizes word', () => {
-        tokenize(new Input('ab', { map: true })).should.eql([
+        tokenize(new Input('ab')).should.eql([
             ['word', 'ab', 1, 0, 1, 1]
         ]);
     });
 
     it('splits word by !', () => {
-        tokenize(new Input('aa!bb', { map: true })).should.eql([
+        tokenize(new Input('aa!bb')).should.eql([
             ['word', 'aa',  1, 0, 1, 1],
             ['word', '!bb', 1, 2, 1, 4]
         ]);
     });
 
     it('tokenizes control chars', () => {
-        tokenize(new Input('{:;}', { map: true })).should.eql([
+        tokenize(new Input('{:;}')).should.eql([
             ['{', '{', 1, 0],
             [':', ':', 1, 1],
             [';', ';', 1, 2],
@@ -34,17 +34,29 @@ describe('tokenize', () => {
     });
 
     it('tokenizes string', () => {
-        tokenize(new Input('\'"\'"\\""', { map: true })).should.eql([
+        tokenize(new Input('\'"\'"\\""')).should.eql([
             ['string', "'\"'",  1, 0, 1, 2],
             ['string', '"\\""', 1, 3, 1, 6]
         ]);
-    })
+    });
 
     it('tokenizes escaped string', () => {
-        tokenize(new Input('"\\\\"', { map: true })).should.eql([
+        tokenize(new Input('"\\\\"')).should.eql([
             ['string', '"\\\\"', 1, 0, 1, 3]
         ]);
-    })
+    });
+
+    it('tokenizes brackets', () => {
+        tokenize(new Input('("\n\\)")')).should.eql([
+            ['brackets', '("\n\\)")', 1, 0, 2, 2]
+        ]);
+    });
+
+    it('tokenizes escaped string', () => {
+        tokenize(new Input('(\\\\)')).should.eql([
+            ['brackets', '(\\\\)', 1, 0, 1, 3]
+        ]);
+    });
 
     it('tokenizes CSS', () => {
         var css = 'a {\n' +
@@ -53,7 +65,7 @@ describe('tokenize', () => {
               '  }\n' +
               '/* small screen */\n' +
               '@media screen {}';
-        tokenize(new Input(css, { map: true })).should.eql([
+        tokenize(new Input(css)).should.eql([
             ['word', 'a', { column: 1, line: 1 }, { column: 1, line: 1 } ],
             ['space', ' '],
             ['{', '{', { column: 3, line: 1 }],
@@ -91,7 +103,7 @@ describe('tokenize', () => {
     });
 
     it('fixes unclosed string in safe smode', () => {
-        tokenize(new Input('"', { safe: true, map: true })).should.eql([
+        tokenize(new Input('"', { safe: true })).should.eql([
             ['string', '""', { column: 1, line: 1 }, { column: 1, line: 1 }]
         ]);
     });
@@ -102,7 +114,7 @@ describe('tokenize', () => {
     });
 
     it('fixes unclosed comment in safe smode', () => {
-        tokenize(new Input('/*', { safe: true, map: true })).should.eql([
+        tokenize(new Input('/*', { safe: true })).should.eql([
             ['comment', '/**/', { column: 1, line: 1 }, { column: 2, line: 1 }]
         ]);
     });
