@@ -3,7 +3,7 @@ var Input    = require('../lib/input');
 
 describe('tokenize', () => {
 
-    it('tokenizes empty string', () => {
+    it('tokenizes empty file', () => {
         tokenize(new Input('')).should.eql([]);
     });
 
@@ -32,6 +32,19 @@ describe('tokenize', () => {
             ['}', '}', 1, 3]
         ]);
     });
+
+    it('tokenizes string', () => {
+        tokenize(new Input('\'"\'"\\""', { map: true })).should.eql([
+            ['string', "'\"'",  1, 0, 1, 2],
+            ['string', '"\\""', 1, 3, 1, 6]
+        ]);
+    })
+
+    it('tokenizes escaped string', () => {
+        tokenize(new Input('"\\\\"', { map: true })).should.eql([
+            ['string', '"\\\\"', 1, 0, 1, 3]
+        ]);
+    })
 
     it('tokenizes CSS', () => {
         var css = 'a {\n' +
