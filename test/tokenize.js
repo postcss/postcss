@@ -13,14 +13,14 @@ describe('tokenize', () => {
 
     it('tokenizes word', () => {
         tokenize(new Input('ab', { map: true })).should.eql([
-            ['word', 'ab', { column: 1, line: 1 }, { column: 2, line: 1 }]
+            ['word', 'ab', 1, 0, 1, 1]
         ]);
     });
 
     it('splits word by !', () => {
         tokenize(new Input('aa!bb', { map: true })).should.eql([
-            ['word', 'aa',  { column: 1, line: 1 }, { column: 2, line: 1 }],
-            ['word', '!bb', { column: 3, line: 1 }, { column: 5, line: 1 }],
+            ['word', 'aa',  1, 0, 1, 1],
+            ['word', '!bb', 1, 2, 1, 4],
         ]);
     });
 
