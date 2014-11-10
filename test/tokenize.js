@@ -8,7 +8,7 @@ describe('tokenize', () => {
     });
 
     it('tokenizes space', () => {
-        tokenize(new Input('\n ')).should.eql([ ['space', '\n '] ]);
+        tokenize(new Input('\r\n \f\t')).should.eql([ ['space', '\r\n \f\t'] ]);
     });
 
     it('tokenizes word', () => {

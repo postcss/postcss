@@ -35,14 +35,14 @@ describe('postcss.parse()', () => {
         if ( !file.match(/\.css$/) ) return;
 
         it('parses ' + file, () => {
-            var css  = parse(read(file), { from: '/' + file, map: true });
+            var css  = parse(read(file), { from: '/' + file });
             var json = read(file.replace(/\.css$/, '.json')).toString().trim();
             JSON.stringify(css, null, 4).should.eql(json);
         });
     });
 
-    it('saves source file on map option', () => {
-        var css = parse('a {}', { from: 'a.css', map: true });
+    it('saves source file', () => {
+        var css = parse('a {}', { from: 'a.css' });
         css.first.source.file.should.eql(path.resolve('a.css'));
     });
 
@@ -53,21 +53,9 @@ describe('postcss.parse()', () => {
         root2.first.source.file.should.eql(path.resolve('to.css'));
     });
 
-    it('misses source file on disabled map', () => {
-        var root1 = parse('a {}', { map: { inline: true } });
-        var css   = root1.toResult({ map: { inline: true } }).css;
-        var root2 = parse(css, { map: false });
-        should.not.exist( root2.first.source );
-    });
-
-    it('misses source file by default', () => {
-        var root = parse('a {}');
-        should.not.exist( root.first.source );
-    });
-
     it('sets unique ID for file without name', () => {
-        var css1 = parse('a {}', { map: true });
-        var css2 = parse('a {}', { map: true });
+        var css1 = parse('a {}');
+        var css2 = parse('a {}');
         css1.first.source.id.should.match(/^<input css \d+>$/);
         css2.first.source.id.should.not.eql(css1.first.source.id);
     });

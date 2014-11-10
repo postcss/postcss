@@ -262,18 +262,6 @@ describe('source maps', () => {
         map.sources.should.eql(['../from/a.css']);
     });
 
-    it('works from subdir to root', () => {
-        var result = this.doubler.process('a { }', {
-            from: 'from/a.css',
-            to:   'b.css',
-            map:   true
-        });
-
-        var map = read(result);
-        map.file.should.eql('b.css');
-        map.sources.should.eql(['from/a.css']);
-    });
-
     it('uses map from subdir', () => {
         var step1 = this.doubler.process('a { }', {
             from: 'a.css',
