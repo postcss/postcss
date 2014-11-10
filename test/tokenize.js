@@ -24,11 +24,11 @@ describe('tokenize', () => {
         ]);
     });
 
-    it('changes lines', () => {
-        tokenize(new Input('a\nb')).should.eql([
+    it('changes lines in spaces', () => {
+        tokenize(new Input('a \n b')).should.eql([
             ['word',  'a', 1, 1, 1, 1],
-            ['space', '\n'],
-            ['word',  'b', 2, 1, 2, 1]
+            ['space', ' \n '],
+            ['word',  'b', 2, 2, 2, 2]
         ]);
     });
 
@@ -66,9 +66,25 @@ describe('tokenize', () => {
         ]);
     });
 
+    it('changes lines in brackets', () => {
+        tokenize(new Input('a( \n )b')).should.eql([
+            ['word',     'a',      1, 1, 1, 1],
+            ['brackets', '( \n )', 1, 2, 2, 2],
+            ['word',     'b',      2, 3, 2, 3]
+        ]);
+    });
+
     it('tokenizes comment', () => {
         tokenize(new Input('/* a\nb */')).should.eql([
             ['comment', '/* a\nb */', 1, 1, 2, 4]
+        ]);
+    });
+
+    it('changes lines in comments', () => {
+        tokenize(new Input('a/* \n */b')).should.eql([
+            ['word',    'a',        1, 1, 1, 1],
+            ['comment', '/* \n */', 1, 2, 2, 2],
+            ['word',    'b',        2, 4, 2, 4]
         ]);
     });
 
