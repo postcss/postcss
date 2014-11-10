@@ -83,7 +83,7 @@ describe('tokenize', () => {
     it('changes lines in comments', () => {
         tokenize(new Input('a/* \n */b')).should.eql([
             ['word',    'a',        1, 1, 1, 1],
-            ['comment', '/* \n */', 1, 2, 2, 2],
+            ['comment', '/* \n */', 1, 2, 2, 3],
             ['word',    'b',        2, 4, 2, 4]
         ]);
     });
