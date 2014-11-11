@@ -1,3 +1,27 @@
+## 3.0 “Marquis Andrealphus”
+* New parser, which become the fastest ever CSS parser written in JavaScript.
+* Parser can now parse declarations and rules in one parent (like in `@page`)
+  and nested declarations for plugins like `postcss-nested`.
+* Child nodes array is now in `childs` property, instead of `decls` and `rules`.
+* `map.inline` and `map.sourcesContent` options are now `true` by default.
+* Fix iterators (`each`, `insertAfter`) on children array changes.
+* Use previous source map to show origin source of CSS syntax error.
+* Use 6to5 ES6 compiler, instead of ES6 Transpiler.
+* Use code style for manually added rules from existing rules.
+* Use `from` option from previous source map `file` field.
+* Set `to` value to `from` if `to` option is missing.
+* Use better node source name when missing `from` option.
+* Show a syntax error when `;` is missed between declarations.
+* Allow to pass `PostCSS` instance or list of plugins to `use()` method.
+* Allow to pass `Result` instance to `process()` method.
+* Trim Unicode BOM on source maps parsing.
+* Parse at-rules without spaces like `@import"file"`.
+* Better previous `sourceMappingURL` annotation comment cleaning.
+* Do not remove previous `sourceMappingURL` comment on `map.annotation: false`.
+* Parse nameless at-rules in Safe Mode.
+* Fix source map generation for nodes without source.
+* Fix next child `before` if `Root` first child got removed.
+
 ## 2.2.6
 * Fix map generation for nodes without source (by Josiah Savary).
 
