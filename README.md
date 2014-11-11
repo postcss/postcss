@@ -80,6 +80,7 @@ Sponsored by [Evil Martians].
   for cascading variables.
 * [postcss-url] to rebase or inline on `url()`.
 * [postcss-font-variant] to set `font-feature-settings` by readable properties.
+* [postcss-nested] to unwrap rules in other rules, like you can write in Sass.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -92,6 +93,7 @@ Sponsored by [Evil Martians].
 [postcss-custom-properties]:    https://github.com/postcss/postcss-custom-properties
 [postcss-url]:                  https://github.com/postcss/postcss-url
 [postcss-font-variant]:         https://github.com/postcss/postcss-font-variant
+[postcss-nested]:               https://github.com/postcss/postcss-nested
 
 ## Quick Example
 
