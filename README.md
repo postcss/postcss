@@ -79,6 +79,7 @@ Sponsored by [Evil Martians].
 * [postcss-custom-properties] to transform Custom Properties
   for cascading variables.
 * [postcss-url] to rebase or inline on `url()`.
+* [postcss-font-variant] to set `font-feature-settings` by readable properties.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -90,6 +91,7 @@ Sponsored by [Evil Martians].
 [postcss-custom-media]:         https://github.com/postcss/postcss-custom-media
 [postcss-custom-properties]:    https://github.com/postcss/postcss-custom-properties
 [postcss-url]:                  https://github.com/postcss/postcss-url
+[postcss-font-variant]:         https://github.com/postcss/postcss-font-variant
 
 ## Quick Example
 
