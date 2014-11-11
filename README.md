@@ -153,8 +153,7 @@ PostCSS generates a source map of its changes:
 
 ```js
 result = processor.process(css, { map: true, from: 'from.css', to: 'to.css' });
-result.css // String with processed CSS
-result.map // Source map
+result.css // String with processed CSS and inlined source map
 ```
 
 And modifies a source map from previous steps (for example, Sass preprocessor):
