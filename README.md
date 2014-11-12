@@ -503,7 +503,7 @@ in the options passed to `processor.process(css, opts)`.
 var result = processor.process(css, {
     from: 'main.css',
     to:   'main.out.css'
-    map:  {inline: false},
+    map: { inline: false },
 });
 
 result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
@@ -515,7 +515,7 @@ fs.writeFileSync('main.out.css.map', result.map);
 Or set `from` in `postcss.parse(css, opts)` and `to` in `root.toResult(opts)`:
 
 ```js
-var root = postcss.parse(css, { from: 'main.css', {inline: false} });
+var root = postcss.parse(css, { from: 'main.css', { inline: false } });
 root.last.removeSelf(); // Example transformation
 
 var result = root.toResult({ to: 'main.out.css' });
