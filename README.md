@@ -493,14 +493,17 @@ PostCSS has great source map support. To ensure that you generate the correct
 source map, you must indicate the input and output CSS files
 paths (using the options `from` and `to` respectively).
 
-To generate a new source map with the default options, provide `map: true`
+To generate a new source map with the default options, provide `map: true`.
+This will inline sourcemap with source content.
+
+If you don't want the map inlined, you can use `inline: false`
 in the options passed to `processor.process(css, opts)`.
 
 ```js
 var result = processor.process(css, {
     from: 'main.css',
     to:   'main.out.css'
-    map:  true,
+    map:  {inline: false},
 });
 
 result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
@@ -512,7 +515,7 @@ fs.writeFileSync('main.out.css.map', result.map);
 Or set `from` in `postcss.parse(css, opts)` and `to` in `root.toResult(opts)`:
 
 ```js
-var root = postcss.parse(css, { from: 'main.css' });
+var root = postcss.parse(css, { from: 'main.css', {inline: false} });
 root.last.removeSelf(); // Example transformation
 
 var result = root.toResult({ to: 'main.out.css' });
