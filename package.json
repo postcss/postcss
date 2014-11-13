@@ -12,12 +12,12 @@
     "dependencies": {
         "source-map": "~0.1.40",
         "js-base64":  "~2.1.5",
-        "6to5":       "1.12.8"
+        "6to5":       "1.12.9"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "0.1.6",
         "gulp-bench-summary":     "0.1.0",
-        "gulp-json-editor":       "2.1.1",
+        "gulp-json-editor":       "2.2.1",
         "jshint-stylish":         "1.0.0",
         "gulp-jshint":            "1.9.0",
         "gonzales-pe":            "3.0.0-10",
