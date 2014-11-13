@@ -1,3 +1,7 @@
+## 3.0.1
+* Fix Rhino JS runtime support.
+* Typo in deprecated warning (by Maxime Thirouin).
+
 ## 3.0 “Marquis Andrealphus”
 * New parser, which become the fastest ever CSS parser written in JavaScript.
 * Parser can now parse declarations and rules in one parent (like in `@page`)
