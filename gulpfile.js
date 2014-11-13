@@ -97,10 +97,10 @@ gulp.task('bench:bootstrap', function (done) {
 
 gulp.task('bench', ['build', 'bench:bootstrap'], function () {
     var bench   = require('gulp-bench');
-    var summary = require('./tasks/summary');
+    var summary = require('gulp-bench-summary');
     return gulp.src('./benchmark/general.js', { read: false })
         .pipe(bench())
-        .pipe(summary);
+        .pipe(summary('PostCSS'));
 });
 
 // Tests
