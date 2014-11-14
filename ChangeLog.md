@@ -1,3 +1,7 @@
+## 3.0.2
+* Fix empty comment parsing.
+* Fix `Root#normalize` in some inserts.
+
 ## 3.0.1
 * Fix Rhino JS runtime support.
 * Typo in deprecated warning (by Maxime Thirouin).
