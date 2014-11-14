@@ -48,6 +48,7 @@ Sponsored by [Evil Martians].
 * [RTLCSS] mirrors styles for right-to-left locales.
 * [CSS Byebye] explicitly removes the CSS rules that you don’t want.
 * [postcss-epub] to prefix ePub3 properties.
+* [doiuse] to lint your CSS on unsupported properties by Can I Use.
 
 [Autoprefixer]:      https://github.com/postcss/autoprefixer
 [BEM linter]:        https://github.com/necolas/postcss-bem-linter
@@ -63,6 +64,7 @@ Sponsored by [Evil Martians].
 [RTLCSS]:            https://github.com/MohammadYounes/rtlcss
 [CSS Byebye]:        https://github.com/AoDev/css-byebye
 [postcss-epub]:      https://github.com/Rycochet/postcss-epub
+[doiuse]:            https://github.com/anandthakker/doiuse
 
 ### Plugins
 
