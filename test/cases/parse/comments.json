@@ -8,7 +8,7 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                 "file": "/comments.css",
                 "end": {
                     "line": 1,
@@ -21,19 +21,57 @@
             "right": " "
         },
         {
+            "type": "comment",
+            "source": {
+                "start": {
+                    "line": 2,
+                    "column": 1
+                },
+                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                "file": "/comments.css",
+                "end": {
+                    "line": 2,
+                    "column": 4
+                }
+            },
+            "before": "\n",
+            "left": "",
+            "text": "",
+            "right": ""
+        },
+        {
+            "type": "comment",
+            "source": {
+                "start": {
+                    "line": 3,
+                    "column": 1
+                },
+                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                "file": "/comments.css",
+                "end": {
+                    "line": 3,
+                    "column": 5
+                }
+            },
+            "before": "\n",
+            "left": " ",
+            "text": "",
+            "right": ""
+        },
+        {
             "type": "rule",
             "childs": [
                 {
                     "type": "comment",
                     "source": {
                         "start": {
-                            "line": 3,
+                            "line": 5,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
-                            "line": 3,
+                            "line": 5,
                             "column": 16
                         }
                     },
@@ -46,13 +84,13 @@
                     "type": "decl",
                     "source": {
                         "start": {
-                            "line": 4,
+                            "line": 6,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
-                            "line": 4,
+                            "line": 6,
                             "column": 17
                         }
                     },
@@ -65,13 +103,13 @@
                     "type": "comment",
                     "source": {
                         "start": {
-                            "line": 5,
+                            "line": 7,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
-                            "line": 5,
+                            "line": 7,
                             "column": 17
                         }
                     },
@@ -84,13 +122,13 @@
                     "type": "decl",
                     "source": {
                         "start": {
-                            "line": 6,
+                            "line": 8,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
-                            "line": 6,
+                            "line": 8,
                             "column": 28
                         }
                     },
@@ -103,13 +141,13 @@
                     "type": "comment",
                     "source": {
                         "start": {
-                            "line": 7,
+                            "line": 9,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                         "file": "/comments.css",
                         "end": {
-                            "line": 7,
+                            "line": 9,
                             "column": 13
                         }
                     },
@@ -121,13 +159,13 @@
             ],
             "source": {
                 "start": {
-                    "line": 2,
+                    "line": 4,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                 "file": "/comments.css",
                 "end": {
-                    "line": 8,
+                    "line": 10,
                     "column": 1
                 }
             },
@@ -140,13 +178,13 @@
             "type": "comment",
             "source": {
                 "start": {
-                    "line": 9,
+                    "line": 11,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
+                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n",
                 "file": "/comments.css",
                 "end": {
-                    "line": 9,
+                    "line": 11,
                     "column": 7
                 }
             },
