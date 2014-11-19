@@ -49,6 +49,7 @@ Sponsored by [Evil Martians].
 * [CSS Byebye] explicitly removes the CSS rules that you don’t want.
 * [postcss-epub] to prefix ePub3 properties.
 * [doiuse] to lint your CSS on unsupported properties by Can I Use.
+* [postcss-assets] to inline files and insert image width and height.
 
 [Autoprefixer]:      https://github.com/postcss/autoprefixer
 [BEM linter]:        https://github.com/necolas/postcss-bem-linter
@@ -65,10 +66,10 @@ Sponsored by [Evil Martians].
 [CSS Byebye]:        https://github.com/AoDev/css-byebye
 [postcss-epub]:      https://github.com/Rycochet/postcss-epub
 [doiuse]:            https://github.com/anandthakker/doiuse
+[postcss-assets]:    https://github.com/borodean/postcss-assets
 
 ### Plugins
 
-* [postcss-assets] to isolate stylesheets from environmental changes, get image sizes and inline files.
 * [postcss-calc] to reduce `calc()` usage
   (recommanded with `postcss-custom-properties`).
 * [postcss-color-function] to transform `color()` function.
@@ -85,7 +86,6 @@ Sponsored by [Evil Martians].
 * [postcss-font-variant] to set `font-feature-settings` by readable properties.
 * [postcss-nested] to unwrap rules in other rules, like you can write in Sass.
 
-[postcss-assets]:               https://github.com/borodean/postcss-assets
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
 [postcss-color-gray]:           https://github.com/postcss/postcss-color-gray
