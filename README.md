@@ -68,6 +68,7 @@ Sponsored by [Evil Martians].
 
 ### Plugins
 
+* [postcss-assets] to isolate stylesheets from environmental changes, get image sizes and inline files.
 * [postcss-calc] to reduce `calc()` usage
   (recommanded with `postcss-custom-properties`).
 * [postcss-color-function] to transform `color()` function.
@@ -84,6 +85,7 @@ Sponsored by [Evil Martians].
 * [postcss-font-variant] to set `font-feature-settings` by readable properties.
 * [postcss-nested] to unwrap rules in other rules, like you can write in Sass.
 
+[postcss-assets]:               https://github.com/borodean/postcss-assets
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
 [postcss-color-gray]:           https://github.com/postcss/postcss-color-gray
