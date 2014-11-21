@@ -1,3 +1,6 @@
+## 3.0.3
+* Increase tokenizer speed (by Roman Dvornov).
+
 ## 3.0.2
 * Fix empty comment parsing.
 * Fix `Root#normalize` in some inserts.
