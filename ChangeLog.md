@@ -1,3 +1,6 @@
+## 3.0.4
+* Fix Safe Mode on unknown word before declaration.
+
 ## 3.0.3
 * Increase tokenizer speed (by Roman Dvornov).
 
