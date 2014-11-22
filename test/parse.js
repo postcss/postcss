@@ -135,6 +135,13 @@ describe('postcss.parse()', () => {
             root.first.after.should.eql(' one ');
         });
 
+        it('fixes 2 properties in safe mode', () => {
+            var root = parse('a { one color: white; one }', { safe: true });
+            root.first.childs.length.should.eql(1);
+            root.first.first.prop.should.eql('color');
+            root.first.first.before.should.eql(' one ');
+        });
+
         it('throws on nameless at-rule', () => {
             ( () => parse('@') ).should.throw(/:1:1: At-rule without name/);
         });
