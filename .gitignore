@@ -2,6 +2,7 @@
 *~
 
 node_modules/
+.bundle/
 
 benchmark/results/
 benchmark/cache/
