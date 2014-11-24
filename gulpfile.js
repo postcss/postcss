@@ -103,7 +103,7 @@ gulp.task('bench:processors', ['build', 'bench:bootstrap'], function () {
         .pipe(summary('PostCSS'));
 });
 
-gulp.task('bench', ['build', 'bench:bootstrap'], function () {
+gulp.task('bench:parsers', ['build', 'bench:bootstrap'], function () {
     var bench   = require('gulp-bench');
     var summary = require('gulp-bench-summary');
     return gulp.src('./benchmark/parsers.js', { read: false })
