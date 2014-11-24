@@ -10,6 +10,7 @@ var scss = __dirname + '/cache/bootstrap.scss';
 fs.writeFileSync(scss, css);
 
 var postcss = require('../build');
+var cssnext = require('cssnext');
 var stylus  = require('stylus');
 var sass    = require('node-sass');
 var less    = require('less');
@@ -21,7 +22,7 @@ module.exports = {
         {
             name: 'PostCSS',
             fn: function (done) {
-                return postcss().process(css, { map: false }).css;
+                return postcss(cssnext).process(css, { map: false }).css;
             }
         },
         {
