@@ -25,11 +25,17 @@ describe('CssSyntaxError', () => {
         var error = parseError('a {\n  content: "\n}');
 
         error.should.be.a.instanceOf(CssSyntaxError);
+        error.name.should.eql('CssSyntaxError');
         error.message.should.be.eql('<css input>:2:12: Unclosed quote');
         error.reason.should.eql('Unclosed quote');
         error.line.should.eql(2);
         error.column.should.eql(12);
         error.source.should.eql('a {\n  content: "\n}');
+    });
+
+    it('has stack trace', () => {
+        parseError('a {\n  content: "\n}').stack.should.containEql(
+            'test/css-syntax-error.js');
     });
 
     it('highlights broken line', () => {
