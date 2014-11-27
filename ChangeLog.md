@@ -1,3 +1,7 @@
+## 3.0.5
+* Fix parser to support difficult cases with backslash escape and brackets.
+* Add `CssSyntaxError#stack` (by Maxime Thirouin).
+
 ## 3.0.4
 * Fix Safe Mode on unknown word before declaration.
 
