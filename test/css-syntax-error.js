@@ -52,8 +52,8 @@ describe('CssSyntaxError', () => {
     });
 
     it('prints with colored CSS', () => {
-        parseError('a {').toString().should.eql(
-            "<css input>:1:1: Unclosed block\n" +
+        parseError('a {').toString().should.startWith(
+            "CssSyntaxError: <css input>:1:1: Unclosed block\n" +
             'a {\n' +
             '\u001b[1;31m^\u001b[0m');
     });
@@ -61,7 +61,7 @@ describe('CssSyntaxError', () => {
     it('misses highlights without source', () => {
         var error = parseError('a {');
         error.source = null;
-        error.toString().should.eql('<css input>:1:1: Unclosed block');
+        error.toString().should.startWith('CssSyntaxError: <css input>:1:1: Unclosed block');
     });
 
     it('uses source map', () => {
@@ -99,6 +99,12 @@ describe('CssSyntaxError', () => {
             }
         });
         error.file.should.eql(path.resolve('build/all.css'));
+    });
+
+    it('should have a stack trace', () => {
+        var error = parseError('a {\n  content: "\n}');
+
+        error.stack.exists;
     });
 
 });
