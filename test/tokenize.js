@@ -33,13 +33,11 @@ describe('tokenize', () => {
     });
 
     it('tokenizes control chars', () => {
-        tokenize(new Input('({:;})')).should.eql([
-            ['(', '(', 1, 1],
-            ['{', '{', 1, 2],
-            [':', ':', 1, 3],
-            [';', ';', 1, 4],
-            ['}', '}', 1, 5],
-            [')', ')', 1, 6],
+        tokenize(new Input('{:;}')).should.eql([
+            ['{', '{', 1, 1],
+            [':', ':', 1, 2],
+            [';', ';', 1, 3],
+            ['}', '}', 1, 4]
         ]);
     });
 
@@ -53,17 +51,36 @@ describe('tokenize', () => {
     });
 
     it('escapes backslash', () => {
-        tokenize(new Input('\\\\\\\\(')).should.eql([
+        tokenize(new Input('\\\\\\\\{')).should.eql([
             ['word', '\\\\\\\\', 1, 1, 1, 4],
-            ['(',    '(',        1, 5]
+            ['{',    '{',        1, 5]
         ]);
     });
 
-    it('tokenizes brackets', () => {
+    it('tokenizes simple brackets', () => {
         tokenize(new Input('(ab)')).should.eql([
-            ['(',    '(',  1, 1],
-            ['word', 'ab', 1, 2, 1, 3],
-            [')',    ')',  1, 4],
+            ['brackets', '(ab)', 1, 1, 1, 4]
+        ]);
+    });
+
+    it('tokenizes complicated brackets', () => {
+        tokenize(new Input('(())("")(/**/)(\\\\)(\n)(')).should.eql([
+            ['(',        '(',    1, 1],
+            ['brackets', '()',   1, 2, 1, 3],
+            [')',        ')',    1, 4],
+            ['(',        '(',    1, 5],
+            ['string',   '""',   1, 6, 1, 7],
+            [')',        ')',    1, 8],
+            ['(',        '(',    1, 9],
+            ['comment',  '/**/', 1, 10, 1, 13],
+            [')',        ')',    1, 14],
+            ['(',        '(',    1, 15],
+            ['word',     '\\\\', 1, 16, 1, 17],
+            [')',        ')',    1, 18],
+            ['(',        '(',    1, 19],
+            ['space',    '\n'],
+            [')',        ')',    2, 1],
+            ['(',        '(',    2, 2]
         ]);
     });
 
@@ -88,15 +105,13 @@ describe('tokenize', () => {
     });
 
     it('tokenizes at-word end', () => {
-        tokenize(new Input('@one{@two(@three)@four""')).should.eql([
-            ['at-word', '@one',   1,  1, 1,  4],
-            ['{',       '{',      1,  5],
-            ['at-word', '@two',   1,  6, 1,  9],
-            ['(',       '(',      1, 10],
-            ['at-word', '@three', 1, 11, 1, 16],
-            [')',       ')',      1, 17],
-            ['at-word', '@four',  1, 18, 1, 22],
-            ['string',  '""',     1, 23, 1, 24]
+        tokenize(new Input('@one{@two()@three""')).should.eql([
+            ['at-word',  '@one',   1,  1, 1,  4],
+            ['{',        '{',      1,  5],
+            ['at-word',  '@two',   1,  6, 1,  9],
+            ['brackets', '()',     1, 10, 1, 11],
+            ['at-word',  '@three', 1, 12, 1, 17],
+            ['string',   '""',     1, 18, 1, 19]
         ]);
     });
 
@@ -142,10 +157,7 @@ describe('tokenize', () => {
             [':',        ':',                  3,  8],
             ['space',    ' '],
             ['word',     'calc',               3, 10, 3, 13],
-            ['(',        '(',                  3, 14],
-            ['word',     '1px',                3, 15, 3, 17],
-            [';',        ';',                  3, 18],
-            [')',        ')',                  3, 19],
+            ['brackets', '(1px;)',             3, 14, 3, 19],
             ['space',    '\n  '],
             ['}',        '}',                  4,  3],
             ['space',    '\n'],
