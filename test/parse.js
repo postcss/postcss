@@ -121,6 +121,16 @@ describe('postcss.parse()', () => {
                 toString().should.eql('a { content: "b"}');
         });
 
+        it('throws on unclosed bracket', () => {
+            ( () => parse(':not(one() { }') ).should
+                .throw(/:1:5: Unclosed bracket/);
+        });
+
+        it('fixes unclosed bracket', () => {
+            var root = parse(':not(one() { }', { safe: true });
+            root.after.should.eql(':not(one() { }');
+        });
+
         it('throws on property without value', () => {
             ( () => parse("a { b;}") ).should
                 .throw(/:1:5: Unknown word/);
