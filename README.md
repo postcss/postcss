@@ -85,6 +85,7 @@ Sponsored by [Evil Martians].
 * [postcss-url] to rebase or inline on `url()`.
 * [postcss-font-variant] to set `font-feature-settings` by readable properties.
 * [postcss-nested] to unwrap rules in other rules, like you can write in Sass.
+* [postcss-custom-selector] to add custom alias for selectors.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -98,6 +99,7 @@ Sponsored by [Evil Martians].
 [postcss-url]:                  https://github.com/postcss/postcss-url
 [postcss-font-variant]:         https://github.com/postcss/postcss-font-variant
 [postcss-nested]:               https://github.com/postcss/postcss-nested
+[postcss-custom-selector]:      https://github.com/postcss/postcss-custom-selector
 
 ## Quick Example
 
