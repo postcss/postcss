@@ -14,8 +14,8 @@ describe('Node', () => {
             var rule = new Rule({ selector: 'a' });
             rule.append({ prop: 'color', value: 'black' });
 
-            rule.childs[0].removeSelf();
-            rule.childs.should.be.empty;
+            rule.nodes[0].removeSelf();
+            rule.nodes.should.be.empty;
         });
 
     });
@@ -29,7 +29,7 @@ describe('Node', () => {
             rule.append({ prop: 'height', value: '1px' });
 
             var node   = new Declaration({ prop: 'min-width', value: '1px' });
-            var width  = rule.childs[1];
+            var width  = rule.nodes[1];
             var result = width.replace(node);
 
             result.should.eql(width);
@@ -64,8 +64,8 @@ describe('Node', () => {
             var clone = rule.clone();
             clone.append({ prop: 'display', value: 'none' });
 
-            clone.childs[0].parent.should.exactly(clone);
-            rule.childs[0].parent.should.exactly(rule);
+            clone.first.parent.should.exactly(clone);
+            rule.first.parent.should.exactly(rule);
 
             rule.toString().should.eql('a {color: /**/black}');
             clone.toString().should.eql('a {color: /**/black;display: none}');
@@ -87,10 +87,10 @@ describe('Node', () => {
 
             var json = rule.toJSON();
             should.not.exists(json.parent);
-            should.not.exists(json.childs[0].parent);
+            should.not.exists(json.nodes[0].parent);
 
             JSON.stringify(rule).should.eql(
-                '{"type":"rule","childs":[' +
+                '{"type":"rule","nodes":[' +
                     '{"type":"decl","prop":"color","value":"b"}' +
                 '],"selector":"a"}');
         });

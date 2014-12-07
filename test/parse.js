@@ -22,11 +22,11 @@ describe('postcss.parse()', () => {
         });
 
         it('parses empty file', () => {
-            parse('').should.eql({ type: 'root', childs: [], after: '' });
+            parse('').should.eql({ type: 'root', nodes: [], after: '' });
         });
 
         it('parses spaces', () => {
-            parse(" \n").should.eql({ type: 'root', childs: [], after: " \n" });
+            parse(" \n").should.eql({ type: 'root', nodes: [], after: " \n" });
         });
 
     });
@@ -143,14 +143,14 @@ describe('postcss.parse()', () => {
 
         it('fixes property without value in safe mode', () => {
             var root = parse('a { color: white; one }', { safe: true });
-            root.first.childs.length.should.eql(1);
+            root.first.nodes.length.should.eql(1);
             root.first.semicolon.should.be.true;
             root.first.after.should.eql(' one ');
         });
 
         it('fixes 2 properties in safe mode', () => {
             var root = parse('a { one color: white; one }', { safe: true });
-            root.first.childs.length.should.eql(1);
+            root.first.nodes.length.should.eql(1);
             root.first.first.prop.should.eql('color');
             root.first.first.before.should.eql(' one ');
         });
@@ -172,7 +172,7 @@ describe('postcss.parse()', () => {
 
         it('fixes property without semicolon in safe mode', () => {
             var root = parse('a { one: 1 two: 2 }', { safe: true });
-            root.first.childs.length.should.eql(2);
+            root.first.nodes.length.should.eql(2);
             root.toString().should.eql('a { one: 1; two: 2 }');
         });
 

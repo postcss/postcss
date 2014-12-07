@@ -31,7 +31,7 @@ describe('Container', () => {
         it('adds child without checks', () => {
             this.rule.push(this.new);
             this.rule.toString().should.eql('a { a: 1; b: 2; c: 3 }');
-            this.rule.childs.length.should.eql(3);
+            this.rule.nodes.length.should.eql(3);
             this.rule.last.should.not.have.property('before');
         });
 
@@ -44,7 +44,7 @@ describe('Container', () => {
 
             var result = this.rule.each( (decl, i) => {
                 indexes.push(i);
-                decl.should.eql( this.rule.childs[i] );
+                decl.should.eql( this.rule.nodes[i] );
             });
 
             should.not.exists(result);
@@ -123,11 +123,11 @@ describe('Container', () => {
             indexes.should.eql([0]);
         });
 
-        it('allows to change childs', () => {
+        it('allows to change children', () => {
             var props = [];
             var result = this.rule.each( (decl, i) => {
                 props.push(decl.prop);
-                this.rule.childs = [this.rule.last, this.rule.first];
+                this.rule.nodes = [this.rule.last, this.rule.first];
             });
             props.should.eql(['a', 'a']);
         });
@@ -343,7 +343,7 @@ describe('Container', () => {
             var a = parse('a{ z-index: 1 }');
             var b = parse('b{width:1px;height:2px}');
 
-            a.first.append( b.first.childs );
+            a.first.append( b.first.nodes );
             a.toString().should.eql('a{ z-index: 1; width: 1px; height: 2px }');
             b.toString().should.eql('b{width:1px;height:2px}');
         });
@@ -384,7 +384,7 @@ describe('Container', () => {
             var a = parse('a{ z-index: 1 }');
             var b = parse('b{width:1px;height:2px}');
 
-            a.first.prepend( b.first.childs );
+            a.first.prepend( b.first.nodes );
             a.toString().should.eql('a{ width: 1px; height: 2px; z-index: 1 }');
         });
 
@@ -401,11 +401,11 @@ describe('Container', () => {
         it('inserts child', () => {
             this.rule.insertBefore(1, this.new);
             this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
-            this.rule.childs[1].before.should.eql(' ');
+            this.rule.nodes[1].before.should.eql(' ');
         });
 
         it('works with nodes too', () => {
-            this.rule.insertBefore(this.rule.childs[1], this.new);
+            this.rule.insertBefore(this.rule.nodes[1], this.new);
             this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
         });
 
@@ -418,7 +418,7 @@ describe('Container', () => {
             var a = parse('a{ color: red; z-index: 1 }');
             var b = parse('b{width:1;height:2}');
 
-            a.first.insertBefore(1, b.first.childs);
+            a.first.insertBefore(1, b.first.nodes);
             a.toString().should.eql(
                 'a{ color: red; width: 1; height: 2; z-index: 1 }');
         });
@@ -430,11 +430,11 @@ describe('Container', () => {
         it('inserts child', () => {
             this.rule.insertAfter(0, this.new);
             this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
-            this.rule.childs[1].before.should.eql(' ');
+            this.rule.nodes[1].before.should.eql(' ');
         });
 
         it('works with nodes too', () => {
-            this.rule.insertAfter(this.rule.childs[0], this.new);
+            this.rule.insertAfter(this.rule.first, this.new);
             this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
         });
 
@@ -447,7 +447,7 @@ describe('Container', () => {
             var a = parse('a{ color: red; z-index: 1 }');
             var b = parse('b{width:1;height:2}');
 
-            a.first.insertAfter(0, b.first.childs);
+            a.first.insertAfter(0, b.first.nodes);
             a.toString().should.eql(
                 'a{ color: red; width: 1; height: 2; z-index: 1 }');
         });
@@ -470,7 +470,7 @@ describe('Container', () => {
 
     describe('any()', () => {
 
-        it('return true if all childs return true', () => {
+        it('return true if all children return true', () => {
             this.rule.every( i => i.prop.match(/a|b/) ).should.be.true;
             this.rule.every( i => i.prop.match(/b/) ).should.be.false;
         });
@@ -479,7 +479,7 @@ describe('Container', () => {
 
     describe('some()', () => {
 
-        it('return true if all childs return true', () => {
+        it('return true if all children return true', () => {
             this.rule.some( i => i.prop == 'b' ).should.be.true;
             this.rule.some( i => i.prop == 'c' ).should.be.false;
         });
@@ -489,7 +489,7 @@ describe('Container', () => {
     describe('index()', () => {
 
         it('returns child index', () => {
-            this.rule.index( this.rule.childs[1] ).should.eql(1);
+            this.rule.index( this.rule.nodes[1] ).should.eql(1);
         });
 
         it('returns argument if it(is number', () => {
@@ -516,7 +516,7 @@ describe('Container', () => {
 
     describe('normalize()', () => {
 
-        it("doesn't normalize new childs with exists before", () => {
+        it("doesn't normalize new children with exists before", () => {
             this.rule.append({ prop: 'c', value: '3', before: '\n ' });
             this.rule.toString().should.eql('a { a: 1; b: 2;\n c: 3 }');
         });

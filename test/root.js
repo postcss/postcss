@@ -35,7 +35,7 @@ describe('Root', () => {
 
         it('fixes spaces on insert before only one fule', () => {
             var css = parse("a {}\n");
-            css.insertBefore(css.childs[0], new Rule({ selector: 'em' }) );
+            css.insertBefore(css.first, new Rule({ selector: 'em' }) );
 
             css.toString().should.eql("em {}\na {}\n");
         });

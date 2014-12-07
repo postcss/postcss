@@ -1,6 +1,6 @@
 {
     "type": "root",
-    "childs": [
+    "nodes": [
         {
             "type": "atrule",
             "name": "page",
@@ -20,7 +20,7 @@
             "between": "",
             "afterName": "",
             "params": "",
-            "childs": [],
+            "nodes": [],
             "after": " "
         }
     ],

@@ -1,6 +1,6 @@
 {
     "type": "root",
-    "childs": [
+    "nodes": [
         {
             "type": "atrule",
             "name": "supports",
@@ -20,7 +20,7 @@
             "between": " ",
             "afterName": " ",
             "params": "(animation-name: test)",
-            "childs": [
+            "nodes": [
                 {
                     "type": "atrule",
                     "name": "-custom-keyframe",
@@ -40,10 +40,10 @@
                     "between": " ",
                     "afterName": " ",
                     "params": "anim",
-                    "childs": [
+                    "nodes": [
                         {
                             "type": "rule",
-                            "childs": [
+                            "nodes": [
                                 {
                                     "type": "decl",
                                     "source": {
@@ -84,7 +84,7 @@
                         },
                         {
                             "type": "rule",
-                            "childs": [
+                            "nodes": [
                                 {
                                     "type": "decl",
                                     "source": {

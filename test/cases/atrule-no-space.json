@@ -1,6 +1,6 @@
 {
     "type": "root",
-    "childs": [
+    "nodes": [
         {
             "type": "atrule",
             "name": "import",

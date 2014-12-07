@@ -1,6 +1,6 @@
 {
     "type": "root",
-    "childs": [
+    "nodes": [
         {
             "type": "atrule",
             "name": "page",
@@ -20,7 +20,7 @@
             "between": " ",
             "afterName": " ",
             "params": ":left",
-            "childs": [
+            "nodes": [
                 {
                     "type": "decl",
                     "source": {
@@ -62,7 +62,7 @@
             "between": " ",
             "afterName": "",
             "params": "(min-width: 0)",
-            "childs": [
+            "nodes": [
                 {
                     "type": "decl",
                     "source": {
@@ -104,7 +104,7 @@
             "between": " ",
             "afterName": "",
             "params": "",
-            "childs": [
+            "nodes": [
                 {
                     "type": "decl",
                     "source": {
@@ -147,7 +147,7 @@
             "between": " ",
             "afterName": "",
             "params": "",
-            "childs": [
+            "nodes": [
                 {
                     "type": "decl",
                     "source": {
@@ -190,7 +190,7 @@
             "between": " ",
             "afterName": "",
             "params": "",
-            "childs": [
+            "nodes": [
                 {
                     "type": "decl",
                     "source": {

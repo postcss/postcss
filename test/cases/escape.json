@@ -1,9 +1,9 @@
 {
     "type": "root",
-    "childs": [
+    "nodes": [
         {
             "type": "rule",
-            "childs": [
+            "nodes": [
                 {
                     "type": "decl",
                     "source": {
@@ -82,7 +82,7 @@
         },
         {
             "type": "rule",
-            "childs": [],
+            "nodes": [],
             "source": {
                 "start": {
                     "line": 7,
@@ -102,7 +102,7 @@
         },
         {
             "type": "rule",
-            "childs": [],
+            "nodes": [],
             "source": {
                 "start": {
                     "line": 8,
@@ -126,7 +126,7 @@
         },
         {
             "type": "rule",
-            "childs": [],
+            "nodes": [],
             "source": {
                 "start": {
                     "line": 9,
@@ -146,7 +146,7 @@
         },
         {
             "type": "rule",
-            "childs": [],
+            "nodes": [],
             "source": {
                 "start": {
                     "line": 10,
@@ -166,7 +166,7 @@
         },
         {
             "type": "rule",
-            "childs": [],
+            "nodes": [],
             "source": {
                 "start": {
                     "line": 11,
@@ -186,7 +186,7 @@
         },
         {
             "type": "rule",
-            "childs": [],
+            "nodes": [],
             "source": {
                 "start": {
                     "line": 12,
@@ -206,7 +206,7 @@
         },
         {
             "type": "rule",
-            "childs": [],
+            "nodes": [],
             "source": {
                 "start": {
                     "line": 13,
@@ -226,7 +226,7 @@
         },
         {
             "type": "rule",
-            "childs": [],
+            "nodes": [],
             "source": {
                 "start": {
                     "line": 15,
@@ -246,7 +246,7 @@
         },
         {
             "type": "rule",
-            "childs": [
+            "nodes": [
                 {
                     "type": "decl",
                     "source": {

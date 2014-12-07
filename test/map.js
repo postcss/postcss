@@ -381,7 +381,7 @@ describe('source maps', () => {
         });
         var file2 = postcss.parse('b { }', { from: 'b.css', map: true });
 
-        file2.append( file1.childs[0].clone() );
+        file2.append( file1.first.clone() );
         var step2 = file2.toResult({ to: 'c.css', map: true });
 
         should.not.exists( read(step2).sourceContentFor('b.css') );
@@ -400,7 +400,7 @@ describe('source maps', () => {
         });
         var file2 = postcss.parse('b { }', { from: 'b.css', map: true });
 
-        file2.append( file1.childs[0].clone() );
+        file2.append( file1.first.clone() );
         var step2 = file2.toResult({
             to:   'c.css',
             map: { sourcesContent: false }

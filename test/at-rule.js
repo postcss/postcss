@@ -28,13 +28,13 @@ describe('AtRule', () => {
     describe('toString()', () => {
 
         it('inserts default spaces', () => {
-            var rule = new AtRule({ name: 'page', params: 1, childs: [] });
+            var rule = new AtRule({ name: 'page', params: 1, nodes: [] });
             rule.toString().should.eql('@page 1 {}');
         });
 
         it('clone spaces from another at-rule', () => {
             var root = parse('@page{}');
-            var rule = new AtRule({ name: 'page', params: 1, childs: [] });
+            var rule = new AtRule({ name: 'page', params: 1, nodes: [] });
             root.append(rule);
 
             rule.toString().should.eql('@page 1{}');
