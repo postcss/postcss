@@ -1,3 +1,7 @@
+## 3.0.6
+* Fix missing semicolon when comment comes after last declaration.
+* Fix Safe Mode declaration parsing on unclosed blocks.
+
 ## 3.0.5
 * Fix parser to support difficult cases with backslash escape and brackets.
 * Add `CssSyntaxError#stack` (by Maxime Thirouin).
