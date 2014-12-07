@@ -172,6 +172,21 @@ gulp.task('test', function () {
     return gulp.src('test/*.js', { read: false }).pipe(mocha());
 });
 
+// Helpers
+
+gulp.task('cases', function () {
+    var postcss = require('./');
+    var cases   = __dirname + '/test/cases/';
+
+    fs.readdirSync(cases).forEach(function (file) {
+        if ( !file.match(/\.css$/) ) return;
+        var css  = fs.readFileSync(cases + file);
+        var root = postcss.parse(css, { from: '/' + file });
+        var json = JSON.stringify(root, null, 4);
+        fs.writeFileSync(cases + file.replace(/\.css$/, '.json'), json + '\n');
+    });
+});
+
 // Common
 
 gulp.task('clean', ['build:clean', 'bench:clean']);
