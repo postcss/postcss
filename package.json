@@ -12,7 +12,7 @@
     "dependencies": {
         "source-map": "~0.1.40",
         "js-base64":  "~2.1.5",
-        "6to5":       "1.14.4"
+        "6to5":       "1.14.7"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "0.1.6",
@@ -29,10 +29,10 @@
         "execSync":               "1.0.2",
         "fs-extra":               "0.12.0",
         "gonzales":               "1.0.7",
-        "stylecow":               "3.1.0",
+        "stylecow":               "3.1.1",
         "through2":               "0.6.3",
-        "request":                "2.48.0",
-        "cssnext":                "0.6.0",
+        "request":                "2.49.0",
+        "cssnext":                "0.6.2",
         "rework":                 "1.0.1",
         "should":                 "4.3.0",
         "mensch":                 "0.3.1",

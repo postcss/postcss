@@ -87,6 +87,9 @@ describe('postcss.parse()', () => {
 
             parse('a { color', { safe: true })
                 .toString().should.eql('a { color}');
+
+            parse('a { color: black', { safe: true })
+                .first.first.prop.should.eql('color');
         });
 
         it('throws on unnecessary block close', () => {
