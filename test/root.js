@@ -9,11 +9,11 @@ describe('Root', () => {
 
     describe('toString()', () => {
 
-        fs.readdirSync(__dirname + '/cases/parse/').forEach( file => {
+        fs.readdirSync(__dirname + '/cases/').forEach( file => {
             if ( !file.match(/\.css$/) ) return;
 
             it('stringify ' + file, () => {
-                var path = __dirname + '/cases/parse/' + file;
+                var path = __dirname + '/cases/' + file;
                 var css  = fs.readFileSync(path).toString();
                 parse(css).toString().should.eql(css);
             });

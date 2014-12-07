@@ -5,12 +5,12 @@ var fs     = require('fs');
 var path   = require('path');
 var should = require('should');
 
-var read = file => fs.readFileSync(__dirname + '/cases/parse/' + file);
+var read = file => fs.readFileSync(__dirname + '/cases/' + file);
 
 describe('postcss.parse()', () => {
 
     it('works with file reads', () => {
-        var css = fs.readFileSync(__dirname + '/cases/parse/atrule-empty.css');
+        var css = fs.readFileSync(__dirname + '/cases/atrule-empty.css');
         parse(css).should.be.instanceOf(Root);
     });
 
@@ -31,7 +31,7 @@ describe('postcss.parse()', () => {
 
     });
 
-    fs.readdirSync(__dirname + '/cases/parse/').forEach( (file) => {
+    fs.readdirSync(__dirname + '/cases/').forEach( (file) => {
         if ( !file.match(/\.css$/) ) return;
 
         it('parses ' + file, () => {
