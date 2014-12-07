@@ -3,26 +3,34 @@ var Container   = require('../lib/container');
 var parse       = require('../lib/parse');
 var Rule        = require('../lib/rule');
 
-var fs     = require('fs');
 var should = require('should');
 
-var cases = __dirname + '/cases/container/';
-var read  = i => fs.readFileSync(cases + i + '.css').toString();
-
-var compare = (css, ideal) => css.toString().should.eql( read(ideal) );
+var example = 'a { a: 1; b: 2 }' +
+              '/* a */' +
+              '@keyframes anim {' +
+                  '/* b */' +
+                  'to { c: 3 }' +
+              '}' +
+              '@media all and (min-width: 100) {' +
+                  'em { d: 4 }' +
+                  '@page {' +
+                       'e: 5;' +
+                      '/* c */' +
+                  '}' +
+              '}';
 
 describe('Container', () => {
     beforeEach( () => {
-        this.css  = parse( read('base') );
-        this.rule = this.css.childs[0];
-
-        this.new  = new Declaration({ prop: 'new', value: 'value' });
+        this.big  = parse(example);
+        this.rule = parse('a { a: 1; b: 2 }').first;
+        this.new  = new Declaration({ prop: 'c', value: '3' });
     });
 
     describe('push()', () => {
 
         it('adds child without checks', () => {
             this.rule.push(this.new);
+            this.rule.toString().should.eql('a { a: 1; b: 2; c: 3 }');
             this.rule.childs.length.should.eql(3);
             this.rule.last.should.not.have.property('before');
         });
@@ -127,15 +135,11 @@ describe('Container', () => {
     });
 
     describe('eachInside()', () => {
-        beforeEach( () => {
-            this.css = parse( read('each-recursivelly') );
-        });
-
         it('iterates', () => {
             var types   = [];
             var indexes = [];
 
-            var result = this.css.eachInside( (node, i) => {
+            var result = this.big.eachInside( (node, i) => {
                 types.push(node.type);
                 indexes.push(i);
             });
@@ -150,7 +154,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.css.eachInside( (decl, i) => {
+            var result = this.big.eachInside( (decl, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -162,15 +166,11 @@ describe('Container', () => {
     });
 
     describe('eachDecl()', () => {
-        beforeEach( () => {
-            this.css = parse( read('each-recursivelly') );
-        });
-
         it('iterates', () => {
             var props   = [];
             var indexes = [];
 
-            var result = this.css.eachDecl( (decl, i) => {
+            var result = this.big.eachDecl( (decl, i) => {
                 props.push(decl.prop);
                 indexes.push(i);
             });
@@ -182,7 +182,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             var size = 0;
-            this.css.eachDecl( (decl, i) => {
+            this.big.eachDecl( (decl, i) => {
                 decl.parent.remove(i);
                 size += 1;
             });
@@ -192,7 +192,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.css.eachDecl( (decl, i) => {
+            var result = this.big.eachDecl( (decl, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -205,14 +205,13 @@ describe('Container', () => {
 
     describe('eachComment()', () => {
         beforeEach( () => {
-            this.css = parse( read('each-recursivelly') );
         });
 
         it('iterates', () => {
             var texts   = [];
             var indexes = [];
 
-            var result = this.css.eachComment( (comment, i) => {
+            var result = this.big.eachComment( (comment, i) => {
                 texts.push(comment.text);
                 indexes.push(i);
             });
@@ -224,7 +223,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             var size = 0;
-            this.css.eachComment( (comment, i) => {
+            this.big.eachComment( (comment, i) => {
                 comment.parent.remove(i);
                 size += 1;
             });
@@ -234,7 +233,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.css.eachComment( (comment, i) => {
+            var result = this.big.eachComment( (comment, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -246,15 +245,11 @@ describe('Container', () => {
     });
 
     describe('eachRule()', () => {
-        beforeEach( () => {
-            this.css = parse( read('each-recursivelly') );
-        });
-
         it('iterates', () => {
             var selectors = [];
             var indexes   = [];
 
-            var result = this.css.eachRule( (rule, i) => {
+            var result = this.big.eachRule( (rule, i) => {
                 selectors.push(rule.selector);
                 indexes.push(i);
             });
@@ -266,7 +261,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             var size = 0;
-            this.css.eachRule( (rule, i) => {
+            this.big.eachRule( (rule, i) => {
                 rule.parent.remove(i);
                 size += 1;
             });
@@ -276,7 +271,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.css.eachRule( (rule, i) => {
+            var result = this.big.eachRule( (rule, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -288,15 +283,11 @@ describe('Container', () => {
     });
 
     describe('eachAtRule()', () => {
-        beforeEach( () => {
-            this.css = parse( read('each-recursivelly') );
-        });
-
         it('iterates', () => {
             var names   = [];
             var indexes = [];
 
-            var result = this.css.eachAtRule( (atrule, i) => {
+            var result = this.big.eachAtRule( (atrule, i) => {
                 names.push(atrule.name);
                 indexes.push(i);
             });
@@ -308,7 +299,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             var size = 0;
-            this.css.eachAtRule( (atrule, i) => {
+            this.big.eachAtRule( (atrule, i) => {
                 atrule.parent.remove(i);
                 size += 1;
             });
@@ -318,7 +309,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.css.eachAtRule( (atrule, i) => {
+            var result = this.big.eachAtRule( (atrule, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -333,12 +324,13 @@ describe('Container', () => {
 
         it('appends child', () => {
             this.rule.append(this.new);
-            compare(this.css, 'append');
+            this.rule.toString().should.eql('a { a: 1; b: 2; c: 3 }');
+            this.rule.last.before.should.eql(' ');
         });
 
         it('receives hash instead of declaration', () => {
-            this.rule.append({ prop: 'new', value: 'value' });
-            compare(this.css, 'append');
+            this.rule.append({ prop: 'c', value: '3' });
+            this.rule.toString().should.eql('a { a: 1; b: 2; c: 3 }');
         });
 
         it('receives root', () => {
@@ -372,13 +364,14 @@ describe('Container', () => {
     describe('prepend()', () => {
 
         it('prepends child', () => {
-          this.rule.prepend(this.new);
-          compare(this.css, 'prepend');
+            this.rule.prepend(this.new);
+            this.rule.toString().should.eql('a { c: 3; a: 1; b: 2 }');
+            this.rule.first.before.should.eql(' ');
         });
 
         it('receive hash instead of declaration', () => {
-            this.rule.prepend({ prop: 'new', value: 'value' });
-            compare(this.css, 'prepend');
+            this.rule.prepend({ prop: 'c', value: '3' });
+            this.rule.toString().should.eql('a { c: 3; a: 1; b: 2 }');
         });
 
         it('receives root', () => {
@@ -407,17 +400,18 @@ describe('Container', () => {
 
         it('inserts child', () => {
             this.rule.insertBefore(1, this.new);
-            compare(this.css, 'insert');
+            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
+            this.rule.childs[1].before.should.eql(' ');
         });
 
         it('works with nodes too', () => {
             this.rule.insertBefore(this.rule.childs[1], this.new);
-            compare(this.css, 'insert');
+            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receive hash instead of declaration', () => {
-            this.rule.insertBefore(1, { prop: 'new', value: 'value' });
-            compare(this.css, 'insert');
+            this.rule.insertBefore(1, { prop: 'c', value: '3' });
+            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receives array', () => {
@@ -435,17 +429,18 @@ describe('Container', () => {
 
         it('inserts child', () => {
             this.rule.insertAfter(0, this.new);
-            compare(this.css, 'insert');
+            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
+            this.rule.childs[1].before.should.eql(' ');
         });
 
         it('works with nodes too', () => {
             this.rule.insertAfter(this.rule.childs[0], this.new);
-            compare(this.css, 'insert');
+            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receive hash instead of declaration', () => {
-            this.rule.insertAfter(0, { prop: 'new', value: 'value' });
-            compare(this.css, 'insert');
+            this.rule.insertAfter(0, { prop: 'c', value: '3' });
+            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receives array', () => {
@@ -463,12 +458,12 @@ describe('Container', () => {
 
         it('should remove by index', () => {
             this.rule.remove(1);
-            compare(this.css, 'remove');
+            this.rule.toString().should.eql('a { a: 1 }');
         });
 
         it('should remove by nide', () => {
-            this.rule.remove( this.rule.childs[1] );
-            compare(this.css, 'remove');
+            this.rule.remove( this.rule.last );
+            this.rule.toString().should.eql('a { a: 1 }');
         });
 
     });
@@ -522,9 +517,8 @@ describe('Container', () => {
     describe('normalize()', () => {
 
         it("doesn't normalize new childs with exists before", () => {
-            this.new.before = "\n        ";
-            this.rule.append(this.new);
-            compare(this.css, 'indent');
+            this.rule.append({ prop: 'c', value: '3', before: '\n ' });
+            this.rule.toString().should.eql('a { a: 1; b: 2;\n c: 3 }');
         });
 
     });
