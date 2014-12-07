@@ -48,7 +48,7 @@ describe('Rule', () => {
             rule.toString().should.eql('a {\n    color: black\n}');
         });
 
-        it('clone spaces from another rule', () => {
+        it('clones spaces from another rule', () => {
             var root = parse("a{\n  }");
             var rule = new Rule({ selector: 'b' });
             root.append(rule);
@@ -56,7 +56,7 @@ describe('Rule', () => {
             rule.toString().should.eql("b{\n  }");
         });
 
-        it('use different spaces for empty rules', () => {
+        it('uses different spaces for empty rules', () => {
             var root = parse("a { }\nb {\n  color: black\n  }");
             var rule = new Rule({ selector: 'em' });
             root.append(rule);
