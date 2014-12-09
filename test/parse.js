@@ -165,11 +165,6 @@ describe('postcss.parse()', () => {
             root.first.name.should.eql('');
         });
 
-        it('parses IE colon', () => {
-            parse('a { filter: progid:DXImageTransform }')
-                .first.first.value.should.eql('progid:DXImageTransform');
-        });
-
         it('throws on property without semicolon', () => {
             ( () => parse('a { one: 1 two: 2 }') )
                 .should.throw(/:1:10: Missed semicolon/);
