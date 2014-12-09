@@ -1,3 +1,7 @@
+## 3.0.7
+* Fix IE filter parsing with multiple commands.
+* Safer way to consume PostCSS object as plugin (by Maxime Thirouin).
+
 ## 3.0.6
 * Fix missing semicolon when comment comes after last declaration.
 * Fix Safe Mode declaration parsing on unclosed blocks.
