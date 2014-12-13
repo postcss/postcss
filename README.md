@@ -24,10 +24,11 @@ You can use this framework to write your own:
 
 Twitter account for news, releases and new plugins: [@postcss].
 
-Sponsored by [Evil Martians].
+<a href="https://evilmartians.com/?utm_source=postcss">
+<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
+</a>
 
-[Evil Martians]: http://evilmartians.com/
-[@postcss]:      https://twitter.com/postcss
+[@postcss]: https://twitter.com/postcss
 
 ## Built with PostCSS
 
