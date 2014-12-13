@@ -87,6 +87,7 @@ Twitter account for news, releases and new plugins: [@postcss].
 * [postcss-font-variant] to set `font-feature-settings` by readable properties.
 * [postcss-nested] to unwrap rules in other rules, like you can write in Sass.
 * [postcss-custom-selector] to add custom alias for selectors.
+* [postcss-media-minmax] to use `<=` or `>=` in CSS Media Queries.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -101,6 +102,7 @@ Twitter account for news, releases and new plugins: [@postcss].
 [postcss-font-variant]:         https://github.com/postcss/postcss-font-variant
 [postcss-nested]:               https://github.com/postcss/postcss-nested
 [postcss-custom-selector]:      https://github.com/postcss/postcss-custom-selector
+[postcss-media-minmax]:         https://github.com/postcss/postcss-media-minmax
 
 ## Quick Example
 
