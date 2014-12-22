@@ -1,4 +1,3 @@
 --inline-diffs
 --reporter spec
---require should
 --require ./index

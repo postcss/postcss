@@ -2,7 +2,7 @@ var Result = require('../lib/result');
 var parse  = require('../lib/parse');
 
 var mozilla = require('source-map');
-var should  = require('should');
+var expect  = require('chai').expect;
 
 describe('Result', () => {
     beforeEach( () => {
@@ -13,7 +13,7 @@ describe('Result', () => {
 
         it('contains AST', () => {
             var result = new Result(this.root);
-            result.root.should.eql(this.root);
+            expect(result.root).to.eql(this.root);
         });
 
     });
@@ -22,12 +22,12 @@ describe('Result', () => {
 
         it('will be stringified', () => {
             var result = new Result(this.root);
-            result.css.should.eql('a {}');
+            expect(result.css).to.eql('a {}');
         });
 
         it('stringifies', () => {
             var result = new Result(this.root, 'a {}');
-            ('' + result).should.eql(result.css);
+            expect('' + result).to.eql(result.css);
         });
 
     });
@@ -36,13 +36,13 @@ describe('Result', () => {
 
         it('exists only if necessary', () => {
             var result = new Result(this.root);
-            should.not.exists(result.map);
+            expect(result.map).to.not.exist();
 
             result = new Result(this.root, { map: true });
-            should.not.exists(result.map);
+            expect(result.map).to.not.exist();
 
             result = new Result(this.root, { map: { inline: false } });
-            result.map.should.be.a.instanceOf(mozilla.SourceMapGenerator);
+            expect(result.map).to.be.a.instanceOf(mozilla.SourceMapGenerator);
         });
 
     });

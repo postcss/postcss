@@ -2,15 +2,15 @@ var Declaration = require('../lib/declaration');
 var parse       = require('../lib/parse');
 var Rule        = require('../lib/rule');
 
-var should = require('should');
+var expect = require('chai').expect;
 
 describe('Declaration', () => {
 
     it('initializes with properties', () => {
         var decl = new Declaration({ prop: 'color', value: 'black' });
 
-        decl.prop.should.eql('color');
-        decl.value.should.eql('black');
+        expect(decl.prop).to.eql('color');
+        expect(decl.value).to.eql('black');
     });
 
     describe('important', () => {
@@ -18,7 +18,7 @@ describe('Declaration', () => {
         it('returns boolean', () => {
             var decl = new Declaration({ prop: 'color', value: 'black' });
             decl.important = true;
-            decl.toString().should.eql('color: black !important');
+            expect(decl.toString()).to.eql('color: black !important');
         });
 
     });
@@ -35,10 +35,10 @@ describe('Declaration', () => {
             });
             var clone = decl.clone({ value: 'white' });
 
-            clone.value.should.eql('white');
-            should.not.exists(clone.parent);
-            should.not.exists(clone.before);
-            should.not.exists(clone.between);
+            expect(clone.value).to.eql('white');
+            expect(clone.parent).to.not.exist();
+            expect(clone.before).to.not.exist();
+            expect(clone.between).to.not.exist();
         });
 
     });
@@ -49,7 +49,7 @@ describe('Declaration', () => {
             var decl = new Declaration({ prop: 'color', value: 'black' });
             var rule = new Rule({ selector: 'a' });
             rule.append(decl);
-            decl.toString().should.eql("\n    color: black");
+            expect(decl.toString()).to.eql("\n    color: black");
         });
 
         it('clone spaces from another declaration', () => {
@@ -57,7 +57,7 @@ describe('Declaration', () => {
             var decl = new Declaration({ prop: 'margin', value: '0' });
             root.first.append(decl);
 
-            decl.toString().should.eql('margin:0');
+            expect(decl.toString()).to.eql('margin:0');
         });
 
     });

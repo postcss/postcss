@@ -3,7 +3,8 @@ var Rule   = require('../lib/rule');
 var parse  = require('../lib/parse');
 var Result = require('../lib/result');
 
-var fs = require('fs');
+var expect = require('chai').expect;
+var fs     = require('fs');
 
 describe('Root', () => {
 
@@ -15,7 +16,7 @@ describe('Root', () => {
             it('stringify ' + file, () => {
                 var path = __dirname + '/cases/' + file;
                 var css  = fs.readFileSync(path).toString();
-                parse(css).toString().should.eql(css);
+                expect(parse(css).toString()).to.eql(css);
             });
         });
 
@@ -23,21 +24,21 @@ describe('Root', () => {
             var css = parse("a {}");
             css.prepend( new Rule({ selector: 'em' }) );
 
-            css.toString().should.eql("em {}a {}");
+            expect(css.toString()).to.eql("em {}a {}");
         });
 
         it('fixes spaces on insert before first', () => {
             var css = parse("a {}\nb {}");
             css.prepend( new Rule({ selector: 'em' }) );
 
-            css.toString().should.eql("em {}\na {}\nb {}");
+            expect(css.toString()).to.eql("em {}\na {}\nb {}");
         });
 
         it('fixes spaces on insert before only one fule', () => {
             var css = parse("a {}\n");
             css.insertBefore(css.first, new Rule({ selector: 'em' }) );
 
-            css.toString().should.eql("em {}\na {}\n");
+            expect(css.toString()).to.eql("em {}\na {}\n");
         });
 
     });
@@ -48,14 +49,14 @@ describe('Root', () => {
             var a = parse('a {}\n\na {}\n');
             var b = parse('b {}\n');
 
-            a.append(b).toString().should.eql('a {}\n\na {}\n\nb {}\n');
+            expect(a.append(b).toString()).to.eql('a {}\n\na {}\n\nb {}\n');
         });
 
         it('sets new line between rules on last newline', () => {
             var a = parse('a {}\n');
             var b = parse('b {}\n');
 
-            a.append(b).toString().should.eql('a {}\nb {}\n');
+            expect(a.append(b).toString()).to.eql('a {}\nb {}\n');
         });
 
         it('saves compressed style', () => {
@@ -63,8 +64,8 @@ describe('Root', () => {
             var a2 = parse('a{}a{}');
             var b  = parse('b{}\n');
 
-            a1.append(b).toString().should.eql('a{}b{}');
-            a2.append(b).toString().should.eql('a{}a{}b{}');
+            expect(a1.append(b).toString()).to.eql('a{}b{}');
+            expect(a2.append(b).toString()).to.eql('a{}a{}b{}');
         });
 
     });
@@ -74,7 +75,7 @@ describe('Root', () => {
         it('fixes spaces on removing first rule', () => {
             var css = parse('a{}\nb{}\n');
             css.first.removeSelf();
-            css.toString().should.eql('b{}\n');
+            expect(css.toString()).to.eql('b{}\n');
         });
 
     });
@@ -85,8 +86,8 @@ describe('Root', () => {
             var root   = parse('a {}');
             var result = root.toResult({ map: true });
 
-            result.should.be.a.instanceOf(Result);
-            result.css.should.startWith('a {}\n/*# sourceMappingURL=');
+            expect(result).to.be.a.instanceOf(Result);
+            expect(result.css).to.match(/a \{\}\n\/\*# sourceMappingURL=/);
         });
 
     });

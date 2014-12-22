@@ -4,7 +4,7 @@ var Node        = require('../lib/node');
 var Root        = require('../lib/root');
 var Rule        = require('../lib/rule');
 
-var should = require('should');
+var expect = require('chai').expect;
 
 describe('Node', () => {
 
@@ -15,7 +15,7 @@ describe('Node', () => {
             rule.append({ prop: 'color', value: 'black' });
 
             rule.nodes[0].removeSelf();
-            rule.nodes.should.be.empty;
+            expect(rule.nodes).to.be.empty;
         });
 
     });
@@ -32,9 +32,9 @@ describe('Node', () => {
             var width  = rule.nodes[1];
             var result = width.replace(node);
 
-            result.should.eql(width);
+            expect(result).to.eql(width);
 
-            rule.toString().should.eql('a {\n' +
+            expect(rule.toString()).to.eql('a {\n' +
                                        '    color: black;\n' +
                                        '    min-width: 1px;\n' +
                                        '    height: 1px\n' +
@@ -50,7 +50,7 @@ describe('Node', () => {
             a.append( new Rule({ selector: 'b' }) );
 
             root.first.replace(a);
-            root.toString().should.eql('a {}\nb {}');
+            expect(root.toString()).to.eql('a {}\nb {}');
         });
 
     });
@@ -64,17 +64,17 @@ describe('Node', () => {
             var clone = rule.clone();
             clone.append({ prop: 'display', value: 'none' });
 
-            clone.first.parent.should.exactly(clone);
-            rule.first.parent.should.exactly(rule);
+            expect(clone.first.parent).to.equal(clone);
+            expect(rule.first.parent).to.equal(rule);
 
-            rule.toString().should.eql('a {color: /**/black}');
-            clone.toString().should.eql('a {color: /**/black;display: none}');
+            expect(rule.toString()).to.eql('a {color: /**/black}');
+            expect(clone.toString()).to.eql('a {color: /**/black;display: none}');
         });
 
         it('overrides properties', () => {
             var rule  = new Rule({ selector: 'a' });
             var clone = rule.clone({ selector: 'b' });
-            clone.selector.should.eql('b');
+            expect(clone.selector).to.eql('b');
         });
 
     });
@@ -86,10 +86,10 @@ describe('Node', () => {
             rule.append({ prop: 'color', value: 'b' });
 
             var json = rule.toJSON();
-            should.not.exists(json.parent);
-            should.not.exists(json.nodes[0].parent);
+            expect(json.parent).to.not.exist();
+            expect(json.nodes[0].parent).to.not.exist();
 
-            JSON.stringify(rule).should.eql(
+            expect(JSON.stringify(rule)).to.eql(
                 '{"type":"rule","nodes":[' +
                     '{"type":"decl","prop":"color","value":"b"}' +
                 '],"selector":"a"}');
@@ -101,38 +101,38 @@ describe('Node', () => {
 
         it('uses node style', () => {
             var rule = new Rule({ selector: 'a', before: ' ' });
-            rule.style('beforeRule').should.eql(' ');
+            expect(rule.style('beforeRule')).to.eql(' ');
         });
 
         it('hacks before for nodes without parent', () => {
             var rule = new Rule({ selector: 'a' });
-            rule.style('beforeRule').should.eql('');
+            expect(rule.style('beforeRule')).to.eql('');
         });
 
         it('hacks before for first node', () => {
             var root = new Root();
             root.append(new Rule({ selector: 'a' }));
-            root.first.style('beforeRule').should.eql('');
+            expect(root.first.style('beforeRule')).to.eql('');
         });
 
         it('hacks before for first decl', () => {
             var decl = new Declaration({ prop: 'color', value: 'black' });
-            decl.style('beforeDecl').should.eql('');
+            expect(decl.style('beforeDecl')).to.eql('');
 
             var rule = new Rule({ selector: 'a' });
             rule.append(decl);
-            decl.style('beforeDecl').should.eql('\n    ');
+            expect(decl.style('beforeDecl')).to.eql('\n    ');
         });
 
         it('uses defaults without parent', () => {
             var rule = new Rule({ selector: 'a' });
-            rule.style('beforeOpen').should.eql(' ');
+            expect(rule.style('beforeOpen')).to.eql(' ');
         });
 
         it('uses defaults for unique node', () => {
             var root = new Root();
             root.append(new Rule({ selector: 'a' }));
-            root.first.style('beforeOpen').should.eql(' ');
+            expect(root.first.style('beforeOpen')).to.eql(' ');
         });
 
         it('clones style from first node', () => {
@@ -140,7 +140,7 @@ describe('Node', () => {
             root.append( new Rule({ selector: 'a', between: '' }) );
             root.append( new Rule({ selector: 'b' }) );
 
-            root.last.style('beforeOpen').should.eql('');
+            expect(root.last.style('beforeOpen')).to.eql('');
         });
 
     });
@@ -151,17 +151,17 @@ describe('Node', () => {
 
             b.one  = 'trim';
             b._one = { value: 'trim', raw: 'raw' };
-            b.stringifyRaw('one').should.eql('raw');
+            expect(b.stringifyRaw('one')).to.eql('raw');
 
             b.one = 'trim1';
-            b.stringifyRaw('one').should.eql('trim1');
+            expect(b.stringifyRaw('one')).to.eql('trim1');
         });
 
         it('works without magic', () => {
             var b = new Node();
             b.one = '1';
-            b.one.should.eql('1');
-            b.stringifyRaw('one').should.eql('1');
+            expect(b.one).to.eql('1');
+            expect(b.stringifyRaw('one')).to.eql('1');
         });
 
     });

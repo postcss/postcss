@@ -3,7 +3,8 @@ var postcss        = require('../lib/postcss');
 var Result         = require('../lib/result');
 var Root           = require('../lib/root');
 
-var path = require('path');
+var expect = require('chai').expect;
+var path   = require('path');
 
 describe('postcss.root()', () => {
 
@@ -13,7 +14,7 @@ describe('postcss.root()', () => {
         rule.append( postcss.decl({ prop: 'color', value: 'black' }) );
         root.append( rule );
 
-        root.toString().should.eql("a {\n    color: black\n}");
+        expect(root.toString()).to.eql("a {\n    color: black\n}");
     });
 
 });
@@ -21,24 +22,24 @@ describe('postcss.root()', () => {
 describe('postcss()', () => {
 
     it('creates processors list', () => {
-        postcss().should.eql({ processors: [] });
+        expect(postcss().processors).to.eql([]);
     });
 
     it('saves processors list', () => {
         var a = () => 1;
         var b = () => 2;
-        postcss(a, b).should.eql({ processors: [a, b] });
+        expect(postcss(a, b).processors).to.eql([a, b]);
     });
 
     it('saves processors list as array', () => {
         var a = () => 1;
         var b = () => 2;
-        postcss([a, b]).should.eql({ processors: [a, b] });
+        expect(postcss([a, b]).processors).to.eql([a, b]);
     });
 
     it('saves processors object list', () => {
         var a = () => 1;
-        postcss({ postcss: a }).should.eql({ processors: [a] });
+        expect(postcss({ postcss: a }).processors).to.eql([a]);
     });
 
     describe('use()', () => {
@@ -47,14 +48,14 @@ describe('postcss()', () => {
             var a = () => 1;
             var processor = postcss();
             processor.use(a);
-            processor.should.eql({ processors: [a] });
+            expect(processor.processors).to.eql([a]);
         });
 
         it('adds new processor by object', () => {
             var a = () => 1;
             var processor = postcss();
             processor.use({ postcss: a });
-            processor.should.eql({ processors: [a] });
+            expect(processor.processors).to.eql([a]);
         });
 
         it('adds new processor by object-function', () => {
@@ -63,7 +64,7 @@ describe('postcss()', () => {
             obj.postcss = a;
             var processor = postcss();
             processor.use(obj);
-            processor.should.eql({ processors: [a] });
+            expect(processor.processors).to.eql([a]);
         });
 
         it('adds new processors of another postcss instance', () => {
@@ -71,13 +72,13 @@ describe('postcss()', () => {
             var processor = postcss();
             var otherProcessor = postcss(a);
             processor.use(otherProcessor);
-            processor.should.eql({ processors: [a] });
+            expect(processor.processors).to.eql([a]);
         });
 
         it('returns itself', () => {
             var a = () => 1;
             var b = () => 2;
-            postcss().use(a).use(b).should.eql({ processors: [a, b] });
+            expect(postcss().use(a).use(b).processors).to.eql([a, b]);
         });
 
     });
@@ -96,19 +97,19 @@ describe('postcss()', () => {
 
         it('processes CSS', () => {
             var result = this.processor.process('a::before{top:0}');
-            result.css.should.eql('a::before{content:"";top:0}');
+            expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 
         it('processes parsed AST', () => {
             var root   = postcss.parse('a::before{top:0}');
             var result = this.processor.process(root);
-            result.css.should.eql('a::before{content:"";top:0}');
+            expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 
         it('processes previous result', () => {
             var result = postcss().process('a::before{top:0}');
             result = this.processor.process(result);
-            result.css.should.eql('a::before{content:"";top:0}');
+            expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 
         it('takes maps from previous result', () => {
@@ -121,7 +122,7 @@ describe('postcss()', () => {
                 to:   'c.css',
                 map: { inline: false }
             });
-            two.map.toJSON().sources.should.eql(['a.css']);
+            expect(two.map.toJSON().sources).to.eql(['a.css']);
         });
 
         it('throws with file name', () => {
@@ -136,20 +137,20 @@ describe('postcss()', () => {
                 }
             }
 
-            error.file.should.eql(path.resolve('a.css'));
-            error.message.should.match(/a.css:1:1: Unclosed block$/);
+            expect(error.file).to.eql(path.resolve('a.css'));
+            expect(error.message).to.match(/a.css:1:1: Unclosed block$/);
         });
 
         it('allows to replace Root', () => {
             var processor = postcss( () => new Root() );
-            processor.process('a {}').css.should.eql('');
+            expect(processor.process('a {}').css).to.eql('');
         });
 
         it('returns Result object', () => {
             var result = postcss().process('a{}');
-            result.should.be.an.instanceOf(Result);
-            result.css.should.eql(       'a{}');
-            result.toString().should.eql('a{}');
+            expect(result).to.be.an.instanceOf(Result);
+            expect(result.css).to.eql(       'a{}');
+            expect(result.toString()).to.eql('a{}');
         });
 
         it('calls all processors', () => {
@@ -158,16 +159,16 @@ describe('postcss()', () => {
             var b = () => calls += 'b';
 
             postcss(a, b).process('');
-            calls.should.eql('ab');
+            expect(calls).to.eql('ab');
         });
 
         it('parses, convert and stringify CSS', () => {
-            var a = (css) => css.should.be.an.instanceof(Root);
-            postcss(a).process('a {}').css.should.have.type('string');
+            var a = (css) => expect(css).to.be.an.instanceof(Root);
+            expect(postcss(a).process('a {}').css).to.be.a('string');
         });
 
         it('send options to processors', () => {
-            var a = (css, opts) => opts.should.eql({ from: 'a.css' });
+            var a = (css, opts) => expect(opts).to.eql({ from: 'a.css' });
             postcss(a).process('a {}', { from: 'a.css' });
         });
 
@@ -182,7 +183,7 @@ describe('postcss()', () => {
                 to:   'c.css',
                 map: { prev: one.map, inline: false }
             });
-            two.map.toJSON().sources.should.eql(['a.css']);
+            expect(two.map.toJSON().sources).to.eql(['a.css']);
         });
 
     });

@@ -1,23 +1,25 @@
 var parse = require('../lib/parse');
 var Rule  = require('../lib/rule');
 
+var expect = require('chai').expect;
+
 describe('Rule', () => {
 
     it('initializes with properties', () => {
         var rule = new Rule({ selector: 'a' });
-        rule.selector.should.eql('a');
+        expect(rule.selector).to.eql('a');
     });
 
     describe('selectors', () => {
 
         it('returns array', () => {
             var rule = new Rule({ selector: 'a,b' });
-            rule.selectors.should.eql(['a', 'b']);
+            expect(rule.selectors).to.eql(['a', 'b']);
         });
 
         it('trims selectors', () => {
             var rule = new Rule({ selector: ".a\n, .b  , .c" });
-            rule.selectors.should.eql(['.a', '.b', '.c']);
+            expect(rule.selectors).to.eql(['.a', '.b', '.c']);
         });
 
         it('is smart about commas', () => {
@@ -26,7 +28,7 @@ describe('Rule', () => {
             var rule = new Rule({
                 selector: "[foo='a, b'], a:-moz-any(:focus, [href*=','])"
             });
-            rule.selectors.should.eql([
+            expect(rule.selectors).to.eql([
                 "[foo='a, b']",
                 "a:-moz-any(:focus, [href*=','])"]);
         });
@@ -34,7 +36,7 @@ describe('Rule', () => {
         it('receive array', () => {
             var rule = new Rule({ selector: 'a,b' });
             rule.selectors = ['em', 'strong'];
-            rule.selector.should.eql('em, strong');
+            expect(rule.selector).to.eql('em, strong');
         });
 
     });
@@ -43,9 +45,9 @@ describe('Rule', () => {
 
         it('inserts default spaces', () => {
             var rule = new Rule({ selector: 'a' });
-            rule.toString().should.eql('a {}');
+            expect(rule.toString()).to.eql('a {}');
             rule.append({ prop: 'color', value: 'black' });
-            rule.toString().should.eql('a {\n    color: black\n}');
+            expect(rule.toString()).to.eql('a {\n    color: black\n}');
         });
 
         it('clones spaces from another rule', () => {
@@ -53,7 +55,7 @@ describe('Rule', () => {
             var rule = new Rule({ selector: 'b' });
             root.append(rule);
 
-            rule.toString().should.eql("b{\n  }");
+            expect(rule.toString()).to.eql("b{\n  }");
         });
 
         it('uses different spaces for empty rules', () => {
@@ -61,10 +63,10 @@ describe('Rule', () => {
             var rule = new Rule({ selector: 'em' });
             root.append(rule);
 
-            rule.toString().should.eql("\nem { }");
+            expect(rule.toString()).to.eql("\nem { }");
 
             rule.append({ prop: 'top', value: '0' });
-            rule.toString().should.eql("\nem {\n  top: 0\n  }");
+            expect(rule.toString()).to.eql("\nem {\n  top: 0\n  }");
         });
 
     });

@@ -1,12 +1,14 @@
 var vendor = require('../lib/vendor');
 
+var expect = require('chai').expect;
+
 describe('vendor', () => {
 
     describe('.prefix()', () => {
 
         it('returns prefix',() => {
-            vendor.prefix('-moz-color').should.eql('-moz-');
-            vendor.prefix('color'     ).should.eql('');
+            expect(vendor.prefix('-moz-color')).to.eql('-moz-');
+            expect(vendor.prefix('color'     )).to.eql('');
         });
 
     });
@@ -14,8 +16,8 @@ describe('vendor', () => {
     describe('.unprefixed()', () => {
 
         it('returns unprefixed version', () => {
-          vendor.unprefixed('-moz-color').should.eql('color');
-          vendor.unprefixed('color'     ).should.eql('color');
+            expect(vendor.unprefixed('-moz-color')).to.eql('color');
+            expect(vendor.unprefixed('color'     )).to.eql('color');
         });
 
     });

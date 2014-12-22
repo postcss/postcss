@@ -2,7 +2,7 @@ var PreviousMap = require('../lib/previous-map');
 var postcss     = require('../lib/postcss');
 
 var mozilla = require('source-map');
-var should  = require('should');
+var expect  = require('chai').expect;
 var path    = require('path');
 var fs      = require('fs-extra');
 
@@ -30,12 +30,12 @@ describe('source maps', () => {
     });
 
     it('adds map field only on request', () => {
-        should.not.exists(postcss().process('a {}').map);
+        expect(postcss().process('a {}').map).to.not.exist();
     });
 
     it('return map generator', () => {
-        postcss().process('a {}', { map: { inline: false } }).map
-            .should.be.instanceOf(mozilla.SourceMapGenerator);
+        var map = postcss().process('a {}', { map: { inline: false } }).map;
+        expect(map).to.be.instanceOf(mozilla.SourceMapGenerator);
     });
 
     it('generate right source map', () => {
@@ -56,21 +56,21 @@ describe('source maps', () => {
         });
         var map = read(result);
 
-        map.file.should.eql('b.css');
+        expect(map.file).to.eql('b.css');
 
-        map.originalPositionFor({ line: 1, column: 0 }).should.eql({
+        expect(map.originalPositionFor({ line: 1, column: 0 })).to.eql({
             source: 'a.css',
             line:   1,
             column: 0,
             name:   null
         });
-        map.originalPositionFor({ line: 2, column: 2 }).should.eql({
+        expect(map.originalPositionFor({ line: 2, column: 2 })).to.eql({
             source: 'a.css',
             line:   2,
             column: 2,
             name:   null
         });
-        map.originalPositionFor({ line: 3, column: 2 }).should.eql({
+        expect(map.originalPositionFor({ line: 3, column: 2 })).to.eql({
             source: 'a.css',
             line:   2,
             column: 2,
@@ -79,27 +79,27 @@ describe('source maps', () => {
     });
 
     it('changes previous source map', () => {
-      var css = 'a { color: black }';
+        var css = 'a { color: black }';
 
-      var doubled = this.doubler.process(css, {
-          from: 'a.css',
-          to:   'b.css',
-          map: { inline: false }
-      });
+        var doubled = this.doubler.process(css, {
+            from: 'a.css',
+            to:   'b.css',
+            map: { inline: false }
+        });
 
-      var lighted = this.lighter.process(doubled.css, {
-          from: 'b.css',
-          to:   'c.css',
-          map: { prev: doubled.map }
-      });
+        var lighted = this.lighter.process(doubled.css, {
+            from: 'b.css',
+            to:   'c.css',
+            map: { prev: doubled.map }
+        });
 
-      consumer(lighted.map)
-          .originalPositionFor({ line: 1, column: 18 }).should.eql({
-              source: 'a.css',
-              line:   1,
-              column: 4,
-              name:   null
-          });
+        var map = consumer(lighted.map);
+        expect(map.originalPositionFor({ line: 1, column: 18 })).to.eql({
+            source: 'a.css',
+            line:   1,
+            column: 4,
+            name:   null
+        });
     });
 
     it('adds source map annotation', () => {
@@ -110,7 +110,7 @@ describe('source maps', () => {
             map: { inline: false }
         });
 
-        result.css.should.eql("a { }\n/*# sourceMappingURL=b.css.map */");
+        expect(result.css).to.eql("a { }\n/*# sourceMappingURL=b.css.map */");
     });
 
     it('misses source map annotation, if user ask', () => {
@@ -121,7 +121,7 @@ describe('source maps', () => {
             map: { annotation: false }
         });
 
-        result.css.should.eql(css);
+        expect(result.css).to.eql(css);
     });
 
     it('misses source map annotation, if previous map missed it', () => {
@@ -139,7 +139,7 @@ describe('source maps', () => {
             map: { prev: step1.map }
         });
 
-        step2.css.should.eql(css);
+        expect(step2.css).to.eql(css);
     });
 
     it('uses user path in annotation, relative to options.to', () => {
@@ -149,12 +149,12 @@ describe('source maps', () => {
             map: { annotation: 'maps/b.map' }
         });
 
-        result.css.should.eql("a { }\n/*# sourceMappingURL=maps/b.map */");
+        expect(result.css).to.eql("a { }\n/*# sourceMappingURL=maps/b.map */");
         var map = consumer(result.map);
 
-        map.file.should.eql('../b.css');
-        map.originalPositionFor({ line: 1, column: 0 })
-            .source.should.eql('../../source/a.css');
+        expect(map.file).to.eql('../b.css');
+        expect(map.originalPositionFor({ line: 1, column: 0 }).source)
+            .to.eql('../../source/a.css');
     });
 
     it('generates inline map', () => {
@@ -166,8 +166,8 @@ describe('source maps', () => {
             map: { inline: true }
         });
 
-        should.not.exists(inline.map);
-        inline.css.should.match(/# sourceMappingURL=data:/);
+        expect(inline.map).to.not.exist();
+        expect(inline.css).to.match(/# sourceMappingURL=data:/);
 
         var separated = postcss().process(css, {
           from: 'a.css',
@@ -176,7 +176,7 @@ describe('source maps', () => {
         });
 
         var base64 = new Buffer(separated.map).toString('base64');
-        inline.css.should.endWith(base64 + ' */');
+        expect(inline.css.endsWith(base64 + ' */')).to.be.true;
     });
 
     it('generates inline map by default', () => {
@@ -186,7 +186,7 @@ describe('source maps', () => {
             map:   true
         });
 
-        inline.css.should.match(/# sourceMappingURL=data:/);
+        expect(inline.css).to.match(/# sourceMappingURL=data:/);
     });
 
     it('generates separated map if previous map was not inlined', () => {
@@ -201,7 +201,7 @@ describe('source maps', () => {
             map: { prev: step1.map }
         });
 
-        should.exists(step2.map);
+        expect(step2.map).to.exist();
     });
 
     it('generates separated map on annotation option', () => {
@@ -211,7 +211,7 @@ describe('source maps', () => {
             map: { annotation: false }
         });
 
-        should.exists(result.map);
+        expect(result.map).to.exist();
     });
 
     it('allows change map type', () => {
@@ -227,8 +227,8 @@ describe('source maps', () => {
             map: { inline: false }
         });
 
-        step2.should.have.property('map');
-        step2.css.should.not.match(/# sourceMappingURL=data:/);
+        expect(step2).to.have.property('map');
+        expect(step2.css).to.not.match(/# sourceMappingURL=data:/);
     });
 
     it('misses check files on requires', () => {
@@ -245,7 +245,7 @@ describe('source maps', () => {
             map:  false
         });
 
-        should.not.exists(step2.map);
+        expect(step2.map).to.not.exist();
     });
 
     it('works in subdirs', () => {
@@ -255,11 +255,11 @@ describe('source maps', () => {
             map: { inline: false }
         });
 
-        result.css.should.match(/sourceMappingURL=b.css.map/);
+        expect(result.css).to.match(/sourceMappingURL=b.css.map/);
 
         var map = consumer(result.map);
-        map.file.should.eql('b.css');
-        map.sources.should.eql(['../from/a.css']);
+        expect(map.file).to.eql('b.css');
+        expect(map.sources).to.eql(['../from/a.css']);
     });
 
     it('uses map from subdir', () => {
@@ -275,8 +275,9 @@ describe('source maps', () => {
             map: { prev: step1.map }
         });
 
-        consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
-            .source.should.eql('../../a.css');
+        var source = consumer(step2.map)
+            .originalPositionFor({ line: 1, column: 0 }).source;
+        expect(source).to.eql('../../a.css');
 
         var step3 = this.doubler.process(step2.css, {
             from: 'c.css',
@@ -284,8 +285,9 @@ describe('source maps', () => {
             map: { prev: step2.map }
         });
 
-        consumer(step3.map).originalPositionFor({ line: 1, column: 0 })
-            .source.should.eql('../../a.css');
+        source = consumer(step3.map)
+            .originalPositionFor({ line: 1, column: 0 }).source;
+        expect(source).to.eql('../../a.css');
     });
 
     it('uses map from subdir if it inlined', () => {
@@ -301,8 +303,9 @@ describe('source maps', () => {
             map: { inline: false }
         });
 
-        consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
-          .source.should.eql('../../a.css');
+        var source = consumer(step2.map)
+            .originalPositionFor({ line: 1, column: 0 }).source;
+        expect(source).to.eql('../../a.css');
     });
 
     it('uses map from subdir if it written as a file', () => {
@@ -312,8 +315,9 @@ describe('source maps', () => {
             map: { annotation: 'maps/b.css.map', inline: false }
         });
 
-        consumer(step1.map).originalPositionFor({ line: 1, column: 0 })
-            .source.should.eql('../../source/a.css');
+        var source = consumer(step1.map)
+            .originalPositionFor({ line: 1, column: 0 }).source;
+        expect(source).to.eql('../../source/a.css');
 
         fs.outputFileSync(this.dir + '/one/maps/b.css.map', step1.map);
 
@@ -323,8 +327,9 @@ describe('source maps', () => {
             map:  true
         });
 
-        consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
-            .source.should.eql('../source/a.css');
+        source = consumer(step2.map)
+            .originalPositionFor({ line: 1, column: 0 }).source;
+        expect(source).to.eql('../source/a.css');
     });
 
     it('works with different types of maps', () => {
@@ -343,8 +348,9 @@ describe('source maps', () => {
                 to:   'c.css',
                 map: { prev: i }
             });
-            consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
-                .source.should.eql('a.css');
+            var source = consumer(step2.map)
+                .originalPositionFor({ line: 1, column: 0 }).source;
+            expect(source).to.eql('a.css');
         }
     });
 
@@ -355,7 +361,7 @@ describe('source maps', () => {
             map:   true
         });
 
-        read(result).sourceContentFor('../a.css').should.eql('a { }');
+        expect(read(result).sourceContentFor('../a.css')).to.eql('a { }');
     });
 
     it('misses source content on request', () => {
@@ -365,7 +371,7 @@ describe('source maps', () => {
             map: { sourcesContent: false }
         });
 
-        should.not.exists( read(result).sourceContentFor('../a.css') );
+        expect(read(result).sourceContentFor('../a.css')).to.not.exist();
     });
 
     it('misses source content if previous not have', () => {
@@ -384,7 +390,7 @@ describe('source maps', () => {
         file2.append( file1.first.clone() );
         var step2 = file2.toResult({ to: 'c.css', map: true });
 
-        should.not.exists( read(step2).sourceContentFor('b.css') );
+        expect(read(step2).sourceContentFor('b.css')).to.not.exist();
     });
 
     it('misses source content on request', () => {
@@ -407,14 +413,14 @@ describe('source maps', () => {
         });
 
         var map = read(step2);
-        should.not.exists(map.sourceContentFor('b.css'));
-        should.not.exists(map.sourceContentFor('../a.css'));
+        expect(map.sourceContentFor('b.css')).to.not.exist();
+        expect(map.sourceContentFor('../a.css')).to.not.exist();
     });
 
     it('detects input file name from map', () => {
         var one = this.doubler.process('a { }', { to: 'a.css', map: true });
         var two = this.doubler.process(one.css, { map: { prev: one.map } });
-        two.root.first.source.file.should.eql(path.resolve('a.css'));
+        expect(two.root.first.source.file).to.eql(path.resolve('a.css'));
     });
 
     it('works without file names', () => {
@@ -433,7 +439,7 @@ describe('source maps', () => {
             to:   'выход.css',
         });
 
-        read(step2).file.should.eql('выход.css');
+        expect(read(step2).file).to.eql('выход.css');
     });
 
     it('generates map for node created manually', () => {
@@ -441,8 +447,8 @@ describe('source maps', () => {
             css.first.prepend({ prop: 'content', value: '""' });
         });
         var result = contenter.process('a:after{\n}', { map: true });
-        read(result).originalPositionFor({ line: 2, column: 0 })
-            .should.eql({ source: null, line: null, column: null, name: null });
+        expect(read(result).originalPositionFor({ line: 2, column: 0 }))
+            .to.eql({ source: null, line: null, column: null, name: null });
     });
 
     it('uses input file name as output file name', () => {
@@ -450,12 +456,12 @@ describe('source maps', () => {
             from: 'a.css',
             map: { inline: false }
         });
-        result.map.toJSON().file.should.eql('a.css');
+        expect(result.map.toJSON().file).to.eql('a.css');
     });
 
     it('uses to.css as default output name', () => {
         var result = this.doubler.process('a{}', { map: { inline: false } });
-        result.map.toJSON().file.should.eql('to.css');
+        expect(result.map.toJSON().file).to.eql('to.css');
     });
 
     it('supports annotation comment in any place', () => {
@@ -466,7 +472,7 @@ describe('source maps', () => {
             map: { inline: false }
         });
 
-        result.css.should.eql("a { }\n/*# sourceMappingURL=b.css.map */");
+        expect(result.css).to.eql("a { }\n/*# sourceMappingURL=b.css.map */");
     });
 
     it('does not update annotation on request', () => {
@@ -477,7 +483,7 @@ describe('source maps', () => {
             map: { annotation: false, inline: false }
         });
 
-        result.css.should.eql("a { }/*# sourceMappingURL=a.css.map */");
+        expect(result.css).to.eql("a { }/*# sourceMappingURL=a.css.map */");
     });
 
 });

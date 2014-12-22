@@ -3,7 +3,7 @@ var Container   = require('../lib/container');
 var parse       = require('../lib/parse');
 var Rule        = require('../lib/rule');
 
-var should = require('should');
+var expect = require('chai').expect;
 
 var example = 'a { a: 1; b: 2 }' +
               '/* a */' +
@@ -30,9 +30,9 @@ describe('Container', () => {
 
         it('adds child without checks', () => {
             this.rule.push(this.new);
-            this.rule.toString().should.eql('a { a: 1; b: 2; c: 3 }');
-            this.rule.nodes.length.should.eql(3);
-            this.rule.last.should.not.have.property('before');
+            expect(this.rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
+            expect(this.rule.nodes.length).to.eql(3);
+            expect(this.rule.last).to.not.have.property('before');
         });
 
     });
@@ -44,11 +44,11 @@ describe('Container', () => {
 
             var result = this.rule.each( (decl, i) => {
                 indexes.push(i);
-                decl.should.eql( this.rule.nodes[i] );
+                expect(decl).to.eql(this.rule.nodes[i]);
             });
 
-            should.not.exists(result);
-            indexes.should.eql([0, 1]);
+            expect(result).to.not.exist();
+            expect(indexes).to.eql([0, 1]);
         });
 
         it('iterates with prepend', () => {
@@ -57,7 +57,7 @@ describe('Container', () => {
                 this.rule.prepend({ prop: 'color', value: 'aqua' });
                 size += 1;
             });
-            size.should.eql(2);
+            expect(size).to.eql(2);
         });
 
         it('iterates with prepend insertBefore', () => {
@@ -68,7 +68,7 @@ describe('Container', () => {
                 }
                 size += 1;
             });
-            size.should.eql(2);
+            expect(size).to.eql(2);
         });
 
         it('iterates with append insertBefore', () => {
@@ -79,7 +79,7 @@ describe('Container', () => {
                 }
                 size += 1;
             });
-            size.should.eql(3);
+            expect(size).to.eql(3);
         });
 
         it('iterates with prepend insertAfter', () => {
@@ -88,7 +88,7 @@ describe('Container', () => {
                 this.rule.insertAfter(i - 1, { prop: 'c', value: '3' });
                 size += 1;
             });
-            size.should.eql(2);
+            expect(size).to.eql(2);
         });
 
         it('iterates with append insertAfter', () => {
@@ -99,7 +99,7 @@ describe('Container', () => {
                 }
                 size += 1;
             });
-            size.should.eql(3);
+            expect(size).to.eql(3);
         });
 
         it('iterates with remove', () => {
@@ -108,7 +108,7 @@ describe('Container', () => {
                 this.rule.remove(0);
                 size += 1;
             });
-            size.should.eql(2);
+            expect(size).to.eql(2);
         });
 
         it('breaks iteration', () => {
@@ -119,8 +119,8 @@ describe('Container', () => {
                 return false;
             });
 
-            result.should.be.false;
-            indexes.should.eql([0]);
+            expect(result).to.be.false;
+            expect(indexes).to.eql([0]);
         });
 
         it('allows to change children', () => {
@@ -129,7 +129,7 @@ describe('Container', () => {
                 props.push(decl.prop);
                 this.rule.nodes = [this.rule.last, this.rule.first];
             });
-            props.should.eql(['a', 'a']);
+            expect(props).to.eql(['a', 'a']);
         });
 
     });
@@ -144,11 +144,11 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            should.not.exists(result);
-            types.should.eql(  ['rule', 'decl', 'decl', 'comment', 'atrule',
-                                'comment', 'rule', 'decl', 'atrule', 'rule',
-                                'decl', 'atrule', 'decl', 'comment']);
-            indexes.should.eql([0, 0, 1, 1, 2, 0, 1, 0, 3, 0, 0, 1, 0, 1]);
+            expect(result).to.not.exist();
+            expect(types).to.eql(['rule', 'decl', 'decl', 'comment', 'atrule',
+                                  'comment', 'rule', 'decl', 'atrule', 'rule',
+                                  'decl', 'atrule', 'decl', 'comment']);
+            expect(indexes).to.eql([0, 0, 1, 1, 2, 0, 1, 0, 3, 0, 0, 1, 0, 1]);
         });
 
         it('breaks iteration', () => {
@@ -159,8 +159,8 @@ describe('Container', () => {
                 return false;
             });
 
-            result.should.be.false;
-            indexes.should.eql([0]);
+            expect(result).to.be.false;
+            expect(indexes).to.eql([0]);
         });
 
     });
@@ -175,9 +175,9 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            should.not.exists(result);
-            props.should.eql(  ['a', 'b', 'c', 'd', 'e']);
-            indexes.should.eql([0, 1, 0, 0, 0]);
+            expect(result).to.not.exist();
+            expect(props).to.eql(['a', 'b', 'c', 'd', 'e']);
+            expect(indexes).to.eql([0, 1, 0, 0, 0]);
         });
 
         it('iterates with changes', () => {
@@ -186,7 +186,7 @@ describe('Container', () => {
                 decl.parent.remove(i);
                 size += 1;
             });
-            size.should.eql(5);
+            expect(size).to.eql(5);
         });
 
         it('breaks iteration', () => {
@@ -197,15 +197,13 @@ describe('Container', () => {
                 return false;
             });
 
-            result.should.be.false;
-            indexes.should.eql([0]);
+            expect(result).to.be.false;
+            expect(indexes).to.eql([0]);
         });
 
     });
 
     describe('eachComment()', () => {
-        beforeEach( () => {
-        });
 
         it('iterates', () => {
             var texts   = [];
@@ -216,9 +214,9 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            should.not.exists(result);
-            texts.should.eql(  ['a', 'b', 'c']);
-            indexes.should.eql([1, 0, 1]);
+            expect(result).to.not.exist();
+            expect(texts).to.eql(  ['a', 'b', 'c']);
+            expect(indexes).to.eql([1, 0, 1]);
         });
 
         it('iterates with changes', () => {
@@ -227,7 +225,7 @@ describe('Container', () => {
                 comment.parent.remove(i);
                 size += 1;
             });
-            size.should.eql(3);
+            expect(size).to.eql(3);
         });
 
         it('breaks iteration', () => {
@@ -238,8 +236,8 @@ describe('Container', () => {
                 return false;
             });
 
-            result.should.be.false;
-            indexes.should.eql([1]);
+            expect(result).to.be.false;
+            expect(indexes).to.eql([1]);
         });
 
     });
@@ -254,9 +252,9 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            should.not.exists(result);
-            selectors.should.eql(['a', 'to', 'em']);
-            indexes.should.eql(  [0, 1, 0]);
+            expect(result).to.not.exist();
+            expect(selectors).to.eql(['a', 'to', 'em']);
+            expect(indexes).to.eql([0, 1, 0]);
         });
 
         it('iterates with changes', () => {
@@ -265,7 +263,7 @@ describe('Container', () => {
                 rule.parent.remove(i);
                 size += 1;
             });
-            size.should.eql(3);
+            expect(size).to.eql(3);
         });
 
         it('breaks iteration', () => {
@@ -276,8 +274,8 @@ describe('Container', () => {
                 return false;
             });
 
-            result.should.be.false;
-            indexes.should.eql([0]);
+            expect(result).to.be.false;
+            expect(indexes).to.eql([0]);
         });
 
     });
@@ -292,9 +290,9 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            should.not.exists(result);
-            names.should.eql(  ['keyframes', 'media', 'page']);
-            indexes.should.eql([2, 3, 1]);
+            expect(result).to.not.exist();
+            expect(names).to.eql(['keyframes', 'media', 'page']);
+            expect(indexes).to.eql([2, 3, 1]);
         });
 
         it('iterates with changes', () => {
@@ -303,7 +301,7 @@ describe('Container', () => {
                 atrule.parent.remove(i);
                 size += 1;
             });
-            size.should.eql(3);
+            expect(size).to.eql(3);
         });
 
         it('breaks iteration', () => {
@@ -314,8 +312,8 @@ describe('Container', () => {
                 return false;
             });
 
-            result.should.be.false;
-            indexes.should.eql([2]);
+            expect(result).to.be.false;
+            expect(indexes).to.eql([2]);
         });
 
     });
@@ -324,19 +322,19 @@ describe('Container', () => {
 
         it('appends child', () => {
             this.rule.append(this.new);
-            this.rule.toString().should.eql('a { a: 1; b: 2; c: 3 }');
-            this.rule.last.before.should.eql(' ');
+            expect(this.rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
+            expect(this.rule.last.before).to.eql(' ');
         });
 
         it('receives hash instead of declaration', () => {
             this.rule.append({ prop: 'c', value: '3' });
-            this.rule.toString().should.eql('a { a: 1; b: 2; c: 3 }');
+            expect(this.rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
         });
 
         it('receives root', () => {
             var css = parse('a {}');
             css.append( parse('b {}') );
-            css.toString().should.eql('a {}b {}');
+            expect(css.toString()).to.eql('a {}b {}');
         });
 
         it('receives array', () => {
@@ -344,8 +342,9 @@ describe('Container', () => {
             var b = parse('b{width:1px;height:2px}');
 
             a.first.append( b.first.nodes );
-            a.toString().should.eql('a{ z-index: 1; width: 1px; height: 2px }');
-            b.toString().should.eql('b{width:1px;height:2px}');
+            expect(a.toString()).to.eql(
+                'a{ z-index: 1; width: 1px; height: 2px }');
+            expect(b.toString()).to.eql('b{width:1px;height:2px}');
         });
 
         it('clones node on insert', () => {
@@ -355,8 +354,8 @@ describe('Container', () => {
             b.append(a.first);
             b.last.selector = 'b a';
 
-            a.toString().should.eql('a{}');
-            b.toString().should.eql('b{}b a{}');
+            expect(a.toString()).to.eql('a{}');
+            expect(b.toString()).to.eql('b{}b a{}');
         });
 
     });
@@ -365,19 +364,19 @@ describe('Container', () => {
 
         it('prepends child', () => {
             this.rule.prepend(this.new);
-            this.rule.toString().should.eql('a { c: 3; a: 1; b: 2 }');
-            this.rule.first.before.should.eql(' ');
+            expect(this.rule.toString()).to.eql('a { c: 3; a: 1; b: 2 }');
+            expect(this.rule.first.before).to.eql(' ');
         });
 
         it('receive hash instead of declaration', () => {
             this.rule.prepend({ prop: 'c', value: '3' });
-            this.rule.toString().should.eql('a { c: 3; a: 1; b: 2 }');
+            expect(this.rule.toString()).to.eql('a { c: 3; a: 1; b: 2 }');
         });
 
         it('receives root', () => {
             var css = parse('a {}');
             css.prepend( parse('b {}') );
-            css.toString().should.eql('b {}a {}');
+            expect(css.toString()).to.eql('b {}a {}');
         });
 
         it('receives array', () => {
@@ -385,13 +384,14 @@ describe('Container', () => {
             var b = parse('b{width:1px;height:2px}');
 
             a.first.prepend( b.first.nodes );
-            a.toString().should.eql('a{ width: 1px; height: 2px; z-index: 1 }');
+            expect(a.toString()).to.eql(
+                'a{ width: 1px; height: 2px; z-index: 1 }');
         });
 
         it('works on empty container', () => {
             var root = parse('');
             root.prepend( new Rule({ selector: 'a' }) );
-            root.toString().should.eql('a {}');
+            expect(root.toString()).to.eql('a {}');
         });
 
     });
@@ -400,18 +400,18 @@ describe('Container', () => {
 
         it('inserts child', () => {
             this.rule.insertBefore(1, this.new);
-            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
-            this.rule.nodes[1].before.should.eql(' ');
+            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
+            expect(this.rule.nodes[1].before).to.eql(' ');
         });
 
         it('works with nodes too', () => {
             this.rule.insertBefore(this.rule.nodes[1], this.new);
-            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
+            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receive hash instead of declaration', () => {
             this.rule.insertBefore(1, { prop: 'c', value: '3' });
-            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
+            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receives array', () => {
@@ -419,7 +419,7 @@ describe('Container', () => {
             var b = parse('b{width:1;height:2}');
 
             a.first.insertBefore(1, b.first.nodes);
-            a.toString().should.eql(
+            expect(a.toString()).to.eql(
                 'a{ color: red; width: 1; height: 2; z-index: 1 }');
         });
 
@@ -429,18 +429,18 @@ describe('Container', () => {
 
         it('inserts child', () => {
             this.rule.insertAfter(0, this.new);
-            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
-            this.rule.nodes[1].before.should.eql(' ');
+            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
+            expect(this.rule.nodes[1].before).to.eql(' ');
         });
 
         it('works with nodes too', () => {
             this.rule.insertAfter(this.rule.first, this.new);
-            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
+            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receive hash instead of declaration', () => {
             this.rule.insertAfter(0, { prop: 'c', value: '3' });
-            this.rule.toString().should.eql('a { a: 1; c: 3; b: 2 }');
+            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receives array', () => {
@@ -448,7 +448,7 @@ describe('Container', () => {
             var b = parse('b{width:1;height:2}');
 
             a.first.insertAfter(0, b.first.nodes);
-            a.toString().should.eql(
+            expect(a.toString()).to.eql(
                 'a{ color: red; width: 1; height: 2; z-index: 1 }');
         });
 
@@ -456,14 +456,14 @@ describe('Container', () => {
 
     describe('remove()', () => {
 
-        it('should remove by index', () => {
+        it('removes by index', () => {
             this.rule.remove(1);
-            this.rule.toString().should.eql('a { a: 1 }');
+            expect(this.rule.toString()).to.eql('a { a: 1 }');
         });
 
-        it('should remove by nide', () => {
+        it('removes by node', () => {
             this.rule.remove( this.rule.last );
-            this.rule.toString().should.eql('a { a: 1 }');
+            expect(this.rule.toString()).to.eql('a { a: 1 }');
         });
 
     });
@@ -471,8 +471,8 @@ describe('Container', () => {
     describe('any()', () => {
 
         it('return true if all children return true', () => {
-            this.rule.every( i => i.prop.match(/a|b/) ).should.be.true;
-            this.rule.every( i => i.prop.match(/b/) ).should.be.false;
+            expect(this.rule.every( i => i.prop.match(/a|b/) )).to.be.true;
+            expect(this.rule.every( i => i.prop.match(/b/)   )).to.be.false;
         });
 
     });
@@ -480,8 +480,8 @@ describe('Container', () => {
     describe('some()', () => {
 
         it('return true if all children return true', () => {
-            this.rule.some( i => i.prop == 'b' ).should.be.true;
-            this.rule.some( i => i.prop == 'c' ).should.be.false;
+            expect(this.rule.some( i => i.prop == 'b' )).to.be.true;
+            expect(this.rule.some( i => i.prop == 'c' )).to.be.false;
         });
 
     });
@@ -489,11 +489,11 @@ describe('Container', () => {
     describe('index()', () => {
 
         it('returns child index', () => {
-            this.rule.index( this.rule.nodes[1] ).should.eql(1);
+            expect(this.rule.index( this.rule.nodes[1] )).to.eql(1);
         });
 
         it('returns argument if it(is number', () => {
-            this.rule.index(2).should.eql(2);
+            expect(this.rule.index(2)).to.eql(2);
         });
 
     });
@@ -501,7 +501,7 @@ describe('Container', () => {
     describe('first', () => {
 
         it('returns first child', () => {
-            this.rule.first.prop.should.eql('a');
+            expect(this.rule.first.prop).to.eql('a');
         });
 
     });
@@ -509,7 +509,7 @@ describe('Container', () => {
     describe('last', () => {
 
         it('returns last child', () => {
-            this.rule.last.prop.should.eql('b');
+            expect(this.rule.last.prop).to.eql('b');
         });
 
     });
@@ -518,7 +518,7 @@ describe('Container', () => {
 
         it("doesn't normalize new children with exists before", () => {
             this.rule.append({ prop: 'c', value: '3', before: '\n ' });
-            this.rule.toString().should.eql('a { a: 1; b: 2;\n c: 3 }');
+            expect(this.rule.toString()).to.eql('a { a: 1; b: 2;\n c: 3 }');
         });
 
     });

@@ -1,13 +1,15 @@
 var Comment = require('../lib/comment');
 var parse   = require('../lib/parse');
 
+var expect = require('chai').expect;
+
 describe('Comment', () => {
 
     describe('toString()', () => {
 
         it('inserts default spaces', () => {
             var comment = new Comment({ text: 'hi' });
-            comment.toString().should.eql('/* hi */');
+            expect(comment.toString()).to.eql('/* hi */');
         });
 
         it('clone spaces from another comment', () => {
@@ -15,7 +17,7 @@ describe('Comment', () => {
             var comment = new Comment({ text: 'world' });
             root.append(comment);
 
-            comment.toString().should.eql('/*world*/');
+            expect(comment.toString()).to.eql('/*world*/');
         });
 
     });

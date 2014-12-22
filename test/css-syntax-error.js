@@ -2,7 +2,7 @@ var CssSyntaxError = require('../lib/css-syntax-error');
 var parse          = require('../lib/parse');
 
 var Concat = require('concat-with-sourcemaps');
-var should = require('should');
+var expect = require('chai').expect;
 var path   = require('path');
 
 var parseError = function (css, opts) {
@@ -24,35 +24,35 @@ describe('CssSyntaxError', () => {
     it('saves source', () => {
         var error = parseError('a {\n  content: "\n}');
 
-        error.should.be.a.instanceOf(CssSyntaxError);
-        error.name.should.eql('CssSyntaxError');
-        error.message.should.be.eql('<css input>:2:12: Unclosed quote');
-        error.reason.should.eql('Unclosed quote');
-        error.line.should.eql(2);
-        error.column.should.eql(12);
-        error.source.should.eql('a {\n  content: "\n}');
+        expect(error).to.be.a.instanceOf(CssSyntaxError);
+        expect(error.name).to.eql('CssSyntaxError');
+        expect(error.message).to.be.eql('<css input>:2:12: Unclosed quote');
+        expect(error.reason).to.eql('Unclosed quote');
+        expect(error.line).to.eql(2);
+        expect(error.column).to.eql(12);
+        expect(error.source).to.eql('a {\n  content: "\n}');
     });
 
     it('has stack trace', () => {
-        parseError('a {\n  content: "\n}').stack.should.containEql(
-            'test/css-syntax-error.js');
+        expect(parseError('a {\n  content: "\n}').stack)
+            .to.match(/test\/css-syntax-error\.js/);
     });
 
     it('highlights broken line', () => {
-        parseError('a {\n  content: "\n}')
-            .highlight().should.eql('a {\n' +
-                                    '  content: "\n' +
-                                    '           \u001b[1;31m^\u001b[0m\n' +
-                                    '}');
+        expect(parseError('a {\n  content: "\n}').highlight()).to.eql(
+            'a {\n' +
+            '  content: "\n' +
+            '           \u001b[1;31m^\u001b[0m\n' +
+            '}');
     });
 
     it('highlights without colors on request', () => {
-        parseError('a {').highlight(false).should.eql('a {\n' +
-                                                      '^');
+        expect(parseError('a {').highlight(false)).to.eql('a {\n' +
+                                                          '^');
     });
 
     it('prints with colored CSS', () => {
-        parseError('a {').toString().should.eql(
+        expect(parseError('a {').toString()).to.eql(
             "<css input>:1:1: Unclosed block\n" +
             'a {\n' +
             '\u001b[1;31m^\u001b[0m');
@@ -61,7 +61,7 @@ describe('CssSyntaxError', () => {
     it('misses highlights without source', () => {
         var error = parseError('a {');
         error.source = null;
-        error.toString().should.eql('<css input>:1:1: Unclosed block');
+        expect(error.toString()).to.eql('<css input>:1:1: Unclosed block');
     });
 
     it('uses source map', () => {
@@ -74,11 +74,11 @@ describe('CssSyntaxError', () => {
             map: { prev: concat.sourceMap }
         });
 
-        error.file.should.eql(path.resolve('b.css'));
-        error.line.should.eql(1);
-        should.not.exists(error.source);
+        expect(error.file).to.eql(path.resolve('b.css'));
+        expect(error.line).to.eql(1);
+        expect(error.source).to.not.exist();
 
-        error.generated.should.eql({
+        expect(error.generated).to.eql({
             file:    path.resolve('build/all.css'),
             line:    2,
             column:  1,
@@ -98,7 +98,7 @@ describe('CssSyntaxError', () => {
                 }
             }
         });
-        error.file.should.eql(path.resolve('build/all.css'));
+        expect(error.file).to.eql(path.resolve('build/all.css'));
     });
 
 });

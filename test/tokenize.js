@@ -1,31 +1,36 @@
 var tokenize = require('../lib/tokenize');
 var Input    = require('../lib/input');
 
+var expect = require('chai').expect;
+
+var test = (css, opts, tokens) => {
+    if ( typeof(tokens) == 'undefined' ) [tokens, opts] = [opts, tokens];
+    expect(tokenize(new Input(css, opts))).to.eql(tokens);
+};
+
 describe('tokenize', () => {
 
     it('tokenizes empty file', () => {
-        tokenize(new Input('')).should.eql([]);
+        test('', []);
     });
 
     it('tokenizes space', () => {
-        tokenize(new Input('\r\n \f\t')).should.eql([ ['space', '\r\n \f\t'] ]);
+        test('\r\n \f\t', [ ['space', '\r\n \f\t'] ]);
     });
 
     it('tokenizes word', () => {
-        tokenize(new Input('ab')).should.eql([
-            ['word', 'ab', 1, 1, 1, 2]
-        ]);
+        test('ab', [ ['word', 'ab', 1, 1, 1, 2] ]);
     });
 
     it('splits word by !', () => {
-        tokenize(new Input('aa!bb')).should.eql([
+        test('aa!bb', [
             ['word', 'aa',  1, 1, 1, 2],
             ['word', '!bb', 1, 3, 1, 5]
         ]);
     });
 
     it('changes lines in spaces', () => {
-        tokenize(new Input('a \n b')).should.eql([
+        test('a \n b', [
             ['word',  'a', 1, 1, 1, 1],
             ['space', ' \n '],
             ['word',  'b', 2, 2, 2, 2]
@@ -33,7 +38,7 @@ describe('tokenize', () => {
     });
 
     it('tokenizes control chars', () => {
-        tokenize(new Input('{:;}')).should.eql([
+        test('{:;}', [
             ['{', '{', 1, 1],
             [':', ':', 1, 2],
             [';', ';', 1, 3],
@@ -42,7 +47,7 @@ describe('tokenize', () => {
     });
 
     it('escapes control symbols', () => {
-        tokenize(new Input('\\(\\{\\"\\@')).should.eql([
+        test('\\(\\{\\"\\@', [
             ['word', '\\(', 1, 1, 1, 2],
             ['word', '\\{', 1, 3, 1, 4],
             ['word', '\\"', 1, 5, 1, 6],
@@ -51,20 +56,18 @@ describe('tokenize', () => {
     });
 
     it('escapes backslash', () => {
-        tokenize(new Input('\\\\\\\\{')).should.eql([
+        test('\\\\\\\\{', [
             ['word', '\\\\\\\\', 1, 1, 1, 4],
             ['{',    '{',        1, 5]
         ]);
     });
 
     it('tokenizes simple brackets', () => {
-        tokenize(new Input('(ab)')).should.eql([
-            ['brackets', '(ab)', 1, 1, 1, 4]
-        ]);
+       test('(ab)', [ ['brackets', '(ab)', 1, 1, 1, 4] ]);
     });
 
     it('tokenizes complicated brackets', () => {
-        tokenize(new Input('(())("")(/**/)(\\\\)(\n)(')).should.eql([
+        test('(())("")(/**/)(\\\\)(\n)(', [
             ['(',        '(',    1, 1],
             ['brackets', '()',   1, 2, 1, 3],
             [')',        ')',    1, 4],
@@ -85,27 +88,22 @@ describe('tokenize', () => {
     });
 
     it('tokenizes string', () => {
-        tokenize(new Input('\'"\'"\\""')).should.eql([
+        test('\'"\'"\\""', [
             ['string', "'\"'",  1, 1, 1, 3],
             ['string', '"\\""', 1, 4, 1, 7]
         ]);
     });
 
     it('tokenizes escaped string', () => {
-        tokenize(new Input('"\\\\"')).should.eql([
-            ['string', '"\\\\"', 1, 1, 1, 4]
-        ]);
+        test('"\\\\"', [ ['string', '"\\\\"', 1, 1, 1, 4] ]);
     });
 
     it('tokenizes at-word', () => {
-        tokenize(new Input('@word ')).should.eql([
-            ['at-word', '@word', 1, 1, 1, 5],
-            ['space',   ' ']
-        ]);
+        test('@word ', [ ['at-word', '@word', 1, 1, 1, 5], ['space', ' '] ]);
     });
 
     it('tokenizes at-word end', () => {
-        tokenize(new Input('@one{@two()@three""')).should.eql([
+        test('@one{@two()@three""', [
             ['at-word',  '@one',   1,  1, 1,  4],
             ['{',        '{',      1,  5],
             ['at-word',  '@two',   1,  6, 1,  9],
@@ -116,19 +114,15 @@ describe('tokenize', () => {
     });
 
     it('tokenizes at-symbol', () => {
-        tokenize(new Input('@')).should.eql([
-            ['at-word', '@', 1, 1, 1, 1]
-        ]);
+        test('@', [ ['at-word', '@', 1, 1, 1, 1] ]);
     });
 
     it('tokenizes comment', () => {
-        tokenize(new Input('/* a\nb */')).should.eql([
-            ['comment', '/* a\nb */', 1, 1, 2, 4]
-        ]);
+        test('/* a\nb */', [ ['comment', '/* a\nb */', 1, 1, 2, 4] ]);
     });
 
     it('changes lines in comments', () => {
-        tokenize(new Input('a/* \n */b')).should.eql([
+        test('a/* \n */b', [
             ['word',    'a',        1, 1, 1, 1],
             ['comment', '/* \n */', 1, 2, 2, 3],
             ['word',    'b',        2, 4, 2, 4]
@@ -137,12 +131,12 @@ describe('tokenize', () => {
 
     it('tokenizes CSS', () => {
         var css = 'a {\n' +
-              '  content: "a";\n' +
-              '  width: calc(1px;)\n' +
-              '  }\n' +
-              '/* small screen */\n' +
-              '@media screen {}';
-        tokenize(new Input(css)).should.eql([
+                  '  content: "a";\n' +
+                  '  width: calc(1px;)\n' +
+                  '  }\n' +
+                  '/* small screen */\n' +
+                  '@media screen {}';
+        test(css, [
             ['word',     'a',                  1,  1, 1,  1],
             ['space',    ' '],
             ['{',        '{',                  1,  3],
@@ -173,25 +167,19 @@ describe('tokenize', () => {
     });
 
     it('throws error on unclosed string', () => {
-        ( () => tokenize(new Input(' "')) )
-           .should.throw(/:1:2: Unclosed quote/);
+        expect( () => test(' "') ).to.throw(/:1:2: Unclosed quote/);
     });
 
     it('fixes unclosed string in safe mode', () => {
-        tokenize(new Input('"', { safe: true })).should.eql([
-            ['string', '""', 1, 1, 1, 2]
-        ]);
+        test('"', { safe: true }, [ ['string', '""', 1, 1, 1, 2] ]);
     });
 
     it('throws error on unclosed comment', () => {
-        ( () => tokenize(new Input(' /*')) )
-            .should.throw(/:1:2: Unclosed comment/);
+        expect( () => test(' /*') ).to.throw(/:1:2: Unclosed comment/);
     });
 
     it('fixes unclosed comment in safe mode', () => {
-        tokenize(new Input('/*', { safe: true })).should.eql([
-            ['comment', '/**/', 1, 1, 1, 4]
-        ]);
+        test('/*', { safe: true }, [ ['comment', '/**/', 1, 1, 1, 4] ]);
     });
 
 });
