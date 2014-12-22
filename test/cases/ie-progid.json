@@ -1,9 +1,9 @@
 {
     "type": "root",
-    "childs": [
+    "nodes": [
         {
             "type": "rule",
-            "childs": [
+            "nodes": [
                 {
                     "type": "decl",
                     "source": {
