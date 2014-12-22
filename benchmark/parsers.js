@@ -16,45 +16,43 @@ module.exports = {
         {
             name: 'Rework',
             fn: function () {
-                return rework(css).toString();
+                rework(css).toString();
             }
         },
         {
             name: 'PostCSS',
             fn: function () {
-                return postcss.parse(css).toResult().css;
+                postcss.parse(css).toResult().css;
             }
         },
         {
             name: 'CSSOM',
             fn: function () {
-                return CSSOM.parse(css).toString();
+                CSSOM.parse(css).toString();
             }
         },
         {
             name: "Mensch",
             fn: function () {
-                return mensch.stringify( mensch.parse(css) );
+                mensch.stringify( mensch.parse(css) );
             }
         },
         {
             name: 'Gonzales',
             fn: function () {
-                return gonzales.csspToSrc( gonzales.srcToCSSP(css) );
+                gonzales.csspToSrc( gonzales.srcToCSSP(css) );
             }
         },
         {
             name: 'Gonzales PE',
             fn: function () {
-                return gonzalesPe.astToSrc({
-                    ast: gonzalesPe.srcToAST({ src: css })
-                });
+                gonzalesPe.astToSrc({ ast: gonzalesPe.srcToAST({ src: css }) });
             }
         },
         {
             name: 'Stylecow',
             fn: function () {
-                return stylecow.create(css).toString();
+                stylecow.create(css).toString();
             }
         }
     ]

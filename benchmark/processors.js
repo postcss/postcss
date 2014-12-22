@@ -22,7 +22,7 @@ module.exports = {
         {
             name: 'PostCSS',
             fn: function (done) {
-                return postcss(cssnext).process(css, { map: false }).css;
+                postcss(cssnext).process(css, { map: false }).css;
             }
         },
         {
@@ -48,7 +48,7 @@ module.exports = {
         {
             name: 'libsass',
             fn: function () {
-                return sass.renderSync({ data: css });
+                sass.renderSync({ data: css });
             }
         },
         {

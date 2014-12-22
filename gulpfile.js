@@ -42,25 +42,18 @@ gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
 
 // Lint
 
-gulp.task('lint:test', function () {
+gulp.task('lint', function () {
     var jshint = require('gulp-jshint');
 
-    return gulp.src('test/*.js')
+    return gulp.src(['*.js',
+                     'lib/*.js',
+                     'test/*.js',
+                     'tasks/*.js',
+                     'benchmark/**/*.js'])
         .pipe(jshint({ esnext: true, expr: true }))
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('fail'));
 });
-
-gulp.task('lint:lib', function () {
-    var jshint = require('gulp-jshint');
-
-    return gulp.src(['lib/*.js', 'tasks/*.js', 'benchmark/**/*.js', '*.js'])
-        .pipe(jshint({ esnext: true }))
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jshint.reporter('fail'));
-});
-
-gulp.task('lint', ['lint:test', 'lint:lib']);
 
 // Benchmark
 
