@@ -9,8 +9,12 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "@charset \"UTF-8\";\n",
-                "file": "/atrule-empty.css",
+                "input": {
+                    "css": "@charset \"UTF-8\";\n",
+                    "safe": false,
+                    "file": "/atrule-empty.css",
+                    "from": "/atrule-empty.css"
+                },
                 "end": {
                     "line": 1,
                     "column": 17

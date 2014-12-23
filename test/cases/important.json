@@ -11,8 +11,12 @@
                             "line": 2,
                             "column": 5
                         },
-                        "content": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
-                        "file": "/important.css",
+                        "input": {
+                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
+                            "safe": false,
+                            "file": "/important.css",
+                            "from": "/important.css"
+                        },
                         "end": {
                             "line": 2,
                             "column": 25
@@ -32,8 +36,12 @@
                             "line": 3,
                             "column": 5
                         },
-                        "content": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
-                        "file": "/important.css",
+                        "input": {
+                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
+                            "safe": false,
+                            "file": "/important.css",
+                            "from": "/important.css"
+                        },
                         "end": {
                             "line": 3,
                             "column": 30
@@ -52,8 +60,12 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
-                "file": "/important.css",
+                "input": {
+                    "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
+                    "safe": false,
+                    "file": "/important.css",
+                    "from": "/important.css"
+                },
                 "end": {
                     "line": 4,
                     "column": 1

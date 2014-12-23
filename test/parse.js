@@ -43,21 +43,24 @@ describe('postcss.parse()', () => {
 
     it('saves source file', () => {
         var css = parse('a {}', { from: 'a.css' });
-        expect(css.first.source.file).to.eql(path.resolve('a.css'));
+        expect(css.first.source.input.file).to.eql(path.resolve('a.css'));
+        expect(css.first.source.input.from).to.eql(path.resolve('a.css'));
     });
 
     it('saves source file on previous map', () => {
         var root1 = parse('a {}', { map: { inline: true } });
         var css   = root1.toResult({ map: { inline: true } }).css;
         var root2 = parse(css);
-        expect(root2.first.source.file).to.eql(path.resolve('to.css'));
+        expect(root2.first.source.input.file).to.eql(path.resolve('to.css'));
     });
 
     it('sets unique ID for file without name', () => {
         var css1 = parse('a {}');
         var css2 = parse('a {}');
-        expect(css1.first.source.id).to.match(/^<input css \d+>$/);
-        expect(css2.first.source.id).to.not.eql(css1.first.source.id);
+        expect(css1.first.source.input.id).to.match(/^<input css \d+>$/);
+        expect(css1.first.source.input.from).to.match(/^<input css \d+>$/);
+        expect(css2.first.source.input.id)
+            .to.not.eql(css1.first.source.input.id);
     });
 
     it('sets parent node', () => {

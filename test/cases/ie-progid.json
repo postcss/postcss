@@ -11,8 +11,12 @@
                             "line": 2,
                             "column": 5
                         },
-                        "content": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",
-                        "file": "/ie-progid.css",
+                        "input": {
+                            "css": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",
+                            "safe": false,
+                            "file": "/ie-progid.css",
+                            "from": "/ie-progid.css"
+                        },
                         "end": {
                             "line": 2,
                             "column": 118
@@ -29,8 +33,12 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",
-                "file": "/ie-progid.css",
+                "input": {
+                    "css": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",
+                    "safe": false,
+                    "file": "/ie-progid.css",
+                    "from": "/ie-progid.css"
+                },
                 "end": {
                     "line": 3,
                     "column": 1

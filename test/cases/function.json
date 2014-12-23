@@ -11,8 +11,12 @@
                             "line": 2,
                             "column": 5
                         },
-                        "content": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
-                        "file": "/function.css",
+                        "input": {
+                            "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
+                            "safe": false,
+                            "file": "/function.css",
+                            "from": "/function.css"
+                        },
                         "end": {
                             "line": 2,
                             "column": 105
@@ -29,8 +33,12 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
-                "file": "/function.css",
+                "input": {
+                    "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
+                    "safe": false,
+                    "file": "/function.css",
+                    "from": "/function.css"
+                },
                 "end": {
                     "line": 3,
                     "column": 1

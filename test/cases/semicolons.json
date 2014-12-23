@@ -11,8 +11,12 @@
                             "line": 2,
                             "column": 5
                         },
-                        "content": "a {;;\n    color: black;\n    ; ;\n}\n",
-                        "file": "/semicolons.css",
+                        "input": {
+                            "css": "a {;;\n    color: black;\n    ; ;\n}\n",
+                            "safe": false,
+                            "file": "/semicolons.css",
+                            "from": "/semicolons.css"
+                        },
                         "end": {
                             "line": 2,
                             "column": 17
@@ -29,8 +33,12 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "a {;;\n    color: black;\n    ; ;\n}\n",
-                "file": "/semicolons.css",
+                "input": {
+                    "css": "a {;;\n    color: black;\n    ; ;\n}\n",
+                    "safe": false,
+                    "file": "/semicolons.css",
+                    "from": "/semicolons.css"
+                },
                 "end": {
                     "line": 4,
                     "column": 1

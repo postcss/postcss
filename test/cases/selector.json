@@ -9,8 +9,12 @@
                     "line": 2,
                     "column": 1
                 },
-                "content": "\na/* { } */ b {}\n",
-                "file": "/selector.css",
+                "input": {
+                    "css": "\na/* { } */ b {}\n",
+                    "safe": false,
+                    "file": "/selector.css",
+                    "from": "/selector.css"
+                },
                 "end": {
                     "line": 2,
                     "column": 15

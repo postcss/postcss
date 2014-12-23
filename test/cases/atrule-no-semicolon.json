@@ -9,8 +9,12 @@
                     "line": 2,
                     "column": 1
                 },
-                "content": "\n@charset \"UTF-8\"\n\n",
-                "file": "/atrule-no-semicolon.css",
+                "input": {
+                    "css": "\n@charset \"UTF-8\"\n\n",
+                    "safe": false,
+                    "file": "/atrule-no-semicolon.css",
+                    "from": "/atrule-no-semicolon.css"
+                },
                 "end": {
                     "line": 2,
                     "column": 16

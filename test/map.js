@@ -420,7 +420,7 @@ describe('source maps', () => {
     it('detects input file name from map', () => {
         var one = this.doubler.process('a { }', { to: 'a.css', map: true });
         var two = this.doubler.process(one.css, { map: { prev: one.map } });
-        expect(two.root.first.source.file).to.eql(path.resolve('a.css'));
+        expect(two.root.first.source.input.file).to.eql(path.resolve('a.css'));
     });
 
     it('works without file names', () => {

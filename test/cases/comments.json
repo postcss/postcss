@@ -8,8 +8,12 @@
                     "line": 1,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                "file": "/comments.css",
+                "input": {
+                    "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                    "safe": false,
+                    "file": "/comments.css",
+                    "from": "/comments.css"
+                },
                 "end": {
                     "line": 1,
                     "column": 24
@@ -27,8 +31,12 @@
                     "line": 2,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                "file": "/comments.css",
+                "input": {
+                    "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                    "safe": false,
+                    "file": "/comments.css",
+                    "from": "/comments.css"
+                },
                 "end": {
                     "line": 2,
                     "column": 4
@@ -46,8 +54,12 @@
                     "line": 3,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                "file": "/comments.css",
+                "input": {
+                    "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                    "safe": false,
+                    "file": "/comments.css",
+                    "from": "/comments.css"
+                },
                 "end": {
                     "line": 3,
                     "column": 5
@@ -68,8 +80,12 @@
                             "line": 5,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                        "file": "/comments.css",
+                        "input": {
+                            "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                            "safe": false,
+                            "file": "/comments.css",
+                            "from": "/comments.css"
+                        },
                         "end": {
                             "line": 5,
                             "column": 16
@@ -87,8 +103,12 @@
                             "line": 6,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                        "file": "/comments.css",
+                        "input": {
+                            "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                            "safe": false,
+                            "file": "/comments.css",
+                            "from": "/comments.css"
+                        },
                         "end": {
                             "line": 6,
                             "column": 17
@@ -106,8 +126,12 @@
                             "line": 7,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                        "file": "/comments.css",
+                        "input": {
+                            "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                            "safe": false,
+                            "file": "/comments.css",
+                            "from": "/comments.css"
+                        },
                         "end": {
                             "line": 7,
                             "column": 17
@@ -125,8 +149,12 @@
                             "line": 8,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                        "file": "/comments.css",
+                        "input": {
+                            "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                            "safe": false,
+                            "file": "/comments.css",
+                            "from": "/comments.css"
+                        },
                         "end": {
                             "line": 8,
                             "column": 28
@@ -144,8 +172,12 @@
                             "line": 9,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                        "file": "/comments.css",
+                        "input": {
+                            "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                            "safe": false,
+                            "file": "/comments.css",
+                            "from": "/comments.css"
+                        },
                         "end": {
                             "line": 9,
                             "column": 13
@@ -162,8 +194,12 @@
                     "line": 4,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                "file": "/comments.css",
+                "input": {
+                    "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                    "safe": false,
+                    "file": "/comments.css",
+                    "from": "/comments.css"
+                },
                 "end": {
                     "line": 10,
                     "column": 1
@@ -181,8 +217,12 @@
                     "line": 11,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                "file": "/comments.css",
+                "input": {
+                    "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                    "safe": false,
+                    "file": "/comments.css",
+                    "from": "/comments.css"
+                },
                 "end": {
                     "line": 11,
                     "column": 7
@@ -203,8 +243,12 @@
                             "line": 14,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                        "file": "/comments.css",
+                        "input": {
+                            "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                            "safe": false,
+                            "file": "/comments.css",
+                            "from": "/comments.css"
+                        },
                         "end": {
                             "line": 14,
                             "column": 17
@@ -222,8 +266,12 @@
                             "line": 15,
                             "column": 5
                         },
-                        "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                        "file": "/comments.css",
+                        "input": {
+                            "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                            "safe": false,
+                            "file": "/comments.css",
+                            "from": "/comments.css"
+                        },
                         "end": {
                             "line": 15,
                             "column": 11
@@ -240,8 +288,12 @@
                     "line": 13,
                     "column": 1
                 },
-                "content": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
-                "file": "/comments.css",
+                "input": {
+                    "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+                    "safe": false,
+                    "file": "/comments.css",
+                    "from": "/comments.css"
+                },
                 "end": {
                     "line": 16,
                     "column": 1
