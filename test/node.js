@@ -1,12 +1,31 @@
-var Declaration = require('../lib/declaration');
-var AtRule      = require('../lib/at-rule');
-var Node        = require('../lib/node');
-var Root        = require('../lib/root');
-var Rule        = require('../lib/rule');
+var CssSyntaxError = require('../lib/css-syntax-error');
+var Declaration    = require('../lib/declaration');
+var AtRule         = require('../lib/at-rule');
+var parse          = require('../lib/parse');
+var Node           = require('../lib/node');
+var Root           = require('../lib/root');
+var Rule           = require('../lib/rule');
 
 var expect = require('chai').expect;
 
 describe('Node', () => {
+
+    describe('error()', () => {
+
+        it('generates custom error', () => {
+            var css   = parse('a{}', { from: '/a.css' });
+            var error = css.first.error('Test');
+            expect(error).to.be.instanceOf(CssSyntaxError);
+            expect(error.message).to.eql('/a.css:1:1: Test');
+        });
+
+        it('generates custom error for nodes without source', () => {
+            var rule  = new Rule({ selector: 'a' });
+            var error = rule.error('Test');
+            expect(error.message).to.eql('<css input>: Test');
+        });
+
+    });
 
     describe('removeSelf()', () => {
 
