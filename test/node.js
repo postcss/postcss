@@ -83,11 +83,9 @@ describe('Node', () => {
             var clone = rule.clone();
             clone.append({ prop: 'z-index', value: '1' });
 
-            expect(clone.first.parent).to.equal(clone);
             expect(rule.first.parent).to.equal(rule);
-
-            expect(rule.toString()).to.eql('a {color: /**/black}');
-            expect(clone.toString()).to.eql('a {color: /**/black;z-index: 1}');
+            expect(clone.first.parent).to.equal(clone);
+            expect(rule.nodes.length).to.equal(1);
         });
 
         it('overrides properties', () => {
@@ -95,6 +93,15 @@ describe('Node', () => {
             var clone = rule.clone({ selector: 'b' });
             expect(clone.selector).to.eql('b');
         });
+
+        it('cleans code style', () => {
+            var css = parse('@page 1{a{color:black;}}');
+            expect(css.clone().toString()).to.eql('@page 1 {\n' +
+                                                  '    a {\n' +
+                                                  '        color: black\n' +
+                                                  '    }\n' +
+                                                  '}');
+        })
 
     });
 

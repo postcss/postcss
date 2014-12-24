@@ -23,26 +23,6 @@ describe('Declaration', () => {
 
     });
 
-    describe('clone()', () => {
-
-        it('cleans parent, between and before', () => {
-            var decl = new Declaration({
-                prop:    'color',
-                value:   'black',
-                before:  "\n    ",
-                between: ' ',
-                parent:  { }
-            });
-            var clone = decl.clone({ value: 'white' });
-
-            expect(clone.value).to.eql('white');
-            expect(clone.parent).to.not.exist();
-            expect(clone.before).to.not.exist();
-            expect(clone.between).to.not.exist();
-        });
-
-    });
-
     describe('toString()', () => {
 
         it('inserts default spaces', () => {
