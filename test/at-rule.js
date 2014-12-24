@@ -16,17 +16,6 @@ describe('AtRule', () => {
         expect(rule.toString()).to.eql('@encoding "utf-8"');
     });
 
-    describe('clone()', () => {
-
-        it('clones with mixin', () => {
-            var rule = new AtRule({ name: 'page', after: '' });
-            rule.append(new Rule({ selector: 'a' }));
-
-            expect(rule.clone().toString()).to.eql('@page {a {}}');
-        });
-
-    });
-
     describe('toString()', () => {
 
         it('inserts default spaces', () => {

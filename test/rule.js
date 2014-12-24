@@ -59,14 +59,14 @@ describe('Rule', () => {
         });
 
         it('uses different spaces for empty rules', () => {
-            var root = parse("a { }\nb {\n  color: black\n  }");
+            var root = parse("a { }\nb {\n  color: black\n}");
             var rule = new Rule({ selector: 'em' });
             root.append(rule);
 
             expect(rule.toString()).to.eql("\nem { }");
 
             rule.append({ prop: 'top', value: '0' });
-            expect(rule.toString()).to.eql("\nem {\n  top: 0\n  }");
+            expect(rule.toString()).to.eql("\nem {\n  top: 0\n}");
         });
 
     });

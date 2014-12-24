@@ -6,19 +6,6 @@ var Root           = require('../lib/root');
 var expect = require('chai').expect;
 var path   = require('path');
 
-describe('postcss.root()', () => {
-
-    it('allows to build own CSS', () => {
-        var root = postcss.root();
-        var rule = postcss.rule({ selector: 'a' });
-        rule.append( postcss.decl({ prop: 'color', value: 'black' }) );
-        root.append( rule );
-
-        expect(root.toString()).to.eql("a {\n    color: black\n}");
-    });
-
-});
-
 describe('postcss()', () => {
 
     it('creates processors list', () => {
@@ -184,6 +171,19 @@ describe('postcss()', () => {
                 map: { prev: one.map, inline: false }
             });
             expect(two.map.toJSON().sources).to.eql(['a.css']);
+        });
+
+    });
+
+    describe('.root()', () => {
+
+        it('allows to build own CSS', () => {
+            var root = postcss.root();
+            var rule = postcss.rule({ selector: 'a' });
+            rule.append( postcss.decl({ prop: 'color', value: 'black' }) );
+            root.append( rule );
+
+            expect(root.toString()).to.eql("a {\n    color: black\n}");
         });
 
     });

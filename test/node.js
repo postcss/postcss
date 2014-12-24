@@ -81,13 +81,13 @@ describe('Node', () => {
             rule.append({ prop: 'color', value: '/**/black', before: '' });
 
             var clone = rule.clone();
-            clone.append({ prop: 'display', value: 'none' });
+            clone.append({ prop: 'z-index', value: '1' });
 
             expect(clone.first.parent).to.equal(clone);
             expect(rule.first.parent).to.equal(rule);
 
             expect(rule.toString()).to.eql('a {color: /**/black}');
-            expect(clone.toString()).to.eql('a {color: /**/black;display: none}');
+            expect(clone.toString()).to.eql('a {color: /**/black;z-index: 1}');
         });
 
         it('overrides properties', () => {
@@ -119,39 +119,39 @@ describe('Node', () => {
     describe('style()', () => {
 
         it('uses node style', () => {
-            var rule = new Rule({ selector: 'a', before: ' ' });
-            expect(rule.style('beforeRule')).to.eql(' ');
+            var rule = new Rule({ selector: 'a', between: '\n' });
+            expect(rule.style('between', 'beforeOpen')).to.eql('\n');
         });
 
         it('hacks before for nodes without parent', () => {
             var rule = new Rule({ selector: 'a' });
-            expect(rule.style('beforeRule')).to.eql('');
+            expect(rule.style('before', 'before')).to.eql('');
         });
 
         it('hacks before for first node', () => {
             var root = new Root();
             root.append(new Rule({ selector: 'a' }));
-            expect(root.first.style('beforeRule')).to.eql('');
+            expect(root.first.style('before', 'before')).to.eql('');
         });
 
         it('hacks before for first decl', () => {
             var decl = new Declaration({ prop: 'color', value: 'black' });
-            expect(decl.style('beforeDecl')).to.eql('');
+            expect(decl.style('before', 'before')).to.eql('');
 
             var rule = new Rule({ selector: 'a' });
             rule.append(decl);
-            expect(decl.style('beforeDecl')).to.eql('\n    ');
+            expect(decl.style('before', 'before')).to.eql('\n    ');
         });
 
         it('uses defaults without parent', () => {
             var rule = new Rule({ selector: 'a' });
-            expect(rule.style('beforeOpen')).to.eql(' ');
+            expect(rule.style('between', 'beforeOpen')).to.eql(' ');
         });
 
         it('uses defaults for unique node', () => {
             var root = new Root();
             root.append(new Rule({ selector: 'a' }));
-            expect(root.first.style('beforeOpen')).to.eql(' ');
+            expect(root.first.style('between', 'beforeOpen')).to.eql(' ');
         });
 
         it('clones style from first node', () => {
@@ -159,7 +159,48 @@ describe('Node', () => {
             root.append( new Rule({ selector: 'a', between: '' }) );
             root.append( new Rule({ selector: 'b' }) );
 
-            expect(root.last.style('beforeOpen')).to.eql('');
+            expect(root.last.style('between', 'beforeOpen')).to.eql('');
+        });
+
+        it('indents by default', () => {
+            var root = new Root();
+            root.append( new AtRule({ name: 'page' }) );
+            root.first.append( new Rule({ selector: 'a' }) );
+            root.first.first.append({ prop: 'color', value: 'black' });
+
+            expect(root.toString()).to.eql('@page {\n' +
+                                           '    a {\n' +
+                                           '        color: black\n' +
+                                           '    }\n' +
+                                           '}');
+        });
+
+        it('clones indent', () => {
+            var compress = parse('@page{ a{ } }');
+            var spaces   = parse('@page {\n  a {\n  }\n}');
+
+            compress.first.first.append({ prop: 'color', value: 'black' });
+            expect(compress.toString()).to.eql('@page{ a{ color: black } }');
+
+            spaces.first.first.append({ prop: 'color', value: 'black' });
+            expect(spaces.toString())
+                .to.eql('@page {\n  a {\n    color: black\n  }\n}');
+        });
+
+        it('clones indent by types', () => {
+            var css = parse('a {\n  color: black}\n\nb {\n}');
+            css.append(new Rule({ selector: 'em' }));
+            css.last.append({ prop: 'z-index', value: '1' });
+
+            expect(css.last.toString()).to.eql('\n\nem {\n  z-index: 1\n}');
+        });
+
+        it('clones indent by before and after', () => {
+            var css = parse('@page{\n\n a{\n  color: black}}');
+            css.first.append(new Rule({ selector: 'b' }));
+            css.first.last.append({ prop: 'z-index', value: '1' });
+
+            expect(css.first.last.toString()).to.eql('\n\n b{\n  z-index: 1}');
         });
 
     });
