@@ -2,6 +2,7 @@ var Declaration = require('../lib/declaration');
 var Container   = require('../lib/container');
 var parse       = require('../lib/parse');
 var Rule        = require('../lib/rule');
+var Root        = require('../lib/root');
 
 var expect = require('chai').expect;
 
@@ -326,9 +327,27 @@ describe('Container', () => {
             expect(this.rule.last.before).to.eql(' ');
         });
 
-        it('receives hash instead of declaration', () => {
+        it('has declaration shortcut', () => {
             this.rule.append({ prop: 'c', value: '3' });
             expect(this.rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
+        });
+
+        it('has rule shortcut', () => {
+            var root = new Root();
+            root.append({ selector: 'a' });
+            expect(root.first.toString()).to.eql('a {}');
+        });
+
+        it('has at-rule shortcut', () => {
+            var root = new Root();
+            root.append({ name: 'encoding', params: '"utf-8"' });
+            expect(root.first.toString()).to.eql('@encoding "utf-8"');
+        });
+
+        it('has comment shortcut', () => {
+            var root = new Root();
+            root.append({ text: 'ok' });
+            expect(root.first.toString()).to.eql('/* ok */');
         });
 
         it('receives root', () => {

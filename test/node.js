@@ -101,7 +101,7 @@ describe('Node', () => {
                                                   '        color: black\n' +
                                                   '    }\n' +
                                                   '}');
-        })
+        });
 
     });
 
