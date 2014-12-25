@@ -83,10 +83,13 @@ describe('Node', () => {
             rule.append({ prop: 'color', value: '/**/black', before: '' });
 
             var clone = rule.clone();
-            clone.append({ prop: 'z-index', value: '1' });
+
+            expect(clone.parent).to.not.exist();
 
             expect(rule.first.parent).to.equal(rule);
             expect(clone.first.parent).to.equal(clone);
+
+            clone.append({ prop: 'z-index', value: '1' });
             expect(rule.nodes.length).to.equal(1);
         });
 
