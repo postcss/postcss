@@ -31,10 +31,12 @@ describe('Node', () => {
 
         it('removes node from parent', () => {
             var rule = new Rule({ selector: 'a' });
-            rule.append({ prop: 'color', value: 'black' });
+            var decl = new Declaration({ prop: 'color', value: 'black' });
+            rule.append(decl);
 
-            rule.nodes[0].removeSelf();
-            expect(rule.nodes).to.be.empty;
+            decl.removeSelf();
+            expect(rule.nodes).to.be.empty();
+            expect(decl.parent).to.not.exist();
         });
 
     });
