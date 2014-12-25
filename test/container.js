@@ -485,6 +485,12 @@ describe('Container', () => {
             expect(this.rule.toString()).to.eql('a { a: 1 }');
         });
 
+        it('cleans parent in removed node', () => {
+            var decl = this.rule.first;
+            this.rule.remove(decl);
+            expect(decl.parent).to.not.exist();
+        });
+
     });
 
     describe('any()', () => {
