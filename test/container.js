@@ -496,7 +496,10 @@ describe('Container', () => {
     describe('removeAll()', () => {
 
         it('removes all children', () => {
+            var decl = this.rule.first;
             this.rule.removeAll();
+
+            expect(decl.parent).to.not.exist();
             expect(this.rule.toString()).to.eql('a { }');
         });
 
