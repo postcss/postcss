@@ -493,6 +493,15 @@ describe('Container', () => {
 
     });
 
+    describe('removeAll()', () => {
+
+        it('removes all children', () => {
+            this.rule.removeAll();
+            expect(this.rule.toString()).to.eql('a { }');
+        });
+
+    });
+
     describe('any()', () => {
 
         it('return true if all children return true', () => {
