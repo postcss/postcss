@@ -158,6 +158,18 @@ describe('Node', () => {
 
     });
 
+    describe('replaceWith()', () => {
+
+        it('replaces node', () => {
+            var css    = parse('a{one:1;two:2}');
+            var decl   = { prop: 'fix', value: 'fixed' };
+            var result = css.first.first.replaceWith(decl);
+            expect(result.prop).to.eql('one');
+            expect(css.toString()).to.eql('a{fix:fixed;two:2}');
+        });
+
+    });
+
     describe('toJSON()', () => {
 
         it('cleans parents inside', () => {
