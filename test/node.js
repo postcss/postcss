@@ -138,6 +138,26 @@ describe('Node', () => {
 
     });
 
+    describe('next()', () => {
+
+        it('returns next node', () => {
+            var css = parse('a{one:1;two:2}');
+            expect(css.first.first.next()).to.equal(css.first.last);
+            expect(css.first.last.next()).to.not.exist()
+        });
+
+    });
+
+    describe('prev()', () => {
+
+        it('returns previous node', () => {
+            var css = parse('a{one:1;two:2}');
+            expect(css.first.last.prev()).to.equal(css.first.first);
+            expect(css.first.first.prev()).to.not.exist()
+        });
+
+    });
+
     describe('toJSON()', () => {
 
         it('cleans parents inside', () => {
