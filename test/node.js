@@ -172,6 +172,27 @@ describe('Node', () => {
 
     });
 
+    describe('moveTo()', () => {
+
+        it('moves node between roots', () => {
+            var css1 = parse('a{one:1}b{two:2}');
+            var css2 = parse('c {\n  thr: 3\n}');
+            css1.first.moveTo(css2);
+
+            expect(css1.toString()).to.eql('b{two:2}');
+            expect(css2.toString()).to.eql('c {\n  thr: 3\n}a {\n  one: 1\n}');
+        });
+
+        it('moves node inside one root', () => {
+            var css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
+            css.first.moveTo(css.last);
+
+            expect(css.toString())
+                .to.eql('@page {\n b {\n  two: 2\n }\n a{\n  one:1\n }\n}');
+        });
+
+    });
+
     describe('toJSON()', () => {
 
         it('cleans parents inside', () => {
@@ -275,6 +296,56 @@ describe('Node', () => {
             css.first.last.append({ prop: 'z-index', value: '1' });
 
             expect(css.first.last.toString()).to.eql('\n\n b{\n  z-index: 1}');
+        });
+
+    });
+
+    describe('root()', () => {
+
+        it('returns root', () => {
+            var css = parse('@page{a{color:black}}');
+            expect(css.first.first.first.root()).to.equal(css);
+        });
+
+        it('returns parent of parents', () => {
+            var rule = new Rule({ selector: 'a' });
+            rule.append({ prop: 'color', value: 'black' });
+            expect(rule.first.root()).to.equal(rule);
+        });
+
+        it('returns self on root', () => {
+            var rule = new Rule({ selector: 'a' });
+            expect(rule.root()).to.equal(rule);
+        });
+
+    })
+
+    describe('cleanStyles()', () => {
+
+        it('cleans style recursivelly', () => {
+            var css = parse('@page{a{color:black}}');
+            css.cleanStyles();
+
+            expect(css.toString())
+                .to.eql('@page {\n    a {\n        color: black\n    }\n}');
+            expect(css.first.before).to.not.exist();
+            expect(css.first.first.firstbefore).to.not.exist();
+            expect(css.first.between).to.not.exist();
+            expect(css.first.first.first.between).to.not.exist();
+            expect(css.first.after).to.not.exist();
+        });
+
+        it('keeps between on request', () => {
+            var css = parse('@page{a{color:black}}');
+            css.cleanStyles(true);
+
+            expect(css.toString())
+                .to.eql('@page{\n    a{\n        color:black\n    }\n}');
+            expect(css.first.before).to.not.exist();
+            expect(css.first.first.firstbefore).to.not.exist();
+            expect(css.first.between).to.exist();
+            expect(css.first.first.first.between).to.exist();
+            expect(css.first.after).to.not.exist();
         });
 
     });
