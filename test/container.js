@@ -202,6 +202,18 @@ describe('Container', () => {
             expect(indexes).to.eql([0]);
         });
 
+        it('filters declarations by property name', () => {
+            var css   = parse('@page{a{one:1}}b{one:1;two:2}');
+            var size = 0;
+
+            css.eachDecl('one', (decl) => {
+                expect(decl.prop).to.eql('one');
+                size += 1;
+            });
+
+            expect(size).to.eql(2);
+        });
+
     });
 
     describe('eachComment()', () => {
@@ -315,6 +327,18 @@ describe('Container', () => {
 
             expect(result).to.be.false;
             expect(indexes).to.eql([2]);
+        });
+
+        it('filters at-rules by name', () => {
+            var css   = parse('@page{@page 2{}}@media print{@page{}}');
+            var size = 0;
+
+            css.eachAtRule('page', (atrule) => {
+                expect(atrule.name).to.eql('page');
+                size += 1;
+            });
+
+            expect(size).to.eql(3);
         });
 
     });
