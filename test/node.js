@@ -318,7 +318,7 @@ describe('Node', () => {
             expect(rule.root()).to.equal(rule);
         });
 
-    })
+    });
 
     describe('cleanStyles()', () => {
 
