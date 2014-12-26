@@ -110,6 +110,34 @@ describe('Node', () => {
 
     });
 
+    describe('cloneBefore()', () => {
+
+        it('clones and insert before current node', () => {
+            var rule = new Rule({ selector: 'a', after: '' });
+            rule.append({ prop: 'z-index', value: '1', before: '' });
+
+            var result = rule.first.cloneBefore({ value: '2' });
+
+            expect(result).to.equal(rule.first);
+            expect(rule.toString()).to.eql('a {z-index: 2;z-index: 1}');
+        });
+
+    });
+
+    describe('cloneAfter()', () => {
+
+        it('clones and insert after current node', () => {
+            var rule = new Rule({ selector: 'a', after: '' });
+            rule.append({ prop: 'z-index', value: '1', before: '' });
+
+            var result = rule.first.cloneAfter({ value: '2' });
+
+            expect(result).to.equal(rule.last);
+            expect(rule.toString()).to.eql('a {z-index: 1;z-index: 2}');
+        });
+
+    });
+
     describe('toJSON()', () => {
 
         it('cleans parents inside', () => {
