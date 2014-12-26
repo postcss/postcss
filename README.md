@@ -51,6 +51,7 @@ Twitter account for news, releases and new plugins: [@postcss].
 * [postcss-epub] to prefix ePub3 properties.
 * [doiuse] to lint your CSS on unsupported properties by Can I Use.
 * [postcss-assets] to inline files and insert image width and height.
+* [ACSS] Annotations based CSS processor.
 
 [Autoprefixer]:      https://github.com/postcss/autoprefixer
 [BEM linter]:        https://github.com/necolas/postcss-bem-linter
@@ -68,6 +69,7 @@ Twitter account for news, releases and new plugins: [@postcss].
 [postcss-epub]:      https://github.com/Rycochet/postcss-epub
 [doiuse]:            https://github.com/anandthakker/doiuse
 [postcss-assets]:    https://github.com/borodean/postcss-assets
+[ACSS]:              https://github.com/morishitter/acss
 
 ### Plugins
 
