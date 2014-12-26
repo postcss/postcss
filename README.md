@@ -91,6 +91,7 @@ Twitter account for news, releases and new plugins: [@postcss].
 * [postcss-custom-selector] to add custom alias for selectors.
 * [postcss-media-minmax] to use `<=` or `>=` in CSS Media Queries.
 * [postcss-data-packer] to move an embedded data into a separate file.
+* [postcss-color-palette] to transform CSS2 color keywords to a custom palette.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -107,6 +108,7 @@ Twitter account for news, releases and new plugins: [@postcss].
 [postcss-custom-selector]:      https://github.com/postcss/postcss-custom-selector
 [postcss-media-minmax]:         https://github.com/postcss/postcss-media-minmax
 [postcss-data-packer]:          https://github.com/Ser-Gen/postcss-data-packer
+[postcss-color-palette]:        https://github.com/zaim/postcss-color-palette
 
 ## Quick Example
 
