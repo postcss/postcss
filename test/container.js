@@ -529,6 +529,36 @@ describe('Container', () => {
 
     });
 
+    describe('replaceValues()', () => {
+
+        it('replaces strings', () => {
+            var css    = parse('a{one:1}b{two:1 2}');
+            var result = css.replaceValues('1', 'A');
+
+            expect(result).to.eql(css);
+            expect(css.toString()).to.eql('a{one:A}b{two:A 2}');
+        });
+
+        it('replaces regpexp', () => {
+            var css = parse('a{one:1}b{two:1 2}');
+            css.replaceValues(/\d/g, i => i + 'A');
+            expect(css.toString()).to.eql('a{one:1A}b{two:1A 2A}');
+        });
+
+        it('filters properties', () => {
+            var css = parse('a{one:1}b{two:1 2}');
+            css.replaceValues('1', { props: ['one'] }, 'A');
+            expect(css.toString()).to.eql('a{one:A}b{two:1 2}');
+        });
+
+        it('uses fast check', () => {
+            var css = parse('a{one:1}b{two:1 2}');
+            css.replaceValues('1', { fast: '2' }, 'A');
+            expect(css.toString()).to.eql('a{one:1}b{two:A 2}');
+        });
+
+    });
+
     describe('any()', () => {
 
         it('return true if all children return true', () => {
