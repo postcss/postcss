@@ -280,6 +280,14 @@ describe('Node', () => {
             expect(decl.style('before', 'before')).to.eql('\n    ');
         });
 
+        it('detects after style', () => {
+            var root = new Root();
+            root.append({ selector: 'a', after: ' ' });
+            root.first.append({ prop: 'color', value: 'black' });
+            root.append({ selector: 'a' });
+            expect(root.last.style('after', 'after')).to.eql(' ');
+        });
+
         it('uses defaults without parent', () => {
             var rule = new Rule({ selector: 'a' });
             expect(rule.style('between', 'beforeOpen')).to.eql(' ');
@@ -325,7 +333,7 @@ describe('Node', () => {
         });
 
         it('clones indent by types', () => {
-            var css = parse('a {\n  color: black}\n\nb {\n}');
+            var css = parse('a {\n  color: black\n}\n\nb {\n}');
             css.append(new Rule({ selector: 'em' }));
             css.last.append({ prop: 'z-index', value: '1' });
 
