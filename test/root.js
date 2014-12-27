@@ -43,6 +43,20 @@ describe('Root', () => {
 
     });
 
+    describe('insertAfter()', () => {
+
+        it('does not use before of first rule', () => {
+            var css = parse('a{} b{}');
+            css.insertAfter(0, { selector: '.a' });
+            css.insertAfter(2, { selector: '.b' });
+
+            expect(css.nodes[1].before).to.not.exist();
+            expect(css.nodes[3].before).to.eql(' ');
+            expect(css.toString()).to.eql('a{} .a{} b{} .b{}');
+        });
+
+    });
+
     describe('append()', () => {
 
         it('sets new line between rules in multiline files', () => {
