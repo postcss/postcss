@@ -24,7 +24,7 @@ describe('AtRule', () => {
         });
 
         it('clone spaces from another at-rule', () => {
-            var root = parse('@page{}');
+            var root = parse('@page{}a{}');
             var rule = new AtRule({ name: 'page', params: 1, nodes: [] });
             root.append(rule);
 

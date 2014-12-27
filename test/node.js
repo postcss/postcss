@@ -176,11 +176,11 @@ describe('Node', () => {
 
         it('moves node between roots', () => {
             var css1 = parse('a{one:1}b{two:2}');
-            var css2 = parse('c {\n  thr: 3\n}');
+            var css2 = parse('c {\n thr: 3\n}');
             css1.first.moveTo(css2);
 
             expect(css1.toString()).to.eql('b{two:2}');
-            expect(css2.toString()).to.eql('c {\n  thr: 3\n}a {\n  one: 1\n}');
+            expect(css2.toString()).to.eql('c {\n thr: 3\n}\na {\n one: 1\n}');
         });
 
         it('moves node inside one root', () => {
@@ -197,11 +197,11 @@ describe('Node', () => {
 
         it('moves node between roots', () => {
             var css1 = parse('a{one:1}b{two:2}');
-            var css2 = parse('c {\n  thr: 3\n}');
+            var css2 = parse('c {\n thr: 3\n}');
             css1.first.moveBefore(css2.first);
 
             expect(css1.toString()).to.eql('b{two:2}');
-            expect(css2.toString()).to.eql('a {\n  one: 1\n}c {\n  thr: 3\n}');
+            expect(css2.toString()).to.eql('a {\n one: 1\n}\nc {\n thr: 3\n}');
         });
 
         it('moves node inside one root', () => {
@@ -218,11 +218,11 @@ describe('Node', () => {
 
         it('moves node between roots', () => {
             var css1 = parse('a{one:1}b{two:2}');
-            var css2 = parse('c {\n  thr: 3\n}');
+            var css2 = parse('c {\n thr: 3\n}');
             css1.first.moveAfter(css2.first);
 
             expect(css1.toString()).to.eql('b{two:2}');
-            expect(css2.toString()).to.eql('c {\n  thr: 3\n}a {\n  one: 1\n}');
+            expect(css2.toString()).to.eql('c {\n thr: 3\n}\na {\n one: 1\n}');
         });
 
         it('moves node inside one root', () => {

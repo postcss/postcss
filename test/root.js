@@ -20,39 +20,20 @@ describe('Root', () => {
             });
         });
 
-        it('saves one line on insert', () => {
-            var css = parse("a {}");
-            css.prepend( new Rule({ selector: 'em' }) );
-
-            expect(css.toString()).to.eql("em {}a {}");
-        });
-
-        it('fixes spaces on insert before first', () => {
-            var css = parse("a {}\nb {}");
-            css.prepend( new Rule({ selector: 'em' }) );
-
-            expect(css.toString()).to.eql("em {}\na {}\nb {}");
-        });
-
-        it('fixes spaces on insert before only one fule', () => {
-            var css = parse("a {}\n");
-            css.insertBefore(css.first, new Rule({ selector: 'em' }) );
-
-            expect(css.toString()).to.eql("em {}\na {}\n");
-        });
-
     });
 
-    describe('insertAfter()', () => {
+    describe('prepend()', () => {
 
-        it('does not use before of first rule', () => {
-            var css = parse('a{} b{}');
-            css.insertAfter(0, { selector: '.a' });
-            css.insertAfter(2, { selector: '.b' });
+        it('fixes spaces on insert before first', () => {
+            var css = parse("a {} b {}");
+            css.prepend({ selector: 'em' });
+            expect(css.toString()).to.eql("em {} a {} b {}");
+        });
 
-            expect(css.nodes[1].before).to.not.exist();
-            expect(css.nodes[3].before).to.eql(' ');
-            expect(css.toString()).to.eql('a{} .a{} b{} .b{}');
+        it('uses default spaces on only first', () => {
+            var css = parse("a {}");
+            css.prepend({ selector: 'em' });
+            expect(css.toString()).to.eql("em {}\na {}");
         });
 
     });
@@ -74,12 +55,23 @@ describe('Root', () => {
         });
 
         it('saves compressed style', () => {
-            var a1 = parse('a{}');
-            var a2 = parse('a{}a{}');
-            var b  = parse('b{}\n');
+            var a = parse('a{}a{}');
+            var b = parse('b {\n}\n');
+            expect(a.append(b).toString()).to.eql('a{}a{}b{}');
+        });
 
-            expect(a1.append(b).toString()).to.eql('a{}b{}');
-            expect(a2.append(b).toString()).to.eql('a{}a{}b{}');
+    });
+
+    describe('insertAfter()', () => {
+
+        it('does not use before of first rule', () => {
+            var css = parse('a{} b{}');
+            css.insertAfter(0, { selector: '.a' });
+            css.insertAfter(2, { selector: '.b' });
+
+            expect(css.nodes[1].before).to.not.exist();
+            expect(css.nodes[3].before).to.eql(' ');
+            expect(css.toString()).to.eql('a{} .a{} b{} .b{}');
         });
 
     });

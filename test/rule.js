@@ -51,11 +51,11 @@ describe('Rule', () => {
         });
 
         it('clones spaces from another rule', () => {
-            var root = parse("a{\n  }");
-            var rule = new Rule({ selector: 'b' });
+            var root = parse("a{\n  }b{\n  }");
+            var rule = new Rule({ selector: 'em' });
             root.append(rule);
 
-            expect(rule.toString()).to.eql("b{\n  }");
+            expect(rule.toString()).to.eql("em{\n  }");
         });
 
         it('uses different spaces for empty rules', () => {

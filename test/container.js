@@ -377,7 +377,7 @@ describe('Container', () => {
         it('receives root', () => {
             var css = parse('a {}');
             css.append( parse('b {}') );
-            expect(css.toString()).to.eql('a {}b {}');
+            expect(css.toString()).to.eql('a {}\nb {}');
         });
 
         it('receives array', () => {
@@ -398,7 +398,7 @@ describe('Container', () => {
             b.last.selector = 'b a';
 
             expect(a.toString()).to.eql('a{}');
-            expect(b.toString()).to.eql('b{}b a{}');
+            expect(b.toString()).to.eql('b{}\nb a{}');
         });
 
     });
@@ -419,7 +419,7 @@ describe('Container', () => {
         it('receives root', () => {
             var css = parse('a {}');
             css.prepend( parse('b {}') );
-            expect(css.toString()).to.eql('b {}a {}');
+            expect(css.toString()).to.eql('b {}\na {}');
         });
 
         it('receives array', () => {
