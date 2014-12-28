@@ -53,7 +53,7 @@ describe('CssSyntaxError', () => {
 
     it('prints with colored CSS', () => {
         expect(parseError('a {').toString()).to.eql(
-            "<css input>:1:1: Unclosed block\n" +
+            "CssSyntaxError: <css input>:1:1: Unclosed block\n" +
             'a {\n' +
             '\u001b[1;31m^\u001b[0m');
     });
@@ -61,7 +61,8 @@ describe('CssSyntaxError', () => {
     it('misses highlights without source', () => {
         var error = parseError('a {');
         error.source = null;
-        expect(error.toString()).to.eql('<css input>:1:1: Unclosed block');
+        expect(error.toString()).to.eql(
+            'CssSyntaxError: <css input>:1:1: Unclosed block');
     });
 
     it('uses source map', () => {
