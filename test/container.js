@@ -205,13 +205,22 @@ describe('Container', () => {
         });
 
         it('filters declarations by property name', () => {
-            var css   = parse('@page{a{one:1}}b{one:1;two:2}');
+            var css  = parse('@page{a{one:1}}b{one:1;two:2}');
             var size = 0;
 
             css.eachDecl('one', (decl) => {
                 expect(decl.prop).to.eql('one');
                 size += 1;
             });
+
+            expect(size).to.eql(2);
+        });
+
+        it('filters declarations by property regexp', () => {
+            var css  = parse('@page{a{one:1}}b{one-x:1;two:2}');
+            var size = 0;
+
+            css.eachDecl(/one(-x)?/, () => size += 1 );
 
             expect(size).to.eql(2);
         });
@@ -334,13 +343,22 @@ describe('Container', () => {
         });
 
         it('filters at-rules by name', () => {
-            var css   = parse('@page{@page 2{}}@media print{@page{}}');
+            var css  = parse('@page{@page 2{}}@media print{@page{}}');
             var size = 0;
 
             css.eachAtRule('page', (atrule) => {
                 expect(atrule.name).to.eql('page');
                 size += 1;
             });
+
+            expect(size).to.eql(3);
+        });
+
+        it('filters at-rules by name regexp', () => {
+            var css  = parse('@page{@page 2{}}@media print{@page{}}');
+            var size = 0;
+
+            css.eachAtRule(/page/, () => size += 1 );
 
             expect(size).to.eql(3);
         });
