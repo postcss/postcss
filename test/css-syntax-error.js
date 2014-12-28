@@ -67,8 +67,8 @@ describe('CssSyntaxError', () => {
 
     it('uses source map', () => {
         var concat = new Concat(true, 'all.css');
-        concat.add('a.css', 'a { }');
-        concat.add('b.css', 'b {');
+        concat.add('a.css', 'a { }\n');
+        concat.add('b.css', 'b {\n');
 
         var error = parseError(concat.content, {
             from: 'build/all.css',
@@ -83,7 +83,7 @@ describe('CssSyntaxError', () => {
             file:    path.resolve('build/all.css'),
             line:    2,
             column:  1,
-            source: 'a { }\nb {'
+            source: 'a { }\nb {\n'
         });
     });
 

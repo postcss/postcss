@@ -15,7 +15,7 @@
         "6to5":       "1.15.0"
     },
     "devDependencies": {
-        "concat-with-sourcemaps": "0.1.6",
+        "concat-with-sourcemaps": "1.0.0",
         "gulp-bench-summary":     "0.1.0",
         "gulp-json-editor":       "2.2.1",
         "jshint-stylish":         "1.0.0",
