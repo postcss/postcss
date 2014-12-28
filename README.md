@@ -652,6 +652,15 @@ you to build method chains:
 root.append( rule1 ).append( rule2 ).toString();
 ```
 
+If some node broke you plugin syntax you can throw CSS syntax error:
+
+```js
+throw node.error('Bad variable syntax');
+//=> CssSyntaxError: app.css:45:5: Bad variable syntax
+//   var-name: 1
+//   ^
+```
+
 ### Node Source
 
 Every node stores its origin file (if you provide the `from` option
@@ -661,9 +670,9 @@ to the `process` or `parse` methods) and position:
 var root = postcss.parse(css, { from: 'main.css' });
 var rule = root.nodes[0];
 
-rule.source.file  //=> 'main.css'
-rule.source.start //=> { line: 5,  position: 1 }
-rule.source.end   //=> { line: 10, position: 5 }
+rule.source.input.file //=> 'main.css'
+rule.source.start      //=> { line: 5,  position: 1 }
+rule.source.end        //=> { line: 10, position: 5 }
 ```
 
 ### Whitespace
@@ -762,6 +771,7 @@ There are some common methods to perform work on children:
 * `insertAfter(existsChild, newChild)` inserts a new child after some
    pre-existing child.
 * `remove(existsChild)` removes a child.
+* `removeAll()` to remove all children.
 * `index(existsChild)` returns a child’s index.
 * `some(fn)` returns true if `fn` returns true for any child.
 * `every(fn)` returns true if `fn` returns true for all children.
@@ -772,6 +782,9 @@ arrays and `Root` nodes as an argument.
 Methods `insertBefore`, `insertAfter` and `remove` will accept child nodes
 or indexes as the `existsChild` argument. Note that providing a child index will
 result in the method completing much faster.
+
+You can combine `node.clone()` and `node.parent.insertBefore()`
+by `node.cloneBefore()` and `node.cloenAfter()` methods.
 
 There are two shortcuts to provide the first and last child of a node:
 
@@ -804,6 +817,13 @@ rule.each(function (decl, i) {
     rule.remove(i);
 });
 ```
+
+You can move nodes between parents by `moveTo()`, `moveBefore()`
+and `moveAfter()` methods.
+
+To replace node by other one use `node.replaceWith(other)` method.
+
+Methods `prev()` and `next()` returns previous and next child in node parent.
 
 ### Iterators
 
@@ -875,7 +895,30 @@ root.eachComment(function (comment, i) {
 })
 ```
 
+Methods `eachDecl()` and `eachAtRule()` accepts also a string or regexp
+filter to interate only for declarations with some property name
+or for at-rules with some name.
+
+```js
+root.eachDecl(/^background/, function (decl) {
+    inlineImages(decl);
+});
+```
+
 You can break out from the iteration by returning `false`.
+
+If you want to change values in all children, you can use very `replaceValues`
+method:
+
+```js
+root.replaceValues(/\d+(\.\d+)?rem/,
+    { props: ['width', 'height'], fast: 'rem' }, function (str) {
+        var rem = parseFloat(str);
+        return 16 * rem;
+    })
+```
+
+Option `fast` will be ued for fast precheck by `indexOf()`.
 
 ### Root Node
 
