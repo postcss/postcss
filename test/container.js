@@ -136,6 +136,7 @@ describe('Container', () => {
     });
 
     describe('eachInside()', () => {
+
         it('iterates', () => {
             var types   = [];
             var indexes = [];
@@ -167,6 +168,7 @@ describe('Container', () => {
     });
 
     describe('eachDecl()', () => {
+
         it('iterates', () => {
             var props   = [];
             var indexes = [];
@@ -256,6 +258,7 @@ describe('Container', () => {
     });
 
     describe('eachRule()', () => {
+
         it('iterates', () => {
             var selectors = [];
             var indexes   = [];
@@ -294,6 +297,7 @@ describe('Container', () => {
     });
 
     describe('eachAtRule()', () => {
+
         it('iterates', () => {
             var names   = [];
             var indexes = [];
