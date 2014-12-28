@@ -12,7 +12,7 @@
     "dependencies": {
         "source-map": "~0.1.41",
         "js-base64":  "~2.1.5",
-        "6to5":       "1.15.0"
+        "6to5":       "2.0.4"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
@@ -24,7 +24,7 @@
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.0",
         "gulp-util":              "3.0.1",
-        "gulp-6to5":              "1.0.2",
+        "gulp-6to5":              "2.0.0",
         "node-sass":              "1.2.3",
         "execSync":               "1.0.2",
         "fs-extra":               "0.13.0",
