@@ -119,8 +119,10 @@
             "before": "\n\n",
             "between": " ",
             "selector": "a",
+            "semicolon": false,
             "after": "\n"
         }
     ],
+    "semicolon": false,
     "after": "\n"
 }

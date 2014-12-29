@@ -47,8 +47,10 @@
             "before": "",
             "between": "",
             "selector": "a",
+            "semicolon": false,
             "after": ""
         }
     ],
+    "semicolon": false,
     "after": "\n"
 }

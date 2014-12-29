@@ -26,5 +26,6 @@
             "params": "\"test.css\""
         }
     ],
+    "semicolon": false,
     "after": "\n"
 }

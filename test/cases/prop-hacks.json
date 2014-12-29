@@ -97,5 +97,6 @@
             "after": "\n"
         }
     ],
+    "semicolon": false,
     "after": "\n"
 }

@@ -26,5 +26,6 @@
             "after": ""
         }
     ],
+    "semicolon": false,
     "after": "\n"
 }

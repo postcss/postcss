@@ -208,6 +208,7 @@
             "before": "\n",
             "between": " ",
             "selector": "div",
+            "semicolon": false,
             "after": "\n"
         },
         {
@@ -306,5 +307,6 @@
             "after": "\n"
         }
     ],
+    "semicolon": false,
     "after": "\n"
 }

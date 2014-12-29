@@ -49,6 +49,7 @@
                     "value": "black"
                 }
             ],
+            "semicolon": false,
             "after": "\n"
         },
         {
@@ -99,6 +100,7 @@
                     "value": "white"
                 }
             ],
+            "semicolon": false,
             "after": "\n"
         },
         {
@@ -255,5 +257,6 @@
             "after": "\n"
         }
     ],
+    "semicolon": false,
     "after": "\n"
 }

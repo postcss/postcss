@@ -348,6 +348,11 @@ describe('Node', () => {
             expect(css.first.last.toString()).to.eql('\n\n b{\n  z-index: 1}');
         });
 
+        it('clones semicolon only from rules with children', () => {
+            var css = parse('a{}b{one:1;}');
+            expect(css.first.style('semicolon', 'semicolon')).to.be.true;
+        });
+
     });
 
     describe('root()', () => {

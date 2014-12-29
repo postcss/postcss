@@ -26,5 +26,6 @@
             "params": "\"UTF-8\""
         }
     ],
+    "semicolon": false,
     "after": "\n\n"
 }
