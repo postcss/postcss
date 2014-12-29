@@ -8,64 +8,64 @@ var path   = require('path');
 
 describe('postcss()', () => {
 
-    it('creates processors list', () => {
-        expect(postcss().processors).to.eql([]);
+    it('creates plugins list', () => {
+        expect(postcss().plugins).to.eql([]);
     });
 
-    it('saves processors list', () => {
+    it('saves plugins list', () => {
         var a = () => 1;
         var b = () => 2;
-        expect(postcss(a, b).processors).to.eql([a, b]);
+        expect(postcss(a, b).plugins).to.eql([a, b]);
     });
 
-    it('saves processors list as array', () => {
+    it('saves plugins list as array', () => {
         var a = () => 1;
         var b = () => 2;
-        expect(postcss([a, b]).processors).to.eql([a, b]);
+        expect(postcss([a, b]).plugins).to.eql([a, b]);
     });
 
-    it('saves processors object list', () => {
+    it('saves plugins object list', () => {
         var a = () => 1;
-        expect(postcss({ postcss: a }).processors).to.eql([a]);
+        expect(postcss({ postcss: a }).plugins).to.eql([a]);
     });
 
     describe('use()', () => {
 
-        it('adds new processors', () => {
+        it('adds new plugins', () => {
             var a = () => 1;
             var processor = postcss();
             processor.use(a);
-            expect(processor.processors).to.eql([a]);
+            expect(processor.plugins).to.eql([a]);
         });
 
-        it('adds new processor by object', () => {
+        it('adds new plugin by object', () => {
             var a = () => 1;
             var processor = postcss();
             processor.use({ postcss: a });
-            expect(processor.processors).to.eql([a]);
+            expect(processor.plugins).to.eql([a]);
         });
 
-        it('adds new processor by object-function', () => {
+        it('adds new plugin by object-function', () => {
             var a   = () => 1;
             var obj = () => 2;
             obj.postcss = a;
             var processor = postcss();
             processor.use(obj);
-            expect(processor.processors).to.eql([a]);
+            expect(processor.plugins).to.eql([a]);
         });
 
         it('adds new processors of another postcss instance', () => {
             var a = () => 1;
             var processor = postcss();
-            var otherProcessor = postcss(a);
-            processor.use(otherProcessor);
-            expect(processor.processors).to.eql([a]);
+            var other     = postcss(a);
+            processor.use(other);
+            expect(processor.plugins).to.eql([a]);
         });
 
         it('returns itself', () => {
             var a = () => 1;
             var b = () => 2;
-            expect(postcss().use(a).use(b).processors).to.eql([a, b]);
+            expect(postcss().use(a).use(b).plugins).to.eql([a, b]);
         });
 
     });
@@ -140,7 +140,7 @@ describe('postcss()', () => {
             expect(result.toString()).to.eql('a{}');
         });
 
-        it('calls all processors', () => {
+        it('calls all plugins', () => {
             var calls = '';
             var a = () => calls += 'a';
             var b = () => calls += 'b';
@@ -154,7 +154,7 @@ describe('postcss()', () => {
             expect(postcss(a).process('a {}').css).to.be.a('string');
         });
 
-        it('send options to processors', () => {
+        it('send options to plugins', () => {
             var a = (css, opts) => expect(opts).to.eql({ from: 'a.css' });
             postcss(a).process('a {}', { from: 'a.css' });
         });
