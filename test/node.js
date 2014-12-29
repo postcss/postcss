@@ -262,22 +262,22 @@ describe('Node', () => {
 
         it('hacks before for nodes without parent', () => {
             var rule = new Rule({ selector: 'a' });
-            expect(rule.style('before', 'before')).to.eql('');
+            expect(rule.style('before')).to.eql('');
         });
 
         it('hacks before for first node', () => {
             var root = new Root();
             root.append(new Rule({ selector: 'a' }));
-            expect(root.first.style('before', 'before')).to.eql('');
+            expect(root.first.style('before')).to.eql('');
         });
 
         it('hacks before for first decl', () => {
             var decl = new Declaration({ prop: 'color', value: 'black' });
-            expect(decl.style('before', 'before')).to.eql('');
+            expect(decl.style('before')).to.eql('');
 
             var rule = new Rule({ selector: 'a' });
             rule.append(decl);
-            expect(decl.style('before', 'before')).to.eql('\n    ');
+            expect(decl.style('before')).to.eql('\n    ');
         });
 
         it('detects after style', () => {
@@ -285,7 +285,7 @@ describe('Node', () => {
             root.append({ selector: 'a', after: ' ' });
             root.first.append({ prop: 'color', value: 'black' });
             root.append({ selector: 'a' });
-            expect(root.last.style('after', 'after')).to.eql(' ');
+            expect(root.last.style('after')).to.eql(' ');
         });
 
         it('uses defaults without parent', () => {
@@ -350,7 +350,7 @@ describe('Node', () => {
 
         it('clones semicolon only from rules with children', () => {
             var css = parse('a{}b{one:1;}');
-            expect(css.first.style('semicolon', 'semicolon')).to.be.true;
+            expect(css.first.style('semicolon')).to.be.true;
         });
 
     });
