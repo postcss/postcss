@@ -13,11 +13,11 @@ describe('Comment', () => {
         });
 
         it('clone spaces from another comment', () => {
-            var root    = parse('/*hello*/');
+            var root    = parse('a{}\n/*hello*/');
             var comment = new Comment({ text: 'world' });
             root.append(comment);
 
-            expect(comment.toString()).to.eql('/*world*/');
+            expect(comment.toString()).to.eql('\n/*world*/');
         });
 
     });
