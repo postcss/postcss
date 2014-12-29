@@ -12,7 +12,7 @@
     "dependencies": {
         "source-map": "~0.1.41",
         "js-base64":  "~2.1.5",
-        "6to5":       "2.0.4"
+        "6to5":       "2.2.0"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
