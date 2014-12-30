@@ -1,3 +1,20 @@
+## 4.0 “Duke Flauros”
+* Rename `Container#childs` to `nodes`.
+* Rename `PostCSS#processors` to `plugins`.
+* Add `Node#replaceValues()` method.
+* Add `Node#moveTo()`, `moveBefore()` and `moveAfter()` methods.
+* Add `Node#cloneBefore()` and `cloneAfter()` shortcuts.
+* Add `Node#next()`, `prev()` and `root()` shorcuts.
+* Add `Node#replaceWith()` method.
+* Add `Node#error()` method.
+* Add `Container#removeAll()` method.
+* Add filter argument to `eachDecl()` and `eachAtRule()`.
+* Add `Node#source.input` and move `source.file` or `source.id` to `input`.
+* Change code indent, when node was moved.
+* Better fix code style on `Rule`, `AtRule` and `Comment` nodes changes.
+* Allow to create rules and at-rules by hash shortcut in append methods.
+* Add class name to CSS syntax error output.
+
 ## 3.0.7
 * Fix IE filter parsing with multiple commands.
 * Safer way to consume PostCSS object as plugin (by Maxime Thirouin).
