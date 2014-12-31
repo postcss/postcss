@@ -784,7 +784,7 @@ or indexes as the `existsChild` argument. Note that providing a child index wil
 result in the method completing much faster.
 
 You can combine `node.clone()` and `node.parent.insertBefore()`
-by `node.cloneBefore()` and `node.cloenAfter()` methods.
+by `node.cloneBefore()` and `node.cloneAfter()` methods.
 
 There are two shortcuts to provide the first and last child of a node:
 
@@ -895,8 +895,8 @@ root.eachComment(function (comment, i) {
 })
 ```
 
-Methods `eachDecl()` and `eachAtRule()` accepts also a string or regexp
-filter to interate only for declarations with some property name
+Methods `eachDecl()` and `eachAtRule()` also accept a string or regexp
+filter to only iterate over declarations with some property name
 or for at-rules with some name.
 
 ```js
@@ -918,7 +918,7 @@ root.replaceValues(/\d+(\.\d+)?rem/,
     })
 ```
 
-Option `fast` will be ued for fast precheck by `indexOf()`.
+Option `fast` will be used for fast precheck by `indexOf()`.
 
 ### Root Node
 
