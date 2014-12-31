@@ -110,7 +110,7 @@ Twitter account for news, releases and new plugins: [@postcss].
 [postcss-media-minmax]:         https://github.com/postcss/postcss-media-minmax
 [postcss-data-packer]:          https://github.com/Ser-Gen/postcss-data-packer
 [postcss-color-palette]:        https://github.com/zaim/postcss-color-palette
-[postcss-color-hex]:            https://github.com/zaim/postcss-color-hex
+[postcss-color-hex]:            https://github.com/TrySound/postcss-color-hex
 
 ## Quick Example
 
