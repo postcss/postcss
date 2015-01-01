@@ -74,7 +74,7 @@ Twitter account for news, releases and new plugins: [@postcss].
 ### Plugins
 
 * [postcss-calc] to reduce `calc()` usage
-  (recommanded with `postcss-custom-properties`).
+  (recommended with `postcss-custom-properties`).
 * [postcss-color-function] to transform `color()` function.
 * [postcss-color-gray] to transform `gray()` function.
 * [postcss-color-hex-alpha] to transform hexadecimal notations with alpha
