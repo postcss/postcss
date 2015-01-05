@@ -40,7 +40,7 @@ Weibo account: [postcss].
 * [BEM linter] lints CSS for SUIT CSS methodology.
 * [CSS MQPacker] joins same media queries.
 * [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
-* [cssnext] is a transpiler (CSS4+ to CSS3) that allow you to use tomorrow’s
+* [cssnext] is a transpiler (CSS 4+ to CSS 3) that allow you to use tomorrow’s
   CSS syntax today.
 * [CSSWring] is a CSS minifier with full source map support.
 * [data-separator] splits data-uri into a separate CSS file.
@@ -54,6 +54,7 @@ Weibo account: [postcss].
 * [doiuse] to lint your CSS on unsupported properties by Can I Use.
 * [postcss-assets] to inline files and insert image width and height.
 * [ACSS] Annotations based CSS processor.
+* [CSS Grace] to CSS 3 polyfills for IE and other old browsers.
 
 [Autoprefixer]:      https://github.com/postcss/autoprefixer
 [BEM linter]:        https://github.com/necolas/postcss-bem-linter
@@ -72,6 +73,7 @@ Weibo account: [postcss].
 [doiuse]:            https://github.com/anandthakker/doiuse
 [postcss-assets]:    https://github.com/borodean/postcss-assets
 [ACSS]:              https://github.com/morishitter/acss
+[CSS Grace]:         https://github.com/cssdream/cssgrace
 
 ### Plugins
 
