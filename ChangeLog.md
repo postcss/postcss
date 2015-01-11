@@ -1,3 +1,6 @@
+## 4.0.1
+* Add `source.input` to `Root` too.
+
 ## 4.0 “Duke Flauros”
 * Rename `Container#childs` to `nodes`.
 * Rename `PostCSS#processors` to `plugins`.
