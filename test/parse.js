@@ -1,5 +1,6 @@
-var Root    = require('../lib/root');
-var parse   = require('../lib/parse');
+var Root  = require('../lib/root');
+var Input = require('../lib/input');
+var parse = require('../lib/parse');
 
 var fs     = require('fs');
 var path   = require('path');
@@ -22,11 +23,21 @@ describe('postcss.parse()', () => {
         });
 
         it('parses empty file', () => {
-            expect(parse('')).to.eql(new Root({ after: '' }));
+            expect(parse('', { from: 'a.css' })).to.eql(new Root({
+                after: '',
+                source: {
+                    input: new Input('', { from: 'a.css' })
+                }
+            }));
         });
 
         it('parses spaces', () => {
-            expect(parse(' \n')).to.eql(new Root({ after: ' \n' }));
+            expect(parse(' \n', { from: 'a.css' })).to.eql(new Root({
+                after: ' \n',
+                source: {
+                    input: new Input(' \n', { from: 'a.css' })
+                }
+            }));
         });
 
     });

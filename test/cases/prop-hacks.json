@@ -97,6 +97,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+            "safe": false,
+            "file": "/prop-hacks.css",
+            "from": "/prop-hacks.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

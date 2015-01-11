@@ -51,6 +51,14 @@
             "after": ""
         }
     ],
+    "source": {
+        "input": {
+            "css": "a{color:black}\n",
+            "safe": false,
+            "file": "/rule-no-semicolon.css",
+            "from": "/rule-no-semicolon.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

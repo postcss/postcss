@@ -26,6 +26,14 @@
             "params": "\"test.css\""
         }
     ],
+    "source": {
+        "input": {
+            "css": "@import\"test.css\"\n",
+            "safe": false,
+            "file": "/atrule-no-space.css",
+            "from": "/atrule-no-space.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

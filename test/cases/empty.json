@@ -26,6 +26,14 @@
             "after": ""
         }
     ],
+    "source": {
+        "input": {
+            "css": "{}\n",
+            "safe": false,
+            "file": "/empty.css",
+            "from": "/empty.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

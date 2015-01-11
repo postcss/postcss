@@ -28,6 +28,14 @@
             "after": ""
         }
     ],
+    "source": {
+        "input": {
+            "css": "@-moz-document/* near */ /* filter */ url(\"example.com/{\") /* a */ {}\n",
+            "safe": false,
+            "file": "/atrule-params.css",
+            "from": "/atrule-params.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

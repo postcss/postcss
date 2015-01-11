@@ -51,6 +51,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
+            "safe": false,
+            "file": "/function.css",
+            "from": "/function.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

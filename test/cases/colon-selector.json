@@ -26,6 +26,14 @@
             "after": ""
         }
     ],
+    "source": {
+        "input": {
+            "css": ":fullscreen {}\n",
+            "safe": false,
+            "file": "/colon-selector.css",
+            "from": "/colon-selector.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

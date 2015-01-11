@@ -74,6 +74,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
+            "safe": false,
+            "file": "/quotes.css",
+            "from": "/quotes.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

@@ -156,6 +156,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
+            "safe": false,
+            "file": "/atrule-rules.css",
+            "from": "/atrule-rules.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

@@ -51,6 +51,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",
+            "safe": false,
+            "file": "/ie-progid.css",
+            "from": "/ie-progid.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

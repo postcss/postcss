@@ -55,6 +55,14 @@
             "after": " "
         }
     ],
+    "source": {
+        "input": {
+            "css": "a { color: a/* ; */ b; }\n",
+            "safe": false,
+            "file": "/raw-decl.css",
+            "from": "/raw-decl.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

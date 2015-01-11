@@ -51,6 +51,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a {\n\tcolor: black\n}\n",
+            "safe": false,
+            "file": "/tab.css",
+            "from": "/tab.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

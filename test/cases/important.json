@@ -78,6 +78,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n",
+            "safe": false,
+            "file": "/important.css",
+            "from": "/important.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

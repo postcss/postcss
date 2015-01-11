@@ -74,6 +74,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a {\n    color: black;\n    background: white;\n}\n",
+            "safe": false,
+            "file": "/decls.css",
+            "from": "/decls.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

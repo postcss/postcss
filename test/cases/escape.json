@@ -342,6 +342,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
+            "safe": false,
+            "file": "/escape.css",
+            "from": "/escape.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

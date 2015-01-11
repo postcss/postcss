@@ -307,6 +307,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",
+            "safe": false,
+            "file": "/comments.css",
+            "from": "/comments.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

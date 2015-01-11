@@ -26,6 +26,14 @@
             "params": "\"UTF-8\""
         }
     ],
+    "source": {
+        "input": {
+            "css": "\n@charset \"UTF-8\"\n\n",
+            "safe": false,
+            "file": "/atrule-no-semicolon.css",
+            "from": "/atrule-no-semicolon.css"
+        }
+    },
     "semicolon": false,
     "after": "\n\n"
 }

@@ -123,6 +123,14 @@
             "after": "\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "one: 1;\n\na {\n    two: 2;\n    b {\n        three: 3;\n    }\n}\n",
+            "safe": false,
+            "file": "/extends.css",
+            "from": "/extends.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

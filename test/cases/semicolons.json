@@ -51,6 +51,14 @@
             "after": "\n    ; ;\n"
         }
     ],
+    "source": {
+        "input": {
+            "css": "a {;;\n    color: black;\n    ; ;\n}\n",
+            "safe": false,
+            "file": "/semicolons.css",
+            "from": "/semicolons.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }

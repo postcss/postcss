@@ -28,6 +28,14 @@
             "after": " "
         }
     ],
+    "source": {
+        "input": {
+            "css": "@page{ }\n",
+            "safe": false,
+            "file": "/atrule-no-params.css",
+            "from": "/atrule-no-params.css"
+        }
+    },
     "semicolon": false,
     "after": "\n"
 }
