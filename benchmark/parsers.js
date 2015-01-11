@@ -52,7 +52,8 @@ module.exports = {
         {
             name: 'Stylecow',
             fn: function () {
-                stylecow.create(css).toString();
+                var file = new stylecow.Reader(css, 'cache/bootstrap.css');
+                stylecow.Root.create(file).toString();
             }
         }
     ]

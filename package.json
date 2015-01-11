@@ -10,9 +10,9 @@
         "url":  "https://github.com/postcss/postcss.git"
     },
     "dependencies": {
-        "source-map": "~0.1.41",
-        "js-base64":  "~2.1.5",
-        "6to5":       "2.2.0"
+        "source-map": "~0.1.43",
+        "js-base64":  "~2.1.6",
+        "6to5":       "2.9.4"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
@@ -23,13 +23,13 @@
         "gonzales-pe":            "3.0.0-12",
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.0",
-        "gulp-util":              "3.0.1",
+        "gulp-util":              "3.0.2",
         "gulp-6to5":              "2.0.0",
         "node-sass":              "1.2.3",
         "execSync":               "1.0.2",
-        "fs-extra":               "0.13.0",
+        "fs-extra":               "0.14.0",
         "gonzales":               "1.0.7",
-        "stylecow":               "3.1.1",
+        "stylecow":               "4.0.1",
         "through2":               "0.6.3",
         "request":                "2.51.0",
         "cssnext":                "0.6.6",
@@ -39,7 +39,7 @@
         "mocha":                  "2.1.0",
         "cssom":                  "0.3.0",
         "gulp":                   "3.8.10",
-        "less":                   "2.1.2",
+        "less":                   "2.2.0",
         "chai":                   "1.10.0"
     },
     "scripts": {
