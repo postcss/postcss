@@ -55,25 +55,28 @@ Weibo account: [postcss].
 * [postcss-assets] to inline files and insert image width and height.
 * [ACSS] Annotations based CSS processor.
 * [CSS Grace] to CSS 3 polyfills for IE and other old browsers.
+* [mq4-hover-hover-shim] is a shim for the `hover` media feature from Media
+  Queries Level 4.
 
-[Autoprefixer]:      https://github.com/postcss/autoprefixer
-[BEM linter]:        https://github.com/necolas/postcss-bem-linter
-[CSS MQPacker]:      https://github.com/hail2u/node-css-mqpacker
-[css2modernizr]:     https://github.com/vovanbo/css2modernizr
-[cssnext]:           https://github.com/putaindecode/cssnext
-[CSSWring]:          https://github.com/hail2u/node-csswring
-[data-separator]:    https://github.com/Sebastian-Fitzner/grunt-data-separator
-[pixrem]:            https://github.com/robwierzbowski/node-pixrem
-[webpcss]:           https://github.com/lexich/webpcss
-[Pleeease]:          http://pleeease.io/
-[Pleeease Filters]:  https://github.com/iamvdo/pleeease-filters
-[RTLCSS]:            https://github.com/MohammadYounes/rtlcss
-[CSS Byebye]:        https://github.com/AoDev/css-byebye
-[postcss-epub]:      https://github.com/Rycochet/postcss-epub
-[doiuse]:            https://github.com/anandthakker/doiuse
-[postcss-assets]:    https://github.com/borodean/postcss-assets
-[ACSS]:              https://github.com/morishitter/acss
-[CSS Grace]:         https://github.com/cssdream/cssgrace
+[Autoprefixer]:         https://github.com/postcss/autoprefixer
+[BEM linter]:           https://github.com/necolas/postcss-bem-linter
+[CSS MQPacker]:         https://github.com/hail2u/node-css-mqpacker
+[css2modernizr]:        https://github.com/vovanbo/css2modernizr
+[cssnext]:              https://github.com/putaindecode/cssnext
+[CSSWring]:             https://github.com/hail2u/node-csswring
+[data-separator]:       https://github.com/Sebastian-Fitzner/grunt-data-separator
+[pixrem]:               https://github.com/robwierzbowski/node-pixrem
+[webpcss]:              https://github.com/lexich/webpcss
+[Pleeease]:             http://pleeease.io/
+[Pleeease Filters]:     https://github.com/iamvdo/pleeease-filters
+[RTLCSS]:               https://github.com/MohammadYounes/rtlcss
+[CSS Byebye]:           https://github.com/AoDev/css-byebye
+[postcss-epub]:         https://github.com/Rycochet/postcss-epub
+[doiuse]:               https://github.com/anandthakker/doiuse
+[postcss-assets]:       https://github.com/borodean/postcss-assets
+[ACSS]:                 https://github.com/morishitter/acss
+[CSS Grace]:            https://github.com/cssdream/cssgrace
+[mq4-hover-hover-shim]: https://github.com/cvrebert/mq4-hover-hover-shim
 
 ### Plugins
 
