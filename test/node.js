@@ -353,6 +353,21 @@ describe('Node', () => {
             expect(css.first.style('semicolon')).to.be.true;
         });
 
+        it('clones only spaces in before', () => {
+            var css = parse('a{*one:1}');
+            css.first.append({ prop: 'two', value: '2' });
+            css.append({ name: 'keyframes', params: 'a' });
+            css.last.append({ selector: 'from'});
+            expect(css.toString())
+                .to.eql('a{*one:1;two:2}\n@keyframes a{\nfrom{}}');
+        });
+
+        it('clones only spaces in between', () => {
+            var css = parse('a{one/**/:1}');
+            css.first.append({ prop: 'two', value: '2' });
+            expect(css.toString()).to.eql('a{one/**/:1;two:2}');
+        });
+
     });
 
     describe('root()', () => {
