@@ -1,3 +1,6 @@
+## 4.0.2
+* Do not copy IE hacks to code style.
+
 ## 4.0.1
 * Add `source.input` to `Root` too.
 
