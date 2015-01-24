@@ -11,8 +11,8 @@
     },
     "dependencies": {
         "source-map": "~0.1.43",
-        "js-base64":  "~2.1.6",
-        "6to5":       "2.9.4"
+        "js-base64":  "~2.1.7",
+        "6to5":       "2.13.7"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
@@ -20,14 +20,14 @@
         "gulp-json-editor":       "2.2.1",
         "jshint-stylish":         "1.0.0",
         "gulp-jshint":            "1.9.0",
-        "gonzales-pe":            "3.0.0-12",
+        "gonzales-pe":            "3.0.0-13",
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.0",
         "gulp-util":              "3.0.2",
-        "gulp-6to5":              "2.0.0",
+        "gulp-6to5":              "2.0.2",
         "node-sass":              "1.2.3",
         "execSync":               "1.0.2",
-        "fs-extra":               "0.14.0",
+        "fs-extra":               "0.15.0",
         "gonzales":               "1.0.7",
         "stylecow":               "4.0.1",
         "through2":               "0.6.3",
