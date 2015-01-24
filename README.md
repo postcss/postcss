@@ -101,6 +101,8 @@ Weibo account: [postcss].
 * [postcss-color-palette] to transform CSS2 color keywords to a custom palette.
 * [postcss-color-hex] to transform rgb() and rgba() to hex.
 * [postcss-single-charset] to pop first `@charset` rule.
+* [postcss-simple-extend] to add selectors to a previously defined rule set.
+* [postcss-simple-mixin] to clone declarations from abstract definitions into any rule sets that follow.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -120,6 +122,8 @@ Weibo account: [postcss].
 [postcss-color-palette]:        https://github.com/zaim/postcss-color-palette
 [postcss-color-hex]:            https://github.com/TrySound/postcss-color-hex
 [postcss-single-charset]:       https://github.com/hail2u/postcss-single-charset
+[postcss-simple-extend]:        https://github.com/davidtheclark/postcss-simple-extend
+[postcss-simple-mixin]:        https://github.com/davidtheclark/postcss-simple-mixin
 
 ## Quick Example
 
