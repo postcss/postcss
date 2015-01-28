@@ -71,31 +71,29 @@ describe('postcss()', () => {
     });
 
     describe('process()', () => {
-        before( () => {
-            this.processor = postcss( (css) => {
-                css.eachRule( (rule) => {
-                    if ( !rule.selector.match(/::(before|after)/) ) return;
-                    if ( !rule.some( i => i.prop == 'content' ) ) {
-                        rule.prepend({ prop: 'content', value: '""' });
-                    }
-                });
+        var processor = postcss( (css) => {
+            css.eachRule( (rule) => {
+                if ( !rule.selector.match(/::(before|after)/) ) return;
+                if ( !rule.some( i => i.prop == 'content' ) ) {
+                    rule.prepend({ prop: 'content', value: '""' });
+                }
             });
         });
 
         it('processes CSS', () => {
-            var result = this.processor.process('a::before{top:0}');
+            var result = processor.process('a::before{top:0}');
             expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 
         it('processes parsed AST', () => {
             var root   = postcss.parse('a::before{top:0}');
-            var result = this.processor.process(root);
+            var result = processor.process(root);
             expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 
         it('processes previous result', () => {
             var result = postcss().process('a::before{top:0}');
-            result = this.processor.process(result);
+            result = processor.process(result);
             expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 

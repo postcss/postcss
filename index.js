@@ -10,6 +10,7 @@ var regexp = ['lib', 'test'].map(function (i) {
 
 require('6to5/register')({
     only:   new RegExp('(' + regexp + ')'),
-    ignore: false
+    ignore: false,
+    loose: 'all'
 });
 module.exports = require('./lib/postcss');

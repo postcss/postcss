@@ -13,20 +13,18 @@ var read = function (result) {
     return prev.consumer();
 };
 
+var dir = __dirname + '/fixtures';
+
+var doubler = postcss( (css) => {
+    css.eachDecl( decl => decl.parent.prepend(decl.clone()) );
+});
+var lighter = postcss( (css) => {
+    css.eachDecl( decl => decl.value = 'white' );
+});
+
 describe('source maps', () => {
-    before( () => {
-        this.dir = __dirname + '/fixtures';
-
-        this.doubler = postcss( (css) => {
-            css.eachDecl( decl => decl.parent.prepend(decl.clone()) );
-        });
-        this.lighter = postcss( (css) => {
-            css.eachDecl( decl => decl.value = 'white' );
-        });
-    });
-
     afterEach( () => {
-        if ( fs.existsSync(this.dir) ) fs.removeSync(this.dir);
+        if ( fs.existsSync(dir) ) fs.removeSync(dir);
     });
 
     it('adds map field only on request', () => {
@@ -81,13 +79,13 @@ describe('source maps', () => {
     it('changes previous source map', () => {
         var css = 'a { color: black }';
 
-        var doubled = this.doubler.process(css, {
+        var doubled = doubler.process(css, {
             from: 'a.css',
             to:   'b.css',
             map: { inline: false }
         });
 
-        var lighted = this.lighter.process(doubled.css, {
+        var lighted = lighter.process(doubled.css, {
             from: 'b.css',
             to:   'c.css',
             map: { prev: doubled.map }
@@ -190,12 +188,12 @@ describe('source maps', () => {
     });
 
     it('generates separated map if previous map was not inlined', () => {
-        var step1 = this.doubler.process('a { color: black }', {
+        var step1 = doubler.process('a { color: black }', {
             from: 'a.css',
             to:   'b.css',
             map: { inline: false }
         });
-        var step2 = this.lighter.process(step1.css, {
+        var step2 = lighter.process(step1.css, {
             from: 'b.css',
             to:   'c.css',
             map: { prev: step1.map }
@@ -232,15 +230,15 @@ describe('source maps', () => {
     });
 
     it('misses check files on requires', () => {
-        var step1 = this.doubler.process('a { }', {
+        var step1 = doubler.process('a { }', {
             from: 'a.css',
-            to:    this.dir + '/a.css',
+            to:    dir + '/a.css',
             map:   true
         });
 
-        fs.outputFileSync(this.dir + '/a.css.map', step1.map);
-        var step2 = this.lighter.process(step1.css, {
-            from: this.dir + '/a.css',
+        fs.outputFileSync(dir + '/a.css.map', step1.map);
+        var step2 = lighter.process(step1.css, {
+            from: dir + '/a.css',
             to:  'b.css',
             map:  false
         });
@@ -249,7 +247,7 @@ describe('source maps', () => {
     });
 
     it('works in subdirs', () => {
-        var result = this.doubler.process('a { }', {
+        var result = doubler.process('a { }', {
             from: 'from/a.css',
             to:   'out/b.css',
             map: { inline: false }
@@ -263,13 +261,13 @@ describe('source maps', () => {
     });
 
     it('uses map from subdir', () => {
-        var step1 = this.doubler.process('a { }', {
+        var step1 = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
             map: { inline: false }
         });
 
-        var step2 = this.doubler.process(step1.css, {
+        var step2 = doubler.process(step1.css, {
             from: 'out/b.css',
             to:   'out/two/c.css',
             map: { prev: step1.map }
@@ -279,7 +277,7 @@ describe('source maps', () => {
             .originalPositionFor({ line: 1, column: 0 }).source;
         expect(source).to.eql('../../a.css');
 
-        var step3 = this.doubler.process(step2.css, {
+        var step3 = doubler.process(step2.css, {
             from: 'c.css',
             to:   'd.css',
             map: { prev: step2.map }
@@ -291,13 +289,13 @@ describe('source maps', () => {
     });
 
     it('uses map from subdir if it inlined', () => {
-        var step1 = this.doubler.process('a { }', {
+        var step1 = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
             map:   true
         });
 
-        var step2 = this.doubler.process(step1.css, {
+        var step2 = doubler.process(step1.css, {
             from: 'out/b.css',
             to:   'out/two/c.css',
             map: { inline: false }
@@ -309,7 +307,7 @@ describe('source maps', () => {
     });
 
     it('uses map from subdir if it written as a file', () => {
-        var step1 = this.doubler.process('a { }', {
+        var step1 = doubler.process('a { }', {
             from: 'source/a.css',
             to:   'one/b.css',
             map: { annotation: 'maps/b.css.map', inline: false }
@@ -319,11 +317,11 @@ describe('source maps', () => {
             .originalPositionFor({ line: 1, column: 0 }).source;
         expect(source).to.eql('../../source/a.css');
 
-        fs.outputFileSync(this.dir + '/one/maps/b.css.map', step1.map);
+        fs.outputFileSync(dir + '/one/maps/b.css.map', step1.map);
 
-        var step2 = this.doubler.process(step1.css, {
-            from: this.dir + '/one/b.css',
-            to:   this.dir + '/two/c.css',
+        var step2 = doubler.process(step1.css, {
+            from: dir + '/one/b.css',
+            to:   dir + '/two/c.css',
             map:  true
         });
 
@@ -333,7 +331,7 @@ describe('source maps', () => {
     });
 
     it('works with different types of maps', () => {
-        var step1 = this.doubler.process('a { }', {
+        var step1 = doubler.process('a { }', {
             from: 'a.css',
             to:   'b.css',
             map: { inline: false }
@@ -343,7 +341,7 @@ describe('source maps', () => {
         var maps = [map, consumer(map), map.toJSON(), map.toString()];
 
         for ( var i of maps ) {
-            var step2 = this.doubler.process(step1.css, {
+            var step2 = doubler.process(step1.css, {
                 from: 'b.css',
                 to:   'c.css',
                 map: { prev: i }
@@ -355,7 +353,7 @@ describe('source maps', () => {
     });
 
     it('sets source content by default', () => {
-        var result = this.doubler.process('a { }', {
+        var result = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
             map:   true
@@ -365,7 +363,7 @@ describe('source maps', () => {
     });
 
     it('misses source content on request', () => {
-        var result = this.doubler.process('a { }', {
+        var result = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
             map: { sourcesContent: false }
@@ -375,7 +373,7 @@ describe('source maps', () => {
     });
 
     it('misses source content if previous not have', () => {
-        var step1 = this.doubler.process('a { }', {
+        var step1 = doubler.process('a { }', {
           from: 'a.css',
           to:   'out/a.css',
           map: { sourcesContent: false }
@@ -394,7 +392,7 @@ describe('source maps', () => {
     });
 
     it('misses source content on request', () => {
-        var step1 = this.doubler.process('a { }', {
+        var step1 = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/a.css',
             map: { sourcesContent: true }
@@ -418,23 +416,23 @@ describe('source maps', () => {
     });
 
     it('detects input file name from map', () => {
-        var one = this.doubler.process('a { }', { to: 'a.css', map: true });
-        var two = this.doubler.process(one.css, { map: { prev: one.map } });
+        var one = doubler.process('a { }', { to: 'a.css', map: true });
+        var two = doubler.process(one.css, { map: { prev: one.map } });
         expect(two.root.first.source.input.file).to.eql(path.resolve('a.css'));
     });
 
     it('works without file names', () => {
-        var step1 = this.doubler.process('a { }', { map: true });
-        var step2 = this.doubler.process(step1.css);
+        var step1 = doubler.process('a { }', { map: true });
+        var step2 = doubler.process(step1.css);
     });
 
     it('supports UTF-8', () => {
-        var step1 = this.doubler.process('a { }', {
+        var step1 = doubler.process('a { }', {
             from: 'вход.css',
             to:   'шаг1.css',
             map:   true
         });
-        var step2 = this.doubler.process(step1.css, {
+        var step2 = doubler.process(step1.css, {
             from: 'шаг1.css',
             to:   'выход.css',
         });
@@ -452,7 +450,7 @@ describe('source maps', () => {
     });
 
     it('uses input file name as output file name', () => {
-        var result = this.doubler.process('a{}', {
+        var result = doubler.process('a{}', {
             from: 'a.css',
             map: { inline: false }
         });
@@ -460,7 +458,7 @@ describe('source maps', () => {
     });
 
     it('uses to.css as default output name', () => {
-        var result = this.doubler.process('a{}', { map: { inline: false } });
+        var result = doubler.process('a{}', { map: { inline: false } });
         expect(result.map.toJSON().file).to.eql('to.css');
     });
 

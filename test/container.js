@@ -21,19 +21,15 @@ var example = 'a { a: 1; b: 2 }' +
               '}';
 
 describe('Container', () => {
-    beforeEach( () => {
-        this.big  = parse(example);
-        this.rule = parse('a { a: 1; b: 2 }').first;
-        this.new  = new Declaration({ prop: 'c', value: '3' });
-    });
 
     describe('push()', () => {
 
         it('adds child without checks', () => {
-            this.rule.push(this.new);
-            expect(this.rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
-            expect(this.rule.nodes.length).to.eql(3);
-            expect(this.rule.last).to.not.have.property('before');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.push(new Declaration({ prop: 'c', value: '3' }));
+            expect(rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
+            expect(rule.nodes.length).to.eql(3);
+            expect(rule.last).to.not.have.property('before');
         });
 
     });
@@ -41,11 +37,12 @@ describe('Container', () => {
     describe('each()', () => {
 
         it('iterates', () => {
+            var rule    = parse('a { a: 1; b: 2 }').first;
             var indexes = [];
 
-            var result = this.rule.each( (decl, i) => {
+            var result = rule.each( (decl, i) => {
                 indexes.push(i);
-                expect(decl).to.eql(this.rule.nodes[i]);
+                expect(decl).to.eql(rule.nodes[i]);
             });
 
             expect(result).to.not.exist();
@@ -53,69 +50,88 @@ describe('Container', () => {
         });
 
         it('iterates with prepend', () => {
+            var rule = parse('a { a: 1; b: 2 }').first;
             var size = 0;
-            this.rule.each( () => {
-                this.rule.prepend({ prop: 'color', value: 'aqua' });
+
+            rule.each( () => {
+                rule.prepend({ prop: 'color', value: 'aqua' });
                 size += 1;
             });
+
             expect(size).to.eql(2);
         });
 
         it('iterates with prepend insertBefore', () => {
+            var rule = parse('a { a: 1; b: 2 }').first;
             var size = 0;
-            this.rule.each( (decl) => {
+
+            rule.each( (decl) => {
                 if ( decl.prop == 'a' ) {
-                    this.rule.insertBefore(decl, { prop: 'c', value: '3' });
+                    rule.insertBefore(decl, { prop: 'c', value: '3' });
                 }
                 size += 1;
             });
+
             expect(size).to.eql(2);
         });
 
         it('iterates with append insertBefore', () => {
+            var rule = parse('a { a: 1; b: 2 }').first;
             var size = 0;
-            this.rule.each( (decl, i) => {
+
+            rule.each( (decl, i) => {
                 if ( decl.prop == 'a' ) {
-                    this.rule.insertBefore(i + 1, { prop: 'c', value: '3' });
+                    rule.insertBefore(i + 1, { prop: 'c', value: '3' });
                 }
                 size += 1;
             });
+
             expect(size).to.eql(3);
         });
 
         it('iterates with prepend insertAfter', () => {
+            var rule = parse('a { a: 1; b: 2 }').first;
             var size = 0;
-            this.rule.each( (decl, i) => {
-                this.rule.insertAfter(i - 1, { prop: 'c', value: '3' });
+
+            rule.each( (decl, i) => {
+                rule.insertAfter(i - 1, { prop: 'c', value: '3' });
                 size += 1;
             });
+
             expect(size).to.eql(2);
         });
 
         it('iterates with append insertAfter', () => {
+            var rule = parse('a { a: 1; b: 2 }').first;
             var size = 0;
-            this.rule.each( (decl, i) => {
+
+            rule.each( (decl, i) => {
                 if ( decl.prop == 'a' ) {
-                    this.rule.insertAfter(i, { prop: 'c', value: '3' });
+                    rule.insertAfter(i, { prop: 'c', value: '3' });
                 }
                 size += 1;
             });
+
             expect(size).to.eql(3);
         });
 
         it('iterates with remove', () => {
+            var rule = parse('a { a: 1; b: 2 }').first;
             var size = 0;
-            this.rule.each( () => {
-                this.rule.remove(0);
+
+            rule.each( () => {
+                rule.remove(0);
                 size += 1;
             });
+
             expect(size).to.eql(2);
         });
 
         it('breaks iteration', () => {
+            var rule    = parse('a { a: 1; b: 2 }').first;
             var indexes = [];
 
-            var result = this.rule.each( (decl, i) => {
+            var result = rule.each( (decl, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -125,11 +141,14 @@ describe('Container', () => {
         });
 
         it('allows to change children', () => {
+            var rule  = parse('a { a: 1; b: 2 }').first;
             var props = [];
-            var result = this.rule.each( (decl, i) => {
+
+            var result = rule.each( (decl, i) => {
                 props.push(decl.prop);
-                this.rule.nodes = [this.rule.last, this.rule.first];
+                rule.nodes = [rule.last, rule.first];
             });
+
             expect(props).to.eql(['a', 'a']);
         });
 
@@ -141,7 +160,7 @@ describe('Container', () => {
             var types   = [];
             var indexes = [];
 
-            var result = this.big.eachInside( (node, i) => {
+            var result = parse(example).eachInside( (node, i) => {
                 types.push(node.type);
                 indexes.push(i);
             });
@@ -156,7 +175,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.big.eachInside( (decl, i) => {
+            var result = parse(example).eachInside( (decl, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -173,7 +192,7 @@ describe('Container', () => {
             var props   = [];
             var indexes = [];
 
-            var result = this.big.eachDecl( (decl, i) => {
+            var result = parse(example).eachDecl( (decl, i) => {
                 props.push(decl.prop);
                 indexes.push(i);
             });
@@ -185,7 +204,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             var size = 0;
-            this.big.eachDecl( (decl, i) => {
+            parse(example).eachDecl( (decl, i) => {
                 decl.parent.remove(i);
                 size += 1;
             });
@@ -195,7 +214,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.big.eachDecl( (decl, i) => {
+            var result = parse(example).eachDecl( (decl, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -233,7 +252,7 @@ describe('Container', () => {
             var texts   = [];
             var indexes = [];
 
-            var result = this.big.eachComment( (comment, i) => {
+            var result = parse(example).eachComment( (comment, i) => {
                 texts.push(comment.text);
                 indexes.push(i);
             });
@@ -245,7 +264,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             var size = 0;
-            this.big.eachComment( (comment, i) => {
+            parse(example).eachComment( (comment, i) => {
                 comment.parent.remove(i);
                 size += 1;
             });
@@ -255,7 +274,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.big.eachComment( (comment, i) => {
+            var result = parse(example).eachComment( (comment, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -272,7 +291,7 @@ describe('Container', () => {
             var selectors = [];
             var indexes   = [];
 
-            var result = this.big.eachRule( (rule, i) => {
+            var result = parse(example).eachRule( (rule, i) => {
                 selectors.push(rule.selector);
                 indexes.push(i);
             });
@@ -284,7 +303,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             var size = 0;
-            this.big.eachRule( (rule, i) => {
+            parse(example).eachRule( (rule, i) => {
                 rule.parent.remove(i);
                 size += 1;
             });
@@ -294,7 +313,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.big.eachRule( (rule, i) => {
+            var result = parse(example).eachRule( (rule, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -311,7 +330,7 @@ describe('Container', () => {
             var names   = [];
             var indexes = [];
 
-            var result = this.big.eachAtRule( (atrule, i) => {
+            var result = parse(example).eachAtRule( (atrule, i) => {
                 names.push(atrule.name);
                 indexes.push(i);
             });
@@ -323,7 +342,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             var size = 0;
-            this.big.eachAtRule( (atrule, i) => {
+            parse(example).eachAtRule( (atrule, i) => {
                 atrule.parent.remove(i);
                 size += 1;
             });
@@ -333,7 +352,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             var indexes = [];
 
-            var result = this.big.eachAtRule( (atrule, i) => {
+            var result = parse(example).eachAtRule( (atrule, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -368,14 +387,16 @@ describe('Container', () => {
     describe('append()', () => {
 
         it('appends child', () => {
-            this.rule.append(this.new);
-            expect(this.rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
-            expect(this.rule.last.before).to.eql(' ');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.append({ prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
+            expect(rule.last.before).to.eql(' ');
         });
 
         it('has declaration shortcut', () => {
-            this.rule.append({ prop: 'c', value: '3' });
-            expect(this.rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.append({ prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
         });
 
         it('has rule shortcut', () => {
@@ -428,14 +449,16 @@ describe('Container', () => {
     describe('prepend()', () => {
 
         it('prepends child', () => {
-            this.rule.prepend(this.new);
-            expect(this.rule.toString()).to.eql('a { c: 3; a: 1; b: 2 }');
-            expect(this.rule.first.before).to.eql(' ');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.prepend({ prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { c: 3; a: 1; b: 2 }');
+            expect(rule.first.before).to.eql(' ');
         });
 
         it('receive hash instead of declaration', () => {
-            this.rule.prepend({ prop: 'c', value: '3' });
-            expect(this.rule.toString()).to.eql('a { c: 3; a: 1; b: 2 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.prepend({ prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { c: 3; a: 1; b: 2 }');
         });
 
         it('receives root', () => {
@@ -464,19 +487,22 @@ describe('Container', () => {
     describe('insertBefore()', () => {
 
         it('inserts child', () => {
-            this.rule.insertBefore(1, this.new);
-            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
-            expect(this.rule.nodes[1].before).to.eql(' ');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.insertBefore(1, { prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
+            expect(rule.nodes[1].before).to.eql(' ');
         });
 
         it('works with nodes too', () => {
-            this.rule.insertBefore(this.rule.nodes[1], this.new);
-            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.insertBefore(rule.nodes[1], { prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receive hash instead of declaration', () => {
-            this.rule.insertBefore(1, { prop: 'c', value: '3' });
-            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.insertBefore(1, { prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receives array', () => {
@@ -493,19 +519,22 @@ describe('Container', () => {
     describe('insertAfter()', () => {
 
         it('inserts child', () => {
-            this.rule.insertAfter(0, this.new);
-            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
-            expect(this.rule.nodes[1].before).to.eql(' ');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.insertAfter(0, { prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
+            expect(rule.nodes[1].before).to.eql(' ');
         });
 
         it('works with nodes too', () => {
-            this.rule.insertAfter(this.rule.first, this.new);
-            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.insertAfter(rule.first, { prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receive hash instead of declaration', () => {
-            this.rule.insertAfter(0, { prop: 'c', value: '3' });
-            expect(this.rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.insertAfter(0, { prop: 'c', value: '3' });
+            expect(rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
         });
 
         it('receives array', () => {
@@ -522,18 +551,21 @@ describe('Container', () => {
     describe('remove()', () => {
 
         it('removes by index', () => {
-            this.rule.remove(1);
-            expect(this.rule.toString()).to.eql('a { a: 1 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.remove(1);
+            expect(rule.toString()).to.eql('a { a: 1 }');
         });
 
         it('removes by node', () => {
-            this.rule.remove( this.rule.last );
-            expect(this.rule.toString()).to.eql('a { a: 1 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.remove(rule.last);
+            expect(rule.toString()).to.eql('a { a: 1 }');
         });
 
         it('cleans parent in removed node', () => {
-            var decl = this.rule.first;
-            this.rule.remove(decl);
+            var rule = parse('a { a: 1; b: 2 }').first;
+            var decl = rule.first;
+            rule.remove(decl);
             expect(decl.parent).to.not.exist();
         });
 
@@ -542,11 +574,12 @@ describe('Container', () => {
     describe('removeAll()', () => {
 
         it('removes all children', () => {
-            var decl = this.rule.first;
-            this.rule.removeAll();
+            var rule = parse('a { a: 1; b: 2 }').first;
+            var decl = rule.first;
+            rule.removeAll();
 
             expect(decl.parent).to.not.exist();
-            expect(this.rule.toString()).to.eql('a { }');
+            expect(rule.toString()).to.eql('a { }');
         });
 
     });
@@ -584,8 +617,9 @@ describe('Container', () => {
     describe('any()', () => {
 
         it('return true if all children return true', () => {
-            expect(this.rule.every( i => i.prop.match(/a|b/) )).to.be.true;
-            expect(this.rule.every( i => i.prop.match(/b/)   )).to.be.false;
+            var rule = parse('a { a: 1; b: 2 }').first;
+            expect(rule.every( i => i.prop.match(/a|b/) )).to.be.true;
+            expect(rule.every( i => i.prop.match(/b/)   )).to.be.false;
         });
 
     });
@@ -593,8 +627,9 @@ describe('Container', () => {
     describe('some()', () => {
 
         it('return true if all children return true', () => {
-            expect(this.rule.some( i => i.prop == 'b' )).to.be.true;
-            expect(this.rule.some( i => i.prop == 'c' )).to.be.false;
+            var rule = parse('a { a: 1; b: 2 }').first;
+            expect(rule.some( i => i.prop == 'b' )).to.be.true;
+            expect(rule.some( i => i.prop == 'c' )).to.be.false;
         });
 
     });
@@ -602,11 +637,13 @@ describe('Container', () => {
     describe('index()', () => {
 
         it('returns child index', () => {
-            expect(this.rule.index( this.rule.nodes[1] )).to.eql(1);
+            var rule = parse('a { a: 1; b: 2 }').first;
+            expect(rule.index( rule.nodes[1] )).to.eql(1);
         });
 
         it('returns argument if it(is number', () => {
-            expect(this.rule.index(2)).to.eql(2);
+            var rule = parse('a { a: 1; b: 2 }').first;
+            expect(rule.index(2)).to.eql(2);
         });
 
     });
@@ -614,7 +651,8 @@ describe('Container', () => {
     describe('first', () => {
 
         it('returns first child', () => {
-            expect(this.rule.first.prop).to.eql('a');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            expect(rule.first.prop).to.eql('a');
         });
 
     });
@@ -622,7 +660,8 @@ describe('Container', () => {
     describe('last', () => {
 
         it('returns last child', () => {
-            expect(this.rule.last.prop).to.eql('b');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            expect(rule.last.prop).to.eql('b');
         });
 
     });
@@ -630,8 +669,9 @@ describe('Container', () => {
     describe('normalize()', () => {
 
         it("doesn't normalize new children with exists before", () => {
-            this.rule.append({ prop: 'c', value: '3', before: '\n ' });
-            expect(this.rule.toString()).to.eql('a { a: 1; b: 2;\n c: 3 }');
+            var rule = parse('a { a: 1; b: 2 }').first;
+            rule.append({ prop: 'c', value: '3', before: '\n ' });
+            expect(rule.toString()).to.eql('a { a: 1; b: 2;\n c: 3 }');
         });
 
     });

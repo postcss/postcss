@@ -11,7 +11,7 @@ gulp.task('build:lib', ['build:clean'], function () {
     var es6to5 = require('gulp-6to5');
 
     return gulp.src('lib/*.js')
-        .pipe(es6to5())
+        .pipe(es6to5({ loose: 'all' }))
         .pipe(gulp.dest('build/lib'));
 });
 
