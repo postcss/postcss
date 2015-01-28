@@ -1,3 +1,7 @@
+## 4.0.3
+* Faster API with 6to5 Loose mode.
+* Fix indexed source maps support.
+
 ## 4.0.2
 * Do not copy IE hacks to code style.
 
