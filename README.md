@@ -103,6 +103,7 @@ Weibo account: [postcss].
 * [postcss-single-charset] to pop first `@charset` rule.
 * [postcss-simple-extend] to add selectors to a previously defined rule set.
 * [postcss-simple-mixin] to clone declarations from abstract definitions into any rule sets that follow.
+* [postcss-simple-vars] for Sass-like variables.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -123,7 +124,8 @@ Weibo account: [postcss].
 [postcss-color-hex]:            https://github.com/TrySound/postcss-color-hex
 [postcss-single-charset]:       https://github.com/hail2u/postcss-single-charset
 [postcss-simple-extend]:        https://github.com/davidtheclark/postcss-simple-extend
-[postcss-simple-mixin]:        https://github.com/davidtheclark/postcss-simple-mixin
+[postcss-simple-mixin]:         https://github.com/davidtheclark/postcss-simple-mixin
+[postcss-simple-vars]:          https://github.com/postcss/postcss-simple-vars
 
 ## Quick Example
 
