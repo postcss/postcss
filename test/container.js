@@ -1,10 +1,10 @@
-var Declaration = require('../lib/declaration');
-var Container   = require('../lib/container');
-var parse       = require('../lib/parse');
-var Rule        = require('../lib/rule');
-var Root        = require('../lib/root');
+import Declaration from '../lib/declaration';
+import Container from '../lib/container';
+import parse from '../lib/parse';
+import Rule from '../lib/rule';
+import Root from '../lib/root';
 
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
 var example = 'a { a: 1; b: 2 }' +
               '/* a */' +

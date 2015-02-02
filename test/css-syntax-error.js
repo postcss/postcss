@@ -1,9 +1,9 @@
-var CssSyntaxError = require('../lib/css-syntax-error');
-var parse          = require('../lib/parse');
+import CssSyntaxError from '../lib/css-syntax-error';
+import parse from '../lib/parse';
 
-var Concat = require('concat-with-sourcemaps');
-var expect = require('chai').expect;
-var path   = require('path');
+import Concat from 'concat-with-sourcemaps';
+import { expect } from 'chai';
+import path from 'path';
 
 var parseError = function (css, opts) {
     var error;

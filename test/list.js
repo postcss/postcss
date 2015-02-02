@@ -1,6 +1,6 @@
-var list = require('../lib/list');
+import list from '../lib/list';
 
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('list', () => {
 

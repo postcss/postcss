@@ -1,7 +1,7 @@
-var tokenize = require('../lib/tokenize');
-var Input    = require('../lib/input');
+import tokenize from '../lib/tokenize';
+import Input from '../lib/input';
 
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
 var test = (css, opts, tokens) => {
     if ( typeof(tokens) == 'undefined' ) [tokens, opts] = [opts, tokens];

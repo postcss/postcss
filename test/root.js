@@ -1,10 +1,10 @@
-var Root   = require('../lib/root');
-var Rule   = require('../lib/rule');
-var parse  = require('../lib/parse');
-var Result = require('../lib/result');
+import Result from'../lib/result';
+import parse from '../lib/parse';
+import Root from '../lib/root';
+import Rule from '../lib/rule';
 
-var expect = require('chai').expect;
-var fs     = require('fs');
+import { expect } from 'chai';
+import fs from 'fs';
 
 describe('Root', () => {
 

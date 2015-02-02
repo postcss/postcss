@@ -1,7 +1,7 @@
-var Comment = require('../lib/comment');
-var parse   = require('../lib/parse');
+import Comment from '../lib/comment';
+import parse from '../lib/parse';
 
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('Comment', () => {
 

@@ -1,10 +1,10 @@
-var Root  = require('../lib/root');
-var Input = require('../lib/input');
-var parse = require('../lib/parse');
+import Input from '../lib/input';
+import parse from '../lib/parse';
+import Root from '../lib/root';
 
-var fs     = require('fs');
-var path   = require('path');
-var expect = require('chai').expect;
+import { expect } from 'chai';
+import path from 'path';
+import fs from 'fs';
 
 var read = file => fs.readFileSync(__dirname + '/cases/' + file);
 

@@ -1,10 +1,10 @@
-var CssSyntaxError = require('../lib/css-syntax-error');
-var postcss        = require('../lib/postcss');
-var Result         = require('../lib/result');
-var Root           = require('../lib/root');
+import CssSyntaxError from '../lib/css-syntax-error';
+import postcss from '../lib/postcss';
+import Result from '../lib/result';
+import Root from '../lib/root';
 
-var expect = require('chai').expect;
-var path   = require('path');
+import { expect } from 'chai';
+import path from 'path';
 
 describe('postcss()', () => {
 

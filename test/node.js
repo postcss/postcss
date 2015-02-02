@@ -1,12 +1,12 @@
-var CssSyntaxError = require('../lib/css-syntax-error');
-var Declaration    = require('../lib/declaration');
-var AtRule         = require('../lib/at-rule');
-var parse          = require('../lib/parse');
-var Node           = require('../lib/node');
-var Root           = require('../lib/root');
-var Rule           = require('../lib/rule');
+import CssSyntaxError from '../lib/css-syntax-error';
+import Declaration from '../lib/declaration';
+import AtRule from '../lib/at-rule';
+import parse from '../lib/parse';
+import Node from '../lib/node';
+import Root from '../lib/root';
+import Rule from '../lib/rule';
 
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('Node', () => {
 

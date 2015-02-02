@@ -1,9 +1,9 @@
-var Declaration = require('../lib/declaration');
-var AtRule      = require('../lib/at-rule');
-var parse       = require('../lib/parse');
-var Rule        = require('../lib/rule');
+import Declaration from '../lib/declaration';
+import AtRule from '../lib/at-rule';
+import parse from '../lib/parse';
+import Rule from '../lib/rule';
 
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('AtRule', () => {
 

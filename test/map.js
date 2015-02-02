@@ -1,10 +1,10 @@
-var PreviousMap = require('../lib/previous-map');
-var postcss     = require('../lib/postcss');
+import PreviousMap from '../lib/previous-map';
+import postcss from '../lib/postcss';
 
-var mozilla = require('source-map');
-var expect  = require('chai').expect;
-var path    = require('path');
-var fs      = require('fs-extra');
+import mozilla from 'source-map';
+import { expect } from 'chai';
+import path from 'path';
+import fs from 'fs-extra';
 
 var consumer = map => new mozilla.SourceMapConsumer.fromSourceMap(map);
 

@@ -1,6 +1,6 @@
-var vendor = require('../lib/vendor');
+import vendor from '../lib/vendor';
 
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('vendor', () => {
 

@@ -1,8 +1,8 @@
-var Result = require('../lib/result');
-var parse  = require('../lib/parse');
+import Result from '../lib/result';
+import parse from '../lib/parse';
 
-var mozilla = require('source-map');
-var expect  = require('chai').expect;
+import mozilla from 'source-map';
+import { expect } from 'chai';
 
 var root;
 
