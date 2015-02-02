@@ -12,7 +12,7 @@
     "dependencies": {
         "source-map": "~0.2.0",
         "js-base64":  "~2.1.7",
-        "6to5":       "3.3.3"
+        "6to5":       "3.3.4"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
@@ -20,10 +20,10 @@
         "gulp-json-editor":       "2.2.1",
         "jshint-stylish":         "1.0.0",
         "gulp-jshint":            "1.9.1",
-        "gonzales-pe":            "3.0.0-18",
+        "gonzales-pe":            "3.0.0-16",
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.0",
-        "gulp-util":              "3.0.2",
+        "gulp-util":              "3.0.3",
         "gulp-6to5":              "3.0.0",
         "node-sass":              "1.2.3",
         "execSync":               "1.0.2",
