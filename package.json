@@ -12,26 +12,26 @@
     "dependencies": {
         "source-map": "~0.2.0",
         "js-base64":  "~2.1.7",
-        "6to5":       "3.0.9"
+        "6to5":       "3.3.3"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
         "gulp-bench-summary":     "0.1.0",
         "gulp-json-editor":       "2.2.1",
         "jshint-stylish":         "1.0.0",
-        "gulp-jshint":            "1.9.0",
-        "gonzales-pe":            "3.0.0-13",
+        "gulp-jshint":            "1.9.1",
+        "gonzales-pe":            "3.0.0-18",
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.0",
         "gulp-util":              "3.0.2",
         "gulp-6to5":              "3.0.0",
         "node-sass":              "1.2.3",
         "execSync":               "1.0.2",
-        "fs-extra":               "0.16.0",
+        "fs-extra":               "0.16.3",
         "gonzales":               "1.0.7",
-        "stylecow":               "4.0.1",
+        "stylecow":               "4.2.0",
         "through2":               "0.6.3",
-        "request":                "2.51.0",
+        "request":                "2.52.0",
         "cssnext":                "0.6.6",
         "rework":                 "1.0.1",
         "mensch":                 "0.3.1",
@@ -39,7 +39,7 @@
         "mocha":                  "2.1.0",
         "cssom":                  "0.3.0",
         "gulp":                   "3.8.10",
-        "less":                   "2.3.0",
+        "less":                   "2.3.1",
         "chai":                   "1.10.0"
     },
     "scripts": {
