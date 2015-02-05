@@ -104,7 +104,7 @@ Weibo account: [postcss].
 * [postcss-simple-extend] to add selectors to a previously defined rule set.
 * [postcss-simple-vars] for Sass-like variables.
 * [postcss-mixins] for mixins.
-* [postcss-size] for `size` shortcut to set `width` and `height` prtoperties.
+* [postcss-size] for `size` shortcut to set `width` and `height` properties.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
