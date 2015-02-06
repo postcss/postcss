@@ -105,6 +105,7 @@ Weibo account: [postcss].
 * [postcss-simple-vars] for Sass-like variables.
 * [postcss-mixins] for mixins.
 * [postcss-size] for `size` shortcut to set `width` and `height` properties.
+* [postcss-brand-colors] to insert branding colors by company name.
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -129,6 +130,7 @@ Weibo account: [postcss].
 [postcss-simple-vars]:          https://github.com/postcss/postcss-simple-vars
 [postcss-mixins]:               https://github.com/postcss/postcss-mixins
 [postcss-size]:                 https://github.com/postcss/postcss-size
+[postcss-brand-colors]:         https://github.com/postcss/postcss-brand-colors
 
 ## Quick Example
 
