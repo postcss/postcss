@@ -12,7 +12,7 @@
     "dependencies": {
         "source-map": "~0.2.0",
         "js-base64":  "~2.1.7",
-        "6to5":       "3.3.9"
+        "6to5":       "3.4.0"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
@@ -32,10 +32,10 @@
         "stylecow":               "4.2.1",
         "through2":               "0.6.3",
         "request":                "2.53.0",
-        "cssnext":                "0.6.6",
+        "cssnext":                "1.0.0",
         "rework":                 "1.0.1",
         "mensch":                 "0.3.1",
-        "stylus":                 "0.49.3",
+        "stylus":                 "0.50.0",
         "mocha":                  "2.1.0",
         "cssom":                  "0.3.0",
         "gulp":                   "3.8.10",
