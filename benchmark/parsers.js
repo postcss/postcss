@@ -45,8 +45,8 @@ module.exports = {
         },
         {
             name: 'Gonzales PE',
-            fn: function () {
-                gonzalesPe.astToSrc({ ast: gonzalesPe.srcToAST({ src: css }) });
+            fn: function (done) {
+                gonzalesPe.parse(css).toString();
             }
         },
         {
