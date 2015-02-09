@@ -107,6 +107,7 @@ Weibo account: [postcss].
 * [postcss-size] for `size` shortcut to set `width` and `height` properties.
 * [postcss-brand-colors] to insert branding colors by company name.
 * [postcss-easings] to replace easing name to `cubic-bezier()`.
+* [postcss-host] to make :host selector works properly with pseudo-classes
 
 [postcss-calc]:                 https://github.com/postcss/postcss-calc
 [postcss-color-function]:       https://github.com/postcss/postcss-color-function
@@ -132,7 +133,8 @@ Weibo account: [postcss].
 [postcss-mixins]:               https://github.com/postcss/postcss-mixins
 [postcss-size]:                 https://github.com/postcss/postcss-size
 [postcss-brand-colors]:         https://github.com/postcss/postcss-brand-colors
-[postcss-easings]:               https://github.com/postcss/postcss-easings
+[postcss-easings]:              https://github.com/postcss/postcss-easings
+[postcss-host]:                 https://github.com/vitkarpov/postcss-host
 
 ## Quick Example
 
