@@ -23,6 +23,7 @@
         "gonzales-pe":            "3.0.0-26",
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.0",
+        "node-sass":              "2.0.0-beta",
         "gulp-util":              "3.0.3",
         "gulp-6to5":              "3.0.0",
         "execSync":               "1.0.2",
