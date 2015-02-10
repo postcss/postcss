@@ -1,6 +1,6 @@
 # PostCSS API
 
-## `postcss` Function
+## `postcss` function
 
 It is a main enter point of PostCSS:
 
@@ -8,7 +8,7 @@ It is a main enter point of PostCSS:
 var postcss = require('postcss');
 ```
 
-### `postcss(plugins)`
+#### `postcss(plugins)`
 
 Return new `PostCSS` instance and set plugins from `plugins` array
 as CSS processors.
@@ -42,7 +42,7 @@ Options:
 [source map options]: https://github.com/postcss/postcss#source-map-1
 [Safe Mode]:          https://github.com/postcss/postcss#safe-mode
 
-### `postcss.root(props)`
+#### `postcss.root(props)`
 
 Shortcut to create `Root` instance manually:
 
@@ -50,7 +50,7 @@ Shortcut to create `Root` instance manually:
 postcss.root({ after: '\n' }).toString() //=> "\n"
 ```
 
-### `postcss.atRule(props)`
+#### `postcss.atRule(props)`
 
 Shortcut to create `AtRule` node manually:
 
@@ -58,7 +58,7 @@ Shortcut to create `AtRule` node manually:
 postcss.atRule({ name: 'charset' }).toString() //=> "@charset"
 ```
 
-### `postcss.rule(props)`
+#### `postcss.rule(props)`
 
 Shortcut to create `Rule` node manually:
 
@@ -66,7 +66,7 @@ Shortcut to create `Rule` node manually:
 postcss.rule({ selector: 'a' }).toString() //=> "a {\n}"
 ```
 
-### `postcss.decl(props)`
+#### `postcss.decl(props)`
 
 Shortcut to create `Declaration` node manually:
 
@@ -74,7 +74,7 @@ Shortcut to create `Declaration` node manually:
 postcss.decl({ prop: 'color', value: 'black' }).toString() //=> "color: black"
 ```
 
-### `postcss.comment(props)`
+#### `postcss.comment(props)`
 
 Shortcut to create `Comment` node manually:
 
@@ -93,7 +93,7 @@ processor.process(css1).css;
 processor.process(css2).css;
 ```
 
-### `use(plugin)`
+#### `use(plugin)`
 
 Add plugin to CSS processors. There is a two way to set plugins:
 in `postcss(plugins)` constructor or by this method.
@@ -121,7 +121,7 @@ processor.use(function (css) {
 });
 ```
 
-### `process(css, opts)`
+#### `process(css, opts)`
 
 This is a main method of PostCSS. It will parse CSS to `Root`, send this root
 to each plugin and then return `Result` object from transformed root.
