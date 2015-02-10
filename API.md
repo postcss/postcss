@@ -130,6 +130,13 @@ to each plugin and then return `Result` object from transformed root.
 var result = processor.process(css, { from: 'a.css', to: 'a.out.css' });
 ```
 
+Input CSS format is:
+
+* String with CSS.
+* `Result` instance from other PostCSS processor. PostCSS will take already
+  parsed root from it.
+* Any object with `toString()` method. For example, file stream.
+
 Options:
 
 * `from` is a path to input CSS file. You should always set it, because it used
@@ -140,3 +147,62 @@ Options:
 * `map` is a object with [source map options].
 
 [source map options]: https://github.com/postcss/postcss#source-map-1
+
+## `Result` class
+
+There is a two way to get `Result` instance. `PostCSS#process(css, opts)`
+returns it or you can call `Root#toResult(opts)`.
+
+```js
+var result1 = postcss().process(css);
+var result2 = postcss.parse(css).toResult();
+```
+
+#### `root`
+
+This property contains source `Root` instance.
+
+```js
+root.toResult().root == root;
+```
+
+#### `opts`
+
+Options from `PostCSS#process(css, opts)` or `Root#toResult(opts)` call.
+
+```js
+postcss().process(css, opts).opts == opts;
+```
+
+#### `css`
+
+Lazy method, that will stringify `Root` instance to CSS string on first call
+ad generates source map to `map` property.
+
+```js
+postcss().process('a{}').css //=> "a{}"
+```
+
+#### `map`
+
+Lazy method, that will generates source map for `Root` changes and stringify
+CSS to `css` property.
+
+```js
+var sourceMap = require('source-map');
+result.map instanceof sourceMap.SourceMapGenerator;
+```
+
+`Result` instance will contain `map` property only if PostCSS decide, that
+source map should be in separated file. If source map will be inlined to CSS,
+`Result` instance will not have this property.
+
+```js
+if ( result.map ) {
+    fs.writeFileSync(to + '.map', result.map.toString());
+}
+```
+
+By default, PostCSS will inline map to CSS, so in most cases this property will
+be empty. PostCSS will create it only if user set `map: { inline: false }`
+option or if input source map will be in separated file.
