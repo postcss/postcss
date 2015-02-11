@@ -783,7 +783,7 @@ If you will not change parameters, PostCSS will stringify origin raw value.
 Code style property with spaces symbols before at-rule.
 
 ```js
-var root  = postcss.parse('@charset "UTF-8";\m@media print {}\n');
+var root  = postcss.parse('@charset "UTF-8";\n@media print {}\n');
 var media = root.last;
 media.before //=> '\n'
 ```
@@ -816,4 +816,57 @@ Code style property with spaces between last child and '}'.
 var root  = postcss.parse('@media print {\n  a {}\n  }\n');
 var media = root.first;
 media.after //=> '\n  '
+```
+
+## `Rule` node
+
+Represents rule of CSS.
+
+```js
+var root = postcss.parse('a{}');
+var rule = root.first;
+rule.type //=> 'rule'
+```
+
+#### `selector`
+
+Stores rule’s selector string.
+
+```js
+var root = postcss.parse('a, b { }');
+var rule = root.first;
+rule.selector //=> 'a, b'
+```
+
+#### `selectors`
+
+It is a dynamic property that will split `selector` by comma and return array.
+
+```js
+var root = postcss.parse('a, b { }');
+var rule = root.first;
+rule.selectors //=> ['a', 'b']
+
+rule.selectors = ['a', 'strong'];
+rule.selector //=> 'a, strong'
+```
+
+#### `before`
+
+Code style property with spaces symbols before rule.
+
+```js
+var root = postcss.parse('a {}\nb {}\n');
+var rule = root.last;
+rule.before //=> '\n'
+```
+
+#### `after`
+
+Code style property with spaces between last child and '}'.
+
+```js
+var root = postcss.parse('@a {\n  color: black\n  }\n');
+var rule = root.first;
+root.after //=> '\n  '
 ```
