@@ -203,5 +203,31 @@ if ( result.map ) {
 ```
 
 By default, PostCSS will inline map to CSS, so in most cases this property will
-be empty. PostCSS will create it only if user set `map: { inline: false }`
+be empty. PostCSS will create it only if user set `map.inline = false`
 option or if input source map was in separated file.
+
+## List module
+
+Contains helper to split CSS values.
+
+```js
+var list = require('postcss/lib/list');
+```
+
+#### `list.space`
+
+Splits values by space with brackets and quotes:
+
+```js
+list.split('1px calc(10% + 1px) "border radius"')
+//=> ['1px', 'calc(10% + 1px)', '"border radius"']
+```
+
+#### `list.comma`
+
+Splits values by comma with brackets and quotes:
+
+```js
+list.split('1px 2px, rgba(255, 0, 0, 0.9), "border, top"')
+//=> ['1px 2px', 'rgba(255, 0, 0, 0.9)', '"border, top"']
+```
