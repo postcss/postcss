@@ -710,3 +710,22 @@ Removes all children from contain and clean their `parent` properties.
 rule.removeAll();
 rule.nodes.length //=> 0
 ```
+
+## `Root` node
+
+Represents CSS file and contain all nodes inside.
+
+```js
+var root = postcss.parse('a{color:black} b{z-index:2}');
+root.type         //=> 'root'
+root.nodes.length //=> 2
+```
+
+#### `after`
+
+Stores space symbols after last child like `\n` from end of the file.
+
+```js
+var root = parse('a {}\nb { color: black }\n');
+root.after //=> '\n'
+```
