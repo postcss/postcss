@@ -187,9 +187,10 @@ postcss().process('a{}').css //=> "a{}"
 Lazy method, that will generates source map for `Root` changes and stringify
 CSS to `css` property.
 
+It contains instance of `SourceMapGenerator` class from [source-map] library.
+
 ```js
-var sourceMap = require('source-map');
-result.map instanceof sourceMap.SourceMapGenerator;
+result.map.toJSON() //=> { version: 3, file: 'a.css', sources: ['a.css'], … }
 ```
 
 `Result` instance will contain `map` property only if PostCSS decide, that
@@ -205,6 +206,8 @@ if ( result.map ) {
 By default, PostCSS will inline map to CSS, so in most cases this property will
 be empty. PostCSS will create it only if user set `map.inline = false`
 option or if input source map was in separated file.
+
+[source-map]: https://github.com/mozilla/source-map
 
 ## List module
 
@@ -230,4 +233,68 @@ Splits values by comma with brackets and quotes:
 ```js
 list.split('1px 2px, rgba(255, 0, 0, 0.9), "border, top"')
 //=> ['1px 2px', 'rgba(255, 0, 0, 0.9)', '"border, top"']
+```
+
+## `Input` class
+
+Represents input source of CSS.
+
+```js
+var root  = postcss.parse(css, { from: file });
+var input = root.source.input;
+```
+
+#### `file`
+
+Absolute path to CSS source file from `from` option.
+
+```js
+var root  = postcss.parse(css, { from: 'a.css' });
+root.source.input.file //=> '/home/ai/a.css'
+```
+
+#### `id`
+
+Unique ID of CSS source if user missed `from` and we didn’t know file path.
+
+```js
+var root  = postcss.parse(css);
+root.source.input.file //=> undefined
+root.source.input.id   //=> <input css 1>
+```
+
+#### `from`
+
+Contains `file` if user set `from` option or `id` if he didn’t.
+
+```js
+var root  = postcss.parse(css, { from: 'a.css' });
+root.source.input.file //=> '/home/ai/a.css'
+
+var root  = postcss.parse(css);
+root.source.input.from //=> <input css 1>
+```
+
+#### `map`
+
+Represents input source map from compilation step before PostCSS, which
+generated input CSS (from example, from Sass compiler).
+
+It is used in PostCSS map generator, but `consumer()` method will be helpful
+for plugin developer, because it returns instance of `SourceMapConsumer` class
+from [source-map] library.
+
+```js
+root.source.input.map.consumer().sources //=> ['a.sass']
+```
+
+[source-map]: https://github.com/mozilla/source-map
+
+#### `origin(line, column)`
+
+Use input source map to get symbol position in first source
+(for example, in Sass):
+
+```js
+root.source.input.origin(1, 1) //=> { source: 'a.css', line: 3, column: 1 }
 ```
