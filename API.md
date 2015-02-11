@@ -713,7 +713,7 @@ rule.nodes.length //=> 0
 
 ## `Root` node
 
-Represents CSS file and contain all nodes inside.
+Represents CSS file and contains all nodes inside.
 
 ```js
 var root = postcss.parse('a{color:black} b{z-index:2}');
@@ -728,4 +728,92 @@ Stores space symbols after last child like `\n` from end of the file.
 ```js
 var root = parse('a {}\nb { color: black }\n');
 root.after //=> '\n'
+```
+
+## `AtRule` node
+
+Represents at-rule. Node will have `nodes` property if it have `{}` in CSS.
+
+
+```js
+var root = postcss.parse('@charset "UTF-8"; @media print {}');
+
+var charset = root.first;
+charset.type  //=> 'atrule'
+charset.nodes //=> undefined
+
+var media = root.last;
+media.nodes   //=> []
+```
+
+#### `name`
+
+Stores at-rule name.
+
+```js
+var root  = postcss.parse('@media print {}');
+var media = root.first;
+media.name //=> 'media'
+```
+
+#### `params`
+
+Stores at-rule parameters.
+
+```js
+var root  = postcss.parse('@media print, screen {}');
+var media = root.first;
+media.params //=> 'print, screen'
+```
+
+Value will be clean from inner comments. If parameters has comments, origin
+value with comments will be in `_params.raw` property.
+
+```js
+var root  = postcss.parse('@media print, screen /**/ {}');
+var media = root.first;
+media.params      //=> 'print, screen'
+media._params.raw //=> 'print, screen /**/'
+```
+
+If you will not change parameters, PostCSS will stringify origin raw value.
+
+#### `before`
+
+Code style property with spaces symbols before at-rule.
+
+```js
+var root  = postcss.parse('@charset "UTF-8";\m@media print {}\n');
+var media = root.last;
+media.before //=> '\n'
+```
+
+#### `afterName`
+
+Code style property with spaces symbols between at-rule name and parameters.
+
+```js
+var root  = postcss.parse('@media\n  print,\n  screen {}\n');
+var media = root.first;
+media.afterName //=> '\n  '
+```
+
+#### `between`
+
+Code style property with spaces between parametes and `{`.
+
+```js
+var root  = postcss.parse('@media print, screen\n{}\n');
+var media = root.first;
+media.before //=> '\n'
+```
+
+#### `after`
+
+Code style property with spaces between last child and '}'.
+
+```js
+var root  = postcss.parse('@media print {\n  a {}\n  }\n');
+var media = root.first;
+media.after //=> '\n  '
 ```
