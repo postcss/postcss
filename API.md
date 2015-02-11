@@ -298,3 +298,176 @@ Use input source map to get symbol position in first source
 ```js
 root.source.input.origin(1, 1) //=> { source: 'a.css', line: 3, column: 1 }
 ```
+
+## Nodes common methods
+
+All node classes has some common methods.
+
+#### `type`
+
+Return string with node’s type. It can be `root`, `atrule`, `rule`, `decl`
+or `comment`.
+
+```js
+postcss.decl({ prop: 'color', value: 'black' }).type //=> 'decl'
+```
+
+#### `parent`
+
+Link to parent node.
+
+```js
+root.nodes[0].parent == root;
+```
+
+#### `source`
+
+Represents origin source of node and used in map generation.
+It contains `Input` instance in `source.input` property.
+
+```js
+decl.source //=> { input: { … }, line: 10, column: 4 }
+```
+
+If you will create node manually (for example, by `postcss.decl()`) it will not
+have a `source` property and will be missed in source map.
+So plugin developer should clone nodes (it saves `source`)
+or set `source` manually:
+
+```js
+var rule = postcss.rule({ selector: 'a', source, atrule.source });
+atrule.parent.insertBefore(atrule, rule);
+```
+
+#### `toString()`
+
+Stringify node to CSS string.
+
+```js
+postcss.decl({ prop: 'color', value: 'black' }) //=> color: black
+```
+
+#### `error(message)`
+
+Returns `CssSyntaxError` instance with position of current node. It will use
+input source map to get origin position even from compiltion step before PostCSS
+(for example, in Sass file). Error message with also contains small example of
+source code.
+
+```js
+if ( !variables[name] ) {
+    throw decl.error('Unknown variable ' + name);
+    // CssSyntaxError: a.sass:4:1: Unknown variable $black
+    // a
+    //   color: $black
+    //   ^
+    //   background: white
+}
+```
+
+You can use this method also for warnings:
+
+```js
+if ( oldSyntax.check(decl) ) {
+    console.warn( decl.error('Old syntax for variables').message );
+    // a.sass:4:1: Old syntax for variables
+}
+```
+
+#### `next()` and `prev()`
+
+Return next/previous children of node parent. Return `undefined` if there
+is not child there.
+
+```js
+var annotation = decl.prev();
+if ( annotation.type == 'comment' ) {
+    readAnnotation( annotation.text );
+}
+```
+
+#### `root()`
+
+Return `Root` instance of current nodes tree.
+
+```js
+node.root().type //=> 'root'
+```
+
+#### `removeSelf()`
+
+Remove self from parent and clean `parent` property in it and children.
+
+```js
+if ( decl.prop.match(/^-webkit-/) ) {
+    decl.removeSelf();
+}
+```
+
+#### `replaceWith(otherNode)`
+
+Insert other node before and remove self.
+
+```js
+if ( atrule.name == 'mixin' ) {
+    atrule.replaceWith(mixinRules[atrule.params]);
+}
+```
+
+#### `clone(props)`
+
+Clone node, clean `parent` and code style propeties in it and children
+and set new values to propeties from `props` object.
+
+
+```js
+var clonded = decl.clone({ prop: '-moz-' + decl.prop });
+cloned.before     //=> undefined
+cloned.parent     //=> undefined
+cloned.toString() //=> -moz-transform: scale(0)
+```
+
+#### `cloneBefore(props)` and `cloneAfter(props)`
+
+Shortcut to clone node and insert clone before/after current node.
+
+```js
+decl.cloneBefore({ prop: '-moz-' + decl.prop });
+```
+
+#### `moveTo(newParent)`
+
+Remove node from current parent and insert it to the end
+of `newParent` children.
+
+It will cleans `before` and `after` code style properties to use new indentation in new parent. If will clean `between` property if new parent is in other root.
+
+```js
+atrule.moveTo(atrule.parent.parent);
+```
+
+#### `moveBefore(otherNode)` and `moveAfter(otherNode)`
+
+Remove node from current parent and insert it to new parent
+before/after `otherNode`.
+
+It will also clean code style properties as `moveTo(newParent)` did.
+
+#### `style(prop)`
+
+Return code style property value. If node code style properties will be missed
+(like from manually built nodes or from clones), PostCSS will try to autodetect
+it by other nodes.
+
+```js
+var root = postcss.parse('a { background: white }');
+root.nodes[0].append({ prop: 'color', value: 'black' });
+root.nodes[0].nodes[1].style('before') //=> ' '
+```
+
+If PostCSS can’t find any nodes to take a code style, it will use default
+values from `node.defaultStyle` object.
+
+```js
+postcss.decl({ prop: 'color', value: 'black' }).style('before') //=> '\n    '
+```
