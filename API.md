@@ -477,6 +477,9 @@ postcss.decl({ prop: 'color', value: 'black' }).style('before') //=> '\n    '
 `Root`, `AtRule` and `Rule` classes has some common methods
 to works with children.
 
+Note, that all containers can store any content. If you will write rule inside
+rule, PostCSS will parse it.
+
 #### `nodes`
 
 Array with node children.
@@ -788,6 +791,8 @@ var media = root.last;
 media.before //=> '\n'
 ```
 
+Default value is `\n`, expect first rule in root where `before` will be empty.
+
 #### `afterName`
 
 Code style property with spaces symbols between at-rule name and parameters.
@@ -797,6 +802,8 @@ var root  = postcss.parse('@media\n  print,\n  screen {}\n');
 var media = root.first;
 media.afterName //=> '\n  '
 ```
+
+Default value is ` `.
 
 #### `between`
 
@@ -808,6 +815,8 @@ var media = root.first;
 media.before //=> '\n'
 ```
 
+Default value is ` `.
+
 #### `after`
 
 Code style property with spaces between last child and '}'.
@@ -818,14 +827,27 @@ var media = root.first;
 media.after //=> '\n  '
 ```
 
+Default value is `\n` if at-rule has children and empty string if it doesn’t.
+
+#### `semicolon`
+
+Code style property for at-rules with declarations, that last children
+has optional `;`.
+
+```js
+postcss.parse('@page{color:black}').first.semicolon  //=> undefined
+postcss.parse('@page{color:black;}').first.semicolon //=> true
+```
+
 ## `Rule` node
 
-Represents rule of CSS.
+Represents rule of CSS and contains declarations.
 
 ```js
 var root = postcss.parse('a{}');
 var rule = root.first;
-rule.type //=> 'rule'
+rule.type       //=> 'rule'
+rule.toString() //=> 'a{}'
 ```
 
 #### `selector`
@@ -837,6 +859,18 @@ var root = postcss.parse('a, b { }');
 var rule = root.first;
 rule.selector //=> 'a, b'
 ```
+
+Value will be clean from inner comments. If selector has comments, origin
+value with comments will be in `_selector.raw` property.
+
+```js
+var root = postcss.parse('a /**/ b {}');
+var rule = root.first;
+rule.selector      //=> 'a  b'
+rule._selector.raw //=> 'a /**/ b'
+```
+
+If you will not change selector, PostCSS will stringify origin raw value.
 
 #### `selectors`
 
@@ -861,6 +895,8 @@ var rule = root.last;
 rule.before //=> '\n'
 ```
 
+Default value is `\n`, expect first rule in root where `before` will be empty.
+
 #### `after`
 
 Code style property with spaces between last child and '}'.
@@ -870,3 +906,81 @@ var root = postcss.parse('@a {\n  color: black\n  }\n');
 var rule = root.first;
 root.after //=> '\n  '
 ```
+
+Default value is `\n` if rule has children and empty string if it doesn’t.
+
+#### `semicolon`
+
+Code style property, that last children has optional `;`.
+
+```js
+postcss.parse('a{color:black}').first.semicolon  //=> undefined
+postcss.parse('a{color:black;}').first.semicolon //=> true
+```
+
+## `Declaration` node
+
+Represents declaration inside CSS rule.
+
+```js
+var root = postcss.parse('a { color: black }');
+var decl = root.first.first;
+decl.type       //=> 'decl'
+decl.toString() //=> ' color: black'
+```
+
+#### `prop`
+
+Stores property name.
+
+```js
+var root = postcss.parse('a { color: black }');
+var decl = root.first.first;
+decl.prop //=> 'color'
+```
+
+#### `value`
+
+Stores declaration value.
+
+```js
+var root = postcss.parse('a { color: black }');
+var decl = root.first.first;
+decl.value //=> 'black'
+```
+
+Value will be clean from inner comments. If value has comments, origin
+value with comments will be in `_value.raw` property.
+
+```js
+var root = postcss.parse('a { border-radius: 3px /**/ 0 }');
+var decl = root.first.first;
+decl.value      //=> '3px  0'
+decl._value.raw //=> '3px /**/ 0'
+```
+
+If you will not change value, PostCSS will stringify origin raw value.
+
+#### `before`
+
+Code style property with spaces symbols before declaration.
+
+```js
+var root = postcss.parse('a {\n  color: black\n}\n');
+var decl = root.first.first;
+decl.before //=> '\n  '
+```
+
+Default value is `\n    `.
+
+#### `between`
+
+Code style property with symbols between property and value.
+
+```js
+var root = postcss.parse('a { color/**/: black }');
+var decl = root.first.first;
+decl.between //=> '/**/: '
+```
+
+Default value is `: `.
