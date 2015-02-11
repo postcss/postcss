@@ -301,7 +301,7 @@ root.source.input.origin(1, 1) //=> { source: 'a.css', line: 3, column: 1 }
 
 ## Nodes common methods
 
-All node classes has some common methods.
+All node classes has many common methods.
 
 #### `type`
 
@@ -470,4 +470,243 @@ values from `node.defaultStyle` object.
 
 ```js
 postcss.decl({ prop: 'color', value: 'black' }).style('before') //=> '\n    '
+```
+
+## Containers common methods
+
+`Root`, `AtRule` and `Rule` classes has some common methods
+to works with children.
+
+#### `nodes`
+
+Array with node children.
+
+```js
+var root = postcss.parse('a { color: black }');
+root.nodes.length           //=> 1
+root.nodes[0].selector      //=> 'a'
+root.nodes[0].nodes[0].prop //=> 'color'
+```
+
+#### `first`
+
+Shortcut to get first child.
+
+```js
+rule.first == rules.nodes[0];
+```
+
+#### `last`
+
+Shortcut to get last child.
+
+```js
+rule.last == rule.nodes[rule.nodes.length - 1];
+```
+
+#### `index(child)`
+
+Returns index in `nodes` of container’s child:
+
+```js
+rule.index( rule.nodes[2] ) //=> 2
+```
+
+#### `every(callback)` and `some(callback)`
+
+Return `true` if `callback` will return `true` on all/one children.
+
+```js
+var noPrefixes = rule.every(function (decl) {
+    return decl.prop[0] != '-';
+});
+var hasPrefix = rule.some(function (decl) {
+    return decl.prop[0] == '-';
+});
+```
+
+#### `each(callback)`
+
+Iterates through container’s children. Returning `false` will break iteration.
+
+```js
+var color;
+rule.each(function (decl) {
+    if ( decl.prop == 'color' ) {
+        color = decl.value;
+        return false;
+    }
+});
+```
+
+Iteration is safe for node array changes by container’s method:
+
+```js
+var root = postcss.parse('a { color: black; z-index: 1 }');
+var rule = root.first;
+
+for ( var i = 0; i < rule.nodes.length; i++ ) {
+    var decl = rule.nodes[0];
+    decl.cloneBefore({ prop: '-webkit-' + decl.prop });
+    // Cycle will be infinite, because cloneBefore move current node
+    // to next index
+}
+
+rule.each(function (decl) {
+    decl.cloneBefore({ prop: '-webkit-' + decl.prop });
+    // Will be executed only for color and z-index
+});
+```
+
+Callback will receive 2 arguments with child instance and node index number.
+
+#### `eachInside(callback)`
+
+Recursive iterates through children and children of children.
+
+```js
+root.eachInside(function (node) {
+    // Will be iterate through all nodes
+});
+```
+
+Is is also safe as `each` method.
+
+#### `eachDecl(prop, callback)`
+
+Recursive iterates through all declaration inside container.
+
+```js
+root.eachDecl(function (decl) {
+    if ( decl.prop.match(/^-webkit-/) ) decl.removeSelf();
+});
+```
+
+You can filter declarations by property name with string or regexp.
+
+```js
+// Make flat design
+root.eachDecl('border-radius', function (decl) {
+    decl.removeSelf();
+});
+root.eachDecl(/^background/, function (decl) {
+    decl.value = takeFirstColorFromGradient(decl.value);
+});
+```
+
+Is is also safe as `each` method.
+
+#### `eachAtRule(name, calllback)`
+
+Recursive iterates through all at-rules inside container.
+
+```js
+root.eachAtRule(function (rule) {
+    if ( rule.name.match(/^-webkit-/) ) rule.removeSelf();
+});
+```
+
+You can filter at-rules by name with string or regexp.
+
+```js
+var first = false;
+root.eachAtRule('charset', function (rule) {
+    if ( first ) {
+        rule.removeSelf();
+    } else {
+        first = true;
+    }
+});
+```
+
+Is is also safe as `each` method.
+
+#### `eachRule(callback)`
+
+Recursive iterates through all rules inside container.
+
+```js
+var selectors = [];
+root.eachRule(function (rule) {
+    selectors.push(rule.selector);
+});
+console.log('You CSS uses ' + selectors.length + ' selectors');
+```
+
+Is is also safe as `each` method.
+
+#### `eachComment(callback)`
+
+Recursive iterates through all comments inside container.
+
+```js
+root.eachComment(function (comment) {
+    comment.removeSelf();
+})
+```
+
+Is is also safe as `each` method.
+
+#### `replaceValues(regexp, opts, callback)`
+
+Replaces some regexp in all declaration’s values inside container.
+It is useful to add some custom unit for function. Callback will receive
+same argument as in `String#replace`.
+
+You can make it faster by `fast` option. PostCSS will execute slow
+regexp only if `value.indexOf(opts.fast) != -1` will return `true`.
+Also you can set a declaration properties array in `props` option.
+
+```js
+root.replaceValues(/\d+rem/, { fast: 'rem' }, function (string) {
+    return 15 * parseInt(string) + 'px';
+});
+```
+
+#### `prepend(node)` and `append(node)`
+
+Inserts a new node to start/end.
+
+```js
+var decl = postcss.decl({ prop: 'color', value: 'black' });
+rule.append(decl);
+```
+
+Because node typs has unique property, you can use shortcut.
+
+```js
+rule.append({ prop: 'color', value: 'black' });
+```
+
+#### `insertBefore(oldNode, newNew)` and `insertAftr(oldNode, newNew)`
+
+Inserts `newNode` before/after `oldNode`. Old node can be index or node instance.
+
+```js
+rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }));
+```
+
+You can also use shortcut-style here like in `prepend()` method.
+
+#### `remove(node)`
+
+Removes `node` from container and clean `parent` properties in node
+and node’s children.
+
+```js
+rule.nodes.length  //=> 5
+rule.remove(decl);
+rule.nodes.length  //=> 4
+decl.parent        //=> undefined
+```
+
+You can use node instance or node index in `node`.
+
+#### `removeAll()`
+
+Removes all children from contain and clean their `parent` properties.
+
+```js
+rule.removeAll();
+rule.nodes.length //=> 0
 ```
