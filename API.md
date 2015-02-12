@@ -209,9 +209,29 @@ option or if input source map was in separated file.
 
 [source-map]: https://github.com/mozilla/source-map
 
+## Vendor module
+
+Contains helpers to work with vendor prefixes.
+
+### `prefix`
+
+Returns vendor prefix.
+
+```js
+vendor.prefix('-moz-tab-size') //=> '-moz-'
+```
+
+### `unprefixed`
+
+Returns value without vendor prefix.
+
+```js
+vendor.unprefixed('-moz-tab-size') //=> 'tab-size'
+```
+
 ## List module
 
-Contains helper to split CSS values.
+Contains helpers to safely split CSS values with brackets and quotes detection.
 
 ```js
 var list = require('postcss/lib/list');
@@ -219,7 +239,7 @@ var list = require('postcss/lib/list');
 
 #### `list.space`
 
-Splits values by space with brackets and quotes:
+Safely splits space-separated values (like `background`).
 
 ```js
 list.split('1px calc(10% + 1px) "border radius"')
@@ -228,7 +248,7 @@ list.split('1px calc(10% + 1px) "border radius"')
 
 #### `list.comma`
 
-Splits values by comma with brackets and quotes:
+Safely splits comma-separated values (like `transition`).
 
 ```js
 list.split('1px 2px, rgba(255, 0, 0, 0.9), "border, top"')
@@ -323,10 +343,13 @@ root.nodes[0].parent == root;
 #### `source`
 
 Represents origin source of node and used in map generation.
-It contains `Input` instance in `source.input` property.
+It contains start and end positions and `Input` instance
+in `source.input` property.
 
 ```js
-decl.source //=> { input: { … }, line: 10, column: 4 }
+decl.source.input.from //=> '/home/ai/a.sass'
+decl.source.start      //=> { line: 10, column: 2 }
+decl.source.end        //=> { line: 10, column: 12 }
 ```
 
 If you will create node manually (for example, by `postcss.decl()`) it will not
@@ -453,7 +476,7 @@ before/after `otherNode`.
 
 It will also clean code style properties as `moveTo(newParent)` did.
 
-#### `style(prop)`
+#### `style(prop, defaultType)`
 
 Return code style property value. If node code style properties will be missed
 (like from manually built nodes or from clones), PostCSS will try to autodetect
@@ -542,7 +565,9 @@ rule.each(function (decl) {
 });
 ```
 
-Iteration is safe for node array changes by container’s method:
+Unlike `for {}`-cycle construct or `Array#forEach()` this iterator is safe.
+So you can mutate the children during iteration and PostCSS will fix
+the current index:
 
 ```js
 var root = postcss.parse('a { color: black; z-index: 1 }');
@@ -678,7 +703,10 @@ rule.append(decl);
 Because node typs has unique property, you can use shortcut.
 
 ```js
-rule.append({ prop: 'color', value: 'black' });
+root.append({ name: '@charset', params: '"UTF-8"' }); // at-rule
+root.append({ selector: 'a' });                       // rule
+rule.append({ prop: 'color', value: 'black' });       // declaration
+rule.append({ text: 'Comment' })                      // comment
 ```
 
 #### `insertBefore(oldNode, newNew)` and `insertAftr(oldNode, newNew)`
@@ -689,7 +717,11 @@ Inserts `newNode` before/after `oldNode`. Old node can be index or node instance
 rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }));
 ```
 
-You can also use shortcut-style here like in `prepend()` method.
+You can also use shortcut here like in `append()` method.
+
+```js
+rule.insertBefore(decl, { prop: 'color', value: 'black' });
+```
 
 #### `remove(node)`
 
@@ -777,6 +809,7 @@ var root  = postcss.parse('@media print, screen /**/ {}');
 var media = root.first;
 media.params      //=> 'print, screen'
 media._params.raw //=> 'print, screen /**/'
+media.toString()  //=> '@media print, screen /**/ {}'
 ```
 
 If you will not change parameters, PostCSS will stringify origin raw value.
@@ -984,3 +1017,73 @@ decl.between //=> '/**/: '
 ```
 
 Default value is `: `.
+
+#### `important`
+
+Property is `true` if declaration has `!important` statement.
+
+```js
+var root = postcss.parse('a { color: black !important; color: white }');
+root.first.first.important //=> true
+root.first.last.important  //=> undefined
+```
+
+If value has comments before `!important` statement, they will be stored
+in `_important` property.
+
+```js
+var root = postcss.parse('a { color: black /**/ !important }');
+root.first.first._important //=> ' /**/ !important'
+```
+
+## `Comment` node
+
+Represents comment between declarations or rules.
+Comments found within selectors, at-rules params,
+or declaration values will be stored in the Raw property.
+
+```js
+var root    = postcss.parse('a { color: /* inner */ black; /* outer */ }');
+var decl    = root.first.first;
+var comment = root.first.last;
+
+comment.type //=> 'comment'
+decl.between //=> ': /* inner */'
+```
+
+#### `text`
+
+Stores comment text.
+
+```js
+var root    = postcss.parse('/* Empty file */');
+var comment = root.first;
+var comment.text //=> 'Empty file'
+```
+
+#### `left` and `right`
+
+Code style properties with spaces before/after comment’s text.
+
+```js
+var root  = postcss.parse('/* long */ /*short*/');
+var long  = root.first;
+var short = root.last;
+
+long.left  //=> ' '
+short.left //=> ''
+```
+
+Default value is ` `.
+
+#### `before`
+
+Code style property with spaces symbols before comment.
+
+```js
+var root    = postcss.parse('a {\n  /**/}\n');
+var comment = root.first.first;
+comment.before //=> '\n  '
+```
+
+Default value is `\n`.
