@@ -28,7 +28,7 @@ describe('source maps', () => {
     });
 
     it('adds map field only on request', () => {
-        expect(postcss().process('a {}').map).to.not.exist();
+        expect(postcss().process('a {}').map).to.not.exist;
     });
 
     it('return map generator', () => {
@@ -164,7 +164,7 @@ describe('source maps', () => {
             map: { inline: true }
         });
 
-        expect(inline.map).to.not.exist();
+        expect(inline.map).to.not.exist;
         expect(inline.css).to.match(/# sourceMappingURL=data:/);
 
         var separated = postcss().process(css, {
@@ -199,7 +199,7 @@ describe('source maps', () => {
             map: { prev: step1.map }
         });
 
-        expect(step2.map).to.exist();
+        expect(step2.map).to.exist;
     });
 
     it('generates separated map on annotation option', () => {
@@ -209,7 +209,7 @@ describe('source maps', () => {
             map: { annotation: false }
         });
 
-        expect(result.map).to.exist();
+        expect(result.map).to.exist;
     });
 
     it('allows change map type', () => {
@@ -243,7 +243,7 @@ describe('source maps', () => {
             map:  false
         });
 
-        expect(step2.map).to.not.exist();
+        expect(step2.map).to.not.exist;
     });
 
     it('works in subdirs', () => {
@@ -369,7 +369,7 @@ describe('source maps', () => {
             map: { sourcesContent: false }
         });
 
-        expect(read(result).sourceContentFor('../a.css')).to.not.exist();
+        expect(read(result).sourceContentFor('../a.css')).to.not.exist;
     });
 
     it('misses source content if previous not have', () => {
@@ -388,7 +388,7 @@ describe('source maps', () => {
         file2.append( file1.first.clone() );
         var step2 = file2.toResult({ to: 'c.css', map: true });
 
-        expect(read(step2).sourceContentFor('b.css')).to.not.exist();
+        expect(read(step2).sourceContentFor('b.css')).to.not.exist;
     });
 
     it('misses source content on request', () => {
@@ -411,8 +411,8 @@ describe('source maps', () => {
         });
 
         var map = read(step2);
-        expect(map.sourceContentFor('b.css')).to.not.exist();
-        expect(map.sourceContentFor('../a.css')).to.not.exist();
+        expect(map.sourceContentFor('b.css')).to.not.exist;
+        expect(map.sourceContentFor('../a.css')).to.not.exist;
     });
 
     it('detects input file name from map', () => {

@@ -35,8 +35,8 @@ describe('Node', () => {
             rule.append(decl);
 
             decl.removeSelf();
-            expect(rule.nodes).to.be.empty();
-            expect(decl.parent).to.not.exist();
+            expect(rule.nodes).to.be.empty;
+            expect(decl.parent).to.not.exist;
         });
 
     });
@@ -84,7 +84,7 @@ describe('Node', () => {
 
             var clone = rule.clone();
 
-            expect(clone.parent).to.not.exist();
+            expect(clone.parent).to.not.exist;
 
             expect(rule.first.parent).to.equal(rule);
             expect(clone.first.parent).to.equal(clone);
@@ -143,7 +143,7 @@ describe('Node', () => {
         it('returns next node', () => {
             var css = parse('a{one:1;two:2}');
             expect(css.first.first.next()).to.equal(css.first.last);
-            expect(css.first.last.next()).to.not.exist();
+            expect(css.first.last.next()).to.not.exist;
         });
 
     });
@@ -153,7 +153,7 @@ describe('Node', () => {
         it('returns previous node', () => {
             var css = parse('a{one:1;two:2}');
             expect(css.first.last.prev()).to.equal(css.first.first);
-            expect(css.first.first.prev()).to.not.exist();
+            expect(css.first.first.prev()).to.not.exist;
         });
 
     });
@@ -166,7 +166,7 @@ describe('Node', () => {
             var result = css.first.first.replaceWith(decl);
 
             expect(result.prop).to.eql('one');
-            expect(result.parent).to.not.exist();
+            expect(result.parent).to.not.exist;
             expect(css.toString()).to.eql('a{fix:fixed;two:2}');
         });
 
@@ -242,8 +242,8 @@ describe('Node', () => {
             rule.append({ prop: 'color', value: 'b' });
 
             var json = rule.toJSON();
-            expect(json.parent).to.not.exist();
-            expect(json.nodes[0].parent).to.not.exist();
+            expect(json.parent).to.not.exist;
+            expect(json.nodes[0].parent).to.not.exist;
 
             expect(JSON.stringify(rule)).to.eql(
                 '{"type":"rule","nodes":[' +
@@ -398,11 +398,11 @@ describe('Node', () => {
 
             expect(css.toString())
                 .to.eql('@page {\n    a {\n        color: black\n    }\n}');
-            expect(css.first.before).to.not.exist();
-            expect(css.first.first.firstbefore).to.not.exist();
-            expect(css.first.between).to.not.exist();
-            expect(css.first.first.first.between).to.not.exist();
-            expect(css.first.after).to.not.exist();
+            expect(css.first.before).to.not.exist;
+            expect(css.first.first.firstbefore).to.not.exist;
+            expect(css.first.between).to.not.exist;
+            expect(css.first.first.first.between).to.not.exist;
+            expect(css.first.after).to.not.exist;
         });
 
         it('keeps between on request', () => {
@@ -411,11 +411,11 @@ describe('Node', () => {
 
             expect(css.toString())
                 .to.eql('@page{\n    a{\n        color:black\n    }\n}');
-            expect(css.first.before).to.not.exist();
-            expect(css.first.first.firstbefore).to.not.exist();
-            expect(css.first.between).to.exist();
-            expect(css.first.first.first.between).to.exist();
-            expect(css.first.after).to.not.exist();
+            expect(css.first.before).to.not.exist;
+            expect(css.first.first.firstbefore).to.not.exist;
+            expect(css.first.between).to.exist;
+            expect(css.first.first.first.between).to.exist;
+            expect(css.first.after).to.not.exist;
         });
 
     });

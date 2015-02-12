@@ -77,7 +77,7 @@ describe('CssSyntaxError', () => {
 
         expect(error.file).to.eql(path.resolve('b.css'));
         expect(error.line).to.eql(1);
-        expect(error.source).to.not.exist();
+        expect(error.source).to.not.exist;
 
         expect(error.generated).to.eql({
             file:    path.resolve('build/all.css'),

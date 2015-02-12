@@ -38,10 +38,10 @@ describe('Result', () => {
 
         it('exists only if necessary', () => {
             var result = new Result(root);
-            expect(result.map).to.not.exist();
+            expect(result.map).to.not.exist;
 
             result = new Result(root, { map: true });
-            expect(result.map).to.not.exist();
+            expect(result.map).to.not.exist;
 
             result = new Result(root, { map: { inline: false } });
             expect(result.map).to.be.a.instanceOf(mozilla.SourceMapGenerator);

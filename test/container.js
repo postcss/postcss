@@ -45,7 +45,7 @@ describe('Container', () => {
                 expect(decl).to.eql(rule.nodes[i]);
             });
 
-            expect(result).to.not.exist();
+            expect(result).to.not.exist;
             expect(indexes).to.eql([0, 1]);
         });
 
@@ -165,7 +165,7 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            expect(result).to.not.exist();
+            expect(result).to.not.exist;
             expect(types).to.eql(['rule', 'decl', 'decl', 'comment', 'atrule',
                                   'comment', 'rule', 'decl', 'atrule', 'rule',
                                   'decl', 'atrule', 'decl', 'comment']);
@@ -197,7 +197,7 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            expect(result).to.not.exist();
+            expect(result).to.not.exist;
             expect(props).to.eql(['a', 'b', 'c', 'd', 'e']);
             expect(indexes).to.eql([0, 1, 0, 0, 0]);
         });
@@ -257,7 +257,7 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            expect(result).to.not.exist();
+            expect(result).to.not.exist;
             expect(texts).to.eql(  ['a', 'b', 'c']);
             expect(indexes).to.eql([1, 0, 1]);
         });
@@ -296,7 +296,7 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            expect(result).to.not.exist();
+            expect(result).to.not.exist;
             expect(selectors).to.eql(['a', 'to', 'em']);
             expect(indexes).to.eql([0, 1, 0]);
         });
@@ -335,7 +335,7 @@ describe('Container', () => {
                 indexes.push(i);
             });
 
-            expect(result).to.not.exist();
+            expect(result).to.not.exist;
             expect(names).to.eql(['keyframes', 'media', 'page']);
             expect(indexes).to.eql([2, 3, 1]);
         });
@@ -566,7 +566,7 @@ describe('Container', () => {
             var rule = parse('a { a: 1; b: 2 }').first;
             var decl = rule.first;
             rule.remove(decl);
-            expect(decl.parent).to.not.exist();
+            expect(decl.parent).to.not.exist;
         });
 
     });
@@ -578,7 +578,7 @@ describe('Container', () => {
             var decl = rule.first;
             rule.removeAll();
 
-            expect(decl.parent).to.not.exist();
+            expect(decl.parent).to.not.exist;
             expect(rule.toString()).to.eql('a { }');
         });
 
