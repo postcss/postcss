@@ -625,3 +625,8 @@ postcss.parse('a {', { safe: true }); // will return CSS root for a {}
 This is useful for legacy code filled with plenty of hacks. Another use case
 is interactive tools with live input, for example,
 the [Autoprefixer demo](http://jsfiddle.net/simevidas/udyTs/show/light/).
+
+## PostCSS Plugin Developing
+
+* [PostCSS API](https://github.com/postcss/postcss/blob/master/API.md)
+* [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
