@@ -815,8 +815,8 @@ var media = root.first;
 media.params //=> 'print, screen'
 ```
 
-Value will be clean from inner comments. If parameters has comments, origin
-value with comments will be in `_params.raw` property.
+Value will be cleaned from inner comments. Origin value with comments will be
+in `_params.raw` property.
 
 ```js
 var root  = postcss.parse('@media print, screen /**/ {}');
@@ -830,7 +830,7 @@ If you will not change parameters, PostCSS will stringify origin raw value.
 
 #### `before`
 
-Code style property with spaces symbols before at-rule.
+Code style property with space symbols before at-rule.
 
 ```js
 var root  = postcss.parse('@charset "UTF-8";\n@media print {}\n');
@@ -842,7 +842,7 @@ Default value is `\n`, expect first rule in root where `before` will be empty.
 
 #### `afterName`
 
-Code style property with spaces symbols between at-rule name and parameters.
+Code style property with space symbols between at-rule name and parameters.
 
 ```js
 var root  = postcss.parse('@media\n  print,\n  screen {}\n');
@@ -907,8 +907,8 @@ var rule = root.first;
 rule.selector //=> 'a, b'
 ```
 
-Value will be clean from inner comments. If selector has comments, origin
-value with comments will be in `_selector.raw` property.
+Value will be cleaned from inner comments. Origin value with comments will be
+in `_selector.raw` property.
 
 ```js
 var root = postcss.parse('a /**/ b {}');
@@ -934,7 +934,7 @@ rule.selector //=> 'a, strong'
 
 #### `before`
 
-Code style property with spaces symbols before rule.
+Code style property with space symbols before rule.
 
 ```js
 var root = postcss.parse('a {}\nb {}\n');
@@ -967,7 +967,7 @@ postcss.parse('a{color:black;}').first.semicolon //=> true
 
 ## `Declaration` node
 
-Represents declaration inside CSS rule.
+Represents CSS declaration.
 
 ```js
 var root = postcss.parse('a { color: black }');
@@ -996,21 +996,22 @@ var decl = root.first.first;
 decl.value //=> 'black'
 ```
 
-Value will be clean from inner comments. If value has comments, origin
-value with comments will be in `_value.raw` property.
+Value will be cleaned from inner comments. Origin value with comments will be
+in `_value.raw` property.
 
 ```js
 var root = postcss.parse('a { border-radius: 3px /**/ 0 }');
 var decl = root.first.first;
 decl.value      //=> '3px  0'
 decl._value.raw //=> '3px /**/ 0'
+decl.toString() //=> ' border-radius: 3px /**/ 0'
 ```
 
 If you will not change value, PostCSS will stringify origin raw value.
 
 #### `before`
 
-Code style property with spaces symbols before declaration.
+Code style property with space symbols before declaration.
 
 ```js
 var root = postcss.parse('a {\n  color: black\n}\n');
@@ -1053,8 +1054,8 @@ root.first.first._important //=> ' /**/ !important'
 ## `Comment` node
 
 Represents comment between declarations or rules.
-Comments found within selectors, at-rules params,
-or declaration values will be stored in the Raw property.
+Comments inside selectors, at-rules params, or declaration values
+will be stored in the raw properties.
 
 ```js
 var root    = postcss.parse('a { color: /* inner */ black; /* outer */ }');
@@ -1092,7 +1093,7 @@ Default value is ` `.
 
 #### `before`
 
-Code style property with spaces symbols before comment.
+Code style property with space symbols before comment.
 
 ```js
 var root    = postcss.parse('a {\n  /**/}\n');
