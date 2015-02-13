@@ -39,7 +39,8 @@ See [`PostCSS#use`] below for details about plugin formats.
 
 ### `postcss.parse(css, opts)`
 
-Parses source `css` and returns a new `Root` node, which contains the source CSS nodes.
+Parses source `css` and returns a new `Root` node, which contains
+the source CSS nodes.
 
 ```js
 // Simple CSS concatenation with source map support
@@ -50,9 +51,10 @@ root1.append(root2).toResult().css;
 
 Options:
 
-* `from`: the path to the source CSS file. You should always set `from`, because it is used
-  in map generation and in syntax error messages.
-* `safe`: enable [Safe Mode], in which PostCSS will try to fix CSS syntax errors.
+* `from`: the path to the source CSS file. You should always set `from`, because
+  it is used in map generation and in syntax error messages.
+* `safe`: enable [Safe Mode], in which PostCSS will try
+  to fix CSS syntax errors.
 * `map`: an object of [source map options]. Only `map.prev` is used in
   `parse`.
 
@@ -101,8 +103,9 @@ postcss.comment({ text: 'test' }).toString() //=> "/* test */"
 
 ## `PostCSS` class
 
-A `PostCSS` instance contains plugins to process CSS. You can create one `PostCSS`
-instance, initialize its plugins, and then use that instance on many CSS files.
+A `PostCSS` instance contains plugins to process CSS. You can create
+one `PostCSS` instance, initialize its plugins, and then use that instance
+on many CSS files.
 
 ```js
 var processor = postcss([autoprefixer, cssnext, cssgrace]);
@@ -124,11 +127,14 @@ a `postcss` instance (cf. [`postcss(plugins)`](#postcssplugins)).
 
 Plugins can come in three formats:
 
-1. A function. PostCSS will pass the function a `Root` node as the first argument.
-2. An object with a `postcss` method. PostCSS will use that method as described in #1.
-3. Another `PostCSS` instance. PostCSS will copy plugins from that instance to this one.
+1. A function. PostCSS will pass the function a `Root` node
+   as the first argument.
+2. An object with a `postcss` method. PostCSS will use that method
+   as described in #1.
+3. Another `PostCSS` instance. PostCSS will copy plugins
+   from that instance to this one.
 
-Plugin functions should mutate the passed `Root` node and return nothing (`undefined`),
+Plugin functions should mutate the passed `Root` node and return nothing,
 or return a new `Root` node.
 
 ```js
@@ -144,7 +150,8 @@ processor.use(function (css) {
 
 This is the main method of PostCSS. It will parse the source CSS
 and create a `Root` node; send this `Root` to each plugin successively,
-for transformations; and then return a `Result` instance created from the transformed `Root`.
+for transformations; and then return a `Result` instance created
+from the transformed `Root`.
 
 ```js
 var result = processor.process(css, { from: 'a.css', to: 'a.out.css' });
@@ -153,17 +160,18 @@ var result = processor.process(css, { from: 'a.css', to: 'a.out.css' });
 Input CSS formats are:
 
 * A string of CSS.
-* A `Result` instance from another PostCSS processor. PostCSS will accept the
-  already parsed `Root` from it.
+* A `Result` instance from another PostCSS processor. PostCSS will accept
+  the already parsed `Root` from it.
 * Any object with a `toString()` method -- for example, a file stream.
 
 Options:
 
 * `from`: the path of the CSS source file. You should always set `from`,
   because it is used in source map generation and syntax error messages.
-* `to`: the path where you'll put the output CSS file. You should always set `to` to generate
-  correct source maps.
-* `safe`: enable [Safe Mode], in which PostCSS will try to fix CSS syntax errors.
+* `to`: the path where you’ll put the output CSS file. You should always set
+  `to` to generate correct source maps.
+* `safe`: enable [Safe Mode], in which PostCSS will try
+  to fix CSS syntax errors.
 * `map`: an object of [source map options].
 
 [Safe Mode]:          https://github.com/postcss/postcss#safe-mode
