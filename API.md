@@ -179,7 +179,7 @@ var result1 = postcss().process(css);
 var result2 = postcss.parse(css).toResult();
 ```
 
-#### `root`
+### `root`
 
 This property contains source `Root` instance.
 
@@ -187,7 +187,7 @@ This property contains source `Root` instance.
 root.toResult().root == root;
 ```
 
-#### `opts`
+### `opts`
 
 Options from `PostCSS#process(css, opts)` or `Root#toResult(opts)` call.
 
@@ -195,7 +195,7 @@ Options from `PostCSS#process(css, opts)` or `Root#toResult(opts)` call.
 postcss().process(css, opts).opts == opts;
 ```
 
-#### `css`
+### `css`
 
 Lazy method, that will stringify `Root` instance to CSS string on first call
 and generates source map to `map` property if it is necessary.
@@ -204,7 +204,7 @@ and generates source map to `map` property if it is necessary.
 postcss().process('a{}').css //=> "a{}"
 ```
 
-#### `map`
+### `map`
 
 Lazy method, that will generates source map for `Root` changes and stringify
 CSS to `css` property.
@@ -259,7 +259,7 @@ Contains helpers to safely split CSS values with brackets and quotes detection.
 var list = require('postcss/lib/list');
 ```
 
-#### `list.space`
+### `list.space`
 
 Safely splits space-separated values (like `background`).
 
@@ -268,7 +268,7 @@ list.split('1px calc(10% + 1px) "border radius"')
 //=> ['1px', 'calc(10% + 1px)', '"border radius"']
 ```
 
-#### `list.comma`
+### `list.comma`
 
 Safely splits comma-separated values (like `transition`).
 
@@ -286,7 +286,7 @@ var root  = postcss.parse(css, { from: file });
 var input = root.source.input;
 ```
 
-#### `file`
+### `file`
 
 Absolute path to CSS source file from `from` option.
 
@@ -295,7 +295,7 @@ var root  = postcss.parse(css, { from: 'a.css' });
 root.source.input.file //=> '/home/ai/a.css'
 ```
 
-#### `id`
+### `id`
 
 Unique ID of CSS source if user missed `from` and we didn’t know file path.
 
@@ -305,7 +305,7 @@ root.source.input.file //=> undefined
 root.source.input.id   //=> <input css 1>
 ```
 
-#### `from`
+### `from`
 
 Contains `file` if user set `from` option or `id` if he or she didn’t.
 
@@ -317,7 +317,7 @@ var root  = postcss.parse(css);
 root.source.input.from //=> <input css 1>
 ```
 
-#### `map`
+### `map`
 
 Represents input source map from compilation step before PostCSS,
 (from example, from Sass compiler).
@@ -331,7 +331,7 @@ root.source.input.map.consumer().sources //=> ['a.sass']
 
 [source-map]: https://github.com/mozilla/source-map
 
-#### `origin(line, column)`
+### `origin(line, column)`
 
 Uses input source map and returns symbol position in origin source
 (for example, in Sass file):
@@ -344,7 +344,7 @@ root.source.input.origin(1, 1) //=> { source: 'a.css', line: 3, column: 1 }
 
 All node classes have many common methods.
 
-#### `type`
+### `type`
 
 String with node’s type. It can be `root`, `atrule`, `rule`, `decl`
 or `comment`.
@@ -353,7 +353,7 @@ or `comment`.
 postcss.decl({ prop: 'color', value: 'black' }).type //=> 'decl'
 ```
 
-#### `parent`
+### `parent`
 
 Link to parent node.
 
@@ -361,7 +361,7 @@ Link to parent node.
 root.nodes[0].parent == root;
 ```
 
-#### `source`
+### `source`
 
 Origin source of node. It contains start and end positions and `Input` instance
 in `source.input` property.
@@ -382,7 +382,7 @@ var rule = postcss.rule({ selector: 'a', source, atrule.source });
 atrule.parent.insertBefore(atrule, rule);
 ```
 
-#### `toString()`
+### `toString()`
 
 Stringifys node to CSS string.
 
@@ -390,7 +390,7 @@ Stringifys node to CSS string.
 postcss.rule({ selector: 'a' }) //=> 'a {}''
 ```
 
-#### `error(message)`
+### `error(message)`
 
 Returns `CssSyntaxError` instance with position of current node. It will use
 input source map to get origin position even from compiltion step before PostCSS
@@ -417,7 +417,7 @@ if ( oldSyntax.check(decl) ) {
 }
 ```
 
-#### `next()` and `prev()`
+### `next()` and `prev()`
 
 Return next/previous children of node’s parent. Return `undefined`
 for first/last child.
@@ -429,7 +429,7 @@ if ( annotation.type == 'comment' ) {
 }
 ```
 
-#### `root()`
+### `root()`
 
 Returns `Root` instance of current nodes tree.
 
@@ -437,7 +437,7 @@ Returns `Root` instance of current nodes tree.
 root.nodes[0].nodes[0].root() == root
 ```
 
-#### `removeSelf()`
+### `removeSelf()`
 
 Removes current node from parent and cleans `parent` property in this node
 and node’s children.
@@ -448,7 +448,7 @@ if ( decl.prop.match(/^-webkit-/) ) {
 }
 ```
 
-#### `replaceWith(otherNode)`
+### `replaceWith(otherNode)`
 
 Inserts other node before and removes current node.
 
@@ -458,7 +458,7 @@ if ( atrule.name == 'mixin' ) {
 }
 ```
 
-#### `clone(props)`
+### `clone(props)`
 
 Clones node, cleans `parent` and code style propeties in current node
 and node’s children.. You can override some properties in clone by `props`
@@ -472,7 +472,7 @@ cloned.parent     //=> undefined
 cloned.toString() //=> -moz-transform: scale(0)
 ```
 
-#### `cloneBefore(props)` and `cloneAfter(props)`
+### `cloneBefore(props)` and `cloneAfter(props)`
 
 Shortcuts to clone node and insert clone before/after current node.
 
@@ -480,7 +480,7 @@ Shortcuts to clone node and insert clone before/after current node.
 decl.cloneBefore({ prop: '-moz-' + decl.prop });
 ```
 
-#### `moveTo(newParent)`
+### `moveTo(newParent)`
 
 Removes node from current parent and inserts node to the end of `newParent`.
 
@@ -491,14 +491,14 @@ in new parent. If will clean `between` property if new parent is in other root.
 atrule.moveTo(atrule.parent.parent);
 ```
 
-#### `moveBefore(otherNode)` and `moveAfter(otherNode)`
+### `moveBefore(otherNode)` and `moveAfter(otherNode)`
 
 Remove node from current parent and insert it to new parent
 before/after `otherNode`.
 
 It will also clean code style properties as `moveTo(newParent)` does.
 
-#### `style(prop, defaultType)`
+### `style(prop, defaultType)`
 
 Returns code style property value. If node code style property will be missed
 (like from manually built nodes or from clones), PostCSS will try to autodetect
@@ -525,7 +525,7 @@ to works with children.
 Note, that all containers can store any content. If you will write rule inside
 rule, PostCSS will parse it.
 
-#### `nodes`
+### `nodes`
 
 Array with node’s children.
 
@@ -536,7 +536,7 @@ root.nodes[0].selector      //=> 'a'
 root.nodes[0].nodes[0].prop //=> 'color'
 ```
 
-#### `first`
+### `first`
 
 Shortcut to get first child.
 
@@ -544,7 +544,7 @@ Shortcut to get first child.
 rule.first == rules.nodes[0];
 ```
 
-#### `last`
+### `last`
 
 Shortcut to get last child.
 
@@ -552,7 +552,7 @@ Shortcut to get last child.
 rule.last == rule.nodes[rule.nodes.length - 1];
 ```
 
-#### `index(child)`
+### `index(child)`
 
 Returns child’d index in parent `nodes`:
 
@@ -560,7 +560,7 @@ Returns child’d index in parent `nodes`:
 rule.index( rule.nodes[2] ) //=> 2
 ```
 
-#### `every(callback)` and `some(callback)`
+### `every(callback)` and `some(callback)`
 
 Return `true` if `callback` will return `true` on all/one children.
 
@@ -573,7 +573,7 @@ var hasPrefix = rule.some(function (decl) {
 });
 ```
 
-#### `each(callback)`
+### `each(callback)`
 
 Iterates through container’s children. Returning `false` will break iteration.
 
@@ -610,7 +610,7 @@ rule.each(function (decl) {
 
 Callback will receive 2 arguments with child instance and child index number.
 
-#### `eachInside(callback)`
+### `eachInside(callback)`
 
 Recursive iterates through children and children of children.
 
@@ -622,7 +622,7 @@ root.eachInside(function (node) {
 
 This method is also safe as `each()` method.
 
-#### `eachDecl(prop, callback)`
+### `eachDecl(prop, callback)`
 
 Recursive iterates through all declaration inside container.
 
@@ -648,7 +648,7 @@ root.eachDecl(/^background/, function (decl) {
 
 This method is also safe as `each()` method.
 
-#### `eachAtRule(name, calllback)`
+### `eachAtRule(name, calllback)`
 
 Recursive iterates through all at-rules inside container.
 
@@ -673,7 +673,7 @@ root.eachAtRule('charset', function (rule) {
 
 This method is also safe as `each()` method.
 
-#### `eachRule(callback)`
+### `eachRule(callback)`
 
 Recursive iterates through all rules inside container.
 
@@ -687,7 +687,7 @@ console.log('You CSS uses ' + selectors.length + ' selectors');
 
 This method is also safe as `each()` method.
 
-#### `eachComment(callback)`
+### `eachComment(callback)`
 
 Recursive iterates through all comments inside container.
 
@@ -699,7 +699,7 @@ root.eachComment(function (comment) {
 
 This method is also safe as `each()` method.
 
-#### `replaceValues(regexp, opts, callback)`
+### `replaceValues(regexp, opts, callback)`
 
 Replaces regexp in all declaration’s values inside container.
 It is useful to add some custom unit or function. Callback will receive
@@ -715,7 +715,7 @@ root.replaceValues(/\d+rem/, { fast: 'rem' }, function (string) {
 });
 ```
 
-#### `prepend(node)` and `append(node)`
+### `prepend(node)` and `append(node)`
 
 Insert a new node to start/end.
 
@@ -733,7 +733,7 @@ rule.append({ prop: 'color', value: 'black' });       // declaration
 rule.append({ text: 'Comment' })                      // comment
 ```
 
-#### `insertBefore(oldNode, newNew)` and `insertAftr(oldNode, newNew)`
+### `insertBefore(oldNode, newNew)` and `insertAftr(oldNode, newNew)`
 
 Insert `newNode` before/after `oldNode` (index or node instance).
 
@@ -747,7 +747,7 @@ You can also use shortcuts here like in `append()` method.
 rule.insertBefore(decl, { prop: 'color', value: 'black' });
 ```
 
-#### `remove(node)`
+### `remove(node)`
 
 Removes `node` from container and clean `parent` properties in node
 and node’s children.
@@ -761,7 +761,7 @@ decl.parent        //=> undefined
 
 You can use node instance or node index in `node` argument.
 
-#### `removeAll()`
+### `removeAll()`
 
 Removes all children from container and cleans their `parent` properties.
 
@@ -780,7 +780,7 @@ root.type         //=> 'root'
 root.nodes.length //=> 2
 ```
 
-#### `after`
+### `after`
 
 Stores space symbols after last child like `\n` from end of the file.
 
@@ -805,7 +805,7 @@ var media = root.last;
 media.nodes   //=> []
 ```
 
-#### `name`
+### `name`
 
 Stores at-rule name.
 
@@ -815,7 +815,7 @@ var media = root.first;
 media.name //=> 'media'
 ```
 
-#### `params`
+### `params`
 
 Stores at-rule parameters.
 
@@ -838,7 +838,7 @@ media.toString()  //=> '@media print, /**/ screen {}'
 
 If you will not change parameters, PostCSS will stringify origin raw value.
 
-#### `before`
+### `before`
 
 Code style property with space symbols before at-rule.
 
@@ -850,7 +850,7 @@ media.before //=> '\n'
 
 Default value is `\n`, except first rule in root where `before` will be empty.
 
-#### `afterName`
+### `afterName`
 
 Code style property with space symbols between at-rule name and parameters.
 
@@ -862,7 +862,7 @@ media.afterName //=> '\n  '
 
 Default value is ` `.
 
-#### `between`
+### `between`
 
 Code style property with spaces between parametes and `{`.
 
@@ -874,7 +874,7 @@ media.before //=> '\n'
 
 Default value is ` `.
 
-#### `after`
+### `after`
 
 Code style property with spaces between last child and `}`.
 
@@ -886,7 +886,7 @@ media.after //=> '\n  '
 
 Default value is `\n` if at-rule has children and empty string if it doesn’t.
 
-#### `semicolon`
+### `semicolon`
 
 Code style property for at-rules with declarations, that last children
 has optional `;`.
@@ -907,7 +907,7 @@ rule.type       //=> 'rule'
 rule.toString() //=> 'a{}'
 ```
 
-#### `selector`
+### `selector`
 
 Stores rule’s selector string.
 
@@ -930,7 +930,7 @@ rule.toString()    //=> 'a /**/ b {}'
 
 If you will not change selector, PostCSS will stringify origin raw value.
 
-#### `selectors`
+### `selectors`
 
 Dynamic property that will split `selector` by comma and return array.
 
@@ -945,7 +945,7 @@ rule.selectors = ['a', 'strong'];
 rule.selector //=> 'a, strong'
 ```
 
-#### `before`
+### `before`
 
 Code style property with space symbols before rule.
 
@@ -957,7 +957,7 @@ rule.before //=> '\n'
 
 Default value is `\n`, except first rule in root where `before` will be empty.
 
-#### `after`
+### `after`
 
 Code style property with spaces between last child and `}`.
 
@@ -969,7 +969,7 @@ root.after //=> '\n  '
 
 Default value is `\n` if rule has children and empty string if it doesn’t.
 
-#### `semicolon`
+### `semicolon`
 
 Code style property, that last children has optional `;`.
 
@@ -989,7 +989,7 @@ decl.type       //=> 'decl'
 decl.toString() //=> ' color: black'
 ```
 
-#### `prop`
+### `prop`
 
 Stores property name.
 
@@ -999,7 +999,7 @@ var decl = root.first.first;
 decl.prop //=> 'color'
 ```
 
-#### `value`
+### `value`
 
 Stores declaration value.
 
@@ -1022,7 +1022,7 @@ decl.toString() //=> ' border-radius: 3px /**/ 0'
 
 If you will not change value, PostCSS will stringify origin raw value.
 
-#### `before`
+### `before`
 
 Code style property with space symbols before declaration.
 
@@ -1034,7 +1034,7 @@ decl.before //=> '\n  '
 
 Default value is `\n    `.
 
-#### `between`
+### `between`
 
 Code style property with symbols between property and value.
 
@@ -1046,7 +1046,7 @@ decl.between //=> '/**/: '
 
 Default value is `: `.
 
-#### `important`
+### `important`
 
 Property is `true` if declaration has `!important` statement.
 
@@ -1079,7 +1079,7 @@ comment.type //=> 'comment'
 decl.between //=> ': /* inner */'
 ```
 
-#### `text`
+### `text`
 
 Stores comment text.
 
@@ -1089,7 +1089,7 @@ var comment = root.first;
 var comment.text //=> 'Empty file'
 ```
 
-#### `left` and `right`
+### `left` and `right`
 
 Code style properties with spaces before/after comment’s text.
 
@@ -1104,7 +1104,7 @@ short.left //=> ''
 
 Default value is ` `.
 
-#### `before`
+### `before`
 
 Code style property with space symbols before comment.
 
