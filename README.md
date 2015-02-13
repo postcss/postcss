@@ -57,6 +57,7 @@ Weibo account: [postcss].
 * [CSS Grace] to CSS 3 polyfills for IE and other old browsers.
 * [mq4-hover-hover-shim] is a shim for the `hover` media feature from Media
   Queries Level 4.
+* [list-selectors] creates a sorted list of unique selectors, simple selectors, and categorized selectors (e.g. type, id) in source CSS, for analytics, code reviews, etc.
 
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
 [BEM linter]:           https://github.com/necolas/postcss-bem-linter
@@ -77,6 +78,7 @@ Weibo account: [postcss].
 [ACSS]:                 https://github.com/morishitter/acss
 [CSS Grace]:            https://github.com/cssdream/cssgrace
 [mq4-hover-hover-shim]: https://github.com/cvrebert/mq4-hover-hover-shim
+[list-selectors]:       https://github.com/davidtheclark/list-selectors
 
 ### Plugins
 
