@@ -75,11 +75,11 @@ Weibo account: [postcss].
    It is like a PHP, but you mix control statement with styles. As result your
    styles is slow, because programming language is too compilcated. With PostCSS
    you write styles on normal CSS, just with custom at-rules and functions.
-2. Preprocessors tools (like Compass) is written mainly in same trivial
-   preprocessors language. As result this tools is very limited. This libraries
-   adds only a custom functions, variables or mixins. So you have no polyfills
-   for CSS 4 syntax. In PostCSS all magic is written on JS and uses full power
-   of npm packages. So you have better and smarter tools.
+2. Preprocessors tools (like Compass) is written mainly in same
+   preprocessors language. As result this tools is very limited. The libraries
+   adds only a custom functions, variables or mixins. There is no way to add new
+   syntax for CSS 4 polyfills. In PostCSS all magic is written on JS and uses
+   big universe of npm packages. So you have better and smarter tools.
 3. All features is built in this preprocessor’s language. Adding new features
    is very difficult for developers, so languages develop slow. All features
    of PostCSS is just a small JS functions, which transform CSS nodes tree.
@@ -90,8 +90,8 @@ Weibo account: [postcss].
 ### Modularity
 
 Without a plugins, PostCSS just parse your CSS and stringify it back without
-of any byte change. All features are just a small JS functions from PostCSS
-plugins. So you can choose only features, that you need.
+change of any byte. All features is made by small JS funcions
+from PostCSS plugins. You can choose only features, that you need.
 
 Variables is a nice example. There are 2 different plugins for variables.
 [postcss-simple-vars] has Sass like syntax:
@@ -110,7 +110,7 @@ a {
 }
 ```
 
-In PostCSS you can choose what variables syntax you wantand even take both.
+In PostCSS you can choose what variables syntax you want or even take both.
 
 [W3C CSS Custom Properties]: http://www.w3.org/TR/css-variables/
 [postcss-custom-properties]: https://github.com/postcss/postcss-custom-properties
@@ -119,36 +119,34 @@ In PostCSS you can choose what variables syntax you wantand even take both.
 ### Perfomance
 
 PostCSS is one of the fastest CSS parsers written on JS. Only [CSSOM] is 10%
-fasterand only because it parses CSS not so accurate as PostCSS does.
-Because of the modular architecture, PostCSS code is simple and easy
-to maintain.
+faster and only because it parses CSS not so accurate as PostCSS does.
+Modular architecture makes PostCSS code is simple and easy to maintain.
 
 As result PostCSS is incredible fast. PostCSS is written on JS, but even with
-big cssnext plugin pack is anyway 4 times faster that [libsass] written on C++.
+big [cssnext] plugin pack, it is 4 times faster than [libsass] written on C++.
 
 If you uses Ruby Sass right now, you will be excited with PostCSS developing
 process, because PostCSS is 40 times faster that Ruby Sass.
 
+[cssnext]: https://github.com/cssnext/cssnext
 [libsass]: https://github.com/sass/libsass
 [CSSOM]:   https://github.com/NV/CSSOM
 
 ### Powerful Tools
 
-Instead of preprocessors tools with only custom mixins and functions,
 PostCSS plugins can read and rebuild entire CSS node tree.
-
 As result PostCSS has many powerful tools that would be impossible
 on preprocessors. Autoprefixer is a good example of how PostCSS plugin could
-be powerful and useful.
+be useful.
 
 PostCSS allows you to build linters (like [doiuse] or [BEM Linter]),
-code review tools (like [list-selectors]) or minifiers (like [CSSWring].
-With [postcss-data-packer] plugin you can create a “sprite” fo inline images
+code review tools (like [list-selectors]) or minifiers (like [CSSWring]).
+With [postcss-data-packer] plugin you can create a “sprite” from inlined images
 by moving all `data:uri` values to separated file.
 
 But my favorite example of PostCSS power is [RTLCSS]. As you know Jews and Arabs
-has right-to-left writing. But because writing affect to people perspective
-you need to change your site design (check out [Arabic Wikipedia]).
+has right-to-left writing. Because writing affects to people perspective
+you need to change your site design (check out [Arabic Wikipedia]).
 RTLCSS plugin mirrors you design, replace `left` to `right` in your styles,
 change values order in `margin`, etc.
 
@@ -164,8 +162,8 @@ change values order in `margin`, etc.
 
 1. Add PostCSS to your build tool. See [Grunt], [Gulp] and [webpack] plugins
    for further instructions.
-2. Select plugins from list below and add them to your build tool.
-3. Make awesome sites and applications.
+2. Select plugins from list below and add them to your PostCSS.
+3. Make awesome products.
 
 [webpack]: https://github.com/postcss/postcss-loader
 [Grunt]:   https://github.com/nDmitry/grunt-postcss
