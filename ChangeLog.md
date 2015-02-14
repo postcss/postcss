@@ -1,3 +1,6 @@
+## 4.0.4
+* Fix indent detection in some rare cases.
+
 ## 4.0.3
 * Faster API with 6to5 Loose mode.
 * Fix indexed source maps support.
