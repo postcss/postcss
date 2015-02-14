@@ -1,10 +1,10 @@
 import PreviousMap from '../lib/previous-map';
-import postcss from '../lib/postcss';
+import postcss     from '../lib/postcss';
 
-import mozilla from 'source-map';
+import   mozilla  from 'source-map';
+import   fs       from 'fs-extra';
 import { expect } from 'chai';
-import path from 'path';
-import fs from 'fs-extra';
+import   path     from 'path';
 
 var consumer = map => new mozilla.SourceMapConsumer.fromSourceMap(map);
 

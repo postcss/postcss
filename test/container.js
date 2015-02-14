@@ -1,8 +1,8 @@
 import Declaration from '../lib/declaration';
-import Container from '../lib/container';
-import parse from '../lib/parse';
-import Rule from '../lib/rule';
-import Root from '../lib/root';
+import Container   from '../lib/container';
+import parse       from '../lib/parse';
+import Rule        from '../lib/rule';
+import Root        from '../lib/root';
 
 import { expect } from 'chai';
 

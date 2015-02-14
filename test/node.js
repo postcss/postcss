@@ -1,10 +1,10 @@
 import CssSyntaxError from '../lib/css-syntax-error';
-import Declaration from '../lib/declaration';
-import AtRule from '../lib/at-rule';
-import parse from '../lib/parse';
-import Node from '../lib/node';
-import Root from '../lib/root';
-import Rule from '../lib/rule';
+import Declaration    from '../lib/declaration';
+import AtRule         from '../lib/at-rule';
+import parse          from '../lib/parse';
+import Node           from '../lib/node';
+import Root           from '../lib/root';
+import Rule           from '../lib/rule';
 
 import { expect } from 'chai';
 

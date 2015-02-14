@@ -1,8 +1,8 @@
 import parse from '../lib/parse';
 
-import mozilla from 'source-map';
+import   mozilla  from 'source-map';
+import   fs       from 'fs-extra';
 import { expect } from 'chai';
-import fs from 'fs-extra';
 
 var dir = __dirname + '/fixtures';
 var map = JSON.stringify({

@@ -1,7 +1,7 @@
 import Result from '../lib/result';
-import parse from '../lib/parse';
+import parse  from '../lib/parse';
 
-import mozilla from 'source-map';
+import   mozilla  from 'source-map';
 import { expect } from 'chai';
 
 var root;

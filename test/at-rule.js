@@ -1,7 +1,7 @@
 import Declaration from '../lib/declaration';
-import AtRule from '../lib/at-rule';
-import parse from '../lib/parse';
-import Rule from '../lib/rule';
+import AtRule      from '../lib/at-rule';
+import parse       from '../lib/parse';
+import Rule        from '../lib/rule';
 
 import { expect } from 'chai';
 

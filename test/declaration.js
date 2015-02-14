@@ -1,6 +1,6 @@
 import Declaration from '../lib/declaration';
-import parse from '../lib/parse';
-import Rule from '../lib/rule';
+import parse       from '../lib/parse';
+import Rule        from '../lib/rule';
 
 import { expect } from 'chai';
 

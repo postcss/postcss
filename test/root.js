@@ -1,10 +1,10 @@
-import Result from'../lib/result';
-import parse from '../lib/parse';
-import Root from '../lib/root';
-import Rule from '../lib/rule';
+import Result from '../lib/result';
+import parse  from '../lib/parse';
+import Root   from '../lib/root';
+import Rule   from '../lib/rule';
 
 import { expect } from 'chai';
-import fs from 'fs';
+import   fs       from 'fs';
 
 describe('Root', () => {
 

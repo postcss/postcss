@@ -1,5 +1,5 @@
 import tokenize from '../lib/tokenize';
-import Input from '../lib/input';
+import Input    from '../lib/input';
 
 import { expect } from 'chai';
 

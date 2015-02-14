@@ -1,10 +1,10 @@
 import Input from '../lib/input';
 import parse from '../lib/parse';
-import Root from '../lib/root';
+import Root  from '../lib/root';
 
 import { expect } from 'chai';
-import path from 'path';
-import fs from 'fs';
+import   path     from 'path';
+import   fs       from 'fs';
 
 var read = file => fs.readFileSync(__dirname + '/cases/' + file);
 

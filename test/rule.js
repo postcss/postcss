@@ -1,5 +1,5 @@
 import parse from '../lib/parse';
-import Rule from '../lib/rule';
+import Rule  from '../lib/rule';
 
 import { expect } from 'chai';
 

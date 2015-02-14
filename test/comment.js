@@ -1,5 +1,5 @@
 import Comment from '../lib/comment';
-import parse from '../lib/parse';
+import parse   from '../lib/parse';
 
 import { expect } from 'chai';
 

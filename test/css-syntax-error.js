@@ -1,9 +1,9 @@
 import CssSyntaxError from '../lib/css-syntax-error';
-import parse from '../lib/parse';
+import parse          from '../lib/parse';
 
-import Concat from 'concat-with-sourcemaps';
+import   Concat   from 'concat-with-sourcemaps';
 import { expect } from 'chai';
-import path from 'path';
+import   path     from 'path';
 
 var parseError = function (css, opts) {
     var error;

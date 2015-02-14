@@ -1,10 +1,10 @@
 import CssSyntaxError from '../lib/css-syntax-error';
-import postcss from '../lib/postcss';
-import Result from '../lib/result';
-import Root from '../lib/root';
+import postcss        from '../lib/postcss';
+import Result         from '../lib/result';
+import Root           from '../lib/root';
 
 import { expect } from 'chai';
-import path from 'path';
+import   path     from 'path';
 
 describe('postcss()', () => {
 
