@@ -58,7 +58,7 @@ Options:
 * `map`: an object of [source map options]. Only `map.prev` is used in
   `parse`.
 
-[source map options]: https://github.com/postcss/postcss#source-map-1
+[source map options]: https://github.com/postcss/postcss#source-map
 [Safe Mode]:          https://github.com/postcss/postcss#safe-mode
 
 ### `postcss.root(props)`
@@ -175,7 +175,7 @@ Options:
 * `map`: an object of [source map options].
 
 [Safe Mode]:          https://github.com/postcss/postcss#safe-mode
-[source map options]: https://github.com/postcss/postcss#source-map-1
+[source map options]: https://github.com/postcss/postcss#source-map
 
 ## `Result` class
 

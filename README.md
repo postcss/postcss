@@ -2,509 +2,288 @@
 
 <img align="right" width="95" height="95" src="http://postcss.github.io/postcss/logo.svg" title="Philosopher’s stone, logo of PostCSS">
 
-PostCSS is a framework for CSS postprocessors,
-to modify CSS with JavaScript with full source map support.
+PostCSS is a tool to transform CSS by JS plugins. This plugins can add vendor
+prefixes, polyfill CSS 4 features, inline images, add variables
+and mixins support. PostCSS with most popular [Autoprefixer] plugin
+is used by Google, Twitter, Alibaba and Shopify.
 
-It takes care of the most common CSS tool tasks:
+PostCSS does same work as Sass, LESS or Stylus. But, instead of preprocessors,
+PostCSS is modular, 4—40 times faster and much powerful
+(Autoprefixer is impossible on preprocessors).
 
-1. parses CSS;
-2. provides a usable JS API to edit CSS node trees;
-3. dumps the modified node tree into a CSS string;
-4. generates a source map (or modifies an pre-existing source map) containing
-   your changes;
+PostCSS is very small. It contains only CSS parser, CSS node tree API,
+source map generator and node tree stringifier. All features (like variables
+or nesting) are made by plugins. PostCSS plugin is just a JS function, that
+accepts CSS node tree, reads and transforms some of nodes in tree.
 
-You can use this framework to write your own:
+For example, with [Autoprefixer], [cssnext], [CSS Grace],
+[postcss-nested], [postcss-mixins] and [postcss-easings] plugins
+you will be able to write this CSS:
 
-* CSS minifier or beautifier.
-* CSS polyfills.
-* Grunt plugin to generate sprites, include `data-uri` images
-  or any other work.
-* Text editor plugin to automate CSS routines.
-* Command-line CSS tool.
+```css
+@define-mixin social-icon $color {
+    & {
+        background: $color;
+        &:hover {
+            background: color($color whiteness(+10%))
+        }
+    }
+}
 
-Twitter account for news, releases and new plugins: [@postcss].
+.social-icon {
+    transition: background 200ms ease-in-sine;
+    font-variant-caps: small-caps;
+    &.is-twitter {
+        @mixin social-icon #55acee;
+    }
+    &.is-facebook {
+        @mixin social-icon #3b5998;
+    }
+    &:active {
+        opacity: 0.6;
+    }
+}
+
+@custom-media --mobile (width <= 640px);
+
+@custom-selector --heading h1, h2, h3, h4, h5, h6;
+
+.post-article --heading {
+    margin-top: 10rem;
+    @media (--mobile) {
+        margin-top: 0;
+    }
+}
+```
+
+Twitter account for articles, releases and new plugins: [@postcss].
 Weibo account: [postcss].
 
 <a href="https://evilmartians.com/?utm_source=postcss">
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
 </a>
 
-[@postcss]: https://twitter.com/postcss
-[postcss]:  http://weibo.com/postcss
+[Autoprefixer]: https://github.com/postcss/autoprefixer
+[CSS Grace]:    https://github.com/cssdream/cssgrace
+[@postcss]:     https://twitter.com/postcss
+[postcss]:      http://weibo.com/postcss
+[cssnext]:      https://github.com/cssnext/cssnext
 
-## Built with PostCSS
+## Differences with preprocessors
 
-### Tools
-
-* [Autoprefixer] adds vendor prefixes by Can I Use data.
-* [BEM linter] lints CSS for SUIT CSS methodology.
-* [CSS MQPacker] joins same media queries.
-* [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
-* [cssnext] is a transpiler (CSS 4+ to CSS 3) that allow you to use tomorrow’s
-  CSS syntax today.
-* [CSSWring] is a CSS minifier with full source map support.
-* [data-separator] splits data-uri into a separate CSS file.
-* [pixrem] is a `rem` unit polyfill.
-* [webpcss] to duplicate images in CSS to WebP for supported browsers.
-* [Pleeease] is a pack of various postprocessors.
-* [Pleeease Filters] converts WebKit filters to SVG filter for other browsers.
-* [RTLCSS] mirrors styles for right-to-left locales.
-* [CSS Byebye] explicitly removes the CSS rules that you don’t want.
-* [postcss-epub] to prefix ePub3 properties.
-* [doiuse] to lint your CSS on unsupported properties by Can I Use.
-* [postcss-assets] to inline files and insert image width and height.
-* [ACSS] Annotations based CSS processor.
-* [CSS Grace] to CSS 3 polyfills for IE and other old browsers.
-* [mq4-hover-hover-shim] is a shim for the `hover` media feature from Media
-  Queries Level 4.
-* [list-selectors] creates a sorted list of unique selectors, simple selectors, and categorized selectors (e.g. type, id) in source CSS, for analytics, code reviews, etc.
-
-[Autoprefixer]:         https://github.com/postcss/autoprefixer
-[BEM linter]:           https://github.com/necolas/postcss-bem-linter
-[CSS MQPacker]:         https://github.com/hail2u/node-css-mqpacker
-[css2modernizr]:        https://github.com/vovanbo/css2modernizr
-[cssnext]:              https://github.com/putaindecode/cssnext
-[CSSWring]:             https://github.com/hail2u/node-csswring
-[data-separator]:       https://github.com/Sebastian-Fitzner/grunt-data-separator
-[pixrem]:               https://github.com/robwierzbowski/node-pixrem
-[webpcss]:              https://github.com/lexich/webpcss
-[Pleeease]:             http://pleeease.io/
-[Pleeease Filters]:     https://github.com/iamvdo/pleeease-filters
-[RTLCSS]:               https://github.com/MohammadYounes/rtlcss
-[CSS Byebye]:           https://github.com/AoDev/css-byebye
-[postcss-epub]:         https://github.com/Rycochet/postcss-epub
-[doiuse]:               https://github.com/anandthakker/doiuse
-[postcss-assets]:       https://github.com/borodean/postcss-assets
-[ACSS]:                 https://github.com/morishitter/acss
-[CSS Grace]:            https://github.com/cssdream/cssgrace
-[mq4-hover-hover-shim]: https://github.com/cvrebert/mq4-hover-hover-shim
-[list-selectors]:       https://github.com/davidtheclark/list-selectors
-
-### Plugins
-
-* [postcss-calc] to reduce `calc()` usage
-  (recommended with `postcss-custom-properties`).
-* [postcss-color-function] to transform `color()` function.
-* [postcss-color-gray] to transform `gray()` function.
-* [postcss-color-hex-alpha] to transform hexadecimal notations with alpha
-  (`#rrggbbaa` or `#rgba`).
-* [postcss-color-hwb] to transform `hwb()` function.
-* [postcss-color-rebeccapurple] to transform `rebeccapurple` color.
-* [postcss-import] to transform `@import` rules by inlining content.
-* [postcss-custom-media] to add names for Media Queries.
-* [postcss-custom-properties] to transform Custom Properties
-  for cascading variables.
-* [postcss-url] to rebase or inline on `url()`.
-* [postcss-font-variant] to set `font-feature-settings` by readable properties.
-* [postcss-nested] to unwrap rules in other rules, like you can write in Sass.
-* [postcss-custom-selector] to add custom alias for selectors.
-* [postcss-media-minmax] to use `<=` or `>=` in CSS Media Queries.
-* [postcss-data-packer] to move an embedded data into a separate file.
-* [postcss-color-palette] to transform CSS2 color keywords to a custom palette.
-* [postcss-color-hex] to transform rgb() and rgba() to hex.
-* [postcss-single-charset] to pop first `@charset` rule.
-* [postcss-simple-extend] to add selectors to a previously defined rule set.
-* [postcss-simple-vars] for Sass-like variables.
-* [postcss-mixins] for mixins.
-* [postcss-size] for `size` shortcut to set `width` and `height` properties.
-* [postcss-brand-colors] to insert branding colors by company name.
-* [postcss-easings] to replace easing name to `cubic-bezier()`.
-* [postcss-host] to make :host selector works properly with pseudo-classes
-
-[postcss-calc]:                 https://github.com/postcss/postcss-calc
-[postcss-color-function]:       https://github.com/postcss/postcss-color-function
-[postcss-color-gray]:           https://github.com/postcss/postcss-color-gray
-[postcss-color-hex-alpha]:      https://github.com/postcss/postcss-color-hex-alpha
-[postcss-color-hwb]:            https://github.com/postcss/postcss-color-hwb
-[postcss-color-rebeccapurple]:  https://github.com/postcss/postcss-color-rebeccapurple
-[postcss-import]:               https://github.com/postcss/postcss-import
-[postcss-custom-media]:         https://github.com/postcss/postcss-custom-media
-[postcss-custom-properties]:    https://github.com/postcss/postcss-custom-properties
-[postcss-url]:                  https://github.com/postcss/postcss-url
-[postcss-font-variant]:         https://github.com/postcss/postcss-font-variant
-[postcss-nested]:               https://github.com/postcss/postcss-nested
-[postcss-custom-selector]:      https://github.com/postcss/postcss-custom-selector
-[postcss-media-minmax]:         https://github.com/postcss/postcss-media-minmax
-[postcss-data-packer]:          https://github.com/Ser-Gen/postcss-data-packer
-[postcss-color-palette]:        https://github.com/zaim/postcss-color-palette
-[postcss-color-hex]:            https://github.com/TrySound/postcss-color-hex
-[postcss-single-charset]:       https://github.com/hail2u/postcss-single-charset
-[postcss-simple-extend]:        https://github.com/davidtheclark/postcss-simple-extend
-[postcss-simple-mixin]:         https://github.com/davidtheclark/postcss-simple-mixin
-[postcss-simple-vars]:          https://github.com/postcss/postcss-simple-vars
-[postcss-mixins]:               https://github.com/postcss/postcss-mixins
-[postcss-size]:                 https://github.com/postcss/postcss-size
-[postcss-brand-colors]:         https://github.com/postcss/postcss-brand-colors
-[postcss-easings]:              https://github.com/postcss/postcss-easings
-[postcss-host]:                 https://github.com/vitkarpov/postcss-host
-
-## Quick Example
-
-Let’s fix a forgotten `content` property in `::before` and `::after`:
-
-```js
-var postcss = require('postcss');
-
-var contenter = postcss(function (css) {
-    css.eachRule(function (rule) {
-        if ( rule.selector.match(/::(before|after)/) ) {
-            // In each ::before/::after rule
-
-            // Did we forget the content property?
-            var good = rule.some(function (i) { return i.prop == 'content'; });
-
-            if ( !good ) {
-                // Add content: "" if we forget it
-                rule.prepend({ prop: 'content', value: '""' });
-            }
-
-        }
-    });
-});
-```
-
-And the CSS with a forgotten `content` property:
-
-```css
-a::before {
-    width: 10px;
-    height: 10px
-}
-```
-
-will be fixed by our new `contenter`:
-
-```js
-var fixed = contenter.process(css).css;
-```
-
-to:
-
-```css
-a::before {
-    content: "";
-    width: 10px;
-    height: 10px
-}
-```
+1. With preprocessors you write your CSS on special programming language.
+   It is like a PHP, but you mix control statement with styles. As result your
+   styles is slow, because programming language is too compilcated. With PostCSS
+   you write styles on normal CSS, just with custom at-rules and functions.
+2. Preprocessors tools (like Compass) is written mainly in same trivial
+   preprocessors language. As result this tools is very limited. This libraries
+   adds only a custom functions, variables or mixins. So you have no polyfills
+   for CSS 4 syntax. In PostCSS all magic is written on JS and uses full power
+   of npm packages. So you have better and smarter tools.
+3. All features is built in this preprocessor’s language. Adding new features
+   is very difficult for developers, so languages develop slow. All features
+   of PostCSS is just a small JS functions, which transform CSS nodes tree.
+   Many developers create new features and you have bigger choice.
 
 ## Features
 
-### Source Map
+### Modularity
 
-PostCSS generates a source map of its changes:
+Without a plugins, PostCSS just parse your CSS and stringify it back without
+of any byte change. All features are just a small JS functions from PostCSS
+plugins. So you can choose only features, that you need.
 
-```js
-result = processor.process(css, { map: true, from: 'from.css', to: 'to.css' });
-result.css // String with processed CSS and inlined source map
-```
+Variables is a nice example. There are 2 different plugins for variables.
+[postcss-simple-vars] has Sass like syntax:
 
-And modifies a source map from previous steps (for example, Sass preprocessor):
-
-```js
-var sass = compiler.compile(sass);
-
-processor.process(sass.css, {
-    map:  { prev: sass.map },
-    from: 'from.sass.css',
-    to:   'to.css'
-});
-```
-
-### Preserves code formatting and indentations
-
-PostCSS will not change any byte of a rule, if you do not modify its node:
-
-```js
-postcss(function (css) { }).process(css).css == css;
-```
-
-And when you modify CSS nodes, PostCSS will try to copy the coding style:
-
-```js
-contenter.process("a::before{color:black}")
-// a::before{content:'';color:black}
-
-contenter.process("a::before {\n  color: black;\n  }")
-// a::before {
-//   content: '';
-//   color: black;
-//   }
-```
-
-Which allows you to use PostCSS in text editor plugins while preserving
-the user’s code style.
-
-## Why PostCSS Better Than …
-
-### Preprocessors
-
-Preprocessors (like Sass or Stylus) give us special languages with variables,
-mixins, and statements, which are compiled to CSS. Compass, nib and other mixins
-libraries use these languages to work with prefixes, sprites and inline images.
-
-But the Sass and Stylus languages were created to be syntax-sugar for CSS.
-Writing complicated programs using preprocessor languages can be very difficult.
-For example, it would be impossible to implement [Autoprefixer] on top of Sass.
-
-PostCSS gives you the comfort and power of JS or CoffeeScript while
-you are working with CSS. Applying the depth and variety of [npm]’s libraries
-allows you to perform quite magical things using PostCSS.
-
-An important point is that postprocessors are not the enemies of preprocessors.
-Preprocessors and postprocessors can be easily combined, so that you can take
-advantage of the readability and syntactical sugar offered by Sass and Stylus;
-and PostCSS will preserve their source maps.
-
-[Autoprefixer]: https://github.com/postcss/autoprefixer
-[npm]:          https://npmjs.org/
-
-### Regular Expressions
-
-Some Grunt plugins modify CSS with regular expressions, however a parser
-and its node tree provide a much safer interface to edit CSS. Furthermore,
-regular expressions typically break the source maps generated by preprocessors.
-
-### CSS Parsers
-
-There are a lot of good CSS parsers, such as [Gonzales], but they only help you
-to read in the CSS. PostCSS provides you with full source map support and a
-high level API. Safe iterators, and other features, are unique to PostCSS.
-
-[Gonzales]: https://github.com/css/gonzales
-
-### Rework
-
-[Rework] and PostCSS are very similar, but they have different targets.
-
-Rework was created to build a new CSS sublanguage that replaced Stylus
-(like [Myth]). PostCSS was created for CSS tools which work with legacy CSS code
-(one such tool is Autoprefixer).
-
-Because of this fundamental difference, PostCSS:
-
-* Handles source map better, because it updates the map from the previous step
-  (for example, Sass compilation).
-* Preserves all your spaces and code style, so that it can function
-  in text editor plugins.
-* Has a safer parser, so that it can be used for legacy code. Only PostCSS can
-  parse all of the hacks from [Browserhacks.com](http://browserhacks.com/).
-* Has a high level API to provide an simple interface for your processor to
-  perform typical tasks.
-
-[Myth]:   http://www.myth.io/
-[Rework]: https://github.com/visionmedia/rework
-
-## Usage
-
-### Grunt
-
-Grunt plugin [grunt-postcss] allows you to pipe your CSS files through
-an array of PostCSS processors.
-
-```js
-grunt.initConfig({
-    postcss: {
-        options: {
-            map: true,
-            processors: [
-                require('autoprefixer-core').postcss,
-                require('csswring').postcss
-            ]
-        },
-        dist: {
-            src: 'css/*.css'
-        }
-    }
-});
-
-grunt.loadNpmTasks('grunt-postcss');
-```
-
-[grunt-postcss]: https://github.com/nDmitry/grunt-postcss
-
-### Gulp
-
-There is a Gulp plugin for PostCSS called [gulp-postcss] that allows you
-to pipe your CSS files through an array of PostCSS processors.
-
-Support for external source maps is provided by [gulp-sourcemaps].
-
-```js
-var postcss    = require('gulp-postcss');
-var sourcemaps = require('gulp-sourcemaps');
-
-gulp.task('css', function () {
-    var processors = [
-        require('autoprefixer-core'),
-        require('csswring')
-     ];
-     return gulp.src('./src/*.css')
-        .pipe(sourcemaps.init())
-        .pipe(postcss(processors))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./dest'));
-});
-```
-
-[gulp-postcss]:    https://github.com/w0rm/gulp-postcss
-[gulp-sourcemaps]: https://github.com/floridoo/gulp-sourcemaps
-
-### Webpack
-
-In [webpack] you can use [postcss-loader] to process CSS files through
-an array of PostCSS processors.
-
-```js
-module.exports = {
-    module: {
-        loaders: [
-            {
-                test:   /\.css$/,
-                loader: "style-loader!css-loader!postcss-loader"
-            }
-        ]
-    },
-    postcss: [require('autoprefixer-core'), require('csswring')]
+```css
+a {
+    color: $link-color;
 }
 ```
 
-[postcss-loader]: https://github.com/postcss/postcss-loader
-[webpack]:        http://webpack.github.io/
+[postcss-custom-properties] is a polyfill for [W3C CSS Custom Properties] draft:
 
-## Write Own Processor
-
-You can parse CSS with the `postcss.parse()` method, which returns a CSS AST:
-
-```js
-var postcss = require('postcss');
-
-var css = postcss.parse('a { color: black }');
+```css
+a {
+    color: var(--link-color);
+}
 ```
 
-You can easily make changes to this AST. Use `css.nodes` to get children.
-Properties `rule.selector`, `decl.prop`, `decl.value`, `atrule.name`
-and `atrule.params` contain data.
+In PostCSS you can choose what variables syntax you wantand even take both.
+
+[W3C CSS Custom Properties]: http://www.w3.org/TR/css-variables/
+[postcss-custom-properties]: https://github.com/postcss/postcss-custom-properties
+[postcss-simple-vars]:       https://github.com/postcss/postcss-simple-vars
+
+### Perfomance
+
+PostCSS is one of the fastest CSS parsers written on JS. Only [CSSOM] is 10%
+fasterand only because it parses CSS not so accurate as PostCSS does.
+Because of the modular architecture, PostCSS code is simple and easy
+to maintain.
+
+As result PostCSS is incredible fast. PostCSS is written on JS, but even with
+big cssnext plugin pack is anyway 4 times faster that [libsass] written on C++.
+
+If you uses Ruby Sass right now, you will be excited with PostCSS developing
+process, because PostCSS is 40 times faster that Ruby Sass.
+
+[libsass]: https://github.com/sass/libsass
+[CSSOM]:   https://github.com/NV/CSSOM
+
+### Powerful Tools
+
+Instead of preprocessors tools with only custom mixins and functions,
+PostCSS plugins can read and rebuild entire CSS node tree.
+
+As result PostCSS has many powerful tools that would be impossible
+on preprocessors. Autoprefixer is a good example of how PostCSS plugin could
+be powerful and useful.
+
+PostCSS allows you to build linters (like [doiuse] or [BEM Linter]),
+code review tools (like [list-selectors]) or minifiers (like [CSSWring].
+With [postcss-data-packer] plugin you can create a “sprite” fo inline images
+by moving all `data:uri` values to separated file.
+
+But my favorite example of PostCSS power is [RTLCSS]. As you know Jews and Arabs
+has right-to-left writing. But because writing affect to people perspective
+you need to change your site design (check out [Arabic Wikipedia]).
+RTLCSS plugin mirrors you design, replace `left` to `right` in your styles,
+change values order in `margin`, etc.
+
+[postcss-data-packer]: https://github.com/Ser-Gen/postcss-data-packer
+[Arabic Wikipedia]:    https://ar.wikipedia.org/wiki/%D9%84%D8%BA%D8%A9_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9
+[list-selectors]:      https://github.com/davidtheclark/list-selectors
+[BEM Linter]:          https://github.com/necolas/postcss-bem-linter
+[CSSWring]:            https://github.com/hail2u/node-csswring
+[doiuse]:              https://github.com/anandthakker/doiuse
+[RTLCSS]:              https://github.com/MohammadYounes/rtlcss
+
+## Quick Start
+
+1. Add PostCSS to your build tool. See [Grunt], [Gulp] and [webpack] plugins
+   for further instructions.
+2. Select plugins from list below and add them to your build tool.
+3. Make awesome sites and applications.
+
+[webpack]: https://github.com/postcss/postcss-loader
+[Grunt]:   https://github.com/nDmitry/grunt-postcss
+[Gulp]:    https://github.com/w0rm/gulp-postcss
+
+## Plugins Packs
+
+* [cssnext] is a pack of CSS 4 polyfills plugins.
+* [ACSS] contains plugins to control your CSS by special annotation comments.
+
+[cssnext]:  https://github.com/putaindecode/cssnext
+[ACSS]:     https://github.com/morishitter/acss
+
+## Plugins
+
+* [Autoprefixer] adds vendor prefixes to rules by Can I Use.
+* [cssgrace] with helpers and CSS 3 polyfills for IE and other old browsers.
+* [csswring] is a CSS minifier.
+* [rtlcss] mirrors styles for right-to-left locales.
+* [pixrem] is a `rem` unit polyfill.
+* [css-mqpacker] joins same CSS media queries into one rule.
+* [postcss-assets] inlines files and inserts image width and height.
+* [css2modernizr] analyzes your CSS and output only used Modernizr’s settings.
+* [postcss-bem-linter] lints CSS for SUIT CSS methodology.
+* [pleeease-filters] converts WebKit filters to SVG filter for other browsers.
+* [postcss-custom-selectors] to add custom alias for selectors.
+* [doiuse] lints CSS for browser support against Can I Use database.
+* [webpcss] adds links to WebP images for browsers that support it.
+* [postcss-import] inlines `@import` rules content.
+* [postcss-nested] unwraps nested rules.
+* [postcss-media-minmax] adds `<=` and `=>` statements to CSS media queries.
+* [postcss-mixins] to use mixins.
+* [postcss-easings] replaces easing name to `cubic-bezier()`.
+* [postcss-url] rebases or inlines `url()`.
+* [postcss-epub] adds `-epub-` prefix.
+* [postcss-custom-properties] is a polyfill for W3C CSS variables spec.
+* [mq4-hover-shim] is a shim for the `@media (hover: hover)` feature.
+* [postcss-color-palette] transforms CSS 2 color keywords to a custom palette.
+* [postcss-custom-media] to add custom alias for media queries.
+* [css-byebye] removes CSS rules by some criteria.
+* [postcss-simple-vars] adds Sass-style variables support.
+* [postcss-data-packer] moves an inlined data into a separate file.
+* [postcss-color-gray] adds `gray()` function.
+* [postcss-brand-colors] inserts branding colors by companies name.
+* [list-selectors] is a code review tool for your CSS.
+* [postcss-calc] reduce `calc()` with same units.
+* [postcss-font-variant] adds readable front variant properies support.
+* [postcss-simple-extend] adds `@extend` support.
+* [postcss-size] adds `size` shorcut to set width and height in one property.
+* [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
+* [postcss-host] make `:host` selectors work properly with pseudo-classes.
+* [postcss-color-rebeccapurple] is a `rebeccapurple` color polyfill.
+* [postcss-color-function] adds functions to transform colors.
+* [postcss-color-hex-alpha] adds `#rrggbbaa` and `#rgba` notation support.
+* [postcss-color-hwb] transforms `hwb()` to `rgb()`.
+* [postcss-single-charset] pops first `@charset` rule.
+
+[postcss-color-rebeccapurple]: https://github.com/postcss/postcss-color-rebeccapurple
+[postcss-custom-properties]:   https://github.com/postcss/postcss-custom-properties
+[postcss-custom-selectors]:    https://github.com/postcss/postcss-custom-selectors
+[postcss-color-hex-alpha]:     https://github.com/postcss/postcss-color-hex-alpha
+[postcss-color-function]:      https://github.com/postcss/postcss-color-function
+[postcss-single-charset]:      https://github.com/hail2u/postcss-single-charset
+[postcss-color-palette]:       https://github.com/zaim/postcss-color-palette
+[postcss-simple-extend]:       https://github.com/davidtheclark/postcss-simple-extend
+[postcss-media-minmax]:        https://github.com/postcss/postcss-media-minmax
+[postcss-custom-media]:        https://github.com/postcss/postcss-custom-media
+[postcss-brand-colors]:        https://github.com/postcss/postcss-brand-colors
+[postcss-font-variant]:        https://github.com/postcss/postcss-font-variant
+[postcss-simple-vars]:         https://github.com/postcss/postcss-simple-vars
+[postcss-data-packer]:         https://github.com/Ser-Gen/postcss-data-packer
+[postcss-bem-linter]:          https://github.com/necolas/postcss-bem-linter
+[postcss-color-gray]:          https://github.com/postcss/postcss-color-gray
+[postcss-color-hex]:           https://github.com/TrySound/postcss-color-hex
+[postcss-color-hwb]:           https://github.com/postcss/postcss-color-hwb
+[pleeease-filters]:            https://github.com/iamvdo/pleeease-filters
+[postcss-easings]:             https://github.com/postcss/postcss-easings
+[postcss-assets]:              https://github.com/borodean/postcss-assets
+[postcss-import]:              https://github.com/postcss/postcss-import
+[postcss-nested]:              https://github.com/postcss/postcss-nested
+[postcss-mixins]:              https://github.com/postcss/postcss-mixins
+[mq4-hover-shim]:              https://github.com/twbs/mq4-hover-shim
+[list-selectors]:              https://github.com/davidtheclark/list-selectors
+[css2modernizr]:               https://github.com/vovanbo/css2modernizr
+[Autoprefixer]:                https://github.com/postcss/autoprefixer
+[css-mqpacker]:                https://github.com/hail2u/node-css-mqpacker
+[postcss-epub]:                https://github.com/Rycochet/postcss-epub
+[postcss-calc]:                https://github.com/postcss/postcss-calc
+[postcss-size]:                https://github.com/postcss/postcss-size
+[postcss-host]:                https://github.com/vitkarpov/postcss-host
+[postcss-url]:                 https://github.com/postcss/postcss-url
+[css-byebye]:                  https://github.com/AoDev/css-byebye
+[cssgrace]:                    https://github.com/cssdream/cssgrace
+[csswring]:                    https://github.com/hail2u/node-csswring
+[webpcss]:                     https://github.com/lexich/webpcss
+[rtlcss]:                      https://github.com/MohammadYounes/rtlcss
+[pixrem]:                      https://github.com/robwierzbowski/node-pixrem
+[doiuse]:                      https://github.com/anandthakker/doiuse
+
+## Usage
+
+### JavaScript API
 
 ```js
-css.nodes[0].value = 'white';
+var postcss   = require('postcss');
+var processor = postcss([require('cssnext'), require('cssgrace')]);
+
+var result = processor.process(css, { from: 'app.css', to: 'app.out.css' });
+console.log(result.css);
 ```
 
-After changes have been made you can get the new CSS and a source map reflecting
-the modifications:
+Read [postcss function], [processor] and [Result] API docs for more details.
 
-```js
-var result = css.toResult(options);
+[postcss function]: https://github.com/postcss/postcss/blob/master/API.md#postcss-function
+[processor]:        https://github.com/postcss/postcss/blob/master/API.md#postcss-class
+[Result]:           https://github.com/postcss/postcss/blob/master/API.md#result-class
 
-result.css //=> 'a { color: white }'
-result.map //=> '{"version":3, … }'
-```
-
-The methods `postcss.parse()` and `CSS#toResult()` are part of a low level API,
-and - in most cases - it will be better to create processors with a simpler API
-and chaining.
-
-### Processor
-
-The function `postcss(fn)` creates a processor from your function:
-
-```js
-var postcss = require('postcss');
-
-var processor = postcss(function (css, opts) {
-    // Code to modify CSS
-});
-```
-
-If you want to combine multiple processors (and parse the CSS only once),
-you can add several functions using the `use(fn)` method:
-
-```js
-var all = postcss().
-          use(prefixer).
-          use(minifing);
-```
-
-You can also add processor objects with the `postcss` function:
-
-```js
-postcss().use( autoprefixer.postcss ); // via function
-postcss().use( autoprefixer );         // via object
-```
-
-A processor function can change the current CSS node tree:
-
-```js
-postcss(function (css) {
-    css.append( /* new rule */ )
-});
-```
-
-or create a completely new CSS root node and return it instead:
-
-```js
-postcss(function (css) {
-    var newCSS = postcss.root()
-    // Add rules and declarations
-    return newCSS;
-});
-```
-
-This generated processor transforms some CSS using
-the `process(css, opts)` method:
-
-```js
-var doubler = postcss(function (css) {
-    // Clone each declaration
-    css.eachDecl(function (decl) {
-        decl.parent.prepend( decl.clone() );
-    });
-});
-
-var css    = "a { color: black; }";
-var result = doubler.process(css);
-
-result.css //=> "a { color: black; color: black; }"
-```
-
-You can change the original CSS filename via the `from` option, which
-can make syntax error more helpful:
-
-```js
-var wrong = "a {";
-processor.process(wrong, { from: 'main.css' });
-//=> Can't parse CSS: Unclosed block at line 1:1 in main.css
-```
-
-Options from `process(css, opts)` will be sent to processors
-as the second argument.
-
-You can also use the result from a previous postprocessor, or
-an already-parsed `Root`, as an argument to the next one:
-
-```js
-result = processor1.process(css)
-processor2.process(result)
-```
-
-### Multiple Inputs
-
-The function `postcss()` generates a processor for only one input.
-If you need to process several inputs (for example, when concatenating files)
-you can use `postcss.parse()`.
-
-Let’s join two CSS strings with full source map support in only 5 lines of code:
-
-```js
-var file1 = postcss.parse(css1, { from: 'a.css' });
-var file2 = postcss.parse(css2, { from: 'b.css' });
-
-file1.append( file2 );
-
-var result = file1.toResult({ to: 'app.css', map: true });
-```
-
-### Source Map
+### Source Maps
 
 By using [source maps], a browser’s development tools can indicate the
 original position of your styles before the css file was transformed.
@@ -537,10 +316,8 @@ source map, you must indicate the input and output CSS files
 paths (using the options `from` and `to` respectively).
 
 To generate a new source map with the default options, provide `map: true`.
-This will inline sourcemap with source content.
-
-If you don't want the map inlined, you can use `inline: false`
-in the options passed to `processor.process(css, opts)`.
+This will inline sourcemap with source content. If you don’t want the map
+inlined, you can use `map.inline: false` option.
 
 ```js
 var result = processor.process(css, {
@@ -550,20 +327,6 @@ var result = processor.process(css, {
 });
 
 result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
-
-fs.writeFileSync('main.out.css',     result.css);
-fs.writeFileSync('main.out.css.map', result.map);
-```
-
-Or set `from` in `postcss.parse(css, opts)` and `to` in `root.toResult(opts)`:
-
-```js
-var root = postcss.parse(css, { from: 'main.css', { inline: false } });
-root.last.removeSelf(); // Example transformation
-
-var result = root.toResult({ to: 'main.out.css' });
-fs.writeFileSync('main.out.css',     result.css);
-fs.writeFileSync('main.out.css.map', result.map);
 ```
 
 If PostCSS is handling CSS and finds source maps from previous transformations,
@@ -617,7 +380,6 @@ option as an object with the following parameters:
 
 If you provide a `safe: true` option to the `process` or `parse` methods,
 PostCSS will try to correct any syntax error that it finds in the CSS.
-For example, it will parse `a {` as `a {}`.
 
 ```js
 postcss.parse('a {');                 // will throw "Unclosed block"
@@ -628,7 +390,7 @@ This is useful for legacy code filled with plenty of hacks. Another use case
 is interactive tools with live input, for example,
 the [Autoprefixer demo](http://jsfiddle.net/simevidas/udyTs/show/light/).
 
-## PostCSS Plugin Developing
+## How to Develop PostCSS Plugin
 
 * [PostCSS API](https://github.com/postcss/postcss/blob/master/API.md)
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
