@@ -1249,18 +1249,20 @@ comment.before //=> '\n  '
 
 This is a code style property.
 
+[`source-map`]: https://github.com/mozilla/source-map
+
 [source map options]: https://github.com/postcss/postcss#source-map
 [Safe Mode]:          https://github.com/postcss/postcss#safe-mode
-[`PostCSS#use`]: #puseplugin
-[`Root` node]: #root-node
-[`AtRule` node]: #atrule-node
-[`Rule` node]: #rule-node
-[`Declaration` node]: #declaration-node
-[`Comment` node]: #comment-node
-[`postcss(plugins)`]: #postcssplugins
+
 [`PostCSS#process(css, opts)`]: #pprocesscss-opts
-[`Root#toResult(opts)`]: #roottoresult-opts
-[`result.map`]: #resultmap
-[`result.css`]: #resultcss
-[`source-map`]: https://github.com/mozilla/source-map
-[`Input`]: #inputclass
+[`Root#toResult(opts)`]:        #roottoresult-opts
+[`postcss(plugins)`]:           #postcssplugins
+[`Declaration` node]:           #declaration-node
+[`Comment` node]:               #comment-node
+[`PostCSS#use`]:                #puseplugin
+[`AtRule` node]:                #atrule-node
+[`result.map`]:                 #resultmap
+[`result.css`]:                 #resultcss
+[`Root` node]:                  #root-node
+[`Rule` node]:                  #rule-node
+[`Input`]:                      #inputclass
