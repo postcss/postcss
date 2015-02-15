@@ -8,10 +8,10 @@ gulp.task('build:clean', function (done) {
 });
 
 gulp.task('build:lib', ['build:clean'], function () {
-    var es6to5 = require('gulp-6to5');
+    var babel = require('gulp-babel');
 
     return gulp.src('lib/*.js')
-        .pipe(es6to5({ loose: 'all' }))
+        .pipe(babel({ loose: 'all' }))
         .pipe(gulp.dest('build/lib'));
 });
 
