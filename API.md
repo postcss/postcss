@@ -802,7 +802,9 @@ You can speed up the search by passing `opts`:
 
 - `props`: An array of property names. The method will only search for values
   that match `regexp` within declarations of listed properties.
-- `fast`: I DON'T GET IT
+- `fast`: string to increase regexp perfomance. Because regexp is slow,
+  we will call it only if we will find `fast` in value. For example,
+  we will replaces `/\d+rem/` only for values, that contains `rem` string.
 
 This method is useful if you are using a custom unit or function,
 so need to iterate through all values.
