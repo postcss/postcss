@@ -35,8 +35,6 @@ You can also set plugins with the [`PostCSS#use`] method.
 
 See [`PostCSS#use`] below for details about plugin formats.
 
-[`PostCSS#use`]: https://github.com/postcss/postcss#useplugin
-
 ### `postcss.parse(css, opts)`
 
 Parses source `css` and returns a new `Root` node, which contains
@@ -58,12 +56,9 @@ Options:
 * `map`: an object of [source map options].
   Only `map.prev` is used in `parse`.
 
-[source map options]: https://github.com/postcss/postcss#source-map
-[Safe Mode]:          https://github.com/postcss/postcss#safe-mode
-
 ### `postcss.root(props)`
 
-Creates a new [`Root` node](#root-node).
+Creates a new [`Root` node].
 
 ```js
 postcss.root({ after: '\n' }).toString() //=> "\n"
@@ -71,7 +66,7 @@ postcss.root({ after: '\n' }).toString() //=> "\n"
 
 ### `postcss.atRule(props)`
 
-Creates a new [`AtRule` node](#atrule-node).
+Creates a new [`AtRule` node].
 
 ```js
 postcss.atRule({ name: 'charset' }).toString() //=> "@charset"
@@ -79,7 +74,7 @@ postcss.atRule({ name: 'charset' }).toString() //=> "@charset"
 
 ### `postcss.rule(props)`
 
-Creates a new [`Rule` node](#rule-node).
+Creates a new [`Rule` node].
 
 ```js
 postcss.rule({ selector: 'a' }).toString() //=> "a {\n}"
@@ -87,7 +82,7 @@ postcss.rule({ selector: 'a' }).toString() //=> "a {\n}"
 
 ### `postcss.decl(props)`
 
-Creates a new [`Declaration` node](#declaration-node).
+Creates a new [`Declaration` node].
 
 ```js
 postcss.decl({ prop: 'color', value: 'black' }).toString() //=> "color: black"
@@ -95,7 +90,7 @@ postcss.decl({ prop: 'color', value: 'black' }).toString() //=> "color: black"
 
 ### `postcss.comment(props)`
 
-Creates a new [`Comment` node](#comment-node).
+Creates a new [`Comment` node].
 
 ```js
 postcss.comment({ text: 'test' }).toString() //=> "/* test */"
@@ -123,11 +118,11 @@ processor.use(autoprefixer).use(cssnext).use(cssgrace);
 ```
 
 Plugins can also be added by passing them as arguments when creating
-a `postcss` instance (cf. [`postcss(plugins)`](#postcssplugins)).
+a `postcss` instance (cf. [`postcss(plugins)`]).
 
 Plugins can come in three formats:
 
-1. A function. PostCSS will pass the function a `Root` node
+1. A function. PostCSS will pass the function a [`Root` node]
    as the first argument.
 2. An object with a `postcss` method. PostCSS will use that method
    as described in #1.
@@ -149,7 +144,7 @@ processor.use(function (css) {
 ### `p.process(css, opts)`
 
 This is the main method of PostCSS. It will parse the source CSS
-and create a `Root` node; send this `Root` to each plugin successively,
+and create a [`Root` node]; send this `Root` to each plugin successively,
 for transformations; and then return a `Result` instance created
 from the transformed `Root`.
 
@@ -174,16 +169,12 @@ Options:
   to fix CSS syntax errors.
 * `map`: an object of [source map options].
 
-[Safe Mode]:          https://github.com/postcss/postcss#safe-mode
-[source map options]: https://github.com/postcss/postcss#source-map
-
 ## `Result` class
 
 Provides result of PostCSS transformations.
 
 A `Result` instance is returned
-by [`PostCSS#process(css, opts)`](#pprocesscss-opts)
-and [`Root#toResult(opts)`](#toresult-opts).
+by [`PostCSS#process(css, opts)`] and [`Root#toResult(opts)`].
 
 ```js
 var result1 = postcss().process(css);
@@ -200,8 +191,8 @@ root.toResult().root == root;
 
 ### `result.opts`
 
-Options from the [`PostCSS#process(css, opts)`](#pprocesscss-opts) or
-[`Root#toResult(opts)`](#toresult-opts) call that produced
+Options from the [`PostCSS#process(css, opts)`] or
+[`Root#toResult(opts)`] call that produced
 this `Result` instance.
 
 ```js
@@ -217,9 +208,9 @@ postcss().process('a{}').css //=> "a{}"
 ```
 
 This property is generated *lazily*: `Root` is not stringified until
-the first request for the `css` property (or the [`map`](#map) property).
+the first request for the `css` property (or the [`result.map`] property).
 That initial request for `css` will also generate a source map.
-Source map will inlined into CSS or assigned to the [`map`](#map) property,
+Source map will inlined into CSS or assigned to the [`result.map`] property,
 if user ask to save map to separated file.
 
 ### `result.map`
@@ -232,9 +223,9 @@ result.map.toJSON() //=> { version: 3, file: 'a.css', sources: ['a.css'], … }
 ```
 
 This property is generated *lazily*: the source map for `Root` is not generated
-until the first request for the `map` property (or the [`css`](#css) property).
+until the first request for the `map` property (or the [`result.css`] property).
 That initial request will also stringify `Root` and assign the generated
-CSS string to the [`css`](#css) property.
+CSS string to the [`result.css`] property.
 
 Additionally, *this property will receive a value only if the user does not wan
 an inline source map*. By default, PostCSS generates inline source maps,
@@ -250,8 +241,6 @@ if ( result.map ) {
     fs.writeFileSync(to + '.map', result.map.toString());
 }
 ```
-
-[`source-map`]: https://github.com/mozilla/source-map
 
 ## Vendor module
 
@@ -275,8 +264,8 @@ vendor.unprefixed('-moz-tab-size') //=> 'tab-size'
 
 ## List module
 
-Contains helpers for safely splitting lists of CSS values, with brackets
-and quotes detection.
+Contains helpers for safely splitting lists of CSS values, preserving parentheses
+and quotes.
 
 ```js
 var list = require('postcss/lib/list');
@@ -299,7 +288,7 @@ for `transition-*` and `background` properties).
 
 ```js
 list.comma('black, linear-gradient(white, black)')
-//=> ['1px 2px', 'rgba(255, 0, 0, 0.9)']
+//=> ['black', 'linear-gradient(white, black)']
 ```
 
 ## `Input` class
@@ -334,8 +323,8 @@ root.source.input.id   //=> <input css 1>
 
 ### `input.from`
 
-The CSS source identifier. Contains [`file`](#file) if the user set the
-[`from` option](#pprocesscss-opts), or [`id`](#id) if she did not.
+The CSS source identifier. Contains [`input.file`](#inputfile) if the user set the
+[`from` option](#pprocesscss-opts), or [`input.id`](#inputid) if she did not.
 
 ```js
 var root  = postcss.parse(css, { from: 'a.css' });
@@ -356,8 +345,6 @@ from the [`source-map`] library.
 ```js
 root.source.input.map.consumer().sources //=> ['a.sass']
 ```
-
-[`source-map`]: https://github.com/mozilla/source-map
 
 ### `input.origin(line, column)`
 
@@ -395,7 +382,7 @@ root.nodes[0].parent == root;
 
 Returns the input source of the node, with the following properties:
 
-- `node.source.input`: An `Input` instance.
+- `node.source.input`: An [`Input`] instance.
 - `node.source.start`: The starting position of the node’s source —
   line and column.
 - `node.source.end`: The ending position of the node’s source — line and column.
@@ -566,7 +553,7 @@ root.nodes[0].nodes[1].style('before') //=> ' '
 ```
 
 If PostCSS can’t find any nodes to copy the code style property from,
-it will use `defaultType` value from `node.defaultStyle` object.
+it will use the `defaultType` value from the `node.defaultStyle` object.
 
 ## Containers: common methods
 
@@ -711,7 +698,7 @@ root.eachDecl(function (decl) {
 });
 ```
 
-If you pass a string or regexp as `filter`, only those declarations whose
+If you pass a string or regular expression as `filter`, only those declarations whose
 property matches`filter` will be iterated over.
 
 ```js
@@ -727,7 +714,7 @@ root.eachDecl(/^background/, function (decl) {
 Like `container.each()`, this method is safe to use if you are mutating
 arrays during iteration.
 
-### `container.eachAtRule([nameFilter,] calllback)`
+### `container.eachAtRule([nameFilter,] callback)`
 
 Recursively iterates through all at-rule nodes within the container,
 calling `callback` for each.
@@ -741,7 +728,7 @@ root.eachAtRule(function (rule) {
 });
 ```
 
-If you pass a string or regexp as `filter`, only those at-rules whose name
+If you pass a string or regular expression as `filter`, only those at-rules whose name
 matches `filter` will be iterated over.
 
 ```js
@@ -802,9 +789,13 @@ You can speed up the search by passing `opts`:
 
 - `props`: An array of property names. The method will only search for values
   that match `regexp` within declarations of listed properties.
-- `fast`: string to increase regexp perfomance. Because regexp is slow,
-  we will call it only if we will find `fast` in value. For example,
-  we will replaces `/\d+rem/` only for values, that contains `rem` string.
+- `fast`: A string that will be used to narrow down values and speed up
+  the regexp search. Searching every single value with a regexp can be slow;
+  so if you pass a `fast` string, PostCSS will first check whether the value
+  contains the `fast` string; and only if it does will PostCSS check that value
+  against `regexp`. For example, instead of just checking for `/\d+rem/` on
+  all values, you can set `fast: 'rem'` to first check whether a value has
+  the `rem` unit, and only if it does perform the regexp check.
 
 This method is useful if you are using a custom unit or function,
 so need to iterate through all values.
@@ -877,7 +868,7 @@ rule.nodes.length //=> 0
 
 ## `Root` node
 
-Represents CSS file and contains all nodes inside.
+Represents a CSS file and contains all its parsed nodes.
 
 ```js
 var root = postcss.parse('a{color:black} b{z-index:2}');
@@ -885,18 +876,23 @@ root.type         //=> 'root'
 root.nodes.length //=> 2
 ```
 
-### `after`
+### `root.after`
 
-Stores space symbols after last child like `\n` from end of the file.
+The space symbols after the last child of `root`, such as `\n` at the end of a file.
 
 ```js
 var root = parse('a {}\nb { color: black }\n');
 root.after //=> '\n'
 ```
 
+This is a code style property.
+
 ## `AtRule` node
 
-Represents at-rule. Node will have `nodes` property if it have `{}` in CSS.
+Represents an at-rule.
+
+This node will have a `nodes` property, representing its children,
+if it is followed in the CSS by a `{}` block.
 
 
 ```js
@@ -910,9 +906,9 @@ var media = root.last;
 media.nodes   //=> []
 ```
 
-### `name`
+### `atrule.name`
 
-Stores at-rule name.
+The at-rule's name. This is the identifier that immediately follows the `@`.
 
 ```js
 var root  = postcss.parse('@media print {}');
@@ -920,32 +916,37 @@ var media = root.first;
 media.name //=> 'media'
 ```
 
-### `params`
+### `atrule.params`
 
-Stores at-rule parameters.
+The at-rule's parameters. These are the values that follow the at-rule's name but precede
+any `{}` block. The spec refers to this area as the at-rule's "prelude".
 
 ```js
 var root  = postcss.parse('@media print, screen {}');
 var media = root.first;
-media.params //=> 'print, screen'
+media.params //=> '[print, screen]'
 ```
 
-Value will be cleaned from inner comments. Origin value with comments will be
-in `_params.raw` property.
+This value will be cleaned of comments. If the source at-rule's prelude contained comments,
+those comments will be available in the `_params.raw` property.
+
+If you have not changed the parameters, calling `atrule.toString()` will stringify
+the original raw value (comments and all).
 
 ```js
 var root  = postcss.parse('@media print, /**/ screen {}');
 var media = root.first;
-media.params      //=> 'print,  screen'
+media.params      //=> '[print,  screen]'
 media._params.raw //=> 'print, /**/ screen'
 media.toString()  //=> '@media print, /**/ screen {}'
 ```
 
-If you will not change parameters, PostCSS will stringify origin raw value.
+### `atrule.before`
 
-### `before`
+The space symbols before the at-rule.
 
-Code style property with space symbols before at-rule.
+The default value is `\n`, except for the first rule in a `Root`, whose `before` property
+is empty.
 
 ```js
 var root  = postcss.parse('@charset "UTF-8";\n@media print {}\n');
@@ -953,11 +954,13 @@ var media = root.last;
 media.before //=> '\n'
 ```
 
-Default value is `\n`, except first rule in root where `before` will be empty.
+This is a code style property.
 
-### `afterName`
+### `atrule.afterName`
 
-Code style property with space symbols between at-rule name and parameters.
+The space symbols between the at-rule's name and its parameters.
+
+The default value is ` `.
 
 ```js
 var root  = postcss.parse('@media\n  print,\n  screen {}\n');
@@ -965,11 +968,14 @@ var media = root.first;
 media.afterName //=> '\n  '
 ```
 
-Default value is ` `.
+This is a code style property.
 
-### `between`
+### `atrule.between`
 
-Code style property with spaces between parametes and `{`.
+The space symbols between the at-rule's parameters
+and `{`, the block-opening curly brace.
+
+The default value is ` `.
 
 ```js
 var root  = postcss.parse('@media print, screen\n{}\n');
@@ -977,11 +983,14 @@ var media = root.first;
 media.before //=> '\n'
 ```
 
-Default value is ` `.
+This is a code style property.
 
-### `after`
+### `atrule.after`
 
-Code style property with spaces between last child and `}`.
+The space symbols between the at-rule's last child and `}`, the block-closing curly brace.
+
+The default value is `\n` if the at-rule has children, and an empty string (`''`)
+if it does not.
 
 ```js
 var root  = postcss.parse('@media print {\n  a {}\n  }\n');
@@ -989,21 +998,24 @@ var media = root.first;
 media.after //=> '\n  '
 ```
 
-Default value is `\n` if at-rule has children and empty string if it doesn’t.
+This is a code style property.
 
-### `semicolon`
+### `atrule.semicolon`
 
-Code style property for at-rules with declarations, that last children
-has optional `;`.
+`true` if at-rule's last child declaration is followed by an (optional) semicolon.
+
+`undefined` if the semicolon is omitted.
 
 ```js
 postcss.parse('@page{color:black}').first.semicolon  //=> undefined
 postcss.parse('@page{color:black;}').first.semicolon //=> true
 ```
 
+This is a code style property.
+
 ## `Rule` node
 
-Represents CSS rule with selector.
+Represents a CSS rule: a selector followed by a declaration block.
 
 ```js
 var root = postcss.parse('a{}');
@@ -1012,9 +1024,10 @@ rule.type       //=> 'rule'
 rule.toString() //=> 'a{}'
 ```
 
-### `selector`
+### `rule.selector`
 
-Stores rule’s selector string.
+The rule’s full selector represented as a string. If there are multiple comma-separated selectors,
+the entire group will be included.
 
 ```js
 var root = postcss.parse('a, b { }');
@@ -1022,8 +1035,11 @@ var rule = root.first;
 rule.selector //=> 'a, b'
 ```
 
-Value will be cleaned from inner comments. Origin value with comments will be
-in `_selector.raw` property.
+This value will be cleaned of comments. If the source selector contained comments,
+those comments will be available in the `_selector.raw` property.
+
+If you have not changed the selector, the result of `rule.toString()` will include
+the original raw selector value (comments and all).
 
 ```js
 var root = postcss.parse('a /**/ b {}');
@@ -1033,11 +1049,9 @@ rule._selector.raw //=> 'a /**/ b'
 rule.toString()    //=> 'a /**/ b {}'
 ```
 
-If you will not change selector, PostCSS will stringify origin raw value.
+### `rule.selectors`
 
-### `selectors`
-
-Dynamic property that will split `selector` by comma and return array.
+An array containing the rule's individual selectors. Groups of selectors are split at commas.
 
 ```js
 var root = postcss.parse('a, b { }');
@@ -1050,9 +1064,11 @@ rule.selectors = ['a', 'strong'];
 rule.selector //=> 'a, strong'
 ```
 
-### `before`
+### `rule.before`
 
-Code style property with space symbols before rule.
+The space symbols before the rule.
+
+The default value is `\n`, except for first rule in root, whose `before` property is empty.
 
 ```js
 var root = postcss.parse('a {}\nb {}\n');
@@ -1060,11 +1076,13 @@ var rule = root.last;
 rule.before //=> '\n'
 ```
 
-Default value is `\n`, except first rule in root where `before` will be empty.
+This is a code style property.
 
-### `after`
+### `rule.after`
 
-Code style property with spaces between last child and `}`.
+The space symbols between the rule's last child and `}`, the block-closing curly brace.
+
+The default value is `\n` if rule has children and an empty string (`''`) if it does not.
 
 ```js
 var root = postcss.parse('@a {\n  color: black\n  }\n');
@@ -1072,20 +1090,24 @@ var rule = root.first;
 root.after //=> '\n  '
 ```
 
-Default value is `\n` if rule has children and empty string if it doesn’t.
+This is a code style property.
 
-### `semicolon`
+### `rule.semicolon`
 
-Code style property, that last children has optional `;`.
+`true` if rule's last child declaration is followed by an (optional) semicolon.
+
+`undefined` if the semicolon is omitted.
 
 ```js
 postcss.parse('a{color:black}').first.semicolon  //=> undefined
 postcss.parse('a{color:black;}').first.semicolon //=> true
 ```
 
+This is a code style property.
+
 ## `Declaration` node
 
-Represents CSS declaration.
+Represents a CSS declaration.
 
 ```js
 var root = postcss.parse('a { color: black }');
@@ -1094,9 +1116,9 @@ decl.type       //=> 'decl'
 decl.toString() //=> ' color: black'
 ```
 
-### `prop`
+### `declaration.prop`
 
-Stores property name.
+The declaration's property name.
 
 ```js
 var root = postcss.parse('a { color: black }');
@@ -1104,9 +1126,9 @@ var decl = root.first.first;
 decl.prop //=> 'color'
 ```
 
-### `value`
+### `declaration.value`
 
-Stores declaration value.
+The declaration's value.
 
 ```js
 var root = postcss.parse('a { color: black }');
@@ -1114,8 +1136,11 @@ var decl = root.first.first;
 decl.value //=> 'black'
 ```
 
-Value will be cleaned from inner comments. Origin value with comments will be
-in `_value.raw` property.
+This value will be cleaned of comments. If the source value contained comments,
+those comments will be available in the `_value.raw` property.
+
+If you have not changed the value, the result of `decl.toString()` will include
+the original raw value (comments and all).
 
 ```js
 var root = postcss.parse('a { border-radius: 3px /**/ 0 }');
@@ -1125,11 +1150,11 @@ decl._value.raw //=> '3px /**/ 0'
 decl.toString() //=> ' border-radius: 3px /**/ 0'
 ```
 
-If you will not change value, PostCSS will stringify origin raw value.
+### `declaration.before`
 
-### `before`
+The space symbols before the declaration.
 
-Code style property with space symbols before declaration.
+Default value is `\n    `.
 
 ```js
 var root = postcss.parse('a {\n  color: black\n}\n');
@@ -1137,11 +1162,13 @@ var decl = root.first.first;
 decl.before //=> '\n  '
 ```
 
-Default value is `\n    `.
+This is a code style property.
 
-### `between`
+### `declaration.between`
 
-Code style property with symbols between property and value.
+The symbols between the declaration's property and its value.
+
+Default value is `: `.
 
 ```js
 var root = postcss.parse('a { color/**/: black }');
@@ -1149,11 +1176,11 @@ var decl = root.first.first;
 decl.between //=> '/**/: '
 ```
 
-Default value is `: `.
+This is a code style property.
 
-### `important`
+### `declaration.important`
 
-Property is `true` if declaration has `!important` statement.
+`true` if the declaration has an `!important` annotation.
 
 ```js
 var root = postcss.parse('a { color: black !important; color: white }');
@@ -1161,8 +1188,8 @@ root.first.first.important //=> true
 root.first.last.important  //=> undefined
 ```
 
-If value has comments before `!important` statement, they will be stored
-in `_important` property.
+If there are comments between the declaration's value and its `!important` annotation,
+they will be available in the `_important` property.
 
 ```js
 var root = postcss.parse('a { color: black /**/ !important }');
@@ -1171,9 +1198,9 @@ root.first.first._important //=> ' /**/ !important'
 
 ## `Comment` node
 
-Represents comment between declarations or rules.
-Comments inside selectors, at-rules params, or declaration values
-will be stored in the raw properties.
+Represents a comment between declarations or statements (rule and at-rules).
+Comments inside selectors, at-rules parameters, or declaration values
+will be stored in the raw properties explained above.
 
 ```js
 var root    = postcss.parse('a { color: /* inner */ black; /* outer */ }');
@@ -1184,9 +1211,9 @@ comment.type //=> 'comment'
 decl.between //=> ': /* inner */'
 ```
 
-### `text`
+### `comment.text`
 
-Stores comment text.
+The comment's text.
 
 ```js
 var root    = postcss.parse('/* Empty file */');
@@ -1194,9 +1221,11 @@ var comment = root.first;
 var comment.text //=> 'Empty file'
 ```
 
-### `left` and `right`
+### `comment.left` and `comment.right`
 
-Code style properties with spaces before/after comment’s text.
+The space symbols before/after the comment’s text.
+
+Default value is ` `.
 
 ```js
 var root  = postcss.parse('/* long */ /*short*/');
@@ -1207,11 +1236,13 @@ long.left  //=> ' '
 short.left //=> ''
 ```
 
-Default value is ` `.
+This is a code style property.
 
-### `before`
+### `comment.before`
 
-Code style property with space symbols before comment.
+The space symbols before the comment.
+
+Default value is `\n`.
 
 ```js
 var root    = postcss.parse('a {\n  /**/}\n');
@@ -1219,4 +1250,20 @@ var comment = root.first.first;
 comment.before //=> '\n  '
 ```
 
-Default value is `\n`.
+This is a code style property.
+
+[source map options]: https://github.com/postcss/postcss#source-map
+[Safe Mode]:          https://github.com/postcss/postcss#safe-mode
+[`PostCSS#use`]: #puseplugin
+[`Root` node]: #root-node
+[`AtRule` node]: #atrule-node
+[`Rule` node]: #rule-node
+[`Declaration` node]: #declaration-node
+[`Comment` node]: #comment-node
+[`postcss(plugins)`]: #postcssplugins
+[`PostCSS#process(css, opts)`]: #pprocesscss-opts
+[`Root#toResult(opts)`]: #roottoresult-opts
+[`result.map`]: #resultmap
+[`result.css`]: #resultcss
+[`source-map`]: https://github.com/mozilla/source-map
+[`Input`]: #inputclass
