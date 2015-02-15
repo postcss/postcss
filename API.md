@@ -875,7 +875,8 @@ root.nodes.length //=> 2
 
 ### `root.after`
 
-The space symbols after the last child of `root`, such as `\n` at the end of a file.
+The space symbols after the last child of `root`,
+such as `\n` at the end of a file.
 
 ```js
 var root = parse('a {}\nb { color: black }\n');
@@ -905,7 +906,7 @@ media.nodes   //=> []
 
 ### `atrule.name`
 
-The at-rule's name. This is the identifier that immediately follows the `@`.
+The at-rule’s name. This is the identifier that immediately follows the `@`.
 
 ```js
 var root  = postcss.parse('@media print {}');
@@ -915,8 +916,9 @@ media.name //=> 'media'
 
 ### `atrule.params`
 
-The at-rule's parameters. These are the values that follow the at-rule's name but precede
-any `{}` block. The spec refers to this area as the at-rule's "prelude".
+The at-rule’s parameters. These are the values that follow the at-rule’s name
+but precede any `{}` block. The spec refers to this area
+as the at-rule’s “prelude”.
 
 ```js
 var root  = postcss.parse('@media print, screen {}');
@@ -924,11 +926,12 @@ var media = root.first;
 media.params //=> '[print, screen]'
 ```
 
-This value will be cleaned of comments. If the source at-rule's prelude contained comments,
-those comments will be available in the `_params.raw` property.
+This value will be cleaned of comments. If the source at-rule’s prelude
+contained comments, those comments will be available
+in the `_params.raw` property.
 
-If you have not changed the parameters, calling `atrule.toString()` will stringify
-the original raw value (comments and all).
+If you have not changed the parameters, calling `atrule.toString()`
+will stringify the original raw value (comments and all).
 
 ```js
 var root  = postcss.parse('@media print, /**/ screen {}');
@@ -942,8 +945,8 @@ media.toString()  //=> '@media print, /**/ screen {}'
 
 The space symbols before the at-rule.
 
-The default value is `\n`, except for the first rule in a `Root`, whose `before` property
-is empty.
+The default value is `\n`, except for the first rule in a `Root`,
+whose `before` property is empty.
 
 ```js
 var root  = postcss.parse('@charset "UTF-8";\n@media print {}\n');
@@ -955,7 +958,7 @@ This is a code style property.
 
 ### `atrule.afterName`
 
-The space symbols between the at-rule's name and its parameters.
+The space symbols between the at-rule’s name and its parameters.
 
 The default value is ` `.
 
@@ -969,7 +972,7 @@ This is a code style property.
 
 ### `atrule.between`
 
-The space symbols between the at-rule's parameters
+The space symbols between the at-rule’s parameters
 and `{`, the block-opening curly brace.
 
 The default value is ` `.
@@ -984,10 +987,11 @@ This is a code style property.
 
 ### `atrule.after`
 
-The space symbols between the at-rule's last child and `}`, the block-closing curly brace.
+The space symbols between the at-rule’s last child and `}`,
+the block-closing curly brace.
 
-The default value is `\n` if the at-rule has children, and an empty string (`''`)
-if it does not.
+The default value is `\n` if the at-rule has children,
+and an empty string (`''`) if it does not.
 
 ```js
 var root  = postcss.parse('@media print {\n  a {}\n  }\n');
@@ -999,7 +1003,8 @@ This is a code style property.
 
 ### `atrule.semicolon`
 
-`true` if at-rule's last child declaration is followed by an (optional) semicolon.
+`true` if at-rule’s last child declaration
+is followed by an (optional) semicolon.
 
 `undefined` if the semicolon is omitted.
 
@@ -1023,8 +1028,8 @@ rule.toString() //=> 'a{}'
 
 ### `rule.selector`
 
-The rule’s full selector represented as a string. If there are multiple comma-separated selectors,
-the entire group will be included.
+The rule’s full selector represented as a string. If there are multiple
+comma-separated selectors, the entire group will be included.
 
 ```js
 var root = postcss.parse('a, b { }');
@@ -1032,11 +1037,11 @@ var rule = root.first;
 rule.selector //=> 'a, b'
 ```
 
-This value will be cleaned of comments. If the source selector contained comments,
-those comments will be available in the `_selector.raw` property.
+This value will be cleaned of comments. If the source selector contained
+comments, those comments will be available in the `_selector.raw` property.
 
-If you have not changed the selector, the result of `rule.toString()` will include
-the original raw selector value (comments and all).
+If you have not changed the selector, the result of `rule.toString()`
+will include the original raw selector value (comments and all).
 
 ```js
 var root = postcss.parse('a /**/ b {}');
@@ -1048,7 +1053,8 @@ rule.toString()    //=> 'a /**/ b {}'
 
 ### `rule.selectors`
 
-An array containing the rule's individual selectors. Groups of selectors are split at commas.
+An array containing the rule’s individual selectors.
+Groups of selectors are split at commas.
 
 ```js
 var root = postcss.parse('a, b { }');
@@ -1065,7 +1071,8 @@ rule.selector //=> 'a, strong'
 
 The space symbols before the rule.
 
-The default value is `\n`, except for first rule in root, whose `before` property is empty.
+The default value is `\n`, except for first rule in root,
+whose `before` property is empty.
 
 ```js
 var root = postcss.parse('a {}\nb {}\n');
@@ -1077,9 +1084,11 @@ This is a code style property.
 
 ### `rule.after`
 
-The space symbols between the rule's last child and `}`, the block-closing curly brace.
+The space symbols between the rule’s last child and `}`,
+the block-closing curly brace.
 
-The default value is `\n` if rule has children and an empty string (`''`) if it does not.
+The default value is `\n` if rule has children and an empty string (`''`)
+if it does not.
 
 ```js
 var root = postcss.parse('@a {\n  color: black\n  }\n');
@@ -1091,7 +1100,7 @@ This is a code style property.
 
 ### `rule.semicolon`
 
-`true` if rule's last child declaration is followed by an (optional) semicolon.
+`true` if rule’s last child declaration is followed by an (optional) semicolon.
 
 `undefined` if the semicolon is omitted.
 
@@ -1115,7 +1124,7 @@ decl.toString() //=> ' color: black'
 
 ### `declaration.prop`
 
-The declaration's property name.
+The declaration’s property name.
 
 ```js
 var root = postcss.parse('a { color: black }');
@@ -1125,7 +1134,7 @@ decl.prop //=> 'color'
 
 ### `declaration.value`
 
-The declaration's value.
+The declaration’s value.
 
 ```js
 var root = postcss.parse('a { color: black }');
@@ -1163,7 +1172,7 @@ This is a code style property.
 
 ### `declaration.between`
 
-The symbols between the declaration's property and its value.
+The symbols between the declaration’s property and its value.
 
 Default value is `: `.
 
@@ -1185,8 +1194,8 @@ root.first.first.important //=> true
 root.first.last.important  //=> undefined
 ```
 
-If there are comments between the declaration's value and its `!important` annotation,
-they will be available in the `_important` property.
+If there are comments between the declaration’s value and its
+`!important` annotation, they will be available in the `_important` property.
 
 ```js
 var root = postcss.parse('a { color: black /**/ !important }');
@@ -1210,7 +1219,7 @@ decl.between //=> ': /* inner */'
 
 ### `comment.text`
 
-The comment's text.
+The comment’s text.
 
 ```js
 var root    = postcss.parse('/* Empty file */');
