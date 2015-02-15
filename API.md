@@ -566,7 +566,7 @@ root.nodes[0].nodes[1].style('before') //=> ' '
 ```
 
 If PostCSS can’t find any nodes to copy the code style property from,
-it will use `defaultType` value from `node.defaultStyle` object.
+it will use default from [`const defaultStyle`](https://github.com/vanesyan/postcss/blob/patch-3/lib/node.js#L4-16)
 
 ## Containers: common methods
 
