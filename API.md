@@ -875,8 +875,7 @@ root.nodes.length //=> 2
 
 ### `root.toResult(opts)`
 
-Generates [`Result` instance](#result-class) of current CSS to stringify
-root’s transformations back CSS string and source map.
+Returns a [`Result`] instance representing the root's CSS.
 
 ```js
 var root1 = postcss.parse(css1, { from: 'a.css' });
@@ -1294,3 +1293,4 @@ This is a code style property.
 [`Root` node]:                  #root-node
 [`Rule` node]:                  #rule-node
 [`Input`]:                      #inputclass
+[`Result`]:                     #result-class
