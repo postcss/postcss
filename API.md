@@ -565,9 +565,6 @@ root.nodes[0].append({ prop: 'color', value: 'black' });
 root.nodes[0].nodes[1].style('before') //=> ' '
 ```
 
-If PostCSS can’t find any nodes to copy the code style property from,
-it will use default from [`const defaultStyle`](https://github.com/vanesyan/postcss/blob/patch-3/lib/node.js#L4-16)
-
 ## Containers: common methods
 
 The `Root`, `AtRule`, and `Rule` container nodes have some common methods
