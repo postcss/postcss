@@ -873,6 +873,25 @@ root.type         //=> 'root'
 root.nodes.length //=> 2
 ```
 
+### `root.toResult(opts)`
+
+Generates [`Result` instance](#result-class) of current CSS to stringify
+root’s transformations back CSS string and source map.
+
+```js
+var root1 = postcss.parse(css1, { from: 'a.css' });
+var root2 = postcss.parse(css2, { from: 'b.css' });
+
+root1.append(root2);
+var result = root1.toResult({ to: 'all.css', map: true });
+```
+
+Options:
+
+* `to`: the path where you’ll put the output CSS file. You should always set
+  `to` to generate correct source maps.
+* `map`: an object of [source map options].
+
 ### `root.after`
 
 The space symbols after the last child of `root`,
