@@ -8,7 +8,7 @@ var regexp = ['lib', 'test'].map(function (i) {
     return '^' + escape(path.join(__dirname, i) + path.sep);
 }).join('|');
 
-require('6to5/register')({
+require('babel/register')({
     only:   new RegExp('(' + regexp + ')'),
     ignore: false,
     loose: 'all'
