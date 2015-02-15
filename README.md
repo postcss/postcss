@@ -15,11 +15,11 @@ PostCSS itself is very small and focused. It includes a CSS parser, a CSS node
 tree API, a source map generator, and a node tree stringifier — and that's it.
 All of the stylesheet transformations it powers are encapsulated in modular plugins.
 And these plugins are themselves small and focused plain JS functions, which typically
-receive a CSS node tree at one end, apply transformations to it, and then return
+receive a CSS node tree at one end, apply transformations to it, and return
 a modified tree that can be used by other plugins or written to a file.
 
 Individual plugins implement specific transformations; and by using various plugins
-together you can put together your ideal CSS workflow.
+together you can create an ideal CSS workflow for yourself and your team.
 For instance, if you like the power provided by preprocessors
 like Sass, you could combine [Autoprefixer], [cssnext], [CSS Grace], [postcss-nested],
 [postcss-mixins], and [postcss-easings] to write CSS like this:
@@ -63,7 +63,7 @@ like Sass, you could combine [Autoprefixer], [cssnext], [CSS Grace], [postcss-ne
 (Note that this is not *the* way to use PostCSS: this is just one possible feature set
 enabled by the plugins listed above.)
 
-Twitter account for articles, releases and new plugins: [@postcss].
+Twitter account for articles, releases, and new plugins: [@postcss].
 Weibo account: [postcss].
 
 <a href="https://evilmartians.com/?utm_source=postcss">
@@ -83,7 +83,7 @@ and variables.
 
 In contrast, PostCSS provides a simple API that modular plugins can use to understand,
 transform, and create CSS. PostCSS plugins, therefore, can be created, maintained,
-and used independently.
+and implemented independently.
 And they can perform many different tasks, not just compile special syntaxes to CSS.
 Each plugin does one thing well; and all PostCSS plugins do not have to fit together
 into a large "superset" language.
@@ -140,12 +140,12 @@ plugins that you use.
 ### Perfomance
 
 PostCSS is one of the fastest CSS parsers written in JS. (Only [CSSOM] is
-faster, and only because it is less accurate.) So PostCSS will parse your CSS and
-apply plugin transformations faster than any other CSS processor out there.
+faster, and only because it is less accurate.) So PostCSS will read your CSS and
+apply transformations faster than any other stylesheet processor out there.
 
 If you use Ruby Sass now, PostCSS could significantly improve your development process:
 *PostCSS processing is 40 times faster than Ruby Sass compilation.*
-And even if you use the entire [cssnext] plugin pack, PostCSS (written in JS) is still
+And even if you throw in the entire [cssnext] plugin pack, PostCSS (written in JS) is still
 *4 times faster than [libsass]* (written on C++).
 
 [libsass]: https://github.com/sass/libsass
@@ -155,7 +155,7 @@ And even if you use the entire [cssnext] plugin pack, PostCSS (written in JS) is
 
 PostCSS plugins can read and rebuild an entire CSS node tree.
 With this power, plugin authors are able to create tools that would be impossible
-to build into preprocessors (like [Autoprefixer]).
+to build into preprocessors (for example, [Autoprefixer]).
 
 PostCSS-powered tools can do much more than transform special syntax into browser-friendly
 CSS. PostCSS plugin authors have built linters (like [doiuse] and [postcss-bem-linter]),
@@ -163,8 +163,8 @@ code review tools (like [list-selectors]), and minifiers (like [csswring]).
 With [postcss-data-packer], you can create a cacheable "sprite"
 by moving all `data:uri` values to separate file.
 
-One unique example of PostCSS's power is [RTLCSS]. As you know, some languages, such
-as Arabic and Hebrew, write from right-to-left (RTL), instead of the more widespread left-to-right
+One unique example of PostCSS's power is [RTLCSS]. As you know, in some languages, such
+as Arabic and Hebrew, writing moves from right-to-left (RTL), instead of the more widespread left-to-right
 convention. Because a language's directionality affects its readers' perspective,
 an international site's layout needs to change for RTL users, not just its text.
 (Check out [Arabic Wikipedia] as an example.)
@@ -176,25 +176,25 @@ changing the value order in `margin` shorthands, and more.
 ### Use the CSS of the Future
 
 CSS3 added valuable features, but some of them are not yet available in all of
-the browsers that many developers need to support. And exciting CSS4 modules are being drafted now
-— some even implemented in cutting-edge browsers — that will not be widely supported for
-quite a while. But many PostCSS plugins allow you to write this CSS of the future, then
-transpile it to code that can be understood by all the browsers you must support.
+the browsers that developers need to support. And exciting CSS4 modules are being drafted now
+— some even implemented in cutting-edge browsers — that will not be widely available for
+quite a while. But PostCSS plugins can allow us to write this CSS of the future, then
+transpile it to code usable in all the browsers we must support.
 
 [Autoprefixer] exemplifies this power: you write spec-compliant, future-friendly CSS, pretending
 that vendor prefixes don't exist, and it does the dirty work of inserting the prefixes you'll need.
 All of the plugins bundled into [cssnext] do similar work, allowing authors to use syntax
-and functions from the latest W3C specs.
+and functions from the latest W3C specs without worrying about the fallbacks they'll need.
 
 As more CSS specs are drafted, more PostCSS plugins will be written.
 Users will be able to write stylesheets using standard, interoperable syntax, instead of
-a specialized language for a specialized tool — as with preprocessors.
+a specialized language for a specialized tool (as with preprocessors).
 
 ## Quick Start
 
-1. Implement PostCSS with your build tool of choice. See the PostCSS [Grunt], [Gulp] and [webpack]
+1. Implement PostCSS with your build tool of choice. See the PostCSS [Grunt], [Gulp], and [webpack]
 plugins more detailed instructions.
-2. Select plugins from list below and add them to your PostCSS process.
+2. Select plugins from the list below and add them to your PostCSS process.
 3. Make awesome products.
 
 [webpack]: https://github.com/postcss/postcss-loader
@@ -218,28 +218,28 @@ according to special annotation comments.
 * [rtlcss] mirrors styles for right-to-left locales.
 * [pixrem] generates pixel fallbacks for `rem` units.
 * [css-mqpacker] joins matching CSS media queries into a single statement.
-* [postcss-assets] provides ways to simplify URLs, insert image dimensions, and inline files.
+* [postcss-assets] allows you to simplify URLs, insert image dimensions, and inline files.
 * [css2modernizr] analyzes your CSS and creates a Modernizr config file that requires
-only the tests your CSS uses.
+only the tests that your CSS will use.
 * [postcss-bem-linter] lints CSS for conformance to SUIT CSS methodology.
 * [pleeease-filters] converts WebKit filters to SVG filters, for cross-browser compatibility.
-* [postcss-custom-selectors] adds custom aliases for selectors using syntax from the
+* [postcss-custom-selectors] adds custom aliases for selectors, using syntax from the
 W3C CSS Extensions draft.
 * [doiuse] lints CSS for browser support, using data from Can I Use.
 * [webpcss] adds URLs for WebP images, so they can be used by browsers that support WebP.
 * [postcss-import] inlines the stylesheets referred to by `@import` rules.
 * [postcss-nested] unwraps nested rules, as Sass does.
-* [postcss-media-minmax] adds `<=` and `=>` statements to CSS media queries syntax from
+* [postcss-media-minmax] adds `<=` and `=>` statements to media queries, using syntax from
 the Media Queries 4 draft.
 * [postcss-mixins] enables mixins more powerful than Sass's, defined within stylesheets or in JS.
 * [postcss-easings] replaces easing names from easings.net with `cubic-bezier()` functions.
 * [postcss-url] rebases or inlines `url()`s.
 * [postcss-epub] adds the `-epub-` prefix to relevant properties.
-* [postcss-custom-properties] supports variables using syntax from the
+* [postcss-custom-properties] supports variables, using syntax from the
 W3C CSS Custom Properties spec.
 * [mq4-hover-shim] supports the `@media (hover)` feature from the Media Queries 4 draft.
 * [postcss-color-palette] transforms CSS2 color keywords to a custom palette.
-* [postcss-custom-media] supports custom aliases for media queries using syntax from
+* [postcss-custom-media] supports custom aliases for media queries, using syntax from
 the Media Queries 4 draft.
 * [css-byebye] removes the CSS rules that you don't want.
 * [postcss-simple-vars] supports for Sass-style variables.
@@ -325,8 +325,8 @@ Read the [postcss function], [processor], and [Result] API docs for more details
 ### Source Maps
 
 Using [source maps], a browser’s development tools can indicate the
-original position of your code in their source files, before any transformations
-were applied. For example, using a source map an inspector can show the position of a rule
+original position of your code in the source files, before any transformations
+were applied. For example, an inspector can show the position of a rule
 in a Sass source file, even if that file was compiled to CSS, concatenated, and minified.
 
 To ensure that an accurate source map is produced, every CSS processing step should
@@ -357,10 +357,10 @@ you expect, and output both external and inline maps.
 
 To ensure that you generate an accurate
 source map, you must indicate the input and output CSS files
-paths (using the options `from` and `to` respectively).
+paths — using the options `from` and `to`, respectively.
 
 To generate a new source map with the default options, simply set `map: true`.
-This will generate an inline source map that contains source content.
+This will generate an inline source map that contains the source content.
 If you don’t want the map inlined, you can use set `map.inline: false`.
 
 ```js
@@ -373,7 +373,7 @@ var result = processor.process(css, {
 result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
 ```
 
-If PostCSS is handling CSS and finds source maps from a previous transformation,
+If PostCSS finds source maps from a previous transformation,
 it will automatically update that source map with the same options.
 
 ```js
