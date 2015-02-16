@@ -213,7 +213,7 @@ according to special annotation comments.
 ## Plugins
 
 * [Autoprefixer] adds vendor prefixes for you, using data from Can I Use.
-* [csstyle] adds components woorkflow to your styles.
+* [csstyle] adds components workflow to your styles.
 * [cssgrace] provides various helpers and transpiles CSS3 for IE and other old browsers.
 * [csswring] is a CSS minifier.
 * [rtlcss] mirrors styles for right-to-left locales.
