@@ -10,6 +10,7 @@ test/
 .travis.yml
 origin.css
 fail.css
+postcss.js
 
 gulpfile.js
 logo.svg
