@@ -427,22 +427,22 @@ option as an object with the following parameters:
   a previous processing step (for example, Sass compilation).
   PostCSS will try to read the previous source map automatically
   (based on comments within the source CSS), but you can use this option
-  to identify it manually. If desired, you can omit the previous map
+  to identify it manually. If desired, you can omit the previous map
   with `prev: false`.
 
 * `sourcesContent` boolean: indicates that PostCSS should set the origin
-  content (for example, Sass source) of the source map. By default it is `true`.
+  content (for example, Sass source) of the source map. By default it is `true`.
   But if all previous maps do not contain sources content, PostCSS will also
   leave it out even if you do not set this option.
 
 * `annotation` boolean or string: indicates that PostCSS should add annotation
   comments to the CSS. By default, PostCSS will always add a comment with a path
-  to the source map. But if the input CSS does not have any annotation
+  to the source map. But if the input CSS does not have any annotation
   comment, PostCSS will omit it, too, even if you do not set this option.
 
   By default, PostCSS presumes that you want to save the source map as
   `opts.to + '.map'` and will use this path in the annotation comment.
-  But you can set another path by providing a string value for `annotation`.
+  But you can set another path by providing a string value for `annotation`.
 
   If you have set `inline: true`, annotation cannot be disabled.
 
