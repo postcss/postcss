@@ -387,7 +387,7 @@ from previous transformation steps, autodetect the format that you expect,
 and output both external and inline maps.
 
 To ensure that you generate an accurate source map, you must indicate the input
-and output CSS files paths — using the options `from` and `to`, respectively.
+and output CSS files paths — using the options `from` and `to`, respectively.
 
 To generate a new source map with the default options, simply set `map: true`.
 This will generate an inline source map that contains the source content.
@@ -404,7 +404,7 @@ result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"name
 ```
 
 If PostCSS finds source maps from a previous transformation,
-it will automatically update that source map with the same options.
+it will automatically update that source map with the same options.
 
 ```js
 // main.sass.css has an annotation comment with a link to main.sass.css.map
@@ -438,7 +438,7 @@ option as an object with the following parameters:
 * `annotation` boolean or string: indicates that PostCSS should add annotation
   comments to the CSS. By default, PostCSS will always add a comment with a path
   to the source map. But if the input CSS does not have any annotation
-  comment, PostCSS will omit it, too, even if you do not set this option.
+  comment, PostCSS will omit it, too, even if you do not set this option.
 
   By default, PostCSS presumes that you want to save the source map as
   `opts.to + '.map'` and will use this path in the annotation comment.
