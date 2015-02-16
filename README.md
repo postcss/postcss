@@ -22,12 +22,39 @@ a modified tree that can be used by other plugins or written to a file.
 
 Individual plugins implement specific transformations; and by using
 various plugins together you can create an ideal CSS workflow for yourself
-and your team. For instance, if you like the power provided by preprocessors
-like Sass, you could combine [Autoprefixer], [cssnext], [cssgrace],
-[postcss-nested], [postcss-mixins], and [postcss-easings]
-to write CSS like this:
+and your team.
+
+You can take [cssnext] plugin and write CSS4 code right now:
 
 ```css
+:root {
+    ---row: 1rem;
+    --mainColor: #ffbbaaff;
+}
+
+@custom-media --mobile (width <= 640px);
+
+@custom-selector --heading h1, h2, h3, h4, h5, h6;
+
+.post-article --heading {
+    margin-top: calc(10 * var(--row));
+    color: color(var(--mainColor) blackness(+20%));
+    font-variant-caps: small-caps;
+}
+@media (--mobile) {
+    .post-article --heading {
+        margin-top: 0;
+    }
+}
+```
+
+Or if you like the power provided by preprocessors like Sass,
+you could combine [postcss-nested], [postcss-mixins], [postcss-easings]
+and [postcss-media-minmax]:
+
+```css
+$mobile: width <= 640px
+
 @define-mixin social-icon $color {
     & {
         background: $color;
@@ -39,32 +66,21 @@ to write CSS like this:
 
 .social-icon {
     transition: background 200ms ease-in-sine;
-    font-variant-caps: small-caps;
     &.is-twitter {
         @mixin social-icon #55acee;
     }
     &.is-facebook {
         @mixin social-icon #3b5998;
     }
-    &:active {
-        opacity: 0.6;
-    }
 }
 
-@custom-media --mobile (width <= 640px);
-
-@custom-selector --heading h1, h2, h3, h4, h5, h6;
-
-.post-article --heading {
-    margin-top: 10rem;
-    @media (--mobile) {
-        margin-top: 0;
+.post-article {
+    padding: 10px 5px;
+    @media ($mobile) {
+        padding: 0;
     }
 }
 ```
-
-Note that this is not *the* way to use PostCSS: this is just one possible
-feature set enabled by the plugins listed above.
 
 Twitter account for articles, releases, and new plugins: [@postcss].
 Weibo account: [postcss].
@@ -111,35 +127,10 @@ like [postcss-mixins] and [postcss-simple-extend], add new powers
 to your stylesheets that are not yet part of any spec. With PostCSS,
 you can decide for yourself which plugins match your own needs and preferences.
 
-Variables provide a nice example of the flexibility that PostCSS offers.
-Right now, there are two different plugins that enable users to include
-variables in their stylesheets. [postcss-simple-vars] gives users
-a Sass-like syntax:
-
-```css
-a {
-    color: $link-color;
-}
-```
-
-[postcss-custom-properties] implements the syntax
-of the [W3C CSS Custom Properties] draft:
-
-```css
-a {
-    color: var(--link-color);
-}
-```
-
-Using PostCSS, you can choose which variables syntax you want to use —
-or even take both.
-
 Another advantage of PostCSS’s modularity is that anybody can contribute easily
 to the PostCSS ecosystem. Plugins are simple npm packages;
 so there are no barriers to writing your own plugins, or contributing ideas
 and bug fixes to the plugins that you use.
-
-[W3C CSS Custom Properties]: http://www.w3.org/TR/css-variables/
 
 ### Perfomance
 
