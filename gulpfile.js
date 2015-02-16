@@ -4,7 +4,9 @@ var fs   = require('fs-extra');
 // Build
 
 gulp.task('build:clean', function (done) {
-    fs.remove(__dirname + '/build', done);
+    fs.remove(__dirname + '/postcss.js', function () {
+        fs.remove(__dirname + '/build', done);
+    });
 });
 
 gulp.task('build:lib', ['build:clean'], function () {
@@ -39,6 +41,25 @@ gulp.task('build:package', ['build:clean'], function () {
 });
 
 gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
+
+gulp.task('standalone', ['build:lib'], function (done) {
+    var builder    = require('browserify')({
+        basedir:     __dirname + '/build/',
+        standalone: 'postcss'
+    });
+    builder.add('./lib/postcss.js');
+
+    var output = fs.createWriteStream(__dirname + '/postcss.js');
+    builder.bundle(function (error, build) {
+        if ( error ) {
+            process.stderr.write(error.toString() + "\n");
+            process.exit(1);
+        }
+
+        fs.removeSync(__dirname + '/build/');
+        fs.writeFile(__dirname + '/postcss.js', build, done);
+    });
+});
 
 // Lint
 
