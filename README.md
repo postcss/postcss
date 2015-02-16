@@ -108,7 +108,7 @@ Some plugins, like [postcss-custom-properties], [postcss-media-minmax],
 and [postcss-calc], implement syntax from present and future W3C specs,
 transpiling it to cross-browser-compatible output. Other plugins,
 like [postcss-mixins] and [postcss-simple-extend], add new powers
-to your stylesheets that are not yet part of any spec. With PostCSS,
+to your stylesheets that are not yet part of any spec. With PostCSS,
 you can decide for yourself which plugins match your own needs and preferences.
 
 Variables provide a nice example of the flexibility that PostCSS offers.
@@ -148,9 +148,9 @@ faster, and only because it is less accurate.) So PostCSS will read your CSS
 and apply transformations faster than any other stylesheet processor out there.
 
 If you use Ruby Sass now, PostCSS could significantly improve your development
-process: *PostCSS processing is 40 times faster than Ruby Sass compilation.*
+process: PostCSS processing is *40 times faster* than Ruby Sass compilation.
 And even if you throw in the entire [cssnext] plugin pack, PostCSS
-(written in JS) is still *4 times faster than [libsass]* (written on C++).
+(written in JS) is still *4 times faster* than [libsass] (written on C++).
 
 [libsass]: https://github.com/sass/libsass
 [CSSOM]:   https://github.com/NV/CSSOM
