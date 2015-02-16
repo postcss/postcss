@@ -17,7 +17,7 @@ PostCSS itself is very small and focused. It includes a CSS parser, a CSS node
 tree API, a source map generator, and a node tree stringifier — and that’s it.
 All of the stylesheet transformations it powers are encapsulated in modular
 plugins. And these plugins are themselves small and focused plain JS functions,
-which receive a CSS node tree, apply transformations to it, and return
+which receive a CSS node tree, apply transformations to it, and return
 a modified tree that can be used by other plugins or written to a file.
 
 Individual plugins implement specific transformations; and by using
@@ -64,7 +64,7 @@ to write CSS like this:
 ```
 
 Note that this is not *the* way to use PostCSS: this is just one possible
-feature set enabled by the plugins listed above.
+feature set enabled by the plugins listed above.
 
 Twitter account for articles, releases, and new plugins: [@postcss].
 Weibo account: [postcss].
@@ -79,8 +79,8 @@ Weibo account: [postcss].
 ## How PostCSS differs from Preprocessors
 
 Sass, Less and Stylus provide specialized languages that you can use to write
-CSS templates. These languages and their compilers are defined together
-in large codebases. Tools and libraries for preprocessors must work within
+CSS templates. These languages and their compilers are defined together
+in large codebases. Tools and libraries for preprocessors must work within
 each preprocessor’s limitations: usually they can only offer sets
 of pre-defined mixins, functions, and variables.
 
@@ -95,18 +95,18 @@ Each plugin does one thing well.
 ### Modularity
 
 Without any plugins, PostCSS will parse your CSS and stringify it back
-to you without changing a single byte. All of the processing that enables
+to you without changing a single byte. All of the processing that enables
 special features and syntax in your stylesheets is made possible
 by PostCSS plugins, which are nothing more than JS functions.
 
 Because each PostCSS plugin is an independent module, different plugins can take
 different approaches. This flexibility allows plugin authors to create whatever
-features they can imagine, while empowering PostCSS users
-to add only those features that they want to their workflow.
+features they can imagine, while empowering PostCSS users to add only
+those features that they want to their workflow.
 
 Some plugins, like [postcss-custom-properties], [postcss-media-minmax],
 and [postcss-calc], implement syntax from present and future W3C specs,
-transpiling it to cross-browser-compatible output. Other plugins,
+transpiling it to cross-browser-compatible output. Other plugins,
 like [postcss-mixins] and [postcss-simple-extend], add new powers
 to your stylesheets that are not yet part of any spec. With PostCSS,
 you can decide for yourself which plugins match your own needs and preferences.
@@ -136,7 +136,7 @@ or even take both.
 
 Another advantage of PostCSS’s modularity is that anybody can contribute easily
 to the PostCSS ecosystem. Plugins are simple npm packages;
-so there are no barriers to writing your own plugins, or contributing ideas
+so there are no barriers to writing your own plugins, or contributing ideas
 and bug fixes to the plugins that you use.
 
 [W3C CSS Custom Properties]: http://www.w3.org/TR/css-variables/
