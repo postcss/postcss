@@ -7,14 +7,14 @@ These plugins can add vendor prefixes, support variables and mixins,
 transpile CSS4 syntax, inline images, and more.
 
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
-But PostCSS is modular, 4-40x faster, and much more powerful.
+But PostCSS is modular, 4-40x faster, and much more powerful.
 
 PostCSS is used by Google, Twitter, Alibaba, and Shopify.
-Its most popular plugin, [Autoprefixer], is one of the most universally
+Its most popular plugin, [Autoprefixer], is one of the most universally
 praised CSS processors available.
 
 PostCSS itself is very small and focused. It includes a CSS parser, a CSS node
-tree API, a source map generator, and a node tree stringifier — and that’s it.
+tree API, a source map generator, and a node tree stringifier — and that’s it.
 All of the stylesheet transformations it powers are encapsulated in modular
 plugins. And these plugins are themselves small and focused plain JS functions,
 which receive a CSS node tree, apply transformations to it, and return
@@ -23,7 +23,7 @@ a modified tree that can be used by other plugins or written to a file.
 Individual plugins implement specific transformations; and by using
 various plugins together you can create an ideal CSS workflow for yourself
 and your team. For instance, if you like the power provided by preprocessors
-like Sass, you could combine [Autoprefixer], [cssnext], [CSS Grace],
+like Sass, you could combine [Autoprefixer], [cssnext], [cssgrace],
 [postcss-nested], [postcss-mixins], and [postcss-easings]
 to write CSS like this:
 
