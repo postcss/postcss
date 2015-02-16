@@ -6,12 +6,12 @@ PostCSS is a tool for transforming CSS with JS plugins.
 These plugins can add vendor prefixes, support variables and mixins,
 transpile CSS4 syntax, inline images, and more.
 
-PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
-But PostCSS is modular, 4-40x faster, and much more powerful.
-
 PostCSS is used by Google, Twitter, Alibaba, and Shopify.
 Its most popular plugin, [Autoprefixer], is one of the most universally
 praised CSS processors available.
+
+PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
+But PostCSS is modular, 4-40x faster, and much more powerful.
 
 PostCSS itself is very small and focused. It includes a CSS parser, a CSS node
 tree API, a source map generator, and a node tree stringifier — and that’s it.
