@@ -2,26 +2,26 @@
 
 <img align="right" width="95" height="95" src="http://postcss.github.io/postcss/logo.svg" title="Philosopher’s stone, logo of PostCSS">
 
-PostCSS is a tool for transforming CSS with JS plugins. These plugins can add vendor
-prefixes, support variables and mixins, transpile CSS4 syntax, inline images, and more.
+PostCSS is a tool to manipulate and transform CSS through JavaScript. PostCSS parse latest CSS syntax (even some W3C drafts if they seems stable enough) into an JavaScript AST (tree of nodes) and offers you some accessibles APIs to play with it.
 
-PostCSS can do the same work as "preprocessors" like Sass, Less, and Stylus. But
-PostCSS is modular, 4-40x faster, and much more powerful.
+In addition to the available APIs, PostCSS allows you to chain manipulations via a system of plugins.
 
-PostCSS is used by Google, Twitter, Alibaba, and Shopify. Its most popular plugin,
-[Autoprefixer], is one of the most universally praised CSS processors available.
+_You can easily use PostCSS only via its ecosystem of plugins._  
+Plugins can add vendor prefixes, transform CSS 4+ syntax to more compatible CSS, inline images, add pre-processor like variables or mixins support, etc.
 
-PostCSS itself is very small and focused. It includes a CSS parser, a CSS node
-tree API, a source map generator, and a node tree stringifier — and that's it.
-All of the stylesheet transformations it powers are encapsulated in modular plugins.
-And these plugins are themselves small and focused plain JS functions, which typically
-receive a CSS node tree at one end, apply transformations to it, and return
-a modified tree that can be used by other plugins or written to a file.
+With its ecosystem, PostCSS with a bunch of plugins might do the same job as Sass, LESS or Stylus.
+The interesting part is that PostCSS is modular, and instead of relying on a monolitic tool,
+you can tweak your workflow very easily for yourself and your team.
+The icing on the cake is that you can write your own plugins to make your own transformations.
 
-Individual plugins implement specific transformations; and by using various plugins
-together you can create an ideal CSS workflow for yourself and your team.
-For instance, if you like the power provided by preprocessors
-like Sass, you could combine [Autoprefixer], [cssnext], [CSS Grace], [postcss-nested],
+Note that PostCSS with some plugins can be 4x to 40x times faster, that popular pre-processors.
+
+_PostCSS is used by Google, Twitter, Alibaba, and Shopify. Its most popular plugin,
+[Autoprefixer], is one of the most universally praised CSS processors available._
+
+---
+
+Here is an example of what you can do if you combine [Autoprefixer], [cssnext], [CSS Grace][cssgrace], [postcss-nested],
 [postcss-mixins], and [postcss-easings] to write CSS like this:
 
 ```css
@@ -59,9 +59,6 @@ like Sass, you could combine [Autoprefixer], [cssnext], [CSS Grace], [postcss-ne
     }
 }
 ```
-
-(Note that this is not *the* way to use PostCSS: this is just one possible feature set
-enabled by the plugins listed above.)
 
 Twitter account for articles, releases, and new plugins: [@postcss].
 Weibo account: [postcss].
