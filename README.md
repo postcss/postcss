@@ -149,8 +149,8 @@ and apply transformations faster than any other stylesheet processor out there.
 
 If you use Ruby Sass now, PostCSS could significantly improve your development
 process: PostCSS processing is *40 times faster* than Ruby Sass compilation.
-And even if you throw in the entire [cssnext] plugin pack, PostCSS
-(written in JS) is still *4 times faster* than [libsass] (written on C++).
+And even if you throw in the entire [cssnext] plugin pack, PostCSS,
+written in JS, is still *4 times faster* than [libsass], written on C++.
 
 [libsass]: https://github.com/sass/libsass
 [CSSOM]:   https://github.com/NV/CSSOM
