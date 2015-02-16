@@ -82,7 +82,7 @@ Sass, Less and Stylus provide specialized languages that you can use to write
 CSS templates. These languages and their compilers are defined together
 in large codebases. Tools and libraries for preprocessors must work within
 each preprocessor’s limitations: usually they can only offer sets
-of pre-defined mixins, functions, and variables.
+of pre-defined mixins, functions, and variables.
 
 In contrast, PostCSS provides a simple API that modular plugins can use
 to understand, transform, and create CSS. PostCSS plugins, therefore,
@@ -96,7 +96,7 @@ Each plugin does one thing well.
 
 Without any plugins, PostCSS will parse your CSS and stringify it back
 to you without changing a single byte. All of the processing that enables
-special features and syntax in your stylesheets is made possible
+special features and syntax in your stylesheets is made possible
 by PostCSS plugins, which are nothing more than JS functions.
 
 Because each PostCSS plugin is an independent module, different plugins can take
@@ -144,11 +144,11 @@ and bug fixes to the plugins that you use.
 ### Perfomance
 
 PostCSS is one of the fastest CSS parsers written in JS. (Only [CSSOM] is
-faster, and only because it is less accurate.) So PostCSS will read your CSS
+faster, and only because it is less accurate.) So PostCSS will read your CSS
 and apply transformations faster than any other stylesheet processor out there.
 
 If you use Ruby Sass now, PostCSS could significantly improve your development
-process: *PostCSS processing is 40 times faster than Ruby Sass compilation.*
+process: *PostCSS processing is 40 times faster than Ruby Sass compilation.*
 And even if you throw in the entire [cssnext] plugin pack, PostCSS
 (written in JS) is still *4 times faster than [libsass]* (written on C++).
 
@@ -158,20 +158,20 @@ And even if you throw in the entire [cssnext] plugin pack, PostCSS
 ### Powerful Tools
 
 PostCSS plugins can read and rebuild an entire CSS node tree. With this power,
-plugin authors are able to create tools that would be impossible
+plugin authors are able to create tools that would be impossible
 to build into preprocessors (for example, [Autoprefixer]).
 
 PostCSS-powered tools can do much more than transform special syntax into
 browser-friendly CSS. PostCSS plugin authors have built linters
 (like [doiuse] and [postcss-bem-linter]), code review tools
-(like [list-selectors]), and minifiers (like [csswring]).
+(like [list-selectors]), and minifiers (like [csswring]).
 With [postcss-data-packer], you can create a cacheable “sprite”
 by moving all `data:uri` values to separate file.
 
 One unique example of PostCSS’s power is [RTLCSS]. As you know,
 in Arabic and Hebrew, writing moves from right-to-left (RTL), instead
-of the more widespread left-to-right convention. Because a language’s
-directionality affects its readers' perspective, an international site’s layout
+of the more widespread left-to-right convention. Because a language’s
+directionality affects its readers’ perspective, an international site’s layout
 needs to change for RTL users, not just its text. (Check out [Arabic Wikipedia]
 as an example.) The [RTLCSS] plugin effectively “mirrors” your stylesheet
 by swapping `left` and `right`, changing the value order in `margin` shorthands,
@@ -184,9 +184,9 @@ and more.
 CSS3 added valuable features, but some of them are not yet available in all
 of the browsers that developers need to support. And exciting CSS4 modules
 are being drafted now — some even implemented in cutting-edge browsers —
-that will not be widely available for quite a while. But PostCSS plugins
+that will not be widely available for quite a while. But PostCSS plugins
 can allow us to write this CSS of the future, then transpile it to code usable
-in all the browsers we must support.
+in all the browsers we must support.
 
 [Autoprefixer] exemplifies this power: you write spec-compliant, future-friendly
 CSS, pretending that vendor prefixes don’t exist, and it does the dirty work
