@@ -220,6 +220,7 @@ change values order in `margin`, etc.
 * [postcss-color-hex-alpha] adds `#rrggbbaa` and `#rgba` notation support.
 * [postcss-color-hwb] transforms `hwb()` to `rgb()`.
 * [postcss-single-charset] pops first `@charset` rule.
+* [--csstyle] modern approach for crafting modular, beautifully maintainable stylesheets.
 
 [postcss-color-rebeccapurple]: https://github.com/postcss/postcss-color-rebeccapurple
 [postcss-custom-properties]:   https://github.com/postcss/postcss-custom-properties
@@ -262,6 +263,7 @@ change values order in `margin`, etc.
 [rtlcss]:                      https://github.com/MohammadYounes/rtlcss
 [pixrem]:                      https://github.com/robwierzbowski/node-pixrem
 [doiuse]:                      https://github.com/anandthakker/doiuse
+[--csstyle]:                   http://www.csstyle.io/
 
 ## Usage
 
