@@ -260,6 +260,7 @@ like Sass's `@extend` with `%placeholders`.
 * [postcss-color-hwb] transforms `hwb()`, from the Color Module 4 draft, to widely compatible `rgb()`.
 * [postcss-single-charset] ensures that there is one and only one `@charset` rule at the
 top of your CSS.
+* [--csstyle] modern approach for crafting modular, beautifully maintainable stylesheets.
 
 [postcss-color-rebeccapurple]: https://github.com/postcss/postcss-color-rebeccapurple
 [postcss-custom-properties]:   https://github.com/postcss/postcss-custom-properties
@@ -303,6 +304,7 @@ top of your CSS.
 [RTLCSS]:                      https://github.com/MohammadYounes/rtlcss
 [pixrem]:                      https://github.com/robwierzbowski/node-pixrem
 [doiuse]:                      https://github.com/anandthakker/doiuse
+[--csstyle]:                   http://www.csstyle.io/
 
 ## Usage
 
