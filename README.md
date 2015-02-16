@@ -149,8 +149,8 @@ and apply transformations faster than any other stylesheet processor out there.
 
 If you use Ruby Sass now, PostCSS could significantly improve your development
 process: PostCSS processing is *40 times faster* than Ruby Sass compilation.
-And even if you throw in the entire [cssnext] plugin pack, PostCSS,
-written in JS, is still *4 times faster* than [libsass], written on C++.
+And even if you throw in the entire [cssnext] plugin pack, PostCSS,
+written in JS, is still *4 times faster* than [libsass], written on C++.
 
 [libsass]: https://github.com/sass/libsass
 [CSSOM]:   https://github.com/NV/CSSOM
@@ -159,7 +159,7 @@ written in JS, is still *4 times faster* than [libsass], written on C++.
 
 PostCSS plugins can read and rebuild an entire CSS node tree. With this power,
 plugin authors are able to create tools that would be impossible
-to build into preprocessors (for example, [Autoprefixer]).
+to build into preprocessors (like [Autoprefixer]).
 
 PostCSS-powered tools can do much more than transform special syntax into
 browser-friendly CSS. PostCSS plugin authors have built linters
@@ -174,7 +174,7 @@ of the more widespread left-to-right convention. Because a language’s
 directionality affects its readers’ perspective, an international site’s layout
 needs to change for RTL users, not just its text. (Check out [Arabic Wikipedia]
 as an example.) The [RTLCSS] plugin effectively “mirrors” your stylesheet
-by swapping `left` and `right`, changing the value order in `margin` shorthands,
+by swapping `left` and `right`, changing the value order in `margin` shorthands,
 and more.
 
 [Arabic Wikipedia]: https://ar.wikipedia.org/wiki/%D9%84%D8%BA%D8%A9_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9
@@ -186,13 +186,13 @@ of the browsers that developers need to support. And exciting CSS4 modules
 are being drafted now — some even implemented in cutting-edge browsers —
 that will not be widely available for quite a while. But PostCSS plugins
 can allow us to write this CSS of the future, then transpile it to code usable
-in all the browsers we must support.
+in all the browsers we must support.
 
 [Autoprefixer] exemplifies this power: you write spec-compliant, future-friendly
 CSS, pretending that vendor prefixes don’t exist, and it does the dirty work
 of inserting the prefixes you’ll need. All of the plugins bundled into [cssnext]
 do similar work, allowing authors to use syntax and functions
-from the latest W3C specs without worrying about the fallbacks they’ll need.
+from the latest W3C specs without worrying about the fallbacks they’ll need.
 
 As more CSS specs are drafted, more PostCSS plugins will be written. Users will
 be able to write stylesheets using standard, interoperable syntax, instead of
@@ -243,7 +243,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-import] inlines the stylesheets referred to by `@import` rules.
 * [postcss-nested] unwraps nested rules, as Sass does.
 * [postcss-media-minmax] adds `<=` and `=>` statements to media queries,
-  using syntax from the Media Queries 4 draft.
+  using syntax from the Media Queries 4 draft.
 * [postcss-mixins] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [postcss-easings] replaces easing names from easings.net
@@ -251,12 +251,12 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-url] rebases or inlines `url()`s.
 * [postcss-epub] adds the `-epub-` prefix to relevant properties.
 * [postcss-custom-properties] supports variables, using syntax from
-  the W3C CSS Custom Properties spec.
+  the W3C Custom Properties.
 * [mq4-hover-shim] supports the `@media (hover)` feature
   from the Media Queries 4 draft.
 * [postcss-color-palette] transforms CSS2 color keywords to a custom palette.
 * [postcss-custom-media] supports custom aliases for media queries,
-  using syntax from the Media Queries 4 draft.
+  using syntax from the Media Queries 4 draft.
 * [css-byebye] removes the CSS rules that you don’t want.
 * [postcss-simple-vars] supports for Sass-style variables.
 * [postcss-data-packer] moves embedded Base64 data out of the stylesheet
@@ -270,9 +270,9 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-calc] reduces `calc()` to values
   (when expressions involve the same units).
 * [postcss-font-variant] transpiles human-readable `font-variant` properties
-  to more widely supported CSS.
+  to more widely supported CSS.
 * [postcss-simple-extend] supports extending of silent classes,
-  like Sass’s `@extend` with `%placeholders`.
+  like Sass’s `@extend` with `%placeholders`.
 * [postcss-size] adds a `size` shortcut that sets width and height
   with one declaration.
 * [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
@@ -286,7 +286,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-color-hwb] transforms `hwb()`, from the Color Module 4 draft,
   to widely compatible `rgb()`.
 * [postcss-single-charset] ensures that there is one
-  and only one `@charset` rule at the top of your CSS.
+  and only one `@charset` rule at the top of file.
 
 [postcss-color-rebeccapurple]: https://github.com/postcss/postcss-color-rebeccapurple
 [postcss-custom-properties]:   https://github.com/postcss/postcss-custom-properties
