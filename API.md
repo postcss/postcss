@@ -742,7 +742,7 @@ root.eachAtRule('charset', function (rule) {
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
 
-### `eachRule(callback)`
+### `container.eachRule(callback)`
 
 Recursively iterates through all rule nodes within the container, calling
 `callback` for each.
@@ -760,7 +760,7 @@ console.log('You CSS uses ' + selectors.length + ' selectors');
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
 
-### `eachComment(callback)`
+### `container.eachComment(callback)`
 
 Recursively iterates through all comment nodes within the container, calling
 `callback` for each.
