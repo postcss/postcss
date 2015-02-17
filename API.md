@@ -457,7 +457,7 @@ if ( oldSyntax.check(decl) ) {
 ### `node.next()` and `node.prev()`
 
 Returns the next/previous child of the node’s parent; or returns `undefined`
-if the current node is the first/last child.
+if the current node is the last/first child.
 
 ```js
 var annotation = decl.prev();
