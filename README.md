@@ -20,11 +20,11 @@ plugins. And these plugins are themselves small and focused plain JS functions,
 which receive a CSS node tree, apply transformations to it, and return
 a modified tree that can be used by other plugins or written to a file.
 
-You can take [cssnext] plugin and write CSS4 code right now:
+You can use the [cssnext] plugin pack and write CSS4 code right now:
 
 ```css
 :root {
-    ---row: 1rem;
+    --row: 1rem;
     --mainColor: #ffbbaaff;
 }
 
