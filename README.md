@@ -52,11 +52,9 @@ and [postcss-media-minmax]:
 $mobile: width <= 640px
 
 @define-mixin social-icon $color {
-    & {
-        background: $color;
-        &:hover {
-            background: color($color whiteness(+10%))
-        }
+    background: $color;
+    &:hover {
+        background: color($color whiteness(+10%))
     }
 }
 
