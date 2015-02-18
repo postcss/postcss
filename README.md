@@ -207,7 +207,6 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ### Future CSS Syntax
 
-* [mq4-hover-shim] supports the `@media (hover)` feature.
 * [postcss-color-function] supports functions to transform colors.
 * [postcss-color-gray] supports the `gray()` function.
 * [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
@@ -223,32 +222,30 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-host] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
 * [postcss-media-minmax] adds `<=` and `=>` statements to media queries.
+* [mq4-hover-shim] supports the `@media (hover)` feature.
 
 ### Fallbacks
 
+* [postcss-epub] adds the `-epub-` prefix to relevant properties.
 * [Autoprefixer] adds vendor prefixes for you, using data from Can I Use.
 * [cssgrace] provides various helpers and transpiles CSS3 for IE
   and other old browsers.
 * [pixrem] generates pixel fallbacks for `rem` units.
-* [postcss-epub] adds the `-epub-` prefix to relevant properties.
 * [pleeease-filters] converts WebKit filters to SVG filters,
   for cross-browser compatibility.
 
 ### Language Extensions
 
-* [csstyle] adds components workflow to your styles.
 * [postcss-mixins] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [postcss-nested] unwraps nested rules, as Sass does.
 * [postcss-simple-extend] supports extending of silent classes,
   like Sass’s `@extend`.
 * [postcss-simple-vars] supports for Sass-style variables.
+* [csstyle] adds components workflow to your styles.
 
 ### Optimizations
 
-* [csswring] is a CSS minifier.
-* [css-byebye] removes the CSS rules that you don’t want.
-* [css-mqpacker] joins matching CSS media queries into a single statement.
 * [postcss-assets] allows you to simplify URLs, insert image dimensions,
   and inline files.
 * [postcss-calc] reduces `calc()` to values
@@ -257,6 +254,9 @@ a specialized language for a specialized tool (as with preprocessors).
   and into a separate file.
 * [postcss-import] inlines the stylesheets referred to by `@import` rules.
 * [postcss-url] rebases or inlines `url()`s.
+* [csswring] is a CSS minifier.
+* [css-byebye] removes the CSS rules that you don’t want.
+* [css-mqpacker] joins matching CSS media queries into a single statement.
 * [webpcss] adds URLs for WebP images, so they can be used by browsers
   that support WebP.
 
@@ -272,18 +272,18 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-brand-colors] inserts company brand colors
   in the `brand-colors` module.
 * [postcss-color-palette] transforms CSS2 color keywords to a custom palette.
-* [rtlcss] mirrors styles for right-to-left locales.
 * [postcss-single-charset] ensures that there is one
   and only one `@charset` rule at the top of file.
+* [rtlcss] mirrors styles for right-to-left locales.
 
 ### Analysis
 
+* [postcss-bem-linter] lints CSS for conformance to SUIT CSS methodology.
 * [css2modernizr] creates a Modernizr config file
   that requires only the tests that your CSS uses.
 * [doiuse] lints CSS for browser support, using data from Can I Use.
 * [list-selectors] lists and categorizes the selectors used in your CSS,
   for code review and analysis.
-* [postcss-bem-linter] lints CSS for conformance to SUIT CSS methodology.
 
 [postcss-color-rebeccapurple]: https://github.com/postcss/postcss-color-rebeccapurple
 [postcss-custom-properties]:   https://github.com/postcss/postcss-custom-properties
