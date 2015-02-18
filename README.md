@@ -205,73 +205,85 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ## Plugins
 
+### Future CSS Syntax
+
+* [mq4-hover-shim] supports the `@media (hover)` feature.
+* [pixrem] generates pixel fallbacks for `rem` units.
+* [postcss-color-function] supports functions to transform colors.
+* [postcss-color-gray] supports the `gray()` function.
+* [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
+* [postcss-color-hex-alpha] supports `#rrggbbaa` and `#rgba` notation.
+* [postcss-color-hwb] transforms `hwb()` to widely compatible `rgb()`.
+* [postcss-color-rebeccapurple] supports the `rebeccapurple` color.
+* [postcss-custom-media] supports custom aliases for media queries.
+* [postcss-custom-properties] supports variables, using syntax from
+  the W3C Custom Properties.
+* [postcss-custom-selectors] adds custom aliases for selectors.
+* [postcss-font-variant] transpiles human-readable `font-variant` properties
+  to more widely supported CSS.
+* [postcss-host] makes the Shadow DOM’s `:host` selector work properly
+  with pseudo-classes.
+* [postcss-media-minmax] adds `<=` and `=>` statements to media queries.
+
+### Fallbacks
+
 * [Autoprefixer] adds vendor prefixes for you, using data from Can I Use.
-* [csstyle] adds components workflow to your styles.
 * [cssgrace] provides various helpers and transpiles CSS3 for IE
   and other old browsers.
+* [postcss-epub] adds the `-epub-` prefix to relevant properties.
+* [pleeease-filters] converts WebKit filters to SVG filters,
+  for cross-browser compatibility.
+
+### Language Extensions
+
+* [csstyle] adds components workflow to your styles.
+* [postcss-mixins] enables mixins more powerful than Sass’s,
+  defined within stylesheets or in JS.
+* [postcss-nested] unwraps nested rules, as Sass does.
+* [postcss-simple-extend] supports extending of silent classes,
+  like Sass’s `@extend` with `%placeholders`.
+* [postcss-simple-vars] supports for Sass-style variables.
+
+### Optimizations
+
 * [csswring] is a CSS minifier.
-* [rtlcss] mirrors styles for right-to-left locales.
-* [pixrem] generates pixel fallbacks for `rem` units.
+* [css-byebye] removes the CSS rules that you don’t want.
 * [css-mqpacker] joins matching CSS media queries into a single statement.
 * [postcss-assets] allows you to simplify URLs, insert image dimensions,
   and inline files.
-* [css2modernizr] analyzes your CSS and creates a Modernizr config file
-  that requires only the tests that your CSS will use.
-* [postcss-bem-linter] lints CSS for conformance to SUIT CSS methodology.
-* [pleeease-filters] converts WebKit filters to SVG filters,
-  for cross-browser compatibility.
-* [postcss-custom-selectors] adds custom aliases for selectors, using syntax
-  from the W3C CSS Extensions draft.
-* [doiuse] lints CSS for browser support, using data from Can I Use.
-* [webpcss] adds URLs for WebP images, so they can be used by browsers
-  that support WebP.
-* [postcss-import] inlines the stylesheets referred to by `@import` rules.
-* [postcss-nested] unwraps nested rules, as Sass does.
-* [postcss-media-minmax] adds `<=` and `=>` statements to media queries,
-  using syntax from the Media Queries 4 draft.
-* [postcss-mixins] enables mixins more powerful than Sass’s,
-  defined within stylesheets or in JS.
-* [postcss-easings] replaces easing names from easings.net
-  with `cubic-bezier()` functions.
-* [postcss-url] rebases or inlines `url()`s.
-* [postcss-epub] adds the `-epub-` prefix to relevant properties.
-* [postcss-custom-properties] supports variables, using syntax from
-  the W3C Custom Properties.
-* [mq4-hover-shim] supports the `@media (hover)` feature
-  from the Media Queries 4 draft.
-* [postcss-color-palette] transforms CSS2 color keywords to a custom palette.
-* [postcss-custom-media] supports custom aliases for media queries,
-  using syntax from the Media Queries 4 draft.
-* [css-byebye] removes the CSS rules that you don’t want.
-* [postcss-simple-vars] supports for Sass-style variables.
-* [postcss-data-packer] moves embedded Base64 data out of the stylesheet
-  and into a separate file.
-* [postcss-color-gray] supports the `gray()` function
-  from the Color Module 4 draft.
-* [postcss-brand-colors] inserts company brand colors
-  in the `brand-colors` module.
-* [list-selectors] lists and categorizes the selectors used in your CSS,
-  for code review and analysis.
 * [postcss-calc] reduces `calc()` to values
   (when expressions involve the same units).
-* [postcss-font-variant] transpiles human-readable `font-variant` properties
-  to more widely supported CSS.
-* [postcss-simple-extend] supports extending of silent classes,
-  like Sass’s `@extend` with `%placeholders`.
+* [postcss-data-packer] moves embedded Base64 data out of the stylesheet
+  and into a separate file.
+* [postcss-import] inlines the stylesheets referred to by `@import` rules.
+* [postcss-url] rebases or inlines `url()`s.
+* [webpcss] adds URLs for WebP images, so they can be used by browsers
+  that support WebP.
+
+### Shortcuts
+
+* [postcss-easings] replaces easing names from easings.net
+  with `cubic-bezier()` functions.
 * [postcss-size] adds a `size` shortcut that sets width and height
   with one declaration.
-* [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
-* [postcss-host] makes the Shadow DOM’s `:host` selector work properly
-  with pseudo-classes.
-* [postcss-color-rebeccapurple] supports the `rebeccapurple` color.
-* [postcss-color-function] supports functions to transform colors
-  using W3C syntax.
-* [postcss-color-hex-alpha] supports `#rrggbbaa` and `#rgba` notation
-  from the Color Module 4 draft.
-* [postcss-color-hwb] transforms `hwb()`, from the Color Module 4 draft,
-  to widely compatible `rgb()`.
+
+### Others
+
+* [postcss-brand-colors] inserts company brand colors
+  in the `brand-colors` module.
+* [postcss-color-palette] transforms CSS2 color keywords to a custom palette.
+* [rtlcss] mirrors styles for right-to-left locales.
 * [postcss-single-charset] ensures that there is one
   and only one `@charset` rule at the top of file.
+
+### Analysis
+
+* [css2modernizr] analyzes your CSS and creates a Modernizr config file
+  that requires only the tests that your CSS will use.
+* [doiuse] lints CSS for browser support, using data from Can I Use.
+* [list-selectors] lists and categorizes the selectors used in your CSS,
+  for code review and analysis.
+* [postcss-bem-linter] lints CSS for conformance to SUIT CSS methodology.
 
 [postcss-color-rebeccapurple]: https://github.com/postcss/postcss-color-rebeccapurple
 [postcss-custom-properties]:   https://github.com/postcss/postcss-custom-properties
