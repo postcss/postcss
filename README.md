@@ -218,8 +218,8 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-custom-properties] supports variables, using syntax from
   the W3C Custom Properties.
 * [postcss-custom-selectors] adds custom aliases for selectors.
-* [postcss-font-variant] transpiles human-readable `font-variant` properties
-  to more widely supported CSS.
+* [postcss-font-variant] transpiles human-readable `font-variant` to more widely
+  supported CSS.
 * [postcss-host] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
 * [postcss-media-minmax] adds `<=` and `=>` statements to media queries.
@@ -241,7 +241,7 @@ a specialized language for a specialized tool (as with preprocessors).
   defined within stylesheets or in JS.
 * [postcss-nested] unwraps nested rules, as Sass does.
 * [postcss-simple-extend] supports extending of silent classes,
-  like Sass’s `@extend` with `%placeholders`.
+  like Sass’s `@extend`.
 * [postcss-simple-vars] supports for Sass-style variables.
 
 ### Optimizations
@@ -278,8 +278,8 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ### Analysis
 
-* [css2modernizr] analyzes your CSS and creates a Modernizr config file
-  that requires only the tests that your CSS will use.
+* [css2modernizr] creates a Modernizr config file
+  that requires only the tests that your CSS uses.
 * [doiuse] lints CSS for browser support, using data from Can I Use.
 * [list-selectors] lists and categorizes the selectors used in your CSS,
   for code review and analysis.
