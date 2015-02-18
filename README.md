@@ -208,7 +208,6 @@ a specialized language for a specialized tool (as with preprocessors).
 ### Future CSS Syntax
 
 * [mq4-hover-shim] supports the `@media (hover)` feature.
-* [pixrem] generates pixel fallbacks for `rem` units.
 * [postcss-color-function] supports functions to transform colors.
 * [postcss-color-gray] supports the `gray()` function.
 * [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
@@ -230,6 +229,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [Autoprefixer] adds vendor prefixes for you, using data from Can I Use.
 * [cssgrace] provides various helpers and transpiles CSS3 for IE
   and other old browsers.
+* [pixrem] generates pixel fallbacks for `rem` units.
 * [postcss-epub] adds the `-epub-` prefix to relevant properties.
 * [pleeease-filters] converts WebKit filters to SVG filters,
   for cross-browser compatibility.
