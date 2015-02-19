@@ -226,6 +226,8 @@ a specialized language for a specialized tool (as with preprocessors).
 ### Fallbacks
 
 * [postcss-epub] adds the `-epub-` prefix to relevant properties.
+* [postcss-opacity] adds opacity filter for IE8-
+* [postcss-vmin] generates `vm` fallback for `vmin` unit in IE9
 * [Autoprefixer] adds vendor prefixes for you, using data from Can I Use.
 * [cssgrace] provides various helpers and transpiles CSS3 for IE
   and other old browsers.
@@ -304,6 +306,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [postcss-color-hwb]:           https://github.com/postcss/postcss-color-hwb
 [pleeease-filters]:            https://github.com/iamvdo/pleeease-filters
 [postcss-easings]:             https://github.com/postcss/postcss-easings
+[postcss-opacity]:             https://github.com/iamvdo/postcss-opacity
 [postcss-assets]:              https://github.com/borodean/postcss-assets
 [postcss-import]:              https://github.com/postcss/postcss-import
 [postcss-nested]:              https://github.com/postcss/postcss-nested
@@ -317,6 +320,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [postcss-calc]:                https://github.com/postcss/postcss-calc
 [postcss-size]:                https://github.com/postcss/postcss-size
 [postcss-host]:                https://github.com/vitkarpov/postcss-host
+[postcss-vmin]:                https://github.com/iamvdo/postcss-vmin
 [postcss-url]:                 https://github.com/postcss/postcss-url
 [css-byebye]:                  https://github.com/AoDev/css-byebye
 [cssgrace]:                    https://github.com/cssdream/cssgrace
