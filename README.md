@@ -13,12 +13,11 @@ praised CSS processors available.
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
 But PostCSS is modular, 4-40x faster, and much more powerful.
 
-PostCSS itself is very small and focused. It includes a CSS parser, a CSS node
-tree API, a source map generator, and a node tree stringifier — and that’s it.
-All of the stylesheet transformations it powers are encapsulated in modular
-plugins. And these plugins are themselves small and focused plain JS functions,
-which receive a CSS node tree, apply transformations to it, and return
-a modified tree that can be used by other plugins or written to a file.
+PostCSS itself is very small. It includes only a CSS parser,
+a CSS node tree API, a source map generator, and a node tree stringifier.
+All CSS transformations are encapsulated in modular plugins. And these plugins
+are themselves small plain JS functions, which receive a CSS node tree,
+apply transformations to it, and return a modified tree.
 
 You can use the [cssnext] plugin pack and write future CSS code right now:
 
