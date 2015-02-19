@@ -228,6 +228,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-epub] adds the `-epub-` prefix to relevant properties.
 * [postcss-opacity] adds opacity filter for IE8-
 * [postcss-vmin] generates `vm` fallback for `vmin` unit in IE9
+* [postcss-will-change] inserts 3D hack before `will-change` property.
 * [Autoprefixer] adds vendor prefixes for you, using data from Can I Use.
 * [cssgrace] provides various helpers and transpiles CSS3 for IE
   and other old browsers.
@@ -298,6 +299,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [postcss-custom-media]:        https://github.com/postcss/postcss-custom-media
 [postcss-brand-colors]:        https://github.com/postcss/postcss-brand-colors
 [postcss-font-variant]:        https://github.com/postcss/postcss-font-variant
+[postcss-will-change]:         https://github.com/postcss/postcss-will-change
 [postcss-simple-vars]:         https://github.com/postcss/postcss-simple-vars
 [postcss-data-packer]:         https://github.com/Ser-Gen/postcss-data-packer
 [postcss-bem-linter]:          https://github.com/necolas/postcss-bem-linter
