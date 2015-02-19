@@ -4,7 +4,7 @@
 
 PostCSS is a tool for transforming CSS with JS plugins.
 These plugins can add vendor prefixes, support variables and mixins,
-transpile CSS4 syntax, inline images, and more.
+transpile CSS level 4 syntax, inline images, and more.
 
 PostCSS is used by Google, Twitter, Alibaba, and Shopify.
 Its most popular plugin, [Autoprefixer], is one of the most universally
@@ -20,7 +20,7 @@ plugins. And these plugins are themselves small and focused plain JS functions,
 which receive a CSS node tree, apply transformations to it, and return
 a modified tree that can be used by other plugins or written to a file.
 
-You can use the [cssnext] plugin pack and write CSS4 code right now:
+You can use the [cssnext] plugin pack and write CSS level 4 code right now:
 
 ```css
 :root {
@@ -167,7 +167,7 @@ and more.
 ### Use the CSS of the Future
 
 CSS3 added valuable features, but some of them are not yet available in all
-of the browsers that developers need to support. And exciting CSS4 modules
+of the browsers that developers need to support. And exciting CSS level 4 modules
 are being drafted now — some even implemented in cutting-edge browsers —
 that will not be widely available for quite a while. But PostCSS plugins
 can allow us to write this CSS of the future, then transpile it to code usable
@@ -196,7 +196,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ## Plugins Packs
 
-* [cssnext] contains plugins that allow you to use CSS4 features today.
+* [cssnext] contains plugins that allow you to use CSS level 4 features today.
 * [ACSS] contains plugins that transform your CSS according
   to special annotation comments.
 
