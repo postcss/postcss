@@ -3,8 +3,8 @@
 <img align="right" width="95" height="95" src="http://postcss.github.io/postcss/logo.svg" title="Philosopher’s stone, logo of PostCSS">
 
 PostCSS is a tool for transforming CSS with JS plugins. The growing ecosystem
-of PostCSS plugins can add vendor prefixes, support variables and mixins,
-transpile future CSS syntax, inline images, and more.
+of PostCSS plugins can add vendor prefixes, support variables and mixins,
+transpile future CSS syntax, inline images, and more.
 
 PostCSS is used by Google, Twitter, Alibaba, and Shopify.
 Its most popular plugin, [Autoprefixer], is one of the most universally
