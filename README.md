@@ -226,8 +226,8 @@ a specialized language for a specialized tool (as with preprocessors).
 ### Fallbacks
 
 * [postcss-epub] adds the `-epub-` prefix to relevant properties.
-* [postcss-opacity] adds opacity filter for IE8-
-* [postcss-vmin] generates `vm` fallback for `vmin` unit in IE9
+* [postcss-opacity] adds opacity filter for IE8.
+* [postcss-vmin] generates `vm` fallback for `vmin` unit in IE9.
 * [postcss-will-change] inserts 3D hack before `will-change` property.
 * [Autoprefixer] adds vendor prefixes for you, using data from Can I Use.
 * [cssgrace] provides various helpers and transpiles CSS3 for IE
