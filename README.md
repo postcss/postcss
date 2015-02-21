@@ -368,7 +368,7 @@ If you don’t want the map inlined, you can use set `map.inline: false`.
 ```js
 var result = processor.process(css, {
     from: 'main.css',
-    to:   'main.out.css'
+    to:   'main.out.css',
     map: { inline: false },
 });
 
