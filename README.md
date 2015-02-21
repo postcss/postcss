@@ -48,12 +48,12 @@ you could combine [postcss-nested], [postcss-mixins], [postcss-easings]
 and [postcss-media-minmax]:
 
 ```css
-$mobile: width <= 640px
+$mobile: width <= 640px;
 
 @define-mixin social-icon $color {
     background: $color;
     &:hover {
-        background: color($color whiteness(+10%))
+        background: color($color whiteness(+10%));
     }
 }
 
