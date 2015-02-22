@@ -14,7 +14,7 @@
     "dependencies": {
         "source-map": "~0.2.0",
         "js-base64":  "~2.1.7",
-        "babel":       "4.3.0"
+        "babel":       "4.4.5"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
@@ -23,7 +23,7 @@
         "jshint-stylish":         "1.0.0",
         "gulp-jshint":            "1.9.2",
         "gonzales-pe":            "3.0.0-26",
-        "browserify":             "8.1.3",
+        "browserify":             "9.0.3",
         "gulp-babel":             "4.0.0",
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.0",
@@ -35,7 +35,7 @@
         "through2":               "0.6.3",
         "stylecow":               "4.2.4",
         "request":                "2.53.0",
-        "cssnext":                "1.0.0",
+        "cssnext":                "1.0.1",
         "rework":                 "1.0.1",
         "mensch":                 "0.3.1",
         "stylus":                 "0.50.0",
