@@ -162,7 +162,7 @@ gulp.task('integration', ['build:lib'], function (done) {
                 }).css;
             } catch (e) {
                 fs.writeFileSync('fail.css', css);
-                return error('Parsing error: ' + e.message);
+                return error('Parsing error: ' + e.message + e.stack);
             }
 
             if ( processed != css ) {
