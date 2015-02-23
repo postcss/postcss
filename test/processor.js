@@ -136,7 +136,7 @@ describe('Processor', () => {
         it('send itself to plugins', () => {
             var processor = new Processor();
             var a = (css, arg) => expect(arg).to.eql(processor);
-            processor.use(a).process('a {}', { from: 'a.css' });
+            processor.use(a).process('a {}');
         });
 
         it('accepts source map from PostCSS', () => {
