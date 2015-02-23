@@ -38,6 +38,28 @@ Arguments:
 You can also set plugins with the [`Processor#use`] method.
 See its description below for details about plugin formats.
 
+### `postcss.plugin(name, initializer)`
+
+Creates PostCSS plugin.
+
+```js
+module.exports = postcss.plugin('postcss-remove', function (opts) {
+    var filter = opts.prop;
+    return function (css, processor) {
+        css.eachDecl(filter, function (decl) {
+            decl.removeSelf();
+        });
+    };
+});
+```
+
+Arguments:
+
+* `name (string)`: PostCSS plugin name. Same as in `name` property
+  in `package.json`. It will be saved in `plugin.postcssPlugin` property.
+* `initializer  (function)`: will receive plugin options and should return
+  functions to modify nodes in input CSS.
+
 ### `postcss.parse(css, opts)`
 
 Parses source `css` and returns a new `Root` node, which contains
@@ -164,11 +186,11 @@ Arguments:
 * `plugin (function|#postcss|Processor)`: PostCSS plugin. I can be in three
   formats:
   * A function. PostCSS will pass the function a [`Root` node]
-     as the first argument.
+    as the first argument and current [`Processor`] instance as second.
   * An object with a `postcss` method. PostCSS will use that method
-     as described in #1.
+    as described in #1.
   * Another `Processor` instance. PostCSS will copy plugins
-     from that instance to this one.
+    from that instance to this one.
 
 Plugins can also be added by passing them as arguments when creating
 a `postcss` instance (cf. [`postcss(plugins)`]).
