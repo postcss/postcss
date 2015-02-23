@@ -850,6 +850,13 @@ root.append({ selector: 'a' });                       // rule
 rule.append({ prop: 'color', value: 'black' });       // declaration
 rule.append({ text: 'Comment' })                      // comment
 ```
+Also you can use string with CSS of new element. But it will be a little bit
+slower, that shorcuts above.
+
+```js
+root.append('a {}');
+root.first.append('color: black; z-index: 1');
+```
 
 ### `container.insertBefore(oldNode, newNew)`  and `container.insertAfter(oldNode, newNew)`
 
@@ -865,6 +872,7 @@ You can also use the same shorcuts available to `container.append()`.
 
 ```js
 rule.insertBefore(decl, { prop: 'color', value: 'black' });
+root.insertBefore(decl, 'color: black');
 ```
 
 ### `container.remove(node)`
