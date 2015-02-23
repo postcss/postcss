@@ -36,4 +36,28 @@ describe('postcss()', () => {
 
     });
 
+    describe('.vendor', () => {
+
+        it('contains vendor module', () => {
+            expect(postcss.vendor.prefix('-moz-tab')).to.eql('-moz-');
+        });
+
+    });
+
+    describe('.parse', () => {
+
+        it('contains parser', () => {
+            expect(postcss.parse('').type).to.eql('root');
+        });
+
+    });
+
+    describe('.list', () => {
+
+        it('contains list module', () => {
+            expect(postcss.list.space('a b')).to.eql(['a', 'b']);
+        });
+
+    });
+
 });

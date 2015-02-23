@@ -96,6 +96,22 @@ Creates a new [`Comment` node].
 postcss.comment({ text: 'test' }).toString() //=> "/* test */"
 ```
 
+### `postcss.vendor`
+
+Contains [Vendor module](#vendor-module) module.
+
+```js
+postcss.vendor.unprefixed('-moz-tab') //=> ['tab']
+```
+
+### `postcss.list`
+
+Contains [List module](#list-module) module.
+
+```js
+postcss.list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
+```
+
 ## `Processor` class
 
 A `Processor` instance contains plugins to process CSS. You can create
@@ -256,7 +272,7 @@ if ( result.map ) {
 Contains helpers for working with vendor prefixes.
 
 ```js
-var vendor = require('postcss/lib/vendor');
+var vendor = postcss.vendor;
 ```
 
 ### `vendor.prefix(string)`
@@ -264,7 +280,7 @@ var vendor = require('postcss/lib/vendor');
 Returns the vendor prefix extracted from an input string.
 
 ```js
-vendor.prefix('-moz-tab-size') //=> '-moz-'
+postcss.vendor.prefix('-moz-tab-size') //=> '-moz-'
 ```
 
 ### `vendor.unprefixed(string)`
@@ -272,7 +288,7 @@ vendor.prefix('-moz-tab-size') //=> '-moz-'
 Returns the input string stripped of its vendor prefix.
 
 ```js
-vendor.unprefixed('-moz-tab-size') //=> 'tab-size'
+postcss.vendor.unprefixed('-moz-tab-size') //=> 'tab-size'
 ```
 
 ## List module
@@ -281,7 +297,7 @@ Contains helpers for safely splitting lists of CSS values, preserving parenthese
 and quotes.
 
 ```js
-var list = require('postcss/lib/list');
+var list = postcss.list;
 ```
 
 ### `list.space(string)`
@@ -290,8 +306,7 @@ Safely splits space-separated values (such as those for `background`,
 `border-radius`, and other shorthand properties).
 
 ```js
-list.space('1px calc(10% + 1px)')
-//=> ['1px', 'calc(10% + 1px)']
+postcss.list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
 ```
 
 ### `list.comma(string)`
@@ -300,7 +315,7 @@ Safely splits comma-separated values (such as those
 for `transition-*` and `background` properties).
 
 ```js
-list.comma('black, linear-gradient(white, black)')
+postcss.list.comma('black, linear-gradient(white, black)')
 //=> ['black', 'linear-gradient(white, black)']
 ```
 
