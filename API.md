@@ -163,11 +163,11 @@ Arguments:
 
 * `plugin (function|#postcss|Processor)`: PostCSS plugin. I can be in three
   formats:
-  1. A function. PostCSS will pass the function a [`Root` node]
+  * A function. PostCSS will pass the function a [`Root` node]
      as the first argument.
-  2. An object with a `postcss` method. PostCSS will use that method
+  * An object with a `postcss` method. PostCSS will use that method
      as described in #1.
-  3. Another `Processor` instance. PostCSS will copy plugins
+  * Another `Processor` instance. PostCSS will copy plugins
      from that instance to this one.
 
 Plugins can also be added by passing them as arguments when creating
@@ -560,8 +560,7 @@ Arguments:
 Returns a clones of the node.
 
 The resultant clone node and its (clone) children will have clean `parent`
-and code style properties. You can override properties in the clone node
-by passing a `props` argument.
+and code style properties.
 
 ```js
 var clonded = decl.clone({ prop: '-moz-' + decl.prop });
@@ -572,7 +571,7 @@ cloned.toString() //=> -moz-transform: scale(0)
 
 Arguments:
 
-* `props (object) optional`: new properties to replace them in clone.
+* `props (object) optional`: new properties to override them in clone.
 
 ### `node.cloneBefore(props)` and `node.cloneAfter(props)`
 
@@ -585,7 +584,7 @@ decl.cloneBefore({ prop: '-moz-' + decl.prop });
 
 Arguments:
 
-* `props (object) optional`: new properties to replace them in clone.
+* `props (object) optional`: new properties to override them in clone.
 
 ### `node.moveTo(newParent)`
 
