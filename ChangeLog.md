@@ -1,3 +1,6 @@
+## 4.0.5
+* Fix error message on double colon in declaration.
+
 ## 4.0.4
 * Fix indent detection in some rare cases.
 
