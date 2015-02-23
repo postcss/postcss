@@ -184,6 +184,15 @@ describe('postcss.parse()', () => {
             expect(root.toString()).to.eql('a { one: 1; two: 2 }');
         });
 
+        it('throws on double colon', () => {
+            expect( () => parse('a { one:: 1 }') )
+                .to.throw(/:1:9: Double colon/);
+        });
+
+        it('fixes double colon in safe mode', () => {
+            var root = parse('a { one:: 1 }', { safe: true });
+            expect(root.first.first.value).to.eql(': 1');
+        });
     });
 
 });
