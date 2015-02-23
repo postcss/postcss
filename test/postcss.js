@@ -23,6 +23,35 @@ describe('postcss()', () => {
         expect(postcss([a, b]).plugins).to.eql([a, b]);
     });
 
+    describe('.plugin()', () => {
+
+        it('creates plugin', () => {
+            var plugin = postcss.plugin('test', (filter) => {
+                return function (css, processor) {
+                    css.eachDecl(filter || 'two', function (decl) {
+                        decl.removeSelf();
+                    });
+                };
+            });
+
+            expect(plugin.postcssPlugin).to.eql('test');
+
+            var result1 = postcss(plugin('one')).process('a{ one: 1; two: 2 }');
+            expect(result1.css).to.eql('a{ two: 2 }');
+            var result2 = postcss(plugin).process('a{ one: 1; two: 2 }');
+            expect(result2.css).to.eql('a{ one: 1 }');
+        });
+
+    });
+
+    describe('.parse()', () => {
+
+        it('contains parser', () => {
+            expect(postcss.parse('').type).to.eql('root');
+        });
+
+    });
+
     describe('.root()', () => {
 
         it('allows to build own CSS', () => {
@@ -40,14 +69,6 @@ describe('postcss()', () => {
 
         it('contains vendor module', () => {
             expect(postcss.vendor.prefix('-moz-tab')).to.eql('-moz-');
-        });
-
-    });
-
-    describe('.parse', () => {
-
-        it('contains parser', () => {
-            expect(postcss.parse('').type).to.eql('root');
         });
 
     });
