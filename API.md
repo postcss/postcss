@@ -24,12 +24,16 @@ var postcss = require('postcss');
 
 ### `postcss(plugins)`
 
-Returns a new [`Processor` instance] that will apply `plugins`
+Returns a new [`Processor`] instance that will apply `plugins`
 as CSS processors.
 
 ```js
 postcss([autoprefixer, cssnext, cssgrace]).process(css).css;
 ```
+
+Arguments:
+
+* `plugins (array)`: PostCSS plugins list to set them to new processor.
 
 You can also set plugins with the [`Processor#use`] method.
 
@@ -47,14 +51,17 @@ var root2 = postcss.parse(css2, { from: file2 });
 root1.append(root2).toResult().css;
 ```
 
-Options:
+Arguments:
 
-* `from`: the path to the source CSS file. You should always set `from`,
-  because it is used in map generation and in syntax error messages.
-* `safe`: enable [Safe Mode], in which PostCSS will try
-  to fix CSS syntax errors.
-* `map`: an object of [source map options].
-  Only `map.prev` is used in `parse`.
+* `css (string|#toString)`: String with input CSS or any object
+  with `toString()` method, like file stream.
+* `opts (object) optional`: options:
+  * `from`: the path to the source CSS file. You should always set `from`,
+    because it is used in map generation and in syntax error messages.
+  * `safe`: enable [Safe Mode], in which PostCSS will try
+    to fix CSS syntax errors.
+  * `map`: an object of [source map options].
+    Only `map.prev` is used in `parse`.
 
 ### `postcss.root(props)`
 
@@ -64,6 +71,10 @@ Creates a new [`Root` node].
 postcss.root({ after: '\n' }).toString() //=> "\n"
 ```
 
+Arguments:
+
+* `props (object) optional`: properties for new node.
+
 ### `postcss.atRule(props)`
 
 Creates a new [`AtRule` node].
@@ -71,6 +82,10 @@ Creates a new [`AtRule` node].
 ```js
 postcss.atRule({ name: 'charset' }).toString() //=> "@charset"
 ```
+
+Arguments:
+
+* `props (object) optional`: properties for new node.
 
 ### `postcss.rule(props)`
 
@@ -80,6 +95,10 @@ Creates a new [`Rule` node].
 postcss.rule({ selector: 'a' }).toString() //=> "a {\n}"
 ```
 
+Arguments:
+
+* `props (object) optional`: properties for new node.
+
 ### `postcss.decl(props)`
 
 Creates a new [`Declaration` node].
@@ -88,6 +107,10 @@ Creates a new [`Declaration` node].
 postcss.decl({ prop: 'color', value: 'black' }).toString() //=> "color: black"
 ```
 
+Arguments:
+
+* `props (object) optional`: properties for new node.
+
 ### `postcss.comment(props)`
 
 Creates a new [`Comment` node].
@@ -95,6 +118,10 @@ Creates a new [`Comment` node].
 ```js
 postcss.comment({ text: 'test' }).toString() //=> "/* test */"
 ```
+
+Arguments:
+
+* `props (object) optional`: properties for new node.
 
 ### `postcss.vendor`
 
@@ -133,17 +160,19 @@ var processor = postcss();
 processor.use(autoprefixer).use(cssnext).use(cssgrace);
 ```
 
+Arguments:
+
+* `plugin (function|#postcss|Processor)`: PostCSS plugin. I can be in three
+  formats:
+  1. A function. PostCSS will pass the function a [`Root` node]
+     as the first argument.
+  2. An object with a `postcss` method. PostCSS will use that method
+     as described in #1.
+  3. Another `Processor` instance. PostCSS will copy plugins
+     from that instance to this one.
+
 Plugins can also be added by passing them as arguments when creating
 a `postcss` instance (cf. [`postcss(plugins)`]).
-
-Plugins can come in three formats:
-
-1. A function. PostCSS will pass the function a [`Root` node]
-   as the first argument.
-2. An object with a `postcss` method. PostCSS will use that method
-   as described in #1.
-3. Another `Processor` instance. PostCSS will copy plugins
-   from that instance to this one.
 
 Plugin functions should mutate the passed `Root` node and return nothing,
 or return a new `Root` node.
@@ -168,22 +197,19 @@ from the transformed `Root`.
 var result = processor.process(css, { from: 'a.css', to: 'a.out.css' });
 ```
 
-Input CSS formats are:
+Arguments:
 
-* A string of CSS.
-* A `Result` instance from another PostCSS processor. PostCSS will accept
-  the already parsed `Root` from it.
-* Any object with a `toString()` method — for example, a file stream.
-
-Options:
-
-* `from`: the path of the CSS source file. You should always set `from`,
-  because it is used in source map generation and syntax error messages.
-* `to`: the path where you’ll put the output CSS file. You should always set
-  `to` to generate correct source maps.
-* `safe`: enable [Safe Mode], in which PostCSS will try
-  to fix CSS syntax errors.
-* `map`: an object of [source map options].
+* `css (string|#toString|Result)`: String with input CSS or any object
+  with `toString()` method, like file stream. Also you can send [`Result`]
+  instance and processor will take already parser [`Root`] from it.
+* `ops (object) optional`: options:
+  * `from`: the path of the CSS source file. You should always set `from`,
+    because it is used in source map generation and syntax error messages.
+  * `to`: the path where you’ll put the output CSS file. You should always set
+    `to` to generate correct source maps.
+  * `safe`: enable [Safe Mode], in which PostCSS will try
+    to fix CSS syntax errors.
+  * `map`: an object of [source map options].
 
 ### `plugins`
 
@@ -1318,7 +1344,6 @@ This is a code style property.
 
 [`Processor#process(css, opts)`]: #processorprocesscss-opts
 [`Root#toResult(opts)`]:          #roottoresult-opts
-[`Processor` instance]:           #processor-class
 [`postcss(plugins)`]:             #postcssplugins
 [`Declaration` node]:             #declaration-node
 [`Comment` node]:                 #comment-node
@@ -1329,5 +1354,6 @@ This is a code style property.
 [`result.css`]:                   #resultcss
 [`Root` node]:                    #root-node
 [`Rule` node]:                    #rule-node
-[`Input`]:                        #inputclass
+[`Processor`]:                    #processor-class
 [`Result`]:                       #result-class
+[`Input`]:                        #inputclass
