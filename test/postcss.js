@@ -2,6 +2,7 @@ import Processor from '../lib/processor';
 import postcss   from '../lib/postcss';
 
 import { expect } from 'chai';
+import   sinon    from 'sinon';
 
 describe('postcss()', () => {
 
@@ -24,6 +25,13 @@ describe('postcss()', () => {
     });
 
     describe('.plugin()', () => {
+        beforeEach( () => {
+            sinon.stub(console, 'warn');
+        });
+
+        afterEach( () => {
+            console.warn.restore();
+        });
 
         it('creates plugin', () => {
             var plugin = postcss.plugin('test', (filter) => {
@@ -35,11 +43,36 @@ describe('postcss()', () => {
             });
 
             expect(plugin.postcssPlugin).to.eql('test');
+            expect(plugin.postcssVersion).to.match(/\d+.\d+.\d+/);
 
             var result1 = postcss(plugin('one')).process('a{ one: 1; two: 2 }');
             expect(result1.css).to.eql('a{ two: 2 }');
             var result2 = postcss(plugin).process('a{ one: 1; two: 2 }');
             expect(result2.css).to.eql('a{ one: 1 }');
+        });
+
+        it('wraps plugin to version check', () => {
+            var plugin = postcss.plugin('test', function () {
+                return function (css) {
+                    throw 'Er';
+                };
+            });
+
+            plugin.postcssVersion = '2.1.5';
+            expect( () => plugin()({ }, { version: '1.0.0' }) ).to.throws('Er');
+            expect(console.warn.callCount).to.eql(1);
+            expect(console.warn.args[0][0]).to.eql(
+                'test is based on PostCSS 2.1.5 but you use it with ' +
+                'PostCSS 1.0.0. Maybe this is a source of error below.');
+
+            expect( () => plugin()({ }, { version: '3.0.0' }) ).to.throws('Er');
+            expect(console.warn.callCount).to.eql(2);
+
+            expect( () => plugin()({ }, { version: '2.0.0' }) ).to.throws('Er');
+            expect(console.warn.callCount).to.eql(3);
+
+            expect( () => plugin()({ }, { version: '2.1.0' }) ).to.throws('Er');
+            expect(console.warn.callCount).to.eql(3);
         });
 
     });
