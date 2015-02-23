@@ -155,4 +155,12 @@ describe('Processor', () => {
 
     });
 
+    describe('version', () => {
+
+        it('contains PostCSS version', () => {
+            expect((new Processor()).version).to.match(/\d+.\d+.\d+/);
+        });
+
+    });
+
 });

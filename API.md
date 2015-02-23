@@ -232,6 +232,14 @@ Arguments:
     to fix CSS syntax errors.
   * `map`: an object of [source map options].
 
+### `version`
+
+Contains current version of PostCSS.
+
+```js
+postcss().version //=> '4.0.5'
+```
+
 ### `plugins`
 
 Contains plugins added to this processor.

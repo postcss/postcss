@@ -127,7 +127,7 @@ gulp.task('bench:parsers', ['build', 'bench:bootstrap'], function () {
 
 // Tests
 
-gulp.task('integration', ['build:lib'], function (done) {
+gulp.task('integration', ['build:lib', 'build:package'], function (done) {
     var gutil = require('gulp-util');
     var path  = require('path');
 
