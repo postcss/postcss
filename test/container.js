@@ -423,6 +423,13 @@ describe('Container', () => {
             expect(css.toString()).to.eql('a {}\nb {}');
         });
 
+        it('reveives string', () => {
+            var root = new Root();
+            root.append('a{}b{}');
+            root.first.append('color:black');
+            expect(root.toString()).to.eql('a {\n    color: black\n}\nb {}');
+        });
+
         it('receives array', () => {
             var a = parse('a{ z-index: 1 }');
             var b = parse('b{width:1px;height:2px}');
@@ -464,6 +471,12 @@ describe('Container', () => {
         it('receives root', () => {
             var css = parse('a {}');
             css.prepend( parse('b {}') );
+            expect(css.toString()).to.eql('b {}\na {}');
+        });
+
+        it('receives root', () => {
+            var css = parse('a {}');
+            css.prepend('b {}');
             expect(css.toString()).to.eql('b {}\na {}');
         });
 
