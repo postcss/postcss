@@ -133,9 +133,10 @@ describe('Processor', () => {
             expect((new Processor([a])).process('a {}').css).to.be.a('string');
         });
 
-        it('send options to plugins', () => {
-            var a = (css, opts) => expect(opts).to.eql({ from: 'a.css' });
-            (new Processor([a])).process('a {}', { from: 'a.css' });
+        it('send itself to plugins', () => {
+            var processor = new Processor();
+            var a = (css, arg) => expect(arg).to.eql(processor);
+            processor.use(a).process('a {}', { from: 'a.css' });
         });
 
         it('accepts source map from PostCSS', () => {
