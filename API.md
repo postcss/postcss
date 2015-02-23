@@ -1,7 +1,7 @@
 # PostCSS API
 
 * [postcss function](#postcss-function)
-* [PostCSS class](#postcss-class)
+* [Processor class](#processor-class)
 * [Result class](#result-class)
 * [Vendor module](#vendor-module)
 * [List module](#list-module)
@@ -24,16 +24,16 @@ var postcss = require('postcss');
 
 ### `postcss(plugins)`
 
-Returns a new `PostCSS` instance that will apply `plugins`
+Returns a new [`Processor` instance] that will apply `plugins`
 as CSS processors.
 
 ```js
 postcss([autoprefixer, cssnext, cssgrace]).process(css).css;
 ```
 
-You can also set plugins with the [`PostCSS#use`] method.
+You can also set plugins with the [`Processor#use`] method.
 
-See [`PostCSS#use`] below for details about plugin formats.
+See [`Processor#use`] below for details about plugin formats.
 
 ### `postcss.parse(css, opts)`
 
@@ -96,10 +96,10 @@ Creates a new [`Comment` node].
 postcss.comment({ text: 'test' }).toString() //=> "/* test */"
 ```
 
-## `PostCSS` class
+## `Processor` class
 
-A `PostCSS` instance contains plugins to process CSS. You can create
-one `PostCSS` instance, initialize its plugins, and then use that instance
+A `Processor` instance contains plugins to process CSS. You can create
+one `Processor` instance, initialize its plugins, and then use that instance
 on many CSS files.
 
 ```js
@@ -108,7 +108,7 @@ processor.process(css1).css;
 processor.process(css2).css;
 ```
 
-### `p.use(plugin)`
+### `processor.use(plugin)`
 
 Adds a plugin to be used as a CSS processor.
 
@@ -126,7 +126,7 @@ Plugins can come in three formats:
    as the first argument.
 2. An object with a `postcss` method. PostCSS will use that method
    as described in #1.
-3. Another `PostCSS` instance. PostCSS will copy plugins
+3. Another `Processor` instance. PostCSS will copy plugins
    from that instance to this one.
 
 Plugin functions should mutate the passed `Root` node and return nothing,
@@ -141,7 +141,7 @@ processor.use(function (css) {
 });
 ```
 
-### `p.process(css, opts)`
+### `processor.process(css, opts)`
 
 This is the main method of PostCSS. It will parse the source CSS
 and create a [`Root` node]; send this `Root` to each plugin successively,
@@ -169,12 +169,21 @@ Options:
   to fix CSS syntax errors.
 * `map`: an object of [source map options].
 
+### `plugins`
+
+Contains plugins added to this processor.
+
+```js
+var processor = postcss([a, b]);
+processor.plugins.length //=> 2
+```
+
 ## `Result` class
 
 Provides result of PostCSS transformations.
 
 A `Result` instance is returned
-by [`PostCSS#process(css, opts)`] and [`Root#toResult(opts)`].
+by [`Processor#process(css, opts)`] and [`Root#toResult(opts)`].
 
 ```js
 var result1 = postcss().process(css);
@@ -191,7 +200,7 @@ root.toResult().root == root;
 
 ### `result.opts`
 
-Options from the [`PostCSS#process(css, opts)`] or
+Options from the [`Processor#process(css, opts)`] or
 [`Root#toResult(opts)`] call that produced
 this `Result` instance.
 
@@ -306,8 +315,7 @@ var input = root.source.input;
 
 ### `input.file`
 
-The absolute path to the CSS source file defined with
-the [`from` option](#pprocesscss-opts).
+The absolute path to the CSS source file defined with the [`from` option].
 
 ```js
 var root  = postcss.parse(css, { from: 'a.css' });
@@ -328,7 +336,7 @@ root.source.input.id   //=> <input css 1>
 ### `input.from`
 
 The CSS source identifier. Contains [`input.file`](#inputfile) if the user set the
-[`from` option](#pprocesscss-opts), or [`input.id`](#inputid) if she did not.
+[`from` option], or [`input.id`](#inputid) if she did not.
 
 ```js
 var root  = postcss.parse(css, { from: 'a.css' });
@@ -1285,16 +1293,18 @@ This is a code style property.
 [source map options]: https://github.com/postcss/postcss#source-map
 [Safe Mode]:          https://github.com/postcss/postcss#safe-mode
 
-[`PostCSS#process(css, opts)`]: #pprocesscss-opts
-[`Root#toResult(opts)`]:        #roottoresult-opts
-[`postcss(plugins)`]:           #postcssplugins
-[`Declaration` node]:           #declaration-node
-[`Comment` node]:               #comment-node
-[`PostCSS#use`]:                #puseplugin
-[`AtRule` node]:                #atrule-node
-[`result.map`]:                 #resultmap
-[`result.css`]:                 #resultcss
-[`Root` node]:                  #root-node
-[`Rule` node]:                  #rule-node
-[`Input`]:                      #inputclass
-[`Result`]:                     #result-class
+[`Processor#process(css, opts)`]: #processorprocesscss-opts
+[`Root#toResult(opts)`]:          #roottoresult-opts
+[`Processor` instance]:           #processor-class
+[`postcss(plugins)`]:             #postcssplugins
+[`Declaration` node]:             #declaration-node
+[`Comment` node]:                 #comment-node
+[`Processor#use`]:                #processoruseplugin
+[`AtRule` node]:                  #atrule-node
+[`from` option]:                  #processorprocesscss-opts
+[`result.map`]:                   #resultmap
+[`result.css`]:                   #resultcss
+[`Root` node]:                    #root-node
+[`Rule` node]:                    #rule-node
+[`Input`]:                        #inputclass
+[`Result`]:                       #result-class
