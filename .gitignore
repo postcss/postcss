@@ -11,4 +11,4 @@ build/
 origin.css
 fail.css
 
-postcss.js
+/postcss.js
