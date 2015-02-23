@@ -36,8 +36,7 @@ Arguments:
 * `plugins (array)`: PostCSS plugins list to set them to new processor.
 
 You can also set plugins with the [`Processor#use`] method.
-
-See [`Processor#use`] below for details about plugin formats.
+See its description below for details about plugin formats.
 
 ### `postcss.parse(css, opts)`
 
@@ -507,6 +506,10 @@ if ( oldSyntax.check(decl) ) {
 }
 ```
 
+Arguments:
+
+* `message (string)`: error description.
+
 ### `node.next()` and `node.prev()`
 
 Returns the next/previous child of the node’s parent; or returns `undefined`
@@ -548,6 +551,10 @@ if ( atrule.name == 'mixin' ) {
 }
 ```
 
+Arguments:
+
+* `otherNode: (Node)`: other node to replace current one.
+
 ### `node.clone(props)`
 
 Returns a clones of the node.
@@ -563,6 +570,10 @@ cloned.parent     //=> undefined
 cloned.toString() //=> -moz-transform: scale(0)
 ```
 
+Arguments:
+
+* `props (object) optional`: new properties to replace them in clone.
+
 ### `node.cloneBefore(props)` and `node.cloneAfter(props)`
 
 Shortcuts to clone the node and insert the resultant clone node before/after
@@ -571,6 +582,10 @@ the current node.
 ```js
 decl.cloneBefore({ prop: '-moz-' + decl.prop });
 ```
+
+Arguments:
+
+* `props (object) optional`: new properties to replace them in clone.
 
 ### `node.moveTo(newParent)`
 
@@ -585,6 +600,10 @@ the `between` property if `newParent` is in another `Root`.
 atrule.moveTo(atrule.parent.parent);
 ```
 
+Arguments:
+
+* `newParent: (Container)`: container node where current node will be moved.
+
 ### `node.moveBefore(otherNode)` and `node.moveAfter(otherNode)`
 
 Removes the node from its current parent and inserts it into a new parent
@@ -592,6 +611,10 @@ before/after `otherNode`.
 
 This will also clean the node’s code style properties just
 as `node.moveTo(newParent)` does.
+
+Arguments:
+
+* `otherNode (Node)`: node which will be after/before current node after moving.
 
 ### `node.style(prop, defaultType)`
 
@@ -604,6 +627,12 @@ var root = postcss.parse('a { background: white }');
 root.nodes[0].append({ prop: 'color', value: 'black' });
 root.nodes[0].nodes[1].style('before') //=> ' '
 ```
+
+Arguments:
+
+* `prop (string)`: name or code style property.
+* `defaultType (string)`: name of default value. You can miss it
+  if it is same with `prop`.
 
 ## Containers: common methods
 
@@ -648,6 +677,10 @@ Returns `child`’s index within the container’s `nodes` array.
 rule.index( rule.nodes[2] ) //=> 2
 ```
 
+Arguments:
+
+* `child (Node)`: child of current container.
+
 ### `container.every(callback)`
 
 Returns `true` if `callback` returns a truthy value for all
@@ -658,6 +691,10 @@ var noPrefixes = rule.every(function (decl) {
     return decl.prop[0] != '-';
 });
 ```
+
+Arguments:
+
+* `callback (function)`: iterator, that returns true of false.
 
 ### `container.some(callback)`
 
@@ -670,12 +707,14 @@ var hasPrefix = rule.some(function (decl) {
 });
 ```
 
+Arguments:
+
+* `callback (function)`: iterator, that returns true of false.
+
 ### `container.each(callback)`
 
 Iterates through the container’s immediate children, calling `callback`
 for each child.
-
-`callback` receives 2 arguments: the node itself and an index.
 
 Returning `false` within `callback` will break iteration.
 
@@ -688,6 +727,10 @@ rule.each(function (decl) {
     }
 });
 ```
+
+Arguments:
+
+* `callback (function)`: iterator, that will receive node itself and an index.
 
 Unlike the `for {}`-cycle or `Array#forEach()` this iterator is safe
 if you are mutating the array of child nodes during iteration.
@@ -719,13 +762,15 @@ use `container.eachInside()`.
 Recursively iterates through the container’s children,
 those children’s children, etc., calling `callback` for each.
 
-`callback` receives 2 arguments: the node itself and an index.
-
 ```js
 root.eachInside(function (node) {
     // Will be iterate through all nodes
 });
 ```
+
+Arguments:
+
+* `callback (function)`: iterator, that will receive node itself and an index.
 
 Like `container.each()`, this method is safe to use
 if you are mutating arrays during iteration.
@@ -738,8 +783,6 @@ use `container.each()`.
 Recursively iterates through all declaration nodes within the container,
 calling `callback` for each.
 
-`callback` receives 2 arguments: the node itself and an index.
-
 ```js
 root.eachDecl(function (decl) {
     if ( decl.prop.match(/^-webkit-/) ) {
@@ -748,8 +791,14 @@ root.eachDecl(function (decl) {
 });
 ```
 
-If you pass a string or regular expression as `filter`, only those declarations whose
-property matches`filter` will be iterated over.
+Arguments:
+
+* `propFilter: (string|RegExp) optional`: string or regular expression
+  to filter declarations by property name.
+  * `callback (function)`: iterator, that will receive node itself and an index.
+
+If you pass a `propFilter`, only those declarations whose property matches
+`propFilter` will be iterated over.
 
 ```js
 // Make flat design
@@ -769,8 +818,6 @@ arrays during iteration.
 Recursively iterates through all at-rule nodes within the container,
 calling `callback` for each.
 
-`callback` receives 2 arguments: the node itself and an index.
-
 
 ```js
 root.eachAtRule(function (rule) {
@@ -778,8 +825,14 @@ root.eachAtRule(function (rule) {
 });
 ```
 
-If you pass a string or regular expression as `filter`, only those at-rules whose name
-matches `filter` will be iterated over.
+Arguments:
+
+* `nameFilter: (string|RegExp) optional`: string or regular expression to filter
+  at-rules by name.
+  * `callback (function)`: iterator, that will receive node itself and an index.
+
+If you pass a `filter`, only those at-rules whose name matches `filter`
+will be iterated over.
 
 ```js
 var first = false;
@@ -800,8 +853,6 @@ during iteration.
 Recursively iterates through all rule nodes within the container, calling
 `callback` for each.
 
-`callback` receives 2 arguments: the node itself and an index.
-
 ```js
 var selectors = [];
 root.eachRule(function (rule) {
@@ -809,6 +860,10 @@ root.eachRule(function (rule) {
 });
 console.log('You CSS uses ' + selectors.length + ' selectors');
 ```
+
+Arguments:
+
+* `callback (function)`: iterator, that will receive node itself and an index.
 
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
@@ -824,28 +879,17 @@ root.eachComment(function (comment) {
 })
 ```
 
+Arguments:
+
+* `callback (function)`: iterator, that will receive node itself and an index.
+
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
 
-### `container.replaceValues(regexp, opts, callback)`
+### `container.replaceValues(pattern, opts, callback)`
 
-Passes all declaration values within the container that match `regexp` through
+Passes all declaration values within the container that match `pattern` through
 `callback`, replacing those values with the returned result of `callback`.
-
-`callback` will receive the same arguments as those passed to a function
-parameter of [`String#replace`].
-
-You can speed up the search by passing `opts`:
-
-- `props`: An array of property names. The method will only search for values
-  that match `regexp` within declarations of listed properties.
-- `fast`: A string that will be used to narrow down values and speed up
-  the regexp search. Searching every single value with a regexp can be slow;
-  so if you pass a `fast` string, PostCSS will first check whether the value
-  contains the `fast` string; and only if it does will PostCSS check that value
-  against `regexp`. For example, instead of just checking for `/\d+rem/` on
-  all values, you can set `fast: 'rem'` to first check whether a value has
-  the `rem` unit, and only if it does perform the regexp check.
 
 This method is useful if you are using a custom unit or function,
 so need to iterate through all values.
@@ -855,6 +899,23 @@ root.replaceValues(/\d+rem/, { fast: 'rem' }, function (string) {
     return 15 * parseInt(string) + 'px';
 });
 ```
+
+Arguments:
+
+* `pattern (string|RegExp)`: pattern, that we need to replace.
+* `opts (object) optional`: options to speed up th search:
+  * `props`: An array of property names. The method will only search for values
+    that match `regexp` within declarations of listed properties.
+  * `fast`: A string that will be used to narrow down values and speed up
+    the regexp search. Searching every single value with a regexp can be slow;
+    so if you pass a `fast` string, PostCSS will first check whether the value
+    contains the `fast` string; and only if it does will PostCSS check that
+    value against `regexp`. For example, instead of just checking for `/\d+rem/`
+    on all values, you can set `fast: 'rem'` to first check whether a value has
+    the `rem` unit, and only if it does perform the regexp check.
+* `callback (function|string)`: string to replace `pattern` or callback, that
+  will return new value. Callback will receive the same arguments as those
+  passed to a function parameter of [`String#replace`].
 
 [`String#replace`]: (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter)
 
@@ -866,6 +927,10 @@ Insert a new node to the start/end of the container.
 var decl = postcss.decl({ prop: 'color', value: 'black' });
 rule.append(decl);
 ```
+
+Arguments:
+
+* `node (Node|object|string)`: new node.
 
 Because each node class is identifiable by unique properties, you can use
 the following shortcuts to create nodes to prepend/append:
@@ -888,25 +953,19 @@ root.first.append('color: black; z-index: 1');
 
 Insert `newNode` before/after `oldNode` within the container.
 
-`oldNode` can be a node or a node’s index.
-
 ```js
 rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }));
 ```
 
-You can also use the same shorcuts available to `container.append()`.
+Arguments:
 
-```js
-rule.insertBefore(decl, { prop: 'color', value: 'black' });
-root.insertBefore(decl, 'color: black');
-```
+* `oldNode (Node|number)`: child or child’s index.
+* `node (Node|object|string)`: new node.
 
 ### `container.remove(node)`
 
 Removes `node` from the container, and the `parent` properties of `node`
 and its children.
-
-`node` can be a node or a node’s index.
 
 ```js
 rule.nodes.length  //=> 5
@@ -914,6 +973,10 @@ rule.remove(decl);
 rule.nodes.length  //=> 4
 decl.parent        //=> undefined
 ```
+
+Arguments:
+
+* `node (Node|number)`: child or child’s index.
 
 ### `container.removeAll()`
 
@@ -946,11 +1009,12 @@ root1.append(root2);
 var result = root1.toResult({ to: 'all.css', map: true });
 ```
 
-Options:
+Arguments:
 
-* `to`: the path where you’ll put the output CSS file. You should always set
-  `to` to generate correct source maps.
-* `map`: an object of [source map options].
+* `opts (object) optional`: options:
+  * `to`: the path where you’ll put the output CSS file. You should always set
+    `to` to generate correct source maps.
+  * `map`: an object of [source map options].
 
 ### `root.after`
 
