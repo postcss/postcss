@@ -13,7 +13,7 @@
     "dependencies": {
         "source-map": "~0.2.0",
         "js-base64":  "~2.1.7",
-        "babel":       "4.4.5"
+        "babel":       "4.4.6"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
@@ -42,7 +42,7 @@
         "cssom":                  "0.3.0",
         "gulp":                   "3.8.11",
         "less":                   "2.4.0",
-        "chai":                   "2.0.0"
+        "chai":                   "2.1.0"
     },
     "scripts": {
         "test": "gulp"
