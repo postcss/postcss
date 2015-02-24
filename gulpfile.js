@@ -33,8 +33,8 @@ gulp.task('build:package', ['build:clean'], function () {
     gulp.src('./package.json')
         .pipe(editor(function (json) {
             json.main = 'lib/postcss';
-            json.devDependencies['babel'] = json.dependencies['babel'];
-            delete json.dependencies['babel'];
+            json.devDependencies.babel = json.dependencies.babel;
+            delete json.dependencies.babel;
             return json;
         }))
         .pipe(gulp.dest('build'));
