@@ -1,3 +1,6 @@
+## 4.0.6
+* Remove `babel` from released package dependencies (by Andres Suarez).
+
 ## 4.0.5
 * Fix error message on double colon in declaration.
 
