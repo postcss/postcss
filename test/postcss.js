@@ -3,6 +3,7 @@ import postcss   from '../lib/postcss';
 
 import { expect } from 'chai';
 import   sinon    from 'sinon';
+import   semver   from 'semver';
 
 describe('postcss()', () => {
 
@@ -27,10 +28,12 @@ describe('postcss()', () => {
     describe('.plugin()', () => {
         beforeEach( () => {
             sinon.stub(console, 'warn');
+            sinon.stub(semver, 'satisfies');
         });
 
         afterEach( () => {
             console.warn.restore();
+            semver.satisfies.restore();
         });
 
         it('creates plugin', () => {
@@ -59,20 +62,19 @@ describe('postcss()', () => {
             });
 
             plugin.postcssVersion = '2.1.5';
+            semver.satisfies.returns(false);
             expect( () => plugin()({ }, { version: '1.0.0' }) ).to.throws('Er');
             expect(console.warn.callCount).to.eql(1);
+            expect(semver.satisfies.args[0][0]).to.eql('1.0.0');
+            expect(semver.satisfies.args[0][1]).to.eql('2.1.5');
             expect(console.warn.args[0][0]).to.eql(
                 'test is based on PostCSS 2.1.5 but you use it with ' +
                 'PostCSS 1.0.0. Maybe this is a source of error below.');
 
+            semver.satisfies.returns(true);
             expect( () => plugin()({ }, { version: '3.0.0' }) ).to.throws('Er');
-            expect(console.warn.callCount).to.eql(2);
+            expect(console.warn.callCount).to.eql(1);
 
-            expect( () => plugin()({ }, { version: '2.0.0' }) ).to.throws('Er');
-            expect(console.warn.callCount).to.eql(3);
-
-            expect( () => plugin()({ }, { version: '2.1.0' }) ).to.throws('Er');
-            expect(console.warn.callCount).to.eql(3);
         });
 
     });

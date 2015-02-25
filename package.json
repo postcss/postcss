@@ -13,6 +13,7 @@
     "dependencies": {
         "source-map": "~0.2.0",
         "js-base64":  "~2.1.7",
+        "semver":     "^4.3.1",
         "babel":       "4.4.5"
     },
     "devDependencies": {
