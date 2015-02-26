@@ -215,7 +215,8 @@ be asynchronous it doesn’t make any transformations. Transformations will
 be apply in `LazyResult`’s methods.
 
 ```js
-var result = processor.process(css, { from: 'a.css', to: 'a.out.css' });
+processor.process(css, { from: 'a.css', to: 'a.out.css' }).then(function (result) {
+});
 ```
 
 Arguments:
@@ -262,7 +263,7 @@ var lazy = postcss([cssnext]).process(css);
 ### `lazy.then(onFulfilled, onRejected)`
 
 Processes input CSS through synchronous and asynchronous plugins
-and call `onFulfilled` with [`Result`] instance. If some  plugin will throw
+and call `onFulfilled` with [`Result`] instance. If some plugin will throw
 a error, `onRejected` callback will be executed.
 
 ```js
@@ -406,7 +407,7 @@ map*. By default, PostCSS generates inline source maps, written directly into
 the processed CSS; so by default the `map` property will be empty.
 
 An external source map will be generated — and assigned to `map` — only if the
-user has set the `map.inline` option to `false`, or if PostCSS was passed
+user has set the `map.inline` option to `false`, or if PostCSS was passed
 an external input source map.
 
 ```js
