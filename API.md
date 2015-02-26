@@ -255,42 +255,99 @@ Promise proxy for result of PostCSS transformations.
 
 A `LazyResult` instance is returned by [`Processor#process(css, opts)`].
 
+```js
+var lazy = postcss([cssnext]).process(css);
+```
+
+### `lazy.then(onFulfilled, onRejected)`
+
+Processes input CSS through asynchronous plugins and call `onFulfilled`
+with [`Result`] instance. If error was throws from any plugin, it will
+call `onRejected` callback with this error.
+
+```js
+postcss([cssnext]).process(css).then(function(result) {
+    console.log(result.css);
+});
+```
+
+This method is a standard [Promise] method.
+
+### `lazy.catch(onRejected)`
+
+Processes input CSS through asynchronous plugins and call `onRejected`
+if errors will occur in some plugin.
+
+```js
+postcss([cssnext]).process(css).then(function(result) {
+    console.log(result.css);
+}).catch(function (error) {
+    console.error(error);
+});
+```
+
+This method is a standard [Promise] method.
+
 ### `lazy.toString()`
 
 Alias for `LazyResult#css` property.
 
 ### `lazy.css`
 
-Processes input CSS through’s plugins, stringify `Root` and returns output CSS
-after all transformations.
+Processes input CSS through synchronous plugins, stringify `Root`
+and returns [`Result#css`](#resultcss).
 
 ```js
 processor.process(css).css;
 ```
 
+This property will works only with synchronous plugins. If processor contains
+any asynchronous plugin it will throw a error. You should
+use [`LazyResult#then()`] instead.
+
+```js
+postcss([cssnext]).then(function (result) {
+    console.log(result.css);
+});
+```
+
 ### `lazy.map`
 
-Processes input CSS through’s plugins and return the `SourceMapGenerator` class
-from the [`source-map`] library, representing changes to the `Root` instance.
-
-Additionally, this property will receive a value *only if the user does not wan
-an inline source map*. By default, PostCSS generates inline source maps,
-written directly into the processed CSS; so by default the `map` property
-will be empty.
-
-An external source map will be generated — and assigned to `map` — only if the
-user has set the `map.inline` option to `false`, or if PostCSS was passed
-an external input source map.
+Processes input CSS through synchronous plugins and returns
+[`Result#map`](#resultmap).
 
 ```js
 if ( result.map ) {
-    fs.writeFileSync(to + '.map', result.map.toString());
+    fs.writeFileSync(result.opts.to + '.map', result.map.toString());
 }
+```
+
+This property will works only with synchronous plugins. If processor contains
+any asynchronous plugin it will throw a error. You should
+use [`LazyResult#then()`] instead.
+
+```js
+postcss([cssnext]).then(function (result) {
+    if ( result.map ) {
+        fs.writeFileSync(result.opts.to + '.map', result.map.toString());
+    }
+});
 ```
 
 ### `lazy.root`
 
-Process input CSS through’s plugins and return transformed [`Root`] instance.
+Processes input CSS through synchronous plugins and returns
+[`Result#root`](#resultroot).
+
+This property will works only with synchronous plugins. If processor contains
+any asynchronous plugin it will throw a error. You should
+use [`LazyResult#then()`] instead.
+
+```js
+postcss([cssnext]).then(function (result) {
+    console.log(result.root);
+});
+```
 
 ### `lazy.processor`
 
@@ -315,10 +372,11 @@ postcss().process(css, opts).opts == opts;
 Provides result of PostCSS transformations.
 
 A `Result` instance is returned by [`Root#toResult(opts)`]
-or [`LazyResult`] class.
+or [`LazyResult#then()`] methods.
 
 ```js
-var result = postcss.parse(css).toResult();
+postcss([cssnext]).process(css).then(function (result1) { });
+var result2 = postcss.parse(css).toResult();
 ```
 
 ### `result.toString()`
@@ -353,7 +411,7 @@ an external input source map.
 
 ```js
 if ( result.map ) {
-    fs.writeFileSync(to + '.map', result.map.toString());
+    fs.writeFileSync(result.opts.to + '.map', result.map.toString());
 }
 ```
 
@@ -1487,12 +1545,14 @@ comment.before //=> '\n  '
 This is a code style property.
 
 [`source-map`]: https://github.com/mozilla/source-map
+[Promise]:      http://www.html5rocks.com/en/tutorials/es6/promises/
 
 [source map options]: https://github.com/postcss/postcss#source-map
 [Safe Mode]:          https://github.com/postcss/postcss#safe-mode
 
 [`Processor#process(css, opts)`]: #processorprocesscss-opts
 [`Root#toResult(opts)`]:          #roottoresult-opts
+[`LazyResult#then()`]:            #lazythen-onfulfilled-onrejected
 [`postcss(plugins)`]:             #postcssplugins
 [`Declaration` node]:             #declaration-node
 [`Comment` node]:                 #comment-node

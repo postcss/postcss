@@ -350,15 +350,19 @@ a specialized language for a specialized tool (as with preprocessors).
 var postcss   = require('postcss');
 var processor = postcss([require('cssnext'), require('cssgrace')]);
 
-var result = processor.process(css, { from: 'app.css', to: 'app.out.css' });
-console.log(result.css);
+processor
+  .process(css, { from: 'app.css', to: 'app.out.css' })
+  .then(function (result) {
+      fs.fileWriteSync('app.out.css', result.css);
+      if ( result.map ) {
+          fs.fileWriteSync('app.out.css.map', result.map);
+      }
+  });
 ```
 
-Read the [postcss function], [processor], and [Result] API docs for more details.
+Read the [PostCSS API] for more details.
 
-[postcss function]: https://github.com/postcss/postcss/blob/master/API.md#postcss-function
-[processor]:        https://github.com/postcss/postcss/blob/master/API.md#postcss-class
-[Result]:           https://github.com/postcss/postcss/blob/master/API.md#result-class
+[PostCSS API]: https://github.com/postcss/postcss/blob/master/API.md
 
 ### Source Maps
 
@@ -375,8 +379,8 @@ If you don’t want the map inlined, you can use set `map.inline: false`.
 
 ```js
 var result = processor.process(css, {
-    from: 'main.css',
-    to:   'main.out.css',
+    from: 'app.css',
+    to:   'app.out.css',
     map: { inline: false },
 });
 
@@ -388,7 +392,7 @@ it will automatically update that source map with the same options.
 
 ```js
 // main.sass.css has an annotation comment with a link to main.sass.css.map
-var result = minifier.process(css, { from: 'main.sass.css', to: 'main.min.css' });
+var result = minifier.process(css, { from: 'app.sass.css', to: 'app.min.css' });
 result.map //=> Source map from main.sass to main.min.css
 ```
 

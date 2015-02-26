@@ -120,13 +120,19 @@ describe('Processor', () => {
             expect(result.toString()).to.eql('a{}');
         });
 
-        it('calls all plugins', () => {
+        it('calls all plugins once', (done) => {
             var calls = '';
             var a = () => calls += 'a';
             var b = () => calls += 'b';
 
-            (new Processor([a, b])).process('').css;
-            expect(calls).to.eql('ab');
+            var result = new Processor([a, b]).process('');
+            result.css;
+            result.map;
+            result.root;
+            result.then( () => {
+                expect(calls).to.eql('ab');
+                done();
+            }).catch( (error) => done(error) );
         });
 
         it('parses, converts and stringifies CSS', () => {
@@ -141,7 +147,7 @@ describe('Processor', () => {
                 expect(result.processor).to.eql(processor);
                 expect(result.opts).to.eql({ map: true });
                 expect(result.root).to.eql(css);
-            }
+            };
             processor.use(a).process('a {}', { map: true });
         });
 
@@ -157,6 +163,86 @@ describe('Processor', () => {
                 map: { prev: one.map, inline: false }
             });
             expect(two.map.toJSON().sources).to.eql(['a.css']);
+        });
+
+        it('supports async plugins', (done) => {
+            var async = (css) => {
+                return new Promise( (resolve) => {
+                    setTimeout(() => {
+                        css.append({ selector: 'a' });
+                        resolve();
+                    }, 1);
+                });
+            };
+            (new Processor([async])).process('').then( (result) => {
+                expect(result.css).to.eql('a {}');
+                done();
+            }).catch( (error) => done(error) );
+        });
+
+        it('works async without plugins', (done) => {
+            (new Processor()).process('a {}').then( (result) => {
+                expect(result.css).to.eql('a {}');
+                done();
+            }).catch( (error) => done(error) );
+        });
+
+        it('runs async plugin only once', (done) => {
+            var calls = 0;
+            var async = (css) => {
+                return new Promise( (resolve) => {
+                    setTimeout(() => {
+                        calls += 1;
+                        resolve();
+                    }, 1);
+                });
+            };
+
+            var result = (new Processor([async])).process('a {}');
+            result.then( () => { });
+            result.then( () => {
+                result.then( () => {
+                    expect(calls).to.eql(1);
+                    done();
+                });
+            });
+        });
+
+        it('supports async errors', (done) => {
+            var error = new Error('Async');
+            var async = (css) => {
+                return new Promise( (resolve, reject) => {
+                    reject(error);
+                });
+            };
+            (new Processor([async])).process('').then( () => {
+                done('should not run then callback');
+            }).catch(function (error) {
+                expect(error).to.eql(error);
+                done();
+            });
+        });
+
+        it('supports sync errors in async mode', (done) => {
+            var error = new Error('Async');
+            var async = (css) => {
+                throw error;
+            };
+            (new Processor([async])).process('').then( () => {
+                done('should not run then callback');
+            }).catch(function (error) {
+                expect(error).to.eql(error);
+                done();
+            });
+        });
+
+        it('throws error on sync method to async plugin', () => {
+            var async = (css) => {
+                return new Promise( (resolve) => resolve() );
+            };
+            expect(() => {
+                (new Processor([async])).process('a{}').css;
+            }).to.throw(/async/);
         });
 
     });
