@@ -1,4 +1,5 @@
 import CssSyntaxError from '../lib/css-syntax-error';
+import LazyResult     from '../lib/lazy-result';
 import Processor      from '../lib/processor';
 import Result         from '../lib/result';
 import parse          from '../lib/parse';
@@ -112,9 +113,9 @@ describe('Processor', () => {
             expect(processor.process('a {}').css).to.eql('');
         });
 
-        it('returns Result object', () => {
+        it('returns LazyResult object', () => {
             var result = (new Processor()).process('a{}');
-            expect(result).to.be.an.instanceOf(Result);
+            expect(result).to.be.an.instanceOf(LazyResult);
             expect(result.css).to.eql(       'a{}');
             expect(result.toString()).to.eql('a{}');
         });
@@ -124,19 +125,24 @@ describe('Processor', () => {
             var a = () => calls += 'a';
             var b = () => calls += 'b';
 
-            (new Processor([a, b])).process('');
+            (new Processor([a, b])).process('').css;
             expect(calls).to.eql('ab');
         });
 
-        it('parses, convert and stringify CSS', () => {
+        it('parses, converts and stringifies CSS', () => {
             var a = (css) => expect(css).to.be.an.instanceof(Root);
             expect((new Processor([a])).process('a {}').css).to.be.a('string');
         });
 
-        it('send itself to plugins', () => {
+        it('send result to plugins', () => {
             var processor = new Processor();
-            var a = (css, arg) => expect(arg).to.eql(processor);
-            processor.use(a).process('a {}');
+            var a = (css, result) => {
+                expect(result).to.be.an.instanceof(Result);
+                expect(result.processor).to.eql(processor);
+                expect(result.opts).to.eql({ map: true });
+                expect(result.root).to.eql(css);
+            }
+            processor.use(a).process('a {}', { map: true });
         });
 
         it('accepts source map from PostCSS', () => {

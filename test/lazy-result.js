@@ -1,21 +1,19 @@
-import Result from '../lib/result';
-import parse  from '../lib/parse';
+import LazyResult from '../lib/lazy-result';
+import Processor  from '../lib/processor';
+import parse      from '../lib/parse';
 
 import   mozilla  from 'source-map';
 import { expect } from 'chai';
 
-var root;
+var processor = new Processor();
 
-describe('Result', () => {
-    beforeEach( () => {
-        root = parse('a {}');
-    });
+describe('LazyResult', () => {
 
     describe('root', () => {
 
         it('contains AST', () => {
-            var result = new Result(root);
-            expect(result.root).to.eql(root);
+            var result = new LazyResult(processor, 'a {}', { });
+            expect(result.root.type).to.eql('root');
         });
 
     });
@@ -23,12 +21,12 @@ describe('Result', () => {
     describe('css', () => {
 
         it('will be stringified', () => {
-            var result = new Result(root);
+            var result = new LazyResult(processor, 'a {}', { });
             expect(result.css).to.eql('a {}');
         });
 
         it('stringifies', () => {
-            var result = new Result(root, 'a {}');
+            var result = new LazyResult(processor, 'a {}', { });
             expect('' + result).to.eql(result.css);
         });
 
@@ -37,13 +35,13 @@ describe('Result', () => {
     describe('map', () => {
 
         it('exists only if necessary', () => {
-            var result = new Result(root);
+            var result = new LazyResult(processor, '', { });
             expect(result.map).to.not.exist;
 
-            result = new Result(root, { map: true });
+            result = new LazyResult(processor, '', { });
             expect(result.map).to.not.exist;
 
-            result = new Result(root, { map: { inline: false } });
+            result = new LazyResult(processor, '', { map: { inline: false } });
             expect(result.map).to.be.a.instanceOf(mozilla.SourceMapGenerator);
         });
 

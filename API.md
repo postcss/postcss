@@ -2,6 +2,7 @@
 
 * [postcss function](#postcss-function)
 * [Processor class](#processor-class)
+* [LazyResult class](#lazy-result-class)
 * [Result class](#result-class)
 * [Vendor module](#vendor-module)
 * [List module](#list-module)
@@ -209,10 +210,9 @@ processor.use(function (css) {
 
 ### `processor.process(css, opts)`
 
-This is the main method of PostCSS. It will parse the source CSS
-and create a [`Root` node]; send this `Root` to each plugin successively,
-for transformations; and then return a `Result` instance created
-from the transformed `Root`.
+Parse source CSS and returns [`LazyResult`] instance. Because some plugins can
+be asynchronous it doesn’t make any transformations. Transformations will
+be apply in `LazyResult`’s methods.
 
 ```js
 var result = processor.process(css, { from: 'a.css', to: 'a.out.css' });
@@ -232,6 +232,15 @@ Arguments:
     to fix CSS syntax errors.
   * `map`: an object of [source map options].
 
+### `plugins`
+
+Contains plugins added to this processor.
+
+```js
+var processor = postcss([cssnext, cssgrace]);
+processor.plugins.length //=> 2
+```
+
 ### `version`
 
 Contains current version of PostCSS.
@@ -240,74 +249,31 @@ Contains current version of PostCSS.
 postcss().version //=> '4.0.5'
 ```
 
-### `plugins`
+## `LazyResult` class
 
-Contains plugins added to this processor.
+Promise proxy for result of PostCSS transformations.
 
-```js
-var processor = postcss([a, b]);
-processor.plugins.length //=> 2
-```
+A `LazyResult` instance is returned by [`Processor#process(css, opts)`].
 
-## `Result` class
+### `lazy.toString()`
 
-Provides result of PostCSS transformations.
+Alias for `LazyResult#css` property.
 
-A `Result` instance is returned
-by [`Processor#process(css, opts)`] and [`Root#toResult(opts)`].
+### `lazy.css`
 
-```js
-var result1 = postcss().process(css);
-var result2 = postcss.parse(css).toResult();
-```
-
-### `result.root`
-
-The source `Root` instance.
+Processes input CSS through’s plugins, stringify `Root` and returns output CSS
+after all transformations.
 
 ```js
-root.toResult().root == root;
+processor.process(css).css;
 ```
 
-### `result.opts`
+### `lazy.map`
 
-Options from the [`Processor#process(css, opts)`] or
-[`Root#toResult(opts)`] call that produced
-this `Result` instance.
+Processes input CSS through’s plugins and return the `SourceMapGenerator` class
+from the [`source-map`] library, representing changes to the `Root` instance.
 
-```js
-postcss().process(css, opts).opts == opts;
-```
-
-### `result.css`
-
-A CSS string representing this `Result`’s '`Root` instance.
-
-```js
-postcss().process('a{}').css //=> "a{}"
-```
-
-This property is generated *lazily*: `Root` is not stringified until
-the first request for the `css` property (or the [`result.map`] property).
-That initial request for `css` will also generate a source map.
-Source map will inlined into CSS or assigned to the [`result.map`] property,
-if user ask to save map to separated file.
-
-### `result.map`
-
-An instance of the `SourceMapGenerator` class from the [`source-map`] library,
-representing changes to the `Result`’s `Root` instance.
-
-```js
-result.map.toJSON() //=> { version: 3, file: 'a.css', sources: ['a.css'], … }
-```
-
-This property is generated *lazily*: the source map for `Root` is not generated
-until the first request for the `map` property (or the [`result.css`] property).
-That initial request will also stringify `Root` and assign the generated
-CSS string to the [`result.css`] property.
-
-Additionally, *this property will receive a value only if the user does not wan
+Additionally, this property will receive a value *only if the user does not wan
 an inline source map*. By default, PostCSS generates inline source maps,
 written directly into the processed CSS; so by default the `map` property
 will be empty.
@@ -320,6 +286,96 @@ an external input source map.
 if ( result.map ) {
     fs.writeFileSync(to + '.map', result.map.toString());
 }
+```
+
+### `lazy.root`
+
+Process input CSS through’s plugins and return transformed [`Root`] instance.
+
+### `lazy.processor`
+
+Returns a [`Processor`] instance, that will be used for CSS transformations.
+
+```js
+var lazy = postcss([cssnext, cssgrace]).process(css);
+lazy.processor.plugins.length //=> 2
+```
+
+### `lazy.opts`
+
+Options from the [`Processor#process(css, opts)`] or [`Root#toResult(opts)`]
+call that produced this `Result` instance.
+
+```js
+postcss().process(css, opts).opts == opts;
+```
+
+## `Result` class
+
+Provides result of PostCSS transformations.
+
+A `Result` instance is returned by [`Root#toResult(opts)`]
+or [`LazyResult`] class.
+
+```js
+var result = postcss.parse(css).toResult();
+```
+
+### `result.toString()`
+
+Alias for `Result#css` property.
+
+### `result.css`
+
+A CSS string representing this `Result`’s '`Root` instance.
+
+```js
+postcss.parse('a{}').toResult().css //=> "a{}"
+```
+
+### `result.map`
+
+An instance of the `SourceMapGenerator` class from the [`source-map`] library,
+representing changes to the `Result`’s `Root` instance.
+
+```js
+result.map.toJSON() //=> { version: 3, file: 'a.css', sources: ['a.css'], … }
+```
+
+Additionally, this property will receive a value *only if the user does not wan
+an inline source map*. By default, PostCSS generates inline source maps,
+written directly into the processed CSS; so by default the `map` property
+will be empty.
+
+An external source map will be generated — and assigned to `map` — only if the
+user has set the `map.inline` option to `false`, or if PostCSS was passed
+an external input source map.
+
+```js
+if ( result.map ) {
+    fs.writeFileSync(to + '.map', result.map.toString());
+}
+```
+
+### `result.root`
+
+Contains [`Root`] instance after all transformations.
+
+```js
+root.toResult().root == root;
+```
+
+### `result.processor`
+
+Returns a [`Processor`] instance, that was used for this transformations.
+
+### `result.opts`
+
+Options from the [`Processor#process(css, opts)`] or [`Root#toResult(opts)`]
+call that produced this `Result` instance.
+
+```js
+root.toResult(opts).opts == opts;
 ```
 
 ## Vendor module
@@ -1028,7 +1084,7 @@ root.nodes.length //=> 2
 
 ### `root.toResult(opts)`
 
-Returns a [`Result`] instance representing the root's CSS.
+Returns a [`Result`] instance representing the root’s CSS.
 
 ```js
 var root1 = postcss.parse(css1, { from: 'a.css' });
@@ -1441,6 +1497,7 @@ This is a code style property.
 [`Declaration` node]:             #declaration-node
 [`Comment` node]:                 #comment-node
 [`Processor#use`]:                #processoruseplugin
+[`LazyResult`]:                   #lazy-result-class
 [`AtRule` node]:                  #atrule-node
 [`from` option]:                  #processorprocesscss-opts
 [`result.map`]:                   #resultmap

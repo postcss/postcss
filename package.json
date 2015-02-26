@@ -13,7 +13,7 @@
     "dependencies": {
         "source-map": "~0.4.0",
         "js-base64":  "~2.1.7",
-        "babel":      "4.5.1"
+        "babel":      "4.5.4"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.0",
