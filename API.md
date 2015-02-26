@@ -216,6 +216,7 @@ be apply in `LazyResult`’s methods.
 
 ```js
 processor.process(css, { from: 'a.css', to: 'a.out.css' }).then(function (result) {
+    console.log(result.css);
 });
 ```
 
@@ -377,6 +378,7 @@ or [`LazyResult#then()`] methods.
 
 ```js
 postcss([cssnext]).process(css).then(function (result1) {
+    console.log(result1.css);
 });
 var result2 = postcss.parse(css).toResult();
 ```
