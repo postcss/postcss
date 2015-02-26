@@ -210,7 +210,7 @@ processor.use(function (css) {
 
 ### `processor.process(css, opts)`
 
-Parse source CSS and returns [`LazyResult`] instance. Because some plugins can
+Parses source CSS and returns [`LazyResult`] instance. Because some plugins can
 be asynchronous it doesn’t make any transformations. Transformations will
 be apply in `LazyResult`’s methods.
 
@@ -261,9 +261,9 @@ var lazy = postcss([cssnext]).process(css);
 
 ### `lazy.then(onFulfilled, onRejected)`
 
-Processes input CSS through asynchronous plugins and call `onFulfilled`
-with [`Result`] instance. If error was throws from any plugin, it will
-call `onRejected` callback with this error.
+Processes input CSS through synchronous and asynchronous plugins
+and call `onFulfilled` with [`Result`] instance. If some  plugin will throw
+a error, `onRejected` callback will be executed.
 
 ```js
 postcss([cssnext]).process(css).then(function(result) {
@@ -275,8 +275,8 @@ This method is a standard [Promise] method.
 
 ### `lazy.catch(onRejected)`
 
-Processes input CSS through asynchronous plugins and call `onRejected`
-if errors will occur in some plugin.
+Processes input CSS through synchronous and  asynchronous plugins
+and call `onRejected` on errors from any plugin.
 
 ```js
 postcss([cssnext]).process(css).then(function(result) {
@@ -301,9 +301,9 @@ and returns [`Result#css`](#resultcss).
 processor.process(css).css;
 ```
 
-This property will works only with synchronous plugins. If processor contains
-any asynchronous plugin it will throw a error. You should
-use [`LazyResult#then()`] instead.
+This property will work only with synchronous plugins. If processor contains
+any asynchronous plugin it will throw a error. You should use
+[`LazyResult#then()`] instead.
 
 ```js
 postcss([cssnext]).then(function (result) {
@@ -322,9 +322,9 @@ if ( result.map ) {
 }
 ```
 
-This property will works only with synchronous plugins. If processor contains
-any asynchronous plugin it will throw a error. You should
-use [`LazyResult#then()`] instead.
+This property will work only with synchronous plugins. If processor contains
+any asynchronous plugin it will throw a error. You should use
+[`LazyResult#then()`] instead.
 
 ```js
 postcss([cssnext]).then(function (result) {
@@ -339,9 +339,9 @@ postcss([cssnext]).then(function (result) {
 Processes input CSS through synchronous plugins and returns
 [`Result#root`](#resultroot).
 
-This property will works only with synchronous plugins. If processor contains
-any asynchronous plugin it will throw a error. You should
-use [`LazyResult#then()`] instead.
+This property will work only with synchronous plugins. If processor contains
+any asynchronous plugin it will throw a error. You should use
+[`LazyResult#then()`] instead.
 
 ```js
 postcss([cssnext]).then(function (result) {
@@ -360,8 +360,8 @@ lazy.processor.plugins.length //=> 2
 
 ### `lazy.opts`
 
-Options from the [`Processor#process(css, opts)`] or [`Root#toResult(opts)`]
-call that produced this `Result` instance.
+Options from the [`Processor#process(css, opts)`] call that produced
+this `Result` instance.
 
 ```js
 postcss().process(css, opts).opts == opts;
@@ -375,7 +375,8 @@ A `Result` instance is returned by [`Root#toResult(opts)`]
 or [`LazyResult#then()`] methods.
 
 ```js
-postcss([cssnext]).process(css).then(function (result1) { });
+postcss([cssnext]).process(css).then(function (result1) {
+});
 var result2 = postcss.parse(css).toResult();
 ```
 
@@ -394,16 +395,15 @@ postcss.parse('a{}').toResult().css //=> "a{}"
 ### `result.map`
 
 An instance of the `SourceMapGenerator` class from the [`source-map`] library,
-representing changes to the `Result`’s `Root` instance.
+representing changes to the `Result`’s `Root` instance.
 
 ```js
 result.map.toJSON() //=> { version: 3, file: 'a.css', sources: ['a.css'], … }
 ```
 
-Additionally, this property will receive a value *only if the user does not wan
-an inline source map*. By default, PostCSS generates inline source maps,
-written directly into the processed CSS; so by default the `map` property
-will be empty.
+This property will has a value *only if the user does not want an inline source
+map*. By default, PostCSS generates inline source maps, written directly into
+the processed CSS; so by default the `map` property will be empty.
 
 An external source map will be generated — and assigned to `map` — only if the
 user has set the `map.inline` option to `false`, or if PostCSS was passed
@@ -417,7 +417,7 @@ if ( result.map ) {
 
 ### `result.root`
 
-Contains [`Root`] instance after all transformations.
+Contains [`Root` node] after all transformations.
 
 ```js
 root.toResult().root == root;
@@ -1552,7 +1552,7 @@ This is a code style property.
 
 [`Processor#process(css, opts)`]: #processorprocesscss-opts
 [`Root#toResult(opts)`]:          #roottoresult-opts
-[`LazyResult#then()`]:            #lazythen-onfulfilled-onrejected
+[`LazyResult#then()`]:            #lazythenonfulfilled-onrejected
 [`postcss(plugins)`]:             #postcssplugins
 [`Declaration` node]:             #declaration-node
 [`Comment` node]:                 #comment-node
