@@ -39,28 +39,6 @@ Arguments:
 You can also set plugins with the [`Processor#use`] method.
 See its description below for details about plugin formats.
 
-### `postcss.plugin(name, initializer)`
-
-Creates PostCSS plugin.
-
-```js
-module.exports = postcss.plugin('postcss-remove', function (opts) {
-    var filter = opts.prop;
-    return function (css, processor) {
-        css.eachDecl(filter, function (decl) {
-            decl.removeSelf();
-        });
-    };
-});
-```
-
-Arguments:
-
-* `name (string)`: PostCSS plugin name. Same as in `name` property
-  in `package.json`. It will be saved in `plugin.postcssPlugin` property.
-* `initializer  (function)`: will receive plugin options and should return
-  functions to modify nodes in input CSS.
-
 ### `postcss.parse(css, opts)`
 
 Parses source `css` and returns a new `Root` node, which contains
@@ -90,26 +68,25 @@ Arguments:
 Creates PostCSS plugin with standard API.
 
 ```js
-var replace = postcss.plugin('postcss-replace', function (opts) {
-    if ( !opts ) opts = { };
-    var from = opts.from || 'from';
-    var to   = opts.to   || 'to';
-    return function (css, result) {
-        css.eachDecl(opts.from, function (decl) {
-            decl.prop = opts.to;
-        })
+var remove = postcss.plugin('postcss-remove', function (opts) {
+    var filter = opts.prop || 'z-index';
+    return function (css, processor) {
+        css.eachDecl(filter, function (decl) {
+            decl.removeSelf();
+        });
     };
 });
 
-postcss().use(replace)                         // with default options
-postcss().use(replace({ from: 'a', to: 'b' })) // with options
+postcss().use(remove)                    // with default options
+postcss().use(remove({ prop: 'color' })) // with options
 ```
 
-Argumments:
+Arguments:
 
-* `name (string)`: plugin name.
-* `initializer (function)`: function receiving options and returning
-  functions, that will transform CSS nodes tree.
+* `name (string)`: PostCSS plugin name. Same as in `name` property
+  in `package.json`. It will be saved in `plugin.postcssPlugin` property.
+* `initializer  (function)`: will receive plugin options and should return
+  functions to modify nodes in input CSS.
 
 With this wrap add PostCSS compatibility checker. It will print a compatibility
 message if you plugin will throw a error on different major/minor version
