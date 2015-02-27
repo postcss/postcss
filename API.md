@@ -100,6 +100,23 @@ processor.plugins[0].postcssPlugin  //=> 'postcss-replace'
 processor.plugins[0].postcssVersion //=> '4.1.0'
 ```
 
+Plugin function receive 2 arguments: [`Root` node] and [`Result`] instance.
+Then it should mutate the passed `Root` node and return nothing, or return
+a new `Root` node.
+
+```js
+postcss.plugin('postcss-charset', function () {
+    return function (css, result) {
+        css.prepend({ name: 'charset', params: '"UTF-8"' });
+      };
+});
+postcss.plugin('postcss-cleaner', function () {
+    return function (css, result) {
+        return postcss.root();
+    };
+});
+```
+
 ### `postcss.root(props)`
 
 Creates a new [`Root` node].
@@ -203,6 +220,7 @@ Arguments:
   formats:
   * A function. PostCSS will pass the function a [`Root` node]
     as the first argument and current [`Processor`] instance as second.
+  * A wrap function created by [`postcss.plugin()`] method.
   * An object with a `postcss` method. PostCSS will use that method
     as described in #1.
   * Another `Processor` instance. PostCSS will copy plugins
@@ -210,18 +228,6 @@ Arguments:
 
 Plugins can also be added by passing them as arguments when creating
 a `postcss` instance (cf. [`postcss(plugins)`]).
-
-Plugin functions should mutate the passed `Root` node and return nothing,
-or return a new `Root` node.
-
-```js
-processor.use(function (css) {
-    css.prepend({ name: 'charset', params: '"UTF-8"' });
-});
-processor.use(function (css) {
-    return postcss.root();
-});
-```
 
 ### `processor.process(css, opts)`
 
@@ -1572,6 +1578,7 @@ This is a code style property.
 [`Root#toResult(opts)`]:          #roottoresult-opts
 [`LazyResult#then()`]:            #lazythenonfulfilled-onrejected
 [`postcss(plugins)`]:             #postcssplugins
+[`postcss.plugin()`]:             #postcsspluginname-initializer
 [`Declaration` node]:             #declaration-node
 [`Comment` node]:                 #comment-node
 [`Processor#use`]:                #processoruseplugin
