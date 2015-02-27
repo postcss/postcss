@@ -1,5 +1,6 @@
 import Processor from '../lib/processor';
 import postcss   from '../lib/postcss';
+import Result    from '../lib/result';
 
 import { expect } from 'chai';
 import   sinon    from 'sinon';
@@ -42,36 +43,49 @@ describe('postcss()', () => {
                 };
             });
 
-            expect(plugin.postcssPlugin).to.eql('test');
-            expect(plugin.postcssVersion).to.match(/\d+.\d+.\d+/);
+            var func1 = postcss(plugin).plugins[0];
+            expect(func1.postcssPlugin).to.eql('test');
+            expect(func1.postcssVersion).to.match(/\d+.\d+.\d+/);
+
+            var func2 = postcss(plugin()).plugins[0];
+            expect(func2.postcssPlugin).to.eql(func1.postcssPlugin);
+            expect(func2.postcssVersion).to.eql(func1.postcssVersion);
 
             var result1 = postcss(plugin('one')).process('a{ one: 1; two: 2 }');
             expect(result1.css).to.eql('a{ two: 2 }');
+
             var result2 = postcss(plugin).process('a{ one: 1; two: 2 }');
             expect(result2.css).to.eql('a{ one: 1 }');
         });
 
         it('wraps plugin to version check', () => {
+            var result = (version) => {
+                var processor = new Processor();
+                processor.version = version;
+                return new Result(processor, null, { });
+            };
+
             var plugin = postcss.plugin('test', function () {
                 return function (css) {
                     throw 'Er';
                 };
             });
+            var func = plugin();
+            func.postcssVersion = '2.1.5';
 
-            plugin.postcssVersion = '2.1.5';
-            expect( () => plugin()({ }, { version: '1.0.0' }) ).to.throws('Er');
+            expect( () => func({ }, result('1.0.0')) ).to.throws('Er');
             expect(console.warn.callCount).to.eql(1);
             expect(console.warn.args[0][0]).to.eql(
                 'test is based on PostCSS 2.1.5 but you use it with ' +
                 'PostCSS 1.0.0. Maybe this is a source of error below.');
 
-            expect( () => plugin()({ }, { version: '3.0.0' }) ).to.throws('Er');
+            expect( () => func({ }, result('3.0.0')) ).to.throws('Er');
             expect(console.warn.callCount).to.eql(2);
 
-            expect( () => plugin()({ }, { version: '2.0.0' }) ).to.throws('Er');
+            expect( () => func({ }, result('2.0.0')) ).to.throws('Er');
             expect(console.warn.callCount).to.eql(3);
 
-            expect( () => plugin()({ }, { version: '2.1.0' }) ).to.throws('Er');
+            expect( () => func({ }, result('2.1.0')) ).to.throws('Er');
             expect(console.warn.callCount).to.eql(3);
         });
 
