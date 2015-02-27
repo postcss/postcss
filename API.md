@@ -85,6 +85,44 @@ Arguments:
   * `map`: an object of [source map options].
     Only `map.prev` is used in `parse`.
 
+### `postcss.plugin(name, initializer)`
+
+Creates PostCSS plugin with standard API.
+
+```js
+var replace = postcss.plugin('postcss-replace', function (opts) {
+    if ( !opts ) opts = { };
+    var from = opts.from || 'from';
+    var to   = opts.to   || 'to';
+    return function (css, result) {
+        css.eachDecl(opts.from, function (decl) {
+            decl.prop = opts.to;
+        })
+    };
+});
+
+postcss().use(replace)                         // with default options
+postcss().use(replace({ from: 'a', to: 'b' })) // with options
+```
+
+Argumments:
+
+* `name (string)`: plugin name.
+* `initializer (function)`: function receiving options and returning
+  functions, that will transform CSS nodes tree.
+
+With this wrap add PostCSS compatibility checker. It will print a compatibility
+message if you plugin will throw a error on different major/minor version
+of PostCSS.
+
+Also wrap will save plugin name and plugin PostCSS version:
+
+```js
+var processor = postcss([replace]);
+processor.plugins[0].postcssPlugin  //=> 'postcss-replace'
+processor.plugins[0].postcssVersion //=> '4.1.0'
+```
+
 ### `postcss.root(props)`
 
 Creates a new [`Root` node].
