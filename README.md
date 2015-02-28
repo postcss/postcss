@@ -208,7 +208,6 @@ a specialized language for a specialized tool (as with preprocessors).
 
 * [postcss-color-function] supports functions to transform colors.
 * [postcss-color-gray] supports the `gray()` function.
-* [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
 * [postcss-color-hex-alpha] supports `#rrggbbaa` and `#rgba` notation.
 * [postcss-color-hwb] transforms `hwb()` to widely compatible `rgb()`.
 * [postcss-color-rebeccapurple] supports the `rebeccapurple` color.
@@ -225,6 +224,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ### Fallbacks
 
+* [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
 * [postcss-epub] adds the `-epub-` prefix to relevant properties.
 * [postcss-opacity] adds opacity filter for IE8.
 * [postcss-vmin] generates `vm` fallback for `vmin` unit in IE9.
