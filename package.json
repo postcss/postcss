@@ -13,10 +13,10 @@
     "dependencies": {
         "source-map": "~0.4.0",
         "js-base64":  "~2.1.7",
-        "babel":      "4.5.4"
+        "babel":      "4.6.1"
     },
     "devDependencies": {
-        "concat-with-sourcemaps": "1.0.0",
+        "concat-with-sourcemaps": "1.0.2",
         "gulp-bench-summary":     "0.1.0",
         "gulp-json-editor":       "2.2.1",
         "jshint-stylish":         "1.0.1",
