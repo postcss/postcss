@@ -88,10 +88,6 @@ Arguments:
 * `initializer  (function)`: will receive plugin options and should return
   functions to modify nodes in input CSS.
 
-With this wrap add PostCSS compatibility checker. It will print a compatibility
-message if you plugin will throw a error on different major/minor version
-of PostCSS.
-
 Also wrap will save plugin name and plugin PostCSS version:
 
 ```js
