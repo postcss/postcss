@@ -59,12 +59,6 @@ describe('postcss()', () => {
         });
 
         it('wraps plugin to version check', () => {
-            var result = (version) => {
-                var processor = new Processor();
-                processor.version = version;
-                return new Result(processor, null, { });
-            };
-
             var plugin = postcss.plugin('test', function () {
                 return function (css) {
                     throw 'Er';
@@ -73,19 +67,25 @@ describe('postcss()', () => {
             var func = plugin();
             func.postcssVersion = '2.1.5';
 
-            expect( () => func({ }, result('1.0.0')) ).to.throws('Er');
+            var processBy = (version) => {
+                var processor = new Processor([func]);
+                processor.version = version;
+                processor.process('a{}').css;
+            };
+
+            expect( () => processBy('1.0.0') ).to.throws('Er');
             expect(console.warn.callCount).to.eql(1);
             expect(console.warn.args[0][0]).to.eql(
                 'test is based on PostCSS 2.1.5 but you use it with ' +
                 'PostCSS 1.0.0. Maybe this is a source of error below.');
 
-            expect( () => func({ }, result('3.0.0')) ).to.throws('Er');
+            expect( () => processBy('3.0.0') ).to.throws('Er');
             expect(console.warn.callCount).to.eql(2);
 
-            expect( () => func({ }, result('2.0.0')) ).to.throws('Er');
+            expect( () => processBy('2.0.0') ).to.throws('Er');
             expect(console.warn.callCount).to.eql(3);
 
-            expect( () => func({ }, result('2.1.0')) ).to.throws('Er');
+            expect( () => processBy('2.1.0') ).to.throws('Er');
             expect(console.warn.callCount).to.eql(3);
         });
 
