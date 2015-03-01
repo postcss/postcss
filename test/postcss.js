@@ -3,7 +3,6 @@ import postcss   from '../lib/postcss';
 import Result    from '../lib/result';
 
 import { expect } from 'chai';
-import   sinon    from 'sinon';
 
 describe('postcss()', () => {
 
@@ -26,13 +25,6 @@ describe('postcss()', () => {
     });
 
     describe('.plugin()', () => {
-        beforeEach( () => {
-            sinon.stub(console, 'warn');
-        });
-
-        afterEach( () => {
-            console.warn.restore();
-        });
 
         it('creates plugin', () => {
             var plugin = postcss.plugin('test', (filter) => {
@@ -56,37 +48,6 @@ describe('postcss()', () => {
 
             var result2 = postcss(plugin).process('a{ one: 1; two: 2 }');
             expect(result2.css).to.eql('a{ one: 1 }');
-        });
-
-        it('wraps plugin to version check', () => {
-            var plugin = postcss.plugin('test', function () {
-                return function (css) {
-                    throw 'Er';
-                };
-            });
-            var func = plugin();
-            func.postcssVersion = '2.1.5';
-
-            var processBy = (version) => {
-                var processor = new Processor([func]);
-                processor.version = version;
-                processor.process('a{}').css;
-            };
-
-            expect( () => processBy('1.0.0') ).to.throws('Er');
-            expect(console.warn.callCount).to.eql(1);
-            expect(console.warn.args[0][0]).to.eql(
-                'test is based on PostCSS 2.1.5 but you use it with ' +
-                'PostCSS 1.0.0. Maybe this is a source of error below.');
-
-            expect( () => processBy('3.0.0') ).to.throws('Er');
-            expect(console.warn.callCount).to.eql(2);
-
-            expect( () => processBy('2.0.0') ).to.throws('Er');
-            expect(console.warn.callCount).to.eql(3);
-
-            expect( () => processBy('2.1.0') ).to.throws('Er');
-            expect(console.warn.callCount).to.eql(3);
         });
 
     });

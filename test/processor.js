@@ -1,11 +1,13 @@
 import CssSyntaxError from '../lib/css-syntax-error';
 import LazyResult     from '../lib/lazy-result';
 import Processor      from '../lib/processor';
+import postcss        from '../lib/postcss';
 import Result         from '../lib/result';
 import parse          from '../lib/parse';
 import Root           from '../lib/root';
 
 import { expect } from 'chai';
+import   sinon    from 'sinon';
 import   path     from 'path';
 
 describe('Processor', () => {
@@ -53,6 +55,14 @@ describe('Processor', () => {
     });
 
     describe('process()', () => {
+        beforeEach( () => {
+            sinon.stub(console, 'warn');
+        });
+
+        afterEach( () => {
+            console.warn.restore();
+        });
+
         var processor = new Processor([ (css) => {
             css.eachRule( (rule) => {
                 if ( !rule.selector.match(/::(before|after)/) ) return;
@@ -243,6 +253,37 @@ describe('Processor', () => {
             expect(() => {
                 (new Processor([async])).process('a{}').css;
             }).to.throw(/async/);
+        });
+
+        it('checks plugin compatibility', () => {
+            var plugin = postcss.plugin('test', function () {
+                return function (css) {
+                    throw 'Er';
+                };
+            });
+            var func = plugin();
+            func.postcssVersion = '2.1.5';
+
+            var processBy = (version) => {
+                var processor = new Processor([func]);
+                processor.version = version;
+                processor.process('a{}').css;
+            };
+
+            expect( () => processBy('1.0.0') ).to.throws('Er');
+            expect(console.warn.callCount).to.eql(1);
+            expect(console.warn.args[0][0]).to.eql(
+                'test is based on PostCSS 2.1.5 but you use it with ' +
+                'PostCSS 1.0.0. Maybe this is a source of error below.');
+
+            expect( () => processBy('3.0.0') ).to.throws('Er');
+            expect(console.warn.callCount).to.eql(2);
+
+            expect( () => processBy('2.0.0') ).to.throws('Er');
+            expect(console.warn.callCount).to.eql(3);
+
+            expect( () => processBy('2.1.0') ).to.throws('Er');
+            expect(console.warn.callCount).to.eql(3);
         });
 
     });
