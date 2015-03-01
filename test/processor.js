@@ -286,6 +286,21 @@ describe('Processor', () => {
             expect(console.warn.callCount).to.eql(3);
         });
 
+        it('sets last plugin to result', (done) => {
+            var plugin1 = function (css, result) {
+                expect(result.lastPlugin).to.equal(plugin1);
+            };
+            var plugin2 = function (css, result) {
+                expect(result.lastPlugin).to.equal(plugin2);
+            };
+
+            var processor = new Processor([plugin1, plugin2]);
+            processor.process('a{}').then( (result) => {
+                expect(result.lastPlugin).to.equal(plugin2);
+                done();
+            });
+        });
+
     });
 
     describe('version', () => {
