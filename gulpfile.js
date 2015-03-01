@@ -1,11 +1,12 @@
 var gulp = require('gulp');
+var path = require('path');
 var fs   = require('fs-extra');
 
 // Build
 
 gulp.task('build:clean', function (done) {
-    fs.remove(__dirname + '/postcss.js', function () {
-        fs.remove(__dirname + '/build', done);
+    fs.remove(path.join(__dirname, 'postcss.js'), function () {
+        fs.remove(path.join(__dirname, 'build'), done);
     });
 });
 
@@ -42,22 +43,17 @@ gulp.task('build:package', ['build:clean'], function () {
 
 gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
 
-gulp.task('standalone', ['build:lib'], function (done) {
-    var builder    = require('browserify')({
-        basedir:     __dirname + '/build/',
+gulp.task('standalone', ['build'], function (done) {
+    var builder = require('browserify')({
+        basedir:     path.join(__dirname, 'build'),
         standalone: 'postcss'
     });
     builder.add('./lib/postcss.js');
 
-    var output = fs.createWriteStream(__dirname + '/postcss.js');
     builder.bundle(function (error, build) {
-        if ( error ) {
-            process.stderr.write(error.toString() + "\n");
-            process.exit(1);
-        }
-
-        fs.removeSync(__dirname + '/build/');
-        fs.writeFile(__dirname + '/postcss.js', build, done);
+        if ( error ) throw error.toString();
+        fs.removeSync(path.join(__dirname, 'build'));
+        fs.writeFile(path.join(__dirname, 'postcss.js'), build, done);
     });
 });
 
@@ -79,8 +75,8 @@ gulp.task('lint', function () {
 // Benchmark
 
 gulp.task('bench:clean', function (done) {
-    fs.remove(__dirname + '/benchmark/results', function () {
-        fs.remove(__dirname + '/benchmark/cache', done);
+    fs.remove(path.join(__dirname, '/benchmark/results'), function () {
+        fs.remove(path.join(__dirname, '/benchmark/cache'), done);
     });
 });
 
@@ -129,7 +125,6 @@ gulp.task('bench:parsers', ['build', 'bench:bootstrap'], function () {
 
 gulp.task('integration', ['build:lib', 'build:package'], function (done) {
     var gutil = require('gulp-util');
-    var path  = require('path');
 
     var postcss = require('./build/lib/postcss');
     var styles  = require('./tasks/styles');
@@ -165,7 +160,7 @@ gulp.task('integration', ['build:lib', 'build:package'], function (done) {
                 return error('Parsing error: ' + e.message + e.stack);
             }
 
-            if ( processed != css ) {
+            if ( processed !== css ) {
                 fs.writeFileSync('origin.css', css);
                 fs.writeFileSync('fail.css', processed);
                 return error('Output is not equal input');
@@ -188,14 +183,15 @@ gulp.task('test', function () {
 
 gulp.task('cases', function () {
     var postcss = require('./');
-    var cases   = __dirname + '/test/cases/';
+    var cases   = path.join(__dirname, 'test', 'cases');
 
-    fs.readdirSync(cases).forEach(function (file) {
-        if ( !file.match(/\.css$/) ) return;
-        var css  = fs.readFileSync(cases + file);
-        var root = postcss.parse(css, { from: '/' + file });
+    fs.readdirSync(cases).forEach(function (name) {
+        if ( !name.match(/\.css$/) ) return;
+        var css  = fs.readFileSync(path.join(cases, name));
+        var root = postcss.parse(css, { from: '/' + name });
         var json = JSON.stringify(root, null, 4);
-        fs.writeFileSync(cases + file.replace(/\.css$/, '.json'), json + '\n');
+        var file = path.join(cases, name.replace(/\.css$/, '.json'));
+        fs.writeFileSync(file, json + '\n');
     });
 });
 
