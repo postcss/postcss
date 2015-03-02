@@ -824,7 +824,7 @@ rule.append({ prop: 'color', value: 'black' });       // declaration
 rule.append({ text: 'Comment' })                      // comment
 ```
 
-### `container.insertBefore(oldNode, newNew)`  and `container.insertAftr(oldNode, newNew)`
+### `container.insertBefore(oldNode, newNew)`  and `container.insertAfter(oldNode, newNew)`
 
 Insert `newNode` before/after `oldNode` within the container.
 
