@@ -246,6 +246,10 @@ if ( result.map ) {
 
 Contains helpers for working with vendor prefixes.
 
+```js
+var vendor = require('postcss/lib/vendor');
+```
+
 ### `vendor.prefix(string)`
 
 Returns the vendor prefix extracted from an input string.
