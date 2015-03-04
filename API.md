@@ -314,7 +314,7 @@ Alias for `LazyResult#css` property.
 ### `lazy.css`
 
 Processes input CSS through synchronous plugins, stringify `Root`
-and returns [`Result#css`](#resultcss).
+and returns [`Result#css`].
 
 ```js
 processor.process(css).css;
@@ -332,8 +332,7 @@ postcss([cssnext]).then(function (result) {
 
 ### `lazy.map`
 
-Processes input CSS through synchronous plugins and returns
-[`Result#map`](#resultmap).
+Processes input CSS through synchronous plugins and returns [`Result#map`].
 
 ```js
 if ( result.map ) {
@@ -367,6 +366,36 @@ postcss([cssnext]).then(function (result) {
     console.log(result.root);
 });
 ```
+
+### `lazy.warnings()`
+
+Processes input CSS through synchronous plugins and call [`Result#warnings()`].
+
+```js
+postcss([cssnext]).warnings().forEach(function (message) {
+    console.warn(message.text);
+});
+```
+
+This property will work only with synchronous plugins. If processor contains
+any asynchronous plugin it will throw a error. You should use
+[`LazyResult#then()`] instead.
+
+```js
+postcss([cssnext]).then(function (result) {
+    result.warnings().forEach(function (message) {
+        console.warn(message.text);
+    });
+});
+```
+
+### `lazy.messages`
+
+Processes input CSS through synchronous plugins and returns [`Result#messages`].
+
+This property will work only with synchronous plugins. If processor contains
+any asynchronous plugin it will throw a error. You should use
+[`LazyResult#then()`] instead.
 
 ### `lazy.processor`
 
@@ -402,7 +431,56 @@ var result2 = postcss.parse(css).toResult();
 
 ### `result.toString()`
 
-Alias for `Result#css` property.
+Alias for [`Result#css`] property.
+
+### `result.warn(text, opts)`
+
+Adds warning to [`Result#messages`].
+
+```js
+var plugin = postcss.plugin('postcss-important-warning', function () {
+    return function (css, result) {
+        css.eachDecl(function (decl) {
+            if ( decl.important ) {
+                result.warn('Try to avoid !important', { node: decl });
+            }
+        });
+    }
+});
+
+postcss([plugin]).process(css).then(function (result) {
+    result.warnings() //=> [{
+                      //      plugin: 'postcss-important-warning',
+                      //      text:   'Try to avoid !important'
+                      //      node:  { type: 'decl', … }
+                      //   }]
+})
+```
+
+Arguments:
+
+* `text (string)`: warning message. It will be used in `text` property of
+  message object.
+* `opts (object) optional`: properties to message object.
+  * `node`: CSS node, that was a source of warning.
+  * `plugin`: name of plugin created this warning. `Result#warn()` will fill it
+    automatically by `plugin.postcssPlugin` value.
+
+### `result.warnings()`
+
+Returns warnings from plugins. It just a filters [Result#messages] by `type`.
+
+```js
+result.warnings().forEach(function (message) {
+    console.log(message.text);
+});
+```
+
+Each warning has properties:
+
+* `text (string)`: warning message.
+* `plugin (string)`: name of plugin created this warning.
+* `node (Node) optional`: source of warning.
 
 ### `result.css`
 
@@ -442,6 +520,29 @@ Contains [`Root` node] after all transformations.
 ```js
 root.toResult().root == root;
 ```
+
+### `result.messages`
+
+Contains messages from plugins. For example, warnings or custom messages
+to pluugins communication.
+
+Each message should has `type` and `plugin` properties.
+
+```js
+postcss.plugin('postcss-min-browser', function () {
+    return function (css, result) {
+        var browsers = detectMinBrowsersByCanIUse(css);
+        result.messages.push({
+            type:    'min-browser',
+            plugin:  'postcss-min-browser',
+            browsers: browsers
+        });
+    }
+})
+```
+
+You can add warning by [`Result#warn()`](#resultwarn) and get all warnings
+by [`Result#warnings()`](#resultwarnings) method.
 
 ### `result.processor`
 
@@ -1576,13 +1677,14 @@ This is a code style property.
 [`postcss(plugins)`]:             #postcssplugins
 [`postcss.plugin()`]:             #postcsspluginname-initializer
 [`Declaration` node]:             #declaration-node
-[`Comment` node]:                 #comment-node
+[`Result#messages`]:              #resultmessages
 [`Processor#use`]:                #processoruseplugin
+[`Comment` node]:                 #comment-node
 [`LazyResult`]:                   #lazy-result-class
 [`AtRule` node]:                  #atrule-node
 [`from` option]:                  #processorprocesscss-opts
-[`result.map`]:                   #resultmap
-[`result.css`]:                   #resultcss
+[`Result#map`]:                   #resultmap
+[`Result#css`]:                   #resultcss
 [`Root` node]:                    #root-node
 [`Rule` node]:                    #rule-node
 [`Processor`]:                    #processor-class

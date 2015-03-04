@@ -47,4 +47,22 @@ describe('LazyResult', () => {
 
     });
 
+    describe('warnings()', () => {
+
+        it('contains warnings', () => {
+            var result = new LazyResult(processor, 'a {}', { });
+            expect(result.warnings()).to.eql([]);
+        });
+
+    });
+
+    describe('messages', () => {
+
+        it('contains messages', () => {
+            var result = new LazyResult(processor, 'a {}', { });
+            expect(result.messages).to.eql([]);
+        });
+
+    });
+
 });
