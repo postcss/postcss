@@ -97,21 +97,49 @@ processor.plugins[0].postcssVersion //=> '4.1.0'
 ```
 
 Plugin function receive 2 arguments: [`Root` node] and [`Result`] instance.
-Then it should mutate the passed `Root` node and return nothing, or return
-a new `Root` node.
+Then it should mutate the passed `Root` node, or you can create new `Root` node
+and put it to `result.root` property.
 
 ```js
-postcss.plugin('postcss-charset', function () {
-    return function (css, result) {
-        css.prepend({ name: 'charset', params: '"UTF-8"' });
-      };
-});
 postcss.plugin('postcss-cleaner', function () {
     return function (css, result) {
-        return postcss.root();
+        result.root = postcss.root();
     };
 });
 ```
+
+Asynchronous pluugin should return `Promise` instance.
+
+```js
+postcss.plugin('postcss-import', function () {
+    return function (css, result) {
+        return new Promise(function (resolve, reject) {
+            fs.readFile('base.css', function (base) {
+                css.prepend(base);
+                resolve();
+            })
+        });
+    };
+});
+```
+
+You can add warnings by [`Result#warn()`] method.
+
+```js
+postcss.plugin('postcss-caniuse-test', function () {
+    return function (css, result) {
+        css.eachDecl(function (decl) {
+            if ( !caniuse.support(decl.prop) ) {
+                result.warn(
+                    'Some of browsers does not support ' + decl.prop,
+                    { node: decl });
+            }
+        });
+    };
+});
+```
+
+You can send some data to next plugins by [`Result#messages`] array.
 
 ### `postcss.root(props)`
 
@@ -214,16 +242,18 @@ Arguments:
 
 * `plugin (function|#postcss|Processor)`: PostCSS plugin. I can be in three
   formats:
+  * A plugin created by [`postcss.plugin()`] method.
   * A function. PostCSS will pass the function a [`Root` node]
-    as the first argument and current [`Processor`] instance as second.
-  * A wrap function created by [`postcss.plugin()`] method.
+    as the first argument and current [`Result`] instance as second.
   * An object with a `postcss` method. PostCSS will use that method
-    as described in #1.
+    as described in #2.
   * Another `Processor` instance. PostCSS will copy plugins
     from that instance to this one.
 
 Plugins can also be added by passing them as arguments when creating
 a `postcss` instance (cf. [`postcss(plugins)`]).
+
+Asynchronous pluugin should return `Promise` instance.
 
 ### `processor.process(css, opts)`
 
