@@ -68,7 +68,7 @@ describe('CssSyntaxError', () => {
     it('uses source map', () => {
         var concat = new Concat(true, 'all.css');
         concat.add('a.css', 'a { }\n');
-        concat.add('b.css', 'b {\n');
+        concat.add('b.css', '\nb {\n');
 
         var error = parseError(concat.content, {
             from: 'build/all.css',
@@ -76,14 +76,14 @@ describe('CssSyntaxError', () => {
         });
 
         expect(error.file).to.eql(path.resolve('b.css'));
-        expect(error.line).to.eql(1);
+        expect(error.line).to.eql(2);
         expect(error.source).to.not.exist;
 
         expect(error.generated).to.eql({
             file:    path.resolve('build/all.css'),
-            line:    2,
+            line:    3,
             column:  1,
-            source: 'a { }\nb {\n'
+            source: 'a { }\n\nb {\n'
         });
     });
 
