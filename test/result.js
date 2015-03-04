@@ -9,7 +9,7 @@ describe('Result', () => {
 
         it('stringifies', () => {
             var result = new Result();
-            result.css = 'a{}'
+            result.css = 'a{}';
             expect('' + result).to.eql(result.css);
         });
 
@@ -21,7 +21,7 @@ describe('Result', () => {
             var plugin = postcss.plugin('test-plugin', () => {
                 return (css, result) => {
                     result.warn('test', { node: css.first });
-                }
+                };
             });
             var result = postcss([plugin]).process('a{}').sync();
 
@@ -37,7 +37,7 @@ describe('Result', () => {
             var plugin = postcss.plugin('test-plugin', () => {
                 return (css, result) => {
                     result.warn('test', { plugin: 'test-plugin#one' });
-                }
+                };
             });
             var result = postcss([plugin]).process('a{}').sync();
 
