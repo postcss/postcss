@@ -108,4 +108,11 @@ describe('CssSyntaxError', () => {
         expect(error.file).to.eql(path.resolve('build/all.css'));
     });
 
+    it('set source plugin', () => {
+        var error = parse('a{}').first.error('Error', { plugin: 'test' });
+        expect(error.plugin).to.eql('test');
+        expect(error.toString()).to.match(
+            /^CssSyntaxError: test:<css input>:1:1: Error/);
+    });
+
 });
