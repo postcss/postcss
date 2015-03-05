@@ -4,6 +4,7 @@
 * [Processor class](#processor-class)
 * [LazyResult class](#lazy-result-class)
 * [Result class](#result-class)
+* [CssSyntaxError class](#csssyntaxerror-class)
 * [Vendor module](#vendor-module)
 * [List module](#list-module)
 * [Input class](#input-class)
@@ -587,6 +588,152 @@ call that produced this `Result` instance.
 root.toResult(opts).opts == opts;
 ```
 
+## `CssSyntaxError` class
+
+CSS parser throw this error on broken CSS.
+
+```js
+postcss.parse('a{') //=> CssSyntaxError
+```
+
+Custom parsers can throw this error on broken own custom syntax
+by [`Node#error()`](#nodeerrormessage) method.
+
+```js
+throw node.error('Unknown variable', { plugin: 'postcss-vars' });
+```
+
+### `error.toString()`
+
+Returns string with error position, message and source code of broken part.
+
+```js
+error.toString() //=> CssSyntaxError: a.css:1:1: Unclosed block
+                 //   a {
+                 //   ^
+```
+
+### `error.highlight(color)`
+
+Returns a few lines of CSS source, which generates this error.
+
+```js
+error.highlight() //=> a {
+                  //     bad
+                  //     ^
+                  //   }
+```
+
+Arguments:
+
+* `color (boolean) optional`: should arrow will be colored to red by terminal
+  color codes. By default, PostCSS will use `process.stdout.isTTY` and
+  `process.env.NODE_DISABLE_COLORS`.
+
+### `error.message`
+
+Contains full error text by GNU error format.
+
+```js
+error.message //=> 'a.css:1:1: Unclosed block'
+```
+
+### `error.reason`
+
+Contains only error description.
+
+```js
+error.reason //=> 'Unclosed block'
+```
+
+### `error.plugin`
+
+Contains PostCSS plugin name if error came not from CSS parser.
+
+```js
+error.plugin //=> 'postcss-vars'
+```
+
+### `error.file`
+
+Contains absolute path to broken file, if use set `from` option to parser.
+
+```js
+error.file //=> 'a.sass'
+```
+
+PostCSS will use input source map to detect origin place of error. If you wrote
+Sass file, then compile it to CSS and put to PostCSS, PostCSS will show
+position in origin Sass file.
+
+If you need position in PostCSS input (for example, to debug previous compiler),
+you can use `error.generated.file`.
+
+```js
+error.file           //=> 'a.sass'
+error.generated.file //=> 'a.css'
+```
+
+### `error.line`
+
+Contains source line of error.
+
+```js
+error.line //=> 2
+```
+
+PostCSS will use input source map to detect origin place of error. If you wrote
+Sass file, then compile it to CSS and put to PostCSS, PostCSS will show
+position in origin Sass file.
+
+If you need position in PostCSS input (for example, to debug previous compiler),
+you can use `error.generated.line`.
+
+```js
+error.line           //=> 2
+error.generated.line //=> 4
+```
+
+### `error.column`
+
+Contains source column of error.
+
+```js
+error.column //=> 1
+```
+
+PostCSS will use input source map to detect origin place of error. If you wrote
+Sass file, then compile it to CSS and put to PostCSS, PostCSS will show
+position in origin Sass file.
+
+If you need position in PostCSS input (for example, to debug previous compiler),
+you can use `error.generated.column`.
+
+```js
+error.column           //=> 1
+error.generated.column //=> 4
+```
+
+### `error.source`
+
+Contains source code of broken file.
+
+```js
+error.source //=> 'a {} b {'
+```
+
+PostCSS will use input source map to detect origin place of error. If you wrote
+Sass file, then compile it to CSS and put to PostCSS, PostCSS will show
+position in origin Sass file.
+
+If you need position in PostCSS input (for example, to debug previous compiler),
+you can use `error.generated.source`.
+
+```js
+error.source           //=> 'a { b {} }'
+error.generated.column //=> 'a b { }'
+```
+
 ## Vendor module
 
 Contains helpers for working with vendor prefixes.
@@ -773,9 +920,9 @@ Returns a CSS string representing the node.
 postcss.rule({ selector: 'a' }).toString() //=> 'a {}''
 ```
 
-### `node.error(message)`
+### `node.error(message, opts)`
 
-Returns a `CssSyntaxError` instance that presents the original position
+Returns a [`CssSyntaxError`] instance that presents the original position
 of the node in the source, showing line and column numbers and also
 a small excerpt to facilitate debugging.
 
@@ -787,23 +934,22 @@ This method produces very useful error messages.
 
 ```js
 if ( !variables[name] ) {
-    throw decl.error('Unknown variable ' + name);
-    // CssSyntaxError: a.sass:4:3: Unknown variable $black
+    throw decl.error('Unknown variable ' + name, { plugin: 'postcss-vars' });
+    // CssSyntaxError: postcss-vars:a.sass:4:3: Unknown variable $black
     // a
     //   color: $black
     //   ^
     //   background: white
-}
-
-if ( oldSyntax.check(decl) ) {
-    console.warn( decl.error('Old syntax for variables').message );
-    // a.sass:4:3: Old syntax for variables
 }
 ```
 
 Arguments:
 
 * `message (string)`: error description.
+* `opts (object) optional`: options.
+  * `plugin (string)`: plugin name, that created this error.
+
+See also [`Result#warn()`] for warnings.
 
 ### `node.next()` and `node.prev()`
 
@@ -1708,11 +1854,12 @@ This is a code style property.
 [`postcss.plugin()`]:             #postcsspluginname-initializer
 [`Declaration` node]:             #declaration-node
 [`Result#messages`]:              #resultmessages
+[`CssSyntaxError`]:               #csssyntaxerror-class
 [`Processor#use`]:                #processoruseplugin
 [`Comment` node]:                 #comment-node
-[`LazyResult`]:                   #lazy-result-class
 [`AtRule` node]:                  #atrule-node
 [`from` option]:                  #processorprocesscss-opts
+[`LazyResult`]:                   #lazy-result-class
 [`Result#map`]:                   #resultmap
 [`Result#css`]:                   #resultcss
 [`Root` node]:                    #root-node
