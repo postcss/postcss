@@ -245,6 +245,7 @@ a specialized language for a specialized tool (as with preprocessors).
   like Sass’s `@extend`.
 * [postcss-simple-vars] supports for Sass-style variables.
 * [csstyle] adds components workflow to your styles.
+* [postcss-map] enables configuation maps.
 
 ### Optimizations
 
@@ -333,6 +334,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [RTLCSS]:                      https://github.com/MohammadYounes/rtlcss
 [pixrem]:                      https://github.com/robwierzbowski/node-pixrem
 [doiuse]:                      https://github.com/anandthakker/doiuse
+[postcss-map]:                 https://github.com/pascalduez/postcss-map
 
 ## Usage
 
