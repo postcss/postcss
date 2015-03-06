@@ -1,3 +1,4 @@
+import Warning from '../lib/warning';
 import postcss from '../lib/postcss';
 import Result  from '../lib/result';
 
@@ -25,12 +26,12 @@ describe('Result', () => {
             });
             var result = postcss([plugin]).process('a{}').sync();
 
-            expect(result.messages).to.eql([{
-                plugin: 'test-plugin',
-                type:   'warning',
-                text:   'test',
-                node:   result.root.first
-            }]);
+            expect(result.messages).to.eql([
+                new Warning('test', {
+                    plugin: 'test-plugin',
+                    node:    result.root.first
+                })
+            ]);
         });
 
         it('allows to override plugin', () => {

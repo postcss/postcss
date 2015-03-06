@@ -4,6 +4,7 @@
 * [Processor class](#processor-class)
 * [LazyResult class](#lazy-result-class)
 * [Result class](#result-class)
+* [Warning class](#warning-class)
 * [CssSyntaxError class](#csssyntaxerror-class)
 * [Vendor module](#vendor-module)
 * [List module](#list-module)
@@ -109,7 +110,7 @@ postcss.plugin('postcss-cleaner', function () {
 });
 ```
 
-Asynchronous pluugin should return `Promise` instance.
+Asynchronous plugin should return `Promise` instance.
 
 ```js
 postcss.plugin('postcss-import', function () {
@@ -282,7 +283,7 @@ Arguments:
     to fix CSS syntax errors.
   * `map`: an object of [source map options].
 
-### `plugins`
+### `processor.plugins`
 
 Contains plugins added to this processor.
 
@@ -291,7 +292,7 @@ var processor = postcss([cssnext, cssgrace]);
 processor.plugins.length //=> 2
 ```
 
-### `version`
+### `processor.version`
 
 Contains current version of PostCSS.
 
@@ -466,10 +467,10 @@ Alias for [`Result#css`] property.
 
 ### `result.warn(text, opts)`
 
-Adds warning to [`Result#messages`].
+Creates [`Warning`] and adds it to [`Result#messages`].
 
 ```js
-var plugin = postcss.plugin('postcss-important-warning', function () {
+var plugin = postcss.plugin('postcss-important', function () {
     return function (css, result) {
         css.eachDecl(function (decl) {
             if ( decl.important ) {
@@ -499,19 +500,14 @@ Arguments:
 
 ### `result.warnings()`
 
-Returns warnings from plugins. It just a filters [Result#messages] by `type`.
+Returns warnings from plugins. It just a filters [`Warning`] instances
+from [Result#messages].
 
 ```js
 result.warnings().forEach(function (message) {
-    console.log(message.text);
+    console.log(message.toString());
 });
 ```
-
-Each warning has properties:
-
-* `text (string)`: warning message.
-* `plugin (string)`: name of plugin created this warning.
-* `node (Node) optional`: source of warning.
 
 ### `result.css`
 
@@ -534,9 +530,9 @@ This property will has a value *only if the user does not want an inline source
 map*. By default, PostCSS generates inline source maps, written directly into
 the processed CSS; so by default the `map` property will be empty.
 
-An external source map will be generated — and assigned to `map` — only if the
-user has set the `map.inline` option to `false`, or if PostCSS was passed
-an external input source map.
+An external source map will be generated — and assigned to `map` —
+only if the user has set the `map.inline` option to `false`, or if PostCSS
+was passed an external input source map.
 
 ```js
 if ( result.map ) {
@@ -572,12 +568,20 @@ postcss.plugin('postcss-min-browser', function () {
 })
 ```
 
-You can add warning by [`Result#warn()`](#resultwarn) and get all warnings
+You can add warning by [`Result#warn()`] and get all warnings
 by [`Result#warnings()`](#resultwarnings) method.
 
 ### `result.processor`
 
 Returns a [`Processor`] instance, that was used for this transformations.
+
+```js
+result.processor.plugins.forEach(function (plugin) {
+    if ( plugin.postcssPlugin == 'postcss-bad' ) {
+        throw 'postcss-good is incompatible with postcss-bad';
+    }
+})
+```
 
 ### `result.opts`
 
@@ -586,6 +590,49 @@ call that produced this `Result` instance.
 
 ```js
 root.toResult(opts).opts == opts;
+```
+
+## `Warning` class
+
+Warning from plugins. It can be created by [`Result#warn()`].
+
+```js
+if ( decl.important ) {
+    result.warn('Try to avoid !important', { node: decl });
+}
+```
+
+### `warning.toString()`
+
+Returns string with error position, message.
+
+```js
+warning.toString() //=> 'postcss-important:a.css:10:4: Try to avoid !important'
+```
+
+### `warning.text`
+
+Contains warning message.
+
+```js
+warning.text //=> 'Try to avoid !important'
+```
+
+### `warning.plugin`
+
+Contains plugin name created this warning. When you call [`Result#warn()`],
+it will fill this property automatically.
+
+```js
+warning.plugin //=> 'postcss-important'
+```
+
+### `warning.node`
+
+Contains CSS node, that was a source of warning.
+
+```js
+warning.node.toString() //=> 'color: white !important'
 ```
 
 ## `CssSyntaxError` class
@@ -608,7 +655,7 @@ throw node.error('Unknown variable', { plugin: 'postcss-vars' });
 Returns string with error position, message and source code of broken part.
 
 ```js
-error.toString() //=> CssSyntaxError: a.css:1:1: Unclosed block
+error.toString() //=> CssSyntaxError: app.css:1:1: Unclosed block
                  //   a {
                  //   ^
 ```
@@ -1856,6 +1903,7 @@ This is a code style property.
 [`Result#messages`]:              #resultmessages
 [`CssSyntaxError`]:               #csssyntaxerror-class
 [`Processor#use`]:                #processoruseplugin
+[`Result#warn()`]:                #resultwarn
 [`Comment` node]:                 #comment-node
 [`AtRule` node]:                  #atrule-node
 [`from` option]:                  #processorprocesscss-opts
@@ -1865,5 +1913,6 @@ This is a code style property.
 [`Root` node]:                    #root-node
 [`Rule` node]:                    #rule-node
 [`Processor`]:                    #processor-class
+[`Warning`]:                      #warning-class
 [`Result`]:                       #result-class
 [`Input`]:                        #inputclass
