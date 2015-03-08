@@ -234,8 +234,6 @@ a specialized language for a specialized tool (as with preprocessors).
 * [cssgrace] provides various helpers and transpiles CSS3 for IE
   and other old browsers.
 * [pixrem] generates pixel fallbacks for `rem` units.
-* [pleeease-filters] converts WebKit filters to SVG filters,
-  for cross-browser compatibility.
 
 ### Language Extensions
 
