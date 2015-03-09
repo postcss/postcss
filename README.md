@@ -246,6 +246,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-simple-vars] supports for Sass-style variables.
 * [csstyle] adds components workflow to your styles.
 * [postcss-map] enables configuation maps.
+* [postcss-quantity-queries] enables quantity queries.
 
 ### Optimizations
 
@@ -335,6 +336,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [pixrem]:                      https://github.com/robwierzbowski/node-pixrem
 [doiuse]:                      https://github.com/anandthakker/doiuse
 [postcss-map]:                 https://github.com/pascalduez/postcss-map
+[postcss-quantity-queries]:    https://github.com/pascalduez/postcss-quantity-queries
 
 ## Usage
 
