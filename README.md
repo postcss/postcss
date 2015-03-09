@@ -240,13 +240,13 @@ a specialized language for a specialized tool (as with preprocessors).
 
 * [postcss-mixins] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
+* [postcss-map] enables configuation maps.
 * [postcss-nested] unwraps nested rules, as Sass does.
+* [postcss-quantity-queries] enables quantity queries.
 * [postcss-simple-extend] supports extending of silent classes,
   like Sass’s `@extend`.
 * [postcss-simple-vars] supports for Sass-style variables.
 * [csstyle] adds components workflow to your styles.
-* [postcss-map] enables configuation maps.
-* [postcss-quantity-queries] enables quantity queries.
 
 ### Optimizations
 
