@@ -13,8 +13,13 @@ fs.writeFileSync(scss, css);
 var postcss = require('../build');
 var cssnext = require('cssnext');
 var stylus  = require('stylus');
-var sass    = require('node-sass');
 var less    = require('less');
+
+try {
+    var sass = require('node-sass');
+} catch (e) {
+    console.error(e.toString());
+}
 
 module.exports = {
     name:   'Bootstrap',

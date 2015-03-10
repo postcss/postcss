@@ -24,8 +24,10 @@ module.exports = {
         },
         {
             name: 'PostCSS',
-            fn: function () {
-                postcss().parse(css, { from: example }).toResult();
+            defer: true,
+            fn: function (done) {
+                postcss.parse(css, { from: example }).toResult();
+                done.resolve();
             }
         },
         {
