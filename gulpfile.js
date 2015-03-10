@@ -85,9 +85,9 @@ gulp.task('bench:clean', function (done) {
     gulp.task('bench:' + type, ['build:lib'], function() {
         var compare = require('./tasks/compare');
         var bench   = require('gulp-bench');
-        var sh      = require('execSync');
+        var child   = require('child_process');
 
-        var status = sh.exec('git status --porcelain').stdout.trim();
+        var status = child.execSync('git status --porcelain').toString().trim();
         var name   = status === '' ? 'master' : 'current';
 
         return gulp.src('./benchmark/' + type + '.js', { read: false })

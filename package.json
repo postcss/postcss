@@ -27,7 +27,6 @@
         "gulp-mocha":             "2.0.0",
         "node-sass":              "2.0.1",
         "gulp-util":              "3.0.4",
-        "execSync":               "1.0.2",
         "fs-extra":               "0.16.5",
         "gonzales":               "1.0.7",
         "through2":               "0.6.3",
