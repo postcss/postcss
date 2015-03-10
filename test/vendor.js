@@ -6,7 +6,7 @@ describe('vendor', () => {
 
     describe('.prefix()', () => {
 
-        it('returns prefix',() => {
+        it('returns prefix', () => {
             expect(vendor.prefix('-moz-color')).to.eql('-moz-');
             expect(vendor.prefix('color'     )).to.eql('');
         });

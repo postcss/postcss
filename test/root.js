@@ -1,22 +1,21 @@
 import Result from '../lib/result';
 import parse  from '../lib/parse';
-import Root   from '../lib/root';
-import Rule   from '../lib/rule';
 
 import { expect } from 'chai';
+import   path     from 'path';
 import   fs       from 'fs';
 
 describe('Root', () => {
 
     describe('toString()', () => {
 
-        fs.readdirSync(__dirname + '/cases/').forEach( file => {
-            if ( !file.match(/\.css$/) ) return;
+        fs.readdirSync(path.join(__dirname, 'cases')).forEach( name => {
+            if ( !name.match(/\.css$/) ) return;
 
-            it('stringify ' + file, () => {
-                var path = __dirname + '/cases/' + file;
-                var css  = fs.readFileSync(path).toString();
-                expect(parse(css).toString()).to.eql(css);
+            it('stringify ' + name, () => {
+                let file = path.join(__dirname, 'cases', name);
+                let css  = fs.readFileSync(file).toString();
+                expect(parse(css, { from: file }).toString()).to.eql(css);
             });
         });
 
@@ -25,15 +24,15 @@ describe('Root', () => {
     describe('prepend()', () => {
 
         it('fixes spaces on insert before first', () => {
-            var css = parse("a {} b {}");
+            let css = parse('a {} b {}');
             css.prepend({ selector: 'em' });
-            expect(css.toString()).to.eql("em {} a {} b {}");
+            expect(css.toString()).to.eql('em {} a {} b {}');
         });
 
         it('uses default spaces on only first', () => {
-            var css = parse("a {}");
+            let css = parse('a {}');
             css.prepend({ selector: 'em' });
-            expect(css.toString()).to.eql("em {}\na {}");
+            expect(css.toString()).to.eql('em {}\na {}');
         });
 
     });
@@ -41,22 +40,22 @@ describe('Root', () => {
     describe('append()', () => {
 
         it('sets new line between rules in multiline files', () => {
-            var a = parse('a {}\n\na {}\n');
-            var b = parse('b {}\n');
+            let a = parse('a {}\n\na {}\n');
+            let b = parse('b {}\n');
 
             expect(a.append(b).toString()).to.eql('a {}\n\na {}\n\nb {}\n');
         });
 
         it('sets new line between rules on last newline', () => {
-            var a = parse('a {}\n');
-            var b = parse('b {}\n');
+            let a = parse('a {}\n');
+            let b = parse('b {}\n');
 
             expect(a.append(b).toString()).to.eql('a {}\nb {}\n');
         });
 
         it('saves compressed style', () => {
-            var a = parse('a{}a{}');
-            var b = parse('b {\n}\n');
+            let a = parse('a{}a{}');
+            let b = parse('b {\n}\n');
             expect(a.append(b).toString()).to.eql('a{}a{}b{}');
         });
 
@@ -65,7 +64,7 @@ describe('Root', () => {
     describe('insertAfter()', () => {
 
         it('does not use before of first rule', () => {
-            var css = parse('a{} b{}');
+            let css = parse('a{} b{}');
             css.insertAfter(0, { selector: '.a' });
             css.insertAfter(2, { selector: '.b' });
 
@@ -79,7 +78,7 @@ describe('Root', () => {
     describe('remove()', () => {
 
         it('fixes spaces on removing first rule', () => {
-            var css = parse('a{}\nb{}\n');
+            let css = parse('a{}\nb{}\n');
             css.first.removeSelf();
             expect(css.toString()).to.eql('b{}\n');
         });
@@ -89,8 +88,8 @@ describe('Root', () => {
     describe('toResult()', () => {
 
         it('generates result with map', () => {
-            var root   = parse('a {}');
-            var result = root.toResult({ map: true });
+            let root   = parse('a {}');
+            let result = root.toResult({ map: true });
 
             expect(result).to.be.a.instanceOf(Result);
             expect(result.css).to.match(/a \{\}\n\/\*# sourceMappingURL=/);

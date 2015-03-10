@@ -3,8 +3,8 @@ import Input    from '../lib/input';
 
 import { expect } from 'chai';
 
-var test = (css, opts, tokens) => {
-    if ( typeof(tokens) == 'undefined' ) [tokens, opts] = [opts, tokens];
+let test = (css, opts, tokens) => {
+    if ( typeof tokens === 'undefined' ) [tokens, opts] = [opts, tokens];
     expect(tokenize(new Input(css, opts))).to.eql(tokens);
 };
 
@@ -63,7 +63,7 @@ describe('tokenize', () => {
     });
 
     it('tokenizes simple brackets', () => {
-       test('(ab)', [ ['brackets', '(ab)', 1, 1, 1, 4] ]);
+        test('(ab)', [ ['brackets', '(ab)', 1, 1, 1, 4] ]);
     });
 
     it('tokenizes complicated brackets', () => {
@@ -130,7 +130,7 @@ describe('tokenize', () => {
     });
 
     it('tokenizes CSS', () => {
-        var css = 'a {\n' +
+        let css = 'a {\n' +
                   '  content: "a";\n' +
                   '  width: calc(1px;)\n' +
                   '  }\n' +

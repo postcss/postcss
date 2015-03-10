@@ -5,8 +5,8 @@ import   Concat   from 'concat-with-sourcemaps';
 import { expect } from 'chai';
 import   path     from 'path';
 
-var parseError = function (css, opts) {
-    var error;
+let parseError = function (css, opts) {
+    let error;
     try {
         parse(css, opts);
     } catch (e) {
@@ -22,7 +22,7 @@ var parseError = function (css, opts) {
 describe('CssSyntaxError', () => {
 
     it('saves source', () => {
-        var error = parseError('a {\n  content: "\n}');
+        let error = parseError('a {\n  content: "\n}');
 
         expect(error).to.be.a.instanceOf(CssSyntaxError);
         expect(error.name).to.eql('CssSyntaxError');
@@ -59,24 +59,24 @@ describe('CssSyntaxError', () => {
 
     it('prints with colored CSS', () => {
         expect(parseError('a {').toString()).to.eql(
-            "CssSyntaxError: <css input>:1:1: Unclosed block\n" +
+            'CssSyntaxError: <css input>:1:1: Unclosed block\n' +
             'a {\n' +
             '\u001b[1;31m^\u001b[0m');
     });
 
     it('misses highlights without source', () => {
-        var error = parseError('a {');
+        let error = parseError('a {');
         error.source = null;
         expect(error.toString()).to.eql(
             'CssSyntaxError: <css input>:1:1: Unclosed block');
     });
 
     it('uses source map', () => {
-        var concat = new Concat(true, 'all.css');
+        let concat = new Concat(true, 'all.css');
         concat.add('a.css', 'a { }\n');
         concat.add('b.css', '\nb {\n');
 
-        var error = parseError(concat.content, {
+        let error = parseError(concat.content, {
             from: 'build/all.css',
             map: { prev: concat.sourceMap }
         });
@@ -94,7 +94,7 @@ describe('CssSyntaxError', () => {
     });
 
     it('does not uses wrong source map', () => {
-        var error = parseError('a { }\nb {', {
+        let error = parseError('a { }\nb {', {
             from: 'build/all.css',
             map: {
                 prev: {
@@ -109,7 +109,7 @@ describe('CssSyntaxError', () => {
     });
 
     it('set source plugin', () => {
-        var error = parse('a{}').first.error('Error', { plugin: 'test' });
+        let error = parse('a{}').first.error('Error', { plugin: 'test' });
         expect(error.plugin).to.eql('test');
         expect(error.toString()).to.match(
             /^CssSyntaxError: test:<css input>:1:1: Error/);

@@ -15,40 +15,40 @@ describe('Processor', () => {
     describe('use()', () => {
 
         it('adds new plugins', () => {
-            var a = () => 1;
-            var processor = new Processor();
+            let a = () => 1;
+            let processor = new Processor();
             processor.use(a);
             expect(processor.plugins).to.eql([a]);
         });
 
         it('adds new plugin by object', () => {
-            var a = () => 1;
-            var processor = new Processor();
+            let a = () => 1;
+            let processor = new Processor();
             processor.use({ postcss: a });
             expect(processor.plugins).to.eql([a]);
         });
 
         it('adds new plugin by object-function', () => {
-            var a   = () => 1;
-            var obj = () => 2;
+            let a   = () => 1;
+            let obj = () => 2;
             obj.postcss = a;
-            var processor = new Processor();
+            let processor = new Processor();
             processor.use(obj);
             expect(processor.plugins).to.eql([a]);
         });
 
         it('adds new processors of another postcss instance', () => {
-            var a = () => 1;
-            var processor = new Processor();
-            var other     = new Processor([a]);
+            let a = () => 1;
+            let processor = new Processor();
+            let other     = new Processor([a]);
             processor.use(other);
             expect(processor.plugins).to.eql([a]);
         });
 
         it('returns itself', () => {
-            var a = () => 1;
-            var b = () => 2;
-            var processor = new Processor();
+            let a = () => 1;
+            let b = () => 2;
+            let processor = new Processor();
             expect(processor.use(a).use(b).plugins).to.eql([a, b]);
         });
 
@@ -63,39 +63,39 @@ describe('Processor', () => {
             console.warn.restore();
         });
 
-        var processor = new Processor([ (css) => {
+        let beforeFix = new Processor([ (css) => {
             css.eachRule( (rule) => {
                 if ( !rule.selector.match(/::(before|after)/) ) return;
-                if ( !rule.some( i => i.prop == 'content' ) ) {
+                if ( !rule.some( i => i.prop === 'content' ) ) {
                     rule.prepend({ prop: 'content', value: '""' });
                 }
             });
         }]);
 
         it('processes CSS', () => {
-            var result = processor.process('a::before{top:0}');
+            let result = beforeFix.process('a::before{top:0}');
             expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 
         it('processes parsed AST', () => {
-            var root   = parse('a::before{top:0}');
-            var result = processor.process(root);
+            let root   = parse('a::before{top:0}');
+            let result = beforeFix.process(root);
             expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 
         it('processes previous result', () => {
-            var result = (new Processor()).process('a::before{top:0}');
-            result = processor.process(result);
+            let result = (new Processor()).process('a::before{top:0}');
+            result = beforeFix.process(result);
             expect(result.css).to.eql('a::before{content:"";top:0}');
         });
 
         it('takes maps from previous result', () => {
-            var one = (new Processor()).process('a{}', {
+            let one = (new Processor()).process('a{}', {
                 from: 'a.css',
                 to:   'b.css',
                 map: { inline: false }
             });
-            var two = (new Processor()).process(one, {
+            let two = (new Processor()).process(one, {
                 to:   'c.css',
                 map: { inline: false }
             });
@@ -103,7 +103,7 @@ describe('Processor', () => {
         });
 
         it('throws with file name', () => {
-            var error;
+            let error;
             try {
                 (new Processor()).process('a {', { from: 'a.css' });
             } catch (e) {
@@ -119,23 +119,23 @@ describe('Processor', () => {
         });
 
         it('allows to replace Root', () => {
-            var processor = new Processor([ () => new Root() ]);
+            let processor = new Processor([ () => new Root() ]);
             expect(processor.process('a {}').css).to.eql('');
         });
 
         it('returns LazyResult object', () => {
-            var result = (new Processor()).process('a{}');
+            let result = (new Processor()).process('a{}');
             expect(result).to.be.an.instanceOf(LazyResult);
             expect(result.css).to.eql(       'a{}');
             expect(result.toString()).to.eql('a{}');
         });
 
         it('calls all plugins once', (done) => {
-            var calls = '';
-            var a = () => calls += 'a';
-            var b = () => calls += 'b';
+            let calls = '';
+            let a = () => calls += 'a';
+            let b = () => calls += 'b';
 
-            var result = new Processor([a, b]).process('');
+            let result = new Processor([a, b]).process('');
             result.css;
             result.map;
             result.root;
@@ -146,13 +146,13 @@ describe('Processor', () => {
         });
 
         it('parses, converts and stringifies CSS', () => {
-            var a = (css) => expect(css).to.be.an.instanceof(Root);
+            let a = (css) => expect(css).to.be.an.instanceof(Root);
             expect((new Processor([a])).process('a {}').css).to.be.a('string');
         });
 
         it('send result to plugins', () => {
-            var processor = new Processor();
-            var a = (css, result) => {
+            let processor = new Processor();
+            let a = (css, result) => {
                 expect(result).to.be.an.instanceof(Result);
                 expect(result.processor).to.eql(processor);
                 expect(result.opts).to.eql({ map: true });
@@ -162,12 +162,12 @@ describe('Processor', () => {
         });
 
         it('accepts source map from PostCSS', () => {
-            var one = (new Processor()).process('a{}', {
+            let one = (new Processor()).process('a{}', {
                 from: 'a.css',
                 to:   'b.css',
                 map:   { inline: false }
             });
-            var two = (new Processor()).process(one.css, {
+            let two = (new Processor()).process(one.css, {
                 from: 'b.css',
                 to:   'c.css',
                 map: { prev: one.map, inline: false }
@@ -176,7 +176,7 @@ describe('Processor', () => {
         });
 
         it('supports async plugins', (done) => {
-            var async = (css) => {
+            let async = (css) => {
                 return new Promise( (resolve) => {
                     setTimeout(() => {
                         css.append({ selector: 'a' });
@@ -198,8 +198,8 @@ describe('Processor', () => {
         });
 
         it('runs async plugin only once', (done) => {
-            var calls = 0;
-            var async = (css) => {
+            let calls = 0;
+            let async = () => {
                 return new Promise( (resolve) => {
                     setTimeout(() => {
                         calls += 1;
@@ -208,7 +208,7 @@ describe('Processor', () => {
                 });
             };
 
-            var result = (new Processor([async])).process('a {}');
+            let result = (new Processor([async])).process('a {}');
             result.then( () => { });
             result.then( () => {
                 result.then( () => {
@@ -219,35 +219,35 @@ describe('Processor', () => {
         });
 
         it('supports async errors', (done) => {
-            var error = new Error('Async');
-            var async = (css) => {
+            let error = new Error('Async');
+            let async = () => {
                 return new Promise( (resolve, reject) => {
                     reject(error);
                 });
             };
             (new Processor([async])).process('').then( () => {
                 done('should not run then callback');
-            }).catch(function (error) {
-                expect(error).to.eql(error);
+            }).catch(function (err) {
+                expect(err).to.eql(error);
                 done();
             });
         });
 
         it('supports sync errors in async mode', (done) => {
-            var error = new Error('Async');
-            var async = (css) => {
+            let error = new Error('Async');
+            let async = () => {
                 throw error;
             };
             (new Processor([async])).process('').then( () => {
                 done('should not run then callback');
-            }).catch(function (error) {
-                expect(error).to.eql(error);
+            }).catch(function (err) {
+                expect(err).to.eql(error);
                 done();
             });
         });
 
         it('throws error on sync method to async plugin', () => {
-            var async = (css) => {
+            let async = () => {
                 return new Promise( (resolve) => resolve() );
             };
             expect(() => {
@@ -256,16 +256,16 @@ describe('Processor', () => {
         });
 
         it('checks plugin compatibility', () => {
-            var plugin = postcss.plugin('test', function () {
-                return function (css) {
+            let plugin = postcss.plugin('test', function () {
+                return function () {
                     throw 'Er';
                 };
             });
-            var func = plugin();
+            let func = plugin();
             func.postcssVersion = '2.1.5';
 
-            var processBy = (version) => {
-                var processor = new Processor([func]);
+            let processBy = (version) => {
+                let processor = new Processor([func]);
                 processor.version = version;
                 processor.process('a{}').css;
             };
@@ -287,14 +287,14 @@ describe('Processor', () => {
         });
 
         it('sets last plugin to result', (done) => {
-            var plugin1 = function (css, result) {
+            let plugin1 = function (css, result) {
                 expect(result.lastPlugin).to.equal(plugin1);
             };
-            var plugin2 = function (css, result) {
+            let plugin2 = function (css, result) {
                 expect(result.lastPlugin).to.equal(plugin2);
             };
 
-            var processor = new Processor([plugin1, plugin2]);
+            let processor = new Processor([plugin1, plugin2]);
             processor.process('a{}').then( (result) => {
                 expect(result.lastPlugin).to.equal(plugin2);
                 done();

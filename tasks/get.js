@@ -17,13 +17,15 @@ module.exports = function (url, callback) {
             res.on('end', function () {
                 var buffer = Buffer.concat(chunks);
 
-                if ( res.headers['content-encoding'] == 'gzip' ) {
+                if ( res.headers['content-encoding'] === 'gzip' ) {
                     zlib.gunzip(buffer, function (err, decoded) {
+                        if ( err ) throw err;
                         callback(decoded.toString());
                     });
 
-                } else if ( res.headers['content-encoding'] == 'deflate' ) {
+                } else if ( res.headers['content-encoding'] === 'deflate' ) {
                     zlib.inflate(buffer, function (err, decoded) {
+                        if ( err ) throw err;
                         callback(decoded.toString());
                     });
 

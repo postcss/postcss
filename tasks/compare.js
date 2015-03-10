@@ -29,8 +29,8 @@ function result(buff) {
 function pipe(file, alldone) {
     var current = result(file);
 
-    return through.obj(function (file, type, done) {
-        var prev = result(file);
+    return through.obj(function (prevFile, type, done) {
+        var prev = result(prevFile);
         compare(prev, current);
         done();
     }, function (callback) {

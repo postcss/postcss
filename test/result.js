@@ -9,7 +9,7 @@ describe('Result', () => {
     describe('toString()', () => {
 
         it('stringifies', () => {
-            var result = new Result();
+            let result = new Result();
             result.css = 'a{}';
             expect('' + result).to.eql(result.css);
         });
@@ -19,12 +19,12 @@ describe('Result', () => {
     describe('warn()', () => {
 
         it('adds warning', () => {
-            var plugin = postcss.plugin('test-plugin', () => {
-                return (css, result) => {
-                    result.warn('test', { node: css.first });
+            let plugin = postcss.plugin('test-plugin', () => {
+                return (css, res) => {
+                    res.warn('test', { node: css.first });
                 };
             });
-            var result = postcss([plugin]).process('a{}').sync();
+            let result = postcss([plugin]).process('a{}').sync();
 
             expect(result.messages).to.eql([
                 new Warning('test', {
@@ -35,12 +35,12 @@ describe('Result', () => {
         });
 
         it('allows to override plugin', () => {
-            var plugin = postcss.plugin('test-plugin', () => {
-                return (css, result) => {
-                    result.warn('test', { plugin: 'test-plugin#one' });
+            let plugin = postcss.plugin('test-plugin', () => {
+                return (css, res) => {
+                    res.warn('test', { plugin: 'test-plugin#one' });
                 };
             });
-            var result = postcss([plugin]).process('a{}').sync();
+            let result = postcss([plugin]).process('a{}').sync();
 
             expect(result.messages[0].plugin).to.eql('test-plugin#one');
         });
@@ -50,7 +50,7 @@ describe('Result', () => {
     describe('warnings()', () => {
 
         it('returns only warnings', () => {
-            var result = new Result();
+            let result = new Result();
             result.messages = [{ type: 'warning', text: 'a' },
                                { type: 'custom' },
                                { type: 'warning', text: 'b' }];

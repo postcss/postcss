@@ -13,15 +13,15 @@ describe('Node', () => {
     describe('error()', () => {
 
         it('generates custom error', () => {
-            var css   = parse('a{}', { from: '/a.css' });
-            var error = css.first.error('Test');
+            let css   = parse('a{}', { from: '/a.css' });
+            let error = css.first.error('Test');
             expect(error).to.be.instanceOf(CssSyntaxError);
             expect(error.message).to.eql('/a.css:1:1: Test');
         });
 
         it('generates custom error for nodes without source', () => {
-            var rule  = new Rule({ selector: 'a' });
-            var error = rule.error('Test');
+            let rule  = new Rule({ selector: 'a' });
+            let error = rule.error('Test');
             expect(error.message).to.eql('<css input>: Test');
         });
 
@@ -30,8 +30,8 @@ describe('Node', () => {
     describe('removeSelf()', () => {
 
         it('removes node from parent', () => {
-            var rule = new Rule({ selector: 'a' });
-            var decl = new Declaration({ prop: 'color', value: 'black' });
+            let rule = new Rule({ selector: 'a' });
+            let decl = new Declaration({ prop: 'color', value: 'black' });
             rule.append(decl);
 
             decl.removeSelf();
@@ -44,14 +44,14 @@ describe('Node', () => {
     describe('replace()', () => {
 
         it('inserts new node', () => {
-            var rule = new Rule({ selector: 'a' });
+            let rule = new Rule({ selector: 'a' });
             rule.append({ prop: 'color', value: 'black' });
             rule.append({ prop: 'width', value: '1px' });
             rule.append({ prop: 'height', value: '1px' });
 
-            var node   = new Declaration({ prop: 'min-width', value: '1px' });
-            var width  = rule.nodes[1];
-            var result = width.replace(node);
+            let node   = new Declaration({ prop: 'min-width', value: '1px' });
+            let width  = rule.nodes[1];
+            let result = width.replace(node);
 
             expect(result).to.eql(width);
 
@@ -63,10 +63,10 @@ describe('Node', () => {
         });
 
         it('inserts new root', () => {
-            var root = new Root();
+            let root = new Root();
             root.append( new AtRule({ name: 'import', params: '"a.css"' }) );
 
-            var a = new Root();
+            let a = new Root();
             a.append( new Rule({ selector: 'a' }) );
             a.append( new Rule({ selector: 'b' }) );
 
@@ -79,10 +79,10 @@ describe('Node', () => {
     describe('clone()', () => {
 
         it('clones nodes', () => {
-            var rule = new Rule({ selector: 'a', after: '' });
+            let rule = new Rule({ selector: 'a', after: '' });
             rule.append({ prop: 'color', value: '/**/black', before: '' });
 
-            var clone = rule.clone();
+            let clone = rule.clone();
 
             expect(clone.parent).to.not.exist;
 
@@ -94,13 +94,13 @@ describe('Node', () => {
         });
 
         it('overrides properties', () => {
-            var rule  = new Rule({ selector: 'a' });
-            var clone = rule.clone({ selector: 'b' });
+            let rule  = new Rule({ selector: 'a' });
+            let clone = rule.clone({ selector: 'b' });
             expect(clone.selector).to.eql('b');
         });
 
         it('cleans code style', () => {
-            var css = parse('@page 1{a{color:black;}}');
+            let css = parse('@page 1{a{color:black;}}');
             expect(css.clone().toString()).to.eql('@page 1 {\n' +
                                                   '    a {\n' +
                                                   '        color: black\n' +
@@ -113,10 +113,10 @@ describe('Node', () => {
     describe('cloneBefore()', () => {
 
         it('clones and insert before current node', () => {
-            var rule = new Rule({ selector: 'a', after: '' });
+            let rule = new Rule({ selector: 'a', after: '' });
             rule.append({ prop: 'z-index', value: '1', before: '' });
 
-            var result = rule.first.cloneBefore({ value: '2' });
+            let result = rule.first.cloneBefore({ value: '2' });
 
             expect(result).to.equal(rule.first);
             expect(rule.toString()).to.eql('a {z-index: 2;z-index: 1}');
@@ -127,10 +127,10 @@ describe('Node', () => {
     describe('cloneAfter()', () => {
 
         it('clones and insert after current node', () => {
-            var rule = new Rule({ selector: 'a', after: '' });
+            let rule = new Rule({ selector: 'a', after: '' });
             rule.append({ prop: 'z-index', value: '1', before: '' });
 
-            var result = rule.first.cloneAfter({ value: '2' });
+            let result = rule.first.cloneAfter({ value: '2' });
 
             expect(result).to.equal(rule.last);
             expect(rule.toString()).to.eql('a {z-index: 1;z-index: 2}');
@@ -141,7 +141,7 @@ describe('Node', () => {
     describe('next()', () => {
 
         it('returns next node', () => {
-            var css = parse('a{one:1;two:2}');
+            let css = parse('a{one:1;two:2}');
             expect(css.first.first.next()).to.equal(css.first.last);
             expect(css.first.last.next()).to.not.exist;
         });
@@ -151,7 +151,7 @@ describe('Node', () => {
     describe('prev()', () => {
 
         it('returns previous node', () => {
-            var css = parse('a{one:1;two:2}');
+            let css = parse('a{one:1;two:2}');
             expect(css.first.last.prev()).to.equal(css.first.first);
             expect(css.first.first.prev()).to.not.exist;
         });
@@ -161,9 +161,9 @@ describe('Node', () => {
     describe('replaceWith()', () => {
 
         it('replaces node', () => {
-            var css    = parse('a{one:1;two:2}');
-            var decl   = { prop: 'fix', value: 'fixed' };
-            var result = css.first.first.replaceWith(decl);
+            let css    = parse('a{one:1;two:2}');
+            let decl   = { prop: 'fix', value: 'fixed' };
+            let result = css.first.first.replaceWith(decl);
 
             expect(result.prop).to.eql('one');
             expect(result.parent).to.not.exist;
@@ -175,8 +175,8 @@ describe('Node', () => {
     describe('moveTo()', () => {
 
         it('moves node between roots', () => {
-            var css1 = parse('a{one:1}b{two:2}');
-            var css2 = parse('c {\n thr: 3\n}');
+            let css1 = parse('a{one:1}b{two:2}');
+            let css2 = parse('c {\n thr: 3\n}');
             css1.first.moveTo(css2);
 
             expect(css1.toString()).to.eql('b{two:2}');
@@ -184,7 +184,7 @@ describe('Node', () => {
         });
 
         it('moves node inside one root', () => {
-            var css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
+            let css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
             css.first.moveTo(css.last);
 
             expect(css.toString())
@@ -196,8 +196,8 @@ describe('Node', () => {
     describe('moveBefore()', () => {
 
         it('moves node between roots', () => {
-            var css1 = parse('a{one:1}b{two:2}');
-            var css2 = parse('c {\n thr: 3\n}');
+            let css1 = parse('a{one:1}b{two:2}');
+            let css2 = parse('c {\n thr: 3\n}');
             css1.first.moveBefore(css2.first);
 
             expect(css1.toString()).to.eql('b{two:2}');
@@ -205,7 +205,7 @@ describe('Node', () => {
         });
 
         it('moves node inside one root', () => {
-            var css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
+            let css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
             css.first.moveBefore(css.last.first);
 
             expect(css.toString())
@@ -217,8 +217,8 @@ describe('Node', () => {
     describe('moveAfter()', () => {
 
         it('moves node between roots', () => {
-            var css1 = parse('a{one:1}b{two:2}');
-            var css2 = parse('c {\n thr: 3\n}');
+            let css1 = parse('a{one:1}b{two:2}');
+            let css2 = parse('c {\n thr: 3\n}');
             css1.first.moveAfter(css2.first);
 
             expect(css1.toString()).to.eql('b{two:2}');
@@ -226,7 +226,7 @@ describe('Node', () => {
         });
 
         it('moves node inside one root', () => {
-            var css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
+            let css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
             css.first.moveAfter(css.last.first);
 
             expect(css.toString())
@@ -238,10 +238,10 @@ describe('Node', () => {
     describe('toJSON()', () => {
 
         it('cleans parents inside', () => {
-            var rule = new Rule({ selector: 'a' });
+            let rule = new Rule({ selector: 'a' });
             rule.append({ prop: 'color', value: 'b' });
 
-            var json = rule.toJSON();
+            let json = rule.toJSON();
             expect(json.parent).to.not.exist;
             expect(json.nodes[0].parent).to.not.exist;
 
@@ -256,32 +256,32 @@ describe('Node', () => {
     describe('style()', () => {
 
         it('uses node style', () => {
-            var rule = new Rule({ selector: 'a', between: '\n' });
+            let rule = new Rule({ selector: 'a', between: '\n' });
             expect(rule.style('between', 'beforeOpen')).to.eql('\n');
         });
 
         it('hacks before for nodes without parent', () => {
-            var rule = new Rule({ selector: 'a' });
+            let rule = new Rule({ selector: 'a' });
             expect(rule.style('before')).to.eql('');
         });
 
         it('hacks before for first node', () => {
-            var root = new Root();
+            let root = new Root();
             root.append(new Rule({ selector: 'a' }));
             expect(root.first.style('before')).to.eql('');
         });
 
         it('hacks before for first decl', () => {
-            var decl = new Declaration({ prop: 'color', value: 'black' });
+            let decl = new Declaration({ prop: 'color', value: 'black' });
             expect(decl.style('before')).to.eql('');
 
-            var rule = new Rule({ selector: 'a' });
+            let rule = new Rule({ selector: 'a' });
             rule.append(decl);
             expect(decl.style('before')).to.eql('\n    ');
         });
 
         it('detects after style', () => {
-            var root = new Root();
+            let root = new Root();
             root.append({ selector: 'a', after: ' ' });
             root.first.append({ prop: 'color', value: 'black' });
             root.append({ selector: 'a' });
@@ -289,18 +289,18 @@ describe('Node', () => {
         });
 
         it('uses defaults without parent', () => {
-            var rule = new Rule({ selector: 'a' });
+            let rule = new Rule({ selector: 'a' });
             expect(rule.style('between', 'beforeOpen')).to.eql(' ');
         });
 
         it('uses defaults for unique node', () => {
-            var root = new Root();
+            let root = new Root();
             root.append(new Rule({ selector: 'a' }));
             expect(root.first.style('between', 'beforeOpen')).to.eql(' ');
         });
 
         it('clones style from first node', () => {
-            var root = new Root();
+            let root = new Root();
             root.append( new Rule({ selector: 'a', between: '' }) );
             root.append( new Rule({ selector: 'b' }) );
 
@@ -308,7 +308,7 @@ describe('Node', () => {
         });
 
         it('indents by default', () => {
-            var root = new Root();
+            let root = new Root();
             root.append( new AtRule({ name: 'page' }) );
             root.first.append( new Rule({ selector: 'a' }) );
             root.first.first.append({ prop: 'color', value: 'black' });
@@ -321,8 +321,8 @@ describe('Node', () => {
         });
 
         it('clones indent', () => {
-            var compress = parse('@page{ a{ } }');
-            var spaces   = parse('@page {\n  a {\n  }\n}');
+            let compress = parse('@page{ a{ } }');
+            let spaces   = parse('@page {\n  a {\n  }\n}');
 
             compress.first.first.append({ prop: 'color', value: 'black' });
             expect(compress.toString()).to.eql('@page{ a{ color: black } }');
@@ -333,7 +333,7 @@ describe('Node', () => {
         });
 
         it('clones indent by types', () => {
-            var css = parse('a {\n  color: black\n}\n\nb {\n}');
+            let css = parse('a {\n  color: black\n}\n\nb {\n}');
             css.append(new Rule({ selector: 'em' }));
             css.last.append({ prop: 'z-index', value: '1' });
 
@@ -341,7 +341,7 @@ describe('Node', () => {
         });
 
         it('clones indent by before and after', () => {
-            var css = parse('@page{\n\n a{\n  color: black}}');
+            let css = parse('@page{\n\n a{\n  color: black}}');
             css.first.append(new Rule({ selector: 'b' }));
             css.first.last.append({ prop: 'z-index', value: '1' });
 
@@ -349,12 +349,12 @@ describe('Node', () => {
         });
 
         it('clones semicolon only from rules with children', () => {
-            var css = parse('a{}b{one:1;}');
+            let css = parse('a{}b{one:1;}');
             expect(css.first.style('semicolon')).to.be.true;
         });
 
         it('clones only spaces in before', () => {
-            var css = parse('a{*one:1}');
+            let css = parse('a{*one:1}');
             css.first.append({ prop: 'two', value: '2' });
             css.append({ name: 'keyframes', params: 'a' });
             css.last.append({ selector: 'from'});
@@ -363,7 +363,7 @@ describe('Node', () => {
         });
 
         it('clones only spaces in between', () => {
-            var css = parse('a{one/**/:1}');
+            let css = parse('a{one/**/:1}');
             css.first.append({ prop: 'two', value: '2' });
             expect(css.toString()).to.eql('a{one/**/:1;two:2}');
         });
@@ -373,18 +373,18 @@ describe('Node', () => {
     describe('root()', () => {
 
         it('returns root', () => {
-            var css = parse('@page{a{color:black}}');
+            let css = parse('@page{a{color:black}}');
             expect(css.first.first.first.root()).to.equal(css);
         });
 
         it('returns parent of parents', () => {
-            var rule = new Rule({ selector: 'a' });
+            let rule = new Rule({ selector: 'a' });
             rule.append({ prop: 'color', value: 'black' });
             expect(rule.first.root()).to.equal(rule);
         });
 
         it('returns self on root', () => {
-            var rule = new Rule({ selector: 'a' });
+            let rule = new Rule({ selector: 'a' });
             expect(rule.root()).to.equal(rule);
         });
 
@@ -393,7 +393,7 @@ describe('Node', () => {
     describe('cleanStyles()', () => {
 
         it('cleans style recursivelly', () => {
-            var css = parse('@page{a{color:black}}');
+            let css = parse('@page{a{color:black}}');
             css.cleanStyles();
 
             expect(css.toString())
@@ -406,7 +406,7 @@ describe('Node', () => {
         });
 
         it('keeps between on request', () => {
-            var css = parse('@page{a{color:black}}');
+            let css = parse('@page{a{color:black}}');
             css.cleanStyles(true);
 
             expect(css.toString())
@@ -422,10 +422,10 @@ describe('Node', () => {
 
     describe('stringifyRaw()', () => {
         it('creates trimmed/raw property', () => {
-            var b = new Node();
-
-            b.one  = 'trim';
-            b._one = { value: 'trim', raw: 'raw' };
+            let b = new Node({
+                one: 'trim',
+                _one: { value: 'trim', raw: 'raw' }
+            });
             expect(b.stringifyRaw('one')).to.eql('raw');
 
             b.one = 'trim1';
@@ -433,7 +433,7 @@ describe('Node', () => {
         });
 
         it('works without magic', () => {
-            var b = new Node();
+            let b = new Node();
             b.one = '1';
             expect(b.one).to.eql('1');
             expect(b.stringifyRaw('one')).to.eql('1');

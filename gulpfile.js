@@ -60,17 +60,18 @@ gulp.task('standalone', ['build'], function (done) {
 // Lint
 
 gulp.task('lint', function () {
-    var jshint = require('gulp-jshint');
+    var eslint = require('gulp-eslint');
 
     return gulp.src(['*.js',
                      'lib/*.js',
                      'test/*.js',
                      'tasks/*.js',
                      'benchmark/**/*.js'])
-        .pipe(jshint({ esnext: true, expr: true }))
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jshint.reporter('fail'));
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
 });
+
 
 // Benchmark
 

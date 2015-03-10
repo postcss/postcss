@@ -8,18 +8,18 @@ describe('Warning', () => {
     describe('toString()', () => {
 
         it('outputs simple warning', () => {
-            var warning = new Warning('text');
+            let warning = new Warning('text');
             expect(warning.toString()).to.eql('text');
         });
 
         it('outputs warning with plugin', () => {
-            var warning = new Warning('text', { plugin: 'plugin' });
+            let warning = new Warning('text', { plugin: 'plugin' });
             expect(warning.toString()).to.eql('plugin: text');
         });
 
         it('outputs warning with plugin and node', () => {
-            var root    = parse('a{}', { from: '/a.css' });
-            var warning = new Warning('text', {
+            let root    = parse('a{}', { from: '/a.css' });
+            let warning = new Warning('text', {
                 plugin: 'plugin',
                 node:    root.first
             });

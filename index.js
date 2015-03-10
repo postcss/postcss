@@ -1,7 +1,7 @@
 var path = require('path');
 
 var escape = function (str) {
-    return str.replace(/[\[\]\/{}()*+?.\\^$|-]/g, "\\$&");
+    return str.replace(/[\[\]\/{}()*+?.\\^$|-]/g, '\\$&');
 };
 
 var regexp = ['lib', 'test'].map(function (i) {

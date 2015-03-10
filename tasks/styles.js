@@ -22,8 +22,10 @@ var findStyles = function (url, callback) {
 };
 
 module.exports = function (sites, callbacks) {
+    var nextLink, nextSite;
+
     var links = [];
-    var nextLink = function () {
+    nextLink = function () {
         if ( links.length === 0 ) {
             nextSite();
             return;
@@ -37,7 +39,7 @@ module.exports = function (sites, callbacks) {
         });
     };
 
-    var nextSite = function () {
+    nextSite = function () {
         if ( sites.length === 0 ) {
             callbacks.done();
             return;

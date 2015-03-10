@@ -6,19 +6,20 @@ import { expect } from 'chai';
 import   path     from 'path';
 import   fs       from 'fs';
 
-var read = file => fs.readFileSync(__dirname + '/cases/' + file);
+let read = name => fs.readFileSync(path.join(__dirname, 'cases', name));
 
 describe('postcss.parse()', () => {
 
     it('works with file reads', () => {
-        var css = fs.readFileSync(__dirname + '/cases/atrule-empty.css');
-        expect(parse(css)).to.be.instanceOf(Root);
+        let file = path.join(__dirname, 'cases', 'atrule-empty.css');
+        let css  = fs.readFileSync(file);
+        expect(parse(css, { from: file })).to.be.instanceOf(Root);
     });
 
     describe('empty file', () => {
 
         it('parses UTF-8 BOM', () => {
-            var css = parse('\uFEFF@host { a {\f} }');
+            let css = parse('\uFEFF@host { a {\f} }');
             expect(css.first.before).to.eql('');
         });
 
@@ -42,32 +43,32 @@ describe('postcss.parse()', () => {
 
     });
 
-    fs.readdirSync(__dirname + '/cases/').forEach( (file) => {
-        if ( !file.match(/\.css$/) ) return;
+    fs.readdirSync(path.join(__dirname, 'cases')).forEach( name => {
+        if ( !name.match(/\.css$/) ) return;
 
-        it('parses ' + file, () => {
-            var css  = parse(read(file), { from: '/' + file });
-            var json = read(file.replace(/\.css$/, '.json')).toString().trim();
+        it('parses ' + name, () => {
+            let css  = parse(read(name), { from: '/' + name });
+            let json = read(name.replace(/\.css$/, '.json')).toString().trim();
             expect(JSON.stringify(css, null, 4)).to.eql(json);
         });
     });
 
     it('saves source file', () => {
-        var css = parse('a {}', { from: 'a.css' });
+        let css = parse('a {}', { from: 'a.css' });
         expect(css.first.source.input.file).to.eql(path.resolve('a.css'));
         expect(css.first.source.input.from).to.eql(path.resolve('a.css'));
     });
 
     it('saves source file on previous map', () => {
-        var root1 = parse('a {}', { map: { inline: true } });
-        var css   = root1.toResult({ map: { inline: true } }).css;
-        var root2 = parse(css);
+        let root1 = parse('a {}', { map: { inline: true } });
+        let css   = root1.toResult({ map: { inline: true } }).css;
+        let root2 = parse(css);
         expect(root2.first.source.input.file).to.eql(path.resolve('to.css'));
     });
 
     it('sets unique ID for file without name', () => {
-        var css1 = parse('a {}');
-        var css2 = parse('a {}');
+        let css1 = parse('a {}');
+        let css2 = parse('a {}');
         expect(css1.first.source.input.id).to.match(/^<input css \d+>$/);
         expect(css1.first.source.input.from).to.match(/^<input css \d+>$/);
         expect(css2.first.source.input.id)
@@ -75,12 +76,12 @@ describe('postcss.parse()', () => {
     });
 
     it('sets parent node', () => {
-        var css = parse(read('atrule-rules.css'));
+        let css = parse(read('atrule-rules.css'));
 
-        var support   = css.first;
-        var keyframes = support.first;
-        var from      = keyframes.first;
-        var decl      = from.first;
+        let support   = css.first;
+        let keyframes = support.first;
+        let from      = keyframes.first;
+        let decl      = from.first;
 
         expect(decl.parent).to.equal(from);
         expect(from.parent).to.equal(keyframes);
@@ -110,7 +111,7 @@ describe('postcss.parse()', () => {
         });
 
         it('fixes unnecessary block close in safe mode', () => {
-            var root = parse('a {\n} }', { safe: true });
+            let root = parse('a {\n} }', { safe: true });
             expect(root.first.toString()).to.eql('a {\n}');
             expect(root.after).to.eql(' }');
         });
@@ -120,7 +121,7 @@ describe('postcss.parse()', () => {
         });
 
         it('fixes unclosed comment in safe mode', () => {
-            var root = parse('a { /* b ', { safe: true });
+            let root = parse('a { /* b ', { safe: true });
             expect(root.toString()).to.eql('a { /* b */}');
             expect(root.first.first.text).to.eql('b');
         });
@@ -145,19 +146,19 @@ describe('postcss.parse()', () => {
         });
 
         it('throws on property without value', () => {
-            expect( () => parse("a { b;}")   ).to.throw(/:1:5: Unknown word/);
-            expect( () => parse("a { b b }") ).to.throw(/:1:5: Unknown word/);
+            expect( () => parse('a { b;}')   ).to.throw(/:1:5: Unknown word/);
+            expect( () => parse('a { b b }') ).to.throw(/:1:5: Unknown word/);
         });
 
         it('fixes property without value in safe mode', () => {
-            var root = parse('a { color: white; one }', { safe: true });
+            let root = parse('a { color: white; one }', { safe: true });
             expect(root.first.nodes.length).to.eql(1);
             expect(root.first.semicolon).to.be.true;
             expect(root.first.after).to.eql(' one ');
         });
 
         it('fixes 2 properties in safe mode', () => {
-            var root = parse('a { one color: white; one }', { safe: true });
+            let root = parse('a { one color: white; one }', { safe: true });
             expect(root.first.nodes.length).to.eql(1);
             expect(root.first.first.prop).to.eql('color');
             expect(root.first.first.before).to.eql(' one ');
@@ -168,7 +169,7 @@ describe('postcss.parse()', () => {
         });
 
         it('fixes nameless at-rule in safe mode', () => {
-            var root = parse('@', { safe: true });
+            let root = parse('@', { safe: true });
             expect(root.first.type).to.eql('atrule');
             expect(root.first.name).to.eql('');
         });
@@ -179,7 +180,7 @@ describe('postcss.parse()', () => {
         });
 
         it('fixes property without semicolon in safe mode', () => {
-            var root = parse('a { one: 1 two: 2 }', { safe: true });
+            let root = parse('a { one: 1 two: 2 }', { safe: true });
             expect(root.first.nodes.length).to.eql(2);
             expect(root.toString()).to.eql('a { one: 1; two: 2 }');
         });
@@ -190,7 +191,7 @@ describe('postcss.parse()', () => {
         });
 
         it('fixes double colon in safe mode', () => {
-            var root = parse('a { one:: 1 }', { safe: true });
+            let root = parse('a { one:: 1 }', { safe: true });
             expect(root.first.first.value).to.eql(': 1');
         });
     });

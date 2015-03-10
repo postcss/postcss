@@ -2,10 +2,11 @@ import parse from '../lib/parse';
 
 import   mozilla  from 'source-map';
 import   fs       from 'fs-extra';
+import   path     from 'path'
 import { expect } from 'chai';
 
-var dir = __dirname + '/fixtures';
-var map = JSON.stringify({
+let dir = path.join(__dirname, 'fixtures');
+let map = JSON.stringify({
     version:  3,
     file:     null,
     sources:  [],
@@ -32,14 +33,14 @@ describe('PreviousMap', () => {
     });
 
     it('sets annotation property', () => {
-        var map2 = { map: { prev: map } };
+        let map2 = { map: { prev: map } };
         expect(parse('a{}', map2).prevMap).to.not.have.property('annotation');
-        var root = parse('a{}/*# sourceMappingURL=a.css.map */', map2);
+        let root = parse('a{}/*# sourceMappingURL=a.css.map */', map2);
         expect(root.prevMap.annotation).to.eql('a.css.map');
     });
 
     it('checks previous sources content', () => {
-        var map2 = {
+        let map2 = {
             version:  3,
             file:     'b',
             sources:  ['a'],
@@ -47,7 +48,7 @@ describe('PreviousMap', () => {
             mappings: []
         };
 
-        var opts = { map: { prev: map2 } };
+        let opts = { map: { prev: map2 } };
         expect(parse('a{}', opts).prevMap.withContent()).to.be.false;
 
         map2.sourcesContent = ['a{}'];
@@ -55,32 +56,31 @@ describe('PreviousMap', () => {
     });
 
     it('decodes base64 maps', () => {
-        var b64 = new Buffer(map).toString('base64');
-        var css = "a{}\n" +
+        let b64 = new Buffer(map).toString('base64');
+        let css = 'a{}\n' +
                   `/*# sourceMappingURL=data:application/json;base64,${b64} */`;
 
         expect(parse(css).prevMap.text).to.eql(map);
     });
 
     it('decodes URI maps', () => {
-        var uri = 'data:application/json,' + decodeURI(map);
-        var css = "a{}\n/*# sourceMappingURL=" + uri + " */";
+        let uri = 'data:application/json,' + decodeURI(map);
+        let css = `a{}\n/*# sourceMappingURL=${ uri } */`;
 
         expect(parse(css).prevMap.text).to.eql(map);
     });
 
     it('removes map on request', () => {
-        var uri = 'data:application/json,' + decodeURI(map);
-        var css = "a{}\n/*# sourceMappingURL=" + uri + " */";
+        let uri = 'data:application/json,' + decodeURI(map);
+        let css = `a{}\n/*# sourceMappingURL=${ uri } */`;
 
         expect(parse(css, { map: { prev: false } }))
             .to.not.have.property('prevMap');
     });
 
     it('raises on unknown inline encoding', () => {
-        var css = "a { }\n" +
-                  "/*# sourceMappingURL=data:application/json;" +
-                  "md5,68b329da9893e34099c7d8ad5cb9c940*/";
+        let css = 'a { }\n/*# sourceMappingURL=data:application/json;' +
+                  'md5,68b329da9893e34099c7d8ad5cb9c940*/';
 
         expect( () => parse(css) )
             .to.throw('Unsupported source map encoding md5');
@@ -92,25 +92,24 @@ describe('PreviousMap', () => {
     });
 
     it('reads map from annotation', () => {
-        fs.outputFileSync(dir + '/a.map', map);
-        root = parse("a{}\n/*# sourceMappingURL=a.map */", {
-            from: dir + '/a.css'
-        });
+        let file = path.join(dir, 'a.map');
+        fs.outputFileSync(file, map);
+        let root = parse('a{}\n/*# sourceMappingURL=a.map */', { from: file });
 
         expect(root.prevMap.text).to.eql(map);
         expect(root.prevMap.root).to.eql(dir);
     });
 
     it('sets uniq name for inline map', () => {
-        var map2 = {
+        let map2 = {
             version:  3,
             sources:  ['a'],
             names:    [],
             mappings: []
         };
 
-        var opts = { map: { prev: map2 } };
-        var prev = parse('a{}', opts).prevMap;
+        let opts = { map: { prev: map2 } };
+        let prev = parse('a{}', opts).prevMap;
 
         expect(prev.file).to.match(/^<input css \d+>$/);
         expect(prev.file).to.not.eql( parse('a{}', opts).prevMap.file );

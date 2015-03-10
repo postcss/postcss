@@ -1,12 +1,13 @@
-var fs   = require('fs');
 var exec = require('child_process').exec;
+var path = require('path');
+var fs   = require('fs');
 
-var path = __dirname + '/cache/bootstrap.css';
-var css  = fs.readFileSync(path).toString();
+var example = path.join(__dirname, 'cache', 'bootstrap.css');
+var css     = fs.readFileSync(example).toString();
 
 css = css.replace(/\s+filter:[^;\}]+;?/g, '');
 css = css.replace('/*# sourceMappingURL=bootstrap.css.map */', '');
-var scss = __dirname + '/cache/bootstrap.scss';
+var scss = path.join(__dirname, 'cache', 'bootstrap.scss');
 fs.writeFileSync(scss, css);
 
 var postcss = require('../build');
@@ -21,15 +22,18 @@ module.exports = {
     tests: [
         {
             name: 'PostCSS',
+            defer: true,
             fn: function (done) {
-                postcss(cssnext).process(css, { map: false }).css;
+                postcss(cssnext).process(css, { map: false }).then(function () {
+                    done.resolve();
+                });
             }
         },
         {
             name: 'Stylus',
             defer: true,
             fn: function (done) {
-                stylus.render(css, { filename: path }, function (err, css) {
+                stylus.render(css, { filename: example }, function (err) {
                     if ( err ) throw err;
                     done.resolve();
                 });
@@ -39,7 +43,7 @@ module.exports = {
             name: 'Less',
             defer: true,
             fn: function (done) {
-                less.render(css, function (err, css) {
+                less.render(css, function (err) {
                     if ( err ) throw err;
                     done.resolve();
                 });
@@ -56,11 +60,12 @@ module.exports = {
             defer: true,
             fn: function (done) {
                 var command = 'sass -C --sourcemap=none ' + scss;
-                exec('cd ' + __dirname + '; bundle exec ' + command,
-                     function (error, stdout, stderr) {
+                var dir = __dirname;
+                exec('cd ' + dir + '; bundle exec ' + command,
+                    function (error, stdout, stderr) {
                         if ( error ) throw stderr;
                         done.resolve();
-                     });
+                    });
             }
         }
     ]

@@ -1,18 +1,17 @@
 import LazyResult from '../lib/lazy-result';
 import Processor  from '../lib/processor';
-import parse      from '../lib/parse';
 
 import   mozilla  from 'source-map';
 import { expect } from 'chai';
 
-var processor = new Processor();
+let processor = new Processor();
 
 describe('LazyResult', () => {
 
     describe('root', () => {
 
         it('contains AST', () => {
-            var result = new LazyResult(processor, 'a {}', { });
+            let result = new LazyResult(processor, 'a {}', { });
             expect(result.root.type).to.eql('root');
         });
 
@@ -21,12 +20,12 @@ describe('LazyResult', () => {
     describe('css', () => {
 
         it('will be stringified', () => {
-            var result = new LazyResult(processor, 'a {}', { });
+            let result = new LazyResult(processor, 'a {}', { });
             expect(result.css).to.eql('a {}');
         });
 
         it('stringifies', () => {
-            var result = new LazyResult(processor, 'a {}', { });
+            let result = new LazyResult(processor, 'a {}', { });
             expect('' + result).to.eql(result.css);
         });
 
@@ -35,7 +34,7 @@ describe('LazyResult', () => {
     describe('map', () => {
 
         it('exists only if necessary', () => {
-            var result = new LazyResult(processor, '', { });
+            let result = new LazyResult(processor, '', { });
             expect(result.map).to.not.exist;
 
             result = new LazyResult(processor, '', { });
@@ -50,7 +49,7 @@ describe('LazyResult', () => {
     describe('warnings()', () => {
 
         it('contains warnings', () => {
-            var result = new LazyResult(processor, 'a {}', { });
+            let result = new LazyResult(processor, 'a {}', { });
             expect(result.warnings()).to.eql([]);
         });
 
@@ -59,7 +58,7 @@ describe('LazyResult', () => {
     describe('messages', () => {
 
         it('contains messages', () => {
-            var result = new LazyResult(processor, 'a {}', { });
+            let result = new LazyResult(processor, 'a {}', { });
             expect(result.messages).to.eql([]);
         });
 

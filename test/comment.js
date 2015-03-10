@@ -8,13 +8,13 @@ describe('Comment', () => {
     describe('toString()', () => {
 
         it('inserts default spaces', () => {
-            var comment = new Comment({ text: 'hi' });
+            let comment = new Comment({ text: 'hi' });
             expect(comment.toString()).to.eql('/* hi */');
         });
 
         it('clone spaces from another comment', () => {
-            var root    = parse('a{} /*hello*/');
-            var comment = new Comment({ text: 'world' });
+            let root    = parse('a{} /*hello*/');
+            let comment = new Comment({ text: 'world' });
             root.append(comment);
 
             expect(comment.toString()).to.eql(' /*world*/');

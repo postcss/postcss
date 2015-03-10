@@ -1,5 +1,8 @@
-var fs  = require('fs');
-var css = fs.readFileSync(__dirname + '/cache/bootstrap.css').toString();
+var path = require('path');
+var fs   = require('fs');
+
+var example = path.join(__dirname, 'cache', 'bootstrap.css');
+var css     = fs.readFileSync(example).toString();
 
 var CSSOM      = require('cssom');
 var rework     = require('rework');
@@ -22,7 +25,7 @@ module.exports = {
         {
             name: 'PostCSS',
             fn: function () {
-                postcss.parse(css).toResult().css;
+                postcss().parse(css, { from: example }).toResult();
             }
         },
         {
@@ -32,7 +35,7 @@ module.exports = {
             }
         },
         {
-            name: "Mensch",
+            name: 'Mensch',
             fn: function () {
                 mensch.stringify( mensch.parse(css) );
             }
@@ -45,7 +48,7 @@ module.exports = {
         },
         {
             name: 'Gonzales PE',
-            fn: function (done) {
+            fn: function () {
                 gonzalesPe.parse(css).toString();
             }
         },
