@@ -185,13 +185,14 @@ a specialized language for a specialized tool (as with preprocessors).
 ## Quick Start
 
 1. Implement PostCSS with your build tool of choice. See the PostCSS [Grunt],
-   [Gulp], and [webpack] plugins more detailed instructions.
+   [Gulp], and [webpack] plugins or [CLI tool] more detailed instructions.
 2. Select plugins from the list below and add them to your PostCSS process.
 3. Make awesome products.
 
-[webpack]: https://github.com/postcss/postcss-loader
-[Grunt]:   https://github.com/nDmitry/grunt-postcss
-[Gulp]:    https://github.com/w0rm/gulp-postcss
+[CLI tool]: https://github.com/code42day/postcss-cli
+[webpack]:  https://github.com/postcss/postcss-loader
+[Grunt]:    https://github.com/nDmitry/grunt-postcss
+[Gulp]:     https://github.com/w0rm/gulp-postcss
 
 ## Plugins Packs
 
