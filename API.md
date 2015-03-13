@@ -660,15 +660,15 @@ error.toString() //=> CssSyntaxError: app.css:1:1: Unclosed block
                  //   ^
 ```
 
-### `error.highlight(color)`
+### `error.showSourceCode(color)`
 
 Returns a few lines of CSS source, which generates this error.
 
 ```js
-error.highlight() //=> a {
-                  //     bad
-                  //     ^
-                  //   }
+error.showSourceCode() //=> a {
+                       //     bad
+                       //     ^
+                       //   }
 ```
 
 Arguments:
