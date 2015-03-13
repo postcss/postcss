@@ -665,7 +665,8 @@ error.toString() //=> CssSyntaxError: app.css:1:1: Unclosed block
 Returns a few lines of CSS source, which generates this error.
 
 ```js
-error.showSourceCode() //=> a {
+error.showSourceCode() //=>
+                       //   a {
                        //     bad
                        //     ^
                        //   }
@@ -676,6 +677,9 @@ Arguments:
 * `color (boolean) optional`: should arrow will be colored to red by terminal
   color codes. By default, PostCSS will use `process.stdout.isTTY` and
   `process.env.NODE_DISABLE_COLORS`.
+
+If CSS has input source map without `sourceContent`, this method will return
+empty string.
 
 ### `error.message`
 

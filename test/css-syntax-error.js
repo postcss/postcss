@@ -46,6 +46,7 @@ describe('CssSyntaxError', () => {
 
     it('highlights broken line', () => {
         expect(parseError('a {\n  content: "\n}').showSourceCode()).to.eql(
+            '\n' +
             'a {\n' +
             '  content: "\n' +
             '           \u001b[1;31m^\u001b[0m\n' +
@@ -53,8 +54,10 @@ describe('CssSyntaxError', () => {
     });
 
     it('highlights without colors on request', () => {
-        expect(parseError('a {').showSourceCode(false)).to.eql('a {\n' +
-                                                               '^');
+        expect(parseError('a {').showSourceCode(false)).to.eql(
+            '\n' +
+            'a {\n' +
+            '^');
     });
 
     it('prints with colored CSS', () => {
