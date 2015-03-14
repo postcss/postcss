@@ -258,6 +258,8 @@ a specialized language for a specialized tool (as with preprocessors).
 * [postcss-data-packer] moves embedded Base64 data out of the stylesheet
   and into a separate file.
 * [postcss-import] inlines the stylesheets referred to by `@import` rules.
+* [postcss-normalize-url] normalizes `url()`s and trims quotes where they are
+  unnecessary.
 * [postcss-url] rebases or inlines `url()`s.
 * [csswring] is a CSS minifier.
 * [css-byebye] removes the CSS rules that you don’t want.
@@ -338,6 +340,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [doiuse]:                      https://github.com/anandthakker/doiuse
 [postcss-map]:                 https://github.com/pascalduez/postcss-map
 [postcss-quantity-queries]:    https://github.com/pascalduez/postcss-quantity-queries
+[postcss-normalize-url]:       https://github.com/ben-eb/postcss-normalize-url
 
 ## Usage
 
