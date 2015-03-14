@@ -197,11 +197,11 @@ a specialized language for a specialized tool (as with preprocessors).
 ## Plugins Packs
 
 * [cssnext] contains plugins that allow you to use future CSS features today.
-* [ACSS] contains plugins that transform your CSS according
+* [AtCSS] contains plugins that transform your CSS according
   to special annotation comments.
 
 [cssnext]:  https://github.com/putaindecode/cssnext
-[ACSS]:     https://github.com/morishitter/acss
+[AtCSS]:     https://github.com/morishitter/atcss
 
 ## Plugins
 
