@@ -1,21 +1,21 @@
 # PostCSS API
 
-* [postcss function](#postcss-function)
-* [Processor class](#processor-class)
-* [LazyResult class](#lazy-result-class)
-* [Result class](#result-class)
-* [Warning class](#warning-class)
-* [CssSyntaxError class](#csssyntaxerror-class)
+* [`postcss` function](#postcss-function)
+* [`Processor` class](#processor-class)
+* [`LazyResult` class](#lazy-result-class)
+* [`Result` class](#result-class)
+* [`Warning` class](#warning-class)
+* [`CssSyntaxError` class](#csssyntaxerror-class)
 * [Vendor module](#vendor-module)
 * [List module](#list-module)
-* [Input class](#input-class)
+* [`Input` class](#input-class)
 * [Nodes common methods](#nodes-common-methods)
 * [Containers common methods](#containers-common-methods)
-* [Root node](#root-node)
-* [AtRule node](#atrule-node)
-* [Rule node](#rule-node)
-* [Declaration node](#declaration-node)
-* [Comment node](#comment-node)
+* [`Root` node](#root-node)
+* [`AtRule` node](#atrule-node)
+* [`Rule` node](#rule-node)
+* [`Declaration` node](#declaration-node)
+* [`Comment` node](#comment-node)
 
 ## `postcss` function
 
@@ -253,9 +253,9 @@ Arguments:
     from that instance to this one.
 
 Plugins can also be added by passing them as arguments when creating
-a `postcss` instance (cf. [`postcss(plugins)`]).
+a `postcss` instance (see [`postcss(plugins)`]).
 
-Asynchronous pluugin should return `Promise` instance.
+Asynchronous plugin should return `Promise` instance.
 
 ### `processor.process(css, opts)`
 
@@ -345,7 +345,7 @@ Alias for `LazyResult#css` property.
 
 ### `lazy.css`
 
-Processes input CSS through synchronous plugins, stringify `Root`
+Processes input CSS through synchronous plugins, convert `Root` to CSS string
 and returns [`Result#css`].
 
 ```js
@@ -551,7 +551,7 @@ root.toResult().root == root;
 ### `result.messages`
 
 Contains messages from plugins. For example, warnings or custom messages
-to pluugins communication.
+to plugins communication.
 
 Each message should has `type` and `plugin` properties.
 
@@ -1174,8 +1174,7 @@ Arguments:
 
 ### `container.every(callback)`
 
-Returns `true` if `callback` returns a truthy value for all
-of the container’s children.
+Returns `true` if `callback` returns a true for all of the container’s children.
 
 ```js
 var noPrefixes = rule.every(function (decl) {
@@ -1189,8 +1188,8 @@ Arguments:
 
 ### `container.some(callback)`
 
-Return `true` if `callback` returns a truthy value
-for (at least) one of the container’s children.
+Return `true` if `callback` returns a true  value for (at least) one
+of the container’s children.
 
 ```js
 var hasPrefix = rule.some(function (decl) {
@@ -1245,7 +1244,7 @@ rule.each(function (decl) {
 ```
 
 `container.each()` only iterates through the container’s immediate children.
-If you need to recursively iterate through all the container’s descendents,
+If you need to recursively iterate through all the container’s nodes,
 use `container.eachInside()`.
 
 ### `container.eachInside(callback)`
@@ -1424,7 +1423,7 @@ Arguments:
 * `node (Node|object|string)`: new node.
 
 Because each node class is identifiable by unique properties, you can use
-the following shortcuts to create nodes to prepend/append:
+the following shortcuts to create nodes in insert methods:
 
 ```js
 root.append({ name: '@charset', params: '"UTF-8"' }); // at-rule
@@ -1433,7 +1432,7 @@ rule.append({ prop: 'color', value: 'black' });       // declaration
 rule.append({ text: 'Comment' })                      // comment
 ```
 Also you can use string with CSS of new element. But it will be a little bit
-slower, that shorcuts above.
+slower, that shortcuts above.
 
 ```js
 root.append('a {}');
@@ -1565,7 +1564,7 @@ contained comments, those comments will be available
 in the `_params.raw` property.
 
 If you have not changed the parameters, calling `atrule.toString()`
-will stringify the original raw value (comments and all).
+will use the original raw value (comments and all).
 
 ```js
 var root  = postcss.parse('@media print, /**/ screen {}');

@@ -11,7 +11,7 @@ Its most popular plugin, [Autoprefixer], is one of the most universally
 praised CSS processors available.
 
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
-But PostCSS is modular, 4-40x faster, and much more powerful.
+But PostCSS is modular, 4-40 times faster, and much more powerful.
 
 PostCSS itself is very small. It includes only a CSS parser,
 a CSS node tree API, a source map generator, and a node tree stringifier.
@@ -44,8 +44,8 @@ You can use the [cssnext] plugin pack and write future CSS code right now:
 ```
 
 Or if you like the power provided by preprocessors like Sass,
-you could combine [postcss-nested], [postcss-mixins], [postcss-easings]
-and [postcss-media-minmax]:
+you could combine [`postcss-nested`], [`postcss-mixins`], [`postcss-easings`]
+and [`postcss-media-minmax`]:
 
 ```css
 $mobile: width <= 640px;
@@ -82,8 +82,10 @@ Weibo account: [postcss].
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
 </a>
 
+[Autoprefixer]: https://github.com/postcss/autoprefixer
 [@postcss]:     https://twitter.com/postcss
 [postcss]:      http://weibo.com/postcss
+[cssnext]:      https://github.com/cssnext/cssnext
 
 ## How PostCSS differs from Preprocessors
 
@@ -103,20 +105,20 @@ Each plugin does one thing well.
 
 ### Modularity
 
-Without any plugins, PostCSS will parse your CSS and stringify it back
-to you without changing a single byte. All of the processing that enables
-special features and syntax in your stylesheets is made possible
-by PostCSS plugins, which are nothing more than JS functions.
+Without any plugins, PostCSS will parse your CSS and convert it back
+to the string without changing a single byte. All of the processing that enables
+special features and syntax in your stylesheets is made possible by PostCSS
+plugins, which are nothing more than JS functions.
 
 Because each PostCSS plugin is an independent module, different plugins can take
 different approaches. This flexibility allows plugin authors to create whatever
 features they can imagine, while empowering PostCSS users to add only
 those features that they want to their workflow.
 
-Some plugins, like [postcss-custom-properties], [postcss-media-minmax],
-and [postcss-calc], implement syntax from present and future W3C specs,
+Some plugins, like [`postcss-custom-properties`], [`postcss-media-minmax`],
+and [`postcss-calc`], implement syntax from present and future W3C specs,
 transpiling it to cross-browser-compatible output. Other plugins,
-like [postcss-mixins] and [postcss-simple-extend], add new powers
+like [`postcss-mixins`] and [`postcss-simple-extend`], add new powers
 to your stylesheets that are not yet part of any spec. With PostCSS,
 you can decide for yourself which plugins match your own needs and preferences.
 
@@ -125,7 +127,7 @@ to the PostCSS ecosystem. Plugins are simple npm packages;
 so there are no barriers to writing your own plugins, or contributing ideas
 and bug fixes to the plugins that you use.
 
-### Perfomance
+### Performance
 
 PostCSS is one of the fastest CSS parsers written in JS. (Only [CSSOM] is
 faster, and only because it is less accurate.) So PostCSS will read your CSS
@@ -147,17 +149,17 @@ to build into preprocessors (like [Autoprefixer]).
 
 PostCSS-powered tools can do much more than transform special syntax into
 browser-friendly CSS. PostCSS plugin authors have built linters
-(like [doiuse] and [postcss-bem-linter]), code review tools
-(like [list-selectors]), and minifiers (like [csswring]).
-With [postcss-data-packer], you can create a cacheable “sprite”
-by moving all `data:uri` values to separate file.
+(like [`doiuse`] and [`postcss-bem-linter`]), code review tools
+(like [`list-selectors`]), and minifiers (like [`csswring`]).
+With [`postcss-data-packer`], you can create a CSS-sprite by moving all
+`data:uri` values to separate file.
 
-One unique example of PostCSS’s power is [RTLCSS]. As you know,
-in Arabic and Hebrew, writing moves from right-to-left (RTL), instead
-of the more widespread left-to-right convention. Because a language’s
-directionality affects its readers’ perspective, an international site’s layout
-needs to change for RTL users, not just its text. (Check out [Arabic Wikipedia]
-as an example.) The [RTLCSS] plugin effectively “mirrors” your stylesheet
+One unique example of PostCSS’s power is [`rtlcss`]. As you know,
+in Arabic and Hebrew, writing moves from right-to-left, instead of the more
+widespread left-to-right convention. Because a language’s directionality affects
+its readers’ perspective, an international site’s layout needs to change
+for Jews and Arabs, not just its text. (Check out [Arabic Wikipedia]
+as an example.) The [`rtlcss`] plugin effectively “mirrors” your stylesheet
 by swapping `left` and `right`, changing the value order in `margin` shorthands,
 and more.
 
@@ -165,7 +167,7 @@ and more.
 
 ### Use the CSS of the Future
 
-CSS3 added valuable features, but some of them are not yet available in all
+CSS 3 added valuable features, but some of them are not yet available in all
 of the browsers that developers need to support. And exciting future CSS modules
 are being drafted now — some even implemented in cutting-edge browsers —
 that will not be widely available for quite a while. But PostCSS plugins
@@ -207,138 +209,137 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ### Future CSS Syntax
 
-* [postcss-color-function] supports functions to transform colors.
-* [postcss-color-gray] supports the `gray()` function.
-* [postcss-color-hex-alpha] supports `#rrggbbaa` and `#rgba` notation.
-* [postcss-color-hwb] transforms `hwb()` to widely compatible `rgb()`.
-* [postcss-color-rebeccapurple] supports the `rebeccapurple` color.
-* [postcss-custom-media] supports custom aliases for media queries.
-* [postcss-custom-properties] supports variables, using syntax from
+* [`postcss-color-function`] supports functions to transform colors.
+* [`postcss-color-gray`] supports the `gray()` function.
+* [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
+* [`postcss-color-hwb`] transforms `hwb()` to widely compatible `rgb()`.
+* [`postcss-color-rebeccapurple`] supports the `rebeccapurple` color.
+* [`postcss-custom-media`] supports custom aliases for media queries.
+* [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
-* [postcss-custom-selectors] adds custom aliases for selectors.
-* [postcss-font-variant] transpiles human-readable `font-variant` to more widely
-  supported CSS.
-* [postcss-host] makes the Shadow DOM’s `:host` selector work properly
+* [`postcss-custom-selectors`] adds custom aliases for selectors.
+* [`postcss-font-variant`] transpiles human-readable `font-variant` to more
+  widely supported CSS.
+* [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
-* [postcss-media-minmax] adds `<=` and `=>` statements to media queries.
-* [mq4-hover-shim] supports the `@media (hover)` feature.
+* [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
+* [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
 ### Fallbacks
 
-* [postcss-color-hex] transforms `rgb()` and `rgba()` to hex.
-* [postcss-epub] adds the `-epub-` prefix to relevant properties.
-* [postcss-opacity] adds opacity filter for IE8.
-* [postcss-vmin] generates `vm` fallback for `vmin` unit in IE9.
-* [postcss-will-change] inserts 3D hack before `will-change` property.
-* [Autoprefixer] adds vendor prefixes for you, using data from Can I Use.
-* [cssgrace] provides various helpers and transpiles CSS3 for IE
+* [`postcss-color-hex`] transforms `rgb()` and `rgba()` to hex.
+* [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
+* [`postcss-opacity`] adds opacity filter for IE8.
+* [`postcss-vmin`] generates `vm` fallback for `vmin` unit in IE9.
+* [`postcss-will-change`] inserts 3D hack before `will-change` property.
+* [`autoprefixer`] adds vendor prefixes for you, using data from Can I Use.
+* [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
-* [pixrem] generates pixel fallbacks for `rem` units.
+* [`pixrem`] generates pixel fallbacks for `rem` units.
 
 ### Language Extensions
 
-* [postcss-mixins] enables mixins more powerful than Sass’s,
+* [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
-* [postcss-map] enables configuation maps.
-* [postcss-nested] unwraps nested rules, as Sass does.
-* [postcss-quantity-queries] enables quantity queries.
-* [postcss-simple-extend] supports extending of silent classes,
+* [`postcss-map`] enables configuration maps.
+* [`postcss-nested`] unwraps nested rules.
+* [`postcss-quantity-queries`] enables quantity queries.
+* [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’s `@extend`.
-* [postcss-simple-vars] supports for Sass-style variables.
-* [csstyle] adds components workflow to your styles.
+* [`postcss-simple-vars`] supports for Sass-style variables.
+* [`csstyle`] adds components workflow to your styles.
 
 ### Optimizations
 
-* [postcss-assets] allows you to simplify URLs, insert image dimensions,
+* [`postcss-assets`] allows you to simplify URLs, insert image dimensions,
   and inline files.
-* [postcss-calc] reduces `calc()` to values
+* [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
-* [postcss-data-packer] moves embedded Base64 data out of the stylesheet
+* [`postcss-data-packer`] moves embedded Base64 data out of the stylesheet
   and into a separate file.
-* [postcss-import] inlines the stylesheets referred to by `@import` rules.
-* [postcss-normalize-url] normalizes `url()`s and trims quotes where they are
+* [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
+* [`postcss-normalize-url`] normalizes `url()`s and trims quotes where they are
   unnecessary.
-* [postcss-url] rebases or inlines `url()`s.
-* [csswring] is a CSS minifier.
-* [css-byebye] removes the CSS rules that you don’t want.
-* [css-mqpacker] joins matching CSS media queries into a single statement.
-* [webpcss] adds URLs for WebP images, so they can be used by browsers
+* [`postcss-url`] rebases or inlines `url()`s.
+* [`csswring`] is a CSS minifier.
+* [`css-byebye`] removes the CSS rules that you don’t want.
+* [`css-mqpacker`] joins matching CSS media queries into a single statement.
+* [`webpcss`] adds URLs for WebP images, so they can be used by browsers
   that support WebP.
 
 ### Shortcuts
 
-* [postcss-easings] replaces easing names from easings.net
+* [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
-* [postcss-size] adds a `size` shortcut that sets width and height
+* [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 
 ### Others
 
-* [postcss-brand-colors] inserts company brand colors
+* [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
-* [postcss-color-palette] transforms CSS2 color keywords to a custom palette.
-* [postcss-single-charset] ensures that there is one
+* [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
+* [`postcss-single-charset`] ensures that there is one
   and only one `@charset` rule at the top of file.
-* [rtlcss] mirrors styles for right-to-left locales.
+* [`rtlcss`] mirrors styles for right-to-left locales.
 
 ### Analysis
 
-* [postcss-bem-linter] lints CSS for conformance to SUIT CSS methodology.
-* [css2modernizr] creates a Modernizr config file
+* [`postcss-bem-linter`] lints CSS for conformance to SUIT CSS methodology.
+* [`css2modernizr`] creates a Modernizr config file
   that requires only the tests that your CSS uses.
-* [doiuse] lints CSS for browser support, using data from Can I Use.
-* [list-selectors] lists and categorizes the selectors used in your CSS,
+* [`doiuse`] lints CSS for browser support, using data from Can I Use.
+* [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review and analysis.
 
-[postcss-color-rebeccapurple]: https://github.com/postcss/postcss-color-rebeccapurple
-[postcss-custom-properties]:   https://github.com/postcss/postcss-custom-properties
-[postcss-custom-selectors]:    https://github.com/postcss/postcss-custom-selectors
-[postcss-color-hex-alpha]:     https://github.com/postcss/postcss-color-hex-alpha
-[postcss-color-function]:      https://github.com/postcss/postcss-color-function
-[postcss-single-charset]:      https://github.com/hail2u/postcss-single-charset
-[postcss-color-palette]:       https://github.com/zaim/postcss-color-palette
-[postcss-simple-extend]:       https://github.com/davidtheclark/postcss-simple-extend
-[postcss-media-minmax]:        https://github.com/postcss/postcss-media-minmax
-[postcss-custom-media]:        https://github.com/postcss/postcss-custom-media
-[postcss-brand-colors]:        https://github.com/postcss/postcss-brand-colors
-[postcss-font-variant]:        https://github.com/postcss/postcss-font-variant
-[postcss-will-change]:         https://github.com/postcss/postcss-will-change
-[postcss-simple-vars]:         https://github.com/postcss/postcss-simple-vars
-[postcss-data-packer]:         https://github.com/Ser-Gen/postcss-data-packer
-[postcss-bem-linter]:          https://github.com/necolas/postcss-bem-linter
-[postcss-color-gray]:          https://github.com/postcss/postcss-color-gray
-[postcss-color-hex]:           https://github.com/TrySound/postcss-color-hex
-[postcss-color-hwb]:           https://github.com/postcss/postcss-color-hwb
-[pleeease-filters]:            https://github.com/iamvdo/pleeease-filters
-[postcss-easings]:             https://github.com/postcss/postcss-easings
-[postcss-opacity]:             https://github.com/iamvdo/postcss-opacity
-[postcss-assets]:              https://github.com/borodean/postcss-assets
-[postcss-import]:              https://github.com/postcss/postcss-import
-[postcss-nested]:              https://github.com/postcss/postcss-nested
-[postcss-mixins]:              https://github.com/postcss/postcss-mixins
-[mq4-hover-shim]:              https://github.com/twbs/mq4-hover-shim
-[list-selectors]:              https://github.com/davidtheclark/list-selectors
-[css2modernizr]:               https://github.com/vovanbo/css2modernizr
-[Autoprefixer]:                https://github.com/postcss/autoprefixer
-[css-mqpacker]:                https://github.com/hail2u/node-css-mqpacker
-[postcss-epub]:                https://github.com/Rycochet/postcss-epub
-[postcss-calc]:                https://github.com/postcss/postcss-calc
-[postcss-size]:                https://github.com/postcss/postcss-size
-[postcss-host]:                https://github.com/vitkarpov/postcss-host
-[postcss-vmin]:                https://github.com/iamvdo/postcss-vmin
-[postcss-url]:                 https://github.com/postcss/postcss-url
-[css-byebye]:                  https://github.com/AoDev/css-byebye
-[cssgrace]:                    https://github.com/cssdream/cssgrace
-[csswring]:                    https://github.com/hail2u/node-csswring
-[csstyle]:                     https://github.com/geddski/csstyle
-[webpcss]:                     https://github.com/lexich/webpcss
-[rtlcss]:                      https://github.com/MohammadYounes/rtlcss
-[RTLCSS]:                      https://github.com/MohammadYounes/rtlcss
-[pixrem]:                      https://github.com/robwierzbowski/node-pixrem
-[doiuse]:                      https://github.com/anandthakker/doiuse
-[postcss-map]:                 https://github.com/pascalduez/postcss-map
-[postcss-quantity-queries]:    https://github.com/pascalduez/postcss-quantity-queries
-[postcss-normalize-url]:       https://github.com/ben-eb/postcss-normalize-url
+[`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
+[`postcss-custom-properties`]:   https://github.com/postcss/postcss-custom-properties
+[`postcss-custom-selectors`]:    https://github.com/postcss/postcss-custom-selectors
+[`postcss-color-hex-alpha`]:     https://github.com/postcss/postcss-color-hex-alpha
+[`postcss-color-function`]:      https://github.com/postcss/postcss-color-function
+[`postcss-single-charset`]:      https://github.com/hail2u/postcss-single-charset
+[`postcss-color-palette`]:       https://github.com/zaim/postcss-color-palette
+[`postcss-simple-extend`]:       https://github.com/davidtheclark/postcss-simple-extend
+[`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
+[`postcss-custom-media`]:        https://github.com/postcss/postcss-custom-media
+[`postcss-brand-colors`]:        https://github.com/postcss/postcss-brand-colors
+[`postcss-font-variant`]:        https://github.com/postcss/postcss-font-variant
+[`postcss-will-change`]:         https://github.com/postcss/postcss-will-change
+[`postcss-simple-vars`]:         https://github.com/postcss/postcss-simple-vars
+[`postcss-data-packer`]:         https://github.com/Ser-Gen/postcss-data-packer
+[`postcss-bem-linter`]:          https://github.com/necolas/postcss-bem-linter
+[`postcss-color-gray`]:          https://github.com/postcss/postcss-color-gray
+[`postcss-color-hex`]:           https://github.com/TrySound/postcss-color-hex
+[`postcss-color-hwb`]:           https://github.com/postcss/postcss-color-hwb
+[`pleeease-filters`]:            https://github.com/iamvdo/pleeease-filters
+[`postcss-easings`]:             https://github.com/postcss/postcss-easings
+[`postcss-opacity`]:             https://github.com/iamvdo/postcss-opacity
+[`postcss-assets`]:              https://github.com/borodean/postcss-assets
+[`postcss-import`]:              https://github.com/postcss/postcss-import
+[`postcss-nested`]:              https://github.com/postcss/postcss-nested
+[`postcss-mixins`]:              https://github.com/postcss/postcss-mixins
+[`mq4-hover-shim`]:              https://github.com/twbs/mq4-hover-shim
+[`list-selectors`]:              https://github.com/davidtheclark/list-selectors
+[`css2modernizr`]:               https://github.com/vovanbo/css2modernizr
+[`Autoprefixer`]:                https://github.com/postcss/autoprefixer
+[`css-mqpacker`]:                https://github.com/hail2u/node-css-mqpacker
+[`postcss-epub`]:                https://github.com/Rycochet/postcss-epub
+[`postcss-calc`]:                https://github.com/postcss/postcss-calc
+[`postcss-size`]:                https://github.com/postcss/postcss-size
+[`postcss-host`]:                https://github.com/vitkarpov/postcss-host
+[`postcss-vmin`]:                https://github.com/iamvdo/postcss-vmin
+[`postcss-url`]:                 https://github.com/postcss/postcss-url
+[`css-byebye`]:                  https://github.com/AoDev/css-byebye
+[`cssgrace`]:                    https://github.com/cssdream/cssgrace
+[`csswring`]:                    https://github.com/hail2u/node-csswring
+[`csstyle`]:                     https://github.com/geddski/csstyle
+[`webpcss`]:                     https://github.com/lexich/webpcss
+[`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
+[`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
+[`doiuse`]:                      https://github.com/anandthakker/doiuse
+[`postcss-map`]:                 https://github.com/pascalduez/postcss-map
+[`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
+[`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
 
 ## Usage
 
