@@ -257,6 +257,7 @@ a specialized language for a specialized tool (as with preprocessors).
   (when expressions involve the same units).
 * [`postcss-data-packer`] moves embedded Base64 data out of the stylesheet
   and into a separate file.
+* [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-normalize-url`] normalizes `url()`s and trims quotes where they are
   unnecessary.
@@ -340,6 +341,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-map`]:                 https://github.com/pascalduez/postcss-map
 [`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
+[`postcss-font-family`]:         https://github.com/ben-eb/postcss-font-family
 
 ## Usage
 
