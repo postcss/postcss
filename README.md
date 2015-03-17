@@ -262,6 +262,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-normalize-url`] normalizes `url()`s and trims quotes where they are
   unnecessary.
 * [`postcss-url`] rebases or inlines `url()`s.
+* [`postcss-zindex`] rebases positive `z-index` values.
 * [`csswring`] is a CSS minifier.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
@@ -342,6 +343,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
 [`postcss-font-family`]:         https://github.com/ben-eb/postcss-font-family
+[`postcss-zindex`]:              https://github.com/ben-eb/postcss-zindex
 
 ## Usage
 
