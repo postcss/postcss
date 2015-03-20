@@ -453,3 +453,4 @@ the [Autoprefixer demo](http://jsfiddle.net/simevidas/udyTs/show/light/).
 
 * [PostCSS API](https://github.com/postcss/postcss/blob/master/API.md)
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
+* [Ask questions](https://gitter.im/postcss/postcss)
