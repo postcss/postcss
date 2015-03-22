@@ -488,4 +488,16 @@ describe('source maps', () => {
         expect(result.css).to.eql('a { }/*# sourceMappingURL=a.css.map */');
     });
 
+    it('clears source map', () => {
+        let css1 = postcss.root().toResult({ map: true }).css;
+        let css2 = postcss.root().toResult({ map: true }).css;
+
+        let root = postcss.root();
+        root.append(css1);
+        root.append(css2);
+
+        let css = root.toResult({ map: true }).css;
+        expect(css.match(/sourceMappingURL/g)).to.have.length(1);
+    });
+
 });
