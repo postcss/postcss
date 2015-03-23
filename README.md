@@ -345,6 +345,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
 [`postcss-font-family`]:         https://github.com/ben-eb/postcss-font-family
 [`postcss-zindex`]:              https://github.com/ben-eb/postcss-zindex
+[`postcss-pseudoelements`]:      https://github.com/axa-ch/postcss-pseudoelements
 
 ## Usage
 
