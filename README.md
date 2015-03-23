@@ -236,7 +236,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
-* [`postcss-pseudoelements`] Converts CSS3 double colon pseudo element selectors (e.g. ::before) into single colon selectors (e.g. :before) to support IE8.
+* [`postcss-pseudoelements`] Converts CSS3 :: selectors into single colon selectors for IE 8 compatibility.
 
 ### Language Extensions
 
