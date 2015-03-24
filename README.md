@@ -253,6 +253,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 * [postcss-assets] allows you to simplify URLs, insert image dimensions,
   and inline files.
+* [postcss-at2x] handles retina background images via use of `at-2x` keyword.
 * [postcss-calc] reduces `calc()` to values
   (when expressions involve the same units).
 * [postcss-data-packer] moves embedded Base64 data out of the stylesheet
@@ -301,6 +302,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [postcss-color-palette]:       https://github.com/zaim/postcss-color-palette
 [postcss-simple-extend]:       https://github.com/davidtheclark/postcss-simple-extend
 [postcss-media-minmax]:        https://github.com/postcss/postcss-media-minmax
+[postcss-at2x]:                https://github.com/simonsmith/postcss-at2x
 [postcss-custom-media]:        https://github.com/postcss/postcss-custom-media
 [postcss-brand-colors]:        https://github.com/postcss/postcss-brand-colors
 [postcss-font-variant]:        https://github.com/postcss/postcss-font-variant
