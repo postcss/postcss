@@ -1,25 +1,25 @@
 # PostCSS Runner Guidelines
 
 PostCSS runner is a tool, that takes plugins list from user and process
-user’s CSS through this plugins. For example, [postcss-cli] or [gulp-postcss].
-This rules are mandatory for any PostCSS runners.
+user’s CSS through this plugins. For example, [`postcss-cli`]
+or [`gulp-postcss`]. This rules are mandatory for any PostCSS runners.
 
 This rules are not mandatory, but highly recommended for one-plugin tools
-(like [gulp-autoprefixer]).
+(like [`gulp-autoprefixer`]).
 
 See also ClojureWerkz’s [open source project recommendations].
 
 [open source project recommendations]:  http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
-[gulp-autoprefixer]: https://github.com/sindresorhus/gulp-autoprefixer
-[gulp-postcss]:      https://github.com/w0rm/gulp-postcss
-[postcss-cli]:       https://github.com/code42day/postcss-cli
+[`gulp-autoprefixer`]: https://github.com/sindresorhus/gulp-autoprefixer
+[`gulp-postcss`]:      https://github.com/w0rm/gulp-postcss
+[`postcss-cli`]:       https://github.com/code42day/postcss-cli
 
 ## 1. API
 
 ### 1.1. Accept functions in plugin parameters
 
 Some plugins accept function in parameters. But JSON format can’t
-contains function. Simple node.js module is a best format for plugin
+contains function. Simple Node.js module is a best format for plugin
 list config.
 
 ```js
@@ -59,16 +59,16 @@ processor.process(opts).then(function (result) {
 
 ### 2.3. Use only public PostCSS API
 
-Public API is described in [API.md]. Any other methods and properties
+Public API is described in [`API.md`]. Any other methods and properties
 are private and can be changed in any minor release.
 
-[API.md]: https://github.com/postcss/postcss/blob/master/API.md
+[`API.md`]: https://github.com/postcss/postcss/blob/master/API.md
 
 ## 3. Output
 
 ### 3.1. Don’t show JS stack for `CssSyntaxError`
 
-JS stacktrace is mostly irrelevant for CSS syntax errors.
+JS stack trace is mostly irrelevant for CSS syntax errors.
 PostCSS runner can be used by CSS developer, who didn’t know JS.
 
 ```js
@@ -116,11 +116,13 @@ like `README.ja.md`.
 
 ### 4.2. Have Changelog
 
-You should describe changes of all releases in a separate file like `ChangeLog.md`, `History.md`, etc, or with [GitHub Releases](https://help.github.com/articles/creating-releases/).
+You should describe changes of all releases in a separate file like
+`ChangeLog.md`, `History.md`, etc, or with [GitHub Releases].
 
 [Keep A Changelog] contains advices to write good Changelog.
 
 [Keep A Changelog]: http://keepachangelog.com/
+[GitHub Releases]:  https://help.github.com/articles/creating-releases/
 
 ### 4.3. `postcssrunner` keyword in `package.json`
 

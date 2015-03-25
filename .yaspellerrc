@@ -35,6 +35,7 @@
         "Andres",
         "Andromalius",
         "Andrealphus",
+        "ClojureWerkz’s",
         "Dantalion",
         "Decarabia",
         "Dvornov",
@@ -54,6 +55,7 @@
         "autodetect",
         "codebases",
         "regexp",
+        "Changelog",
         "Transpiler",
         "transpiler",
         "transpile",
@@ -71,6 +73,7 @@
         "stylesheets",
         "stringifier",
         "CLI",
-        "JS"
+        "JS",
+        "js"
     ]
 }
