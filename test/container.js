@@ -3,6 +3,7 @@ import Container   from '../lib/container';
 import parse       from '../lib/parse';
 import Rule        from '../lib/rule';
 import Root        from '../lib/root';
+import postcss     from '../lib/postcss';
 
 import { expect } from 'chai';
 
@@ -21,6 +22,15 @@ var example = 'a { a: 1; b: 2 }' +
               '}';
 
 describe('Container', () => {
+
+    describe('error', () => {
+       it('throws error when adding declaration with unspecified value', () => {
+           expect(() => {
+              var rule = postcss.rule();
+              rule.append({prop: 'color', vlaue: 'black' });
+           }).to.throw(Error, /'value' field unspecified/);
+       });
+    });
 
     describe('push()', () => {
 
