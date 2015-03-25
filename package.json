@@ -13,7 +13,7 @@
     "dependencies": {
         "source-map": "~0.4.2",
         "js-base64":  "~2.1.7",
-        "babel":      "4.7.9"
+        "babel":      "4.7.16"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.2",
@@ -26,24 +26,24 @@
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.0",
         "node-sass":              "2.0.1",
-        "yaspeller":              "1.0.2",
+        "yaspeller":              "1.0.5",
         "gulp-util":              "3.0.4",
         "fs-extra":               "0.16.5",
         "gonzales":               "1.0.7",
         "through2":               "0.6.3",
-        "stylecow":               "4.2.4",
-        "request":                "2.53.0",
+        "stylecow":               "4.2.6",
+        "request":                "2.54.0",
         "cssnext":                "1.1.0",
         "rework":                 "1.0.1",
         "mensch":                 "0.3.1",
         "stylus":                 "0.50.0",
         "eslint":                 "0.16.1",
-        "sinon":                  "1.13.0",
+        "sinon":                  "1.14.1",
         "mocha":                  "2.2.1",
         "cssom":                  "0.3.0",
         "gulp":                   "3.8.11",
         "less":                   "2.4.0",
-        "chai":                   "2.1.1"
+        "chai":                   "2.1.2"
     },
     "scripts": {
         "test": "gulp && yaspeller ."
