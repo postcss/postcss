@@ -18,9 +18,8 @@ See also ClojureWerkz’s [open source project recommendations].
 
 ### 1.1. Accept functions in plugin parameters
 
-Some plugins accept function in parameters. But JSON format can’t
-contains function. Simple Node.js module is a best format for plugin
-list config.
+Some plugins accept function in parameters. If your runner has config file,
+it should be a Node.js module, because JSON format doesn’t support functions.
 
 ```js
 module.exports = [
