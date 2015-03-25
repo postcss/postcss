@@ -114,10 +114,9 @@ English skills. Open source community will fix your errors.
 Of course you can have documentation on other languages. Just put it in file
 like `README.ja.md`.
 
-### 4.2. Have Changelog file
+### 4.2. Have Changelog
 
-You should describe changes of all releases in `ChangeLog.md`, `History.md`
-or some other separated file in project repository.
+You should describe changes of all releases in a separate file like `ChangeLog.md`, `History.md`, etc, or with [GitHub Releases](https://help.github.com/articles/creating-releases/).
 
 [Keep A Changelog] contains advices to write good Changelog.
 
