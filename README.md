@@ -299,9 +299,12 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-custom-properties`]:   https://github.com/postcss/postcss-custom-properties
 [`postcss-custom-selectors`]:    https://github.com/postcss/postcss-custom-selectors
+[`postcss-discard-comments`]:    https://github.com/ben-eb/postcss-discard-comments
+[`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-color-hex-alpha`]:     https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-color-function`]:      https://github.com/postcss/postcss-color-function
 [`postcss-single-charset`]:      https://github.com/hail2u/postcss-single-charset
+[`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
 [`postcss-color-palette`]:       https://github.com/zaim/postcss-color-palette
 [`postcss-simple-extend`]:       https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
@@ -311,6 +314,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-will-change`]:         https://github.com/postcss/postcss-will-change
 [`postcss-simple-vars`]:         https://github.com/postcss/postcss-simple-vars
 [`postcss-data-packer`]:         https://github.com/Ser-Gen/postcss-data-packer
+[`postcss-font-family`]:         https://github.com/ben-eb/postcss-font-family
 [`postcss-bem-linter`]:          https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:          https://github.com/postcss/postcss-color-gray
 [`postcss-color-hex`]:           https://github.com/TrySound/postcss-color-hex
@@ -319,14 +323,15 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-easings`]:             https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:             https://github.com/iamvdo/postcss-opacity
 [`postcss-assets`]:              https://github.com/borodean/postcss-assets
-[`postcss-at2x`]:                https://github.com/simonsmith/postcss-at2x
 [`postcss-import`]:              https://github.com/postcss/postcss-import
 [`postcss-nested`]:              https://github.com/postcss/postcss-nested
+[`postcss-zindex`]:              https://github.com/ben-eb/postcss-zindex
 [`postcss-mixins`]:              https://github.com/postcss/postcss-mixins
 [`mq4-hover-shim`]:              https://github.com/twbs/mq4-hover-shim
 [`list-selectors`]:              https://github.com/davidtheclark/list-selectors
 [`css2modernizr`]:               https://github.com/vovanbo/css2modernizr
-[`Autoprefixer`]:                https://github.com/postcss/autoprefixer
+[`postcss-at2x`]:                https://github.com/simonsmith/postcss-at2x
+[`autoprefixer`]:                https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                https://github.com/hail2u/node-css-mqpacker
 [`postcss-epub`]:                https://github.com/Rycochet/postcss-epub
 [`postcss-calc`]:                https://github.com/postcss/postcss-calc
@@ -334,6 +339,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-host`]:                https://github.com/vitkarpov/postcss-host
 [`postcss-vmin`]:                https://github.com/iamvdo/postcss-vmin
 [`postcss-url`]:                 https://github.com/postcss/postcss-url
+[`postcss-map`]:                 https://github.com/pascalduez/postcss-map
 [`css-byebye`]:                  https://github.com/AoDev/css-byebye
 [`cssgrace`]:                    https://github.com/cssdream/cssgrace
 [`csswring`]:                    https://github.com/hail2u/node-csswring
@@ -342,12 +348,6 @@ a specialized language for a specialized tool (as with preprocessors).
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
-[`postcss-map`]:                 https://github.com/pascalduez/postcss-map
-[`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
-[`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
-[`postcss-font-family`]:         https://github.com/ben-eb/postcss-font-family
-[`postcss-zindex`]:              https://github.com/ben-eb/postcss-zindex
-[`postcss-discard-comments`]:    https://github.com/ben-eb/postcss-discard-comments
 
 ## Usage
 
