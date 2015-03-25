@@ -282,6 +282,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
+* [`postcss-discard-comments`] removes comments based on rules you specify.
 * [`postcss-single-charset`] ensures that there is one
   and only one `@charset` rule at the top of file.
 * [`rtlcss`] mirrors styles for right-to-left locales.
@@ -346,6 +347,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
 [`postcss-font-family`]:         https://github.com/ben-eb/postcss-font-family
 [`postcss-zindex`]:              https://github.com/ben-eb/postcss-zindex
+[`postcss-discard-comments`]:    https://github.com/ben-eb/postcss-discard-comments
 
 ## Usage
 
