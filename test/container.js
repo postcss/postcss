@@ -2,6 +2,7 @@ import Declaration from '../lib/declaration';
 import parse       from '../lib/parse';
 import Rule        from '../lib/rule';
 import Root        from '../lib/root';
+import postcss     from '../lib/postcss';
 
 import { expect } from 'chai';
 
@@ -20,6 +21,22 @@ let example = 'a { a: 1; b: 2 }' +
               '}';
 
 describe('Container', () => {
+
+    describe('error', () => {
+       it('throws error when adding declaration with unspecified value', () => {
+           expect(() => {
+              var rule = postcss.rule();
+              rule.append({prop: 'color', vlaue: 'black' });
+           }).to.throw(Error, /'value' field unspecified/);
+       });
+
+       it('throws error when adding an object whose type cannot be determined', () => {
+           expect(() => {
+              var rule = postcss.rule();
+              rule.append({ foo: 'bar' });
+           }).to.throw(Error, /Could not infer node type./);
+       });
+    });
 
     describe('push()', () => {
 
