@@ -30,6 +30,13 @@ describe('Container', () => {
               rule.append({prop: 'color', vlaue: 'black' });
            }).to.throw(Error, /'value' field unspecified/);
        });
+
+       it('throws error when adding an object whose type cannot be determined', () => {
+           expect(() => {
+              var rule = postcss.rule();
+              rule.append({ foo: 'bar' });
+           }).to.throw(Error, /Could not infer node type./);
+       });
     });
 
     describe('push()', () => {
