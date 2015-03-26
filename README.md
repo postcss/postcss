@@ -258,6 +258,7 @@ a specialized language for a specialized tool (as with preprocessors).
   (when expressions involve the same units).
 * [`postcss-data-packer`] moves embedded Base64 data out of the stylesheet
   and into a separate file.
+* [`postcss-discard-duplicates`] removes duplicate declarations and rules.
 * [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-normalize-url`] normalizes `url()`s and trims quotes where they are
@@ -297,6 +298,7 @@ a specialized language for a specialized tool (as with preprocessors).
   for code review and analysis.
 
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
+[`postcss-discard-duplicates`]:  https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-custom-properties`]:   https://github.com/postcss/postcss-custom-properties
 [`postcss-custom-selectors`]:    https://github.com/postcss/postcss-custom-selectors
 [`postcss-discard-comments`]:    https://github.com/ben-eb/postcss-discard-comments
