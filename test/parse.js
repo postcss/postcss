@@ -89,6 +89,11 @@ describe('postcss.parse()', () => {
         expect(support.parent).to.equal(css);
     });
 
+    it('ignores wrong close bracket', () => {
+        let root = parse('a { p: ()) }');
+        expect(root.first.first.value).to.eql('())');
+    });
+
     describe('errors', () => {
 
         it('throws on unclosed blocks', () => {
