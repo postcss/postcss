@@ -236,6 +236,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
+* [`postcss-pseudoelements`] Convert :: selectors into : selectors for IE 8 compatibility.
 
 ### Language Extensions
 
@@ -353,6 +354,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
+[`postcss-pseudoelements`]:      https://github.com/axa-ch/postcss-pseudoelements
 
 ## Usage
 
