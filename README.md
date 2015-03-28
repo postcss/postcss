@@ -261,6 +261,8 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-discard-duplicates`] removes duplicate declarations and rules.
 * [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
+* [`postcss-merge-rules`] merges adjacent rules when selectors/properties
+  overlap.
 * [`postcss-normalize-url`] normalizes `url()`s and trims quotes where they are
   unnecessary.
 * [`postcss-url`] rebases or inlines `url()`s.
@@ -314,6 +316,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-brand-colors`]:        https://github.com/postcss/postcss-brand-colors
 [`postcss-font-variant`]:        https://github.com/postcss/postcss-font-variant
 [`postcss-will-change`]:         https://github.com/postcss/postcss-will-change
+[`postcss-merge-rules`]:         https://github.com/ben-eb/postcss-merge-rules
 [`postcss-simple-vars`]:         https://github.com/postcss/postcss-simple-vars
 [`postcss-data-packer`]:         https://github.com/Ser-Gen/postcss-data-packer
 [`postcss-font-family`]:         https://github.com/ben-eb/postcss-font-family
