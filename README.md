@@ -230,13 +230,14 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-color-hex`] transforms `rgb()` and `rgba()` to hex.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
 * [`postcss-opacity`] adds opacity filter for IE8.
+* [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
+  for IE 8 compatibility.
 * [`postcss-vmin`] generates `vm` fallback for `vmin` unit in IE9.
 * [`postcss-will-change`] inserts 3D hack before `will-change` property.
 * [`autoprefixer`] adds vendor prefixes for you, using data from Can I Use.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
-* [`postcss-pseudoelements`] Convert :: selectors into : selectors for IE 8 compatibility.
 
 ### Language Extensions
 
@@ -262,10 +263,10 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-discard-duplicates`] removes duplicate declarations and rules.
 * [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
-* [`postcss-merge-rules`] merges adjacent rules when selectors/properties
-  overlap.
-* [`postcss-normalize-url`] normalizes `url()`s and trims quotes where they are
-  unnecessary.
+* [`postcss-merge-rules`] merges adjacent rules when
+  selectors/properties overlap.
+* [`postcss-normalize-url`] normalizes `url()`s and trims quotes
+  where they are unnecessary.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`csswring`] is a CSS minifier.
@@ -308,6 +309,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-color-hex-alpha`]:     https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-color-function`]:      https://github.com/postcss/postcss-color-function
+[`postcss-pseudoelements`]:      https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-single-charset`]:      https://github.com/hail2u/postcss-single-charset
 [`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
 [`postcss-color-palette`]:       https://github.com/zaim/postcss-color-palette
@@ -354,7 +356,6 @@ a specialized language for a specialized tool (as with preprocessors).
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
-[`postcss-pseudoelements`]:      https://github.com/axa-ch/postcss-pseudoelements
 
 ## Usage
 
