@@ -261,10 +261,12 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-data-packer`] moves embedded Base64 data out of the stylesheet
   and into a separate file.
 * [`postcss-discard-duplicates`] removes duplicate declarations and rules.
+* [`postcss-discard-empty`] removes empty rules and declarations.
 * [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-merge-rules`] merges adjacent rules when
   selectors/properties overlap.
+* [`postcss-minify-selectors`] normalizes selectors for better compression.
 * [`postcss-normalize-url`] normalizes `url()`s and trims quotes
   where they are unnecessary.
 * [`postcss-url`] rebases or inlines `url()`s.
@@ -306,6 +308,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-custom-properties`]:   https://github.com/postcss/postcss-custom-properties
 [`postcss-custom-selectors`]:    https://github.com/postcss/postcss-custom-selectors
 [`postcss-discard-comments`]:    https://github.com/ben-eb/postcss-discard-comments
+[`postcss-minify-selectors`]:    https://github.com/ben-eb/postcss-minify-selectors
 [`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-color-hex-alpha`]:     https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-color-function`]:      https://github.com/postcss/postcss-color-function
@@ -313,6 +316,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-single-charset`]:      https://github.com/hail2u/postcss-single-charset
 [`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
 [`postcss-color-palette`]:       https://github.com/zaim/postcss-color-palette
+[`postcss-discard-empty`]:       https://github.com/ben-eb/postcss-discard-empty
 [`postcss-simple-extend`]:       https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
 [`postcss-custom-media`]:        https://github.com/postcss/postcss-custom-media
