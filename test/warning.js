@@ -23,7 +23,7 @@ describe('Warning', () => {
                 plugin: 'plugin',
                 node:    root.first
             });
-            expect(warning.toString()).to.eql('plugin:/a.css:1:1: text');
+            expect(warning.toString()).to.eql('plugin: /a.css:1:1: text');
         });
 
     });

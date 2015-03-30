@@ -115,7 +115,7 @@ describe('CssSyntaxError', () => {
         let error = parse('a{}').first.error('Error', { plugin: 'test' });
         expect(error.plugin).to.eql('test');
         expect(error.toString()).to.match(
-            /^CssSyntaxError: test:<css input>:1:1: Error/);
+            /^CssSyntaxError: test: <css input>:1:1: Error/);
     });
 
 });
