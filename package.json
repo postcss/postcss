@@ -22,16 +22,16 @@
         "gonzales-pe":            "3.0.0-26",
         "gulp-eslint":            "0.6.0",
         "browserify":             "9.0.3",
-        "gulp-babel":             "4.0.0",
+        "gulp-babel":             "4.0.1",
         "gulp-bench":             "1.1.0",
-        "gulp-mocha":             "2.0.0",
-        "node-sass":              "2.0.1",
-        "yaspeller":              "1.0.5",
+        "gulp-mocha":             "2.0.1",
+        "node-sass":              "2.1.1",
+        "yaspeller":              "1.1.0",
         "gulp-util":              "3.0.4",
-        "fs-extra":               "0.16.5",
+        "fs-extra":               "0.17.0",
         "gonzales":               "1.0.7",
         "through2":               "0.6.3",
-        "stylecow":               "4.2.6",
+        "stylecow":               "5.0.0",
         "request":                "2.54.0",
         "cssnext":                "1.1.0",
         "rework":                 "1.0.1",
@@ -43,7 +43,7 @@
         "cssom":                  "0.3.0",
         "gulp":                   "3.8.11",
         "less":                   "2.4.0",
-        "chai":                   "2.1.2"
+        "chai":                   "2.2.0"
     },
     "scripts": {
         "test": "gulp && yaspeller ."
