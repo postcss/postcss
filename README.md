@@ -241,6 +241,8 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ### Language Extensions
 
+* [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
+  to `rgba()`.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [`postcss-map`] enables configuration maps.
@@ -250,7 +252,6 @@ a specialized language for a specialized tool (as with preprocessors).
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`csstyle`] adds components workflow to your styles.
-* [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)` to `rgba()`.
 
 ### Optimizations
 
@@ -328,6 +329,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-simple-vars`]:         https://github.com/postcss/postcss-simple-vars
 [`postcss-data-packer`]:         https://github.com/Ser-Gen/postcss-data-packer
 [`postcss-font-family`]:         https://github.com/ben-eb/postcss-font-family
+[`postcss-color-alpha`]:         https://github.com/avanes/postcss-color-alpha
 [`postcss-bem-linter`]:          https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:          https://github.com/postcss/postcss-color-gray
 [`postcss-color-hex`]:           https://github.com/TrySound/postcss-color-hex
@@ -361,7 +363,6 @@ a specialized language for a specialized tool (as with preprocessors).
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
-[`postcss-color-alpha`]:         https://github.com/avanes/postcss-color-alpha
 
 ## Usage
 
