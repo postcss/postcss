@@ -250,6 +250,7 @@ a specialized language for a specialized tool (as with preprocessors).
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`csstyle`] adds components workflow to your styles.
+* [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)` to `rgba()`.
 
 ### Optimizations
 
@@ -360,6 +361,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
+[`postcss-color-alpha`]:         https://github.com/avanes/postcss-color-alpha
 
 ## Usage
 
