@@ -266,7 +266,6 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-discard-empty`] removes empty rules and declarations.
 * [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
-* [`postcss-map-url`] allows editing of individual `url` declarations.
 * [`postcss-merge-rules`] merges adjacent rules when
   selectors/properties overlap.
 * [`postcss-minify-selectors`] normalizes selectors for better compression.
@@ -336,7 +335,6 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-color-hex`]:           https://github.com/TrySound/postcss-color-hex
 [`postcss-color-hwb`]:           https://github.com/postcss/postcss-color-hwb
 [`pleeease-filters`]:            https://github.com/iamvdo/pleeease-filters
-[`postcss-map-url`]:             https://github.com/simonsmith/postcss-map-url
 [`postcss-easings`]:             https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:             https://github.com/iamvdo/postcss-opacity
 [`postcss-assets`]:              https://github.com/borodean/postcss-assets
