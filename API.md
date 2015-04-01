@@ -119,7 +119,7 @@ postcss.plugin('postcss-import', function () {
             fs.readFile('base.css', function (base) {
                 css.prepend(base);
                 resolve();
-            })
+            });
         });
     };
 });
@@ -477,7 +477,7 @@ var plugin = postcss.plugin('postcss-important', function () {
                 result.warn('Try to avoid !important', { node: decl });
             }
         });
-    }
+    };
 });
 
 postcss([plugin]).process(css).then(function (result) {
@@ -486,7 +486,7 @@ postcss([plugin]).process(css).then(function (result) {
                       //      text:   'Try to avoid !important'
                       //      node:  { type: 'decl', … }
                       //   }]
-})
+});
 ```
 
 Arguments:
@@ -564,8 +564,8 @@ postcss.plugin('postcss-min-browser', function () {
             plugin:  'postcss-min-browser',
             browsers: browsers
         });
-    }
-})
+    };
+});
 ```
 
 You can add warning by [`Result#warn()`] and get all warnings
@@ -580,7 +580,7 @@ result.processor.plugins.forEach(function (plugin) {
     if ( plugin.postcssPlugin == 'postcss-bad' ) {
         throw 'postcss-good is incompatible with postcss-bad';
     }
-})
+});
 ```
 
 ### `result.opts`
@@ -1366,7 +1366,7 @@ Recursively iterates through all comment nodes within the container, calling
 ```js
 root.eachComment(function (comment) {
     comment.removeSelf();
-})
+});
 ```
 
 Arguments:
