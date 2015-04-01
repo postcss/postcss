@@ -176,16 +176,37 @@ describe('Processor', () => {
         });
 
         it('supports async plugins', (done) => {
-            let async = (css) => {
+            let starts = 0;
+            let finish = 0;
+            let async1 = (css) => {
                 return new Promise( (resolve) => {
+                    starts += 1;
                     setTimeout(() => {
-                        css.append({ selector: 'a' });
+                        expect(starts).to.eql(1);
+
+                        css.append('a {}');
+                        finish += 1;
                         resolve();
                     }, 1);
                 });
             };
-            (new Processor([async])).process('').then( (result) => {
-                expect(result.css).to.eql('a {}');
+            let async2 = (css) => {
+                return new Promise( (resolve) => {
+                    expect(starts).to.eql(1);
+                    expect(finish).to.eql(1);
+
+                    starts += 1;
+                    setTimeout(() => {
+                        css.append('b {}');
+                        finish += 1;
+                        resolve();
+                    }, 1);
+                });
+            };
+            (new Processor([async1, async2])).process('').then( (result) => {
+                expect(starts).to.eql(2);
+                expect(finish).to.eql(2);
+                expect(result.css).to.eql('a {}\nb {}');
                 done();
             }).catch( (error) => done(error) );
         });
