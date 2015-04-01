@@ -1,3 +1,22 @@
+## 4.1 “Marquis Andras”
+* Asynchronous plugin support.
+* Add warnings from plugins and `Result#messages`.
+* Add `postcss.plugin()` to create plugins with a standard API.
+* Insert nodes by CSS string.
+* Show version warning message on error from an outdated plugin.
+* Send `Result` instance to plugins as the second argument.
+* Add `CssSyntaxError#plugin`.
+* Add `CssSyntaxError#showSourceCode()`.
+* Add `postcss.list` and `postcss.vendor` aliases.
+* Add `Processor#version`.
+* Parse wrong closing bracket.
+* Parse `!important` statement with spaces and comments inside (by Ben Briggs).
+* Throw an error on declaration without `prop` or `value` (by Philip Peterson).
+* Fix source map mappings position.
+* Add indexed source map support.
+* Always set `error.generated`.
+* Clean all source map annotation comments.
+
 ## 4.0.6
 * Remove `babel` from released package dependencies (by Andres Suarez).
 
