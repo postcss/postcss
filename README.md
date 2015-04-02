@@ -303,7 +303,7 @@ a specialized language for a specialized tool (as with preprocessors).
   that requires only the tests that your CSS uses.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
-  for code review and analysis.
+  for code review.
 
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-discard-duplicates`]:  https://github.com/ben-eb/postcss-discard-duplicates
