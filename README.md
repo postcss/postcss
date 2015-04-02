@@ -260,6 +260,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
+* [`postcss-colormin`] reduces color values to their smallest representations.
 * [`postcss-data-packer`] moves embedded Base64 data out of the stylesheet
   and into a separate file.
 * [`postcss-discard-duplicates`] removes duplicate declarations and rules.
@@ -334,6 +335,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-color-gray`]:          https://github.com/postcss/postcss-color-gray
 [`postcss-color-hex`]:           https://github.com/TrySound/postcss-color-hex
 [`postcss-color-hwb`]:           https://github.com/postcss/postcss-color-hwb
+[`postcss-colormin`]:            https://github.com/ben-eb/colormin
 [`pleeease-filters`]:            https://github.com/iamvdo/pleeease-filters
 [`postcss-easings`]:             https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:             https://github.com/iamvdo/postcss-opacity
