@@ -22,6 +22,11 @@ describe('list', () => {
             expect(list.space('f( )) a( () )')).to.eql(['f( ))', 'a( () )']);
         });
 
+        it('works from variable', () => {
+            let space = list.space;
+            expect(space('a b')).to.eql(['a', 'b']);
+        });
+
     });
 
     describe('.comma()', () => {
@@ -40,6 +45,11 @@ describe('list', () => {
 
         it('checks functions', () => {
             expect(list.comma('f(,)), a(,(),)')).to.eql(['f(,))', 'a(,(),)']);
+        });
+
+        it('works from variable', () => {
+            let comma = list.comma;
+            expect(comma('a, b')).to.eql(['a', 'b']);
         });
 
     });
