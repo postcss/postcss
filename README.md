@@ -382,9 +382,12 @@ processor
   });
 ```
 
+If you uses node.js 0.10, you should add [some Promise polyfill].
+
 Read the [PostCSS API] for more details.
 
-[PostCSS API]: https://github.com/postcss/postcss/blob/master/API.md
+[some Promise polyfill]: https://github.com/jakearchibald/es6-promise
+[PostCSS API]:           https://github.com/postcss/postcss/blob/master/API.md
 
 ### Source Maps
 
