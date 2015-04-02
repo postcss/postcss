@@ -1,3 +1,6 @@
+## 4.1.1
+* Show deprecated message only once.
+
 ## 4.1 “Marquis Andras”
 * Asynchronous plugin support.
 * Add warnings from plugins and `Result#messages`.
