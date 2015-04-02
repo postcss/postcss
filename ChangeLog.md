@@ -1,3 +1,6 @@
+## 4.1.2
+* List helpers can be accessed independently `var space = postcss.list.space`.
+
 ## 4.1.1
 * Show deprecated message only once.
 
