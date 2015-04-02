@@ -265,6 +265,7 @@ a specialized language for a specialized tool (as with preprocessors).
   and into a separate file.
 * [`postcss-discard-duplicates`] removes duplicate declarations and rules.
 * [`postcss-discard-empty`] removes empty rules and declarations.
+* [`postcss-discard-font-face`] removes unused `@font-face` declarations.
 * [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-merge-rules`] merges adjacent rules when
@@ -308,6 +309,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-discard-duplicates`]:  https://github.com/ben-eb/postcss-discard-duplicates
+[`postcss-discard-font-face`]:   https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-custom-properties`]:   https://github.com/postcss/postcss-custom-properties
 [`postcss-custom-selectors`]:    https://github.com/postcss/postcss-custom-selectors
 [`postcss-discard-comments`]:    https://github.com/ben-eb/postcss-discard-comments
