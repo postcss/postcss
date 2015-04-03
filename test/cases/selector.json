@@ -1,9 +1,8 @@
 {
-    "type": "root",
     "nodes": [
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 2,
@@ -30,6 +29,7 @@
             "after": ""
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "\na/* { } */ b {}\n",

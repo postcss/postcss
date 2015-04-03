@@ -1,5 +1,4 @@
 {
-    "type": "root",
     "nodes": [
         {
             "type": "atrule",
@@ -26,6 +25,7 @@
             "params": "\"UTF-8\""
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "@charset \"UTF-8\";\n",

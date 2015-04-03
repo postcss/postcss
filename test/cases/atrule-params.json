@@ -1,5 +1,4 @@
 {
-    "type": "root",
     "nodes": [
         {
             "type": "atrule",
@@ -28,6 +27,7 @@
             "after": ""
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "@-moz-document/* near */ /* filter */ url(\"example.com/{\") /* a */ {}\n",

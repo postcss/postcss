@@ -1,5 +1,4 @@
 {
-    "type": "root",
     "nodes": [
         {
             "type": "atrule",
@@ -26,6 +25,7 @@
             "params": "\"test.css\""
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "@import\"test.css\"\n",

@@ -1,8 +1,6 @@
 {
-    "type": "root",
     "nodes": [
         {
-            "type": "rule",
             "nodes": [
                 {
                     "type": "decl",
@@ -28,6 +26,7 @@
                     "value": "progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3)"
                 }
             ],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 1,
@@ -51,6 +50,7 @@
             "after": "\n"
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",

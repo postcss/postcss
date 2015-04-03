@@ -1,5 +1,4 @@
 {
-    "type": "root",
     "nodes": [
         {
             "type": "atrule",
@@ -50,7 +49,6 @@
                     "params": "anim",
                     "nodes": [
                         {
-                            "type": "rule",
                             "nodes": [
                                 {
                                     "type": "decl",
@@ -76,6 +74,7 @@
                                     "value": "black"
                                 }
                             ],
+                            "type": "rule",
                             "source": {
                                 "start": {
                                     "line": 3,
@@ -99,7 +98,6 @@
                             "after": "\n        "
                         },
                         {
-                            "type": "rule",
                             "nodes": [
                                 {
                                     "type": "decl",
@@ -125,6 +123,7 @@
                                     "value": "white"
                                 }
                             ],
+                            "type": "rule",
                             "source": {
                                 "start": {
                                     "line": 6,
@@ -156,6 +155,7 @@
             "after": "\n"
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",

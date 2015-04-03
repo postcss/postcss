@@ -1,8 +1,6 @@
 {
-    "type": "root",
     "nodes": [
         {
-            "type": "rule",
             "nodes": [
                 {
                     "type": "decl",
@@ -74,6 +72,7 @@
                     "value": "\\;a"
                 }
             ],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 1,
@@ -97,8 +96,8 @@
             "after": "\n"
         },
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 7,
@@ -121,8 +120,8 @@
             "after": " "
         },
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 8,
@@ -149,8 +148,8 @@
             "after": " "
         },
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 9,
@@ -173,8 +172,8 @@
             "after": " "
         },
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 10,
@@ -197,8 +196,8 @@
             "after": " "
         },
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 11,
@@ -221,8 +220,8 @@
             "after": " "
         },
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 12,
@@ -245,8 +244,8 @@
             "after": " "
         },
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 13,
@@ -269,8 +268,8 @@
             "after": " "
         },
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 15,
@@ -293,7 +292,6 @@
             "after": " "
         },
         {
-            "type": "rule",
             "nodes": [
                 {
                     "type": "decl",
@@ -319,6 +317,7 @@
                     "value": "\\\\"
                 }
             ],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 17,
@@ -342,6 +341,7 @@
             "after": "\n"
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",

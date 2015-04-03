@@ -1,8 +1,6 @@
 {
-    "type": "root",
     "nodes": [
         {
-            "type": "rule",
             "nodes": [
                 {
                     "type": "decl",
@@ -74,6 +72,7 @@
                     "value": "big"
                 }
             ],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 1,
@@ -97,6 +96,7 @@
             "after": "\n"
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",

@@ -1,5 +1,4 @@
 {
-    "type": "root",
     "nodes": [
         {
             "type": "atrule",
@@ -257,6 +256,7 @@
             "after": "\n"
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",

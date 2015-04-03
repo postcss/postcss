@@ -1,5 +1,4 @@
 {
-    "type": "root",
     "nodes": [
         {
             "type": "comment",
@@ -71,7 +70,6 @@
             "right": ""
         },
         {
-            "type": "rule",
             "nodes": [
                 {
                     "type": "comment",
@@ -189,6 +187,7 @@
                     "right": " "
                 }
             ],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 4,
@@ -235,7 +234,6 @@
             "right": " "
         },
         {
-            "type": "rule",
             "nodes": [
                 {
                     "type": "decl",
@@ -284,6 +282,7 @@
                     "right": " "
                 }
             ],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 13,
@@ -307,6 +306,7 @@
             "after": "\n"
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "/* a { color: black } */\n/**/\n/* */\ndiv {\n    /* inside */\n    color: black;\n    /* between */\n    border-radius: 3px / 7px\n    /* end */\n}\n/* b */\n\na {\n    color: black;\n    /* c */\n}\n",

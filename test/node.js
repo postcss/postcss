@@ -246,9 +246,9 @@ describe('Node', () => {
             expect(json.nodes[0].parent).to.not.exist;
 
             expect(JSON.stringify(rule)).to.eql(
-                '{"type":"rule","nodes":[' +
-                    '{"type":"decl","prop":"color","value":"b"}' +
-                '],"selector":"a"}');
+                '{"selector":"a","nodes":[' +
+                    '{"prop":"color","value":"b","type":"decl"}' +
+                '],"type":"rule"}');
         });
 
     });

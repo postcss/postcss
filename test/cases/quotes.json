@@ -1,8 +1,6 @@
 {
-    "type": "root",
     "nodes": [
         {
-            "type": "rule",
             "nodes": [
                 {
                     "type": "decl",
@@ -51,6 +49,7 @@
                     "value": "'\\'\"\\\\'"
                 }
             ],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 1,
@@ -74,6 +73,7 @@
             "after": "\n"
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",

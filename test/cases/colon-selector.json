@@ -1,9 +1,8 @@
 {
-    "type": "root",
     "nodes": [
         {
-            "type": "rule",
             "nodes": [],
+            "type": "rule",
             "source": {
                 "start": {
                     "line": 1,
@@ -26,6 +25,7 @@
             "after": ""
         }
     ],
+    "type": "root",
     "source": {
         "input": {
             "css": ":fullscreen {}\n",
