@@ -294,6 +294,7 @@ a specialized language for a specialized tool (as with preprocessors).
   with `cubic-bezier()` functions.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
+* [`postcss-default-unit`] adds default unit to numeric css properties.
 
 ### Others
 
@@ -332,6 +333,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-color-palette`]:       https://github.com/zaim/postcss-color-palette
 [`postcss-discard-empty`]:       https://github.com/ben-eb/postcss-discard-empty
 [`postcss-simple-extend`]:       https://github.com/davidtheclark/postcss-simple-extend
+[`postcss-default-unit`]:        https://github.com/antyakushev/postcss-default-unit
 [`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
 [`postcss-custom-media`]:        https://github.com/postcss/postcss-custom-media
 [`postcss-brand-colors`]:        https://github.com/postcss/postcss-brand-colors
