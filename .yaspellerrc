@@ -2,7 +2,7 @@
     "lang": "en",
     "format": "markdown",
     "fileExtensions": [".md"],
-    "excludeFiles": [".git", "node_modules", "benchmark/.bundle"],
+    "excludeFiles": [".git", "node_modules", "benchmark/.bundle", "build"],
     "ignoreCapitalization": true,
     "dictionary": [
         "6to5",
@@ -78,6 +78,7 @@
         "stringifier",
         "CLI",
         "JS",
-        "js"
+        "js",
+        "vs"
     ]
 }
