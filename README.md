@@ -386,7 +386,7 @@ processor
   });
 ```
 
-If you uses node.js 0.10, you should add [some Promise polyfill].
+If you uses node.js 0.10, you should add any [Promise polyfill].
 
 Read the [PostCSS API] for more details.
 
