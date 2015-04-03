@@ -390,8 +390,8 @@ If you uses node.js 0.10, you should add any [Promise polyfill].
 
 Read the [PostCSS API] for more details.
 
-[some Promise polyfill]: https://github.com/jakearchibald/es6-promise
-[PostCSS API]:           https://github.com/postcss/postcss/blob/master/API.md
+[Promise polyfill]: https://github.com/jakearchibald/es6-promise
+[PostCSS API]:      https://github.com/postcss/postcss/blob/master/API.md
 
 ### Source Maps
 
