@@ -16,8 +16,8 @@ But PostCSS is modular, 4-40 times faster, and much more powerful.
 Twitter account for articles, releases, and new plugins: [@postcss].
 Weibo account: [postcss].
 
-[Examples](#what-is-postcss) | [PostCSS vs. preprocessors](#how-postcss-differs-from-preprocessors) | [Features](#features) | [Quick Start](#quick-start)| [Plugins](#plugins)
---- | --- | --- | --- | ---
+[Examples](#what-is-postcss) | [PostCSS vs. Preprocessors](#how-postcss-differs-from-preprocessors) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Usages](#usage)
+--- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
