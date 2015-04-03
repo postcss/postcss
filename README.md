@@ -290,11 +290,11 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ### Shortcuts
 
+* [`postcss-default-unit`] adds default unit to numeric CSS properties.
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
-* [`postcss-default-unit`] adds default unit to numeric css properties.
 
 ### Others
 
