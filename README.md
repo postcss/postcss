@@ -294,11 +294,11 @@ a specialized language for a specialized tool (as with preprocessors).
   in the `brand-colors` module.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-discard-comments`] removes comments based on rules you specify.
+* [`postcss-messages`] displays warning messages from other plugins
+  right in your browser.
 * [`postcss-single-charset`] ensures that there is one
   and only one `@charset` rule at the top of file.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`postcss-messages`] displays warning messages from other plugins
-  right in your browser.
 
 ### Analysis
 
