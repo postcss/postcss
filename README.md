@@ -20,6 +20,13 @@ Weibo account: [postcss].
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
 </a>
 
+---
+
+[What is PostCSS](#what-is-postcss) | [PostCSS vs. preprocessors](#how-postcss-differs-from-preprocessors) | [Features](#features) | [Quick Start](#quick-start)| [Plugins](#plugins)
+--- | --- | --- | --- | ---
+
+---
+
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 [@postcss]:     https://twitter.com/postcss
 [postcss]:      http://weibo.com/postcss
