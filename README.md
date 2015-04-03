@@ -16,16 +16,12 @@ But PostCSS is modular, 4-40 times faster, and much more powerful.
 Twitter account for articles, releases, and new plugins: [@postcss].
 Weibo account: [postcss].
 
-<a href="https://evilmartians.com/?utm_source=postcss">
-<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
-</a>
-
----
-
 [What is PostCSS](#what-is-postcss) | [PostCSS vs. preprocessors](#how-postcss-differs-from-preprocessors) | [Features](#features) | [Quick Start](#quick-start)| [Plugins](#plugins)
 --- | --- | --- | --- | ---
 
----
+<a href="https://evilmartians.com/?utm_source=postcss">
+<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
+</a>
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 [@postcss]:     https://twitter.com/postcss
