@@ -16,7 +16,7 @@ But PostCSS is modular, 4-40 times faster, and much more powerful.
 Twitter account for articles, releases, and new plugins: [@postcss].
 Weibo account: [postcss].
 
-[What is PostCSS](#what-is-postcss) | [PostCSS vs. preprocessors](#how-postcss-differs-from-preprocessors) | [Features](#features) | [Quick Start](#quick-start)| [Plugins](#plugins)
+[Examples](#what-is-postcss) | [PostCSS vs. preprocessors](#how-postcss-differs-from-preprocessors) | [Features](#features) | [Quick Start](#quick-start)| [Plugins](#plugins)
 --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
@@ -94,7 +94,7 @@ $mobile: width <= 640px;
 
 [cssnext]:      https://github.com/cssnext/cssnext
 
-## How PostCSS differs from Preprocessors
+## How PostCSS Differs from Preprocessors
 
 Sass, Less and Stylus provide specialized languages that you can use to write
 CSS templates. These languages and their compilers are defined together
@@ -203,7 +203,9 @@ a specialized language for a specialized tool (as with preprocessors).
 [Grunt]:    https://github.com/nDmitry/grunt-postcss
 [Gulp]:     https://github.com/w0rm/gulp-postcss
 
-## Plugins Packs
+## Plugins
+
+### Packs
 
 * [cssnext] contains plugins that allow you to use future CSS features today.
 * [AtCSS] contains plugins that transform your CSS according
@@ -211,8 +213,6 @@ a specialized language for a specialized tool (as with preprocessors).
 
 [cssnext]:  https://github.com/putaindecode/cssnext
 [AtCSS]:     https://github.com/morishitter/atcss
-
-## Plugins
 
 ### Future CSS Syntax
 
