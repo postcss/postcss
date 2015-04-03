@@ -297,6 +297,8 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-single-charset`] ensures that there is one
   and only one `@charset` rule at the top of file.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-messages`] displays warning messages from other plugins
+  right in your browser.
 
 ### Analysis
 
@@ -339,6 +341,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-color-hwb`]:           https://github.com/postcss/postcss-color-hwb
 [`postcss-colormin`]:            https://github.com/ben-eb/colormin
 [`pleeease-filters`]:            https://github.com/iamvdo/pleeease-filters
+[`postcss-messages`]:            https://github.com/postcss/postcss-messages
 [`postcss-easings`]:             https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:             https://github.com/iamvdo/postcss-opacity
 [`postcss-assets`]:              https://github.com/borodean/postcss-assets
