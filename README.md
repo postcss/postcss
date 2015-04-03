@@ -13,6 +13,20 @@ praised CSS processors available.
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
 But PostCSS is modular, 4-40 times faster, and much more powerful.
 
+Twitter account for articles, releases, and new plugins: [@postcss].
+Weibo account: [postcss].
+
+<a href="https://evilmartians.com/?utm_source=postcss">
+<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
+</a>
+
+[Autoprefixer]: https://github.com/postcss/autoprefixer
+[@postcss]:     https://twitter.com/postcss
+[postcss]:      http://weibo.com/postcss
+[cssnext]:      https://github.com/cssnext/cssnext
+
+## What is PostCSS
+
 PostCSS itself is very small. It includes only a CSS parser,
 a CSS node tree API, a source map generator, and a node tree stringifier.
 All CSS transformations are encapsulated in modular plugins. And these plugins
@@ -75,16 +89,6 @@ $mobile: width <= 640px;
 }
 ```
 
-Twitter account for articles, releases, and new plugins: [@postcss].
-Weibo account: [postcss].
-
-<a href="https://evilmartians.com/?utm_source=postcss">
-<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
-</a>
-
-[Autoprefixer]: https://github.com/postcss/autoprefixer
-[@postcss]:     https://twitter.com/postcss
-[postcss]:      http://weibo.com/postcss
 [cssnext]:      https://github.com/cssnext/cssnext
 
 ## How PostCSS differs from Preprocessors
