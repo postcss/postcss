@@ -236,6 +236,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 * [`postcss-color-hex`] transforms `rgb()` and `rgba()` to hex.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
+* [`postcss-image-set`] adds `background-image` with first image for `image-set()`
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
@@ -348,6 +349,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-color-gray`]:          https://github.com/postcss/postcss-color-gray
 [`postcss-color-hex`]:           https://github.com/TrySound/postcss-color-hex
 [`postcss-color-hwb`]:           https://github.com/postcss/postcss-color-hwb
+[`postcss-image-set`]:           https://github.com/alex499/postcss-image-set
 [`postcss-colormin`]:            https://github.com/ben-eb/colormin
 [`pleeease-filters`]:            https://github.com/iamvdo/pleeease-filters
 [`postcss-messages`]:            https://github.com/postcss/postcss-messages
