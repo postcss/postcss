@@ -16,7 +16,7 @@ But PostCSS is modular, 4-40 times faster, and much more powerful.
 Twitter account for articles, releases, and new plugins: [@postcss].
 Weibo account: [postcss].
 
-[Examples](#what-is-postcss) | [PostCSS vs. Preprocessors](#how-postcss-differs-from-preprocessors) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Usages](#usage)
+[Examples](#what-is-postcss) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Usages](#usage) | [Plugin Development](#how-to-develop-postcss-plugin)
 --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
@@ -94,7 +94,7 @@ $mobile: width <= 640px;
 
 [cssnext]:      https://github.com/cssnext/cssnext
 
-## How PostCSS Differs from Preprocessors
+### How PostCSS Differs from Preprocessors
 
 Sass, Less and Stylus provide specialized languages that you can use to write
 CSS templates. These languages and their compilers are defined together
