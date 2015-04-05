@@ -8,6 +8,7 @@ benchmark/results/
 benchmark/cache/
 build/
 
+npm-debug.log
 origin.css
 fail.css
 
