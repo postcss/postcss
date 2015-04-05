@@ -308,6 +308,7 @@ a specialized language for a specialized tool (as with preprocessors).
   right in your browser.
 * [`postcss-single-charset`] ensures that there is one
   and only one `@charset` rule at the top of file.
+* [`postcss-spiffing`] lets you use British English in your CSS
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 ### Analysis
@@ -381,6 +382,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`csstyle`]:                     https://github.com/geddski/csstyle
 [`webpcss`]:                     https://github.com/lexich/webpcss
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
+[`postcss-spiffing`]:            https://github.com/HashanP/postcss-spiffing
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
 
