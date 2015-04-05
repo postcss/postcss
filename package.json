@@ -13,7 +13,7 @@
     "dependencies": {
         "source-map": "~0.4.2",
         "js-base64":  "~2.1.7",
-        "babel":      "5.0.4"
+        "babel":      "5.0.8"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.2",
@@ -21,7 +21,7 @@
         "gulp-json-editor":       "2.2.1",
         "gonzales-pe":            "3.0.0-26",
         "gulp-eslint":            "0.6.0",
-        "browserify":             "9.0.6",
+        "browserify":             "9.0.7",
         "gulp-babel":             "5.0.0",
         "gulp-bench":             "1.1.0",
         "gulp-mocha":             "2.0.1",
@@ -32,7 +32,7 @@
         "gonzales":               "1.0.7",
         "through2":               "0.6.3",
         "stylecow":               "5.0.0",
-        "request":                "2.54.0",
+        "request":                "2.55.0",
         "cssnext":                "1.2.1",
         "rework":                 "1.0.1",
         "mensch":                 "0.3.1",
