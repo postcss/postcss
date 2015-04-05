@@ -278,6 +278,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-merge-rules`] merges adjacent rules when
   selectors/properties overlap.
+* [`postcss-minify-font-weight`] compresses `font-weight` values.
 * [`postcss-minify-selectors`] normalizes selectors for better compression.
 * [`postcss-normalize-url`] normalizes `url()`s and trims quotes
   where they are unnecessary.
@@ -320,6 +321,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-discard-duplicates`]:  https://github.com/ben-eb/postcss-discard-duplicates
+[`postcss-minify-font-weight`]:  https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-discard-font-face`]:   https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-custom-properties`]:   https://github.com/postcss/postcss-custom-properties
 [`postcss-custom-selectors`]:    https://github.com/postcss/postcss-custom-selectors
