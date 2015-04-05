@@ -382,9 +382,9 @@ a specialized language for a specialized tool (as with preprocessors).
 [`csstyle`]:                     https://github.com/geddski/csstyle
 [`webpcss`]:                     https://github.com/lexich/webpcss
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
-[`postcss-spiffing`]:            https://github.com/HashanP/postcss-spiffing
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
+[`postcss-spiffing`]:            https://github.com/HashanP/postcss-spiffing
 
 ## Usage
 
