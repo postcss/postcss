@@ -1,3 +1,6 @@
+## 4.1.4
+* Fix Promise polyfill dependency (by Anton Yakushev and Matija Marohnić).
+
 ## 4.1.3
 * Add Promise polyfill for node.js 0.10 and IE.
 
