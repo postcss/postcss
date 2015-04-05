@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "source-map": "~0.4.2",
+        "es6-promise": "2.0.1",
         "babel-core": "5.0.8",
         "js-base64":  "~2.1.7"
     },
@@ -21,7 +22,6 @@
         "gulp-json-editor":       "2.2.1",
         "gonzales-pe":            "3.0.0-26",
         "gulp-eslint":            "0.6.0",
-        "es6-promise":            "2.0.1",
         "browserify":             "9.0.7",
         "gulp-babel":             "5.0.0",
         "gulp-bench":             "1.1.0",
