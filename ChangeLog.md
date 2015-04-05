@@ -1,3 +1,6 @@
+## 4.1.3
+* Add Promise polyfill for node.js 0.10 and IE.
+
 ## 4.1.2
 * List helpers can be accessed independently `var space = postcss.list.space`.
 
