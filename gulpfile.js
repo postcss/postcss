@@ -32,11 +32,11 @@ gulp.task('build:package', ['build:clean'], function () {
     var editor = require('gulp-json-editor');
 
     gulp.src('./package.json')
-        .pipe(editor(function (json) {
-            json.main = 'lib/postcss';
-            json.devDependencies.babel = json.dependencies.babel;
-            delete json.dependencies.babel;
-            return json;
+        .pipe(editor(function (p) {
+            p.main = 'lib/postcss';
+            p.devDependencies['babel-core'] = p.dependencies['babel-core'];
+            delete p.dependencies['babel-core'];
+            return p;
         }))
         .pipe(gulp.dest('build'));
 });

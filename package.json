@@ -12,8 +12,8 @@
     },
     "dependencies": {
         "source-map": "~0.4.2",
-        "js-base64":  "~2.1.7",
-        "babel":      "5.0.8"
+        "babel-core": "5.0.8",
+        "js-base64":  "~2.1.7"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.2",
