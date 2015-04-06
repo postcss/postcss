@@ -2,7 +2,7 @@
 
 * [`postcss` function](#postcss-function)
 * [`Processor` class](#processor-class)
-* [`LazyResult` class](#lazy-result-class)
+* [`LazyResult` class](#lazyresult-class)
 * [`Result` class](#result-class)
 * [`Warning` class](#warning-class)
 * [`CssSyntaxError` class](#csssyntaxerror-class)
