@@ -92,6 +92,11 @@ result.warnings().forEach(function (warn) {
 });
 ```
 
+See also [postcss-log-warnings] and [postcss-messages] plugins.
+
+[postcss-log-warnings]: https://github.com/davidtheclark/postcss-log-warnings
+[postcss-messages]:     https://github.com/postcss/postcss-messages
+
 ### 3.3. Save map from `result.map` to separated file
 
 By default, PostCSS will inline source map to CSS in `result.css`.
