@@ -302,7 +302,8 @@ a specialized language for a specialized tool (as with preprocessors).
   in the `brand-colors` module.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-discard-comments`] removes comments based on rules you specify.
-* [`postcss-log-warnings`] logs warnings messages from other plugins in the console.
+* [`postcss-log-warnings`] logs warnings messages from other plugins
+  in the console.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
 * [`postcss-single-charset`] ensures that there is one
@@ -339,6 +340,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-default-unit`]:        https://github.com/antyakushev/postcss-default-unit
 [`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
 [`postcss-custom-media`]:        https://github.com/postcss/postcss-custom-media
+[`postcss-log-warnings`]:        https://github.com/davidtheclark/postcss-log-warnings
 [`postcss-brand-colors`]:        https://github.com/postcss/postcss-brand-colors
 [`postcss-font-variant`]:        https://github.com/postcss/postcss-font-variant
 [`postcss-will-change`]:         https://github.com/postcss/postcss-will-change
@@ -354,7 +356,6 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-image-set`]:           https://github.com/alex499/postcss-image-set
 [`postcss-colormin`]:            https://github.com/ben-eb/colormin
 [`pleeease-filters`]:            https://github.com/iamvdo/pleeease-filters
-[`postcss-log-warnings`]:        https://github.com/davidtheclark/postcss-log-warnings
 [`postcss-messages`]:            https://github.com/postcss/postcss-messages
 [`postcss-easings`]:             https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:             https://github.com/iamvdo/postcss-opacity
