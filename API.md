@@ -869,7 +869,7 @@ root.source.input.id   //=> <input css 1>
 ### `input.from`
 
 The CSS source identifier. Contains [`input.file`](#inputfile) if the user set the
-[`from` option], or [`input.id`](#inputid) if she did not.
+[`from` option], or [`input.id`](#inputid) if he/she did not.
 
 ```js
 var root  = postcss.parse(css, { from: 'a.css' });
