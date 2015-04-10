@@ -267,6 +267,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
 * [`postcss-colormin`] reduces color values to their smallest representations.
+* [`postcss-convert-values`] reduces length and time values (e.g. ms -> s).
 * [`postcss-data-packer`] moves embedded Base64 data out of the stylesheet
   and into a separate file.
 * [`postcss-discard-duplicates`] removes duplicate declarations and rules.
@@ -331,6 +332,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-color-hex-alpha`]:     https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-color-function`]:      https://github.com/postcss/postcss-color-function
+[`postcss-convert-values`]:      https://github.com/ben-eb/postcss-convert-values
 [`postcss-pseudoelements`]:      https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-single-charset`]:      https://github.com/hail2u/postcss-single-charset
 [`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
