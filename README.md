@@ -281,6 +281,8 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-minify-selectors`] normalizes selectors for better compression.
 * [`postcss-normalize-url`] normalizes `url()`s and trims quotes
   where they are unnecessary.
+* [`postcss-reduce-idents`] compresses `@keyframes`, `@counter-style` &
+  `counter` identifers.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`csswring`] is a CSS minifier.
@@ -338,6 +340,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-normalize-url`]:       https://github.com/ben-eb/postcss-normalize-url
 [`postcss-color-palette`]:       https://github.com/zaim/postcss-color-palette
 [`postcss-discard-empty`]:       https://github.com/ben-eb/postcss-discard-empty
+[`postcss-reduce-idents`]:       https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:       https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-default-unit`]:        https://github.com/antyakushev/postcss-default-unit
 [`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
