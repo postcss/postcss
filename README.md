@@ -282,7 +282,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-normalize-url`] normalizes `url()`s and trims quotes
   where they are unnecessary.
 * [`postcss-reduce-idents`] compresses `@keyframes`, `@counter-style` &
-  `counter` identifers.
+  `counter` identifiers.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`csswring`] is a CSS minifier.
