@@ -103,13 +103,15 @@ describe('tokenize', () => {
     });
 
     it('tokenizes at-word end', () => {
-        test('@one{@two()@three""', [
+        test('@one{@two()@three""@four;', [
             ['at-word',  '@one',   1,  1, 1,  4],
             ['{',        '{',      1,  5],
             ['at-word',  '@two',   1,  6, 1,  9],
             ['brackets', '()',     1, 10, 1, 11],
             ['at-word',  '@three', 1, 12, 1, 17],
-            ['string',   '""',     1, 18, 1, 19]
+            ['string',   '""',     1, 18, 1, 19],
+            ['at-word',  '@four',  1, 20, 1, 24],
+            [';',        ';',      1, 25]
         ]);
     });
 
