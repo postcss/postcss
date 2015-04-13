@@ -1,3 +1,6 @@
+## 4.1.5
+* Parse at-words in declaration values.
+
 ## 4.1.4
 * Fix Promise polyfill dependency (by Anton Yakushev and Matija Marohnić).
 
