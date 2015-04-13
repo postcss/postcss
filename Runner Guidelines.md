@@ -1,11 +1,11 @@
 # PostCSS Runner Guidelines
 
-PostCSS runner is a tool, that takes plugins list from user and process
-user’s CSS through this plugins. For example, [`postcss-cli`]
-or [`gulp-postcss`]. This rules are mandatory for any PostCSS runners.
+A PostCSS runner is a tool that processes CSS through a user-defined list of
+plugins; for example, [`postcss-cli`] or [`gulp-postcss`]. These rules are
+mandatory for any such runners.
 
-This rules are not mandatory, but highly recommended for one-plugin tools
-(like [`gulp-autoprefixer`]).
+For single-plugin tools, like [`gulp-autoprefixer`], these rules are not
+mandatory but are highly recommended.
 
 See also ClojureWerkz’s [open source project recommendations].
 
@@ -18,8 +18,8 @@ See also ClojureWerkz’s [open source project recommendations].
 
 ### 1.1. Accept functions in plugin parameters
 
-Some plugins accept function in parameters. If your runner has config file,
-it should be a Node.js module, because JSON format doesn’t support functions.
+If your runner uses a config file, it must be written in JavaScript, so that
+it can support plugins which accept a function, such as [`postcss-assets`]:
 
 ```js
 module.exports = [
@@ -31,24 +31,26 @@ module.exports = [
 ];
 ```
 
+[`postcss-assets`]: https://github.com/borodean/postcss-assets
+
 ## 2. Processing
 
 ### 2.1. Set `from` and `to` processing options
 
-PostCSS needs `from` and `to` options to generate correct source map
-and display better syntax errors.
-
-If your tool doesn’t save file to disk (as Gulp pipe for example),
-you should set same `from` and `to` options.
+To ensure that PostCSS generates source maps and displays better syntax errors,
+runners must specify the `from` and `to` options. If your runner does not handle
+writing to disk (for example, a gulp transform), you should set both options
+to point to the same file:
 
 ```js
 processor.process({ from: file.path, to: file.path });
 ```
 
-### 2.2. Use only asynchronous API
+### 2.2. Use only the asynchronous API
 
-PostCSS has synchronous API only for debug. Synchronous API is slower
-and can’t work with asynchronous plugins.
+PostCSS runners must use only the asynchronous API. The synchronous API is
+provided only for debugging, is slower, and can't work with asynchronous
+plugins.
 
 ```js
 processor.process(opts).then(function (result) {
@@ -56,10 +58,11 @@ processor.process(opts).then(function (result) {
 });
 ```
 
-### 2.3. Use only public PostCSS API
+### 2.3. Use only the public PostCSS API
 
-Public API is described in [`API.md`]. Any other methods and properties
-are private and can be changed in any minor release.
+PostCSS runners must not rely on undocumented properties or methods, which may
+be subject to change in any minor release. The public API is described in
+[`API.md`].
 
 [`API.md`]: https://github.com/postcss/postcss/blob/master/API.md
 
@@ -67,8 +70,9 @@ are private and can be changed in any minor release.
 
 ### 3.1. Don’t show JS stack for `CssSyntaxError`
 
-JS stack trace is mostly irrelevant for CSS syntax errors.
-PostCSS runner can be used by CSS developer, who didn’t know JS.
+PostCSS runners must not show a stack trace for CSS syntax errors, as the
+runner can be used by developers who are not familiar with JavaScript. Instead,
+handle such errors gracefully:
 
 ```js
 var CssSyntaxError = require('postcss/lib/css-syntax-error');
@@ -82,9 +86,9 @@ processor.process(opts).catch(function (error) {
 });
 ```
 
-### 3.2. Display `result.warnings()` content
+### 3.2. Display `result.warnings()`
 
-Runner must output warnings from `result.warnings()`.
+PostCSS runners must output warnings from `result.warnings()`:
 
 ```js
 result.warnings().forEach(function (warn) {
@@ -97,10 +101,11 @@ See also [postcss-log-warnings] and [postcss-messages] plugins.
 [postcss-log-warnings]: https://github.com/davidtheclark/postcss-log-warnings
 [postcss-messages]:     https://github.com/postcss/postcss-messages
 
-### 3.3. Save map from `result.map` to separated file
+### 3.3. Allow the user to write source maps to different files
 
-By default, PostCSS will inline source map to CSS in `result.css`.
-But you should be ready for separated file with map if user will ask it.
+PostCSS by default will inline source maps in the generated file; however,
+PostCSS runners must provide an option to save the source map in a different
+file:
 
 ```js
 if ( result.map ) {
@@ -110,26 +115,28 @@ if ( result.map ) {
 
 ## 4. Documentation
 
-### 4.1. Use English in documentation
+### 4.1. Document your runner in English
 
-Project description, `README.md` should be in English. Do not afraid your
-English skills. Open source community will fix your errors.
+PostCSS runners must have their `README.md` written in English. Do not be afraid
+of your English skills, as the open source community will fix your errors.
 
-Of course you can have documentation on other languages. Just put it in file
-like `README.ja.md`.
+Of course, you are welcome to write documentation in other languages; just name
+them appropriately (e.g. `README.ja.md`).
 
-### 4.2. Have Changelog
+### 4.2. Maintain a changelog
 
-You should describe changes of all releases in a separate file like
-`ChangeLog.md`, `History.md`, etc, or with [GitHub Releases].
-
-[Keep A Changelog] contains advices to write good Changelog.
+PostCSS runners must describe changes of all releases in a separate file, such
+as `ChangeLog.md`, `History.md`, or with [GitHub Releases]. Visit
+[Keep A Changelog] for more information on how to write one of these.
 
 [Keep A Changelog]: http://keepachangelog.com/
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
 
 ### 4.3. `postcssrunner` keyword in `package.json`
 
-Special keyword will be useful for feedback about PostCSS ecosystem.
-This rule is not mandatory for non-npm packages, but it is still recommended
-if package format has keywords field.
+PostCSS runners written for npm must have the `postcssrunner` keyword in their
+`package.json`. This special keyword will be useful for feedback about the
+PostCSS ecosystem.
+
+For packages not published to npm, this is not mandatory, but recommended if
+the package format is allowed to contain keywords.
