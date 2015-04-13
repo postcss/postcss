@@ -2,7 +2,7 @@ import parse from '../lib/parse';
 
 import   mozilla  from 'source-map';
 import   fs       from 'fs-extra';
-import   path     from 'path'
+import   path     from 'path';
 import { expect } from 'chai';
 
 let dir = path.join(__dirname, 'fixtures');
