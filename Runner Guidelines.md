@@ -1,17 +1,17 @@
 # PostCSS Runner Guidelines
 
-A PostCSS runner is a tool that processes CSS through a user-defined list of
-plugins; for example, [`postcss-cli`] or [`gulp-postcss`]. These rules are
-mandatory for any such runners.
+A PostCSS runner is a tool that processes CSS through a user-defined list
+of plugins; for example, [`postcss-cli`] or [`gulp‑postcss`].
+These rules are mandatory for any such runners.
 
-For single-plugin tools, like [`gulp-autoprefixer`], these rules are not
-mandatory but are highly recommended.
+For single-plugin tools, like [`gulp-autoprefixer`],
+these rules are not mandatory but are highly recommended.
 
 See also ClojureWerkz’s [open source project recommendations].
 
 [open source project recommendations]:  http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
 [`gulp-autoprefixer`]: https://github.com/sindresorhus/gulp-autoprefixer
-[`gulp-postcss`]:      https://github.com/w0rm/gulp-postcss
+[`gulp‑postcss`]:      https://github.com/w0rm/gulp-postcss
 [`postcss-cli`]:       https://github.com/code42day/postcss-cli
 
 ## 1. API
@@ -40,7 +40,7 @@ module.exports = [
 To ensure that PostCSS generates source maps and displays better syntax errors,
 runners must specify the `from` and `to` options. If your runner does not handle
 writing to disk (for example, a gulp transform), you should set both options
-to point to the same file:
+to point to the same file:
 
 ```js
 processor.process({ from: file.path, to: file.path });
@@ -48,9 +48,9 @@ processor.process({ from: file.path, to: file.path });
 
 ### 2.2. Use only the asynchronous API
 
-PostCSS runners must use only the asynchronous API. The synchronous API is
-provided only for debugging, is slower, and can't work with asynchronous
-plugins.
+PostCSS runners must use only the asynchronous API.
+The synchronous API is provided only for debugging, is slower,
+and can’t work with asynchronous plugins.
 
 ```js
 processor.process(opts).then(function (result) {
@@ -60,9 +60,9 @@ processor.process(opts).then(function (result) {
 
 ### 2.3. Use only the public PostCSS API
 
-PostCSS runners must not rely on undocumented properties or methods, which may
-be subject to change in any minor release. The public API is described in
-[`API.md`].
+PostCSS runners must not rely on undocumented properties or methods,
+which may be subject to change in any minor release. The public API
+is described in [`API.md`].
 
 [`API.md`]: https://github.com/postcss/postcss/blob/master/API.md
 
@@ -70,9 +70,9 @@ be subject to change in any minor release. The public API is described in
 
 ### 3.1. Don’t show JS stack for `CssSyntaxError`
 
-PostCSS runners must not show a stack trace for CSS syntax errors, as the
-runner can be used by developers who are not familiar with JavaScript. Instead,
-handle such errors gracefully:
+PostCSS runners must not show a stack trace for CSS syntax errors,
+as the runner can be used by developers who are not familiar with JavaScript.
+Instead, handle such errors gracefully:
 
 ```js
 var CssSyntaxError = require('postcss/lib/css-syntax-error');
@@ -104,7 +104,7 @@ See also [postcss-log-warnings] and [postcss-messages] plugins.
 ### 3.3. Allow the user to write source maps to different files
 
 PostCSS by default will inline source maps in the generated file; however,
-PostCSS runners must provide an option to save the source map in a different
+PostCSS runners must provide an option to save the source map in a different
 file:
 
 ```js
@@ -120,23 +120,23 @@ if ( result.map ) {
 PostCSS runners must have their `README.md` written in English. Do not be afraid
 of your English skills, as the open source community will fix your errors.
 
-Of course, you are welcome to write documentation in other languages; just name
-them appropriately (e.g. `README.ja.md`).
+Of course, you are welcome to write documentation in other languages;
+just name them appropriately (e.g. `README.ja.md`).
 
 ### 4.2. Maintain a changelog
 
-PostCSS runners must describe changes of all releases in a separate file, such
-as `ChangeLog.md`, `History.md`, or with [GitHub Releases]. Visit
-[Keep A Changelog] for more information on how to write one of these.
+PostCSS runners must describe changes of all releases in a separate file,
+such as `ChangeLog.md`, `History.md`, or with [GitHub Releases].
+Visit [Keep A Changelog] for more information on how to write one of these.
 
 [Keep A Changelog]: http://keepachangelog.com/
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
 
 ### 4.3. `postcssrunner` keyword in `package.json`
 
-PostCSS runners written for npm must have the `postcssrunner` keyword in their
-`package.json`. This special keyword will be useful for feedback about the
-PostCSS ecosystem.
+PostCSS runners written for npm must have the `postcssrunner` keyword
+in their `package.json`. This special keyword will be useful for feedback about
+the PostCSS ecosystem.
 
-For packages not published to npm, this is not mandatory, but recommended if
-the package format is allowed to contain keywords.
+For packages not published to npm, this is not mandatory, but recommended
+if the package format is allowed to contain keywords.

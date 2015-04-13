@@ -63,6 +63,7 @@
         "autodetect",
         "codebases",
         "regexp",
+        "changelog",
         "Changelog",
         "Transpiler",
         "transpiler",
