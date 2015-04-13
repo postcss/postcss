@@ -1,0 +1,7 @@
+a {
+    width: 10px;
+    margin: 0 @width;
+    @mixin mobile {
+        height: 100px;
+    }
+}
