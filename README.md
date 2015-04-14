@@ -205,10 +205,12 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ### Packs
 
+* [cssnano] contains plugins that optimise your CSS for use in production.
 * [cssnext] contains plugins that allow you to use future CSS features today.
 * [AtCSS] contains plugins that transform your CSS according
   to special annotation comments.
 
+[cssnano]:  https://github.com/ben-eb/cssnano
 [cssnext]:  https://github.com/putaindecode/cssnext
 [AtCSS]:     https://github.com/morishitter/atcss
 
