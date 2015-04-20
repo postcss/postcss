@@ -199,7 +199,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [CLI tool]: https://github.com/code42day/postcss-cli
 [webpack]:  https://github.com/postcss/postcss-loader
 [Grunt]:    https://github.com/nDmitry/grunt-postcss
-[Gulp]:     https://github.com/w0rm/gulp-postcss
+[Gulp]:     https://github.com/postcss/gulp-postcss
 
 ## Plugins
 
