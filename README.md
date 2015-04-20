@@ -260,6 +260,7 @@ a specialized language for a specialized tool (as with preprocessors).
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`csstyle`] adds components workflow to your styles.
+* [`postcss-neat`] is a semantic and fluid grid framework on top of PostCSS.
 
 ### Optimizations
 
@@ -388,6 +389,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`cssgrace`]:                    https://github.com/cssdream/cssgrace
 [`csswring`]:                    https://github.com/hail2u/node-csswring
 [`csstyle`]:                     https://github.com/geddski/csstyle
+[`postcss-neat`]:                https://github.com/jo-asakura/postcss-neat
 [`webpcss`]:                     https://github.com/lexich/webpcss
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
