@@ -274,7 +274,7 @@ Arguments:
 * `css (string|#toString|Result)`: String with input CSS or any object
   with `toString()` method, like file stream. Also you can send [`Result`]
   instance and processor will take already parser [`Root`] from it.
-* `ops (object) optional`: options:
+* `opts (object) optional`: options:
   * `from`: the path of the CSS source file. You should always set `from`,
     because it is used in source map generation and syntax error messages.
   * `to`: the path where you’ll put the output CSS file. You should always set
