@@ -254,13 +254,13 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [`postcss-map`] enables configuration maps.
+* [`postcss-neat`] is a semantic and fluid grid framework.
 * [`postcss-nested`] unwraps nested rules.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`csstyle`] adds components workflow to your styles.
-* [`postcss-neat`] is a semantic and fluid grid framework on top of PostCSS.
 
 ### Optimizations
 
@@ -365,6 +365,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-colormin`]:            https://github.com/ben-eb/colormin
 [`pleeease-filters`]:            https://github.com/iamvdo/pleeease-filters
 [`postcss-messages`]:            https://github.com/postcss/postcss-messages
+[`postcss-spiffing`]:            https://github.com/HashanP/postcss-spiffing
 [`postcss-easings`]:             https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:             https://github.com/iamvdo/postcss-opacity
 [`postcss-assets`]:              https://github.com/borodean/postcss-assets
@@ -376,6 +377,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`list-selectors`]:              https://github.com/davidtheclark/list-selectors
 [`css2modernizr`]:               https://github.com/vovanbo/css2modernizr
 [`postcss-at2x`]:                https://github.com/simonsmith/postcss-at2x
+[`postcss-neat`]:                https://github.com/jo-asakura/postcss-neat
 [`autoprefixer`]:                https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                https://github.com/hail2u/node-css-mqpacker
 [`postcss-epub`]:                https://github.com/Rycochet/postcss-epub
@@ -389,12 +391,10 @@ a specialized language for a specialized tool (as with preprocessors).
 [`cssgrace`]:                    https://github.com/cssdream/cssgrace
 [`csswring`]:                    https://github.com/hail2u/node-csswring
 [`csstyle`]:                     https://github.com/geddski/csstyle
-[`postcss-neat`]:                https://github.com/jo-asakura/postcss-neat
 [`webpcss`]:                     https://github.com/lexich/webpcss
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
-[`postcss-spiffing`]:            https://github.com/HashanP/postcss-spiffing
 
 ## Usage
 
