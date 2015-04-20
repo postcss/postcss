@@ -261,7 +261,7 @@ a specialized language for a specialized tool (as with preprocessors).
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`csstyle`] adds components workflow to your styles.
-* [`lost`] feature rich `calc()` grid system built by the guy who made Jeet.
+* [`lost`] feature rich `calc()` grid system by Jeet author.
 
 ### Optimizations
 
@@ -396,6 +396,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`rtlcss`]:                      https://github.com/MohammadYounes/rtlcss
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
+[`lost`]:                        https://github.com/corysimmons/lost
 
 ## Usage
 
