@@ -251,6 +251,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
+* [`postcss-inline-comment`] supports inline comments.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [`postcss-map`] enables configuration maps.
@@ -397,6 +398,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`pixrem`]:                      https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
 [`lost`]:                        https://github.com/corysimmons/lost
+[`postcss-inline-comment`]:      https://github.com/moczolaszlo/postcss-inline-comment
 
 ## Usage
 
