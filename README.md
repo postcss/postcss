@@ -251,7 +251,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
-* [`postcss-for`] adds SASS-like `@for` loops.
+* [`postcss-for`] adds `@for` loops.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [`postcss-map`] enables configuration maps.
