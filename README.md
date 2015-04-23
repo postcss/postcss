@@ -379,6 +379,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`mq4-hover-shim`]:              https://github.com/twbs/mq4-hover-shim
 [`list-selectors`]:              https://github.com/davidtheclark/list-selectors
 [`css2modernizr`]:               https://github.com/vovanbo/css2modernizr
+[`postcss-focus`]:               https://github.com/postcss/postcss-focus
 [`postcss-at2x`]:                https://github.com/simonsmith/postcss-at2x
 [`postcss-neat`]:                https://github.com/jo-asakura/postcss-neat
 [`autoprefixer`]:                https://github.com/postcss/autoprefixer
