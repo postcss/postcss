@@ -251,6 +251,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
+* [`postcss-for`] adds SASS-like `@for` loops.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [`postcss-map`] enables configuration maps.
@@ -300,6 +301,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
+* [`postcss-focus`] adds `:focus` selector to every `:hover`.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 
@@ -388,6 +390,7 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-vmin`]:                https://github.com/iamvdo/postcss-vmin
 [`postcss-url`]:                 https://github.com/postcss/postcss-url
 [`postcss-map`]:                 https://github.com/pascalduez/postcss-map
+[`postcss-for`]:                 https://github.com/antyakushev/postcss-for
 [`css-byebye`]:                  https://github.com/AoDev/css-byebye
 [`cssgrace`]:                    https://github.com/cssdream/cssgrace
 [`csswring`]:                    https://github.com/hail2u/node-csswring
