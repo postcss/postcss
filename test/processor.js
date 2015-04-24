@@ -105,7 +105,7 @@ describe('Processor', () => {
         it('throws with file name', () => {
             let error;
             try {
-                (new Processor()).process('a {', { from: 'a.css' });
+                (new Processor()).process('a {', { from: 'a.css' }).css;
             } catch (e) {
                 if ( e instanceof CssSyntaxError ) {
                     error = e;
@@ -263,6 +263,13 @@ describe('Processor', () => {
                 done('should not run then callback');
             }).catch(function (err) {
                 expect(err).to.eql(error);
+                done();
+            });
+        });
+
+        it('throws parse error in async', (done) => {
+            (new Processor()).process('a{').catch(function (err) {
+                expect(err.message).to.eql('<css input>:1:1: Unclosed block');
                 done();
             });
         });
