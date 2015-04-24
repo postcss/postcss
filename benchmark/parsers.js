@@ -8,7 +8,7 @@ var CSSOM      = require('cssom');
 var rework     = require('rework');
 var mensch     = require('mensch');
 var postcss    = require('../build');
-var stylecow   = require('stylecow');
+var stylecow   = require('stylecow-parser');
 var gonzales   = require('gonzales');
 var gonzalesPe = require('gonzales-pe');
 
@@ -57,7 +57,7 @@ module.exports = {
         {
             name: 'Stylecow',
             fn: function () {
-                var file = new stylecow.Reader(css, 'cache/bootstrap.css');
+                var file = new stylecow.Reader(new stylecow.Tokens(css));
                 stylecow.Root.create(file).toString();
             }
         }
