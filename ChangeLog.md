@@ -1,3 +1,6 @@
+## 4.1.6
+* Fix Promise behavior on parsing error.
+
 ## 4.1.5
 * Parse at-words in declaration values.
 
