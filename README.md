@@ -5,11 +5,11 @@
      src="http://postcss.github.io/postcss/logo.svg">
 
 PostCSS is a tool for transforming CSS with JS plugins.
-This plugins can add vendor prefixes, support variables and mixins,
-transpile future CSS syntax, inline images, and more.
+This plugins can support variables and mixins, transpile future CSS syntax,
+inline images, and more.
 
 PostCSS is used by Google, Twitter, Alibaba, and Shopify.
-Its plugin, [Autoprefixer], is one of the most popular CSS processors.
+Its plugin, [Autoprefixer], is one of the most popular CSS processors.
 
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
 But PostCSS is modular, 4-40 times faster, and much more powerful.
@@ -23,7 +23,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 [chat]:     https://gitter.im/postcss/postcss
 [ci]:       https://travis-ci.org/postcss/postcss
 
-[Examples](#what-is-postcss) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Usages](#usage) | [Plugin Development](#how-to-develop-postcss-plugin)
+[Examples](#what-is-postcss) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Usages](#usage) | [Write Own Plugin](#how-to-develop-postcss-plugin)
 --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
