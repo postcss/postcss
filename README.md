@@ -5,7 +5,7 @@
      src="http://postcss.github.io/postcss/logo.svg">
 
 PostCSS is a tool for transforming CSS with JS plugins.
-This plugins can support variables and mixins, transpile future CSS syntax,
+These plugins can support variables and mixins, transpile future CSS syntax,
 inline images, and more.
 
 PostCSS is used by Google, Twitter, Alibaba, and Shopify.
@@ -64,22 +64,16 @@ Or if you like the syntax of preprocessors like Sass, you could combine
 [`postcss-nested`], [`postcss-mixins`]:
 
 ```css
-@define-mixin social-icon $color {
-    background: $color;
-    &:hover {
-        box-shadow: 0 0 0 2px $color;
+@define-mixin social-icon $network $color {
+    &.is-$network {
+        background: $color;
     }
 }
 
 .social-icon {
-    &.is-twitter {
-        @mixin social-icon #55acee;
-    }
-    &.is-facebook {
-        @mixin social-icon #3b5998;
-    }
-}
-.post-article {
+    @mixin social-icon twitter  #55acee;
+    @mixin social-icon facebook #3b5998;
+
     padding: 10px 5px;
     @media (max-width: 640px) {
         padding: 0;
