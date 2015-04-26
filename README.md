@@ -9,7 +9,7 @@ These plugins can support variables and mixins, transpile future CSS syntax,
 inline images, and more.
 
 PostCSS is used by Google, Twitter, Alibaba, and Shopify.
-Its plugin, [Autoprefixer], is one of the most popular CSS processors.
+Its plugin, [Autoprefixer], is one of the most popular CSS processors.
 
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
 But PostCSS is modular, 4-40 times faster, and much more powerful.
@@ -51,7 +51,7 @@ You can use the [cssnext] plugin pack and write future CSS code right now:
 @custom-selector --heading h1, h2, h3, h4, h5, h6;
 
 .post-article --heading {
-    color: color(var(--mainColor) blackness(+20%));
+    color: color( var(--mainColor) blackness(+20%) );
 }
 @media (--mobile) {
     .post-article --heading {
@@ -60,7 +60,7 @@ You can use the [cssnext] plugin pack and write future CSS code right now:
 }
 ```
 
-Or if you like the syntax of preprocessors like Sass, you could combine
+Or if you like the Sass syntax, you could combine
 [`postcss-nested`], [`postcss-mixins`]:
 
 ```css
