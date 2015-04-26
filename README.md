@@ -36,26 +36,22 @@ VK.com page:     [postcss](https://vk.com/postcss).
 
 PostCSS itself is very small. It includes only a CSS parser,
 a CSS node tree API, a source map generator, and a node tree stringifier.
-All CSS transformations are encapsulated in modular plugins. And these plugins
-are themselves small plain JS functions, which receive a CSS node tree,
-apply transformations to it, and return a modified tree.
+
+All CSS transformations are made by plugins. And these plugins are just
+small plain JS functions, which receive a CSS node tree, transform it,
+and return a modified tree.
 
 You can use the [cssnext] plugin pack and write future CSS code right now:
 
 ```css
 :root {
-    --row: 1rem;
     --mainColor: #ffbbaaff;
 }
-
-@custom-media --mobile (width <= 640px);
-
+@custom-media    --mobile (width <= 640px);
 @custom-selector --heading h1, h2, h3, h4, h5, h6;
 
 .post-article --heading {
-    margin-top: calc(10 * var(--row));
     color: color(var(--mainColor) blackness(+20%));
-    font-variant-caps: small-caps;
 }
 @media (--mobile) {
     .post-article --heading {
@@ -64,22 +60,18 @@ You can use the [cssnext] plugin pack and write future CSS code right now:
 }
 ```
 
-Or if you like the power provided by preprocessors like Sass,
-you could combine [`postcss-nested`], [`postcss-mixins`], [`postcss-easings`]
-and [`postcss-media-minmax`]:
+Or if you like the syntax of preprocessors like Sass, you could combine
+[`postcss-nested`], [`postcss-mixins`]:
 
 ```css
-$mobile: width <= 640px;
-
 @define-mixin social-icon $color {
     background: $color;
     &:hover {
-        background: color($color whiteness(+10%));
+        box-shadow: 0 0 0 2px $color;
     }
 }
 
 .social-icon {
-    transition: background 200ms ease-in-sine;
     &.is-twitter {
         @mixin social-icon #55acee;
     }
@@ -87,16 +79,15 @@ $mobile: width <= 640px;
         @mixin social-icon #3b5998;
     }
 }
-
 .post-article {
     padding: 10px 5px;
-    @media ($mobile) {
+    @media (max-width: 640px) {
         padding: 0;
     }
 }
 ```
 
-[cssnext]:      https://github.com/cssnext/cssnext
+[cssnext]: https://github.com/cssnext/cssnext
 
 ### How PostCSS Differs from Preprocessors
 
