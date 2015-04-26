@@ -234,7 +234,7 @@ a specialized language for a specialized tool (as with preprocessors).
 
 ### Fallbacks
 
-* [`postcss-color-hex`] transforms `rgb()` and `rgba()` to hex.
+* [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
 * [`postcss-image-set`] adds `background-image` with first image for `image-set()`
 * [`postcss-opacity`] adds opacity filter for IE8.
@@ -329,6 +329,7 @@ a specialized language for a specialized tool (as with preprocessors).
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
 
+[`postcss-color-rgba-fallback`]: https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-discard-duplicates`]:  https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-minify-font-weight`]:  https://github.com/ben-eb/postcss-minify-font-weight
@@ -362,7 +363,6 @@ a specialized language for a specialized tool (as with preprocessors).
 [`postcss-color-alpha`]:         https://github.com/avanes/postcss-color-alpha
 [`postcss-bem-linter`]:          https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:          https://github.com/postcss/postcss-color-gray
-[`postcss-color-hex`]:           https://github.com/TrySound/postcss-color-hex
 [`postcss-color-hwb`]:           https://github.com/postcss/postcss-color-hwb
 [`postcss-image-set`]:           https://github.com/alex499/postcss-image-set
 [`postcss-colormin`]:            https://github.com/ben-eb/colormin
