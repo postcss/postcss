@@ -1,6 +1,8 @@
-# PostCSS [![Build Status](https://travis-ci.org/postcss/postcss.svg)](https://travis-ci.org/postcss/postcss) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/postcss/postcss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# PostCSS [![Build Status][ci-img]][ci] [![Gitter][chat-img]][chat]
 
-<img align="right" width="95" height="95" src="http://postcss.github.io/postcss/logo.svg" title="Philosopher’s stone, logo of PostCSS">
+<img align="right" width="95" height="95"
+     title="Philosopher’s stone, logo of PostCSS"
+     src="http://postcss.github.io/postcss/logo.svg">
 
 PostCSS is a tool for transforming CSS with JS plugins. The growing ecosystem
 of PostCSS plugins can add vendor prefixes, support variables and mixins,
@@ -14,8 +16,13 @@ PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
 But PostCSS is modular, 4-40 times faster, and much more powerful.
 
 Twitter account: [@postcss](https://twitter.com/postcss).
-Weibo account: [postcss](http://weibo.com/postcss).
-VK.com page: [postcss](https://vk.com/postcss).
+Weibo account:   [postcss](http://weibo.com/postcss).
+VK.com page:     [postcss](https://vk.com/postcss).
+
+[chat-img]: https://badges.gitter.im/Join%20Chat.svg
+[ci-img]:   https://travis-ci.org/postcss/postcss.svg
+[chat]:     https://gitter.im/postcss/postcss
+[ci]:       https://travis-ci.org/postcss/postcss
 
 [Examples](#what-is-postcss) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Usages](#usage) | [Plugin Development](#how-to-develop-postcss-plugin)
 --- | --- | --- | --- | --- | ---
