@@ -22,7 +22,7 @@
         "gulp-json-editor":       "2.2.1",
         "stylecow-parser":        "2.1.0",
         "gonzales-pe":            "3.0.0-26",
-        "gulp-eslint":            "0.11.0",
+        "gulp-eslint":            "0.11.1",
         "browserify":             "9.0.8",
         "gulp-babel":             "5.1.0",
         "gulp-bench":             "1.1.0",
