@@ -404,9 +404,9 @@ var processor = postcss([require('cssnext'), require('cssgrace')]);
 processor
   .process(css, { from: 'app.css', to: 'app.out.css' })
   .then(function (result) {
-      fs.fileWriteSync('app.out.css', result.css);
+      fs.writeFileSync('app.out.css', result.css);
       if ( result.map ) {
-          fs.fileWriteSync('app.out.css.map', result.map);
+          fs.writeFileSync('app.out.css.map', result.map);
       }
   });
 ```
