@@ -85,8 +85,8 @@ Or if you like the Sass syntax, you could combine
 
 ### Features
 
-Preprocessors are a template language, when you mix styles with
-programming language (like a PHP with HTML).
+Preprocessors are a template languages, when you mix styles with code
+(like a PHP with HTML).
 
 In contrast, in PostCSS you write some custom subset of CSS.
 All code can be only in JS plugins.
@@ -101,8 +101,8 @@ As a result, PostCSS offers three main benefits:
   transpiles the latest W3C drafts to current CSS syntax.
 
 * **New abilities:** PostCSS transforms are often more powerful than
-  preprocessor equivalents. For example, [Autoprefixer] and [RTLCSS] would be
-  extremely difficult (if not impossible) to achieve without PostCSS.
+  preprocessor equivalents. For example, [Autoprefixer] would be impossible
+  on preprocessors.
 
 [3 times faster]: https://github.com/postcss/postcss/blob/master/benchmark/general.js
 [libsass]:        https://github.com/sass/libsass
