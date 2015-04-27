@@ -366,14 +366,17 @@ If you don’t want the map inlined, you can use set `map.inline: false`.
 
 ```js
 processor
-  .process(css, {
-      from: 'app.sass.css',
-      to:   'app.css',
-      map: { inline: false },
-  })
-  .then(function (result) {
-      result.map //=> '{"version":3,"file":"app.css","sources":["app.sass"],"names":[],"mappings":"AAAA,KAAI"}'
-  });
+    .process(css, {
+        from: 'app.sass.css',
+        to:   'app.css',
+        map: { inline: false },
+    })
+    .then(function (result) {
+        result.map //=> '{ "version":3,
+                   //      "file":"app.css",
+                   //      "sources":["app.sass"],
+                   //       "mappings":"AAAA,KAAI" }'
+    });
 ```
 
 If PostCSS finds source maps from a previous transformation,
