@@ -351,7 +351,7 @@ Read the [PostCSS API] for more details about JS API.
 
 ## Options
 
-### Source Maps
+### Source Map
 
 PostCSS has great [source maps] support. It can read and interpret maps
 from previous transformation steps, autodetect the format that you expect,
