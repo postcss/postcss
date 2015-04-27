@@ -23,7 +23,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 [chat]:     https://gitter.im/postcss/postcss
 [ci]:       https://travis-ci.org/postcss/postcss
 
-[Examples](#what-is-postcss) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Write Own Plugin](#how-to-develop-postcss-plugin) | [Usages](#usage)
+[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#plugins) | [Write Own Plugin](#how-to-develop-postcss-plugin) | [Options](#options)
 --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
@@ -99,23 +99,51 @@ As a result, PostCSS offers three main benefits:
   transpiles the latest W3C drafts to current CSS syntax.
 * **New abilities:** PostCSS transforms are often more powerful than
   preprocessor equivalents. For example, [Autoprefixer] would be impossible
-  on preprocessors.
+  with preprocessors.
 
 [3 times faster]: https://github.com/postcss/postcss/blob/master/benchmark/general.js
 
-## Quick Start
+## Usage
 
-1. Implement PostCSS with your build tool of choice. See the PostCSS [Grunt],
-   [Gulp], [webpack] and [Broccoli] plugins or [CLI tool]
-   more detailed instructions.
+You need to make 2 steps to start using PostCSS:
+
+1. Add PostCSS to your build tool.
 2. Select plugins from the list below and add them to your PostCSS process.
-3. Make awesome products.
 
-[CLI tool]: https://github.com/code42day/postcss-cli
-[Broccoli]: https://github.com/jeffjewiss/broccoli-postcss
-[webpack]:  https://github.com/postcss/postcss-loader
-[Grunt]:    https://github.com/nDmitry/grunt-postcss
-[Gulp]:     https://github.com/postcss/gulp-postcss
+There are plugins for [Grunt], [Gulp], [webpack] and [Broccoli].
+
+```js
+gulp.task('css', function () {
+    var postcss = require('gulp-postcss');
+    return gulp.src('src/**/*.css')
+        .pipe( postcss([ require('plugin1'), require('plugin2') ]) )
+        .pipe( gulp.dest('build/') );
+});
+```
+
+For other environments your can use [CLI tool] or JS API:
+
+```js
+var postcss   = require('postcss');
+var processor = postcss([require('cssnext'), require('cssgrace')]);
+
+processor.process(css, { from: 'app.css', to: 'app.out.css' })
+  .then(function (result) {
+      fs.writeFileSync('app.out.css', result.css);
+      if ( result.map ) {
+          fs.writeFileSync('app.out.css.map', result.map);
+      }
+  });
+```
+
+Read the [PostCSS API] for more details about JS API.
+
+[PostCSS API]: https://github.com/postcss/postcss/blob/master/API.md
+[CLI tool]:    https://github.com/code42day/postcss-cli
+[Broccoli]:    https://github.com/jeffjewiss/broccoli-postcss
+[webpack]:     https://github.com/postcss/postcss-loader
+[Grunt]:       https://github.com/nDmitry/grunt-postcss
+[Gulp]:        https://github.com/postcss/gulp-postcss
 
 ## Plugins
 
@@ -324,27 +352,7 @@ As a result, PostCSS offers three main benefits:
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
 * [Ask questions](https://gitter.im/postcss/postcss)
 
-## Usage
-
-### JavaScript API
-
-```js
-var postcss   = require('postcss');
-var processor = postcss([require('cssnext'), require('cssgrace')]);
-
-processor
-  .process(css, { from: 'app.css', to: 'app.out.css' })
-  .then(function (result) {
-      fs.writeFileSync('app.out.css', result.css);
-      if ( result.map ) {
-          fs.writeFileSync('app.out.css.map', result.map);
-      }
-  });
-```
-
-Read the [PostCSS API] for more details.
-
-[PostCSS API]: https://github.com/postcss/postcss/blob/master/API.md
+## Options
 
 ### Source Maps
 
@@ -360,23 +368,19 @@ This will generate an inline source map that contains the source content.
 If you don’t want the map inlined, you can use set `map.inline: false`.
 
 ```js
-var result = processor.process(css, {
-    from: 'app.css',
-    to:   'app.out.css',
-    map: { inline: false },
-});
-
-result.map //=> '{"version":3,"file":"main.out.css","sources":["main.css"],"names":[],"mappings":"AAAA,KAAI"}'
+processor
+  .process(css, {
+      from: 'app.sass.css',
+      to:   'app.css',
+      map: { inline: false },
+  })
+  .then(function (result) {
+      result.map //=> '{"version":3,"file":"app.css","sources":["app.sass"],"names":[],"mappings":"AAAA,KAAI"}'
+  });
 ```
 
 If PostCSS finds source maps from a previous transformation,
 it will automatically update that source map with the same options.
-
-```js
-// main.sass.css has an annotation comment with a link to main.sass.css.map
-var result = minifier.process(css, { from: 'app.sass.css', to: 'app.min.css' });
-result.map //=> Source map from main.sass to main.min.css
-```
 
 If you want more control over source map generation, you can define the `map`
 option as an object with the following parameters:
