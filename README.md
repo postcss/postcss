@@ -105,7 +105,7 @@ As a result, PostCSS offers three main benefits:
 
 ## Usage
 
-You need to make 2 steps to start using PostCSS:
+You need to make 2 steps for using PostCSS:
 
 1. Add PostCSS to your build tool.
 2. Select plugins from the list below and add them to your PostCSS process.
@@ -116,7 +116,7 @@ There are plugins for [Grunt], [Gulp], [webpack] and [Broccoli].
 gulp.task('css', function () {
     var postcss = require('gulp-postcss');
     return gulp.src('src/**/*.css')
-        .pipe( postcss([ require('plugin1'), require('plugin2') ]) )
+        .pipe( postcss([ require('cssnext'), require('cssgrace') ]) )
         .pipe( gulp.dest('build/') );
 });
 ```
@@ -125,14 +125,11 @@ For other environments your can use [CLI tool] or JS API:
 
 ```js
 var postcss   = require('postcss');
-var processor = postcss([require('cssnext'), require('cssgrace')]);
+var processor = postcss([ require('cssnext'), require('cssgrace') ]);
 
-processor.process(css, { from: 'app.css', to: 'app.out.css' })
-  .then(function (result) {
-      fs.writeFileSync('app.out.css', result.css);
-      if ( result.map ) {
-          fs.writeFileSync('app.out.css.map', result.map);
-      }
+processor.process(css, { from: 'src/app.css', to: 'app.css' }).then(function (result) {
+      fs.writeFileSync('app.css', result.css);
+      if ( result.map ) fs.writeFileSync('app.css.map', result.map);
   });
 ```
 
