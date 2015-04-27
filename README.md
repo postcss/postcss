@@ -124,13 +124,13 @@ gulp.task('css', function () {
 For other environments your can use [CLI tool] or JS API:
 
 ```js
-var postcss   = require('postcss');
-var processor = postcss([ require('cssnext'), require('cssgrace') ]);
-
-processor.process(css, { from: 'src/app.css', to: 'app.css' }).then(function (result) {
-      fs.writeFileSync('app.css', result.css);
-      if ( result.map ) fs.writeFileSync('app.css.map', result.map);
-  });
+var postcss = require('postcss');
+postcss([ require('cssnext'), require('cssgrace') ])
+    .process(css, { from: 'src/app.css', to: 'app.css' })
+    .then(function (result) {
+        fs.writeFileSync('app.css', result.css);
+        if ( result.map ) fs.writeFileSync('app.css.map', result.map);
+    });
 ```
 
 Read the [PostCSS API] for more details about JS API.
