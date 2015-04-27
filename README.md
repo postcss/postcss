@@ -23,7 +23,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 [chat]:     https://gitter.im/postcss/postcss
 [ci]:       https://travis-ci.org/postcss/postcss
 
-[Examples](#what-is-postcss) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Usages](#usage) | [Write Own Plugin](#how-to-develop-postcss-plugin)
+[Examples](#what-is-postcss) | [Features](#features) | [Quick Start](#quick-start) | [Plugins](#plugins) | [Write Own Plugin](#how-to-develop-postcss-plugin) | [Usages](#usage)
 --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
@@ -318,6 +318,12 @@ As a result, PostCSS offers three main benefits:
 [`doiuse`]:                      https://github.com/anandthakker/doiuse
 [`lost`]:                        https://github.com/corysimmons/lost
 
+## How to Develop PostCSS Plugin
+
+* [PostCSS API](https://github.com/postcss/postcss/blob/master/API.md)
+* [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
+* [Ask questions](https://gitter.im/postcss/postcss)
+
 ## Usage
 
 ### JavaScript API
@@ -421,9 +427,3 @@ postcss.parse('a {', { safe: true }); // will return CSS root for a {}
 This is useful for legacy code filled with hacks. Another use-case
 is interactive tools with live input — for example,
 the [Autoprefixer demo](http://jsfiddle.net/simevidas/udyTs/show/light/).
-
-## How to Develop PostCSS Plugin
-
-* [PostCSS API](https://github.com/postcss/postcss/blob/master/API.md)
-* [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
-* [Ask questions](https://gitter.im/postcss/postcss)
