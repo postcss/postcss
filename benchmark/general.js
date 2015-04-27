@@ -1,3 +1,13 @@
+/* Results on Intel 5Y70 and 8 GB RAM:
+
+PostCSS:   32 ms
+Rework:    62 ms  (2.0 times slower)
+libsass:   94 ms  (3.0 times slower)
+Less:      117 ms (3.7 times slower)
+Stylus:    150 ms (4.7 times slower)
+Ruby Sass: 963 ms (30.5 times slower)
+*/
+
 var exec = require('child_process').exec;
 var path = require('path');
 var fs   = require('fs');

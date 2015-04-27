@@ -1,3 +1,14 @@
+/* Results on Intel 5Y70 and 8 GB RAM:
+
+PostCSS:     37 ms
+CSSOM:       38 ms  (1.0 times slower)
+Mensch:      39 ms  (1.0 times slower)
+Rework:      67 ms  (1.8 times slower)
+Stylecow:    120 ms (3.2 times slower)
+Gonzales:    173 ms (4.6 times slower)
+Gonzales PE: 935 ms (25.0 times slower)
+*/
+
 var path = require('path');
 var fs   = require('fs');
 
