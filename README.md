@@ -87,12 +87,12 @@ Or if you like the Sass syntax, you could combine
 
 Preprocessors are a template languages, when you mix styles with code
 (like a PHP with HTML).
-In contrast, in PostCSS you write some custom subset of CSS.
+In contrast, in PostCSS you write some custom subset of CSS.
 All code can be only in JS plugins.
 
 As a result, PostCSS offers three main benefits:
 
-* **Performance:** PostCSS, written in JS, is [3 times faster] than [libsass],
+* **Performance:** PostCSS, written in JS, is [3 times faster] than libsass,
   which is written in C++.
 * **Future CSS:** PostCSS plugins can read and rebuild an entire document,
   meaning that they can provide new language features. For example, [cssnext]
@@ -102,8 +102,6 @@ As a result, PostCSS offers three main benefits:
   on preprocessors.
 
 [3 times faster]: https://github.com/postcss/postcss/blob/master/benchmark/general.js
-[libsass]:        https://github.com/sass/libsass
-[RTLCSS]:         https://github.com/MohammadYounes/rtlcss
 
 ## Quick Start
 
