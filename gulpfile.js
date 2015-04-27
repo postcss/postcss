@@ -106,10 +106,10 @@ gulp.task('bench:bootstrap', function (done) {
     });
 });
 
-gulp.task('bench:processors', ['build', 'bench:bootstrap'], function () {
+gulp.task('bench', ['build', 'bench:bootstrap'], function () {
     var bench   = require('gulp-bench');
     var summary = require('gulp-bench-summary');
-    return gulp.src('./benchmark/processors.js', { read: false })
+    return gulp.src('./benchmark/general.js', { read: false })
         .pipe(bench())
         .pipe(summary('PostCSS'));
 });

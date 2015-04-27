@@ -43,7 +43,8 @@
         "cssom":                  "0.3.0",
         "gulp":                   "3.8.11",
         "less":                   "2.5.0",
-        "chai":                   "2.3.0"
+        "chai":                   "2.3.0",
+        "myth":                   "1.4.0"
     },
     "scripts": {
         "test": "gulp && yaspeller ."

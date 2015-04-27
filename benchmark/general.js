@@ -14,6 +14,7 @@ var postcss = require('../build');
 var cssnext = require('cssnext');
 var stylus  = require('stylus');
 var less    = require('less');
+var myth    = require('myth');
 
 try {
     var sass = require('node-sass');
@@ -32,6 +33,14 @@ module.exports = {
                 postcss(cssnext).process(css, { map: false }).then(function () {
                     done.resolve();
                 });
+            }
+        },
+        {
+            name: 'Rework',
+            defer: true,
+            fn: function (done) {
+                myth(css, { features: { prefixes: false } });
+                done.resolve();
             }
         },
         {
