@@ -86,7 +86,7 @@ Or if you like the Sass syntax, you could combine
 ### Features
 
 Preprocessors are a template language, when you mix styles with
-programming language (like a PHP with HTML).
+programming language (like a PHP with HTML).
 
 In contrast, in PostCSS you write some custom subset of CSS.
 All code can be only in JS plugins.
@@ -98,21 +98,20 @@ As a result, PostCSS offers three main benefits:
 
 * **Future CSS:** PostCSS plugins can read and rebuild an entire document,
   meaning that they can provide new language features. For example, [cssnext]
-  transpiles the latest W3C drafts to current CSS syntax.
+  transpiles the latest W3C drafts to current CSS syntax.
 
 * **New abilities:** PostCSS transforms are often more powerful than
-  preprocessor equivalents; for example, [Autoprefixer] and [RTLCSS] would be
+  preprocessor equivalents. For example, [Autoprefixer] and [RTLCSS] would be
   extremely difficult (if not impossible) to achieve without PostCSS.
 
-[Arabic Wikipedia]: https://ar.wikipedia.org/wiki/%D9%84%D8%BA%D8%A9_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9
-[3 times faster]:   https://github.com/postcss/postcss/blob/master/benchmark/general.js
-[libsass]:          https://github.com/sass/libsass
-[RTLCSS]:           https://github.com/MohammadYounes/rtlcss
+[3 times faster]: https://github.com/postcss/postcss/blob/master/benchmark/general.js
+[libsass]:        https://github.com/sass/libsass
+[RTLCSS]:         https://github.com/MohammadYounes/rtlcss
 
 ## Quick Start
 
 1. Implement PostCSS with your build tool of choice. See the PostCSS [Grunt],
-   [Gulp], [webpack] and [Broccoli] plugins or [CLI tool]
+   [Gulp], [webpack] and [Broccoli] plugins or [CLI tool]
    more detailed instructions.
 2. Select plugins from the list below and add them to your PostCSS process.
 3. Make awesome products.
