@@ -20,7 +20,6 @@
         "concat-with-sourcemaps": "1.0.2",
         "gulp-json-editor":       "2.2.1",
         "gulp-eslint":            "0.11.1",
-        "browserify":             "9.0.8",
         "gulp-babel":             "5.1.0",
         "gulp-mocha":             "2.0.1",
         "yaspeller":              "2.1.0",

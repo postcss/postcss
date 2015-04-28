@@ -43,20 +43,6 @@ gulp.task('build:package', ['build:clean'], function () {
 
 gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
 
-gulp.task('standalone', ['build'], function (done) {
-    var builder = require('browserify')({
-        basedir:     path.join(__dirname, 'build'),
-        standalone: 'postcss'
-    });
-    builder.add('./lib/postcss.js');
-
-    builder.bundle(function (error, build) {
-        if ( error ) throw error.toString();
-        fs.removeSync(path.join(__dirname, 'build'));
-        fs.writeFile(path.join(__dirname, 'postcss.js'), build, done);
-    });
-});
-
 // Lint
 
 gulp.task('lint', function () {
