@@ -26,9 +26,9 @@ var processor = postcss([
     require('postcss-calc')(),
     require('postcss-mixins')
 ]);
-pcss  = css;
+var pcss = css;
 pcss += '$size: 100px;';
-pcss += '@define-mixin icon { width: 16px; height: 16px; }'
+pcss += '@define-mixin icon { width: 16px; height: 16px; }';
 for ( var i = 0; i < 100; i++ ) {
     pcss += 'body { h1 { a { color: black; } } }';
     pcss += 'h2 { width: $size; }';
@@ -38,7 +38,7 @@ for ( var i = 0; i < 100; i++ ) {
 
 // Myth
 var myth = require('myth');
-rcss  = css;
+var rcss = css;
 rcss += ':root { --name: 100px; }';
 for ( var i = 0; i < 100; i++ ) {
     rcss += 'body h1 a { color: black; }';
@@ -49,9 +49,9 @@ for ( var i = 0; i < 100; i++ ) {
 
 // Sass
 var libsass = require('node-sass');
-scss  = css;
+var scss = css;
 scss += '$size: 100px;';
-scss += '@mixin icon { width: 16px; height: 16px; }'
+scss += '@mixin icon { width: 16px; height: 16px; }';
 for ( var i = 0; i < 100; i++ ) {
     scss += 'body { h1 { a { color: black; } } }';
     scss += 'h2 { width: $size; }';
@@ -63,9 +63,9 @@ fs.writeFileSync(scssFile, scss);
 
 // Stylus
 var stylus = require('stylus');
-styl  = css;
+var styl = css;
 styl += 'size = 100px;';
-styl += 'icon() { width: 16px; height: 16px; }'
+styl += 'icon() { width: 16px; height: 16px; }';
 for ( var i = 0; i < 100; i++ ) {
     styl += 'body { h1 { a { color: black; } } }';
     styl += 'h2 { width: size; }';
@@ -75,9 +75,9 @@ for ( var i = 0; i < 100; i++ ) {
 
 // Less
 var less = require('less');
-lcss  = css;
+var lcss = css;
 lcss += '@size: 100px;';
-lcss += '.icon() { width: 16px; height: 16px; }'
+lcss += '.icon() { width: 16px; height: 16px; }';
 for ( var i = 0; i < 100; i++ ) {
     lcss += 'body { h1 { a { color: black; } } }';
     lcss += 'h2 { width: @size; }';
