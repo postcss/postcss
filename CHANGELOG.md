@@ -1,3 +1,6 @@
+## 4.1.7
+* Speed up `postcss.list` (by Bogdan Chadkin).
+
 ## 4.1.6
 * Fix Promise behavior on parsing error.
 
