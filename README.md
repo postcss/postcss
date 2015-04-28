@@ -83,7 +83,7 @@ Or if you like the Sass syntax, you could combine
 
 [cssnext]: https://github.com/cssnext/cssnext
 
-### Features
+## Features
 
 Preprocessors are a template languages, when you mix styles with code
 (like a PHP with HTML).
