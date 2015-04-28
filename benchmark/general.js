@@ -1,4 +1,4 @@
-/* Results on Intel 5Y70 and 8 GB RAM:
+/* Results on Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
 
 PostCSS:   47 ms
 Rework:    77 ms   (1.7 times slower)

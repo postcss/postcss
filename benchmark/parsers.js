@@ -1,4 +1,4 @@
-/* Results on Intel 5Y70 and 8 GB RAM:
+/* Results on Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
 
 PostCSS:     37 ms
 CSSOM:       38 ms  (1.0 times slower)
