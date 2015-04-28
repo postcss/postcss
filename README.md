@@ -251,6 +251,8 @@ Read the [PostCSS API] for more details about JS API.
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
+* [`postcss-colorblind`] transforms colors using filters to simulate
+  colorblindness
 * [`postcss-discard-comments`] removes comments based on rules you specify.
 * [`postcss-log-warnings`] logs warnings messages from other plugins
   in the console.
@@ -304,6 +306,7 @@ Read the [PostCSS API] for more details about JS API.
 [`postcss-color-alpha`]:         https://github.com/avanes/postcss-color-alpha
 [`postcss-bem-linter`]:          https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:          https://github.com/postcss/postcss-color-gray
+[`postcss-colorblind`]:          https://github.com/btholt/postcss-colorblind
 [`postcss-color-hwb`]:           https://github.com/postcss/postcss-color-hwb
 [`postcss-image-set`]:           https://github.com/alex499/postcss-image-set
 [`postcss-colormin`]:            https://github.com/ben-eb/colormin
