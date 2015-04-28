@@ -34,19 +34,22 @@
         "chai":                   "2.3.0"
     },
     "benchmarkDependencies": {
-        "gulp-bench-summary": "0.1.0",
-        "stylecow-parser":    "2.1.0",
-        "gonzales-pe":        "3.0.0-26",
-        "gulp-bench":         "1.1.0",
-        "node-sass":          "2.1.1",
-        "gonzales":           "1.0.7",
-        "cssnext":            "1.3.0",
-        "mensch":             "0.3.1",
-        "stylus":             "0.51.0",
-        "rework":             "1.0.1",
-        "cssom":              "0.3.0",
-        "less":               "2.5.0",
-        "myth":               "1.4.0"
+        "postcss-simple-vars": "0.2.4",
+        "gulp-bench-summary":  "0.1.0",
+        "stylecow-parser":     "2.1.0",
+        "postcss-nested":      "0.2.2",
+        "postcss-mixins":      "0.1.1",
+        "postcss-calc":        "4.0.1",
+        "gonzales-pe":         "3.0.0-26",
+        "gulp-bench":          "1.1.0",
+        "node-sass":           "2.1.1",
+        "gonzales":            "1.0.7",
+        "mensch":              "0.3.1",
+        "stylus":              "0.51.0",
+        "rework":              "1.0.1",
+        "cssom":               "0.3.0",
+        "less":                "2.5.0",
+        "myth":                "1.4.0"
     },
     "scripts": {
         "test": "gulp && yaspeller ."

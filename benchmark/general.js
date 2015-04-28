@@ -1,11 +1,11 @@
 /* Results on Intel 5Y70 and 8 GB RAM:
 
-PostCSS:   32 ms
-Rework:    62 ms  (2.0 times slower)
-libsass:   94 ms  (3.0 times slower)
-Less:      117 ms (3.7 times slower)
-Stylus:    150 ms (4.7 times slower)
-Ruby Sass: 963 ms (30.5 times slower)
+PostCSS:   47 ms
+Rework:    77 ms   (1.7 times slower)
+libsass:   128 ms  (2.7 times slower)
+Less:      157 ms  (3.4 times slower)
+Stylus:    189 ms  (4.1 times slower)
+Ruby Sass: 1143 ms (24.5 times slower)
 */
 
 var exec = require('child_process').exec;
@@ -17,19 +17,72 @@ var css     = fs.readFileSync(example).toString();
 
 css = css.replace(/\s+filter:[^;\}]+;?/g, '');
 css = css.replace('/*# sourceMappingURL=bootstrap.css.map */', '');
-var scss = path.join(__dirname, 'cache', 'bootstrap.scss');
-fs.writeFileSync(scss, css);
 
-var postcss = require('../build');
-var cssnext = require('cssnext');
-var stylus  = require('stylus');
-var less    = require('less');
-var myth    = require('myth');
+// PostCSS
+var postcss   = require('../build');
+var processor = postcss([
+    require('postcss-nested'),
+    require('postcss-simple-vars'),
+    require('postcss-calc')(),
+    require('postcss-mixins')
+]);
+pcss  = css;
+pcss += '$size: 100px;';
+pcss += '@define-mixin icon { width: 16px; height: 16px; }'
+for ( var i = 0; i < 100; i++ ) {
+    pcss += 'body { h1 { a { color: black; } } }';
+    pcss += 'h2 { width: $size; }';
+    pcss += 'h1 { width: calc(2 * $size); }';
+    pcss += '.search { fill: black; @mixin icon; }';
+}
 
-try {
-    var sass = require('node-sass');
-} catch (e) {
-    console.error(e.toString());
+// Myth
+var myth = require('myth');
+rcss  = css;
+rcss += ':root { --name: 100px; }';
+for ( var i = 0; i < 100; i++ ) {
+    rcss += 'body h1 a { color: black; }';
+    rcss += 'h2 { width: $size; }';
+    rcss += 'h1 { width: calc(2 * $size); }';
+    rcss += '.search { fill: black; width: 16px; height: 16px; }';
+}
+
+// Sass
+var libsass = require('node-sass');
+scss  = css;
+scss += '$size: 100px;';
+scss += '@mixin icon { width: 16px; height: 16px; }'
+for ( var i = 0; i < 100; i++ ) {
+    scss += 'body { h1 { a { color: black; } } }';
+    scss += 'h2 { width: $size; }';
+    scss += 'h1 { width: 2 * $size; }';
+    scss += '.search { fill: black; @include icon; }';
+}
+var scssFile = path.join(__dirname, 'cache', 'bootstrap.scss');
+fs.writeFileSync(scssFile, scss);
+
+// Stylus
+var stylus = require('stylus');
+styl  = css;
+styl += 'size = 100px;';
+styl += 'icon() { width: 16px; height: 16px; }'
+for ( var i = 0; i < 100; i++ ) {
+    styl += 'body { h1 { a { color: black; } } }';
+    styl += 'h2 { width: size; }';
+    styl += 'h1 { width: 2 * size; }';
+    styl += '.search { fill: black; icon(); }';
+}
+
+// Less
+var less = require('less');
+lcss  = css;
+lcss += '@size: 100px;';
+lcss += '.icon() { width: 16px; height: 16px; }'
+for ( var i = 0; i < 100; i++ ) {
+    lcss += 'body { h1 { a { color: black; } } }';
+    lcss += 'h2 { width: @size; }';
+    lcss += 'h1 { width: 2 * @size; }';
+    lcss += '.search { fill: black; .icon() }';
 }
 
 module.exports = {
@@ -37,27 +90,33 @@ module.exports = {
     maxTime: 15,
     tests: [
         {
-            name: 'PostCSS',
-            defer: true,
-            fn: function (done) {
-                postcss(cssnext).process(css, { map: false }).then(function () {
-                    done.resolve();
-                });
+            name: 'libsass',
+            fn: function () {
+                libsass.renderSync({ data: scss });
             }
         },
         {
             name: 'Rework',
             defer: true,
             fn: function (done) {
-                myth(css, { features: { prefixes: false } });
+                myth(rcss, { features: { prefixes: false } });
                 done.resolve();
+            }
+        },
+        {
+            name: 'PostCSS',
+            defer: true,
+            fn: function (done) {
+                processor.process(pcss, { map: false }).then(function () {
+                    done.resolve();
+                });
             }
         },
         {
             name: 'Stylus',
             defer: true,
             fn: function (done) {
-                stylus.render(css, { filename: example }, function (err) {
+                stylus.render(styl, { filename: example }, function (err) {
                     if ( err ) throw err;
                     done.resolve();
                 });
@@ -67,23 +126,17 @@ module.exports = {
             name: 'Less',
             defer: true,
             fn: function (done) {
-                less.render(css, function (err) {
+                less.render(lcss, function (err) {
                     if ( err ) throw err;
                     done.resolve();
                 });
             }
         },
         {
-            name: 'libsass',
-            fn: function () {
-                sass.renderSync({ data: css });
-            }
-        },
-        {
             name: 'Ruby Sass',
             defer: true,
             fn: function (done) {
-                var command = 'sass -C --sourcemap=none ' + scss;
+                var command = 'sass -C --sourcemap=none ' + scssFile;
                 var dir = __dirname;
                 exec('cd ' + dir + '; bundle exec ' + command,
                     function (error, stdout, stderr) {
