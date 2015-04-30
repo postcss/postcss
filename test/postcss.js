@@ -23,6 +23,14 @@ describe('postcss()', () => {
         expect(postcss([a, b]).plugins).to.eql([a, b]);
     });
 
+    it('takes plugin from other processor', () => {
+        let a = () => 1;
+        let b = () => 2;
+        let c = () => 3;
+        let other = postcss([a, b]);
+        expect(postcss([other, c]).plugins).to.eql([a, b, c]);
+    });
+
     describe('.plugin()', () => {
 
         it('creates plugin', () => {
