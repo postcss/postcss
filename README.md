@@ -135,7 +135,7 @@ postcss([ require('cssnext'), require('cssgrace') ])
 
 Read the [PostCSS API] for more details about JS API.
 
-[PostCSS API]: https://github.com/postcss/postcss/blob/master/API.md
+[PostCSS API]: https://github.com/postcss/postcss/blob/master/docs/api.md
 [CLI tool]:    https://github.com/code42day/postcss-cli
 [Broccoli]:    https://github.com/jeffjewiss/broccoli-postcss
 [webpack]:     https://github.com/postcss/postcss-loader
@@ -348,7 +348,7 @@ Read the [PostCSS API] for more details about JS API.
 
 ## How to Develop PostCSS Plugin
 
-* [PostCSS API](https://github.com/postcss/postcss/blob/master/API.md)
+* [PostCSS API](https://github.com/postcss/postcss/blob/master/docs/api.md)
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
 * [Ask questions](https://gitter.im/postcss/postcss)
 

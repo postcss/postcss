@@ -62,9 +62,9 @@ processor.process(opts).then(function (result) {
 
 PostCSS runners must not rely on undocumented properties or methods,
 which may be subject to change in any minor release. The public API
-is described in [`API.md`].
+is described in [API docs].
 
-[`API.md`]: https://github.com/postcss/postcss/blob/master/API.md
+[API docs]: https://github.com/postcss/postcss/blob/master/docs/api.md
 
 ## 3. Output
 
