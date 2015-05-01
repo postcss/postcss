@@ -1,3 +1,6 @@
+## 4.1.8
+* Accepts `Processor` instance in `postcss()` constructor too. 
+
 ## 4.1.7
 * Speed up `postcss.list` (by Bogdan Chadkin).
 
