@@ -175,7 +175,7 @@ Of course you should use [SemVer].
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
 [SemVer]:           http://semver.org/
 
-### 4.4. `postcssplugin` keyword in `package.json`
+### 4.4. `postcss-plugin` keyword in `package.json`
 
 PostCSS plugins written for npm must have the `postcss-plugin` keyword
 in their `package.json`. This special keyword will be useful for feedback about

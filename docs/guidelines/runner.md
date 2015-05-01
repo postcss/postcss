@@ -135,7 +135,7 @@ Of course you should use [SemVer].
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
 [SemVer]:           http://semver.org/
 
-### 4.3. `postcssrunner` keyword in `package.json`
+### 4.3. `postcss-runner` keyword in `package.json`
 
 PostCSS runners written for npm must have the `postcss-runner` keyword
 in their `package.json`. This special keyword will be useful for feedback about
