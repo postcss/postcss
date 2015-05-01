@@ -72,7 +72,7 @@ Creates PostCSS plugin with standard API.
 ```js
 var remove = postcss.plugin('postcss-remove', function (opts) {
     var filter = opts.prop || 'z-index';
-    return function (css, processor) {
+    return function (css, result) {
         css.eachDecl(filter, function (decl) {
             decl.removeSelf();
         });
