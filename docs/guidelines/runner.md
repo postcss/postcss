@@ -129,8 +129,11 @@ PostCSS runners must describe changes of all releases in a separate file,
 such as `ChangeLog.md`, `History.md`, or with [GitHub Releases].
 Visit [Keep A Changelog] for more information on how to write one of these.
 
+Of course you should use [SemVer].
+
 [Keep A Changelog]: http://keepachangelog.com/
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
+[SemVer]:           http://semver.org/
 
 ### 4.3. `postcssrunner` keyword in `package.json`
 
