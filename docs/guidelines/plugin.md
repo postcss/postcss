@@ -12,7 +12,7 @@ See also [ClojureWerkz’s recommendations] for open source projects.
 ### 1.1 Clear name with `postcss-` prefix
 
 Plugin’s purpose should be clear just by its name.
-If you wrote a polyfill for CSS 4 Custom Media, `postcss-cuustom-media`
+If you wrote a transpiler for CSS 4 Custom Media, `postcss-custom-media`
 is a good name. If you wrote a plugin to support mixin,
 use `postcss-mixins` as name.
 
@@ -70,7 +70,7 @@ different environments (at least on node.js 0.12 and io.js).
 
 ### 2.2. Use asynchronous methods when it is possible
 
-For example don’t use `fs.writeFile` instead of `fs.writeFileSync`:
+For example, use `fs.writeFile` instead of `fs.writeFileSync`:
 
 ```js
 postcss.plugin('plugin-sprite', function (opts) {
