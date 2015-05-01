@@ -49,14 +49,11 @@ Custom properties and at-rules are better way.
 This method will create a wrap to provide common plugin API:
 
 ```js
-var plugin = postcss.plugin('plugin-name', function (opts) {
+module.exports = postcss.plugin('plugin-name', function (opts) {
     return function (css, result) {
         // Plugin code
     };
 });
-
-postcss([ plugin ])       // Bracket-less call
-postcss([ plugin(opst) ]) // Brackets call to set options
 ```
 
 ## 2. Processing
@@ -180,7 +177,7 @@ Of course you should use [SemVer].
 
 ### 4.4. `postcssplugin` keyword in `package.json`
 
-PostCSS plugins written for npm must have the `postcssplugin` keyword
+PostCSS plugins written for npm must have the `postcss-plugin` keyword
 in their `package.json`. This special keyword will be useful for feedback about
 the PostCSS ecosystem.
 

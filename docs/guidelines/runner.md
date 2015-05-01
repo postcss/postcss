@@ -137,7 +137,7 @@ Of course you should use [SemVer].
 
 ### 4.3. `postcssrunner` keyword in `package.json`
 
-PostCSS runners written for npm must have the `postcssrunner` keyword
+PostCSS runners written for npm must have the `postcss-runner` keyword
 in their `package.json`. This special keyword will be useful for feedback about
 the PostCSS ecosystem.
 
