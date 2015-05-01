@@ -7,9 +7,9 @@ These rules are mandatory for any such runners.
 For single-plugin tools, like [`gulp-autoprefixer`],
 these rules are not mandatory but are highly recommended.
 
-See also ClojureWerkz’s [open source project recommendations].
+See also [ClojureWerkz’s recommendations] for open source projects.
 
-[open source project recommendations]:  http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
+[ClojureWerkz’s recommendations]:  http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
 [`gulp-autoprefixer`]: https://github.com/sindresorhus/gulp-autoprefixer
 [`gulp‑postcss`]:      https://github.com/w0rm/gulp-postcss
 [`postcss-cli`]:       https://github.com/code42day/postcss-cli
