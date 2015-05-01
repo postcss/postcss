@@ -19,7 +19,7 @@ use `postcss-mixins` as name.
 Prefix `postcss-` will show, that plugin is part of PostCSS ecosystem.
 
 This rule is not mandatory for plugins promoted as separated tool,
-not like a part of PostCSS ecosystem. Like [Autoprefixer] or [cssnext].
+not like a part of PostCSS ecosystem. Like [cssnext] or [Autoprefixer].
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 [cssnext]:      https://cssnext.github.io/
@@ -39,7 +39,7 @@ Or [cssnano] contains a plugin for each optimization.
 
 Preprocessors libraries like Compass provide API by mixins.
 
-PostCSS has a different way. Do not prodive mixins for [postcss-mixins].
+PostCSS has a different way. Do not provide mixins for [postcss-mixins].
 Custom properties and at-rules are better way.
 
 [postcss-mixins]: https://github.com/postcss/postcss-mixins
