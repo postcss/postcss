@@ -145,6 +145,13 @@ Read the [PostCSS API] for more details about JS API.
 
 ## Plugins
 
+### Control
+
+With [`postcss-plugin-context`] you can run different plugins
+on different parts of CSS.
+
+[`postcss-plugin-context`]: https://github.com/postcss/postcss-plugin-context
+
 ### Packs
 
 * [`cssnano`] contains plugins that optimise CSS size for use in production.
