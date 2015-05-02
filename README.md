@@ -172,6 +172,7 @@ Read the [PostCSS API] for more details about JS API.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
+* [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
 ### Fallbacks
@@ -293,6 +294,7 @@ Read the [PostCSS API] for more details about JS API.
 [`postcss-discard-empty`]:       https://github.com/ben-eb/postcss-discard-empty
 [`postcss-reduce-idents`]:       https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:       https://github.com/davidtheclark/postcss-simple-extend
+[`postcss-selector-not`]:        https://github.com/postcss/postcss-selector-not
 [`postcss-default-unit`]:        https://github.com/antyakushev/postcss-default-unit
 [`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
 [`postcss-custom-media`]:        https://github.com/postcss/postcss-custom-media
