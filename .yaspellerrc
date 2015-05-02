@@ -93,6 +93,8 @@
         "stylesheets",
         "stringifier",
         "CLI",
+        "CSS3",
+        "CSS4",
         "JS",
         "js",
         "vs"
