@@ -358,8 +358,9 @@ on different parts of CSS.
 
 ## How to Develop PostCSS Plugin
 
-* [PostCSS API](https://github.com/postcss/postcss/blob/master/docs/api.md)
+* [Plugin Guidelines](https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md)
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
+* [PostCSS API](https://github.com/postcss/postcss/blob/master/docs/api.md)
 * [Ask questions](https://gitter.im/postcss/postcss)
 
 ## Options
