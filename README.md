@@ -98,8 +98,7 @@ As a result, PostCSS offers three main benefits:
   meaning that they can provide new language features. For example, [cssnext]
   transpiles the latest W3C drafts to current CSS syntax.
 * **New abilities:** PostCSS transforms are often more powerful than
-  preprocessor equivalents. For example, [Autoprefixer] would be impossible
-  with preprocessors.
+  preprocessor equivalents. [Autoprefixer] is a good example.
 
 [3 times faster]: https://github.com/postcss/postcss/blob/master/benchmark/general.js
 
