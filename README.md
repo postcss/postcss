@@ -85,10 +85,10 @@ Or if you like the Sass syntax, you could combine
 
 ## Features
 
-Preprocessors are a template languages, when you mix styles with code
-(like a PHP with HTML).
-In contrast, in PostCSS you write some custom subset of CSS.
-All code can be only in JS plugins.
+Preprocessors are template languages, where you mix styles with code
+(like PHP does with HTML).
+In contrast, in PostCSS you write a custom subset of CSS.
+All code can only be in JS plugins.
 
 As a result, PostCSS offers three main benefits:
 
@@ -98,8 +98,8 @@ As a result, PostCSS offers three main benefits:
   meaning that they can provide new language features. For example, [cssnext]
   transpiles the latest W3C drafts to current CSS syntax.
 * **New abilities:** PostCSS plugins can read and change every part of CSS.
-  It makes possible many new classes of tools. [Autoprefixer], [`doiuse`]
-  or [`postcss-colorblind`] are a good examples.
+  It makes many new classes of tools possible. [Autoprefixer], [`doiuse`]
+  or [`postcss-colorblind`] are good examples.
 
 
 PostCSS transforms are often more powerful than
@@ -109,7 +109,7 @@ PostCSS transforms are often more powerful than
 
 ## Usage
 
-You need to make 2 steps for using PostCSS:
+You just need to follow these two steps to use PostCSS:
 
 1. Add PostCSS to your build tool.
 2. Select plugins from the list below and add them to your PostCSS process.
@@ -125,7 +125,7 @@ gulp.task('css', function () {
 });
 ```
 
-For other environments your can use [CLI tool] or JS API:
+For other environments you can use the [CLI tool] or the JS API:
 
 ```js
 var postcss = require('postcss');
@@ -137,7 +137,7 @@ postcss([ require('cssnext'), require('cssgrace') ])
     });
 ```
 
-Read the [PostCSS API] for more details about JS API.
+Read the [PostCSS API] for more details about the JS API.
 
 [PostCSS API]: https://github.com/postcss/postcss/blob/master/docs/api.md
 [CLI tool]:    https://github.com/code42day/postcss-cli
