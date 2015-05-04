@@ -109,7 +109,7 @@ PostCSS transforms are often more powerful than
 
 ## Usage
 
-You just need to follow these two steps to be able to use PostCSS:
+You just need to follow these two steps to use PostCSS:
 
 1. Add PostCSS to your build tool.
 2. Select plugins from the list below and add them to your PostCSS process.
@@ -125,7 +125,7 @@ gulp.task('css', function () {
 });
 ```
 
-For other environments your can use the [CLI tool] or the JS API:
+For other environments you can use the [CLI tool] or the JS API:
 
 ```js
 var postcss = require('postcss');
