@@ -177,6 +177,7 @@ on different parts of CSS.
 * [`postcss-custom-media`] supports custom aliases for media queries.
 * [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
+* [`postcss-css-variables`] supports variables for descendant/nested rules and at-rules
 * [`postcss-custom-selectors`] adds custom aliases for selectors.
 * [`postcss-font-variant`] transpiles human-readable `font-variant` to more
   widely supported CSS.
@@ -305,6 +306,7 @@ on different parts of CSS.
 [`postcss-discard-empty`]:       https://github.com/ben-eb/postcss-discard-empty
 [`postcss-reduce-idents`]:       https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:       https://github.com/davidtheclark/postcss-simple-extend
+[`postcss-css-variables`]:       https://github.com/MadLittleMods/postcss-css-variables
 [`postcss-selector-not`]:        https://github.com/postcss/postcss-selector-not
 [`postcss-default-unit`]:        https://github.com/antyakushev/postcss-default-unit
 [`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
