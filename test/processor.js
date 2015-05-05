@@ -1,10 +1,9 @@
-import CssSyntaxError from '../lib/css-syntax-error';
-import LazyResult     from '../lib/lazy-result';
-import Processor      from '../lib/processor';
-import postcss        from '../lib/postcss';
-import Result         from '../lib/result';
-import parse          from '../lib/parse';
-import Root           from '../lib/root';
+import LazyResult from '../lib/lazy-result';
+import Processor  from '../lib/processor';
+import postcss    from '../lib/postcss';
+import Result     from '../lib/result';
+import parse      from '../lib/parse';
+import Root       from '../lib/root';
 
 import { expect } from 'chai';
 import   sinon    from 'sinon';
