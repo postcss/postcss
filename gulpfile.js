@@ -58,6 +58,19 @@ gulp.task('lint', function () {
         .pipe(eslint.failAfterError());
 });
 
+gulp.task('spellcheck', function (done) {
+    var gutil = require('gulp-util');
+    var run   = require('gulp-run');
+
+    run('yaspeller .').exec()
+        .on('error', function (err) {
+            done(new gutil.PluginError('spellcheck', {
+                showStack: false,
+                message:   err.message
+            }));
+        })
+        .on('finish', done);
+});
 
 // Benchmark
 
@@ -186,4 +199,4 @@ gulp.task('cases', function () {
 
 gulp.task('clean', ['build:clean', 'bench:clean']);
 
-gulp.task('default', ['lint', 'test', 'integration']);
+gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);

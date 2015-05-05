@@ -13,7 +13,7 @@
     "dependencies": {
         "es6-promise": "~2.1.1",
         "source-map":  "~0.4.2",
-        "babel-core":  "5.2.2",
+        "babel-core":  "5.2.12",
         "js-base64":   "~2.1.8"
     },
     "devDependencies": {
@@ -24,6 +24,7 @@
         "gulp-mocha":             "2.0.1",
         "yaspeller":              "2.1.0",
         "gulp-util":              "3.0.4",
+        "gulp-run":               "1.6.8",
         "fs-extra":               "0.18.2",
         "through2":               "0.6.5",
         "request":                "2.55.0",
@@ -51,6 +52,6 @@
         "myth":                "1.4.0"
     },
     "scripts": {
-        "test": "gulp && yaspeller ."
+        "test": "gulp"
     }
 }
