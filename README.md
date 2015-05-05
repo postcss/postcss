@@ -81,7 +81,7 @@ Or if you like the Sass syntax, you could combine
 }
 ```
 
-[cssnext]: https://github.com/cssnext/cssnext
+[cssnext]: https://cssnext.github.io/
 
 ## Features
 
@@ -160,7 +160,7 @@ on different parts of CSS.
   to special annotation comments.
 
 [`cssnano`]:  https://github.com/ben-eb/cssnano
-[`cssnext`]:  https://github.com/putaindecode/cssnext
+[`cssnext`]:  https://cssnext.github.io/
 [`atcss`]:    https://github.com/morishitter/atcss
 
 ### Future CSS Syntax
