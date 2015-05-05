@@ -107,7 +107,7 @@ describe('Processor', () => {
             try {
                 (new Processor()).process('a {', { from: 'a.css' }).css;
             } catch (e) {
-                if ( e instanceof CssSyntaxError ) {
+                if ( e.name === 'CssSyntaxError' ) {
                     error = e;
                 } else {
                     throw e;

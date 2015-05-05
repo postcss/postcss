@@ -75,10 +75,8 @@ as the runner can be used by developers who are not familiar with JavaScript.
 Instead, handle such errors gracefully:
 
 ```js
-var CssSyntaxError = require('postcss/lib/css-syntax-error');
-
 processor.process(opts).catch(function (error) {
-    if ( error instanceof CssSyntaxError ) {
+    if ( error.name === 'CssSyntaxError' ) {
         process.stderr.write(error.message + error.showSourceCode());
     } else {
         throw error;

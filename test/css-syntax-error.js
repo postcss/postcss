@@ -10,7 +10,7 @@ let parseError = function (css, opts) {
     try {
         parse(css, opts);
     } catch (e) {
-        if ( e instanceof CssSyntaxError ) {
+        if ( e.name === 'CssSyntaxError' ) {
             error = e;
         } else {
             throw e;
