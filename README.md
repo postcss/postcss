@@ -203,6 +203,7 @@ on different parts of CSS.
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
 * [`postcss-for`] adds `@for` loops.
+* [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [`postcss-map`] enables configuration maps.
@@ -303,6 +304,7 @@ on different parts of CSS.
 [`postcss-reduce-idents`]:       https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:       https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-css-variables`]:       https://github.com/MadLittleMods/postcss-css-variables
+[`postcss-conditionals`]:        https://github.com/andyjansson/postcss-conditionals
 [`postcss-selector-not`]:        https://github.com/postcss/postcss-selector-not
 [`postcss-default-unit`]:        https://github.com/antyakushev/postcss-default-unit
 [`postcss-media-minmax`]:        https://github.com/postcss/postcss-media-minmax
