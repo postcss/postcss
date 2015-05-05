@@ -101,10 +101,6 @@ As a result, PostCSS offers three main benefits:
   It makes many new classes of tools possible. [Autoprefixer], [`doiuse`]
   or [`postcss-colorblind`] are good examples.
 
-
-PostCSS transforms are often more powerful than preprocessor equivalents.
-[Autoprefixer] is a good example.
-
 [3 times faster]: https://github.com/postcss/postcss/blob/master/benchmark/general.js
 
 ## Usage
