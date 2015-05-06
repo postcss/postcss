@@ -277,12 +277,12 @@ on different parts of CSS.
 ### Analysis
 
 * [`postcss-bem-linter`] lints CSS for conformance to SUIT CSS methodology.
+* [`postcss-cssstats`] returns an object with CSS statistics.
 * [`css2modernizr`] creates a Modernizr config file
   that requires only the tests that your CSS uses.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
-* [`postcss-cssstats`] returns an object with CSS statistics.
 
 [`postcss-color-rgba-fallback`]: https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
