@@ -13,7 +13,7 @@
     "dependencies": {
         "es6-promise": "~2.1.1",
         "source-map":  "~0.4.2",
-        "babel-core":  "5.2.13",
+        "babel-core":  "5.2.15",
         "js-base64":   "~2.1.8"
     },
     "devDependencies": {
@@ -36,16 +36,16 @@
     "benchmarkDependencies": {
         "postcss-simple-vars": "0.2.4",
         "gulp-bench-summary":  "0.1.0",
-        "stylecow-parser":     "2.1.0",
+        "stylecow-parser":     "2.2.1",
         "postcss-nested":      "0.2.2",
         "postcss-mixins":      "0.1.1",
         "postcss-calc":        "4.0.1",
         "gonzales-pe":         "3.0.0-26",
         "gulp-bench":          "1.1.0",
-        "node-sass":           "2.1.1",
+        "node-sass":           "3.0.0",
         "gonzales":            "1.0.7",
         "mensch":              "0.3.1",
-        "stylus":              "0.51.0",
+        "stylus":              "0.51.1",
         "rework":              "1.0.1",
         "cssom":               "0.3.0",
         "less":                "2.5.0",

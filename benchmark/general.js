@@ -1,11 +1,11 @@
-/* Results on Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on io.js 2.0, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
 
-PostCSS:   47 ms
+PostCSS:   45 ms
 Rework:    77 ms   (1.7 times slower)
-libsass:   128 ms  (2.7 times slower)
-Less:      157 ms  (3.4 times slower)
-Stylus:    189 ms  (4.1 times slower)
-Ruby Sass: 1143 ms (24.5 times slower)
+libsass:   134 ms  (3.0 times slower)
+Less:      160 ms  (3.6 times slower)
+Stylus:    194 ms  (4.4 times slower)
+Ruby Sass: 1083 ms (24.3 times slower)
 */
 
 var exec = require('child_process').exec;
