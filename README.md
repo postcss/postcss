@@ -282,6 +282,7 @@ on different parts of CSS.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
+* [`postcss-cssstats`] returns an object with CSS statistics.
 
 [`postcss-color-rgba-fallback`]: https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
@@ -327,6 +328,7 @@ on different parts of CSS.
 [`pleeease-filters`]:            https://github.com/iamvdo/pleeease-filters
 [`postcss-messages`]:            https://github.com/postcss/postcss-messages
 [`postcss-spiffing`]:            https://github.com/HashanP/postcss-spiffing
+[`postcss-cssstats`]:            https://github.com/cssstats/postcss-cssstats
 [`postcss-easings`]:             https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:             https://github.com/iamvdo/postcss-opacity
 [`postcss-assets`]:              https://github.com/borodean/postcss-assets
