@@ -254,6 +254,7 @@ on different parts of CSS.
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
+* [`postcss-generate-preset`] allows quick generation of rules. Useful for creating repetitive utilities.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 
@@ -341,6 +342,7 @@ on different parts of CSS.
 [`css2modernizr`]:               https://github.com/vovanbo/css2modernizr
 [`postcss-focus`]:               https://github.com/postcss/postcss-focus
 [`postcss-at2x`]:                https://github.com/simonsmith/postcss-at2x
+[`postcss-generate-preset`]:     https://github.com/simonsmith/postcss-generate-preset
 [`postcss-neat`]:                https://github.com/jo-asakura/postcss-neat
 [`autoprefixer`]:                https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                https://github.com/hail2u/node-css-mqpacker
