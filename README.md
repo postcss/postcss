@@ -295,6 +295,7 @@ on different parts of CSS.
 [`postcss-discard-comments`]:    https://github.com/ben-eb/postcss-discard-comments
 [`postcss-minify-selectors`]:    https://github.com/ben-eb/postcss-minify-selectors
 [`postcss-quantity-queries`]:    https://github.com/pascalduez/postcss-quantity-queries
+[`postcss-generate-preset`]:     https://github.com/simonsmith/postcss-generate-preset
 [`postcss-color-hex-alpha`]:     https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-color-function`]:      https://github.com/postcss/postcss-color-function
 [`postcss-convert-values`]:      https://github.com/ben-eb/postcss-convert-values
@@ -342,7 +343,6 @@ on different parts of CSS.
 [`css2modernizr`]:               https://github.com/vovanbo/css2modernizr
 [`postcss-focus`]:               https://github.com/postcss/postcss-focus
 [`postcss-at2x`]:                https://github.com/simonsmith/postcss-at2x
-[`postcss-generate-preset`]:     https://github.com/simonsmith/postcss-generate-preset
 [`postcss-neat`]:                https://github.com/jo-asakura/postcss-neat
 [`autoprefixer`]:                https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                https://github.com/hail2u/node-css-mqpacker
