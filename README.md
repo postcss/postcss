@@ -150,6 +150,17 @@ Read the [PostCSS API] for more details about the JS API.
 With [`postcss-plugin-context`] you can run different plugins
 on different parts of CSS.
 
+```css
+.css-example.is-test-for-css4-browsers {
+    color: gray(255, 50%);
+}
+@context cssnext {
+    .css-example.is-fallback-for-all-browsers {
+        color: gray(255, 50%);
+    }
+}
+```
+
 [`postcss-plugin-context`]: https://github.com/postcss/postcss-plugin-context
 
 ### Packs
