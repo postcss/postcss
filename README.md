@@ -273,6 +273,7 @@ on different parts of CSS.
 
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
+* [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness
@@ -296,6 +297,7 @@ on different parts of CSS.
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
 
+[`postcss-canadian-stylesheets`]: https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-color-rgba-fallback`]: https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-color-rebeccapurple`]: https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-discard-duplicates`]:  https://github.com/ben-eb/postcss-discard-duplicates
