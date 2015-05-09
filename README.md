@@ -98,8 +98,8 @@ As a result, PostCSS offers three main benefits:
   meaning that they can provide new language features. For example, [cssnext]
   transpiles the latest W3C drafts to current CSS syntax.
 * **New abilities:** PostCSS plugins can read and change every part of CSS.
-  It makes many new classes of tools possible. [Autoprefixer], [`doiuse`]
-  or [`postcss-colorblind`] are good examples.
+  It makes many new classes of tools possible. [Autoprefixer], [`rtlcss`],
+  [`doiuse`] or [`postcss-colorblind`] are good examples.
 
 [3 times faster]: https://github.com/postcss/postcss/blob/master/benchmark/general.js
 
