@@ -13,7 +13,7 @@
     "dependencies": {
         "es6-promise": "~2.1.1",
         "source-map":  "~0.4.2",
-        "babel-core":  "5.2.15",
+        "babel-core":  "5.2.17",
         "js-base64":   "~2.1.8"
     },
     "devDependencies": {
@@ -25,7 +25,7 @@
         "yaspeller":              "2.1.0",
         "gulp-util":              "3.0.4",
         "gulp-run":               "1.6.8",
-        "fs-extra":               "0.18.2",
+        "fs-extra":               "0.18.3",
         "through2":               "0.6.5",
         "request":                "2.55.0",
         "sinon":                  "1.14.1",
@@ -34,11 +34,11 @@
         "chai":                   "2.3.0"
     },
     "benchmarkDependencies": {
-        "postcss-simple-vars": "0.2.4",
+        "postcss-simple-vars": "0.3.0",
         "gulp-bench-summary":  "0.1.0",
-        "stylecow-parser":     "2.2.1",
-        "postcss-nested":      "0.2.2",
-        "postcss-mixins":      "0.1.1",
+        "stylecow-parser":     "2.2.2",
+        "postcss-nested":      "0.3.1",
+        "postcss-mixins":      "0.2.0",
         "postcss-calc":        "4.0.1",
         "gonzales-pe":         "3.0.0-26",
         "gulp-bench":          "1.1.0",
