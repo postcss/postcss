@@ -271,6 +271,7 @@ on different parts of CSS.
 
 ### Others
 
+* [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
@@ -297,6 +298,7 @@ on different parts of CSS.
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
 
+[`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-canadian-stylesheets`]: https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-color-rgba-fallback`]:  https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-color-rebeccapurple`]:  https://github.com/postcss/postcss-color-rebeccapurple
