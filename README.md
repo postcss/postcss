@@ -258,6 +258,8 @@ on different parts of CSS.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`webpcss`] adds URLs for WebP images, so they can be used by browsers
   that support WebP.
+* [`postcss-single-charset`] ensures that there is one
+  and only one `@charset` rule at the top of file.
 
 ### Shortcuts
 
@@ -270,11 +272,8 @@ on different parts of CSS.
   with one declaration.
 
 ### Others
-
-* [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
-* [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness
@@ -283,9 +282,6 @@ on different parts of CSS.
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
-* [`postcss-single-charset`] ensures that there is one
-  and only one `@charset` rule at the top of file.
-* [`postcss-spiffing`] lets you use British English in your CSS
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 ### Analysis
@@ -297,6 +293,12 @@ on different parts of CSS.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
+
+### Fun
+
+* [`postcss-australian-stylesheets`] Australian Style Sheets.
+* [`postcss-canadian-stylesheets`] Canadian Style Sheets.
+* [`postcss-spiffing`] lets you use British English in your CSS.
 
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-canadian-stylesheets`]:   https://github.com/chancancode/postcss-canadian-stylesheets
