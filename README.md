@@ -243,6 +243,7 @@ on different parts of CSS.
 * [`postcss-discard-font-face`] removes unused `@font-face` declarations.
 * [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
+* [`postcss-merge-idents`] merges duplicated `@keyframes` with different names.
 * [`postcss-merge-rules`] merges adjacent rules when
   selectors/properties overlap.
 * [`postcss-minify-font-weight`] compresses `font-weight` values.
@@ -326,6 +327,7 @@ on different parts of CSS.
 [`postcss-selector-not`]:           https://github.com/postcss/postcss-selector-not
 [`postcss-default-unit`]:           https://github.com/antyakushev/postcss-default-unit
 [`postcss-media-minmax`]:           https://github.com/postcss/postcss-media-minmax
+[`postcss-merge-idents`]:           https://github.com/ben-eb/postcss-merge-idents
 [`postcss-custom-media`]:           https://github.com/postcss/postcss-custom-media
 [`postcss-log-warnings`]:           https://github.com/davidtheclark/postcss-log-warnings
 [`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
