@@ -36,9 +36,9 @@
     "benchmarkDependencies": {
         "postcss-simple-vars": "0.3.0",
         "gulp-bench-summary":  "0.1.0",
-        "stylecow-parser":     "2.2.2",
+        "stylecow-parser":     "2.3.1",
         "postcss-nested":      "0.3.1",
-        "postcss-mixins":      "0.2.0",
+        "postcss-mixins":      "0.3.0",
         "postcss-calc":        "4.0.1",
         "gonzales-pe":         "3.0.0-26",
         "gulp-bench":          "1.1.0",
