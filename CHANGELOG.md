@@ -1,3 +1,8 @@
+## 4.1.10
+* Fix Promise behavior on sync plugin errors.
+* Automatically fill `plugin` field in `CssSyntaxError`.
+* Fix warning message (by Ben Briggs).
+
 ## 4.1.9
 * Speed up `node.clone()`.
 
