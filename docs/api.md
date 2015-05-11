@@ -705,6 +705,8 @@ Contains PostCSS plugin name if error came not from CSS parser.
 error.plugin //=> 'postcss-vars'
 ```
 
+PostCSS will fill it automatically.
+
 ### `error.file`
 
 Contains absolute path to broken file, if use set `from` option to parser.
@@ -985,7 +987,7 @@ This method produces very useful error messages.
 
 ```js
 if ( !variables[name] ) {
-    throw decl.error('Unknown variable ' + name, { plugin: 'postcss-vars' });
+    throw decl.error('Unknown variable ' + name);
     // CssSyntaxError: postcss-vars:a.sass:4:3: Unknown variable $black
     // a
     //   color: $black
@@ -999,6 +1001,7 @@ Arguments:
 * `message (string)`: error description.
 * `opts (object) optional`: options.
   * `plugin (string)`: plugin name, that created this error.
+    PostCSS will set it automatically.
 
 See also [`Result#warn()`] for warnings.
 

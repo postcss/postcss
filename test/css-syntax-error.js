@@ -1,5 +1,5 @@
 import CssSyntaxError from '../lib/css-syntax-error';
-import parse          from '../lib/parse';
+import postcss        from '../lib/postcss';
 
 import   Concat   from 'concat-with-sourcemaps';
 import { expect } from 'chai';
@@ -8,7 +8,7 @@ import   path     from 'path';
 let parseError = function (css, opts) {
     let error;
     try {
-        parse(css, opts);
+        postcss.parse(css, opts);
     } catch (e) {
         if ( e.name === 'CssSyntaxError' ) {
             error = e;
@@ -112,10 +112,41 @@ describe('CssSyntaxError', () => {
     });
 
     it('set source plugin', () => {
-        let error = parse('a{}').first.error('Error', { plugin: 'test' });
-        expect(error.plugin).to.eql('test');
+        let error = postcss.parse('a{}').first.error('Error', { plugin: 'PL' });
+        expect(error.plugin).to.eql('PL');
         expect(error.toString()).to.match(
-            /^CssSyntaxError: test: <css input>:1:1: Error/);
+            /^CssSyntaxError: PL: <css input>:1:1: Error/);
+    });
+
+    it('set source plugin automatically', (done) => {
+        let plugin = postcss.plugin('test-plugin', () => {
+            return (css) => {
+                throw css.first.error('Error');
+            };
+        });
+
+        postcss([plugin]).process('a{}').catch( (error) => {
+            if ( error.name !== 'CssSyntaxError' ) throw error;
+            expect(error.plugin).to.eql('test-plugin');
+            expect(error.toString()).to.match(/test-plugin/);
+            done();
+        }).catch( (error) => done(error) );
+    });
+
+    it('set plugin automatically in async', (done) => {
+        let plugin = postcss.plugin('async-plugin', () => {
+            return (css) => {
+                return new Promise( (resolve, reject) => {
+                    reject(css.first.error('Error'));
+                });
+            };
+        });
+
+        postcss([plugin]).process('a{}').catch( (error) => {
+            if ( error.name !== 'CssSyntaxError' ) throw error;
+            expect(error.plugin).to.eql('async-plugin');
+            done();
+        }).catch( (error) => done(error) );
     });
 
 });

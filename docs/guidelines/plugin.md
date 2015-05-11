@@ -130,8 +130,6 @@ if ( typeof mixins[name] === 'undefined' ) {
 }
 ```
 
-You must set your plugin name in `plugin` options.
-
 ### 3.2. Use `result.warn` for warnings
 
 Do not print warnings by `console.warn`, because some PostCSS runner may has

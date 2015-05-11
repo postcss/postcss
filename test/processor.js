@@ -245,12 +245,16 @@ describe('Processor', () => {
                     reject(error);
                 });
             };
-            (new Processor([async])).process('').then( () => {
+            let result = (new Processor([async])).process('');
+            result.then( () => {
                 done('should not run then callback');
             }).catch(function (err) {
                 expect(err).to.eql(error);
-                done();
-            });
+                result.catch(function (err) {
+                    expect(err).to.eql(error);
+                    done();
+                });
+            }).catch( (error) => done(error) );
         });
 
         it('supports sync errors in async mode', (done) => {
