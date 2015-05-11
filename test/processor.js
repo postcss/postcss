@@ -304,8 +304,8 @@ describe('Processor', () => {
             expect( () => processBy('1.0.0') ).to.throws('Er');
             expect(console.warn.callCount).to.eql(1);
             expect(console.warn.args[0][0]).to.eql(
-                'test is based on PostCSS 2.1.5 but you use it with ' +
-                'PostCSS 1.0.0. Maybe this is a source of error below.');
+                'Your current PostCSS version is 1.0.0, but test uses 2.1.5. ' +
+                'Perhaps this is the source of the error below.');
 
             expect( () => processBy('3.0.0') ).to.throws('Er');
             expect(console.warn.callCount).to.eql(2);
