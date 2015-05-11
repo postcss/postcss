@@ -11,6 +11,7 @@ test/
 origin.css
 fail.css
 /postcss.js
+npm-debug.log
 
 gulpfile.js
 logo.svg
