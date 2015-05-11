@@ -19,10 +19,10 @@
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.2",
         "gulp-json-editor":       "2.2.1",
-        "gulp-eslint":            "0.11.1",
+        "gulp-eslint":            "0.12.0",
         "gulp-babel":             "5.1.0",
         "gulp-mocha":             "2.0.1",
-        "yaspeller":              "2.1.0",
+        "yaspeller":              "2.2.0",
         "gulp-util":              "3.0.4",
         "gulp-run":               "1.6.8",
         "fs-extra":               "0.18.3",
