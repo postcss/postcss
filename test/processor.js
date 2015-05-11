@@ -250,11 +250,11 @@ describe('Processor', () => {
                 done('should not run then callback');
             }).catch(function (err) {
                 expect(err).to.eql(error);
-                result.catch(function (err) {
-                    expect(err).to.eql(error);
+                result.catch(function (err2) {
+                    expect(err2).to.eql(error);
                     done();
                 });
-            }).catch( (error) => done(error) );
+            }).catch( (err) => done(err) );
         });
 
         it('supports sync errors in async mode', (done) => {
