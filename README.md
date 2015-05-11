@@ -283,7 +283,7 @@ on different parts of CSS.
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
-* [`postcss-pxtorem`] convert pixel units to rem.
+* [`postcss-pxtorem`] convert pixel units to `rem`.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 ### Analysis
