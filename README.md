@@ -283,6 +283,7 @@ on different parts of CSS.
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
+* [`postcss-pxtorem`] convert pixel units to rem.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 ### Analysis
@@ -352,6 +353,7 @@ on different parts of CSS.
 [`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
 [`postcss-easings`]:                https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
+[`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
 [`postcss-nested`]:                 https://github.com/postcss/postcss-nested
