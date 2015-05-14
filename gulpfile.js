@@ -48,11 +48,7 @@ gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
 gulp.task('lint', function () {
     var eslint = require('gulp-eslint');
 
-    return gulp.src(['*.js',
-                     'lib/*.js',
-                     'test/*.js',
-                     'tasks/*.js',
-                     'benchmark/**/*.js'])
+    return gulp.src(['*.js', 'lib/*.js', 'test/*.js', 'benchmark/**/*.js'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -82,7 +78,7 @@ gulp.task('bench:clean', function (done) {
 
 ['tokenizer', 'parser'].forEach(function (type) {
     gulp.task('bench:' + type, ['build:lib'], function() {
-        var compare = require('./tasks/compare');
+        var compare = require('./benchmark/compare');
         var bench   = require('gulp-bench');
         var child   = require('child_process');
 
@@ -99,9 +95,9 @@ gulp.task('bench:clean', function (done) {
 gulp.task('bench:bootstrap', function (done) {
     if ( fs.existsSync('./benchmark/cache/bootstrap.css') ) return done();
 
-    var get = require('./tasks/get');
-    get('github:twbs/bootstrap:dist/css/bootstrap.css', function (css) {
-        fs.outputFile('./benchmark/cache/bootstrap.css', css, done);
+    var load = require('load-resources');
+    load('github:twbs/bootstrap:dist/css/bootstrap.css', '.css', function (f) {
+        fs.outputFile('./benchmark/cache/bootstrap.css', f, done);
     });
 });
 
@@ -125,51 +121,61 @@ gulp.task('bench:parsers', ['build', 'bench:bootstrap'], function () {
 
 gulp.task('integration', ['build:lib', 'build:package'], function (done) {
     var gutil = require('gulp-util');
+    var load  = require('load-resources');
 
     var postcss = require('./build/lib/postcss');
-    var styles  = require('./tasks/styles');
 
-    var error = function (message) {
+    var error = function (url, message) {
+        gutil.log(gutil.colors.red('Fail on ' + url));
         done(new gutil.PluginError('integration', {
             showStack: false,
             message:   message
         }));
     };
 
-    var sites = [
-        { GitHub:       'https://github.com/' },
-        { Twitter:      'https://twitter.com/' },
-        { Bootstrap:    'github:twbs/bootstrap:dist/css/bootstrap.css' },
-        { Habrahabr:    'http://habrahabr.ru/' },
-        { Browserhacks: 'http://browserhacks.com/' }
-    ];
+    var sites = {
+        GitHub:       'https://github.com/',
+        Twitter:      'https://twitter.com/',
+        Bootstrap:    'github:twbs/bootstrap:dist/css/bootstrap.css',
+        Habrahabr:    'http://habrahabr.ru/',
+        Browserhacks: 'http://browserhacks.com/'
+    };
+    var urls = Object.keys(sites).map(function (i) {
+        return sites[i];
+    });
 
-    styles(sites, {
-        site: function (name) {
-            gutil.log('Test ' + name + ' styles');
-        },
-        css: function (css, url) {
-            var processed;
-            try {
-                processed = postcss().process(css, {
-                    map: { annotation: false },
-                    safe:  url.match('browserhacks.com')
-                }).css;
-            } catch (e) {
-                fs.writeFileSync('fail.css', css);
-                return error('Parsing error: ' + e.message + e.stack);
-            }
+    var lastDomain = false;
+    var siteIndex  = -1;
 
-            if ( processed !== css ) {
+    load(urls, '.css', function (css, url, last) {
+        postcss().process(css, {
+            map: { annotation: false },
+            safe:  url.match('browserhacks.com')
+
+        }).catch(function (e) {
+            fs.writeFileSync('fail.css', css);
+            return error(url, 'Parsing error: ' + e.message + e.stack);
+
+        }).then(function (result) {
+            if ( !result ) return;
+
+            if ( result.css !== css ) {
                 fs.writeFileSync('origin.css', css);
-                fs.writeFileSync('fail.css', processed);
-                return error('Output is not equal input');
+                fs.writeFileSync('fail.css', result.css);
+                error(url, 'Output is not equal input');
+                return;
             }
 
+            var domain = url.match(/https?:\/\/[^\/]+/)[0];
+            if ( domain !== lastDomain ) {
+                lastDomain = domain;
+                siteIndex += 1;
+                gutil.log('Test ' + Object.keys(sites)[siteIndex] + ' styles');
+            }
             gutil.log('     ' + gutil.colors.green(path.basename(url)));
-            return true;
-        },
-        done: done
+
+            if ( last ) done();
+        }).catch(done);
     });
 });
 
