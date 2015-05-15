@@ -268,7 +268,8 @@ on different parts of CSS.
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
-* [`postcss-generate-preset`] allows quick generation of rules. Useful for creating repetitive utilities.
+* [`postcss-generate-preset`] allows quick generation of rules.
+  Useful for creating repetitive utilities.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 
