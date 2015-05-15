@@ -273,6 +273,7 @@ on different parts of CSS.
   with one declaration.
 
 ### Others
+
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
@@ -336,6 +337,7 @@ on different parts of CSS.
 [`postcss-log-warnings`]:           https://github.com/davidtheclark/postcss-log-warnings
 [`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
 [`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
+[`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
 [`postcss-merge-rules`]:            https://github.com/ben-eb/postcss-merge-rules
 [`postcss-simple-vars`]:            https://github.com/postcss/postcss-simple-vars
@@ -385,7 +387,6 @@ on different parts of CSS.
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`lost`]:                           https://github.com/corysimmons/lost
-[`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
 
 ## How to Develop PostCSS Plugin
 
