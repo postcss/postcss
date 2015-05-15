@@ -284,6 +284,7 @@ on different parts of CSS.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
 * [`postcss-pxtorem`] convert pixel units to `rem`.
+* [`postcss-style-guide`] generate a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 ### Analysis
@@ -384,6 +385,7 @@ on different parts of CSS.
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`lost`]:                           https://github.com/corysimmons/lost
+[`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
 
 ## How to Develop PostCSS Plugin
 
