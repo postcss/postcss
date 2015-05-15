@@ -2,9 +2,10 @@
 
 PostCSS:   36 ms
 Rework:    77 ms   (2.1 times slower)
-libsass:   133 ms  (3.7 times slower)
+libsass:   136 ms  (3.8 times slower)
+Less:      160 ms  (4.4 times slower)
 Stylus:    167 ms  (4.6 times slower)
-Less:      194 ms  (5.4 times slower)
+Stylecow:  208 ms  (5.7 times slower)
 Ruby Sass: 1084 ms (30.1 times slower)
 */
 
@@ -39,12 +40,24 @@ for ( var i = 0; i < 100; i++ ) {
 // Myth
 var myth = require('myth');
 var rcss = css;
-rcss += ':root { --name: 100px; }';
+rcss += ':root { --size: 100px; }';
 for ( var i = 0; i < 100; i++ ) {
     rcss += 'body h1 a { color: black; }';
-    rcss += 'h2 { width: $size; }';
-    rcss += 'h1 { width: calc(2 * $size); }';
+    rcss += 'h2 { width: var(--size); }';
+    rcss += 'h1 { width: calc(2 * var(--size)); }';
     rcss += '.search { fill: black; width: 16px; height: 16px; }';
+}
+
+// Stylecow
+var stylecow = require('stylecow');
+stylecow.loadPlugin('variables').loadPlugin('nested-rules').loadPlugin('calc');
+var cowcss = css;
+cowcss += ':root { --size: 100px; }';
+for ( var i = 0; i < 100; i++ ) {
+    cowcss += 'body { h1 { a { color: black; } } }';
+    cowcss += 'h2 { width: var(--size); }';
+    cowcss += 'h1 { width: calc(2 * var(--size)); }';
+    cowcss += '.search { fill: black; width: 16px; height: 16px; }';
 }
 
 // Sass
@@ -110,6 +123,17 @@ module.exports = {
                 processor.process(pcss, { map: false }).then(function () {
                     done.resolve();
                 });
+            }
+        },
+        {
+            name: 'Stylecow',
+            defer: true,
+            fn: function (done) {
+                var file = new stylecow.Reader(new stylecow.Tokens(cowcss));
+                var ast  = stylecow.Root.create(file);
+                stylecow.run(ast);
+                ast.toString();
+                done.resolve();
             }
         },
         {

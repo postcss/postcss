@@ -19,7 +19,7 @@ var CSSOM      = require('cssom');
 var rework     = require('rework');
 var mensch     = require('mensch');
 var postcss    = require('../build');
-var stylecow   = require('stylecow-parser');
+var stylecow   = require('stylecow');
 var gonzales   = require('gonzales');
 var gonzalesPe = require('gonzales-pe');
 
