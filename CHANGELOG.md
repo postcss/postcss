@@ -1,3 +1,6 @@
+## 4.1.11
+* Fix error message on wrong plugin format.
+
 ## 4.1.10
 * Fix Promise behavior on sync plugin errors.
 * Automatically fill `plugin` field in `CssSyntaxError`.
