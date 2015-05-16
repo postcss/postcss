@@ -27,29 +27,10 @@
         "gulp-util":              "3.0.4",
         "gulp-run":               "1.6.8",
         "fs-extra":               "0.18.3",
-        "through2":               "0.6.5",
         "sinon":                  "1.14.1",
         "mocha":                  "2.2.5",
         "gulp":                   "3.8.11",
         "chai":                   "2.3.0"
-    },
-    "benchmarkDependencies": {
-        "postcss-simple-vars": "0.3.0",
-        "gulp-bench-summary":  "0.1.0",
-        "postcss-nested":      "0.3.1",
-        "postcss-mixins":      "0.3.0",
-        "postcss-calc":        "4.0.1",
-        "gonzales-pe":         "3.0.0-27",
-        "gulp-bench":          "1.1.0",
-        "node-sass":           "3.1.1",
-        "stylecow":            "6.5.0",
-        "gonzales":            "1.0.7",
-        "mensch":              "0.3.1",
-        "stylus":              "0.51.1",
-        "rework":              "1.0.1",
-        "cssom":               "0.3.0",
-        "less":                "2.5.0",
-        "myth":                "1.4.0"
     },
     "scripts": {
         "test": "gulp"

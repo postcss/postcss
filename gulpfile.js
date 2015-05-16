@@ -2,15 +2,15 @@ var gulp = require('gulp');
 var path = require('path');
 var fs   = require('fs-extra');
 
-// Build
-
-gulp.task('build:clean', function (done) {
+gulp.task('clean', function (done) {
     fs.remove(path.join(__dirname, 'postcss.js'), function () {
         fs.remove(path.join(__dirname, 'build'), done);
     });
 });
 
-gulp.task('build:lib', ['build:clean'], function () {
+// Build
+
+gulp.task('build:lib', ['clean'], function () {
     var babel = require('gulp-babel');
 
     return gulp.src('lib/*.js')
@@ -18,7 +18,7 @@ gulp.task('build:lib', ['build:clean'], function () {
         .pipe(gulp.dest('build/lib'));
 });
 
-gulp.task('build:docs', ['build:clean'], function () {
+gulp.task('build:docs', ['clean'], function () {
     var ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
         .concat(['.npmignore', 'index.js', 'package.json'])
@@ -28,7 +28,7 @@ gulp.task('build:docs', ['build:clean'], function () {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build:package', ['build:clean'], function () {
+gulp.task('build:package', ['clean'], function () {
     var editor = require('gulp-json-editor');
 
     gulp.src('./package.json')
@@ -47,8 +47,7 @@ gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
 
 gulp.task('lint', function () {
     var eslint = require('gulp-eslint');
-
-    return gulp.src(['*.js', 'lib/*.js', 'test/*.js', 'benchmark/**/*.js'])
+    return gulp.src(['*.js', 'lib/*.js', 'test/*.js'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -66,55 +65,6 @@ gulp.task('spellcheck', function (done) {
             }));
         })
         .on('finish', done);
-});
-
-// Benchmark
-
-gulp.task('bench:clean', function (done) {
-    fs.remove(path.join(__dirname, '/benchmark/results'), function () {
-        fs.remove(path.join(__dirname, '/benchmark/cache'), done);
-    });
-});
-
-['tokenizer', 'parser'].forEach(function (type) {
-    gulp.task('bench:' + type, ['build:lib'], function() {
-        var compare = require('./benchmark/compare');
-        var bench   = require('gulp-bench');
-        var child   = require('child_process');
-
-        var status = child.execSync('git status --porcelain').toString().trim();
-        var name   = status === '' ? 'master' : 'current';
-
-        return gulp.src('./benchmark/' + type + '.js', { read: false })
-            .pipe(bench({ outputFormat: 'json', output: name + '.json' }))
-            .pipe(compare(name))
-            .pipe(gulp.dest('./benchmark/results'));
-    });
-});
-
-gulp.task('bench:bootstrap', function (done) {
-    if ( fs.existsSync('./benchmark/cache/bootstrap.css') ) return done();
-
-    var load = require('load-resources');
-    load('github:twbs/bootstrap:dist/css/bootstrap.css', '.css', function (f) {
-        fs.outputFile('./benchmark/cache/bootstrap.css', f, done);
-    });
-});
-
-gulp.task('bench', ['build', 'bench:bootstrap'], function () {
-    var bench   = require('gulp-bench');
-    var summary = require('gulp-bench-summary');
-    return gulp.src('./benchmark/general.js', { read: false })
-        .pipe(bench())
-        .pipe(summary('PostCSS'));
-});
-
-gulp.task('bench:parsers', ['build', 'bench:bootstrap'], function () {
-    var bench   = require('gulp-bench');
-    var summary = require('gulp-bench-summary');
-    return gulp.src('./benchmark/parsers.js', { read: false })
-        .pipe(bench())
-        .pipe(summary('PostCSS'));
 });
 
 // Tests
@@ -202,7 +152,5 @@ gulp.task('cases', function () {
 });
 
 // Common
-
-gulp.task('clean', ['build:clean', 'bench:clean']);
 
 gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);

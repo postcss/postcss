@@ -101,7 +101,7 @@ As a result, PostCSS offers three main benefits:
   It makes many new classes of tools possible. [Autoprefixer], [`rtlcss`],
   [`doiuse`] or [`postcss-colorblind`] are good examples.
 
-[3 times faster]: https://github.com/postcss/postcss/blob/master/benchmark/general.js
+[3 times faster]: https://github.com/postcss/benchmark
 
 ## Usage
 

@@ -4,8 +4,6 @@
 node_modules/
 .bundle/
 
-benchmark/results/
-benchmark/cache/
 build/
 
 npm-debug.log
