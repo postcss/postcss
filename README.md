@@ -211,6 +211,7 @@ on different parts of CSS.
 
 ### Language Extensions
 
+* [`postcss-each`] adds `@each` statement.
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
 * [`postcss-for`] adds `@for` loops.
@@ -371,6 +372,7 @@ on different parts of CSS.
 [`postcss-neat`]:                   https://github.com/jo-asakura/postcss-neat
 [`autoprefixer`]:                   https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                   https://github.com/hail2u/node-css-mqpacker
+[`postcss-each`]:                   https://github.com/outpunk/postcss-each
 [`postcss-epub`]:                   https://github.com/Rycochet/postcss-epub
 [`postcss-calc`]:                   https://github.com/postcss/postcss-calc
 [`postcss-size`]:                   https://github.com/postcss/postcss-size
