@@ -1187,7 +1187,7 @@ var noPrefixes = rule.every(function (decl) {
 
 Arguments:
 
-* `callback (function)`: iterator, that returns true of false.
+* `callback (function)`: iterator, that returns true or false.
 
 ### `container.some(callback)`
 
@@ -1202,7 +1202,7 @@ var hasPrefix = rule.some(function (decl) {
 
 Arguments:
 
-* `callback (function)`: iterator, that returns true of false.
+* `callback (function)`: iterator, that returns true or false.
 
 ### `container.each(callback)`
 
