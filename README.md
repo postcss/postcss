@@ -237,24 +237,11 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
-* [`postcss-colormin`] reduces color values to their smallest representations.
-* [`postcss-convert-values`] reduces length and time values (e.g. ms -> s).
 * [`postcss-data-packer`] moves embedded Base64 data out of the stylesheet
   and into a separate file.
-* [`postcss-discard-duplicates`] removes duplicate declarations and rules.
-* [`postcss-discard-empty`] removes empty rules and declarations.
-* [`postcss-discard-font-face`] removes unused `@font-face` declarations.
-* [`postcss-font-family`] optimises `font` and `font-family` declarations.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
-* [`postcss-merge-idents`] merges duplicated `@keyframes` with different names.
-* [`postcss-merge-rules`] merges adjacent rules when
-  selectors/properties overlap.
-* [`postcss-minify-font-weight`] compresses `font-weight` values.
-* [`postcss-minify-selectors`] normalizes selectors for better compression.
-* [`postcss-normalize-url`] normalizes `url()`s and trims quotes
-  where they are unnecessary.
-* [`postcss-reduce-idents`] compresses `@keyframes`, `@counter-style` &
-  `counter` identifiers.
+* [`postcss-single-charset`] ensures that there is one and only one
+  `@charset` rule at the top of file.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`csswring`] is a CSS minifier.
@@ -262,8 +249,8 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`webpcss`] adds URLs for WebP images, so they can be used by browsers
   that support WebP.
-* [`postcss-single-charset`] ensures that there is one
-  and only one `@charset` rule at the top of file.
+
+See also plugins in modular minifier [`cssnano`].
 
 ### Shortcuts
 
@@ -283,7 +270,6 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness
-* [`postcss-discard-comments`] removes comments based on rules you specify.
 * [`postcss-log-warnings`] logs warnings messages from other plugins
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
