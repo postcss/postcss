@@ -194,6 +194,8 @@ on different parts of CSS.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
+*[`cssnext`] plugins pack contains most of this plugins*
+
 ### Fallbacks
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
