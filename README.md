@@ -194,7 +194,7 @@ on different parts of CSS.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
-*[`cssnext`] plugins pack contains most of this plugins*
+See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 ### Fallbacks
 
