@@ -17,6 +17,12 @@ describe('Warning', () => {
             expect(warning.toString()).to.eql('plugin: text');
         });
 
+        it('outputs warning with position', () => {
+            let root    = parse('a{}');
+            let warning = new Warning('text', { node: root.first });
+            expect(warning.toString()).to.eql('<css input>:1:1: text');
+        });
+
         it('outputs warning with plugin and node', () => {
             let root    = parse('a{}', { from: '/a.css' });
             let warning = new Warning('text', {
