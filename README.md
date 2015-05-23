@@ -116,7 +116,7 @@ There are plugins for [Grunt], [Gulp], [webpack], [Broccoli] and [Brunch].
 gulp.task('css', function () {
     var postcss = require('gulp-postcss');
     return gulp.src('src/**/*.css')
-        .pipe( postcss([ require('cssnext'), require('cssgrace') ]) )
+        .pipe( postcss([ require('cssnext')(), require('cssnano')() ]) )
         .pipe( gulp.dest('build/') );
 });
 ```
@@ -125,7 +125,7 @@ For other environments you can use the [CLI tool] or the JS API:
 
 ```js
 var postcss = require('postcss');
-postcss([ require('cssnext'), require('cssgrace') ])
+postcss([ require('cssnext')(), require('cssnano')() ])
     .process(css, { from: 'src/app.css', to: 'app.css' })
     .then(function (result) {
         fs.writeFileSync('app.css', result.css);
