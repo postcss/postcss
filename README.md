@@ -227,6 +227,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
+* [`postcss-verthorz`] adds vertical and horizontal spacing declarations;
 * [`csstyle`] adds components workflow to your styles.
 * [`lost`] feature rich `calc()` grid system by Jeet author.
 
@@ -331,6 +332,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
 [`postcss-merge-rules`]:            https://github.com/ben-eb/postcss-merge-rules
 [`postcss-simple-vars`]:            https://github.com/postcss/postcss-simple-vars
+[`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
 [`postcss-data-packer`]:            https://github.com/Ser-Gen/postcss-data-packer
 [`postcss-font-family`]:            https://github.com/ben-eb/postcss-font-family
 [`postcss-color-alpha`]:            https://github.com/avanes/postcss-color-alpha
