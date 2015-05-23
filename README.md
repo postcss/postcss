@@ -260,6 +260,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
+* [`postcss-property-lookup`] allows referencing property values without a variable.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
@@ -309,6 +310,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-quantity-queries`]:       https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-generate-preset`]:        https://github.com/simonsmith/postcss-generate-preset
 [`postcss-color-hex-alpha`]:        https://github.com/postcss/postcss-color-hex-alpha
+[`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
 [`postcss-color-function`]:         https://github.com/postcss/postcss-color-function
 [`postcss-convert-values`]:         https://github.com/ben-eb/postcss-convert-values
 [`postcss-pseudoelements`]:         https://github.com/axa-ch/postcss-pseudoelements
