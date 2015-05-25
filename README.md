@@ -215,6 +215,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
+* [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, α)` to `#rgb` and `rgba()`.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
 * [`postcss-conditionals`] adds `@if` statements.
@@ -337,6 +338,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-data-packer`]:            https://github.com/Ser-Gen/postcss-data-packer
 [`postcss-font-family`]:            https://github.com/ben-eb/postcss-font-family
 [`postcss-color-alpha`]:            https://github.com/avanes/postcss-color-alpha
+[`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
