@@ -280,7 +280,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pxtorem`] convert pixel units to `rem`.
 * [`postcss-style-guide`] generate a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`postcss-fakeid`] transforms ids in the form of #foo to attribute selectors [id="foo"].
+* [`postcss-fakeid`] transforms ``#foo` IDs to attribute selectors `[id="foo"]`.
 
 ### Analysis
 
@@ -339,14 +339,13 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-data-packer`]:            https://github.com/Ser-Gen/postcss-data-packer
 [`postcss-font-family`]:            https://github.com/ben-eb/postcss-font-family
 [`postcss-color-alpha`]:            https://github.com/avanes/postcss-color-alpha
-[`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
+[`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
 [`postcss-image-set`]:              https://github.com/alex499/postcss-image-set
 [`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
-[`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
 [`postcss-colormin`]:               https://github.com/ben-eb/colormin
 [`pleeease-filters`]:               https://github.com/iamvdo/pleeease-filters
 [`postcss-messages`]:               https://github.com/postcss/postcss-messages
@@ -359,6 +358,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
 [`postcss-nested`]:                 https://github.com/postcss/postcss-nested
 [`postcss-zindex`]:                 https://github.com/ben-eb/postcss-zindex
+[`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
 [`postcss-mixins`]:                 https://github.com/postcss/postcss-mixins
 [`mq4-hover-shim`]:                 https://github.com/twbs/mq4-hover-shim
 [`list-selectors`]:                 https://github.com/davidtheclark/list-selectors
