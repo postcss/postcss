@@ -110,7 +110,7 @@ You just need to follow these two steps to use PostCSS:
 1. Add PostCSS to your build tool.
 2. Select plugins from the list below and add them to your PostCSS process.
 
-There are plugins for [Grunt], [Gulp], [webpack], [Broccoli] and [Brunch].
+There are plugins for [Grunt], [Gulp], [webpack], [ENB], [Broccoli] and [Brunch].
 
 ```js
 gulp.task('css', function () {
@@ -139,6 +139,7 @@ Read the [PostCSS API] for more details about the JS API.
 [CLI tool]:    https://github.com/code42day/postcss-cli
 [Broccoli]:    https://github.com/jeffjewiss/broccoli-postcss
 [webpack]:     https://github.com/postcss/postcss-loader
+[ENB]:         https://github.com/theprotein/enb-postcss
 [Brunch]:      https://github.com/iamvdo/postcss-brunch
 [Grunt]:       https://github.com/nDmitry/grunt-postcss
 [Gulp]:        https://github.com/postcss/gulp-postcss
