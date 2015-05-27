@@ -280,7 +280,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pxtorem`] convert pixel units to `rem`.
 * [`postcss-style-guide`] generate a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`postcss-fakeid`] transforms ``#foo` IDs to attribute selectors `[id="foo"]`.
+* [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 
 ### Analysis
 
