@@ -110,7 +110,8 @@ You just need to follow these two steps to use PostCSS:
 1. Add PostCSS to your build tool.
 2. Select plugins from the list below and add them to your PostCSS process.
 
-There are plugins for [Grunt], [Gulp], [webpack], [ENB], [Broccoli] and [Brunch].
+There are plugins for [Grunt], [Gulp], [webpack], [Broccoli],
+[Brunch] and [ENB].
 
 ```js
 gulp.task('css', function () {
