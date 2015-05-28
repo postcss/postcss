@@ -81,7 +81,7 @@ Or if you like the Sass syntax, you could combine
 }
 ```
 
-[cssnext]: https://cssnext.github.io/
+[cssnext]: http://cssnext.io/
 
 ## Features
 
@@ -173,7 +173,7 @@ on different parts of CSS.
   to special annotation comments.
 
 [`cssnano`]:  https://github.com/ben-eb/cssnano
-[`cssnext`]:  https://cssnext.github.io/
+[`cssnext`]:  http://cssnext.io/
 [`atcss`]:    https://github.com/morishitter/atcss
 
 ### Future CSS Syntax
@@ -245,6 +245,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
+* [`postcss-sprites`] generates CSS sprites from stylesheets.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`csswring`] is a CSS minifier.
@@ -252,7 +253,6 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`webpcss`] adds URLs for WebP images, so they can be used by browsers
   that support WebP.
-* [`postcss-sprites`] generates CSS sprites from stylesheets.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -356,6 +356,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
 [`postcss-easings`]:                https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
+[`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 [`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
@@ -389,7 +390,6 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`lost`]:                           https://github.com/corysimmons/lost
-[`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 
 ## How to Develop PostCSS Plugin
 
