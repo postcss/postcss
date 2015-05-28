@@ -280,8 +280,8 @@ See also plugins in modular minifier [`cssnano`].
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
-* [`postcss-pxtorem`] convert pixel units to `rem`.
-* [`postcss-style-guide`] generate a style guide automatically.
+* [`postcss-pxtorem`] converts pixel units to `rem`.
+* [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 
