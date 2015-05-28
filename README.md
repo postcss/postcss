@@ -232,6 +232,8 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`csstyle`] adds components workflow to your styles.
 * [`lost`] feature rich `calc()` grid system by Jeet author.
+* [`postcss-modular-scale`](https://github.com/kristoferjoseph/postcss-modular-scale) adds a modular scale `ms()` function.
+* [`postcss-color-scale`](https://github.com/kristoferjoseph/postcss-color-scale) adds a color scale `cs()` function.
 
 ### Optimizations
 
