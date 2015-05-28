@@ -220,10 +220,12 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, α)` to `#rgb` and `rgba()`.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
+* [`postcss-color-scale`] adds a color scale `cs()` function.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [`postcss-map`] enables configuration maps.
+* [`postcss-modular-scale`] adds a modular scale `ms()` function.
 * [`postcss-neat`] is a semantic and fluid grid framework.
 * [`postcss-nested`] unwraps nested rules.
 * [`postcss-quantity-queries`] enables quantity queries.
@@ -232,8 +234,6 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`csstyle`] adds components workflow to your styles.
 * [`lost`] feature rich `calc()` grid system by Jeet author.
-* [`postcss-modular-scale`](https://github.com/kristoferjoseph/postcss-modular-scale) adds a modular scale `ms()` function.
-* [`postcss-color-scale`](https://github.com/kristoferjoseph/postcss-color-scale) adds a color scale `cs()` function.
 
 ### Optimizations
 
@@ -327,6 +327,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-reduce-idents`]:          https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:          https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-css-variables`]:          https://github.com/MadLittleMods/postcss-css-variables
+[`postcss-modular-scale`]:          https://github.com/kristoferjoseph/postcss-modular-scale
 [`postcss-conditionals`]:           https://github.com/andyjansson/postcss-conditionals
 [`postcss-selector-not`]:           https://github.com/postcss/postcss-selector-not
 [`postcss-default-unit`]:           https://github.com/antyakushev/postcss-default-unit
@@ -337,6 +338,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
 [`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
 [`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
+[`postcss-color-scale`]:            https://github.com/kristoferjoseph/postcss-color-scale
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
 [`postcss-merge-rules`]:            https://github.com/ben-eb/postcss-merge-rules
 [`postcss-simple-vars`]:            https://github.com/postcss/postcss-simple-vars
