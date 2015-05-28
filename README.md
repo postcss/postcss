@@ -240,8 +240,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
-* [`postcss-data-packer`] moves embedded Base64 data out of the stylesheet
-  and into a separate file.
+* [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
