@@ -67,7 +67,7 @@ Arguments:
 
 ### `postcss.plugin(name, initializer)`
 
-Creates PostCSS plugin with standard API.
+Creates a PostCSS plugin with a standard API.
 
 ```js
 var remove = postcss.plugin('postcss-remove', function (opts) {
@@ -100,7 +100,7 @@ processor.plugins[0].postcssVersion //=> '4.1.0'
 
 Plugin function receive 2 arguments: [`Root` node] and [`Result`] instance.
 Then it should mutate the passed `Root` node, or you can create new `Root` node
-and put it to `result.root` property.
+and override the `result.root` property.
 
 ```js
 postcss.plugin('postcss-cleaner', function () {
@@ -242,7 +242,7 @@ processor.use(autoprefixer).use(cssnext).use(cssgrace);
 
 Arguments:
 
-* `plugin (function|#postcss|Processor)`: PostCSS plugin. I can be in three
+* `plugin (function|#postcss|Processor)`: PostCSS plugin. It can be in three
   formats:
   * A plugin created by [`postcss.plugin()`] method.
   * A function. PostCSS will pass the function a [`Root` node]
@@ -431,7 +431,7 @@ any asynchronous plugin it will throw a error. You should use
 
 ### `lazy.processor`
 
-Returns a [`Processor`] instance, that will be used for CSS transformations.
+Returns a [`Processor`] instance, which will be used for CSS transformations.
 
 ```js
 var lazy = postcss([cssnext, cssgrace]).process(css);
@@ -449,7 +449,7 @@ postcss().process(css, opts).opts == opts;
 
 ## `Result` class
 
-Provides result of PostCSS transformations.
+Provides the result of the PostCSS transformations.
 
 A `Result` instance is returned by [`Root#toResult(opts)`]
 or [`LazyResult#then()`] methods.
@@ -500,7 +500,7 @@ Arguments:
 
 ### `result.warnings()`
 
-Returns warnings from plugins. It just a filters [`Warning`] instances
+Returns warnings from plugins. It just filters [`Warning`] instances
 from [Result#messages].
 
 ```js
@@ -715,9 +715,9 @@ Contains absolute path to broken file, if use set `from` option to parser.
 error.file //=> 'a.sass'
 ```
 
-PostCSS will use input source map to detect origin place of error. If you wrote
-Sass file, then compile it to CSS and put to PostCSS, PostCSS will show
-position in origin Sass file.
+PostCSS will use input source map to detect the original error location. If
+you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will show the original position in the Sass file.
 
 If you need position in PostCSS input (for example, to debug previous compiler),
 you can use `error.generated.file`.
@@ -735,9 +735,9 @@ Contains source line of error.
 error.line //=> 2
 ```
 
-PostCSS will use input source map to detect origin place of error. If you wrote
-Sass file, then compile it to CSS and put to PostCSS, PostCSS will show
-position in origin Sass file.
+PostCSS will use input source map to detect the original error location. If
+you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will show the original position in the Sass file.
 
 If you need position in PostCSS input (for example, to debug previous compiler),
 you can use `error.generated.line`.
@@ -755,9 +755,9 @@ Contains source column of error.
 error.column //=> 1
 ```
 
-PostCSS will use input source map to detect origin place of error. If you wrote
-Sass file, then compile it to CSS and put to PostCSS, PostCSS will show
-position in origin Sass file.
+PostCSS will use input source map to detect the original error location. If
+you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will show the original position in the Sass file.
 
 If you need position in PostCSS input (for example, to debug previous compiler),
 you can use `error.generated.column`.
@@ -775,9 +775,9 @@ Contains source code of broken file.
 error.source //=> 'a {} b {'
 ```
 
-PostCSS will use input source map to detect origin place of error. If you wrote
-Sass file, then compile it to CSS and put to PostCSS, PostCSS will show
-position in origin Sass file.
+PostCSS will use input source map to detect the original error location. If
+you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will show the original position in the Sass file.
 
 If you need position in PostCSS input (for example, to debug previous compiler),
 you can use `error.generated.source`.
@@ -870,8 +870,8 @@ root.source.input.id   //=> <input css 1>
 
 ### `input.from`
 
-The CSS source identifier. Contains [`input.file`](#inputfile) if the user set the
-[`from` option], or [`input.id`](#inputid) if he/she did not.
+The CSS source identifier. Contains [`input.file`](#inputfile) if the user set
+the [`from` option], or [`input.id`](#inputid) if he/she did not.
 
 ```js
 var root  = postcss.parse(css, { from: 'a.css' });
@@ -1058,7 +1058,7 @@ The resultant clone node and its (clone) children will have clean `parent`
 and code style properties.
 
 ```js
-var clonded = decl.clone({ prop: '-moz-' + decl.prop });
+var cloned = decl.clone({ prop: '-moz-' + decl.prop });
 cloned.before     //=> undefined
 cloned.parent     //=> undefined
 cloned.toString() //=> -moz-transform: scale(0)
@@ -1434,8 +1434,9 @@ root.append({ selector: 'a' });                       // rule
 rule.append({ prop: 'color', value: 'black' });       // declaration
 rule.append({ text: 'Comment' })                      // comment
 ```
+
 Also you can use string with CSS of new element. But it will be a little bit
-slower, that shortcuts above.
+slower than the above shortcuts.
 
 ```js
 root.append('a {}');
