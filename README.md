@@ -252,6 +252,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`webpcss`] adds URLs for WebP images, so they can be used by browsers
   that support WebP.
+* [`postcss-sprites`] generates CSS sprites from stylesheets.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -388,6 +389,7 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`lost`]:                           https://github.com/corysimmons/lost
+[`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 
 ## How to Develop PostCSS Plugin
 
