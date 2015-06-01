@@ -285,6 +285,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
+* [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 
 ### Analysis
 
@@ -337,6 +338,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-log-warnings`]:           https://github.com/davidtheclark/postcss-log-warnings
 [`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
 [`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
+[`postcss-class-prefix`]:           https://github.com/thompsongl/postcss-class-prefix
 [`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
 [`postcss-color-scale`]:            https://github.com/kristoferjoseph/postcss-color-scale
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
