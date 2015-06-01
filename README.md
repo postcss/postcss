@@ -265,7 +265,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
-* [`postcss-property-lookup`] allows referencing property values without a variable.
+* [`postcss-property-lookup`] allows referencing property values without
+  a variable.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
@@ -274,9 +275,11 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
+* [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-colorblind`] transforms colors using filters to simulate
-  colorblindness
+  colorblindness.
+* [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-log-warnings`] logs warnings messages from other plugins
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
@@ -284,8 +287,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
-* [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 
 ### Analysis
 
