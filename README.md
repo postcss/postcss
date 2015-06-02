@@ -224,6 +224,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
+* [`postcss-grid`] adds a semantic grid system.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
 * [`postcss-neat`] is a semantic and fluid grid framework.
@@ -381,6 +382,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-each`]:                   https://github.com/outpunk/postcss-each
 [`postcss-epub`]:                   https://github.com/Rycochet/postcss-epub
 [`postcss-calc`]:                   https://github.com/postcss/postcss-calc
+[`postcss-grid`]:                   https://github.com/andyjansson/postcss-grid
 [`postcss-size`]:                   https://github.com/postcss/postcss-size
 [`postcss-host`]:                   https://github.com/vitkarpov/postcss-host
 [`postcss-vmin`]:                   https://github.com/iamvdo/postcss-vmin
