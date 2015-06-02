@@ -16,6 +16,7 @@
         "strict":                [0],
         "indent":                [2],
         "quotes":                [2, "single", "avoid-escape"],
+        "no-var":                [2],
         "curly":                 [0]
     },
     "env": {
