@@ -233,6 +233,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
+* [`postcss-vertical-rhythm`] adds a vertical rhythm unit calculated from base font-size and line-height.
 * [`csstyle`] adds components workflow to your styles.
 * [`lost`] feature rich `calc()` grid system by Jeet author.
 
@@ -320,6 +321,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-generate-preset`]:        https://github.com/simonsmith/postcss-generate-preset
 [`postcss-color-hex-alpha`]:        https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
+[`postcss-vertical-rhythm`]:        https://github.com/markgoodyear/postcss-vertical-rhythm
 [`postcss-color-function`]:         https://github.com/postcss/postcss-color-function
 [`postcss-convert-values`]:         https://github.com/ben-eb/postcss-convert-values
 [`postcss-pseudoelements`]:         https://github.com/axa-ch/postcss-pseudoelements
