@@ -8,7 +8,7 @@ PostCSS is a tool for transforming CSS with JS plugins.
 These plugins can support variables and mixins, transpile future CSS syntax,
 inline images, and more.
 
-PostCSS is used by Google, Twitter, Alibaba, and Shopify.
+Google, Twitter, Alibaba, and Shopify uses PostCSS.
 Its plugin, [Autoprefixer], is one of the most popular CSS processors.
 
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
@@ -122,7 +122,7 @@ gulp.task('css', function () {
 });
 ```
 
-For other environments you can use the [CLI tool] or the JS API:
+For other environments, you can use the [CLI tool] or the JS API:
 
 ```js
 var postcss = require('postcss');
@@ -167,7 +167,7 @@ on different parts of CSS.
 
 ### Packs
 
-* [`cssnano`] contains plugins that optimise CSS size for use in production.
+* [`cssnano`] contains plugins that optimize CSS size for use in production.
 * [`cssnext`] contains plugins that allow you to use future CSS features today.
 * [`atcss`] contains plugins that transform your CSS according
   to special annotation comments.
@@ -235,7 +235,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit calculated from base font-size and line-height.
 * [`csstyle`] adds components workflow to your styles.
-* [`lost`] feature rich `calc()` grid system by Jeet author.
+* [`lost`] feature-rich `calc()` grid system by Jeet author.
 
 ### Optimizations
 
@@ -254,8 +254,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`csswring`] is a CSS minifier.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
-* [`webpcss`] adds URLs for WebP images, so they can be used by browsers
-  that support WebP.
+* [`webpcss`] adds URLs for WebP images for browsers that support WebP.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -445,7 +444,7 @@ If you want more control over source map generation, you can define the `map`
 option as an object with the following parameters:
 
 * `inline` boolean: indicates that the source map should be embedded
-  in the output CSS as a Base64-encoded comment. By default it is `true`.
+  in the output CSS as a Base64-encoded comment. By default, it is `true`.
   But if all previous maps are external, not inline, PostCSS will not embed
   the map even if you do not set this option.
 
@@ -460,7 +459,7 @@ option as an object with the following parameters:
   with `prev: false`.
 
 * `sourcesContent` boolean: indicates that PostCSS should set the origin
-  content (for example, Sass source) of the source map. By default it is `true`.
+  content (for example, Sass source) of the source map. By default, it’s `true`.
   But if all previous maps do not contain sources content, PostCSS will also
   leave it out even if you do not set this option.
 
