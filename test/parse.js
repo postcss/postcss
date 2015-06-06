@@ -199,6 +199,17 @@ describe('postcss.parse()', () => {
             let root = parse('a { one:: 1 }', { safe: true });
             expect(root.first.first.value).to.eql(': 1');
         });
+
+        it('preserves props with double underscore', () => {
+            let root = parse('a { __one: 1 }');
+            console.log(root.first.first)
+            expect(root.first.first.prop).to.eql('__one');
+        });
+
+        it('preserves props with double underscore in safe mode', () => {
+            let root = parse('a { __one: 1 }', { safe: true });
+            expect(root.first.first.prop).to.eql('__one');
+        });
     });
 
 });
