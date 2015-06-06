@@ -2,4 +2,5 @@ a {
     *color : black;
     _background: white;
     font-size/**/: big;
+    __custom: var;
 }
