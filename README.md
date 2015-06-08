@@ -288,6 +288,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-flexboxfixer`] adds standardised equivalents to CSS using outdated and vendor-prefixed flexbox syntax
+* [`postcss-gradientfixer`] adds standardised equivalents to CSS using outdated and vendor-prefixed CSS gradient syntax
 
 ### Analysis
 
@@ -399,6 +401,8 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`lost`]:                           https://github.com/corysimmons/lost
+[`postcss-flexboxfixer`]:                           https://github.com/hallvors/postcss-flexboxfixer
+[`postcss-gradientfixer`]:                           https://github.com/hallvors/postcss-gradientfixer
 
 ## How to Develop PostCSS Plugin
 
