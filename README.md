@@ -281,6 +281,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
+* [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
+* [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
 * [`postcss-log-warnings`] logs warnings messages from other plugins
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
@@ -288,8 +290,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`postcss-flexboxfixer`] adds standardised equivalents to CSS using outdated and vendor-prefixed flexbox syntax
-* [`postcss-gradientfixer`] adds standardised equivalents to CSS using outdated and vendor-prefixed CSS gradient syntax
 
 ### Analysis
 
@@ -334,6 +334,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-simple-extend`]:          https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-css-variables`]:          https://github.com/MadLittleMods/postcss-css-variables
 [`postcss-modular-scale`]:          https://github.com/kristoferjoseph/postcss-modular-scale
+[`postcss-gradientfixer`]:          https://github.com/hallvors/postcss-gradientfixer
 [`postcss-conditionals`]:           https://github.com/andyjansson/postcss-conditionals
 [`postcss-selector-not`]:           https://github.com/postcss/postcss-selector-not
 [`postcss-default-unit`]:           https://github.com/antyakushev/postcss-default-unit
@@ -344,6 +345,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
 [`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
 [`postcss-class-prefix`]:           https://github.com/thompsongl/postcss-class-prefix
+[`postcss-flexboxfixer`]:           https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
 [`postcss-color-scale`]:            https://github.com/kristoferjoseph/postcss-color-scale
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
@@ -401,8 +403,6 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`lost`]:                           https://github.com/corysimmons/lost
-[`postcss-flexboxfixer`]:                           https://github.com/hallvors/postcss-flexboxfixer
-[`postcss-gradientfixer`]:                           https://github.com/hallvors/postcss-gradientfixer
 
 ## How to Develop PostCSS Plugin
 
