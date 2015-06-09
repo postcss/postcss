@@ -224,10 +224,8 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
-* [`postcss-grid`] adds a semantic grid system.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
-* [`postcss-neat`] is a semantic and fluid grid framework.
 * [`postcss-nested`] unwraps nested rules.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-simple-extend`] supports extending of silent classes,
@@ -235,6 +233,11 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit calculated from base font-size and line-height.
 * [`csstyle`] adds components workflow to your styles.
+
+### Grids
+
+* [`postcss-grid`] adds a semantic grid system.
+* [`postcss-neat`] is a semantic and fluid grid framework.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
 
 ### Optimizations
