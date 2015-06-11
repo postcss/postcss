@@ -215,6 +215,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 ### Language Extensions
 
+* [`postcss-bem`] adds at-rules for BEM and SUIT style classes
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
 * [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, α)` to `#rgb` and `rgba()`.
@@ -394,6 +395,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-size`]:                   https://github.com/postcss/postcss-size
 [`postcss-host`]:                   https://github.com/vitkarpov/postcss-host
 [`postcss-vmin`]:                   https://github.com/iamvdo/postcss-vmin
+[`postcss-bem`]:                    https://github.com/ileri/postcss-bem
 [`postcss-url`]:                    https://github.com/postcss/postcss-url
 [`postcss-map`]:                    https://github.com/pascalduez/postcss-map
 [`postcss-for`]:                    https://github.com/antyakushev/postcss-for
