@@ -275,6 +275,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
+* [`postcss-position`] adds shorthand declarations for position attributes.
 
 ### Others
 
@@ -370,6 +371,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-messages`]:               https://github.com/postcss/postcss-messages
 [`postcss-spiffing`]:               https://github.com/HashanP/postcss-spiffing
 [`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
+[`postcss-position`]:               https://github.com/seaneking/postcss-position
 [`postcss-easings`]:                https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
 [`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
