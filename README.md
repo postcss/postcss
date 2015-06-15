@@ -228,6 +228,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
 * [`postcss-nested`] unwraps nested rules.
+* [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’s `@extend`.
@@ -318,6 +319,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-rebeccapurple`]:    https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-discard-duplicates`]:     https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-minify-font-weight`]:     https://github.com/ben-eb/postcss-minify-font-weight
+[`postcss-pseudo-class-enter`]:     https://github.com/jonathantneal/postcss-pseudo-class-enter
 [`postcss-discard-font-face`]:      https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-custom-properties`]:      https://github.com/postcss/postcss-custom-properties
 [`postcss-custom-selectors`]:       https://github.com/postcss/postcss-custom-selectors
