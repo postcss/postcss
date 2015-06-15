@@ -193,6 +193,7 @@ on different parts of CSS.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
+* [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
@@ -314,6 +315,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spiffing`] lets you use British English in your CSS.
 
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
+[`postcss-pseudo-class-any-link`]:  https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-canadian-stylesheets`]:   https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-color-rgba-fallback`]:    https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-color-rebeccapurple`]:    https://github.com/postcss/postcss-color-rebeccapurple
