@@ -273,6 +273,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
+* [`postcss-hexrgba`] adds shorthad hex methods to rbga() values.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
 * [`postcss-position`] adds shorthand declarations for position attributes.
@@ -383,6 +384,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
 [`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 [`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
+[`postcss-hexrgba`]:                https://github.com/seaneking/postcss-hexrgba
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
 [`postcss-nested`]:                 https://github.com/postcss/postcss-nested
