@@ -237,7 +237,8 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
-* [`postcss-vertical-rhythm`] adds a vertical rhythm unit calculated from base font-size and line-height.
+* [`postcss-vertical-rhythm`] adds a vertical rhythm unit
+  based on `font-size` and `line-height`.
 * [`csstyle`] adds components workflow to your styles.
 
 ### Grids
