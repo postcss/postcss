@@ -314,6 +314,10 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 
+### Adapters
+
+* [`poststylus`] PostCSS adapter for Stylus output
+
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:  https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-canadian-stylesheets`]:   https://github.com/chancancode/postcss-canadian-stylesheets
@@ -406,6 +410,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-map`]:                    https://github.com/pascalduez/postcss-map
 [`postcss-for`]:                    https://github.com/antyakushev/postcss-for
 [`css-byebye`]:                     https://github.com/AoDev/css-byebye
+[`poststylus`]:                     https://github.com/seaneking/poststylus
 [`cssgrace`]:                       https://github.com/cssdream/cssgrace
 [`csswring`]:                       https://github.com/hail2u/node-csswring
 [`csstyle`]:                        https://github.com/geddski/csstyle
