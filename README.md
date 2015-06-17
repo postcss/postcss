@@ -134,16 +134,19 @@ postcss([ require('cssnext')(), require('cssnano')() ])
     });
 ```
 
+You can also use PostCSS plugins with the Stylus preprocessor by using [`poststylus`]
+
 Read the [PostCSS API] for more details about the JS API.
 
-[PostCSS API]: https://github.com/postcss/postcss/blob/master/docs/api.md
-[CLI tool]:    https://github.com/code42day/postcss-cli
-[Broccoli]:    https://github.com/jeffjewiss/broccoli-postcss
-[webpack]:     https://github.com/postcss/postcss-loader
-[ENB]:         https://github.com/theprotein/enb-postcss
-[Brunch]:      https://github.com/iamvdo/postcss-brunch
-[Grunt]:       https://github.com/nDmitry/grunt-postcss
-[Gulp]:        https://github.com/postcss/gulp-postcss
+[`poststylus`]: https://github.com/seaneking/poststylus
+[PostCSS API]:  https://github.com/postcss/postcss/blob/master/docs/api.md
+[CLI tool]:     https://github.com/code42day/postcss-cli
+[Broccoli]:     https://github.com/jeffjewiss/broccoli-postcss
+[webpack]:      https://github.com/postcss/postcss-loader
+[ENB]:          https://github.com/theprotein/enb-postcss
+[Brunch]:       https://github.com/iamvdo/postcss-brunch
+[Grunt]:        https://github.com/nDmitry/grunt-postcss
+[Gulp]:         https://github.com/postcss/gulp-postcss
 
 ## Plugins
 
