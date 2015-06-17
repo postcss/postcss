@@ -18,8 +18,8 @@ Twitter account: [@postcss](https://twitter.com/postcss).
 Weibo account:   [postcss](http://weibo.com/postcss).
 VK.com page:     [postcss](https://vk.com/postcss).
 
-[chat-img]: https://badges.gitter.im/Join%20Chat.svg
-[ci-img]:   https://travis-ci.org/postcss/postcss.svg
+[chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
+[ci-img]:   https://img.shields.io/travis/postcss/postcss.svg
 [chat]:     https://gitter.im/postcss/postcss
 [ci]:       https://travis-ci.org/postcss/postcss
 
