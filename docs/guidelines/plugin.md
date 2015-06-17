@@ -22,7 +22,7 @@ This rule is not mandatory for plugins promoted as separated tool,
 not like a part of PostCSS ecosystem. Like [cssnext] or [Autoprefixer].
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
-[cssnext]:      https://cssnext.github.io/
+[cssnext]:      http://cssnext.io/
 
 ### 1.2. Do one thing, and do it well
 
@@ -32,7 +32,7 @@ a plugins pack will be a better solution.
 For example, [cssnext] contains many small plugins for each W3C specification.
 Or [cssnano] contains a plugin for each optimization.
 
-[cssnext]: https://cssnext.github.io/
+[cssnext]: http://cssnext.io/
 [cssnano]: https://github.com/ben-eb/cssnano
 
 ### 1.3. Do not use mixins
