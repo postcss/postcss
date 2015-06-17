@@ -220,12 +220,8 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 ### Language Extensions
 
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
-* [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
-  to `rgba()`.
-* [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, α)` to `#rgb` and `rgba()`.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
-* [`postcss-color-scale`] adds a color scale `cs()` function.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
@@ -240,6 +236,18 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
   based on `font-size` and `line-height`.
 * [`csstyle`] adds components workflow to your styles.
+
+### Colors
+
+* [`postcss-brand-colors`] inserts company brand colors
+  in the `brand-colors` module.
+* [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
+  to `rgba()`.
+* [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, alpha)`
+  to `#rgb` and `rgba()`.
+* [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
+* [`postcss-color-scale`] adds a color scale `cs()` function.
+* [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 
 ### Grids
 
@@ -274,7 +282,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
-* [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
 * [`postcss-position`] adds shorthand declarations for position attributes.
@@ -286,10 +293,7 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Others
 
-* [`postcss-brand-colors`] inserts company brand colors
-  in the `brand-colors` module.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
-* [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
