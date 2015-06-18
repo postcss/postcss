@@ -269,7 +269,6 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
-* [`csswring`] is a CSS minifier.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
