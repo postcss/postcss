@@ -416,7 +416,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-for`]:                    https://github.com/antyakushev/postcss-for
 [`css-byebye`]:                     https://github.com/AoDev/css-byebye
 [`cssgrace`]:                       https://github.com/cssdream/cssgrace
-[`csswring`]:                       https://github.com/hail2u/node-csswring
 [`csstyle`]:                        https://github.com/geddski/csstyle
 [`webpcss`]:                        https://github.com/lexich/webpcss
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
