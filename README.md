@@ -277,6 +277,8 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Shortcuts
 
+* [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
+  declaration.
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
@@ -384,6 +386,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-spiffing`]:               https://github.com/HashanP/postcss-spiffing
 [`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
 [`postcss-position`]:               https://github.com/seaneking/postcss-position
+[`postcss-clearfix`]:               https://github.com/seaneking/postcss-clearfix
 [`postcss-easings`]:                https://github.com/postcss/postcss-easings
 [`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
 [`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
