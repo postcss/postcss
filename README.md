@@ -189,7 +189,7 @@ on different parts of CSS.
 * [`postcss-custom-media`] supports custom aliases for media queries.
 * [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
-* [`postcss-css-variables`] supports variables for descendant/nested rules and at-rules
+* [`postcss-css-variables`] supports variables for descendant/nested rules, pseudo selectors, and at-rules
 * [`postcss-custom-selectors`] adds custom aliases for selectors.
 * [`postcss-font-variant`] transpiles human-readable `font-variant` to more
   widely supported CSS.
