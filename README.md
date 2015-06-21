@@ -241,6 +241,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
+* [`postcss-color-mix`] mixes two colors together.
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
 * [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, alpha)`
@@ -377,6 +378,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
 [`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
+[`postcss-color-mix`]:              https://github.com/iamstarkov/postcss-color-mix
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
 [`postcss-image-set`]:              https://github.com/alex499/postcss-image-set
 [`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
