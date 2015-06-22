@@ -1,3 +1,6 @@
+## 4.1.12
+* Update Promise polyfill.
+
 ## 4.1.11
 * Fix error message on wrong plugin format.
 
