@@ -408,6 +408,13 @@ describe('Container', () => {
             expect(rule.last.before).to.eql(' ');
         });
 
+        it('appends multiple children', () => {
+            let rule = parse('a { a: 1; b: 2 }').first;
+            rule.append({ prop: 'c', value: '3' }, { prop: 'd', value: '4' });
+            expect(rule.toString()).to.eql('a { a: 1; b: 2; c: 3; d: 4 }');
+            expect(rule.last.before).to.eql(' ');
+        });
+
         it('has declaration shortcut', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             rule.append({ prop: 'c', value: '3' });
@@ -474,6 +481,13 @@ describe('Container', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             rule.prepend({ prop: 'c', value: '3' });
             expect(rule.toString()).to.eql('a { c: 3; a: 1; b: 2 }');
+            expect(rule.first.before).to.eql(' ');
+        });
+
+        it('prepends multiple children', () => {
+            let rule = parse('a { a: 1; b: 2 }').first;
+            rule.prepend({ prop: 'c', value: '3' }, { prop: 'd', value: '4' });
+            expect(rule.toString()).to.eql('a { c: 3; d: 4; a: 1; b: 2 }');
             expect(rule.first.before).to.eql(' ');
         });
 
