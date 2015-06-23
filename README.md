@@ -199,6 +199,7 @@ Or to enable plugins right in CSS by [`postcss-use`]:
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
 * [`postcss-color-hwb`] transforms `hwb()` to widely compatible `rgb()`.
 * [`postcss-color-rebeccapurple`] supports the `rebeccapurple` color.
+* [`postcss-conic-gradient`] supports the `conic-gradient` background.
 * [`postcss-custom-media`] supports custom aliases for media queries.
 * [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
@@ -357,6 +358,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
 [`postcss-vertical-rhythm`]:        https://github.com/markgoodyear/postcss-vertical-rhythm
 [`postcss-color-function`]:         https://github.com/postcss/postcss-color-function
+[`postcss-conic-gradient`]:         https://github.com/jonathantneal/postcss-conic-gradient
 [`postcss-convert-values`]:         https://github.com/ben-eb/postcss-convert-values
 [`postcss-pseudoelements`]:         https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-single-charset`]:         https://github.com/hail2u/postcss-single-charset
