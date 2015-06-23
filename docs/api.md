@@ -1036,19 +1036,15 @@ if ( decl.prop.match(/^-webkit-/) ) {
 }
 ```
 
-### `node.replaceWith(otherNode)`
+### `node.replaceWith(otherNodes...)`
 
-Inserts another node before the current node, and removes the current node.
+Inserts nodes before the current node, and removes the current node.
 
 ```js
 if ( atrule.name == 'mixin' ) {
     atrule.replaceWith(mixinRules[atrule.params]);
 }
 ```
-
-Arguments:
-
-* `otherNode: (Node)`: other node to replace current one.
 
 ### `node.clone(props)`
 
@@ -1412,13 +1408,19 @@ Arguments:
 
 [`String#replace`]: (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter)
 
-### `container.prepend(node)` and `container.append(node)`
+### `container.prepend(nodes...)` and `container.append(nodes...)`
 
-Insert a new node to the start/end of the container.
+Inserts new nodes to the start/end of the container.
 
 ```js
 var decl = postcss.decl({ prop: 'color', value: 'black' });
 rule.append(decl);
+```
+
+```js
+var decl1 = postcss.decl({ prop: 'color', value: 'black' });
+var decl2 = postcss.decl({ prop: 'background-color', value: 'white' });
+rule.prepend(decl1, decl2);
 ```
 
 Arguments:
