@@ -1,3 +1,6 @@
+## 4.1.13
+* Fix input inlined source maps with UTF-8 encoding.
+
 ## 4.1.12
 * Update Promise polyfill.
 
