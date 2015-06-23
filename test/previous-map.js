@@ -63,6 +63,14 @@ describe('PreviousMap', () => {
         expect(parse(css).prevMap.text).to.eql(map);
     });
 
+    it('decodes base64 UTF-8 maps', () => {
+        let b64 = new Buffer(map).toString('base64');
+        let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
+                  'charset=utf-8;base64,' + b64 + ' */';
+
+        expect(parse(css).prevMap.text).to.eql(map);
+    });
+
     it('decodes URI maps', () => {
         let uri = 'data:application/json,' + decodeURI(map);
         let css = `a{}\n/*# sourceMappingURL=${ uri } */`;
