@@ -14,7 +14,7 @@
         "es6-promise": "~2.3.0",
         "source-map":  "~0.4.2",
         "js-base64":   "~2.1.8",
-        "babel":       "5.6.2"
+        "babel":       "5.6.4"
     },
     "devDependencies": {
         "concat-with-sourcemaps": "1.0.2",
@@ -24,9 +24,9 @@
         "gulp-babel":             "5.1.0",
         "gulp-mocha":             "2.1.2",
         "yaspeller":              "2.4.0",
-        "gulp-util":              "3.0.5",
+        "gulp-util":              "3.0.6",
         "gulp-run":               "1.6.8",
-        "fs-extra":               "0.20.0",
+        "fs-extra":               "0.20.1",
         "sinon":                  "1.15.3",
         "mocha":                  "2.2.5",
         "gulp":                   "3.9.0",
