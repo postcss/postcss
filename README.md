@@ -172,6 +172,10 @@ Or to enable plugins right in CSS by [`postcss-use`]:
 
 ```css
 @use autoprefixer(browsers: ['last 2 versions']);
+
+:fullscreen a {
+    display: flex
+}
 ```
 
 [`postcss-plugin-context`]: https://github.com/postcss/postcss-plugin-context
