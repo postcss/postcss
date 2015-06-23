@@ -152,8 +152,10 @@ Read the [PostCSS API] for more details about the JS API.
 
 ### Control
 
-With [`postcss-plugin-context`] you can run different plugins
-on different parts of CSS.
+There is two way to make PostCSS magic more explicit.
+
+Define a plugins contexts and switch between them in different parts of CSS
+by [`postcss-plugin-context`]:
 
 ```css
 .css-example.is-test-for-css4-browsers {
@@ -166,7 +168,14 @@ on different parts of CSS.
 }
 ```
 
+Or to enable plugins right in CSS by [`postcss-use`]:
+
+```css
+@use autoprefixer(browsers: ['last 2 versions']);
+```
+
 [`postcss-plugin-context`]: https://github.com/postcss/postcss-plugin-context
+[`postcss-use`]:            https://github.com/postcss/postcss-use
 
 ### Packs
 
