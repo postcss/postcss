@@ -29,6 +29,12 @@ describe('Root', () => {
             expect(css.toString()).to.eql('em {} a {} b {}');
         });
 
+        it('fixes spaces on multiple inserts before first', () => {
+            let css = parse('a {} b {}');
+            css.prepend({ selector: 'em' }, { selector: 'strong' });
+            expect(css.toString()).to.eql('em {} strong {} a {} b {}');
+        });
+
         it('uses default spaces on only first', () => {
             let css = parse('a {}');
             css.prepend({ selector: 'em' });
@@ -57,6 +63,13 @@ describe('Root', () => {
             let a = parse('a{}a{}');
             let b = parse('b {\n}\n');
             expect(a.append(b).toString()).to.eql('a{}a{}b{}');
+        });
+
+        it('saves compressed style with multiple nodes', () => {
+            let a = parse('a{}a{}');
+            let b = parse('b {\n}\n');
+            let c = parse('c {\n}\n');
+            expect(a.append(b, c).toString()).to.eql('a{}a{}b{}c{}');
         });
 
     });
