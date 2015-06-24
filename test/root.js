@@ -2,24 +2,8 @@ import Result from '../lib/result';
 import parse  from '../lib/parse';
 
 import { expect } from 'chai';
-import   path     from 'path';
-import   fs       from 'fs';
 
 describe('Root', () => {
-
-    describe('toString()', () => {
-
-        fs.readdirSync(path.join(__dirname, 'cases')).forEach( name => {
-            if ( !name.match(/\.css$/) ) return;
-
-            it('stringify ' + name, () => {
-                let file = path.join(__dirname, 'cases', name);
-                let css  = fs.readFileSync(file).toString();
-                expect(parse(css, { from: file }).toString()).to.eql(css);
-            });
-        });
-
-    });
 
     describe('prepend()', () => {
 
