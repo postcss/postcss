@@ -261,7 +261,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, alpha)`
   to `#rgb` and `rgba()`.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
-* [`postcss-color-pantone`] transforms pantone color to rgb.
+* [`postcss-color-pantone`] transforms pantone color to RGB.
 * [`postcss-color-scale`] adds a color scale `cs()` function.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 
