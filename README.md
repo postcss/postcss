@@ -261,6 +261,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, alpha)`
   to `#rgb` and `rgba()`.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
+* [`postcss-color-pantone`] transforms pantone color to rgb.
 * [`postcss-color-scale`] adds a color scale `cs()` function.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 
@@ -362,6 +363,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-convert-values`]:         https://github.com/ben-eb/postcss-convert-values
 [`postcss-pseudoelements`]:         https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-single-charset`]:         https://github.com/hail2u/postcss-single-charset
+[`postcss-color-pantone`]:          https://github.com/longdog/postcss-color-pantone
 [`postcss-normalize-url`]:          https://github.com/ben-eb/postcss-normalize-url
 [`postcss-color-palette`]:          https://github.com/zaim/postcss-color-palette
 [`postcss-discard-empty`]:          https://github.com/ben-eb/postcss-discard-empty
