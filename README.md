@@ -250,6 +250,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
   based on `font-size` and `line-height`.
 * [`csstyle`] adds components workflow to your styles.
+* [`postcss-media-variables`] adds support for `var()` and `calc()` in `@media` rules
 
 ### Colors
 
@@ -446,6 +447,7 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`lost`]:                           https://github.com/corysimmons/lost
+[`postcss-media-variables`]:        https://github.com/WolfgangKluge/postcss-media-variables
 
 ## How to Develop PostCSS Plugin
 
