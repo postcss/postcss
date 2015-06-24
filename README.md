@@ -339,6 +339,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-spiffing`] lets you use British English in your CSS.
+* [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:  https://github.com/jonathantneal/postcss-pseudo-class-any-link
@@ -411,6 +412,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 [`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
 [`postcss-hexrgba`]:                https://github.com/seaneking/postcss-hexrgba
+[`postcss-pointer`]:                https://github.com/markgoodyear/postcss-pointer
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
 [`postcss-nested`]:                 https://github.com/postcss/postcss-nested
