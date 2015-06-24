@@ -2,7 +2,6 @@ import CssSyntaxError from '../lib/css-syntax-error';
 import Declaration    from '../lib/declaration';
 import AtRule         from '../lib/at-rule';
 import parse          from '../lib/parse';
-import Node           from '../lib/node';
 import Root           from '../lib/root';
 import Rule           from '../lib/rule';
 
@@ -416,27 +415,6 @@ describe('Node', () => {
             expect(css.first.between).to.exist;
             expect(css.first.first.first.between).to.exist;
             expect(css.first.after).to.not.exist;
-        });
-
-    });
-
-    describe('stringifyRaw()', () => {
-        it('creates trimmed/raw property', () => {
-            let b = new Node({
-                one: 'trim',
-                _one: { value: 'trim', raw: 'raw' }
-            });
-            expect(b.stringifyRaw('one')).to.eql('raw');
-
-            b.one = 'trim1';
-            expect(b.stringifyRaw('one')).to.eql('trim1');
-        });
-
-        it('works without magic', () => {
-            let b = new Node();
-            b.one = '1';
-            expect(b.one).to.eql('1');
-            expect(b.stringifyRaw('one')).to.eql('1');
         });
 
     });
