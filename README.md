@@ -240,6 +240,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
 * [`postcss-map`] enables configuration maps.
+* [`postcss-media-variables`] adds support for `var()` and `calc()` in `@media` rules
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
 * [`postcss-nested`] unwraps nested rules.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
@@ -250,7 +251,6 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
   based on `font-size` and `line-height`.
 * [`csstyle`] adds components workflow to your styles.
-* [`postcss-media-variables`] adds support for `var()` and `calc()` in `@media` rules
 
 ### Colors
 
@@ -358,6 +358,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-quantity-queries`]:       https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-generate-preset`]:        https://github.com/simonsmith/postcss-generate-preset
 [`postcss-color-hex-alpha`]:        https://github.com/postcss/postcss-color-hex-alpha
+[`postcss-media-variables`]:        https://github.com/WolfgangKluge/postcss-media-variables
 [`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
 [`postcss-vertical-rhythm`]:        https://github.com/markgoodyear/postcss-vertical-rhythm
 [`postcss-color-function`]:         https://github.com/postcss/postcss-color-function
@@ -447,7 +448,6 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`lost`]:                           https://github.com/corysimmons/lost
-[`postcss-media-variables`]:        https://github.com/WolfgangKluge/postcss-media-variables
 
 ## How to Develop PostCSS Plugin
 
