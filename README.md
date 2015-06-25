@@ -140,13 +140,13 @@ Read the [PostCSS API] for more details about the JS API.
 
 [`poststylus`]: https://github.com/seaneking/poststylus
 [PostCSS API]:  https://github.com/postcss/postcss/blob/master/docs/api.md
-[CLI tool]:     https://github.com/code42day/postcss-cli
 [Broccoli]:     https://github.com/jeffjewiss/broccoli-postcss
+[CLI tool]:     https://github.com/code42day/postcss-cli
 [webpack]:      https://github.com/postcss/postcss-loader
-[ENB]:          https://github.com/theprotein/enb-postcss
 [Brunch]:       https://github.com/iamvdo/postcss-brunch
 [Grunt]:        https://github.com/nDmitry/grunt-postcss
 [Gulp]:         https://github.com/postcss/gulp-postcss
+[ENB]:          https://github.com/theprotein/enb-postcss
 
 ## Plugins
 
@@ -183,10 +183,10 @@ Or to enable plugins right in CSS by [`postcss-use`]:
 
 ### Packs
 
-* [`cssnano`] contains plugins that optimize CSS size for use in production.
-* [`cssnext`] contains plugins that allow you to use future CSS features today.
 * [`atcss`] contains plugins that transform your CSS according
   to special annotation comments.
+* [`cssnano`] contains plugins that optimize CSS size for use in production.
+* [`cssnext`] contains plugins that allow you to use future CSS features today.
 
 [`cssnano`]:  https://github.com/ben-eb/cssnano
 [`cssnext`]:  http://cssnext.io/
@@ -200,10 +200,10 @@ Or to enable plugins right in CSS by [`postcss-use`]:
 * [`postcss-color-hwb`] transforms `hwb()` to widely compatible `rgb()`.
 * [`postcss-color-rebeccapurple`] supports the `rebeccapurple` color.
 * [`postcss-conic-gradient`] supports the `conic-gradient` background.
+* [`postcss-css-variables`] supports variables for descendant/nested rules, pseudo selectors, and at-rules
 * [`postcss-custom-media`] supports custom aliases for media queries.
 * [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
-* [`postcss-css-variables`] supports variables for descendant/nested rules, pseudo selectors, and at-rules
 * [`postcss-custom-selectors`] adds custom aliases for selectors.
 * [`postcss-font-variant`] transpiles human-readable `font-variant` to more
   widely supported CSS.
@@ -234,12 +234,12 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 ### Language Extensions
 
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
+* [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
-* [`postcss-conditionals`] adds `@if` statements.
+* [`postcss-map`] enables configuration maps.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
-* [`postcss-map`] enables configuration maps.
 * [`postcss-media-variables`] adds support for `var()` and `calc()` in `@media` rules
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
 * [`postcss-nested`] unwraps nested rules.
@@ -256,11 +256,11 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
-* [`postcss-color-mix`] mixes two colors together.
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
 * [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, alpha)`
   to `#rgb` and `rgba()`.
+* [`postcss-color-mix`] mixes two colors together.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-color-pantone`] transforms pantone color to RGB.
 * [`postcss-color-scale`] adds a color scale `cs()` function.
@@ -339,25 +339,25 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
-* [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
+* [`postcss-spiffing`] lets you use British English in your CSS.
 
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:  https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-canadian-stylesheets`]:   https://github.com/chancancode/postcss-canadian-stylesheets
-[`postcss-color-rgba-fallback`]:    https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-color-rebeccapurple`]:    https://github.com/postcss/postcss-color-rebeccapurple
+[`postcss-color-rgba-fallback`]:    https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-discard-duplicates`]:     https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-minify-font-weight`]:     https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:     https://github.com/jonathantneal/postcss-pseudo-class-enter
-[`postcss-discard-font-face`]:      https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-custom-properties`]:      https://github.com/postcss/postcss-custom-properties
+[`postcss-discard-font-face`]:      https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-custom-selectors`]:       https://github.com/postcss/postcss-custom-selectors
 [`postcss-discard-comments`]:       https://github.com/ben-eb/postcss-discard-comments
 [`postcss-minify-selectors`]:       https://github.com/ben-eb/postcss-minify-selectors
 [`postcss-quantity-queries`]:       https://github.com/pascalduez/postcss-quantity-queries
-[`postcss-generate-preset`]:        https://github.com/simonsmith/postcss-generate-preset
 [`postcss-color-hex-alpha`]:        https://github.com/postcss/postcss-color-hex-alpha
+[`postcss-generate-preset`]:        https://github.com/simonsmith/postcss-generate-preset
 [`postcss-media-variables`]:        https://github.com/WolfgangKluge/postcss-media-variables
 [`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
 [`postcss-vertical-rhythm`]:        https://github.com/markgoodyear/postcss-vertical-rhythm
@@ -366,87 +366,87 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-convert-values`]:         https://github.com/ben-eb/postcss-convert-values
 [`postcss-pseudoelements`]:         https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-single-charset`]:         https://github.com/hail2u/postcss-single-charset
-[`postcss-color-pantone`]:          https://github.com/longdog/postcss-color-pantone
-[`postcss-normalize-url`]:          https://github.com/ben-eb/postcss-normalize-url
 [`postcss-color-palette`]:          https://github.com/zaim/postcss-color-palette
+[`postcss-color-pantone`]:          https://github.com/longdog/postcss-color-pantone
+[`postcss-css-variables`]:          https://github.com/MadLittleMods/postcss-css-variables
 [`postcss-discard-empty`]:          https://github.com/ben-eb/postcss-discard-empty
+[`postcss-gradientfixer`]:          https://github.com/hallvors/postcss-gradientfixer
+[`postcss-modular-scale`]:          https://github.com/kristoferjoseph/postcss-modular-scale
+[`postcss-normalize-url`]:          https://github.com/ben-eb/postcss-normalize-url
 [`postcss-reduce-idents`]:          https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:          https://github.com/davidtheclark/postcss-simple-extend
-[`postcss-css-variables`]:          https://github.com/MadLittleMods/postcss-css-variables
-[`postcss-modular-scale`]:          https://github.com/kristoferjoseph/postcss-modular-scale
-[`postcss-gradientfixer`]:          https://github.com/hallvors/postcss-gradientfixer
+[`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
+[`postcss-class-prefix`]:           https://github.com/thompsongl/postcss-class-prefix
 [`postcss-conditionals`]:           https://github.com/andyjansson/postcss-conditionals
-[`postcss-selector-not`]:           https://github.com/postcss/postcss-selector-not
+[`postcss-custom-media`]:           https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:           https://github.com/antyakushev/postcss-default-unit
+[`postcss-flexboxfixer`]:           https://github.com/hallvors/postcss-flexboxfixer
+[`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
+[`postcss-log-warnings`]:           https://github.com/davidtheclark/postcss-log-warnings
 [`postcss-media-minmax`]:           https://github.com/postcss/postcss-media-minmax
 [`postcss-merge-idents`]:           https://github.com/ben-eb/postcss-merge-idents
-[`postcss-custom-media`]:           https://github.com/postcss/postcss-custom-media
-[`postcss-log-warnings`]:           https://github.com/davidtheclark/postcss-log-warnings
-[`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
-[`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
-[`postcss-class-prefix`]:           https://github.com/thompsongl/postcss-class-prefix
-[`postcss-flexboxfixer`]:           https://github.com/hallvors/postcss-flexboxfixer
-[`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
+[`postcss-selector-not`]:           https://github.com/postcss/postcss-selector-not
+[`postcss-color-alpha`]:            https://github.com/avanes/postcss-color-alpha
 [`postcss-color-scale`]:            https://github.com/kristoferjoseph/postcss-color-scale
-[`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
-[`postcss-merge-rules`]:            https://github.com/ben-eb/postcss-merge-rules
-[`postcss-simple-vars`]:            https://github.com/postcss/postcss-simple-vars
 [`postcss-data-packer`]:            https://github.com/Ser-Gen/postcss-data-packer
 [`postcss-font-family`]:            https://github.com/ben-eb/postcss-font-family
-[`postcss-color-alpha`]:            https://github.com/avanes/postcss-color-alpha
+[`postcss-merge-rules`]:            https://github.com/ben-eb/postcss-merge-rules
+[`postcss-simple-vars`]:            https://github.com/postcss/postcss-simple-vars
+[`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
+[`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
 [`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
-[`postcss-color-mix`]:              https://github.com/iamstarkov/postcss-color-mix
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
+[`postcss-color-mix`]:              https://github.com/iamstarkov/postcss-color-mix
 [`postcss-image-set`]:              https://github.com/alex499/postcss-image-set
-[`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
-[`postcss-colormin`]:               https://github.com/ben-eb/colormin
-[`pleeease-filters`]:               https://github.com/iamvdo/pleeease-filters
-[`postcss-messages`]:               https://github.com/postcss/postcss-messages
-[`postcss-spiffing`]:               https://github.com/HashanP/postcss-spiffing
-[`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
-[`postcss-position`]:               https://github.com/seaneking/postcss-position
 [`postcss-clearfix`]:               https://github.com/seaneking/postcss-clearfix
+[`postcss-colormin`]:               https://github.com/ben-eb/colormin
+[`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
+[`postcss-messages`]:               https://github.com/postcss/postcss-messages
+[`postcss-position`]:               https://github.com/seaneking/postcss-position
+[`postcss-spiffing`]:               https://github.com/HashanP/postcss-spiffing
+[`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
+[`pleeease-filters`]:               https://github.com/iamvdo/pleeease-filters
 [`postcss-easings`]:                https://github.com/postcss/postcss-easings
-[`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
-[`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
-[`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
 [`postcss-hexrgba`]:                https://github.com/seaneking/postcss-hexrgba
+[`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
 [`postcss-pointer`]:                https://github.com/markgoodyear/postcss-pointer
+[`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
+[`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
+[`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
+[`postcss-mixins`]:                 https://github.com/postcss/postcss-mixins
 [`postcss-nested`]:                 https://github.com/postcss/postcss-nested
 [`postcss-zindex`]:                 https://github.com/ben-eb/postcss-zindex
-[`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
-[`postcss-mixins`]:                 https://github.com/postcss/postcss-mixins
-[`mq4-hover-shim`]:                 https://github.com/twbs/mq4-hover-shim
 [`list-selectors`]:                 https://github.com/davidtheclark/list-selectors
-[`css2modernizr`]:                  https://github.com/vovanbo/css2modernizr
+[`mq4-hover-shim`]:                 https://github.com/twbs/mq4-hover-shim
 [`postcss-focus`]:                  https://github.com/postcss/postcss-focus
+[`css2modernizr`]:                  https://github.com/vovanbo/css2modernizr
 [`postcss-at2x`]:                   https://github.com/simonsmith/postcss-at2x
-[`postcss-neat`]:                   https://github.com/jo-asakura/postcss-neat
-[`autoprefixer`]:                   https://github.com/postcss/autoprefixer
-[`css-mqpacker`]:                   https://github.com/hail2u/node-css-mqpacker
+[`postcss-calc`]:                   https://github.com/postcss/postcss-calc
 [`postcss-each`]:                   https://github.com/outpunk/postcss-each
 [`postcss-epub`]:                   https://github.com/Rycochet/postcss-epub
-[`postcss-calc`]:                   https://github.com/postcss/postcss-calc
 [`postcss-grid`]:                   https://github.com/andyjansson/postcss-grid
-[`postcss-size`]:                   https://github.com/postcss/postcss-size
 [`postcss-host`]:                   https://github.com/vitkarpov/postcss-host
+[`postcss-neat`]:                   https://github.com/jo-asakura/postcss-neat
+[`postcss-size`]:                   https://github.com/postcss/postcss-size
 [`postcss-vmin`]:                   https://github.com/iamvdo/postcss-vmin
+[`autoprefixer`]:                   https://github.com/postcss/autoprefixer
+[`css-mqpacker`]:                   https://github.com/hail2u/node-css-mqpacker
 [`postcss-bem`]:                    https://github.com/ileri/postcss-bem
-[`postcss-url`]:                    https://github.com/postcss/postcss-url
-[`postcss-map`]:                    https://github.com/pascalduez/postcss-map
 [`postcss-for`]:                    https://github.com/antyakushev/postcss-for
+[`postcss-map`]:                    https://github.com/pascalduez/postcss-map
+[`postcss-url`]:                    https://github.com/postcss/postcss-url
 [`css-byebye`]:                     https://github.com/AoDev/css-byebye
 [`cssgrace`]:                       https://github.com/cssdream/cssgrace
 [`csstyle`]:                        https://github.com/geddski/csstyle
 [`webpcss`]:                        https://github.com/lexich/webpcss
-[`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
-[`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
+[`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
+[`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
 
 ## How to Develop PostCSS Plugin
