@@ -134,7 +134,7 @@ postcss([ require('cssnext')(), require('cssnano')() ])
     });
 ```
 
-You can also use PostCSS plugins with the Stylus preprocessor by using [`poststylus`]
+You can also use PostCSS plugins with the Stylus by using [`poststylus`].
 
 Read the [PostCSS API] for more details about the JS API.
 
@@ -200,13 +200,14 @@ Or to enable plugins right in CSS by [`postcss-use`]:
 * [`postcss-color-hwb`] transforms `hwb()` to widely compatible `rgb()`.
 * [`postcss-color-rebeccapurple`] supports the `rebeccapurple` color.
 * [`postcss-conic-gradient`] supports the `conic-gradient` background.
-* [`postcss-css-variables`] supports variables for descendant/nested rules, pseudo selectors, and at-rules
+* [`postcss-css-variables`] supports variables for nested rules,
+  selectors, and at-rules
 * [`postcss-custom-media`] supports custom aliases for media queries.
 * [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
 * [`postcss-custom-selectors`] adds custom aliases for selectors.
-* [`postcss-font-variant`] transpiles human-readable `font-variant` to more
-  widely supported CSS.
+* [`postcss-font-variant`] transpiles human-readable `font-variant`
+  to more widely supported CSS.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
@@ -220,7 +221,8 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
-* [`postcss-image-set`] adds `background-image` with first image for `image-set()`
+* [`postcss-image-set`] adds `background-image` with first image
+  for `image-set()`.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
@@ -240,7 +242,8 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
-* [`postcss-media-variables`] adds support for `var()` and `calc()` in `@media` rules
+* [`postcss-media-variables`] adds support for `var()` and `calc()`
+  in `@media` rules
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
 * [`postcss-nested`] unwraps nested rules.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
