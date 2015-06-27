@@ -1,4 +1,4 @@
-import stringifier from '../lib/stringifier';
+import Stringifier from '../lib/stringifier';
 import Node        from '../lib/node';
 import parse       from '../lib/parse';
 
@@ -24,23 +24,27 @@ describe('stringifier', () => {
     });
 
     describe('.raw()', () => {
+        let str;
+        before( () => {
+            str = new Stringifier();
+        });
 
         it('creates trimmed/raw property', () => {
             let b = new Node({
                 one: 'trim',
                 _one: { value: 'trim', raw: 'raw' }
             });
-            expect(stringifier.raw(b, 'one')).to.eql('raw');
+            expect(str.raw(b, 'one')).to.eql('raw');
 
             b.one = 'trim1';
-            expect(stringifier.raw(b, 'one')).to.eql('trim1');
+            expect(str.raw(b, 'one')).to.eql('trim1');
         });
 
         it('works without magic', () => {
             let b = new Node();
             b.one = '1';
             expect(b.one).to.eql('1');
-            expect(stringifier.raw(b, 'one')).to.eql('1');
+            expect(str.raw(b, 'one')).to.eql('1');
         });
     });
 
