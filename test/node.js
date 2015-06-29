@@ -441,4 +441,27 @@ describe('Node', () => {
 
     });
 
+    describe.only('positionAt()', () => {
+        it('returns correct position when node starts mid-line', () => {
+            let css = parse('a { one: 1; }');
+            let one = css.first.first;
+            expect(one.positionAt(4).line).to.equal(1);
+            expect(one.positionAt(4).column).to.equal(8);
+        });
+
+        it('returns correct position when node.before contains newline', () => {
+            let css = parse('a {\n  one: 1;\n}');
+            let one = css.first.first;
+            expect(one.positionAt(6).line).to.equal(2);
+            expect(one.positionAt(6).column).to.equal(6);
+        });
+
+        it('returns correct position when node contains newlines', () => {
+            let css = parse('a {\n\tmargin: 1px,\n\t\t2px,\n\t\t3px;\n}');
+            let one = css.first.first;
+            expect(one.positionAt(25).line).to.equal(4);
+            expect(one.positionAt(25).column).to.equal(4);
+        });
+    });
+
 });
