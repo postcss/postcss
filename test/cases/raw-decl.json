@@ -1,8 +1,26 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": true,
+                "after": " "
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": " ",
+                        "between": ": ",
+                        "value": {
+                            "value": "a b",
+                            "raw": "a/* ; */ b"
+                        }
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,13 +38,7 @@
                             "column": 22
                         }
                     },
-                    "before": " ",
                     "prop": "color",
-                    "between": ": ",
-                    "_value": {
-                        "value": "a b",
-                        "raw": "a/* ; */ b"
-                    },
                     "value": "a b"
                 }
             ],
@@ -47,11 +59,7 @@
                     "column": 24
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": true,
-            "after": " "
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -62,7 +70,5 @@
             "file": "/raw-decl.css",
             "from": "/raw-decl.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

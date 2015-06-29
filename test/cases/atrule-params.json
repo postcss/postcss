@@ -1,6 +1,16 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " /* a */ ",
+                "afterName": "/* near */ /* filter */ ",
+                "after": ""
+            },
             "type": "atrule",
             "name": "-moz-document",
             "source": {
@@ -19,12 +29,8 @@
                     "column": 69
                 }
             },
-            "before": "",
-            "between": " /* a */ ",
-            "afterName": "/* near */ /* filter */ ",
             "params": "url(\"example.com/{\")",
-            "nodes": [],
-            "after": ""
+            "nodes": []
         }
     ],
     "type": "root",
@@ -35,7 +41,5 @@
             "file": "/atrule-params.css",
             "from": "/atrule-params.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

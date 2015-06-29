@@ -1,6 +1,17 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "afterName": " ",
+                "semicolon": false,
+                "after": "\n"
+            },
             "type": "atrule",
             "name": "page",
             "source": {
@@ -19,12 +30,13 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "afterName": " ",
             "params": ":left",
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -42,16 +54,19 @@
                             "column": 21
                         }
                     },
-                    "before": "\n    ",
                     "prop": "background",
-                    "between": ": ",
                     "value": "black"
                 }
-            ],
-            "semicolon": false,
-            "after": "\n"
+            ]
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "afterName": "",
+                "semicolon": false,
+                "after": "\n"
+            },
             "type": "atrule",
             "name": "media",
             "source": {
@@ -70,12 +85,13 @@
                     "column": 1
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "afterName": "",
             "params": "(min-width: 0)",
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -93,16 +109,19 @@
                             "column": 21
                         }
                     },
-                    "before": "\n    ",
                     "prop": "background",
-                    "between": ": ",
                     "value": "white"
                 }
-            ],
-            "semicolon": false,
-            "after": "\n"
+            ]
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "afterName": "",
+                "semicolon": true,
+                "after": "\n"
+            },
             "type": "atrule",
             "name": "font-face",
             "source": {
@@ -121,12 +140,13 @@
                     "column": 1
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "afterName": "",
             "params": "",
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -144,16 +164,19 @@
                             "column": 28
                         }
                     },
-                    "before": "\n    ",
                     "prop": "family-name",
-                    "between": ": ",
                     "value": "\"A;' /**/\""
                 }
-            ],
-            "semicolon": true,
-            "after": "\n"
+            ]
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "afterName": "",
+                "semicolon": true,
+                "after": "\n"
+            },
             "type": "atrule",
             "name": "viewport",
             "source": {
@@ -172,12 +195,13 @@
                     "column": 1
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "afterName": "",
             "params": "",
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -195,16 +219,19 @@
                             "column": 17
                         }
                     },
-                    "before": "\n    ",
                     "prop": "width",
-                    "between": ": ",
                     "value": "110px"
                 }
-            ],
-            "semicolon": true,
-            "after": "\n"
+            ]
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "afterName": "",
+                "semicolon": true,
+                "after": "\n"
+            },
             "type": "atrule",
             "name": "-ms-viewport",
             "source": {
@@ -223,12 +250,13 @@
                     "column": 1
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "afterName": "",
             "params": "",
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -246,14 +274,10 @@
                             "column": 17
                         }
                     },
-                    "before": "\n    ",
                     "prop": "width",
-                    "between": ": ",
                     "value": "100px"
                 }
-            ],
-            "semicolon": true,
-            "after": "\n"
+            ]
         }
     ],
     "type": "root",
@@ -264,7 +288,5 @@
             "file": "/atrule-decls.css",
             "from": "/atrule-decls.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }
