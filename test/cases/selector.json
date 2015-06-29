@@ -1,6 +1,19 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "\n",
+                "between": " ",
+                "selector": {
+                    "value": "a b",
+                    "raw": "a/* { } */ b"
+                },
+                "after": ""
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -19,14 +32,7 @@
                     "column": 15
                 }
             },
-            "before": "\n",
-            "between": " ",
-            "_selector": {
-                "value": "a b",
-                "raw": "a/* { } */ b"
-            },
-            "selector": "a b",
-            "after": ""
+            "selector": "a b"
         }
     ],
     "type": "root",
@@ -37,7 +43,5 @@
             "file": "/selector.css",
             "from": "/selector.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

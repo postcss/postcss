@@ -52,8 +52,8 @@ describe('Root', () => {
             css.insertAfter(0, { selector: '.a' });
             css.insertAfter(2, { selector: '.b' });
 
-            expect(css.nodes[1].before).to.not.exist;
-            expect(css.nodes[3].before).to.eql(' ');
+            expect(css.nodes[1].raw.before).to.not.exist;
+            expect(css.nodes[3].raw.before).to.eql(' ');
             expect(css.toString()).to.eql('a{} .a{} b{} .b{}');
         });
 

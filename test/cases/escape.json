@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": true,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,12 +34,14 @@
                             "column": 30
                         }
                     },
-                    "before": "\n    ",
                     "prop": "background",
-                    "between": ": ",
                     "value": "url(\"a).png\")"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -43,12 +59,14 @@
                             "column": 25
                         }
                     },
-                    "before": "\n    ",
                     "prop": "background",
-                    "between": ": ",
                     "value": "url(a;a)"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -66,9 +84,7 @@
                             "column": 20
                         }
                     },
-                    "before": "\n    ",
                     "prop": "background",
-                    "between": ": ",
                     "value": "\\;a"
                 }
             ],
@@ -89,13 +105,14 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": true,
-            "after": "\n"
+            "selector": "a"
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "after": " "
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -114,12 +131,18 @@
                     "column": 19
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "selector": ":not([foo=\")\"])",
-            "after": " "
+            "selector": ":not([foo=\")\"])"
         },
         {
+            "raw": {
+                "before": "\n",
+                "between": " ",
+                "selector": {
+                    "value": ":not(div)",
+                    "raw": ":not(div/*)*/)"
+                },
+                "after": " "
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -138,16 +161,14 @@
                     "column": 18
                 }
             },
-            "before": "\n",
-            "between": " ",
-            "_selector": {
-                "value": ":not(div)",
-                "raw": ":not(div/*)*/)"
-            },
-            "selector": ":not(div)",
-            "after": " "
+            "selector": ":not(div)"
         },
         {
+            "raw": {
+                "before": "\n",
+                "between": " ",
+                "after": " "
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -166,12 +187,14 @@
                     "column": 37
                 }
             },
-            "before": "\n",
-            "between": " ",
-            "selector": ":not(:nth-child(2n of [foo=\")\"]))",
-            "after": " "
+            "selector": ":not(:nth-child(2n of [foo=\")\"]))"
         },
         {
+            "raw": {
+                "before": "\n",
+                "between": " ",
+                "after": " "
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -190,12 +213,14 @@
                     "column": 12
                 }
             },
-            "before": "\n",
-            "between": " ",
-            "selector": "[foo=\\\"]",
-            "after": " "
+            "selector": "[foo=\\\"]"
         },
         {
+            "raw": {
+                "before": "\n",
+                "between": " ",
+                "after": " "
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -214,12 +239,14 @@
                     "column": 12
                 }
             },
-            "before": "\n",
-            "between": " ",
-            "selector": "[foo=\\{]",
-            "after": " "
+            "selector": "[foo=\\{]"
         },
         {
+            "raw": {
+                "before": "\n",
+                "between": " ",
+                "after": " "
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -238,12 +265,14 @@
                     "column": 12
                 }
             },
-            "before": "\n",
-            "between": " ",
-            "selector": "[foo=\\(]",
-            "after": " "
+            "selector": "[foo=\\(]"
         },
         {
+            "raw": {
+                "before": "\n",
+                "between": " ",
+                "after": " "
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -262,12 +291,14 @@
                     "column": 30
                 }
             },
-            "before": "\n",
-            "between": " ",
-            "selector": "[foo=yes\\:\\(it\\'s\\ work\\)]",
-            "after": " "
+            "selector": "[foo=yes\\:\\(it\\'s\\ work\\)]"
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "after": " "
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -286,14 +317,21 @@
                     "column": 10
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "selector": "\\@noat",
-            "after": " "
+            "selector": "\\@noat"
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": "",
+                "semicolon": true,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -311,9 +349,7 @@
                             "column": 14
                         }
                     },
-                    "before": "\n    ",
                     "prop": "color",
-                    "between": ": ",
                     "value": "\\\\"
                 }
             ],
@@ -334,11 +370,7 @@
                     "column": 1
                 }
             },
-            "before": "\n\n",
-            "between": "",
-            "selector": "h1\\\\",
-            "semicolon": true,
-            "after": "\n"
+            "selector": "h1\\\\"
         }
     ],
     "type": "root",
@@ -349,7 +381,5 @@
             "file": "/escape.css",
             "from": "/escape.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }
