@@ -1,6 +1,16 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": "",
+                "afterName": "",
+                "after": " "
+            },
             "type": "atrule",
             "name": "page",
             "source": {
@@ -19,12 +29,8 @@
                     "column": 8
                 }
             },
-            "before": "",
-            "between": "",
-            "afterName": "",
             "params": "",
-            "nodes": [],
-            "after": " "
+            "nodes": []
         }
     ],
     "type": "root",
@@ -35,7 +41,5 @@
             "file": "/atrule-no-params.css",
             "from": "/atrule-no-params.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

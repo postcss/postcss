@@ -1,6 +1,15 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "\n",
+                "between": "",
+                "afterName": " "
+            },
             "type": "atrule",
             "name": "charset",
             "source": {
@@ -19,9 +28,6 @@
                     "column": 16
                 }
             },
-            "before": "\n",
-            "between": "",
-            "afterName": " ",
             "params": "\"UTF-8\""
         }
     ],
@@ -33,7 +39,5 @@
             "file": "/atrule-no-semicolon.css",
             "from": "/atrule-no-semicolon.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n\n"
+    }
 }

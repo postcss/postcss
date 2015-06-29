@@ -1,6 +1,15 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": "",
+                "afterName": ""
+            },
             "type": "atrule",
             "name": "import",
             "source": {
@@ -19,9 +28,6 @@
                     "column": 17
                 }
             },
-            "before": "",
-            "between": "",
-            "afterName": "",
             "params": "\"test.css\""
         }
     ],
@@ -33,7 +39,5 @@
             "file": "/atrule-no-space.css",
             "from": "/atrule-no-space.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

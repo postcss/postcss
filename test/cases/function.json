@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": false,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,9 +34,7 @@
                             "column": 105
                         }
                     },
-                    "before": "\n    ",
                     "prop": "background-image",
-                    "between": ": ",
                     "value": "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"
                 }
             ],
@@ -43,11 +55,7 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": false,
-            "after": "\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -58,7 +66,5 @@
             "file": "/function.css",
             "from": "/function.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

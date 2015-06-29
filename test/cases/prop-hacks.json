@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": true,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    *",
+                        "between": " : "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,12 +34,14 @@
                             "column": 19
                         }
                     },
-                    "before": "\n    *",
                     "prop": "color",
-                    "between": " : ",
                     "value": "black"
                 },
                 {
+                    "raw": {
+                        "before": "\n    _",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -43,12 +59,14 @@
                             "column": 23
                         }
                     },
-                    "before": "\n    _",
                     "prop": "background",
-                    "between": ": ",
                     "value": "white"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": "/**/: "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -66,9 +84,7 @@
                             "column": 23
                         }
                     },
-                    "before": "\n    ",
                     "prop": "font-size",
-                    "between": "/**/: ",
                     "value": "big"
                 }
             ],
@@ -89,11 +105,7 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": true,
-            "after": "\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -104,7 +116,5 @@
             "file": "/prop-hacks.css",
             "from": "/prop-hacks.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

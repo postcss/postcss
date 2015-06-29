@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": false,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n\t",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,9 +34,7 @@
                             "column": 13
                         }
                     },
-                    "before": "\n\t",
                     "prop": "color",
-                    "between": ": ",
                     "value": "black"
                 }
             ],
@@ -43,11 +55,7 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": false,
-            "after": "\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -58,7 +66,5 @@
             "file": "/tab.css",
             "from": "/tab.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }
