@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": true,
+                "after": "\n    ; ;\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": ";;\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,9 +34,7 @@
                             "column": 17
                         }
                     },
-                    "before": ";;\n    ",
                     "prop": "color",
-                    "between": ": ",
                     "value": "black"
                 }
             ],
@@ -43,11 +55,7 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": true,
-            "after": "\n    ; ;\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -58,7 +66,5 @@
             "file": "/semicolons.css",
             "from": "/semicolons.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

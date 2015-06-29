@@ -20,12 +20,14 @@ describe('postcss.parse()', () => {
 
         it('parses UTF-8 BOM', () => {
             let css = parse('\uFEFF@host { a {\f} }');
-            expect(css.first.before).to.eql('');
+            expect(css.first.raw.before).to.eql('');
         });
 
         it('parses empty file', () => {
             expect(parse('', { from: 'a.css' })).to.eql(new Root({
-                after: '',
+                raw: {
+                    after: ''
+                },
                 source: {
                     input: new Input('', { from: 'a.css' })
                 }
@@ -34,7 +36,9 @@ describe('postcss.parse()', () => {
 
         it('parses spaces', () => {
             expect(parse(' \n', { from: 'a.css' })).to.eql(new Root({
-                after: ' \n',
+                raw: {
+                    after: ' \n'
+                },
                 source: {
                     input: new Input(' \n', { from: 'a.css' })
                 }
@@ -118,7 +122,7 @@ describe('postcss.parse()', () => {
         it('fixes unnecessary block close in safe mode', () => {
             let root = parse('a {\n} }', { safe: true });
             expect(root.first.toString()).to.eql('a {\n}');
-            expect(root.after).to.eql(' }');
+            expect(root.raw.after).to.eql(' }');
         });
 
         it('throws on unclosed comment', () => {
@@ -146,7 +150,7 @@ describe('postcss.parse()', () => {
         });
 
         it('fixes unclosed bracket', () => {
-            expect(parse(':not(one() { }', { safe: true }).after)
+            expect(parse(':not(one() { }', { safe: true }).raw.after)
                 .to.eql(':not(one() { }');
         });
 
@@ -158,15 +162,15 @@ describe('postcss.parse()', () => {
         it('fixes property without value in safe mode', () => {
             let root = parse('a { color: white; one }', { safe: true });
             expect(root.first.nodes.length).to.eql(1);
-            expect(root.first.semicolon).to.be.true;
-            expect(root.first.after).to.eql(' one ');
+            expect(root.first.raw.semicolon).to.be.true;
+            expect(root.first.raw.after).to.eql(' one ');
         });
 
         it('fixes 2 properties in safe mode', () => {
             let root = parse('a { one color: white; one }', { safe: true });
             expect(root.first.nodes.length).to.eql(1);
             expect(root.first.first.prop).to.eql('color');
-            expect(root.first.first.before).to.eql(' one ');
+            expect(root.first.first.raw.before).to.eql(' one ');
         });
 
         it('throws on nameless at-rule', () => {

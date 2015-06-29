@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": false,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,12 +34,14 @@
                             "column": 16
                         }
                     },
-                    "before": "\n    ",
                     "prop": "width",
-                    "between": ": ",
                     "value": "10px"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -43,12 +59,17 @@
                             "column": 21
                         }
                     },
-                    "before": "\n    ",
                     "prop": "margin",
-                    "between": ": ",
                     "value": "0 @width"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": " ",
+                        "afterName": " ",
+                        "semicolon": true,
+                        "after": "\n    "
+                    },
                     "type": "atrule",
                     "name": "mixin",
                     "source": {
@@ -67,12 +88,13 @@
                             "column": 5
                         }
                     },
-                    "before": "\n    ",
-                    "between": " ",
-                    "afterName": " ",
                     "params": "mobile",
                     "nodes": [
                         {
+                            "raw": {
+                                "before": "\n        ",
+                                "between": ": "
+                            },
                             "type": "decl",
                             "source": {
                                 "start": {
@@ -90,14 +112,10 @@
                                     "column": 22
                                 }
                             },
-                            "before": "\n        ",
                             "prop": "height",
-                            "between": ": ",
                             "value": "100px"
                         }
-                    ],
-                    "semicolon": true,
-                    "after": "\n    "
+                    ]
                 }
             ],
             "type": "rule",
@@ -117,11 +135,7 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": false,
-            "after": "\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -132,7 +146,5 @@
             "file": "/rule-at.css",
             "from": "/rule-at.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

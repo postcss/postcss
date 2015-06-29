@@ -1,6 +1,15 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": "",
+                "after": ""
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -19,10 +28,7 @@
                     "column": 2
                 }
             },
-            "before": "",
-            "between": "",
-            "selector": "",
-            "after": ""
+            "selector": ""
         }
     ],
     "type": "root",
@@ -33,7 +39,5 @@
             "file": "/empty.css",
             "from": "/empty.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }
