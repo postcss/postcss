@@ -1,6 +1,15 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "left": " ",
+                "right": " "
+            },
             "type": "comment",
             "source": {
                 "start": {
@@ -18,12 +27,14 @@
                     "column": 24
                 }
             },
-            "before": "",
-            "left": " ",
-            "text": "a { color: black }",
-            "right": " "
+            "text": "a { color: black }"
         },
         {
+            "raw": {
+                "before": "\n",
+                "left": "",
+                "right": ""
+            },
             "type": "comment",
             "source": {
                 "start": {
@@ -41,12 +52,14 @@
                     "column": 4
                 }
             },
-            "before": "\n",
-            "left": "",
-            "text": "",
-            "right": ""
+            "text": ""
         },
         {
+            "raw": {
+                "before": "\n",
+                "left": " ",
+                "right": ""
+            },
             "type": "comment",
             "source": {
                 "start": {
@@ -64,14 +77,22 @@
                     "column": 5
                 }
             },
-            "before": "\n",
-            "left": " ",
-            "text": "",
-            "right": ""
+            "text": ""
         },
         {
+            "raw": {
+                "before": "\n",
+                "between": " ",
+                "semicolon": false,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "left": " ",
+                        "right": " "
+                    },
                     "type": "comment",
                     "source": {
                         "start": {
@@ -89,12 +110,13 @@
                             "column": 16
                         }
                     },
-                    "before": "\n    ",
-                    "left": " ",
-                    "text": "inside",
-                    "right": " "
+                    "text": "inside"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -112,12 +134,15 @@
                             "column": 17
                         }
                     },
-                    "before": "\n    ",
                     "prop": "color",
-                    "between": ": ",
                     "value": "black"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "left": " ",
+                        "right": " "
+                    },
                     "type": "comment",
                     "source": {
                         "start": {
@@ -135,12 +160,13 @@
                             "column": 17
                         }
                     },
-                    "before": "\n    ",
-                    "left": " ",
-                    "text": "between",
-                    "right": " "
+                    "text": "between"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -158,12 +184,15 @@
                             "column": 28
                         }
                     },
-                    "before": "\n    ",
                     "prop": "border-radius",
-                    "between": ": ",
                     "value": "3px / 7px"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "left": " ",
+                        "right": " "
+                    },
                     "type": "comment",
                     "source": {
                         "start": {
@@ -181,10 +210,7 @@
                             "column": 13
                         }
                     },
-                    "before": "\n    ",
-                    "left": " ",
-                    "text": "end",
-                    "right": " "
+                    "text": "end"
                 }
             ],
             "type": "rule",
@@ -204,13 +230,14 @@
                     "column": 1
                 }
             },
-            "before": "\n",
-            "between": " ",
-            "selector": "div",
-            "semicolon": false,
-            "after": "\n"
+            "selector": "div"
         },
         {
+            "raw": {
+                "before": "\n",
+                "left": " ",
+                "right": " "
+            },
             "type": "comment",
             "source": {
                 "start": {
@@ -228,14 +255,21 @@
                     "column": 7
                 }
             },
-            "before": "\n",
-            "left": " ",
-            "text": "b",
-            "right": " "
+            "text": "b"
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "semicolon": true,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -253,12 +287,15 @@
                             "column": 17
                         }
                     },
-                    "before": "\n    ",
                     "prop": "color",
-                    "between": ": ",
                     "value": "black"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "left": " ",
+                        "right": " "
+                    },
                     "type": "comment",
                     "source": {
                         "start": {
@@ -276,10 +313,7 @@
                             "column": 11
                         }
                     },
-                    "before": "\n    ",
-                    "left": " ",
-                    "text": "c",
-                    "right": " "
+                    "text": "c"
                 }
             ],
             "type": "rule",
@@ -299,11 +333,7 @@
                     "column": 1
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "selector": "a",
-            "semicolon": true,
-            "after": "\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -314,7 +344,5 @@
             "file": "/comments.css",
             "from": "/comments.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }
