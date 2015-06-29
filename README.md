@@ -308,6 +308,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
+* [`postcss-short`] adds and extends numerous shorthand properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
@@ -428,6 +429,7 @@ See also plugins in modular minifier [`cssnano`].
 [`mq4-hover-shim`]:                 https://github.com/twbs/mq4-hover-shim
 [`postcss-focus`]:                  https://github.com/postcss/postcss-focus
 [`css2modernizr`]:                  https://github.com/vovanbo/css2modernizr
+[`postcss-short`]:                  https://github.com/jonathantneal/postcss-short
 [`postcss-at2x`]:                   https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                   https://github.com/postcss/postcss-calc
 [`postcss-each`]:                   https://github.com/outpunk/postcss-each
