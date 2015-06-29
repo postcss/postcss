@@ -967,7 +967,8 @@ if ( atrule.name == 'add-link' ) {
 
 ### `node.raw`
 
-Contains information to stringify node byte-to-byte as it was in origin input.
+Contains information to generate byte-to-byte equal node string
+as it was in origin input.
 
 Every parser saves its own properties, but default CSS parser use:
 
@@ -983,10 +984,10 @@ Every parser saves its own properties, but default CSS parser use:
 * `important`: the content of important statement,
   if it is not just `!important`.
 
-PostCSS cleans selectors, declration’s values and at-rule’s parameters from
-comments and extra spaces. But PostCSS stores origin content
-in `raw` properties. So, if you will not change declration value, PostCSS will
-use raw value with comments.
+PostCSS cleans selectors, declaration’s values and at-rule’s parameters
+from comments and extra spaces. But PostCSS stores origin content
+in `raw` properties. So, if you will not change declaration value,
+PostCSS will use raw value with comments.
 
 ### `node.toString()`
 
