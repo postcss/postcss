@@ -297,6 +297,8 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Shortcuts
 
+* [`postcss-border`] adds shorthand declarations for width
+  and color of all borders in `border` property.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
   declaration.
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
@@ -420,6 +422,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
 [`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
+[`postcss-border`]:                 https://github.com/andrepolischuk/postcss-border
 [`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
 [`postcss-mixins`]:                 https://github.com/postcss/postcss-mixins
