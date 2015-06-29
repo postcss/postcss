@@ -11,5 +11,5 @@ fail.css
 /postcss.js
 npm-debug.log
 
-gulpfile.js
+gulpfile.babel.js
 logo.svg
