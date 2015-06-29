@@ -50,11 +50,11 @@ You can use the [cssnext] plugin pack and write future CSS code right now:
 @custom-media    --mobile (width <= 640px);
 @custom-selector --heading h1, h2, h3, h4, h5, h6;
 
-.post-article --heading {
+.post-article :--heading {
     color: color( var(--mainColor) blackness(+20%) );
 }
 @media (--mobile) {
-    .post-article --heading {
+    .post-article :--heading {
         margin-top: 0;
     }
 }
