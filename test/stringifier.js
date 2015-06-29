@@ -30,10 +30,8 @@ describe('stringifier', () => {
         });
 
         it('creates trimmed/raw property', () => {
-            let b = new Node({
-                one: 'trim',
-                _one: { value: 'trim', raw: 'raw' }
-            });
+            let b = new Node({ one: 'trim' });
+            b.raw.one = { value: 'trim', raw: 'raw' };
             expect(str.raw(b, 'one')).to.eql('raw');
 
             b.one = 'trim1';

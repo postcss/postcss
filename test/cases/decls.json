@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": true,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,12 +34,14 @@
                             "column": 17
                         }
                     },
-                    "before": "\n    ",
                     "prop": "color",
-                    "between": ": ",
                     "value": "black"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -43,9 +59,7 @@
                             "column": 22
                         }
                     },
-                    "before": "\n    ",
                     "prop": "background",
-                    "between": ": ",
                     "value": "white"
                 }
             ],
@@ -66,11 +80,7 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": true,
-            "after": "\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -81,7 +91,5 @@
             "file": "/decls.css",
             "from": "/decls.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

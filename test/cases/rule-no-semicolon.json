@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": "",
+                "semicolon": false,
+                "after": ""
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "",
+                        "between": ":"
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,9 +34,7 @@
                             "column": 13
                         }
                     },
-                    "before": "",
                     "prop": "color",
-                    "between": ":",
                     "value": "black"
                 }
             ],
@@ -43,11 +55,7 @@
                     "column": 14
                 }
             },
-            "before": "",
-            "between": "",
-            "selector": "a",
-            "semicolon": false,
-            "after": ""
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -58,7 +66,5 @@
             "file": "/rule-no-semicolon.css",
             "from": "/rule-no-semicolon.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

@@ -1,6 +1,15 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "after": ""
+            },
             "nodes": [],
             "type": "rule",
             "source": {
@@ -19,10 +28,7 @@
                     "column": 14
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": ":fullscreen",
-            "after": ""
+            "selector": ":fullscreen"
         }
     ],
     "type": "root",
@@ -33,7 +39,5 @@
             "file": "/colon-selector.css",
             "from": "/colon-selector.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

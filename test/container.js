@@ -44,7 +44,7 @@ describe('Container', () => {
             rule.push(new Declaration({ prop: 'c', value: '3' }));
             expect(rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
             expect(rule.nodes.length).to.eql(3);
-            expect(rule.last).to.not.have.property('before');
+            expect(rule.last.raw).to.not.have.property('before');
         });
 
     });
@@ -405,7 +405,7 @@ describe('Container', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             rule.append({ prop: 'c', value: '3' });
             expect(rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
-            expect(rule.last.before).to.eql(' ');
+            expect(rule.last.raw.before).to.eql(' ');
         });
 
         it('appends multiple children', () => {
@@ -481,7 +481,7 @@ describe('Container', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             rule.prepend({ prop: 'c', value: '3' });
             expect(rule.toString()).to.eql('a { c: 3; a: 1; b: 2 }');
-            expect(rule.first.before).to.eql(' ');
+            expect(rule.first.raw.before).to.eql(' ');
         });
 
         it('prepends multiple children', () => {
@@ -532,7 +532,7 @@ describe('Container', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             rule.insertBefore(1, { prop: 'c', value: '3' });
             expect(rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
-            expect(rule.nodes[1].before).to.eql(' ');
+            expect(rule.nodes[1].raw.before).to.eql(' ');
         });
 
         it('works with nodes too', () => {
@@ -564,7 +564,7 @@ describe('Container', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             rule.insertAfter(0, { prop: 'c', value: '3' });
             expect(rule.toString()).to.eql('a { a: 1; c: 3; b: 2 }');
-            expect(rule.nodes[1].before).to.eql(' ');
+            expect(rule.nodes[1].raw.before).to.eql(' ');
         });
 
         it('works with nodes too', () => {
@@ -712,7 +712,7 @@ describe('Container', () => {
 
         it("doesn't normalize new children with exists before", () => {
             let rule = parse('a { a: 1; b: 2 }').first;
-            rule.append({ prop: 'c', value: '3', before: '\n ' });
+            rule.append({ prop: 'c', value: '3', raw: { before: '\n ' } });
             expect(rule.toString()).to.eql('a { a: 1; b: 2;\n c: 3 }');
         });
 

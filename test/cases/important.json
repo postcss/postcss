@@ -1,8 +1,23 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": true,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": ",
+                        "important": "!important"
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,14 +35,16 @@
                             "column": 25
                         }
                     },
-                    "before": "\n    ",
                     "prop": "width",
-                    "between": ": ",
                     "important": true,
-                    "_important": "!important",
                     "value": "1px"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": ",
+                        "important": "  !important "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -45,11 +62,8 @@
                             "column": 30
                         }
                     },
-                    "before": "\n    ",
                     "prop": "color",
-                    "between": ": ",
                     "important": true,
-                    "_important": "  !important ",
                     "value": "black"
                 }
             ],
@@ -70,15 +84,21 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": true,
-            "after": "\n"
+            "selector": "a"
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "semicolon": true,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -96,12 +116,14 @@
                             "column": 20
                         }
                     },
-                    "before": "\n    ",
                     "prop": "prop",
-                    "between": ": ",
                     "value": "important"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -119,12 +141,15 @@
                             "column": 25
                         }
                     },
-                    "before": "\n    ",
                     "prop": "color",
-                    "between": ": ",
                     "value": "red important"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": ",
+                        "important": "      !      important"
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -142,14 +167,16 @@
                             "column": 39
                         }
                     },
-                    "before": "\n    ",
                     "prop": "margin",
-                    "between": ": ",
                     "important": true,
-                    "_important": "      !      important",
                     "value": "10px"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": ",
+                        "important": "     !  /* test */   important"
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -167,14 +194,16 @@
                             "column": 48
                         }
                     },
-                    "before": "\n    ",
                     "prop": "padding",
-                    "between": ": ",
                     "important": true,
-                    "_important": "     !  /* test */   important",
                     "value": "20px"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": ",
+                        "important": " ! /*! test */ important"
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -192,14 +221,19 @@
                             "column": 41
                         }
                     },
-                    "before": "\n    ",
                     "prop": "width",
-                    "between": ": ",
                     "important": true,
-                    "_important": " ! /*! test */ important",
                     "value": "100px"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": ",
+                        "value": {
+                            "value": "100px  important",
+                            "raw": "100px /*! test */ important"
+                        }
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -217,13 +251,7 @@
                             "column": 40
                         }
                     },
-                    "before": "\n    ",
                     "prop": "height",
-                    "between": ": ",
-                    "_value": {
-                        "value": "100px  important",
-                        "raw": "100px /*! test */ important"
-                    },
                     "value": "100px  important"
                 }
             ],
@@ -244,11 +272,7 @@
                     "column": 1
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "selector": "p",
-            "semicolon": true,
-            "after": "\n"
+            "selector": "p"
         }
     ],
     "type": "root",
@@ -259,7 +283,5 @@
             "file": "/important.css",
             "from": "/important.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

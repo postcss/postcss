@@ -1,6 +1,17 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "afterName": " ",
+                "semicolon": false,
+                "after": "\n"
+            },
             "type": "atrule",
             "name": "supports",
             "source": {
@@ -19,12 +30,16 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "afterName": " ",
             "params": "(animation-name: test)",
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": " ",
+                        "afterName": " ",
+                        "semicolon": false,
+                        "after": "\n    "
+                    },
                     "type": "atrule",
                     "name": "-custom-keyframe",
                     "source": {
@@ -43,14 +58,21 @@
                             "column": 5
                         }
                     },
-                    "before": "\n    ",
-                    "between": " ",
-                    "afterName": " ",
                     "params": "anim",
                     "nodes": [
                         {
+                            "raw": {
+                                "before": "\n        ",
+                                "between": " ",
+                                "semicolon": true,
+                                "after": "\n        "
+                            },
                             "nodes": [
                                 {
+                                    "raw": {
+                                        "before": "\n            ",
+                                        "between": ": "
+                                    },
                                     "type": "decl",
                                     "source": {
                                         "start": {
@@ -68,9 +90,7 @@
                                             "column": 25
                                         }
                                     },
-                                    "before": "\n            ",
                                     "prop": "color",
-                                    "between": ": ",
                                     "value": "black"
                                 }
                             ],
@@ -91,15 +111,21 @@
                                     "column": 9
                                 }
                             },
-                            "before": "\n        ",
-                            "between": " ",
-                            "selector": "from",
-                            "semicolon": true,
-                            "after": "\n        "
+                            "selector": "from"
                         },
                         {
+                            "raw": {
+                                "before": "\n        ",
+                                "between": " ",
+                                "semicolon": false,
+                                "after": "\n        "
+                            },
                             "nodes": [
                                 {
+                                    "raw": {
+                                        "before": "\n            ",
+                                        "between": ": "
+                                    },
                                     "type": "decl",
                                     "source": {
                                         "start": {
@@ -117,9 +143,7 @@
                                             "column": 24
                                         }
                                     },
-                                    "before": "\n            ",
                                     "prop": "color",
-                                    "between": ": ",
                                     "value": "white"
                                 }
                             ],
@@ -140,19 +164,11 @@
                                     "column": 9
                                 }
                             },
-                            "before": "\n        ",
-                            "between": " ",
-                            "selector": "to",
-                            "semicolon": false,
-                            "after": "\n        "
+                            "selector": "to"
                         }
-                    ],
-                    "semicolon": false,
-                    "after": "\n    "
+                    ]
                 }
-            ],
-            "semicolon": false,
-            "after": "\n"
+            ]
         }
     ],
     "type": "root",
@@ -163,7 +179,5 @@
             "file": "/atrule-rules.css",
             "from": "/atrule-rules.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }
