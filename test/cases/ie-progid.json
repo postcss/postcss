@@ -1,8 +1,22 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": " ",
+                "semicolon": true,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -20,9 +34,7 @@
                             "column": 118
                         }
                     },
-                    "before": "\n    ",
                     "prop": "filter",
-                    "between": ": ",
                     "value": "progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3)"
                 }
             ],
@@ -43,11 +55,7 @@
                     "column": 1
                 }
             },
-            "before": "",
-            "between": " ",
-            "selector": "a",
-            "semicolon": true,
-            "after": "\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -58,7 +66,5 @@
             "file": "/ie-progid.css",
             "from": "/ie-progid.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }

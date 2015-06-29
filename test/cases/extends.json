@@ -1,6 +1,14 @@
 {
+    "raw": {
+        "semicolon": false,
+        "after": "\n"
+    },
     "nodes": [
         {
+            "raw": {
+                "before": "",
+                "between": ": "
+            },
             "type": "decl",
             "source": {
                 "start": {
@@ -18,14 +26,22 @@
                     "column": 7
                 }
             },
-            "before": "",
             "prop": "one",
-            "between": ": ",
             "value": "1"
         },
         {
+            "raw": {
+                "before": "\n\n",
+                "between": " ",
+                "semicolon": false,
+                "after": "\n"
+            },
             "nodes": [
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": ": "
+                    },
                     "type": "decl",
                     "source": {
                         "start": {
@@ -43,14 +59,22 @@
                             "column": 11
                         }
                     },
-                    "before": "\n    ",
                     "prop": "two",
-                    "between": ": ",
                     "value": "2"
                 },
                 {
+                    "raw": {
+                        "before": "\n    ",
+                        "between": " ",
+                        "semicolon": true,
+                        "after": "\n    "
+                    },
                     "nodes": [
                         {
+                            "raw": {
+                                "before": "\n        ",
+                                "between": ": "
+                            },
                             "type": "decl",
                             "source": {
                                 "start": {
@@ -68,9 +92,7 @@
                                     "column": 17
                                 }
                             },
-                            "before": "\n        ",
                             "prop": "three",
-                            "between": ": ",
                             "value": "3"
                         }
                     ],
@@ -91,11 +113,7 @@
                             "column": 5
                         }
                     },
-                    "before": "\n    ",
-                    "between": " ",
-                    "selector": "b",
-                    "semicolon": true,
-                    "after": "\n    "
+                    "selector": "b"
                 }
             ],
             "type": "rule",
@@ -115,11 +133,7 @@
                     "column": 1
                 }
             },
-            "before": "\n\n",
-            "between": " ",
-            "selector": "a",
-            "semicolon": false,
-            "after": "\n"
+            "selector": "a"
         }
     ],
     "type": "root",
@@ -130,7 +144,5 @@
             "file": "/extends.css",
             "from": "/extends.css"
         }
-    },
-    "semicolon": false,
-    "after": "\n"
+    }
 }
