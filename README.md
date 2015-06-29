@@ -407,7 +407,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
 [`postcss-color-mix`]:              https://github.com/iamstarkov/postcss-color-mix
 [`postcss-image-set`]:              https://github.com/alex499/postcss-image-set
-[`postcss-border`]:                 https://github.com/andrepolischuk/postcss-border
 [`postcss-clearfix`]:               https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:               https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
@@ -423,6 +422,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
 [`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
+[`postcss-border`]:                 https://github.com/andrepolischuk/postcss-border
 [`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
 [`postcss-mixins`]:                 https://github.com/postcss/postcss-mixins
