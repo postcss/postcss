@@ -251,6 +251,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’s `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
+* [`postcss-strip-units`] strips units off of property values.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
   based on `font-size` and `line-height`.
 * [`csstyle`] adds components workflow to your styles.
@@ -398,6 +399,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-font-family`]:            https://github.com/ben-eb/postcss-font-family
 [`postcss-merge-rules`]:            https://github.com/ben-eb/postcss-merge-rules
 [`postcss-simple-vars`]:            https://github.com/postcss/postcss-simple-vars
+[`postcss-strip-units`]:            https://github.com/whitneyit/postcss-strip-units
 [`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
