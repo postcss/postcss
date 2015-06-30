@@ -239,6 +239,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
+* [`postcss-foreach`] adds `@foreach` loops.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
@@ -448,6 +449,7 @@ See also plugins in modular minifier [`cssnano`].
 [`css-mqpacker`]:                   https://github.com/hail2u/node-css-mqpacker
 [`postcss-bem`]:                    https://github.com/ileri/postcss-bem
 [`postcss-for`]:                    https://github.com/antyakushev/postcss-for
+[`postcss-foreach`]:                https://github.com/verybigman/postcss-foreach
 [`postcss-map`]:                    https://github.com/pascalduez/postcss-map
 [`postcss-url`]:                    https://github.com/postcss/postcss-url
 [`css-byebye`]:                     https://github.com/AoDev/css-byebye
