@@ -279,6 +279,9 @@ Arguments:
     because it is used in source map generation and syntax error messages.
   * `to`: the path where you’ll put the output CSS file. You should always set
     `to` to generate correct source maps.
+  * `parser`: function to generate AST by string.
+  * `stringifier`: class to generate string by AST.
+  * `syntax`: object with `parser` and `stringifier` properties.
   * `safe`: enable [Safe Mode], in which PostCSS will try
     to fix CSS syntax errors.
   * `map`: an object of [source map options].
