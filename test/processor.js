@@ -9,6 +9,16 @@ import { expect } from 'chai';
 import   sinon    from 'sinon';
 import   path     from 'path';
 
+let parser = () => new Root({ raw: { after: 'ok' } });
+class Str {
+    constructor(builder) {
+        this.builder = builder;
+    }
+    stringify(node) {
+        this.builder(node.after + '!');
+    }
+}
+
 describe('Processor', () => {
 
     describe('use()', () => {
@@ -338,6 +348,40 @@ describe('Processor', () => {
                 expect(result.lastPlugin).to.equal(plugin2);
                 done();
             }).catch(done);
+        });
+
+        it('uses custom parsers', (done) => {
+            let processor = new Processor([]);
+            processor.process('a{}', { parser: parser }).then( (result) => {
+                expect(result.css).to.equal('ok');
+                done();
+            });
+        });
+
+        it('uses custom stringifier', (done) => {
+            let processor = new Processor([]);
+            processor.process('a{}', { stringifier: Str }).then( (result) => {
+                expect(result.css).to.equal('!');
+                done();
+            });
+        });
+
+        it('uses custom stringifier with source maps', (done) => {
+            let processor = new Processor([]);
+            processor.process('a{}', { map: true, stringifier: Str })
+                .then( (result) => {
+                    expect(result.css).to.match(/^\!\n\/\*# sourceMap/);
+                    done();
+                });
+        });
+
+        it('uses custom syntax', (done) => {
+            let processor = new Processor([]);
+            let syntax    = { parser: parser, stringifier: Str };
+            processor.process('a{}', { syntax: syntax }).then( (result) => {
+                expect(result.css).to.equal('ok!');
+                done();
+            });
         });
 
     });
