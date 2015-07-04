@@ -235,7 +235,6 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 ### Language Extensions
 
-* [`postcss-alias`] to create shorter aliases for properties.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-define-property`] to define properties shortcut.
@@ -300,8 +299,9 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Shortcuts
 
-* [`postcss-border`] adds shorthand declarations for width
-  and color of all borders in `border` property.
+* [`postcss-alias`] to create shorter aliases for properties.
+* [`postcss-border`] adds shorthand for width and color of all borders
+  in `border` property.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
   declaration.
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
