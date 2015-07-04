@@ -306,6 +306,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
+* [`postcss-fontpath`] adds a `font-path` property  to `@font-face` which expands to the [FontSpring syntax](http://blog.fontspring.com/2011/02/further-hardening-of-the-bulletproof-syntax/).
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
 * [`postcss-position`] adds shorthand declarations for position attributes.
@@ -417,6 +418,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-spiffing`]:               https://github.com/HashanP/postcss-spiffing
 [`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
 [`pleeease-filters`]:               https://github.com/iamvdo/pleeease-filters
+[`postcss-fontpath`]:               https://github.com/seaneking/postcss-fontpath
 [`postcss-easings`]:                https://github.com/postcss/postcss-easings
 [`postcss-hexrgba`]:                https://github.com/seaneking/postcss-hexrgba
 [`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
