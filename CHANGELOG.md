@@ -1,3 +1,6 @@
+## 4.1.14
+* Fix for plugins packs defined by `postcss.plugin`.
+
 ## 4.1.13
 * Fix input inlined source maps with UTF-8 encoding.
 
