@@ -237,6 +237,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
+* [`postcss-define-property`] supports defining custom properties (not variables)
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
 * [`postcss-map`] enables configuration maps.
@@ -365,6 +366,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-minify-selectors`]:       https://github.com/ben-eb/postcss-minify-selectors
 [`postcss-quantity-queries`]:       https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-color-hex-alpha`]:        https://github.com/postcss/postcss-color-hex-alpha
+[`postcss-define-property`]:        https://github.com/daleeidd/postcss-define-property
 [`postcss-generate-preset`]:        https://github.com/simonsmith/postcss-generate-preset
 [`postcss-media-variables`]:        https://github.com/WolfgangKluge/postcss-media-variables
 [`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
