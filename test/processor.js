@@ -44,6 +44,14 @@ describe('Processor', () => {
             expect(processor.plugins).to.eql([a]);
         });
 
+        it('adds new processors from object', () => {
+            let a = () => 1;
+            let processor = new Processor();
+            let other     = new Processor([a]);
+            processor.use({ postcss: other });
+            expect(processor.plugins).to.eql([a]);
+        });
+
         it('returns itself', () => {
             let a = () => 1;
             let b = () => 2;
