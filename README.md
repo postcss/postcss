@@ -235,6 +235,7 @@ See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
 
 ### Language Extensions
 
+* [`postcss-alias`] adds `@alias` rule for creating custom property aliases.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-define-property`] to define properties shortcut.
@@ -439,6 +440,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-focus`]:                  https://github.com/postcss/postcss-focus
 [`css2modernizr`]:                  https://github.com/vovanbo/css2modernizr
 [`postcss-short`]:                  https://github.com/jonathantneal/postcss-short
+[`postcss-alias`]:                  https://github.com/seaneking/postcss-alias
 [`postcss-at2x`]:                   https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                   https://github.com/postcss/postcss-calc
 [`postcss-each`]:                   https://github.com/outpunk/postcss-each
