@@ -215,7 +215,7 @@ Or to enable plugins right in CSS by [`postcss-use`]:
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
-See also [`cssnext`] plugins pack to add Future CSS syntax by one line of code.
+See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 ### Fallbacks
 
