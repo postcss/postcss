@@ -331,6 +331,7 @@ See also plugins in modular minifier [`cssnano`].
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
+* [`postcss-normalize`] automatically applies the latest normalize.css.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
@@ -413,6 +414,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
 [`postcss-color-mix`]:              https://github.com/iamstarkov/postcss-color-mix
 [`postcss-image-set`]:              https://github.com/alex499/postcss-image-set
+[`postcss-normalize`]:              https://github.com/seaneking/postcss-normalize
 [`postcss-clearfix`]:               https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:               https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
