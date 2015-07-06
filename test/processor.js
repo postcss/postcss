@@ -358,9 +358,27 @@ describe('Processor', () => {
             });
         });
 
+        it('uses custom parsers from object', (done) => {
+            let processor = new Processor([]);
+            let syntax    = { parser: parser, stringifier: Str };
+            processor.process('a{}', { parser: syntax }).then( (result) => {
+                expect(result.css).to.equal('ok');
+                done();
+            });
+        });
+
         it('uses custom stringifier', (done) => {
             let processor = new Processor([]);
             processor.process('a{}', { stringifier: Str }).then( (result) => {
+                expect(result.css).to.equal('!');
+                done();
+            });
+        });
+
+        it('uses custom stringifier from object', (done) => {
+            let processor = new Processor([]);
+            let syntax    = { parser: parser, stringifier: Str };
+            processor.process('', { stringifier: syntax }).then( (result) => {
                 expect(result.css).to.equal('!');
                 done();
             });
