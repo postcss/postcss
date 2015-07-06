@@ -334,6 +334,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`stylehacks`] removes CSS hacks based on browser support.
 
 ### Analysis
 
@@ -457,6 +458,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-map`]:                    https://github.com/pascalduez/postcss-map
 [`postcss-url`]:                    https://github.com/postcss/postcss-url
 [`css-byebye`]:                     https://github.com/AoDev/css-byebye
+[`stylehacks`]:                     https://github.com/ben-eb/stylehacks
 [`cssgrace`]:                       https://github.com/cssdream/cssgrace
 [`csstyle`]:                        https://github.com/geddski/csstyle
 [`webpcss`]:                        https://github.com/lexich/webpcss
