@@ -149,7 +149,7 @@ describe('Processor', () => {
             result.then( () => {
                 expect(calls).to.eql('ab');
                 done();
-            }).catch( (error) => done(error) );
+            }).catch(done)
         });
 
         it('parses, converts and stringifies CSS', () => {
@@ -215,14 +215,14 @@ describe('Processor', () => {
                 expect(finish).to.eql(2);
                 expect(result.css).to.eql('a {}\nb {}');
                 done();
-            }).catch( (error) => done(error) );
+            }).catch(done)
         });
 
         it('works async without plugins', (done) => {
             (new Processor()).process('a {}').then( (result) => {
                 expect(result.css).to.eql('a {}');
                 done();
-            }).catch( (error) => done(error) );
+            }).catch(done)
         });
 
         it('runs async plugin only once', (done) => {
@@ -282,7 +282,7 @@ describe('Processor', () => {
             (new Processor()).process('a{').catch(function (err) {
                 expect(err.message).to.eql('<css input>:1:1: Unclosed block');
                 done();
-            });
+            }).catch(done);
         });
 
         it('throws error on sync method to async plugin', () => {
@@ -337,7 +337,7 @@ describe('Processor', () => {
             processor.process('a{}').then( (result) => {
                 expect(result.lastPlugin).to.equal(plugin2);
                 done();
-            });
+            }).catch(done);
         });
 
     });
