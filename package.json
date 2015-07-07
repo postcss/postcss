@@ -1,6 +1,6 @@
 {
     "name": "postcss",
-    "version": "4.1.15",
+    "version": "4.1.16",
     "description": "Tool for transforming CSS with JS plugins",
     "keywords": ["css", "postproccessor", "parser", "source map", "transform",
                  "manipulation", "preprocess", "transpiler"],
