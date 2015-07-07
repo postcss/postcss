@@ -26,7 +26,7 @@ describe('Container', () => {
         it('throws error on declaration without value', () => {
             expect( () => {
                 (new Rule()).append({prop: 'color', vlaue: 'black' });
-            }).to.throw(/value field is missed/);
+            }).to.throw(/Value field is missed/);
         });
 
         it('throws error on unknown node type', () => {
