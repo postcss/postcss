@@ -31,6 +31,26 @@ describe('postcss()', () => {
         expect(postcss([other, c]).plugins).to.eql([a, b, c]);
     });
 
+    it('supports injecting additional processors at runtime', (done) => {
+        let plugin1 = postcss.plugin('one', () => {
+            return css => {
+                css.eachDecl(decl => {
+                    decl.value = 'world';
+                });
+            };
+        });
+        let plugin2 = postcss.plugin('two', () => {
+            return (css, result) => {
+                result.processor.use(plugin1());
+            };
+        });
+
+        postcss([ plugin2 ]).process('a{hello: bob}').then(result => {
+            expect(result.css).to.equal('a{hello: world}');
+            done();
+        });
+    });
+
     describe('.plugin()', () => {
 
         it('creates plugin', () => {
