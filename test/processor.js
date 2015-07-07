@@ -149,7 +149,7 @@ describe('Processor', () => {
             result.then( () => {
                 expect(calls).to.eql('ab');
                 done();
-            }).catch(done)
+            }).catch(done);
         });
 
         it('parses, converts and stringifies CSS', () => {
@@ -215,14 +215,14 @@ describe('Processor', () => {
                 expect(finish).to.eql(2);
                 expect(result.css).to.eql('a {}\nb {}');
                 done();
-            }).catch(done)
+            }).catch(done);
         });
 
         it('works async without plugins', (done) => {
             (new Processor()).process('a {}').then( (result) => {
                 expect(result.css).to.eql('a {}');
                 done();
-            }).catch(done)
+            }).catch(done);
         });
 
         it('runs async plugin only once', (done) => {
