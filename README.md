@@ -374,6 +374,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-media-variables`]:        https://github.com/WolfgangKluge/postcss-media-variables
 [`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
 [`postcss-vertical-rhythm`]:        https://github.com/markgoodyear/postcss-vertical-rhythm
+[`postcss-local-constants`]:        https://github.com/macropodhq/postcss-local-constants
 [`postcss-color-function`]:         https://github.com/postcss/postcss-color-function
 [`postcss-conic-gradient`]:         https://github.com/jonathantneal/postcss-conic-gradient
 [`postcss-convert-values`]:         https://github.com/ben-eb/postcss-convert-values
