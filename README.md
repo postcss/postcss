@@ -240,6 +240,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
+* [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-mixins`] enables mixins more powerful than Sass’s,
   defined within stylesheets or in JS.
