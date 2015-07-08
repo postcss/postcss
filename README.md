@@ -187,6 +187,7 @@ Or to enable plugins right in CSS by [`postcss-use`]:
   to special annotation comments.
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
 * [`cssnext`] contains plugins that allow you to use future CSS features today.
+* [`precss`] contains plugins that allow you to use Sass-like CSS.
 
 [`cssnano`]:  https://github.com/ben-eb/cssnano
 [`cssnext`]:  http://cssnext.io/
@@ -466,6 +467,7 @@ See also plugins in modular minifier [`cssnano`].
 [`webpcss`]:                        https://github.com/lexich/webpcss
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
+[`precss`]:                         https://github.com/jonathantneal/precss
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
 
