@@ -9,7 +9,7 @@ These plugins can support variables and mixins, transpile future CSS syntax,
 inline images, and more.
 
 PostCSS is used by industry leaders including Google, Twitter, Alibaba,
-and Shopify. The [Autoprefixer] PostCSS plugin is one of the most popular
+and Shopify. The [Autoprefixer] PostCSS plugin is one of the most popular
 CSS processors.
 
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
@@ -531,13 +531,14 @@ option as an object with the following parameters:
   with `prev: false`.
 
 * `sourcesContent` boolean: indicates that PostCSS should set the origin
-  content (for example, Sass source) of the source map. By default, it is `true`.
-  But if all previous maps do not contain sources content, PostCSS will also
-  leave it out even if you do not set this option.
+  content (for example, Sass source) of the source map. By default,
+  it is `true`. But if all previous maps do not contain sources content,
+  PostCSS will also leave it out even if you do not set this option.
 
 * `annotation` boolean or string: indicates that PostCSS should add annotation
   comments to the CSS. By default, PostCSS will always add a comment with a path
-  to the source map. PostCSS will not add annotations to CSS files that do not contain any comments.
+  to the source map. PostCSS will not add annotations to CSS files that
+  do not contain any comments.
 
   By default, PostCSS presumes that you want to save the source map as
   `opts.to + '.map'` and will use this path in the annotation comment.

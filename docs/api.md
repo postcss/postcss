@@ -99,8 +99,8 @@ processor.plugins[0].postcssVersion //=> '4.1.0'
 ```
 
 The plugin function receives 2 arguments: [`Root` node] and [`Result`] instance.
-Then it should mutate the passed `Root` node. Alternatively, create a new `Root` node
-and override the `result.root` property.
+Then it should mutate the passed `Root` node. Alternatively, create a new `Root`
+node and override the `result.root` property.
 
 ```js
 postcss.plugin('postcss-cleaner', function () {
@@ -495,8 +495,8 @@ Arguments:
   message object.
 * `opts (object) optional`: properties to message object.
   * `node`: CSS node, that was a source of warning.
-  * `plugin`: name of plugin that created this warning. `Result#warn()` will fill it
-    automatically with `plugin.postcssPlugin` value.
+  * `plugin`: name of plugin that created this warning. `Result#warn()` will
+    fill it automatically with `plugin.postcssPlugin` value.
 
 ### `result.warnings()`
 
@@ -620,8 +620,8 @@ warning.text //=> 'Try to avoid !important'
 
 ### `warning.plugin`
 
-Contains name of plugin that created this warning. When you call [`Result#warn()`],
-it will fill this property automatically.
+Contains name of plugin that created this warning. When you call
+[`Result#warn()`], it will fill this property automatically.
 
 ```js
 warning.plugin //=> 'postcss-important'
@@ -715,11 +715,12 @@ Contains absolute path to broken file, if use set `from` option to parser.
 error.file //=> 'a.sass'
 ```
 
-PostCSS will use input source map to detect the original error location. If
-you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will use input source map to detect the original error location.
+If you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler), use `error.generated.file`.
+If you need position in PostCSS input (for example, to debug previous compiler),
+use `error.generated.file`.
 
 ```js
 error.file           //=> 'a.sass'
@@ -738,7 +739,8 @@ PostCSS will use input source map to detect the original error location. If
 you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler), use `error.generated.line`.
+If you need position in PostCSS input (for example, to debug previous compiler),
+use `error.generated.line`.
 
 ```js
 error.line           //=> 2
@@ -757,7 +759,8 @@ PostCSS will use input source map to detect the original error location. If
 you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler), use `error.generated.column`.
+If you need position in PostCSS input (for example, to debug previous compiler),
+use `error.generated.column`.
 
 ```js
 error.column           //=> 1
@@ -772,11 +775,12 @@ Contains source code of broken file.
 error.source //=> 'a {} b {'
 ```
 
-PostCSS will use input source map to detect the original error location. If
-you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will use input source map to detect the original error location.
+If you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler), use `error.generated.source`.
+If you need position in PostCSS input (for example, to debug previous compiler),
+use `error.generated.source`.
 
 ```js
 error.source           //=> 'a { b {} }'
@@ -809,8 +813,8 @@ postcss.vendor.unprefixed('-moz-tab-size') //=> 'tab-size'
 
 ## List module
 
-Contains helpers for safely splitting lists of CSS values, preserving parentheses
-and quotes.
+Contains helpers for safely splitting lists of CSS values,
+preserving parentheses and quotes.
 
 ```js
 var list = postcss.list;
@@ -1121,7 +1125,8 @@ root.nodes[0].nodes[1].style('before') //=> ' '
 Arguments:
 
 * `prop (string)`: name or code style property.
-* `defaultType (string)`: name of default value. It can be easily missed if the value is the same as `prop`.
+* `defaultType (string)`: name of default value. It can be easily missed
+  if the value is the same as `prop`.
 
 ## Containers: common methods
 
@@ -1379,7 +1384,8 @@ during iteration.
 Passes all declaration values within the container that match `pattern` through
 `callback`, replacing those values with the returned result of `callback`.
 
-This method is useful if you are using a custom unit or function and need to iterate through all values.
+This method is useful if you are using a custom unit or function and need
+to iterate through all values.
 
 ```js
 root.replaceValues(/\d+rem/, { fast: 'rem' }, function (string) {
@@ -1394,7 +1400,8 @@ Arguments:
   * `props`: An array of property names. The method will only search for values
     that match `regexp` within declarations of listed properties.
   * `fast`: A string that used to narrow down values and speed up
-    the regexp search. Searching every single value with a regexp can be slow. If you pass a `fast` string, PostCSS will first check whether the value
+    the regexp search. Searching every single value with a regexp can be slow.
+    If you pass a `fast` string, PostCSS will first check whether the value
     contains the `fast` string; and only if it does will PostCSS check that
     value against `regexp`. For example, instead of just checking for `/\d+rem/`
     on all values, set `fast: 'rem'` to first check whether a value has
@@ -1428,14 +1435,15 @@ rule.append({ prop: 'color', value: 'black' });       // declaration
 rule.append({ text: 'Comment' })                      // comment
 ```
 
-A string containing the CSS of the new element can also be used. This approach is slower than the above shortcuts.
+A string containing the CSS of the new element can also be used.
+This approach is slower than the above shortcuts.
 
 ```js
 root.append('a {}');
 root.first.append('color: black; z-index: 1');
 ```
 
-### `container.insertBefore(oldNode, newNew)`  and `container.insertAfter(oldNode, newNew)`
+### `container.insertBefore(oldNode, newNew)` and `container.insertAfter(oldNode, newNew)`
 
 Insert `newNode` before/after `oldNode` within the container.
 
