@@ -36,9 +36,9 @@ postcss([autoprefixer, cssnext, cssgrace]).process(css).css;
 
 Arguments:
 
-* `plugins (array)`: PostCSS plugins list to set them to new processor.
+* `plugins (array)`: list of PostCSS plugins to be included as processors.
 
-You can also set plugins with the [`Processor#use`] method.
+Plugins can also be included with the [`Processor#use`] method.
 See its description below for details about plugin formats.
 
 ### `postcss.parse(css, opts)`
@@ -98,8 +98,8 @@ processor.plugins[0].postcssPlugin  //=> 'postcss-replace'
 processor.plugins[0].postcssVersion //=> '4.1.0'
 ```
 
-Plugin function receive 2 arguments: [`Root` node] and [`Result`] instance.
-Then it should mutate the passed `Root` node, or you can create new `Root` node
+The plugin function receives 2 arguments: [`Root` node] and [`Result`] instance.
+Then it should mutate the passed `Root` node. Alternatively, create a new `Root` node
 and override the `result.root` property.
 
 ```js
@@ -110,7 +110,7 @@ postcss.plugin('postcss-cleaner', function () {
 });
 ```
 
-Asynchronous plugin should return `Promise` instance.
+Asynchronous plugins should return `Promise` instance.
 
 ```js
 postcss.plugin('postcss-import', function () {
@@ -125,7 +125,7 @@ postcss.plugin('postcss-import', function () {
 });
 ```
 
-You can add warnings by [`Result#warn()`] method.
+Add warnings using the [`Result#warn()`] method.
 
 ```js
 postcss.plugin('postcss-caniuse-test', function () {
@@ -141,7 +141,7 @@ postcss.plugin('postcss-caniuse-test', function () {
 });
 ```
 
-You can send some data to next plugins by [`Result#messages`] array.
+Send data to next plugins using the [`Result#messages`] array.
 
 ### `postcss.root(props)`
 
@@ -221,7 +221,7 @@ postcss.list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
 
 ## `Processor` class
 
-A `Processor` instance contains plugins to process CSS. You can create
+A `Processor` instance contains plugins to process CSS. Create
 one `Processor` instance, initialize its plugins, and then use that instance
 on many CSS files.
 
@@ -246,7 +246,7 @@ Arguments:
   formats:
   * A plugin created by [`postcss.plugin()`] method.
   * A function. PostCSS will pass the function a [`Root` node]
-    as the first argument and current [`Result`] instance as second.
+    as the first argument and current [`Result`] instance as the second.
   * An object with a `postcss` method. PostCSS will use that method
     as described in #2.
   * Another `Processor` instance. PostCSS will copy plugins
@@ -255,13 +255,13 @@ Arguments:
 Plugins can also be added by passing them as arguments when creating
 a `postcss` instance (see [`postcss(plugins)`]).
 
-Asynchronous plugin should return `Promise` instance.
+Asynchronous Plugins should return `Promise` instance.
 
 ### `processor.process(css, opts)`
 
 Parses source CSS and returns [`LazyResult`] instance. Because some plugins can
 be asynchronous it doesn’t make any transformations. Transformations will
-be apply in `LazyResult`’s methods.
+be applied in `LazyResult`’s methods.
 
 ```js
 processor.process(css, { from: 'a.css', to: 'a.out.css' }).then(function (result) {
@@ -272,8 +272,8 @@ processor.process(css, { from: 'a.css', to: 'a.out.css' }).then(function (result
 Arguments:
 
 * `css (string|#toString|Result)`: String with input CSS or any object
-  with `toString()` method, like file stream. Also you can send [`Result`]
-  instance and processor will take already parser [`Root`] from it.
+  with `toString()` method, like file stream. Optionally, send [`Result`]
+  instance and the processor will take the existing [`Root`] parser from it.
 * `opts (object) optional`: options:
   * `from`: the path of the CSS source file. You should always set `from`,
     because it is used in source map generation and syntax error messages.
@@ -313,8 +313,8 @@ var lazy = postcss([cssnext]).process(css);
 ### `lazy.then(onFulfilled, onRejected)`
 
 Processes input CSS through synchronous and asynchronous plugins
-and call `onFulfilled` with [`Result`] instance. If some plugin will throw
-a error, `onRejected` callback will be executed.
+and call `onFulfilled` with [`Result`] instance. If a plugin throws
+an error, `onRejected` callback will be executed.
 
 ```js
 postcss([cssnext]).process(css).then(function(result) {
@@ -326,7 +326,7 @@ This method is a standard [Promise] method.
 
 ### `lazy.catch(onRejected)`
 
-Processes input CSS through synchronous and  asynchronous plugins
+Processes input CSS through synchronous and asynchronous plugins
 and call `onRejected` on errors from any plugin.
 
 ```js
@@ -345,7 +345,7 @@ Alias for `LazyResult#css` property.
 
 ### `lazy.css`
 
-Processes input CSS through synchronous plugins, convert `Root` to CSS string
+Processes input CSS through synchronous plugins, converts `Root` to CSS string
 and returns [`Result#css`].
 
 ```js
@@ -353,7 +353,7 @@ processor.process(css).css;
 ```
 
 This property will work only with synchronous plugins. If processor contains
-any asynchronous plugin it will throw a error. You should use
+any asynchronous plugins it will throw a error. You should use
 [`LazyResult#then()`] instead.
 
 ```js
@@ -373,7 +373,7 @@ if ( result.map ) {
 ```
 
 This property will work only with synchronous plugins. If processor contains
-any asynchronous plugin it will throw a error. You should use
+any asynchronous plugins it will throw an error. You should use
 [`LazyResult#then()`] instead.
 
 ```js
@@ -390,7 +390,7 @@ Processes input CSS through synchronous plugins and returns
 [`Result#root`](#resultroot).
 
 This property will work only with synchronous plugins. If processor contains
-any asynchronous plugin it will throw a error. You should use
+any asynchronous plugins it will throw an error. You should use
 [`LazyResult#then()`] instead.
 
 ```js
@@ -401,7 +401,7 @@ postcss([cssnext]).then(function (result) {
 
 ### `lazy.warnings()`
 
-Processes input CSS through synchronous plugins and call [`Result#warnings()`].
+Processes input CSS through synchronous plugins and calls [`Result#warnings()`].
 
 ```js
 postcss([cssnext]).warnings().forEach(function (message) {
@@ -410,7 +410,7 @@ postcss([cssnext]).warnings().forEach(function (message) {
 ```
 
 This property will work only with synchronous plugins. If processor contains
-any asynchronous plugin it will throw a error. You should use
+any asynchronous plugins it will throw a error. You should use
 [`LazyResult#then()`] instead.
 
 ```js
@@ -426,7 +426,7 @@ postcss([cssnext]).then(function (result) {
 Processes input CSS through synchronous plugins and returns [`Result#messages`].
 
 This property will work only with synchronous plugins. If processor contains
-any asynchronous plugin it will throw a error. You should use
+any asynchronous plugins it will throw an error. You should use
 [`LazyResult#then()`] instead.
 
 ### `lazy.processor`
@@ -495,12 +495,12 @@ Arguments:
   message object.
 * `opts (object) optional`: properties to message object.
   * `node`: CSS node, that was a source of warning.
-  * `plugin`: name of plugin created this warning. `Result#warn()` will fill it
-    automatically by `plugin.postcssPlugin` value.
+  * `plugin`: name of plugin that created this warning. `Result#warn()` will fill it
+    automatically with `plugin.postcssPlugin` value.
 
 ### `result.warnings()`
 
-Returns warnings from plugins. It just filters [`Warning`] instances
+Returns warnings from plugins. Filters [`Warning`] instances
 from [Result#messages].
 
 ```js
@@ -526,9 +526,9 @@ representing changes to the `Result`’s `Root` instance.
 result.map.toJSON() //=> { version: 3, file: 'a.css', sources: ['a.css'], … }
 ```
 
-This property will has a value *only if the user does not want an inline source
+This property will have a value *only if the user does not want an inline source
 map*. By default, PostCSS generates inline source maps, written directly into
-the processed CSS; so by default the `map` property will be empty.
+the processed CSS. The `map` property will be empty by default.
 
 An external source map will be generated — and assigned to `map` —
 only if the user has set the `map.inline` option to `false`, or if PostCSS
@@ -553,7 +553,7 @@ root.toResult().root == root;
 Contains messages from plugins. For example, warnings or custom messages
 to plugins communication.
 
-Each message should has `type` and `plugin` properties.
+Each message should have `type` and `plugin` properties.
 
 ```js
 postcss.plugin('postcss-min-browser', function () {
@@ -568,12 +568,12 @@ postcss.plugin('postcss-min-browser', function () {
 });
 ```
 
-You can add warning by [`Result#warn()`] and get all warnings
-by [`Result#warnings()`](#resultwarnings) method.
+Add a warning using [`Result#warn()`] and get all warnings
+using [`Result#warnings()`](#resultwarnings) method.
 
 ### `result.processor`
 
-Returns a [`Processor`] instance, that was used for this transformations.
+Returns the [`Processor`] instance used for this transformation.
 
 ```js
 result.processor.plugins.forEach(function (plugin) {
@@ -594,7 +594,7 @@ root.toResult(opts).opts == opts;
 
 ## `Warning` class
 
-Warning from plugins. It can be created by [`Result#warn()`].
+Warning from plugins. It can be created using [`Result#warn()`].
 
 ```js
 if ( decl.important ) {
@@ -620,7 +620,7 @@ warning.text //=> 'Try to avoid !important'
 
 ### `warning.plugin`
 
-Contains plugin name created this warning. When you call [`Result#warn()`],
+Contains name of plugin that created this warning. When you call [`Result#warn()`],
 it will fill this property automatically.
 
 ```js
@@ -629,7 +629,7 @@ warning.plugin //=> 'postcss-important'
 
 ### `warning.node`
 
-Contains CSS node, that was a source of warning.
+Contains CSS node that caused warning.
 
 ```js
 warning.node.toString() //=> 'color: white !important'
@@ -637,14 +637,14 @@ warning.node.toString() //=> 'color: white !important'
 
 ## `CssSyntaxError` class
 
-CSS parser throw this error on broken CSS.
+CSS parser throws this error for broken CSS.
 
 ```js
 postcss.parse('a{') //=> CssSyntaxError
 ```
 
-Custom parsers can throw this error on broken own custom syntax
-by [`Node#error()`](#nodeerrormessage) method.
+Custom parsers can throw this error for broken custom syntax
+using the [`Node#error()`](#nodeerrormessage) method.
 
 ```js
 throw node.error('Unknown variable', { plugin: 'postcss-vars' });
@@ -662,7 +662,7 @@ error.toString() //=> CssSyntaxError: app.css:1:1: Unclosed block
 
 ### `error.showSourceCode(color)`
 
-Returns a few lines of CSS source, which generates this error.
+Returns a few lines of CSS source that caused error.
 
 ```js
 error.showSourceCode() //=>
@@ -679,7 +679,7 @@ Arguments:
   `process.env.NODE_DISABLE_COLORS`.
 
 If CSS has input source map without `sourceContent`, this method will return
-empty string.
+an empty string.
 
 ### `error.message`
 
@@ -699,7 +699,7 @@ error.reason //=> 'Unclosed block'
 
 ### `error.plugin`
 
-Contains PostCSS plugin name if error came not from CSS parser.
+Contains PostCSS plugin name if error did not come from CSS parser.
 
 ```js
 error.plugin //=> 'postcss-vars'
@@ -719,8 +719,7 @@ PostCSS will use input source map to detect the original error location. If
 you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler),
-you can use `error.generated.file`.
+If you need position in PostCSS input (for example, to debug previous compiler), use `error.generated.file`.
 
 ```js
 error.file           //=> 'a.sass'
@@ -739,8 +738,7 @@ PostCSS will use input source map to detect the original error location. If
 you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler),
-you can use `error.generated.line`.
+If you need position in PostCSS input (for example, to debug previous compiler), use `error.generated.line`.
 
 ```js
 error.line           //=> 2
@@ -759,8 +757,7 @@ PostCSS will use input source map to detect the original error location. If
 you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler),
-you can use `error.generated.column`.
+If you need position in PostCSS input (for example, to debug previous compiler), use `error.generated.column`.
 
 ```js
 error.column           //=> 1
@@ -779,8 +776,7 @@ PostCSS will use input source map to detect the original error location. If
 you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler),
-you can use `error.generated.source`.
+If you need position in PostCSS input (for example, to debug previous compiler), use `error.generated.source`.
 
 ```js
 error.source           //=> 'a { b {} }'
@@ -859,8 +855,8 @@ root.source.input.file //=> '/home/ai/a.css'
 
 ### `input.id`
 
-The unique ID of the CSS source. This is used if the user did not enter a `from`
-options so PostCSS does not know about a file path.
+The unique ID of the CSS source. Used if `from`
+option is not provided (because PostCSS does not know the file path).
 
 ```js
 var root  = postcss.parse(css);
@@ -944,7 +940,7 @@ The property is used in source map generation.
 
 If you create a node manually (for example, with `postcss.decl()`),
 that node will not have a `source` property and will be absent
-from the source map. For this reason, plugin developer should consider
+from the source map. For this reason, the plugin developer should consider
 cloning nodes to create new ones (in which case the new node’s source
 will reference the original, cloned node) or setting the `source` property
 manually.
@@ -975,11 +971,11 @@ postcss.rule({ selector: 'a' }).toString() //=> 'a {}''
 
 ### `node.error(message, opts)`
 
-Returns a [`CssSyntaxError`] instance that presents the original position
+Returns a [`CssSyntaxError`] instance containing the original position
 of the node in the source, showing line and column numbers and also
 a small excerpt to facilitate debugging.
 
-It will use an input source map, if present, to get the original position
+If present, an input source map will be used to get the original position
 of the source, even from a previous compilation step
 (for example, from Sass compilation).
 
@@ -1052,9 +1048,9 @@ Arguments:
 
 ### `node.clone(props)`
 
-Returns a clones of the node.
+Returns a clone of the node.
 
-The resultant clone node and its (clone) children will have clean `parent`
+The resulting cloned node and its (cloned) children will have clean `parent`
 and code style properties.
 
 ```js
@@ -1070,7 +1066,7 @@ Arguments:
 
 ### `node.cloneBefore(props)` and `node.cloneAfter(props)`
 
-Shortcuts to clone the node and insert the resultant clone node before/after
+Shortcut to clone the node and insert the resulting cloned node before/after
 the current node.
 
 ```js
@@ -1125,8 +1121,7 @@ root.nodes[0].nodes[1].style('before') //=> ' '
 Arguments:
 
 * `prop (string)`: name or code style property.
-* `defaultType (string)`: name of default value. You can miss it
-  if it is same with `prop`.
+* `defaultType (string)`: name of default value. It can be easily missed if the value is the same as `prop`.
 
 ## Containers: common methods
 
@@ -1202,7 +1197,7 @@ var hasPrefix = rule.some(function (decl) {
 
 Arguments:
 
-* `callback (function)`: iterator, that returns true or false.
+* `callback (function)`: iterator, returns true or false.
 
 ### `container.each(callback)`
 
@@ -1384,8 +1379,7 @@ during iteration.
 Passes all declaration values within the container that match `pattern` through
 `callback`, replacing those values with the returned result of `callback`.
 
-This method is useful if you are using a custom unit or function,
-so need to iterate through all values.
+This method is useful if you are using a custom unit or function and need to iterate through all values.
 
 ```js
 root.replaceValues(/\d+rem/, { fast: 'rem' }, function (string) {
@@ -1399,12 +1393,11 @@ Arguments:
 * `opts (object) optional`: options to speed up th search:
   * `props`: An array of property names. The method will only search for values
     that match `regexp` within declarations of listed properties.
-  * `fast`: A string that will be used to narrow down values and speed up
-    the regexp search. Searching every single value with a regexp can be slow;
-    so if you pass a `fast` string, PostCSS will first check whether the value
+  * `fast`: A string that used to narrow down values and speed up
+    the regexp search. Searching every single value with a regexp can be slow. If you pass a `fast` string, PostCSS will first check whether the value
     contains the `fast` string; and only if it does will PostCSS check that
     value against `regexp`. For example, instead of just checking for `/\d+rem/`
-    on all values, you can set `fast: 'rem'` to first check whether a value has
+    on all values, set `fast: 'rem'` to first check whether a value has
     the `rem` unit, and only if it does perform the regexp check.
 * `callback (function|string)`: string to replace `pattern` or callback, that
   will return new value. Callback will receive the same arguments as those
@@ -1425,7 +1418,7 @@ Arguments:
 
 * `node (Node|object|string)`: new node.
 
-Because each node class is identifiable by unique properties, you can use
+Because each node class is identifiable by unique properties, use
 the following shortcuts to create nodes in insert methods:
 
 ```js
@@ -1435,8 +1428,7 @@ rule.append({ prop: 'color', value: 'black' });       // declaration
 rule.append({ text: 'Comment' })                      // comment
 ```
 
-Also you can use string with CSS of new element. But it will be a little bit
-slower than the above shortcuts.
+A string containing the CSS of the new element can also be used. This approach is slower than the above shortcuts.
 
 ```js
 root.append('a {}');

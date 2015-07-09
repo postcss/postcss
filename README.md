@@ -5,11 +5,13 @@
      src="http://postcss.github.io/postcss/logo.svg">
 
 PostCSS is a tool for transforming CSS with JS plugins.
+
 These plugins can support variables and mixins, transpile future CSS syntax,
 inline images, and more.
 
-Google, Twitter, Alibaba, and Shopify uses PostCSS.
-Its plugin, [Autoprefixer], is one of the most popular CSS processors.
+PostCSS is used by industry leaders including Google, Twitter, Alibaba, and Shopify.
+
+The [Autoprefixer] PostCSS plugin is one of the most popular CSS processors.
 
 PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
 But PostCSS is modular, 3-30 times faster, and much more powerful.
@@ -23,7 +25,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 [chat]:     https://gitter.im/postcss/postcss
 [ci]:       https://travis-ci.org/postcss/postcss
 
-[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#plugins) | [Write Own Plugin](#how-to-develop-postcss-plugin) | [Options](#options)
+[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#plugins) | [Write Your Own Plugin](#how-to-develop-postcss-plugin) | [Options](#options)
 --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
@@ -87,6 +89,7 @@ Or if you like the Sass syntax, you could combine
 
 Preprocessors are template languages, where you mix styles with code
 (like PHP does with HTML).
+
 In contrast, in PostCSS you write a custom subset of CSS.
 All code can only be in JS plugins.
 
@@ -105,7 +108,7 @@ As a result, PostCSS offers three main benefits:
 
 ## Usage
 
-You just need to follow these two steps to use PostCSS:
+Start using PostCSS in just two steps:
 
 1. Add PostCSS to your build tool.
 2. Select plugins from the list below and add them to your PostCSS process.
@@ -134,7 +137,7 @@ postcss([ require('cssnext')(), require('cssnano')() ])
     });
 ```
 
-You can also use PostCSS plugins with the Stylus by using [`poststylus`].
+You can also use PostCSS plugins with Stylus by using [`poststylus`].
 
 Read the [PostCSS API] for more details about the JS API.
 
@@ -152,10 +155,9 @@ Read the [PostCSS API] for more details about the JS API.
 
 ### Control
 
-There is two way to make PostCSS magic more explicit.
+There are two ways to make PostCSS magic more explicit.
 
-Define a plugins contexts and switch between them in different parts of CSS
-by [`postcss-plugin-context`]:
+Limit a plugin's local stylesheet context using [`postcss-plugin-context`]:
 
 ```css
 .css-example.is-test-for-css4-browsers {
@@ -168,7 +170,7 @@ by [`postcss-plugin-context`]:
 }
 ```
 
-Or to enable plugins right in CSS by [`postcss-use`]:
+Or enable plugins directly in CSS using [`postcss-use`]:
 
 ```css
 @use autoprefixer(browsers: ['last 2 versions']);
@@ -243,7 +245,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-for`] adds `@for` loops.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
-* [`postcss-mixins`] enables mixins more powerful than Sass’s,
+* [`postcss-mixins`] enables mixins more powerful than Sass',
   defined within stylesheets or in JS.
 * [`postcss-media-variables`] adds support for `var()` and `calc()`
   in `@media` rules
@@ -252,7 +254,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-simple-extend`] supports extending of silent classes,
-  like Sass’s `@extend`.
+  like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`postcss-strip-units`] strips units off of property values.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
@@ -301,7 +303,7 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Shortcuts
 
-* [`postcss-alias`] to create shorter aliases for properties.
+* [`postcss-alias`] creates shorter aliases for properties.
 * [`postcss-border`] adds shorthand for width and color of all borders
   in `border` property.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
@@ -471,7 +473,7 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
 
-## How to Develop PostCSS Plugin
+## How to Develop a PostCSS Plugin
 
 * [Plugin Guidelines](https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md)
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
@@ -487,11 +489,11 @@ from previous transformation steps, autodetect the format that you expect,
 and output both external and inline maps.
 
 To ensure that you generate an accurate source map, you must indicate the input
-and output CSS files paths — using the options `from` and `to`, respectively.
+and output CSS file paths — using the options `from` and `to`, respectively.
 
 To generate a new source map with the default options, simply set `map: true`.
 This will generate an inline source map that contains the source content.
-If you don’t want the map inlined, you can use set `map.inline: false`.
+If you don’t want the map inlined, you can set `map.inline: false`.
 
 ```js
 processor
@@ -530,18 +532,17 @@ option as an object with the following parameters:
   with `prev: false`.
 
 * `sourcesContent` boolean: indicates that PostCSS should set the origin
-  content (for example, Sass source) of the source map. By default, it’s `true`.
+  content (for example, Sass source) of the source map. By default, it is `true`.
   But if all previous maps do not contain sources content, PostCSS will also
   leave it out even if you do not set this option.
 
 * `annotation` boolean or string: indicates that PostCSS should add annotation
   comments to the CSS. By default, PostCSS will always add a comment with a path
-  to the source map. But if the input CSS does not have any annotation
-  comment, PostCSS will omit it, too, even if you do not set this option.
+  to the source map. PostCSS will not add annotations to CSS files that do not contain any comments.
 
   By default, PostCSS presumes that you want to save the source map as
   `opts.to + '.map'` and will use this path in the annotation comment.
-  But you can set another path by providing a string value for `annotation`.
+  A different path can be set by providing a string value for `annotation`.
 
   If you have set `inline: true`, annotation cannot be disabled.
 
@@ -549,7 +550,7 @@ option as an object with the following parameters:
 
 ### Safe Mode
 
-If you provide a `safe: true` option to the `process` or `parse` methods,
+If you pass the `safe: true` option to the `process` or `parse` methods,
 PostCSS will try to correct any syntax errors that it finds in the CSS.
 
 ```js
