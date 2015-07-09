@@ -306,6 +306,7 @@ See also plugins in modular minifier [`cssnano`].
   in `border` property.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
   declaration.
+* [`postcss-composes-shorthand`] adds shorthand for composing [css-modules](https://github.com/css-modules).
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
@@ -359,6 +360,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-class-any-link`]:  https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-canadian-stylesheets`]:   https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-color-rebeccapurple`]:    https://github.com/postcss/postcss-color-rebeccapurple
+[`postcss-composes-shorthand`]:     https://github.com/rtsao/postcss-composes-shorthand
 [`postcss-color-rgba-fallback`]:    https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-discard-duplicates`]:     https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-minify-font-weight`]:     https://github.com/ben-eb/postcss-minify-font-weight
