@@ -201,8 +201,6 @@ Or to enable plugins right in CSS by [`postcss-use`]:
 * [`postcss-color-hwb`] transforms `hwb()` to widely compatible `rgb()`.
 * [`postcss-color-rebeccapurple`] supports the `rebeccapurple` color.
 * [`postcss-conic-gradient`] supports the `conic-gradient` background.
-* [`postcss-css-variables`] supports variables for nested rules,
-  selectors, and at-rules
 * [`postcss-custom-media`] supports custom aliases for media queries.
 * [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
@@ -238,6 +236,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
+* [`postcss-css-variables`] supports variables for nested rules, selectors, and
+  at-rules using syntax similar to css custom properties.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
