@@ -236,8 +236,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
-* [`postcss-css-variables`] supports variables for nested rules, selectors, and
-  at-rules using syntax similar to css custom properties.
+* [`postcss-css-variables`] supports variables for nested rules, selectors,
+  and at-rules using W3C similar syntax.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
