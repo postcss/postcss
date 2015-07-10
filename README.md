@@ -292,6 +292,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
+* [`postcss-svgo`] processes inline SVG through [SVGO].
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`css-byebye`] removes the CSS rules that you don’t want.
@@ -299,6 +300,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
 
 See also plugins in modular minifier [`cssnano`].
+
+[SVGO]: https://github.com/svg/svgo
 
 ### Shortcuts
 
@@ -454,6 +457,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-host`]:                   https://github.com/vitkarpov/postcss-host
 [`postcss-neat`]:                   https://github.com/jo-asakura/postcss-neat
 [`postcss-size`]:                   https://github.com/postcss/postcss-size
+[`postcss-svgo`]:                   https://github.com/ben-eb/postcss-svgo
 [`postcss-vmin`]:                   https://github.com/iamvdo/postcss-vmin
 [`autoprefixer`]:                   https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                   https://github.com/hail2u/node-css-mqpacker
