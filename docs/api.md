@@ -1036,7 +1036,7 @@ if ( decl.prop.match(/^-webkit-/) ) {
 }
 ```
 
-### `node.replaceWith(otherNodes...)`
+### `node.replaceWith(...otherNodes)`
 
 Inserts nodes before the current node, and removes the current node.
 
@@ -1413,7 +1413,7 @@ Arguments:
 
 [`String#replace`]: (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter)
 
-### `container.prepend(nodes...)` and `container.append(nodes...)`
+### `container.prepend(...nodes)` and `container.append(...nodes)`
 
 Inserts new nodes to the start/end of the container.
 
