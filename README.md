@@ -253,6 +253,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
   in `@media` rules
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
 * [`postcss-nested`] unwraps nested rules.
+* [`postcss-nested-props`] unwraps nested properties.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-simple-extend`] supports extending of silent classes,
@@ -408,6 +409,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-media-minmax`]:           https://github.com/postcss/postcss-media-minmax
 [`postcss-merge-idents`]:           https://github.com/ben-eb/postcss-merge-idents
 [`postcss-selector-not`]:           https://github.com/postcss/postcss-selector-not
+[`postcss-nested-props`]:           https://github.com/jedmao/postcss-nested-props
 [`postcss-color-alpha`]:            https://github.com/avanes/postcss-color-alpha
 [`postcss-color-scale`]:            https://github.com/kristoferjoseph/postcss-color-scale
 [`postcss-data-packer`]:            https://github.com/Ser-Gen/postcss-data-packer
