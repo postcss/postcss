@@ -1337,7 +1337,7 @@ root.eachAtRule('charset', function (rule) {
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
 
-### `container.eachRule(callback)`
+### `container.eachRule([selectorFilter,] callback)`
 
 Recursively iterates through all rule nodes within the container, calling
 `callback` for each.
@@ -1352,7 +1352,12 @@ console.log('You CSS uses ' + selectors.length + ' selectors');
 
 Arguments:
 
+* `selectorFilter: (string|RegExp) optional`: string or regular expression
+  to filter rules by selector.
 * `callback (function)`: iterator, that will receive node itself and an index.
+
+If you pass a `selectorFilter`, only those rules whose selector matches
+`selectorFilter` will be iterated over.
 
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
