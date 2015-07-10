@@ -189,9 +189,11 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
 * [`cssnext`] contains plugins that allow you to use future CSS features today.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
+* [`rucksack`] contains plugins to speed up CSS development with new features and shortcuts.
 
 [`cssnano`]:  https://github.com/ben-eb/cssnano
 [`cssnext`]:  http://cssnext.io/
+[`rucksack`]: https://github.com/simplaio/rucksack
 [`atcss`]:    https://github.com/morishitter/atcss
 
 ### Future CSS Syntax
