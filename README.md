@@ -341,6 +341,7 @@ See also plugins in modular minifier [`cssnano`].
   in the console.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
+* [`postcss-pseudo-elements-content`] automatically add `content: ''` to `:before` and `:after` pseudo-elements.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
@@ -363,6 +364,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 
+[`postcss-pseudo-elements-content`]:https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:  https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-canadian-stylesheets`]:   https://github.com/chancancode/postcss-canadian-stylesheets
