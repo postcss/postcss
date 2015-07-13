@@ -297,6 +297,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
   `@charset` rule at the top of file.
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
 * [`postcss-svgo`] processes inline SVG through [SVGO].
+* [`postcss-svg`] insert inline SVG to CSS and allows to manage it colors.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`css-byebye`] removes the CSS rules that you don’t want.
@@ -471,6 +472,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-bem`]:                    https://github.com/ileri/postcss-bem
 [`postcss-for`]:                    https://github.com/antyakushev/postcss-for
 [`postcss-map`]:                    https://github.com/pascalduez/postcss-map
+[`postcss-svg`]:                    https://github.com/Pavliko/postcss-svg
 [`postcss-url`]:                    https://github.com/postcss/postcss-url
 [`css-byebye`]:                     https://github.com/AoDev/css-byebye
 [`stylehacks`]:                     https://github.com/ben-eb/stylehacks
