@@ -270,7 +270,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
   in the `brand-colors` module.
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
   to `rgba()`.
-* [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `HCL(H, C, L, alpha)`
+* [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `hcl(H, C, L, alpha)`
   to `#rgb` and `rgba()`.
 * [`postcss-color-mix`] mixes two colors together.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
