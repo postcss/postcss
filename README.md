@@ -340,7 +340,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
-* [`postcss-pseudo-elements-content`] automatically add `content: ''` to `:before` and `:after` pseudo-elements.
+* [`postcss-pseudo-elements-content`] automatically adds `content: ""`
+  to `:before` and `:after`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-reporter`] logs warnings and other messages from other plugins
   in the console.
