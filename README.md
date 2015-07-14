@@ -342,7 +342,7 @@ See also plugins in modular minifier [`cssnano`].
   right in your browser.
 * [`postcss-pseudo-elements-content`] automatically add `content: ''` to `:before` and `:after` pseudo-elements.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
-* * [`postcss-reporter`] logs warnings messages from other plugins
+* [`postcss-reporter`] logs warnings messages from other plugins
   in the console.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
