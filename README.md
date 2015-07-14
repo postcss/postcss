@@ -319,6 +319,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
+* [`postcss-font-pack`] simplifies font declarations and validates they match
+  configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
@@ -426,6 +428,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
+[`postcss-font-pack`]:              https://github.com/jedmao/postcss-font-pack
 [`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
 [`postcss-color-mix`]:              https://github.com/iamstarkov/postcss-color-mix
