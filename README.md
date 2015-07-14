@@ -338,12 +338,12 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
-* [`postcss-log-warnings`] logs warnings messages from other plugins
-  in the console.
 * [`postcss-messages`] displays warning messages from other plugins
   right in your browser.
 * [`postcss-pseudo-elements-content`] automatically add `content: ''` to `:before` and `:after` pseudo-elements.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
+* * [`postcss-reporter`] logs warnings messages from other plugins
+  in the console.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylehacks`] removes CSS hacks based on browser support.
@@ -408,7 +408,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-default-unit`]:           https://github.com/antyakushev/postcss-default-unit
 [`postcss-flexboxfixer`]:           https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
-[`postcss-log-warnings`]:           https://github.com/davidtheclark/postcss-log-warnings
+[`postcss-reporter`]:               https://github.com/postcss/postcss-reporter
 [`postcss-media-minmax`]:           https://github.com/postcss/postcss-media-minmax
 [`postcss-merge-idents`]:           https://github.com/ben-eb/postcss-merge-idents
 [`postcss-selector-not`]:           https://github.com/postcss/postcss-selector-not
