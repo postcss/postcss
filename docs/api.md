@@ -103,11 +103,20 @@ Then it should mutate the passed `Root` node, or you can create new `Root` node
 and override the `result.root` property.
 
 ```js
-postcss.plugin('postcss-cleaner', function () {
+var cleaner = postcss.plugin('postcss-cleaner', function () {
     return function (css, result) {
         result.root = postcss.root();
     };
 });
+```
+
+Plugins also expose a `process` method as a convenience, so that you can use
+them as standalone tools.
+
+```js
+cleaner.process(css, options);
+// This is equivalent to:
+postcss([ cleaner(options) ]).process(css);
 ```
 
 Asynchronous plugin should return `Promise` instance.
