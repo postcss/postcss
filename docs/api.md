@@ -1643,10 +1643,10 @@ This is a code style property.
 `true` if at-rule’s last child declaration
 is followed by an (optional) semicolon.
 
-`undefined` if the semicolon is omitted.
+`false` if the semicolon is omitted.
 
 ```js
-postcss.parse('@page{color:black}').first.semicolon  //=> undefined
+postcss.parse('@page{color:black}').first.semicolon  //=> false
 postcss.parse('@page{color:black;}').first.semicolon //=> true
 ```
 
@@ -1739,10 +1739,10 @@ This is a code style property.
 
 `true` if rule’s last child declaration is followed by an (optional) semicolon.
 
-`undefined` if the semicolon is omitted.
+`false` if the semicolon is omitted.
 
 ```js
-postcss.parse('a{color:black}').first.semicolon  //=> undefined
+postcss.parse('a{color:black}').first.semicolon  //=> false
 postcss.parse('a{color:black;}').first.semicolon //=> true
 ```
 
