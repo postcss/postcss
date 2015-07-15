@@ -77,6 +77,25 @@ describe('postcss()', () => {
             expect(result2.css).to.eql('a{ one: 1 }');
         });
 
+        it('creates a shortcut to process css', (done) => {
+            let plugin = postcss.plugin('test', ({str = 'bar'} = {}) => {
+                return function (css) {
+                    css.eachDecl((decl) => decl.value = str);
+                };
+            });
+
+            let result1 = plugin.process('a{value:foo}');
+            expect(result1.css).to.eql('a{value:bar}');
+
+            let result2 = plugin.process('a{value:foo}', {str: 'baz'});
+            expect(result2.css).to.eql('a{value:baz}');
+
+            plugin.process('a{value:foo}').then(result => {
+                expect(result.css).to.eql('a{value:bar}');
+                done();
+            });
+        });
+
     });
 
     describe('.parse()', () => {
