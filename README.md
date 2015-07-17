@@ -359,10 +359,10 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Reporters
 
-* [`postcss-reporter`] logs warnings and other messages from other plugins
-  in the console.
 * [`postcss-browser-reporter`] displays warning messages from other plugins
   right in your browser.
+* [`postcss-reporter`] logs warnings and other messages from other plugins
+  in the console.
 
 ### Fun
 
