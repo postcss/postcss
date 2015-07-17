@@ -340,13 +340,9 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
-* [`postcss-messages`] displays warning messages from other plugins
-  right in your browser.
 * [`postcss-pseudo-elements-content`] automatically adds `content: ""`
   to `:before` and `:after`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
-* [`postcss-reporter`] logs warnings and other messages from other plugins
-  in the console.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylehacks`] removes CSS hacks based on browser support.
@@ -360,6 +356,13 @@ See also plugins in modular minifier [`cssnano`].
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
+
+### Reporters
+
+* [`postcss-reporter`] logs warnings and other messages from other plugins
+  in the console.
+* [`postcss-browser-reporter`] displays warning messages from other plugins
+  right in your browser.
 
 ### Fun
 
@@ -383,6 +386,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-discard-comments`]:       https://github.com/ben-eb/postcss-discard-comments
 [`postcss-minify-selectors`]:       https://github.com/ben-eb/postcss-minify-selectors
 [`postcss-quantity-queries`]:       https://github.com/pascalduez/postcss-quantity-queries
+[`postcss-browser-reporter`]:       https://github.com/postcss/postcss-browser-reporter
 [`postcss-color-hex-alpha`]:        https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-define-property`]:        https://github.com/daleeidd/postcss-define-property
 [`postcss-generate-preset`]:        https://github.com/simonsmith/postcss-generate-preset
@@ -436,7 +440,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-clearfix`]:               https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:               https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:               https://github.com/cssstats/postcss-cssstats
-[`postcss-messages`]:               https://github.com/postcss/postcss-messages
 [`postcss-position`]:               https://github.com/seaneking/postcss-position
 [`postcss-spiffing`]:               https://github.com/HashanP/postcss-spiffing
 [`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
