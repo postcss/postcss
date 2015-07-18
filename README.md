@@ -344,6 +344,7 @@ See also plugins in modular minifier [`cssnano`].
   to `:before` and `:after`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
+* [`perfectionist`] formats poorly written CSS and renders a "pretty" result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylehacks`] removes CSS hacks based on browser support.
 
@@ -464,6 +465,7 @@ See also plugins in modular minifier [`cssnano`].
 [`css2modernizr`]:                  https://github.com/vovanbo/css2modernizr
 [`postcss-short`]:                  https://github.com/jonathantneal/postcss-short
 [`postcss-alias`]:                  https://github.com/seaneking/postcss-alias
+[`perfectionist`]:                  https://github.com/ben-eb/perfectionist
 [`postcss-at2x`]:                   https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                   https://github.com/postcss/postcss-calc
 [`postcss-each`]:                   https://github.com/outpunk/postcss-each
