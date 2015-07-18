@@ -16,7 +16,6 @@ PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
 But PostCSS is modular, 3-30 times faster, and much more powerful.
 
 Twitter account: [@postcss](https://twitter.com/postcss).
-Weibo account:   [postcss](http://weibo.com/postcss).
 VK.com page:     [postcss](https://vk.com/postcss).
 
 [chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
