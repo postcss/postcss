@@ -34,9 +34,27 @@ describe('Rule', () => {
         });
 
         it('receive array', () => {
-            let rule = new Rule({ selector: 'a,b' });
+            let rule = new Rule({ selector: 'i, b' });
             rule.selectors = ['em', 'strong'];
             expect(rule.selector).to.eql('em, strong');
+        });
+
+        it('saves separator', () => {
+            let rule = new Rule({ selector: 'i,\nb' });
+            rule.selectors = ['em', 'strong'];
+            expect(rule.selector).to.eql('em,\nstrong');
+        });
+
+        it('uses between to detect separator', () => {
+            let rule = new Rule({ selector: 'b', raw: { between: '' } });
+            rule.selectors = ['b', 'strong'];
+            expect(rule.selector).to.eql('b,strong');
+        });
+
+        it('uses space in separator be default', () => {
+            let rule = new Rule({ selector: 'b' });
+            rule.selectors = ['b', 'strong'];
+            expect(rule.selector).to.eql('b, strong');
         });
 
     });
