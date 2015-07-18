@@ -330,6 +330,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-short`] adds and extends numerous shorthand properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
+* [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
 
 ### Others
@@ -381,6 +382,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-discard-duplicates`]:     https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-minify-font-weight`]:     https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:     https://github.com/jonathantneal/postcss-pseudo-class-enter
+[`postcss-transform-shortcut`]:     https://github.com/jonathantneal/postcss-transform-shortcut
 [`postcss-custom-properties`]:      https://github.com/postcss/postcss-custom-properties
 [`postcss-discard-font-face`]:      https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-custom-selectors`]:       https://github.com/postcss/postcss-custom-selectors
