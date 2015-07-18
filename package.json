@@ -21,10 +21,11 @@
     "url":  "https://github.com/postcss/postcss.git"
   },
   "dependencies": {
-    "es6-promise": "~2.3.0",
-    "source-map":  "~0.4.4",
-    "js-base64":   "~2.1.8",
-    "babel":       "5.6.23"
+    "supports-color": "~3.0.1",
+    "es6-promise":    "~2.3.0",
+    "source-map":     "~0.4.4",
+    "js-base64":      "~2.1.8",
+    "babel":          "5.6.23"
   },
   "devDependencies": {
     "concat-with-sourcemaps": "1.0.2",
