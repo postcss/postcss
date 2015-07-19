@@ -311,27 +311,26 @@ describe('Node', () => {
 
     });
 
-    describe.only('positionAt()', () => {
+    describe('positionInside()', () => {
+
         it('returns correct position when node starts mid-line', () => {
-            let css = parse('a { one: 1; }');
+            let css = parse('a {  one: X  }');
             let one = css.first.first;
-            expect(one.positionAt(4).line).to.equal(1);
-            expect(one.positionAt(4).column).to.equal(8);
+            expect(one.positionInside(6)).to.eql({ line: 1, column: 11 });
         });
 
         it('returns correct position when node.before contains newline', () => {
-            let css = parse('a {\n  one: 1;\n}');
+            let css = parse('a {\n  one: X}');
             let one = css.first.first;
-            expect(one.positionAt(6).line).to.equal(2);
-            expect(one.positionAt(6).column).to.equal(6);
+            expect(one.positionInside(6)).to.eql({ line: 2, column: 8 });
         });
 
         it('returns correct position when node contains newlines', () => {
-            let css = parse('a {\n\tmargin: 1px,\n\t\t2px,\n\t\t3px;\n}');
+            let css = parse('a {\n\tone: 1\n\t\tX\n3}');
             let one = css.first.first;
-            expect(one.positionAt(25).line).to.equal(4);
-            expect(one.positionAt(25).column).to.equal(4);
+            expect(one.positionInside(10)).to.eql({ line: 3, column: 3 });
         });
+
     });
 
 });
