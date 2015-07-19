@@ -189,12 +189,14 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`cssnext`] contains plugins that allow you to use future CSS features today.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
 * [`rucksack`] contains plugins to speed up CSS development with new features and shortcuts.
+* [`stylelint`] contains plugins that lint your stylesheets.
 
 
-[`rucksack`]: https://github.com/simplaio/rucksack
-[`cssnano`]:  https://github.com/ben-eb/cssnano
-[`cssnext`]:  http://cssnext.io/
-[`atcss`]:    https://github.com/morishitter/atcss
+[`rucksack`]:  https://github.com/simplaio/rucksack
+[`cssnano`]:   https://github.com/ben-eb/cssnano
+[`cssnext`]:   http://cssnext.io/
+[`atcss`]:     https://github.com/morishitter/atcss
+[`stylelint`]: https://github.com/stylelint/stylelint
 
 ### Future CSS Syntax
 
