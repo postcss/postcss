@@ -1023,11 +1023,11 @@ This method produces very useful error messages.
 
 ```js
 if ( !variables[name] ) {
-    throw decl.error('Unknown variable ' + name);
+    throw decl.error('Unknown variable ' + name, { word: name });
     // CssSyntaxError: postcss-vars:a.sass:4:3: Unknown variable $black
     // a
     //   color: $black
-    //   ^
+    //          ^
     //   background: white
 }
 ```
@@ -1038,6 +1038,8 @@ Arguments:
 * `opts (object) optional`: options.
   * `plugin (string)`: plugin name, that created this error.
     PostCSS will set it automatically.
+  * `word (string)`: a word inside a node’s string, that should be highlighted
+    as source of error.
 
 See also [`Result#warn()`] for warnings.
 
