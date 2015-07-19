@@ -24,6 +24,31 @@ describe('Node', () => {
             expect(error.message).to.eql('<css input>: Test');
         });
 
+        it('highlights index', () => {
+            let root  = parse('a { b: c }');
+            let error = root.first.first.error('Bad semicolon', { index: 1 });
+            expect(error.showSourceCode(false)).to.eql('\n' +
+                                                       'a { b: c }\n' +
+                                                       '     ^');
+        });
+
+        it('highlights word', () => {
+            let root  = parse('a { color: x red }');
+            let error = root.first.first.error('Wrong color', { word: 'x' });
+            expect(error.showSourceCode(false)).to.eql('\n' +
+                                                       'a { color: x red }\n' +
+                                                       '           ^');
+        });
+
+        it('highlights word in multiline string', () => {
+            let root  = parse('a { color: red\n           x }');
+            let error = root.first.first.error('Wrong color', { word: 'x' });
+            expect(error.showSourceCode(false)).to.eql('\n' +
+                                                       'a { color: red\n' +
+                                                       '           x }\n' +
+                                                       '           ^');
+        });
+
     });
 
     describe('removeSelf()', () => {
@@ -316,19 +341,19 @@ describe('Node', () => {
         it('returns correct position when node starts mid-line', () => {
             let css = parse('a {  one: X  }');
             let one = css.first.first;
-            expect(one.positionInside(6)).to.eql({ line: 1, column: 11 });
+            expect(one.positionInside(6)).to.eql({ line: 1, column: 12 });
         });
 
         it('returns correct position when node.before contains newline', () => {
             let css = parse('a {\n  one: X}');
             let one = css.first.first;
-            expect(one.positionInside(6)).to.eql({ line: 2, column: 8 });
+            expect(one.positionInside(6)).to.eql({ line: 2, column: 9 });
         });
 
         it('returns correct position when node contains newlines', () => {
             let css = parse('a {\n\tone: 1\n\t\tX\n3}');
             let one = css.first.first;
-            expect(one.positionInside(10)).to.eql({ line: 3, column: 3 });
+            expect(one.positionInside(10)).to.eql({ line: 3, column: 4 });
         });
 
     });
