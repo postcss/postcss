@@ -191,12 +191,11 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`rucksack`] contains plugins to speed up CSS development with new features and shortcuts.
 * [`stylelint`] contains plugins that lint your stylesheets.
 
-
+[`stylelint`]: https://github.com/stylelint/stylelint
 [`rucksack`]:  https://github.com/simplaio/rucksack
 [`cssnano`]:   https://github.com/ben-eb/cssnano
 [`cssnext`]:   http://cssnext.io/
 [`atcss`]:     https://github.com/morishitter/atcss
-[`stylelint`]: https://github.com/stylelint/stylelint
 
 ### Future CSS Syntax
 
