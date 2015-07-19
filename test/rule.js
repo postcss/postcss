@@ -69,22 +69,20 @@ describe('Rule', () => {
         });
 
         it('clones spaces from another rule', () => {
-            let root = parse('a{\n  }b{\n  }');
+            let root = parse('b{\n  }');
             let rule = new Rule({ selector: 'em' });
             root.append(rule);
-
-            expect(rule.toString()).to.eql('em{\n  }');
+            expect(root.toString()).to.eql('b{\n  }\nem{\n  }');
         });
 
         it('uses different spaces for empty rules', () => {
-            let root = parse('a { }\nb {\n  color: black\n}');
+            let root = parse('a{}\nb{\n a:1\n}');
             let rule = new Rule({ selector: 'em' });
             root.append(rule);
-
-            expect(rule.toString()).to.eql('\nem { }');
+            expect(root.toString()).to.eql('a{}\nb{\n a:1\n}\nem{}');
 
             rule.append({ prop: 'top', value: '0' });
-            expect(rule.toString()).to.eql('\nem {\n  top: 0\n}');
+            expect(root.toString()).to.eql('a{}\nb{\n a:1\n}\nem{\n top:0\n}');
         });
 
     });

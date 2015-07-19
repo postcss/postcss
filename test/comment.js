@@ -12,12 +12,12 @@ describe('Comment', () => {
             expect(comment.toString()).to.eql('/* hi */');
         });
 
-        it('clone spaces from another comment', () => {
+        it('clones spaces from another comment', () => {
             let root    = parse('a{} /*hello*/');
             let comment = new Comment({ text: 'world' });
             root.append(comment);
 
-            expect(comment.toString()).to.eql(' /*world*/');
+            expect(root.toString()).to.eql('a{} /*hello*/ /*world*/');
         });
 
     });
