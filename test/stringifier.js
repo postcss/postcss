@@ -134,7 +134,8 @@ describe('stringifier', () => {
             css.append(new Rule({ selector: 'em' }));
             css.last.append({ prop: 'z-index', value: '1' });
 
-            expect(css.last.toString()).to.eql('\n\nem {\n  z-index: 1\n}');
+            expect(css.last.style('before')).to.eql('\n\n');
+            expect(css.last.first.style('before')).to.eql('\n  ');
         });
 
         it('clones indent by before and after', () => {
@@ -142,7 +143,8 @@ describe('stringifier', () => {
             css.first.append(new Rule({ selector: 'b' }));
             css.first.last.append({ prop: 'z-index', value: '1' });
 
-            expect(css.first.last.toString()).to.eql('\n\n b{\n  z-index: 1}');
+            expect(css.first.last.style('before')).to.eql('\n\n ');
+            expect(css.first.last.style('after')).to.eql('');
         });
 
         it('clones semicolon only from rules with children', () => {

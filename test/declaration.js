@@ -29,15 +29,14 @@ describe('Declaration', () => {
             let decl = new Declaration({ prop: 'color', value: 'black' });
             let rule = new Rule({ selector: 'a' });
             rule.append(decl);
-            expect(decl.toString()).to.eql('\n    color: black');
+            expect(rule.toString()).to.eql('a {\n    color: black\n}');
         });
 
-        it('clone spaces from another declaration', () => {
+        it('clones spaces from another declaration', () => {
             let root = parse('a{color:black}');
             let decl = new Declaration({ prop: 'margin', value: '0' });
             root.first.append(decl);
-
-            expect(decl.toString()).to.eql('margin:0');
+            expect(root.toString()).to.eql('a{color:black;margin:0}');
         });
 
     });
