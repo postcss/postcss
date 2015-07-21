@@ -292,6 +292,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
+* [`postcss-inline-image`] embeds images as data URI's into CSS file.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
@@ -418,6 +419,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-default-unit`]:           https://github.com/antyakushev/postcss-default-unit
 [`postcss-flexboxfixer`]:           https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
+[`postcss-inline-image`]:           https://github.com/f/postcss-inline-image
 [`postcss-reporter`]:               https://github.com/postcss/postcss-reporter
 [`postcss-media-minmax`]:           https://github.com/postcss/postcss-media-minmax
 [`postcss-merge-idents`]:           https://github.com/ben-eb/postcss-merge-idents
