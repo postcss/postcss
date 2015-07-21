@@ -292,7 +292,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
-* [`postcss-inline-image`] embeds images as data URIs into CSS file.
+* [`postcss-inline-image`] embeds images as data URI's into CSS file.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
