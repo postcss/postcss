@@ -420,7 +420,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-normalize-url`]:          https://github.com/ben-eb/postcss-normalize-url
 [`postcss-reduce-idents`]:          https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:          https://github.com/davidtheclark/postcss-simple-extend
-[`postcss-mq-keyframes`]            https://github.com/TCotton/postcss-mq-keyframes
+[`postcss-mq-keyframes`]:           https://github.com/TCotton/postcss-mq-keyframes
 [`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:           https://github.com/thompsongl/postcss-class-prefix
 [`postcss-conditionals`]:           https://github.com/andyjansson/postcss-conditionals
