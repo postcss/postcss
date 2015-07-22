@@ -60,8 +60,7 @@ You can use the [cssnext] plugin pack and write future CSS code right now:
 }
 ```
 
-Or if you like the Sass syntax, you could combine
-[`postcss-nested`] and [`postcss-mixins`]:
+Or if you like the Sass syntax, you could use [PreCSS] plugin pack:
 
 ```css
 @define-mixin social-icon $network $color {
@@ -82,6 +81,7 @@ Or if you like the Sass syntax, you could combine
 ```
 
 [cssnext]: http://cssnext.io/
+[PreCSS]:  https://github.com/jonathantneal/precss
 
 ## Features
 
