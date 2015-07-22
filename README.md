@@ -235,6 +235,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
+* [`postcss-svg-fallback`] automatically converts SVG in your CSS to PNG files for IE 8 compatibility.
 
 ### Language Extensions
 
@@ -495,6 +496,7 @@ See also plugins in modular minifier [`cssnano`].
 [`precss`]:                         https://github.com/jonathantneal/precss
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
+[`postcss-svg-fallback`]:           https://github.com/justim/postcss-svg-fallback
 
 ## How to Develop a PostCSS Plugin
 
