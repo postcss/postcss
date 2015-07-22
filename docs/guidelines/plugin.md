@@ -1,7 +1,9 @@
 # PostCSS Plugin Guidelines
 
-PostCSS plugin is a function that receives and transforms a CSS AST
-from PostCSS parser. These rules are mandatory for all PostCSS plugins.
+A PostCSS plugin is a function that receives and, usually, transforms a CSS AST
+from the PostCSS parser.
+
+The rules below are *mandatory* for all PostCSS plugins.
 
 See also [ClojureWerkz’s recommendations] for open source projects.
 
@@ -11,42 +13,46 @@ See also [ClojureWerkz’s recommendations] for open source projects.
 
 ### 1.1 Clear name with `postcss-` prefix
 
-Plugin’s purpose should be clear just by its name.
+The plugin’s purpose should be clear just by reading its name.
 If you wrote a transpiler for CSS 4 Custom Media, `postcss-custom-media`
-is a good name. If you wrote a plugin to support mixin,
-use `postcss-mixins` as name.
+would be a good name. If you wrote a plugin to support mixins,
+`postcss-mixins` would be a good name.
 
-Prefix `postcss-` will show, that plugin is part of PostCSS ecosystem.
+The prefix `postcss-` shows that the plugin is part of the PostCSS ecosystem.
 
-This rule is not mandatory for plugins promoted as separated tool,
-not like a part of PostCSS ecosystem. Like [cssnext] or [Autoprefixer].
+This rule is not mandatory for plugins that can run as independent tools,
+without the user necessarily knowing that it is powered by 
+PostCSS — for example, [cssnext] and [Autoprefixer].
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 [cssnext]:      http://cssnext.io/
 
 ### 1.2. Do one thing, and do it well
 
-Do not create multitool plugins. Few small one-purpose plugins with
-a plugins pack will be a better solution.
+Do not create multitool plugins. Several small, one-purpose plugins bundled into
+a plugin pack is usually a better solution.
 
-For example, [cssnext] contains many small plugins for each W3C specification.
-Or [cssnano] contains a plugin for each optimization.
+For example, [cssnext] contains many small plugins, one for each W3C specification.
+And [cssnano] contains a separate plugin for each of its optimization.
 
 [cssnext]: http://cssnext.io/
 [cssnano]: https://github.com/ben-eb/cssnano
 
 ### 1.3. Do not use mixins
 
-Preprocessors libraries like Compass provide API by mixins.
+Preprocessors libraries like Compass provide an API with mixins.
 
-PostCSS has a different way. Do not provide mixins for [postcss-mixins].
-Custom properties and at-rules are better way.
+PostCSS plugins are different. 
+A plugin cannot be just a set of mixins for [postcss-mixins].
+
+To achieve your goal, consider transforming valid CSS
+or using custom at-rules and custom properties.
 
 [postcss-mixins]: https://github.com/postcss/postcss-mixins
 
 ### 1.4. Create plugin by `postcss.plugin`
 
-This method will create a wrap to provide common plugin API:
+By wrapping you function in this method, you are hooking into a common plugin API:
 
 ```js
 module.exports = postcss.plugin('plugin-name', function (opts) {
@@ -60,8 +66,8 @@ module.exports = postcss.plugin('plugin-name', function (opts) {
 
 ### 2.1. Plugin must be tested
 
-CI service like [Travis] is also recommended to test code on
-different environments (at least on node.js 0.12 and io.js).
+A CI service like [Travis] is also recommended for testing code in
+different environments. You should test in (at least) Node.js v0.12 and io.js.
 
 [Travis]: https://travis-ci.org/
 
@@ -87,10 +93,10 @@ postcss.plugin('plugin-sprite', function (opts) {
 
 ### 2.3. Set `node.source` for new nodes
 
-Every node must have relevant `source` to generate correct source map.
+Every node must have a relevant `source` so PostCSS can generate an accurate source map.
 
-So if you add new declaration, because of different declaration, you should
-clone it to save origin `source`.
+So if you add new declaration based on some existing declaration, you should
+clone the existing declaration in order to save that original `source`.
 
 ```js
 if ( needPrefix(decl.prop) ) {
@@ -98,8 +104,7 @@ if ( needPrefix(decl.prop) ) {
 }
 ```
 
-If you will create different type of node, you can just set `source`
-from source node:
+You can also set `source` directly, copying from some existing node:
 
 ```js
 if ( decl.prop === 'animation' ) {
@@ -121,8 +126,8 @@ is described in [API docs].
 
 ### 3.1. Use `node.error` on CSS relevant errors
 
-If you have a error because of input CSS (like unknown name in mixin plugin)
-you should use `node.error` to create a error with source position:
+If you have an error because of input CSS (like an unknown name in a mixin plugin)
+you should use `node.error` to create an error that includes source position:
 
 ```js
 if ( typeof mixins[name] === 'undefined' ) {
@@ -132,8 +137,8 @@ if ( typeof mixins[name] === 'undefined' ) {
 
 ### 3.2. Use `result.warn` for warnings
 
-Do not print warnings by `console.warn`, because some PostCSS runner may has
-no console output.
+Do not print warnings with `console.log` or `console.warn`, 
+because some PostCSS runner may not allow console output.
 
 ```js
 if ( outdated(decl.prop) ) {
@@ -141,7 +146,7 @@ if ( outdated(decl.prop) ) {
 }
 ```
 
-If CSS input is a source of warning, plugin must set `node` option.
+If CSS input is a source of the warning, the plugin must set the `node` option.
 
 ## 4. Documentation
 
@@ -153,31 +158,34 @@ of your English skills, as the open source community will fix your errors.
 Of course, you are welcome to write documentation in other languages;
 just name them appropriately (e.g. `README.ja.md`).
 
-### 4.2. Put input and output examples
+### 4.2. Include input and output examples
 
-`README.md` must contain input and output CSS. Example is a best way
-to describe plugin work.
+The plugin's `README.md` must contain example input and output CSS. 
+A clear example is the best way to describe how your plugin works.
 
-First section is a good place to put examples.
-See [postcss-opacity](https://github.com/iamvdo/postcss-opacity) for example.
+The first section of the `README.md` is a good place to put examples.
+See [postcss-opacity](https://github.com/iamvdo/postcss-opacity) for an example.
+
+Of course, this guideline does not apply if your plugin does not
+transform the CSS.
 
 ### 4.3. Maintain a changelog
 
-PostCSS plugins must describe changes of all releases in a separate file,
-such as `ChangeLog.md`, `History.md`, or with [GitHub Releases].
-Visit [Keep A Changelog] for more information on how to write one of these.
+PostCSS plugins must describe the changes of all their releases in a separate file,
+such as `CHANGELOG.md`, `History.md`, or [GitHub Releases].
+Visit [Keep A Changelog] for more information about how to write one of these.
 
-Of course you should use [SemVer].
+Of course, you should be using [SemVer].
 
 [Keep A Changelog]: http://keepachangelog.com/
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
 [SemVer]:           http://semver.org/
 
-### 4.4. `postcss-plugin` keyword in `package.json`
+### 4.4. Include `postcss-plugin` keyword in `package.json`
 
 PostCSS plugins written for npm must have the `postcss-plugin` keyword
 in their `package.json`. This special keyword will be useful for feedback about
 the PostCSS ecosystem.
 
-For packages not published to npm, this is not mandatory, but recommended
-if the package format is allowed to contain keywords.
+For packages not published to npm, this is not mandatory, but is recommended
+if the package format can contain keywords.
