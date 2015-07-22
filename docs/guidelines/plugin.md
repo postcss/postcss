@@ -1,7 +1,7 @@
 # PostCSS Plugin Guidelines
 
-A PostCSS plugin is a function that receives and, usually, transforms a CSS AST
-from the PostCSS parser.
+A PostCSS plugin is a function that receives and, usually,
+transforms a CSS AST from the PostCSS parser.
 
 The rules below are *mandatory* for all PostCSS plugins.
 
@@ -21,7 +21,7 @@ would be a good name. If you wrote a plugin to support mixins,
 The prefix `postcss-` shows that the plugin is part of the PostCSS ecosystem.
 
 This rule is not mandatory for plugins that can run as independent tools,
-without the user necessarily knowing that it is powered by 
+without the user necessarily knowing that it is powered by
 PostCSS — for example, [cssnext] and [Autoprefixer].
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
@@ -32,8 +32,9 @@ PostCSS — for example, [cssnext] and [Autoprefixer].
 Do not create multitool plugins. Several small, one-purpose plugins bundled into
 a plugin pack is usually a better solution.
 
-For example, [cssnext] contains many small plugins, one for each W3C specification.
-And [cssnano] contains a separate plugin for each of its optimization.
+For example, [cssnext] contains many small plugins,
+one for each W3C specification. And [cssnano] contains a separate plugin
+for each of its optimization.
 
 [cssnext]: http://cssnext.io/
 [cssnano]: https://github.com/ben-eb/cssnano
@@ -42,7 +43,7 @@ And [cssnano] contains a separate plugin for each of its optimization.
 
 Preprocessors libraries like Compass provide an API with mixins.
 
-PostCSS plugins are different. 
+PostCSS plugins are different.
 A plugin cannot be just a set of mixins for [postcss-mixins].
 
 To achieve your goal, consider transforming valid CSS
@@ -52,7 +53,8 @@ or using custom at-rules and custom properties.
 
 ### 1.4. Create plugin by `postcss.plugin`
 
-By wrapping you function in this method, you are hooking into a common plugin API:
+By wrapping you function in this method,
+you are hooking into a common plugin API:
 
 ```js
 module.exports = postcss.plugin('plugin-name', function (opts) {
@@ -67,7 +69,7 @@ module.exports = postcss.plugin('plugin-name', function (opts) {
 ### 2.1. Plugin must be tested
 
 A CI service like [Travis] is also recommended for testing code in
-different environments. You should test in (at least) Node.js v0.12 and io.js.
+different environments. You should test in (at least) Node.js 0.12 and io.js.
 
 [Travis]: https://travis-ci.org/
 
@@ -93,7 +95,8 @@ postcss.plugin('plugin-sprite', function (opts) {
 
 ### 2.3. Set `node.source` for new nodes
 
-Every node must have a relevant `source` so PostCSS can generate an accurate source map.
+Every node must have a relevant `source` so PostCSS can generate
+an accurate source map.
 
 So if you add new declaration based on some existing declaration, you should
 clone the existing declaration in order to save that original `source`.
@@ -126,8 +129,9 @@ is described in [API docs].
 
 ### 3.1. Use `node.error` on CSS relevant errors
 
-If you have an error because of input CSS (like an unknown name in a mixin plugin)
-you should use `node.error` to create an error that includes source position:
+If you have an error because of input CSS (like an unknown name
+in a mixin plugin) you should use `node.error` to create an error
+that includes source position:
 
 ```js
 if ( typeof mixins[name] === 'undefined' ) {
@@ -137,7 +141,7 @@ if ( typeof mixins[name] === 'undefined' ) {
 
 ### 3.2. Use `result.warn` for warnings
 
-Do not print warnings with `console.log` or `console.warn`, 
+Do not print warnings with `console.log` or `console.warn`,
 because some PostCSS runner may not allow console output.
 
 ```js
@@ -160,7 +164,7 @@ just name them appropriately (e.g. `README.ja.md`).
 
 ### 4.2. Include input and output examples
 
-The plugin's `README.md` must contain example input and output CSS. 
+The plugin's `README.md` must contain example input and output CSS.
 A clear example is the best way to describe how your plugin works.
 
 The first section of the `README.md` is a good place to put examples.
@@ -171,8 +175,8 @@ transform the CSS.
 
 ### 4.3. Maintain a changelog
 
-PostCSS plugins must describe the changes of all their releases in a separate file,
-such as `CHANGELOG.md`, `History.md`, or [GitHub Releases].
+PostCSS plugins must describe the changes of all their releases
+in a separate file, such as `CHANGELOG.md`, `History.md`, or [GitHub Releases].
 Visit [Keep A Changelog] for more information about how to write one of these.
 
 Of course, you should be using [SemVer].
