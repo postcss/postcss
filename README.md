@@ -349,7 +349,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
-* [`postcss-mq-keyframes`] moves any CSS3 keyframe animation in media queries to the end of the file
+* [`postcss-mq-keyframes`] moves any animation keyframes in media queries
+  to the end of the file.
 * [`postcss-pseudo-elements-content`] automatically adds `content: ""`
   to `:before` and `:after`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
