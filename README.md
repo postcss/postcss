@@ -195,6 +195,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`rucksack`]:  https://github.com/simplaio/rucksack
 [`cssnano`]:   https://github.com/ben-eb/cssnano
 [`cssnext`]:   http://cssnext.io/
+[`precss`]:    https://github.com/jonathantneal/precss
 [`atcss`]:     https://github.com/morishitter/atcss
 
 ### Future CSS Syntax
@@ -224,8 +225,6 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
-* [`postcss-image-set`] adds `background-image` with first image
-  for `image-set()`.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
@@ -235,7 +234,6 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
-* [`postcss-svg-fallback`] automatically converts SVG in your CSS to PNG files for IE 8 compatibility.
 
 ### Language Extensions
 
@@ -265,6 +263,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
   based on `font-size` and `line-height`.
 * [`csstyle`] adds components workflow to your styles.
 
+See also [`precss`] plugins pack to add them by one line of code.
+
 ### Colors
 
 * [`postcss-brand-colors`] inserts company brand colors
@@ -277,7 +277,27 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-color-pantone`] transforms pantone color to RGB.
 * [`postcss-color-scale`] adds a color scale `cs()` function.
+* [`postcss-colorblind`] transforms colors using filters to simulate
+  colorblindness.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
+
+### Images and Fonts
+
+* [`postcss-assets`] allows you to simplify URLs, insert image dimensions,
+  and inline files.
+* [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
+* [`postcss-data-packer`] moves embedded Base64 data to a separate file.
+* [`postcss-image-set`] adds `background-image` with first image
+  for `image-set()`.
+* [`postcss-font-pack`] simplifies font declarations and validates they match
+  configured font packs.
+* [`postcss-fontpath`] adds font links for different browsers.
+* [`postcss-sprites`] generates CSS sprites from stylesheets.
+* [`postcss-svg`] insert inline SVG to CSS and allows to manage it colors.
+* [`postcss-svg-fallback`] converts SVG in your CSS to PNG files for IE 8.
+* [`postcss-svgo`] processes inline SVG through [SVGO].
+* [`postcss-url`] rebases or inlines `url()`s.
+* [`webpcss`] adds URLs for WebP images for browsers that support WebP.
 
 ### Grids
 
@@ -287,23 +307,15 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 ### Optimizations
 
-* [`postcss-assets`] allows you to simplify URLs, insert image dimensions,
-  and inline files.
-* [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
-* [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
-* [`postcss-sprites`] generates CSS sprites from stylesheets.
-* [`postcss-svgo`] processes inline SVG through [SVGO].
-* [`postcss-svg`] insert inline SVG to CSS and allows to manage it colors.
-* [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
-* [`webpcss`] adds URLs for WebP images for browsers that support WebP.
+* [`stylehacks`] removes CSS hacks based on browser support.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -320,9 +332,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
-* [`postcss-font-pack`] simplifies font declarations and validates they match
-  configured font packs.
-* [`postcss-fontpath`] adds font links for different browsers.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
 * [`postcss-position`] adds shorthand declarations for position attributes.
@@ -337,8 +346,6 @@ See also plugins in modular minifier [`cssnano`].
 ### Others
 
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
-* [`postcss-colorblind`] transforms colors using filters to simulate
-  colorblindness.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
@@ -348,7 +355,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`stylehacks`] removes CSS hacks based on browser support.
 
 ### Analysis
 
@@ -419,10 +425,10 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-default-unit`]:           https://github.com/antyakushev/postcss-default-unit
 [`postcss-flexboxfixer`]:           https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-font-variant`]:           https://github.com/postcss/postcss-font-variant
-[`postcss-reporter`]:               https://github.com/postcss/postcss-reporter
 [`postcss-media-minmax`]:           https://github.com/postcss/postcss-media-minmax
 [`postcss-merge-idents`]:           https://github.com/ben-eb/postcss-merge-idents
 [`postcss-selector-not`]:           https://github.com/postcss/postcss-selector-not
+[`postcss-svg-fallback`]:           https://github.com/justim/postcss-svg-fallback
 [`postcss-nested-props`]:           https://github.com/jedmao/postcss-nested-props
 [`postcss-color-alpha`]:            https://github.com/avanes/postcss-color-alpha
 [`postcss-color-scale`]:            https://github.com/kristoferjoseph/postcss-color-scale
@@ -449,6 +455,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
 [`pleeease-filters`]:               https://github.com/iamvdo/pleeease-filters
 [`postcss-fontpath`]:               https://github.com/seaneking/postcss-fontpath
+[`postcss-reporter`]:               https://github.com/postcss/postcss-reporter
 [`postcss-easings`]:                https://github.com/postcss/postcss-easings
 [`postcss-hexrgba`]:                https://github.com/seaneking/postcss-hexrgba
 [`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
@@ -493,10 +500,8 @@ See also plugins in modular minifier [`cssnano`].
 [`webpcss`]:                        https://github.com/lexich/webpcss
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
-[`precss`]:                         https://github.com/jonathantneal/precss
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
-[`postcss-svg-fallback`]:           https://github.com/justim/postcss-svg-fallback
 
 ## How to Develop a PostCSS Plugin
 
