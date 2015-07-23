@@ -277,6 +277,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-color-pantone`] transforms pantone color to RGB.
 * [`postcss-color-scale`] adds a color scale `cs()` function.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
+* [`postcss-color-hexa`] transforms `hexa(hex, alpha)` into rgba format.
 
 ### Grids
 
@@ -495,6 +496,7 @@ See also plugins in modular minifier [`cssnano`].
 [`precss`]:                         https://github.com/jonathantneal/precss
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
+[`postcss-color-hexa`]:             https://github.com/nicksheffield/postcss-color-hexa
 
 ## How to Develop a PostCSS Plugin
 
