@@ -436,6 +436,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
+[`postcss-color-hexa`]:             https://github.com/nicksheffield/postcss-color-hexa
 [`postcss-font-pack`]:              https://github.com/jedmao/postcss-font-pack
 [`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
@@ -496,7 +497,6 @@ See also plugins in modular minifier [`cssnano`].
 [`precss`]:                         https://github.com/jonathantneal/precss
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
-[`postcss-color-hexa`]:             https://github.com/nicksheffield/postcss-color-hexa
 
 ## How to Develop a PostCSS Plugin
 

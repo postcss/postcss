@@ -104,6 +104,7 @@
         "JS",
         "js",
         "vs",
-        "pantone"
+        "pantone",
+        "rgba"
     ]
 }
