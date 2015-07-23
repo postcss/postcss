@@ -286,8 +286,6 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 * [`postcss-assets`] allows you to simplify URLs, insert image dimensions,
   and inline files.
-* [`postcss-assets-rebase`] copies all assets to specified folder
-  and rebases their paths.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-image-set`] adds `background-image` with first image
@@ -423,7 +421,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-normalize-url`]:          https://github.com/ben-eb/postcss-normalize-url
 [`postcss-reduce-idents`]:          https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:          https://github.com/davidtheclark/postcss-simple-extend
-[`postcss-assets-rebase`]:          https://github.com/devex-web-frontend/postcss-assets-rebase
 [`postcss-mq-keyframes`]:           https://github.com/TCotton/postcss-mq-keyframes
 [`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:           https://github.com/thompsongl/postcss-class-prefix
