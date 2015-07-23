@@ -280,6 +280,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
+* [`postcss-color-hexa`] transforms `hexa(hex, alpha)` into rgba format.
 
 ### Images and Fonts
 
@@ -445,6 +446,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
+[`postcss-color-hexa`]:             https://github.com/nicksheffield/postcss-color-hexa
 [`postcss-font-pack`]:              https://github.com/jedmao/postcss-font-pack
 [`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
