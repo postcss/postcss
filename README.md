@@ -299,6 +299,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-svgo`] processes inline SVG through [SVGO].
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
+* [`postcss-assets-rebase`] Copies all assets to specified folder and rebases their paths.
 
 ### Grids
 
