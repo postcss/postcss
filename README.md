@@ -273,6 +273,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   to `rgba()`.
 * [`postcss-color-hcl`] transforms `hcl(H, C, L)` and `hcl(H, C, L, alpha)`
   to `#rgb` and `rgba()`.
+* [`postcss-color-hexa`] transforms `hexa(hex, alpha)` into `rgba` format.
 * [`postcss-color-mix`] mixes two colors together.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-color-pantone`] transforms pantone color to RGB.
@@ -280,7 +281,6 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
-* [`postcss-color-hexa`] transforms `hexa(hex, alpha)` into rgba format.
 
 ### Images and Fonts
 
