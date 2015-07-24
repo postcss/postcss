@@ -23,7 +23,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 [chat]:     https://gitter.im/postcss/postcss
 [ci]:       https://travis-ci.org/postcss/postcss
 
-[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#plugins) | [Write Your Own Plugin](#how-to-develop-postcss-plugin) | [Options](#options)
+[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#plugins) | [Write Your Own Plugin](#how-to-develop-a-postcss-plugin) | [Options](#options)
 --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
