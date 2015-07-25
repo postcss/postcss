@@ -356,7 +356,7 @@ See also plugins in modular minifier [`cssnano`].
   to `:before` and `:after`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
-* ['postcss-scopify'] adds a user input scope to each selector. 
+* [`postcss-scopify`] adds a user input scope to each selector. 
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
@@ -443,7 +443,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-simple-vars`]:            https://github.com/postcss/postcss-simple-vars
 [`postcss-strip-units`]:            https://github.com/whitneyit/postcss-strip-units
 [`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
-['postcss-scopify']:                https://github.com/pazams/postcss-scopify
+[`postcss-scopify`]:                https://github.com/pazams/postcss-scopify
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
