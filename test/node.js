@@ -100,6 +100,24 @@ describe('Node', () => {
 
     });
 
+    describe('toString', () => {
+
+        let rule, str;
+        before( () => {
+            rule = new Rule({ selector: 'a' });
+            str  = (node, builder) => builder(node.selector);
+        });
+
+        it('accepts custom stringifier', () => {
+            expect(rule.toString(str)).to.eql('a');
+        });
+
+        it('accepts custom syntax', () => {
+            expect(rule.toString({ stringify: str })).to.eql('a');
+        });
+
+    });
+
     describe('clone()', () => {
 
         it('clones nodes', () => {
