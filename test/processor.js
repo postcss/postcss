@@ -9,15 +9,10 @@ import { expect } from 'chai';
 import   sinon    from 'sinon';
 import   path     from 'path';
 
-let parser = () => new Root({ raw: { after: 'ok' } });
-class Str {
-    constructor(builder) {
-        this.builder = builder;
-    }
-    stringify(node) {
-        this.builder(node.after + '!');
-    }
-}
+let prs = () => new Root({ raw: { after: 'ok' } });
+let str = (node, builder) => {
+    builder(node.after + '!');
+};
 
 describe('Processor', () => {
 
@@ -352,7 +347,7 @@ describe('Processor', () => {
 
         it('uses custom parsers', (done) => {
             let processor = new Processor([]);
-            processor.process('a{}', { parser: parser }).then( (result) => {
+            processor.process('a{}', { parse: prs }).then( (result) => {
                 expect(result.css).to.equal('ok');
                 done();
             });
@@ -360,8 +355,8 @@ describe('Processor', () => {
 
         it('uses custom parsers from object', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parser: parser, stringifier: Str };
-            processor.process('a{}', { parser: syntax }).then( (result) => {
+            let syntax    = { parse: prs, stringify: str };
+            processor.process('a{}', { parse: syntax }).then( (result) => {
                 expect(result.css).to.equal('ok');
                 done();
             });
@@ -369,7 +364,7 @@ describe('Processor', () => {
 
         it('uses custom stringifier', (done) => {
             let processor = new Processor([]);
-            processor.process('a{}', { stringifier: Str }).then( (result) => {
+            processor.process('a{}', { stringify: str }).then( (result) => {
                 expect(result.css).to.equal('!');
                 done();
             });
@@ -377,8 +372,8 @@ describe('Processor', () => {
 
         it('uses custom stringifier from object', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parser: parser, stringifier: Str };
-            processor.process('', { stringifier: syntax }).then( (result) => {
+            let syntax    = { parse: prs, stringify: str };
+            processor.process('', { stringify: syntax }).then( (result) => {
                 expect(result.css).to.equal('!');
                 done();
             });
@@ -386,7 +381,7 @@ describe('Processor', () => {
 
         it('uses custom stringifier with source maps', (done) => {
             let processor = new Processor([]);
-            processor.process('a{}', { map: true, stringifier: Str })
+            processor.process('a{}', { map: true, stringify: str })
                 .then( (result) => {
                     expect(result.css).to.match(/^\!\n\/\*# sourceMap/);
                     done();
@@ -395,7 +390,7 @@ describe('Processor', () => {
 
         it('uses custom syntax', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parser: parser, stringifier: Str };
+            let syntax    = { parse: prs, stringify: str };
             processor.process('a{}', { syntax: syntax }).then( (result) => {
                 expect(result.css).to.equal('ok!');
                 done();
