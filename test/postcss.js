@@ -106,6 +106,14 @@ describe('postcss()', () => {
 
     });
 
+    describe('.stringify()', () => {
+
+        it('contains stringifier', () => {
+            expect(postcss.stringify).to.be.a('function');
+        });
+
+    });
+
     describe('.root()', () => {
 
         it('allows to build own CSS', () => {
