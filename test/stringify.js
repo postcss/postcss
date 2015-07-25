@@ -15,10 +15,10 @@ describe('stringify', () => {
             let css  = fs.readFileSync(file).toString();
             let root = parse(css, { from: file });
 
-            let str = ''
-            stringify(root, i => str += i );
+            let result = '';
+            stringify(root, i => result += i );
 
-            expect(str).to.eql(css);
+            expect(result).to.eql(css);
         });
     });
 
