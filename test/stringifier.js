@@ -7,31 +7,15 @@ import Root        from '../lib/root';
 import Rule        from '../lib/rule';
 
 import { expect } from 'chai';
-import   path     from 'path';
-import   fs       from 'fs';
 
 describe('stringifier', () => {
+
     let str;
     before( () => {
         str = new Stringifier();
     });
 
-    describe('.stringify()', () => {
-
-        fs.readdirSync(path.join(__dirname, 'cases')).forEach( name => {
-            if ( !name.match(/\.css$/) ) return;
-
-            it('stringify ' + name, () => {
-                let file = path.join(__dirname, 'cases', name);
-                let css  = fs.readFileSync(file).toString();
-                let root = parse(css, { from: file });
-                expect(root.toString()).to.eql(css);
-            });
-        });
-
-    });
-
-    describe('.raw()', () => {
+    describe('raw()', () => {
 
         it('creates trimmed/raw property', () => {
             let b = new Node({ one: 'trim' });
