@@ -1009,6 +1009,10 @@ Returns a CSS string representing the node.
 postcss.rule({ selector: 'a' }).toString() //=> 'a {}''
 ```
 
+Arguments:
+
+* `stringify (functions|object) optional`: a syntax to use in string generation.
+
 ### `node.error(message, opts)`
 
 Returns a [`CssSyntaxError`] instance containing the original position
