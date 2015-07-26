@@ -338,6 +338,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
+* [`postcss-responsive-type`] adds a `responsive` property to `font-size`, 
+  for out-of-the-box responsive typography.
 * [`postcss-short`] adds and extends numerous shorthand properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
@@ -408,6 +410,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
 [`postcss-vertical-rhythm`]:        https://github.com/markgoodyear/postcss-vertical-rhythm
 [`postcss-local-constants`]:        https://github.com/macropodhq/postcss-local-constants
+[`postcss-responsive-type`]:        https://github.com/seaneking/postcss-responsive-type
 [`postcss-color-function`]:         https://github.com/postcss/postcss-color-function
 [`postcss-conic-gradient`]:         https://github.com/jonathantneal/postcss-conic-gradient
 [`postcss-convert-values`]:         https://github.com/ben-eb/postcss-convert-values
