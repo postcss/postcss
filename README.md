@@ -338,8 +338,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
-* [`postcss-responsive-type`] adds a `responsive` property to `font-size`, 
-  for out-of-the-box responsive typography.
+* [`postcss-responsive-type`] changes `font-size` depends on screen size.
 * [`postcss-short`] adds and extends numerous shorthand properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
@@ -358,7 +357,7 @@ See also plugins in modular minifier [`cssnano`].
   to `:before` and `:after`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-style-guide`] generates a style guide automatically.
-* [`postcss-scopify`] adds a user input scope to each selector. 
+* [`postcss-scopify`] adds a user input scope to each selector.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
