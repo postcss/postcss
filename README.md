@@ -384,6 +384,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
+* [`postcss-crip`] shorthand properties for Crips that are too lazy to write.
 
 [`postcss-pseudo-elements-content`]:https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
@@ -487,6 +488,7 @@ See also plugins in modular minifier [`cssnano`].
 [`perfectionist`]:                  https://github.com/ben-eb/perfectionist
 [`postcss-at2x`]:                   https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                   https://github.com/postcss/postcss-calc
+[`postcss-crip`]:                   https://github.com/johnie/postcss-crip
 [`postcss-each`]:                   https://github.com/outpunk/postcss-each
 [`postcss-epub`]:                   https://github.com/Rycochet/postcss-epub
 [`postcss-grid`]:                   https://github.com/andyjansson/postcss-grid
