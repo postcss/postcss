@@ -12,7 +12,6 @@ var regexp = ['lib', 'test'].map(function (i) {
 
 require('babel-core/register')({
     only:   new RegExp('(' + regexp + ')'),
-    ignore: false,
-    loose: 'all'
+    ignore: false
 });
 module.exports = require('./lib/postcss');
