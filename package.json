@@ -31,6 +31,7 @@
     "concat-with-sourcemaps": "1.0.2",
     "gulp-json-editor":       "2.2.1",
     "load-resources":         "0.1.0",
+    "babel-eslint":           "4.0.5",
     "gulp-eslint":            "0.15.0",
     "gulp-babel":             "5.1.0",
     "gulp-mocha":             "2.1.3",
