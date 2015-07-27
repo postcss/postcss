@@ -329,6 +329,7 @@ See also plugins in modular minifier [`cssnano`].
   in `border` property.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
   declaration.
+* [`postcss-crip`] shorthand properties for Crips that are too lazy to write.
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
@@ -384,7 +385,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
-* [`postcss-crip`] shorthand properties for Crips that are too lazy to write.
 
 [`postcss-pseudo-elements-content`]:https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
