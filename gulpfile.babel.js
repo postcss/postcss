@@ -13,7 +13,7 @@ gulp.task('clean', (done) => {
 gulp.task('build:lib', ['clean'], () => {
     let babel = require('gulp-babel');
     return gulp.src('lib/*.js')
-        .pipe(babel({ loose: 'all' }))
+        .pipe(babel())
         .pipe(gulp.dest('build/lib'));
 });
 
