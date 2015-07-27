@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "ecmaFeatures": {
         "modules": true,
         "module":  true
@@ -12,6 +13,7 @@
         "no-unused-vars":        [2],
         "no-loop-func":          [0],
         "key-spacing":           [0],
+        "no-empty":              [0],
         "max-len":               [2, 80],
         "strict":                [0],
         "indent":                [2],
