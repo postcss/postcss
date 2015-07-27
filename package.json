@@ -7,7 +7,6 @@
     "postcss",
     "rework",
     "preprocessor",
-    "postprocessor",
     "parser",
     "source map",
     "transform",
