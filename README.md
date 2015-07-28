@@ -210,6 +210,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
 * [`postcss-custom-selectors`] adds custom aliases for selectors.
+* [`postcss-extend`] supports spec-approximate `@extend` for rules and placeholders, recursively.
 * [`postcss-font-variant`] transpiles human-readable `font-variant`
   to more widely supported CSS.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
@@ -256,8 +257,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
-* [`postcss-simple-extend`] supports extending of silent classes,
-  like Sass’ `@extend`.
+* [`postcss-simple-extend`] lightweight extending of silent classes, like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`postcss-strip-units`] strips units off of property values.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
@@ -448,7 +448,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-simple-vars`]:            https://github.com/postcss/postcss-simple-vars
 [`postcss-strip-units`]:            https://github.com/whitneyit/postcss-strip-units
 [`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
-[`postcss-scopify`]:                https://github.com/pazams/postcss-scopify
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
@@ -473,9 +472,11 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-opacity`]:                https://github.com/iamvdo/postcss-opacity
 [`postcss-pointer`]:                https://github.com/markgoodyear/postcss-pointer
 [`postcss-pxtorem`]:                https://github.com/cuth/postcss-pxtorem
+[`postcss-scopify`]:                https://github.com/pazams/postcss-scopify
 [`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
 [`postcss-border`]:                 https://github.com/andrepolischuk/postcss-border
+[`postcss-extend`]:                 https://github.com/travco/postcss-extend
 [`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
 [`postcss-mixins`]:                 https://github.com/postcss/postcss-mixins
