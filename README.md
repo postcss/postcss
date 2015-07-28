@@ -326,6 +326,7 @@ See also plugins in modular minifier [`cssnano`].
 ### Shortcuts
 
 * [`postcss-alias`] creates shorter aliases for properties.
+* [`postcss-all-link-colors`] insert colors for link-related pseudo-classes.
 * [`postcss-border`] adds shorthand for width and color of all borders
   in `border` property.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
@@ -404,6 +405,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-minify-selectors`]:       https://github.com/ben-eb/postcss-minify-selectors
 [`postcss-quantity-queries`]:       https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-browser-reporter`]:       https://github.com/postcss/postcss-browser-reporter
+[`postcss-all-link-colors`]:        https://github.com/jedmao/postcss-all-link-colors
 [`postcss-color-hex-alpha`]:        https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-define-property`]:        https://github.com/daleeidd/postcss-define-property
 [`postcss-generate-preset`]:        https://github.com/simonsmith/postcss-generate-preset
