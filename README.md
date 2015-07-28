@@ -246,7 +246,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-for`] adds `@for` loops.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
-* [`postcss-mixins`] enables mixins more powerful than Sass',
+* [`postcss-mixins`] enables mixins more powerful than Sass’,
   defined within stylesheets or in JS.
 * [`postcss-media-variables`] adds support for `var()` and `calc()`
   in `@media` rules
@@ -255,7 +255,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-nested-props`] unwraps nested properties.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
-* [`postcss-sassy-mixins`] enables sass-like mixins.
+* [`postcss-sassy-mixins`] enables mixins with Sass keywords.
 * [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
