@@ -228,6 +228,10 @@ Contains [List module](#list-module) module.
 postcss.list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
 ```
 
+### `postcss.stringify(node, builder)`
+
+Default function to convert nodes tree to CSS string.
+
 ## `Processor` class
 
 A `Processor` instance contains plugins to process CSS. Create
