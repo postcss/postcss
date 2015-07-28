@@ -371,6 +371,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`css2modernizr`] creates a Modernizr config file
   that requires only the tests that your CSS uses.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
+* [`immutable-css`] lints CSS for class mutations.
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
 
@@ -491,6 +492,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-short`]:                  https://github.com/jonathantneal/postcss-short
 [`postcss-alias`]:                  https://github.com/seaneking/postcss-alias
 [`perfectionist`]:                  https://github.com/ben-eb/perfectionist
+[`immutable-css`]:                  https://github.com/johnotander/immutable-css
 [`postcss-at2x`]:                   https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                   https://github.com/postcss/postcss-calc
 [`postcss-crip`]:                   https://github.com/johnie/postcss-crip
