@@ -255,6 +255,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-nested-props`] unwraps nested properties.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
+* [`postcss-sassy-mixins`] enables sass-like mixins.
 * [`postcss-simple-extend`] supports extending of silent classes,
   like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
@@ -429,6 +430,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-brand-colors`]:           https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:           https://github.com/thompsongl/postcss-class-prefix
 [`postcss-conditionals`]:           https://github.com/andyjansson/postcss-conditionals
+[`postcss-sassy-mixins`]:           https://github.com/andyjansson/postcss-sassy-mixins
 [`postcss-custom-media`]:           https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:           https://github.com/antyakushev/postcss-default-unit
 [`postcss-flexboxfixer`]:           https://github.com/hallvors/postcss-flexboxfixer
