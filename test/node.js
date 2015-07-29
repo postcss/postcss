@@ -6,17 +6,18 @@ import Node           from '../lib/node';
 import Root           from '../lib/root';
 import Rule           from '../lib/rule';
 
-import { expect } from 'chai';
+import { expect }  from 'chai';
+import { resolve } from 'path';
 
 describe('Node', () => {
 
     describe('error()', () => {
 
         it('generates custom error', () => {
-            let css   = parse('a{}', { from: '/a.css' });
+            let css   = parse('a{}', { from: resolve('/a.css') });
             let error = css.first.error('Test');
             expect(error).to.be.instanceOf(CssSyntaxError);
-            expect(error.message).to.eql('/a.css:1:1: Test');
+            expect(error.message).to.eql(`${resolve('/a.css')}:1:1: Test`);
         });
 
         it('generates custom error for nodes without source', () => {

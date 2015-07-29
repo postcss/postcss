@@ -1,0 +1,43 @@
+{
+    "nodes": [
+        {
+            "nodes": [],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 2,
+                    "column": 1
+                },
+                "input": {
+                    "css": "\na/* { } */ b {}\n",
+                    "safe": false,
+                    "file": "Z:\\selector.css",
+                    "from": "Z:\\selector.css"
+                },
+                "end": {
+                    "line": 2,
+                    "column": 15
+                }
+            },
+            "before": "\n",
+            "between": " ",
+            "_selector": {
+                "value": "a b",
+                "raw": "a/* { } */ b"
+            },
+            "selector": "a b",
+            "after": ""
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "\na/* { } */ b {}\n",
+            "safe": false,
+            "file": "Z:\\selector.css",
+            "from": "Z:\\selector.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

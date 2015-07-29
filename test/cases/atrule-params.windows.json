@@ -1,0 +1,41 @@
+{
+    "nodes": [
+        {
+            "type": "atrule",
+            "name": "-moz-document",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "@-moz-document/* near */ /* filter */ url(\"example.com/{\") /* a */ {}\n",
+                    "safe": false,
+                    "file": "Z:\\atrule-params.css",
+                    "from": "Z:\\atrule-params.css"
+                },
+                "end": {
+                    "line": 1,
+                    "column": 69
+                }
+            },
+            "before": "",
+            "between": " /* a */ ",
+            "afterName": "/* near */ /* filter */ ",
+            "params": "url(\"example.com/{\")",
+            "nodes": [],
+            "after": ""
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "@-moz-document/* near */ /* filter */ url(\"example.com/{\") /* a */ {}\n",
+            "safe": false,
+            "file": "Z:\\atrule-params.css",
+            "from": "Z:\\atrule-params.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

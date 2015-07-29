@@ -1,7 +1,8 @@
 import Warning from '../lib/warning';
 import parse   from '../lib/parse';
 
-import { expect } from 'chai';
+import { expect }  from 'chai';
+import { resolve } from 'path';
 
 describe('Warning', () => {
 
@@ -24,12 +25,13 @@ describe('Warning', () => {
         });
 
         it('outputs warning with plugin and node', () => {
-            let root    = parse('a{}', { from: '/a.css' });
-            let warning = new Warning('text', {
+            let root     = parse('a{}', { from: resolve('/a.css') });
+            let warning  = new Warning('text', {
                 plugin: 'plugin',
                 node:    root.first
             });
-            expect(warning.toString()).to.eql('plugin: /a.css:1:1: text');
+            let expected = `plugin: ${resolve('/a.css') }:1:1: text`;
+            expect(warning.toString()).to.eql(expected);
         });
 
     });

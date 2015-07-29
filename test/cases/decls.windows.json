@@ -1,0 +1,87 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    color: black;\n    background: white;\n}\n",
+                            "safe": false,
+                            "file": "Z:\\decls.css",
+                            "from": "Z:\\decls.css"
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 17
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "color",
+                    "between": ": ",
+                    "value": "black"
+                },
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    color: black;\n    background: white;\n}\n",
+                            "safe": false,
+                            "file": "Z:\\decls.css",
+                            "from": "Z:\\decls.css"
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 22
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "background",
+                    "between": ": ",
+                    "value": "white"
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a {\n    color: black;\n    background: white;\n}\n",
+                    "safe": false,
+                    "file": "Z:\\decls.css",
+                    "from": "Z:\\decls.css"
+                },
+                "end": {
+                    "line": 4,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": "a",
+            "semicolon": true,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a {\n    color: black;\n    background: white;\n}\n",
+            "safe": false,
+            "file": "Z:\\decls.css",
+            "from": "Z:\\decls.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

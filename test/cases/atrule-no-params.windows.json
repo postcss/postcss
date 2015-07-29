@@ -1,0 +1,41 @@
+{
+    "nodes": [
+        {
+            "type": "atrule",
+            "name": "page",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "@page{ }\n",
+                    "safe": false,
+                    "file": "Z:\\atrule-no-params.css",
+                    "from": "Z:\\atrule-no-params.css"
+                },
+                "end": {
+                    "line": 1,
+                    "column": 8
+                }
+            },
+            "before": "",
+            "between": "",
+            "afterName": "",
+            "params": "",
+            "nodes": [],
+            "after": " "
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "@page{ }\n",
+            "safe": false,
+            "file": "Z:\\atrule-no-params.css",
+            "from": "Z:\\atrule-no-params.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

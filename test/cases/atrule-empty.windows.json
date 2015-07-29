@@ -1,0 +1,39 @@
+{
+    "nodes": [
+        {
+            "type": "atrule",
+            "name": "charset",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "@charset \"UTF-8\";\n",
+                    "safe": false,
+                    "file": "Z:\\atrule-empty.css",
+                    "from": "Z:\\atrule-empty.css"
+                },
+                "end": {
+                    "line": 1,
+                    "column": 17
+                }
+            },
+            "before": "",
+            "between": "",
+            "afterName": " ",
+            "params": "\"UTF-8\""
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "@charset \"UTF-8\";\n",
+            "safe": false,
+            "file": "Z:\\atrule-empty.css",
+            "from": "Z:\\atrule-empty.css"
+        }
+    },
+    "semicolon": true,
+    "after": "\n"
+}

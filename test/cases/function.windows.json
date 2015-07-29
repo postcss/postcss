@@ -1,0 +1,64 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
+                            "safe": false,
+                            "file": "Z:\\function.css",
+                            "from": "Z:\\function.css"
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 105
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "background-image",
+                    "between": ": ",
+                    "value": "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
+                    "safe": false,
+                    "file": "Z:\\function.css",
+                    "from": "Z:\\function.css"
+                },
+                "end": {
+                    "line": 3,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": "a",
+            "semicolon": false,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
+            "safe": false,
+            "file": "Z:\\function.css",
+            "from": "Z:\\function.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

@@ -1,0 +1,39 @@
+{
+    "nodes": [
+        {
+            "nodes": [],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": ":fullscreen {}\n",
+                    "safe": false,
+                    "file": "Z:\\colon-selector.css",
+                    "from": "Z:\\colon-selector.css"
+                },
+                "end": {
+                    "line": 1,
+                    "column": 14
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": ":fullscreen",
+            "after": ""
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": ":fullscreen {}\n",
+            "safe": false,
+            "file": "Z:\\colon-selector.css",
+            "from": "Z:\\colon-selector.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

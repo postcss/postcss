@@ -1,0 +1,138 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
+                            "safe": false,
+                            "file": "Z:\\rule-at.css",
+                            "from": "Z:\\rule-at.css"
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 16
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "width",
+                    "between": ": ",
+                    "value": "10px"
+                },
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
+                            "safe": false,
+                            "file": "Z:\\rule-at.css",
+                            "from": "Z:\\rule-at.css"
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 21
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "margin",
+                    "between": ": ",
+                    "value": "0 @width"
+                },
+                {
+                    "type": "atrule",
+                    "name": "mixin",
+                    "source": {
+                        "start": {
+                            "line": 4,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
+                            "safe": false,
+                            "file": "Z:\\rule-at.css",
+                            "from": "Z:\\rule-at.css"
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 5
+                        }
+                    },
+                    "before": "\n    ",
+                    "between": " ",
+                    "afterName": " ",
+                    "params": "mobile",
+                    "nodes": [
+                        {
+                            "type": "decl",
+                            "source": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 9
+                                },
+                                "input": {
+                                    "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
+                                    "safe": false,
+                                    "file": "Z:\\rule-at.css",
+                                    "from": "Z:\\rule-at.css"
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 22
+                                }
+                            },
+                            "before": "\n        ",
+                            "prop": "height",
+                            "between": ": ",
+                            "value": "100px"
+                        }
+                    ],
+                    "semicolon": true,
+                    "after": "\n    "
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
+                    "safe": false,
+                    "file": "Z:\\rule-at.css",
+                    "from": "Z:\\rule-at.css"
+                },
+                "end": {
+                    "line": 7,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": "a",
+            "semicolon": false,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
+            "safe": false,
+            "file": "Z:\\rule-at.css",
+            "from": "Z:\\rule-at.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

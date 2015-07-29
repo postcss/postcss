@@ -1,0 +1,39 @@
+{
+    "nodes": [
+        {
+            "nodes": [],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "{}\n",
+                    "safe": false,
+                    "file": "Z:\\empty.css",
+                    "from": "Z:\\empty.css"
+                },
+                "end": {
+                    "line": 1,
+                    "column": 2
+                }
+            },
+            "before": "",
+            "between": "",
+            "selector": "",
+            "after": ""
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "{}\n",
+            "safe": false,
+            "file": "Z:\\empty.css",
+            "from": "Z:\\empty.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}
