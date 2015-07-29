@@ -3,7 +3,7 @@
 PostCSS can transform not only CSS. You can write a custom syntax
 and transform styles in other format.
 
-Writing a custom syntax is much harder rathet then writing just
+Writing a custom syntax is much harder rather then writing just
 a PostCSS plugin. But it is a awesome adventure.
 
 You can provide 3 types of package:
@@ -50,7 +50,7 @@ TODO: Node#raws
 
 TODO: tokenizer and parser
 
-TODO: perfomance: why, tokenizer is important, plain functions and jumps
+TODO: performance: why, tokenizer is important, plain functions and jumps
 
 ## Stringifier
 
