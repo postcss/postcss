@@ -333,6 +333,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-all-link-colors`] insert colors for link-related pseudo-classes.
 * [`postcss-border`] adds shorthand for width and color of all borders
   in `border` property.
+* [`postcss-center`] centers elements.
 * [`postcss-circle`] inserts a circle with color.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
   declaration.
@@ -484,6 +485,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-sprites`]:                https://github.com/2createStudio/postcss-sprites
 [`postcss-assets`]:                 https://github.com/borodean/postcss-assets
 [`postcss-border`]:                 https://github.com/andrepolischuk/postcss-border
+[`postcss-center`]:                 https://github.com/jedmao/postcss-center
 [`postcss-circle`]:                 https://github.com/jedmao/postcss-circle
 [`postcss-extend`]:                 https://github.com/travco/postcss-extend
 [`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
