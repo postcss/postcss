@@ -151,6 +151,8 @@ Read the [PostCSS API] for more details about the JS API.
 
 ## Plugins
 
+Go to [postcss.parts](http://postcss.parts) for a searchable catalog of the plugins mentioned below!
+
 ### Control
 
 There are two ways to make PostCSS magic more explicit.
