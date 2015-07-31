@@ -337,6 +337,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-circle`] inserts a circle with color.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
   declaration.
+* [`postcss-color-short`] adds shorthand color declarations.
 * [`postcss-crip`] shorthand properties for Crips that are too lazy to write.
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
 * [`postcss-easings`] replaces easing names from easings.net
@@ -451,6 +452,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-nested-props`]:           https://github.com/jedmao/postcss-nested-props
 [`postcss-color-alpha`]:            https://github.com/avanes/postcss-color-alpha
 [`postcss-color-scale`]:            https://github.com/kristoferjoseph/postcss-color-scale
+[`postcss-color-short`]:            https://github.com/andrepolischuk/postcss-color-short
 [`postcss-data-packer`]:            https://github.com/Ser-Gen/postcss-data-packer
 [`postcss-font-family`]:            https://github.com/ben-eb/postcss-font-family
 [`postcss-merge-rules`]:            https://github.com/ben-eb/postcss-merge-rules
