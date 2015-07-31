@@ -283,6 +283,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-color-palette`] transforms CSS 2 color keywords to a custom palette.
 * [`postcss-color-pantone`] transforms pantone color to RGB.
 * [`postcss-color-scale`] adds a color scale `cs()` function.
+* [`postcss-color-short`] adds shorthand color declarations.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
@@ -337,7 +338,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-circle`] inserts a circle with color.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
   declaration.
-* [`postcss-color-short`] adds shorthand color declarations.
 * [`postcss-crip`] shorthand properties for Crips that are too lazy to write.
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
 * [`postcss-easings`] replaces easing names from easings.net
