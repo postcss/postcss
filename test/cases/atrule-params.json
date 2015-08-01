@@ -19,10 +19,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "@-moz-document/* near */ /* filter */ url(\"example.com/{\") /* a */ {}\n",
                     "safe": false,
-                    "file": "/atrule-params.css",
-                    "from": "/atrule-params.css"
+                    "file": "atrule-params.css",
+                    "from": "atrule-params.css"
                 },
                 "end": {
                     "line": 1,
@@ -36,10 +35,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "@-moz-document/* near */ /* filter */ url(\"example.com/{\") /* a */ {}\n",
             "safe": false,
-            "file": "/atrule-params.css",
-            "from": "/atrule-params.css"
+            "file": "atrule-params.css",
+            "from": "atrule-params.css"
         }
     }
 }

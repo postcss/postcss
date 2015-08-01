@@ -2,6 +2,8 @@ import Input from '../lib/input';
 import parse from '../lib/parse';
 import Root  from '../lib/root';
 
+import jsonify from './utils/jsonify';
+
 import { expect } from 'chai';
 import   path     from 'path';
 import   fs       from 'fs';
@@ -51,7 +53,7 @@ describe('postcss.parse()', () => {
         if ( !name.match(/\.css$/) ) return;
 
         it('parses ' + name, () => {
-            let css  = parse(read(name), { from: '/' + name });
+            let css  = jsonify(parse(read(name), { from: '/' + name }));
             let json = read(name.replace(/\.css$/, '.json')).toString().trim();
             expect(JSON.stringify(css, null, 4)).to.eql(json);
         });
@@ -59,6 +61,7 @@ describe('postcss.parse()', () => {
 
     it('saves source file', () => {
         let css = parse('a {}', { from: 'a.css' });
+        expect(css.first.source.input.css).to.eql('a {}');
         expect(css.first.source.input.file).to.eql(path.resolve('a.css'));
         expect(css.first.source.input.from).to.eql(path.resolve('a.css'));
     });

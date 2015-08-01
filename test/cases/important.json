@@ -25,10 +25,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                             "safe": false,
-                            "file": "/important.css",
-                            "from": "/important.css"
+                            "file": "important.css",
+                            "from": "important.css"
                         },
                         "end": {
                             "line": 2,
@@ -52,10 +51,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                             "safe": false,
-                            "file": "/important.css",
-                            "from": "/important.css"
+                            "file": "important.css",
+                            "from": "important.css"
                         },
                         "end": {
                             "line": 3,
@@ -74,10 +72,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                     "safe": false,
-                    "file": "/important.css",
-                    "from": "/important.css"
+                    "file": "important.css",
+                    "from": "important.css"
                 },
                 "end": {
                     "line": 4,
@@ -106,10 +103,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                             "safe": false,
-                            "file": "/important.css",
-                            "from": "/important.css"
+                            "file": "important.css",
+                            "from": "important.css"
                         },
                         "end": {
                             "line": 7,
@@ -131,10 +127,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                             "safe": false,
-                            "file": "/important.css",
-                            "from": "/important.css"
+                            "file": "important.css",
+                            "from": "important.css"
                         },
                         "end": {
                             "line": 8,
@@ -157,10 +152,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                             "safe": false,
-                            "file": "/important.css",
-                            "from": "/important.css"
+                            "file": "important.css",
+                            "from": "important.css"
                         },
                         "end": {
                             "line": 9,
@@ -184,10 +178,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                             "safe": false,
-                            "file": "/important.css",
-                            "from": "/important.css"
+                            "file": "important.css",
+                            "from": "important.css"
                         },
                         "end": {
                             "line": 10,
@@ -211,10 +204,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                             "safe": false,
-                            "file": "/important.css",
-                            "from": "/important.css"
+                            "file": "important.css",
+                            "from": "important.css"
                         },
                         "end": {
                             "line": 11,
@@ -241,10 +233,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                             "safe": false,
-                            "file": "/important.css",
-                            "from": "/important.css"
+                            "file": "important.css",
+                            "from": "important.css"
                         },
                         "end": {
                             "line": 12,
@@ -262,10 +253,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
                     "safe": false,
-                    "file": "/important.css",
-                    "from": "/important.css"
+                    "file": "important.css",
+                    "from": "important.css"
                 },
                 "end": {
                     "line": 13,
@@ -278,10 +268,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "a {\n    width: 1px!important;\n    color: black  !important ;\n}\n\np {\n    prop: important;\n    color: red important;\n    margin: 10px      !      important;\n    padding: 20px     !  /* test */   important;\n    width: 100px ! /*! test */ important;\n    height: 100px /*! test */ important;\n}\n",
             "safe": false,
-            "file": "/important.css",
-            "from": "/important.css"
+            "file": "important.css",
+            "from": "important.css"
         }
     }
 }

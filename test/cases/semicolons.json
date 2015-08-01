@@ -24,10 +24,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {;;\n    color: black;\n    ; ;\n}\n",
                             "safe": false,
-                            "file": "/semicolons.css",
-                            "from": "/semicolons.css"
+                            "file": "semicolons.css",
+                            "from": "semicolons.css"
                         },
                         "end": {
                             "line": 2,
@@ -45,10 +44,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {;;\n    color: black;\n    ; ;\n}\n",
                     "safe": false,
-                    "file": "/semicolons.css",
-                    "from": "/semicolons.css"
+                    "file": "semicolons.css",
+                    "from": "semicolons.css"
                 },
                 "end": {
                     "line": 4,
@@ -61,10 +59,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "a {;;\n    color: black;\n    ; ;\n}\n",
             "safe": false,
-            "file": "/semicolons.css",
-            "from": "/semicolons.css"
+            "file": "semicolons.css",
+            "from": "semicolons.css"
         }
     }
 }

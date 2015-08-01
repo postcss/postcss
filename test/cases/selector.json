@@ -22,10 +22,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "\na/* { } */ b {}\n",
                     "safe": false,
-                    "file": "/selector.css",
-                    "from": "/selector.css"
+                    "file": "selector.css",
+                    "from": "selector.css"
                 },
                 "end": {
                     "line": 2,
@@ -38,10 +37,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "\na/* { } */ b {}\n",
             "safe": false,
-            "file": "/selector.css",
-            "from": "/selector.css"
+            "file": "selector.css",
+            "from": "selector.css"
         }
     }
 }
