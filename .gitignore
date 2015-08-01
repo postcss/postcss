@@ -2,11 +2,10 @@
 *~
 
 node_modules/
-.bundle/
+npm-debug.log
 
 build/
 
-npm-debug.log
 origin.css
 fail.css
 
