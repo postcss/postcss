@@ -24,10 +24,9 @@
                             "column": 3
                         },
                         "input": {
-                            "css": "a{color:black}\n",
                             "safe": false,
-                            "file": "/rule-no-semicolon.css",
-                            "from": "/rule-no-semicolon.css"
+                            "file": "rule-no-semicolon.css",
+                            "from": "rule-no-semicolon.css"
                         },
                         "end": {
                             "line": 1,
@@ -45,10 +44,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a{color:black}\n",
                     "safe": false,
-                    "file": "/rule-no-semicolon.css",
-                    "from": "/rule-no-semicolon.css"
+                    "file": "rule-no-semicolon.css",
+                    "from": "rule-no-semicolon.css"
                 },
                 "end": {
                     "line": 1,
@@ -61,10 +59,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "a{color:black}\n",
             "safe": false,
-            "file": "/rule-no-semicolon.css",
-            "from": "/rule-no-semicolon.css"
+            "file": "rule-no-semicolon.css",
+            "from": "rule-no-semicolon.css"
         }
     }
 }
