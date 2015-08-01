@@ -19,10 +19,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "@page{ }\n",
                     "safe": false,
-                    "file": "/atrule-no-params.css",
-                    "from": "/atrule-no-params.css"
+                    "file": "atrule-no-params.css",
+                    "from": "atrule-no-params.css"
                 },
                 "end": {
                     "line": 1,
@@ -36,10 +35,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "@page{ }\n",
             "safe": false,
-            "file": "/atrule-no-params.css",
-            "from": "/atrule-no-params.css"
+            "file": "atrule-no-params.css",
+            "from": "atrule-no-params.css"
         }
     }
 }
