@@ -24,10 +24,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                             "safe": false,
-                            "file": "/escape.css",
-                            "from": "/escape.css"
+                            "file": "escape.css",
+                            "from": "escape.css"
                         },
                         "end": {
                             "line": 2,
@@ -49,10 +48,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                             "safe": false,
-                            "file": "/escape.css",
-                            "from": "/escape.css"
+                            "file": "escape.css",
+                            "from": "escape.css"
                         },
                         "end": {
                             "line": 3,
@@ -74,10 +72,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                             "safe": false,
-                            "file": "/escape.css",
-                            "from": "/escape.css"
+                            "file": "escape.css",
+                            "from": "escape.css"
                         },
                         "end": {
                             "line": 4,
@@ -95,10 +92,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 5,
@@ -121,10 +117,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 7,
@@ -151,10 +146,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 8,
@@ -177,10 +171,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 9,
@@ -203,10 +196,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 10,
@@ -229,10 +221,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 11,
@@ -255,10 +246,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 12,
@@ -281,10 +271,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 13,
@@ -307,10 +296,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 15,
@@ -339,10 +327,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                             "safe": false,
-                            "file": "/escape.css",
-                            "from": "/escape.css"
+                            "file": "escape.css",
+                            "from": "escape.css"
                         },
                         "end": {
                             "line": 18,
@@ -360,10 +347,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
                     "safe": false,
-                    "file": "/escape.css",
-                    "from": "/escape.css"
+                    "file": "escape.css",
+                    "from": "escape.css"
                 },
                 "end": {
                     "line": 19,
@@ -376,10 +362,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "a {\n    background: url(\"a).png\");\n    background: url(a;a);\n    background: \\;a;\n}\n\n:not([foo=\")\"]) { }\n:not(div/*)*/) { }\n:not(:nth-child(2n of [foo=\")\"])) { }\n[foo=\\\"] { }\n[foo=\\{] { }\n[foo=\\(] { }\n[foo=yes\\:\\(it\\'s\\ work\\)] { }\n\n\\@noat { }\n\nh1\\\\{\n    color: \\\\;\n}\n",
             "safe": false,
-            "file": "/escape.css",
-            "from": "/escape.css"
+            "file": "escape.css",
+            "from": "escape.css"
         }
     }
 }

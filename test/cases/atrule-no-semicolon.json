@@ -18,10 +18,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "\n@charset \"UTF-8\"\n\n",
                     "safe": false,
-                    "file": "/atrule-no-semicolon.css",
-                    "from": "/atrule-no-semicolon.css"
+                    "file": "atrule-no-semicolon.css",
+                    "from": "atrule-no-semicolon.css"
                 },
                 "end": {
                     "line": 2,
@@ -34,10 +33,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "\n@charset \"UTF-8\"\n\n",
             "safe": false,
-            "file": "/atrule-no-semicolon.css",
-            "from": "/atrule-no-semicolon.css"
+            "file": "atrule-no-semicolon.css",
+            "from": "atrule-no-semicolon.css"
         }
     }
 }

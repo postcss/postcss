@@ -20,10 +20,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                     "safe": false,
-                    "file": "/atrule-rules.css",
-                    "from": "/atrule-rules.css"
+                    "file": "atrule-rules.css",
+                    "from": "atrule-rules.css"
                 },
                 "end": {
                     "line": 10,
@@ -48,10 +47,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                             "safe": false,
-                            "file": "/atrule-rules.css",
-                            "from": "/atrule-rules.css"
+                            "file": "atrule-rules.css",
+                            "from": "atrule-rules.css"
                         },
                         "end": {
                             "line": 9,
@@ -80,10 +78,9 @@
                                             "column": 13
                                         },
                                         "input": {
-                                            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                                             "safe": false,
-                                            "file": "/atrule-rules.css",
-                                            "from": "/atrule-rules.css"
+                                            "file": "atrule-rules.css",
+                                            "from": "atrule-rules.css"
                                         },
                                         "end": {
                                             "line": 4,
@@ -101,10 +98,9 @@
                                     "column": 9
                                 },
                                 "input": {
-                                    "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                                     "safe": false,
-                                    "file": "/atrule-rules.css",
-                                    "from": "/atrule-rules.css"
+                                    "file": "atrule-rules.css",
+                                    "from": "atrule-rules.css"
                                 },
                                 "end": {
                                     "line": 5,
@@ -133,10 +129,9 @@
                                             "column": 13
                                         },
                                         "input": {
-                                            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                                             "safe": false,
-                                            "file": "/atrule-rules.css",
-                                            "from": "/atrule-rules.css"
+                                            "file": "atrule-rules.css",
+                                            "from": "atrule-rules.css"
                                         },
                                         "end": {
                                             "line": 7,
@@ -154,10 +149,9 @@
                                     "column": 9
                                 },
                                 "input": {
-                                    "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
                                     "safe": false,
-                                    "file": "/atrule-rules.css",
-                                    "from": "/atrule-rules.css"
+                                    "file": "atrule-rules.css",
+                                    "from": "atrule-rules.css"
                                 },
                                 "end": {
                                     "line": 8,
@@ -174,10 +168,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
             "safe": false,
-            "file": "/atrule-rules.css",
-            "from": "/atrule-rules.css"
+            "file": "atrule-rules.css",
+            "from": "atrule-rules.css"
         }
     }
 }
