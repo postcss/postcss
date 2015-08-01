@@ -140,7 +140,7 @@ describe('stringifier', () => {
             let css = parse('a{*one:1}');
             css.first.append({ prop: 'two', value: '2' });
             css.append({ name: 'keyframes', params: 'a' });
-            css.last.append({ selector: 'from'});
+            css.last.append({ selector: 'from' });
             expect(css.toString())
                 .to.eql('a{*one:1;two:2}\n@keyframes a{\nfrom{}}');
         });
