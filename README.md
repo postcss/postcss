@@ -192,7 +192,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
 * [`cssnext`] contains plugins that allow you to use future CSS features today.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
-* [`rucksack`] contains plugins to speed up CSS development with new features and shortcuts.
+* [`rucksack`] contains plugins to speed up CSS development
+  with new features and shortcuts.
 * [`stylelint`] contains plugins that lint your stylesheets.
 
 [`stylelint`]: https://github.com/stylelint/stylelint
@@ -214,7 +215,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-custom-properties`] supports variables, using syntax from
   the W3C Custom Properties.
 * [`postcss-custom-selectors`] adds custom aliases for selectors.
-* [`postcss-extend`] supports spec-approximate `@extend` for rules and placeholders, recursively.
+* [`postcss-extend`] supports spec-approximate `@extend` for rules
+  and placeholders, recursively.
 * [`postcss-font-variant`] transpiles human-readable `font-variant`
   to more widely supported CSS.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
@@ -261,7 +263,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
-* [`postcss-simple-extend`] lightweight extending of silent classes, like Sass’ `@extend`.
+* [`postcss-simple-extend`] lightweight extending of silent classes,
+  like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`postcss-strip-units`] strips units off of property values.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
