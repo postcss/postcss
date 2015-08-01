@@ -24,10 +24,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
                             "safe": false,
-                            "file": "/prop-hacks.css",
-                            "from": "/prop-hacks.css"
+                            "file": "prop-hacks.css",
+                            "from": "prop-hacks.css"
                         },
                         "end": {
                             "line": 2,
@@ -49,10 +48,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
                             "safe": false,
-                            "file": "/prop-hacks.css",
-                            "from": "/prop-hacks.css"
+                            "file": "prop-hacks.css",
+                            "from": "prop-hacks.css"
                         },
                         "end": {
                             "line": 3,
@@ -74,10 +72,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
                             "safe": false,
-                            "file": "/prop-hacks.css",
-                            "from": "/prop-hacks.css"
+                            "file": "prop-hacks.css",
+                            "from": "prop-hacks.css"
                         },
                         "end": {
                             "line": 4,
@@ -95,10 +92,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
                     "safe": false,
-                    "file": "/prop-hacks.css",
-                    "from": "/prop-hacks.css"
+                    "file": "prop-hacks.css",
+                    "from": "prop-hacks.css"
                 },
                 "end": {
                     "line": 5,
@@ -111,10 +107,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
             "safe": false,
-            "file": "/prop-hacks.css",
-            "from": "/prop-hacks.css"
+            "file": "prop-hacks.css",
+            "from": "prop-hacks.css"
         }
     }
 }

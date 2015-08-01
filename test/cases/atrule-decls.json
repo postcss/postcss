@@ -20,10 +20,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                     "safe": false,
-                    "file": "/atrule-decls.css",
-                    "from": "/atrule-decls.css"
+                    "file": "atrule-decls.css",
+                    "from": "atrule-decls.css"
                 },
                 "end": {
                     "line": 3,
@@ -44,10 +43,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                             "safe": false,
-                            "file": "/atrule-decls.css",
-                            "from": "/atrule-decls.css"
+                            "file": "atrule-decls.css",
+                            "from": "atrule-decls.css"
                         },
                         "end": {
                             "line": 2,
@@ -75,10 +73,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                     "safe": false,
-                    "file": "/atrule-decls.css",
-                    "from": "/atrule-decls.css"
+                    "file": "atrule-decls.css",
+                    "from": "atrule-decls.css"
                 },
                 "end": {
                     "line": 7,
@@ -99,10 +96,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                             "safe": false,
-                            "file": "/atrule-decls.css",
-                            "from": "/atrule-decls.css"
+                            "file": "atrule-decls.css",
+                            "from": "atrule-decls.css"
                         },
                         "end": {
                             "line": 6,
@@ -130,10 +126,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                     "safe": false,
-                    "file": "/atrule-decls.css",
-                    "from": "/atrule-decls.css"
+                    "file": "atrule-decls.css",
+                    "from": "atrule-decls.css"
                 },
                 "end": {
                     "line": 11,
@@ -154,10 +149,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                             "safe": false,
-                            "file": "/atrule-decls.css",
-                            "from": "/atrule-decls.css"
+                            "file": "atrule-decls.css",
+                            "from": "atrule-decls.css"
                         },
                         "end": {
                             "line": 10,
@@ -185,10 +179,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                     "safe": false,
-                    "file": "/atrule-decls.css",
-                    "from": "/atrule-decls.css"
+                    "file": "atrule-decls.css",
+                    "from": "atrule-decls.css"
                 },
                 "end": {
                     "line": 15,
@@ -209,10 +202,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                             "safe": false,
-                            "file": "/atrule-decls.css",
-                            "from": "/atrule-decls.css"
+                            "file": "atrule-decls.css",
+                            "from": "atrule-decls.css"
                         },
                         "end": {
                             "line": 14,
@@ -240,10 +232,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                     "safe": false,
-                    "file": "/atrule-decls.css",
-                    "from": "/atrule-decls.css"
+                    "file": "atrule-decls.css",
+                    "from": "atrule-decls.css"
                 },
                 "end": {
                     "line": 19,
@@ -264,10 +255,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
                             "safe": false,
-                            "file": "/atrule-decls.css",
-                            "from": "/atrule-decls.css"
+                            "file": "atrule-decls.css",
+                            "from": "atrule-decls.css"
                         },
                         "end": {
                             "line": 18,
@@ -283,10 +273,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "@page :left {\n    background: black\n}\n\n@media(min-width: 0) {\n    background: white\n}\n\n@font-face {\n    family-name: \"A;' /**/\";\n}\n\n@viewport {\n    width: 110px;\n}\n\n@-ms-viewport {\n    width: 100px;\n}\n",
             "safe": false,
-            "file": "/atrule-decls.css",
-            "from": "/atrule-decls.css"
+            "file": "atrule-decls.css",
+            "from": "atrule-decls.css"
         }
     }
 }

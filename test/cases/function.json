@@ -24,10 +24,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
                             "safe": false,
-                            "file": "/function.css",
-                            "from": "/function.css"
+                            "file": "function.css",
+                            "from": "function.css"
                         },
                         "end": {
                             "line": 2,
@@ -45,10 +44,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
                     "safe": false,
-                    "file": "/function.css",
-                    "from": "/function.css"
+                    "file": "function.css",
+                    "from": "function.css"
                 },
                 "end": {
                     "line": 3,
@@ -61,10 +59,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "a {\n    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\n}\n",
             "safe": false,
-            "file": "/function.css",
-            "from": "/function.css"
+            "file": "function.css",
+            "from": "function.css"
         }
     }
 }

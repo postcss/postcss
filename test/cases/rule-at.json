@@ -24,10 +24,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
                             "safe": false,
-                            "file": "/rule-at.css",
-                            "from": "/rule-at.css"
+                            "file": "rule-at.css",
+                            "from": "rule-at.css"
                         },
                         "end": {
                             "line": 2,
@@ -49,10 +48,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
                             "safe": false,
-                            "file": "/rule-at.css",
-                            "from": "/rule-at.css"
+                            "file": "rule-at.css",
+                            "from": "rule-at.css"
                         },
                         "end": {
                             "line": 3,
@@ -78,10 +76,9 @@
                             "column": 5
                         },
                         "input": {
-                            "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
                             "safe": false,
-                            "file": "/rule-at.css",
-                            "from": "/rule-at.css"
+                            "file": "rule-at.css",
+                            "from": "rule-at.css"
                         },
                         "end": {
                             "line": 6,
@@ -102,10 +99,9 @@
                                     "column": 9
                                 },
                                 "input": {
-                                    "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
                                     "safe": false,
-                                    "file": "/rule-at.css",
-                                    "from": "/rule-at.css"
+                                    "file": "rule-at.css",
+                                    "from": "rule-at.css"
                                 },
                                 "end": {
                                     "line": 5,
@@ -125,10 +121,9 @@
                     "column": 1
                 },
                 "input": {
-                    "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
                     "safe": false,
-                    "file": "/rule-at.css",
-                    "from": "/rule-at.css"
+                    "file": "rule-at.css",
+                    "from": "rule-at.css"
                 },
                 "end": {
                     "line": 7,
@@ -141,10 +136,9 @@
     "type": "root",
     "source": {
         "input": {
-            "css": "a {\n    width: 10px;\n    margin: 0 @width;\n    @mixin mobile {\n        height: 100px;\n    }\n}\n",
             "safe": false,
-            "file": "/rule-at.css",
-            "from": "/rule-at.css"
+            "file": "rule-at.css",
+            "from": "rule-at.css"
         }
     }
 }
