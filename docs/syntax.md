@@ -44,7 +44,9 @@ module.exports = function (css) {
 };
 ```
 
-TODO parser theory look and current one (copy paste is OK)
+TODO: parser theory look and current one (copy paste is OK)
+
+TODO: reuse Parser and tests
 
 TODO: Node#raws
 
@@ -73,6 +75,8 @@ module.export = function (root, builder) {
 };
 ```
 
-TODO look and extend current one
+TODO: look and extend current one
 
-TODO start|end tokens in builder
+TODO: start|end tokens in builder
+
+TODO: be ready for nodes without raw or from other parser
