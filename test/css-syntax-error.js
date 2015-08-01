@@ -81,7 +81,7 @@ describe('CssSyntaxError', () => {
 
         let error = parseError(concat.content, {
             from: 'build/all.css',
-            map: { prev: concat.sourceMap }
+            map:  { prev: concat.sourceMap }
         });
 
         expect(error.file).to.eql(path.resolve('b.css'));
@@ -89,9 +89,9 @@ describe('CssSyntaxError', () => {
         expect(error.source).to.not.exist;
 
         expect(error.generated).to.eql({
-            file:    path.resolve('build/all.css'),
-            line:    3,
-            column:  1,
+            file:   path.resolve('build/all.css'),
+            line:   3,
+            column: 1,
             source: 'a { }\n\nb {\n'
         });
     });
@@ -99,11 +99,11 @@ describe('CssSyntaxError', () => {
     it('does not uses wrong source map', () => {
         let error = parseError('a { }\nb {', {
             from: 'build/all.css',
-            map: {
+            map:  {
                 prev: {
-                    version: 3,
-                    file: 'build/all.css',
-                    sources: ['a.css', 'b.css'],
+                    version:  3,
+                    file:     'build/all.css',
+                    sources:  ['a.css', 'b.css'],
                     mappings: 'A'
                 }
             }
@@ -130,7 +130,7 @@ describe('CssSyntaxError', () => {
             expect(error.plugin).to.eql('test-plugin');
             expect(error.toString()).to.match(/test-plugin/);
             done();
-        }).catch( (error) => done(error) );
+        }).catch(done);
     });
 
     it('set plugin automatically in async', (done) => {
@@ -146,7 +146,7 @@ describe('CssSyntaxError', () => {
             if ( error.name !== 'CssSyntaxError' ) throw error;
             expect(error.plugin).to.eql('async-plugin');
             done();
-        }).catch( (error) => done(error) );
+        }).catch(done);
     });
 
 });

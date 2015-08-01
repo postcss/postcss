@@ -73,10 +73,8 @@ gulp.task('integration', ['build:lib', 'build:package'], (done) => {
 
     let error = (url, message) => {
         gutil.log(gutil.colors.red('Fail on ' + url));
-        done(new gutil.PluginError('integration', {
-            showStack: false,
-            message:   message
-        }));
+        done(new gutil.PluginError(
+            'integration', { showStack: false, message }));
     };
 
     let sites = {
@@ -93,8 +91,8 @@ gulp.task('integration', ['build:lib', 'build:package'], (done) => {
 
     load(urls, '.css', (css, url, last) => {
         postcss().process(css, {
-            map: { annotation: false },
-            safe:  url.match('browserhacks.com')
+            map:  { annotation: false },
+            safe: url.match('browserhacks.com')
 
         }).catch( (e) => {
             fs.writeFileSync('fail.css', css);

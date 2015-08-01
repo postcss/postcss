@@ -25,7 +25,7 @@ describe('Container', () => {
 
         it('throws error on declaration without value', () => {
             expect( () => {
-                (new Rule()).append({prop: 'color', vlaue: 'black' });
+                (new Rule()).append({ prop: 'color', vlaue: 'black' });
             }).to.throw(/Value field is missed/);
         });
 
@@ -710,7 +710,7 @@ describe('Container', () => {
 
     describe('normalize()', () => {
 
-        it("doesn't normalize new children with exists before", () => {
+        it('does not normalize new children with exists before', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             rule.append({ prop: 'c', value: '3', raw: { before: '\n ' } });
             expect(rule.toString()).to.eql('a { a: 1; b: 2;\n c: 3 }');
