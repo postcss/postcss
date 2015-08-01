@@ -48,6 +48,8 @@ TODO: parser theory look and current one (copy paste is OK)
 
 TODO: reuse Parser and tests
 
+TODO: Node#source.input
+
 TODO: Node#raws
 
 TODO: tokenizer and parser
