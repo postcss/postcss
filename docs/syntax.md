@@ -33,11 +33,12 @@ Main example of parse is Safe Parser, to parse broken CSS. There is not sense
 to generate string with broken CSS, so package should provide only parser.
 
 Parser API is a function, that receives string and returns `Root` node.
+The second function argument will be a object with PostCSS options.
 
 ```js
 var postcss = require('postcss');
 
-module.exports = function (css) {
+module.exports = function (css, opts) {
     var root = postcss.root();
     // Some magic with css
     return root;
