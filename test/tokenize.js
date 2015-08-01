@@ -89,7 +89,7 @@ describe('tokenize', () => {
 
     it('tokenizes string', () => {
         test('\'"\'"\\""', [
-            ['string', "'\"'",  1, 1, 1, 3],
+            ['string', '\'"\'',  1, 1, 1, 3],
             ['string', '"\\""', 1, 4, 1, 7]
         ]);
     });

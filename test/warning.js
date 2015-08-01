@@ -27,7 +27,7 @@ describe('Warning', () => {
             let root    = parse('a{}', { from: '/a.css' });
             let warning = new Warning('text', {
                 plugin: 'plugin',
-                node:    root.first
+                node:   root.first
             });
             expect(warning.toString()).to.eql('plugin: /a.css:1:1: text');
         });

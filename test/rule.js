@@ -26,11 +26,11 @@ describe('Rule', () => {
             // Note: We don’t have to care about unquoted attribute values
             // (such as `[foo=a,b]`), because that is invalid CSS.
             let rule = new Rule({
-                selector: "[foo='a, b'], a:-moz-any(:focus, [href*=','])"
+                selector: '[foo=\'a, b\'], a:-moz-any(:focus, [href*=\',\'])'
             });
             expect(rule.selectors).to.eql([
-                "[foo='a, b']",
-                "a:-moz-any(:focus, [href*=','])"]);
+                '[foo=\'a, b\']',
+                'a:-moz-any(:focus, [href*=\',\'])']);
         });
 
         it('receive array', () => {
