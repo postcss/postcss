@@ -138,7 +138,8 @@ gulp.task('cases', () => {
         let css  = fs.readFileSync(path.join(cases, name));
         let root = postcss.parse(css, { from: '/' + name });
         let json = JSON.stringify(root, null, 4);
-        let file = path.join(cases, name.replace(/\.css$/, '.json'));
+        let windows = /^win/.test(process.platform) ? '.windows' : '';
+        let file = path.join(cases, name.replace(/\.css$/, `${windows}.json`));
         fs.writeFileSync(file, json + '\n');
     });
 });

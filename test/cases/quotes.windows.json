@@ -1,0 +1,87 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
+                            "safe": false,
+                            "file": "Z:\\quotes.css",
+                            "from": "Z:\\quotes.css"
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 26
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "content",
+                    "between": ": ",
+                    "value": "\";'@ /**/\\\"\""
+                },
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
+                            "safe": false,
+                            "file": "Z:\\quotes.css",
+                            "from": "Z:\\quotes.css"
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 21
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "content",
+                    "between": ": ",
+                    "value": "'\\'\"\\\\'"
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
+                    "safe": false,
+                    "file": "Z:\\quotes.css",
+                    "from": "Z:\\quotes.css"
+                },
+                "end": {
+                    "line": 4,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": "a::before",
+            "semicolon": true,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a::before {\n    content: \";'@ /**/\\\"\";\n    content: '\\'\"\\\\';\n}\n",
+            "safe": false,
+            "file": "Z:\\quotes.css",
+            "from": "Z:\\quotes.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

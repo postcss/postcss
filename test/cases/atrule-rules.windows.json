@@ -1,0 +1,169 @@
+{
+    "nodes": [
+        {
+            "type": "atrule",
+            "name": "supports",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
+                    "safe": false,
+                    "file": "Z:\\atrule-rules.css",
+                    "from": "Z:\\atrule-rules.css"
+                },
+                "end": {
+                    "line": 10,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "afterName": " ",
+            "params": "(animation-name: test)",
+            "nodes": [
+                {
+                    "type": "atrule",
+                    "name": "-custom-keyframe",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
+                            "safe": false,
+                            "file": "Z:\\atrule-rules.css",
+                            "from": "Z:\\atrule-rules.css"
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 5
+                        }
+                    },
+                    "before": "\n    ",
+                    "between": " ",
+                    "afterName": " ",
+                    "params": "anim",
+                    "nodes": [
+                        {
+                            "nodes": [
+                                {
+                                    "type": "decl",
+                                    "source": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 13
+                                        },
+                                        "input": {
+                                            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
+                                            "safe": false,
+                                            "file": "Z:\\atrule-rules.css",
+                                            "from": "Z:\\atrule-rules.css"
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 25
+                                        }
+                                    },
+                                    "before": "\n            ",
+                                    "prop": "color",
+                                    "between": ": ",
+                                    "value": "black"
+                                }
+                            ],
+                            "type": "rule",
+                            "source": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 9
+                                },
+                                "input": {
+                                    "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
+                                    "safe": false,
+                                    "file": "Z:\\atrule-rules.css",
+                                    "from": "Z:\\atrule-rules.css"
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 9
+                                }
+                            },
+                            "before": "\n        ",
+                            "between": " ",
+                            "selector": "from",
+                            "semicolon": true,
+                            "after": "\n        "
+                        },
+                        {
+                            "nodes": [
+                                {
+                                    "type": "decl",
+                                    "source": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 13
+                                        },
+                                        "input": {
+                                            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
+                                            "safe": false,
+                                            "file": "Z:\\atrule-rules.css",
+                                            "from": "Z:\\atrule-rules.css"
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 24
+                                        }
+                                    },
+                                    "before": "\n            ",
+                                    "prop": "color",
+                                    "between": ": ",
+                                    "value": "white"
+                                }
+                            ],
+                            "type": "rule",
+                            "source": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 9
+                                },
+                                "input": {
+                                    "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
+                                    "safe": false,
+                                    "file": "Z:\\atrule-rules.css",
+                                    "from": "Z:\\atrule-rules.css"
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 9
+                                }
+                            },
+                            "before": "\n        ",
+                            "between": " ",
+                            "selector": "to",
+                            "semicolon": false,
+                            "after": "\n        "
+                        }
+                    ],
+                    "semicolon": false,
+                    "after": "\n    "
+                }
+            ],
+            "semicolon": false,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "@supports (animation-name: test) {\n    @-custom-keyframe anim {\n        from {\n            color: black;\n        }\n        to {\n            color: white\n        }\n    }\n}\n",
+            "safe": false,
+            "file": "Z:\\atrule-rules.css",
+            "from": "Z:\\atrule-rules.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

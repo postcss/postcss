@@ -1,0 +1,64 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {;;\n    color: black;\n    ; ;\n}\n",
+                            "safe": false,
+                            "file": "Z:\\semicolons.css",
+                            "from": "Z:\\semicolons.css"
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 17
+                        }
+                    },
+                    "before": ";;\n    ",
+                    "prop": "color",
+                    "between": ": ",
+                    "value": "black"
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a {;;\n    color: black;\n    ; ;\n}\n",
+                    "safe": false,
+                    "file": "Z:\\semicolons.css",
+                    "from": "Z:\\semicolons.css"
+                },
+                "end": {
+                    "line": 4,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": "a",
+            "semicolon": true,
+            "after": "\n    ; ;\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a {;;\n    color: black;\n    ; ;\n}\n",
+            "safe": false,
+            "file": "Z:\\semicolons.css",
+            "from": "Z:\\semicolons.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

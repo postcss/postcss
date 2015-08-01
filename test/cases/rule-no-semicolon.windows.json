@@ -1,0 +1,64 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 1,
+                            "column": 3
+                        },
+                        "input": {
+                            "css": "a{color:black}\n",
+                            "safe": false,
+                            "file": "Z:\\rule-no-semicolon.css",
+                            "from": "Z:\\rule-no-semicolon.css"
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 13
+                        }
+                    },
+                    "before": "",
+                    "prop": "color",
+                    "between": ":",
+                    "value": "black"
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a{color:black}\n",
+                    "safe": false,
+                    "file": "Z:\\rule-no-semicolon.css",
+                    "from": "Z:\\rule-no-semicolon.css"
+                },
+                "end": {
+                    "line": 1,
+                    "column": 14
+                }
+            },
+            "before": "",
+            "between": "",
+            "selector": "a",
+            "semicolon": false,
+            "after": ""
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a{color:black}\n",
+            "safe": false,
+            "file": "Z:\\rule-no-semicolon.css",
+            "from": "Z:\\rule-no-semicolon.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

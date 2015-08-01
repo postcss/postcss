@@ -1,0 +1,64 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",
+                            "safe": false,
+                            "file": "Z:\\ie-progid.css",
+                            "from": "Z:\\ie-progid.css"
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 118
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "filter",
+                    "between": ": ",
+                    "value": "progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3)"
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",
+                    "safe": false,
+                    "file": "Z:\\ie-progid.css",
+                    "from": "Z:\\ie-progid.css"
+                },
+                "end": {
+                    "line": 3,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": "a",
+            "semicolon": true,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a {\n    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=2) progid:DXImageTransform.Microsoft.Wheel(duration=3);\n}\n",
+            "safe": false,
+            "file": "Z:\\ie-progid.css",
+            "from": "Z:\\ie-progid.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

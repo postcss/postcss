@@ -1,0 +1,64 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 2
+                        },
+                        "input": {
+                            "css": "a {\n\tcolor: black\n}\n",
+                            "safe": false,
+                            "file": "Z:\\tab.css",
+                            "from": "Z:\\tab.css"
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 13
+                        }
+                    },
+                    "before": "\n\t",
+                    "prop": "color",
+                    "between": ": ",
+                    "value": "black"
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a {\n\tcolor: black\n}\n",
+                    "safe": false,
+                    "file": "Z:\\tab.css",
+                    "from": "Z:\\tab.css"
+                },
+                "end": {
+                    "line": 3,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": "a",
+            "semicolon": false,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a {\n\tcolor: black\n}\n",
+            "safe": false,
+            "file": "Z:\\tab.css",
+            "from": "Z:\\tab.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

@@ -1,0 +1,110 @@
+{
+    "nodes": [
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 2,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+                            "safe": false,
+                            "file": "Z:\\prop-hacks.css",
+                            "from": "Z:\\prop-hacks.css"
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 19
+                        }
+                    },
+                    "before": "\n    *",
+                    "prop": "color",
+                    "between": " : ",
+                    "value": "black"
+                },
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+                            "safe": false,
+                            "file": "Z:\\prop-hacks.css",
+                            "from": "Z:\\prop-hacks.css"
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 23
+                        }
+                    },
+                    "before": "\n    _",
+                    "prop": "background",
+                    "between": ": ",
+                    "value": "white"
+                },
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 4,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+                            "safe": false,
+                            "file": "Z:\\prop-hacks.css",
+                            "from": "Z:\\prop-hacks.css"
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 23
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "font-size",
+                    "between": "/**/: ",
+                    "value": "big"
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+                    "safe": false,
+                    "file": "Z:\\prop-hacks.css",
+                    "from": "Z:\\prop-hacks.css"
+                },
+                "end": {
+                    "line": 5,
+                    "column": 1
+                }
+            },
+            "before": "",
+            "between": " ",
+            "selector": "a",
+            "semicolon": true,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "a {\n    *color : black;\n    _background: white;\n    font-size/**/: big;\n}\n",
+            "safe": false,
+            "file": "Z:\\prop-hacks.css",
+            "from": "Z:\\prop-hacks.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

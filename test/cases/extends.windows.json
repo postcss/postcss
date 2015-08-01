@@ -1,0 +1,136 @@
+{
+    "nodes": [
+        {
+            "type": "decl",
+            "source": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "input": {
+                    "css": "one: 1;\n\na {\n    two: 2;\n    b {\n        three: 3;\n    }\n}\n",
+                    "safe": false,
+                    "file": "Z:\\extends.css",
+                    "from": "Z:\\extends.css"
+                },
+                "end": {
+                    "line": 1,
+                    "column": 7
+                }
+            },
+            "before": "",
+            "prop": "one",
+            "between": ": ",
+            "value": "1"
+        },
+        {
+            "nodes": [
+                {
+                    "type": "decl",
+                    "source": {
+                        "start": {
+                            "line": 4,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "one: 1;\n\na {\n    two: 2;\n    b {\n        three: 3;\n    }\n}\n",
+                            "safe": false,
+                            "file": "Z:\\extends.css",
+                            "from": "Z:\\extends.css"
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 11
+                        }
+                    },
+                    "before": "\n    ",
+                    "prop": "two",
+                    "between": ": ",
+                    "value": "2"
+                },
+                {
+                    "nodes": [
+                        {
+                            "type": "decl",
+                            "source": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 9
+                                },
+                                "input": {
+                                    "css": "one: 1;\n\na {\n    two: 2;\n    b {\n        three: 3;\n    }\n}\n",
+                                    "safe": false,
+                                    "file": "Z:\\extends.css",
+                                    "from": "Z:\\extends.css"
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 17
+                                }
+                            },
+                            "before": "\n        ",
+                            "prop": "three",
+                            "between": ": ",
+                            "value": "3"
+                        }
+                    ],
+                    "type": "rule",
+                    "source": {
+                        "start": {
+                            "line": 5,
+                            "column": 5
+                        },
+                        "input": {
+                            "css": "one: 1;\n\na {\n    two: 2;\n    b {\n        three: 3;\n    }\n}\n",
+                            "safe": false,
+                            "file": "Z:\\extends.css",
+                            "from": "Z:\\extends.css"
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 5
+                        }
+                    },
+                    "before": "\n    ",
+                    "between": " ",
+                    "selector": "b",
+                    "semicolon": true,
+                    "after": "\n    "
+                }
+            ],
+            "type": "rule",
+            "source": {
+                "start": {
+                    "line": 3,
+                    "column": 1
+                },
+                "input": {
+                    "css": "one: 1;\n\na {\n    two: 2;\n    b {\n        three: 3;\n    }\n}\n",
+                    "safe": false,
+                    "file": "Z:\\extends.css",
+                    "from": "Z:\\extends.css"
+                },
+                "end": {
+                    "line": 8,
+                    "column": 1
+                }
+            },
+            "before": "\n\n",
+            "between": " ",
+            "selector": "a",
+            "semicolon": false,
+            "after": "\n"
+        }
+    ],
+    "type": "root",
+    "source": {
+        "input": {
+            "css": "one: 1;\n\na {\n    two: 2;\n    b {\n        three: 3;\n    }\n}\n",
+            "safe": false,
+            "file": "Z:\\extends.css",
+            "from": "Z:\\extends.css"
+        }
+    },
+    "semicolon": false,
+    "after": "\n"
+}

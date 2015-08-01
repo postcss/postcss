@@ -47,8 +47,10 @@ describe('postcss.parse()', () => {
         if ( !name.match(/\.css$/) ) return;
 
         it('parses ' + name, () => {
-            let css  = parse(read(name), { from: '/' + name });
-            let json = read(name.replace(/\.css$/, '.json')).toString().trim();
+            let windows = /^win/.test(process.platform) ? '.windows' : '';
+            let css  = parse(read(name), { from: `/${name}` });
+            let json = read(name.replace(/\.css$/, `${windows}.json`));
+            json = json.toString().trim();
             expect(JSON.stringify(css, null, 4)).to.eql(json);
         });
     });
