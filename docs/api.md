@@ -378,6 +378,14 @@ postcss([cssnext]).then(function (result) {
 });
 ```
 
+### `lazy.content`
+
+It is alias for `css` property to use with syntaxes generates non-CSS output.
+
+```js
+lazy.css === lazy.content;
+```
+
 ### `lazy.map`
 
 Processes input CSS through synchronous plugins and returns [`Result#map`].
@@ -531,6 +539,14 @@ A CSS string representing this `Result`’s '`Root` instance.
 
 ```js
 postcss.parse('a{}').toResult().css //=> "a{}"
+```
+
+### `result.content`
+
+It is alias for `css` property to use with syntaxes generates non-CSS output.
+
+```js
+result.css === result.content;
 ```
 
 ### `result.map`
