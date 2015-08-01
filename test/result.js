@@ -29,7 +29,7 @@ describe('Result', () => {
             expect(result.messages).to.eql([
                 new Warning('test', {
                     plugin: 'test-plugin',
-                    node:    result.root.first
+                    node:   result.root.first
                 })
             ]);
         });

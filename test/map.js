@@ -82,13 +82,13 @@ describe('source maps', () => {
         let doubled = doubler.process(css, {
             from: 'a.css',
             to:   'b.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
 
         let lighted = lighter.process(doubled.css, {
             from: 'b.css',
             to:   'c.css',
-            map: { prev: doubled.map }
+            map:  { prev: doubled.map }
         });
 
         let map = consumer(lighted.map);
@@ -105,7 +105,7 @@ describe('source maps', () => {
         let result = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
 
         expect(result.css).to.eql('a { }\n/*# sourceMappingURL=b.css.map */');
@@ -116,7 +116,7 @@ describe('source maps', () => {
         let result = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map: { annotation: false }
+            map:  { annotation: false }
         });
 
         expect(result.css).to.eql(css);
@@ -128,13 +128,13 @@ describe('source maps', () => {
         let step1 = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map: { annotation: false }
+            map:  { annotation: false }
         });
 
         let step2 = postcss().process(step1.css, {
             from: 'b.css',
             to:   'c.css',
-            map: { prev: step1.map }
+            map:  { prev: step1.map }
         });
 
         expect(step2.css).to.eql(css);
@@ -144,7 +144,7 @@ describe('source maps', () => {
         let result = postcss().process('a { }', {
             from: 'source/a.css',
             to:   'build/b.css',
-            map: { annotation: 'maps/b.map' }
+            map:  { annotation: 'maps/b.map' }
         });
 
         expect(result.css).to.eql('a { }\n/*# sourceMappingURL=maps/b.map */');
@@ -161,16 +161,16 @@ describe('source maps', () => {
         let inline = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map: { inline: true }
+            map:  { inline: true }
         });
 
         expect(inline.map).to.not.exist;
         expect(inline.css).to.match(/# sourceMappingURL=data:/);
 
         let separated = postcss().process(css, {
-          from: 'a.css',
-          to:   'b.css',
-          map: { inline: false }
+            from: 'a.css',
+            to:   'b.css',
+            map:  { inline: false }
         });
 
         let base64 = new Buffer(separated.map.toString()).toString('base64');
@@ -181,7 +181,7 @@ describe('source maps', () => {
         let inline = postcss().process('a { }', {
             from: 'a.css',
             to:   'b.css',
-            map:   true
+            map:  true
         });
 
         expect(inline.css).to.match(/# sourceMappingURL=data:/);
@@ -191,12 +191,12 @@ describe('source maps', () => {
         let step1 = doubler.process('a { color: black }', {
             from: 'a.css',
             to:   'b.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
         let step2 = lighter.process(step1.css, {
             from: 'b.css',
             to:   'c.css',
-            map: { prev: step1.map }
+            map:  { prev: step1.map }
         });
 
         expect(step2.map).to.exist;
@@ -206,7 +206,7 @@ describe('source maps', () => {
         let result = postcss().process('a { }', {
             from: 'a.css',
             to:   'b.css',
-            map: { annotation: false }
+            map:  { annotation: false }
         });
 
         expect(result.map).to.exist;
@@ -216,13 +216,13 @@ describe('source maps', () => {
         let step1 = postcss().process('a { }', {
             from: 'a.css',
             to:   'b.css',
-            map: { inline: true }
+            map:  { inline: true }
         });
 
         let step2 = postcss().process(step1.css, {
             from: 'b.css',
             to:   'c.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
 
         expect(step2).to.have.property('map');
@@ -234,14 +234,14 @@ describe('source maps', () => {
 
         let step1 = doubler.process('a { }', {
             from: 'a.css',
-            to:    file,
-            map:   true
+            to:   file,
+            map:  true
         });
 
         fs.outputFileSync(file + '.map', step1.map);
         let step2 = lighter.process(step1.css, {
             from: file,
-            to:  'b.css',
+            to:   'b.css',
             map:  false
         });
 
@@ -252,7 +252,7 @@ describe('source maps', () => {
         let result = doubler.process('a { }', {
             from: 'from/a.css',
             to:   'out/b.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
 
         expect(result.css).to.match(/sourceMappingURL=b.css.map/);
@@ -266,13 +266,13 @@ describe('source maps', () => {
         let step1 = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
 
         let step2 = doubler.process(step1.css, {
             from: 'out/b.css',
             to:   'out/two/c.css',
-            map: { prev: step1.map }
+            map:  { prev: step1.map }
         });
 
         let source = consumer(step2.map)
@@ -282,7 +282,7 @@ describe('source maps', () => {
         let step3 = doubler.process(step2.css, {
             from: 'c.css',
             to:   'd.css',
-            map: { prev: step2.map }
+            map:  { prev: step2.map }
         });
 
         source = consumer(step3.map)
@@ -294,13 +294,13 @@ describe('source maps', () => {
         let step1 = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
-            map:   true
+            map:  true
         });
 
         let step2 = doubler.process(step1.css, {
             from: 'out/b.css',
             to:   'out/two/c.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
 
         let source = consumer(step2.map)
@@ -312,7 +312,7 @@ describe('source maps', () => {
         let step1 = doubler.process('a { }', {
             from: 'source/a.css',
             to:   'one/b.css',
-            map: { annotation: 'maps/b.css.map', inline: false }
+            map:  { annotation: 'maps/b.css.map', inline: false }
         });
 
         let source = consumer(step1.map)
@@ -337,7 +337,7 @@ describe('source maps', () => {
         let step1 = doubler.process('a { }', {
             from: 'a.css',
             to:   'b.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
 
         let map  = step1.map;
@@ -347,7 +347,7 @@ describe('source maps', () => {
             let step2 = doubler.process(step1.css, {
                 from: 'b.css',
                 to:   'c.css',
-                map: { prev: i }
+                map:  { prev: i }
             });
             let source = consumer(step2.map)
                 .originalPositionFor({ line: 1, column: 0 }).source;
@@ -359,7 +359,7 @@ describe('source maps', () => {
         let result = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
-            map:   true
+            map:  true
         });
 
         expect(read(result).sourceContentFor('../a.css')).to.eql('a { }');
@@ -369,7 +369,7 @@ describe('source maps', () => {
         let result = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/b.css',
-            map: { sourcesContent: false }
+            map:  { sourcesContent: false }
         });
 
         expect(read(result).sourceContentFor('../a.css')).to.not.exist;
@@ -377,14 +377,14 @@ describe('source maps', () => {
 
     it('misses source content if previous not have', () => {
         let step1 = doubler.process('a { }', {
-          from: 'a.css',
-          to:   'out/a.css',
-          map: { sourcesContent: false }
+            from: 'a.css',
+            to:   'out/a.css',
+            map:  { sourcesContent: false }
         });
 
         let file1 = postcss.parse(step1.css, {
             from: 'a.css',
-            map: { prev: step1.map }
+            map:  { prev: step1.map }
         });
         let file2 = postcss.parse('b { }', { from: 'b.css', map: true });
 
@@ -398,18 +398,18 @@ describe('source maps', () => {
         let step1 = doubler.process('a { }', {
             from: 'a.css',
             to:   'out/a.css',
-            map: { sourcesContent: true }
+            map:  { sourcesContent: true }
         });
 
         let file1 = postcss.parse(step1.css, {
             from: 'a.css',
-            map: { prev: step1.map }
+            map:  { prev: step1.map }
         });
         let file2 = postcss.parse('b { }', { from: 'b.css', map: true });
 
         file2.append( file1.first.clone() );
         let step2 = file2.toResult({
-            to:   'c.css',
+            to:  'c.css',
             map: { sourcesContent: false }
         });
 
@@ -434,7 +434,7 @@ describe('source maps', () => {
         let step1 = doubler.process('a { }', {
             from: 'вход.css',
             to:   'шаг1.css',
-            map:   true
+            map:  true
         });
         let step2 = doubler.process(step1.css, {
             from: 'шаг1.css',
@@ -456,7 +456,7 @@ describe('source maps', () => {
     it('uses input file name as output file name', () => {
         let result = doubler.process('a{}', {
             from: 'a.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
         expect(result.map.toJSON().file).to.eql('a.css');
     });
@@ -471,7 +471,7 @@ describe('source maps', () => {
         let result = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map: { inline: false }
+            map:  { inline: false }
         });
 
         expect(result.css).to.eql('a { }\n/*# sourceMappingURL=b.css.map */');
@@ -482,7 +482,7 @@ describe('source maps', () => {
         let result = postcss().process(css, {
             from: 'a.css',
             to:   'b.css',
-            map: { annotation: false, inline: false }
+            map:  { annotation: false, inline: false }
         });
 
         expect(result.css).to.eql('a { }/*# sourceMappingURL=a.css.map */');
