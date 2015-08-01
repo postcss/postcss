@@ -1,15 +1,15 @@
 .gitignore
 
 node_modules/
+npm-debug.log
 
 build/
+/postcss.js
 
 test/
 .travis.yml
 origin.css
 fail.css
-/postcss.js
-npm-debug.log
 
 gulpfile.babel.js
 logo.svg
