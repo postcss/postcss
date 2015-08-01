@@ -105,10 +105,10 @@ describe('Processor', () => {
             let one = (new Processor()).process('a{}', {
                 from: 'a.css',
                 to:   'b.css',
-                map: { inline: false }
+                map:  { inline: false }
             });
             let two = (new Processor()).process(one, {
-                to:   'c.css',
+                to:  'c.css',
                 map: { inline: false }
             });
             expect(two.map.toJSON().sources).to.eql(['a.css']);
@@ -177,12 +177,12 @@ describe('Processor', () => {
             let one = (new Processor()).process('a{}', {
                 from: 'a.css',
                 to:   'b.css',
-                map:   { inline: false }
+                map:  { inline: false }
             });
             let two = (new Processor()).process(one.css, {
                 from: 'b.css',
                 to:   'c.css',
-                map: { prev: one.map, inline: false }
+                map:  { prev: one.map, inline: false }
             });
             expect(two.map.toJSON().sources).to.eql(['a.css']);
         });
@@ -267,7 +267,7 @@ describe('Processor', () => {
                     expect(err2).to.eql(error);
                     done();
                 });
-            }).catch( (err) => done(err) );
+            }).catch(done);
         });
 
         it('supports sync errors in async mode', (done) => {
@@ -284,7 +284,7 @@ describe('Processor', () => {
         });
 
         it('throws parse error in async', (done) => {
-            (new Processor()).process('a{').catch(function (err) {
+            (new Processor()).process('a{').catch( (err) => {
                 expect(err.message).to.eql('<css input>:1:1: Unclosed block');
                 done();
             }).catch(done);
@@ -300,9 +300,9 @@ describe('Processor', () => {
         });
 
         it('checks plugin compatibility', () => {
-            let plugin = postcss.plugin('test', function () {
-                return function () {
-                    throw 'Er';
+            let plugin = postcss.plugin('test', () => {
+                return () => {
+                    throw new Error('Er');
                 };
             });
             let func = plugin();
@@ -391,7 +391,7 @@ describe('Processor', () => {
         it('uses custom syntax', (done) => {
             let processor = new Processor([]);
             let syntax    = { parse: prs, stringify: str };
-            processor.process('a{}', { syntax: syntax }).then( (result) => {
+            processor.process('a{}', { syntax }).then( (result) => {
                 expect(result.css).to.equal('ok!');
                 done();
             });

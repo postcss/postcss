@@ -15,7 +15,7 @@ describe('list', () => {
         });
 
         it('checks quotes', () => {
-            expect(list.space('"a b\\"" \'\'')).to.eql(['"a b\\""', "''"]);
+            expect(list.space('"a b\\"" \'\'')).to.eql(['"a b\\""', '\'\'']);
         });
 
         it('checks functions', () => {
@@ -40,7 +40,7 @@ describe('list', () => {
         });
 
         it('checks quotes', () => {
-            expect(list.comma('"a,b\\"", \'\'')).to.eql(['"a,b\\""', "''"]);
+            expect(list.comma('"a,b\\"", \'\'')).to.eql(['"a,b\\""', '\'\'']);
         });
 
         it('checks functions', () => {
