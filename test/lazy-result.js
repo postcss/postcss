@@ -31,6 +31,15 @@ describe('LazyResult', () => {
 
     });
 
+    describe('content', () => {
+
+        it('is alias for css', () => {
+            let result = new LazyResult(processor, 'a {}', { });
+            expect(result.content).to.eql('a {}');
+        });
+
+    });
+
     describe('map', () => {
 
         it('exists only if necessary', () => {
