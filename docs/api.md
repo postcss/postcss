@@ -60,8 +60,6 @@ Arguments:
 * `opts (object) optional`: options:
   * `from`: the path to the source CSS file. You should always set `from`,
     because it is used in map generation and in syntax error messages.
-  * `safe`: enable [Safe Mode], in which PostCSS will try
-    to fix CSS syntax errors.
   * `map`: an object of [source map options].
     Only `map.prev` is used in `parse`.
 
@@ -295,8 +293,6 @@ Arguments:
   * `parse`: function to generate AST by string.
   * `stringify`: class to generate string by AST.
   * `syntax`: object with `parse` and `stringify` properties.
-  * `safe`: enable [Safe Mode], in which PostCSS will try
-    to fix CSS syntax errors.
   * `map`: an object of [source map options].
 
 ### `processor.plugins`
@@ -1728,7 +1724,6 @@ var comment.text //=> 'Empty file'
 [Promise]:      http://www.html5rocks.com/en/tutorials/es6/promises/
 
 [source map options]: https://github.com/postcss/postcss#source-map
-[Safe Mode]:          https://github.com/postcss/postcss#safe-mode
 
 [`Processor#process(css, opts)`]: #processorprocesscss-opts
 [`Root#toResult(opts)`]:          #roottoresult-opts
