@@ -28,8 +28,8 @@
   },
   "devDependencies": {
     "concat-with-sourcemaps": "1.0.2",
+    "postcss-parser-tests":   "postcss/postcss-parser-tests",
     "gulp-json-editor":       "2.2.1",
-    "load-resources":         "0.1.0",
     "babel-eslint":           "4.0.5",
     "gulp-eslint":            "1.0.0",
     "gulp-babel":             "5.2.0",

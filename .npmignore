@@ -8,8 +8,6 @@ build/
 
 test/
 .travis.yml
-origin.css
-fail.css
 
 gulpfile.babel.js
 logo.svg
