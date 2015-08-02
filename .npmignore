@@ -8,6 +8,7 @@ build/
 
 test/
 .travis.yml
+appveyor.yml
 
 gulpfile.babel.js
 logo.svg
