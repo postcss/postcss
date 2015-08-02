@@ -172,16 +172,8 @@ describe('tokenize', () => {
         expect( () => test(' "') ).to.throw(/:1:2: Unclosed quote/);
     });
 
-    it('fixes unclosed string in safe mode', () => {
-        test('"', { safe: true }, [ ['string', '""', 1, 1, 1, 2] ]);
-    });
-
     it('throws error on unclosed comment', () => {
         expect( () => test(' /*') ).to.throw(/:1:2: Unclosed comment/);
-    });
-
-    it('fixes unclosed comment in safe mode', () => {
-        test('/*', { safe: true }, [ ['comment', '/**/', 1, 1, 1, 4] ]);
     });
 
 });
