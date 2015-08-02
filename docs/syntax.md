@@ -57,6 +57,8 @@ TODO: tokenizer and parser
 
 TODO: performance: why, tokenizer is important, plain functions and jumps
 
+TODO: tests, cases, jsonify
+
 ## Stringifier
 
 Style guide generator is good example of stringifier. It generates output HTML
