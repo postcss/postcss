@@ -68,7 +68,9 @@ gulp.task('spellcheck', (done) => {
 gulp.task('integration', ['build:lib', 'build:package'], (done) => {
     let postcss = require('./build/lib/postcss');
     let real    = require('postcss-parser-tests/real');
-    real(postcss.parse, done);
+    real(done, (css) => {
+        return postcss.parse(css).toResult({ map: { annotation: false } });
+    });
 });
 
 gulp.task('test', () => {
