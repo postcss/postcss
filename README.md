@@ -369,6 +369,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pseudo-elements-content`] automatically adds `content: ""`
   to `:before` and `:after`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
+* [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`postcss-scopify`] adds a user input scope to each selector.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
@@ -424,6 +425,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-property-lookup`]:        https://github.com/simonsmith/postcss-property-lookup
 [`postcss-vertical-rhythm`]:        https://github.com/markgoodyear/postcss-vertical-rhythm
 [`postcss-local-constants`]:        https://github.com/macropodhq/postcss-local-constants
+[`postcss-remove-prefixes`]:        https://github.com/johnotander/postcss-remove-prefixes
 [`postcss-responsive-type`]:        https://github.com/seaneking/postcss-responsive-type
 [`postcss-color-function`]:         https://github.com/postcss/postcss-color-function
 [`postcss-conic-gradient`]:         https://github.com/jonathantneal/postcss-conic-gradient
