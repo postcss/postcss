@@ -2,20 +2,16 @@ import Input from '../lib/input';
 import parse from '../lib/parse';
 import Root  from '../lib/root';
 
-import jsonify from './utils/jsonify';
-
 import { expect } from 'chai';
+import   cases    from 'postcss-parser-tests';
 import   path     from 'path';
 import   fs       from 'fs';
-
-let read = name => fs.readFileSync(path.join(__dirname, 'cases', name));
 
 describe('postcss.parse()', () => {
 
     it('works with file reads', () => {
-        let file = path.join(__dirname, 'cases', 'atrule-empty.css');
-        let css  = fs.readFileSync(file);
-        expect(parse(css, { from: file })).to.be.instanceOf(Root);
+        let stream = fs.readFileSync(cases.path('atrule-empty.css'));
+        expect(parse(stream)).to.be.instanceOf(Root);
     });
 
     describe('empty file', () => {
@@ -49,13 +45,10 @@ describe('postcss.parse()', () => {
 
     });
 
-    fs.readdirSync(path.join(__dirname, 'cases')).forEach( name => {
-        if ( !name.match(/\.css$/) ) return;
-
+    cases.each( (name, css, json) => {
         it('parses ' + name, () => {
-            let css  = jsonify(parse(read(name), { from: '/' + name }));
-            let json = read(name.replace(/\.css$/, '.json')).toString().trim();
-            expect(JSON.stringify(css, null, 4)).to.eql(json);
+            let parsed = cases.jsonify(parse(css, { from: name }));
+            expect(parsed).to.eql(json);
         });
     });
 
@@ -83,7 +76,8 @@ describe('postcss.parse()', () => {
     });
 
     it('sets parent node', () => {
-        let css = parse(read('atrule-rules.css'));
+        let file = cases.path('atrule-rules.css');
+        let css  = parse(fs.readFileSync(file));
 
         let support   = css.first;
         let keyframes = support.first;
