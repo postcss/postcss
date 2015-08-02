@@ -66,59 +66,9 @@ gulp.task('spellcheck', (done) => {
 // Tests
 
 gulp.task('integration', ['build:lib', 'build:package'], (done) => {
-    let gutil = require('gulp-util');
-    let load  = require('load-resources');
-
     let postcss = require('./build/lib/postcss');
-
-    let error = (url, message) => {
-        gutil.log(gutil.colors.red('Fail on ' + url));
-        done(new gutil.PluginError(
-            'integration', { showStack: false, message }));
-    };
-
-    let sites = {
-        GitHub:       'https://github.com/',
-        Twitter:      'https://twitter.com/',
-        Bootstrap:    'github:twbs/bootstrap:dist/css/bootstrap.css',
-        Habrahabr:    'http://habrahabr.ru/',
-        Browserhacks: 'http://browserhacks.com/'
-    };
-    let urls = Object.keys(sites).map( i => sites[i] );
-
-    let lastDomain = false;
-    let siteIndex  = -1;
-
-    load(urls, '.css', (css, url, last) => {
-        postcss().process(css, {
-            map:  { annotation: false },
-            safe: url.match('browserhacks.com')
-
-        }).catch( (e) => {
-            fs.writeFileSync('fail.css', css);
-            return error(url, 'Parsing error: ' + e.message + e.stack);
-
-        }).then( (result) => {
-            if ( !result ) return;
-
-            if ( result.css !== css ) {
-                fs.writeFileSync('origin.css', css);
-                fs.writeFileSync('fail.css', result.css);
-                error(url, 'Output is not equal input');
-                return;
-            }
-
-            let domain = url.match(/https?:\/\/[^\/]+/)[0];
-            if ( domain !== lastDomain ) {
-                lastDomain = domain;
-                siteIndex += 1;
-                gutil.log('Test ' + Object.keys(sites)[siteIndex] + ' styles');
-            }
-            gutil.log('     ' + gutil.colors.green(path.basename(url)));
-
-            if ( last ) done();
-        }).catch(done);
-    });
+    let real    = require('postcss-parser-tests/real');
+    real(postcss.parse, done);
 });
 
 gulp.task('test', () => {
