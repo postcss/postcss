@@ -101,44 +101,16 @@ describe('postcss.parse()', () => {
             expect( () => parse('\na {\n') ).to.throw(/:2:1: Unclosed block/);
         });
 
-        it('fixes unclosed blocks in safe mode', () => {
-            expect(parse('@media (screen) { a {\n', { safe: true }).toString())
-                .to.eql('@media (screen) { a {\n}}');
-
-            expect(parse('a { color', { safe: true }).toString())
-                .to.eql('a { color}');
-
-            expect(parse('a { color: black', { safe: true }).first.first.prop)
-                .to.eql('color');
-        });
-
         it('throws on unnecessary block close', () => {
             expect( () => parse('a {\n} }') ).to.throw(/:2:3: Unexpected }/);
-        });
-
-        it('fixes unnecessary block close in safe mode', () => {
-            let root = parse('a {\n} }', { safe: true });
-            expect(root.first.toString()).to.eql('a {\n}');
-            expect(root.raw.after).to.eql(' }');
         });
 
         it('throws on unclosed comment', () => {
             expect( () => parse('\n/*\n ') ).to.throw(/:2:1: Unclosed comment/);
         });
 
-        it('fixes unclosed comment in safe mode', () => {
-            let root = parse('a { /* b ', { safe: true });
-            expect(root.toString()).to.eql('a { /* b */}');
-            expect(root.first.first.text).to.eql('b');
-        });
-
         it('throws on unclosed quote', () => {
             expect( () => parse('\n"\n\na ') ).to.throw(/:2:1: Unclosed quote/);
-        });
-
-        it('fixes unclosed quote in safe mode', () => {
-            expect(parse('a { content: "b', { safe: true }).toString())
-                .to.eql('a { content: "b"}');
         });
 
         it('throws on unclosed bracket', () => {
@@ -146,38 +118,13 @@ describe('postcss.parse()', () => {
                 .to.throw(/:1:5: Unclosed bracket/);
         });
 
-        it('fixes unclosed bracket', () => {
-            expect(parse(':not(one() { }', { safe: true }).raw.after)
-                .to.eql(':not(one() { }');
-        });
-
         it('throws on property without value', () => {
             expect( () => parse('a { b;}')   ).to.throw(/:1:5: Unknown word/);
             expect( () => parse('a { b b }') ).to.throw(/:1:5: Unknown word/);
         });
 
-        it('fixes property without value in safe mode', () => {
-            let root = parse('a { color: white; one }', { safe: true });
-            expect(root.first.nodes.length).to.eql(1);
-            expect(root.first.raw.semicolon).to.be.true;
-            expect(root.first.raw.after).to.eql(' one ');
-        });
-
-        it('fixes 2 properties in safe mode', () => {
-            let root = parse('a { one color: white; one }', { safe: true });
-            expect(root.first.nodes.length).to.eql(1);
-            expect(root.first.first.prop).to.eql('color');
-            expect(root.first.first.raw.before).to.eql(' one ');
-        });
-
         it('throws on nameless at-rule', () => {
             expect( () => parse('@') ).to.throw(/:1:1: At-rule without name/);
-        });
-
-        it('fixes nameless at-rule in safe mode', () => {
-            let root = parse('@', { safe: true });
-            expect(root.first.type).to.eql('atrule');
-            expect(root.first.name).to.eql('');
         });
 
         it('throws on property without semicolon', () => {
@@ -185,21 +132,11 @@ describe('postcss.parse()', () => {
                 .to.throw(/:1:10: Missed semicolon/);
         });
 
-        it('fixes property without semicolon in safe mode', () => {
-            let root = parse('a { one: 1 two: 2 }', { safe: true });
-            expect(root.first.nodes.length).to.eql(2);
-            expect(root.toString()).to.eql('a { one: 1; two: 2 }');
-        });
-
         it('throws on double colon', () => {
             expect( () => parse('a { one:: 1 }') )
                 .to.throw(/:1:9: Double colon/);
         });
 
-        it('fixes double colon in safe mode', () => {
-            let root = parse('a { one:: 1 }', { safe: true });
-            expect(root.first.first.value).to.eql(': 1');
-        });
     });
 
 });

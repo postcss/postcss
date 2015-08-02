@@ -149,6 +149,29 @@ Read the [PostCSS API] for more details about the JS API.
 [Gulp]:         https://github.com/postcss/gulp-postcss
 [ENB]:          https://github.com/theprotein/enb-postcss
 
+## Syntaxes
+
+PostCSS can transforms styles in any syntax, not only in CSS.
+There are 3 special arguments in `process()` method to control syntax.
+You can even separately set input parser and output stringifier.
+
+* `syntax` accepts object with parser and stringifier.
+* `parser` accepts input parser function.
+* `stringifier` accepts output stringifier function.
+
+```js
+var safe = require('postcss-safe-parser');
+postcss(plugins).process(css, { parser: safe }).then(function (result) {
+    // result will contains fixed and processed CSS
+});
+```
+
+### Parsers
+
+* [`postcss-safe-parser`] finds and fix CSS syntax errors.
+
+[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
+
 ## Plugins
 
 Go to [postcss.parts] for a searchable catalog of the plugins mentioned below.
@@ -627,17 +650,3 @@ option as an object with the following parameters:
   If you have set `inline: true`, annotation cannot be disabled.
 
 [source maps]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
-
-### Safe Mode
-
-If you pass the `safe: true` option to the `process` or `parse` methods,
-PostCSS will try to correct any syntax errors that it finds in the CSS.
-
-```js
-postcss.parse('a {');                 // will throw "Unclosed block"
-postcss.parse('a {', { safe: true }); // will return CSS root for a {}
-```
-
-This is useful for legacy code filled with hacks. Another use-case
-is interactive tools with live input — for example,
-the [Autoprefixer demo](http://jsfiddle.net/simevidas/udyTs/show/light/).
