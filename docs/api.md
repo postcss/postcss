@@ -1061,6 +1061,8 @@ Arguments:
     PostCSS will set it automatically.
   * `word (string)`: a word inside a node’s string, that should be highlighted
     as source of error.
+  * `index` (number): a index inside a node’s string, that should be highlighted
+    as source of error.
 
 See also [`Result#warn()`] for warnings.
 
