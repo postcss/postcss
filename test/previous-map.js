@@ -20,23 +20,27 @@ describe('PreviousMap', () => {
     });
 
     it('misses property if no map', () => {
-        expect(parse('a{}')).to.not.have.property('prevMap');
+        expect(parse('a{}').source.input).to.not.have.property('map');
     });
 
     it('creates property if map present', () => {
-        expect(parse('a{}', { map: { prev: map } }).prevMap.text).to.eql(map);
+        let root = parse('a{}', { map: { prev: map } });
+        expect(root.source.input.map.text).to.eql(map);
     });
 
     it('returns consumer', () => {
-        expect(parse('a{}', { map: { prev: map } }).prevMap.consumer())
+        expect(parse('a{}', { map: { prev: map } }).source.input.map.consumer())
             .to.be.a.instanceOf(mozilla.SourceMapConsumer);
     });
 
     it('sets annotation property', () => {
-        let map2 = { map: { prev: map } };
-        expect(parse('a{}', map2).prevMap).to.not.have.property('annotation');
-        let root = parse('a{}/*# sourceMappingURL=a.css.map */', map2);
-        expect(root.prevMap.annotation).to.eql('a.css.map');
+        let mapOpts = { map: { prev: map } };
+
+        let root1 = parse('a{}', mapOpts);
+        expect(root1.source.input.map).to.not.have.property('annotation');
+
+        let root2 = parse('a{}/*# sourceMappingURL=a.css.map */', mapOpts);
+        expect(root2.source.input.map.annotation).to.eql('a.css.map');
     });
 
     it('checks previous sources content', () => {
@@ -49,10 +53,10 @@ describe('PreviousMap', () => {
         };
 
         let opts = { map: { prev: map2 } };
-        expect(parse('a{}', opts).prevMap.withContent()).to.be.false;
+        expect(parse('a{}', opts).source.input.map.withContent()).to.be.false;
 
         map2.sourcesContent = ['a{}'];
-        expect(parse('a{}', opts).prevMap.withContent()).to.be.true;
+        expect(parse('a{}', opts).source.input.map.withContent()).to.be.true;
     });
 
     it('decodes base64 maps', () => {
@@ -60,7 +64,7 @@ describe('PreviousMap', () => {
         let css = 'a{}\n' +
                   `/*# sourceMappingURL=data:application/json;base64,${b64} */`;
 
-        expect(parse(css).prevMap.text).to.eql(map);
+        expect(parse(css).source.input.map.text).to.eql(map);
     });
 
     it('decodes base64 UTF-8 maps', () => {
@@ -68,22 +72,22 @@ describe('PreviousMap', () => {
         let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
                   'charset=utf-8;base64,' + b64 + ' */';
 
-        expect(parse(css).prevMap.text).to.eql(map);
+        expect(parse(css).source.input.map.text).to.eql(map);
     });
 
     it('decodes URI maps', () => {
         let uri = 'data:application/json,' + decodeURI(map);
         let css = `a{}\n/*# sourceMappingURL=${ uri } */`;
 
-        expect(parse(css).prevMap.text).to.eql(map);
+        expect(parse(css).source.input.map.text).to.eql(map);
     });
 
     it('removes map on request', () => {
         let uri = 'data:application/json,' + decodeURI(map);
         let css = `a{}\n/*# sourceMappingURL=${ uri } */`;
 
-        expect(parse(css, { map: { prev: false } }))
-            .to.not.have.property('prevMap');
+        expect(parse(css, { map: { prev: false } }).source.input)
+            .to.not.have.property('map');
     });
 
     it('raises on unknown inline encoding', () => {
@@ -104,8 +108,8 @@ describe('PreviousMap', () => {
         fs.outputFileSync(file, map);
         let root = parse('a{}\n/*# sourceMappingURL=a.map */', { from: file });
 
-        expect(root.prevMap.text).to.eql(map);
-        expect(root.prevMap.root).to.eql(dir);
+        expect(root.source.input.map.text).to.eql(map);
+        expect(root.source.input.map.root).to.eql(dir);
     });
 
     it('sets uniq name for inline map', () => {
@@ -117,10 +121,11 @@ describe('PreviousMap', () => {
         };
 
         let opts = { map: { prev: map2 } };
-        let prev = parse('a{}', opts).prevMap;
+        let file1 = parse('a{}', opts).source.input.map.file;
+        let file2 = parse('a{}', opts).source.input.map.file;
 
-        expect(prev.file).to.match(/^<input css \d+>$/);
-        expect(prev.file).to.not.eql( parse('a{}', opts).prevMap.file );
+        expect(file1).to.match(/^<input css \d+>$/);
+        expect(file1).to.not.eql(file2);
     });
 
 });
