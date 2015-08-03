@@ -4,7 +4,7 @@ environment:
   matrix:
     - nodejs_version: 2
 
-version: {build}
+version: "{build}"
 build: off
 deploy: off
 
