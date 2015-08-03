@@ -347,7 +347,7 @@ describe('Processor', () => {
 
         it('uses custom parsers', (done) => {
             let processor = new Processor([]);
-            processor.process('a{}', { parse: prs }).then( (result) => {
+            processor.process('a{}', { parser: prs }).then( (result) => {
                 expect(result.css).to.equal('ok');
                 done();
             });
@@ -355,8 +355,8 @@ describe('Processor', () => {
 
         it('uses custom parsers from object', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parse: prs, stringify: str };
-            processor.process('a{}', { parse: syntax }).then( (result) => {
+            let syntax    = { parser: prs, stringifier: str };
+            processor.process('a{}', { parser: syntax }).then( (result) => {
                 expect(result.css).to.equal('ok');
                 done();
             });
@@ -364,7 +364,7 @@ describe('Processor', () => {
 
         it('uses custom stringifier', (done) => {
             let processor = new Processor([]);
-            processor.process('a{}', { stringify: str }).then( (result) => {
+            processor.process('a{}', { stringifier: str }).then( (result) => {
                 expect(result.css).to.equal('!');
                 done();
             });
@@ -372,8 +372,8 @@ describe('Processor', () => {
 
         it('uses custom stringifier from object', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parse: prs, stringify: str };
-            processor.process('', { stringify: syntax }).then( (result) => {
+            let syntax    = { parser: prs, stringifier: str };
+            processor.process('', { stringifier: syntax }).then( (result) => {
                 expect(result.css).to.equal('!');
                 done();
             });
@@ -381,7 +381,7 @@ describe('Processor', () => {
 
         it('uses custom stringifier with source maps', (done) => {
             let processor = new Processor([]);
-            processor.process('a{}', { map: true, stringify: str })
+            processor.process('a{}', { map: true, stringifier: str })
                 .then( (result) => {
                     expect(result.css).to.match(/^\!\n\/\*# sourceMap/);
                     done();
@@ -390,7 +390,7 @@ describe('Processor', () => {
 
         it('uses custom syntax', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parse: prs, stringify: str };
+            let syntax    = { parser: prs, stringifier: str };
             processor.process('a{}', { syntax }).then( (result) => {
                 expect(result.css).to.equal('ok!');
                 done();
