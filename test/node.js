@@ -115,7 +115,7 @@ describe('Node', () => {
         });
 
         it('accepts custom syntax', () => {
-            expect(rule.toString({ stringify: str })).to.eql('a');
+            expect(rule.toString({ stringifier: str })).to.eql('a');
         });
 
     });
