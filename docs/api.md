@@ -290,9 +290,9 @@ Arguments:
     because it is used in source map generation and syntax error messages.
   * `to`: the path where you’ll put the output CSS file. You should always set
     `to` to generate correct source maps.
-  * `parse`: function to generate AST by string.
-  * `stringify`: class to generate string by AST.
-  * `syntax`: object with `parse` and `stringify` properties.
+  * `parser`: function to generate AST by string.
+  * `stringifier`: class to generate string by AST.
+  * `syntax`: object with `parser` and `stringifier` properties.
   * `map`: an object of [source map options].
 
 ### `processor.plugins`
@@ -1027,7 +1027,8 @@ postcss.rule({ selector: 'a' }).toString() //=> 'a {}''
 
 Arguments:
 
-* `stringify (functions|object) optional`: a syntax to use in string generation.
+* `stringifier (functions|object) optional`: a syntax to use
+  in string generation.
 
 ### `node.error(message, opts)`
 
