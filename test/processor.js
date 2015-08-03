@@ -131,7 +131,8 @@ describe('Processor', () => {
         });
 
         it('allows to replace Root', () => {
-            let processor = new Processor([ () => new Root() ]);
+            let plugin    = (css, result) => result.root = new Root();
+            let processor = new Processor([plugin]);
             expect(processor.process('a {}').css).to.eql('');
         });
 
