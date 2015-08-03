@@ -1,5 +1,3 @@
-# http://www.appveyor.com/docs/appveyor-yml
-
 environment:
   matrix:
     - nodejs_version: 2
