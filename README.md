@@ -1,4 +1,4 @@
-# PostCSS [![Build Status][ci-img]][ci] [![Gitter][chat-img]][chat]
+# PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
      title="Philosopher’s stone, logo of PostCSS"
@@ -18,10 +18,12 @@ But PostCSS is modular, 3-30 times faster, and much more powerful.
 Twitter account: [@postcss](https://twitter.com/postcss).
 VK.com page:     [postcss](https://vk.com/postcss).
 
-[chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
-[ci-img]:   https://img.shields.io/travis/postcss/postcss.svg
-[chat]:     https://gitter.im/postcss/postcss
-[ci]:       https://travis-ci.org/postcss/postcss
+[appveyor-img]: https://img.shields.io/appveyor/ci/postcss/postcss.svg?label=windows
+[travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix
+[chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
+[appveyor]:     https://ci.appveyor.com/project/postcss/postcss
+[travis]:       https://travis-ci.org/postcss/postcss
+[chat]:         https://gitter.im/postcss/postcss
 
 [Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#plugins) | [Write Your Own Plugin](#how-to-develop-a-postcss-plugin) | [Options](#options)
 --- | --- | --- | --- | --- | ---
