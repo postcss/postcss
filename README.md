@@ -251,6 +251,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
+* [`postcss-functions`] enables exposure of JavaScript functions.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-mixins`] enables mixins more powerful than Sass’,
@@ -471,6 +472,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
 [`postcss-color-hexa`]:             https://github.com/nicksheffield/postcss-color-hexa
 [`postcss-font-pack`]:              https://github.com/jedmao/postcss-font-pack
+[`postcss-functions`]:              https://github.com/andyjansson/postcss-functions
 [`postcss-color-hcl`]:              https://github.com/devgru/postcss-color-hcl
 [`postcss-color-hwb`]:              https://github.com/postcss/postcss-color-hwb
 [`postcss-color-mix`]:              https://github.com/iamstarkov/postcss-color-mix
