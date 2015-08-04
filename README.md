@@ -345,6 +345,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-default-unit`] adds default unit to numeric CSS properties.
 * [`postcss-easings`] replaces easing names from easings.net
   with `cubic-bezier()` functions.
+* [`postcss-filter`] adds shorthand for black and white filter.
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
@@ -496,6 +497,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-circle`]:                 https://github.com/jedmao/postcss-circle
 [`postcss-extend`]:                 https://github.com/travco/postcss-extend
 [`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
+[`postcss-filter`]:                 https://github.com/alanev/postcss-filter
 [`postcss-import`]:                 https://github.com/postcss/postcss-import
 [`postcss-mixins`]:                 https://github.com/postcss/postcss-mixins
 [`postcss-nested`]:                 https://github.com/postcss/postcss-nested
