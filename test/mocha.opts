@@ -1,4 +1,4 @@
 --inline-diffs
 --reporter spec
---require babel-core/register
+--require babel/register
 test/*.es6
