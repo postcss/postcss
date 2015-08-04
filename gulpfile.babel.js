@@ -32,8 +32,8 @@ gulp.task('build:package', ['clean'], () => {
     gulp.src('./package.json')
         .pipe(editor( (p) => {
             p.main = 'lib/postcss';
-            p.devDependencies['babel-core'] = p.dependencies['babel-core'];
-            delete p.dependencies['babel-core'];
+            p.devDependencies['babel'] = p.dependencies['babel'];
+            delete p.dependencies['babel'];
             return p;
         }))
         .pipe(gulp.dest('build'));
