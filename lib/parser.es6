@@ -449,7 +449,10 @@ export default class Parser {
         throw this.input.error('At-rule without name', token[2], token[3]);
     }
 
-    precheckMissedSemicolon() { }
+    precheckMissedSemicolon(tokens) {
+        // Hook for Safe Parser
+        tokens;
+    }
 
     checkMissedSemicolon(tokens) {
         let colon = this.colon(tokens);
