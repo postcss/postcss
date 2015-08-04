@@ -12,7 +12,7 @@ gulp.task('clean', (done) => {
 
 gulp.task('build:lib', ['clean'], () => {
     let babel = require('gulp-babel');
-    return gulp.src('lib/*.js')
+    return gulp.src('lib/*.es6')
         .pipe(babel())
         .pipe(gulp.dest('build/lib'));
 });
@@ -44,7 +44,7 @@ gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
 
 gulp.task('lint', () => {
     let eslint = require('gulp-eslint');
-    return gulp.src(['*.js', 'lib/*.js', 'test/*.js'])
+    return gulp.src(['*.js', 'lib/*.es6', 'test/*.es6'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -74,8 +74,9 @@ gulp.task('integration', ['build:lib', 'build:package'], (done) => {
 });
 
 gulp.task('test', () => {
+    require('./');
     let mocha = require('gulp-mocha');
-    return gulp.src('test/*.js', { read: false }).pipe(mocha());
+    return gulp.src('test/*.es6', { read: false }).pipe(mocha());
 });
 
 // Helpers
