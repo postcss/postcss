@@ -334,6 +334,7 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Shortcuts
 
+* [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-alias`] creates shorter aliases for properties.
 * [`postcss-all-link-colors`] insert colors for link-related pseudo-classes.
 * [`postcss-border`] adds shorthand for width and color of all borders
