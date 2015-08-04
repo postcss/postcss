@@ -79,22 +79,6 @@ gulp.task('test', () => {
     return gulp.src('test/*.es6', { read: false }).pipe(mocha());
 });
 
-// Helpers
-
-gulp.task('cases', () => {
-    let postcss = require('./lib/postcss');
-    let jsonify = require('./test/utils/jsonify');
-    let cases   = path.join(__dirname, 'test', 'cases');
-    fs.readdirSync(cases).forEach( (name) => {
-        if ( !name.match(/\.css$/) ) return;
-        let css  = fs.readFileSync(path.join(cases, name));
-        let root = postcss.parse(css, { from: '/' + name });
-        let json = JSON.stringify(jsonify(root), null, 4);
-        let file = path.join(cases, name.replace(/\.css$/, '.json'));
-        fs.writeFileSync(file, json + '\n');
-    });
-});
-
 // Common
 
 gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);
