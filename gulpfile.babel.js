@@ -34,6 +34,7 @@ gulp.task('build:package', ['clean'], () => {
             p.main = 'lib/postcss';
             p.devDependencies['babel'] = p.dependencies['babel'];
             delete p.dependencies['babel'];
+            delete p.scripts.prepublish;
             return p;
         }))
         .pipe(gulp.dest('build'));
