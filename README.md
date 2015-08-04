@@ -359,6 +359,7 @@ See also plugins in modular minifier [`cssnano`].
   with one declaration.
 * [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
+* [`font-magician`] generates all the `@font-face` rules needed in CSS.
 
 ### Others
 
@@ -508,6 +509,7 @@ See also plugins in modular minifier [`cssnano`].
 [`mq4-hover-shim`]:                 https://github.com/twbs/mq4-hover-shim
 [`postcss-focus`]:                  https://github.com/postcss/postcss-focus
 [`css2modernizr`]:                  https://github.com/vovanbo/css2modernizr
+[`font-magician`]:                  https://github.com/jonathantneal/postcss-font-magician
 [`postcss-short`]:                  https://github.com/jonathantneal/postcss-short
 [`postcss-alias`]:                  https://github.com/seaneking/postcss-alias
 [`perfectionist`]:                  https://github.com/ben-eb/perfectionist
