@@ -43,6 +43,7 @@
     "chai":                   "3.2.0"
   },
   "scripts": {
-    "test": "gulp"
+    "prepublish": "babel lib/*.es6 --out-dir .",
+    "test":       "gulp"
   }
 }
