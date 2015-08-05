@@ -325,7 +325,6 @@ See also [`precss`] plugins pack to add them by one line of code.
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`css-byebye`] removes the CSS rules that you don’t want.
-* [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
 
@@ -377,6 +376,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`postcss-scopify`] adds a user input scope to each selector.
+* [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
