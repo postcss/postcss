@@ -358,6 +358,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 * [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
+* [`postcss-triangle`] creates a triangle.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 
@@ -485,6 +486,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-imperial`]:               https://github.com/cbas/postcss-imperial
 [`postcss-position`]:               https://github.com/seaneking/postcss-position
 [`postcss-spiffing`]:               https://github.com/HashanP/postcss-spiffing
+[`postcss-triangle`]:               https://github.com/jedmao/postcss-triangle
 [`postcss-verthorz`]:               https://github.com/davidhemphill/postcss-verthorz
 [`pleeease-filters`]:               https://github.com/iamvdo/pleeease-filters
 [`postcss-fontpath`]:               https://github.com/seaneking/postcss-fontpath
