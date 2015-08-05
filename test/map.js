@@ -173,7 +173,7 @@ describe('source maps', () => {
           map: { inline: false }
         });
 
-        let base64 = new Buffer(separated.map).toString('base64');
+        let base64 = new Buffer(separated.map.toString()).toString('base64');
         expect(inline.css.endsWith(base64 + ' */')).to.be.true;
     });
 
