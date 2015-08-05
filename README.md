@@ -325,6 +325,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
 * [`css-byebye`] removes the CSS rules that you don’t want.
+* [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
 
@@ -537,6 +538,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-svg`]:                    https://github.com/Pavliko/postcss-svg
 [`postcss-url`]:                    https://github.com/postcss/postcss-url
 [`css-byebye`]:                     https://github.com/AoDev/css-byebye
+[`cssfmt`]:                         https://github.com/morishitter/cssfmt
 [`stylehacks`]:                     https://github.com/ben-eb/stylehacks
 [`cssgrace`]:                       https://github.com/cssdream/cssgrace
 [`csstyle`]:                        https://github.com/geddski/csstyle
