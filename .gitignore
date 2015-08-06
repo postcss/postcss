@@ -6,5 +6,4 @@ npm-debug.log
 
 build/
 lib/*.js
-
 /postcss.js
