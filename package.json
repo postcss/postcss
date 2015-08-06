@@ -40,7 +40,8 @@
     "sinon":                  "1.15.4",
     "mocha":                  "2.2.5",
     "gulp":                   "3.9.0",
-    "chai":                   "3.2.0"
+    "chai":                   "3.2.0",
+    "del":                    "1.2.0"
   },
   "scripts": {
     "prepublish": "babel lib/*.es6 --out-dir .",
