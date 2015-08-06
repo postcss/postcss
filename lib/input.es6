@@ -34,8 +34,7 @@ export default class Input {
     }
 
     error(message, line, column, opts = { }) {
-        let error = new CssSyntaxError(message);
-
+        let error;
         let origin = this.origin(line, column);
         if ( origin ) {
             error = new CssSyntaxError(message, origin.line, origin.column,
