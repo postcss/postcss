@@ -1,11 +1,9 @@
 import gulp from 'gulp';
 import path from 'path';
-import fs   from 'fs-extra';
 
 gulp.task('clean', (done) => {
-    fs.remove(path.join(__dirname, 'postcss.js'), () => {
-        fs.remove(path.join(__dirname, 'build'), done);
-    });
+    let del = require('del');
+    del(['postcss.js', 'build/', 'lib/*.js'], done);
 });
 
 // Build
