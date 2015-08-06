@@ -1,5 +1,4 @@
 import gulp from 'gulp';
-import path from 'path';
 
 gulp.task('clean', (done) => {
     let del = require('del');
