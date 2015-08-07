@@ -22,8 +22,8 @@
   "dependencies": {
     "supports-color": "^3.1.0",
     "source-map":     "^0.4.4",
-    "js-base64":      "^2.1.9",
-    "babel":          "5.8.20"
+    "babel-core":     "5.8.21",
+    "js-base64":      "^2.1.9"
   },
   "devDependencies": {
     "concat-with-sourcemaps": "1.0.2",
@@ -36,7 +36,7 @@
     "yaspeller":              "2.5.0",
     "gulp-util":              "3.0.6",
     "gulp-run":               "1.6.10",
-    "fs-extra":               "0.22.1",
+    "fs-extra":               "0.23.0",
     "sinon":                  "1.15.4",
     "mocha":                  "2.2.5",
     "gulp":                   "3.9.0",
@@ -44,7 +44,6 @@
     "del":                    "1.2.0"
   },
   "scripts": {
-    "prepublish": "babel lib/*.es6 --out-dir .",
-    "test":       "gulp"
+    "test": "gulp"
   }
 }
