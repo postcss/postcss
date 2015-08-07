@@ -125,6 +125,8 @@ gulp.task('css', function () {
 });
 ```
 
+You can also use PostCSS plugins with Stylus by using [poststylus].
+
 For other environments, you can use the [CLI tool] or the JS API:
 
 ```js
@@ -137,19 +139,25 @@ postcss([ require('cssnext')(), require('cssnano')() ])
     });
 ```
 
-You can also use PostCSS plugins with Stylus by using [`poststylus`].
+If you want to run PostCSS on node.js 0.10, add [Promise polyfill]:
+
+```js
+require('es6-promise').polyfill();
+var postcss = require('postcss');
+```
 
 Read the [PostCSS API] for more details about the JS API.
 
-[`poststylus`]: https://github.com/seaneking/poststylus
-[PostCSS API]:  https://github.com/postcss/postcss/blob/master/docs/api.md
-[Broccoli]:     https://github.com/jeffjewiss/broccoli-postcss
-[CLI tool]:     https://github.com/code42day/postcss-cli
-[webpack]:      https://github.com/postcss/postcss-loader
-[Brunch]:       https://github.com/iamvdo/postcss-brunch
-[Grunt]:        https://github.com/nDmitry/grunt-postcss
-[Gulp]:         https://github.com/postcss/gulp-postcss
-[ENB]:          https://github.com/theprotein/enb-postcss
+[Promise polyfill]: https://github.com/jakearchibald/es6-promise
+[`poststylus`]:     https://github.com/seaneking/poststylus
+[PostCSS API]:      https://github.com/postcss/postcss/blob/master/docs/api.md
+[Broccoli]:         https://github.com/jeffjewiss/broccoli-postcss
+[CLI tool]:         https://github.com/code42day/postcss-cli
+[webpack]:          https://github.com/postcss/postcss-loader
+[Brunch]:           https://github.com/iamvdo/postcss-brunch
+[Grunt]:            https://github.com/nDmitry/grunt-postcss
+[Gulp]:             https://github.com/postcss/gulp-postcss
+[ENB]:              https://github.com/theprotein/enb-postcss
 
 ## Syntaxes
 
