@@ -3,7 +3,6 @@ import stringify    from './stringify';
 import warnOnce     from './warn-once';
 import Result       from './result';
 import parse        from './parse';
-import Root         from './root';
 
 function isPromise(obj) {
     return typeof obj === 'object' && typeof obj.then === 'function';
@@ -16,7 +15,7 @@ export default class LazyResult {
         this.processed   = false;
 
         let root;
-        if ( css instanceof Root ) {
+        if ( typeof css === 'object' && css.type === 'root' ) {
             root = css;
         } else if ( css instanceof LazyResult || css instanceof Result ) {
             root = css.root;
