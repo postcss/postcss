@@ -368,6 +368,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
+* [`postcss-increase-specificity`] increases the specificity of your selectors.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
 * [`postcss-pseudo-elements-content`] automatically adds `content: ""`
@@ -410,6 +411,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:  https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-canadian-stylesheets`]:   https://github.com/chancancode/postcss-canadian-stylesheets
+[`postcss-increase-specificity`]:   https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-color-rebeccapurple`]:    https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-color-rgba-fallback`]:    https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-discard-duplicates`]:     https://github.com/ben-eb/postcss-discard-duplicates
