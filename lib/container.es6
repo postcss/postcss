@@ -295,6 +295,13 @@ export default class Container extends Node {
         return processed;
     }
 
+    cleanStyles(keepBetween) {
+        super(keepBetween);
+        if ( this.nodes ) {
+            for ( let node of this.nodes ) node.cleanStyles(keepBetween);
+        }
+    }
+
     get semicolon() {
         warnOnce('Node#semicolon was deprecated. Use Node#raw.semicolon');
         return this.raw.semicolon;
