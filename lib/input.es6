@@ -23,12 +23,9 @@ export default class Input {
             if ( !this.file && file ) this.file = this.mapResolve(file);
         }
 
-        if ( this.file ) {
-            this.from = this.file;
-        } else {
+        if ( !this.file ) {
             sequence += 1;
             this.id   = '<input css ' + sequence + '>';
-            this.from = this.id;
         }
         if ( this.map ) this.map.file = this.from;
     }
@@ -71,6 +68,10 @@ export default class Input {
 
     mapResolve(file) {
         return path.resolve(this.map.consumer().sourceRoot || '.', file);
+    }
+
+    get from() {
+        return this.file || this.id;
     }
 
 }
