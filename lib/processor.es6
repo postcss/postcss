@@ -28,8 +28,10 @@ export default class Processor {
 
             if ( typeof i === 'object' && Array.isArray(i.plugins) ) {
                 normalized = normalized.concat(i.plugins);
-            } else {
+            } else if ( typeof i === 'function' ) {
                 normalized.push(i);
+            } else {
+                throw new Error(i + ' is not a PostCSS plugin');
             }
         }
         return normalized;

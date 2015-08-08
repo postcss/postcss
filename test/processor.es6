@@ -64,6 +64,11 @@ describe('Processor', () => {
             expect(processor.use(a).use(b).plugins).to.eql([a, b]);
         });
 
+        it('throws on wrong format', () => {
+            let pr = new Processor();
+            expect( () => pr.use(1) ).to.throw(/1 is not a PostCSS plugin/);
+        });
+
     });
 
     describe('process()', () => {
