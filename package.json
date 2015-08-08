@@ -36,7 +36,7 @@
     "yaspeller":              "2.5.0",
     "gulp-util":              "3.0.6",
     "gulp-run":               "1.6.10",
-    "fs-extra":               "0.23.0",
+    "fs-extra":               "0.23.1",
     "sinon":                  "1.15.4",
     "mocha":                  "2.2.5",
     "gulp":                   "3.9.0",
