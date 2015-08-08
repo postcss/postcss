@@ -176,10 +176,6 @@ export default class Node {
         delete this.raw.before;
         delete this.raw.after;
         if ( !keepBetween ) delete this.raw.between;
-
-        if ( this.nodes ) {
-            for ( let node of this.nodes ) node.cleanStyles(keepBetween);
-        }
     }
 
     positionInside(index) {
