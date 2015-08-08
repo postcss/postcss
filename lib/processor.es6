@@ -21,10 +21,7 @@ export default class Processor {
     normalize(plugins) {
         let normalized = [];
         for ( let i of plugins ) {
-            let type = typeof i;
-            if ( (type === 'object' || type === 'function') && i.postcss ) {
-                i = i.postcss;
-            }
+            if ( i.postcss ) i = i.postcss;
 
             if ( typeof i === 'object' && Array.isArray(i.plugins) ) {
                 normalized = normalized.concat(i.plugins);
