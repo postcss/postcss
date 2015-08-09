@@ -2,7 +2,7 @@ import gulp from 'gulp';
 
 gulp.task('clean', (done) => {
     let del = require('del');
-    del(['postcss.js', 'build/', 'lib/*.js'], done);
+    del(['postcss.js', 'build/'], done);
 });
 
 // Build
