@@ -66,7 +66,7 @@ export default class Parser {
         node.source.end = { line: token[4], column: token[5] };
 
         let text = token[1].slice(2, -2);
-        if ( text.match(/^\s*$/) ) {
+        if ( /^\s*$/.test(text) ) {
             node.text      = '';
             node.raw.left  = text;
             node.raw.right = '';
