@@ -107,7 +107,7 @@ export default class LazyResult {
     }
 
     asyncTick(resolve, reject) {
-        if (this.plugin >= this.processor.plugins.length) {
+        if ( this.plugin >= this.processor.plugins.length ) {
             this.processed = true;
             return resolve();
         }
