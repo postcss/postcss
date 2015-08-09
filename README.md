@@ -165,7 +165,7 @@ PostCSS can transforms styles in any syntax, not only in CSS.
 There are 3 special arguments in `process()` method to control syntax.
 You can even separately set input parser and output stringifier.
 
-* `syntax` accepts object with parser and stringifier.
+* `syntax` accepts object with `parse` and `stringify` functions.
 * `parser` accepts input parser function.
 * `stringifier` accepts output stringifier function.
 

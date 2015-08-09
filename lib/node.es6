@@ -60,7 +60,7 @@ export default class Node {
     }
 
     toString(stringifier = stringify) {
-        if ( stringifier.stringifier ) stringifier = stringifier.stringifier;
+        if ( stringifier.stringify ) stringifier = stringifier.stringify;
         let result  = '';
         stringifier(this, i => result += i );
         return result;
