@@ -292,7 +292,7 @@ Arguments:
     `to` to generate correct source maps.
   * `parser`: function to generate AST by string.
   * `stringifier`: class to generate string by AST.
-  * `syntax`: object with `parser` and `stringifier` properties.
+  * `syntax`: object with `parse` and `stringify` functions.
   * `map`: an object of [source map options].
 
 ### `processor.plugins`

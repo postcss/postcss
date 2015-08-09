@@ -361,7 +361,7 @@ describe('Processor', () => {
 
         it('uses custom parsers from object', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parser: prs, stringifier: str };
+            let syntax    = { parse: prs, stringify: str };
             processor.process('a{}', { parser: syntax }).then( (result) => {
                 expect(result.css).to.equal('ok');
                 done();
@@ -378,7 +378,7 @@ describe('Processor', () => {
 
         it('uses custom stringifier from object', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parser: prs, stringifier: str };
+            let syntax    = { parse: prs, stringify: str };
             processor.process('', { stringifier: syntax }).then( (result) => {
                 expect(result.css).to.equal('!');
                 done();
@@ -396,7 +396,7 @@ describe('Processor', () => {
 
         it('uses custom syntax', (done) => {
             let processor = new Processor([]);
-            let syntax    = { parser: prs, stringifier: str };
+            let syntax    = { parse: prs, stringify: str };
             processor.process('a{}', { syntax }).then( (result) => {
                 expect(result.css).to.equal('ok!');
                 done();
