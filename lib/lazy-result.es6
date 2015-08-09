@@ -24,9 +24,9 @@ export default class LazyResult {
             }
         } else {
             let parser = parse;
-            if ( opts.syntax )  parser = opts.syntax.parser;
-            if ( opts.parser )   parser = opts.parser;
-            if ( parser.parser ) parser = parser.parser;
+            if ( opts.syntax )  parser = opts.syntax.parse;
+            if ( opts.parser )  parser = opts.parser;
+            if ( parser.parse ) parser = parser.parse;
 
             try {
                 root = parser(css, opts);
@@ -202,9 +202,9 @@ export default class LazyResult {
 
         let opts = this.result.opts;
         let str  = stringify;
-        if ( opts.syntax )    str = opts.syntax.stringifier;
+        if ( opts.syntax )      str = opts.syntax.stringify;
         if ( opts.stringifier ) str = opts.stringifier;
-        if ( str.stringifier )  str = str.stringifier;
+        if ( str.stringify )    str = str.stringify;
 
         let map  = new MapGenerator(str, this.result.root, this.result.opts);
         let data = map.generate();
