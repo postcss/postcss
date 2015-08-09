@@ -515,6 +515,10 @@ Arguments:
   message object.
 * `opts (object) optional`: properties to message object.
   * `node`: CSS node, that was a source of warning.
+  * `word (string)`: a word inside a node’s string, that should be highlighted
+    as source of warning.
+  * `index` (number): a index inside a node’s string, that should be highlighted
+    as source of warning.
   * `plugin`: name of plugin that created this warning. `Result#warn()` will
     fill it automatically with `plugin.postcssPlugin` value.
 
@@ -661,6 +665,22 @@ Contains CSS node that caused warning.
 
 ```js
 warning.node.toString() //=> 'color: white !important'
+```
+
+### `warning.line`
+
+Line in input file with this warning source.
+
+```js
+warning.line //=> 5
+```
+
+### `warning.column`
+
+Column in input file with this warning source.
+
+```js
+warning.column //=> 4
 ```
 
 ## `CssSyntaxError` class

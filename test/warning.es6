@@ -36,4 +36,35 @@ describe('Warning', () => {
 
     });
 
+    describe('line, column', () => {
+
+        it('is undefined by default', () => {
+            let warning = new Warning('text');
+            expect(warning.line).to.not.exist;
+            expect(warning.column).to.not.exist;
+        });
+
+        it('gets position from node', () => {
+            let root    = parse('a{}');
+            let warning = new Warning('text', { node: root.first });
+            expect(warning.line).to.eql(1);
+            expect(warning.column).to.eql(1);
+        });
+
+        it('gets position from word', () => {
+            let root    = parse('a b{}');
+            let warning = new Warning('text', { node: root.first, word: 'b' });
+            expect(warning.line).to.eql(1);
+            expect(warning.column).to.eql(3);
+        });
+
+        it('gets position from index', () => {
+            let root    = parse('a b{}');
+            let warning = new Warning('text', { node: root.first, index: 2 });
+            expect(warning.line).to.eql(1);
+            expect(warning.column).to.eql(3);
+        });
+
+    });
+
 });
