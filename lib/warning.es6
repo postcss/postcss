@@ -3,6 +3,13 @@ export default class Warning {
     constructor(text, opts = { }) {
         this.type = 'warning';
         this.text = text;
+
+        if ( opts.node ) {
+            let pos     = opts.node.positionBy(opts);
+            this.line   = pos.line;
+            this.column = pos.column;
+        }
+
         for ( let opt in opts ) this[opt] = opts[opt];
     }
 

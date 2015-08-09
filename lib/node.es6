@@ -38,13 +38,7 @@ export default class Node {
 
     error(message, opts = { }) {
         if ( this.source ) {
-            let pos = this.source.start;
-            if ( opts.index ) {
-                pos = this.positionInside(opts.index);
-            } else if ( opts.word ) {
-                let index = this.toString().indexOf(opts.word);
-                if ( index !== -1 ) pos = this.positionInside(index);
-            }
+            let pos = this.positionBy(opts);
             return this.source.input.error(message, pos.line, pos.column, opts);
         } else {
             return new CssSyntaxError(message);
@@ -193,6 +187,17 @@ export default class Node {
         }
 
         return { line, column };
+    }
+
+    positionBy(opts) {
+        let pos = this.source.start;
+        if ( opts.index ) {
+            pos = this.positionInside(opts.index);
+        } else if ( opts.word ) {
+            let index = this.toString().indexOf(opts.word);
+            if ( index !== -1 ) pos = this.positionInside(index);
+        }
+        return pos;
     }
 
     get before() {
