@@ -25,7 +25,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 [travis]:       https://travis-ci.org/postcss/postcss
 [chat]:         https://gitter.im/postcss/postcss
 
-[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#plugins) | [Write Your Own Plugin](#how-to-develop-a-postcss-plugin) | [Options](#options)
+[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#custom-syntaxes) | [Plugins](#plugins) | [Development](#how-to-develop-a-postcss-plugin) | [Options](#options)
 --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
@@ -180,7 +180,7 @@ postcss(plugins).process('a {', { parser: safe }).then(function (result) {
 
 * [`postcss-scss`] to works with SCSS *(it do not compile SCSS to CSS)*.
 
-[`postcss-safe-parser`]: https://github.com/postcss/postcss-scss
+[`postcss-scss`]: https://github.com/postcss/postcss-scss
 
 ### Parsers
 
