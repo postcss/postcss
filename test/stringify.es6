@@ -8,8 +8,8 @@ describe('stringify', () => {
 
     cases.each( (name, css) => {
         it('stringifies ' + name, () => {
-            let result = '';
             let root   = parse(css);
+            let result = '';
             stringify(root, i => result += i );
             expect(result).to.eql(css);
         });
