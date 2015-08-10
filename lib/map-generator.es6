@@ -71,7 +71,7 @@ export default class {
             node = this.root.nodes[i];
             if ( node.type !== 'comment' ) continue;
             if ( node.text.indexOf('# sourceMappingURL=') === 0 ) {
-                this.root.remove(i);
+                this.root.removeChild(i);
             }
         }
     }

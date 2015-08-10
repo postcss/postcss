@@ -46,15 +46,20 @@ export default class Node {
     }
 
     removeSelf() {
+        warnOnce('Node#removeSelf is deprecated. Use Node#remove.');
+        this.remove();
+    }
+
+    remove() {
         if ( this.parent ) {
-            this.parent.remove(this);
+            this.parent.removeChild(this);
         }
         this.parent = undefined;
         return this;
     }
 
     replace(nodes) {
-        warnOnce('Node#replace was deprecated. Use Node#replaceWith');
+        warnOnce('Node#replace is deprecated. Use Node#replaceWith');
         return this.replaceWith(nodes);
     }
 
@@ -91,7 +96,7 @@ export default class Node {
                 this.parent.insertBefore(this, node);
             }
 
-            this.removeSelf();
+            this.remove();
         }
 
         return this;
@@ -99,21 +104,21 @@ export default class Node {
 
     moveTo(container) {
         this.cleanStyles(this.root() === container.root());
-        this.removeSelf();
+        this.remove();
         container.append(this);
         return this;
     }
 
     moveBefore(node) {
         this.cleanStyles(this.root() === node.root());
-        this.removeSelf();
+        this.remove();
         node.parent.insertBefore(node, this);
         return this;
     }
 
     moveAfter(node) {
         this.cleanStyles(this.root() === node.root());
-        this.removeSelf();
+        this.remove();
         node.parent.insertAfter(node, this);
         return this;
     }
@@ -200,22 +205,22 @@ export default class Node {
     }
 
     get before() {
-        warnOnce('Node#before was deprecated. Use Node#raw.before');
+        warnOnce('Node#before is deprecated. Use Node#raw.before');
         return this.raw.before;
     }
 
     set before(val) {
-        warnOnce('Node#before was deprecated. Use Node#raw.before');
+        warnOnce('Node#before is deprecated. Use Node#raw.before');
         this.raw.before = val;
     }
 
     get between() {
-        warnOnce('Node#between was deprecated. Use Node#raw.between');
+        warnOnce('Node#between is deprecated. Use Node#raw.between');
         return this.raw.between;
     }
 
     set between(val) {
-        warnOnce('Node#between was deprecated. Use Node#raw.between');
+        warnOnce('Node#between is deprecated. Use Node#raw.between');
         this.raw.between = val;
     }
 

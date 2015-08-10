@@ -57,7 +57,7 @@ describe('postcss()', () => {
             let plugin = postcss.plugin('test', (filter) => {
                 return function (css) {
                     css.eachDecl(filter || 'two', function (decl) {
-                        decl.removeSelf();
+                        decl.remove();
                     });
                 };
             });
