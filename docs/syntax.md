@@ -14,7 +14,7 @@ You can provide 3 types of package:
 
 ## Syntax
 
-Good example of syntax is SCSS. Some users may want to change properties order
+Good example of syntax is [SCSS]. Some users may want to change properties order
 or add prefixes directly to SCSS sources. So we need SCSS input and output.
 
 Syntax API is very simple. It is just a object with `parse` and `stringify`
@@ -27,9 +27,11 @@ module.exports = {
 };
 ```
 
+[SCSS]: https://github.com/postcss/postcss-scss
+
 ## Parser
 
-Main example of parse is Safe Parser, to parse broken CSS. There is not sense
+Main example of parse is [Safe Parser], to parse broken CSS. There is not sense
 to generate string with broken CSS, so package should provide only parser.
 
 Parser API is a function, that receives string and returns `Root` node.
@@ -44,6 +46,8 @@ module.exports = function (css, opts) {
     return root;
 };
 ```
+
+[Safe Parser]: https://github.com/postcss/postcss-safe-parser
 
 TODO: parser theory look and current one (copy paste is OK)
 
