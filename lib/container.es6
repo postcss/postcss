@@ -193,6 +193,17 @@ export default class Container extends Node {
     }
 
     remove(child) {
+        if (child) {
+            warnOnce('Container#remove is deprecated. ' +
+                     'Use Container#removeChild');
+            this.removeChild(child);
+        } else {
+            super.remove();
+        }
+        return this;
+    }
+
+    removeChild(child) {
         child = this.index(child);
         this.nodes[child].parent = undefined;
         this.nodes.splice(child, 1);
@@ -305,22 +316,22 @@ export default class Container extends Node {
     }
 
     get semicolon() {
-        warnOnce('Node#semicolon was deprecated. Use Node#raw.semicolon');
+        warnOnce('Node#semicolon is deprecated. Use Node#raw.semicolon');
         return this.raw.semicolon;
     }
 
     set semicolon(val) {
-        warnOnce('Node#semicolon was deprecated. Use Node#raw.semicolon');
+        warnOnce('Node#semicolon is deprecated. Use Node#raw.semicolon');
         this.raw.semicolon = val;
     }
 
     get after() {
-        warnOnce('Node#after was deprecated. Use Node#raw.after');
+        warnOnce('Node#after is deprecated. Use Node#raw.after');
         return this.raw.after;
     }
 
     set after(val) {
-        warnOnce('Node#after was deprecated. Use Node#raw.after');
+        warnOnce('Node#after is deprecated. Use Node#raw.after');
         this.raw.after = val;
     }
 

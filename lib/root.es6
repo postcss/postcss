@@ -1,4 +1,5 @@
 import Container from './container';
+import warnOnce  from './warn-once';
 
 export default class Root extends Container {
 
@@ -9,13 +10,18 @@ export default class Root extends Container {
     }
 
     remove(child) {
+        warnOnce('Root#remove is deprecated. Use Root#removeChild');
+        this.removeChild(child);
+    }
+
+    removeChild(child) {
         child = this.index(child);
 
         if ( child === 0 && this.nodes.length > 1 ) {
             this.nodes[1].raw.before = this.nodes[child].raw.before;
         }
 
-        return super.remove(child);
+        return super.removeChild(child);
     }
 
     normalize(child, sample, type) {
