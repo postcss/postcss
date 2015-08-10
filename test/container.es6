@@ -220,7 +220,7 @@ describe('Container', () => {
         it('iterates with changes', () => {
             let size = 0;
             parse(example).eachDecl( (decl, i) => {
-                decl.parent.remove(i);
+                decl.parent.removeChild(i);
                 size += 1;
             });
             expect(size).to.eql(5);
@@ -280,7 +280,7 @@ describe('Container', () => {
         it('iterates with changes', () => {
             let size = 0;
             parse(example).eachComment( (comment, i) => {
-                comment.parent.remove(i);
+                comment.parent.removeChild(i);
                 size += 1;
             });
             expect(size).to.eql(3);
@@ -319,7 +319,7 @@ describe('Container', () => {
         it('iterates with changes', () => {
             let size = 0;
             parse(example).eachRule( (rule, i) => {
-                rule.parent.remove(i);
+                rule.parent.removeChild(i);
                 size += 1;
             });
             expect(size).to.eql(3);
@@ -358,7 +358,7 @@ describe('Container', () => {
         it('iterates with changes', () => {
             let size = 0;
             parse(example).eachAtRule( (atrule, i) => {
-                atrule.parent.remove(i);
+                atrule.parent.removeChild(i);
                 size += 1;
             });
             expect(size).to.eql(3);
@@ -590,24 +590,24 @@ describe('Container', () => {
 
     });
 
-    describe('remove()', () => {
+    describe('removeChild()', () => {
 
         it('removes by index', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
-            rule.remove(1);
+            rule.removeChild(1);
             expect(rule.toString()).to.eql('a { a: 1 }');
         });
 
         it('removes by node', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
-            rule.remove(rule.last);
+            rule.removeChild(rule.last);
             expect(rule.toString()).to.eql('a { a: 1 }');
         });
 
         it('cleans parent in removed node', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             let decl = rule.first;
-            rule.remove(decl);
+            rule.removeChild(decl);
             expect(decl.parent).to.not.exist;
         });
 

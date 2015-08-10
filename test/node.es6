@@ -53,14 +53,14 @@ describe('Node', () => {
 
     });
 
-    describe('removeSelf()', () => {
+    describe('remove()', () => {
 
         it('removes node from parent', () => {
             let rule = new Rule({ selector: 'a' });
             let decl = new Declaration({ prop: 'color', value: 'black' });
             rule.append(decl);
 
-            decl.removeSelf();
+            decl.remove();
             expect(rule.nodes).to.be.empty;
             expect(decl.parent).to.not.exist;
         });
