@@ -115,6 +115,18 @@ describe('tokenize', () => {
         ]);
     });
 
+    it('tokenizes urls', () => {
+        test('url(/*\\))', [ ['word',     'url',     1, 1, 1, 3],
+                             ['brackets', '(/*\\))', 1, 4, 1, 9] ]);
+    });
+
+    it('tokenizes quoted urls', () => {
+        test('url(")")', [ ['word',   'url', 1, 1, 1, 3],
+                           ['(',      '(',   1, 4],
+                           ['string', '")"', 1, 5, 1, 7],
+                           [')',      ')',   1, 8] ]);
+    });
+
     it('tokenizes at-symbol', () => {
         test('@', [ ['at-word', '@', 1, 1, 1, 1] ]);
     });
@@ -174,6 +186,10 @@ describe('tokenize', () => {
 
     it('throws error on unclosed comment', () => {
         expect( () => test(' /*') ).to.throw(/:1:2: Unclosed comment/);
+    });
+
+    it('throws error on unclosed url', () => {
+        expect( () => test('url(') ).to.throw(/:1:4: Unclosed bracket/);
     });
 
 });

@@ -24,12 +24,16 @@ export default function tokenize(input) {
     let css    = input.css.valueOf();
 
     let code, next, quote, lines, last, content, escape,
-        nextLine, nextOffset, escaped, escapePos;
+        nextLine, nextOffset, escaped, escapePos, prev, n;
 
     let length = css.length;
     let offset = -1;
     let line   =  1;
     let pos    =  0;
+
+    function unclosed(what) {
+        throw input.error('Unclosed ' + what, line, pos - offset);
+    }
 
     while ( pos < length ) {
         code = css.charCodeAt(pos);
@@ -80,17 +84,40 @@ export default function tokenize(input) {
             break;
 
         case OPEN_PARENTHESES:
-            next    = css.indexOf(')', pos + 1);
-            content = css.slice(pos, next + 1);
+            prev = tokens.length ? tokens[tokens.length - 1][1] : '';
+            n    = css.charCodeAt(pos + 1);
+            if ( prev === 'url' && n !== SINGLE_QUOTE && n !== DOUBLE_QUOTE ) {
+                next = pos;
+                do {
+                    escaped = false;
+                    next    = css.indexOf(')', next + 1);
+                    if ( next === -1 ) unclosed('bracket');
+                    escapePos = next;
+                    while ( css.charCodeAt(escapePos - 1) === BACKSLASH ) {
+                        escapePos -= 1;
+                        escaped = !escaped;
+                    }
+                } while ( escaped );
 
-            if ( next === -1 || RE_BAD_BRACKET.test(content) ) {
-                tokens.push(['(', '(', line, pos - offset]);
-            } else {
-                tokens.push(['brackets', content,
+                tokens.push(['brackets', css.slice(pos, next + 1),
                     line, pos  - offset,
                     line, next - offset
                 ]);
                 pos = next;
+
+            } else {
+                next    = css.indexOf(')', pos + 1);
+                content = css.slice(pos, next + 1);
+
+                if ( next === -1 || RE_BAD_BRACKET.test(content) ) {
+                    tokens.push(['(', '(', line, pos - offset]);
+                } else {
+                    tokens.push(['brackets', content,
+                        line, pos  - offset,
+                        line, next - offset
+                    ]);
+                    pos = next;
+                }
             }
 
             break;
@@ -106,9 +133,7 @@ export default function tokenize(input) {
             do {
                 escaped = false;
                 next    = css.indexOf(quote, next + 1);
-                if ( next === -1 ) {
-                    throw input.error('Unclosed quote', line, pos  - offset);
-                }
+                if ( next === -1 ) unclosed('quote');
                 escapePos = next;
                 while ( css.charCodeAt(escapePos - 1) === BACKSLASH ) {
                     escapePos -= 1;
@@ -164,9 +189,7 @@ export default function tokenize(input) {
         default:
             if ( code === SLASH && css.charCodeAt(pos + 1) === ASTERICK ) {
                 next = css.indexOf('*/', pos + 2) + 1;
-                if ( next === 0 ) {
-                    throw input.error('Unclosed comment', line, pos  - offset);
-                }
+                if ( next === 0 ) unclosed('comment');
 
                 content = css.slice(pos, next + 1);
                 lines   = content.split('\n');
