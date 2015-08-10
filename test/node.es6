@@ -67,7 +67,7 @@ describe('Node', () => {
 
     });
 
-    describe('replace()', () => {
+    describe('replaceWith()', () => {
 
         it('inserts new node', () => {
             let rule = new Rule({ selector: 'a' });
@@ -77,7 +77,7 @@ describe('Node', () => {
 
             let node   = new Declaration({ prop: 'min-width', value: '1px' });
             let width  = rule.nodes[1];
-            let result = width.replace(node);
+            let result = width.replaceWith(node);
 
             expect(result).to.eql(width);
 
@@ -96,8 +96,18 @@ describe('Node', () => {
             a.append( new Rule({ selector: 'a' }) );
             a.append( new Rule({ selector: 'b' }) );
 
-            root.first.replace(a);
+            root.first.replaceWith(a);
             expect(root.toString()).to.eql('a {}\nb {}');
+        });
+
+        it('replaces node', () => {
+            let css    = parse('a{one:1;two:2}');
+            let decl   = { prop: 'fix', value: 'fixed' };
+            let result = css.first.first.replaceWith(decl);
+
+            expect(result.prop).to.eql('one');
+            expect(result.parent).to.not.exist;
+            expect(css.toString()).to.eql('a{fix:fixed;two:2}');
         });
 
     });
@@ -198,20 +208,6 @@ describe('Node', () => {
             let css = parse('a{one:1;two:2}');
             expect(css.first.last.prev()).to.equal(css.first.first);
             expect(css.first.first.prev()).to.not.exist;
-        });
-
-    });
-
-    describe('replaceWith()', () => {
-
-        it('replaces node', () => {
-            let css    = parse('a{one:1;two:2}');
-            let decl   = { prop: 'fix', value: 'fixed' };
-            let result = css.first.first.replaceWith(decl);
-
-            expect(result.prop).to.eql('one');
-            expect(result.parent).to.not.exist;
-            expect(css.toString()).to.eql('a{fix:fixed;two:2}');
         });
 
     });
