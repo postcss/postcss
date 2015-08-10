@@ -26,7 +26,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 [chat]:         https://gitter.im/postcss/postcss
 
 [Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Plugins](#custom-syntaxes) | [Plugins](#plugins) | [Development](#how-to-develop-a-postcss-plugin) | [Options](#options)
---- | --- | --- | --- | --- | ---
+--- | --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
