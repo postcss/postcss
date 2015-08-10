@@ -72,7 +72,7 @@ var remove = postcss.plugin('postcss-remove', function (opts) {
     var filter = opts.prop || 'z-index';
     return function (css, result) {
         css.eachDecl(filter, function (decl) {
-            decl.removeSelf();
+            decl.remove();
         });
     };
 });
@@ -1106,14 +1106,14 @@ Returns the `Root` instance of the node’s tree.
 root.nodes[0].nodes[0].root() == root
 ```
 
-### `node.removeSelf()`
+### `node.remove()`
 
 Removes the node from its parent, and cleans the `parent` property in the node
 and its children.
 
 ```js
 if ( decl.prop.match(/^-webkit-/) ) {
-    decl.removeSelf();
+    decl.remove();
 }
 ```
 
@@ -1356,7 +1356,7 @@ calling `callback` for each.
 ```js
 root.eachDecl(function (decl) {
     if ( decl.prop.match(/^-webkit-/) ) {
-        decl.removeSelf();
+        decl.remove();
     }
 });
 ```
@@ -1373,7 +1373,7 @@ If you pass a `propFilter`, only those declarations whose property matches
 ```js
 // Make flat design
 root.eachDecl('border-radius', function (decl) {
-    decl.removeSelf();
+    decl.remove();
 });
 root.eachDecl(/^background/, function (decl) {
     decl.value = takeFirstColorFromGradient(decl.value);
@@ -1391,7 +1391,7 @@ calling `callback` for each.
 
 ```js
 root.eachAtRule(function (rule) {
-    if ( rule.name.match(/^-webkit-/) ) rule.removeSelf();
+    if ( rule.name.match(/^-webkit-/) ) rule.remove();
 });
 ```
 
@@ -1410,7 +1410,7 @@ root.eachAtRule('charset', function (rule) {
     if ( !first ) {
         first = true;
     } else {
-        rule.removeSelf();
+        rule.remove();
     }
 });
 ```
@@ -1450,7 +1450,7 @@ Recursively iterates through all comment nodes within the container, calling
 
 ```js
 root.eachComment(function (comment) {
-    comment.removeSelf();
+    comment.remove();
 });
 ```
 
@@ -1544,14 +1544,14 @@ Arguments:
 * `oldNode (Node|number)`: child or child’s index.
 * `node (Node|object|string)`: new node.
 
-### `container.remove(node)`
+### `container.removeChild(node)`
 
 Removes `node` from the container, and the `parent` properties of `node`
 and its children.
 
 ```js
 rule.nodes.length  //=> 5
-rule.remove(decl);
+rule.removeChild(decl);
 rule.nodes.length  //=> 4
 decl.parent        //=> undefined
 ```
