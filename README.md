@@ -159,7 +159,7 @@ Read the [PostCSS API] for more details about the JS API.
 [Gulp]:             https://github.com/postcss/gulp-postcss
 [ENB]:              https://github.com/theprotein/enb-postcss
 
-## Syntaxes
+## Custom Syntaxes
 
 PostCSS can transforms styles in any syntax, not only in CSS.
 There are 3 special arguments in `process()` method to control syntax.
@@ -171,10 +171,16 @@ You can even separately set input parser and output stringifier.
 
 ```js
 var safe = require('postcss-safe-parser');
-postcss(plugins).process(css, { parser: safe }).then(function (result) {
-    // result will contains fixed and processed CSS
+postcss(plugins).process('a {', { parser: safe }).then(function (result) {
+    result.css //=> 'a {}'
 });
 ```
+
+### Syntaxes
+
+* [`postcss-scss`] to works with SCSS *(it do not compile SCSS to CSS)*.
+
+[`postcss-safe-parser`]: https://github.com/postcss/postcss-scss
 
 ### Parsers
 
