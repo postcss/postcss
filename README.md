@@ -25,7 +25,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 [travis]:       https://travis-ci.org/postcss/postcss
 [chat]:         https://gitter.im/postcss/postcss
 
-[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Syntaxes](#custom-syntaxes) | [Plugins](#plugins) | [Development](#how-to-develop-a-postcss-plugin) | [Options](#options)
+[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Syntaxes](#custom-syntaxes) | [Plugins](#plugins) | [Development](#how-to-develop-for-postcss) | [Options](#options)
 --- | --- | --- | --- | --- | --- | ---
 
 <a href="https://evilmartians.com/?utm_source=postcss">
@@ -597,7 +597,13 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
 
-## How to Develop a PostCSS Plugin
+## How to Develop for PostCSS
+
+### Syntax
+
+* [How to Write Custom Syntax](https://github.com/postcss/postcss/blob/master/docs/syntax.md)
+
+### Plugin
 
 * [Plugin Guidelines](https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md)
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
