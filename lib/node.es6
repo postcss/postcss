@@ -54,9 +54,8 @@ export default class Node {
     }
 
     replace(nodes) {
-        this.parent.insertBefore(this, nodes);
-        this.parent.remove(this);
-        return this;
+        warnOnce('Node#replace was deprecated. Use Node#replaceWith');
+        return this.replaceWith(nodes);
     }
 
     toString(stringifier = stringify) {
