@@ -139,9 +139,8 @@ postcss.plugin('postcss-caniuse-test', function () {
     return function (css, result) {
         css.eachDecl(function (decl) {
             if ( !caniuse.support(decl.prop) ) {
-                decl.warn(
-                    result,
-                    'Some browsers do not support ' + decl.prop);
+                decl.warn(result,
+                  'Some browsers do not support ' + decl.prop);
             }
         });
     };
