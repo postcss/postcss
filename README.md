@@ -244,8 +244,6 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 ### Language Extensions
 
-[Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
-
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-css-variables`] supports variables for selectors, and at-rules
@@ -276,6 +274,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`csstyle`] adds components workflow to your styles.
 
 See also [`precss`] plugins pack to add them by one line of code.
+
+[Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
 
 ### Colors
 
