@@ -132,16 +132,16 @@ postcss.plugin('postcss-import', function () {
 });
 ```
 
-Add warnings using the [`Result#warn()`] method.
+Add warnings using the [`Node#warn()`] method.
 
 ```js
 postcss.plugin('postcss-caniuse-test', function () {
     return function (css, result) {
         css.eachDecl(function (decl) {
             if ( !caniuse.support(decl.prop) ) {
-                result.warn(
-                    'Some of browsers does not support ' + decl.prop,
-                    { node: decl });
+                decl.warn(
+                    result,
+                    'Some browsers do not support ' + decl.prop);
             }
         });
     };
@@ -626,11 +626,11 @@ root.toResult(opts).opts == opts;
 
 ## `Warning` class
 
-Warning from plugins. It can be created using [`Result#warn()`].
+Warning from plugins. It can be created using [`Node#warn()`].
 
 ```js
 if ( decl.important ) {
-    result.warn('Try to avoid !important', { node: decl });
+    decl.warn(result, 'Try to avoid !important');
 }
 ```
 
@@ -653,7 +653,7 @@ warning.text //=> 'Try to avoid !important'
 ### `warning.plugin`
 
 Contains name of plugin that created this warning. When you call
-[`Result#warn()`], it will fill this property automatically.
+[`Node#warn()`], it will fill this property automatically.
 
 ```js
 warning.plugin //=> 'postcss-important'
@@ -1084,7 +1084,28 @@ Arguments:
   * `index` (number): a index inside a node’s string, that should be highlighted
     as source of error.
 
-See also [`Result#warn()`] for warnings.
+### `node.warn(result, message)`
+
+This method is provided as a convenience wrapper for [`Result#warn()`].
+
+```js
+var plugin = postcss.plugin('postcss-deprecated', function () {
+    return function (css, result) {
+        css.eachDecl('color', function (decl) {
+            if (~decl.raw.before.indexOf('_')) {
+                // Both of these lines will have the same effect
+                result.warn('Deprecated property _color', {node: decl});
+                decl.warn(result, 'Deprecated property _color');
+            }
+        });
+    };
+});
+```
+
+Arguments:
+
+* `result`: The [`Result`] instance which will receive the warning.
+* `message (string)`: error description.
 
 ### `node.next()` and `node.prev()`
 
@@ -1758,6 +1779,7 @@ var comment.text //=> 'Empty file'
 [`CssSyntaxError`]:               #csssyntaxerror-class
 [`Processor#use`]:                #processoruseplugin
 [`Result#warn()`]:                #resultwarn
+[`Node#warn()`]:                  #nodewarnmessage-result
 [`Comment` node]:                 #comment-node
 [`AtRule` node]:                  #atrule-node
 [`from` option]:                  #processorprocesscss-opts
