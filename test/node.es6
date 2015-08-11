@@ -1,5 +1,6 @@
 import CssSyntaxError from '../lib/css-syntax-error';
 import Declaration    from '../lib/declaration';
+import postcss        from '../lib/postcss';
 import AtRule         from '../lib/at-rule';
 import parse          from '../lib/parse';
 import Root           from '../lib/root';
@@ -51,6 +52,22 @@ describe('Node', () => {
                                                        '           ^');
         });
 
+    });
+
+    describe('warn()', () => {
+
+        it('attaches a warning to the result object', () => {
+            let warner = postcss.plugin('warner', () => {
+                return (css, result) => {
+                    css.first.warn(result, 'FIRST!');
+                };
+            });
+
+            let result = postcss([ warner() ]).process('a{}');
+            expect(result.warnings().length).to.eql(1);
+            expect(result.warnings()[0].text).to.eql('FIRST!');
+            expect(result.warnings()[0].plugin).to.eql('warner');
+        });
     });
 
     describe('remove()', () => {
