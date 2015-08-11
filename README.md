@@ -244,6 +244,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 ### Language Extensions
 
+[Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
+
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-css-variables`] supports variables for selectors, and at-rules
@@ -254,6 +256,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-functions`] enables exposure of JavaScript functions.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
+* [`postcss-match`] adds `@match` for [Rust-style pattern matching].
 * [`postcss-mixins`] enables mixins more powerful than Sass’,
   defined within stylesheets or in JS.
 * [`postcss-media-variables`] adds support for `var()` and `calc()`
@@ -519,6 +522,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-focus`]:                  https://github.com/postcss/postcss-focus
 [`css2modernizr`]:                  https://github.com/vovanbo/css2modernizr
 [`font-magician`]:                  https://github.com/jonathantneal/postcss-font-magician
+[`postcss-match`]:                  https://github.com/rtsao/postcss-match
 [`postcss-short`]:                  https://github.com/jonathantneal/postcss-short
 [`postcss-alias`]:                  https://github.com/seaneking/postcss-alias
 [`perfectionist`]:                  https://github.com/ben-eb/perfectionist
