@@ -32,7 +32,7 @@ describe('CssSyntaxError', () => {
         expect(error.column).to.eql(12);
         expect(error.source).to.eql('a {\n  content: "\n}');
 
-        expect(error.generated).to.eql({
+        expect(error.input).to.eql({
             line:   error.line,
             column: error.column,
             source: error.source
@@ -88,7 +88,7 @@ describe('CssSyntaxError', () => {
         expect(error.line).to.eql(2);
         expect(error.source).to.not.exist;
 
-        expect(error.generated).to.eql({
+        expect(error.input).to.eql({
             file:   path.resolve('build/all.css'),
             line:   3,
             column: 1,
