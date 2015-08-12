@@ -51,7 +51,7 @@ export default class Node {
 
     removeSelf() {
         warnOnce('Node#removeSelf is deprecated. Use Node#remove.');
-        this.remove();
+        return this.remove();
     }
 
     remove() {
