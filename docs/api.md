@@ -767,11 +767,11 @@ If you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
 If you need position in PostCSS input (for example, to debug previous compiler),
-use `error.generated.file`.
+use `error.input.file`.
 
 ```js
-error.file           //=> 'a.sass'
-error.generated.file //=> 'a.css'
+error.file       //=> 'a.sass'
+error.input.file //=> 'a.css'
 ```
 
 ### `error.line`
@@ -787,11 +787,11 @@ you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
 If you need position in PostCSS input (for example, to debug previous compiler),
-use `error.generated.line`.
+use `error.input.line`.
 
 ```js
-error.line           //=> 2
-error.generated.line //=> 4
+error.line       //=> 2
+error.input.line //=> 4
 ```
 
 ### `error.column`
@@ -807,11 +807,11 @@ you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
 If you need position in PostCSS input (for example, to debug previous compiler),
-use `error.generated.column`.
+use `error.input.column`.
 
 ```js
-error.column           //=> 1
-error.generated.column //=> 4
+error.column       //=> 1
+error.input.column //=> 4
 ```
 
 ### `error.source`
@@ -827,11 +827,11 @@ If you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
 If you need position in PostCSS input (for example, to debug previous compiler),
-use `error.generated.source`.
+use `error.input.source`.
 
 ```js
-error.source           //=> 'a { b {} }'
-error.generated.column //=> 'a b { }'
+error.source       //=> 'a { b {} }'
+error.input.column //=> 'a b { }'
 ```
 
 ## Vendor module
