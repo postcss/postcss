@@ -41,8 +41,8 @@ export default class Input {
                 this.css, this.file, opts.plugin);
         }
 
-        error.generated = { line, column, source: this.css };
-        if ( this.file ) error.generated.file = this.file;
+        error.input = { line, column, source: this.css };
+        if ( this.file ) error.input.file = this.file;
 
         return error;
     }
