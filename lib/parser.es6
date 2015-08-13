@@ -68,13 +68,13 @@ export default class Parser {
         let text = token[1].slice(2, -2);
         if ( /^\s*$/.test(text) ) {
             node.text      = '';
-            node.raw.left  = text;
-            node.raw.right = '';
+            node.raws.left  = text;
+            node.raws.right = '';
         } else {
             let match = text.match(/^(\s*)([^]*[^\s])(\s*)$/);
             node.text      = match[2];
-            node.raw.left  = match[1];
-            node.raw.right = match[3];
+            node.raws.left  = match[1];
+            node.raws.right = match[3];
         }
     }
 
@@ -82,7 +82,7 @@ export default class Parser {
         let node = new Rule();
         this.init(node, token[2], token[3]);
         node.selector = '';
-        node.raw.between = '';
+        node.raws.between = '';
         this.current = node;
     }
 
@@ -159,7 +159,7 @@ export default class Parser {
         let node = new Rule();
         this.init(node, tokens[0][2], tokens[0][3]);
 
-        node.raw.between = this.spacesFromEnd(tokens);
+        node.raws.between = this.spacesFromEnd(tokens);
         this.raw(node, 'selector', tokens);
         this.current = node;
     }
@@ -180,32 +180,32 @@ export default class Parser {
         }
 
         while ( tokens[0][0] !== 'word' ) {
-            node.raw.before += tokens.shift()[1];
+            node.raws.before += tokens.shift()[1];
         }
         node.source.start = { line: tokens[0][2], column: tokens[0][3] };
 
         node.prop = tokens.shift()[1];
-        node.raw.between = '';
+        node.raws.between = '';
 
         let token;
         while ( tokens.length ) {
             token = tokens.shift();
 
             if ( token[0] === ':' ) {
-                node.raw.between += token[1];
+                node.raws.between += token[1];
                 break;
             } else if ( token[0] !== 'space' && token[0] !== 'comment' ) {
                 this.unknownDecl(node, token);
             } else {
-                node.raw.between += token[1];
+                node.raws.between += token[1];
             }
         }
 
         if ( node.prop[0] === '_' || node.prop[0] === '*' ) {
-            node.raw.before += node.prop[0];
+            node.raws.before += node.prop[0];
             node.prop = node.prop.slice(1);
         }
-        node.raw.between += this.spacesFromStart(tokens);
+        node.raws.between += this.spacesFromStart(tokens);
         this.precheckMissedSemicolon(tokens);
 
         for ( let i = tokens.length - 1; i > 0; i-- ) {
@@ -214,7 +214,7 @@ export default class Parser {
                 node.important = true;
                 let string = this.stringFrom(tokens, i);
                 string = this.spacesFromEnd(tokens) + string;
-                if ( string !== ' !important' ) node.raw.important = string;
+                if ( string !== ' !important' ) node.raws.important = string;
                 break;
 
             } else if (token[1] === 'important') {
@@ -229,7 +229,7 @@ export default class Parser {
                 }
                 if ( str.trim().indexOf('!') === 0 ) {
                     node.important = true;
-                    node.raw.important = str;
+                    node.raws.important = str;
                     tokens = cache;
                 }
             }
@@ -277,18 +277,18 @@ export default class Parser {
             last = true;
         }
 
-        node.raw.between = this.spacesFromEnd(params);
+        node.raws.between = this.spacesFromEnd(params);
         if ( params.length ) {
-            node.raw.afterName = this.spacesFromStart(params);
+            node.raws.afterName = this.spacesFromStart(params);
             this.raw(node, 'params', params);
             if ( last ) {
                 token = params[params.length - 1];
                 node.source.end  = { line: token[4], column: token[5] };
-                this.spaces      = node.raw.between;
-                node.raw.between = '';
+                this.spaces      = node.raws.between;
+                node.raws.between = '';
             }
         } else {
-            node.raw.afterName = '';
+            node.raws.afterName = '';
             node.params    = '';
         }
 
@@ -300,11 +300,11 @@ export default class Parser {
 
     end(token) {
         if ( this.current.nodes && this.current.nodes.length ) {
-            this.current.raw.semicolon = this.semicolon;
+            this.current.raws.semicolon = this.semicolon;
         }
         this.semicolon = false;
 
-        this.current.raw.after = (this.current.raw.after || '') + this.spaces;
+        this.current.raws.after = (this.current.raws.after || '') + this.spaces;
         this.spaces = '';
 
         if ( this.current.parent ) {
@@ -319,13 +319,13 @@ export default class Parser {
         if ( this.current.parent ) this.unclosedBlock();
 
         if ( this.current.nodes && this.current.nodes.length ) {
-            this.current.raw.semicolon = this.semicolon;
+            this.current.raws.semicolon = this.semicolon;
         }
-        this.current.raw.after = (this.current.raw.after || '') + this.spaces;
+        this.current.raws.after = (this.current.raws.after || '') + this.spaces;
 
         while ( this.current.parent ) {
             this.current = this.current.parent;
-            this.current.raw.after = '';
+            this.current.raws.after = '';
         }
     }
 
@@ -335,7 +335,7 @@ export default class Parser {
         this.current.push(node);
 
         node.source = { start: { line, column }, input: this.input };
-        node.raw.before = this.spaces;
+        node.raws.before = this.spaces;
         this.spaces = '';
         if ( node.type !== 'comment' ) this.semicolon = false;
     }
@@ -352,9 +352,9 @@ export default class Parser {
             }
         }
         if ( !clean ) {
-            let origin = '';
-            for ( token of tokens ) origin += token[1];
-            node.raw[prop] = { value, raw: origin };
+            let raw = '';
+            for ( token of tokens ) raw += token[1];
+            node.raws[prop] = { value, raw };
         }
         node[prop] = value;
     }

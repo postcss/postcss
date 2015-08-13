@@ -46,7 +46,7 @@ describe('Rule', () => {
         });
 
         it('uses between to detect separator', () => {
-            let rule = new Rule({ selector: 'b', raw: { between: '' } });
+            let rule = new Rule({ selector: 'b', raws: { between: '' } });
             rule.selectors = ['b', 'strong'];
             expect(rule.selector).to.eql('b,strong');
         });
