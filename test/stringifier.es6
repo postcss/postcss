@@ -34,58 +34,58 @@ describe('stringifier', () => {
         });
     });
 
-    describe('style()', () => {
+    describe('raw()', () => {
 
-        it('uses node style', () => {
+        it('uses node raw', () => {
             let rule = new Rule({ selector: 'a', raws: { between: '\n' } });
-            expect(str.style(rule, 'between', 'beforeOpen')).to.eql('\n');
+            expect(str.raw(rule, 'between', 'beforeOpen')).to.eql('\n');
         });
 
         it('hacks before for nodes without parent', () => {
             let rule = new Rule({ selector: 'a' });
-            expect(str.style(rule, 'before')).to.eql('');
+            expect(str.raw(rule, 'before')).to.eql('');
         });
 
         it('hacks before for first node', () => {
             let root = new Root();
             root.append(new Rule({ selector: 'a' }));
-            expect(str.style(root.first, 'before')).to.eql('');
+            expect(str.raw(root.first, 'before')).to.eql('');
         });
 
         it('hacks before for first decl', () => {
             let decl = new Declaration({ prop: 'color', value: 'black' });
-            expect(str.style(decl, 'before')).to.eql('');
+            expect(str.raw(decl, 'before')).to.eql('');
 
             let rule = new Rule({ selector: 'a' });
             rule.append(decl);
-            expect(str.style(decl, 'before')).to.eql('\n    ');
+            expect(str.raw(decl, 'before')).to.eql('\n    ');
         });
 
-        it('detects after style', () => {
+        it('detects after raw', () => {
             let root = new Root();
             root.append({ selector: 'a', raws: { after: ' ' } });
             root.first.append({ prop: 'color', value: 'black' });
             root.append({ selector: 'a' });
-            expect(str.style(root.last, 'after')).to.eql(' ');
+            expect(str.raw(root.last, 'after')).to.eql(' ');
         });
 
         it('uses defaults without parent', () => {
             let rule = new Rule({ selector: 'a' });
-            expect(str.style(rule, 'between', 'beforeOpen')).to.eql(' ');
+            expect(str.raw(rule, 'between', 'beforeOpen')).to.eql(' ');
         });
 
         it('uses defaults for unique node', () => {
             let root = new Root();
             root.append(new Rule({ selector: 'a' }));
-            expect(str.style(root.first, 'between', 'beforeOpen')).to.eql(' ');
+            expect(str.raw(root.first, 'between', 'beforeOpen')).to.eql(' ');
         });
 
-        it('clones style from first node', () => {
+        it('clones raw from first node', () => {
             let root = new Root();
             root.append( new Rule({ selector: 'a', raws: { between: '' } }) );
             root.append( new Rule({ selector: 'b' }) );
 
-            expect(str.style(root.last, 'between', 'beforeOpen')).to.eql('');
+            expect(str.raw(root.last, 'between', 'beforeOpen')).to.eql('');
         });
 
         it('indents by default', () => {
@@ -118,8 +118,8 @@ describe('stringifier', () => {
             css.append(new Rule({ selector: 'em' }));
             css.last.append({ prop: 'z-index', value: '1' });
 
-            expect(css.last.style('before')).to.eql('\n\n');
-            expect(css.last.first.style('before')).to.eql('\n  ');
+            expect(css.last.raw('before')).to.eql('\n\n');
+            expect(css.last.first.raw('before')).to.eql('\n  ');
         });
 
         it('clones indent by before and after', () => {
@@ -127,13 +127,13 @@ describe('stringifier', () => {
             css.first.append(new Rule({ selector: 'b' }));
             css.first.last.append({ prop: 'z-index', value: '1' });
 
-            expect(css.first.last.style('before')).to.eql('\n\n ');
-            expect(css.first.last.style('after')).to.eql('');
+            expect(css.first.last.raw('before')).to.eql('\n\n ');
+            expect(css.first.last.raw('after')).to.eql('');
         });
 
         it('clones semicolon only from rules with children', () => {
             let css = parse('a{}b{one:1;}');
-            expect(str.style(css.first, 'semicolon')).to.be.true;
+            expect(str.raw(css.first, 'semicolon')).to.be.true;
         });
 
         it('clones only spaces in before', () => {
