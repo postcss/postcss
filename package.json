@@ -22,7 +22,7 @@
   "dependencies": {
     "supports-color": "^3.1.0",
     "source-map":     "^0.4.4",
-    "babel-core":     "5.8.21",
+    "babel-core":     "5.8.22",
     "js-base64":      "^2.1.9"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "mocha":                  "2.2.5",
     "gulp":                   "3.9.0",
     "chai":                   "3.2.0",
-    "del":                    "1.2.0"
+    "del":                    "1.2.1"
   },
   "scripts": {
     "test": "gulp"
