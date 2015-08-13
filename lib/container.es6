@@ -294,15 +294,15 @@ export default class Container extends Node {
             }
         }
 
-        let processed = nodes.map( (child) => {
-            if ( child.parent ) child = child.clone();
-            if ( typeof child.raw.before === 'undefined' ) {
-                if ( sample && typeof sample.raw.before !== 'undefined' ) {
-                    child.raw.before = sample.raw.before.replace(/[^\s]/g, '');
+        let processed = nodes.map( (i) => {
+            if ( i.parent ) i = i.clone();
+            if ( typeof i.raws.before === 'undefined' ) {
+                if ( sample && typeof sample.raws.before !== 'undefined' ) {
+                    i.raws.before = sample.raws.before.replace(/[^\s]/g, '');
                 }
             }
-            child.parent = this;
-            return child;
+            i.parent = this;
+            return i;
         });
 
         return processed;
@@ -316,23 +316,23 @@ export default class Container extends Node {
     }
 
     get semicolon() {
-        warnOnce('Node#semicolon is deprecated. Use Node#raw.semicolon');
-        return this.raw.semicolon;
+        warnOnce('Node#semicolon is deprecated. Use Node#raws.semicolon');
+        return this.raws.semicolon;
     }
 
     set semicolon(val) {
-        warnOnce('Node#semicolon is deprecated. Use Node#raw.semicolon');
-        this.raw.semicolon = val;
+        warnOnce('Node#semicolon is deprecated. Use Node#raws.semicolon');
+        this.raws.semicolon = val;
     }
 
     get after() {
-        warnOnce('Node#after is deprecated. Use Node#raw.after');
-        return this.raw.after;
+        warnOnce('Node#after is deprecated. Use Node#raws.after');
+        return this.raws.after;
     }
 
     set after(val) {
-        warnOnce('Node#after is deprecated. Use Node#raw.after');
-        this.raw.after = val;
+        warnOnce('Node#after is deprecated. Use Node#raws.after');
+        this.raws.after = val;
     }
 
 }

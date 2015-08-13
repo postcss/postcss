@@ -19,7 +19,7 @@ describe('stringifier', () => {
 
         it('creates trimmed/raw property', () => {
             let b = new Node({ one: 'trim' });
-            b.raw.one = { value: 'trim', raw: 'raw' };
+            b.raws.one = { value: 'trim', raw: 'raw' };
             expect(str.raw(b, 'one')).to.eql('raw');
 
             b.one = 'trim1';
@@ -37,7 +37,7 @@ describe('stringifier', () => {
     describe('style()', () => {
 
         it('uses node style', () => {
-            let rule = new Rule({ selector: 'a', raw: { between: '\n' } });
+            let rule = new Rule({ selector: 'a', raws: { between: '\n' } });
             expect(str.style(rule, 'between', 'beforeOpen')).to.eql('\n');
         });
 
@@ -63,7 +63,7 @@ describe('stringifier', () => {
 
         it('detects after style', () => {
             let root = new Root();
-            root.append({ selector: 'a', raw: { after: ' ' } });
+            root.append({ selector: 'a', raws: { after: ' ' } });
             root.first.append({ prop: 'color', value: 'black' });
             root.append({ selector: 'a' });
             expect(str.style(root.last, 'after')).to.eql(' ');
@@ -82,7 +82,7 @@ describe('stringifier', () => {
 
         it('clones style from first node', () => {
             let root = new Root();
-            root.append( new Rule({ selector: 'a', raw: { between: '' } }) );
+            root.append( new Rule({ selector: 'a', raws: { between: '' } }) );
             root.append( new Rule({ selector: 'b' }) );
 
             expect(str.style(root.last, 'between', 'beforeOpen')).to.eql('');

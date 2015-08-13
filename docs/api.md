@@ -1012,7 +1012,7 @@ if ( atrule.name == 'add-link' ) {
 }
 ```
 
-### `node.raw`
+### `node.raws`
 
 Contains information to generate byte-to-byte equal node string
 as it was in origin input.
@@ -1033,7 +1033,7 @@ Every parser saves its own properties, but default CSS parser use:
 
 PostCSS cleans selectors, declaration’s values and at-rule’s parameters
 from comments and extra spaces. But PostCSS stores origin content
-in `raw` properties. So, if you will not change declaration value,
+in `raws` properties. So, if you will not change declaration value,
 PostCSS will use raw value with comments.
 
 ### `node.toString()`
@@ -1090,12 +1090,8 @@ This method is provided as a convenience wrapper for [`Result#warn()`].
 ```js
 var plugin = postcss.plugin('postcss-deprecated', function () {
     return function (css, result) {
-        css.eachDecl('color', function (decl) {
-            if (~decl.raw.before.indexOf('_')) {
-                // Both of these lines will have the same effect
-                result.warn('Deprecated property _color', {node: decl});
-                decl.warn(result, 'Deprecated property _color');
-            }
+        css.eachDecl('bad', function (decl) {
+            decl.warn(result, 'Deprecated property bad');
         });
     };
 });
@@ -1742,7 +1738,7 @@ root.first.last.important  //=> undefined
 
 Represents a comment between declarations or statements (rule and at-rules).
 Comments inside selectors, at-rules parameters, or declaration values
-will be stored in the [`Node#raw`] properties explained above.
+will be stored in the [`Node#raws`] properties explained above.
 
 ```js
 var root    = postcss.parse('a { color: /* inner */ black; /* outer */ }');
@@ -1788,7 +1784,7 @@ var comment.text //=> 'Empty file'
 [`Root` node]:                    #root-node
 [`Rule` node]:                    #rule-node
 [`Processor`]:                    #processor-class
-[`Node#raw`]:                     #node-raw
+[`Node#raws`]:                    #node-raws
 [`Warning`]:                      #warning-class
 [`Result`]:                       #result-class
 [`Input`]:                        #inputclass

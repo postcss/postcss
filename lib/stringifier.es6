@@ -28,7 +28,7 @@ export default class Stringifier {
 
     root(node) {
         this.body(node);
-        if ( node.raw.after ) this.builder(node.raw.after);
+        if ( node.raws.after ) this.builder(node.raws.after);
     }
 
     comment(node) {
@@ -42,7 +42,7 @@ export default class Stringifier {
         let string  = node.prop + between + this.raw(node, 'value');
 
         if ( node.important ) {
-            string += node.raw.important || ' !important';
+            string += node.raws.important || ' !important';
         }
 
         if ( semicolon ) string += ';';
@@ -57,8 +57,8 @@ export default class Stringifier {
         let name   = '@' + node.name;
         let params = node.params ? this.raw(node, 'params') : '';
 
-        if ( typeof node.raw.afterName !== 'undefined' ) {
-            name += node.raw.afterName;
+        if ( typeof node.raws.afterName !== 'undefined' ) {
+            name += node.raws.afterName;
         } else if ( params ) {
             name += ' ';
         }
@@ -66,7 +66,7 @@ export default class Stringifier {
         if ( node.nodes ) {
             this.block(node, name + params);
         } else {
-            let end = (node.raw.between || '') + (semicolon ? ';' : '');
+            let end = (node.raws.between || '') + (semicolon ? ';' : '');
             this.builder(name + params + end, node);
         }
     }
@@ -111,7 +111,7 @@ export default class Stringifier {
 
         // Already had
         if ( own ) {
-            value = node.raw[own];
+            value = node.raws[own];
             if ( typeof value !== 'undefined' ) return value;
         }
 
@@ -142,7 +142,7 @@ export default class Stringifier {
                 value = this[method](root, node);
             } else {
                 root.eachInside( (i) => {
-                    value = i.raw[own];
+                    value = i.raws[own];
                     if ( typeof value !== 'undefined' ) return false;
                 });
             }
@@ -158,7 +158,7 @@ export default class Stringifier {
         let value;
         root.eachInside( (i) => {
             if ( i.nodes && i.nodes.length && i.last.type === 'decl' ) {
-                value = i.raw.semicolon;
+                value = i.raws.semicolon;
                 if ( typeof value !== 'undefined' ) return false;
             }
         });
@@ -169,7 +169,7 @@ export default class Stringifier {
         let value;
         root.eachInside( (i) => {
             if ( i.nodes && i.nodes.length === 0 ) {
-                value = i.raw.after;
+                value = i.raws.after;
                 if ( typeof value !== 'undefined' ) return false;
             }
         });
@@ -181,8 +181,8 @@ export default class Stringifier {
         root.eachInside( (i) => {
             let p = i.parent;
             if ( p && p !== root && p.parent && p.parent === root ) {
-                if ( typeof i.raw.before !== 'undefined' ) {
-                    let parts = i.raw.before.split('\n');
+                if ( typeof i.raws.before !== 'undefined' ) {
+                    let parts = i.raws.before.split('\n');
                     value = parts[parts.length - 1];
                     value = value.replace(/[^\s]/g, '');
                     return false;
@@ -195,8 +195,8 @@ export default class Stringifier {
     styleBeforeComment(root, node) {
         let value;
         root.eachComment( (i) => {
-            if ( typeof i.raw.before !== 'undefined' ) {
-                value = i.raw.before;
+            if ( typeof i.raws.before !== 'undefined' ) {
+                value = i.raws.before;
                 if ( value.indexOf('\n') !== -1 ) {
                     value = value.replace(/[^\n]+$/, '');
                 }
@@ -212,8 +212,8 @@ export default class Stringifier {
     styleBeforeDecl(root, node) {
         let value;
         root.eachDecl( (i) => {
-            if ( typeof i.raw.before !== 'undefined' ) {
-                value = i.raw.before;
+            if ( typeof i.raws.before !== 'undefined' ) {
+                value = i.raws.before;
                 if ( value.indexOf('\n') !== -1 ) {
                     value = value.replace(/[^\n]+$/, '');
                 }
@@ -230,8 +230,8 @@ export default class Stringifier {
         let value;
         root.eachInside( (i) => {
             if ( i.nodes && (i.parent !== root || root.first !== i) ) {
-                if ( typeof i.raw.before !== 'undefined' ) {
-                    value = i.raw.before;
+                if ( typeof i.raws.before !== 'undefined' ) {
+                    value = i.raws.before;
                     if ( value.indexOf('\n') !== -1 ) {
                         value = value.replace(/[^\n]+$/, '');
                     }
@@ -246,8 +246,8 @@ export default class Stringifier {
         let value;
         root.eachInside( (i) => {
             if ( i.nodes && i.nodes.length > 0 ) {
-                if ( typeof i.raw.after !== 'undefined' ) {
-                    value = i.raw.after;
+                if ( typeof i.raws.after !== 'undefined' ) {
+                    value = i.raws.after;
                     if ( value.indexOf('\n') !== -1 ) {
                         value = value.replace(/[^\n]+$/, '');
                     }
@@ -262,7 +262,7 @@ export default class Stringifier {
         let value;
         root.eachInside( (i) => {
             if ( i.type !== 'decl' ) {
-                value = i.raw.between;
+                value = i.raws.between;
                 if ( typeof value !== 'undefined' ) return false;
             }
         });
@@ -272,8 +272,8 @@ export default class Stringifier {
     styleColon(root) {
         let value;
         root.eachDecl( (i) => {
-            if ( typeof i.raw.between !== 'undefined' ) {
-                value = i.raw.between.replace(/[^\s:]/g, '');
+            if ( typeof i.raws.between !== 'undefined' ) {
+                value = i.raws.between.replace(/[^\s:]/g, '');
                 return false;
             }
         });
@@ -311,7 +311,7 @@ export default class Stringifier {
 
     raw(node, prop) {
         let value = node[prop];
-        let raw   = node.raw[prop];
+        let raw   = node.raws[prop];
         if ( raw && raw.value === value ) {
             return raw.raw;
         } else {
