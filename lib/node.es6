@@ -30,7 +30,7 @@ let cloneNode = function (obj, parent) {
 export default class Node {
 
     constructor(defaults = { }) {
-        this.raw = { };
+        this.raws = { };
         for ( let name in defaults ) {
             this[name] = defaults[name];
         }
@@ -175,9 +175,9 @@ export default class Node {
     }
 
     cleanStyles(keepBetween) {
-        delete this.raw.before;
-        delete this.raw.after;
-        if ( !keepBetween ) delete this.raw.between;
+        delete this.raws.before;
+        delete this.raws.after;
+        if ( !keepBetween ) delete this.raws.between;
     }
 
     positionInside(index) {
@@ -209,23 +209,23 @@ export default class Node {
     }
 
     get before() {
-        warnOnce('Node#before is deprecated. Use Node#raw.before');
-        return this.raw.before;
+        warnOnce('Node#before is deprecated. Use Node#raws.before');
+        return this.raws.before;
     }
 
     set before(val) {
-        warnOnce('Node#before is deprecated. Use Node#raw.before');
-        this.raw.before = val;
+        warnOnce('Node#before is deprecated. Use Node#raws.before');
+        this.raws.before = val;
     }
 
     get between() {
-        warnOnce('Node#between is deprecated. Use Node#raw.between');
-        return this.raw.between;
+        warnOnce('Node#between is deprecated. Use Node#raws.between');
+        return this.raws.between;
     }
 
     set between(val) {
-        warnOnce('Node#between is deprecated. Use Node#raw.between');
-        this.raw.between = val;
+        warnOnce('Node#between is deprecated. Use Node#raws.between');
+        this.raws.between = val;
     }
 
 }

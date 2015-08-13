@@ -9,7 +9,7 @@ import { expect } from 'chai';
 import   sinon    from 'sinon';
 import   path     from 'path';
 
-let prs = () => new Root({ raw: { after: 'ok' } });
+let prs = () => new Root({ raws: { after: 'ok' } });
 let str = (node, builder) => {
     builder(node.after + '!');
 };

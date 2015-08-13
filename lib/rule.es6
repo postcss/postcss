@@ -21,13 +21,13 @@ export default class Rule extends Container {
     }
 
     get _selector() {
-        warnOnce('Rule#_selector is deprecated. Use Rule#raw.selector');
-        return this.raw.selector;
+        warnOnce('Rule#_selector is deprecated. Use Rule#raws.selector');
+        return this.raws.selector;
     }
 
     set _selector(val) {
-        warnOnce('Rule#_selector is deprecated. Use Rule#raw.selector');
-        this.raw.selector = val;
+        warnOnce('Rule#_selector is deprecated. Use Rule#raws.selector');
+        this.raws.selector = val;
     }
 
 }

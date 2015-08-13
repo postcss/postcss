@@ -18,12 +18,12 @@ describe('postcss.parse()', () => {
 
         it('parses UTF-8 BOM', () => {
             let css = parse('\uFEFF@host { a {\f} }');
-            expect(css.first.raw.before).to.eql('');
+            expect(css.first.raws.before).to.eql('');
         });
 
         it('parses empty file', () => {
             expect(parse('', { from: 'a.css' })).to.eql(new Root({
-                raw: {
+                raws: {
                     after: ''
                 },
                 source: {
@@ -34,7 +34,7 @@ describe('postcss.parse()', () => {
 
         it('parses spaces', () => {
             expect(parse(' \n', { from: 'a.css' })).to.eql(new Root({
-                raw: {
+                raws: {
                     after: ' \n'
                 },
                 source: {

@@ -29,23 +29,23 @@ export default class AtRule extends Container {
     }
 
     get afterName() {
-        warnOnce('AtRule#afterName was deprecated. Use AtRule#raw.afterName');
-        return this.raw.afterName;
+        warnOnce('AtRule#afterName was deprecated. Use AtRule#raws.afterName');
+        return this.raws.afterName;
     }
 
     set afterName(val) {
-        warnOnce('AtRule#afterName was deprecated. Use AtRule#raw.afterName');
-        this.raw.afterName = val;
+        warnOnce('AtRule#afterName was deprecated. Use AtRule#raws.afterName');
+        this.raws.afterName = val;
     }
 
     get _params() {
-        warnOnce('AtRule#_params was deprecated. Use AtRule#raw.params');
-        return this.raw.params;
+        warnOnce('AtRule#_params was deprecated. Use AtRule#raws.params');
+        return this.raws.params;
     }
 
     set _params(val) {
-        warnOnce('AtRule#_params was deprecated. Use AtRule#raw.params');
-        this.raw.params = val;
+        warnOnce('AtRule#_params was deprecated. Use AtRule#raws.params');
+        this.raws.params = val;
     }
 
 }

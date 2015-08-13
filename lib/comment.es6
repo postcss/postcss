@@ -9,23 +9,23 @@ export default class Comment extends Node {
     }
 
     get left() {
-        warnOnce('Comment#left was deprecated. Use Comment#raw.left');
-        return this.raw.left;
+        warnOnce('Comment#left was deprecated. Use Comment#raws.left');
+        return this.raws.left;
     }
 
     set left(val) {
-        warnOnce('Comment#left was deprecated. Use Comment#raw.left');
-        this.raw.left = val;
+        warnOnce('Comment#left was deprecated. Use Comment#raws.left');
+        this.raws.left = val;
     }
 
     get right() {
-        warnOnce('Comment#right was deprecated. Use Comment#raw.right');
-        return this.raw.right;
+        warnOnce('Comment#right was deprecated. Use Comment#raws.right');
+        return this.raws.right;
     }
 
     set right(val) {
-        warnOnce('Comment#right was deprecated. Use Comment#raw.right');
-        this.raw.right = val;
+        warnOnce('Comment#right was deprecated. Use Comment#raws.right');
+        this.raws.right = val;
     }
 
 }

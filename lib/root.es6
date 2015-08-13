@@ -18,7 +18,7 @@ export default class Root extends Container {
         child = this.index(child);
 
         if ( child === 0 && this.nodes.length > 1 ) {
-            this.nodes[1].raw.before = this.nodes[child].raw.before;
+            this.nodes[1].raws.before = this.nodes[child].raws.before;
         }
 
         return super.removeChild(child);
@@ -30,14 +30,14 @@ export default class Root extends Container {
         if ( sample ) {
             if ( type === 'prepend' ) {
                 if ( this.nodes.length > 1 ) {
-                    sample.raw.before = this.nodes[1].raw.before;
+                    sample.raws.before = this.nodes[1].raws.before;
                 } else {
-                    delete sample.raw.before;
+                    delete sample.raws.before;
                 }
             } else {
                 for ( let node of nodes ) {
                     if ( this.first !== sample ) {
-                        node.raw.before = sample.raw.before;
+                        node.raws.before = sample.raws.before;
                     }
                 }
             }
