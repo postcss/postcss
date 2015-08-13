@@ -15,22 +15,22 @@ describe('stringifier', () => {
         str = new Stringifier();
     });
 
-    describe('raw()', () => {
+    describe('rawValue()', () => {
 
         it('creates trimmed/raw property', () => {
             let b = new Node({ one: 'trim' });
             b.raws.one = { value: 'trim', raw: 'raw' };
-            expect(str.raw(b, 'one')).to.eql('raw');
+            expect(str.rawValue(b, 'one')).to.eql('raw');
 
             b.one = 'trim1';
-            expect(str.raw(b, 'one')).to.eql('trim1');
+            expect(str.rawValue(b, 'one')).to.eql('trim1');
         });
 
         it('works without magic', () => {
             let b = new Node();
             b.one = '1';
             expect(b.one).to.eql('1');
-            expect(str.raw(b, 'one')).to.eql('1');
+            expect(str.rawValue(b, 'one')).to.eql('1');
         });
     });
 

@@ -39,7 +39,7 @@ export default class Stringifier {
 
     decl(node, semicolon) {
         let between = this.style(node, 'between', 'colon');
-        let string  = node.prop + between + this.raw(node, 'value');
+        let string  = node.prop + between + this.rawValue(node, 'value');
 
         if ( node.important ) {
             string += node.raws.important || ' !important';
@@ -50,12 +50,12 @@ export default class Stringifier {
     }
 
     rule(node) {
-        this.block(node, this.raw(node, 'selector'));
+        this.block(node, this.rawValue(node, 'selector'));
     }
 
     atrule(node, semicolon) {
         let name   = '@' + node.name;
-        let params = node.params ? this.raw(node, 'params') : '';
+        let params = node.params ? this.rawValue(node, 'params') : '';
 
         if ( typeof node.raws.afterName !== 'undefined' ) {
             name += node.raws.afterName;
@@ -309,7 +309,7 @@ export default class Stringifier {
         return value;
     }
 
-    raw(node, prop) {
+    rawValue(node, prop) {
         let value = node[prop];
         let raw   = node.raws[prop];
         if ( raw && raw.value === value ) {
