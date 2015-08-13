@@ -107,21 +107,21 @@ export default class Node {
     }
 
     moveTo(container) {
-        this.cleanStyles(this.root() === container.root());
+        this.cleanRaws(this.root() === container.root());
         this.remove();
         container.append(this);
         return this;
     }
 
     moveBefore(node) {
-        this.cleanStyles(this.root() === node.root());
+        this.cleanRaws(this.root() === node.root());
         this.remove();
         node.parent.insertBefore(node, this);
         return this;
     }
 
     moveAfter(node) {
-        this.cleanStyles(this.root() === node.root());
+        this.cleanRaws(this.root() === node.root());
         this.remove();
         node.parent.insertAfter(node, this);
         return this;
@@ -163,9 +163,9 @@ export default class Node {
         return fixed;
     }
 
-    style(own, detect) {
+    raw(own, detect) {
         let str = new Stringifier();
-        return str.style(this, own, detect);
+        return str.raw(this, own, detect);
     }
 
     root() {
@@ -174,7 +174,7 @@ export default class Node {
         return result;
     }
 
-    cleanStyles(keepBetween) {
+    cleanRaws(keepBetween) {
         delete this.raws.before;
         delete this.raws.after;
         if ( !keepBetween ) delete this.raws.between;
@@ -206,6 +206,16 @@ export default class Node {
             if ( index !== -1 ) pos = this.positionInside(index);
         }
         return pos;
+    }
+
+    style(own, detect) {
+        warnOnce('Node#style() is deprecated. Use Node#raw()');
+        return this.raw(own, detect);
+    }
+
+    cleanStyles(keepBetween) {
+        warnOnce('Node#cleanStyles() is deprecated. Use Node#cleanRaws()');
+        return this.cleanRaws(keepBetween);
     }
 
     get before() {

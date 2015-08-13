@@ -1,4 +1,4 @@
-const defaultStyle = {
+const defaultRaw = {
     colon:         ': ',
     indent:        '    ',
     beforeDecl:    '\n',
@@ -32,13 +32,13 @@ export default class Stringifier {
     }
 
     comment(node) {
-        let left  = this.style(node, 'left',  'commentLeft');
-        let right = this.style(node, 'right', 'commentRight');
+        let left  = this.raw(node, 'left',  'commentLeft');
+        let right = this.raw(node, 'right', 'commentRight');
         this.builder('/*' + left + node.text + right + '*/', node);
     }
 
     decl(node, semicolon) {
-        let between = this.style(node, 'between', 'colon');
+        let between = this.raw(node, 'between', 'colon');
         let string  = node.prop + between + this.rawValue(node, 'value');
 
         if ( node.important ) {
@@ -80,32 +80,32 @@ export default class Stringifier {
             last -= 1;
         }
 
-        let semicolon = this.style(node, 'semicolon');
+        let semicolon = this.raw(node, 'semicolon');
         for ( let i = 0; i < node.nodes.length; i++ ) {
             let child  = node.nodes[i];
-            let before = this.style(child, 'before');
+            let before = this.raw(child, 'before');
             if ( before ) this.builder(before);
             this.stringify(child, last !== i || semicolon);
         }
     }
 
     block(node, start) {
-        let between = this.style(node, 'between', 'beforeOpen');
+        let between = this.raw(node, 'between', 'beforeOpen');
         this.builder(start + between + '{', node, 'start');
 
         let after;
         if ( node.nodes && node.nodes.length ) {
             this.body(node);
-            after = this.style(node, 'after');
+            after = this.raw(node, 'after');
         } else {
-            after = this.style(node, 'after', 'emptyBody');
+            after = this.raw(node, 'after', 'emptyBody');
         }
 
         if ( after ) this.builder(after);
         this.builder('}', node, 'end');
     }
 
-    style(node, own, detect) {
+    raw(node, own, detect) {
         let value;
         if ( !detect ) detect = own;
 
@@ -125,19 +125,19 @@ export default class Stringifier {
         }
 
         // Floating child without parent
-        if ( !parent ) return defaultStyle[detect];
+        if ( !parent ) return defaultRaw[detect];
 
         // Detect style by other nodes
         let root = node.root();
-        if ( !root.styleCache ) root.styleCache = { };
-        if ( typeof root.styleCache[detect] !== 'undefined' ) {
-            return root.styleCache[detect];
+        if ( !root.rawCache ) root.rawCache = { };
+        if ( typeof root.rawCache[detect] !== 'undefined' ) {
+            return root.rawCache[detect];
         }
 
         if ( detect === 'before' || detect === 'after' ) {
             return this.beforeAfter(node, detect);
         } else {
-            let method = 'style' + capitalize(detect);
+            let method = 'raw' + capitalize(detect);
             if ( this[method] ) {
                 value = this[method](root, node);
             } else {
@@ -148,13 +148,13 @@ export default class Stringifier {
             }
         }
 
-        if ( typeof value === 'undefined' ) value = defaultStyle[detect];
+        if ( typeof value === 'undefined' ) value = defaultRaw[detect];
 
-        root.styleCache[detect] = value;
+        root.rawCache[detect] = value;
         return value;
     }
 
-    styleSemicolon(root) {
+    rawSemicolon(root) {
         let value;
         root.eachInside( (i) => {
             if ( i.nodes && i.nodes.length && i.last.type === 'decl' ) {
@@ -165,7 +165,7 @@ export default class Stringifier {
         return value;
     }
 
-    styleEmptyBody(root) {
+    rawEmptyBody(root) {
         let value;
         root.eachInside( (i) => {
             if ( i.nodes && i.nodes.length === 0 ) {
@@ -176,7 +176,7 @@ export default class Stringifier {
         return value;
     }
 
-    styleIndent(root) {
+    rawIndent(root) {
         let value;
         root.eachInside( (i) => {
             let p = i.parent;
@@ -192,7 +192,7 @@ export default class Stringifier {
         return value;
     }
 
-    styleBeforeComment(root, node) {
+    rawBeforeComment(root, node) {
         let value;
         root.eachComment( (i) => {
             if ( typeof i.raws.before !== 'undefined' ) {
@@ -204,12 +204,12 @@ export default class Stringifier {
             }
         });
         if ( typeof value === 'undefined' ) {
-            value = this.style(node, null, 'beforeDecl');
+            value = this.raw(node, null, 'beforeDecl');
         }
         return value;
     }
 
-    styleBeforeDecl(root, node) {
+    rawBeforeDecl(root, node) {
         let value;
         root.eachDecl( (i) => {
             if ( typeof i.raws.before !== 'undefined' ) {
@@ -221,12 +221,12 @@ export default class Stringifier {
             }
         });
         if ( typeof value === 'undefined' ) {
-            value = this.style(node, null, 'beforeRule');
+            value = this.raw(node, null, 'beforeRule');
         }
         return value;
     }
 
-    styleBeforeRule(root) {
+    rawBeforeRule(root) {
         let value;
         root.eachInside( (i) => {
             if ( i.nodes && (i.parent !== root || root.first !== i) ) {
@@ -242,7 +242,7 @@ export default class Stringifier {
         return value;
     }
 
-    styleBeforeClose(root) {
+    rawBeforeClose(root) {
         let value;
         root.eachInside( (i) => {
             if ( i.nodes && i.nodes.length > 0 ) {
@@ -258,7 +258,7 @@ export default class Stringifier {
         return value;
     }
 
-    styleBeforeOpen(root) {
+    rawBeforeOpen(root) {
         let value;
         root.eachInside( (i) => {
             if ( i.type !== 'decl' ) {
@@ -269,7 +269,7 @@ export default class Stringifier {
         return value;
     }
 
-    styleColon(root) {
+    rawColon(root) {
         let value;
         root.eachDecl( (i) => {
             if ( typeof i.raws.between !== 'undefined' ) {
@@ -283,13 +283,13 @@ export default class Stringifier {
     beforeAfter(node, detect) {
         let value;
         if ( node.type === 'decl' ) {
-            value = this.style(node, null, 'beforeDecl');
+            value = this.raw(node, null, 'beforeDecl');
         } else if ( node.type === 'comment' ) {
-            value = this.style(node, null, 'beforeComment');
+            value = this.raw(node, null, 'beforeComment');
         } else if ( detect === 'before' ) {
-            value = this.style(node, null, 'beforeRule');
+            value = this.raw(node, null, 'beforeRule');
         } else {
-            value = this.style(node, null, 'beforeClose');
+            value = this.raw(node, null, 'beforeClose');
         }
 
         let buf   = node.parent;
@@ -300,7 +300,7 @@ export default class Stringifier {
         }
 
         if ( value.indexOf('\n') !== -1 ) {
-            let indent = this.style(node, null, 'indent');
+            let indent = this.raw(node, null, 'indent');
             if ( indent.length ) {
                 for ( let step = 0; step < depth; step++ ) value += indent;
             }

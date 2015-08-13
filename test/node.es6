@@ -310,11 +310,11 @@ describe('Node', () => {
 
     });
 
-    describe('style()', () => {
+    describe('raw()', () => {
 
         it('has shortcut to stringifier', () => {
             let rule = new Rule({ selector: 'a' });
-            expect(rule.style('before')).to.eql('');
+            expect(rule.raw('before')).to.eql('');
         });
 
     });
@@ -339,11 +339,11 @@ describe('Node', () => {
 
     });
 
-    describe('cleanStyles()', () => {
+    describe('cleanRaws()', () => {
 
         it('cleans style recursivelly', () => {
             let css = parse('@page{a{color:black}}');
-            css.cleanStyles();
+            css.cleanRaws();
 
             expect(css.toString())
                 .to.eql('@page {\n    a {\n        color: black\n    }\n}');
@@ -356,7 +356,7 @@ describe('Node', () => {
 
         it('keeps between on request', () => {
             let css = parse('@page{a{color:black}}');
-            css.cleanStyles(true);
+            css.cleanRaws(true);
 
             expect(css.toString())
                 .to.eql('@page{\n    a{\n        color:black\n    }\n}');

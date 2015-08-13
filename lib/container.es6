@@ -308,10 +308,10 @@ export default class Container extends Node {
         return processed;
     }
 
-    cleanStyles(keepBetween) {
+    cleanRaws(keepBetween) {
         super(keepBetween);
         if ( this.nodes ) {
-            for ( let node of this.nodes ) node.cleanStyles(keepBetween);
+            for ( let node of this.nodes ) node.cleanRaws(keepBetween);
         }
     }
 
