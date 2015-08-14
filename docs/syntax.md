@@ -136,7 +136,7 @@ Also, default parser clean some CSS values from comments and spaces.
 It save origin value with comments to `node.raws.value.raw` and use it,
 if node values were not changed.
 
-[`Input`]: https://github.com/postcss/postcss/blob/master/docs/api.md#node-raws
+[`node.raws`]: https://github.com/postcss/postcss/blob/master/docs/api.md#node-raws
 
 ### Tests
 
@@ -170,12 +170,52 @@ module.export = function (root, builder) {
 
 ### Main Theory
 
-TODO: look and extend current one
+PostCSS [default stringifier] is just a class with method for each node type
+and many methods to detect raw properties (if node was built manually)
+by other nodes.
+
+In most cases it will be enouch just to extent this class,
+like in [SCSS stringifier].
+
+[default stringifier]: https://github.com/postcss/postcss/blob/master/lib/stringifier.es6
+[SCSS stringifier]:    https://github.com/postcss/postcss-scss/blob/master/lib/scss-stringifier.es6
 
 ### Builder Function
 
-TODO: start|end tokens in builder
+Builder function will be pass to `stringify` function as second argument.
+Stringifier class saves it to `this.builder` property.
+
+It receive output substring and source node and accept this substring
+to final output.
+
+Some nodes string can contains other nodes in the middle.
+For example, rule has `a {` beginning, many declarations inside
+and `}` at the end.
+
+For this cases, you should pass a third argument to builder function:
+`'start'` or `'end'` string.
 
 ### Raw Values
 
-TODO: be ready for nodes without raw or from other parser
+Good PostCSS syntax saves all symbols and provide byte-to-byte equal output
+if there were not AST changes.
+
+This is why every node has [`node.raws`] object to store space symbol, etc.
+
+But be ready, that any of this `raws` properties can be missed. Some nodes
+can be built manually. Some nodes can loose indent on moving between parents.
+
+This is why default stringifier has `raw()` method to autodetect raw property
+by other nodes. For example, it will look at other nodes to detect indent size
+and them multiply it with current node depth.
+
+[`node.raws`]: https://github.com/postcss/postcss/blob/master/docs/api.md#node-raws
+
+### Tests
+
+Stringifier must have a tests too.
+
+You can use unit and integration cases from [PostCSS Parser Tests]
+in smoke test. Just compare input CSS with CSS after you parser and stringifier.
+
+[PostCSS Parser Tests]: https://github.com/postcss/postcss-parser-tests
