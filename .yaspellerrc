@@ -84,6 +84,7 @@
     "transpile",
     "transpiles",
     "transpiling",
+    "tokenize",
     "tokenizer",
     "linters",
     "rebases",
