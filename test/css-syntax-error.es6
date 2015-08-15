@@ -1,9 +1,10 @@
 import CssSyntaxError from '../lib/css-syntax-error';
 import postcss        from '../lib/postcss';
 
-import   Concat   from 'concat-with-sourcemaps';
-import { expect } from 'chai';
-import   path     from 'path';
+import   stripAnsi from 'strip-ansi';
+import   Concat    from 'concat-with-sourcemaps';
+import { expect }  from 'chai';
+import   path      from 'path';
 
 let parseError = function (css, opts) {
     let error;
@@ -45,7 +46,7 @@ describe('CssSyntaxError', () => {
     });
 
     it('highlights broken line', () => {
-        expect(parseError('a {\n  content: "\n}').showSourceCode()).to.eql(
+        expect(parseError('a {\n  content: "\n}').showSourceCode(true)).to.eql(
             '\n' +
             'a {\n' +
             '  content: "\n' +
@@ -60,11 +61,11 @@ describe('CssSyntaxError', () => {
             '^');
     });
 
-    it('prints with colored CSS', () => {
-        expect(parseError('a {').toString()).to.eql(
+    it('prints with highlight', () => {
+        expect(stripAnsi(parseError('a {').toString())).to.eql(
             'CssSyntaxError: <css input>:1:1: Unclosed block\n' +
             'a {\n' +
-            '\u001b[1;31m^\u001b[0m');
+            '^');
     });
 
     it('misses highlights without source', () => {
