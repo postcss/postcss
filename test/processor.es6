@@ -81,7 +81,7 @@ describe('Processor', () => {
         });
 
         let beforeFix = new Processor([ (css) => {
-            css.eachRule( (rule) => {
+            css.walkRules( (rule) => {
                 if ( !rule.selector.match(/::(before|after)/) ) return;
                 if ( !rule.some( i => i.prop === 'content' ) ) {
                     rule.prepend({ prop: 'content', value: '""' });
