@@ -52,7 +52,7 @@ module.exports = function (css, opts) {
 ### Main Theory
 
 There are many books about parses. But do not scary, CSS syntax is very easy,
-so parser will be much simplier, than usual.
+so parser will be much simpler than usual.
 
 The default PostCSS parser contains two steps:
 
@@ -66,17 +66,17 @@ Look at this parts for a parser example.
 [Tokenizer]: https://github.com/postcss/postcss/blob/master/lib/tokenize.es6
 [Parser]:    https://github.com/postcss/postcss/blob/master/lib/parser.es6
 
-### Perfomance
+### Performance
 
 Parsing input is a longest task in CSS usual processor. So it is very important
 to have fast parser.
 
-The main rule of optimization: there is no perfomance without benchmark.
-You can look at [PostCSS benchmakrs] as example.
+The main rule of optimization: there is no performance without benchmark.
+You can look at [PostCSS benchmarks] as example.
 
-If we will look deeper, tokenize step will be a longest part of parsing.
-So you should focus only on tokenizer perfomance. Other parts could be
-well written maiintable code.
+If we will look deeper, the tokenize step will be a longest part of parsing.
+So you should focus only on tokenizer performance. Other parts could be
+well written maintainable code.
 
 Unfortunately, classes, functions and high level structures can slow down
 your tokenizer. Be ready to write dirty code with code repeating.
@@ -110,7 +110,7 @@ next = regexp.lastIndex;
 Parser can be well written class. So there is no need in copy-paste and
 hardcore optimization there. You can safely extend default class.
 
-[PostCSS benchmakrs]: https://github.com/postcss/benchmark
+[PostCSS benchmarks]: https://github.com/postcss/benchmark
 
 ### Node Source
 
@@ -122,7 +122,7 @@ So your tokenizer should provide token type, content and positions.
 
 [`Input`]: https://github.com/postcss/postcss/blob/master/lib/input.es6
 
-### Raw Valus
+### Raw Values
 
 Good PostCSS parser should provide all information (including spaces symbols)
 to generate byte-to-byte equal output. It is not so difficult, but respectful
@@ -174,7 +174,7 @@ PostCSS [default stringifier] is just a class with method for each node type
 and many methods to detect raw properties (if node was built manually)
 by other nodes.
 
-In most cases it will be enouch just to extent this class,
+In most cases it will be enough just to extent this class,
 like in [SCSS stringifier].
 
 [default stringifier]: https://github.com/postcss/postcss/blob/master/lib/stringifier.es6
