@@ -1,7 +1,8 @@
 export default class Warning {
 
+    type = 'warning'
+
     constructor(text, opts = { }) {
-        this.type = 'warning';
         this.text = text;
 
         if ( opts.node ) {

@@ -303,9 +303,9 @@ describe('Node', () => {
             expect(json.nodes[0].parent).to.not.exist;
 
             expect(JSON.stringify(rule)).to.eql(
-                '{"raws":{},"selector":"a","nodes":[' +
+                '{"raws":{},"selector":"a","type":"rule","nodes":[' +
                     '{"raws":{},"prop":"color","value":"b","type":"decl"}' +
-                '],"type":"rule"}');
+                ']}');
         });
 
     });

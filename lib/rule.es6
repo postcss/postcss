@@ -4,10 +4,11 @@ import list      from './list';
 
 export default class Rule extends Container {
 
+    type = 'rule'
+
     constructor(defaults) {
         super(defaults);
         if ( !this.nodes ) this.nodes = [];
-        this.type = 'rule';
     }
 
     get selectors() {
