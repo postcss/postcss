@@ -80,7 +80,7 @@ Creates a PostCSS plugin with a standard API.
 var remove = postcss.plugin('postcss-remove', function (opts) {
     var filter = opts.prop || 'z-index';
     return function (css, result) {
-        css.eachDecl(filter, function (decl) {
+        css.walkDecls(filter, function (decl) {
             decl.remove();
         });
     };
@@ -146,7 +146,7 @@ Add warnings using the [`Node#warn()`] method.
 ```js
 postcss.plugin('postcss-caniuse-test', function () {
     return function (css, result) {
-        css.eachDecl(function (decl) {
+        css.walkDecls(function (decl) {
             if ( !caniuse.support(decl.prop) ) {
                 decl.warn(result,
                   'Some browsers do not support ' + decl.prop);
@@ -500,7 +500,7 @@ Creates [`Warning`] and adds it to [`Result#messages`].
 ```js
 var plugin = postcss.plugin('postcss-important', function () {
     return function (css, result) {
-        css.eachDecl(function (decl) {
+        css.walkDecls(function (decl) {
             if ( decl.important ) {
                 result.warn('Try to avoid !important', { node: decl });
             }
@@ -1099,7 +1099,7 @@ This method is provided as a convenience wrapper for [`Result#warn()`].
 ```js
 var plugin = postcss.plugin('postcss-deprecated', function () {
     return function (css, result) {
-        css.eachDecl('bad', function (decl) {
+        css.walkDecls('bad', function (decl) {
             decl.warn(result, 'Deprecated property bad');
         });
     };
@@ -1350,16 +1350,15 @@ rule.each(function (decl) {
 
 `container.each()` only iterates through the container’s immediate children.
 If you need to recursively iterate through all the container’s nodes,
-use `container.eachInside()`.
+use `container.walk()`.
 
-### `container.eachInside(callback)`
+### `container.walk(callback)`
 
-Recursively iterates through the container’s children,
-those children’s children, etc., calling `callback` for each.
+Traverses the container’s descendant nodes, calling `callback` for each node.
 
 ```js
-root.eachInside(function (node) {
-    // Will be iterate through all nodes
+root.walk(function (node) {
+    // Traverses all descendant nodes.
 });
 ```
 
@@ -1373,13 +1372,13 @@ if you are mutating arrays during iteration.
 If you only need to iterate through the container’s immediate children,
 use `container.each()`.
 
-### `container.eachDecl([propFilter,] callback)`
+### `container.walkDecls([propFilter,] callback)`
 
-Recursively iterates through all declaration nodes within the container,
-calling `callback` for each.
+Traverses the container’s descendant nodes, calling `callback` for each
+declaration node.
 
 ```js
-root.eachDecl(function (decl) {
+root.walkDecls(function (decl) {
     if ( decl.prop.match(/^-webkit-/) ) {
         decl.remove();
     }
@@ -1397,10 +1396,10 @@ If you pass a `propFilter`, only those declarations whose property matches
 
 ```js
 // Make flat design
-root.eachDecl('border-radius', function (decl) {
+root.walkDecls('border-radius', function (decl) {
     decl.remove();
 });
-root.eachDecl(/^background/, function (decl) {
+root.walkDecls(/^background/, function (decl) {
     decl.value = takeFirstColorFromGradient(decl.value);
 });
 ```
@@ -1408,14 +1407,13 @@ root.eachDecl(/^background/, function (decl) {
 Like `container.each()`, this method is safe to use if you are mutating
 arrays during iteration.
 
-### `container.eachAtRule([nameFilter,] callback)`
+### `container.walkAtRules([nameFilter,] callback)`
 
-Recursively iterates through all at-rule nodes within the container,
-calling `callback` for each.
-
+Traverses the container’s descendant nodes, calling `callback` for each
+at-rule node.
 
 ```js
-root.eachAtRule(function (rule) {
+root.walkAtRules(function (rule) {
     if ( rule.name.match(/^-webkit-/) ) rule.remove();
 });
 ```
@@ -1431,7 +1429,7 @@ will be iterated over.
 
 ```js
 var first = false;
-root.eachAtRule('charset', function (rule) {
+root.walkAtRules('charset', function (rule) {
     if ( !first ) {
         first = true;
     } else {
@@ -1443,14 +1441,14 @@ root.eachAtRule('charset', function (rule) {
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
 
-### `container.eachRule([selectorFilter,] callback)`
+### `container.walkRules([selectorFilter,] callback)`
 
-Recursively iterates through all rule nodes within the container, calling
-`callback` for each.
+Traverses the container’s descendant nodes, calling `callback` for each
+rule node.
 
 ```js
 var selectors = [];
-root.eachRule(function (rule) {
+root.walkRules(function (rule) {
     selectors.push(rule.selector);
 });
 console.log('You CSS uses ' + selectors.length + ' selectors');
@@ -1468,13 +1466,13 @@ If you pass a `selectorFilter`, only those rules whose selector matches
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
 
-### `container.eachComment(callback)`
+### `container.walkComments(callback)`
 
-Recursively iterates through all comment nodes within the container, calling
-`callback` for each.
+Traverses the container’s descendant nodes, calling `callback` for each
+comment node.
 
 ```js
-root.eachComment(function (comment) {
+root.walkComments(function (comment) {
     comment.remove();
 });
 ```

@@ -34,7 +34,7 @@ describe('postcss()', () => {
     it('supports injecting additional processors at runtime', (done) => {
         let plugin1 = postcss.plugin('one', () => {
             return css => {
-                css.eachDecl(decl => {
+                css.walkDecls(decl => {
                     decl.value = 'world';
                 });
             };
@@ -56,7 +56,7 @@ describe('postcss()', () => {
         it('creates plugin', () => {
             let plugin = postcss.plugin('test', (filter) => {
                 return function (css) {
-                    css.eachDecl(filter || 'two', function (decl) {
+                    css.walkDecls(filter || 'two', function (decl) {
                         decl.remove();
                     });
                 };
@@ -80,7 +80,7 @@ describe('postcss()', () => {
         it('creates a shortcut to process css', (done) => {
             let plugin = postcss.plugin('test', (str = 'bar') => {
                 return function (css) {
-                    css.eachDecl( i => i.value = str );
+                    css.walkDecls( i => i.value = str );
                 };
             });
 

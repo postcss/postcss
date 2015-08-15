@@ -169,13 +169,13 @@ describe('Container', () => {
 
     });
 
-    describe('eachInside()', () => {
+    describe('walk()', () => {
 
         it('iterates', () => {
             let types   = [];
             let indexes = [];
 
-            let result = parse(example).eachInside( (node, i) => {
+            let result = parse(example).walk( (node, i) => {
                 types.push(node.type);
                 indexes.push(i);
             });
@@ -190,7 +190,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             let indexes = [];
 
-            let result = parse(example).eachInside( (decl, i) => {
+            let result = parse(example).walk( (decl, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -201,13 +201,13 @@ describe('Container', () => {
 
     });
 
-    describe('eachDecl()', () => {
+    describe('walkDecls()', () => {
 
         it('iterates', () => {
             let props   = [];
             let indexes = [];
 
-            let result = parse(example).eachDecl( (decl, i) => {
+            let result = parse(example).walkDecls( (decl, i) => {
                 props.push(decl.prop);
                 indexes.push(i);
             });
@@ -219,7 +219,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             let size = 0;
-            parse(example).eachDecl( (decl, i) => {
+            parse(example).walkDecls( (decl, i) => {
                 decl.parent.removeChild(i);
                 size += 1;
             });
@@ -229,7 +229,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             let indexes = [];
 
-            let result = parse(example).eachDecl( (decl, i) => {
+            let result = parse(example).walkDecls( (decl, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -242,7 +242,7 @@ describe('Container', () => {
             let css  = parse('@page{a{one:1}}b{one:1;two:2}');
             let size = 0;
 
-            css.eachDecl('one', (decl) => {
+            css.walkDecls('one', (decl) => {
                 expect(decl.prop).to.eql('one');
                 size += 1;
             });
@@ -254,20 +254,20 @@ describe('Container', () => {
             let css  = parse('@page{a{one:1}}b{one-x:1;two:2}');
             let size = 0;
 
-            css.eachDecl(/one(-x)?/, () => size += 1 );
+            css.walkDecls(/one(-x)?/, () => size += 1 );
 
             expect(size).to.eql(2);
         });
 
     });
 
-    describe('eachComment()', () => {
+    describe('walkComments()', () => {
 
         it('iterates', () => {
             let texts   = [];
             let indexes = [];
 
-            let result = parse(example).eachComment( (comment, i) => {
+            let result = parse(example).walkComments( (comment, i) => {
                 texts.push(comment.text);
                 indexes.push(i);
             });
@@ -279,7 +279,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             let size = 0;
-            parse(example).eachComment( (comment, i) => {
+            parse(example).walkComments( (comment, i) => {
                 comment.parent.removeChild(i);
                 size += 1;
             });
@@ -289,7 +289,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             let indexes = [];
 
-            let result = parse(example).eachComment( (comment, i) => {
+            let result = parse(example).walkComments( (comment, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -300,13 +300,13 @@ describe('Container', () => {
 
     });
 
-    describe('eachRule()', () => {
+    describe('walkRules()', () => {
 
         it('iterates', () => {
             let selectors = [];
             let indexes   = [];
 
-            let result = parse(example).eachRule( (rule, i) => {
+            let result = parse(example).walkRules( (rule, i) => {
                 selectors.push(rule.selector);
                 indexes.push(i);
             });
@@ -318,7 +318,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             let size = 0;
-            parse(example).eachRule( (rule, i) => {
+            parse(example).walkRules( (rule, i) => {
                 rule.parent.removeChild(i);
                 size += 1;
             });
@@ -328,7 +328,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             let indexes = [];
 
-            let result = parse(example).eachRule( (rule, i) => {
+            let result = parse(example).walkRules( (rule, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -339,13 +339,13 @@ describe('Container', () => {
 
     });
 
-    describe('eachAtRule()', () => {
+    describe('walkAtRules()', () => {
 
         it('iterates', () => {
             let names   = [];
             let indexes = [];
 
-            let result = parse(example).eachAtRule( (atrule, i) => {
+            let result = parse(example).walkAtRules( (atrule, i) => {
                 names.push(atrule.name);
                 indexes.push(i);
             });
@@ -357,7 +357,7 @@ describe('Container', () => {
 
         it('iterates with changes', () => {
             let size = 0;
-            parse(example).eachAtRule( (atrule, i) => {
+            parse(example).walkAtRules( (atrule, i) => {
                 atrule.parent.removeChild(i);
                 size += 1;
             });
@@ -367,7 +367,7 @@ describe('Container', () => {
         it('breaks iteration', () => {
             let indexes = [];
 
-            let result = parse(example).eachAtRule( (atrule, i) => {
+            let result = parse(example).walkAtRules( (atrule, i) => {
                 indexes.push(i);
                 return false;
             });
@@ -380,7 +380,7 @@ describe('Container', () => {
             let css  = parse('@page{@page 2{}}@media print{@page{}}');
             let size = 0;
 
-            css.eachAtRule('page', (atrule) => {
+            css.walkAtRules('page', (atrule) => {
                 expect(atrule.name).to.eql('page');
                 size += 1;
             });
@@ -392,7 +392,7 @@ describe('Container', () => {
             let css  = parse('@page{@page 2{}}@media print{@page{}}');
             let size = 0;
 
-            css.eachAtRule(/page/, () => size += 1 );
+            css.walkAtRules(/page/, () => size += 1 );
 
             expect(size).to.eql(3);
         });

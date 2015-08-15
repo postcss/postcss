@@ -22,7 +22,7 @@ export default class {
     previous() {
         if ( !this.previousMaps ) {
             this.previousMaps = [];
-            this.root.eachInside( (node) => {
+            this.root.walk( (node) => {
                 if ( node.source && node.source.input.map ) {
                     let map = node.source.input.map;
                     if ( this.previousMaps.indexOf(map) === -1 ) {
@@ -78,7 +78,7 @@ export default class {
 
     setSourcesContent() {
         let already = { };
-        this.root.eachInside( (node) => {
+        this.root.walk( (node) => {
             if ( node.source ) {
                 let from = node.source.input.from;
                 if ( from && !already[from] ) {

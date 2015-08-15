@@ -141,7 +141,7 @@ export default class Stringifier {
             if ( this[method] ) {
                 value = this[method](root, node);
             } else {
-                root.eachInside( (i) => {
+                root.walk( (i) => {
                     value = i.raws[own];
                     if ( typeof value !== 'undefined' ) return false;
                 });
@@ -156,7 +156,7 @@ export default class Stringifier {
 
     rawSemicolon(root) {
         let value;
-        root.eachInside( (i) => {
+        root.walk( (i) => {
             if ( i.nodes && i.nodes.length && i.last.type === 'decl' ) {
                 value = i.raws.semicolon;
                 if ( typeof value !== 'undefined' ) return false;
@@ -167,7 +167,7 @@ export default class Stringifier {
 
     rawEmptyBody(root) {
         let value;
-        root.eachInside( (i) => {
+        root.walk( (i) => {
             if ( i.nodes && i.nodes.length === 0 ) {
                 value = i.raws.after;
                 if ( typeof value !== 'undefined' ) return false;
@@ -178,7 +178,7 @@ export default class Stringifier {
 
     rawIndent(root) {
         let value;
-        root.eachInside( (i) => {
+        root.walk( (i) => {
             let p = i.parent;
             if ( p && p !== root && p.parent && p.parent === root ) {
                 if ( typeof i.raws.before !== 'undefined' ) {
@@ -194,7 +194,7 @@ export default class Stringifier {
 
     rawBeforeComment(root, node) {
         let value;
-        root.eachComment( (i) => {
+        root.walkComments( (i) => {
             if ( typeof i.raws.before !== 'undefined' ) {
                 value = i.raws.before;
                 if ( value.indexOf('\n') !== -1 ) {
@@ -211,7 +211,7 @@ export default class Stringifier {
 
     rawBeforeDecl(root, node) {
         let value;
-        root.eachDecl( (i) => {
+        root.walkDecls( (i) => {
             if ( typeof i.raws.before !== 'undefined' ) {
                 value = i.raws.before;
                 if ( value.indexOf('\n') !== -1 ) {
@@ -228,7 +228,7 @@ export default class Stringifier {
 
     rawBeforeRule(root) {
         let value;
-        root.eachInside( (i) => {
+        root.walk( (i) => {
             if ( i.nodes && (i.parent !== root || root.first !== i) ) {
                 if ( typeof i.raws.before !== 'undefined' ) {
                     value = i.raws.before;
@@ -244,7 +244,7 @@ export default class Stringifier {
 
     rawBeforeClose(root) {
         let value;
-        root.eachInside( (i) => {
+        root.walk( (i) => {
             if ( i.nodes && i.nodes.length > 0 ) {
                 if ( typeof i.raws.after !== 'undefined' ) {
                     value = i.raws.after;
@@ -260,7 +260,7 @@ export default class Stringifier {
 
     rawBeforeOpen(root) {
         let value;
-        root.eachInside( (i) => {
+        root.walk( (i) => {
             if ( i.type !== 'decl' ) {
                 value = i.raws.between;
                 if ( typeof value !== 'undefined' ) return false;
@@ -271,7 +271,7 @@ export default class Stringifier {
 
     rawColon(root) {
         let value;
-        root.eachDecl( (i) => {
+        root.walkDecls( (i) => {
             if ( typeof i.raws.between !== 'undefined' ) {
                 value = i.raws.between.replace(/[^\s:]/g, '');
                 return false;

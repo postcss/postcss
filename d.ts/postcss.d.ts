@@ -830,7 +830,7 @@ declare module postcss {
         /**
          * Iterates through the container's immediate children, calling the
          * callback function for each child. If you need to recursively iterate
-         * through all the container's nodes, use container.eachInside(). Unlike
+         * through all the container's nodes, use container.walk(). Unlike
          * the for {} -cycle or Array#forEach() this iterator is safe if you are
          * mutating the array of child nodes during iteration.
          * @param callback Iterator. Returning false will break iteration. Safe
@@ -840,53 +840,53 @@ declare module postcss {
          */
         each(callback: (node: Node, index: number) => any): boolean | void;
         /**
-         * Recursively iterates through the container's children, those children's
-         * children, etc., calling callback for each. Like container.each(), this
-         * method is safe to use if you are mutating arrays during iteration. If
-         * you only need to iterate through the container’s immediate children, use
-         * container.each().
+         * Traverses the container's descendant nodes, calling `callback` for each
+         * node. Like container.each(), this method is safe to use if you are
+         * mutating arrays during iteration. If you only need to iterate through
+         * the container's immediate children, use container.each().
          * @param callback Iterator.
          */
-        eachInside(callback: (node: Node, index: number) => any): boolean | void;
+        walk(callback: (node: Node, index: number) => any): boolean | void;
         /**
-         * Recursively iterates through all declaration nodes within the container.
-         * Like container.each(), this method is safe to use if you are mutating
-         * arrays during iteration.
+         * Traverses the container's descendant nodes, calling `callback` for each
+         * declaration. Like container.each(), this method is safe to use if you
+         * are mutating arrays during iteration.
          * @param propFilter Filters declarations by property name. Only those
          * declarations whose property matches propFilter will be iterated over.
          * @param callback Called for each declaration node within the container.
          */
-        eachDecl(propFilter: string | RegExp, callback?: (decl: Declaration, index: number) => any): boolean | void;
-        eachDecl(callback: (decl: Declaration, index: number) => any): boolean | void;
+        walkDecls(propFilter: string | RegExp, callback?: (decl: Declaration, index: number) => any): boolean | void;
+        walkDecls(callback: (decl: Declaration, index: number) => any): boolean | void;
         /**
-         * Recursively iterates through all at-rule nodes. Like container.each(),
-         * this method is safe to use if you are mutating arrays during iteration.
+         * Traverses the container's descendant nodes, calling `callback` for each
+         * at-rule. Like container.each(), this method is safe to use if you are
+         * mutating arrays during iteration.
          * @param nameFilter Filters at-rules by name. Only those at-rules whose
          * name matches filter will be iterated over.
          * @param callback Iterator called for each at-rule node within the
          * container.
          */
-        eachAtRule(nameFilter: string | RegExp, callback: (atRule: AtRule, index: number) => any): boolean | void;
-        eachAtRule(callback: (atRule: AtRule, index: number) => any): boolean | void;
+        walkAtRules(nameFilter: string | RegExp, callback: (atRule: AtRule, index: number) => any): boolean | void;
+        walkAtRules(callback: (atRule: AtRule, index: number) => any): boolean | void;
         /**
-         * Recursively iterates through all rule nodes within the container.
-         * Like container.each(), this method is safe to use if you are mutating
-         * arrays during iteration.
+         * Traverses the container's descendant nodes, calling `callback` for each
+         * rule. Like container.each(), this method is safe to use if you are
+         * mutating arrays during iteration.
          * @param selectorFilter Filters rules by selector. Only those rules whose
          * name matches the filter will be iterated over.
          * @param callback Iterator called for each rule node within the
          * container.
          */
-        eachRule(selectorFilter: string | RegExp, callback: (atRule: Rule, index: number) => any): boolean | void;
-        eachRule(callback: (atRule: Rule, index: number) => any): boolean | void;
-        eachRule(selectorFilter: any, callback?: (atRule: Rule, index: number) => any): boolean | void;
+        walkRules(selectorFilter: string | RegExp, callback: (atRule: Rule, index: number) => any): boolean | void;
+        walkRules(callback: (atRule: Rule, index: number) => any): boolean | void;
+        walkRules(selectorFilter: any, callback?: (atRule: Rule, index: number) => any): boolean | void;
         /**
-         * Recursively iterates through all comment nodes within the container.
-         * Like container.each(), this method is safe to use if you are mutating
-         * arrays during iteration.
+         * Traverses the container's descendant nodes, calling `callback` for each
+         * comment. Like container.each(), this method is safe to use if you are
+         * mutating arrays during iteration.
          * @param callback Iterator called for each comment node within the container.
          */
-        eachComment(callback: (comment: Comment, indexed: number) => any): void | boolean;
+        walkComments(callback: (comment: Comment, indexed: number) => any): void | boolean;
         /**
          * Passes all declaration values within the container that match pattern
          * through the callback, replacing those values with the returned result of
