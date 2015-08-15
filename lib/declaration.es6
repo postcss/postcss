@@ -3,9 +3,10 @@ import Node     from './node';
 
 export default class Declaration extends Node {
 
+    type = 'decl';
+
     constructor(defaults) {
         super(defaults);
-        this.type = 'decl';
     }
 
     get _value() {
