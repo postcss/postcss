@@ -38,11 +38,17 @@ export default class Container extends Node {
     }
 
     eachInside(callback) {
+        warnOnce('Container#eachInside is deprecated. ' +
+                 'Use Container#walk instead.');
+        return this.walk(callback);
+    }
+
+    walk(callback) {
         return this.each( (child, i) => {
             let result = callback(child, i);
 
-            if ( result !== false && child.eachInside ) {
-                result = child.eachInside(callback);
+            if ( result !== false && child.walk ) {
+                result = child.walk(callback);
             }
 
             if ( result === false ) return result;
@@ -50,23 +56,29 @@ export default class Container extends Node {
     }
 
     eachDecl(prop, callback) {
+        warnOnce('Container#eachDecl is deprecated. ' +
+                 'Use Container#walkDecls instead.');
+        return this.walkDecls(prop, callback);
+    }
+
+    walkDecls(prop, callback) {
         if ( !callback ) {
             callback = prop;
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'decl' ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
                 }
             });
         } else if ( prop instanceof RegExp ) {
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'decl' && prop.test(child.prop) ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
                 }
             });
         } else {
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'decl' && child.prop === prop ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
@@ -76,24 +88,30 @@ export default class Container extends Node {
     }
 
     eachRule(selector, callback) {
+        warnOnce('Container#eachRule is deprecated. ' +
+                 'Use Container#walkRules instead.');
+        return this.walkRules(selector, callback);
+    }
+
+    walkRules(selector, callback) {
         if ( !callback ) {
             callback = selector;
 
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'rule' ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
                 }
             });
         } else if ( selector instanceof RegExp ) {
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'rule' && selector.test(child.selector) ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
                 }
             });
         } else {
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'rule' && child.selector === selector ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
@@ -103,23 +121,29 @@ export default class Container extends Node {
     }
 
     eachAtRule(name, callback) {
+        warnOnce('Container#eachAtRule is deprecated. ' +
+                 'Use Container#walkAtRules instead.');
+        return this.walkRules(name, callback);
+    }
+
+    walkAtRules(name, callback) {
         if ( !callback ) {
             callback = name;
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'atrule' ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
                 }
             });
         } else if ( name instanceof RegExp ) {
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'atrule' && name.test(child.name) ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
                 }
             });
         } else {
-            return this.eachInside( (child, i) => {
+            return this.walk( (child, i) => {
                 if ( child.type === 'atrule' && child.name === name ) {
                     let result = callback(child, i);
                     if ( result === false ) return result;
@@ -129,7 +153,13 @@ export default class Container extends Node {
     }
 
     eachComment(callback) {
-        return this.eachInside( (child, i) => {
+        warnOnce('Container#eachComment is deprecated. ' +
+                 'Use Container#walkComments instead.');
+        return this.walkRules(callback);
+    }
+
+    walkComments(callback) {
+        return this.walk( (child, i) => {
             if ( child.type === 'comment' ) {
                 let result = callback(child, i);
                 if ( result === false ) return result;
@@ -231,7 +261,7 @@ export default class Container extends Node {
             opts = { };
         }
 
-        this.eachDecl((decl) => {
+        this.walkDecls((decl) => {
             if ( opts.props && opts.props.indexOf(decl.prop) === -1 ) return;
             if ( opts.fast  && decl.value.indexOf(opts.fast) === -1 ) return;
 

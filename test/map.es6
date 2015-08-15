@@ -16,10 +16,10 @@ let read = function (result) {
 let dir = path.join(__dirname, 'fixtures');
 
 let doubler = postcss( (css) => {
-    css.eachDecl( decl => decl.parent.prepend(decl.clone()) );
+    css.walkDecls( decl => decl.parent.prepend(decl.clone()) );
 });
 let lighter = postcss( (css) => {
-    css.eachDecl( decl => decl.value = 'white' );
+    css.walkDecls( decl => decl.value = 'white' );
 });
 
 describe('source maps', () => {
@@ -39,10 +39,10 @@ describe('source maps', () => {
     it('generate right source map', () => {
         let css       = 'a {\n  color: black;\n  }';
         let processor = postcss( (root) => {
-            root.eachRule( (rule) => {
+            root.walkRules( (rule) => {
                 rule.selector = 'strong';
             });
-            root.eachDecl( (decl) => {
+            root.walkDecls( (decl) => {
                 decl.parent.prepend( decl.clone({ prop: 'background' }) );
             });
         });
