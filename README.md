@@ -353,6 +353,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
+* [`postcss-input-style`] adds new pseudo-elements for cross-browser styling of inputs.
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
@@ -478,6 +479,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-strip-units`]:            https://github.com/whitneyit/postcss-strip-units
 [`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
+[`postcss-input-style`]:            https://github.com/seaneking/postcss-input-style
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
