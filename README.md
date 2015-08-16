@@ -39,9 +39,9 @@ VK.com page:     [postcss](https://vk.com/postcss).
 PostCSS itself is very small. It includes only a CSS parser,
 a CSS node tree API, a source map generator, and a node tree stringifier.
 
-All styles transformations are made by plugins. And these plugins are just
-small plain JS functions, which receive a CSS node tree, transform it,
-and return a modified tree.
+All of the style transformations are performed by plugins, which are
+plain JS functions. Each plugin receives a CSS node tree, transforms it & then
+returns the modified tree.
 
 You can use the [cssnext] plugin pack and write future CSS code right now:
 
@@ -62,7 +62,7 @@ You can use the [cssnext] plugin pack and write future CSS code right now:
 }
 ```
 
-Or if you like the Sass syntax, you could use [PreCSS] plugin pack:
+Or if you like the Sass syntax, you could use the [PreCSS] plugin pack:
 
 ```css
 @define-mixin social-icon $network $color {
@@ -178,7 +178,7 @@ postcss(plugins).process('a {', { parser: safe }).then(function (result) {
 
 ### Syntaxes
 
-* [`postcss-scss`] to works with SCSS *(but do not compile SCSS to CSS)*.
+* [`postcss-scss`] to works with SCSS *(but does not compile SCSS to CSS)*.
 
 [`postcss-scss`]: https://github.com/postcss/postcss-scss
 
