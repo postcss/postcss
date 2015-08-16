@@ -4,7 +4,7 @@
      title="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo.svg">
 
-PostCSS is a tool for transforming CSS with JS plugins.
+PostCSS is a tool for transforming styles with JS plugins.
 These plugins can support variables and mixins, transpile future CSS syntax,
 inline images, and more.
 
@@ -39,7 +39,7 @@ VK.com page:     [postcss](https://vk.com/postcss).
 PostCSS itself is very small. It includes only a CSS parser,
 a CSS node tree API, a source map generator, and a node tree stringifier.
 
-All CSS transformations are made by plugins. And these plugins are just
+All styles transformations are made by plugins. And these plugins are just
 small plain JS functions, which receive a CSS node tree, transform it,
 and return a modified tree.
 
@@ -100,7 +100,7 @@ As a result, PostCSS offers three main benefits:
 * **Future CSS:** PostCSS plugins can read and rebuild an entire document,
   meaning that they can provide new language features. For example, [cssnext]
   transpiles the latest W3C drafts to current CSS syntax.
-* **New abilities:** PostCSS plugins can read and change every part of CSS.
+* **New abilities:** PostCSS plugins can read and change every part of styles.
   It makes many new classes of tools possible. [Autoprefixer], [`rtlcss`],
   [`doiuse`] or [`postcss-colorblind`] are good examples.
 
@@ -178,7 +178,7 @@ postcss(plugins).process('a {', { parser: safe }).then(function (result) {
 
 ### Syntaxes
 
-* [`postcss-scss`] to works with SCSS *(it do not compile SCSS to CSS)*.
+* [`postcss-scss`] to works with SCSS *(but do not compile SCSS to CSS)*.
 
 [`postcss-scss`]: https://github.com/postcss/postcss-scss
 
