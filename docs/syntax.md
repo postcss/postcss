@@ -78,34 +78,34 @@ If we will look deeper, the tokenize step will be a longest part of parsing.
 So you should focus only on tokenizer performance. Other parts could be
 well written maintainable code.
 
-1. Unfortunately, classes, functions and high level structures can slow down
+Unfortunately, classes, functions and high level structures can slow down
 your tokenizer. Be ready to write dirty code with code repeating.
 This is why it is difficult to extend default [PostCSS tokenizer].
 Copy paste will be a necessary evil.
 
-2. Second optimization is using char codes instead of string.
+Second optimization is using char codes instead of string.
 
-    ```js
-   // Slow
-   string[i] === '{';
+```js
+// Slow
+string[i] === '{';
 
-   // Fast
-   const OPEN_CURLY = 123; // `{'
-   string.charCodeAt(i) === OPEN_CURLY;
-    ```
+// Fast
+const OPEN_CURLY = 123; // `{'
+string.charCodeAt(i) === OPEN_CURLY;
+```
 
-3. Third optimization is “fast jumps”. If you find open quote, you can find
-   next close quote much faster by `indexOf`:
+Third optimization is “fast jumps”. If you find open quote, you can find
+next close quote much faster by `indexOf`:
 
-    ```js
-   // Simple jump
-   next = string.indexOf('"', currentPosition + 1);
+```js
+// Simple jump
+next = string.indexOf('"', currentPosition + 1);
 
-   // Jump by RegExp
-   regexp.lastIndex = currentPosion + 1;
-   regexp.text(string);
-   next = regexp.lastIndex;
-    ```
+// Jump by RegExp
+regexp.lastIndex = currentPosion + 1;
+regexp.text(string);
+next = regexp.lastIndex;
+```
 
 Parser can be well written class. There is no need in copy-paste and
 hardcore optimization there. You can extend default [PostCSS parser].
