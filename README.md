@@ -178,7 +178,7 @@ postcss(plugins).process('a {', { parser: safe }).then(function (result) {
 
 ### Syntaxes
 
-* [`postcss-scss`] to works with SCSS *(but does not compile SCSS to CSS)*.
+* [`postcss-scss`] to work with SCSS *(but does not compile SCSS to CSS)*.
 
 [`postcss-scss`]: https://github.com/postcss/postcss-scss
 
