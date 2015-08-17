@@ -37,12 +37,6 @@ export default class Container extends Node {
         if ( result === false ) return false;
     }
 
-    eachInside(callback) {
-        warnOnce('Container#eachInside is deprecated. ' +
-                 'Use Container#walk instead.');
-        return this.walk(callback);
-    }
-
     walk(callback) {
         return this.each( (child, i) => {
             let result = callback(child, i);
@@ -53,12 +47,6 @@ export default class Container extends Node {
 
             if ( result === false ) return result;
         });
-    }
-
-    eachDecl(prop, callback) {
-        warnOnce('Container#eachDecl is deprecated. ' +
-                 'Use Container#walkDecls instead.');
-        return this.walkDecls(prop, callback);
     }
 
     walkDecls(prop, callback) {
@@ -85,12 +73,6 @@ export default class Container extends Node {
                 }
             });
         }
-    }
-
-    eachRule(selector, callback) {
-        warnOnce('Container#eachRule is deprecated. ' +
-                 'Use Container#walkRules instead.');
-        return this.walkRules(selector, callback);
     }
 
     walkRules(selector, callback) {
@@ -120,12 +102,6 @@ export default class Container extends Node {
         }
     }
 
-    eachAtRule(name, callback) {
-        warnOnce('Container#eachAtRule is deprecated. ' +
-                 'Use Container#walkAtRules instead.');
-        return this.walkRules(name, callback);
-    }
-
     walkAtRules(name, callback) {
         if ( !callback ) {
             callback = name;
@@ -150,12 +126,6 @@ export default class Container extends Node {
                 }
             });
         }
-    }
-
-    eachComment(callback) {
-        warnOnce('Container#eachComment is deprecated. ' +
-                 'Use Container#walkComments instead.');
-        return this.walkRules(callback);
     }
 
     walkComments(callback) {
@@ -185,6 +155,13 @@ export default class Container extends Node {
             }
         }
         return this;
+    }
+
+    cleanRaws(keepBetween) {
+        super(keepBetween);
+        if ( this.nodes ) {
+            for ( let node of this.nodes ) node.cleanRaws(keepBetween);
+        }
     }
 
     insertBefore(exist, add) {
@@ -338,11 +315,34 @@ export default class Container extends Node {
         return processed;
     }
 
-    cleanRaws(keepBetween) {
-        super(keepBetween);
-        if ( this.nodes ) {
-            for ( let node of this.nodes ) node.cleanRaws(keepBetween);
-        }
+    eachInside(callback) {
+        warnOnce('Container#eachInside is deprecated. ' +
+                 'Use Container#walk instead.');
+        return this.walk(callback);
+    }
+
+    eachDecl(prop, callback) {
+        warnOnce('Container#eachDecl is deprecated. ' +
+                 'Use Container#walkDecls instead.');
+        return this.walkDecls(prop, callback);
+    }
+
+    eachRule(selector, callback) {
+        warnOnce('Container#eachRule is deprecated. ' +
+                 'Use Container#walkRules instead.');
+        return this.walkRules(selector, callback);
+    }
+
+    eachAtRule(name, callback) {
+        warnOnce('Container#eachAtRule is deprecated. ' +
+                 'Use Container#walkAtRules instead.');
+        return this.walkAtRules(name, callback);
+    }
+
+    eachComment(callback) {
+        warnOnce('Container#eachComment is deprecated. ' +
+                 'Use Container#walkComments instead.');
+        return this.walkComments(callback);
     }
 
     get semicolon() {
