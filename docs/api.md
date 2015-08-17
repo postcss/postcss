@@ -25,14 +25,15 @@ The `postcss` function is the main entry point for PostCSS.
 var postcss = require('postcss');
 ```
 
-For those using [TypeScript](http://www.typescriptlang.org/) with an
-[ES6 compile target](https://github.com/Microsoft/TypeScript/wiki/tsconfig.json),
-you can import the PostCSS API like so:
+For those using TypeScript with an [ES6 compile target], you can import
+the PostCSS API like so:
 
 ```ts
 ///<reference path="node_modules/postcss/postcss.d.ts" />
 import * as postcss from 'postcss';
 ```
+
+[ES6 compile target]: https://github.com/Microsoft/TypeScript/wiki/tsconfig.json
 
 ### `postcss(plugins)`
 
