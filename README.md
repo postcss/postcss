@@ -18,10 +18,10 @@ But PostCSS is modular, 3-30 times faster, and much more powerful.
 Twitter account: [@postcss](https://twitter.com/postcss).
 VK.com page:     [postcss](https://vk.com/postcss).
 
-[appveyor-img]: https://img.shields.io/appveyor/ci/postcss/postcss.svg?label=windows
+[appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
 [travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix
 [chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
-[appveyor]:     https://ci.appveyor.com/project/postcss/postcss
+[appveyor]:     https://ci.appveyor.com/project/ai/postcss
 [travis]:       https://travis-ci.org/postcss/postcss
 [chat]:         https://gitter.im/postcss/postcss
 
