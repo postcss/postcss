@@ -44,11 +44,11 @@ export default class Result implements postcss.Result {
         /**
          * The Processor instance used for this transformation.
          */
-        processor?: Processor, 
+        processor?: Processor,
         /**
          * Contains Root node after all transformations.
          */
-        root?: Root, 
+        root?: Root,
         /**
          * Options from the Processor#process(css, opts) or Root#toResult(opts) call
          * that produced this Result instance.
@@ -72,12 +72,4 @@ export default class Result implements postcss.Result {
      * Alias for css property to use with syntaxes that generate non-CSS output.
      */
     content: string;
-    /**
-     * Deprecated and will be removed in 5.0. Use result.opts.from instead.
-     */
-    from: string;
-    /**
-     * Deprecated and will be removed in 5.0. Use result.opts.to instead.
-     */
-    to: string;
 }

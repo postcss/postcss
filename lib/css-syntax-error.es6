@@ -59,12 +59,6 @@ export default class CssSyntaxError extends SyntaxError {
         return '\n' + prev + broken + mark + next;
     }
 
-    highlight(color) {
-        warnOnce('CssSyntaxError#highlight is deprecated and will be ' +
-                 'removed in 5.0. Use error.showSourceCode instead.');
-        return this.showSourceCode(color).replace(/^\n/, '');
-    }
-
     setMozillaProps() {
         let sample = Error.call(this, this.message);
         if ( sample.columnNumber ) this.columnNumber = this.column;
