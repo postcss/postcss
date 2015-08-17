@@ -97,7 +97,8 @@ Arguments:
 * `initializer  (function)`: will receive plugin options and should return
   functions to modify nodes in input CSS.
 
-Also wrap will save plugin name and plugin PostCSS version:
+The newly-wrapped function will provide both the name and PostCSS
+version of the plugin:
 
 ```js
 var processor = postcss([replace]);
@@ -106,8 +107,8 @@ processor.plugins[0].postcssVersion //=> '4.1.0'
 ```
 
 The plugin function receives 2 arguments: [`Root` node] and [`Result`] instance.
-Then it should mutate the passed `Root` node. Alternatively, create a new `Root`
-node and override the `result.root` property.
+The function should mutate the provided `Root` node. Alternatively, you can
+create a new `Root` node and override the `result.root` property.
 
 ```js
 var cleaner = postcss.plugin('postcss-cleaner', function () {
@@ -117,7 +118,7 @@ var cleaner = postcss.plugin('postcss-cleaner', function () {
 });
 ```
 
-Plugins also expose a `process` method as a convenience, so that you can use
+As a convenience, plugins also expose a `process` method so that you can use
 them as standalone tools.
 
 ```js
@@ -126,7 +127,7 @@ cleaner.process(css, options);
 postcss([ cleaner(options) ]).process(css);
 ```
 
-Asynchronous plugin should return `Promise` instance.
+Asynchronous plugins should return a `Promise` instance.
 
 ```js
 postcss.plugin('postcss-import', function () {
@@ -156,7 +157,7 @@ postcss.plugin('postcss-caniuse-test', function () {
 });
 ```
 
-Send data to next plugins using the [`Result#messages`] array.
+Send data to other plugins using the [`Result#messages`] array.
 
 ### `postcss.root(props)`
 
@@ -168,7 +169,7 @@ postcss.root({ after: '\n' }).toString() //=> "\n"
 
 Arguments:
 
-* `props (object) optional`: properties for new node.
+* `props (object) optional`: properties for the new root node.
 
 ### `postcss.atRule(props)`
 
@@ -180,7 +181,7 @@ postcss.atRule({ name: 'charset' }).toString() //=> "@charset"
 
 Arguments:
 
-* `props (object) optional`: properties for new node.
+* `props (object) optional`: properties for the new at-rule node.
 
 ### `postcss.rule(props)`
 
@@ -192,7 +193,7 @@ postcss.rule({ selector: 'a' }).toString() //=> "a {\n}"
 
 Arguments:
 
-* `props (object) optional`: properties for new node.
+* `props (object) optional`: properties for the new rule node.
 
 ### `postcss.decl(props)`
 
@@ -204,7 +205,7 @@ postcss.decl({ prop: 'color', value: 'black' }).toString() //=> "color: black"
 
 Arguments:
 
-* `props (object) optional`: properties for new node.
+* `props (object) optional`: properties for the new declaration node.
 
 ### `postcss.comment(props)`
 
@@ -216,11 +217,11 @@ postcss.comment({ text: 'test' }).toString() //=> "/* test */"
 
 Arguments:
 
-* `props (object) optional`: properties for new node.
+* `props (object) optional`: properties for the new comment node.
 
 ### `postcss.vendor`
 
-Contains [Vendor module](#vendor-module) module.
+Contains the [Vendor module](#vendor-module).
 
 ```js
 postcss.vendor.unprefixed('-moz-tab') //=> ['tab']
@@ -228,7 +229,7 @@ postcss.vendor.unprefixed('-moz-tab') //=> ['tab']
 
 ### `postcss.list`
 
-Contains [List module](#list-module) module.
+Contains the [List module](#list-module).
 
 ```js
 postcss.list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
@@ -236,13 +237,13 @@ postcss.list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
 
 ### `postcss.stringify(node, builder)`
 
-Default function to convert nodes tree to CSS string.
+Default function to convert a node tree into a CSS string.
 
 ## `Processor` class
 
 A `Processor` instance contains plugins to process CSS. Create
 one `Processor` instance, initialize its plugins, and then use that instance
-on many CSS files.
+on numerous CSS files.
 
 ```js
 var processor = postcss([autoprefixer, cssnext, cssgrace]);
@@ -269,18 +270,18 @@ Arguments:
   * An object with a `postcss` method. PostCSS will use that method
     as described in #2.
   * Another `Processor` instance. PostCSS will copy plugins
-    from that instance to this one.
+    from that instance into this one.
 
 Plugins can also be added by passing them as arguments when creating
 a `postcss` instance (see [`postcss(plugins)`]).
 
-Asynchronous Plugins should return `Promise` instance.
+Asynchronous Plugins should return a `Promise` instance.
 
 ### `processor.process(css, opts)`
 
-Parses source CSS and returns [`LazyResult`] instance. Because some plugins can
-be asynchronous it doesn’t make any transformations. Transformations will
-be applied in `LazyResult`’s methods.
+Parses source CSS and returns a [`LazyResult`] instance. Because some plugins
+can be asynchronous it doesn’t make any transformations. Transformations will
+be applied in the `LazyResult`’s methods.
 
 ```js
 processor.process(css, { from: 'a.css', to: 'a.out.css' }).then(function (result) {
@@ -291,7 +292,7 @@ processor.process(css, { from: 'a.css', to: 'a.out.css' }).then(function (result
 Arguments:
 
 * `css (string|#toString|Result)`: String with input CSS or any object
-  with `toString()` method, like file stream. Optionally, send [`Result`]
+  with a `toString()` method, like file stream. Optionally, send a [`Result`]
   instance and the processor will take the existing [`Root`] parser from it.
 * `opts (object) optional`: options:
   * `from`: the path of the CSS source file. You should always set `from`,
@@ -314,7 +315,7 @@ processor.plugins.length //=> 2
 
 ### `processor.version`
 
-Contains current version of PostCSS.
+Contains the current version of PostCSS.
 
 ```js
 postcss().version //=> '4.0.5'
@@ -322,7 +323,7 @@ postcss().version //=> '4.0.5'
 
 ## `LazyResult` class
 
-Promise proxy for result of PostCSS transformations.
+A promise proxy for the result of PostCSS transformations.
 
 A `LazyResult` instance is returned by [`Processor#process(css, opts)`].
 
@@ -333,8 +334,8 @@ var lazy = postcss([cssnext]).process(css);
 ### `lazy.then(onFulfilled, onRejected)`
 
 Processes input CSS through synchronous and asynchronous plugins
-and call `onFulfilled` with [`Result`] instance. If a plugin throws
-an error, `onRejected` callback will be executed.
+and calls `onFulfilled` with a [`Result`] instance. If a plugin throws
+an error, the `onRejected` callback will be executed.
 
 ```js
 postcss([cssnext]).process(css).then(function(result) {
@@ -347,7 +348,7 @@ This method is a standard [Promise] method.
 ### `lazy.catch(onRejected)`
 
 Processes input CSS through synchronous and asynchronous plugins
-and call `onRejected` on errors from any plugin.
+and calls `onRejected` for each error thrown in any plugin.
 
 ```js
 postcss([cssnext]).process(css).then(function(result) {
@@ -361,20 +362,20 @@ This method is a standard [Promise] method.
 
 ### `lazy.toString()`
 
-Alias for `LazyResult#css` property.
+Alias for the `LazyResult#css` property.
 
 ### `lazy.css`
 
-Processes input CSS through synchronous plugins, converts `Root` to CSS string
-and returns [`Result#css`].
+Processes input CSS through synchronous plugins, converts `Root` to a CSS
+string and returns [`Result#css`].
 
 ```js
 processor.process(css).css;
 ```
 
-This property will work only with synchronous plugins. If processor contains
-any asynchronous plugins it will throw a error. You should use
-[`LazyResult#then()`] instead.
+This property will only work with synchronous plugins. If the processor
+contains any asynchronous plugins it will throw an error. In this case,
+you should use [`LazyResult#then()`] instead.
 
 ```js
 postcss([cssnext]).then(function (result) {
@@ -384,7 +385,8 @@ postcss([cssnext]).then(function (result) {
 
 ### `lazy.content`
 
-It is alias for `css` property to use with syntaxes generates non-CSS output.
+An alias for the `css` property. Use it with syntaxes that generate non-CSS
+output.
 
 ```js
 lazy.css === lazy.content;
@@ -400,9 +402,9 @@ if ( result.map ) {
 }
 ```
 
-This property will work only with synchronous plugins. If processor contains
-any asynchronous plugins it will throw an error. You should use
-[`LazyResult#then()`] instead.
+This property will only work with synchronous plugins. If the processor
+contains any asynchronous plugins it will throw an error. In this case,
+you should use [`LazyResult#then()`] instead.
 
 ```js
 postcss([cssnext]).then(function (result) {
@@ -417,9 +419,9 @@ postcss([cssnext]).then(function (result) {
 Processes input CSS through synchronous plugins and returns
 [`Result#root`](#resultroot).
 
-This property will work only with synchronous plugins. If processor contains
-any asynchronous plugins it will throw an error. You should use
-[`LazyResult#then()`] instead.
+This property will only work with synchronous plugins. If the processor
+contains any asynchronous plugins it will throw an error. In this case,
+you should use [`LazyResult#then()`] instead.
 
 ```js
 postcss([cssnext]).then(function (result) {
@@ -437,9 +439,9 @@ postcss([cssnext]).warnings().forEach(function (message) {
 });
 ```
 
-This property will work only with synchronous plugins. If processor contains
-any asynchronous plugins it will throw a error. You should use
-[`LazyResult#then()`] instead.
+This property will only work with synchronous plugins. If the processor
+contains any asynchronous plugins it will throw an error. In this case,
+you should use [`LazyResult#then()`] instead.
 
 ```js
 postcss([cssnext]).then(function (result) {
@@ -453,9 +455,9 @@ postcss([cssnext]).then(function (result) {
 
 Processes input CSS through synchronous plugins and returns [`Result#messages`].
 
-This property will work only with synchronous plugins. If processor contains
-any asynchronous plugins it will throw an error. You should use
-[`LazyResult#then()`] instead.
+This property will only work with synchronous plugins. If the processor
+contains any asynchronous plugins it will throw an error. In this case,
+you should use [`LazyResult#then()`] instead.
 
 ### `lazy.processor`
 
@@ -495,7 +497,7 @@ Alias for [`Result#css`] property.
 
 ### `result.warn(text, opts)`
 
-Creates [`Warning`] and adds it to [`Result#messages`].
+Creates an instance of [`Warning`] and adds it to [`Result#messages`].
 
 ```js
 var plugin = postcss.plugin('postcss-important', function () {
@@ -519,16 +521,16 @@ postcss([plugin]).process(css).then(function (result) {
 
 Arguments:
 
-* `text (string)`: warning message. It will be used in `text` property of
-  message object.
-* `opts (object) optional`: properties to message object.
-  * `node`: CSS node, that was a source of warning.
-  * `word (string)`: a word inside a node’s string, that should be highlighted
-    as source of warning.
-  * `index` (number): a index inside a node’s string, that should be highlighted
-    as source of warning.
-  * `plugin`: name of plugin that created this warning. `Result#warn()` will
-    fill it automatically with `plugin.postcssPlugin` value.
+* `text (string)`: warning message. It will be used in the `text` property of
+  the message object.
+* `opts (object) optional`: properties to assign to the message object.
+  * `node`: CSS node that was the source of the warning.
+  * `word (string)`: word inside a node’s string that should be highlighted
+    as the source of the warning.
+  * `index` (number): index inside a node’s string that should be highlighted
+    as the source of the warning.
+  * `plugin`: name of the plugin that created this warning. `Result#warn()` will
+    automatically fill it with the `plugin.postcssPlugin` value.
 
 ### `result.warnings()`
 
@@ -551,7 +553,8 @@ postcss.parse('a{}').toResult().css //=> "a{}"
 
 ### `result.content`
 
-It is alias for `css` property to use with syntaxes generates non-CSS output.
+An alias for the `css` property. Use it with syntaxes that generate non-CSS
+output.
 
 ```js
 result.css === result.content;
@@ -582,7 +585,7 @@ if ( result.map ) {
 
 ### `result.root`
 
-Contains [`Root` node] after all transformations.
+Contains the [`Root` node] after all transformations.
 
 ```js
 root.toResult().root == root;
@@ -590,8 +593,7 @@ root.toResult().root == root;
 
 ### `result.messages`
 
-Contains messages from plugins. For example, warnings or custom messages
-to plugins communication.
+Contains messages from plugins (e.g., warnings or custom messages).
 
 Each message should have `type` and `plugin` properties.
 
@@ -609,7 +611,7 @@ postcss.plugin('postcss-min-browser', function () {
 ```
 
 Add a warning using [`Result#warn()`] and get all warnings
-using [`Result#warnings()`](#resultwarnings) method.
+using the [`Result#warnings()`](#resultwarnings) method.
 
 ### `result.processor`
 
@@ -634,7 +636,7 @@ root.toResult(opts).opts == opts;
 
 ## `Warning` class
 
-Warning from plugins. It can be created using [`Node#warn()`].
+Represents a plugin warning. It can be created using [`Node#warn()`].
 
 ```js
 if ( decl.important ) {
@@ -644,7 +646,7 @@ if ( decl.important ) {
 
 ### `warning.toString()`
 
-Returns string with error position, message.
+Returns a string with the error position and message.
 
 ```js
 warning.toString() //=> 'postcss-important:a.css:10:4: Try to avoid !important'
@@ -652,7 +654,7 @@ warning.toString() //=> 'postcss-important:a.css:10:4: Try to avoid !important'
 
 ### `warning.text`
 
-Contains warning message.
+Contains the warning message.
 
 ```js
 warning.text //=> 'Try to avoid !important'
@@ -660,8 +662,8 @@ warning.text //=> 'Try to avoid !important'
 
 ### `warning.plugin`
 
-Contains name of plugin that created this warning. When you call
-[`Node#warn()`], it will fill this property automatically.
+Contains the name of the plugin that created this warning. When you call
+[`Node#warn()`] it will fill this property automatically.
 
 ```js
 warning.plugin //=> 'postcss-important'
@@ -669,7 +671,7 @@ warning.plugin //=> 'postcss-important'
 
 ### `warning.node`
 
-Contains CSS node that caused warning.
+Contains the CSS node that caused the warning.
 
 ```js
 warning.node.toString() //=> 'color: white !important'
@@ -677,7 +679,7 @@ warning.node.toString() //=> 'color: white !important'
 
 ### `warning.line`
 
-Line in input file with this warning source.
+The line in the input file with this warning’s source.
 
 ```js
 warning.line //=> 5
@@ -685,7 +687,7 @@ warning.line //=> 5
 
 ### `warning.column`
 
-Column in input file with this warning source.
+Column in the input file with this warning’s source.
 
 ```js
 warning.column //=> 4
@@ -693,7 +695,7 @@ warning.column //=> 4
 
 ## `CssSyntaxError` class
 
-CSS parser throws this error for broken CSS.
+The CSS parser throws this error for broken CSS.
 
 ```js
 postcss.parse('a{') //=> CssSyntaxError
@@ -708,7 +710,8 @@ throw node.error('Unknown variable', { plugin: 'postcss-vars' });
 
 ### `error.toString()`
 
-Returns string with error position, message and source code of broken part.
+Returns a string with the error position, message and source code of the
+broken part.
 
 ```js
 error.toString() //=> CssSyntaxError: app.css:1:1: Unclosed block
@@ -718,7 +721,7 @@ error.toString() //=> CssSyntaxError: app.css:1:1: Unclosed block
 
 ### `error.showSourceCode(color)`
 
-Returns a few lines of CSS source that caused error.
+Returns a few lines of CSS source that caused the error.
 
 ```js
 error.showSourceCode() //=>
@@ -730,16 +733,16 @@ error.showSourceCode() //=>
 
 Arguments:
 
-* `color (boolean) optional`: should arrow will be colored to red by terminal
+* `color (boolean) optional`: whether arrow will be colored red by terminal
   color codes. By default, PostCSS will use `process.stdout.isTTY` and
   `process.env.NODE_DISABLE_COLORS`.
 
-If CSS has input source map without `sourceContent`, this method will return
-an empty string.
+If the CSS has an input source map without `sourceContent`, this method will
+return an empty string.
 
 ### `error.message`
 
-Contains full error text by GNU error format.
+Contains full error text in the GNU error format.
 
 ```js
 error.message //=> 'a.css:1:1: Unclosed block'
@@ -747,7 +750,7 @@ error.message //=> 'a.css:1:1: Unclosed block'
 
 ### `error.reason`
 
-Contains only error description.
+Contains only the error description.
 
 ```js
 error.reason //=> 'Unclosed block'
@@ -755,7 +758,7 @@ error.reason //=> 'Unclosed block'
 
 ### `error.plugin`
 
-Contains PostCSS plugin name if error did not come from CSS parser.
+Contains the PostCSS plugin name if the error didn’t come from the CSS parser.
 
 ```js
 error.plugin //=> 'postcss-vars'
@@ -765,18 +768,19 @@ PostCSS will fill it automatically.
 
 ### `error.file`
 
-Contains absolute path to broken file, if use set `from` option to parser.
+Contains the absolute path to the broken file. If you use it, send the `from`
+option to the parser.
 
 ```js
 error.file //=> 'a.sass'
 ```
 
-PostCSS will use input source map to detect the original error location.
-If you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will use the input source map to detect the original error location.
+If you wrote a Sass file, compiled it to CSS and then parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler),
-use `error.input.file`.
+If you need the position in the PostCSS input (e.g., to debug the previous
+compiler), use `error.input.file`.
 
 ```js
 error.file       //=> 'a.sass'
@@ -785,18 +789,18 @@ error.input.file //=> 'a.css'
 
 ### `error.line`
 
-Contains source line of error.
+Contains the source line of the error.
 
 ```js
 error.line //=> 2
 ```
 
-PostCSS will use input source map to detect the original error location. If
-you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will use the input source map to detect the original error location.
+If you wrote a Sass file, compiled it to CSS and then parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler),
-use `error.input.line`.
+If you need the position in the PostCSS input (e.g., to debug the previous
+compiler), use `error.input.file`.
 
 ```js
 error.line       //=> 2
@@ -805,18 +809,18 @@ error.input.line //=> 4
 
 ### `error.column`
 
-Contains source column of error.
+Contains the source column of the error.
 
 ```js
 error.column //=> 1
 ```
 
-PostCSS will use input source map to detect the original error location. If
-you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will use the input source map to detect the original error location.
+If you wrote a Sass file, compiled it to CSS and then parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler),
-use `error.input.column`.
+If you need the position in the PostCSS input (e.g., to debug the previous
+compiler), use `error.input.file`.
 
 ```js
 error.column       //=> 1
@@ -825,18 +829,18 @@ error.input.column //=> 4
 
 ### `error.source`
 
-Contains source code of broken file.
+Contains the source code of the broken file.
 
 ```js
 error.source //=> 'a {} b {'
 ```
 
-PostCSS will use input source map to detect the original error location.
-If you wrote a Sass file, then compiled it to CSS and parsed it with PostCSS,
+PostCSS will use the input source map to detect the original error location.
+If you wrote a Sass file, compiled it to CSS and then parsed it with PostCSS,
 PostCSS will show the original position in the Sass file.
 
-If you need position in PostCSS input (for example, to debug previous compiler),
-use `error.input.source`.
+If you need the position in the PostCSS input (e.g., to debug the previous
+compiler), use `error.input.file`.
 
 ```js
 error.source       //=> 'a { b {} }'
@@ -927,7 +931,7 @@ root.source.input.id   //=> <input css 1>
 ### `input.from`
 
 The CSS source identifier. Contains [`input.file`](#inputfile) if the user set
-the [`from` option], or [`input.id`](#inputid) if he/she did not.
+the [`from` option], or [`input.id`](#inputid) if they did not.
 
 ```js
 var root  = postcss.parse(css, { from: 'a.css' });
@@ -940,7 +944,7 @@ root.source.input.from //=> <input css 1>
 ### `input.map`
 
 Represents the input source map passed from a compilation step before PostCSS
-(for example, from the Sass compiler).
+(e.g., from the Sass compiler).
 
 `map.consumer()` returns an instance of the `SourceMapConsumer` class
 from the [`source-map`] library.
@@ -952,7 +956,7 @@ root.source.input.map.consumer().sources //=> ['a.sass']
 ### `input.origin(line, column)`
 
 Reads the input source map and returns a symbol position in the input source
-(for example, in a Sass file that was compiled to CSS before being passed
+(e.g., in a Sass file that was compiled to CSS before being passed
 to PostCSS):
 
 ```js
@@ -961,7 +965,7 @@ root.source.input.origin(1, 1) //=> { source: 'a.css', line: 3, column: 1 }
 
 ## Nodes: common methods
 
-All node classes have many common methods.
+All node classes inherit the following common methods.
 
 ### `node.type`
 
@@ -998,7 +1002,7 @@ decl.source.end        //=> { line: 10, column: 12 }
 
 The property is used in source map generation.
 
-If you create a node manually (for example, with `postcss.decl()`),
+If you create a node manually (e.g., with `postcss.decl()`),
 that node will not have a `source` property and will be absent
 from the source map. For this reason, the plugin developer should consider
 cloning nodes to create new ones (in which case the new node’s source
@@ -1024,26 +1028,27 @@ if ( atrule.name == 'add-link' ) {
 ### `node.raws`
 
 Contains information to generate byte-to-byte equal node string
-as it was in origin input.
+as it was in the origin input.
 
-Every parser saves its own properties, but default CSS parser use:
+Every parser saves its own properties, but the default CSS parser uses:
 
-* `before`: the space symbols before node. It stores also any non-standard
-  symbols before declaration like `_` from IE hack.
-* `after`: the space symbols after last child of node to the end of the node.
-* `between`: the symbols between property and value for declarations,
-  selector and `{` for rules, last parameter and `{` for at-rules.
-* `semicolon`: contains `true` if last child has (optional) semicolon.
-* `afterName`: the space between at-rule’s name and parameters.
-* `left`: the space symbols between `/*` and comment’s text.
-* `right`: the space symbols between comment’s text and `*/`.
-* `important`: the content of important statement,
+* `before`: the space symbols before the node. It also stores any non-standard
+  symbols before the declaration, like `_` from an IE hack.
+* `after`: the space symbols after the last child of the node to the end of the
+  node.
+* `between`: the symbols between the property and value for declarations,
+  selector and `{` for rules, or last parameter and `{` for at-rules.
+* `semicolon`: contains `true` if the last child has an (optional) semicolon.
+* `afterName`: the space between the at-rule’s name and its parameters.
+* `left`: the space symbols between `/*` and the comment’s text.
+* `right`: the space symbols between the comment’s text and `*/`.
+* `important`: the content of the important statement,
   if it is not just `!important`.
 
-PostCSS cleans selectors, declaration’s values and at-rule’s parameters
-from comments and extra spaces. But PostCSS stores origin content
-in `raws` properties. So, if you will not change declaration value,
-PostCSS will use raw value with comments.
+PostCSS cleans selectors, declaration values and at-rule parameters
+from comments and extra spaces, but it stores origin content
+in `raws` properties. As such, if you don’t change a declaration’s value,
+PostCSS will use the raw value with comments.
 
 ### `node.toString()`
 
@@ -1066,7 +1071,7 @@ a small excerpt to facilitate debugging.
 
 If present, an input source map will be used to get the original position
 of the source, even from a previous compilation step
-(for example, from Sass compilation).
+(e.g., from Sass compilation).
 
 This method produces very useful error messages.
 
@@ -1085,12 +1090,12 @@ Arguments:
 
 * `message (string)`: error description.
 * `opts (object) optional`: options.
-  * `plugin (string)`: plugin name, that created this error.
+  * `plugin (string)`: plugin name that created this error.
     PostCSS will set it automatically.
-  * `word (string)`: a word inside a node’s string, that should be highlighted
-    as source of error.
-  * `index` (number): a index inside a node’s string, that should be highlighted
-    as source of error.
+  * `word (string)`: a word inside a node’s string that should be highlighted
+    as the source of the error.
+  * `index` (number): an index inside a node’s string that should be highlighted
+    as the source of the error.
 
 ### `node.warn(result, message)`
 
@@ -1108,13 +1113,13 @@ var plugin = postcss.plugin('postcss-deprecated', function () {
 
 Arguments:
 
-* `result`: The [`Result`] instance which will receive the warning.
+* `result`: The [`Result`] instance that will receive the warning.
 * `message (string)`: error description.
 
 ### `node.next()` and `node.prev()`
 
-Returns the next/previous child of the node’s parent; or returns `undefined`
-if the current node is the last/first child.
+Returns the next/previous child of the node’s parent.
+Returns `undefined` if the current node is the last/first child.
 
 ```js
 var annotation = decl.prev();
@@ -1133,8 +1138,8 @@ root.nodes[0].nodes[0].root() == root
 
 ### `node.remove()`
 
-Removes the node from its parent, and cleans the `parent` property in the node
-and its children.
+Removes the node from its parent and cleans the `parent` properties from the
+node and its children.
 
 ```js
 if ( decl.prop.match(/^-webkit-/) ) {
@@ -1144,7 +1149,7 @@ if ( decl.prop.match(/^-webkit-/) ) {
 
 ### `node.replaceWith(...otherNodes)`
 
-Inserts nodes before the current node, and removes the current node.
+Inserts node(s) before the current node and removes the current node.
 
 ```js
 if ( atrule.name == 'mixin' ) {
@@ -1156,7 +1161,7 @@ if ( atrule.name == 'mixin' ) {
 
 Returns a clone of the node.
 
-The resulting cloned node and its (cloned) children will have clean `parent`
+The resulting cloned node and its (cloned) children will have a clean `parent`
 and code style properties.
 
 ```js
@@ -1168,7 +1173,7 @@ cloned.toString() //=> -moz-transform: scale(0)
 
 Arguments:
 
-* `props (object) optional`: new properties to override them in clone.
+* `props (object) optional`: new properties to override in the clone.
 
 ### `node.cloneBefore(props)` and `node.cloneAfter(props)`
 
@@ -1181,14 +1186,14 @@ decl.cloneBefore({ prop: '-moz-' + decl.prop });
 
 Arguments:
 
-* `props (object) optional`: new properties to override them in clone.
+* `props (object) optional`: new properties to override in the clone.
 
 ### `node.moveTo(newParent)`
 
 Removes the node from its current parent and inserts it
 at the end of `newParent`.
 
-This will clean the `before` and `after` code style properties from the node,
+This will clean the `before` and `after` code style properties from the node
 and replace them with the indentation style of `newParent`. It will also clean
 the `between` property if `newParent` is in another `Root`.
 
@@ -1198,19 +1203,19 @@ atrule.moveTo(atrule.parent.parent);
 
 Arguments:
 
-* `newParent: (Container)`: container node where current node will be moved.
+* `newParent: (Container)`: container node where the current node will be moved.
 
 ### `node.moveBefore(otherNode)` and `node.moveAfter(otherNode)`
 
 Removes the node from its current parent and inserts it into a new parent
 before/after `otherNode`.
 
-This will also clean the node’s code style properties just
-as `node.moveTo(newParent)` does.
+This will also clean the node’s code style properties just as it would in
+`node.moveTo(newParent)`.
 
 Arguments:
 
-* `otherNode (Node)`: node which will be after/before current node after moving.
+* `otherNode (Node)`: node that will be after/before current node after moving.
 
 ### `node.style(prop, defaultType)`
 
@@ -1232,7 +1237,7 @@ Arguments:
 
 ## Containers: common methods
 
-The `Root`, `AtRule`, and `Rule` container nodes have some common methods
+The `Root`, `AtRule`, and `Rule` container nodes inherit some common methods
 to help work with their children.
 
 Note that all containers can store *any* content. If you write a rule inside
@@ -1267,7 +1272,7 @@ rule.last == rule.nodes[rule.nodes.length - 1];
 
 ### `container.index(child)`
 
-Returns `child`’s index within the container’s `nodes` array.
+Returns a `child`’s index within the container’s `nodes` array.
 
 ```js
 rule.index( rule.nodes[2] ) //=> 2
@@ -1275,11 +1280,11 @@ rule.index( rule.nodes[2] ) //=> 2
 
 Arguments:
 
-* `child (Node)`: child of current container.
+* `child (Node)`: child of the current container.
 
 ### `container.every(callback)`
 
-Returns `true` if `callback` returns a true for all of the container’s children.
+Returns `true` if `callback` returns true for all of the container’s children.
 
 ```js
 var noPrefixes = rule.every(function (decl) {
@@ -1289,11 +1294,11 @@ var noPrefixes = rule.every(function (decl) {
 
 Arguments:
 
-* `callback (function)`: iterator, that returns true or false.
+* `callback (function)`: iterator. Returns true or false.
 
 ### `container.some(callback)`
 
-Return `true` if `callback` returns a true  value for (at least) one
+Returns `true` if `callback` returns true for (at least) one
 of the container’s children.
 
 ```js
@@ -1304,14 +1309,14 @@ var hasPrefix = rule.some(function (decl) {
 
 Arguments:
 
-* `callback (function)`: iterator, returns true or false.
+* `callback (function)`: iterator. Returns true or false.
 
 ### `container.each(callback)`
 
 Iterates through the container’s immediate children, calling `callback`
 for each child.
 
-Returning `false` within `callback` will break iteration.
+Returning `false` in the `callback` will break iteration.
 
 ```js
 var color;
@@ -1325,7 +1330,7 @@ rule.each(function (decl) {
 
 Arguments:
 
-* `callback (function)`: iterator, that will receive node itself and an index.
+* `callback (function)`: iterator. Receives each node and its index.
 
 Unlike the `for {}`-cycle or `Array#forEach()` this iterator is safe
 if you are mutating the array of child nodes during iteration.
@@ -1338,8 +1343,8 @@ var rule = root.first;
 for ( var i = 0; i < rule.nodes.length; i++ ) {
     var decl = rule.nodes[i];
     decl.cloneBefore({ prop: '-webkit-' + decl.prop });
-    // Cycle will be infinite, because cloneBefore move current node
-    // to next index
+    // Cycle will be infinite, because cloneBefore moves the current node
+    // to the next index
 }
 
 rule.each(function (decl) {
@@ -1349,7 +1354,7 @@ rule.each(function (decl) {
 ```
 
 `container.each()` only iterates through the container’s immediate children.
-If you need to recursively iterate through all the container’s nodes,
+If you need to recursively iterate through all the container’s descendant nodes,
 use `container.walk()`.
 
 ### `container.walk(callback)`
@@ -1364,7 +1369,7 @@ root.walk(function (node) {
 
 Arguments:
 
-* `callback (function)`: iterator, that will receive node itself and an index.
+* `callback (function)`: iterator. Receives each node and its index.
 
 Like `container.each()`, this method is safe to use
 if you are mutating arrays during iteration.
@@ -1389,13 +1394,14 @@ Arguments:
 
 * `propFilter: (string|RegExp) optional`: string or regular expression
   to filter declarations by property name.
-  * `callback (function)`: iterator, that will receive node itself and an index.
+  * `callback (function)`: iterator. Receives each declaration node and its
+  index.
 
-If you pass a `propFilter`, only those declarations whose property matches
-`propFilter` will be iterated over.
+If you pass a `propFilter`, iteration will only happen over declarations with
+matching properties.
 
 ```js
-// Make flat design
+// Make a flat design
 root.walkDecls('border-radius', function (decl) {
     decl.remove();
 });
@@ -1422,10 +1428,10 @@ Arguments:
 
 * `nameFilter: (string|RegExp) optional`: string or regular expression to filter
   at-rules by name.
-  * `callback (function)`: iterator, that will receive node itself and an index.
+  * `callback (function)`: iterator. Receives each at-rule and its index.
 
-If you pass a `filter`, only those at-rules whose name matches `filter`
-will be iterated over.
+If you pass a `filter`, iteration will only happen over at-rules that have
+matching names.
 
 ```js
 var first = false;
@@ -1458,10 +1464,10 @@ Arguments:
 
 * `selectorFilter: (string|RegExp) optional`: string or regular expression
   to filter rules by selector.
-* `callback (function)`: iterator, that will receive node itself and an index.
+* `callback (function)`: iterator. Receives each rule node and its index.
 
-If you pass a `selectorFilter`, only those rules whose selector matches
-`selectorFilter` will be iterated over.
+If you pass a `selectorFilter`, iteration will only happen over rules with
+matching selectors.
 
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
@@ -1479,7 +1485,7 @@ root.walkComments(function (comment) {
 
 Arguments:
 
-* `callback (function)`: iterator, that will receive node itself and an index.
+* `callback (function)`: iterator. Receives each comment node and its index.
 
 Like `container.each()`, this method is safe to use if you are mutating arrays
 during iteration.
@@ -1500,19 +1506,19 @@ root.replaceValues(/\d+rem/, { fast: 'rem' }, function (string) {
 
 Arguments:
 
-* `pattern (string|RegExp)`: pattern, that we need to replace.
-* `opts (object) optional`: options to speed up th search:
+* `pattern (string|RegExp)`: replace pattern.
+* `opts (object) optional`: options to speed up the search:
   * `props`: An array of property names. The method will only search for values
     that match `regexp` within declarations of listed properties.
-  * `fast`: A string that used to narrow down values and speed up
+  * `fast`: A string that’s used to narrow down values and speed up
     the regexp search. Searching every single value with a regexp can be slow.
     If you pass a `fast` string, PostCSS will first check whether the value
     contains the `fast` string; and only if it does will PostCSS check that
     value against `regexp`. For example, instead of just checking for `/\d+rem/`
     on all values, set `fast: 'rem'` to first check whether a value has
     the `rem` unit, and only if it does perform the regexp check.
-* `callback (function|string)`: string to replace `pattern` or callback, that
-  will return new value. Callback will receive the same arguments as those
+* `callback (function|string)`: string to replace `pattern` or callback that
+  returns a new value. The callback will receive the same arguments as those
   passed to a function parameter of [`String#replace`].
 
 [`String#replace`]: (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter)
@@ -1569,8 +1575,8 @@ Arguments:
 
 ### `container.removeChild(node)`
 
-Removes `node` from the container, and the `parent` properties of `node`
-and its children.
+Removes `node` from the container and cleans the `parent` properties from the
+node and its children.
 
 ```js
 rule.nodes.length  //=> 5
@@ -1585,7 +1591,7 @@ Arguments:
 
 ### `container.removeAll()`
 
-Removes all children from the container, and cleans their `parent` properties.
+Removes all children from the container and cleans their `parent` properties.
 
 ```js
 rule.removeAll();
@@ -1625,8 +1631,8 @@ Arguments:
 
 Represents an at-rule.
 
-This node will have a `nodes` property, representing its children,
-if it is followed in the CSS by a `{}` block.
+If it’s followed in the CSS by a `{}` block, this node will have a `nodes`
+property representing its children.
 
 
 ```js
@@ -1744,7 +1750,7 @@ root.first.last.important  //=> undefined
 ## `Comment` node
 
 Represents a comment between declarations or statements (rule and at-rules).
-Comments inside selectors, at-rules parameters, or declaration values
+Comments inside selectors, at-rule parameters, or declaration values
 will be stored in the [`Node#raws`] properties explained above.
 
 ```js
