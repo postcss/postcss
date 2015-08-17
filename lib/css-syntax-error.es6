@@ -71,4 +71,9 @@ export default class CssSyntaxError extends SyntaxError {
         return this.name + ': ' + this.message + this.showSourceCode();
     }
 
+    get generated() {
+        warnOnce('CssSyntaxError#generated is depreacted. Use input instead.');
+        return this.input;
+    }
+
 }

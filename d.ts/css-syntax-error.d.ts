@@ -53,6 +53,7 @@ export default class CssSyntaxError implements postcss.CssSyntaxError, SyntaxErr
     private lineNumber;
     private fileName;
     input: postcss.InputOrigin;
+    generated: postcss.InputOrigin;
     /**
      * The CSS parser throws this error for broken CSS.
      */

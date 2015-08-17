@@ -1,5 +1,4 @@
-import warnOnce from './warn-once';
-import Warning  from './warning';
+import Warning from './warning';
 
 export default class Result {
 
