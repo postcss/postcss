@@ -149,7 +149,7 @@ var postcss = require('postcss');
 Read the [PostCSS API] for more details about the JS API.
 
 [Promise polyfill]: https://github.com/jakearchibald/es6-promise
-[`poststylus`]:     https://github.com/seaneking/poststylus
+[poststylus]:       https://github.com/seaneking/poststylus
 [PostCSS API]:      https://github.com/postcss/postcss/blob/master/docs/api.md
 [Broccoli]:         https://github.com/jeffjewiss/broccoli-postcss
 [CLI tool]:         https://github.com/code42day/postcss-cli
