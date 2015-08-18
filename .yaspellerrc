@@ -6,7 +6,7 @@
   "ignoreCapitalization": true,
   "dictionary": [
     "6to5",
-    "ASE"
+    "ASE",
     "AtCSS",
     "Autoprefixer",
     "Base64",
