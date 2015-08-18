@@ -318,6 +318,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 ### Colors
 
+* [`postcss-ase-colors`] replaces color names with values read from an ASE palette file.
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
@@ -596,6 +597,7 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
+[`postcss-ase-colors`]:             https://github.com/dfernandez79/postcss-ase-colors
 
 ## How to Develop for PostCSS
 
