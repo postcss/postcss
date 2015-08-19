@@ -236,7 +236,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`stylelint`] contains plugins that lint your stylesheets.
 
 [`stylelint`]: https://github.com/stylelint/stylelint
-[`rucksack`]:  https://github.com/simplaio/rucksack
+[`rucksack`]:  http://simplaio.github.io/rucksack
 [`cssnano`]:   https://github.com/ben-eb/cssnano
 [`cssnext`]:   http://cssnext.io/
 [`precss`]:    https://github.com/jonathantneal/precss
