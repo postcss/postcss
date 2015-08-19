@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "4.1.16",
+  "version": "5.0.0",
   "description": "Tool for transforming styles with JS plugins",
   "keywords": [
     "css",

@@ -1,3 +1,36 @@
+## 5.0 “President Valac”
+* Remove `safe` option. Move Safe Parser to separate project.
+* `Node#toString` does not include `before` for root nodes.
+* Remove plugin returning `Root` API.
+* Remove Promise polyfill for node.js 0.10.
+* Deprecate `eachInside`, `eachDecl`, `eachRule`, `eachAtRule` and `eachComment`
+  in favor of `walk`, `walkDecl`, `walkRule`, `walkAtRule` and `walkComment`
+  (by Jed Mao).
+* Deprecate `Container#remove` and `Node#removeSelf`
+  in favor of `Container#removeChild` and `Node#remove` (by Ben Briggs).
+* Deprecate `Node#replace` in favor of `replaceWith` (by Ben Briggs).
+* Deprecate raw properties in favor of `Node#raws` object.
+* Deprecate `Node#style` in favor of `raw`.
+* Deprecate `CssSyntaxError#generated` in favor of `input`.
+* Deprecate `Node#cleanStyles` in favor of `cleanRaws`.
+* Deprecate `Root#prevMap` in favor of `Root.source.input.map`.
+* Add `syntax`, `parser` and `stringifier` options for Custom Syntaxes.
+* Add stringifier option to `Node#toString`.
+* Add `Result#content` alias for non-CSS syntaxes.
+* Add `plugin.process(css)` shortcut to every plugin function (by Ben Briggs).
+* Add multiple nodes support to insert methods (by Jonathan Neal).
+* Add `Node#warn` shortcut (by Ben Briggs).
+* Add `word` and `index` options to errors and warnings (by David Clark).
+* Add `line`, `column` properties to `Warning`.
+* Use `supports-color` library to detect color support in error output.
+* Add type definitions for TypeScript plugin developers (by Jed Mao).
+* `Rule#selectors` setter detects separators.
+* Add `postcss.stringify` method.
+* Throw descriptive errors for incorrectly formatted plugins.
+* Add docs to npm release.
+* Fix `url()` parsing.
+* Fix Windows support (by Jed Mao).
+
 ## 4.1.16
 * Fix errors without stack trace.
 
