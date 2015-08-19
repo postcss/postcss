@@ -520,6 +520,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-style-guide`]:            https://github.com/morishitter/postcss-style-guide
 [`postcss-will-change`]:            https://github.com/postcss/postcss-will-change
 [`postcss-input-style`]:            https://github.com/seaneking/postcss-input-style
+[`postcss-ase-colors`]:             https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:             https://github.com/necolas/postcss-bem-linter
 [`postcss-color-gray`]:             https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:             https://github.com/btholt/postcss-colorblind
@@ -586,18 +587,17 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-for`]:                    https://github.com/antyakushev/postcss-for
 [`postcss-map`]:                    https://github.com/pascalduez/postcss-map
 [`postcss-svg`]:                    https://github.com/Pavliko/postcss-svg
-[`postcss-url`]:                    https://github.com/postcss/postcss-url
-[`css-byebye`]:                     https://github.com/AoDev/css-byebye
-[`cssfmt`]:                         https://github.com/morishitter/cssfmt
+[`postcss-url`]:                    https://github.com/postcss/postcss-urlt
 [`stylehacks`]:                     https://github.com/ben-eb/stylehacks
+[`css-byebye`]:                     https://github.com/AoDev/css-byebye
 [`cssgrace`]:                       https://github.com/cssdream/cssgrace
 [`csstyle`]:                        https://github.com/geddski/csstyle
 [`webpcss`]:                        https://github.com/lexich/webpcss
+[`cssfmt`]:                         https://github.com/morishitter/cssfm
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
-[`postcss-ase-colors`]:             https://github.com/dfernandez79/postcss-ase-colors
 
 ## How to Develop for PostCSS
 
