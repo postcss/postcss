@@ -593,7 +593,7 @@ See also plugins in modular minifier [`cssnano`].
 [`cssgrace`]:                       https://github.com/cssdream/cssgrace
 [`csstyle`]:                        https://github.com/geddski/csstyle
 [`webpcss`]:                        https://github.com/lexich/webpcss
-[`cssfmt`]:                         https://github.com/morishitter/cssfm
+[`cssfmt`]:                         https://github.com/morishitter/cssfmt
 [`doiuse`]:                         https://github.com/anandthakker/doiuse
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
