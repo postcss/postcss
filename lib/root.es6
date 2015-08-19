@@ -10,11 +10,6 @@ export default class Root extends Container {
         if ( !this.nodes ) this.nodes = [];
     }
 
-    remove(child) {
-        warnOnce('Root#remove is deprecated. Use Root#removeChild');
-        this.removeChild(child);
-    }
-
     removeChild(child) {
         child = this.index(child);
 
@@ -53,6 +48,16 @@ export default class Root extends Container {
 
         let lazy = new LazyResult(new Processor(), this, opts);
         return lazy.stringify();
+    }
+
+    remove(child) {
+        warnOnce('Root#remove is deprecated. Use Root#removeChild');
+        this.removeChild(child);
+    }
+
+    prevMap() {
+        warnOnce('Root#prevMap is deprecated. Use Root#source.input.map');
+        return this.source.input.map;
     }
 
 }
