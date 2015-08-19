@@ -587,7 +587,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-for`]:                    https://github.com/antyakushev/postcss-for
 [`postcss-map`]:                    https://github.com/pascalduez/postcss-map
 [`postcss-svg`]:                    https://github.com/Pavliko/postcss-svg
-[`postcss-url`]:                    https://github.com/postcss/postcss-urlt
+[`postcss-url`]:                    https://github.com/postcss/postcss-url
 [`stylehacks`]:                     https://github.com/ben-eb/stylehacks
 [`css-byebye`]:                     https://github.com/AoDev/css-byebye
 [`cssgrace`]:                       https://github.com/cssdream/cssgrace
