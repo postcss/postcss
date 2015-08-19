@@ -4,7 +4,7 @@
 * Remove plugin returning `Root` API.
 * Remove Promise polyfill for node.js 0.10.
 * Deprecate `eachInside`, `eachDecl`, `eachRule`, `eachAtRule` and `eachComment`
-  in favor of `walk`, `walkDecl`, `walkRule`, `walkAtRule` and `walkComment`
+  in favor of `walk`, `walkDecls`, `walkRules`, `walkAtRules` and `walkComments`
   (by Jed Mao).
 * Deprecate `Container#remove` and `Node#removeSelf`
   in favor of `Container#removeChild` and `Node#remove` (by Ben Briggs).
