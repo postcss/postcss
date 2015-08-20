@@ -302,6 +302,7 @@ export default class Container extends Node {
         }
 
         let processed = nodes.map( (i) => {
+            if ( typeof i.raws === 'undefined' ) i = this.rebuild(i);
             if ( i.parent ) i = i.clone();
             if ( typeof i.raws.before === 'undefined' ) {
                 if ( sample && typeof sample.raws.before !== 'undefined' ) {
@@ -313,6 +314,36 @@ export default class Container extends Node {
         });
 
         return processed;
+    }
+
+    rebuild(node, parent) {
+        let fix;
+        if ( node.type === 'root' ) {
+            let Root = require('./root');
+            fix = new Root();
+        } else if ( node.type === 'atrule' ) {
+            let AtRule = require('./at-rule');
+            fix = new AtRule();
+        } else if ( node.type === 'rule' ) {
+            let Rule = require('./rule');
+            fix = new Rule();
+        } else if ( node.type === 'decl' ) {
+            fix = new Declaration();
+        } else if ( node.type === 'comment' ) {
+            fix = new Comment();
+        }
+
+        for ( let i in node ) {
+            if ( i === 'nodes' ) {
+                fix.nodes = node.nodes.map( j => this.rebuild(j, fix) );
+            } else if ( i === 'parent' && parent ) {
+                fix.parent = parent;
+            } else if ( node.hasOwnProperty(i) ) {
+                fix[i] = node[i];
+            }
+        }
+
+        return fix;
     }
 
     eachInside(callback) {
