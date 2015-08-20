@@ -1,3 +1,7 @@
+## 5.0.1
+* Fix PostCSS 4.x plugins compatibility.
+* Fix type definition loading (Jed Mao).
+
 ## 5.0 “President Valac”
 * Remove `safe` option. Move Safe Parser to separate project.
 * `Node#toString` does not include `before` for root nodes.
