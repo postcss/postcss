@@ -56,9 +56,7 @@ describe('postcss()', () => {
         it('creates plugin', () => {
             let plugin = postcss.plugin('test', (filter) => {
                 return function (css) {
-                    css.walkDecls(filter || 'two', function (decl) {
-                        decl.remove();
-                    });
+                    css.walkDecls(filter || 'two', i => i.remove() );
                 };
             });
 

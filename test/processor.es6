@@ -267,9 +267,9 @@ describe('Processor', () => {
             let result = (new Processor([async])).process('');
             result.then( () => {
                 done('should not run then callback');
-            }).catch(function (err) {
+            }).catch( (err) => {
                 expect(err).to.eql(error);
-                result.catch(function (err2) {
+                result.catch( (err2) => {
                     expect(err2).to.eql(error);
                     done();
                 });
@@ -283,7 +283,7 @@ describe('Processor', () => {
             };
             (new Processor([async])).process('').then( () => {
                 done('should not run then callback');
-            }).catch(function (err) {
+            }).catch( (err) => {
                 expect(err).to.eql(error);
                 done();
             });
