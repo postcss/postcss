@@ -12,3 +12,5 @@ appveyor.yml
 
 gulpfile.babel.js
 logo.svg
+
+coverage/

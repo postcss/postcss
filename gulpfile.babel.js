@@ -71,12 +71,6 @@ gulp.task('integration', ['build:lib', 'build:package'], (done) => {
     });
 });
 
-gulp.task('test', () => {
-    require('./');
-    let mocha = require('gulp-mocha');
-    return gulp.src('test/*.es6', { read: false }).pipe(mocha());
-});
-
 // Common
 
-gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);
+gulp.task('default', ['lint', 'spellcheck', 'integration']);
