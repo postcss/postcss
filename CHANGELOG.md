@@ -1,6 +1,6 @@
 ## 5.0.1
 * Fix PostCSS 4.x plugins compatibility.
-* Fix type definition loading (Jed Mao).
+* Fix type definition loading (by Jed Mao).
 
 ## 5.0 “President Valac”
 * Remove `safe` option. Move Safe Parser to separate project.
