@@ -1,3 +1,6 @@
+## 5.0.2
+* Fix `remove(index)` to be compatible with 4.x plugin.
+
 ## 5.0.1
 * Fix PostCSS 4.x plugins compatibility.
 * Fix type definition loading (by Jed Mao).
