@@ -82,7 +82,7 @@ gulp.task('integration', ['build:lib', 'build:package'], (done) => {
 gulp.task('coverage:instrument', () => {
     require('./');
     let istanbul = require('gulp-istanbul');
-    let isparta  = require('isparta')
+    let isparta  = require('isparta');
     return gulp.src('lib/*.es6')
         .pipe(istanbul({
             includeUntested: true,
@@ -103,7 +103,7 @@ gulp.task('coverage:report', () => {
                     statements: 89.12,
                     functions:  87.29,
                     branches:   81.85,
-                    lines:      91
+                    lines:      90.68
                 }
             }
         }));
@@ -116,4 +116,4 @@ gulp.task('coverage', (done) => {
 
 // Common
 
-gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);
+gulp.task('default', ['lint', 'spellcheck', 'coverage', 'integration']);
