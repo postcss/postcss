@@ -200,7 +200,7 @@ export default class Container extends Node {
     }
 
     remove(child) {
-        if (child) {
+        if ( typeof child !== 'undefined' ) {
             warnOnce('Container#remove is deprecated. ' +
                      'Use Container#removeChild');
             this.removeChild(child);
