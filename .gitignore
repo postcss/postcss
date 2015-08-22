@@ -6,3 +6,5 @@ npm-debug.log
 
 build/
 /postcss.js
+
+coverage/
