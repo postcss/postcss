@@ -77,6 +77,43 @@ gulp.task('integration', ['build:lib', 'build:package'], (done) => {
     });
 });
 
+// Coverage
+
+gulp.task('coverage:instrument', () => {
+    require('./');
+    let istanbul = require('gulp-istanbul');
+    let isparta  = require('isparta')
+    return gulp.src('lib/*.es6')
+        .pipe(istanbul({
+            includeUntested: true,
+            instrumenter:    isparta.Instrumenter
+        }))
+        .pipe(istanbul.hookRequire({
+            extensions: ['.es6']
+        }));
+});
+
+gulp.task('coverage:report', () => {
+    let istanbul = require('gulp-istanbul');
+    return gulp.src('lib/*.es6', { read: false })
+        .pipe(istanbul.writeReports())
+        .pipe(istanbul.enforceThresholds({
+            thresholds: {
+                global: {
+                    statements: 89.12,
+                    functions:  87.29,
+                    branches:   81.85,
+                    lines:      91
+                }
+            }
+        }));
+});
+
+gulp.task('coverage', (done) => {
+    let runSequence = require('run-sequence');
+    runSequence('coverage:instrument', 'test', 'coverage:report', done);
+});
+
 // Common
 
 gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);
