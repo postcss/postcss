@@ -2,7 +2,7 @@ import gulp from 'gulp';
 
 gulp.task('clean', (done) => {
     let del = require('del');
-    del(['postcss.js', 'build/'], done);
+    del(['postcss.js', 'build/', 'coverage'], done);
 });
 
 // Build
@@ -63,6 +63,12 @@ gulp.task('spellcheck', (done) => {
 
 // Tests
 
+gulp.task('test', () => {
+    require('./');
+    let mocha = require('gulp-mocha');
+    return gulp.src('test/*.es6', { read: false }).pipe(mocha());
+});
+
 gulp.task('integration', ['build:lib', 'build:package'], (done) => {
     let postcss = require('./build/lib/postcss');
     let real    = require('postcss-parser-tests/real');
@@ -73,4 +79,4 @@ gulp.task('integration', ['build:lib', 'build:package'], (done) => {
 
 // Common
 
-gulp.task('default', ['lint', 'spellcheck', 'integration']);
+gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);
