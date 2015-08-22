@@ -135,7 +135,7 @@ describe('Container', () => {
             let size = 0;
 
             rule.each( () => {
-                rule.remove(0);
+                rule.removeChild(0);
                 size += 1;
             });
 
