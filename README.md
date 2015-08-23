@@ -352,6 +352,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-svgo`] processes inline SVG through [SVGO].
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
+* [`postcss-urlrev`] adds md5 hash strings to `url()`s
 
 ### Grids
 
@@ -600,6 +601,7 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
+[`postcss-urlrev`]:                 https://github.com/yuezk/postcss-urlrev
 
 ## How to Develop for PostCSS
 
