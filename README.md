@@ -351,8 +351,8 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-svg-fallback`] converts SVG in your CSS to PNG files for IE 8.
 * [`postcss-svgo`] processes inline SVG through [SVGO].
 * [`postcss-url`] rebases or inlines `url()`s.
+* [`postcss-urlrev`] adds md5 hash strings to `url()`s.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
-* [`postcss-urlrev`] adds md5 hash strings to `url()`s
 
 ### Grids
 
@@ -454,7 +454,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 
-[`postcss-german-stylesheets`]: https://github.com/timche/postcss-german-stylesheets
 [`postcss-pseudo-elements-content`]:https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]: https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:  https://github.com/jonathantneal/postcss-pseudo-class-any-link
@@ -462,6 +461,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-increase-specificity`]:   https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-color-rebeccapurple`]:    https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-color-rgba-fallback`]:    https://github.com/postcss/postcss-color-rgba-fallback
+[`postcss-german-stylesheets`]:     https://github.com/timche/postcss-german-stylesheets
 [`postcss-discard-duplicates`]:     https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-minify-font-weight`]:     https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:     https://github.com/jonathantneal/postcss-pseudo-class-enter
@@ -556,6 +556,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-border`]:                 https://github.com/andrepolischuk/postcss-border
 [`postcss-center`]:                 https://github.com/jedmao/postcss-center
 [`postcss-circle`]:                 https://github.com/jedmao/postcss-circle
+[`postcss-urlrev`]:                 https://github.com/yuezk/postcss-urlrev
 [`postcss-extend`]:                 https://github.com/travco/postcss-extend
 [`postcss-fakeid`]:                 https://github.com/pathsofdesign/postcss-fakeid
 [`postcss-filter`]:                 https://github.com/alanev/postcss-filter
@@ -601,7 +602,6 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                         https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                         https://github.com/MohammadYounes/rtlcss
 [`lost`]:                           https://github.com/corysimmons/lost
-[`postcss-urlrev`]:                 https://github.com/yuezk/postcss-urlrev
 
 ## How to Develop for PostCSS
 
