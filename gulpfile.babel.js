@@ -95,7 +95,7 @@ gulp.task('coverage:instrument', () => {
 
 gulp.task('coverage:report', () => {
     let istanbul = require('gulp-istanbul');
-    return gulp.src('lib/*.es6', { read: false })
+    return gulp.src('test/*.es6', { read: false })
         .pipe(istanbul.writeReports())
         .pipe(istanbul.enforceThresholds({
             thresholds: {
