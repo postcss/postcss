@@ -188,6 +188,12 @@ postcss(plugins).process('a {', { parser: safe }).then(function (result) {
 
 [`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
 
+### Stringifiers
+
+* [`midas`] converts a CSS string to highlighted HTML.
+
+[`midas`]: https://github.com/ben-eb/midas
+
 ## Plugins
 
 Go to [postcss.parts] for a searchable catalog of the plugins mentioned below.
