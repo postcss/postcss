@@ -114,7 +114,7 @@ Start using PostCSS in just two steps:
 2. Select plugins from the list below and add them to your PostCSS process.
 
 There are plugins for [Grunt], [Gulp], [webpack], [Broccoli],
-[Brunch] and [ENB].
+[Brunch], [ENB], [Stylus] and [Connect/Express].
 
 ```js
 gulp.task('css', function () {
@@ -124,8 +124,6 @@ gulp.task('css', function () {
         .pipe( gulp.dest('build/') );
 });
 ```
-
-You can also use PostCSS plugins with Stylus by using [poststylus].
 
 For other environments, you can use the [CLI tool] or the JS API:
 
@@ -139,16 +137,6 @@ postcss([ require('cssnext')(), require('cssnano')() ])
     });
 ```
 
-You can use PostCSS as a Connect/Express middleware with
-[postcss-middleware]:
-
-```js
-var postcssMiddleware = require('postcss-middleware');
-var express = require('express');
-var app = express();
-app.use('/css', postcssMiddleware(/* options */);
-```
-
 If you want to run PostCSS on node.js 0.10, add [Promise polyfill]:
 
 ```js
@@ -158,17 +146,17 @@ var postcss = require('postcss');
 
 Read the [PostCSS API] for more details about the JS API.
 
-[postcss-middleware]: https://github.com/jedmao/postcss-middleware
-[Promise polyfill]:   https://github.com/jakearchibald/es6-promise
-[poststylus]:         https://github.com/seaneking/poststylus
-[PostCSS API]:        https://github.com/postcss/postcss/blob/master/docs/api.md
-[Broccoli]:           https://github.com/jeffjewiss/broccoli-postcss
-[CLI tool]:           https://github.com/code42day/postcss-cli
-[webpack]:            https://github.com/postcss/postcss-loader
-[Brunch]:             https://github.com/iamvdo/postcss-brunch
-[Grunt]:              https://github.com/nDmitry/grunt-postcss
-[Gulp]:               https://github.com/postcss/gulp-postcss
-[ENB]:                https://github.com/theprotein/enb-postcss
+[Promise polyfill]: https://github.com/jakearchibald/es6-promise
+[Connect/Express]:  https://github.com/jedmao/postcss-middleware
+[PostCSS API]:      https://github.com/postcss/postcss/blob/master/docs/api.md
+[Broccoli]:         https://github.com/jeffjewiss/broccoli-postcss
+[CLI tool]:         https://github.com/code42day/postcss-cli
+[webpack]:          https://github.com/postcss/postcss-loader
+[Brunch]:           https://github.com/iamvdo/postcss-brunch
+[Stylus]:           https://github.com/seaneking/poststylus
+[Grunt]:            https://github.com/nDmitry/grunt-postcss
+[Gulp]:             https://github.com/postcss/gulp-postcss
+[ENB]:              https://github.com/theprotein/enb-postcss
 
 ## Custom Syntaxes
 
