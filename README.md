@@ -249,7 +249,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 ### Future CSS Syntax
 
-* [`postcss-all-unset`] supports `all: unset` property right now.
+* [`postcss-all-unset`] supports `all: unset` to clean inherit styles.
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
@@ -534,7 +534,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:              https://github.com/btholt/postcss-colorblind
 [`postcss-color-hexa`]:              https://github.com/nicksheffield/postcss-color-hexa
-[`postcss-all-unset`]: https://github.com/maximkoretskiy/postcss-all-unset
+[`postcss-all-unset`]:               https://github.com/maximkoretskiy/postcss-all-unset
 [`postcss-font-pack`]:               https://github.com/jedmao/postcss-font-pack
 [`postcss-functions`]:               https://github.com/andyjansson/postcss-functions
 [`postcss-color-hcl`]:               https://github.com/devgru/postcss-color-hcl
