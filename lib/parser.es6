@@ -211,7 +211,7 @@ export default class Parser {
         for ( let i = tokens.length - 1; i > 0; i-- ) {
             token = tokens[i];
             if ( token[1] === '!important' ) {
-                node.important = true;
+                if ( node.important ) node.important = true;
                 let string = this.stringFrom(tokens, i);
                 string = this.spacesFromEnd(tokens) + string;
                 if ( string !== ' !important' ) node.raws.important = string;
@@ -228,7 +228,7 @@ export default class Parser {
                     str = cache.pop()[1] + str;
                 }
                 if ( str.trim().indexOf('!') === 0 ) {
-                    node.important = true;
+                    if ( node.important ) node.important = true;
                     node.raws.important = str;
                     tokens = cache;
                 }
