@@ -160,7 +160,7 @@ Read the [PostCSS API] for more details about the JS API.
 
 ## Custom Syntaxes
 
-PostCSS can transforms styles in any syntax, not only in CSS.
+PostCSS can transform styles in any syntax, not only in CSS.
 There are 3 special arguments in `process()` method to control syntax.
 You can even separately set input parser and output stringifier.
 
