@@ -50,7 +50,7 @@ You can use the [cssnext] plugin pack and write future CSS code right now:
     --mainColor: #ffbbaaff;
 }
 @custom-media    --mobile (width <= 640px);
-@custom-selector --heading h1, h2, h3, h4, h5, h6;
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
 
 .post-article :--heading {
     color: color( var(--mainColor) blackness(+20%) );
