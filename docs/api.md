@@ -1218,7 +1218,7 @@ Arguments:
 
 * `otherNode (Node)`: node that will be after/before current node after moving.
 
-### `node.style(prop, defaultType)`
+### `node.raw(prop, defaultType)`
 
 Returns a code style property value. If the node is missing the code style
 property (because the node was manually built or cloned), PostCSS will try
