@@ -1458,7 +1458,7 @@ var selectors = [];
 root.walkRules(function (rule) {
     selectors.push(rule.selector);
 });
-console.log('You CSS uses ' + selectors.length + ' selectors');
+console.log('Your CSS uses ' + selectors.length + ' selectors');
 ```
 
 Arguments:
