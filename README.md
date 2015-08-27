@@ -249,7 +249,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 ### Future CSS Syntax
 
-* [`postcss-all-property`] supports `all: initial` to clean inherit styles.
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
@@ -266,6 +265,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to more widely supported CSS.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
+* [`postcss-initial`] supports `initial` keyword and `all: initial` to clean inherit styles.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
 * [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
@@ -519,7 +519,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-selector-not`]:            https://github.com/postcss/postcss-selector-not
 [`postcss-svg-fallback`]:            https://github.com/justim/postcss-svg-fallback
 [`postcss-nested-props`]:            https://github.com/jedmao/postcss-nested-props
-[`postcss-all-property`]:            https://github.com/maximkoretskiy/postcss-all-property
 [`postcss-color-alpha`]:             https://github.com/avanes/postcss-color-alpha
 [`postcss-color-scale`]:             https://github.com/kristoferjoseph/postcss-color-scale
 [`postcss-color-short`]:             https://github.com/andrepolischuk/postcss-color-short
@@ -555,6 +554,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-reporter`]:                https://github.com/postcss/postcss-reporter
 [`postcss-easings`]:                 https://github.com/postcss/postcss-easings
 [`postcss-hexrgba`]:                 https://github.com/seaneking/postcss-hexrgba
+[`postcss-initial`]:                 https://github.com/maximkoretskiy/postcss-initial
 [`postcss-rgb-plz`]:                 https://github.com/himynameisdave/postcss-rgb-plz
 [`postcss-opacity`]:                 https://github.com/iamvdo/postcss-opacity
 [`postcss-pointer`]:                 https://github.com/markgoodyear/postcss-pointer
