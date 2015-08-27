@@ -417,6 +417,7 @@ See also plugins in modular minifier [`cssnano`].
 ### Others
 
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
+* [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
@@ -544,6 +545,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-clearfix`]:                https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:                https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:                https://github.com/cssstats/postcss-cssstats
+[`postcss-currency`]:                https://github.com/talgautb/postcss-currency
 [`postcss-imperial`]:                https://github.com/cbas/postcss-imperial
 [`postcss-position`]:                https://github.com/seaneking/postcss-position
 [`postcss-spiffing`]:                https://github.com/HashanP/postcss-spiffing
