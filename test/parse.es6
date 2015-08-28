@@ -1,4 +1,3 @@
-import Input from '../lib/input';
 import parse from '../lib/parse';
 import Root  from '../lib/root';
 
