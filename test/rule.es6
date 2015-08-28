@@ -23,8 +23,6 @@ describe('Rule', () => {
         });
 
         it('is smart about commas', () => {
-            // Note: We don’t have to care about unquoted attribute values
-            // (such as `[foo=a,b]`), because that is invalid CSS.
             let rule = new Rule({
                 selector: '[foo=\'a, b\'], a:-moz-any(:focus, [href*=\',\'])'
             });
