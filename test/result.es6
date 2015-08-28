@@ -45,6 +45,14 @@ describe('Result', () => {
             expect(result.messages[0].plugin).to.eql('test-plugin#one');
         });
 
+        it('allows Root', () => {
+            let result = new Result();
+            let root   = postcss.parse('a{}');
+            result.warn('TT', { node: root });
+
+            expect(result.messages[0].toString()).to.eql('<css input>:0:0: TT');
+        });
+
     });
 
     describe('warnings()', () => {

@@ -7,6 +7,8 @@ import   cases    from 'postcss-parser-tests';
 describe('stringify', () => {
 
     cases.each( (name, css) => {
+        if ( name === 'bom.css' ) return;
+
         it('stringifies ' + name, () => {
             let root   = parse(css);
             let result = '';

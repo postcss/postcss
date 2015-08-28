@@ -14,37 +14,6 @@ describe('postcss.parse()', () => {
         expect(parse(stream)).to.be.instanceOf(Root);
     });
 
-    describe('empty file', () => {
-
-        it('parses UTF-8 BOM', () => {
-            let css = parse('\uFEFF@host { a {\f} }');
-            expect(css.first.raws.before).to.eql('');
-        });
-
-        it('parses empty file', () => {
-            expect(parse('', { from: 'a.css' })).to.eql(new Root({
-                raws: {
-                    after: ''
-                },
-                source: {
-                    input: new Input('', { from: 'a.css' })
-                }
-            }));
-        });
-
-        it('parses spaces', () => {
-            expect(parse(' \n', { from: 'a.css' })).to.eql(new Root({
-                raws: {
-                    after: ' \n'
-                },
-                source: {
-                    input: new Input(' \n', { from: 'a.css' })
-                }
-            }));
-        });
-
-    });
-
     cases.each( (name, css, json) => {
         it('parses ' + name, () => {
             let parsed = cases.jsonify(parse(css, { from: name }));
