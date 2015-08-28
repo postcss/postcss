@@ -528,6 +528,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-short`]:             https://github.com/andrepolischuk/postcss-color-short
 [`postcss-data-packer`]:             https://github.com/Ser-Gen/postcss-data-packer
 [`postcss-font-family`]:             https://github.com/ben-eb/postcss-font-family
+[`postcss-simple-grid`]:             https://github.com/admdh/postcss-simple-grid
 [`postcss-merge-rules`]:             https://github.com/ben-eb/postcss-merge-rules
 [`postcss-simple-vars`]:             https://github.com/postcss/postcss-simple-vars
 [`postcss-strip-units`]:             https://github.com/whitneyit/postcss-strip-units
@@ -595,7 +596,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-each`]:                    https://github.com/outpunk/postcss-each
 [`postcss-epub`]:                    https://github.com/Rycochet/postcss-epub
 [`postcss-grid`]:                    https://github.com/andyjansson/postcss-grid
-[`postcss-simple-grid`]:             https://github.com/admdh/postcss-simple-grid
 [`postcss-host`]:                    https://github.com/vitkarpov/postcss-host
 [`postcss-neat`]:                    https://github.com/jo-asakura/postcss-neat
 [`postcss-size`]:                    https://github.com/postcss/postcss-size
