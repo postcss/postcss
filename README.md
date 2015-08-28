@@ -365,8 +365,10 @@ See also [`precss`] plugins pack to add them by one line of code.
 ### Grids
 
 * [`postcss-grid`] adds a semantic grid system.
+* [`postcss-simple-grid`] create grid with one line.
 * [`postcss-neat`] is a semantic and fluid grid framework.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
+
 
 ### Optimizations
 
@@ -593,6 +595,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-each`]:                    https://github.com/outpunk/postcss-each
 [`postcss-epub`]:                    https://github.com/Rycochet/postcss-epub
 [`postcss-grid`]:                    https://github.com/andyjansson/postcss-grid
+[`postcss-simple-grid`]:             https://github.com/admdh/postcss-simple-grid
 [`postcss-host`]:                    https://github.com/vitkarpov/postcss-host
 [`postcss-neat`]:                    https://github.com/jo-asakura/postcss-neat
 [`postcss-size`]:                    https://github.com/postcss/postcss-size
