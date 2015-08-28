@@ -1,3 +1,8 @@
+## 5.0.3
+* Fix `url()` parsing.
+* Fix using `selectors` in `Rule` constructor.
+* Add start source to `Root` node.
+
 ## 5.0.2
 * Fix `remove(index)` to be compatible with 4.x plugin.
 
