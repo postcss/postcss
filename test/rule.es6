@@ -55,6 +55,11 @@ describe('Rule', () => {
             expect(rule.selector).to.eql('b, strong');
         });
 
+        it('works in constructor', () => {
+            let rule = new Rule({ selectors: ['a', 'b'] });
+            expect(rule.selector).to.eql('a, b');
+        });
+
     });
 
     describe('toString()', () => {
