@@ -419,6 +419,7 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Others
 
+* [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
@@ -540,6 +541,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:              https://github.com/btholt/postcss-colorblind
 [`postcss-color-hexa`]:              https://github.com/nicksheffield/postcss-color-hexa
+[`postcss-autoreset`]:               https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-font-pack`]:               https://github.com/jedmao/postcss-font-pack
 [`postcss-functions`]:               https://github.com/andyjansson/postcss-functions
 [`postcss-color-hcl`]:               https://github.com/devgru/postcss-color-hcl
