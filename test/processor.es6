@@ -388,9 +388,12 @@ describe('Processor', () => {
 
         it('uses custom stringifier with source maps', (done) => {
             let processor = new Processor([]);
+            let expr      = '^' + ( '!' + os.EOL + '/*# sourceMap')
+                                    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
             processor.process('a{}', { map: true, stringifier: str })
                 .then( (result) => {
-                    expect(result.css).to.match(new RegExp('^'+ ( '!' + os.EOL + '/*# sourceMap').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+                    expect(result.css).to.match(new RegExp(expr));
                     done();
                 });
         });

@@ -88,9 +88,11 @@ describe('Root', () => {
         it('generates result with map', () => {
             let root   = parse('a {}');
             let result = root.toResult({ map: true });
+            let expr   = ('a {}' + os.EOL + '/*# sourceMappingURL=')
+                          .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
             expect(result).to.be.a.instanceOf(Result);
-            expect(result.css).to.match(new RegExp(('a {}' + os.EOL + '/*# sourceMappingURL=').replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+            expect(result.css).to.match(new RegExp(expr));
         });
 
     });
