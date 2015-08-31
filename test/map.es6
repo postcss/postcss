@@ -5,6 +5,7 @@ import   mozilla  from 'source-map';
 import   fs       from 'fs-extra';
 import { expect } from 'chai';
 import   path     from 'path';
+import   os       from 'os';
 
 let consumer = map => mozilla.SourceMapConsumer.fromSourceMap(map);
 
@@ -108,7 +109,7 @@ describe('source maps', () => {
             map:  { inline: false }
         });
 
-        expect(result.css).to.eql('a { }\n/*# sourceMappingURL=b.css.map */');
+        expect(result.css).to.eql('a { }' + os.EOL +'/*# sourceMappingURL=b.css.map */');
     });
 
     it('misses source map annotation, if user ask', () => {
@@ -147,7 +148,7 @@ describe('source maps', () => {
             map:  { annotation: 'maps/b.map' }
         });
 
-        expect(result.css).to.eql('a { }\n/*# sourceMappingURL=maps/b.map */');
+        expect(result.css).to.eql('a { }' + os.EOL + '/*# sourceMappingURL=maps/b.map */');
         let map = consumer(result.map);
 
         expect(map.file).to.eql('../b.css');
@@ -427,7 +428,7 @@ describe('source maps', () => {
     it('works without file names', () => {
         let step1 = doubler.process('a { }', { map: true });
         let step2 = doubler.process(step1.css);
-        expect(step2.css).to.match(/a \{ \}\n\/\*/);
+        expect(step2.css).to.match(new RegExp(('a { }' + os.EOL + '/*').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
     });
 
     it('supports UTF-8', () => {
@@ -474,7 +475,7 @@ describe('source maps', () => {
             map:  { inline: false }
         });
 
-        expect(result.css).to.eql('a { }\n/*# sourceMappingURL=b.css.map */');
+        expect(result.css).to.eql('a { }' + os.EOL + '/*# sourceMappingURL=b.css.map */');
     });
 
     it('does not update annotation on request', () => {
