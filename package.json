@@ -15,10 +15,7 @@
   ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url":  "https://github.com/postcss/postcss.git"
-  },
+  "repository": "postcss/postcss",
   "dependencies": {
     "supports-color": "^3.1.0",
     "source-map":     "^0.4.4",
