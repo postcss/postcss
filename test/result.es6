@@ -50,7 +50,7 @@ describe('Result', () => {
             let root   = postcss.parse('a{}');
             result.warn('TT', { node: root });
 
-            expect(result.messages[0].toString()).to.eql('<css input>:0:0: TT');
+            expect(result.messages[0].toString()).to.eql('<css input>:1:1: TT');
         });
 
     });

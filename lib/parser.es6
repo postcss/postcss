@@ -16,7 +16,7 @@ export default class Parser {
         this.spaces    = '';
         this.semicolon = false;
 
-        this.root.source = { input, start: { line: 0, column: 0 } };
+        this.root.source = { input, start: { line: 1, column: 1 } };
     }
 
     tokenize() {
