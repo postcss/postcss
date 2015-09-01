@@ -1,8 +1,8 @@
 import gulp from 'gulp';
 
-gulp.task('clean', (done) => {
+gulp.task('clean', () => {
     let del = require('del');
-    del(['postcss.js', 'build/', 'coverage'], done);
+    return del(['postcss.js', 'build/', 'coverage']);
 });
 
 // Build
