@@ -278,6 +278,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
+* [`postcss-mqwidth-to-class`] converts min/max-width media queries to classes.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
@@ -564,6 +565,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-hexrgba`]:                 https://github.com/seaneking/postcss-hexrgba
 [`postcss-initial`]:                 https://github.com/maximkoretskiy/postcss-initial
 [`postcss-rgb-plz`]:                 https://github.com/himynameisdave/postcss-rgb-plz
+[`postcss-mqwidth-to-class`]:        https://github.com/notacouch/postcss-mqwidth-to-class
 [`postcss-opacity`]:                 https://github.com/iamvdo/postcss-opacity
 [`postcss-pointer`]:                 https://github.com/markgoodyear/postcss-pointer
 [`postcss-pxtorem`]:                 https://github.com/cuth/postcss-pxtorem
