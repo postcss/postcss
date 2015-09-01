@@ -8,6 +8,7 @@ import Root       from '../lib/root';
 import { expect } from 'chai';
 import   sinon    from 'sinon';
 import   path     from 'path';
+import   os       from 'os';
 
 let prs = () => new Root({ raws: { after: 'ok' } });
 let str = (node, builder) => {
@@ -387,9 +388,12 @@ describe('Processor', () => {
 
         it('uses custom stringifier with source maps', (done) => {
             let processor = new Processor([]);
+            let expr      = '^' + ( '!' + os.EOL + '/*# sourceMap')
+                                    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
             processor.process('a{}', { map: true, stringifier: str })
                 .then( (result) => {
-                    expect(result.css).to.match(/^\!\n\/\*# sourceMap/);
+                    expect(result.css).to.match(new RegExp(expr));
                     done();
                 });
         });

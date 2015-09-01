@@ -1,6 +1,7 @@
 import { Base64 } from 'js-base64';
 import   mozilla  from 'source-map';
 import   path     from 'path';
+import   os       from 'os';
 
 export default class {
 
@@ -135,7 +136,7 @@ export default class {
             content = this.outputFile() + '.map';
         }
 
-        this.css += '\n/*# sourceMappingURL=' + content + ' */';
+        this.css += os.EOL + '/*# sourceMappingURL=' + content + ' */';
     }
 
     outputFile() {
