@@ -566,6 +566,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-hexrgba`]:                 https://github.com/seaneking/postcss-hexrgba
 [`postcss-initial`]:                 https://github.com/maximkoretskiy/postcss-initial
 [`postcss-rgb-plz`]:                 https://github.com/himynameisdave/postcss-rgb-plz
+[`postcss-mqwidth-to-class`]:        https://github.com/notacouch/postcss-mqwidth-to-class
 [`postcss-opacity`]:                 https://github.com/iamvdo/postcss-opacity
 [`postcss-pointer`]:                 https://github.com/markgoodyear/postcss-pointer
 [`postcss-pxtorem`]:                 https://github.com/cuth/postcss-pxtorem
