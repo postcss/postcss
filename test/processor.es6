@@ -8,7 +8,6 @@ import Root       from '../lib/root';
 import { expect } from 'chai';
 import   sinon    from 'sinon';
 import   path     from 'path';
-import   os       from 'os';
 
 let prs = () => new Root({ raws: { after: 'ok' } });
 let str = (node, builder) => {
@@ -390,7 +389,7 @@ describe('Processor', () => {
             let processor = new Processor([]);
             processor.process('a{}', { map: true, stringifier: str })
                 .then( (result) => {
-                    expect(result.css).to.include(`!${ os.EOL }/*# sourceMap`);
+                    expect(result.css).to.include('!\n/*# sourceMap');
                     done();
                 });
         });
