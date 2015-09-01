@@ -109,9 +109,8 @@ describe('source maps', () => {
             map:  { inline: false }
         });
 
-        expect(result.css)
-            .to
-            .eql('a { }' + os.EOL + '/*# sourceMappingURL=b.css.map */');
+        expect(result.css).to.eql(
+            'a { }' + os.EOL + '/*# sourceMappingURL=b.css.map */');
     });
 
     it('misses source map annotation, if user ask', () => {
@@ -150,8 +149,8 @@ describe('source maps', () => {
             map:  { annotation: 'maps/b.map' }
         });
 
-        expect(result.css)
-            .to.eql('a { }' + os.EOL + '/*# sourceMappingURL=maps/b.map */');
+        expect(result.css).to.eql(
+            'a { }' + os.EOL + '/*# sourceMappingURL=maps/b.map */');
         let map = consumer(result.map);
 
         expect(map.file).to.eql('../b.css');
@@ -431,11 +430,7 @@ describe('source maps', () => {
     it('works without file names', () => {
         let step1 = doubler.process('a { }', { map: true });
         let step2 = doubler.process(step1.css);
-        let expr  = ('a { }' + os.EOL + '/*')
-                      .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-        expect(step2.css)
-            .to.match(new RegExp(expr));
+        expect(step2.css).to.include('a { }' + os.EOL + '/*');
     });
 
     it('supports UTF-8', () => {
@@ -482,8 +477,8 @@ describe('source maps', () => {
             map:  { inline: false }
         });
 
-        expect(result.css)
-            .to.eql('a { }' + os.EOL + '/*# sourceMappingURL=b.css.map */');
+        expect(result.css).to.eql(
+            'a { }' + os.EOL + '/*# sourceMappingURL=b.css.map */');
     });
 
     it('does not update annotation on request', () => {
