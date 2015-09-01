@@ -26,7 +26,7 @@ gulp.task('build:docs', ['clean'], () => {
 
 gulp.task('build:package', ['clean'], () => {
     let editor = require('gulp-json-editor');
-    gulp.src('./package.json')
+    return gulp.src('./package.json')
         .pipe(editor( (p) => {
             p.main = 'lib/postcss';
             p.devDependencies['babel-core'] = p.dependencies['babel-core'];
