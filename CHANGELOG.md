@@ -1,3 +1,7 @@
+## 5.0.4
+* Fix start position in `Root#source`.
+* Fix source map annotation, when CSS uses `\r\n` (by Mohammad Younes).
+
 ## 5.0.3
 * Fix `url()` parsing.
 * Fix using `selectors` in `Rule` constructor.
