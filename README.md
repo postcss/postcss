@@ -426,6 +426,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
+* [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
@@ -439,7 +440,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`postcss-flexbugs-fixes`] fixes to some of known [flexbox bugs](https://github.com/philipwalton/flexbugs)
+
+[flexbox bugs]: https://github.com/philipwalton/flexbugs
 
 ### Analysis
 
@@ -475,6 +477,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-class-any-link`]:   https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-canadian-stylesheets`]:    https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-increase-specificity`]:    https://github.com/MadLittleMods/postcss-increase-specificity
+[`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
 [`postcss-color-rebeccapurple`]:     https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-color-rgba-fallback`]:     https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-german-stylesheets`]:      https://github.com/timche/postcss-german-stylesheets
@@ -505,6 +508,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-convert-values`]:          https://github.com/ben-eb/postcss-convert-values
 [`postcss-pseudoelements`]:          https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-single-charset`]:          https://github.com/hail2u/postcss-single-charset
+[`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
 [`postcss-color-palette`]:           https://github.com/zaim/postcss-color-palette
 [`postcss-color-pantone`]:           https://github.com/longdog/postcss-color-pantone
 [`postcss-css-variables`]:           https://github.com/MadLittleMods/postcss-css-variables
@@ -614,7 +618,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-for`]:                     https://github.com/antyakushev/postcss-for
 [`postcss-map`]:                     https://github.com/pascalduez/postcss-map
 [`postcss-svg`]:                     https://github.com/Pavliko/postcss-svg
-[`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
 [`postcss-url`]:                     https://github.com/postcss/postcss-url
 [`stylehacks`]:                      https://github.com/ben-eb/stylehacks
 [`css-byebye`]:                      https://github.com/AoDev/css-byebye
@@ -626,7 +629,6 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                          https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`lost`]:                            https://github.com/corysimmons/lost
-[`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
 
 ## How to Develop for PostCSS
 
