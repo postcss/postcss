@@ -17,8 +17,8 @@ let postcss = function (...plugins) {
 };
 
 postcss.plugin = function (name, initializer) {
-    let creator = function () {
-        let transformer = initializer.apply(this, arguments);
+    let creator = function (...args) {
+        let transformer = initializer(...args);
         transformer.postcssPlugin  = name;
         transformer.postcssVersion = (new Processor()).version;
         return transformer;
@@ -37,20 +37,10 @@ postcss.vendor    = vendor;
 postcss.parse     = parse;
 postcss.list      = list;
 
-postcss.comment = function (defaults) {
-    return new Comment(defaults);
-};
-postcss.atRule = function (defaults) {
-    return new AtRule(defaults);
-};
-postcss.decl = function (defaults) {
-    return new Declaration(defaults);
-};
-postcss.rule = function (defaults) {
-    return new Rule(defaults);
-};
-postcss.root = function (defaults) {
-    return new Root(defaults);
-};
+postcss.comment = (defaults) => new Comment(defaults);
+postcss.atRule  = (defaults) => new AtRule(defaults);
+postcss.decl    = (defaults) => new Declaration(defaults);
+postcss.rule    = (defaults) => new Rule(defaults);
+postcss.root    = (defaults) => new Root(defaults);
 
 export default postcss;
