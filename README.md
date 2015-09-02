@@ -463,6 +463,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-german-stylesheets`] German Style Sheets.
+* [`postcss-swedish-stylesheets`] Swedish Style Sheets.
 * [`postcss-imperial`] adds CSS support for Imperial and US customary units of length.
 * [`postcss-russian-units`] adds CSS support for russian units of length.
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
@@ -612,6 +613,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-for`]:                     https://github.com/antyakushev/postcss-for
 [`postcss-map`]:                     https://github.com/pascalduez/postcss-map
 [`postcss-svg`]:                     https://github.com/Pavliko/postcss-svg
+[`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
 [`postcss-url`]:                     https://github.com/postcss/postcss-url
 [`stylehacks`]:                      https://github.com/ben-eb/stylehacks
 [`css-byebye`]:                      https://github.com/AoDev/css-byebye
