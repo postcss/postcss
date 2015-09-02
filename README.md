@@ -439,6 +439,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-flexbugs-fixes`] fixes to some of known [flexbox bugs](https://github.com/philipwalton/flexbugs)
 
 ### Analysis
 
@@ -625,6 +626,7 @@ See also plugins in modular minifier [`cssnano`].
 [`pixrem`]:                          https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`lost`]:                            https://github.com/corysimmons/lost
+[`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
 
 ## How to Develop for PostCSS
 
