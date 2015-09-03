@@ -4,7 +4,11 @@ import postcss from './postcss';
 import Result from './result';
 import Node from './node';
 export default class Root extends Container implements postcss.Root {
-    prevMap: PreviousMap;
+    /**
+     * Returns a string representing the node's type. Possible values are
+     * root, atrule, rule, decl or comment.
+     */
+    type: string;
     rawCache: {
         [key: string]: any;
     };
@@ -19,10 +23,6 @@ export default class Root extends Container implements postcss.Root {
      */
     clone(overrides?: Object): Root;
     toJSON(): postcss.JsonRoot;
-    /**
-     * Deprecated. Use Root#removeChild.
-     */
-    remove(child?: Node | number): Root;
     /**
      * Removes child from the root node, and the parent properties of node and
      * its children.
@@ -43,4 +43,12 @@ export default class Root extends Container implements postcss.Root {
         to?: string;
         map?: postcss.SourceMapOptions;
     }): Result;
+    /**
+     * Deprecated. Use Root#removeChild.
+     */
+    remove(child?: Node | number): Root;
+    /**
+     * Deprecated. Use Root#source.input.map.
+     */
+    prevMap(): PreviousMap;
 }

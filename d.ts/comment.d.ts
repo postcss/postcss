@@ -12,7 +12,7 @@ export default class Comment extends Node implements postcss.Comment {
     text: string;
     /**
      * Represents a comment between declarations or statements (rule and at-rules).
-     * Comments inside selectors, at-rules parameters, or declaration values will
+     * Comments inside selectors, at-rule parameters, or declaration values will
      * be stored in the Node#raws properties.
      */
     constructor(defaults?: postcss.CommentNewProps);

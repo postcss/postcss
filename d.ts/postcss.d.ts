@@ -44,7 +44,7 @@ declare module postcss {
      */
     var vendor: typeof _vendor;
     /**
-     * Default function to convert nodes tree to CSS string.
+     * Default function to convert a node tree into a CSS string.
      */
     function stringify(node: Node, builder: Stringifier.Builder): void;
     /**
@@ -66,31 +66,31 @@ declare module postcss {
     var list: typeof _list;
     /**
      * Creates a new Comment node.
-     * @param defaults Properties for the new node.
+     * @param defaults Properties for the new Comment node.
      * @returns The new node.
      */
     function comment(defaults?: CommentNewProps): Comment;
     /**
      * Creates a new AtRule node.
-     * @param defaults Properties for the new node.
+     * @param defaults Properties for the new AtRule node.
      * @returns The new node.
      */
     function atRule(defaults?: AtRuleNewProps): AtRule;
     /**
      * Creates a new Declaration node.
-     * @param defaults Properties for the new node.
+     * @param defaults Properties for the new Declaration node.
      * @returns The new node.
      */
     function decl(defaults?: DeclarationNewProps): Declaration;
     /**
      * Creates a new Rule node.
-     * @param defaults Properties for the new node.
+     * @param defaults Properties for the new Rule node.
      * @returns The new node.
      */
     function rule(defaults?: RuleNewProps): Rule;
     /**
      * Creates a new Root node.
-     * @param defaults Properties for the new node.
+     * @param defaults Properties for the new Root node.
      * @returns The new node.
      */
     function root(defaults?: Object): Root;
@@ -106,14 +106,14 @@ declare module postcss {
          */
         inline?: boolean;
         /**
-         * Source map content from a previous processing step (for example, Sass compilation).
+         * Source map content from a previous processing step (e.g., Sass compilation).
          * PostCSS will try to read the previous source map automatically (based on comments
          * within the source CSS), but you can use this option to identify it manually.
          * If desired, you can omit the previous map with prev: false.
          */
         prev?: any;
         /**
-         * Indicates that PostCSS should set the origin content (for example, Sass source)
+         * Indicates that PostCSS should set the origin content (e.g., Sass source)
          * of the source map. By default, it is true. But if all previous maps do not
          * contain sources content, PostCSS will also leave it out even if you do not set
          * this option.
@@ -141,7 +141,7 @@ declare module postcss {
     /**
      * A Processor instance contains plugins to process CSS. Create one
      * Processor  instance, initialize its plugins, and then use that instance
-     * on many CSS files.
+     * on numerous CSS files.
      */
     interface Processor {
         /**
@@ -165,7 +165,7 @@ declare module postcss {
          */
         plugins: Plugin<any>[];
         /**
-         * Contains current version of PostCSS (e.g., "4.0.5").
+         * Contains the current version of PostCSS (e.g., "4.0.5").
          */
         version: string;
     }
@@ -212,7 +212,7 @@ declare module postcss {
         (node?: postcss.Node, builder?: any): postcss.Result | void;
     }
     /**
-     * Promise proxy for result of PostCSS transformations.
+     * A promise proxy for the result of PostCSS transformations.
      */
     interface LazyResult {
         /**
@@ -231,9 +231,9 @@ declare module postcss {
         toString(): string;
         /**
          * Processes input CSS through synchronous plugins and converts Root to
-         * CSS string. This property will work only with synchronous plugins. If
-         * processor contains any asynchronous plugins it will throw a error. You
-         * should use LazyResult#then() instead.
+         * CSS string. This property will only work with synchronous plugins. If
+         * the processor contains any asynchronous plugins it will throw an error.
+         * In this case, you should use LazyResult#then() instead.
          * @returns Result#css.
          */
         css: string;
@@ -256,9 +256,9 @@ declare module postcss {
         root: Root;
         /**
          * Processes input CSS through synchronous plugins and calls Result#warnings().
-         * This property will work only with synchronous plugins. If processor
-         * contains any asynchronous plugins it will throw a error. You should use
-         * LazyResult#then()  instead.
+         * This property will only work with synchronous plugins. If the processor
+         * contains any asynchronous plugins it will throw an error. In this case,
+         * you should use LazyResult#then() instead.
          */
         warnings(): ResultMessage[];
         /**
@@ -286,7 +286,7 @@ declare module postcss {
          */
         toString(): string;
         /**
-         * Creates a Warning and adds it to messages.
+         * Creates an instance of Warning and adds it to messages.
          * @param message Used in the text property of the message object.
          * @param options Properties for Message object.
          */
@@ -315,13 +315,13 @@ declare module postcss {
          */
         map: ResultMap;
         /**
-         * Contains Root node after all transformations.
+         * Contains the Root node after all transformations.
          */
         root: Root;
         /**
-         * Contains messages from plugins. For example, warnings or custom messages to
-         * plugins communication. Add a warning using Result#warn() and get all warnings
-         * using Result#warnings() method.
+         * Contains messages from plugins (e.g., warnings or custom messages).
+         * Add a warning using Result#warn() and get all warnings
+         * using the Result#warnings() method.
          */
         messages: ResultMessage[];
         /**
@@ -407,7 +407,7 @@ declare module postcss {
         browsers?: string[];
     }
     /**
-     * Warning from plugins. It can be created using Result#warn().
+     * Represents a plugin warning. It can be created using Result#warn().
      */
     interface Warning {
         /**
@@ -419,8 +419,8 @@ declare module postcss {
          */
         text: string;
         /**
-         * Contains name of plugin that created this warning. When you call
-         * Result#warn(), it will fill this property automatically.
+         * Contains the name of the plugin that created this warning. When you
+         * call Result#warn(), it will fill this property automatically.
          */
         plugin: string;
         /**
@@ -428,11 +428,11 @@ declare module postcss {
          */
         node: Node;
         /**
-         * Line in input file with this warning source.
+         * The line in the input file with this warning's source.
          */
         line: number;
         /**
-         * Column in input file with this warning source.
+         * Column in the input file with this warning's source.
          */
         column: number;
     }
@@ -467,7 +467,7 @@ declare module postcss {
          */
         showSourceCode(color?: boolean): string;
         /**
-         * Contains full error text by GNU error format.
+         * Contains full error text in the GNU error format.
          */
         message: string;
         /**
@@ -475,45 +475,47 @@ declare module postcss {
          */
         reason: string;
         /**
-         * Contains PostCSS plugin name if error did not come from CSS parser.
+         * Contains the PostCSS plugin name if the error didn't come from the
+         * CSS parser.
          */
         plugin?: string;
         input?: InputOrigin;
     }
     interface InputOrigin {
         /**
-         * If parser's from option is set, contains absolute path to broken file.
-         * PostCSS will use the input source map to detect the original error
-         * location. If you wrote a Sass file, then compiled it to CSS and
-         * parsed it with PostCSS, PostCSS will show the original position in
-         * the Sass file. If you need the position in PostCSS input
-         * (e.g., to debug previous compiler), use error.input.file.
+         * If parser's from option is set, contains the absolute path to the
+         * broken file. PostCSS will use the input source map to detect the
+         * original error location. If you wrote a Sass file, then compiled it
+         * to CSS and parsed it with PostCSS, PostCSS will show the original
+         * position in the Sass file. If you need the position in the PostCSS
+         * input (e.g., to debug the previous compiler), use error.input.file.
          */
         file?: string;
         /**
-         * Contains source line of error. PostCSS will use the input source map
-         * to detect the original error location. If you wrote a Sass file, then
-         * compiled it to CSS and parsed it with PostCSS, PostCSS will show the
-         * original position in the Sass file. If you need position in PostCSS
-         * input (e.g., to debug previous compiler), use error.input.line.
+         * Contains the source line of the error. PostCSS will use the input
+         * source map to detect the original error location. If you wrote a Sass
+         * file, then compiled it to CSS and parsed it with PostCSS, PostCSS
+         * will show the original position in the Sass file. If you need the
+         * position in the PostCSS input (e.g., to debug the previous
+         * compiler), use error.input.line.
          */
         line?: number;
         /**
          * Contains the source column of the error. PostCSS will use input
-         * source map to detect the original error location. If you wrote a Sass
-         * file, then compiled it to CSS and parsed it with PostCSS, PostCSS
-         * will show the original position in the Sass file. If you need
-         * position in PostCSS input (e.g., to debug previous compiler), use
-         * error.input.column.
+         * source map to detect the original error location. If you wrote a
+         * Sass file, then compiled it to CSS and parsed it with PostCSS,
+         * PostCSS will show the original position in the Sass file. If you
+         * need the position in the PostCSS input (e.g., to debug the
+         * previous compiler), use error.input.column.
          */
         column?: number;
         /**
-         * Contains source code of broken file. PostCSS will use input source
-         * map to detect the original error location. If you wrote a Sass file,
-         * then compiled it to CSS and parsed it with PostCSS, PostCSS will show
-         * the original position in the Sass file. If you need position in
-         * PostCSS input (e.g., to debug previous compiler), use
-         * error.input.source.
+         * Contains the source code of the broken file. PostCSS will use the
+         * input source map to detect the original error location. If you wrote
+         * a Sass file, then compiled it to CSS and parsed it with PostCSS,
+         * PostCSS will show the original position in the Sass file. If you need
+         * the position in the PostCSS input (e.g., to debug the previous
+         * compiler), use error.input.source.
          */
         source?: string;
     }
@@ -532,12 +534,12 @@ declare module postcss {
         id: string;
         /**
          * The CSS source identifier. Contains input.file if the user set the
-         * "from" option, or input.id if he/she did not.
+         * "from" option, or input.id if they did not.
          */
         from: string;
         /**
          * Represents the input source map passed from a compilation step before
-         * PostCSS (for example, from the Sass compiler).
+         * PostCSS (e.g., from the Sass compiler).
          */
         map: PreviousMap;
         /**
@@ -558,13 +560,13 @@ declare module postcss {
          */
         parent: Container;
         /**
-         * Returns the input source of the node. The property is used in source map
-         * generation. If you create a node manually (for example, with
-         * postcss.decl() ), that node will not have a  source  property and will
-         * be absent from the source map. For this reason, the plugin developer
-         * should consider cloning nodes to create new ones (in which case the new
-         * node's source will reference the original, cloned node) or setting the
-         * source property manually.
+         * Returns the input source of the node. The property is used in source
+         * map generation. If you create a node manually
+         * (e.g., with postcss.decl() ), that node will not have a source
+         * property and will be absent from the source map. For this reason, the
+         * plugin developer should consider cloning nodes to create new ones
+         * (in which case the new node's source will reference the original,
+         * cloned node) or setting the source property manually.
          */
         source: NodeSource;
         /**
@@ -589,8 +591,8 @@ declare module postcss {
              */
             message: string, options?: NodeErrorOptions): CssSyntaxError;
         /**
-         * Creates a Warning and adds it to messages. This method is provided as
-         * a convenience wrapper for Result#warn.
+         * Creates an instance of Warning and adds it to messages. This method is
+         * provided as a convenience wrapper for Result#warn.
          * @param result The result that will receive the warning.
          * @param message Error description.
          */
@@ -616,7 +618,7 @@ declare module postcss {
          */
         remove(): Node;
         /**
-         * Inserts nodes before the current node and removes the current node.
+         * Inserts node(s) before the current node and removes the current node.
          * @returns This node for chaining.
          */
         replaceWith(...nodes: (Node | Object)[]): Node;
@@ -643,7 +645,7 @@ declare module postcss {
         /**
          * Removes the node from its current parent and inserts it at the end of
          * newParent. This will clean the before and after code style properties
-         * from the node, and replace them with the indentation style of newParent.
+         * from the node and replace them with the indentation style of newParent.
          * It will also clean the between property if newParent is in another Root.
          * @param newParent Where the current node will be moved.
          * @returns This node for chaining.
@@ -652,7 +654,7 @@ declare module postcss {
         /**
          * Removes the node from its current parent and inserts it into a new
          * parent before otherNode. This will also clean the node's code style
-         * properties just as node.moveTo(newParent) does.
+         * properties just as it would in node.moveTo(newParent).
          * @param otherNode Will be after the current node after moving.
          * @returns This node for chaining.
          */
@@ -660,7 +662,7 @@ declare module postcss {
         /**
          * Removes the node from its current parent and inserts it into a new
          * parent after otherNode. This will also clean the node's code style
-         * properties just as node.moveTo(newParent) does.
+         * properties just as it would in node.moveTo(newParent).
          * @param otherNode Will be before the current node after moving.
          * @returns This node for chaining.
          */
@@ -759,13 +761,13 @@ declare module postcss {
          */
         parent?: JsonContainer;
         /**
-         * Returns the input source of the node. The property is used in source map
-         * generation. If you create a node manually (for example, with
-         * postcss.decl() ), that node will not have a  source  property and will
-         * be absent from the source map. For this reason, the plugin developer
-         * should consider cloning nodes to create new ones (in which case the new
-         * node's source will reference the original, cloned node) or setting the
-         * source property manually.
+         * Returns the input source of the node. The property is used in source
+         * map generation. If you create a node manually (e.g., with
+         * postcss.decl() ), that node will not have a  source  property and
+         * will be absent from the source map. For this reason, the plugin
+         * developer should consider cloning nodes to create new ones (in which
+         * case the new node's source will reference the original, cloned node)
+         * or setting the source property manually.
          */
         source?: NodeSource;
         /**
@@ -802,7 +804,7 @@ declare module postcss {
          */
         clone(overrides?: Object): Container;
         /**
-         * @param child Child of current container.
+         * @param child Child of the current container.
          * @returns The child's index within the container's "nodes" array.
          */
         index(child: Node | number): number;
@@ -823,16 +825,16 @@ declare module postcss {
          * @param thisArg An object to which the this keyword can refer in the
          * callback function. If thisArg is omitted, undefined is used as the
          * this value.
-         * @returns True if callback returns a true value for (at least) one of the
+         * @returns True if callback returns true for (at least) one of the
          * container's children.
          */
         some(callback: (node: Node, index: number, nodes: Node[]) => boolean, thisArg?: any): boolean;
         /**
          * Iterates through the container's immediate children, calling the
          * callback function for each child. If you need to recursively iterate
-         * through all the container's nodes, use container.walk(). Unlike
-         * the for {} -cycle or Array#forEach() this iterator is safe if you are
-         * mutating the array of child nodes during iteration.
+         * through all the container's descendant nodes, use container.walk().
+         * Unlike the for {} -cycle or Array#forEach() this iterator is safe if
+         * you are mutating the array of child nodes during iteration.
          * @param callback Iterator. Returning false will break iteration. Safe
          * if you are mutating the array of child nodes during iteration. PostCSS
          * will adjust the current index to match the mutations.
@@ -861,8 +863,8 @@ declare module postcss {
          * Traverses the container's descendant nodes, calling `callback` for each
          * at-rule. Like container.each(), this method is safe to use if you are
          * mutating arrays during iteration.
-         * @param nameFilter Filters at-rules by name. Only those at-rules whose
-         * name matches filter will be iterated over.
+         * @param nameFilter Filters at-rules by name. If provided, iteration
+         * will only happen over at-rules that have matching names.
          * @param callback Iterator called for each at-rule node within the
          * container.
          */
@@ -872,8 +874,8 @@ declare module postcss {
          * Traverses the container's descendant nodes, calling `callback` for each
          * rule. Like container.each(), this method is safe to use if you are
          * mutating arrays during iteration.
-         * @param selectorFilter Filters rules by selector. Only those rules whose
-         * name matches the filter will be iterated over.
+         * @param selectorFilter Filters rules by selector. If provided,
+         * iteration will only happen over rules that have matching names.
          * @param callback Iterator called for each rule node within the
          * container.
          */
@@ -971,8 +973,8 @@ declare module postcss {
          */
         remove(): Container;
         /**
-         * Removes child from the container, and the parent properties of node and
-         * its children.
+         * Removes child from the container and cleans the parent properties
+         * from the node and its children.
          * @param child Child or child's index.
          * @returns This container for chaining.
          */
@@ -1048,8 +1050,8 @@ declare module postcss {
     interface JsonRoot extends JsonContainer {
     }
     /**
-     * Represents an at-rule. This node will have a nodes property,
-     * representing its children, if it is followed in the CSS by a {} block.
+     * Represents an at-rule. If it's followed in the CSS by a {} block, this
+     * node will have a nodes property representing its children.
      */
     interface AtRule extends Container {
         /**
@@ -1200,7 +1202,7 @@ declare module postcss {
     }
     /**
      * Represents a comment between declarations or statements (rule and at-rules).
-     * Comments inside selectors, at-rules parameters, or declaration values will
+     * Comments inside selectors, at-rule parameters, or declaration values will
      * be stored in the Node#raws properties.
      */
     interface Comment extends Node {

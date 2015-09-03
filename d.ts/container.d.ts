@@ -20,20 +20,18 @@ export default class Container extends Node implements postcss.Container {
      */
     clone(overrides?: Object): any;
     toJSON(): postcss.JsonContainer;
-    cleanRaws(keepBetween?: boolean): void;
     push(child: any): Container;
     /**
      * Iterates through the container's immediate children, calling the
      * callback function for each child. If you need to recursively iterate
-     * through all the container's nodes, use container.walk(). Unlike
-     * the for {} -cycle or Array#forEach() this iterator is safe if you are
-     * mutating the array of child nodes during iteration.
+     * through all the container's descendant nodes, use container.walk().
+     * Unlike the for {} -cycle or Array#forEach() this iterator is safe if you
+     * are mutating the array of child nodes during iteration.
      * @param callback Iterator. Returning false will break iteration. Safe
      * if you are mutating the array of child nodes during iteration. PostCSS
      * will adjust the current index to match the mutations.
      */
     each(callback: (node: Node, index: number) => any): boolean | void;
-    eachInside(callback: any): any;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * node. Like container.each(), this method is safe to use if you are
@@ -42,7 +40,6 @@ export default class Container extends Node implements postcss.Container {
      * @param callback Iterator.
      */
     walk(callback: (node: Node, index: number) => any): boolean | void;
-    eachDecl(propFilter: any, callback?: any): any;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * declaration. Like container.each(), this method is safe to use if you
@@ -53,31 +50,28 @@ export default class Container extends Node implements postcss.Container {
      */
     walkDecls(propFilter: string | RegExp, callback?: (decl: postcss.Declaration, index: number) => any): boolean | void;
     walkDecls(callback: (decl: postcss.Declaration, index: number) => any): boolean | void;
-    eachRule(selectorFilter: any, callback?: any): any;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * rule. Like container.each(), this method is safe to use if you are
      * mutating arrays during iteration.
-     * @param selectorFilter Filters rules by selector. Only those rules whose
-     * name matches the filter will be iterated over.
+     * @param selectorFilter Filters rules by selector. If provided, iteration
+     * will only happen over rules that have matching names.
      * @param callback Iterator called for each rule node within the
      * container.
      */
     walkRules(selectorFilter: string | RegExp, callback: (atRule: Rule, index: number) => any): boolean | void;
     walkRules(callback: (atRule: Rule, index: number) => any): boolean | void;
-    eachAtRule(nameFilter: any, callback?: any): any;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * at-rule. Like container.each(), this method is safe to use if you are
      * mutating arrays during iteration.
-     * @param nameFilter Filters at-rules by name. Only those at-rules whose
-     * name matches filter will be iterated over.
+     * @param nameFilter Filters at-rules by name. If provided, iteration will
+     * only happen over at-rules that have matching names.
      * @param callback Iterator called for each at-rule node within the
      * container.
      */
     walkAtRules(nameFilter: string | RegExp, callback: (atRule: AtRule, index: number) => any): boolean | void;
     walkAtRules(callback: (atRule: AtRule, index: number) => any): boolean | void;
-    eachComment(selectorFilter: any, callback?: any): any;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * commennt. Like container.each(), this method is safe to use if you are
@@ -117,6 +111,7 @@ export default class Container extends Node implements postcss.Container {
      * @returns This container for chaining.
      */
     prepend(...nodes: (Node | Object | string)[]): Container;
+    cleanRaws(keepBetween?: boolean): void;
     /**
      * Insert newNode before oldNode within the container.
      * @param oldNode Child or child's index.
@@ -136,8 +131,8 @@ export default class Container extends Node implements postcss.Container {
      */
     remove(): any;
     /**
-     * Removes child from the container, and the parent properties of node and
-     * its children.
+     * Removes child from the container and clean the parent properties from the
+     * node and its children.
      * @param child Child or child's index.
      * @returns This container for chaining.
      */
@@ -198,12 +193,12 @@ export default class Container extends Node implements postcss.Container {
      * @param thisArg An object to which the this keyword can refer in the
      * callback function. If thisArg is omitted, undefined is used as the
      * this value.
-     * @returns True if callback returns a true value for (at least) one of the
+     * @returns True if callback returns true for (at least) one of the
      * container's children.
      */
     some(callback: (node: Node, index: number, nodes: Node[]) => boolean, thisArg?: any): boolean;
     /**
-     * @param child Child of current container.
+     * @param child Child of the current container.
      * @returns The child's index within the container's "nodes" array.
      */
     index(child: Node | number): number;
@@ -217,6 +212,12 @@ export default class Container extends Node implements postcss.Container {
     last: Node;
     protected normalize(node: Node | string, sample?: Node, type?: string | boolean): Node[];
     protected normalize(props: postcss.AtRuleNewProps | postcss.RuleNewProps | postcss.DeclarationNewProps | postcss.CommentNewProps, sample?: Node, type?: string | boolean): Node[];
+    rebuild(node: Node, parent?: Container): any;
+    eachInside(callback: any): any;
+    eachDecl(propFilter: any, callback?: any): any;
+    eachRule(selectorFilter: any, callback?: any): any;
+    eachAtRule(nameFilter: any, callback?: any): any;
+    eachComment(selectorFilter: any, callback?: any): any;
     semicolon: boolean;
     after: string;
 }

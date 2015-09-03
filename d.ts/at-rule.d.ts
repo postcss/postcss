@@ -21,8 +21,8 @@ export default class AtRule extends Container implements postcss.AtRule {
      */
     params: string;
     /**
-     * Represents an at-rule. This node will have a nodes property,
-     * representing its children, if it is followed in the CSS by a {} block.
+     * Represents an at-rule. If it's followed in the CSS by a {} block, this
+     * node will have a nodes property representing its children.
      */
     constructor(defaults?: postcss.AtRuleNewProps);
     /**

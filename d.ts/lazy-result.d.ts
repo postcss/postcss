@@ -10,9 +10,9 @@ export default class LazyResult implements postcss.LazyResult {
     private plugin;
     private processing;
     /**
-     * Promise proxy for result of PostCSS transformations.
+     * A promise proxy for the result of PostCSS transformations.
      */
-    constructor(processor: Processor, 
+    constructor(processor: Processor,
         /**
          * String with input CSS or any object with toString() method, like file stream.
          * Optionally, send Result instance and the processor will take the existing
@@ -31,10 +31,10 @@ export default class LazyResult implements postcss.LazyResult {
      */
     opts: postcss.ResultOptions;
     /**
-     * Processes input CSS through synchronous plugins and converts Root to
-     * CSS string. This property will work only with synchronous plugins. If
-     * processor contains any asynchronous plugins it will throw a error. You
-     * should use LazyResult#then() instead.
+     * Processes input CSS through synchronous plugins and converts Root to a
+     * CSS string. This property will only work with synchronous plugins. If
+     * the processor contains any asynchronous plugins it will throw an error.
+     * In this case, you should use LazyResult#then() instead.
      */
     css: string;
     /**
@@ -43,28 +43,30 @@ export default class LazyResult implements postcss.LazyResult {
     content: string;
     /**
      * Processes input CSS through synchronous plugins. This property will
-     * work only with synchronous plugins. If processor contains any
-     * asynchronous plugins it will throw an error. You should use
-     * LazyResult#then() instead.
+     * only work with synchronous plugins. If the processor contains any
+     * asynchronous plugins it will throw an error. In this case, you should
+     * use LazyResult#then() instead.
      */
     map: postcss.ResultMap;
     /**
-     * Processes input CSS through synchronous plugins. This property will work
-     * only with synchronous plugins. If processor contains any asynchronous
-     * plugins it will throw an error. You should use LazyResult#then() instead.
+     * Processes input CSS through synchronous plugins. This property will only
+     * work with synchronous plugins. If the processor contains any asynchronous
+     * plugins it will throw an error. In this case, you should use
+     * LazyResult#then() instead.
      */
     root: Root;
     /**
-     * Processes input CSS through synchronous plugins. This property will work
-     * only with synchronous plugins. If processor contains any asynchronous
-     * plugins it will throw an error. You should use LazyResult#then() instead.
+     * Processes input CSS through synchronous plugins. This property will only
+     * work with synchronous plugins. If the processor contains any asynchronous
+     * plugins it will throw an error. In this case, you should use
+     * LazyResult#then() instead.
      */
     messages: postcss.ResultMessage[];
     /**
      * Processes input CSS through synchronous plugins and calls Result#warnings().
-     * This property will work only with synchronous plugins. If processor
-     * contains any asynchronous plugins it will throw a error. You should use
-     * LazyResult#then()  instead.
+     * This property will only work with synchronous plugins. If the processor
+     * contains any asynchronous plugins it will throw an error. In this case, you
+     * You should use LazyResult#then() instead.
      */
     warnings(): postcss.ResultMessage[];
     /**
