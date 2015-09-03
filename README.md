@@ -289,6 +289,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
+* [`postcss-round-subpixels`] plugin that rounds sub-pixel values to the nearest full pixel.
 
 ### Language Extensions
 
@@ -503,6 +504,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-local-constants`]:         https://github.com/macropodhq/postcss-local-constants
 [`postcss-remove-prefixes`]:         https://github.com/johnotander/postcss-remove-prefixes
 [`postcss-responsive-type`]:         https://github.com/seaneking/postcss-responsive-type
+[`postcss-round-subpixels`]:         https://github.com/himynameisdave/postcss-round-subpixels
 [`postcss-color-function`]:          https://github.com/postcss/postcss-color-function
 [`postcss-conic-gradient`]:          https://github.com/jonathantneal/postcss-conic-gradient
 [`postcss-convert-values`]:          https://github.com/ben-eb/postcss-convert-values
