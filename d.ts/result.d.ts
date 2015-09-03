@@ -7,7 +7,7 @@ export default class Result implements postcss.Result {
      */
     processor: Processor;
     /**
-     * Contains Root node after all transformations.
+     * Contains the Root node after all transformations.
      */
     root: Root;
     /**
@@ -31,9 +31,9 @@ export default class Result implements postcss.Result {
      */
     map: postcss.ResultMap;
     /**
-     * Contains messages from plugins. For example, warnings or custom messages to
-     * plugins communication. Add a warning using Result#warn() and get all warnings
-     * using Result#warnings() method.
+     * Contains messages from plugins (e.g., warnings or custom messages).
+     * Add a warning using Result#warn() and get all warnings
+     * using the Result#warnings() method.
      */
     messages: postcss.ResultMessage[];
     lastPlugin: postcss.Transformer;
@@ -46,7 +46,7 @@ export default class Result implements postcss.Result {
          */
         processor?: Processor,
         /**
-         * Contains Root node after all transformations.
+         * Contains the Root node after all transformations.
          */
         root?: Root,
         /**
@@ -59,7 +59,7 @@ export default class Result implements postcss.Result {
      */
     toString(): string;
     /**
-     * Creates a Warning and adds it to messages.
+     * Creates an instance of Warning and adds it to messages.
      * @param message Used in the text property of the message object.
      * @param options Properties for Message object.
      */

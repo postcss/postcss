@@ -3,7 +3,7 @@ import postcss from './postcss';
 import Result from './result';
 export default class Processor implements postcss.Processor {
     /**
-     * Contains current version of PostCSS (e.g., "4.0.5").
+     * Contains the current version of PostCSS (e.g., "4.0.5").
      */
     version: string;
     /**

@@ -15,7 +15,7 @@ export default class Input implements postcss.Input {
     id: string;
     /**
      * Represents the input source map passed from a compilation step before
-     * PostCSS (for example, from the Sass compiler).
+     * PostCSS (e.g., from the Sass compiler).
      */
     map: PreviousMap;
     css: string;
@@ -30,7 +30,7 @@ export default class Input implements postcss.Input {
     });
     /**
      * The CSS source identifier. Contains input.file if the user set the "from"
-     * option, or input.id if he/she did not.
+     * option, or input.id if they did not.
      */
     from: string;
     error(message: string, line: number, column: number, opts?: {

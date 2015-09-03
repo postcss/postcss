@@ -20,12 +20,12 @@ export default class Node implements postcss.Node {
     parent: Container;
     /**
      * Returns the input source of the node. The property is used in source map
-     * generation. If you create a node manually (for example, with
-     * postcss.decl() ), that node will not have a  source  property and will
-     * be absent from the source map. For this reason, the plugin developer
-     * should consider cloning nodes to create new ones (in which case the new
-     * node's source will reference the original, cloned node) or setting the
-     * source property manually.
+     * generation. If you create a node manually (e.g., with postcss.decl() ),
+     * that node will not have a  source  property and will be absent from the
+     * source map. For this reason, the plugin developer should consider cloning
+     * nodes to create new ones (in which case the new node's source will
+     * reference the original, cloned node) or setting the source property
+     * manually.
      */
     source: postcss.NodeSource;
     constructor(defaults?: Object);
@@ -42,8 +42,8 @@ export default class Node implements postcss.Node {
          */
         message: string, options?: postcss.NodeErrorOptions): CssSyntaxError;
     /**
-     * Creates a Warning and adds it to messages. This method is provided as
-     * a convenience wrapper for Result#warn.
+     * Creates an instance of Warning and adds it to messages. This method is
+     * provided as a convenience wrapper for Result#warn.
      * @param result The result that will receive the warning.
      * @param message Error description.
      */
@@ -84,14 +84,14 @@ export default class Node implements postcss.Node {
      */
     cloneAfter(overrides?: Object): Node;
     /**
-     * Inserts nodes before the current node and removes the current node.
+     * Inserts node(s) before the current node and removes the current node.
      * @returns This node for chaining.
      */
     replaceWith(...nodes: (Node | Object)[]): Node;
     /**
      * Removes the node from its current parent and inserts it at the end of
      * newParent. This will clean the before and after code style properties
-     * from the node, and replace them with the indentation style of newParent.
+     * from the node and replace them with the indentation style of newParent.
      * It will also clean the between property if newParent is in another Root.
      * @param newParent Where the current node will be moved.
      * @returns This node for chaining.
@@ -100,7 +100,7 @@ export default class Node implements postcss.Node {
     /**
      * Removes the node from its current parent and inserts it into a new
      * parent before otherNode. This will also clean the node's code style
-     * properties just as node.moveTo(newParent) does.
+     * properties just as it would in node.moveTo(newParent).
      * @param otherNode Will be after the current node after moving.
      * @returns This node for chaining.
      */
@@ -108,7 +108,7 @@ export default class Node implements postcss.Node {
     /**
      * Removes the node from its current parent and inserts it into a new
      * parent after otherNode. This will also clean the node's code style
-     * properties just as node.moveTo(newParent) does.
+     * properties just as it would in node.moveTo(newParent).
      * @param otherNode Will be before the current node after moving.
      * @returns This node for chaining.
      */

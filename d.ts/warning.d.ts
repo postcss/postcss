@@ -5,10 +5,14 @@ export default class Warning implements postcss.Warning {
      * Contains the warning message.
      */
     text: string;
+    /**
+     * Returns a string representing the node's type. Possible values are
+     * root, atrule, rule, decl or comment.
+     */
     type: string;
     /**
-     * Contains name of plugin that created this warning. When you call
-     * Node#warn(), it will fill this property automatically.
+     * Contains the name of the plugin that created this warning. When you
+     * call Node#warn(), it will fill this property automatically.
      */
     plugin: string;
     /**
@@ -16,15 +20,15 @@ export default class Warning implements postcss.Warning {
      */
     node: Node;
     /**
-     * Line in input file with this warning source.
+     * The line in the input file with this warning's source.
      */
     line: number;
     /**
-     * Column in input file with this warning source.
+     * Column in the input file with this warning's source.
      */
     column: number;
     /**
-     * Warning from plugins. It can be created using Node#warn().
+     * Represents a plugin warning. It can be created using Node#warn().
      */
     constructor(
         /**

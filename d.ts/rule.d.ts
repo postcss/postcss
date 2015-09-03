@@ -2,6 +2,11 @@ import Container from './container';
 import postcss from './postcss';
 export default class Rule extends Container implements postcss.Rule {
     /**
+     * Returns a string representing the node's type. Possible values are
+     * root, atrule, rule, decl or comment.
+     */
+    type: string;
+    /**
      * Contains information to generate byte-to-byte equal node string as it
      * was in origin input.
      */

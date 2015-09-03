@@ -2,7 +2,7 @@ import Stringifier from './stringifier';
 import postcss from './postcss';
 import Node from './node';
 /**
- * Default function to convert nodes tree to CSS string.
+ * Default function to convert a node tree into a CSS string.
  */
 declare function stringify(node: Node, builder: Stringifier.Builder): void;
 declare module stringify {
