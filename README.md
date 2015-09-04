@@ -480,9 +480,9 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-canadian-stylesheets`]:    https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-increase-specificity`]:    https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
-[`postcss-lolcat-stylesheets`]:      https://github.com/sandralundgren/postcss-lolcat-stylesheets
 [`postcss-color-rebeccapurple`]:     https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-color-rgba-fallback`]:     https://github.com/postcss/postcss-color-rgba-fallback
+[`postcss-lolcat-stylesheets`]:      https://github.com/sandralundgren/postcss-lolcat-stylesheets
 [`postcss-german-stylesheets`]:      https://github.com/timche/postcss-german-stylesheets
 [`postcss-discard-duplicates`]:      https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-minify-font-weight`]:      https://github.com/ben-eb/postcss-minify-font-weight
