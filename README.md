@@ -283,6 +283,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
+* [`postcss-unmq`] removes media queries while preserving desktop rules for IE≤8.
 * [`postcss-vmin`] generates `vm` fallback for `vmin` unit in IE9.
 * [`postcss-will-change`] inserts 3D hack before `will-change` property.
 * [`autoprefixer`] adds vendor prefixes for you, using data from Can I Use.
@@ -615,6 +616,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-neat`]:                    https://github.com/jo-asakura/postcss-neat
 [`postcss-size`]:                    https://github.com/postcss/postcss-size
 [`postcss-svgo`]:                    https://github.com/ben-eb/postcss-svgo
+[`postcss-unmq`]:                    https://github.com/jonathantneal/postcss-unmq
 [`postcss-vmin`]:                    https://github.com/iamvdo/postcss-vmin
 [`autoprefixer`]:                    https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                    https://github.com/hail2u/node-css-mqpacker
