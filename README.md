@@ -468,6 +468,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-german-stylesheets`] German Style Sheets.
 * [`postcss-swedish-stylesheets`] Swedish Style Sheets.
+* [`postcss-lolcat-stylesheets`] Lolcat aka Lolspeak Style Sheets.
 * [`postcss-imperial`] adds CSS support for Imperial and US customary units of length.
 * [`postcss-russian-units`] adds CSS support for russian units of length.
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
@@ -479,6 +480,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-canadian-stylesheets`]:    https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-increase-specificity`]:    https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
+[`postcss-lolcat-stylesheets`]:      https://github.com/sandralundgren/postcss-lolcat-stylesheets
 [`postcss-color-rebeccapurple`]:     https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-color-rgba-fallback`]:     https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-german-stylesheets`]:      https://github.com/timche/postcss-german-stylesheets
