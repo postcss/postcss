@@ -270,6 +270,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
 * [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
+* [`postcss-selector-matches`] transforms CSS4 `:matches()` to more compatible CSS.
 * [`postcss-apply`] supports custom properties sets references
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
@@ -497,6 +498,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-mqwidth-to-class`]:        https://github.com/notacouch/postcss-mqwidth-to-class
 [`postcss-quantity-queries`]:        https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-browser-reporter`]:        https://github.com/postcss/postcss-browser-reporter
+[`postcss-selector-matches`]:        https://github.com/postcss/postcss-selector-matches
 [`postcss-all-link-colors`]:         https://github.com/jedmao/postcss-all-link-colors
 [`postcss-color-hex-alpha`]:         https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-define-property`]:         https://github.com/daleeidd/postcss-define-property
