@@ -1167,9 +1167,9 @@ and code style properties.
 
 ```js
 var cloned = decl.clone({ prop: '-moz-' + decl.prop });
-cloned.before     //=> undefined
-cloned.parent     //=> undefined
-cloned.toString() //=> -moz-transform: scale(0)
+cloned.raws.before  //=> undefined
+cloned.parent       //=> undefined
+cloned.toString()   //=> -moz-transform: scale(0)
 ```
 
 Arguments:
@@ -1227,7 +1227,7 @@ to autodetect the code style property by looking at other nodes in the tree.
 ```js
 var root = postcss.parse('a { background: white }');
 root.nodes[0].append({ prop: 'color', value: 'black' });
-root.nodes[0].nodes[1].style('before') //=> ' '
+root.nodes[0].nodes[1].raws.before //=> ' '
 ```
 
 Arguments:
