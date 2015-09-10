@@ -434,9 +434,9 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
-* [`postcss-pseudo-elements-content`] adds `content: ""` to `:before-c`
+* [`postcss-pseudo-elements-content`] adds `content: ''` to `:before-c`
   and `:after-c`.
-* [`postcss-pseudo-content-insert`] adds `content: ""` to :before` and `:after`
+* [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
