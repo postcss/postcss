@@ -435,7 +435,9 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
 * [`postcss-pseudo-elements-content`] automatically adds `content: ""`
-  to `:before` and `:after`.
+  to `:before` and `:after` with custom pseudo elements.
+* [`postcss-pseudo-content-insert`] inserts an empty content block into your
+  `:before` and `:after` pseudo elements if it is missing
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
@@ -479,6 +481,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-elements-content`]: https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]:  https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:   https://github.com/jonathantneal/postcss-pseudo-class-any-link
+[`postcss-pseudo-content-insert`]:   https://github.com/liquidlight/postcss-pseudo-content-insert
 [`postcss-canadian-stylesheets`]:    https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-increase-specificity`]:    https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
