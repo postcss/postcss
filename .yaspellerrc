@@ -100,6 +100,7 @@
     "mixin",
     "multitool",
     "io",
+    "partials",
     "inlined",
     "inlines",
     "polyfill",
