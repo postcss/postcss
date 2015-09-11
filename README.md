@@ -380,6 +380,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
+* [`postcss-partial-import`] inlines standard imports and Sass-like partials.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
@@ -516,6 +517,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-function`]:          https://github.com/postcss/postcss-color-function
 [`postcss-conic-gradient`]:          https://github.com/jonathantneal/postcss-conic-gradient
 [`postcss-convert-values`]:          https://github.com/ben-eb/postcss-convert-values
+[`postcss-partial-import`]:          https://github.com/jonathantneal/postcss-partial-import
 [`postcss-pseudoelements`]:          https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-single-charset`]:          https://github.com/hail2u/postcss-single-charset
 [`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
