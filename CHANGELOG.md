@@ -1,3 +1,6 @@
+## 5.0.5
+* Fix multi-tokens property parsing (by Matt Drake).
+
 ## 5.0.4
 * Fix start position in `Root#source`.
 * Fix source map annotation, when CSS uses `\r\n` (by Mohammad Younes).
