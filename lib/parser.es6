@@ -184,7 +184,11 @@ export default class Parser {
         }
         node.source.start = { line: tokens[0][2], column: tokens[0][3] };
 
-        node.prop = tokens.shift()[1];
+        node.prop = '';
+        while ( tokens[0][0] === 'word' ) {
+            node.prop += tokens.shift()[1];
+        }
+
         node.raws.between = '';
 
         let token;
