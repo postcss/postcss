@@ -48,17 +48,10 @@ gulp.task('lint', () => {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('spellcheck', (done) => {
-    let gutil = require('gulp-util');
-    let run   = require('gulp-run');
-    run('yaspeller .').exec()
-        .on('error', (err) => {
-            done(new gutil.PluginError('spellcheck', {
-                showStack: false,
-                message:   err.message
-            }));
-        })
-        .on('finish', done);
+gulp.task('spellcheck', () => {
+    let shell = require('gulp-shell');
+    return gulp.src(['*.md', 'docs/**/*.md'], { read: false })
+        .pipe(shell('yaspeller <%= file.path %>'));
 });
 
 // Tests
