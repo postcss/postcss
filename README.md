@@ -398,6 +398,7 @@ See also plugins in modular minifier [`cssnano`].
 ### Shortcuts
 
 * [`postcss-alias`] creates shorter aliases for properties.
+* [`postcss-alias-atrules`] creates shorter aliases for at-rules.
 * [`postcss-all-link-colors`] insert colors for link-related pseudo-classes.
 * [`postcss-border`] adds shorthand for width and color of all borders
   in `border` property.
@@ -524,6 +525,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudoelements`]:          https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-single-charset`]:          https://github.com/hail2u/postcss-single-charset
 [`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
+[`postcss-alias-atrules`]:           https://github.com/maximkoretskiy/postcss-alias-atrules
 [`postcss-color-palette`]:           https://github.com/zaim/postcss-color-palette
 [`postcss-color-pantone`]:           https://github.com/longdog/postcss-color-pantone
 [`postcss-css-variables`]:           https://github.com/MadLittleMods/postcss-css-variables
