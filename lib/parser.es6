@@ -185,7 +185,11 @@ export default class Parser {
         node.source.start = { line: tokens[0][2], column: tokens[0][3] };
 
         node.prop = '';
-        while ( tokens[0][0] !== ':' ) {
+        while ( tokens.length ) {
+            let type = tokens[0][0];
+            if ( type === ':' || type === 'space' || type === 'comment' ) {
+                break;
+            }
             node.prop += tokens.shift()[1];
         }
 
