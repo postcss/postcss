@@ -313,6 +313,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
 * [`postcss-nested`] unwraps nested rules.
 * [`postcss-nested-props`] unwraps nested properties.
+* [`postcss-nested-vars`] supports nested Sass-style variables.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
@@ -552,6 +553,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-selector-not`]:            https://github.com/postcss/postcss-selector-not
 [`postcss-svg-fallback`]:            https://github.com/justim/postcss-svg-fallback
 [`postcss-nested-props`]:            https://github.com/jedmao/postcss-nested-props
+[`postcss-nested-vars`]:             https://github.com/jedmao/postcss-nested-vars
 [`postcss-color-alpha`]:             https://github.com/avanes/postcss-color-alpha
 [`postcss-color-scale`]:             https://github.com/kristoferjoseph/postcss-color-scale
 [`postcss-color-short`]:             https://github.com/andrepolischuk/postcss-color-short
