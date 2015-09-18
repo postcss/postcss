@@ -359,6 +359,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
+* [`postcss-image-inliner`] inlines local and remote images.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
