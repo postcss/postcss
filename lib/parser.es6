@@ -353,7 +353,7 @@ export default class Parser {
         let value = '';
         let clean = true;
         for ( let i = 0, length = tokens.length; i < length; i += 1 ) {
-            let token = tokens[i];
+            token = tokens[i];
             if ( token[0] === 'comment' || token[0] === 'space' && i === length - 1 ) {
                 clean = false;
             } else {
