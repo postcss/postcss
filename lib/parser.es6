@@ -349,12 +349,14 @@ export default class Parser {
     }
 
     raw(node, prop, tokens) {
-        let token;
-        let value = '';
-        let clean = true;
-        for ( let i = 0, length = tokens.length; i < length; i += 1 ) {
+        let token, type;
+        let length = tokens.length;
+        let value  = '';
+        let clean  = true;
+        for ( let i = 0; i < length; i += 1 ) {
             token = tokens[i];
-            if ( token[0] === 'comment' || token[0] === 'space' && i === length - 1 ) {
+            type  = token[0];
+            if ( type === 'comment' || type === 'space' && i === length - 1 ) {
                 clean = false;
             } else {
                 value += token[1];
