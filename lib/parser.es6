@@ -275,6 +275,9 @@ export default class Parser {
             } else if ( token[0] === '{' ) {
                 open = true;
                 break;
+            } else if ( token[0] === '}') {
+                this.end(token);
+                break;
             } else {
                 params.push(token);
             }
