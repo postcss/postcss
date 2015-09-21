@@ -361,7 +361,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
-* [`postcss-instagram`] adds instagram filters to your photos via CSS
+* [`postcss-instagram`] adds Instagram filters to `filter`.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
