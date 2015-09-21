@@ -360,6 +360,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
+* [`postcss-instagram`] adds instagram filters to your photos via CSS
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
@@ -584,6 +585,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-mix`]:               https://github.com/iamstarkov/postcss-color-mix
 [`postcss-image-set`]:               https://github.com/alex499/postcss-image-set
 [`postcss-write-svg`]:               https://github.com/jonathantneal/postcss-write-svg
+[`postcss-instagram`]:               https://github.com/azat-io/postcss-instagram
 [`postcss-clearfix`]:                https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:                https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:                https://github.com/cssstats/postcss-cssstats
