@@ -63,12 +63,6 @@ describe('postcss.parse()', () => {
         expect(root.first.first.value).to.eql('())');
     });
 
-    it('parses nested at-rules without trailing semicolon', () => {
-        let root = parse('a { @import "a.css" }');
-        expect(root.first.first.name).to.eql('import');
-        expect(root.first.first.params).to.eql('"a.css"');
-    });
-
     describe('errors', () => {
 
         it('throws on unclosed blocks', () => {
