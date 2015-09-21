@@ -480,6 +480,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-german-stylesheets`] German Style Sheets.
 * [`postcss-russian-stylesheets`] Russian Style Sheets.
 * [`postcss-swedish-stylesheets`] Swedish Style Sheets.
+* [`postcss-tatar-stylesheets`] Tatar Style Sheets
 * [`postcss-lolcat-stylesheets`] Lolspeak Style Sheets.
 * [`postcss-imperial`] adds CSS support for Imperial and US customary units of length.
 * [`postcss-russian-units`] adds CSS support for russian units of length.
@@ -494,6 +495,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-increase-specificity`]:    https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
 [`postcss-russian-stylesheets`]:     https://github.com/Semigradsky/postcss-russian-stylesheets
+[`postcss-tatar-stylesheets`]:       https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-color-rebeccapurple`]:     https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-color-rgba-fallback`]:     https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-lolcat-stylesheets`]:      https://github.com/sandralundgren/postcss-lolcat-stylesheets
