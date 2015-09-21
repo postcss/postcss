@@ -359,6 +359,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
+* [`postcss-image-inliner`] inlines local and remote images.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
@@ -539,6 +540,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-reduce-idents`]:           https://github.com/ben-eb/postcss-reduce-idents
 [`postcss-simple-extend`]:           https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-russian-units`]:           https://github.com/Semigradsky/postcss-russian-units
+[`postcss-image-inliner`]:           https://github.com/bezoerb/postcss-image-inliner
 [`postcss-mq-keyframes`]:            https://github.com/TCotton/postcss-mq-keyframes
 [`postcss-brand-colors`]:            https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:            https://github.com/thompsongl/postcss-class-prefix
