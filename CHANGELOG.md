@@ -1,3 +1,7 @@
+## 5.0.6
+* Fix parsing nested at-rule without semicolon (by Matt Drake).
+* Trim `Declaration#value` (by Bogdan Chadkin).
+
 ## 5.0.5
 * Fix multi-tokens property parsing (by Matt Drake).
 
