@@ -244,7 +244,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 [`stylelint`]: https://github.com/stylelint/stylelint
 [`rucksack`]:  http://simplaio.github.io/rucksack
-[`cssnano`]:   https://github.com/ben-eb/cssnano
+[`cssnano`]:   http://cssnano.co/
 [`cssnext`]:   http://cssnext.io/
 [`precss`]:    https://github.com/jonathantneal/precss
 [`atcss`]:     https://github.com/morishitter/atcss
