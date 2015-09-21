@@ -239,6 +239,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
 * [`rucksack`] contains plugins to speed up CSS development
   with new features and shortcuts.
+* [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
 
 [`stylelint`]: https://github.com/stylelint/stylelint
@@ -424,7 +425,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
 * [`postcss-responsive-type`] changes `font-size` depends on screen size.
-* [`postcss-short`] adds and extends numerous shorthand properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 * [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
@@ -630,7 +630,6 @@ See also plugins in modular minifier [`cssnano`].
 [`css2modernizr`]:                   https://github.com/vovanbo/css2modernizr
 [`font-magician`]:                   https://github.com/jonathantneal/postcss-font-magician
 [`postcss-match`]:                   https://github.com/rtsao/postcss-match
-[`postcss-short`]:                   https://github.com/jonathantneal/postcss-short
 [`postcss-alias`]:                   https://github.com/seaneking/postcss-alias
 [`perfectionist`]:                   https://github.com/ben-eb/perfectionist
 [`immutable-css`]:                   https://github.com/johnotander/immutable-css
@@ -662,6 +661,7 @@ See also plugins in modular minifier [`cssnano`].
 [`doiuse`]:                          https://github.com/anandthakker/doiuse
 [`pixrem`]:                          https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
+[`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
 
 ## How to Develop for PostCSS
