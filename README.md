@@ -364,6 +364,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
+* [`postcss-responsive-images`] adds stylesheets for making your images responsive
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
 * [`postcss-svg`] insert inline SVG to CSS and allows to manage it colors.
 * [`postcss-svg-fallback`] converts SVG in your CSS to PNG files for IE 8.
@@ -496,7 +497,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-increase-specificity`]:    https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
 [`postcss-russian-stylesheets`]:     https://github.com/Semigradsky/postcss-russian-stylesheets
-[`postcss-tatar-stylesheets`]:       https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-color-rebeccapurple`]:     https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-color-rgba-fallback`]:     https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-lolcat-stylesheets`]:      https://github.com/sandralundgren/postcss-lolcat-stylesheets
@@ -505,6 +505,8 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-minify-font-weight`]:      https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:      https://github.com/jonathantneal/postcss-pseudo-class-enter
 [`postcss-transform-shortcut`]:      https://github.com/jonathantneal/postcss-transform-shortcut
+[`postcss-responsive-images`]:       https://github.com/azat-io/postcss-responsive-images
+[`postcss-tatar-stylesheets`]:       https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-custom-properties`]:       https://github.com/postcss/postcss-custom-properties
 [`postcss-discard-font-face`]:       https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-custom-selectors`]:        https://github.com/postcss/postcss-custom-selectors
