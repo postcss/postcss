@@ -361,9 +361,11 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
+* [`postcss-instagram`] adds instagram filters to your photos via CSS
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
+* [`postcss-responsive-images`] adds stylesheets for making your images responsive
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
 * [`postcss-svg`] insert inline SVG to CSS and allows to manage it colors.
 * [`postcss-svg-fallback`] converts SVG in your CSS to PNG files for IE 8.
@@ -481,6 +483,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-german-stylesheets`] German Style Sheets.
 * [`postcss-russian-stylesheets`] Russian Style Sheets.
 * [`postcss-swedish-stylesheets`] Swedish Style Sheets.
+* [`postcss-tatar-stylesheets`] Tatar Style Sheets
 * [`postcss-lolcat-stylesheets`] Lolspeak Style Sheets.
 * [`postcss-imperial`] adds CSS support for Imperial and US customary units of length.
 * [`postcss-russian-units`] adds CSS support for russian units of length.
@@ -503,6 +506,8 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-minify-font-weight`]:      https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:      https://github.com/jonathantneal/postcss-pseudo-class-enter
 [`postcss-transform-shortcut`]:      https://github.com/jonathantneal/postcss-transform-shortcut
+[`postcss-responsive-images`]:       https://github.com/azat-io/postcss-responsive-images
+[`postcss-tatar-stylesheets`]:       https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-custom-properties`]:       https://github.com/postcss/postcss-custom-properties
 [`postcss-discard-font-face`]:       https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-custom-selectors`]:        https://github.com/postcss/postcss-custom-selectors
@@ -583,6 +588,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-mix`]:               https://github.com/iamstarkov/postcss-color-mix
 [`postcss-image-set`]:               https://github.com/alex499/postcss-image-set
 [`postcss-write-svg`]:               https://github.com/jonathantneal/postcss-write-svg
+[`postcss-instagram`]:               https://github.com/azat-io/postcss-instagram
 [`postcss-clearfix`]:                https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:                https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:                https://github.com/cssstats/postcss-cssstats
