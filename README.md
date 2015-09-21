@@ -295,6 +295,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 ### Language Extensions
 
+* [`postcss-atroot`] place rules directly at the root node.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-css-variables`] supports variables for selectors, and at-rules
@@ -617,6 +618,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-zindex`]:                  https://github.com/ben-eb/postcss-zindex
 [`list-selectors`]:                  https://github.com/davidtheclark/list-selectors
 [`mq4-hover-shim`]:                  https://github.com/twbs/mq4-hover-shim
+[`postcss-atroot`]:                  https://github.com/OEvgeny/postcss-atroot
 [`postcss-focus`]:                   https://github.com/postcss/postcss-focus
 [`postcss-apply`]:                   https://github.com/pascalduez/postcss-apply
 [`css2modernizr`]:                   https://github.com/vovanbo/css2modernizr
