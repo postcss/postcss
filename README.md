@@ -350,6 +350,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   colorblindness.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
+* [`colorguard`] helps maintain a consistent color palette.
 
 ### Images and Fonts
 
@@ -652,6 +653,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-map`]:                     https://github.com/pascalduez/postcss-map
 [`postcss-svg`]:                     https://github.com/Pavliko/postcss-svg
 [`postcss-url`]:                     https://github.com/postcss/postcss-url
+[`colorguard`]:                      https://github.com/SlexAxton/css-colorguard
 [`stylehacks`]:                      https://github.com/ben-eb/stylehacks
 [`css-byebye`]:                      https://github.com/AoDev/css-byebye
 [`cssgrace`]:                        https://github.com/cssdream/cssgrace
