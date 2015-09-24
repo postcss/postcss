@@ -114,7 +114,7 @@ Start using PostCSS in just two steps:
 2. Select plugins from the list below and add them to your PostCSS process.
 
 There are plugins for [Grunt], [Gulp], [webpack], [Broccoli],
-[Brunch], [ENB], [Fly], [Stylus] and [Connect/Express].
+[Brunch], [ENB], [Fly], [Stylus], [Duo] and [Connect/Express].
 
 ```js
 gulp.task('css', function () {
@@ -158,6 +158,7 @@ Read the [PostCSS API] for more details about the JS API.
 [Gulp]:             https://github.com/postcss/gulp-postcss
 [ENB]:              https://github.com/theprotein/enb-postcss
 [Fly]:              https://github.com/postcss/fly-postcss
+[Duo]:            https://github.com/duojs/duo
 
 ## Custom Syntaxes
 
