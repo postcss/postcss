@@ -158,7 +158,7 @@ Read the [PostCSS API] for more details about the JS API.
 [Gulp]:             https://github.com/postcss/gulp-postcss
 [ENB]:              https://github.com/theprotein/enb-postcss
 [Fly]:              https://github.com/postcss/fly-postcss
-[Duo]:            https://github.com/duojs/duo
+[Duo]:              https://github.com/duojs/duo
 
 ## Custom Syntaxes
 
