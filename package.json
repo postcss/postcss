@@ -2,6 +2,9 @@
   "name": "postcss",
   "version": "5.0.6",
   "description": "Tool for transforming styles with JS plugins",
+  "engines": {
+    "node": ">=0.12"
+  },
   "keywords": [
     "css",
     "postcss",
