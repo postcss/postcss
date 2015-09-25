@@ -1,3 +1,7 @@
+## 5.0.7
+* PostCSS now requires that node 0.12 is installed via the engines property
+  in package.json (by Howard Zuo).
+
 ## 5.0.6
 * Fix parsing nested at-rule without semicolon (by Matt Drake).
 * Trim `Declaration#value` (by Bogdan Chadkin).
