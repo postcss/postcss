@@ -88,8 +88,8 @@ var remove = postcss.plugin('postcss-remove', function (opts) {
     };
 });
 
-postcss().use(remove)                    // with default options
-postcss().use(remove({ prop: 'color' })) // with options
+postcss([ remove ])                   // with default options
+postcss([ remove({ prop: 'color' })]) // with options
 ```
 
 Arguments:
@@ -259,7 +259,7 @@ Adds a plugin to be used as a CSS processor.
 
 ```js
 var processor = postcss();
-processor.use(autoprefixer).use(cssnext).use(cssgrace);
+processor.use(autoprefixer()).use(cssnext()).use(cssgrace());
 ```
 
 Arguments:
