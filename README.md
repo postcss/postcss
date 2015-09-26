@@ -349,6 +349,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-color-pantone`] transforms pantone color to RGB.
 * [`postcss-color-scale`] adds a color scale `cs()` function.
 * [`postcss-color-short`] adds shorthand color declarations.
+* [`postcss-color-yiq`] sets foreground colors using the YIQ color space.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
@@ -591,6 +592,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-hcl`]:               https://github.com/devgru/postcss-color-hcl
 [`postcss-color-hwb`]:               https://github.com/postcss/postcss-color-hwb
 [`postcss-color-mix`]:               https://github.com/iamstarkov/postcss-color-mix
+[`postcss-color-yiq`]:               https://github.com/ben-eb/postcss-color-yiq
 [`postcss-image-set`]:               https://github.com/alex499/postcss-image-set
 [`postcss-write-svg`]:               https://github.com/jonathantneal/postcss-write-svg
 [`postcss-instagram`]:               https://github.com/azat-io/postcss-instagram
