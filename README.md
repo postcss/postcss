@@ -305,7 +305,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
-* [`postcss-for-variables`](https://github.com/GitScrum/postcss-for-variables) adds support custome property in at-rules @for loops
+* [`postcss-for-variables`] adds support custome property in at-rules @for loops
 * [`postcss-functions`] enables exposure of JavaScript functions.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
@@ -667,6 +667,7 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
+[`postcss-for-variables`]:           https://github.com/GitScrum/postcss-for-variables
 
 ## How to Develop for PostCSS
 
