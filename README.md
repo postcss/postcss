@@ -305,7 +305,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
-* [`postcss-for-variables`] adds support custome property in at-rules @for loops
+* [`postcss-for-variables`] adds support custome property in at-rules `@for` loops
 * [`postcss-functions`] enables exposure of JavaScript functions.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
