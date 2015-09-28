@@ -321,6 +321,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-nested-vars`] supports nested Sass-style variables.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
+* [`postcss-reverse-media`] reverse/Invert media query parameters.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
 * [`postcss-simple-extend`] lightweight extending of silent classes,
   like Sass’ `@extend`.
@@ -557,6 +558,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-brand-colors`]:            https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:            https://github.com/thompsongl/postcss-class-prefix
 [`postcss-conditionals`]:            https://github.com/andyjansson/postcss-conditionals
+[`postcss-reverse-media`]:           https://github.com/MadLittleMods/postcss-reverse-media
 [`postcss-sassy-mixins`]:            https://github.com/andyjansson/postcss-sassy-mixins
 [`postcss-custom-media`]:            https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:            https://github.com/antyakushev/postcss-default-unit
