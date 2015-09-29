@@ -431,6 +431,10 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
 * [`postcss-responsive-type`] changes `font-size` depends on screen size.
+* [`postcss-short-font-size`] extends `font-size` to define line-height as a second value.
+* [`postcss-short-position`] extends `position` to define edges as additional values.
+* [`postcss-short-spacing`] extends `margin` and `padding` to allow for omitted edges.
+* [`postcss-short-text`] adds a `text` shortcut property for several text-related properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 * [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
@@ -534,11 +538,13 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-remove-prefixes`]:         https://github.com/johnotander/postcss-remove-prefixes
 [`postcss-responsive-type`]:         https://github.com/seaneking/postcss-responsive-type
 [`postcss-round-subpixels`]:         https://github.com/himynameisdave/postcss-round-subpixels
+[`postcss-short-font-size`]:         https://github.com/jonathantneal/postcss-short-font-size
 [`postcss-color-function`]:          https://github.com/postcss/postcss-color-function
 [`postcss-conic-gradient`]:          https://github.com/jonathantneal/postcss-conic-gradient
 [`postcss-convert-values`]:          https://github.com/ben-eb/postcss-convert-values
 [`postcss-partial-import`]:          https://github.com/jonathantneal/postcss-partial-import
 [`postcss-pseudoelements`]:          https://github.com/axa-ch/postcss-pseudoelements
+[`postcss-short-position`]:          https://github.com/jonathantneal/postcss-short-position
 [`postcss-single-charset`]:          https://github.com/hail2u/postcss-single-charset
 [`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
 [`postcss-alias-atrules`]:           https://github.com/maximkoretskiy/postcss-alias-atrules
@@ -550,6 +556,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-modular-scale`]:           https://github.com/kristoferjoseph/postcss-modular-scale
 [`postcss-normalize-url`]:           https://github.com/ben-eb/postcss-normalize-url
 [`postcss-reduce-idents`]:           https://github.com/ben-eb/postcss-reduce-idents
+[`postcss-short-spacing`]:           https://github.com/jonathantneal/postcss-short-spacing
 [`postcss-simple-extend`]:           https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-russian-units`]:           https://github.com/Semigradsky/postcss-russian-units
 [`postcss-image-inliner`]:           https://github.com/bezoerb/postcss-image-inliner
@@ -588,6 +595,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:              https://github.com/btholt/postcss-colorblind
 [`postcss-color-hexa`]:              https://github.com/nicksheffield/postcss-color-hexa
+[`postcss-short-text`]:              https://github.com/jonathantneal/postcss-short-text
 [`postcss-autoreset`]:               https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-font-pack`]:               https://github.com/jedmao/postcss-font-pack
 [`postcss-functions`]:               https://github.com/andyjansson/postcss-functions
