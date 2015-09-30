@@ -460,6 +460,7 @@ See also plugins in modular minifier [`cssnano`].
   if it is missing.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
+* [`postcss-strip-zero-length-units`] removes units from zero lengths.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`postcss-scopify`] adds a user input scope to each selector.
 * [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
