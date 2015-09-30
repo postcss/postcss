@@ -17,6 +17,7 @@ But PostCSS is modular, 3-30 times faster, and much more powerful.
 
 Twitter account: [@postcss](https://twitter.com/postcss).
 VK.com page:     [postcss](https://vk.com/postcss).
+Support / Discussion: [gitter](https://gitter.im/postcss/postcss).
 
 [appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
 [travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix
