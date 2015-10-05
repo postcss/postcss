@@ -239,6 +239,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to special annotation comments.
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
 * [`cssnext`] contains plugins that allow you to use future CSS features today.
+* [`oldie`] contains plugins that transform your CSS for older Internet Explorer compatibility.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
 * [`rucksack`] contains plugins to speed up CSS development
   with new features and shortcuts.
@@ -249,6 +250,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`rucksack`]:  http://simplaio.github.io/rucksack
 [`cssnano`]:   http://cssnano.co/
 [`cssnext`]:   http://cssnext.io/
+[`oldie`]:     https://github.com/jonathantneal/oldie
 [`precss`]:    https://github.com/jonathantneal/precss
 [`atcss`]:     https://github.com/morishitter/atcss
 
