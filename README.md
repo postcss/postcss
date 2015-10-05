@@ -463,6 +463,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
+* [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`postcss-scopify`] adds a user input scope to each selector.
@@ -531,6 +532,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-quantity-queries`]:        https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-browser-reporter`]:        https://github.com/postcss/postcss-browser-reporter
 [`postcss-selector-matches`]:        https://github.com/postcss/postcss-selector-matches
+[`postcss-shorthand-expand`]:        https://github.com/johnotander/postcss-shorthand-expand
 [`postcss-all-link-colors`]:         https://github.com/jedmao/postcss-all-link-colors
 [`postcss-color-hex-alpha`]:         https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-define-property`]:         https://github.com/daleeidd/postcss-define-property
