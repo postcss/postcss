@@ -309,8 +309,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
-* [`postcss-for-variables`] adds support for custom properties in at-rules
-  `@for` loops.
+* [`postcss-at-rules-variables`] adds support for custom properties in at-rules
+  `@for`, `@each`, `@if` and more.
 * [`postcss-functions`] enables exposure of JavaScript functions.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
@@ -521,6 +521,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-minify-font-weight`]:      https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:      https://github.com/jonathantneal/postcss-pseudo-class-enter
 [`postcss-transform-shortcut`]:      https://github.com/jonathantneal/postcss-transform-shortcut
+[`postcss-at-rules-variables`]:      https://github.com/GitScrum/postcss-at-rules-variables
 [`postcss-responsive-images`]:       https://github.com/azat-io/postcss-responsive-images
 [`postcss-tatar-stylesheets`]:       https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-custom-properties`]:       https://github.com/postcss/postcss-custom-properties
@@ -566,7 +567,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-simple-extend`]:           https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-russian-units`]:           https://github.com/Semigradsky/postcss-russian-units
 [`postcss-image-inliner`]:           https://github.com/bezoerb/postcss-image-inliner
-[`postcss-for-variables`]:           https://github.com/GitScrum/postcss-for-variables
 [`postcss-mq-keyframes`]:            https://github.com/TCotton/postcss-mq-keyframes
 [`postcss-brand-colors`]:            https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:            https://github.com/thompsongl/postcss-class-prefix
