@@ -148,6 +148,9 @@ var postcss = require('postcss');
 
 Read the [PostCSS API] for more details about the JS API.
 
+To process CSS within the `<style>` tags and inline `style=` attributes
+in your HTML consider using [html-postcss] and [gulp-html-postcss].
+
 [Promise polyfill]: https://github.com/jakearchibald/es6-promise
 [Connect/Express]:  https://github.com/jedmao/postcss-middleware
 [PostCSS API]:      https://github.com/postcss/postcss/blob/master/docs/api.md
@@ -161,6 +164,8 @@ Read the [PostCSS API] for more details about the JS API.
 [ENB]:              https://github.com/theprotein/enb-postcss
 [Fly]:              https://github.com/postcss/fly-postcss
 [Duo]:              https://github.com/duojs/duo
+[html-postcss]:     https://github.com/RebelMail/html-postcss
+[gulp-html-postcss]:https://github.com/StartPolymer/gulp-html-postcss
 
 ## Custom Syntaxes
 
