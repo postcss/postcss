@@ -127,6 +127,9 @@ gulp.task('css', function () {
 });
 ```
 
+To process CSS within the `<style>` tags and inline `style=` attributes
+in your HTML consider using [html-postcss] and [gulp-html-postcss].
+
 For other environments, you can use the [CLI tool] or the JS API:
 
 ```js
@@ -147,9 +150,6 @@ var postcss = require('postcss');
 ```
 
 Read the [PostCSS API] for more details about the JS API.
-
-To process CSS within the `<style>` tags and inline `style=` attributes
-in your HTML consider using [html-postcss] and [gulp-html-postcss].
 
 [Promise polyfill]: https://github.com/jakearchibald/es6-promise
 [Connect/Express]:  https://github.com/jedmao/postcss-middleware
