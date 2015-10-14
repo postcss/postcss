@@ -68,11 +68,17 @@ describe('CssSyntaxError', () => {
             '^');
     });
 
-    it('misses highlights without source', () => {
+    it('misses highlights without source content', () => {
         let error = parseError('a {');
         error.source = null;
         expect(error.toString()).to.eql(
             'CssSyntaxError: <css input>:1:1: Unclosed block');
+    });
+
+    it('misses position without source', () => {
+        let decl  = postcss.decl({ prop: 'color', value: 'black' });
+        let error = decl.error('Test');
+        expect(error.toString()).to.eql('CssSyntaxError: <css input>: Test');
     });
 
     it('uses source map', () => {
