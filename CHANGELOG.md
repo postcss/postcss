@@ -1,3 +1,6 @@
+## 5.0.10
+* Fix warning from nodes without source.
+
 ## 5.0.9
 * Fix source map type detection (by @asan).
 
