@@ -5,7 +5,7 @@ export default class Warning {
     constructor(text, opts = { }) {
         this.text = text;
 
-        if ( opts.node ) {
+        if ( opts.node && opts.node.source ) {
             let pos     = opts.node.positionBy(opts);
             this.line   = pos.line;
             this.column = pos.column;
