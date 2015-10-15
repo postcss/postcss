@@ -127,6 +127,9 @@ gulp.task('css', function () {
 });
 ```
 
+There is [postcss-js] to use PostCSS plugins in React Inline Styles,
+Free Style, Radium and other CSS-in-JS solutions.
+
 To process CSS within the `<style>` tags and inline `style=` attributes
 in your HTML consider using [html-postcss] and [gulp-html-postcss].
 
@@ -151,21 +154,22 @@ var postcss = require('postcss');
 
 Read the [PostCSS API] for more details about the JS API.
 
-[Promise polyfill]: https://github.com/jakearchibald/es6-promise
-[Connect/Express]:  https://github.com/jedmao/postcss-middleware
-[PostCSS API]:      https://github.com/postcss/postcss/blob/master/docs/api.md
-[Broccoli]:         https://github.com/jeffjewiss/broccoli-postcss
-[CLI tool]:         https://github.com/code42day/postcss-cli
-[webpack]:          https://github.com/postcss/postcss-loader
-[Brunch]:           https://github.com/iamvdo/postcss-brunch
-[Stylus]:           https://github.com/seaneking/poststylus
-[Grunt]:            https://github.com/nDmitry/grunt-postcss
-[Gulp]:             https://github.com/postcss/gulp-postcss
-[ENB]:              https://github.com/theprotein/enb-postcss
-[Fly]:              https://github.com/postcss/fly-postcss
-[Duo]:              https://github.com/duojs/duo
-[html-postcss]:     https://github.com/RebelMail/html-postcss
-[gulp-html-postcss]:https://github.com/StartPolymer/gulp-html-postcss
+[gulp-html-postcss]: https://github.com/StartPolymer/gulp-html-postcss
+[Promise polyfill]:  https://github.com/jakearchibald/es6-promise
+[Connect/Express]:   https://github.com/jedmao/postcss-middleware
+[html-postcss]:      https://github.com/RebelMail/html-postcss
+[PostCSS API]:       https://github.com/postcss/postcss/blob/master/docs/api.md
+[postcss-js]:        https://github.com/postcss/postcss-js
+[Broccoli]:          https://github.com/jeffjewiss/broccoli-postcss
+[CLI tool]:          https://github.com/code42day/postcss-cli
+[webpack]:           https://github.com/postcss/postcss-loader
+[Brunch]:            https://github.com/iamvdo/postcss-brunch
+[Stylus]:            https://github.com/seaneking/poststylus
+[Grunt]:             https://github.com/nDmitry/grunt-postcss
+[Gulp]:              https://github.com/postcss/gulp-postcss
+[ENB]:               https://github.com/theprotein/enb-postcss
+[Fly]:               https://github.com/postcss/fly-postcss
+[Duo]:               https://github.com/duojs/duo
 
 ## Custom Syntaxes
 
