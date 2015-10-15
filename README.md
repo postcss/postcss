@@ -295,6 +295,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
+* [`postcss-round-subpixels`] plugin that rounds sub-pixel values to the nearest full pixel.
 * [`postcss-unmq`] removes media queries while preserving desktop rules for IE≤8.
 * [`postcss-vmin`] generates `vm` fallback for `vmin` unit in IE9.
 * [`postcss-will-change`] inserts 3D hack before `will-change` property.
@@ -302,7 +303,6 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
-* [`postcss-round-subpixels`] plugin that rounds sub-pixel values to the nearest full pixel.
 
 ### Language Extensions
 
