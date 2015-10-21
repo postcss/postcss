@@ -578,11 +578,11 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-simple-extend`]:           https://github.com/davidtheclark/postcss-simple-extend
 [`postcss-russian-units`]:           https://github.com/Semigradsky/postcss-russian-units
 [`postcss-image-inliner`]:           https://github.com/bezoerb/postcss-image-inliner
+[`postcss-reverse-media`]:           https://github.com/MadLittleMods/postcss-reverse-media
 [`postcss-mq-keyframes`]:            https://github.com/TCotton/postcss-mq-keyframes
 [`postcss-brand-colors`]:            https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:            https://github.com/thompsongl/postcss-class-prefix
 [`postcss-conditionals`]:            https://github.com/andyjansson/postcss-conditionals
-[`postcss-reverse-media`]:           https://github.com/MadLittleMods/postcss-reverse-media
 [`postcss-sassy-mixins`]:            https://github.com/andyjansson/postcss-sassy-mixins
 [`postcss-custom-media`]:            https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:            https://github.com/antyakushev/postcss-default-unit
@@ -630,6 +630,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-fallback`]:                https://github.com/MadLittleMods/postcss-fallback
 [`postcss-imperial`]:                https://github.com/cbas/postcss-imperial
 [`postcss-position`]:                https://github.com/seaneking/postcss-position
+[`postcss-contrast`]:                https://github.com/stephenway/postcss-contrast
 [`postcss-spiffing`]:                https://github.com/HashanP/postcss-spiffing
 [`postcss-triangle`]:                https://github.com/jedmao/postcss-triangle
 [`postcss-verthorz`]:                https://github.com/davidhemphill/postcss-verthorz
