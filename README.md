@@ -248,7 +248,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to special annotation comments.
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
 * [`cssnext`] contains plugins that allow you to use future CSS features today.
-* [`oldie`] contains plugins that transform your CSS for older Internet Explorer compatibility.
+* [`oldie`] contains plugins that transform your CSS
+  for older Internet Explorer compatibility.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
 * [`rucksack`] contains plugins to speed up CSS development
   with new features and shortcuts.
@@ -308,6 +309,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
+
+See also [`oldie`] plugins pack.
 
 ### Language Extensions
 
