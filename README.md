@@ -367,6 +367,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-color-yiq`] sets foreground colors using the YIQ color space.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness.
+* [`postcss-contrast`] checks background-color and gives either white or black.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
 * [`colorguard`] helps maintain a consistent color palette.
