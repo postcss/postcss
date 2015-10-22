@@ -379,6 +379,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 * [`postcss-assets`] allows you to simplify URLs, insert image dimensions,
   and inline files.
+* [`postcss-assets-rebase`] rebases assets from `url()`.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
 * [`postcss-copy-assets`] copies assets referenced by relative `url()`s into a
   build directory.
@@ -390,13 +391,13 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
-* [`postcss-responsive-images`] adds stylesheets for making your images responsive
+* [`postcss-responsive-images`] adds stylesheets for making
+  your images responsive.
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
 * [`postcss-svg`] insert inline SVG to CSS and allows to manage it colors.
 * [`postcss-svg-fallback`] converts SVG in your CSS to PNG files for IE 8.
 * [`postcss-svgo`] processes inline SVG through [SVGO].
 * [`postcss-url`] rebases or inlines `url()`s.
-* [`postcss-assets-rebase`] rebases assets from `url()`
 * [`postcss-urlrev`] adds MD5 hash strings to `url()`s.
 * [`postcss-write-svg`] write inline SVGs in CSS.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
@@ -572,6 +573,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
 [`postcss-alias-atrules`]:           https://github.com/maximkoretskiy/postcss-alias-atrules
 [`postcss-color-palette`]:           https://github.com/zaim/postcss-color-palette
+[`postcss-assets-rebase`]:           https://github.com/devex-web-frontend/postcss-assets-rebase
 [`postcss-color-pantone`]:           https://github.com/longdog/postcss-color-pantone
 [`postcss-css-variables`]:           https://github.com/MadLittleMods/postcss-css-variables
 [`postcss-discard-empty`]:           https://github.com/ben-eb/postcss-discard-empty
@@ -706,7 +708,7 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
-[`postcss-assets-rebase`]:           https://github.com/devex-web-frontend/postcss-assets-rebase
+
 ## How to Develop for PostCSS
 
 ### Syntax
