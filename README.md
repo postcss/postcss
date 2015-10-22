@@ -475,6 +475,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-regexp-detect`] search for regexp in css declarations
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -692,7 +693,7 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
-
+[`postcss-regexp-detect`]:           https://github.com/devex-web-frontend/postcss-regexp-detect
 ## How to Develop for PostCSS
 
 ### Syntax
