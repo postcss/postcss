@@ -387,6 +387,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-svg-fallback`] converts SVG in your CSS to PNG files for IE 8.
 * [`postcss-svgo`] processes inline SVG through [SVGO].
 * [`postcss-url`] rebases or inlines `url()`s.
+* [`postcss-assets-rebase`] rebases assets from `url()`
 * [`postcss-urlrev`] adds MD5 hash strings to `url()`s.
 * [`postcss-write-svg`] write inline SVGs in CSS.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
@@ -692,7 +693,7 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
-
+[`postcss-assets-rebase`]:           https://github.com/devex-web-frontend/postcss-assets-rebase
 ## How to Develop for PostCSS
 
 ### Syntax
