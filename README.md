@@ -494,6 +494,7 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-bem-linter`] lints CSS for conformance to SUIT CSS methodology.
 * [`postcss-cssstats`] returns an object with CSS statistics.
+* [`postcss-regexp-detect`] search for regexp in CSS declarations.
 * [`css2modernizr`] creates a Modernizr config file
   that requires only the tests that your CSS uses.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
