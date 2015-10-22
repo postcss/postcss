@@ -477,6 +477,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
+* [`postcss-select`] select rules based off a selector list.
 * [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
@@ -660,6 +661,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-import`]:                  https://github.com/postcss/postcss-import
 [`postcss-mixins`]:                  https://github.com/postcss/postcss-mixins
 [`postcss-nested`]:                  https://github.com/postcss/postcss-nested
+[`postcss-select`]:                  https://github.com/johnotander/postcss-select
 [`postcss-zindex`]:                  https://github.com/ben-eb/postcss-zindex
 [`list-selectors`]:                  https://github.com/davidtheclark/list-selectors
 [`mq4-hover-shim`]:                  https://github.com/twbs/mq4-hover-shim
