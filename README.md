@@ -587,6 +587,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-russian-units`]:           https://github.com/Semigradsky/postcss-russian-units
 [`postcss-image-inliner`]:           https://github.com/bezoerb/postcss-image-inliner
 [`postcss-reverse-media`]:           https://github.com/MadLittleMods/postcss-reverse-media
+[`postcss-regexp-detect`]:           https://github.com/devex-web-frontend/postcss-regexp-detect
 [`postcss-mq-keyframes`]:            https://github.com/TCotton/postcss-mq-keyframes
 [`postcss-brand-colors`]:            https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:            https://github.com/thompsongl/postcss-class-prefix
