@@ -1793,7 +1793,7 @@ var comment.text //=> 'Empty file'
 [`Comment` node]:                 #comment-node
 [`AtRule` node]:                  #atrule-node
 [`from` option]:                  #processorprocesscss-opts
-[`LazyResult`]:                   #lazy-result-class
+[`LazyResult`]:                   #lazyresult-class
 [`Result#map`]:                   #resultmap
 [`Result#css`]:                   #resultcss
 [`Root` node]:                    #root-node
