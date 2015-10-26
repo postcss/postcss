@@ -97,7 +97,7 @@ All code can only be in JS plugins.
 
 As a result, PostCSS offers three main benefits:
 
-* **Performance:** PostCSS, written in JS, is [2 times faster] than libsass,
+* **Performance:** PostCSS, written in JS, has [same performance] as libsass,
   which is written in C++.
 * **Future CSS:** PostCSS plugins can read and rebuild an entire document,
   meaning that they can provide new language features. For example, [cssnext]
@@ -106,7 +106,7 @@ As a result, PostCSS offers three main benefits:
   It makes many new classes of tools possible. [Autoprefixer], [`rtlcss`],
   [`doiuse`] or [`postcss-colorblind`] are good examples.
 
-[2 times faster]: https://github.com/postcss/benchmark
+[same performance]: https://github.com/postcss/benchmark
 
 ## Usage
 
