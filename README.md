@@ -282,11 +282,13 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to more widely supported CSS.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
-* [`postcss-initial`] supports `initial` keyword and `all: initial` to clean inherit styles.
+* [`postcss-initial`] supports `initial` keyword and `all: initial`
+  to clean inherit styles.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
 * [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
-* [`postcss-selector-matches`] transforms CSS4 `:matches()` to more compatible CSS.
+* [`postcss-selector-matches`] transforms CSS4 `:matches()`
+  to more compatible CSS.
 * [`postcss-apply`] supports custom properties sets references
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
@@ -301,7 +303,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
-* [`postcss-round-subpixels`] plugin that rounds sub-pixel values to the nearest full pixel.
+* [`postcss-round-subpixels`] plugin that rounds sub-pixel values to the nearest
+  full pixel.
 * [`postcss-unmq`] removes media queries while preserving desktop rules for IE≤8.
 * [`postcss-vmin`] generates `vm` fallback for `vmin` unit in IE9.
 * [`postcss-will-change`] inserts 3D hack before `will-change` property.
@@ -354,7 +357,8 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 ### Colors
 
-* [`postcss-ase-colors`] replaces color names with values read from an ASE palette file.
+* [`postcss-ase-colors`] replaces color names with values read
+  from an ASE palette file.
 * [`postcss-brand-colors`] inserts company brand colors
   in the `brand-colors` module.
 * [`postcss-color-alpha`] transforms `#hex.a`, `black(alpha)` and `white(alpha)`
@@ -446,15 +450,20 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
-* [`postcss-input-style`] adds new pseudo-elements for cross-browser styling of inputs.
+* [`postcss-input-style`] adds new pseudo-elements for cross-browser styling
+  of inputs.
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
 * [`postcss-responsive-type`] changes `font-size` depends on screen size.
-* [`postcss-short-font-size`] extends `font-size` to define line-height as a second value.
-* [`postcss-short-position`] extends `position` to define edges as additional values.
-* [`postcss-short-spacing`] extends `margin` and `padding` to allow for omitted edges.
-* [`postcss-short-text`] adds a `text` shortcut property for several text-related properties.
+* [`postcss-short-font-size`] extends `font-size` to define line-height
+  s a second value.
+* [`postcss-short-position`] extends `position` to define edges
+  as additional values.
+* [`postcss-short-spacing`] extends `margin` and `padding` to allow
+  or omitted edges.
+* [`postcss-short-text`] adds a `text` shortcut property for several
+  text-related properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
 * [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
@@ -518,13 +527,13 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-swedish-stylesheets`] Swedish Style Sheets.
 * [`postcss-tatar-stylesheets`] Tatar Style Sheets
 * [`postcss-lolcat-stylesheets`] Lolspeak Style Sheets.
-* [`postcss-imperial`] adds CSS support for Imperial and US customary units of length.
+* [`postcss-imperial`] adds CSS support for Imperial and US customary units
+  of length.
 * [`postcss-russian-units`] adds CSS support for russian units of length.
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
-[`postcss-spanish-stylesheets`]:     https://github.com/ismamz/postcss-spanish-stylesheets
 [`postcss-pseudo-elements-content`]: https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]:  https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:   https://github.com/jonathantneal/postcss-pseudo-class-any-link
@@ -535,6 +544,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-russian-stylesheets`]:     https://github.com/Semigradsky/postcss-russian-stylesheets
 [`postcss-color-rebeccapurple`]:     https://github.com/postcss/postcss-color-rebeccapurple
 [`postcss-color-rgba-fallback`]:     https://github.com/postcss/postcss-color-rgba-fallback
+[`postcss-spanish-stylesheets`]:     https://github.com/ismamz/postcss-spanish-stylesheets
 [`postcss-lolcat-stylesheets`]:      https://github.com/sandralundgren/postcss-lolcat-stylesheets
 [`postcss-german-stylesheets`]:      https://github.com/timche/postcss-german-stylesheets
 [`postcss-discard-duplicates`]:      https://github.com/ben-eb/postcss-discard-duplicates
