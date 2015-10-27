@@ -522,7 +522,9 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-russian-units`] adds CSS support for russian units of length.
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
+* [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
+[`postcss-spanish-stylesheets`]:     https://github.com/ismamz/postcss-spanish-stylesheets
 [`postcss-pseudo-elements-content`]: https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]:  https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-pseudo-class-any-link`]:   https://github.com/jonathantneal/postcss-pseudo-class-any-link
