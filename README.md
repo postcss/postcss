@@ -521,6 +521,7 @@ See also plugins in modular minifier [`cssnano`].
 ### Fun
 
 * [`postcss-australian-stylesheets`] Australian Style Sheets.
+* [`postcss-andalusian-stylesheets`] Andalusian Style Sheets.
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-german-stylesheets`] German Style Sheets.
 * [`postcss-russian-stylesheets`] Russian Style Sheets.
@@ -533,7 +534,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
-* [`postcss-andalusian-stylesheets`] Andalusian Style Sheets, Olé!.
 
 [`postcss-pseudo-elements-content`]: https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]:  https://github.com/dp-lewis/postcss-australian-stylesheets
