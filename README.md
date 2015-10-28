@@ -377,7 +377,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-contrast`] checks background-color and gives either white or black.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
-* [`postcss-rgba-hex`] converts rgba values to hex analogues.
+* [`postcss-rgba-hex`] converts `rgba` values to `hex` analogues.
 * [`colorguard`] helps maintain a consistent color palette.
 
 ### Images and Fonts
