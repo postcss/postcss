@@ -378,6 +378,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
 * [`colorguard`] helps maintain a consistent color palette.
+* [`postcss-rgba-hex`] converts rgba values to hex analogues
 
 ### Images and Fonts
 
@@ -651,6 +652,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-fallback`]:                https://github.com/MadLittleMods/postcss-fallback
 [`postcss-imperial`]:                https://github.com/cbas/postcss-imperial
 [`postcss-position`]:                https://github.com/seaneking/postcss-position
+[`postcss-rgba-hex`]:                https://github.com/XOP/postcss-rgba-hex
 [`postcss-contrast`]:                https://github.com/stephenway/postcss-contrast
 [`postcss-spiffing`]:                https://github.com/HashanP/postcss-spiffing
 [`postcss-triangle`]:                https://github.com/jedmao/postcss-triangle
