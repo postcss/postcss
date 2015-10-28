@@ -533,9 +533,11 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
+* [`postcss-andalusian-stylesheets`] Andalusian Style Sheets, Olé!.
 
 [`postcss-pseudo-elements-content`]: https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]:  https://github.com/dp-lewis/postcss-australian-stylesheets
+[`postcss-andalusian-stylesheets`]:  https://github.com/bameda/postcss-andalusian-stylesheets
 [`postcss-pseudo-class-any-link`]:   https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-pseudo-content-insert`]:   https://github.com/liquidlight/postcss-pseudo-content-insert
 [`postcss-canadian-stylesheets`]:    https://github.com/chancancode/postcss-canadian-stylesheets
