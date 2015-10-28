@@ -377,8 +377,8 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-contrast`] checks background-color and gives either white or black.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
+* [`postcss-rgba-hex`] converts rgba values to hex analogues.
 * [`colorguard`] helps maintain a consistent color palette.
-* [`postcss-rgba-hex`] converts rgba values to hex analogues
 
 ### Images and Fonts
 
@@ -413,7 +413,6 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-simple-grid`] create grid with one line.
 * [`postcss-neat`] is a semantic and fluid grid framework.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
-
 
 ### Optimizations
 
