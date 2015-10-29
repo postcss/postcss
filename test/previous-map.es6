@@ -1,7 +1,7 @@
 import parse from '../lib/parse';
 
 import   mozilla  from 'source-map';
-import   mozilla2  from 'isparta/node_modules/source-map';
+import   mozilla2 from 'isparta/node_modules/source-map';
 import   fs       from 'fs-extra';
 import   path     from 'path';
 import { expect } from 'chai';
