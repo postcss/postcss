@@ -379,6 +379,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
 * [`postcss-rgba-hex`] converts `rgba` values to `hex` analogues.
 * [`colorguard`] helps maintain a consistent color palette.
+* [`postcss-shades-of-gray`] helps keeping grayscale colors consistent to a gray palette.
 
 ### Images and Fonts
 
@@ -714,6 +715,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-svg`]:                     https://github.com/Pavliko/postcss-svg
 [`postcss-url`]:                     https://github.com/postcss/postcss-url
 [`colorguard`]:                      https://github.com/SlexAxton/css-colorguard
+[`postcss-shades-of-gray`]:          https://github.com/laureanoarcanio/postcss-shades-of-gray
 [`stylehacks`]:                      https://github.com/ben-eb/stylehacks
 [`css-byebye`]:                      https://github.com/AoDev/css-byebye
 [`cssgrace`]:                        https://github.com/cssdream/cssgrace
