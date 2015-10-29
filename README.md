@@ -378,8 +378,8 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
 * [`postcss-rgba-hex`] converts `rgba` values to `hex` analogues.
-* [`colorguard`] helps maintain a consistent color palette.
 * [`postcss-shades-of-gray`] helps keeping grayscale colors consistent to a gray palette.
+* [`colorguard`] helps maintain a consistent color palette.
 
 ### Images and Fonts
 
@@ -587,6 +587,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-short-position`]:          https://github.com/jonathantneal/postcss-short-position
 [`postcss-single-charset`]:          https://github.com/hail2u/postcss-single-charset
 [`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
+[`postcss-shades-of-gray`]:          https://github.com/laureanoarcanio/postcss-shades-of-gray
 [`postcss-alias-atrules`]:           https://github.com/maximkoretskiy/postcss-alias-atrules
 [`postcss-color-palette`]:           https://github.com/zaim/postcss-color-palette
 [`postcss-assets-rebase`]:           https://github.com/devex-web-frontend/postcss-assets-rebase
@@ -715,7 +716,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-svg`]:                     https://github.com/Pavliko/postcss-svg
 [`postcss-url`]:                     https://github.com/postcss/postcss-url
 [`colorguard`]:                      https://github.com/SlexAxton/css-colorguard
-[`postcss-shades-of-gray`]:          https://github.com/laureanoarcanio/postcss-shades-of-gray
 [`stylehacks`]:                      https://github.com/ben-eb/stylehacks
 [`css-byebye`]:                      https://github.com/AoDev/css-byebye
 [`cssgrace`]:                        https://github.com/cssdream/cssgrace
