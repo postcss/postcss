@@ -116,7 +116,7 @@ Start using PostCSS in just two steps:
 2. Select plugins from the list below and add them to your PostCSS process.
 
 There are plugins for [Grunt], [Gulp], [webpack], [Broccoli],
-[Brunch], [ENB], [Fly], [Stylus], [Duo] and [Connect/Express].
+[Brunch], [ENB], [Fly], [Stylus], [Meteor], [Duo] and [Connect/Express].
 
 ```js
 gulp.task('css', function () {
@@ -163,6 +163,7 @@ Read the [PostCSS API] for more details about the JS API.
 [Broccoli]:          https://github.com/jeffjewiss/broccoli-postcss
 [CLI tool]:          https://github.com/code42day/postcss-cli
 [webpack]:           https://github.com/postcss/postcss-loader
+[Meteor]:            https://atmospherejs.com/juliancwirko/postcss
 [Brunch]:            https://github.com/iamvdo/postcss-brunch
 [Stylus]:            https://github.com/seaneking/poststylus
 [Grunt]:             https://github.com/nDmitry/grunt-postcss
