@@ -421,7 +421,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   (when expressions involve the same units).
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
-* [`postcss-reference`] emulates less's [@import (reference)](http://lesscss.org/features/#import-options-reference) functionality.
+* [`postcss-reference`] emulates less [@import (reference)](http://lesscss.org/features/#import-options-reference) functionality.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
