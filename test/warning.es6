@@ -1,5 +1,6 @@
-import Warning from '../lib/warning';
-import parse   from '../lib/parse';
+import Declaration from '../lib/declaration';
+import Warning     from '../lib/warning';
+import parse       from '../lib/parse';
 
 import { expect } from 'chai';
 import   path     from 'path';
@@ -32,6 +33,12 @@ describe('Warning', () => {
                 node:   root.first
             });
             expect(warning.toString()).to.eql(`plugin: ${ file }:1:1: text`);
+        });
+
+        it('generates warning without source', () => {
+            let decl    = new Declaration({ prop: 'color', value: 'black' });
+            let warning = new Warning('text', { node: decl });
+            expect(warning.toString()).to.eql('<css input>: text');
         });
 
     });

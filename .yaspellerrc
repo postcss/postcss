@@ -50,7 +50,9 @@
     "Andres",
     "Andromalius",
     "Andrealphus",
+    "Andalusian",
     "Andras",
+    "asan",
     "Zuo",
     "Jed",
     "Neal",
@@ -120,6 +122,7 @@
     "js",
     "vs",
     "pantone",
-    "YIQ"
+    "YIQ",
+    "gitter"
   ]
 }

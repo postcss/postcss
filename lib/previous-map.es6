@@ -67,7 +67,7 @@ export default class PreviousMap {
                     .fromSourceMap(prev).toString();
             } else if ( prev instanceof mozilla.SourceMapGenerator ) {
                 return prev.toString();
-            } else if ( typeof prev === 'object' && prev.mappings ) {
+            } else if ( this.isMap(prev) ) {
                 return JSON.stringify(prev);
             } else {
                 throw new Error('Unsupported previous source map format: ' +
@@ -90,4 +90,8 @@ export default class PreviousMap {
         }
     }
 
+    isMap(map) {
+        if ( typeof map !== 'object' ) return false;
+        return map.mappings || map._mappings;
+    }
 }

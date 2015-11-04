@@ -91,7 +91,7 @@
     "comma-style":                 [2],
     "brace-style":                 [2],
     "no-debugger":                 [2],
-    "quote-props":                 [2, "as-needed"],
+    "quote-props":                 [2, "consistent-as-needed"],
     "no-iterator":                 [2],
     "no-new-func":                 [2],
     "key-spacing":                 [2, { "align": "value" }],

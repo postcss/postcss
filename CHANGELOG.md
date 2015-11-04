@@ -1,3 +1,9 @@
+## 5.0.10
+* Fix warning from nodes without source.
+
+## 5.0.9
+* Fix source map type detection (by @asan).
+
 ## 5.0.8
 * Fixed a missed step in `5.0.7` that caused the module to be published as
   ES6 code.
