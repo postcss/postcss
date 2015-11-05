@@ -422,6 +422,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
+* [`postcss-reference`] emulates Less’s [`@import (reference)`].
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
@@ -432,6 +433,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 See also plugins in modular minifier [`cssnano`].
 
+[@import (reference)]: http://lesscss.org/features/#import-options-reference
 [SVGO]: https://github.com/svg/svgo
 
 ### Shortcuts
@@ -643,6 +645,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-short-text`]:              https://github.com/jonathantneal/postcss-short-text
 [`postcss-autoreset`]:               https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-font-pack`]:               https://github.com/jedmao/postcss-font-pack
+[`postcss-reference`]:               https://github.com/dehuszar/postcss-reference
 [`postcss-functions`]:               https://github.com/andyjansson/postcss-functions
 [`postcss-color-hcl`]:               https://github.com/devgru/postcss-color-hcl
 [`postcss-color-hwb`]:               https://github.com/postcss/postcss-color-hwb
