@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import { task } from 'gulp-shell';
 
 gulp.task('clean', () => {
     let del = require('del');
@@ -7,12 +8,7 @@ gulp.task('clean', () => {
 
 // Build
 
-gulp.task('build:lib', ['clean'], () => {
-    let babel = require('gulp-babel');
-    return gulp.src('lib/*.es6')
-        .pipe(babel())
-        .pipe(gulp.dest('build/lib'));
-});
+gulp.task('build:lib', ['clean'], task('rollup -c'));
 
 gulp.task('build:docs', ['clean'], () => {
     let ignore = require('fs').readFileSync('.npmignore').toString()
@@ -42,7 +38,7 @@ gulp.task('build', ['build:lib', 'build:docs', 'build:package']);
 
 gulp.task('lint', () => {
     let eslint = require('gulp-eslint');
-    return gulp.src(['*.js', 'lib/*.es6', 'test/*.es6'])
+    return gulp.src(['*.js', 'lib/*.js', 'test/*.es6'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -76,14 +72,12 @@ gulp.task('coverage:instrument', () => {
     require('./');
     let istanbul = require('gulp-istanbul');
     let isparta  = require('isparta');
-    return gulp.src('lib/*.es6')
+    return gulp.src('lib/*.js')
         .pipe(istanbul({
             includeUntested: true,
             instrumenter:    isparta.Instrumenter
         }))
-        .pipe(istanbul.hookRequire({
-            extensions: ['.es6']
-        }));
+        .pipe(istanbul.hookRequire());
 });
 
 gulp.task('coverage:report', () => {

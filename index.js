@@ -1,2 +1,2 @@
-require('babel-core/register')({ extensions: ['.es6'] });
+require('babel-core/register');
 module.exports = require('./lib/postcss');
