@@ -192,8 +192,10 @@ postcss(plugins).process('a {', { parser: safe }).then(function (result) {
 ### Syntaxes
 
 * [`postcss-scss`] to work with SCSS *(but does not compile SCSS to CSS)*.
+* [`postcss-js`] to React Inline Styles, Radium, Free Style and other CSS-in-JS.
 
 [`postcss-scss`]: https://github.com/postcss/postcss-scss
+[`postcss-js`]:   https://github.com/postcss/postcss-js
 
 ### Parsers
 
