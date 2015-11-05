@@ -284,6 +284,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   with pseudo-classes.
 * [`postcss-initial`] supports `initial` keyword and `all: initial`
   to clean inherit styles.
+* [`postcss-logical-properties`] transforms `start` and `end` properties to `left` and `right` depending on the writing direction of the document.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
 * [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
@@ -555,6 +556,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-class-enter`]:      https://github.com/jonathantneal/postcss-pseudo-class-enter
 [`postcss-transform-shortcut`]:      https://github.com/jonathantneal/postcss-transform-shortcut
 [`postcss-at-rules-variables`]:      https://github.com/GitScrum/postcss-at-rules-variables
+[`postcss-logical-properties`]:      https://github.com/ahmadalfy/postcss-logical-properties
 [`postcss-responsive-images`]:       https://github.com/azat-io/postcss-responsive-images
 [`postcss-tatar-stylesheets`]:       https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-custom-properties`]:       https://github.com/postcss/postcss-custom-properties
