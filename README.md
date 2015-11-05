@@ -424,6 +424,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-reference`] emulates Less’s [`@import (reference)`].
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
+* [`postcss-reference`] emulates less [@import (reference)](http://lesscss.org/features/#import-options-reference) functionality.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
@@ -689,6 +690,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-import`]:                  https://github.com/postcss/postcss-import
 [`postcss-mixins`]:                  https://github.com/postcss/postcss-mixins
 [`postcss-nested`]:                  https://github.com/postcss/postcss-nested
+[`postcss-reference`]:               https://github.com/dehuszar/postcss-reference
 [`postcss-select`]:                  https://github.com/johnotander/postcss-select
 [`postcss-zindex`]:                  https://github.com/ben-eb/postcss-zindex
 [`list-selectors`]:                  https://github.com/davidtheclark/list-selectors
