@@ -256,6 +256,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
 * [`rucksack`] contains plugins to speed up CSS development
   with new features and shortcuts.
+* [`level4`] contains only plugins that let you write CSS4 without the fallbacks.
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
 
@@ -266,6 +267,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`oldie`]:     https://github.com/jonathantneal/oldie
 [`precss`]:    https://github.com/jonathantneal/precss
 [`atcss`]:     https://github.com/morishitter/atcss
+[`level4`]:    https://github.com/stephenway/level4
 
 ### Future CSS Syntax
 
