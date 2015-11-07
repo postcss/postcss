@@ -1,3 +1,6 @@
+## 5.0.11
+* Increase plugins performance by 1.5 times.
+
 ## 5.0.10
 * Fix warning from nodes without source.
 
