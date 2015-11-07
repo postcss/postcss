@@ -1,7 +1,6 @@
 import parse from '../lib/parse';
 
 import   mozilla  from 'source-map';
-import   mozilla2 from 'isparta/node_modules/source-map';
 import   fs       from 'fs-extra';
 import   path     from 'path';
 import { expect } from 'chai';
@@ -15,7 +14,6 @@ let mapObj = {
     mappings: []
 };
 let map = JSON.stringify(mapObj);
-let mapMoz = new mozilla2.SourceMapGenerator(mapObj);
 
 describe('PreviousMap', () => {
     afterEach( () => {
@@ -29,11 +27,6 @@ describe('PreviousMap', () => {
     it('creates property if map present', () => {
         let root = parse('a{}', { map: { prev: map } });
         expect(root.source.input.map.text).to.eql(map);
-    });
-
-    it('works with source-map from different package', () => {
-        let parsing = () => parse('a{}', { map: { prev: mapMoz } });
-        expect(parsing).not.to.throw();
     });
 
     it('returns consumer', () => {
