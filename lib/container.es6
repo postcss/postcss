@@ -3,8 +3,6 @@ import warnOnce    from './warn-once';
 import Comment     from './comment';
 import Node        from './node';
 
-let lastEach = 0;
-
 export default class Container extends Node {
 
     push(child) {
@@ -14,10 +12,11 @@ export default class Container extends Node {
     }
 
     each(callback) {
+        if ( !this.lastEach ) this.lastEach = 0;
         if ( !this.indexes ) this.indexes = { };
 
-        lastEach += 1;
-        let id = lastEach;
+        this.lastEach += 1;
+        let id = this.lastEach;
         this.indexes[id] = 0;
 
         if ( !this.nodes ) return undefined;
@@ -32,7 +31,6 @@ export default class Container extends Node {
         }
 
         delete this.indexes[id];
-        if ( Object.keys(this.indexes).length === 0 ) delete this.indexes;
 
         if ( result === false ) return false;
     }
