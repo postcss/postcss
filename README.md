@@ -403,6 +403,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-urlrev`] adds MD5 hash strings to `url()`s.
 * [`postcss-write-svg`] write inline SVGs in CSS.
+* [`postcss-inline-svg`] inline svg images and customize their styles.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
 
 ### Grids
@@ -639,6 +640,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-colorblind`]:              https://github.com/btholt/postcss-colorblind
 [`postcss-color-hexa`]:              https://github.com/nicksheffield/postcss-color-hexa
 [`postcss-short-text`]:              https://github.com/jonathantneal/postcss-short-text
+[`postcss-inline-svg`]:              https://github.com/TrySound/postcss-inline-svg
 [`postcss-autoreset`]:               https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-font-pack`]:               https://github.com/jedmao/postcss-font-pack
 [`postcss-reference`]:               https://github.com/dehuszar/postcss-reference
