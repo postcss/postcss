@@ -53,7 +53,7 @@ or using custom at-rules and custom properties.
 
 ### 1.4. Create plugin by `postcss.plugin`
 
-By wrapping you function in this method,
+By wrapping your function in this method,
 you are hooking into a common plugin API:
 
 ```js
@@ -73,7 +73,7 @@ different environments. You should test in (at least) Node.js 0.12 and io.js.
 
 [Travis]: https://travis-ci.org/
 
-### 2.2. Use asynchronous methods when it is possible
+### 2.2. Use asynchronous methods whenever possible
 
 For example, use `fs.writeFile` instead of `fs.writeFileSync`:
 
