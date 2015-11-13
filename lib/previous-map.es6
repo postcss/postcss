@@ -92,6 +92,7 @@ export default class PreviousMap {
 
     isMap(map) {
         if ( typeof map !== 'object' ) return false;
-        return map.mappings || map._mappings;
+        return typeof map.mappings === 'string' ||
+            typeof map._mappings === 'string';
     }
 }
