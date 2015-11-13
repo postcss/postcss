@@ -1,3 +1,6 @@
+## 5.0.12
+* Allow passing a previous map with no mappings (by Andreas Lind).
+
 ## 5.0.11
 * Increase plugins performance by 1.5 times.
 
