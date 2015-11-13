@@ -11,7 +11,7 @@ let mapObj = {
     file:     null,
     sources:  [],
     names:    [],
-    mappings: []
+    mappings: ''
 };
 let map = JSON.stringify(mapObj);
 
@@ -50,7 +50,7 @@ describe('PreviousMap', () => {
             file:     'b',
             sources:  ['a'],
             names:    [],
-            mappings: []
+            mappings: ''
         };
 
         let opts = { map: { prev: map2 } };
@@ -118,7 +118,7 @@ describe('PreviousMap', () => {
             version:  3,
             sources:  ['a'],
             names:    [],
-            mappings: []
+            mappings: ''
         };
 
         let opts = { map: { prev: map2 } };
@@ -129,4 +129,13 @@ describe('PreviousMap', () => {
         expect(file1).to.not.eql(file2);
     });
 
+    it('should accept an empty mappings string', () => {
+        let emptyMap = {
+            version:  3,
+            sources:  [],
+            names:    [],
+            mappings: ''
+        };
+        parse('body{}', { map: { prev: emptyMap } } );
+    });
 });
