@@ -296,6 +296,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
 * [`postcss-fallback`] adds `fallback` function to avoid duplicate declarations.
+* [`postcss-filter-gradient`] adds gradient filter for the old IE.
 * [`postcss-mqwidth-to-class`] converts min/max-width media queries to classes.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
@@ -572,6 +573,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-all-link-colors`]:         https://github.com/jedmao/postcss-all-link-colors
 [`postcss-color-hex-alpha`]:         https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-define-property`]:         https://github.com/daleeidd/postcss-define-property
+[`postcss-filter-gradient`]:         https://github.com/yuezk/postcss-filter-gradient
 [`postcss-generate-preset`]:         https://github.com/simonsmith/postcss-generate-preset
 [`postcss-media-variables`]:         https://github.com/WolfgangKluge/postcss-media-variables
 [`postcss-property-lookup`]:         https://github.com/simonsmith/postcss-property-lookup
