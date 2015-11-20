@@ -168,7 +168,7 @@ Read the [PostCSS API] for more details about the JS API.
 [Stylus]:            https://github.com/seaneking/poststylus
 [Grunt]:             https://github.com/nDmitry/grunt-postcss
 [Gulp]:              https://github.com/postcss/gulp-postcss
-[ENB]:               https://github.com/theprotein/enb-postcss
+[ENB]:               https://github.com/awinogradov/enb-postcss
 [Fly]:               https://github.com/postcss/fly-postcss
 [Duo]:               https://github.com/duojs/duo
 
@@ -578,7 +578,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-media-variables`]:         https://github.com/WolfgangKluge/postcss-media-variables
 [`postcss-property-lookup`]:         https://github.com/simonsmith/postcss-property-lookup
 [`postcss-vertical-rhythm`]:         https://github.com/markgoodyear/postcss-vertical-rhythm
-[`postcss-local-constants`]:         https://github.com/macropodhq/postcss-local-constants
+[`postcss-local-constants`]:         https://github.com/macropodhq/postcss-constants
 [`postcss-remove-prefixes`]:         https://github.com/johnotander/postcss-remove-prefixes
 [`postcss-responsive-type`]:         https://github.com/seaneking/postcss-responsive-type
 [`postcss-round-subpixels`]:         https://github.com/himynameisdave/postcss-round-subpixels
@@ -637,7 +637,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-will-change`]:             https://github.com/postcss/postcss-will-change
 [`postcss-input-style`]:             https://github.com/seaneking/postcss-input-style
 [`postcss-ase-colors`]:              https://github.com/dfernandez79/postcss-ase-colors
-[`postcss-bem-linter`]:              https://github.com/necolas/postcss-bem-linter
+[`postcss-bem-linter`]:              https://github.com/postcss/postcss-bem-linter
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:              https://github.com/btholt/postcss-colorblind
 [`postcss-color-hexa`]:              https://github.com/nicksheffield/postcss-color-hexa
