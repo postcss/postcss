@@ -385,6 +385,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   and inline files.
 * [`postcss-assets-rebase`] rebases assets from `url()`.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
+* [`postcss-cachebuster`] adds version parameter to images and fonts
 * [`postcss-copy-assets`] copies assets referenced by relative `url()`s into a
   build directory.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
@@ -622,6 +623,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-selector-not`]:            https://github.com/postcss/postcss-selector-not
 [`postcss-svg-fallback`]:            https://github.com/justim/postcss-svg-fallback
 [`postcss-nested-props`]:            https://github.com/jedmao/postcss-nested-props
+[`postcss-cachebuster`]:             https://github.com/glebmachine/postcss-cachebuster
 [`postcss-nested-vars`]:             https://github.com/jedmao/postcss-nested-vars
 [`postcss-color-alpha`]:             https://github.com/avanes/postcss-color-alpha
 [`postcss-color-scale`]:             https://github.com/kristoferjoseph/postcss-color-scale
