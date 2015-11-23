@@ -498,6 +498,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`postcss-scopify`] adds a user input scope to each selector.
 * [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
+* [`css-property-sorter`] sorts CSS properties fast and automatically in a certain order.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
@@ -638,6 +639,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-style-guide`]:             https://github.com/morishitter/postcss-style-guide
 [`postcss-will-change`]:             https://github.com/postcss/postcss-will-change
 [`postcss-input-style`]:             https://github.com/seaneking/postcss-input-style
+[`css-property-sorter`]:             https://github.com/Siilwyn/css-property-sorter
 [`postcss-ase-colors`]:              https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:              https://github.com/postcss/postcss-bem-linter
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
