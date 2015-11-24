@@ -131,7 +131,7 @@ There is [postcss-js] to use PostCSS plugins in React Inline Styles,
 Free Style, Radium and other CSS-in-JS solutions.
 
 To process CSS within the `<style>` tags and inline `style=` attributes
-in your HTML consider using [html-postcss] and [gulp-html-postcss].
+in your HTML consider using [html-postcss] and [gulp-html-postcss] or [posthtml-postcss] plugin.
 
 For other environments, you can use the [CLI tool] or the JS API:
 
@@ -155,6 +155,7 @@ var postcss = require('postcss');
 Read the [PostCSS API] for more details about the JS API.
 
 [gulp-html-postcss]: https://github.com/StartPolymer/gulp-html-postcss
+[posthtml-postcss]:  https://github.com/posthtml/posthtml-postcss
 [Promise polyfill]:  https://github.com/jakearchibald/es6-promise
 [Connect/Express]:   https://github.com/jedmao/postcss-middleware
 [html-postcss]:      https://github.com/RebelMail/html-postcss
