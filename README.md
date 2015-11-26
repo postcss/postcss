@@ -474,6 +474,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-triangle`] creates a triangle.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
+* [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
 
 ### Others
 
@@ -529,6 +530,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-andalusian-stylesheets`] Andalusian Style Sheets.
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
+* [`postcss-chinese-stylesheets`] Chinese Style Sheets.
 * [`postcss-german-stylesheets`] German Style Sheets.
 * [`postcss-russian-stylesheets`] Russian Style Sheets.
 * [`postcss-swedish-stylesheets`] Swedish Style Sheets.
@@ -547,6 +549,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-class-any-link`]:   https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-pseudo-content-insert`]:   https://github.com/liquidlight/postcss-pseudo-content-insert
 [`postcss-canadian-stylesheets`]:    https://github.com/chancancode/postcss-canadian-stylesheets
+[`postcss-chinese-stylesheets`]:     https://github.com/zhouwenbin/postcss-chinese-stylesheets
 [`postcss-increase-specificity`]:    https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-swedish-stylesheets`]:     https://github.com/johnie/postcss-swedish-stylesheets
 [`postcss-russian-stylesheets`]:     https://github.com/Semigradsky/postcss-russian-stylesheets
@@ -658,6 +661,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-yiq`]:               https://github.com/ben-eb/postcss-color-yiq
 [`postcss-image-set`]:               https://github.com/alex499/postcss-image-set
 [`postcss-write-svg`]:               https://github.com/jonathantneal/postcss-write-svg
+[`postcss-animation`]:               https://github.com/zhouwenbin/postcss-animation
 [`postcss-instagram`]:               https://github.com/azat-io/postcss-instagram
 [`postcss-clearfix`]:                https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:                https://github.com/ben-eb/colormin
