@@ -474,7 +474,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-triangle`] creates a triangle.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
-* [`postcss-animation`] PostCSS plugin that adds @keywords from animate.css.
+* [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
 
 ### Others
 
