@@ -478,6 +478,7 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Others
 
+* [`postcss-modules`]  allows to use CSS Modules everywhere
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-currency`] replaces name of currency with symbols.
@@ -678,6 +679,7 @@ See also plugins in modular minifier [`cssnano`].
 [`pleeease-filters`]:                https://github.com/iamvdo/pleeease-filters
 [`postcss-fontpath`]:                https://github.com/seaneking/postcss-fontpath
 [`postcss-reporter`]:                https://github.com/postcss/postcss-reporter
+[`postcss-modules`]:                 https://github.com/outpunk/postcss-modules
 [`postcss-easings`]:                 https://github.com/postcss/postcss-easings
 [`postcss-hexrgba`]:                 https://github.com/seaneking/postcss-hexrgba
 [`postcss-initial`]:                 https://github.com/maximkoretskiy/postcss-initial
