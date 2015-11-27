@@ -1777,7 +1777,7 @@ var comment.text //=> 'Empty file'
 [`source-map`]: https://github.com/mozilla/source-map
 [Promise]:      http://www.html5rocks.com/en/tutorials/es6/promises/
 
-[source map options]: https://github.com/postcss/postcss#source-map
+[source map options]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md
 
 [`Processor#process(css, opts)`]: #processorprocesscss-opts
 [`Root#toResult(opts)`]:          #roottoresult-opts

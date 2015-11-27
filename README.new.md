@@ -9,6 +9,7 @@
 [chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
 [appveyor]:     https://ci.appveyor.com/project/ai/postcss
 [travis]:       https://travis-ci.org/postcss/postcss
+[chat]:         https://gitter.im/postcss/postcss
 
 PostCSS is a tool for transforming styles with JS plugins.
 These plugins can lint your CSS, support variables and mixins,
@@ -51,7 +52,7 @@ You can find all plugins in [plugins list] or in [searchable catalog].
   * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
   * [`cssnext`] allows you to use future CSS features today.
 * **Syntax sugar**
-  * ['precss'] contains plugins for Sass-like features like nested or mixins.
+  * [`precss`] contains plugins for Sass-like features like nested or mixins.
   * [`short`] adds and extends numerous shorthand properties.
 * **Images and Fonts**
   * [`postcss-assets`] inserts image dimensions and inlines files.
@@ -232,7 +233,7 @@ var postcss = require('postcss');
 
 ### Options
 
-Most of PostCSS runners accepts two paramenets:
+Most of PostCSS runners accepts two parameters:
 
 * Array with a plugins.
 * Options object.

@@ -97,6 +97,7 @@
     "transpiling",
     "tokenize",
     "tokenizer",
+    "linter",
     "linters",
     "rebases",
     "minifier",
