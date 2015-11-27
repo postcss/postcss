@@ -131,7 +131,7 @@ There is [postcss-js] to use PostCSS plugins in React Inline Styles,
 Free Style, Radium and other CSS-in-JS solutions.
 
 To process CSS within the `<style>` tags and inline `style=` attributes
-in your HTML consider using [html-postcss] and [gulp-html-postcss] or [posthtml-postcss] plugin.
+in your HTML consider using [`html-postcss`] and [`gulp-html-postcss`] or [`posthtml-postcss`] plugin.
 
 For other environments, you can use the [CLI tool] or the JS API:
 
@@ -478,7 +478,6 @@ See also plugins in modular minifier [`cssnano`].
 
 ### Others
 
-* [`postcss-modules`]  allows to use CSS Modules everywhere
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-currency`] replaces name of currency with symbols.
@@ -487,6 +486,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
+* [`postcss-modules`]  allows to use CSS Modules everywhere.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
 * [`postcss-pseudo-elements-content`] adds `content: ''` to `:before-c`
