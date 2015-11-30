@@ -537,6 +537,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-russian-stylesheets`] Russian Style Sheets.
 * [`postcss-swedish-stylesheets`] Swedish Style Sheets.
 * [`postcss-tatar-stylesheets`] Tatar Style Sheets
+* [`postcss-trolling`] Trolling Style Sheets.
 * [`postcss-lolcat-stylesheets`] Lolspeak Style Sheets.
 * [`postcss-imperial`] adds CSS support for Imperial and US customary units
   of length.
@@ -681,6 +682,7 @@ See also plugins in modular minifier [`cssnano`].
 [`pleeease-filters`]:                https://github.com/iamvdo/pleeease-filters
 [`postcss-fontpath`]:                https://github.com/seaneking/postcss-fontpath
 [`postcss-reporter`]:                https://github.com/postcss/postcss-reporter
+[`postcss-trolling`]:                https://github.com/juanfran/postcss-trolling
 [`postcss-modules`]:                 https://github.com/outpunk/postcss-modules
 [`postcss-easings`]:                 https://github.com/postcss/postcss-easings
 [`postcss-hexrgba`]:                 https://github.com/seaneking/postcss-hexrgba
