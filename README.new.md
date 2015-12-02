@@ -21,7 +21,7 @@ CSS processors.
 
 Twitter account:      [@postcss](https://twitter.com/postcss).
 VK.com page:          [postcss](https://vk.com/postcss).
-Support / Discussion: [gitter](https://gitter.im/postcss/postcss).
+Support / Discussion: [Gitter](https://gitter.im/postcss/postcss).
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 
