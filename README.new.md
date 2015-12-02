@@ -32,7 +32,7 @@ Support / Discussion: [gitter](https://gitter.im/postcss/postcss).
 ## Plugins
 
 Currently, PostCSS has more than 200 plugins. Here are our favorite plugins
-which best demonstrate PostCSS' power. You can find all of the plugins in the
+which best demonstrate PostCSS’ power. You can find all of the plugins in the
 [plugins list] or in the [searchable catalog].
 
 [searchable catalog]: http://postcss.parts
