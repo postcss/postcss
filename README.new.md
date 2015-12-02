@@ -70,7 +70,7 @@ which best demonstrate PostCSS’ power. You can find all of the plugins in the
 
 If you have any new ideas, [PostCSS plugin development] is really easy.
 
-[PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/plugin-development.md
+[PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg
 [`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial
