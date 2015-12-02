@@ -32,41 +32,52 @@ Support / Discussion: [gitter](https://gitter.im/postcss/postcss).
 ## Plugins
 
 Currently, PostCSS has more than 200 plugins. Here are our favorite plugins
-which best demonstrate PostCSS’ power. You can find all of the plugins in the
+which best demonstrate PostCSS’ power. You can find all of the plugins in the
 [plugins list] or in the [searchable catalog].
 
 [searchable catalog]: http://postcss.parts
 [plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
 
-* **End of Global CSS**
-  * [`postcss-use`] to explicitly set PostCSS plugins in CSS and execute them
-    only for the current file.
-  * [`postcss-modules`] or [`react-css-modules`] automatically isolates
-    selectors in components.
-  * [`postcss-autoreset`] uses local reset in component, instead of global one.
-  * [`postcss-initial`] adds `all: initial` support to reset all inherit styles.
-  * [`cq-prolyfill`] adds media queries for component size
-    or parent background.
-* **Future CSS**
-  * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
-  * [`cssnext`] allows you to use future CSS features today.
-* **Syntax sugar**
-  * [`precss`] contains plugins for Sass-like features like nesting or mixins.
-  * [`short`] adds and extends numerous shorthand properties.
-* **Images and Fonts**
-  * [`postcss-assets`] inserts image dimensions and inlines files.
-  * [`postcss-svg`] insert inline SVG and allows you to manage its colors.
-  * [`postcss-sprites`] generates image sprites.
-  * [`font-magician`] generates all the `@font-face` rules needed in CSS.
-  * [`postcss-write-svg`] allows to write simple SVG directly in CSS.
-* **Linters**
-  * [`stylelint`] is a modular linter for CSS.
-  * [`doiuse`] lints CSS for browser support, using data from Can I Use.
-  * [`colorguard`] helps maintain a consistent color palette.
-* **Other**
-  * [`lost`] is feature-rich `calc()` grid system by Jeet author.
-  * [`cssnano`] is a modular CSS minifier.
-  * [`rtlcss`] mirrors styles for right-to-left locales.
+### End of Global CSS
+
+* [`postcss-use`] to explicitly set PostCSS plugins in CSS and execute them
+  only for the current file.
+* [`postcss-modules`] or [`react-css-modules`] automatically isolates
+  selectors in components.
+* [`postcss-autoreset`] uses local reset in component, instead of global one.
+* [`postcss-initial`] adds `all: initial` support to reset all inherit styles.
+* [`cq-prolyfill`] adds media queries for component size
+  or parent background.
+
+### Future CSS
+
+* [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
+* [`cssnext`] allows you to use future CSS features today.
+
+### Syntax sugar
+
+* [`precss`] contains plugins for Sass-like features like nesting or mixins.
+* [`short`] adds and extends numerous shorthand properties.
+
+### Images and Fonts
+
+* [`postcss-assets`] inserts image dimensions and inlines files.
+* [`postcss-svg`] insert inline SVG and allows you to manage its colors.
+* [`postcss-sprites`] generates image sprites.
+* [`font-magician`] generates all the `@font-face` rules needed in CSS.
+* [`postcss-write-svg`] allows to write simple SVG directly in CSS.
+
+### Linters
+
+* [`stylelint`] is a modular linter for CSS.
+* [`doiuse`] lints CSS for browser support, using data from Can I Use.
+* [`colorguard`] helps maintain a consistent color palette.
+
+### Other
+
+* [`lost`] is feature-rich `calc()` grid system by Jeet author.
+* [`cssnano`] is a modular CSS minifier.
+* [`rtlcss`] mirrors styles for right-to-left locales.
 
 If you have any new ideas, [PostCSS plugin development] is really easy.
 
@@ -147,9 +158,6 @@ gulp.task('css', function () {
 Use [`postcss-loader`]:
 
 ```js
-var autoprefixer = require('autoprefixer');
-var precss       = require('precss');
-
 module.exports = {
     module: {
         loaders: [
@@ -160,7 +168,7 @@ module.exports = {
         ]
     },
     postcss: function () {
-        return [autoprefixer, precss];
+        return [require('autoprefixer'), require('precss')];
     }
 }
 ```
@@ -173,13 +181,10 @@ For React Inline Styles, JSS, Radium and other CSS-in-JS you can use
 [`postcss-js`] to transform one style object to other.
 
 ```js
-import autoprefixer from 'autoprefixer';
-import postcss      from `postcss-js`;
+var postcss  = require('postcss-js');
+var prefixer = postcss.sync([ require('autoprefixer') ]);
 
-const prefixer = postcss.sync([ autoprefixer ]);
-
-let style = prefixer({ display: 'flex' });
-style //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }
+prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }
 ```
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
@@ -219,17 +224,6 @@ All PostCSS JS API users should pass [PostCSS Runner Guidelines].
 [PostCSS API]:               https://github.com/postcss/postcss/blob/master/docs/api.md
 [CLI tool]:                  https://github.com/code42day/postcss-cli
 
-### Node.js 0.10 and the Promise API
-
-If you want to run PostCSS on node.js 0.10, add the [Promise polyfill]:
-
-```js
-require('es6-promise').polyfill();
-var postcss = require('postcss');
-```
-
-[Promise polyfill]: https://github.com/jakearchibald/es6-promise
-
 ### Options
 
 Most PostCSS runners accept two parameters:
@@ -249,3 +243,14 @@ Common options:
 [source map options]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md
 [Midas]:              https://github.com/ben-eb/midas
 [SCSS]:               https://github.com/postcss/postcss-scss
+
+### Node.js 0.10 and the Promise API
+
+If you want to run PostCSS on node.js 0.10, add the [Promise polyfill]:
+
+```js
+require('es6-promise').polyfill();
+var postcss = require('postcss');
+```
+
+[Promise polyfill]: https://github.com/jakearchibald/es6-promise
