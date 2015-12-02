@@ -1,212 +1,6 @@
-# PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
+# PostCSS Plugins
 
-<img align="right" width="95" height="95"
-     title="Philosopher’s stone, logo of PostCSS"
-     src="http://postcss.github.io/postcss/logo.svg">
-
-PostCSS is a tool for transforming styles with JS plugins.
-These plugins can support variables and mixins, transpile future CSS syntax,
-inline images, and more.
-
-PostCSS is used by industry leaders including Google, Twitter, Alibaba,
-and Shopify. The [Autoprefixer] PostCSS plugin is one of the most popular
-CSS processors.
-
-PostCSS can do the same work as preprocessors like Sass, Less, and Stylus.
-But PostCSS is modular, 3-30 times faster, and much more powerful.
-
-Twitter account: [@postcss](https://twitter.com/postcss).
-VK.com page:     [postcss](https://vk.com/postcss).
-
-Support / Discussion: [gitter](https://gitter.im/postcss/postcss).
-
-[appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
-[travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix
-[chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
-[appveyor]:     https://ci.appveyor.com/project/ai/postcss
-[travis]:       https://travis-ci.org/postcss/postcss
-[chat]:         https://gitter.im/postcss/postcss
-
-[Examples](#what-is-postcss) | [Features](#features) | [Usage](#usage) | [Syntaxes](#custom-syntaxes) | [Plugins](#plugins) | [Development](#how-to-develop-for-postcss) | [Options](#options)
---- | --- | --- | --- | --- | --- | ---
-
-<a href="https://evilmartians.com/?utm_source=postcss">
-<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
-</a>
-
-[Autoprefixer]: https://github.com/postcss/autoprefixer
-
-## What is PostCSS
-
-PostCSS itself is very small. It includes only a CSS parser,
-a CSS node tree API, a source map generator, and a node tree stringifier.
-
-All of the style transformations are performed by plugins, which are
-plain JS functions. Each plugin receives a CSS node tree, transforms it & then
-returns the modified tree.
-
-You can use the [cssnext] plugin pack and write future CSS code right now:
-
-```css
-:root {
-    --mainColor: #ffbbaaff;
-}
-@custom-media    --mobile (width <= 640px);
-@custom-selector :--heading h1, h2, h3, h4, h5, h6;
-
-.post-article :--heading {
-    color: color( var(--mainColor) blackness(+20%) );
-}
-@media (--mobile) {
-    .post-article :--heading {
-        margin-top: 0;
-    }
-}
-```
-
-Or if you like the Sass syntax, you could use the [PreCSS] plugin pack:
-
-```css
-@define-mixin social-icon $network $color {
-    &.is-$network {
-        background: $color;
-    }
-}
-
-.social-icon {
-    @mixin social-icon twitter  #55acee;
-    @mixin social-icon facebook #3b5998;
-
-    padding: 10px 5px;
-    @media (max-width: 640px) {
-        padding: 0;
-    }
-}
-```
-
-[cssnext]: http://cssnext.io/
-[PreCSS]:  https://github.com/jonathantneal/precss
-
-## Features
-
-Preprocessors are template languages, where you mix styles with code
-(like PHP does with HTML).
-
-In contrast, in PostCSS you write a custom subset of CSS.
-All code can only be in JS plugins.
-
-As a result, PostCSS offers three main benefits:
-
-* **Performance:** PostCSS, written in JS, has [same performance] as libsass,
-  which is written in C++.
-* **Future CSS:** PostCSS plugins can read and rebuild an entire document,
-  meaning that they can provide new language features. For example, [cssnext]
-  transpiles the latest W3C drafts to current CSS syntax.
-* **New abilities:** PostCSS plugins can read and change every part of styles.
-  It makes many new classes of tools possible. [Autoprefixer], [`rtlcss`],
-  [`doiuse`] or [`postcss-colorblind`] are good examples.
-
-[same performance]: https://github.com/postcss/benchmark
-
-## Usage
-
-Start using PostCSS in just two steps:
-
-1. Add PostCSS to your build tool.
-2. Select plugins from the list below and add them to your PostCSS process.
-
-There are plugins for [Grunt], [Gulp], [webpack], [Broccoli],
-[Brunch], [ENB], [Fly], [Stylus], [Meteor], [Duo] and [Connect/Express].
-
-```js
-gulp.task('css', function () {
-    var postcss = require('gulp-postcss');
-    return gulp.src('src/**/*.css')
-        .pipe( postcss([ require('autoprefixer'), require('cssnano') ]) )
-        .pipe( gulp.dest('build/') );
-});
-```
-
-There is [postcss-js] to use PostCSS plugins in React Inline Styles,
-Free Style, Radium and other CSS-in-JS solutions.
-
-To process CSS within the `<style>` tags and inline `style=` attributes
-in your HTML consider using [`html-postcss`] and [`gulp-html-postcss`] or [`posthtml-postcss`] plugin.
-
-For other environments, you can use the [CLI tool] or the JS API:
-
-```js
-var postcss = require('postcss');
-postcss([ require('autoprefixer'), require('cssnano') ])
-    .process(css, { from: 'src/app.css', to: 'app.css' })
-    .then(function (result) {
-        fs.writeFileSync('app.css', result.css);
-        if ( result.map ) fs.writeFileSync('app.css.map', result.map);
-    });
-```
-
-If you want to run PostCSS on node.js 0.10, add [Promise polyfill]:
-
-```js
-require('es6-promise').polyfill();
-var postcss = require('postcss');
-```
-
-Read the [PostCSS API] for more details about the JS API.
-
-[gulp-html-postcss]: https://github.com/StartPolymer/gulp-html-postcss
-[posthtml-postcss]:  https://github.com/posthtml/posthtml-postcss
-[Promise polyfill]:  https://github.com/jakearchibald/es6-promise
-[Connect/Express]:   https://github.com/jedmao/postcss-middleware
-[html-postcss]:      https://github.com/RebelMail/html-postcss
-[PostCSS API]:       https://github.com/postcss/postcss/blob/master/docs/api.md
-[postcss-js]:        https://github.com/postcss/postcss-js
-[Broccoli]:          https://github.com/jeffjewiss/broccoli-postcss
-[CLI tool]:          https://github.com/code42day/postcss-cli
-[webpack]:           https://github.com/postcss/postcss-loader
-[Meteor]:            https://atmospherejs.com/juliancwirko/postcss
-[Brunch]:            https://github.com/iamvdo/postcss-brunch
-[Stylus]:            https://github.com/seaneking/poststylus
-[Grunt]:             https://github.com/nDmitry/grunt-postcss
-[Gulp]:              https://github.com/postcss/gulp-postcss
-[ENB]:               https://github.com/awinogradov/enb-postcss
-[Fly]:               https://github.com/postcss/fly-postcss
-[Duo]:               https://github.com/duojs/duo
-
-## Custom Syntaxes
-
-PostCSS can transform styles in any syntax, not only in CSS.
-There are 3 special arguments in `process()` method to control syntax.
-You can even separately set input parser and output stringifier.
-
-* `syntax` accepts object with `parse` and `stringify` functions.
-* `parser` accepts input parser function.
-* `stringifier` accepts output stringifier function.
-
-```js
-var safe = require('postcss-safe-parser');
-postcss(plugins).process('a {', { parser: safe }).then(function (result) {
-    result.css //=> 'a {}'
-});
-```
-
-* [`postcss-scss`] to work with SCSS *(but does not compile SCSS to CSS)*.
-* [`postcss-js`] to React Inline Styles, Radium, Free Style and other CSS-in-JS.
-* [`postcss-safe-parser`] finds and fix CSS syntax errors.
-* [`midas`] converts a CSS string to highlighted HTML.
-
-[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
-[`postcss-scss`]:        https://github.com/postcss/postcss-scss
-[`postcss-js`]:          https://github.com/postcss/postcss-js
-[`midas`]:               https://github.com/ben-eb/midas
-
-## Plugins
-
-Go to [postcss.parts] for a searchable catalog of the plugins mentioned below.
-
-[postcss.parts]: http://postcss.parts
-
-### Control
+## Control
 
 There are two ways to make PostCSS magic more explicit.
 
@@ -236,7 +30,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`postcss-plugin-context`]: https://github.com/postcss/postcss-plugin-context
 [`postcss-use`]:            https://github.com/postcss/postcss-use
 
-### Packs
+## Packs
 
 * [`atcss`] contains plugins that transform your CSS according
   to special annotation comments.
@@ -261,7 +55,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`atcss`]:     https://github.com/morishitter/atcss
 [`level4`]:    https://github.com/stephenway/level4
 
-### Future CSS Syntax
+## Future CSS Syntax
 
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
@@ -292,7 +86,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
-### Fallbacks
+## Fallbacks
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
@@ -314,7 +108,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 See also [`oldie`] plugins pack.
 
-### Language Extensions
+## Language Extensions
 
 * [`postcss-atroot`] place rules directly at the root node.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
@@ -354,7 +148,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 [Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
 
-### Colors
+## Colors
 
 * [`postcss-ase-colors`] replaces color names with values read
   from an ASE palette file.
@@ -377,10 +171,11 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
 * [`postcss-rgba-hex`] converts `rgba` values to `hex` analogues.
-* [`postcss-shades-of-gray`] helps keeping grayscale colors consistent to a gray palette.
+* [`postcss-shades-of-gray`] helps keeping grayscale colors consistent
+  to a gray palette.
 * [`colorguard`] helps maintain a consistent color palette.
 
-### Images and Fonts
+## Images and Fonts
 
 * [`postcss-assets`] allows you to simplify URLs, insert image dimensions,
   and inline files.
@@ -409,14 +204,14 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-inline-svg`] inline SVG images and customize their styles.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
 
-### Grids
+## Grids
 
 * [`postcss-grid`] adds a semantic grid system.
 * [`postcss-simple-grid`] create grid with one line.
 * [`postcss-neat`] is a semantic and fluid grid framework.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
 
-### Optimizations
+## Optimizations
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
@@ -435,7 +230,7 @@ See also plugins in modular minifier [`cssnano`].
 [@import (reference)]: http://lesscss.org/features/#import-options-reference
 [SVGO]: https://github.com/svg/svgo
 
-### Shortcuts
+## Shortcuts
 
 * [`postcss-alias`] creates shorter aliases for properties.
 * [`postcss-alias-atrules`] creates shorter aliases for at-rules.
@@ -476,7 +271,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
 
-### Others
+## Others
 
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
@@ -507,7 +302,7 @@ See also plugins in modular minifier [`cssnano`].
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
-### Analysis
+## Analysis
 
 * [`postcss-bem-linter`] lints CSS for conformance to SUIT CSS methodology.
 * [`postcss-cssstats`] returns an object with CSS statistics.
@@ -519,14 +314,14 @@ See also plugins in modular minifier [`cssnano`].
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
 
-### Reporters
+## Reporters
 
 * [`postcss-browser-reporter`] displays warning messages from other plugins
   right in your browser.
 * [`postcss-reporter`] logs warnings and other messages from other plugins
   in the console.
 
-### Fun
+## Fun
 
 * [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-andalusian-stylesheets`] Andalusian Style Sheets.
@@ -749,85 +544,3 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
-
-## How to Develop for PostCSS
-
-### Syntax
-
-* [How to Write Custom Syntax](https://github.com/postcss/postcss/blob/master/docs/syntax.md)
-
-### Plugin
-
-* [Plugin Guidelines](https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md)
-* [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
-* [PostCSS API](https://github.com/postcss/postcss/blob/master/docs/api.md)
-* [Ask questions](https://gitter.im/postcss/postcss)
-
-## Options
-
-### Source Map
-
-PostCSS has great [source maps] support. It can read and interpret maps
-from previous transformation steps, autodetect the format that you expect,
-and output both external and inline maps.
-
-To ensure that you generate an accurate source map, you must indicate the input
-and output CSS file paths — using the options `from` and `to`, respectively.
-
-To generate a new source map with the default options, simply set `map: true`.
-This will generate an inline source map that contains the source content.
-If you don’t want the map inlined, you can set `map.inline: false`.
-
-```js
-processor
-    .process(css, {
-        from: 'app.sass.css',
-        to:   'app.css',
-        map: { inline: false },
-    })
-    .then(function (result) {
-        result.map //=> '{ "version":3,
-                   //      "file":"app.css",
-                   //      "sources":["app.sass"],
-                   //       "mappings":"AAAA,KAAI" }'
-    });
-```
-
-If PostCSS finds source maps from a previous transformation,
-it will automatically update that source map with the same options.
-
-If you want more control over source map generation, you can define the `map`
-option as an object with the following parameters:
-
-* `inline` boolean: indicates that the source map should be embedded
-  in the output CSS as a Base64-encoded comment. By default, it is `true`.
-  But if all previous maps are external, not inline, PostCSS will not embed
-  the map even if you do not set this option.
-
-  If you have an inline source map, the `result.map` property will be empty,
-  as the source map will be contained within the text of `result.css`.
-
-* `prev` string, object or boolean: source map content from
-  a previous processing step (for example, Sass compilation).
-  PostCSS will try to read the previous source map automatically
-  (based on comments within the source CSS), but you can use this option
-  to identify it manually. If desired, you can omit the previous map
-  with `prev: false`.
-
-* `sourcesContent` boolean: indicates that PostCSS should set the origin
-  content (for example, Sass source) of the source map. By default,
-  it is `true`. But if all previous maps do not contain sources content,
-  PostCSS will also leave it out even if you do not set this option.
-
-* `annotation` boolean or string: indicates that PostCSS should add annotation
-  comments to the CSS. By default, PostCSS will always add a comment with a path
-  to the source map. PostCSS will not add annotations to CSS files that
-  do not contain any comments.
-
-  By default, PostCSS presumes that you want to save the source map as
-  `opts.to + '.map'` and will use this path in the annotation comment.
-  A different path can be set by providing a string value for `annotation`.
-
-  If you have set `inline: true`, annotation cannot be disabled.
-
-[source maps]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
