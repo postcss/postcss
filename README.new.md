@@ -16,7 +16,7 @@ These plugins can lint your CSS, support variables and mixins,
 transpile future CSS syntax, inline images, and more.
 
 PostCSS is used by industry leaders including Google, Twitter, Alibaba,
-and Shopify. The [Autoprefixer] PostCSS plugin is one of the most popular
+and Shopify. The [Autoprefixer] PostCSS plugin is one of the most popular
 CSS processors.
 
 Twitter account:      [@postcss](https://twitter.com/postcss).
@@ -34,6 +34,8 @@ Support / Discussion: [gitter](https://gitter.im/postcss/postcss).
 Currently, PostCSS has more than 200 plugins. Here are our favorite plugins
 which best demonstrate PostCSS’ power. You can find all of the plugins in the
 [plugins list] or in the [searchable catalog].
+
+If you have any new ideas, [PostCSS plugin development] is really easy.
 
 [searchable catalog]: http://postcss.parts
 [plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
@@ -78,8 +80,6 @@ which best demonstrate PostCSS’ power. You can find all of the plugins in the
 * [`lost`] is feature-rich `calc()` grid system by Jeet author.
 * [`cssnano`] is a modular CSS minifier.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-
-If you have any new ideas, [PostCSS plugin development] is really easy.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
