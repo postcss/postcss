@@ -190,7 +190,7 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
 
-### Other
+### Runners
 
 * **CLI**: [`postcss-cli`](https://github.com/code42day/postcss-cli)
 * **Grunt**: [`grunt-postcss`](https://github.com/nDmitry/grunt-postcss)
