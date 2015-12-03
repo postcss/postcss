@@ -129,6 +129,7 @@ See also [`oldie`] plugins pack.
 * [`postcss-media-variables`] adds support for `var()` and `calc()`
   in `@media` rules
 * [`postcss-modular-scale`] adds a modular scale `ms()` function.
+* [`postcss-namespace`] prefix a namespace to a selector.
 * [`postcss-nested`] unwraps nested rules.
 * [`postcss-nested-props`] unwraps nested properties.
 * [`postcss-nested-vars`] supports nested Sass-style variables.
@@ -462,6 +463,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-write-svg`]:               https://github.com/jonathantneal/postcss-write-svg
 [`postcss-animation`]:               https://github.com/zhouwenbin/postcss-animation
 [`postcss-instagram`]:               https://github.com/azat-io/postcss-instagram
+[`postcss-namespace`]:               https://github.com/totora0155/postcss-namespace
 [`postcss-clearfix`]:                https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:                https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:                https://github.com/cssstats/postcss-cssstats
