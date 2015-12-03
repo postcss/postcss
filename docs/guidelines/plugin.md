@@ -69,7 +69,7 @@ module.exports = postcss.plugin('plugin-name', function (opts) {
 ### 2.1. Plugin must be tested
 
 A CI service like [Travis] is also recommended for testing code in
-different environments. You should test in (at least) Node.js 0.12 and io.js.
+different environments. You should test in (at least) Node.js 0.12 and stable.
 
 [Travis]: https://travis-ci.org/
 
