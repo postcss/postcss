@@ -252,6 +252,8 @@ See also plugins in modular minifier [`cssnano`].
   Useful for creating repetitive utilities.
 * [`postcss-input-style`] adds new pseudo-elements for cross-browser styling
   of inputs.
+* [`postcss-not-x-child`] adds `:not-first-child` and `:not-last-child`
+  selectors.
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
@@ -444,6 +446,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-will-change`]:             https://github.com/postcss/postcss-will-change
 [`postcss-input-style`]:             https://github.com/seaneking/postcss-input-style
 [`css-property-sorter`]:             https://github.com/Siilwyn/css-property-sorter
+[`postcss-not-x-child`]:             https://github.com/hudochenkov/postcss-not-x-child
 [`postcss-ase-colors`]:              https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:              https://github.com/postcss/postcss-bem-linter
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
