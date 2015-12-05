@@ -222,7 +222,7 @@ Read the [PostCSS API documentation] for more details about the JS API.
 All PostCSS JS API users should pass [PostCSS Runner Guidelines].
 
 [PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
-[PostCSS API]:               https://github.com/postcss/postcss/blob/master/docs/api.md
+[PostCSS API documentation]: https://github.com/postcss/postcss/blob/master/docs/api.md
 [CLI tool]:                  https://github.com/code42day/postcss-cli
 
 ### Options
