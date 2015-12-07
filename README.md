@@ -64,9 +64,9 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 ### Images and Fonts
 
 * [`postcss-assets`] inserts image dimensions and inlines files.
-* [`postcss-svg`] insert inline SVG and allows you to manage its colors.
 * [`postcss-sprites`] generates image sprites.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
+* [`postcss-inline-svg`] allows to inline SVG and customize its styles.
 * [`postcss-write-svg`] allows to write simple SVG directly in CSS.
 
 ### Linters
@@ -82,6 +82,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
+[`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
 [`react-css-modules`]:        https://github.com/gajus/react-css-modules
 [`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg
@@ -92,7 +93,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:             https://github.com/postcss/autoprefixer
 [`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill
-[`postcss-svg`]:              https://github.com/Pavliko/postcss-svg
 [`postcss-use`]:              https://github.com/postcss/postcss-use
 [`css-modules`]:              https://github.com/css-modules/css-modules
 [`colorguard`]:               https://github.com/SlexAxton/css-colorguard
