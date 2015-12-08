@@ -60,6 +60,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 * [`precss`] contains plugins for Sass-like features like nesting or mixins.
 * [`short`] adds and extends numerous shorthand properties.
+* [`postcss-border-radius`] adds shorthand for border radius.
 
 ### Images and Fonts
 
@@ -103,6 +104,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`doiuse`]:                   https://github.com/anandthakker/doiuse
 [`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
 [`short`]:                    https://github.com/jonathantneal/postcss-short
+[`postcss-border-radius`]:    https://github.com/jakelazaroff/postcss-border-radius
 [`lost`]:                     https://github.com/corysimmons/lost
 
 ## Syntaxes
