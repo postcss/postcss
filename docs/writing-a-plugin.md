@@ -15,4 +15,5 @@
 
 * [Selector parser](https://github.com/postcss/postcss-selector-parser)
 * [Value parser](https://github.com/TrySound/postcss-value-parser)
-* [AST visualizer](https://sneakertack.github.io/postcss-playground/)
+* [AST explorer](http://astexplorer.net/), select a “CSS” and “PostCSS”
+  in menu on the top.
