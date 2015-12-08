@@ -176,6 +176,26 @@ module.exports = {
 
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
 
+### Rollup
+
+Use [`rollup-plugin-postcss`]:
+
+```javascript
+import { rollup } from 'rollup';
+import postcss from 'rollup-plugin-postcss';
+
+rollup({
+  entry: 'main.js',
+  plugins: [
+    postcss({
+      plugins: [require('autoprefixer'), require('precss')]
+    })
+  ]
+}).then(...)
+```
+
+[`rollup-plugin-postcss`]: https://github.com/egoist/rollup-plugin-postcss
+
 ### CSS-in-JS
 
 For React Inline Styles, JSS, Radium and other CSS-in-JS you can use
