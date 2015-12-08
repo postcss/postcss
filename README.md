@@ -176,26 +176,6 @@ module.exports = {
 
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
 
-### Rollup
-
-Use [`rollup-plugin-postcss`]:
-
-```javascript
-import { rollup } from 'rollup';
-import postcss from 'rollup-plugin-postcss';
-
-rollup({
-  entry: 'main.js',
-  plugins: [
-    postcss({
-      plugins: [require('autoprefixer'), require('precss')]
-    })
-  ]
-}).then(...)
-```
-
-[`rollup-plugin-postcss`]: https://github.com/egoist/rollup-plugin-postcss
-
 ### CSS-in-JS
 
 For React Inline Styles, JSS, Radium and other CSS-in-JS you can use
@@ -215,9 +195,10 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 * **CLI**: [`postcss-cli`](https://github.com/code42day/postcss-cli)
 * **Grunt**: [`grunt-postcss`](https://github.com/nDmitry/grunt-postcss)
 * **HTML**: [`posthtml-postcss`](https://github.com/posthtml/posthtml-postcss)
+* **Stylus**: [`poststylus`](https://github.com/seaneking/poststylus)
+* **Rollup**: [`rollup-plugin-postcss`](https://github.com/egoist/rollup-plugin-postcss)
 * **Brunch**: [`postcss-brunch`](https://github.com/iamvdo/postcss-brunch)
 * **Broccoli**: [`broccoli-postcss`](https://github.com/jeffjewiss/broccoli-postcss)
-* **Stylus**: [`poststylus`](https://github.com/seaneking/poststylus)
 * **Meteor**: [`postcss`](https://atmospherejs.com/juliancwirko/postcss)
 * **ENB**: [`enb-postcss`](https://github.com/awinogradov/enb-postcss)
 * **Fly**: [`fly-postcss`](https://github.com/postcss/fly-postcss)
