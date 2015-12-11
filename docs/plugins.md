@@ -292,6 +292,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-select`] select rules based off a selector list.
 * [`postcss-shorthand-expand`] expands shorthand properties.
+* [`postcss-sorting`] sort rules content with specified order.
 * [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched by other plugins.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
@@ -490,6 +491,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pxtorem`]:                 https://github.com/cuth/postcss-pxtorem
 [`postcss-scopify`]:                 https://github.com/pazams/postcss-scopify
 [`postcss-sprites`]:                 https://github.com/2createStudio/postcss-sprites
+[`postcss-sorting`]:                 https://github.com/hudochenkov/postcss-sorting
 [`postcss-assets`]:                  https://github.com/borodean/postcss-assets
 [`postcss-border`]:                  https://github.com/andrepolischuk/postcss-border
 [`postcss-center`]:                  https://github.com/jedmao/postcss-center
