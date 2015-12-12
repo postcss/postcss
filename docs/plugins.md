@@ -186,6 +186,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-copy-assets`] copies assets referenced by relative `url()`s into a
   build directory.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
+* [`postcss-easysprites`] combine images to sprites, based on their image.png`#hash` and aspect ratio (`@2x`).
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
@@ -430,6 +431,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-svg-fallback`]:            https://github.com/justim/postcss-svg-fallback
 [`postcss-nested-props`]:            https://github.com/jedmao/postcss-nested-props
 [`postcss-cachebuster`]:             https://github.com/glebmachine/postcss-cachebuster
+[`postcss-easysprites`]:             https://github.com/glebmachine/postcss-easysprites
 [`postcss-nested-vars`]:             https://github.com/jedmao/postcss-nested-vars
 [`postcss-color-alpha`]:             https://github.com/avanes/postcss-color-alpha
 [`postcss-color-scale`]:             https://github.com/kristoferjoseph/postcss-color-scale
