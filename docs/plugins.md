@@ -302,6 +302,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`css-property-sorter`] sorts CSS properties fast and automatically in a certain order.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-safe-important`] adds `!important` to style declarations safely.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -550,3 +551,4 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
+[`postcss-safe-important`]:          https://github.com/Crimx/postcss-safe-important
