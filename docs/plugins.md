@@ -291,6 +291,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
+* [`postcss-safe-important`] adds `!important` to style declarations safely.
 * [`postcss-select`] select rules based off a selector list.
 * [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-sorting`] sort rules content with specified order.
@@ -302,7 +303,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`css-property-sorter`] sorts CSS properties fast and automatically in a certain order.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`postcss-safe-important`] adds `!important` to style declarations safely.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -397,6 +397,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-convert-values`]:          https://github.com/ben-eb/postcss-convert-values
 [`postcss-partial-import`]:          https://github.com/jonathantneal/postcss-partial-import
 [`postcss-pseudoelements`]:          https://github.com/axa-ch/postcss-pseudoelements
+[`postcss-safe-important`]:          https://github.com/Crimx/postcss-safe-important
 [`postcss-short-position`]:          https://github.com/jonathantneal/postcss-short-position
 [`postcss-single-charset`]:          https://github.com/hail2u/postcss-single-charset
 [`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
@@ -551,4 +552,3 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
-[`postcss-safe-important`]:          https://github.com/Crimx/postcss-safe-important
