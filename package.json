@@ -37,15 +37,15 @@
     "gulp-babel":             "5.3.0",
     "strip-ansi":             "3.0.0",
     "gulp-shell":             "0.5.1",
-    "yaspeller":              "2.5.1",
+    "yaspeller":              "2.6.0",
     "fs-extra":               "0.26.2",
     "isparta":                "3.5.3",
-    "eslint":                 "1.10.1",
+    "eslint":                 "1.10.3",
     "sinon":                  "1.17.2",
     "mocha":                  "2.3.4",
     "gulp":                   "3.9.0",
     "chai":                   "3.4.1",
-    "del":                    "2.1.0"
+    "del":                    "2.2.0"
   },
   "scripts": {
     "test": "gulp"
