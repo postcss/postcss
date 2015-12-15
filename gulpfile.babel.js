@@ -101,10 +101,10 @@ gulp.task('coverage:report', () => {
         .pipe(istanbul.enforceThresholds({
             thresholds: {
                 global: {
-                    statements: 97,
-                    functions:  97,
-                    branches:   94,
-                    lines:      96
+                    statements: 98,
+                    functions:  98,
+                    branches:   95,
+                    lines:      97
                 }
             }
         }));

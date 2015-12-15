@@ -112,11 +112,21 @@ describe('Processor', () => {
                 to:   'b.css',
                 map:  { inline: false }
             });
-            let two = (new Processor()).process(one, {
-                to:  'c.css',
-                map: { inline: false }
-            });
+            let two = (new Processor()).process(one, { to: 'c.css' });
             expect(two.map.toJSON().sources).to.eql(['a.css']);
+        });
+
+        it('inlines maps from previous result', () => {
+            let one = (new Processor()).process('a{}', {
+                from: 'a.css',
+                to:   'b.css',
+                map:  { inline: false }
+            });
+            let two = (new Processor()).process(one, {
+                to: 'c.css',
+                map: { inline: true }
+            });
+            expect(two.map).to.not.exist;
         });
 
         it('throws with file name', () => {

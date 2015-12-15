@@ -19,8 +19,10 @@ export default class LazyResult {
             root = css;
         } else if ( css instanceof LazyResult || css instanceof Result ) {
             root = css.root;
-            if ( css.map && typeof opts.map === 'undefined' ) {
-                opts.map = { prev: css.map };
+            if ( css.map ) {
+                if ( typeof opts.map === 'undefined' ) opts.map = { };
+                if ( !opts.map.inline ) opts.map.inline = false;
+                opts.map.prev = css.map;
             }
         } else {
             let parser = parse;

@@ -1,5 +1,6 @@
 import Stringifier from '../lib/stringifier';
 import Declaration from '../lib/declaration';
+import Comment     from '../lib/comment';
 import AtRule      from '../lib/at-rule';
 import parse       from '../lib/parse';
 import Node        from '../lib/node';
@@ -101,7 +102,7 @@ describe('stringifier', () => {
                                            '}');
         });
 
-        it('clones indent', () => {
+        it('clones style', () => {
             let compress = parse('@page{ a{ } }');
             let spaces   = parse('@page {\n  a {\n  }\n}');
 
@@ -111,6 +112,24 @@ describe('stringifier', () => {
             spaces.first.first.append({ prop: 'color', value: 'black' });
             expect(spaces.toString())
                 .to.eql('@page {\n  a {\n    color: black\n  }\n}');
+        });
+
+        it('clones indent', () => {
+            let root = parse('a{\n}');
+            root.first.append({ text: 'a' });
+            root.first.append({ text: 'b', raws: { before: '\n\n ' } });
+            expect(root.toString()).to.eql('a{\n\n /* a */\n\n /* b */\n}');
+        });
+
+        it('clones declaration before for comment', () => {
+            let root = parse('a{\n}');
+            root.first.append({ text: 'a' });
+            root.first.append({
+                prop:  'a',
+                value: '1',
+                raws: { before: '\n\n ' }
+            });
+            expect(root.toString()).to.eql('a{\n\n /* a */\n\n a: 1\n}');
         });
 
         it('clones indent by types', () => {
