@@ -2,6 +2,7 @@ import Parser from './parser';
 import Input  from './input';
 
 export default function parse(css, opts) {
+    /* istanbul ignore if */
     if ( opts && opts.safe ) {
         throw new Error('Option safe was removed. ' +
                  'Use parser: require("postcss-safe-parser")');

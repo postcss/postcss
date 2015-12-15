@@ -29,21 +29,25 @@ export default class AtRule extends Container {
         return super.insertAfter(exist, add);
     }
 
+    /* istanbul ignore next */
     get afterName() {
         warnOnce('AtRule#afterName was deprecated. Use AtRule#raws.afterName');
         return this.raws.afterName;
     }
 
+    /* istanbul ignore next */
     set afterName(val) {
         warnOnce('AtRule#afterName was deprecated. Use AtRule#raws.afterName');
         this.raws.afterName = val;
     }
 
+    /* istanbul ignore next */
     get _params() {
         warnOnce('AtRule#_params was deprecated. Use AtRule#raws.params');
         return this.raws.params;
     }
 
+    /* istanbul ignore next */
     set _params(val) {
         warnOnce('AtRule#_params was deprecated. Use AtRule#raws.params');
         this.raws.params = val;

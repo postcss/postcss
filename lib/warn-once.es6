@@ -1,3 +1,5 @@
+/* istanbul ignore next */
+
 let printed = { };
 
 export default function warnOnce(message) {

@@ -70,6 +70,7 @@ export default class CssSyntaxError {
         return this.name + ': ' + this.message + this.showSourceCode();
     }
 
+    /* istanbul ignore next */
     get generated() {
         warnOnce('CssSyntaxError#generated is depreacted. Use input instead.');
         return this.input;
