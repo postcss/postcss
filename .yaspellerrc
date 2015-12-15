@@ -128,6 +128,7 @@
     "gitter",
     "Less’s",
     "visualizer",
-    "Rollup"
+    "Rollup",
+    "resolver"
   ]
 }
