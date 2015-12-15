@@ -42,7 +42,7 @@ describe('CssSyntaxError', () => {
 
     it('has stack trace', () => {
         expect(parseError('a {\n  content: "\n}').stack)
-            .to.match(/test\/css-syntax-error\.es6/);
+            .to.match(/css-syntax-error\.es6/);
     });
 
     it('highlights broken line', () => {

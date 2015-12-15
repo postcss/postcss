@@ -2,12 +2,11 @@ import supportsColor from 'supports-color';
 
 import warnOnce from './warn-once';
 
-export default class CssSyntaxError extends SyntaxError {
+export default class CssSyntaxError {
 
     name = 'CssSyntaxError';
 
     constructor(message, line, column, source, file, plugin) {
-        super(message);
         this.reason = message;
 
         if ( file )   this.file   = file;

@@ -31,20 +31,20 @@ export default class Input {
     }
 
     error(message, line, column, opts = { }) {
-        let error;
+        let result;
         let origin = this.origin(line, column);
         if ( origin ) {
-            error = new CssSyntaxError(message, origin.line, origin.column,
+            result = new CssSyntaxError(message, origin.line, origin.column,
                 origin.source, origin.file, opts.plugin);
         } else {
-            error = new CssSyntaxError(message, line, column,
+            result = new CssSyntaxError(message, line, column,
                 this.css, this.file, opts.plugin);
         }
 
-        error.input = { line, column, source: this.css };
-        if ( this.file ) error.input.file = this.file;
+        result.input = { line, column, source: this.css };
+        if ( this.file ) result.input.file = this.file;
 
-        return error;
+        return result;
     }
 
     origin(line, column) {

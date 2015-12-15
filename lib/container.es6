@@ -156,7 +156,7 @@ export default class Container extends Node {
     }
 
     cleanRaws(keepBetween) {
-        super(keepBetween);
+        super.cleanRaws(keepBetween);
         if ( this.nodes ) {
             for ( let node of this.nodes ) node.cleanRaws(keepBetween);
         }
