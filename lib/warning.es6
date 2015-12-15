@@ -16,7 +16,11 @@ export default class Warning {
 
     toString() {
         if ( this.node ) {
-            return this.node.error(this.text, { plugin: this.plugin }).message;
+            return this.node.error(this.text, {
+                plugin: this.plugin,
+                index:  this.index,
+                word:   this.word
+            }).message;
         } else if ( this.plugin ) {
             return this.plugin + ': ' + this.text;
         } else {

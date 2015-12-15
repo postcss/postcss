@@ -35,6 +35,28 @@ describe('Warning', () => {
             expect(warning.toString()).to.eql(`plugin: ${ file }:1:1: text`);
         });
 
+        it('outputs warning with index', () => {
+            let file    = path.resolve('a.css');
+            let root    = parse('@rule param {}', { from: file });
+            let warning = new Warning('text', {
+                plugin: 'plugin',
+                node:   root.first,
+                index:  7
+            });
+            expect(warning.toString()).to.eql(`plugin: ${ file }:1:8: text`);
+        });
+
+        it('outputs warning with word', () => {
+            let file    = path.resolve('a.css');
+            let root    = parse('@rule param {}', { from: file });
+            let warning = new Warning('text', {
+                plugin: 'plugin',
+                node:   root.first,
+                word:   'am'
+            });
+            expect(warning.toString()).to.eql(`plugin: ${ file }:1:10: text`);
+        });
+
         it('generates warning without source', () => {
             let decl    = new Declaration({ prop: 'color', value: 'black' });
             let warning = new Warning('text', { node: decl });
