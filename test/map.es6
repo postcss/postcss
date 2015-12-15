@@ -174,7 +174,8 @@ describe('source maps', () => {
         });
 
         let base64 = new Buffer(separated.map.toString()).toString('base64');
-        expect(inline.css.endsWith(base64 + ' */')).to.be.true;
+        let end    = inline.css.slice(-base64.length - 3);
+        expect(end).to.eql(base64 + ' */');
     });
 
     it('generates inline map by default', () => {
