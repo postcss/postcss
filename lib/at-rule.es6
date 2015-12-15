@@ -19,16 +19,6 @@ export default class AtRule extends Container {
         return super.prepend(...children);
     }
 
-    insertBefore(exist, add) {
-        if ( !this.nodes ) this.nodes = [];
-        return super.insertBefore(exist, add);
-    }
-
-    insertAfter(exist, add) {
-        if ( !this.nodes ) this.nodes = [];
-        return super.insertAfter(exist, add);
-    }
-
     /* istanbul ignore next */
     get afterName() {
         warnOnce('AtRule#afterName was deprecated. Use AtRule#raws.afterName');

@@ -14,6 +14,30 @@ describe('AtRule', () => {
         expect(rule.toString()).to.eql('@encoding "utf-8"');
     });
 
+    describe('prepend()', () => {
+
+        it('creates nodes property', () => {
+            let rule = new AtRule();
+            expect(rule.nodes).to.not.exist;
+
+            rule.prepend('color: black');
+            expect(rule.nodes).to.have.length(1);
+        });
+
+    });
+
+    describe('append()', () => {
+
+        it('creates nodes property', () => {
+            let rule = new AtRule();
+            expect(rule.nodes).to.not.exist;
+
+            rule.append('color: black');
+            expect(rule.nodes).to.have.length(1);
+        });
+
+    });
+
     describe('toString()', () => {
 
         it('inserts default spaces', () => {
