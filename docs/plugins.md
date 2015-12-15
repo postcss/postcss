@@ -292,6 +292,7 @@ See also plugins in modular minifier [`cssnano`].
   if it is missing.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-select`] select rules based off a selector list.
+* [`postcss-selector-prefixer`] adds a prefix to css selectors.
 * [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-sorting`] sort rules content with specified order.
 * [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched by other plugins.
@@ -344,6 +345,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
+[`postcss-selector-prefixer`]:       https://github.com/ronnyamarante/postcss-selector-prefixer
 [`postcss-pseudo-elements-content`]: https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]:  https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-andalusian-stylesheets`]:  https://github.com/bameda/postcss-andalusian-stylesheets
