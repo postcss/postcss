@@ -102,7 +102,7 @@ gulp.task('coverage:report', () => {
             thresholds: {
                 global: {
                     statements: 97,
-                    functions:  96,
+                    functions:  97,
                     branches:   94,
                     lines:      96
                 }

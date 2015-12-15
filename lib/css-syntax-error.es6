@@ -58,14 +58,6 @@ export default class CssSyntaxError {
         return '\n' + prev + broken + mark + next;
     }
 
-    setMozillaProps() {
-        let sample = Error.call(this, this.message);
-        if ( sample.columnNumber ) this.columnNumber = this.column;
-        if ( sample.description )  this.description  = this.message;
-        if ( sample.lineNumber )   this.lineNumber   = this.line;
-        if ( sample.fileName )     this.fileName     = this.file;
-    }
-
     toString() {
         return this.name + ': ' + this.message + this.showSourceCode();
     }
