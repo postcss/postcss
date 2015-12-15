@@ -292,6 +292,7 @@ See also plugins in modular minifier [`cssnano`].
   if it is missing.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-select`] select rules based off a selector list.
+* [`postcss-selector-prefixer`] adds a prefix to css selectors.
 * [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-sorting`] sort rules content with specified order.
 * [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched by other plugins.
@@ -370,6 +371,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-tatar-stylesheets`]:       https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-custom-properties`]:       https://github.com/postcss/postcss-custom-properties
 [`postcss-discard-font-face`]:       https://github.com/ben-eb/postcss-discard-font-face
+[`postcss-selector-prefixer`]:       https://github.com/ronnyamarante/postcss-selector-prefixer
 [`postcss-custom-selectors`]:        https://github.com/postcss/postcss-custom-selectors
 [`postcss-discard-comments`]:        https://github.com/ben-eb/postcss-discard-comments
 [`postcss-minify-selectors`]:        https://github.com/ben-eb/postcss-minify-selectors
