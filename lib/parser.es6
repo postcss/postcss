@@ -202,8 +202,6 @@ export default class Parser {
             if ( token[0] === ':' ) {
                 node.raws.between += token[1];
                 break;
-            } else if ( token[0] !== 'space' && token[0] !== 'comment' ) {
-                this.unknownDecl(node, token);
             } else {
                 node.raws.between += token[1];
             }
@@ -328,16 +326,10 @@ export default class Parser {
 
     endFile() {
         if ( this.current.parent ) this.unclosedBlock();
-
         if ( this.current.nodes && this.current.nodes.length ) {
             this.current.raws.semicolon = this.semicolon;
         }
         this.current.raws.after = (this.current.raws.after || '') + this.spaces;
-
-        while ( this.current.parent ) {
-            this.current = this.current.parent;
-            this.current.raws.after = '';
-        }
     }
 
     // Helpers
@@ -366,8 +358,7 @@ export default class Parser {
             }
         }
         if ( !clean ) {
-            let raw = '';
-            for ( token of tokens ) raw += token[1];
+            let raw = tokens.reduce( (all, i) => all + i[1], '');
             node.raws[prop] = { value, raw };
         }
         node[prop] = value;
@@ -414,11 +405,10 @@ export default class Parser {
             if ( type === '(' ) {
                 brackets += 1;
             } else if ( type === ')' ) {
-                brackets -= 0;
+                brackets -= 1;
             } else if ( brackets === 0 && type === ':' ) {
                 if ( !prev ) {
                     this.doubleColon(token);
-                    continue;
                 } else if ( prev[0] === 'word' && prev[1] === 'progid' ) {
                     continue;
                 } else {
@@ -432,10 +422,6 @@ export default class Parser {
     }
 
     // Errors
-
-    unknownDecl(node, token) {
-        throw this.input.error('Unknown word', token[2], token[3]);
-    }
 
     unclosedBracket(bracket) {
         throw this.input.error('Unclosed bracket', bracket[2], bracket[3]);

@@ -115,12 +115,23 @@ describe('postcss()', () => {
     describe('.root()', () => {
 
         it('allows to build own CSS', () => {
-            let root = postcss.root();
-            let rule = postcss.rule({ selector: 'a' });
-            rule.append( postcss.decl({ prop: 'color', value: 'black' }) );
-            root.append( rule );
+            let root    = postcss.root({ after: '\n' });
+            let comment = postcss.comment({ text: 'Example' });
+            let media   = postcss.atRule({ name: 'media', params: 'screen' });
+            let rule    = postcss.rule({ selector: 'a' });
+            let decl    = postcss.decl({ prop: 'color', value: 'black' });
 
-            expect(root.toString()).to.eql('a {\n    color: black\n}');
+            root.append(comment);
+            rule.append(decl);
+            media.append(rule);
+            root.append(media);
+
+            expect(root.toString()).to.eql('/* Example */\n' +
+                                           '@media screen {\n' +
+                                           '    a {\n' +
+                                           '        color: black\n' +
+                                           '    }\n' +
+                                           '}\n');
         });
 
     });

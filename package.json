@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "concat-with-sourcemaps": "1.0.4",
-    "postcss-parser-tests":   "5.0.4",
+    "postcss-parser-tests":   "5.0.5",
     "gulp-json-editor":       "2.2.1",
     "gulp-istanbul":          "0.10.3",
     "run-sequence":           "1.1.5",

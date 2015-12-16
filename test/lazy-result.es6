@@ -55,6 +55,15 @@ describe('LazyResult', () => {
 
     });
 
+    describe('opts', () => {
+
+        it('contains AST', () => {
+            let result = new LazyResult(processor, 'a {}', { to: 'a.css' });
+            expect(result.opts).to.eql({ to: 'a.css' });
+        });
+
+    });
+
     describe('warnings()', () => {
 
         it('contains warnings', () => {

@@ -14,6 +14,15 @@ describe('AtRule', () => {
         expect(rule.toString()).to.eql('@encoding "utf-8"');
     });
 
+    describe('each()', () => {
+
+        it('does not fall on childless at-rule', () => {
+            let rule = new AtRule();
+            expect(rule.each( i => i )).to.be.an('undefined');
+        });
+
+    });
+
     describe('prepend()', () => {
 
         it('creates nodes property', () => {

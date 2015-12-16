@@ -50,22 +50,12 @@ export default class Node {
         return result.warn(message, { node: this });
     }
 
-    removeSelf() {
-        warnOnce('Node#removeSelf is deprecated. Use Node#remove.');
-        return this.remove();
-    }
-
     remove() {
         if ( this.parent ) {
             this.parent.removeChild(this);
         }
         this.parent = undefined;
         return this;
-    }
-
-    replace(nodes) {
-        warnOnce('Node#replace is deprecated. Use Node#replaceWith');
-        return this.replaceWith(nodes);
     }
 
     toString(stringifier = stringify) {
@@ -207,6 +197,18 @@ export default class Node {
             if ( index !== -1 ) pos = this.positionInside(index);
         }
         return pos;
+    }
+
+    /* istanbul ignore next */
+    removeSelf() {
+        warnOnce('Node#removeSelf is deprecated. Use Node#remove.');
+        return this.remove();
+    }
+
+    /* istanbul ignore next */
+    replace(nodes) {
+        warnOnce('Node#replace is deprecated. Use Node#replaceWith');
+        return this.replaceWith(nodes);
     }
 
     /* istanbul ignore next */

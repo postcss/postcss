@@ -1,6 +1,5 @@
 import Stringifier from '../lib/stringifier';
 import Declaration from '../lib/declaration';
-import Comment     from '../lib/comment';
 import AtRule      from '../lib/at-rule';
 import parse       from '../lib/parse';
 import Node        from '../lib/node';
@@ -127,7 +126,7 @@ describe('stringifier', () => {
             root.first.append({
                 prop:  'a',
                 value: '1',
-                raws: { before: '\n\n ' }
+                raws:  { before: '\n\n ' }
             });
             expect(root.toString()).to.eql('a{\n\n /* a */\n\n a: 1\n}');
         });

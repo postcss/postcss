@@ -308,6 +308,24 @@ describe('Node', () => {
                 ']}');
         });
 
+        it('converts custom properties', () => {
+            let root = new Root();
+            root._cache = [1];
+            root._hack = {
+                toJSON() {
+                    return 'hack';
+                }
+            };
+
+            expect(root.toJSON()).to.eql({
+                type:   'root',
+                nodes:  [],
+                raws:   { },
+                _hack:  'hack',
+                _cache: [1]
+            });
+        });
+
     });
 
     describe('raw()', () => {

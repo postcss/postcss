@@ -63,6 +63,11 @@ describe('postcss.parse()', () => {
         expect(root.first.first.value).to.eql('())');
     });
 
+    it('ignores symbols before declaration', () => {
+        let root = parse('a { :one: 1 }');
+        expect(root.first.first.raws.before).to.eql(' :');
+    });
+
     describe('errors', () => {
 
         it('throws on unclosed blocks', () => {
@@ -96,8 +101,8 @@ describe('postcss.parse()', () => {
         });
 
         it('throws on property without semicolon', () => {
-            expect( () => parse('a { one: 1 two: 2 }') )
-                .to.throw(/:1:10: Missed semicolon/);
+            expect( () => parse('a { one: filter(a:"") two: 2 }') )
+                .to.throw(/:1:21: Missed semicolon/);
         });
 
         it('throws on double colon', () => {

@@ -123,7 +123,7 @@ describe('Processor', () => {
                 map:  { inline: false }
             });
             let two = (new Processor()).process(one, {
-                to: 'c.css',
+                to:  'c.css',
                 map: { inline: true }
             });
             expect(two.map).to.not.exist;
@@ -313,6 +313,15 @@ describe('Processor', () => {
             expect(() => {
                 (new Processor([async])).process('a{}').css;
             }).to.throw(/async/);
+        });
+
+        it('throws a sync call in async running', () => {
+            let async = () => new Promise( (done) => setTimeout(done, 1) );
+
+            let processor = (new Processor([async])).process('a{}');
+            processor.async();
+
+            expect( () => processor.sync() ).to.throw(/then/);
         });
 
         it('checks plugin compatibility', () => {

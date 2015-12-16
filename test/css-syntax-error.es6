@@ -112,7 +112,7 @@ describe('CssSyntaxError', () => {
         let error = parseError('a{', {
             from: '/b.css',
             to:   '/c.css',
-            map: { prev: input.map }
+            map:  { prev: input.map }
         });
         expect(error.source).to.eql('a{}');
     });

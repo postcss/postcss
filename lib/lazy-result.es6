@@ -104,6 +104,7 @@ export default class LazyResult {
                 }
             }
         } catch (err) {
+            /* istanbul ignore next */
             if ( console && console.error ) console.error(err);
         }
     }

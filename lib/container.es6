@@ -198,6 +198,7 @@ export default class Container extends Node {
     }
 
     remove(child) {
+        /* istanbul ignore if */
         if ( typeof child !== 'undefined' ) {
             warnOnce('Container#remove is deprecated. ' +
                      'Use Container#removeChild');
@@ -300,7 +301,9 @@ export default class Container extends Node {
         }
 
         let processed = nodes.map( (i) => {
+            /* istanbul ignore if */
             if ( typeof i.raws === 'undefined' ) i = this.rebuild(i);
+
             if ( i.parent ) i = i.clone();
             if ( typeof i.raws.before === 'undefined' ) {
                 if ( sample && typeof sample.raws.before !== 'undefined' ) {

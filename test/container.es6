@@ -250,6 +250,18 @@ describe('Container', () => {
             expect(size).to.eql(2);
         });
 
+        it('breaks declarations filter by name', () => {
+            let css  = parse('@page{a{one:1}}b{one:1;two:2}');
+            let size = 0;
+
+            css.walkDecls('one', () => {
+                size += 1;
+                return false;
+            });
+
+            expect(size).to.eql(1);
+        });
+
         it('filters declarations by property regexp', () => {
             let css  = parse('@page{a{one:1}}b{one-x:1;two:2}');
             let size = 0;
@@ -257,6 +269,18 @@ describe('Container', () => {
             css.walkDecls(/one(-x)?/, () => size += 1 );
 
             expect(size).to.eql(2);
+        });
+
+        it('breaks declarations filters by regexp', () => {
+            let css  = parse('@page{a{one:1}}b{one-x:1;two:2}');
+            let size = 0;
+
+            css.walkDecls(/one(-x)?/, () => {
+                size += 1;
+                return false;
+            });
+
+            expect(size).to.eql(1);
         });
 
     });
@@ -337,6 +361,42 @@ describe('Container', () => {
             expect(indexes).to.eql([0]);
         });
 
+        it('filters by selector', () => {
+            let size = 0;
+            parse('a{}b{}a{}').walkRules('a', (rule) => {
+                expect(rule.selector).to.eql('a');
+                size += 1;
+            });
+            expect(size).to.eql(2);
+        });
+
+        it('breaks selector filters', () => {
+            let size = 0;
+            parse('a{}b{}a{}').walkRules('a', () => {
+                size += 1;
+                return false;
+            });
+            expect(size).to.eql(1);
+        });
+
+        it('filters by regexp', () => {
+            let size = 0;
+            parse('a{}a b{}b a{}').walkRules(/^a/, (rule) => {
+                expect(rule.selector).to.match(/^a/);
+                size += 1;
+            });
+            expect(size).to.eql(2);
+        });
+
+        it('breaks selector regexp', () => {
+            let size = 0;
+            parse('a{}b a{}b a{}').walkRules(/^a/, () => {
+                size += 1;
+                return false;
+            });
+            expect(size).to.eql(1);
+        });
+
     });
 
     describe('walkAtRules()', () => {
@@ -388,13 +448,31 @@ describe('Container', () => {
             expect(size).to.eql(3);
         });
 
+        it('breaks name filter', () => {
+            let size = 0;
+            parse('@page{@page{@page{}}}').walkAtRules('page', () => {
+                size += 1;
+                return false;
+            });
+            expect(size).to.eql(1);
+        });
+
         it('filters at-rules by name regexp', () => {
-            let css  = parse('@page{@page 2{}}@media print{@page{}}');
+            let css  = parse('@page{@page 2{}}@media print{@pages{}}');
             let size = 0;
 
             css.walkAtRules(/page/, () => size += 1 );
 
             expect(size).to.eql(3);
+        });
+
+        it('breaks regexp filter', () => {
+            let size = 0;
+            parse('@page{@pages{@page{}}}').walkAtRules(/page/, () => {
+                size += 1;
+                return false;
+            });
+            expect(size).to.eql(1);
         });
 
     });

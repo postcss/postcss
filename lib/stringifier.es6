@@ -72,8 +72,6 @@ export default class Stringifier {
     }
 
     body(node) {
-        if ( !node.nodes ) return;
-
         let last = node.nodes.length - 1;
         while ( last > 0 ) {
             if ( node.nodes[last].type !== 'comment' ) break;

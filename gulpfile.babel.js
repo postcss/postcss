@@ -97,14 +97,15 @@ gulp.task('coverage:instrument', () => {
 gulp.task('coverage:report', () => {
     let istanbul = require('gulp-istanbul');
     return gulp.src('test/*.es6', { read: false })
-        .pipe(istanbul.writeReports())
+        .pipe(istanbul.writeReports({
+            reporters: ['lcov', 'text-summary']
+        }))
         .pipe(istanbul.enforceThresholds({
             thresholds: {
                 global: {
-                    statements: 98,
-                    functions:  98,
-                    branches:   95,
-                    lines:      97
+                    statements: 100,
+                    functions:  100,
+                    lines:      100
                 }
             }
         }));
