@@ -103,6 +103,20 @@ describe('CssSyntaxError', () => {
         });
     });
 
+    it('shows origin source', () => {
+        let input = postcss().process('a{}', {
+            from: '/a.css',
+            to:   '/b.css',
+            map:  { inline: false }
+        });
+        let error = parseError('a{', {
+            from: '/b.css',
+            to:   '/c.css',
+            map: { prev: input.map }
+        });
+        expect(error.source).to.eql('a{}');
+    });
+
     it('does not uses wrong source map', () => {
         let error = parseError('a { }\nb {', {
             from: 'build/all.css',

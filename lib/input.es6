@@ -60,7 +60,7 @@ export default class Input {
             column: from.column
         };
 
-        let source = consumer.sourceContentFor(result.file);
+        let source = consumer.sourceContentFor(from.source);
         if ( source ) result.source = source;
 
         return result;
