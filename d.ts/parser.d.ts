@@ -26,7 +26,6 @@ export default class Parser {
     spacesFromStart(tokens: any): string;
     stringFrom(tokens: any, from: any): string;
     colon(tokens: any): number | boolean;
-    unknownDecl(node: any, token: any): void;
     unclosedBracket(bracket: any): void;
     unknownWord(start: any): void;
     unexpectedClose(token: any): void;
