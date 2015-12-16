@@ -1,3 +1,10 @@
+## 5.0.13
+* Fix `index` and `word` options in `Warning#toString` (by Bogdan Chadkin).
+* Fix input source content loading in errors.
+* Fix map options on using `LazyResult` as input CSS.
+* 100% test coverage.
+* Use Babel 6.
+
 ## 5.0.12
 * Allow passing a previous map with no mappings (by Andreas Lind).
 
