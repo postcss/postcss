@@ -100,6 +100,7 @@
     "linter",
     "linters",
     "rebases",
+    "resolver",
     "minifier",
     "minifiers",
     "mixins",
