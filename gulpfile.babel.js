@@ -119,3 +119,5 @@ gulp.task('coverage', (done) => {
 // Common
 
 gulp.task('default', ['lint', 'spellcheck', 'coverage']);
+
+gulp.task('all', ['lint', 'spellcheck', 'coverage', 'integration']);
