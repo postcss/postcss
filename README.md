@@ -110,7 +110,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 PostCSS can transform styles in any syntax, not just CSS.
 
 * [`postcss-scss`] to work with SCSS *(but does not compile SCSS to CSS)*.
-* [`postcss-js`] to to write styles in JS or transform React Inline Styles,
+* [`postcss-js`] to write styles in JS or transform React Inline Styles,
   Radium or JSS.
 * [`postcss-safe-parser`] finds and fixes CSS syntax errors.
 * [`midas`] converts a CSS string to highlighted HTML.
