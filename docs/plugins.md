@@ -381,6 +381,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-browser-reporter`]:        https://github.com/postcss/postcss-browser-reporter
 [`postcss-selector-matches`]:        https://github.com/postcss/postcss-selector-matches
 [`postcss-shorthand-expand`]:        https://github.com/johnotander/postcss-shorthand-expand
+[`postcss-current-selector`]:        https://github.com/komlev/postcss-current-selector
 [`postcss-all-link-colors`]:         https://github.com/jedmao/postcss-all-link-colors
 [`postcss-color-hex-alpha`]:         https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-define-property`]:         https://github.com/daleeidd/postcss-define-property
@@ -408,7 +409,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-assets-rebase`]:           https://github.com/devex-web-frontend/postcss-assets-rebase
 [`postcss-color-pantone`]:           https://github.com/longdog/postcss-color-pantone
 [`postcss-css-variables`]:           https://github.com/MadLittleMods/postcss-css-variables
-[`postcss-current-selector`]:        https://github.com/komlev/postcss-current-selector
 [`postcss-discard-empty`]:           https://github.com/ben-eb/postcss-discard-empty
 [`postcss-gradientfixer`]:           https://github.com/hallvors/postcss-gradientfixer
 [`postcss-modular-scale`]:           https://github.com/kristoferjoseph/postcss-modular-scale
