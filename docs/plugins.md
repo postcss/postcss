@@ -115,6 +115,7 @@ See also [`oldie`] plugins pack.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-css-variables`] supports variables for selectors, and at-rules
   using W3C similar syntax.
+* [`postcss-current-selector`] to get current selector in declaration.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
@@ -380,6 +381,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-browser-reporter`]:        https://github.com/postcss/postcss-browser-reporter
 [`postcss-selector-matches`]:        https://github.com/postcss/postcss-selector-matches
 [`postcss-shorthand-expand`]:        https://github.com/johnotander/postcss-shorthand-expand
+[`postcss-current-selector`]:        https://github.com/komlev/postcss-current-selector
 [`postcss-all-link-colors`]:         https://github.com/jedmao/postcss-all-link-colors
 [`postcss-color-hex-alpha`]:         https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-define-property`]:         https://github.com/daleeidd/postcss-define-property
