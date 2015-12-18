@@ -115,6 +115,7 @@ See also [`oldie`] plugins pack.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-css-variables`] supports variables for selectors, and at-rules
   using W3C similar syntax.
+* [`postcss-current-selector`] to get current selector in declaration.
 * [`postcss-define-property`] to define properties shortcut.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
@@ -407,6 +408,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-assets-rebase`]:           https://github.com/devex-web-frontend/postcss-assets-rebase
 [`postcss-color-pantone`]:           https://github.com/longdog/postcss-color-pantone
 [`postcss-css-variables`]:           https://github.com/MadLittleMods/postcss-css-variables
+[`postcss-current-selector`]:        https://github.com/komlev/postcss-current-selector
 [`postcss-discard-empty`]:           https://github.com/ben-eb/postcss-discard-empty
 [`postcss-gradientfixer`]:           https://github.com/hallvors/postcss-gradientfixer
 [`postcss-modular-scale`]:           https://github.com/kristoferjoseph/postcss-modular-scale
