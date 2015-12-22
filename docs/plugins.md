@@ -402,7 +402,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-partial-import`]:          https://github.com/jonathantneal/postcss-partial-import
 [`postcss-pseudoelements`]:          https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-short-position`]:          https://github.com/jonathantneal/postcss-short-position
-
 [`postcss-single-charset`]:          https://github.com/hail2u/postcss-single-charset
 [`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
 [`postcss-shades-of-gray`]:          https://github.com/laureanoarcanio/postcss-shades-of-gray
