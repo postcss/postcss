@@ -92,6 +92,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
 * [`postcss-fallback`] adds `fallback` function to avoid duplicate declarations.
 * [`postcss-filter-gradient`] adds gradient filter for the old IE.
+* [`postcss-hash-classname`] append hash string to your css class name.
 * [`postcss-mqwidth-to-class`] converts min/max-width media queries to classes.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
@@ -401,9 +402,11 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-partial-import`]:          https://github.com/jonathantneal/postcss-partial-import
 [`postcss-pseudoelements`]:          https://github.com/axa-ch/postcss-pseudoelements
 [`postcss-short-position`]:          https://github.com/jonathantneal/postcss-short-position
+
 [`postcss-single-charset`]:          https://github.com/hail2u/postcss-single-charset
 [`postcss-flexbugs-fixes`]:          https://github.com/luisrudge/postcss-flexbugs-fixes
 [`postcss-shades-of-gray`]:          https://github.com/laureanoarcanio/postcss-shades-of-gray
+[`postcss-hash-classname`]:          https://github.com/ctxhou/postcss-hash-classname
 [`postcss-alias-atrules`]:           https://github.com/maximkoretskiy/postcss-alias-atrules
 [`postcss-color-palette`]:           https://github.com/zaim/postcss-color-palette
 [`postcss-assets-rebase`]:           https://github.com/devex-web-frontend/postcss-assets-rebase
