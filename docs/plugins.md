@@ -105,6 +105,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
+* [`postcss-hash-classname`] append hash string to your css class name.
 
 See also [`oldie`] plugins pack.
 
@@ -554,3 +555,4 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                          https://github.com/MohammadYounes/rtlcss
 [`short`]:                           https://github.com/jonathantneal/postcss-short
 [`lost`]:                            https://github.com/corysimmons/lost
+[`postcss-hash-classname`]:          https://github.com/ctxhou/postcss-hash-classname
