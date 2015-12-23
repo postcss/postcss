@@ -92,6 +92,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
 * [`postcss-fallback`] adds `fallback` function to avoid duplicate declarations.
 * [`postcss-filter-gradient`] adds gradient filter for the old IE.
+* [`postcss-flexibility`] adds `-js-display` prop for [`Flexibility polyfill`].
 * [`postcss-hash-classname`] append hash string to your css class name.
 * [`postcss-mqwidth-to-class`] converts min/max-width media queries to classes.
 * [`postcss-opacity`] adds opacity filter for IE8.
@@ -108,6 +109,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
 
 See also [`oldie`] plugins pack.
+
+[`Flexibility polyfill`]: https://github.com/10up/flexibility
 
 ## Language Extensions
 
@@ -432,6 +435,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-sassy-mixins`]:            https://github.com/andyjansson/postcss-sassy-mixins
 [`postcss-custom-media`]:            https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:            https://github.com/antyakushev/postcss-default-unit
+[`postcss-flexibility`]:             https://github.com/7rulnik/postcss-flexibility
 [`postcss-flexboxfixer`]:            https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-font-variant`]:            https://github.com/postcss/postcss-font-variant
 [`postcss-media-minmax`]:            https://github.com/postcss/postcss-media-minmax
