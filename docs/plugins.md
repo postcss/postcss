@@ -135,6 +135,8 @@ See also [`oldie`] plugins pack.
 * [`postcss-nested`] unwraps nested rules.
 * [`postcss-nested-props`] unwraps nested properties.
 * [`postcss-nested-vars`] supports nested Sass-style variables.
+* [`postcss-pseudo-class-any-button`] adds `:any-button` pseudo-class
+for targeting all button elements.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
 * [`postcss-reverse-media`] reverse/Invert media query parameters.
@@ -347,6 +349,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
+[`postcss-pseudo-class-any-button`]: https://github.com/andrepolischuk/postcss-pseudo-class-any-button
 [`postcss-pseudo-elements-content`]: https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]:  https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-andalusian-stylesheets`]:  https://github.com/bameda/postcss-andalusian-stylesheets
