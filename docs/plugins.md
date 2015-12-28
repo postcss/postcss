@@ -224,13 +224,13 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
+* [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-reference`] emulates Less’s [`@import (reference)`].
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
-* [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
@@ -478,12 +478,12 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-hwb`]:               https://github.com/postcss/postcss-color-hwb
 [`postcss-color-mix`]:               https://github.com/iamstarkov/postcss-color-mix
 [`postcss-color-yiq`]:               https://github.com/ben-eb/postcss-color-yiq
+[`postcss-filter-mq`]:               https://github.com/simeydotme/postcss-filter-mq
 [`postcss-image-set`]:               https://github.com/alex499/postcss-image-set
 [`postcss-write-svg`]:               https://github.com/jonathantneal/postcss-write-svg
 [`postcss-animation`]:               https://github.com/zhouwenbin/postcss-animation
 [`postcss-instagram`]:               https://github.com/azat-io/postcss-instagram
 [`postcss-namespace`]:               https://github.com/totora0155/postcss-namespace
-[`postcss-filter-mq`]:               https://github.com/simeydotme/postcss-filter-mq
 [`postcss-clearfix`]:                https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:                https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:                https://github.com/cssstats/postcss-cssstats
