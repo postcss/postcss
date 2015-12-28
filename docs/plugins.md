@@ -230,6 +230,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
+* [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
@@ -482,6 +483,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-animation`]:               https://github.com/zhouwenbin/postcss-animation
 [`postcss-instagram`]:               https://github.com/azat-io/postcss-instagram
 [`postcss-namespace`]:               https://github.com/totora0155/postcss-namespace
+[`postcss-filter-mq`]:               https://github.com/simeydotme/postcss-filter-mq
 [`postcss-clearfix`]:                https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:                https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:                https://github.com/cssstats/postcss-cssstats
