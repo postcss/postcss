@@ -103,7 +103,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`doiuse`]:                   https://github.com/anandthakker/doiuse
 [`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
 [`short`]:                    https://github.com/jonathantneal/postcss-short
-[`lost`]:                     https://github.com/corysimmons/lost
+[`lost`]:                     https://github.com/peterramsing/lost
 
 ## Syntaxes
 
