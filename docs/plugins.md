@@ -440,6 +440,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-custom-media`]:            https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:            https://github.com/antyakushev/postcss-default-unit
 [`postcss-flexibility`]:             https://github.com/7rulnik/postcss-flexibility
+[`postcss-flexbox`]:                 https://github.com/archana-s/postcss-flexbox
 [`postcss-flexboxfixer`]:            https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-font-variant`]:            https://github.com/postcss/postcss-font-variant
 [`postcss-media-minmax`]:            https://github.com/postcss/postcss-media-minmax
