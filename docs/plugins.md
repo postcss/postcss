@@ -440,7 +440,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-custom-media`]:            https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:            https://github.com/antyakushev/postcss-default-unit
 [`postcss-flexibility`]:             https://github.com/7rulnik/postcss-flexibility
-[`postcss-flexbox`]:                 https://github.com/archana-s/postcss-flexbox
 [`postcss-flexboxfixer`]:            https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-font-variant`]:            https://github.com/postcss/postcss-font-variant
 [`postcss-media-minmax`]:            https://github.com/postcss/postcss-media-minmax
@@ -502,6 +501,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-fontpath`]:                https://github.com/seaneking/postcss-fontpath
 [`postcss-reporter`]:                https://github.com/postcss/postcss-reporter
 [`postcss-trolling`]:                https://github.com/juanfran/postcss-trolling
+[`postcss-flexbox`]:                 https://github.com/archana-s/postcss-flexbox
 [`postcss-modules`]:                 https://github.com/outpunk/postcss-modules
 [`postcss-easings`]:                 https://github.com/postcss/postcss-easings
 [`postcss-hexrgba`]:                 https://github.com/seaneking/postcss-hexrgba
