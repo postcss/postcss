@@ -226,8 +226,9 @@ See also [`precss`] plugins pack to add them by one line of code.
   (when expressions involve the same units).
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
-* [`postcss-reference`] emulates Less’s [`@import (reference)`].
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
+* [`postcss-reference`] emulates Less’s [`@import (reference)`].
+* [`postcss-remove-root`] removes all instances of `:root` from a stylesheet.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
@@ -354,6 +355,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
+
 [`postcss-pseudo-class-any-button`]: https://github.com/andrepolischuk/postcss-pseudo-class-any-button
 [`postcss-pseudo-elements-content`]: https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-australian-stylesheets`]:  https://github.com/dp-lewis/postcss-australian-stylesheets
@@ -463,6 +465,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-will-change`]:             https://github.com/postcss/postcss-will-change
 [`postcss-input-style`]:             https://github.com/seaneking/postcss-input-style
 [`css-property-sorter`]:             https://github.com/Siilwyn/css-property-sorter
+[`postcss-remove-root`]:             https://github.com/cbracco/postcss-remove-root
 [`postcss-ase-colors`]:              https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:              https://github.com/postcss/postcss-bem-linter
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
