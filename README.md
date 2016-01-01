@@ -122,6 +122,7 @@ PostCSS can transform styles in any syntax, not just CSS.
 
 ## Articles
 
+* [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong/)
 * [What PostCSS Really Is; What It Really Does](http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/)
 * [PostCSS Guides](http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)
 
