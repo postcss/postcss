@@ -1,9 +1,8 @@
-import packageInfo from '../package';
 import LazyResult  from './lazy-result';
 
 export default class Processor {
 
-    version = packageInfo.version;
+    version = '5.0.13';
 
     constructor(plugins = []) {
         this.plugins = this.normalize(plugins);
