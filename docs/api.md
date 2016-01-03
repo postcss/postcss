@@ -1789,7 +1789,7 @@ var comment.text //=> 'Empty file'
 [`CssSyntaxError`]:               #csssyntaxerror-class
 [`Processor#use`]:                #processoruseplugin
 [`Result#warn()`]:                #resultwarn
-[`Node#warn()`]:                  #nodewarnmessage-result
+[`Node#warn()`]:                  #nodewarnresult-message
 [`Comment` node]:                 #comment-node
 [`AtRule` node]:                  #atrule-node
 [`from` option]:                  #processorprocesscss-opts
@@ -1799,7 +1799,7 @@ var comment.text //=> 'Empty file'
 [`Root` node]:                    #root-node
 [`Rule` node]:                    #rule-node
 [`Processor`]:                    #processor-class
-[`Node#raws`]:                    #node-raws
+[`Node#raws`]:                    #noderaws
 [`Warning`]:                      #warning-class
 [`Result`]:                       #result-class
 [`Input`]:                        #inputclass
