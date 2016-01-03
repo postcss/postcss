@@ -1,3 +1,6 @@
+## 5.0.14
+* Allow to use PostCSS in webpack bundle without JSON loader.
+
 ## 5.0.13
 * Fix `index` and `word` options in `Warning#toString` (by Bogdan Chadkin).
 * Fix input source content loading in errors.
