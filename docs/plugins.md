@@ -288,6 +288,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
+* [`postcss-flexbox`] easy way to understand and start using CSS3 Flexbox for layouts.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
@@ -503,6 +504,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-fontpath`]:                https://github.com/seaneking/postcss-fontpath
 [`postcss-reporter`]:                https://github.com/postcss/postcss-reporter
 [`postcss-trolling`]:                https://github.com/juanfran/postcss-trolling
+[`postcss-flexbox`]:                 https://github.com/archana-s/postcss-flexbox
 [`postcss-modules`]:                 https://github.com/outpunk/postcss-modules
 [`postcss-easings`]:                 https://github.com/postcss/postcss-easings
 [`postcss-hexrgba`]:                 https://github.com/seaneking/postcss-hexrgba
