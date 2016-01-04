@@ -89,7 +89,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial
 [`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites
 [`postcss-modules`]:          https://github.com/outpunk/postcss-modules
-[`postcss-assets`]:           https://github.com/borodean/postcss-assets
+[`postcss-assets`]:           https://github.com/assetsjs/postcss-assets
 [`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:             https://github.com/postcss/autoprefixer
 [`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill
