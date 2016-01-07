@@ -1,6 +1,6 @@
 export default class Warning {
 
-    type = 'warning'
+    type = 'warning';
 
     constructor(text, opts = { }) {
         this.text = text;

@@ -3,7 +3,7 @@ import warnOnce  from './warn-once';
 
 export default class AtRule extends Container {
 
-    type = 'atrule'
+    type = 'atrule';
 
     constructor(defaults) {
         super(defaults);

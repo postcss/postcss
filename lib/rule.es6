@@ -4,7 +4,7 @@ import list      from './list';
 
 export default class Rule extends Container {
 
-    type = 'rule'
+    type = 'rule';
 
     constructor(defaults) {
         super(defaults);

@@ -29,7 +29,7 @@ let cloneNode = function (obj, parent) {
 
 export default class Node {
 
-    raws = { }
+    raws = { };
 
     constructor(defaults = { }) {
         for ( let name in defaults ) {
