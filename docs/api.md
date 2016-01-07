@@ -66,7 +66,7 @@ root1.append(root2).toResult().css;
 Arguments:
 
 * `css (string|#toString)`: String with input CSS or any object
-  with `toString()` method, like file stream.
+  with `toString()` method, like a Buffer.
 * `opts (object) optional`: options:
   * `from`: the path to the source CSS file. You should always set `from`,
     because it is used in map generation and in syntax error messages.
@@ -294,7 +294,7 @@ processor.process(css, { from: 'a.css', to: 'a.out.css' }).then(function (result
 Arguments:
 
 * `css (string|#toString|Result)`: String with input CSS or any object
-  with a `toString()` method, like file stream. Optionally, send a [`Result`]
+  with a `toString()` method, like a Buffer. Optionally, send a [`Result`]
   instance and the processor will take the existing [`Root`] parser from it.
 * `opts (object) optional`: options:
   * `from`: the path of the CSS source file. You should always set `from`,
