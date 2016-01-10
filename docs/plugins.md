@@ -235,6 +235,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
+* [`postcss-mq-optimize`] removes invalid media queries or its expresions.
 
 See also plugins in modular minifier [`cssnano`].
 
