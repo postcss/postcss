@@ -468,6 +468,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-input-style`]:             https://github.com/seaneking/postcss-input-style
 [`css-property-sorter`]:             https://github.com/Siilwyn/css-property-sorter
 [`postcss-remove-root`]:             https://github.com/cbracco/postcss-remove-root
+[`postcss-mq-optimize`]:             https://github.com/panec/postcss-mq-optimize
 [`postcss-ase-colors`]:              https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:              https://github.com/postcss/postcss-bem-linter
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
