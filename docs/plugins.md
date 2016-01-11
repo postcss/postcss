@@ -235,6 +235,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
+* [`postcss-mq-optimize`] removes invalid media queries or its expresions.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -467,6 +468,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-input-style`]:             https://github.com/seaneking/postcss-input-style
 [`css-property-sorter`]:             https://github.com/Siilwyn/css-property-sorter
 [`postcss-remove-root`]:             https://github.com/cbracco/postcss-remove-root
+[`postcss-mq-optimize`]:             https://github.com/panec/postcss-mq-optimize
 [`postcss-ase-colors`]:              https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:              https://github.com/postcss/postcss-bem-linter
 [`postcss-color-gray`]:              https://github.com/postcss/postcss-color-gray
