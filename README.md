@@ -80,6 +80,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is feature-rich `calc()` grid system by Jeet author.
 * [`cssnano`] is a modular CSS minifier.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-sorting`] sorts rules content with specified order.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
@@ -89,6 +90,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial
 [`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites
 [`postcss-modules`]:          https://github.com/outpunk/postcss-modules
+[`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting
 [`postcss-assets`]:           https://github.com/assetsjs/postcss-assets
 [`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:             https://github.com/postcss/autoprefixer
