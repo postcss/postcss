@@ -40,7 +40,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [searchable catalog]: http://postcss.parts
 [plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
 
-### End of Global CSS
+### Solve Global CSS Problem
 
 * [`postcss-use`] to explicitly set PostCSS plugins in CSS and execute them
   only for the current file.
@@ -51,14 +51,15 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`cq-prolyfill`] adds media queries for component size
   or parent background.
 
-### Future CSS
+### Use Future CSS, Today
 
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
 * [`cssnext`] allows you to use future CSS features today.
 
-### Syntax sugar
+### Better CSS Readability
 
 * [`precss`] contains plugins for Sass-like features like nesting or mixins.
+* [`postcss-sorting`] sorts rules content with specified order.
 * [`short`] adds and extends numerous shorthand properties.
 
 ### Images and Fonts
@@ -80,7 +81,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is feature-rich `calc()` grid system by Jeet author.
 * [`cssnano`] is a modular CSS minifier.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`postcss-sorting`] sorts rules content with specified order.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
