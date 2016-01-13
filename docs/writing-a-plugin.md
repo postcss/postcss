@@ -18,6 +18,7 @@
 * [Selector parser](https://github.com/postcss/postcss-selector-parser)
 * [Value parser](https://github.com/TrySound/postcss-value-parser)
 * [Property resolver](https://github.com/jedmao/postcss-resolve-prop)
+* [Function resolver](https://github.com/andyjansson/postcss-functions)
 * [Font parser](https://github.com/jedmao/parse-css-font)
 * [Dimension parser](https://github.com/jedmao/parse-css-dimension)
   for `number`, `length` and `percentage`.
