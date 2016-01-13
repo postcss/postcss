@@ -267,6 +267,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
 * [`postcss-responsive-type`] changes `font-size` depends on screen size.
+* [`postcss-scrib`] define your own aliases/shortcuts for properties or values.
 * [`postcss-short-font-size`] extends `font-size` to define line-height
   s a second value.
 * [`postcss-short-position`] extends `position` to define edges
@@ -540,6 +541,7 @@ See also plugins in modular minifier [`cssnano`].
 [`font-magician`]:                   https://github.com/jonathantneal/postcss-font-magician
 [`postcss-match`]:                   https://github.com/rtsao/postcss-match
 [`postcss-alias`]:                   https://github.com/seaneking/postcss-alias
+[`postcss-scrib`]:                   https://github.com/sneakertack/postcss-scrib
 [`perfectionist`]:                   https://github.com/ben-eb/perfectionist
 [`immutable-css`]:                   https://github.com/johnotander/immutable-css
 [`postcss-at2x`]:                    https://github.com/simonsmith/postcss-at2x
