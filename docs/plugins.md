@@ -69,6 +69,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-custom-selectors`] adds custom aliases for selectors.
 * [`postcss-extend`] supports spec-approximate `@extend` for rules
   and placeholders, recursively.
+* [`postcss-font-normalize`] to normalize font, especially font-family.
 * [`postcss-font-variant`] transpiles human-readable `font-variant`
   to more widely supported CSS.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
