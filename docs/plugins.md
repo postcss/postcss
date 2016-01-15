@@ -262,6 +262,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-focus`] adds `:focus` selector to every `:hover`.
 * [`postcss-generate-preset`] allows quick generation of rules.
   Useful for creating repetitive utilities.
+* [`postcss-hidden`] allows for easy ways to hide elements.
 * [`postcss-input-style`] adds new pseudo-elements for cross-browser styling
   of inputs.
 * [`postcss-position`] adds shorthand declarations for position attributes.
@@ -525,6 +526,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-border`]:                  https://github.com/andrepolischuk/postcss-border
 [`postcss-center`]:                  https://github.com/jedmao/postcss-center
 [`postcss-circle`]:                  https://github.com/jedmao/postcss-circle
+[`postcss-hidden`]:                  https://github.com/lukelarsen/postcss-hidden
 [`postcss-urlrev`]:                  https://github.com/yuezk/postcss-urlrev
 [`postcss-extend`]:                  https://github.com/travco/postcss-extend
 [`postcss-fakeid`]:                  https://github.com/pathsofdesign/postcss-fakeid
