@@ -292,6 +292,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
+* [`postcss-filter-stream`] blacklist files / folders that you don't want to process with a PostCSS plugin.
 * [`postcss-flexbox`] easy way to understand and start using CSS3 Flexbox for layouts.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
@@ -530,6 +531,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-urlrev`]:                  https://github.com/yuezk/postcss-urlrev
 [`postcss-extend`]:                  https://github.com/travco/postcss-extend
 [`postcss-fakeid`]:                  https://github.com/pathsofdesign/postcss-fakeid
+[`postcss-filter-stream`]:           https://github.com/tsm91/postcss-filter-stream
 [`postcss-filter`]:                  https://github.com/alanev/postcss-filter
 [`postcss-import`]:                  https://github.com/postcss/postcss-import
 [`postcss-mixins`]:                  https://github.com/postcss/postcss-mixins
