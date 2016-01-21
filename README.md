@@ -54,7 +54,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 ### Use Future CSS, Today
 
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
-* [`cssnext`] allows you to use future CSS features today.
+* [`cssnext`] allows you to use future CSS features today (_includes `autoprefixer`_).
 
 ### Better CSS Readability
 
