@@ -1548,7 +1548,7 @@ Because each node class is identifiable by unique properties, use
 the following shortcuts to create nodes in insert methods:
 
 ```js
-root.append({ name: '@charset', params: '"UTF-8"' }); // at-rule
+root.append({ name: 'charset', params: '"UTF-8"' }); // at-rule
 root.append({ selector: 'a' });                       // rule
 rule.append({ prop: 'color', value: 'black' });       // declaration
 rule.append({ text: 'Comment' })                      // comment
