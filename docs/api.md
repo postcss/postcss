@@ -1562,7 +1562,7 @@ root.append('a {}');
 root.first.append('color: black; z-index: 1');
 ```
 
-### `container.insertBefore(oldNode, newNew)` and `container.insertAfter(oldNode, newNew)`
+### `container.insertBefore(oldNode, newNode)` and `container.insertAfter(oldNode, newNode)`
 
 Insert `newNode` before/after `oldNode` within the container.
 
