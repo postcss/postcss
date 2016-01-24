@@ -275,6 +275,7 @@ See also plugins in modular minifier [`cssnano`].
   text-related properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
+* [`postcss-speech-bubble`] adds speech bubbles of different kinds with just a couple of lines of CSS.
 * [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
 * [`postcss-triangle`] creates a triangle.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
@@ -431,6 +432,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-image-inliner`]:           https://github.com/bezoerb/postcss-image-inliner
 [`postcss-reverse-media`]:           https://github.com/MadLittleMods/postcss-reverse-media
 [`postcss-regexp-detect`]:           https://github.com/devex-web-frontend/postcss-regexp-detect
+[`postcss-speech-bubble`]:           https://github.com/archana-s/postcss-speech-bubble
 [`postcss-mq-keyframes`]:            https://github.com/TCotton/postcss-mq-keyframes
 [`postcss-brand-colors`]:            https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:            https://github.com/thompsongl/postcss-class-prefix
