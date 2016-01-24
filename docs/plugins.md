@@ -317,7 +317,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`postcss-scopify`] adds a user input scope to each selector.
 * [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
-* [`css-declaration-sorter`] sort CSS declarations fast and automatically in a certain order.
+* [`css-declaration-sorter`] sorts CSS declarations fast and automatically in a certain order.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
