@@ -17,6 +17,9 @@
     "transpiler"
   ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "files": [
+    "lib"
+  ],
   "license": "MIT",
   "repository": "postcss/postcss",
   "dependencies": {
