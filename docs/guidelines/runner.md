@@ -12,7 +12,7 @@ See also [ClojureWerkz’s recommendations] for open source projects.
 [ClojureWerkz’s recommendations]:  http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
 [`gulp-autoprefixer`]: https://github.com/sindresorhus/gulp-autoprefixer
 [`gulp‑postcss`]:      https://github.com/w0rm/gulp-postcss
-[`postcss-cli`]:       https://github.com/code42day/postcss-cli
+[`postcss-cli`]:       https://github.com/postcss/postcss-cli
 
 ## 1. API
 

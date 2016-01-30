@@ -195,7 +195,7 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 
 ### Runners
 
-* **CLI**: [`postcss-cli`](https://github.com/code42day/postcss-cli)
+* **CLI**: [`postcss-cli`](https://github.com/postcss/postcss-cli)
 * **Grunt**: [`grunt-postcss`](https://github.com/nDmitry/grunt-postcss)
 * **HTML**: [`posthtml-postcss`](https://github.com/posthtml/posthtml-postcss)
 * **Stylus**: [`poststylus`](https://github.com/seaneking/poststylus)
@@ -227,7 +227,7 @@ All PostCSS JS API users should pass [PostCSS Runner Guidelines].
 
 [PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
 [PostCSS API documentation]: https://github.com/postcss/postcss/blob/master/docs/api.md
-[CLI tool]:                  https://github.com/code42day/postcss-cli
+[CLI tool]:                  https://github.com/postcss/postcss-cli
 
 ### Options
 
