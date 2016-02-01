@@ -30,6 +30,7 @@ gulp.task('build:package', ['clean'], () => {
         'babel-plugin-add-module-exports',
         'babel-preset-es2015-loose',
         'babel-preset-stage-0',
+        'babel-preset-es2015',
         'babel-core'
     ];
     return gulp.src('./package.json')
