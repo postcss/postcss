@@ -179,6 +179,13 @@ module.exports = {
 
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
 
+### CLI
+
+To use PostCSS from your command-line interface or with npm scripts there is: [`postcss-cli`](https://github.com/postcss/postcss-cli).
+```bash
+postcss --use autoprefixer -c options.json -o main.css css/*.css
+```
+
 ### CSS-in-JS
 
 For React Inline Styles, JSS, Radium and other CSS-in-JS you can use
@@ -195,7 +202,6 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 
 ### Runners
 
-* **CLI**: [`postcss-cli`](https://github.com/postcss/postcss-cli)
 * **Grunt**: [`grunt-postcss`](https://github.com/nDmitry/grunt-postcss)
 * **HTML**: [`posthtml-postcss`](https://github.com/posthtml/posthtml-postcss)
 * **Stylus**: [`poststylus`](https://github.com/seaneking/poststylus)
@@ -209,7 +215,7 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 
 ### JS API
 
-For other environments, you can use the [CLI tool] or the JS API:
+For other environments, you can use the JS API:
 
 ```js
 var postcss = require('postcss');
@@ -227,7 +233,6 @@ All PostCSS JS API users should pass [PostCSS Runner Guidelines].
 
 [PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
 [PostCSS API documentation]: https://github.com/postcss/postcss/blob/master/docs/api.md
-[CLI tool]:                  https://github.com/postcss/postcss-cli
 
 ### Options
 
