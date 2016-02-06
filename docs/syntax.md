@@ -133,7 +133,7 @@ to generate byte-to-byte equal output. It is not so difficult, but respectful
 for user input and allow integration smoke tests.
 
 A parser should save all additional symbols to [`node.raws`] object.
-It is a open structure for you, you can add additional keys.
+It is an open structure for you, you can add additional keys.
 For example, [SCSS parser] saves comment types (`/* */` or `//`)
 in `node.raws.inline`.
 
