@@ -449,6 +449,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-sassy-mixins`]:            https://github.com/andyjansson/postcss-sassy-mixins
 [`postcss-custom-media`]:            https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:            https://github.com/antyakushev/postcss-default-unit
+[`postcss-font-awesome`]:            https://github.com/dan-gamble/postcss-font-awesome
 [`postcss-flexibility`]:             https://github.com/7rulnik/postcss-flexibility
 [`postcss-flexboxfixer`]:            https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-font-normalize`]:          https://github.com/iahu/postcss-font-normalize
