@@ -30,11 +30,9 @@ export default class Root extends Container {
                 } else {
                     delete sample.raws.before;
                 }
-            } else {
+            } else if ( this.first !== sample ) {
                 for ( let node of nodes ) {
-                    if ( this.first !== sample ) {
-                        node.raws.before = sample.raws.before;
-                    }
+                    node.raws.before = sample.raws.before;
                 }
             }
         }
