@@ -1542,7 +1542,7 @@ rule.prepend(decl1, decl2);
 
 Arguments:
 
-* `node (Node|object|string)`: new node.
+* `node (Node|array|object|string)`: new node.
 
 Because each node class is identifiable by unique properties, use
 the following shortcuts to create nodes in insert methods:
@@ -1573,7 +1573,7 @@ rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }));
 Arguments:
 
 * `oldNode (Node|number)`: child or child’s index.
-* `node (Node|object|string)`: new node.
+* `node (Node|array|object|string)`: new node.
 
 ### `container.removeChild(node)`
 
@@ -1667,7 +1667,7 @@ as the at-rule’s “prelude”.
 ```js
 var root  = postcss.parse('@media print, screen {}');
 var media = root.first;
-media.params //=> '[print, screen]'
+media.params //=> 'print, screen'
 ```
 
 ## `Rule` node
