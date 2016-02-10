@@ -143,11 +143,26 @@ export default function tokenize(input) {
                 }
             } while ( escaped );
 
+            content = css.slice(pos, next + 1);
+            lines   = content.split('\n');
+            last    = lines.length - 1;
+
+            if ( last > 0 ) {
+                nextLine   = line + last;
+                nextOffset = next - lines[last].length;
+            } else {
+                nextLine   = line;
+                nextOffset = offset;
+            }
+
             tokens.push(['string', css.slice(pos, next + 1),
                 line, pos  - offset,
-                line, next - offset
+                nextLine, next - nextOffset
             ]);
-            pos = next;
+
+            offset = nextOffset;
+            line   = nextLine;
+            pos    = next;
             break;
 
         case AT:
