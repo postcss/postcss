@@ -183,7 +183,7 @@ describe('Node', () => {
             let decl = new Declaration({
                 prop:  'color',
                 value: 'black',
-                raws: { value: null }
+                raws:  { value: null }
             });
             let clone = decl.clone();
             expect(Object.keys(clone.raws)).to.eql(['value']);
