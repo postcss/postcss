@@ -1,3 +1,6 @@
+## 5.0.15
+* Fix `Node#clone()` on `null` value somewhere in node.
+
 ## 5.0.14
 * Allow to use PostCSS in webpack bundle without JSON loader.
 
