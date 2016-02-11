@@ -19,7 +19,7 @@ let cloneNode = function (obj, parent) {
             cloned[i] = value.map( j => cloneNode(j, cloned) );
         } else if ( i !== 'before'  && i !== 'after' &&
                     i !== 'between' && i !== 'semicolon' ) {
-            if ( type === 'object' ) value = cloneNode(value);
+            if ( type === 'object' && value !== null ) value = cloneNode(value);
             cloned[i] = value;
         }
     }

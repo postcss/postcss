@@ -179,6 +179,16 @@ describe('Node', () => {
                                                   '}');
         });
 
+        it('works with null in raws', () => {
+            let decl = new Declaration({
+                prop:  'color',
+                value: 'black',
+                raws: { value: null }
+            });
+            let clone = decl.clone();
+            expect(Object.keys(clone.raws)).to.eql(['value']);
+        });
+
     });
 
     describe('cloneBefore()', () => {
