@@ -115,6 +115,7 @@ See also [`oldie`] plugins pack.
 
 ## Language Extensions
 
+* [`postcss-aspect-ratio`] fix an element's dimensions to an aspect ratio.
 * [`postcss-atroot`] place rules directly at the root node.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-conditionals`] adds `@if` statements.
@@ -127,6 +128,7 @@ See also [`oldie`] plugins pack.
 * [`postcss-at-rules-variables`] adds support for custom properties in
   `@for`, `@each`, `@if`, etc.
 * [`postcss-functions`] enables exposure of JavaScript functions.
+* [`postcss-if-media`] inline or nest media queries within CSS rules & properties.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-match`] adds `@match` for [Rust-style pattern matching].
@@ -218,6 +220,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 ## Grids
 
 * [`postcss-grid`] adds a semantic grid system.
+* [`postcss-layout`] a plugin for some common CSS layout patterns and a Grid system.
 * [`postcss-simple-grid`] create grid with one line.
 * [`postcss-neat`] is a semantic and fluid grid framework.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
@@ -459,6 +462,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-selector-not`]:            https://github.com/postcss/postcss-selector-not
 [`postcss-svg-fallback`]:            https://github.com/justim/postcss-svg-fallback
 [`postcss-nested-props`]:            https://github.com/jedmao/postcss-nested-props
+[`postcss-aspect-ratio`]:            https://github.com/arccoza/postcss-aspect-ratio
 [`postcss-cachebuster`]:             https://github.com/glebmachine/postcss-cachebuster
 [`postcss-easysprites`]:             https://github.com/glebmachine/postcss-easysprites
 [`postcss-nested-vars`]:             https://github.com/jedmao/postcss-nested-vars
@@ -515,6 +519,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-fontpath`]:                https://github.com/seaneking/postcss-fontpath
 [`postcss-reporter`]:                https://github.com/postcss/postcss-reporter
 [`postcss-trolling`]:                https://github.com/juanfran/postcss-trolling
+[`postcss-if-media`]:                https://github.com/arccoza/postcss-if-media
 [`postcss-flexbox`]:                 https://github.com/archana-s/postcss-flexbox
 [`postcss-modules`]:                 https://github.com/outpunk/postcss-modules
 [`postcss-easings`]:                 https://github.com/postcss/postcss-easings
@@ -545,6 +550,7 @@ See also plugins in modular minifier [`cssnano`].
 [`list-selectors`]:                  https://github.com/davidtheclark/list-selectors
 [`mq4-hover-shim`]:                  https://github.com/twbs/mq4-hover-shim
 [`postcss-atroot`]:                  https://github.com/OEvgeny/postcss-atroot
+[`postcss-layout`]:                  https://github.com/arccoza/postcss-layout
 [`postcss-focus`]:                   https://github.com/postcss/postcss-focus
 [`postcss-apply`]:                   https://github.com/pascalduez/postcss-apply
 [`css2modernizr`]:                   https://github.com/vovanbo/css2modernizr
