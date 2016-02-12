@@ -102,6 +102,7 @@
     "rebases",
     "resolver",
     "minifier",
+    "isolatable",
     "minifiers",
     "mixins",
     "mixin",

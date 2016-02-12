@@ -26,14 +26,16 @@ Support / Discussion: [Gitter](https://gitter.im/postcss/postcss).
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 
 <a href="https://evilmartians.com/?utm_source=postcss">
-<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
+  <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
+       alt="Sponsored by Evil Martians" width="236" height="54">
 </a>
 
 ## Plugins
 
-Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the
-[plugins list] or in the [searchable catalog]. Below is a list of our favorite plugins —
-the best demonstrations of what can be built on top of PostCSS. 
+Currently, PostCSS has more than 200 plugins. You can find all of the plugins
+in the [plugins list] or in the [searchable catalog].
+Below is a list of our favorite plugins — the best demonstrations of what can
+be built on top of PostCSS.
 
 If you have any new ideas, [PostCSS plugin development] is really easy.
 
@@ -42,24 +44,27 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 ### Solve Global CSS Problem
 
-* [`postcss-use`] allows you to explicitly set PostCSS plugins within CSS 
+* [`postcss-use`] allows you to explicitly set PostCSS plugins within CSS
   and execute them only for the current file.
 * [`postcss-modules`] and [`react-css-modules`] automatically isolate
   selectors within components.
-* [`postcss-autoreset`] applies local resets to rules — an alternative to 
+* [`postcss-autoreset`] applies local resets to rules — an alternative to
   using a global reset that is better for isolatable components.
-* [`postcss-initial`] adds `all: initial` support, which resets all inherited styles.
-* [`cq-prolyfill`] adds container query support, allowing styles that respond 
+* [`postcss-initial`] adds `all: initial` support, which resets
+  all inherited styles.
+* [`cq-prolyfill`] adds container query support, allowing styles that respond
   to the width of the parent.
 
 ### Use Future CSS, Today
 
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
-* [`cssnext`] allows you to use future CSS features today (_includes `autoprefixer`_).
+* [`cssnext`] allows you to use future CSS features today
+  (_includes `autoprefixer`_).
 
 ### Better CSS Readability
 
-* [`precss`] contains plugins for Sass-like features, like variables, nesting, and mixins.
+* [`precss`] contains plugins for Sass-like features, like variables, nesting,
+  and mixins.
 * [`postcss-sorting`] sorts the content of rules and at-rules.
 * [`short`] adds and extends numerous shorthand properties.
 
@@ -114,9 +119,10 @@ PostCSS can transform styles in any syntax, not just CSS.
 If there is not yet support for your favorite syntax, you can write
 a parser and/or stringifier to extend PostCSS.
 
-* [`postcss-scss`] allows you to work with SCSS *(but does not compile SCSS to CSS)*.
-* [`postcss-js`] allows you to write styles in JS or transform React Inline Styles,
-  Radium or JSS.
+* [`postcss-scss`] allows you to work with SCSS
+  *(but does not compile SCSS to CSS)*.
+* [`postcss-js`] allows you to write styles in JS or transform
+  React Inline Styles, Radium or JSS.
 * [`postcss-safe-parser`] finds and fixes CSS syntax errors.
 * [`midas`] converts a CSS string to highlighted HTML.
 
@@ -184,15 +190,19 @@ module.exports = {
 
 ### CLI
 
-To use PostCSS from your command-line interface or with npm scripts there is [`postcss-cli`](https://github.com/postcss/postcss-cli).
-```bash
+To use PostCSS from your command-line interface or with npm scripts
+there is [`postcss-cli`].
+
+```sh
 postcss --use autoprefixer -c options.json -o main.css css/*.css
 ```
 
+[`postcss-cli`]: https://github.com/postcss/postcss-cli
+
 ### CSS-in-JS
 
-To apply PostCSS plugins to React Inline Styles, JSS, Radium 
-and other CSS-in-JS, you can use [`postcss-js`] and 
+To apply PostCSS plugins to React Inline Styles, JSS, Radium
+and other CSS-in-JS, you can use [`postcss-js`] and
 transforms style objects.
 
 ```js
