@@ -1,3 +1,10 @@
+# Change Log
+All notable changes to this project will be documented in this file.
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+## Unreleased
+* Add 'Unreleased' section in changelog:). Add information about Semantic Versioning. 
+
 ## 5.0.15
 * Fix `Node#clone()` on `null` value somewhere in node.
 
