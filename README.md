@@ -31,9 +31,9 @@ Support / Discussion: [Gitter](https://gitter.im/postcss/postcss).
 
 ## Plugins
 
-Currently, PostCSS has more than 200 plugins. Here are our favorite plugins
-which best demonstrate PostCSS’ power. You can find all of the plugins in the
-[plugins list] or in the [searchable catalog].
+Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the
+[plugins list] or in the [searchable catalog]. Below is a list of our favorite plugins —
+the best demonstrations of what can be built on top of PostCSS. 
 
 If you have any new ideas, [PostCSS plugin development] is really easy.
 
@@ -42,14 +42,15 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 ### Solve Global CSS Problem
 
-* [`postcss-use`] to explicitly set PostCSS plugins in CSS and execute them
-  only for the current file.
-* [`postcss-modules`] or [`react-css-modules`] automatically isolates
-  selectors in components.
-* [`postcss-autoreset`] uses local reset in component, instead of global one.
-* [`postcss-initial`] adds `all: initial` support to reset all inherit styles.
-* [`cq-prolyfill`] adds media queries for component size
-  or parent background.
+* [`postcss-use`] allows you to explicitly set PostCSS plugins within CSS 
+  and execute them only for the current file.
+* [`postcss-modules`] and [`react-css-modules`] automatically isolate
+  selectors within components.
+* [`postcss-autoreset`] applies local resets to rules — an alternative to 
+  using a global reset that is better for isolatable components.
+* [`postcss-initial`] adds `all: initial` support, which resets all inherited styles.
+* [`cq-prolyfill`] adds container query support, allowing styles that respond 
+  to the width of the parent.
 
 ### Use Future CSS, Today
 
@@ -58,8 +59,8 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 ### Better CSS Readability
 
-* [`precss`] contains plugins for Sass-like features like nesting or mixins.
-* [`postcss-sorting`] sorts rules content with specified order.
+* [`precss`] contains plugins for Sass-like features, like variables, nesting, and mixins.
+* [`postcss-sorting`] sorts the content of rules and at-rules.
 * [`short`] adds and extends numerous shorthand properties.
 
 ### Images and Fonts
@@ -67,18 +68,18 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`postcss-assets`] inserts image dimensions and inlines files.
 * [`postcss-sprites`] generates image sprites.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
-* [`postcss-inline-svg`] allows to inline SVG and customize its styles.
-* [`postcss-write-svg`] allows to write simple SVG directly in CSS.
+* [`postcss-inline-svg`] allows you to inline SVG and customize its styles.
+* [`postcss-write-svg`] allows you to write simple SVG directly in your CSS.
 
 ### Linters
 
-* [`stylelint`] is a modular linter for CSS.
+* [`stylelint`] is a modular stylesheet linter.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
-* [`colorguard`] helps maintain a consistent color palette.
+* [`colorguard`] helps you maintain a consistent color palette.
 
 ### Other
 
-* [`lost`] is feature-rich `calc()` grid system by Jeet author.
+* [`lost`] is a feature-rich `calc()` grid system.
 * [`cssnano`] is a modular CSS minifier.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
@@ -110,9 +111,11 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 ## Syntaxes
 
 PostCSS can transform styles in any syntax, not just CSS.
+If there is not yet support for your favorite syntax, you can write
+a parser and/or stringifier to extend PostCSS.
 
-* [`postcss-scss`] to work with SCSS *(but does not compile SCSS to CSS)*.
-* [`postcss-js`] to write styles in JS or transform React Inline Styles,
+* [`postcss-scss`] allows you to work with SCSS *(but does not compile SCSS to CSS)*.
+* [`postcss-js`] allows you to write styles in JS or transform React Inline Styles,
   Radium or JSS.
 * [`postcss-safe-parser`] finds and fixes CSS syntax errors.
 * [`midas`] converts a CSS string to highlighted HTML.
@@ -181,15 +184,16 @@ module.exports = {
 
 ### CLI
 
-To use PostCSS from your command-line interface or with npm scripts there is: [`postcss-cli`](https://github.com/postcss/postcss-cli).
+To use PostCSS from your command-line interface or with npm scripts there is [`postcss-cli`](https://github.com/postcss/postcss-cli).
 ```bash
 postcss --use autoprefixer -c options.json -o main.css css/*.css
 ```
 
 ### CSS-in-JS
 
-For React Inline Styles, JSS, Radium and other CSS-in-JS you can use
-[`postcss-js`] to transform one style object to other.
+To apply PostCSS plugins to React Inline Styles, JSS, Radium 
+and other CSS-in-JS, you can use [`postcss-js`] and 
+transforms style objects.
 
 ```js
 var postcss  = require('postcss-js');
@@ -229,7 +233,7 @@ postcss([ require('autoprefixer'), require('cssnano') ])
 
 Read the [PostCSS API documentation] for more details about the JS API.
 
-All PostCSS JS API users should pass [PostCSS Runner Guidelines].
+All PostCSS runners should pass [PostCSS Runner Guidelines].
 
 [PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
 [PostCSS API documentation]: https://github.com/postcss/postcss/blob/master/docs/api.md
@@ -243,12 +247,12 @@ Most PostCSS runners accept two parameters:
 
 Common options:
 
-* `syntax`: object with syntax parser and stringifier.
-* `parser`: other syntax parser (for example, [SCSS]).
-* `stringifier`: other syntax output generator (for example, [Midas]).
+* `syntax`: an object providing a syntax parser and a stringifier.
+* `parser`: a special syntax parser (for example, [SCSS]).
+* `stringifier`: a special syntax output generator (for example, [Midas]).
 * `map`: [source map options].
-* `from`: input file name (most runners set it automatically).
-* `to`: output file name (most runners set it automatically).
+* `from`: the input file name (most runners set it automatically).
+* `to`: the output file name (most runners set it automatically).
 
 [source map options]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md
 [Midas]:              https://github.com/ben-eb/midas
@@ -256,7 +260,7 @@ Common options:
 
 ### Node.js 0.10 and the Promise API
 
-If you want to run PostCSS on node.js 0.10, add the [Promise polyfill]:
+If you want to run PostCSS in Node.js 0.10, add the [Promise polyfill]:
 
 ```js
 require('es6-promise').polyfill();
