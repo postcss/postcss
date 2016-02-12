@@ -18,6 +18,7 @@
   ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
+  "homepage": "http://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
     "babel-plugin-add-module-exports": "0.1.2",
