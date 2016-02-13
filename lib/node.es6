@@ -61,7 +61,9 @@ export default class Node {
     toString(stringifier = stringify) {
         if ( stringifier.stringify ) stringifier = stringifier.stringify;
         let result  = '';
-        stringifier(this, i => result += i );
+        stringifier(this, i => {
+            result += i;
+        });
         return result;
     }
 
@@ -137,7 +139,7 @@ export default class Node {
             let value = this[name];
 
             if ( value instanceof Array ) {
-                fixed[name] = value.map( (i) => {
+                fixed[name] = value.map( i => {
                     if ( typeof i === 'object' && i.toJSON ) {
                         return i.toJSON();
                     } else {

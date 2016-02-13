@@ -15,11 +15,13 @@ let read = function (result) {
 
 let dir = path.join(__dirname, 'fixtures');
 
-let doubler = postcss( (css) => {
+let doubler = postcss( css => {
     css.walkDecls( decl => decl.parent.prepend(decl.clone()) );
 });
-let lighter = postcss( (css) => {
-    css.walkDecls( decl => decl.value = 'white' );
+let lighter = postcss( css => {
+    css.walkDecls( decl => {
+        decl.value = 'white';
+    });
 });
 
 describe('source maps', () => {
@@ -38,11 +40,11 @@ describe('source maps', () => {
 
     it('generate right source map', () => {
         let css       = 'a {\n  color: black;\n  }';
-        let processor = postcss( (root) => {
-            root.walkRules( (rule) => {
+        let processor = postcss( root => {
+            root.walkRules( rule => {
                 rule.selector = 'strong';
             });
-            root.walkDecls( (decl) => {
+            root.walkDecls( decl => {
                 decl.parent.prepend( decl.clone({ prop: 'background' }) );
             });
         });
@@ -446,7 +448,7 @@ describe('source maps', () => {
     });
 
     it('generates map for node created manually', () => {
-        let contenter = postcss( (css) => {
+        let contenter = postcss( css => {
             css.first.prepend({ prop: 'content', value: '""' });
         });
         let result = contenter.process('a:after{\n}', { map: true });

@@ -139,14 +139,14 @@ describe('CssSyntaxError', () => {
             /^CssSyntaxError: PL: <css input>:1:1: Error/);
     });
 
-    it('set source plugin automatically', (done) => {
+    it('set source plugin automatically', done => {
         let plugin = postcss.plugin('test-plugin', () => {
-            return (css) => {
+            return css => {
                 throw css.first.error('Error');
             };
         });
 
-        postcss([plugin]).process('a{}').catch( (error) => {
+        postcss([plugin]).process('a{}').catch( error => {
             if ( error.name !== 'CssSyntaxError' ) throw error;
             expect(error.plugin).to.eql('test-plugin');
             expect(error.toString()).to.match(/test-plugin/);
@@ -154,16 +154,16 @@ describe('CssSyntaxError', () => {
         }).catch(done);
     });
 
-    it('set plugin automatically in async', (done) => {
+    it('set plugin automatically in async', done => {
         let plugin = postcss.plugin('async-plugin', () => {
-            return (css) => {
+            return css => {
                 return new Promise( (resolve, reject) => {
                     reject(css.first.error('Error'));
                 });
             };
         });
 
-        postcss([plugin]).process('a{}').catch( (error) => {
+        postcss([plugin]).process('a{}').catch( error => {
             if ( error.name !== 'CssSyntaxError' ) throw error;
             expect(error.plugin).to.eql('async-plugin');
             done();

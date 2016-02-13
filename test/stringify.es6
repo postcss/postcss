@@ -12,7 +12,9 @@ describe('stringify', () => {
         it('stringifies ' + name, () => {
             let root   = parse(css);
             let result = '';
-            stringify(root, i => result += i );
+            stringify(root, i => {
+                result += i;
+            });
             expect(result).to.eql(css);
         });
     });

@@ -32,18 +32,16 @@ export default class Container extends Node {
 
         delete this.indexes[id];
 
-        if ( result === false ) return false;
+        return result;
     }
 
     walk(callback) {
         return this.each( (child, i) => {
             let result = callback(child, i);
-
             if ( result !== false && child.walk ) {
                 result = child.walk(callback);
             }
-
-            if ( result === false ) return result;
+            return result;
         });
     }
 
@@ -52,22 +50,19 @@ export default class Container extends Node {
             callback = prop;
             return this.walk( (child, i) => {
                 if ( child.type === 'decl' ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         } else if ( prop instanceof RegExp ) {
             return this.walk( (child, i) => {
                 if ( child.type === 'decl' && prop.test(child.prop) ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         } else {
             return this.walk( (child, i) => {
                 if ( child.type === 'decl' && child.prop === prop ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         }
@@ -79,22 +74,19 @@ export default class Container extends Node {
 
             return this.walk( (child, i) => {
                 if ( child.type === 'rule' ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         } else if ( selector instanceof RegExp ) {
             return this.walk( (child, i) => {
                 if ( child.type === 'rule' && selector.test(child.selector) ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         } else {
             return this.walk( (child, i) => {
                 if ( child.type === 'rule' && child.selector === selector ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         }
@@ -105,22 +97,19 @@ export default class Container extends Node {
             callback = name;
             return this.walk( (child, i) => {
                 if ( child.type === 'atrule' ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         } else if ( name instanceof RegExp ) {
             return this.walk( (child, i) => {
                 if ( child.type === 'atrule' && name.test(child.name) ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         } else {
             return this.walk( (child, i) => {
                 if ( child.type === 'atrule' && child.name === name ) {
-                    let result = callback(child, i);
-                    if ( result === false ) return result;
+                    return callback(child, i);
                 }
             });
         }
@@ -129,8 +118,7 @@ export default class Container extends Node {
     walkComments(callback) {
         return this.walk( (child, i) => {
             if ( child.type === 'comment' ) {
-                let result = callback(child, i);
-                if ( result === false ) return result;
+                return callback(child, i);
             }
         });
     }
@@ -237,7 +225,7 @@ export default class Container extends Node {
             opts = { };
         }
 
-        this.walkDecls((decl) => {
+        this.walkDecls( decl => {
             if ( opts.props && opts.props.indexOf(decl.prop) === -1 ) return;
             if ( opts.fast  && decl.value.indexOf(opts.fast) === -1 ) return;
 
@@ -300,7 +288,7 @@ export default class Container extends Node {
             }
         }
 
-        let processed = nodes.map( (i) => {
+        let processed = nodes.map( i => {
             /* istanbul ignore if */
             if ( typeof i.raws === 'undefined' ) i = this.rebuild(i);
 

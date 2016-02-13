@@ -2,7 +2,9 @@
   "parser": "babel-eslint",
   "extends": "eslint-config-postcss",
   "rules": {
-    "key-spacing": [2, { "align": "value" }]
+    "consistent-return": [0],
+    "key-spacing":       [2, { "align": "value" }],
+    "complexity":        [0]
   },
   "env": {
     "mocha": true

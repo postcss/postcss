@@ -34,7 +34,7 @@ gulp.task('build:package', ['clean'], () => {
         'babel-core'
     ];
     return gulp.src('./package.json')
-        .pipe(editor( (json) => {
+        .pipe(editor( json => {
             json.main = 'lib/postcss';
             for ( let i of builders ) {
                 json.devDependencies[i] = json.dependencies[i];
@@ -71,10 +71,10 @@ gulp.task('test', () => {
     return gulp.src('test/*.es6', { read: false }).pipe(mocha());
 });
 
-gulp.task('integration', ['build:lib', 'build:package'], (done) => {
+gulp.task('integration', ['build:lib', 'build:package'], done => {
     let postcss = require('./build/lib/postcss');
     let real    = require('postcss-parser-tests/real');
-    real(done, (css) => {
+    real(done, css => {
         return postcss.parse(css).toResult({ map: { annotation: false } });
     });
 });
@@ -112,7 +112,7 @@ gulp.task('coverage:report', () => {
         }));
 });
 
-gulp.task('coverage', (done) => {
+gulp.task('coverage', done => {
     let runSequence = require('run-sequence');
     runSequence('coverage:instrument', 'test', 'coverage:report', done);
 });

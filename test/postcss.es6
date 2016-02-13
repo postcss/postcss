@@ -31,7 +31,7 @@ describe('postcss()', () => {
         expect(postcss([other, c]).plugins).to.eql([a, b, c]);
     });
 
-    it('supports injecting additional processors at runtime', (done) => {
+    it('supports injecting additional processors at runtime', done => {
         let plugin1 = postcss.plugin('one', () => {
             return css => {
                 css.walkDecls(decl => {
@@ -54,7 +54,7 @@ describe('postcss()', () => {
     describe('.plugin()', () => {
 
         it('creates plugin', () => {
-            let plugin = postcss.plugin('test', (filter) => {
+            let plugin = postcss.plugin('test', filter => {
                 return function (css) {
                     css.walkDecls(filter || 'two', i => i.remove() );
                 };
@@ -75,10 +75,12 @@ describe('postcss()', () => {
             expect(result2.css).to.eql('a{ one: 1 }');
         });
 
-        it('creates a shortcut to process css', (done) => {
+        it('creates a shortcut to process css', done => {
             let plugin = postcss.plugin('test', (str = 'bar') => {
                 return function (css) {
-                    css.walkDecls( i => i.value = str );
+                    css.walkDecls(i => {
+                        i.value = str;
+                    });
                 };
             });
 
@@ -88,7 +90,7 @@ describe('postcss()', () => {
             let result2 = plugin.process('a{value:foo}', 'baz');
             expect(result2.css).to.eql('a{value:baz}');
 
-            plugin.process('a{value:foo}').then( (result) => {
+            plugin.process('a{value:foo}').then( result => {
                 expect(result.css).to.eql('a{value:bar}');
                 done();
             }).catch(done);

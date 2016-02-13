@@ -80,7 +80,7 @@ describe('Container', () => {
             let rule = parse('a { a: 1; b: 2 }').first;
             let size = 0;
 
-            rule.each( (decl) => {
+            rule.each( decl => {
                 if ( decl.prop === 'a' ) {
                     rule.insertBefore(decl, { prop: 'c', value: '3' });
                 }
@@ -159,7 +159,7 @@ describe('Container', () => {
             let rule  = parse('a { a: 1; b: 2 }').first;
             let props = [];
 
-            rule.each( (decl) => {
+            rule.each( decl => {
                 props.push(decl.prop);
                 rule.nodes = [rule.last, rule.first];
             });
@@ -242,7 +242,7 @@ describe('Container', () => {
             let css  = parse('@page{a{one:1}}b{one:1;two:2}');
             let size = 0;
 
-            css.walkDecls('one', (decl) => {
+            css.walkDecls('one', decl => {
                 expect(decl.prop).to.eql('one');
                 size += 1;
             });
@@ -266,7 +266,9 @@ describe('Container', () => {
             let css  = parse('@page{a{one:1}}b{one-x:1;two:2}');
             let size = 0;
 
-            css.walkDecls(/one(-x)?/, () => size += 1 );
+            css.walkDecls(/one(-x)?/, () => {
+                size += 1;
+            });
 
             expect(size).to.eql(2);
         });
@@ -363,7 +365,7 @@ describe('Container', () => {
 
         it('filters by selector', () => {
             let size = 0;
-            parse('a{}b{}a{}').walkRules('a', (rule) => {
+            parse('a{}b{}a{}').walkRules('a', rule => {
                 expect(rule.selector).to.eql('a');
                 size += 1;
             });
@@ -381,7 +383,7 @@ describe('Container', () => {
 
         it('filters by regexp', () => {
             let size = 0;
-            parse('a{}a b{}b a{}').walkRules(/^a/, (rule) => {
+            parse('a{}a b{}b a{}').walkRules(/^a/, rule => {
                 expect(rule.selector).to.match(/^a/);
                 size += 1;
             });
@@ -440,7 +442,7 @@ describe('Container', () => {
             let css  = parse('@page{@page 2{}}@media print{@page{}}');
             let size = 0;
 
-            css.walkAtRules('page', (atrule) => {
+            css.walkAtRules('page', atrule => {
                 expect(atrule.name).to.eql('page');
                 size += 1;
             });
@@ -461,7 +463,9 @@ describe('Container', () => {
             let css  = parse('@page{@page 2{}}@media print{@pages{}}');
             let size = 0;
 
-            css.walkAtRules(/page/, () => size += 1 );
+            css.walkAtRules(/page/, () => {
+                size += 1;
+            });
 
             expect(size).to.eql(3);
         });

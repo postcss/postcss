@@ -80,8 +80,8 @@ describe('Processor', () => {
             console.warn.restore();
         });
 
-        let beforeFix = new Processor([ (css) => {
-            css.walkRules( (rule) => {
+        let beforeFix = new Processor([ css => {
+            css.walkRules( rule => {
                 if ( !rule.selector.match(/::(before|after)/) ) return;
                 if ( !rule.some( i => i.prop === 'content' ) ) {
                     rule.prepend({ prop: 'content', value: '""' });
@@ -146,7 +146,9 @@ describe('Processor', () => {
         });
 
         it('allows to replace Root', () => {
-            let plugin    = (css, result) => result.root = new Root();
+            let plugin = (css, result) => {
+                result.root = new Root();
+            };
             let processor = new Processor([plugin]);
             expect(processor.process('a {}').css).to.eql('');
         });
@@ -158,10 +160,14 @@ describe('Processor', () => {
             expect(result.toString()).to.eql('a{}');
         });
 
-        it('calls all plugins once', (done) => {
+        it('calls all plugins once', done => {
             let calls = '';
-            let a = () => calls += 'a';
-            let b = () => calls += 'b';
+            let a = () => {
+                calls += 'a';
+            };
+            let b = () => {
+                calls += 'b';
+            };
 
             let result = new Processor([a, b]).process('');
             result.css;
@@ -174,7 +180,7 @@ describe('Processor', () => {
         });
 
         it('parses, converts and stringifies CSS', () => {
-            let a = (css) => expect(css).to.be.an.instanceof(Root);
+            let a = css => expect(css).to.be.an.instanceof(Root);
             expect((new Processor([a])).process('a {}').css).to.be.a('string');
         });
 
@@ -203,11 +209,11 @@ describe('Processor', () => {
             expect(two.map.toJSON().sources).to.eql(['a.css']);
         });
 
-        it('supports async plugins', (done) => {
+        it('supports async plugins', done => {
             let starts = 0;
             let finish = 0;
-            let async1 = (css) => {
-                return new Promise( (resolve) => {
+            let async1 = css => {
+                return new Promise( resolve => {
                     starts += 1;
                     setTimeout(() => {
                         expect(starts).to.eql(1);
@@ -218,8 +224,8 @@ describe('Processor', () => {
                     }, 1);
                 });
             };
-            let async2 = (css) => {
-                return new Promise( (resolve) => {
+            let async2 = css => {
+                return new Promise( resolve => {
                     expect(starts).to.eql(1);
                     expect(finish).to.eql(1);
 
@@ -231,7 +237,7 @@ describe('Processor', () => {
                     }, 1);
                 });
             };
-            (new Processor([async1, async2])).process('').then( (result) => {
+            (new Processor([async1, async2])).process('').then( result => {
                 expect(starts).to.eql(2);
                 expect(finish).to.eql(2);
                 expect(result.css).to.eql('a {}\nb {}');
@@ -239,17 +245,17 @@ describe('Processor', () => {
             }).catch(done);
         });
 
-        it('works async without plugins', (done) => {
-            (new Processor()).process('a {}').then( (result) => {
+        it('works async without plugins', done => {
+            (new Processor()).process('a {}').then( result => {
                 expect(result.css).to.eql('a {}');
                 done();
             }).catch(done);
         });
 
-        it('runs async plugin only once', (done) => {
+        it('runs async plugin only once', done => {
             let calls = 0;
             let async = () => {
-                return new Promise( (resolve) => {
+                return new Promise( resolve => {
                     setTimeout(() => {
                         calls += 1;
                         resolve();
@@ -267,7 +273,7 @@ describe('Processor', () => {
             });
         });
 
-        it('supports async errors', (done) => {
+        it('supports async errors', done => {
             let error = new Error('Async');
             let async = () => {
                 return new Promise( (resolve, reject) => {
@@ -277,30 +283,30 @@ describe('Processor', () => {
             let result = (new Processor([async])).process('');
             result.then( () => {
                 done('should not run then callback');
-            }).catch( (err) => {
+            }).catch( err => {
                 expect(err).to.eql(error);
-                result.catch( (err2) => {
+                result.catch( err2 => {
                     expect(err2).to.eql(error);
                     done();
                 });
             }).catch(done);
         });
 
-        it('supports sync errors in async mode', (done) => {
+        it('supports sync errors in async mode', done => {
             let error = new Error('Async');
             let async = () => {
                 throw error;
             };
             (new Processor([async])).process('').then( () => {
                 done('should not run then callback');
-            }).catch( (err) => {
+            }).catch( err => {
                 expect(err).to.eql(error);
                 done();
             });
         });
 
-        it('throws parse error in async', (done) => {
-            (new Processor()).process('a{').catch( (err) => {
+        it('throws parse error in async', done => {
+            (new Processor()).process('a{').catch( err => {
                 expect(err.message).to.eql('<css input>:1:1: Unclosed block');
                 done();
             }).catch(done);
@@ -308,7 +314,7 @@ describe('Processor', () => {
 
         it('throws error on sync method to async plugin', () => {
             let async = () => {
-                return new Promise( (resolve) => resolve() );
+                return new Promise( resolve => resolve() );
             };
             expect(() => {
                 (new Processor([async])).process('a{}').css;
@@ -316,7 +322,7 @@ describe('Processor', () => {
         });
 
         it('throws a sync call in async running', () => {
-            let async = () => new Promise( (done) => setTimeout(done, 1) );
+            let async = () => new Promise( done => setTimeout(done, 1) );
 
             let processor = (new Processor([async])).process('a{}');
             processor.async();
@@ -333,7 +339,7 @@ describe('Processor', () => {
             let func = plugin();
             func.postcssVersion = '2.1.5';
 
-            let processBy = (version) => {
+            let processBy = version => {
                 let processor = new Processor([func]);
                 processor.version = version;
                 processor.process('a{}').css;
@@ -355,7 +361,7 @@ describe('Processor', () => {
             expect(console.warn.callCount).to.eql(3);
         });
 
-        it('sets last plugin to result', (done) => {
+        it('sets last plugin to result', done => {
             let plugin1 = function (css, result) {
                 expect(result.lastPlugin).to.equal(plugin1);
             };
@@ -364,59 +370,59 @@ describe('Processor', () => {
             };
 
             let processor = new Processor([plugin1, plugin2]);
-            processor.process('a{}').then( (result) => {
+            processor.process('a{}').then( result => {
                 expect(result.lastPlugin).to.equal(plugin2);
                 done();
             }).catch(done);
         });
 
-        it('uses custom parsers', (done) => {
+        it('uses custom parsers', done => {
             let processor = new Processor([]);
-            processor.process('a{}', { parser: prs }).then( (result) => {
+            processor.process('a{}', { parser: prs }).then( result => {
                 expect(result.css).to.equal('ok');
                 done();
             });
         });
 
-        it('uses custom parsers from object', (done) => {
+        it('uses custom parsers from object', done => {
             let processor = new Processor([]);
             let syntax    = { parse: prs, stringify: str };
-            processor.process('a{}', { parser: syntax }).then( (result) => {
+            processor.process('a{}', { parser: syntax }).then( result => {
                 expect(result.css).to.equal('ok');
                 done();
             });
         });
 
-        it('uses custom stringifier', (done) => {
+        it('uses custom stringifier', done => {
             let processor = new Processor([]);
-            processor.process('a{}', { stringifier: str }).then( (result) => {
+            processor.process('a{}', { stringifier: str }).then( result => {
                 expect(result.css).to.equal('!');
                 done();
             });
         });
 
-        it('uses custom stringifier from object', (done) => {
+        it('uses custom stringifier from object', done => {
             let processor = new Processor([]);
             let syntax    = { parse: prs, stringify: str };
-            processor.process('', { stringifier: syntax }).then( (result) => {
+            processor.process('', { stringifier: syntax }).then( result => {
                 expect(result.css).to.equal('!');
                 done();
             });
         });
 
-        it('uses custom stringifier with source maps', (done) => {
+        it('uses custom stringifier with source maps', done => {
             let processor = new Processor([]);
             processor.process('a{}', { map: true, stringifier: str })
-                .then( (result) => {
+                .then( result => {
                     expect(result.css).to.include('!\n/*# sourceMap');
                     done();
                 });
         });
 
-        it('uses custom syntax', (done) => {
+        it('uses custom syntax', done => {
             let processor = new Processor([]);
             let syntax    = { parse: prs, stringify: str };
-            processor.process('a{}', { syntax }).then( (result) => {
+            processor.process('a{}', { syntax }).then( result => {
                 expect(result.css).to.equal('ok!');
                 done();
             });
