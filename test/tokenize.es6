@@ -98,6 +98,13 @@ describe('tokenize', () => {
         test('"\\\\"', [ ['string', '"\\\\"', 1, 1, 1, 4] ]);
     });
 
+    it('changes lines in strings', () => {
+        test('"\n\n""\n\n"', [
+            ['string', '"\n\n"', 1, 1, 3, 1],
+            ['string', '"\n\n"', 3, 2, 5, 1]
+        ]);
+    });
+
     it('tokenizes at-word', () => {
         test('@word ', [ ['at-word', '@word', 1, 1, 1, 5], ['space', ' '] ]);
     });
