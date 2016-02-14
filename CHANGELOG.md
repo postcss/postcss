@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.16
+* Fix CSS syntax error position on unclosed quotes.
+
 ## 5.0.15
 * Fix `Node#clone()` on `null` value somewhere in node.
 
