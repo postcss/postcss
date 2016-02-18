@@ -962,7 +962,7 @@ Reads the input source map and returns a symbol position in the input source
 to PostCSS):
 
 ```js
-root.source.input.origin(1, 1) //=> { source: 'a.css', line: 3, column: 1 }
+root.source.input.origin(1, 1) //=> { file: 'a.css', line: 3, column: 1 }
 ```
 
 ## Nodes: common methods
