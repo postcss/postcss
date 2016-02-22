@@ -68,6 +68,19 @@ describe('Node', () => {
             expect(result.warnings()[0].text).to.eql('FIRST!');
             expect(result.warnings()[0].plugin).to.eql('warner');
         });
+
+        it('accepts options', () => {
+            let warner = postcss.plugin('warner', () => {
+                return (css, result) => {
+                    css.first.warn(result, 'FIRST!', { index: 1 });
+                };
+            });
+
+            let result = postcss([ warner() ]).process('a{}');
+            expect(result.warnings().length).to.eql(1);
+            expect(result.warnings()[0].index).to.eql(1);
+        });
+
     });
 
     describe('remove()', () => {
