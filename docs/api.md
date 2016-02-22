@@ -1788,7 +1788,7 @@ var comment.text //=> 'Empty file'
 [`Result#messages`]:              #resultmessages
 [`CssSyntaxError`]:               #csssyntaxerror-class
 [`Processor#use`]:                #processoruseplugin
-[`Result#warn()`]:                #resultwarn
+[`Result#warn()`]:                #resultwarntext-opts
 [`Node#warn()`]:                  #nodewarnresult-message
 [`Comment` node]:                 #comment-node
 [`AtRule` node]:                  #atrule-node
