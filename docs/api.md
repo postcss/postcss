@@ -1099,7 +1099,7 @@ Arguments:
   * `index` (number): an index inside a node’s string that should be highlighted
     as the source of the error.
 
-### `node.warn(result, message)`
+### `node.warn(result, text, opts)`
 
 This method is provided as a convenience wrapper for [`Result#warn()`].
 
@@ -1116,7 +1116,17 @@ var plugin = postcss.plugin('postcss-deprecated', function () {
 Arguments:
 
 * `result`: The [`Result`] instance that will receive the warning.
-* `message (string)`: error description.
+* `text (string)`: warning message. It will be used in the `text` property of
+  the message object.
+* `opts (object) optional`: properties to assign to the message object.
+  * `word (string)`: word inside a node’s string that should be highlighted
+    as the source of the warning.
+  * `index` (number): index inside a node’s string that should be highlighted
+    as the source of the warning.
+  * `plugin`: name of the plugin that created this warning. `Result#warn()` will
+    automatically fill it with the `plugin.postcssPlugin` value.
+
+Note that `opts.node` is automatically passed to [`Result#warn()`] for you.
 
 ### `node.next()` and `node.prev()`
 

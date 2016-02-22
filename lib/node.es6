@@ -46,8 +46,8 @@ export default class Node {
         }
     }
 
-    warn(result, message) {
-        return result.warn(message, { node: this });
+    warn(result, text, opts) {
+        return result.warn(text, { node: this, ...opts });
     }
 
     remove() {
