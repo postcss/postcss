@@ -229,6 +229,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-maze`] is a mobile first, semantic responsive grid to suit any design pattern.
 * [`postcss-neat`] is a semantic and fluid grid framework.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
+* [`postcss-maze`] is a mobile first, semantic responsive grid to suit any design pattern.
 
 ## Optimizations
 
