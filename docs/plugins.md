@@ -226,6 +226,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-grid`] adds a semantic grid system.
 * [`postcss-layout`] a plugin for some common CSS layout patterns and a Grid system.
 * [`postcss-simple-grid`] create grid with one line.
+* [`postcss-maze`] is a mobile first, semantic responsive grid to suit any design pattern.
 * [`postcss-neat`] is a semantic and fluid grid framework.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
 
@@ -598,3 +599,4 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                            https://github.com/MohammadYounes/rtlcss
 [`short`]:                             https://github.com/jonathantneal/postcss-short
 [`lost`]:                              https://github.com/corysimmons/lost
+[`postcss-maze`]:                      https://github.com/cathydutton/postcss-maze
