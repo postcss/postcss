@@ -32,8 +32,10 @@ export default class AtRule extends Container implements postcss.AtRule {
      */
     clone(overrides?: Object): AtRule;
     toJSON(): postcss.JsonAtRule;
-    append(...children: any[]): Container;
-    prepend(...children: any[]): Container;
+    append(...children: any[]): this;
+    prepend(...children: any[]): this;
+    insertBefore(oldNode: any, newNode: any): this;
+    insertAfter(oldNode: any, newNode: any): this;
     afterName: string;
     _params: string;
 }

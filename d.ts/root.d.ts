@@ -29,7 +29,7 @@ export default class Root extends Container implements postcss.Root {
      * @param child Child or child's index.
      * @returns This root node for chaining.
      */
-    removeChild(child: Node | number): Root;
+    removeChild(child: Node | number): this;
     protected normalize(node: Node | string, sample: Node, type?: string): Node[];
     protected normalize(props: postcss.AtRuleNewProps | postcss.RuleNewProps | postcss.DeclarationNewProps | postcss.CommentNewProps, sample: Node, type?: string): Node[];
     /**

@@ -116,6 +116,7 @@ export default class CssSyntaxError implements postcss.CssSyntaxError, SyntaxErr
      * string.
      */
     showSourceCode(color?: boolean): string;
+    private setMozillaProps();
     /**
      *
      * @returns Error position, message and source code of broken part.

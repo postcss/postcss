@@ -15,7 +15,7 @@ export default class Processor implements postcss.Processor {
      * Adds a plugin to be used as a CSS processor. Plugins can also be
      * added by passing them as arguments when creating a postcss instance.
      */
-    use(plugin: typeof postcss.acceptedPlugin): Processor;
+    use(plugin: typeof postcss.acceptedPlugin): this;
     /**
      * Parses source CSS. Because some plugins can be asynchronous it doesn't
      * make any transformations. Transformations will be applied in LazyResult's

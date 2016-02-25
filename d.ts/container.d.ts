@@ -20,7 +20,7 @@ export default class Container extends Node implements postcss.Container {
      */
     clone(overrides?: Object): any;
     toJSON(): postcss.JsonContainer;
-    push(child: any): Container;
+    push(child: any): this;
     /**
      * Iterates through the container's immediate children, calling the
      * callback function for each child. If you need to recursively iterate
@@ -94,7 +94,7 @@ export default class Container extends Node implements postcss.Container {
      * @param nodes New nodes.
      * @returns This container for chaining.
      */
-    append(...nodes: (Node | Object | string)[]): Container;
+    append(...nodes: (Node | Object | string)[]): this;
     /**
      * Inserts new nodes to the beginning of the container.
      * Because each node class is identifiable by unique properties, use the
@@ -110,20 +110,20 @@ export default class Container extends Node implements postcss.Container {
      * @param nodes New nodes.
      * @returns This container for chaining.
      */
-    prepend(...nodes: (Node | Object | string)[]): Container;
+    prepend(...nodes: (Node | Object | string)[]): this;
     cleanRaws(keepBetween?: boolean): void;
     /**
      * Insert newNode before oldNode within the container.
      * @param oldNode Child or child's index.
      * @returns This container for chaining.
      */
-    insertBefore(oldNode: Node | number, newNode: Node | Object | string): Container;
+    insertBefore(oldNode: Node | number, newNode: Node | Object | string): this;
     /**
      * Insert newNode after oldNode within the container.
      * @param oldNode Child or child's index.
      * @returns This container for chaining.
      */
-    insertAfter(oldNode: Node | number, newNode: Node | Object | string): Container;
+    insertAfter(oldNode: Node | number, newNode: Node | Object | string): this;
     /**
      * Removes the container from its parent and cleans the parent property in the
      * container and its children.
@@ -136,13 +136,13 @@ export default class Container extends Node implements postcss.Container {
      * @param child Child or child's index.
      * @returns This container for chaining.
      */
-    removeChild(child: Node | number): Container;
+    removeChild(child: Node | number): this;
     /**
      * Removes all children from the container and cleans their parent
      * properties.
      * @returns This container for chaining.
      */
-    removeAll(): Container;
+    removeAll(): this;
     /**
      * Passes all declaration values within the container that match pattern
      * through the callback, replacing those values with the returned result of
