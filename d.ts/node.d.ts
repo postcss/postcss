@@ -2,7 +2,6 @@ import Container from './container';
 import CssSyntaxError from './css-syntax-error';
 import postcss from './postcss';
 import Result from './result';
-import Root from './root';
 export default class Node implements postcss.Node {
     /**
      * Returns a string representing the node's type. Possible values are
@@ -47,7 +46,7 @@ export default class Node implements postcss.Node {
      * @param result The result that will receive the warning.
      * @param message Error description.
      */
-    warn(result: Result, message: string): void;
+    warn(result: Result, message: string): any;
     /**
      * Deprecated. Use Node#remove.
      */
@@ -57,8 +56,8 @@ export default class Node implements postcss.Node {
      * node and its children.
      * @returns This node for chaining.
      */
-    remove(): Node;
-    replace(nodes: any): Node;
+    remove(): this;
+    replace(nodes: any): this;
     /**
      * @returns A CSS string representing the node.
      */
@@ -87,7 +86,7 @@ export default class Node implements postcss.Node {
      * Inserts node(s) before the current node and removes the current node.
      * @returns This node for chaining.
      */
-    replaceWith(...nodes: (Node | Object)[]): Node;
+    replaceWith(...nodes: (Node | Object)[]): this;
     /**
      * Removes the node from its current parent and inserts it at the end of
      * newParent. This will clean the before and after code style properties
@@ -96,7 +95,7 @@ export default class Node implements postcss.Node {
      * @param newParent Where the current node will be moved.
      * @returns This node for chaining.
      */
-    moveTo(newParent: Container): Node;
+    moveTo(newParent: Container): this;
     /**
      * Removes the node from its current parent and inserts it into a new
      * parent before otherNode. This will also clean the node's code style
@@ -104,7 +103,7 @@ export default class Node implements postcss.Node {
      * @param otherNode Will be after the current node after moving.
      * @returns This node for chaining.
      */
-    moveBefore(otherNode: Node): Node;
+    moveBefore(otherNode: Node): this;
     /**
      * Removes the node from its current parent and inserts it into a new
      * parent after otherNode. This will also clean the node's code style
@@ -112,7 +111,7 @@ export default class Node implements postcss.Node {
      * @param otherNode Will be before the current node after moving.
      * @returns This node for chaining.
      */
-    moveAfter(otherNode: Node): Node;
+    moveAfter(otherNode: Node): this;
     /**
      * @returns The next child of the node's parent; or, returns undefined if
      * the current node is the last child.
@@ -137,7 +136,7 @@ export default class Node implements postcss.Node {
     /**
      * @returns The Root instance of the node's tree.
      */
-    root(): Root;
+    root(): any;
     cleanRaws(keepBetween?: boolean): void;
     positionInside(index: number): {
         line: number;

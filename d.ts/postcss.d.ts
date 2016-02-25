@@ -679,6 +679,7 @@ declare module postcss {
         raw(prop: string, defaultType?: string): any;
     }
     interface NodeNewProps {
+        raws?: NodeRaws;
     }
     interface NodeRaws {
         /**
@@ -1126,6 +1127,11 @@ declare module postcss {
          * the entire group will be included.
          */
         selector?: string;
+        /**
+         * An array containing the rule's individual selectors. Groups of selectors
+         * are split at commas.
+         */
+        selectors?: string[];
     }
     interface RuleRaws extends ContainerRaws {
         /**

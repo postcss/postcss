@@ -25,15 +25,19 @@ The `postcss` function is the main entry point for PostCSS.
 var postcss = require('postcss');
 ```
 
-For those using TypeScript with an [ES6 compile target], you can import
-the PostCSS API like so:
+For those using [TypeScript][], typings are already provided in this package.
+Simply, import PostCSS as you would normally.
 
 ```ts
-///<reference path="node_modules/postcss/postcss.d.ts" />
 import * as postcss from 'postcss';
 ```
 
-[ES6 compile target]: https://github.com/Microsoft/TypeScript/wiki/tsconfig.json
+This will give you a true [IntelliSense][] experience. You can try it out in
+[Visual Studio Code][] for free!
+
+[TypeScript]: http://www.typescriptlang.org/
+[IntelliSense]: http://code.visualstudio.com/Docs/editor/editingevolved#_intellisense
+[Visual Studio Code]: http://code.visualstudio.com/
 
 ### `postcss(plugins)`
 
