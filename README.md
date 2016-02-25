@@ -188,7 +188,7 @@ module.exports = {
 
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
 
-### CLI
+### npm run / CLI
 
 To use PostCSS from your command-line interface or with npm scripts
 there is [`postcss-cli`].
