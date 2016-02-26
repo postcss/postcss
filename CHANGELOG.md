@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.17
+* Fix options argument in `Node#warn` (by Ben Briggs).
+* Fix TypeScript definitions (by Jed Mao).
+
 ## 5.0.16
 * Fix CSS syntax error position on unclosed quotes.
 
