@@ -328,6 +328,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
 * [`css-declaration-sorter`] sorts CSS declarations fast and automatically in a certain order.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
+* [`postcss-inline-rtl`] converts your CSS to RTL, but inline (adding just what you need).
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -493,6 +494,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-bem-linter`]:                https://github.com/postcss/postcss-bem-linter
 [`postcss-color-gray`]:                https://github.com/postcss/postcss-color-gray
 [`postcss-colorblind`]:                https://github.com/btholt/postcss-colorblind
+[`postcss-inline-rtl`]:                https://github.com/jakob101/postcss-inline-rtl
 [`postcss-color-hexa`]:                https://github.com/nicksheffield/postcss-color-hexa
 [`postcss-short-text`]:                https://github.com/jonathantneal/postcss-short-text
 [`postcss-inline-svg`]:                https://github.com/TrySound/postcss-inline-svg
