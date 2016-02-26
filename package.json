@@ -22,14 +22,15 @@
   "homepage": "http://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
-    "babel-plugin-add-module-exports": "0.1.2",
-    "babel-preset-es2015-loose":       "7.0.0",
-    "babel-preset-stage-0":            "6.5.0",
-    "babel-preset-es2015":             "6.5.0",
-    "supports-color":                  "^3.1.2",
-    "source-map":                      "^0.5.1",
-    "babel-core":                      "6.5.2",
-    "js-base64":                       "^2.1.9"
+    "babel-plugin-precompile-charcodes": "1.0.0",
+    "babel-plugin-add-module-exports":   "0.1.2",
+    "babel-preset-es2015-loose":         "7.0.0",
+    "babel-preset-stage-0":              "6.5.0",
+    "babel-preset-es2015":               "6.5.0",
+    "supports-color":                    "^3.1.2",
+    "source-map":                        "^0.5.1",
+    "babel-core":                        "6.5.2",
+    "js-base64":                         "^2.1.9"
   },
   "devDependencies": {
     "concat-with-sourcemaps": "1.0.4",

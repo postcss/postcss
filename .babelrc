@@ -1,4 +1,4 @@
 {
   "presets": ["es2015-loose", "stage-0"],
-  "plugins": ["add-module-exports"]
+  "plugins": ["add-module-exports", "precompile-charcodes"]
 }
