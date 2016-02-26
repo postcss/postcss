@@ -76,7 +76,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   with pseudo-classes.
 * [`postcss-initial`] supports `initial` keyword and `all: initial`
   to clean inherit styles.
-* [`postcss-logical-properties`] transforms `start` and `end` properties to `left` and `right` depending on the writing direction of the document.
+* [`postcss-logical-properties`] transforms `start` and `end` properties
+  to `left` and `right` depending on the writing direction of the document.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
 * [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
@@ -94,15 +95,18 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-fallback`] adds `fallback` function to avoid duplicate declarations.
 * [`postcss-filter-gradient`] adds gradient filter for the old IE.
 * [`postcss-flexibility`] adds `-js-` prefix for [`Flexibility polyfill`].
-* [`postcss-gradient-transparency-fix`] transforms `transparent` values in gradients to support Safari's different color interpolation.
+* [`postcss-gradient-transparency-fix`] transforms `transparent` values
+  in gradients to support Safari's different color interpolation.
 * [`postcss-hash-classname`] append hash string to your css class name.
 * [`postcss-mqwidth-to-class`] converts min/max-width media queries to classes.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
-* [`postcss-round-subpixels`] plugin that rounds sub-pixel values to the nearest
+* [`postcss-round-subpixels`] plugin that rounds sub-pixel values
+  to the nearest
   full pixel.
-* [`postcss-unmq`] removes media queries while preserving desktop rules for IE≤8.
+* [`postcss-unmq`] removes media queries while preserving desktop rules
+  for IE≤8.
 * [`postcss-vmin`] generates `vm` fallback for `vmin` unit in IE9.
 * [`postcss-will-change`] inserts 3D hack before `will-change` property.
 * [`autoprefixer`] adds vendor prefixes for you, using data from Can I Use.
@@ -129,7 +133,8 @@ See also [`oldie`] plugins pack.
 * [`postcss-at-rules-variables`] adds support for custom properties in
   `@for`, `@each`, `@if`, etc.
 * [`postcss-functions`] enables exposure of JavaScript functions.
-* [`postcss-if-media`] inline or nest media queries within CSS rules & properties.
+* [`postcss-if-media`] inline or nest media queries within
+  CSS rules & properties.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-match`] adds `@match` for [Rust-style pattern matching].
@@ -197,10 +202,11 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-assets-rebase`] rebases assets from `url()`.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
 * [`postcss-cachebuster`] adds version parameter to images and fonts
-* [`postcss-copy-assets`] copies assets referenced by relative `url()`s into a
-  build directory.
+* [`postcss-copy-assets`] copies assets referenced by relative `url()`s
+  into a build directory.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
-* [`postcss-easysprites`] combine images to sprites, based on their image.png`#hash` and aspect ratio (`@2x`).
+* [`postcss-easysprites`] combine images to sprites, based on their
+  image.png`#hash` and aspect ratio (`@2x`).
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
@@ -224,8 +230,10 @@ See also [`precss`] plugins pack to add them by one line of code.
 ## Grids
 
 * [`postcss-grid`] adds a semantic grid system.
-* [`postcss-layout`] a plugin for some common CSS layout patterns and a Grid system.
-* [`postcss-maze`] is a mobile first, semantic responsive grid to suit any design pattern.
+* [`postcss-layout`] a plugin for some common CSS layout patterns
+  and a Grid system.
+* [`postcss-maze`] is a mobile first, semantic responsive grid
+  to suit any design pattern.
 * [`postcss-neat`] is a semantic and fluid grid framework.
 * [`postcss-simple-grid`] create grid with one line.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
@@ -289,7 +297,8 @@ See also plugins in modular minifier [`cssnano`].
   text-related properties.
 * [`postcss-size`] adds a `size` shortcut that sets width and height
   with one declaration.
-* [`postcss-speech-bubble`] adds speech bubbles of different kinds with just a couple of lines of CSS.
+* [`postcss-speech-bubble`] adds speech bubbles of different kinds
+  with just a couple of lines of CSS.
 * [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
 * [`postcss-triangle`] creates a triangle.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
@@ -302,8 +311,9 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
-* [`postcss-filter-stream`] blacklist files / folders that you don't want to process with a PostCSS plugin.
-* [`postcss-flexbox`] easy way to understand and start using CSS3 Flexbox for layouts.
+* [`postcss-filter-stream`] blacklist files / folders that you don't want
+  to process with a PostCSS plugin.
+* [`postcss-flexbox`] easy way to understand and start using CSS3 Flexbox.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
@@ -321,14 +331,17 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-selector-prefixer`] adds a prefix to css selectors.
 * [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-sorting`] sort rules content with specified order.
-* [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched by other plugins.
+* [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched
+  by other plugins.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`postcss-scopify`] adds a user input scope to each selector.
 * [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
-* [`css-declaration-sorter`] sorts CSS declarations fast and automatically in a certain order.
+* [`css-declaration-sorter`] sorts CSS declarations fast and automatically
+  in a certain order.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
-* [`postcss-inline-rtl`] converts your CSS to RTL, but inline (adding just what you need).
+* [`postcss-inline-rtl`] converts your CSS to right-to-left,
+  but inline (adding just what you need).
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -371,7 +384,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
-
 
 [`postcss-gradient-transparency-fix`]: https://github.com/gilmoreorless/postcss-gradient-transparency-fix
 [`postcss-vertical-rhythm-function`]:  https://github.com/F21/postcss-vertical-rhythm-function
