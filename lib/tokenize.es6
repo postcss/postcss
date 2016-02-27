@@ -39,7 +39,8 @@ export default function tokenize(input) {
     while ( pos < length ) {
         code = css.charCodeAt(pos);
 
-        if ( code === NEWLINE || code === FEED ) {
+        if ( code === NEWLINE || code === FEED ||
+            (code === CR && css.charCodeAt(pos + 1) !== NEWLINE) ) {
             offset = pos;
             line  += 1;
         }

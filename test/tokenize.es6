@@ -160,6 +160,16 @@ describe('tokenize', () => {
         ]);
     });
 
+    it('supports carriage return', () => {
+        test('a\rb\r\nc', [
+            ['word',  'a', 1, 1, 1, 1],
+            ['space', '\r'],
+            ['word',  'b', 2, 1, 2, 1],
+            ['space', '\r\n'],
+            ['word',  'c', 3, 1, 3, 1]
+        ]);
+    });
+
     it('tokenizes CSS', () => {
         let css = 'a {\n' +
                   '  content: "a";\n' +
