@@ -152,6 +152,14 @@ describe('tokenize', () => {
         ]);
     });
 
+    it('supports line feed', () => {
+        test('a\fb', [
+            ['word',  'a', 1, 1, 1, 1],
+            ['space', '\f'],
+            ['word',  'b', 2, 1, 2, 1]
+        ]);
+    });
+
     it('tokenizes CSS', () => {
         let css = 'a {\n' +
                   '  content: "a";\n' +
