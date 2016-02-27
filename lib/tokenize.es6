@@ -40,7 +40,7 @@ export default function tokenize(input) {
         code = css.charCodeAt(pos);
 
         if ( code === NEWLINE || code === FEED ||
-            (code === CR && css.charCodeAt(pos + 1) !== NEWLINE) ) {
+             code === CR && css.charCodeAt(pos + 1) !== NEWLINE ) {
             offset = pos;
             line  += 1;
         }
