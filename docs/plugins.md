@@ -235,6 +235,8 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-maze`] is a mobile first, semantic responsive grid
   to suit any design pattern.
 * [`postcss-neat`] is a semantic and fluid grid framework.
+* [`postcss-oldschool-grid`] is a grid system with wrapping columns 
+  and padding gutters.
 * [`postcss-simple-grid`] create grid with one line.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
 
@@ -448,6 +450,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-flexbugs-fixes`]:            https://github.com/luisrudge/postcss-flexbugs-fixes
 [`postcss-shades-of-gray`]:            https://github.com/laureanoarcanio/postcss-shades-of-gray
 [`postcss-hash-classname`]:            https://github.com/ctxhou/postcss-hash-classname
+[`postcss-oldschool-grid`]:            https://github.com/lordgiotto/postcss-oldschool-grid
 [`postcss-alias-atrules`]:             https://github.com/maximkoretskiy/postcss-alias-atrules
 [`postcss-color-palette`]:             https://github.com/zaim/postcss-color-palette
 [`postcss-assets-rebase`]:             https://github.com/devex-web-frontend/postcss-assets-rebase
