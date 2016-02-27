@@ -1789,7 +1789,7 @@ var comment.text //=> 'Empty file'
 [source map options]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md
 
 [`Processor#process(css, opts)`]: #processorprocesscss-opts
-[`Root#toResult(opts)`]:          #roottoresult-opts
+[`Root#toResult(opts)`]:          #roottoresultopts
 [`LazyResult#then()`]:            #lazythenonfulfilled-onrejected
 [`postcss(plugins)`]:             #postcssplugins
 [`postcss.plugin()`]:             #postcsspluginname-initializer
