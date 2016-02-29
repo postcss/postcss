@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "5.0.17",
+  "version": "5.0.18",
   "description": "Tool for transforming styles with JS plugins",
   "typings": "d.ts/postcss.d.ts",
   "engines": {
