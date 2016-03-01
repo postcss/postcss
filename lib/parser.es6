@@ -292,17 +292,17 @@ export default class Parser {
             this.raw(node, 'params', params);
             if ( last ) {
                 token = params[params.length - 1];
-                node.source.end  = { line: token[4], column: token[5] };
-                this.spaces      = node.raws.between;
+                node.source.end   = { line: token[4], column: token[5] };
+                this.spaces       = node.raws.between;
                 node.raws.between = '';
             }
         } else {
             node.raws.afterName = '';
-            node.params    = '';
+            node.params         = '';
         }
 
         if ( open ) {
-            node.nodes  = [];
+            node.nodes   = [];
             this.current = node;
         }
     }
