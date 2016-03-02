@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.19
+* Fix indent-based syntaxes support.
+
 ## 5.0.18
 * Parse new lines according W3C CSS syntax specification.
 
