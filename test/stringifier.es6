@@ -169,6 +169,12 @@ describe('stringifier', () => {
             expect(css.toString()).to.eql('a{one/**/:1;two:2}');
         });
 
+        it('uses optional raws.indent', () => {
+            let rule = new Rule({ selector: 'a', raws: { indent: ' ' } });
+            rule.append({ prop: 'color', value: 'black' });
+            expect(rule.toString()).to.eql('a {\n color: black\n}');
+        });
+
     });
 
 });

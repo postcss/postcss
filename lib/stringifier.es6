@@ -175,6 +175,7 @@ export default class Stringifier {
     }
 
     rawIndent(root) {
+        if ( root.raws.indent ) return root.raws.indent;
         let value;
         root.walk( i => {
             let p = i.parent;
