@@ -508,6 +508,7 @@ describe('source maps', () => {
         expect(result.css).to.include('a {\r\n}\r\n/*# sourceMappingURL=');
     });
 
+
     it('`map.from` should override the source map sources', () => {
         let result = postcss().process('a{}', {
             map: {
@@ -515,7 +516,15 @@ describe('source maps', () => {
                 from:   'file:///dir/a.css'
             }
         });
-        expect(result.map.toJSON().sources).to.eql(['file:///dir/a.css']);
+    });
+
+    it('preserves absolute urls in `to`', () => {
+        let result = postcss().process('a{}', {
+            from: '/dir/to/a.css',
+            to:   'http://example.com/a.css',
+            map:  { inline: false }
+        });
+        expect(result.map.toJSON().file).to.eql('http://example.com/a.css');
     });
 
 });
