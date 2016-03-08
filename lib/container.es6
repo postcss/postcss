@@ -3,6 +3,14 @@ import warnOnce    from './warn-once';
 import Comment     from './comment';
 import Node        from './node';
 
+function cleanSource(nodes) {
+    return nodes.map( i => {
+        if ( i.nodes ) i.nodes = cleanSource(i.nodes);
+        delete i.source;
+        return i;
+    });
+}
+
 export default class Container extends Node {
 
     push(child) {
@@ -264,7 +272,7 @@ export default class Container extends Node {
     normalize(nodes, sample) {
         if ( typeof nodes === 'string' ) {
             let parse = require('./parse');
-            nodes = parse(nodes).nodes;
+            nodes = cleanSource(parse(nodes).nodes);
         } else if ( !Array.isArray(nodes) ) {
             if ( nodes.type === 'root' ) {
                 nodes = nodes.nodes;

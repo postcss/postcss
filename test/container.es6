@@ -532,6 +532,7 @@ describe('Container', () => {
             root.append('a{}b{}');
             root.first.append('color:black');
             expect(root.toString()).to.eql('a {\n    color: black\n}\nb {}');
+            expect(root.first.first.source).to.not.exist;
         });
 
         it('receives array', () => {
