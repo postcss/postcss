@@ -65,4 +65,8 @@ option as an object with the following parameters:
 
   If you have set `inline: true`, annotation cannot be disabled.
 
+* `from` string: by default, PostCSS will set the `sources` property of the map
+  to the value of the `from` option. If you want to override this behaviour, you
+  can use `map.from` to explicitly set the source map's `sources` property.
+
 [source maps]: http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/

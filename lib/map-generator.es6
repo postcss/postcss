@@ -181,6 +181,10 @@ export default class {
     }
 
     sourcePath(node) {
+        if ( this.mapOpts.from ) {
+            return this.mapOpts.from;
+        }
+
         return this.relative(node.source.input.from);
     }
 
