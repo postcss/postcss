@@ -12,7 +12,7 @@
 [chat]:         https://gitter.im/postcss/postcss
 
 PostCSS is a tool for transforming styles with JS plugins.
-These plugins can lint your CSS, support variables and mixins,
+These plugins can lint your CSS, support variables and mixins,
 transpile future CSS syntax, inline images, and more.
 
 PostCSS is used by industry leaders including Google, Twitter, Alibaba,
@@ -33,9 +33,9 @@ Support / Discussion: [Gitter](https://gitter.im/postcss/postcss).
 ## Plugins
 
 Currently, PostCSS has more than 200 plugins. You can find all of the plugins
-in the [plugins list] or in the [searchable catalog].
-Below is a list of our favorite plugins — the best demonstrations of what can
-be built on top of PostCSS.
+in the [plugins list] or in the [searchable catalog]. Below is a list
+of our favorite plugins — the best demonstrations of what can be built
+on top of PostCSS.
 
 If you have any new ideas, [PostCSS plugin development] is really easy.
 
@@ -48,8 +48,8 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
   and execute them only for the current file.
 * [`postcss-modules`] and [`react-css-modules`] automatically isolate
   selectors within components.
-* [`postcss-autoreset`] applies local resets to rules — an alternative to
-  using a global reset that is better for isolatable components.
+* [`postcss-autoreset`] is an alternative to using a global reset
+  that is better for isolatable components.
 * [`postcss-initial`] adds `all: initial` support, which resets
   all inherited styles.
 * [`cq-prolyfill`] adds container query support, allowing styles that respond
@@ -116,9 +116,10 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 ## Syntaxes
 
 PostCSS can transform styles in any syntax, not just CSS.
-If there is not yet support for your favorite syntax, you can write
-a parser and/or stringifier to extend PostCSS.
+If there is not yet support for your favorite syntax,
+you can write a parser and/or stringifier to extend PostCSS.
 
+* [`sugarss`] is a indent-based syntax like Sass or Stylus.
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
 * [`postcss-less`] allows you to work with Less
@@ -205,8 +206,7 @@ postcss --use autoprefixer -c options.json -o main.css css/*.css
 ### CSS-in-JS
 
 To apply PostCSS plugins to React Inline Styles, JSS, Radium
-and other CSS-in-JS, you can use [`postcss-js`] and
-transforms style objects.
+and other CSS-in-JS, you can use [`postcss-js`] and transforms style objects.
 
 ```js
 var postcss  = require('postcss-js');
