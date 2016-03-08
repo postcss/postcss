@@ -133,6 +133,7 @@ you can write a parser and/or stringifier to extend PostCSS.
 [`postcss-less`]:        https://github.com/webschik/postcss-less
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-js`]:          https://github.com/postcss/postcss-js
+[`sugarss`]:             https://github.com/postcss/sugarss
 [`midas`]:               https://github.com/ben-eb/midas
 
 ## Articles
