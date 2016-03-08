@@ -117,7 +117,7 @@ describe('postcss()', () => {
     describe('.root()', () => {
 
         it('allows to build own CSS', () => {
-            let root    = postcss.root({ after: '\n' });
+            let root    = postcss.root({ raws: { after: '\n' } });
             let comment = postcss.comment({ text: 'Example' });
             let media   = postcss.atRule({ name: 'media', params: 'screen' });
             let rule    = postcss.rule({ selector: 'a' });
