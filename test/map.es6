@@ -508,4 +508,14 @@ describe('source maps', () => {
         expect(result.css).to.include('a {\r\n}\r\n/*# sourceMappingURL=');
     });
 
+    it('`map.from` should override the source map sources', () => {
+        let result = postcss().process('a{}', {
+            map: {
+                inline: false,
+                from:   'file:///dir/a.css'
+            }
+        });
+        expect(result.map.toJSON().sources).to.eql(['file:///dir/a.css']);
+    });
+
 });
