@@ -58,8 +58,8 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 ### Use Future CSS, Today
 
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
-* [`cssnext`] allows you to use future CSS features today
-  (_includes `autoprefixer`_).
+* [`postcss-cssnext`] allows you to use future CSS features today
+  (includes `autoprefixer`).
 
 ### Better CSS Readability
 
@@ -97,6 +97,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites
 [`postcss-modules`]:          https://github.com/outpunk/postcss-modules
 [`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting
+[`postcss-cssnext`]:          http://cssnext.io/
 [`postcss-assets`]:           https://github.com/assetsjs/postcss-assets
 [`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:             https://github.com/postcss/autoprefixer
@@ -105,7 +106,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`css-modules`]:              https://github.com/css-modules/css-modules
 [`colorguard`]:               https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                https://github.com/stylelint/stylelint
-[`cssnext`]:                  http://cssnext.io/
 [`cssnano`]:                  http://cssnano.co/
 [`precss`]:                   https://github.com/jonathantneal/precss
 [`doiuse`]:                   https://github.com/anandthakker/doiuse
