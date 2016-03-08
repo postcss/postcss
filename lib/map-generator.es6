@@ -165,6 +165,10 @@ export default class {
     }
 
     relative(file) {
+        if ( file.match(/https?:\/\/|file:\/\//) ) {
+            return file;
+        }
+
         let from = this.opts.to ? path.dirname(this.opts.to) : '.';
 
         if ( typeof this.mapOpts.annotation === 'string' ) {
@@ -181,6 +185,9 @@ export default class {
     }
 
     sourcePath(node) {
+        if ( this.mapOpts.from ) {
+            return this.mapOpts.from;
+        }
         return this.relative(node.source.input.from);
     }
 
