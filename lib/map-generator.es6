@@ -203,15 +203,22 @@ export default class {
         this.stringify(this.root, (str, node, type) => {
             this.css += str;
 
-            if ( node && node.source && node.source.start && type !== 'end' ) {
-                this.map.addMapping({
-                    source:   this.sourcePath(node),
-                    original: {
-                        line:   node.source.start.line,
-                        column: node.source.start.column - 1
-                    },
-                    generated: { line, column: column - 1 }
-                });
+            if ( node && type !== 'end' ) {
+                if ( node.source && node.source.start ) {
+                    this.map.addMapping({
+                        source:   this.sourcePath(node),
+                        original: {
+                            line:   node.source.start.line,
+                            column: node.source.start.column - 1
+                        },
+                        generated: { line, column: column - 1 }
+                    });
+                } else {
+                    this.map.addMapping({
+                        source:   '<no source>',
+                        generated: { line, column: column - 1 }
+                    });
+                }
             }
 
             lines = str.match(/\n/g);
@@ -223,15 +230,22 @@ export default class {
                 column += str.length;
             }
 
-            if ( node && node.source && node.source.end && type !== 'start' ) {
-                this.map.addMapping({
-                    source:   this.sourcePath(node),
-                    original: {
-                        line:   node.source.end.line,
-                        column: node.source.end.column
-                    },
-                    generated: { line, column: column - 1 }
-                });
+            if ( node && type !== 'start' ) {
+                if ( node.source && node.source.end ) {
+                    this.map.addMapping({
+                        source:   this.sourcePath(node),
+                        original: {
+                            line:   node.source.end.line,
+                            column: node.source.end.column
+                        },
+                        generated: { line, column: column - 1 }
+                    });
+                } else {
+                    this.map.addMapping({
+                        source:   '<no source>',
+                        generated: { line, column: column - 1 }
+                    });
+                }
             }
         });
     }
