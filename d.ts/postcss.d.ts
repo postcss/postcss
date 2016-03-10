@@ -23,7 +23,7 @@ declare module postcss {
     interface Plugin<T> extends Transformer {
         (opts?: T): Transformer;
         postcss: Transformer;
-        process: (css, opts?: any) => LazyResult;
+        process: (css: any, opts?: any) => LazyResult;
     }
     interface Transformer extends TransformCallback {
         postcssPlugin?: string;
