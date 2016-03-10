@@ -9,6 +9,7 @@ import Rule from './rule';
  */
 export default class Container extends Node implements postcss.Container {
     private indexes;
+    private lastEach;
     /**
      * Contains the container's children.
      */
@@ -99,7 +100,7 @@ export default class Container extends Node implements postcss.Container {
      * Inserts new nodes to the beginning of the container.
      * Because each node class is identifiable by unique properties, use the
      * following shortcuts to create nodes in insert methods:
-     *     root.prepend({ name: '@charset', params: '"UTF-8"' }); // at-rule
+     *     root.prepend({ name: 'charset', params: '"UTF-8"' }); // at-rule
      *     root.prepend({ selector: 'a' });                       // rule
      *     rule.prepend({ prop: 'color', value: 'black' });       // declaration
      *     rule.prepend({ text: 'Comment' })                      // comment

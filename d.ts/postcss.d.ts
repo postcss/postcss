@@ -23,7 +23,9 @@ declare module postcss {
     interface Plugin<T> extends Transformer {
         (opts?: T): Transformer;
         postcss: Transformer;
-        process: (css: any, opts?: any) => LazyResult;
+        process: (css: string | {
+            toString(): string;
+        } | Result, opts?: any) => LazyResult;
     }
     interface Transformer extends TransformCallback {
         postcssPlugin?: string;
@@ -593,10 +595,13 @@ declare module postcss {
         /**
          * Creates an instance of Warning and adds it to messages. This method is
          * provided as a convenience wrapper for Result#warn.
+         * Note that `opts.node` is automatically passed to Result#warn for you.
          * @param result The result that will receive the warning.
-         * @param message Error description.
+         * @param text Warning message. It will be used in the `text` property of
+         * the message object.
+         * @param opts Properties to assign to the message object.
          */
-        warn(result: Result, message: string): void;
+        warn(result: Result, text: string, opts?: WarningOptions): void;
         /**
          * @returns The next child of the node's parent; or, returns undefined if
          * the current node is the last child.
@@ -683,8 +688,8 @@ declare module postcss {
     }
     interface NodeRaws {
         /**
-         * The space symbols before the node. It also stores any non-standard
-         * symbols before the declaration like "_" from IE hack.
+         * The space symbols before the node. It also stores `*` and `_`
+         * symbols before the declaration (IE hack).
          */
         before?: string;
         /**
@@ -992,8 +997,10 @@ declare module postcss {
          * Contains the container's children.
          */
         nodes?: Node[];
+        raws?: ContainerRaws;
     }
     interface ContainerRaws extends NodeRaws {
+        indent?: string;
     }
     interface JsonContainer extends JsonNode {
         /**
@@ -1081,6 +1088,7 @@ declare module postcss {
          * block. The spec refers to this area as the at-rule's "prelude".
          */
         params?: string | number;
+        raws?: AtRuleRaws;
     }
     interface AtRuleRaws extends NodeRaws {
         params?: string;
@@ -1132,6 +1140,7 @@ declare module postcss {
          * are split at commas.
          */
         selectors?: string[];
+        raws?: RuleRaws;
     }
     interface RuleRaws extends ContainerRaws {
         /**
@@ -1190,6 +1199,7 @@ declare module postcss {
          * decl.toString() will include the original raws value (comments and all).
          */
         value?: string;
+        raws?: DeclarationRaws;
     }
     interface DeclarationRaws extends NodeRaws {
         /**

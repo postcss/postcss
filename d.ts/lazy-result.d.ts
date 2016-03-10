@@ -14,7 +14,7 @@ export default class LazyResult implements postcss.LazyResult {
      */
     constructor(processor: Processor,
         /**
-         * String with input CSS or any object with toString() method, like file stream.
+         * String with input CSS or any object with toString() method, like a Buffer.
          * Optionally, send Result instance and the processor will take the existing
          * [Root] parser from it.
          */

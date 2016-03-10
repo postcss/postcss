@@ -12,4 +12,5 @@ export default class PreviousMap {
     loadAnnotation(css: any): void;
     decodeInline(text: any): any;
     loadMap(file: any, prev: any): any;
+    isMap(map: any): boolean;
 }
