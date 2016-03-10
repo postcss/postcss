@@ -43,21 +43,19 @@ export default class Node implements postcss.Node {
     /**
      * Creates an instance of Warning and adds it to messages. This method is
      * provided as a convenience wrapper for Result#warn.
+     * Note that `opts.node` is automatically passed to Result#warn for you.
      * @param result The result that will receive the warning.
-     * @param message Error description.
+     * @param text Warning message. It will be used in the `text` property of
+     * the message object.
+     * @param opts Properties to assign to the message object.
      */
-    warn(result: Result, message: string): any;
-    /**
-     * Deprecated. Use Node#remove.
-     */
-    removeSelf(): void;
+    warn(result: Result, text: string, opts?: postcss.WarningOptions): void;
     /**
      * Removes the node from its parent and cleans the parent property in the
      * node and its children.
      * @returns This node for chaining.
      */
     remove(): this;
-    replace(nodes: any): this;
     /**
      * @returns A CSS string representing the node.
      */
@@ -146,6 +144,11 @@ export default class Node implements postcss.Node {
         column: number;
         line: number;
     };
+    /**
+     * Deprecated. Use Node#remove.
+     */
+    removeSelf(): void;
+    replace(nodes: any): this;
     style(prop: string, defaultType?: string): any;
     cleanStyles(keepBetween?: boolean): void;
     before: string;
