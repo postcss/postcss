@@ -453,7 +453,12 @@ describe('source maps', () => {
         });
         let result = contenter.process('a:after{\n}', { map: true });
         expect(read(result).originalPositionFor({ line: 2, column: 0 }))
-            .to.eql({ source: null, line: null, column: null, name: null });
+            .to.eql({
+                generated: { line: 2, column: 4 },
+                source: '<no source>',
+                original: null,
+                name: null
+            });
     });
 
     it('uses input file name as output file name', () => {
