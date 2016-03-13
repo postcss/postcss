@@ -206,16 +206,17 @@ export default class {
             if ( node && type !== 'end' ) {
                 if ( node.source && node.source.start ) {
                     this.map.addMapping({
-                        source:   this.sourcePath(node),
-                        original: {
+                        source:    this.sourcePath(node),
+                        generated: { line, column: column - 1 },
+                        original:  {
                             line:   node.source.start.line,
                             column: node.source.start.column - 1
-                        },
-                        generated: { line, column: column - 1 }
+                        }
                     });
                 } else {
                     this.map.addMapping({
-                        source:   '<no source>',
+                        source:    '<no source>',
+                        original:  { line: 1, column: 0 },
                         generated: { line, column: column - 1 }
                     });
                 }
@@ -233,16 +234,17 @@ export default class {
             if ( node && type !== 'start' ) {
                 if ( node.source && node.source.end ) {
                     this.map.addMapping({
-                        source:   this.sourcePath(node),
-                        original: {
+                        source:    this.sourcePath(node),
+                        generated: { line, column: column - 1 },
+                        original:  {
                             line:   node.source.end.line,
                             column: node.source.end.column
-                        },
-                        generated: { line, column: column - 1 }
+                        }
                     });
                 } else {
                     this.map.addMapping({
-                        source:   '<no source>',
+                        source:    '<no source>',
+                        original:  { line: 1, column: 0 },
                         generated: { line, column: column - 1 }
                     });
                 }

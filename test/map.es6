@@ -448,17 +448,17 @@ describe('source maps', () => {
     });
 
     it('generates map for node created manually', () => {
-        let contenter = postcss( css => {
+        let contenter = postcss(css => {
             css.first.prepend({ prop: 'content', value: '""' });
         });
         let result = contenter.process('a:after{\n}', { map: true });
-        expect(read(result).originalPositionFor({ line: 2, column: 0 }))
-            .to.eql({
-                generated: { line: 2, column: 4 },
-                source: '<no source>',
-                original: null,
-                name: null
-            });
+        let map    = read(result);
+        expect(map.originalPositionFor({ line: 2, column: 5 })).to.eql({
+            source: '<no source>',
+            column: 0,
+            line:   1,
+            name:   null
+        });
     });
 
     it('uses input file name as output file name', () => {
