@@ -123,7 +123,7 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
 * [`postcss-less`] allows you to work with Less
-  *(but does not compile SCSS to CSS)*.
+  *(but does not compile LESS to CSS)*.
 * [`postcss-js`] allows you to write styles in JS or transform
   React Inline Styles, Radium or JSS.
 * [`postcss-safe-parser`] finds and fixes CSS syntax errors.
