@@ -311,6 +311,7 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
+* [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-filter-stream`] blacklist files / folders that you don't want
@@ -388,6 +389,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
 [`postcss-gradient-transparency-fix`]: https://github.com/gilmoreorless/postcss-gradient-transparency-fix
+[`postcss-attribute-selector-prefix`]: https://github.com/GitScrum/postcss-attribute-selector-prefix
 [`postcss-vertical-rhythm-function`]:  https://github.com/F21/postcss-vertical-rhythm-function
 [`postcss-pseudo-class-any-button`]:   https://github.com/andrepolischuk/postcss-pseudo-class-any-button
 [`postcss-pseudo-elements-content`]:   https://github.com/omgovich/postcss-pseudo-elements-content
