@@ -47,6 +47,7 @@
     "gulp-shell":             "0.5.2",
     "yaspeller":              "2.6.0",
     "fs-extra":               "0.30.0",
+    "isparta":                "4.0.0",
     "eslint":                 "2.9.0",
     "sinon":                  "1.17.3",
     "mocha":                  "2.4.5",
