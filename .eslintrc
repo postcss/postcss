@@ -3,7 +3,6 @@
   "extends": "eslint-config-postcss",
   "rules": {
     "consistent-return": [0],
-    "key-spacing":       [2, { "align": "value" }],
     "complexity":        [0]
   },
   "env": {
