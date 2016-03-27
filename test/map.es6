@@ -521,6 +521,7 @@ describe('source maps', () => {
                 from:   'file:///dir/a.css'
             }
         });
+        expect(result.map.toJSON().sources).to.eql(['file:///dir/a.css']);
     });
 
     it('preserves absolute urls in `to`', () => {
