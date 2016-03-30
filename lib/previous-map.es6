@@ -62,6 +62,14 @@ export default class PreviousMap {
         if ( prev ) {
             if ( typeof prev === 'string' ) {
                 return prev;
+            } else if ( typeof prev === 'function' ) {
+                let prevPath = prev(file);
+                if ( prevPath && fs.existsSync && fs.existsSync(prevPath) ) {
+                    return fs.readFileSync(prevPath, 'utf-8').toString().trim();
+                } else {
+                    throw new Error('Unable to load previous source map: ' +
+                    prevPath.toString());
+                }
             } else if ( prev instanceof mozilla.SourceMapConsumer ) {
                 return mozilla.SourceMapGenerator
                     .fromSourceMap(prev).toString();

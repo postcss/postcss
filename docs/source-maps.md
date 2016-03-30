@@ -42,7 +42,7 @@ option as an object with the following parameters:
   If you have an inline source map, the `result.map` property will be empty,
   as the source map will be contained within the text of `result.css`.
 
-* `prev` string, object or boolean: source map content from
+* `prev` string, object, boolean or function: source map content from
   a previous processing step (for example, Sass compilation).
   PostCSS will try to read the previous source map automatically
   (based on comments within the source CSS), but you can use this option

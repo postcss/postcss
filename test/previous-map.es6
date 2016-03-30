@@ -1,5 +1,4 @@
 import parse from '../lib/parse';
-
 import   mozilla  from 'source-map';
 import   fs       from 'fs-extra';
 import   path     from 'path';
@@ -137,5 +136,49 @@ describe('PreviousMap', () => {
             mappings: ''
         };
         parse('body{}', { map: { prev: emptyMap } } );
+    });
+
+    it('should accept a function', () => {
+        let css = 'body{}\n/*# sourceMappingURL=a.map */';
+        let file = path.join(dir, 'previous-sourcemap-function.map');
+        fs.outputFileSync(file, map);
+        let opts = {
+            map: {
+                prev: (/* from */) => file
+            }
+        };
+        let root = parse(css, opts);
+        expect(root.source.input.map.text).to.eql(map);
+        expect(root.source.input.map.annotation).to.eql('a.map');
+    });
+
+    it('should call function with opts.from', (done) => {
+        let css = 'body{}\n/*# sourceMappingURL=a.map */';
+        let file = path.join(dir, 'previous-sourcemap-function.map');
+        fs.outputFileSync(file, map);
+        let opts = {
+            from: 'a.css',
+            map:  {
+                prev: (fromPath) => {
+                    expect(fromPath).to.eql('a.css');
+                    setTimeout(() => done(), 1000);
+                    return file;
+                }
+            }
+        };
+        parse(css, opts);
+    });
+
+    it('should raise when function returns invalid path', () => {
+        let css = 'body{}\n/*# sourceMappingURL=a.map */';
+        let fakeMap = Number.MAX_SAFE_INTEGER.toString() + '.map';
+        let fakePath = path.join(dir, fakeMap);
+        let opts = {
+            map: {
+                prev: (/* from */) => fakePath
+            }
+        };
+        expect( () => parse(css, opts) )
+         .to.throw('Unable to load previous source map: ' + fakePath);
     });
 });
