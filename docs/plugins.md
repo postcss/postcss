@@ -235,7 +235,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-maze`] is a mobile first, semantic responsive grid
   to suit any design pattern.
 * [`postcss-neat`] is a semantic and fluid grid framework.
-* [`postcss-oldschool-grid`] is a grid system with wrapping columns 
+* [`postcss-oldschool-grid`] is a grid system with wrapping columns
   and padding gutters.
 * [`postcss-simple-grid`] create grid with one line.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
@@ -339,13 +339,13 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`postcss-scopify`] adds a user input scope to each selector.
-* [`cssfmt`] formats CSS source code automatically inspired by Gofmt.
 * [`css-declaration-sorter`] sorts CSS declarations fast and automatically
   in a certain order.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`postcss-inline-rtl`] converts your CSS to right-to-left,
   but inline (adding just what you need).
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`stylefmt`] modern CSS formatter that works well with stylelint.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -612,7 +612,7 @@ See also plugins in modular minifier [`cssnano`].
 [`cssgrace`]:                          https://github.com/cssdream/cssgrace
 [`csstyle`]:                           https://github.com/geddski/csstyle
 [`webpcss`]:                           https://github.com/lexich/webpcss
-[`cssfmt`]:                            https://github.com/morishitter/cssfmt
+[`stylefmt`]:                          https://github.com/morishitter/stylefmt
 [`doiuse`]:                            https://github.com/anandthakker/doiuse
 [`pixrem`]:                            https://github.com/robwierzbowski/node-pixrem
 [`rtlcss`]:                            https://github.com/MohammadYounes/rtlcss
