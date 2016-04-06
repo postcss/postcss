@@ -79,6 +79,8 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 ### Linters
 
 * [`stylelint`] is a modular stylesheet linter.
+* [`stylefmt`] is a tool that automatically formats CSS
+  according `stylelint` rules.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
 * [`colorguard`] helps you maintain a consistent color palette.
 
@@ -87,7 +89,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`cssnano`] is a modular CSS minifier.
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`stylefmt`] is a tool that automatically formats stylesheet.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
