@@ -108,13 +108,13 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`css-modules`]:              https://github.com/css-modules/css-modules
 [`colorguard`]:               https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                https://github.com/stylelint/stylelint
+[`stylefmt`]:                 https://github.com/morishitter/stylefmt
 [`cssnano`]:                  http://cssnano.co/
 [`precss`]:                   https://github.com/jonathantneal/precss
 [`doiuse`]:                   https://github.com/anandthakker/doiuse
 [`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
 [`short`]:                    https://github.com/jonathantneal/postcss-short
 [`lost`]:                     https://github.com/peterramsing/lost
-[`stylefmt`]:                 https://github.com/morishitter/stylefmt
 
 ## Syntaxes
 
