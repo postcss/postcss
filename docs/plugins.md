@@ -345,7 +345,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-inline-rtl`] converts your CSS to right-to-left,
   but inline (adding just what you need).
 * [`rtlcss`] mirrors styles for right-to-left locales.
-* [`stylefmt`] modern CSS formatter that works well with stylelint.
+* [`stylefmt`] modern CSS formatter that works well with `stylelint`.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
