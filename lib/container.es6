@@ -281,6 +281,9 @@ export default class Container extends Node {
             } else if ( nodes.prop ) {
                 if ( typeof nodes.value === 'undefined' ) {
                     throw new Error('Value field is missed in node creation');
+                } else if ( typeof nodes.value !== 'string' ) {
+                    warnOnce('decl#value should be forced as string');
+                    nodes.value = String(nodes.value);
                 }
                 nodes = [new Declaration(nodes)];
             } else if ( nodes.selector ) {
