@@ -1,4 +1,3 @@
 --inline-diffs
 --reporter spec
---require babel-core/register
 test/*.es6
