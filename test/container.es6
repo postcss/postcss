@@ -799,6 +799,12 @@ describe('Container', () => {
             expect(rule.toString()).to.eql('a { a: 1; b: 2;\n c: 3 }');
         });
 
+        it('decl.value should be forced as string', () => {
+            let rule = parse('a { a: 1; b: 2 }').first;
+            rule.append({ prop: 'c', value: 3 });
+            expect(rule.toString()).to.eql('a { a: 1; b: 2; c: 3 }');
+        });
+
     });
 
 });
