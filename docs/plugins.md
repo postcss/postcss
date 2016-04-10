@@ -214,6 +214,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-font-awesome`] adds an easy shortcut to font-awesome unicode codes
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
+* [`postcss-font-weight-names`] convert commonly used font-weight names i.e. `Thin`, `Semi Bold`, `Heavy`, etc.. to a numeric font-weight
 * [`postcss-fontpath`] adds font links for different browsers.
 * [`postcss-responsive-images`] adds stylesheets for making
   your images responsive.
@@ -419,6 +420,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-custom-properties`]:         https://github.com/postcss/postcss-custom-properties
 [`postcss-discard-font-face`]:         https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-selector-prefixer`]:         https://github.com/ronnyamarante/postcss-selector-prefixer
+[`postcss-font-weight-names`]:         https://github.com/dan-gamble/postcss-font-weight-names
 [`postcss-custom-selectors`]:          https://github.com/postcss/postcss-custom-selectors
 [`postcss-discard-comments`]:          https://github.com/ben-eb/postcss-discard-comments
 [`postcss-minify-selectors`]:          https://github.com/ben-eb/postcss-minify-selectors
