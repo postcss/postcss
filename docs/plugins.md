@@ -194,6 +194,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-shades-of-gray`] helps keeping grayscale colors consistent
   to a gray palette.
 * [`colorguard`] helps maintain a consistent color palette.
+* [`postcss-get-color`] get the prominent colors from an image.
 
 ## Images and Fonts
 
@@ -619,3 +620,4 @@ See also plugins in modular minifier [`cssnano`].
 [`short`]:                             https://github.com/jonathantneal/postcss-short
 [`lost`]:                              https://github.com/corysimmons/lost
 [`postcss-maze`]:                      https://github.com/cathydutton/postcss-maze
+[`postcss-get-color`]:                 https://github.com/ismamz/postcss-get-color
