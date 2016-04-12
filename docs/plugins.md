@@ -288,6 +288,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
+* [`postcss-property-shorthand`] allows short definition of user default properties using variables
 * [`postcss-responsive-type`] changes `font-size` depends on screen size.
 * [`postcss-scrib`] define your own aliases/shortcuts for properties or values.
 * [`postcss-short-font-size`] extends `font-size` to define line-height
@@ -415,6 +416,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-transform-shortcut`]:        https://github.com/jonathantneal/postcss-transform-shortcut
 [`postcss-at-rules-variables`]:        https://github.com/GitScrum/postcss-at-rules-variables
 [`postcss-logical-properties`]:        https://github.com/ahmadalfy/postcss-logical-properties
+[`postcss-property-shorthand`]:        https://github.com/alanev/postcss-property-shorthand
 [`postcss-responsive-images`]:         https://github.com/azat-io/postcss-responsive-images
 [`postcss-tatar-stylesheets`]:         https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-custom-properties`]:         https://github.com/postcss/postcss-custom-properties
