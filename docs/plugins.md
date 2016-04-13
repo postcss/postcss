@@ -240,6 +240,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   and padding gutters.
 * [`postcss-simple-grid`] create grid with one line.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
+* [`postcss-structure`] grid system based on a fixed column width.
 
 ## Optimizations
 
@@ -621,3 +622,4 @@ See also plugins in modular minifier [`cssnano`].
 [`lost`]:                              https://github.com/corysimmons/lost
 [`postcss-maze`]:                      https://github.com/cathydutton/postcss-maze
 [`postcss-get-color`]:                 https://github.com/ismamz/postcss-get-color
+[`postcss-structure`]:                 https://github.com/francoisromain/postcss-structure
