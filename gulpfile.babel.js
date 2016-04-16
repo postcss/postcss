@@ -37,7 +37,7 @@ gulp.task('build', ['build:lib', 'build:docs']);
 
 gulp.task('lint', () => {
     let eslint = require('gulp-eslint');
-    return gulp.src(['*.js', 'lib/*.es6', 'test/*.es6'])
+    return gulp.src(['*.js', 'lib/*.es6', 'test/*.js'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -52,8 +52,8 @@ gulp.task('spellcheck', () => {
 // Tests
 
 gulp.task('test', ['compile'], () => {
-    let mocha = require('gulp-mocha');
-    return gulp.src('test/*.es6', { read: false }).pipe(mocha());
+    let ava = require('gulp-ava');
+    return gulp.src('test/*.js', { read: false }).pipe(ava());
 });
 
 gulp.task('integration', ['build:lib'], done => {
