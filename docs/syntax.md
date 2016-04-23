@@ -167,7 +167,7 @@ A Stringifier is a function which receives [`Root`] node and builder callback.
 Then it calls builder with every node’s string and node instance.
 
 ```js
-module.export = function (root, builder) {
+module.exports = function (root, builder) {
     // Some magic
     var string = decl.prop + ':' + decl.value + ';';
     builder(string, decl);
