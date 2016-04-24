@@ -331,6 +331,7 @@ See also plugins in modular minifier [`cssnano`].
   if it is missing.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-safe-important`] adds `!important` to style declarations safely.
+* [`postcss-sanitize`] remove properties and values using rules (css sanitization).
 * [`postcss-select`] select rules based off a selector list.
 * [`postcss-selector-prefixer`] adds a prefix to css selectors.
 * [`postcss-shorthand-expand`] expands shorthand properties.
@@ -621,3 +622,4 @@ See also plugins in modular minifier [`cssnano`].
 [`lost`]:                              https://github.com/corysimmons/lost
 [`postcss-maze`]:                      https://github.com/cathydutton/postcss-maze
 [`postcss-get-color`]:                 https://github.com/ismamz/postcss-get-color
+[`postcss-sanitize`]:                  https://github.com/eramdam/postcss-sanitize
