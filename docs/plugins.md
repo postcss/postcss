@@ -307,6 +307,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
+* [`postcss-magic-animations`] PostCSS plugin that adds `@keyframes` from Magic Animations.
 
 ## Others
 
@@ -623,3 +624,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-maze`]:                      https://github.com/cathydutton/postcss-maze
 [`postcss-get-color`]:                 https://github.com/ismamz/postcss-get-color
 [`postcss-sanitize`]:                  https://github.com/eramdam/postcss-sanitize
+[`postcss-magic-animations`]:          https://github.com/nucliweb/postcss-magic-animations/
