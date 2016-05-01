@@ -365,12 +365,13 @@ export default class Parser {
     }
 
     spacesFromEnd(tokens) {
-        let next;
+        let lastTokenType;
         let spaces = '';
         while ( tokens.length ) {
-            next = tokens[tokens.length - 1][0];
-            if ( next !== 'space' && next !== 'comment' ) break;
-            spaces += tokens.pop()[1];
+            lastTokenType = tokens[tokens.length - 1][0];
+            if ( lastTokenType !== 'space' &&
+                lastTokenType !== 'comment' ) break;
+            spaces = tokens.pop()[1] + spaces;
         }
         return spaces;
     }
