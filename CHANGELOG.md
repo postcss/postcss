@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.20
+* Fix between raw value parsing (by David Clark).
+* Update TypeScript definitions (by Jed Mao).
+* Clean fake node.source after `append(string)`.
+
 ## 5.0.19
 * Fix indent-based syntaxes support.
 
