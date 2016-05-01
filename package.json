@@ -35,7 +35,7 @@
   "devDependencies": {
     "concat-with-sourcemaps": "1.0.4",
     "eslint-config-postcss":  "2.0.2",
-    "postcss-parser-tests":   "5.0.6",
+    "postcss-parser-tests":   "5.0.7",
     "gulp-json-editor":       "2.2.1",
     "babel-eslint":           "6.0.4",
     "gulp-eslint":            "2.0.0",
