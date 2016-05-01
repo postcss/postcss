@@ -74,44 +74,6 @@ gulp.task('integration', ['build:lib', 'build:package'], done => {
     });
 });
 
-// Coverage
-
-gulp.task('coverage:instrument', () => {
-    require('./');
-    let istanbul = require('gulp-istanbul');
-    let isparta  = require('isparta');
-    return gulp.src('lib/*.es6')
-        .pipe(istanbul({
-            includeUntested: true,
-            instrumenter:    isparta.Instrumenter
-        }))
-        .pipe(istanbul.hookRequire({
-            extensions: ['.es6']
-        }));
-});
-
-gulp.task('coverage:report', () => {
-    let istanbul = require('gulp-istanbul');
-    return gulp.src('test/*.es6', { read: false })
-        .pipe(istanbul.writeReports({
-            reporters: ['lcov', 'text-summary']
-        }))
-        .pipe(istanbul.enforceThresholds({
-            thresholds: {
-                global: {
-                    statements: 100,
-                    functions:  100,
-                    lines:      100
-                }
-            }
-        }));
-});
-
-gulp.task('coverage', done => {
-    let runSequence = require('run-sequence');
-    runSequence('coverage:instrument', 'test', 'coverage:report', done);
-});
-
 // Common
 
-gulp.task('default', ['lint', 'spellcheck', 'coverage', 'integration']);
+gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);
