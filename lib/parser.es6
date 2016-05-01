@@ -370,7 +370,7 @@ export default class Parser {
         while ( tokens.length ) {
             next = tokens[tokens.length - 1][0];
             if ( next !== 'space' && next !== 'comment' ) break;
-            spaces += tokens.pop()[1];
+            spaces = tokens.pop()[1] + spaces;
         }
         return spaces;
     }

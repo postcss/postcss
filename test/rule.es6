@@ -43,6 +43,11 @@ describe('Rule', () => {
             expect(rule.selector).to.eql('em,\nstrong');
         });
 
+        it('saves raw string between selector and block', () => {
+            let root = parse('a /*x*/\n{}');
+            expect(root.first.raw('between')).to.eql(' /*x*/\n');
+        });
+
         it('uses between to detect separator', () => {
             let rule = new Rule({ selector: 'b', raws: { between: '' } });
             rule.selectors = ['b', 'strong'];
