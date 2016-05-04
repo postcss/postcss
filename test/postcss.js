@@ -70,6 +70,21 @@ test('creates plugin', t => {
     t.deepEqual(result2.css, 'a{ one: 1 }');
 });
 
+test('does not call plugin constructor', t => {
+    let calls = 0;
+    let plugin = postcss.plugin('test', () => {
+        calls += 1;
+        return function () { };
+    });
+    t.is(calls, 0);
+
+    postcss(plugin).process('a{}');
+    t.is(calls, 1);
+
+    postcss(plugin()).process('a{}');
+    t.is(calls, 2);
+});
+
 test('creates a shortcut to process css', t => {
     let plugin = postcss.plugin('test', (str = 'bar') => {
         return function (css) {

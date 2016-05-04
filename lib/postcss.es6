@@ -24,10 +24,18 @@ postcss.plugin = function (name, initializer) {
         return transformer;
     };
 
-    creator.postcss = creator();
+    let cache;
+    Object.defineProperty(creator, 'postcss', {
+        get() {
+            if ( !cache ) cache = creator();
+            return cache;
+        }
+    });
+
     creator.process = function (css, opts) {
         return postcss([ creator(opts) ]).process(css, opts);
     };
+
     return creator;
 };
 
