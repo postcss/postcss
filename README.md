@@ -99,7 +99,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites
 [`postcss-modules`]:          https://github.com/outpunk/postcss-modules
 [`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting
-[`postcss-cssnext`]:          http://cssnext.io/
+[`postcss-cssnext`]:          http://cssnext.io
 [`postcss-assets`]:           https://github.com/assetsjs/postcss-assets
 [`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:             https://github.com/postcss/autoprefixer
@@ -109,7 +109,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`colorguard`]:               https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                https://github.com/stylelint/stylelint
 [`stylefmt`]:                 https://github.com/morishitter/stylefmt
-[`cssnano`]:                  http://cssnano.co/
+[`cssnano`]:                  http://cssnano.co
 [`precss`]:                   https://github.com/jonathantneal/precss
 [`doiuse`]:                   https://github.com/anandthakker/doiuse
 [`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
@@ -141,8 +141,8 @@ you can write a parser and/or stringifier to extend PostCSS.
 
 ## Articles
 
-* [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong/)
-* [What PostCSS Really Is; What It Really Does](http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/)
+* [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong)
+* [What PostCSS Really Is; What It Really Does](http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss)
 * [PostCSS Guides](http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)
 
 ## Usage
@@ -286,3 +286,11 @@ var postcss = require('postcss');
 ```
 
 [Promise polyfill]: https://github.com/jakearchibald/es6-promise
+
+## IDE Integration
+### [Atom]
+
+* [`source-preview-postcss`] allows you to quickly preview your output CSS in a seperate, live pane.
+
+[atom]:                     https://atom.io
+[`source-preview-postcss`]: https://atom.io/packages/source-preview-postcss
