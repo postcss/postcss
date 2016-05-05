@@ -292,7 +292,7 @@ var postcss = require('postcss');
 ### Atom
 
 * [`language-postcss`] adds PostCSS and [SugarSS] highlight.
-* [`source-preview-postcss`] previews your output CSS in a seperate, live pane.
+* [`source-preview-postcss`] previews your output CSS in a separate, live pane.
 
 ### Sublime Text
 
