@@ -288,9 +288,16 @@ var postcss = require('postcss');
 [Promise polyfill]: https://github.com/jakearchibald/es6-promise
 
 ## IDE Integration
-### [Atom]
 
-* [`source-preview-postcss`] allows you to quickly preview your output CSS in a seperate, live pane.
+### Atom
 
-[atom]:                     https://atom.io
-[`source-preview-postcss`]: https://atom.io/packages/source-preview-postcss
+* [`language-postcss`] adds PostCSS and [SugarSS] highlight.
+* [`source-preview-postcss`] previews your output CSS in a seperate, live pane.
+
+### Sublime Text
+
+* [`Syntax-highlighting-for-PostCSS`] adds PostCSS highlight.
+
+[`Syntax-highlighting-for-PostCSS`]: https://github.com/hudochenkov/Syntax-highlighting-for-PostCSS
+[`source-preview-postcss`]:          https://atom.io/packages/source-preview-postcss
+[`language-postcss`]:                https://atom.io/packages/language-postcss
