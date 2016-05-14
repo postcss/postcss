@@ -1035,8 +1035,8 @@ Every parser saves its own properties, but the default CSS parser uses:
 
 * `before`: the space symbols before the node. It also stores `*` and `_`
   symbols before the declaration (IE hack).
-* `after`: the space symbols after the last child of the node to the end of the
-  node.
+* `after`: the space symbols after the last child of the node
+  to the end of the node.
 * `between`: the symbols between the property and value for declarations,
   selector and `{` for rules, or last parameter and `{` for at-rules.
 * `semicolon`: contains `true` if the last child has an (optional) semicolon.
