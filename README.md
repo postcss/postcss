@@ -301,3 +301,10 @@ var postcss = require('postcss');
 [`Syntax-highlighting-for-PostCSS`]: https://github.com/hudochenkov/Syntax-highlighting-for-PostCSS
 [`source-preview-postcss`]:          https://atom.io/packages/source-preview-postcss
 [`language-postcss`]:                https://atom.io/packages/language-postcss
+
+### WebStorm
+
+Support is still in progress. Please support [WEB-16601 issue]
+in JetBrains tracker.
+
+[WEB-16601 issue]: https://youtrack.jetbrains.com/issue/WEB-16601
