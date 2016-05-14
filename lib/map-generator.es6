@@ -186,9 +186,9 @@ export default class {
     sourcePath(node) {
         if ( this.mapOpts.from ) {
             return this.mapOpts.from;
+        } else {
+            return this.relative(node.source.input.from);
         }
-
-        return this.relative(node.source.input.from);
     }
 
     generateString() {
