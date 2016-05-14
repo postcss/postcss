@@ -530,3 +530,12 @@ test('preserves absolute urls in `to`', t => {
     });
     t.deepEqual(result.map.toJSON().file, 'http://example.com/a.css');
 });
+
+test('preserves absolute urls in sources', t => {
+    let result = postcss().process('a{}', {
+        from: 'file:///dir/a.css',
+        to:   'http://example.com/a.css',
+        map:  { inline: false }
+    });
+    t.deepEqual(result.map.toJSON().sources, ['file:///dir/a.css']);
+});

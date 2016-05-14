@@ -25,6 +25,12 @@ test('saves source file', t => {
     t.deepEqual(css.first.source.input.from, path.resolve('a.css'));
 });
 
+test('keeps absolute path in source', t => {
+    let css = parse('a {}', { from: 'http://example.com/a.css' });
+    t.deepEqual(css.first.source.input.file, 'http://example.com/a.css');
+    t.deepEqual(css.first.source.input.from, 'http://example.com/a.css');
+});
+
 test('saves source file on previous map', t => {
     let root1 = parse('a {}', { map: { inline: true } });
     let css   = root1.toResult({ map: { inline: true } }).css;

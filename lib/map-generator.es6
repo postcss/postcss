@@ -165,9 +165,7 @@ export default class {
     }
 
     relative(file) {
-        if ( /^(?:https?|file):\/\//.test(file) ) {
-            return file;
-        }
+        if ( /^\w+:\/\//.test(file) ) return file;
 
         let from = this.opts.to ? path.dirname(this.opts.to) : '.';
 

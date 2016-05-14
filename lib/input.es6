@@ -14,7 +14,13 @@ export default class Input {
             this.css = this.css.slice(1);
         }
 
-        if ( opts.from ) this.file = path.resolve(opts.from);
+        if ( opts.from ) {
+            if ( /^\w+:\/\//.test(opts.from) ) {
+                this.file = opts.from;
+            } else {
+                this.file = path.resolve(opts.from);
+            }
+        }
 
         let map = new PreviousMap(this.css, opts);
         if ( map.text ) {
