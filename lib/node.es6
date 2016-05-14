@@ -201,49 +201,41 @@ export default class Node {
         return pos;
     }
 
-    /* istanbul ignore next */
     removeSelf() {
         warnOnce('Node#removeSelf is deprecated. Use Node#remove.');
         return this.remove();
     }
 
-    /* istanbul ignore next */
     replace(nodes) {
         warnOnce('Node#replace is deprecated. Use Node#replaceWith');
         return this.replaceWith(nodes);
     }
 
-    /* istanbul ignore next */
     style(own, detect) {
         warnOnce('Node#style() is deprecated. Use Node#raw()');
         return this.raw(own, detect);
     }
 
-    /* istanbul ignore next */
     cleanStyles(keepBetween) {
         warnOnce('Node#cleanStyles() is deprecated. Use Node#cleanRaws()');
         return this.cleanRaws(keepBetween);
     }
 
-    /* istanbul ignore next */
     get before() {
         warnOnce('Node#before is deprecated. Use Node#raws.before');
         return this.raws.before;
     }
 
-    /* istanbul ignore next */
     set before(val) {
         warnOnce('Node#before is deprecated. Use Node#raws.before');
         this.raws.before = val;
     }
 
-    /* istanbul ignore next */
     get between() {
         warnOnce('Node#between is deprecated. Use Node#raws.between');
         return this.raws.between;
     }
 
-    /* istanbul ignore next */
     set between(val) {
         warnOnce('Node#between is deprecated. Use Node#raws.between');
         this.raws.between = val;

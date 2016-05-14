@@ -194,7 +194,6 @@ export default class Container extends Node {
     }
 
     remove(child) {
-        /* istanbul ignore if */
         if ( typeof child !== 'undefined' ) {
             warnOnce('Container#remove is deprecated. ' +
                      'Use Container#removeChild');
@@ -299,7 +298,6 @@ export default class Container extends Node {
         }
 
         let processed = nodes.map( i => {
-            /* istanbul ignore if */
             if ( typeof i.raws === 'undefined' ) i = this.rebuild(i);
 
             if ( i.parent ) i = i.clone();
@@ -315,7 +313,6 @@ export default class Container extends Node {
         return processed;
     }
 
-    /* istanbul ignore next */
     rebuild(node, parent) {
         let fix;
         if ( node.type === 'root' ) {
@@ -346,61 +343,51 @@ export default class Container extends Node {
         return fix;
     }
 
-    /* istanbul ignore next */
     eachInside(callback) {
         warnOnce('Container#eachInside is deprecated. ' +
                  'Use Container#walk instead.');
         return this.walk(callback);
     }
 
-
-    /* istanbul ignore next */
     eachDecl(prop, callback) {
         warnOnce('Container#eachDecl is deprecated. ' +
                  'Use Container#walkDecls instead.');
         return this.walkDecls(prop, callback);
     }
 
-    /* istanbul ignore next */
     eachRule(selector, callback) {
         warnOnce('Container#eachRule is deprecated. ' +
                  'Use Container#walkRules instead.');
         return this.walkRules(selector, callback);
     }
 
-    /* istanbul ignore next */
     eachAtRule(name, callback) {
         warnOnce('Container#eachAtRule is deprecated. ' +
                  'Use Container#walkAtRules instead.');
         return this.walkAtRules(name, callback);
     }
 
-    /* istanbul ignore next */
     eachComment(callback) {
         warnOnce('Container#eachComment is deprecated. ' +
                  'Use Container#walkComments instead.');
         return this.walkComments(callback);
     }
 
-    /* istanbul ignore next */
     get semicolon() {
         warnOnce('Node#semicolon is deprecated. Use Node#raws.semicolon');
         return this.raws.semicolon;
     }
 
-    /* istanbul ignore next */
     set semicolon(val) {
         warnOnce('Node#semicolon is deprecated. Use Node#raws.semicolon');
         this.raws.semicolon = val;
     }
 
-    /* istanbul ignore next */
     get after() {
         warnOnce('Node#after is deprecated. Use Node#raws.after');
         return this.raws.after;
     }
 
-    /* istanbul ignore next */
     set after(val) {
         warnOnce('Node#after is deprecated. Use Node#raws.after');
         this.raws.after = val;

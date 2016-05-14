@@ -22,16 +22,12 @@ export default class Rule extends Container {
     }
 
     get _selector() {
-        /* istanbul ignore next */
         warnOnce('Rule#_selector is deprecated. Use Rule#raws.selector');
-        /* istanbul ignore next */
         return this.raws.selector;
     }
 
     set _selector(val) {
-        /* istanbul ignore next */
         warnOnce('Rule#_selector is deprecated. Use Rule#raws.selector');
-        /* istanbul ignore next */
         this.raws.selector = val;
     }
 

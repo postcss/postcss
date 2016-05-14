@@ -176,7 +176,6 @@ export default class {
         }
 
         file = path.relative(from, file);
-        /* istanbul ignore next */
         if ( path.sep === '\\' ) {
             return file.replace(/\\/g, '/');
         } else {

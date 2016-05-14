@@ -48,13 +48,11 @@ export default class Root extends Container {
         return lazy.stringify();
     }
 
-    /* istanbul ignore next */
     remove(child) {
         warnOnce('Root#remove is deprecated. Use Root#removeChild');
         this.removeChild(child);
     }
 
-    /* istanbul ignore next */
     prevMap() {
         warnOnce('Root#prevMap is deprecated. Use Root#source.input.map');
         return this.source.input.map;
