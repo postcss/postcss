@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "babel-plugin-precompile-charcodes": "1.0.0",
-    "babel-plugin-add-module-exports":   "0.1.4",
+    "babel-plugin-add-module-exports":   "0.2.1",
     "babel-preset-es2015-loose":         "7.0.0",
     "concat-with-sourcemaps":            "1.0.4",
     "eslint-config-postcss":             "2.0.2",
