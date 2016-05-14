@@ -73,7 +73,11 @@ export default class Input {
     }
 
     mapResolve(file) {
-        return path.resolve(this.map.consumer().sourceRoot || '.', file);
+        if ( /^\w+:\/\//.test(file) ) {
+            return file;
+        } else {
+            return path.resolve(this.map.consumer().sourceRoot || '.', file);
+        }
     }
 
     get from() {
