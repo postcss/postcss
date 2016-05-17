@@ -89,6 +89,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`cssnano`] is a modular CSS minifier.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`esplit`] splits your CSS exceeding 4095 selectors for Internet Explorer.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
@@ -115,6 +116,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
 [`short`]:                    https://github.com/jonathantneal/postcss-short
 [`lost`]:                     https://github.com/peterramsing/lost
+[`esplit`]:                   https://github.com/vitaliyr/postcss-esplit
 
 ## Syntaxes
 
