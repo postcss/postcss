@@ -131,6 +131,8 @@ you can write a parser and/or stringifier to extend PostCSS.
   *(but does not compile SCSS to CSS)*.
 * [`postcss-less`] allows you to work with Less
   *(but does not compile LESS to CSS)*.
+* [`postcss-less-parser`] allows you to work with Less
+  *(and DOES compile LESS to CSS using true Less.js evaluation)*.
 * [`postcss-js`] allows you to write styles in JS or transform
   React Inline Styles, Radium or JSS.
 * [`postcss-safe-parser`] finds and fixes CSS syntax errors.
@@ -138,6 +140,7 @@ you can write a parser and/or stringifier to extend PostCSS.
 
 [`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
 [`postcss-less`]:        https://github.com/webschik/postcss-less
+[`postcss-less-parser`]: https://github.com/Crunch/postcss-less
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-js`]:          https://github.com/postcss/postcss-js
 [`sugarss`]:             https://github.com/postcss/sugarss
