@@ -92,6 +92,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
+* [`postcss-esplit`] splits your CSS exceeding 4095 selectors for IE.
 * [`postcss-fallback`] adds `fallback` function to avoid duplicate declarations.
 * [`postcss-filter-gradient`] adds gradient filter for the old IE.
 * [`postcss-flexibility`] adds `-js-` prefix for [`Flexibility polyfill`].
@@ -113,7 +114,6 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
-* [`postcss-esplit`] splits your CSS exceeding 4095 selectors for IE.
 
 See also [`oldie`] plugins pack.
 
