@@ -92,6 +92,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
+* [`postcss-esplit`] splits your CSS exceeding 4095 selectors for IE.
 * [`postcss-fallback`] adds `fallback` function to avoid duplicate declarations.
 * [`postcss-filter-gradient`] adds gradient filter for the old IE.
 * [`postcss-flexibility`] adds `-js-` prefix for [`Flexibility polyfill`].
@@ -580,6 +581,7 @@ See also plugins in modular minifier [`cssnano`].
 [`mq4-hover-shim`]:                    https://github.com/twbs/mq4-hover-shim
 [`postcss-atroot`]:                    https://github.com/OEvgeny/postcss-atroot
 [`postcss-layout`]:                    https://github.com/arccoza/postcss-layout
+[`postcss-esplit`]:                    https://github.com/vitaliyr/postcss-esplit
 [`postcss-focus`]:                     https://github.com/postcss/postcss-focus
 [`postcss-apply`]:                     https://github.com/pascalduez/postcss-apply
 [`css2modernizr`]:                     https://github.com/vovanbo/css2modernizr
