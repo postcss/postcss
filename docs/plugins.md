@@ -113,6 +113,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
+* [`postcss-esplit`] splits your CSS exceeding 4095 selectors for IE.
 
 See also [`oldie`] plugins pack.
 
@@ -580,6 +581,7 @@ See also plugins in modular minifier [`cssnano`].
 [`mq4-hover-shim`]:                    https://github.com/twbs/mq4-hover-shim
 [`postcss-atroot`]:                    https://github.com/OEvgeny/postcss-atroot
 [`postcss-layout`]:                    https://github.com/arccoza/postcss-layout
+[`postcss-esplit`]:                    https://github.com/vitaliyr/postcss-esplit
 [`postcss-focus`]:                     https://github.com/postcss/postcss-focus
 [`postcss-apply`]:                     https://github.com/pascalduez/postcss-apply
 [`css2modernizr`]:                     https://github.com/vovanbo/css2modernizr
