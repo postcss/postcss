@@ -23,6 +23,10 @@ Twitter account:      [@postcss](https://twitter.com/postcss).
 VK.com page:          [postcss](https://vk.com/postcss).
 Support / Discussion: [Gitter](https://gitter.im/postcss/postcss).
 
+For PostCSS commercial support (consulting, improving the front-end culture
+of your company, PostCSS plugins), contact Evil Martians
+at <surrender@evilmartians.com>.
+
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 
 <a href="https://evilmartians.com/?utm_source=postcss">
