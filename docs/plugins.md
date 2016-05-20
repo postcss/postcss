@@ -309,6 +309,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
 * [`postcss-magic-animations`] PostCSS plugin that adds `@keyframes` from Magic Animations.
+* [`postcss-border-shortcut`](https://github.com/michelemazzucco/postcss-border-shortcut) PostCSS plugin for assign default border type if not expressed.
 
 ## Others
 
