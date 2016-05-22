@@ -90,6 +90,6 @@ gulp.task('api', done => {
 
 // Common
 
-gulp.task('offline', ['version', 'lint', 'test']);
+gulp.task('offline', ['version', 'lint', 'test', 'api']);
 
-gulp.task('default', ['version', 'lint', 'spellcheck', 'test', 'integration']);
+gulp.task('default', ['offline', 'spellcheck', 'integration']);
