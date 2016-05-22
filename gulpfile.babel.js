@@ -2,7 +2,7 @@ import gulp from 'gulp';
 
 gulp.task('clean', () => {
     let del = require('del');
-    return del(['lib/*.js', 'postcss.js', 'build/', 'coverage/']);
+    return del(['lib/*.js', 'postcss.js', 'build/', 'api/']);
 });
 
 // Build
@@ -62,6 +62,21 @@ gulp.task('integration', ['build:lib'], done => {
     real(done, css => {
         return postcss.parse(css).toResult({ map: { annotation: false } });
     });
+});
+
+// Docs
+
+gulp.task('api', done => {
+    let jsdoc = require('gulp-jsdoc3');
+    gulp.src('lib/*.es6', { read: false })
+        .pipe(jsdoc({
+            source: {
+                includePattern: '.+\\.es6$'
+            },
+            opts: {
+                destination: './api/'
+            }
+        }, done));
 });
 
 // Common

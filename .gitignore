@@ -8,4 +8,4 @@ build/
 lib/*.js
 /postcss.js
 
-coverage/
+api/
