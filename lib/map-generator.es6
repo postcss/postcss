@@ -2,7 +2,7 @@ import { Base64 } from 'js-base64';
 import   mozilla  from 'source-map';
 import   path     from 'path';
 
-export default class {
+export default class MapGenerator {
 
     constructor(stringify, root, opts) {
         this.stringify = stringify;
