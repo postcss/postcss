@@ -29,9 +29,8 @@ let cloneNode = function (obj, parent) {
 
 export default class Node {
 
-    raws = { };
-
     constructor(defaults = { }) {
+        this.raws = { };
         for ( let name in defaults ) {
             this[name] = defaults[name];
         }
@@ -47,7 +46,9 @@ export default class Node {
     }
 
     warn(result, text, opts) {
-        return result.warn(text, { node: this, ...opts });
+        let data = { node: this };
+        for ( let i in opts ) data[i] = opts[i];
+        return result.warn(text, data);
     }
 
     remove() {

@@ -4,9 +4,8 @@ import warnOnce from './warn-once';
 
 export default class CssSyntaxError {
 
-    name = 'CssSyntaxError';
-
     constructor(message, line, column, source, file, plugin) {
+        this.name   = 'CssSyntaxError';
         this.reason = message;
 
         if ( file )   this.file   = file;

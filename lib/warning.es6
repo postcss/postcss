@@ -1,8 +1,15 @@
+/**
+ * Represents a plugin warning. It can be created using Node#warn().
+ */
 export default class Warning {
 
-    type = 'warning';
-
+    /**
+     * @param {string} warning message
+     * @param {Object} warning options
+     * @param {number}
+     */
     constructor(text, opts = { }) {
+        this.type = 'warning';
         this.text = text;
 
         if ( opts.node && opts.node.source ) {

@@ -3,10 +3,9 @@ import warnOnce  from './warn-once';
 
 export default class Root extends Container {
 
-    type = 'root';
-
     constructor(defaults) {
         super(defaults);
+        this.type = 'root';
         if ( !this.nodes ) this.nodes = [];
     }
 

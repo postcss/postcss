@@ -3,10 +3,9 @@ import warnOnce  from './warn-once';
 
 export default class AtRule extends Container {
 
-    type = 'atrule';
-
     constructor(defaults) {
         super(defaults);
+        this.type = 'atrule';
     }
 
     append(...children) {

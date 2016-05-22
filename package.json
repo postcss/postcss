@@ -33,7 +33,6 @@
     "concat-with-sourcemaps":            "1.0.4",
     "eslint-config-postcss":             "2.0.2",
     "postcss-parser-tests":              "5.0.7",
-    "babel-preset-stage-0":              "6.5.0",
     "babel-preset-es2015":               "6.9.0",
     "gulp-sourcemaps":                   "1.6.0",
     "babel-eslint":                      "6.0.4",
