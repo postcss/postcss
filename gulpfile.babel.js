@@ -64,6 +64,15 @@ gulp.task('integration', ['build:lib'], done => {
     });
 });
 
+gulp.task('version', ['build:lib'], () => {
+    let Processor = require('./lib/processor');
+    let instance  = new Processor();
+    let pkg       = require('./package');
+    if ( pkg.version !== instance.version ) {
+        throw new Error('Version in Processor is not equal to package.json');
+    }
+});
+
 // Docs
 
 gulp.task('api', done => {
@@ -81,4 +90,4 @@ gulp.task('api', done => {
 
 // Common
 
-gulp.task('default', ['lint', 'spellcheck', 'test', 'integration']);
+gulp.task('default', ['version', 'lint', 'spellcheck', 'test', 'integration']);

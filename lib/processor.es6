@@ -3,7 +3,7 @@ import LazyResult  from './lazy-result';
 export default class Processor {
 
     constructor(plugins = []) {
-        this.version = '5.0.14';
+        this.version = '5.0.21';
         this.plugins = this.normalize(plugins);
     }
 
