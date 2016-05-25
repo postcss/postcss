@@ -1,5 +1,5 @@
 import Processor from './processor';
-import postcss from './postcss';
+import * as postcss from './postcss';
 import Root from './root';
 export default class Result implements postcss.Result {
     /**

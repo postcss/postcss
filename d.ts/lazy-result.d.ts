@@ -1,5 +1,5 @@
 import Processor from './processor';
-import postcss from './postcss';
+import * as postcss from './postcss';
 import Result from './result';
 import Root from './root';
 export default class LazyResult implements postcss.LazyResult {

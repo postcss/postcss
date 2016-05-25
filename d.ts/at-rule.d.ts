@@ -1,5 +1,5 @@
 import Container from './container';
-import postcss from './postcss';
+import * as postcss from './postcss';
 export default class AtRule extends Container implements postcss.AtRule {
     /**
      * Returns a string representing the node's type. Possible values are

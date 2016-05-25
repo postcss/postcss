@@ -1,6 +1,6 @@
 import PreviousMap from './previous-map';
 import Container from './container';
-import postcss from './postcss';
+import * as postcss from './postcss';
 import Result from './result';
 import Node from './node';
 export default class Root extends Container implements postcss.Root {
