@@ -351,6 +351,7 @@ See also plugins in modular minifier [`cssnano`].
   but inline (adding just what you need).
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
+* [`postcss-zoom-font-size`] PostCSS plugin zoom you font-size in new CSS file. 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -629,3 +630,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-sanitize`]:                  https://github.com/eramdam/postcss-sanitize
 [`postcss-magic-animations`]:          https://github.com/nucliweb/postcss-magic-animations/
 [`postcss-border-shortcut`]:           https://github.com/michelemazzucco/postcss-border-shortcut
+[`postcss-zoom-font-size`]:            https://github.com/talgautb/postcss-zoom-font-size
