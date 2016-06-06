@@ -232,6 +232,8 @@ See also [`precss`] plugins pack to add them by one line of code.
 ## Grids
 
 * [`postcss-grid`] adds a semantic grid system.
+* [`postcss-grid-system`] creates grids based on a fixed column width.
+* [`postcss-grid-fluid`] creates fluid grids.
 * [`postcss-layout`] a plugin for some common CSS layout patterns
   and a Grid system.
 * [`postcss-maze`] is a mobile first, semantic responsive grid
@@ -272,6 +274,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-border`] adds shorthand for width and color of all borders
   in `border` property.
 * [`postcss-border-shortcut`] PostCSS plugin for assign default `border` type if not expressed.
+* [`postcss-button`] creates buttons.
 * [`postcss-center`] centers elements.
 * [`postcss-circle`] inserts a circle with color.
 * [`postcss-clearfix`] adds `fix` and `fix-legacy` properties to the `clear`
@@ -306,6 +309,7 @@ See also plugins in modular minifier [`cssnano`].
   with just a couple of lines of CSS.
 * [`postcss-transform-shortcut`] allows shorthand transform properties in CSS.
 * [`postcss-triangle`] creates a triangle.
+* [`postcss-typescale`] sets type based on a typographic scale.
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
@@ -629,3 +633,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-sanitize`]:                  https://github.com/eramdam/postcss-sanitize
 [`postcss-magic-animations`]:          https://github.com/nucliweb/postcss-magic-animations/
 [`postcss-border-shortcut`]:           https://github.com/michelemazzucco/postcss-border-shortcut
+[`postcss-button`]:                    https://github.com/francoisromain/postcss-button
+[`postcss-typescale`]:                 https://github.com/francoisromain/postcss-typescale
+[`postcss-grid-fluid`]:                https://github.com/francoisromain/postcss-grid-fluid
+[`postcss-grid-system`]:               https://github.com/francoisromain/postcss-grid-system
