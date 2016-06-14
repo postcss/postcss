@@ -355,6 +355,7 @@ See also plugins in modular minifier [`cssnano`].
   but inline (adding just what you need).
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
+* [`postcss-extract-value`] extracts values from css properties and puts them into variables. 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
