@@ -321,6 +321,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-currency`] replaces name of currency with symbols.
+* [`postcss-extract-value`] extracts values from css properties and puts them into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-filter-stream`] blacklist files / folders that you don't want
   to process with a PostCSS plugin.
@@ -479,6 +480,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-reverse-media`]:             https://github.com/MadLittleMods/postcss-reverse-media
 [`postcss-regexp-detect`]:             https://github.com/devex-web-frontend/postcss-regexp-detect
 [`postcss-speech-bubble`]:             https://github.com/archana-s/postcss-speech-bubble
+[`postcss-extract-value`]:             https://github.com/lutien/postcss-extract-value
 [`postcss-mq-keyframes`]:              https://github.com/TCotton/postcss-mq-keyframes
 [`postcss-brand-colors`]:              https://github.com/postcss/postcss-brand-colors
 [`postcss-class-prefix`]:              https://github.com/thompsongl/postcss-class-prefix
