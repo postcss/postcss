@@ -217,6 +217,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
+* [`postcss-placehold`] makes it easy to drop in placeholder images.
 * [`postcss-responsive-images`] adds stylesheets for making
   your images responsive.
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
@@ -639,3 +640,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-typescale`]:                 https://github.com/francoisromain/postcss-typescale
 [`postcss-grid-fluid`]:                https://github.com/francoisromain/postcss-grid-fluid
 [`postcss-grid-system`]:               https://github.com/francoisromain/postcss-grid-system
+[`postcss-placehold`]:                 https://github.com/awayken/postcss-placehold
