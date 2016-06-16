@@ -249,6 +249,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
+* [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
@@ -399,6 +400,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
+[`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
 [`postcss-gradient-transparency-fix`]: https://github.com/gilmoreorless/postcss-gradient-transparency-fix
 [`postcss-attribute-selector-prefix`]: https://github.com/GitScrum/postcss-attribute-selector-prefix
 [`postcss-vertical-rhythm-function`]:  https://github.com/F21/postcss-vertical-rhythm-function
