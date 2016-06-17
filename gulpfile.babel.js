@@ -21,17 +21,21 @@ gulp.task('build:lib', ['compile'], () => {
     return gulp.src('lib/*.js').pipe(gulp.dest('build/lib'));
 });
 
+gulp.task('build:typings', ['clean'], () => {
+    return gulp.src(['d.ts/**/*.d.ts']).pipe(gulp.dest('build/d.ts'));
+});
+
 gulp.task('build:docs', ['clean'], () => {
     let ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
-        .concat(['.npmignore', 'index.js', 'lib/*', 'test/*',
+        .concat(['.npmignore', 'index.js', 'lib/*', 'test/*', 'd.ts/*',
                  'node_modules/**/*'])
         .map( i => '!' + i );
     return gulp.src(['**/*'].concat(ignore))
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['build:lib', 'build:docs']);
+gulp.task('build', ['build:typings', 'build:lib', 'build:docs']);
 
 // Lint
 
@@ -56,7 +60,7 @@ gulp.task('test', ['compile'], () => {
     return gulp.src('test/*.js', { read: false }).pipe(ava());
 });
 
-gulp.task('integration', ['build:lib'], done => {
+gulp.task('integration', ['build:typings', 'build:lib'], done => {
     let postcss = require('./build/lib/postcss');
     let real    = require('postcss-parser-tests/real');
     real(done, css => {
