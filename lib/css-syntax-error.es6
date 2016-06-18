@@ -2,17 +2,83 @@ import supportsColor from 'supports-color';
 
 import warnOnce from './warn-once';
 
-export default class CssSyntaxError {
+/**
+ * The CSS parser throws this error for broken CSS.
+ *
+ * Custom parsers can throw this error for broken custom syntax using
+ * the {@link Node#error} method.
+ *
+ * PostCSS will use the input source map to detect the original error location.
+ * If you wrote a Sass file, compiled it to CSS and then parsed it with PostCSS,
+ * PostCSS will show the original position in the Sass file.
+ *
+ * If you need the position in the PostCSS input
+ * (e.g., to debug the previous compiler), use `error.input.file`.
+ *
+ * @example
+ * // Catching and checking syntax error
+ * try {
+ *   postcss.parse('a{')
+ * } catch (error) {
+ *   if ( error.name === 'CssSyntaxError' ) {
+ *     error //=> CssSyntaxError
+ *   }
+ * }
+ *
+ * @example
+ * // Raising error from plugin
+ * throw node.error('Unknown variable', { plugin: 'postcss-vars' });
+ */
+class CssSyntaxError {
 
+    /**
+     * @param {string} message  - error message
+     * @param {number} [line]   - source line of the error
+     * @param {number} [column] - source column of the error
+     * @param {string} [source] - source code of the broken file
+     * @param {string} [file]   - absolute path to the broken file
+     * @param {string} [plugin] - PostCSS plugin name, if error came from plugin
+     */
     constructor(message, line, column, source, file, plugin) {
+        /**
+         * @member {string} - Always equal to `'CssSyntaxError'`. You should
+         *                    always check error type
+         *                    by `error.name === 'CssSyntaxError'` instead of
+         *                    `error instanceof CssSyntaxError`, because
+         *                    npm could have several PostCSS versions.
+         */
         this.name   = 'CssSyntaxError';
+        /**
+         * @member {string} - Error message.
+         */
         this.reason = message;
 
-        if ( file )   this.file   = file;
-        if ( source ) this.source = source;
-        if ( plugin ) this.plugin = plugin;
+        if ( file ) {
+            /**
+             * @member {string} - Absolute path to the broken file.
+             */
+            this.file = file;
+        }
+        if ( source ) {
+            /**
+             * @member {string} - Source code of the broken file.
+             */
+            this.source = source;
+        }
+        if ( plugin ) {
+            /**
+             * @member {string} - Plugin name, if error came from plugin.
+             */
+            this.plugin = plugin;
+        }
         if ( typeof line !== 'undefined' && typeof column !== 'undefined' ) {
+            /**
+             * @member {number} - Source line of the error.
+             */
             this.line   = line;
+            /**
+             * @member {number} - Source column of the error.
+             */
             this.column = column;
         }
 
@@ -32,6 +98,25 @@ export default class CssSyntaxError {
         this.message += ': ' + this.reason;
     }
 
+    /**
+     * Returns a few lines of CSS source that caused the error.
+     *
+     * If the CSS has an input source map without `sourceContent`,
+     * this method will return an empty string.
+     *
+     * @param {boolean} [color] whether arrow will be colored red by terminal
+     *                          color codes. By default, PostCSS will detect
+     *                          color support by `process.stdout.isTTY`
+     *                          and `process.env.NODE_DISABLE_COLORS`.
+     *
+     * @example
+     * error.showSourceCode() //=> "a {
+     *                        //      bad
+     *                        //      ^
+     *                        //    }"
+     *
+     * @return {string} few lines of CSS source that caused the error
+     */
     showSourceCode(color) {
         if ( !this.source ) return '';
 
@@ -57,6 +142,16 @@ export default class CssSyntaxError {
         return '\n' + prev + broken + mark + next;
     }
 
+    /**
+     * Returns error position, message and source code of the broken part.
+     *
+     * @example
+     * error.toString() //=> "CssSyntaxError: app.css:1:1: Unclosed block
+     *                  //    a {
+     *                  //    ^"
+     *
+     * @return {string} error position, message and source code
+     */
     toString() {
         return this.name + ': ' + this.message + this.showSourceCode();
     }
@@ -66,4 +161,12 @@ export default class CssSyntaxError {
         return this.input;
     }
 
+    /**
+     * @member {string} message - Full error text in the GNU error format
+     *                            with plugin, file, line and column.
+     * @memberof CssSyntaxError#
+     */
+
 }
+
+export default CssSyntaxError;
