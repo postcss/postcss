@@ -3,10 +3,28 @@ import   mozilla  from 'source-map';
 import   path     from 'path';
 import   fs       from 'fs';
 
-export default class PreviousMap {
+/**
+ * Source map information from input CSS.
+ * For example, source map after Sass compiler.
+ *
+ * This class will automatically find source map in input CSS or in file system
+ * near input file (according `from` option).
+ *
+ * @example
+ * const root = postcss.parse(css, { from: 'a.sass.css' });
+ * root.input.map //=> PreviousMap
+ */
+class PreviousMap {
 
+    /**
+     * @param {string} css    - input CSS source
+     * @param {object} [opts] - {@link Processor#process} options
+     */
     constructor(css, opts) {
         this.loadAnnotation(css);
+        /**
+         * @member {boolean} - Was source map inlined by data-uri to input CSS.
+         */
         this.inline = this.startWith(this.annotation, 'data:');
 
         let prev = opts.map ? opts.map.prev : undefined;
@@ -14,6 +32,15 @@ export default class PreviousMap {
         if ( text ) this.text = text;
     }
 
+    /**
+     * Create a instance of `SourceMapGenerator` class
+     * from the `source-map` library to work with source map information.
+     *
+     * It is lazy method, so it will create object only on first call
+     * and then it will use cache.
+     *
+     * @return {SourceMapGenerator} object woth source map information
+     */
     consumer() {
         if ( !this.consumerCache ) {
             this.consumerCache = new mozilla.SourceMapConsumer(this.text);
@@ -21,6 +48,11 @@ export default class PreviousMap {
         return this.consumerCache;
     }
 
+    /**
+     * Does source map contains `sourcesContent` with input source text.
+     *
+     * @return {boolean} Is `sourcesContent` present
+     */
     withContent() {
         return !!(this.consumer().sourcesContent &&
                   this.consumer().sourcesContent.length > 0);
@@ -105,6 +137,8 @@ export default class PreviousMap {
     isMap(map) {
         if ( typeof map !== 'object' ) return false;
         return typeof map.mappings === 'string' ||
-            typeof map._mappings === 'string';
+               typeof map._mappings === 'string';
     }
 }
+
+export default PreviousMap;
