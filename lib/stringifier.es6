@@ -1,3 +1,5 @@
+/* eslint-disable valid-jsdoc */
+
 const defaultRaw = {
     colon:         ': ',
     indent:        '    ',
@@ -16,12 +18,31 @@ function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1);
 }
 
-export default class Stringifier {
+/**
+ * @callback builder
+ * @param {string} part          - part of generated CSS connected to this node
+ * @param {Node}   node          - AST node
+ * @param {"start"|"end"} [type] - node’s part type
+ */
 
+/**
+ * Converts PostCSS AST to CSS string.
+ */
+class Stringifier {
+
+    /**
+     * @param {builder} builder - function to concatenate CSS from node’s parts
+     *                            or generate string and source map
+     */
     constructor(builder) {
         this.builder = builder;
     }
 
+    /**
+     * Start stringifing process for node.
+     *
+     * @param {Node} node - start node for stringifing. Usually {@link Root}.
+     */
     stringify(node, semicolon) {
         this[node.type](node, semicolon);
     }
@@ -319,3 +340,5 @@ export default class Stringifier {
     }
 
 }
+
+export default Stringifier;
