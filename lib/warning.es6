@@ -16,7 +16,7 @@ class Warning {
      * @param {number} opts.index  - index in CSS node string that caused
      *                               the warning
      * @param {string} opts.plugin - name of the plugin that created
-     *                               this warning. Node#warn() fill
+     *                               this warning. {@link Node#warn} fills
      *                               this property automatically.
      */
     constructor(text, opts = { }) {
