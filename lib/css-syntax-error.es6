@@ -46,38 +46,65 @@ class CssSyntaxError {
          *                    by `error.name === 'CssSyntaxError'` instead of
          *                    `error instanceof CssSyntaxError`, because
          *                    npm could have several PostCSS versions.
+         *
+         * @example
+         * if ( error.name === 'CssSyntaxError' ) {
+         *   error //=> CssSyntaxError
+         * }
          */
         this.name   = 'CssSyntaxError';
         /**
          * @member {string} - Error message.
+         *
+         * @example
+         * error.message //=> 'Unclosed block'
          */
         this.reason = message;
 
         if ( file ) {
             /**
              * @member {string} - Absolute path to the broken file.
+             *
+             * @example
+             * error.file       //=> 'a.sass'
+             * error.input.file //=> 'a.css'
              */
             this.file = file;
         }
         if ( source ) {
             /**
              * @member {string} - Source code of the broken file.
+             *
+             * @example
+             * error.source       //=> 'a { b {} }'
+             * error.input.column //=> 'a b { }'
              */
             this.source = source;
         }
         if ( plugin ) {
             /**
              * @member {string} - Plugin name, if error came from plugin.
+             *
+             * @example
+             * error.plugin //=> 'postcss-vars'
              */
             this.plugin = plugin;
         }
         if ( typeof line !== 'undefined' && typeof column !== 'undefined' ) {
             /**
              * @member {number} - Source line of the error.
+             *
+             * @example
+             * error.line       //=> 2
+             * error.input.line //=> 4
              */
             this.line   = line;
             /**
              * @member {number} - Source column of the error.
+             *
+             * @example
+             * error.column       //=> 1
+             * error.input.column //=> 4
              */
             this.column = column;
         }
@@ -90,6 +117,13 @@ class CssSyntaxError {
     }
 
     setMessage() {
+        /**
+         * @member {string} - Full error text in the GNU error format
+         *                    with plugin, file, line and column.
+         *
+         * @example
+         * error.message //=> 'a.css:1:1: Unclosed block'
+         */
         this.message  = this.plugin ? this.plugin + ': ' : '';
         this.message += this.file ? this.file : '<css input>';
         if ( typeof this.line !== 'undefined' ) {
@@ -162,9 +196,16 @@ class CssSyntaxError {
     }
 
     /**
-     * @member {string} message - Full error text in the GNU error format
-     *                            with plugin, file, line and column.
      * @memberof CssSyntaxError#
+     * @member {Input} input - Input object with PostCSS internal information
+     *                         about input file. If input has source map
+     *                         from previous tool, PostCSS will use origin
+     *                         (for example, Sass) source. You can use this
+     *                         object to get PostCSS input source.
+     *
+     * @example
+     * error.input.file //=> 'a.css'
+     * error.file       //=> 'a.sass'
      */
 
 }

@@ -24,10 +24,16 @@ class Warning {
          * @member {string} - Type to filter warnings from
          *                    {@link Result#messages}. Always equal
          *                    to `"warning"`.
+         *
+         * @example
+         * const nonWarning = result.messages.filter(i => i.type !== 'warning')
          */
         this.type = 'warning';
         /**
          * @member {string} - The warning message.
+         *
+         * @example
+         * warning.text //=> 'Try to avoid !important'
          */
         this.text = text;
 
@@ -36,11 +42,17 @@ class Warning {
             /**
              * @member {number} - Line in the input file
              *                    with this warning’s source
+             *
+             * @example
+             * warning.line //=> 5
              */
             this.line   = pos.line;
             /**
              * @member {number} - Column in the input file
              *                    with this warning’s source.
+             *
+             * @example
+             * warning.column //=> 6
              */
             this.column = pos.column;
         }
@@ -71,15 +83,21 @@ class Warning {
     }
 
     /**
+     * @memberof Warning#
      * @member {string} plugin - The name of the plugin that created
      *                           it will fill this property automatically.
      *                           this warning. When you call {@link Node#warn}
-     * @memberof Warning#
+     *
+     * @example
+     * warning.plugin //=> 'postcss-important'
      */
 
      /**
-      * @member {Node} node - Contains the CSS node that caused the warning.
       * @memberof Warning#
+      * @member {Node} node - Contains the CSS node that caused the warning.
+      *
+      * @example
+      * warning.node.toString() //=> 'color: white !important'
       */
 
 }
