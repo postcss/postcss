@@ -1,20 +1,133 @@
 import Warning from './warning';
 
-export default class Result {
+/**
+ * @typedef {object} Message
+ * @property {string} type   - message type
+ * @property {string} plugin - source PostCSS plugin name
+ */
 
+/**
+ * Provides the result of the PostCSS transformations.
+ *
+ * A Result instance is returned by {@link LazyResult#then}
+ * or {@link Root#toResult} methods.
+ *
+ * @example
+ * postcss([cssnext]).process(css).then(function (result) {
+ *    console.log(result.css);
+ * });
+ *
+ * @example
+ * var result2 = postcss.parse(css).toResult();
+ */
+class Result {
+
+    /**
+     * @param {Processor} processor - processor used for this transformation.
+     * @param {Root}      root      - Root node after all transformations.
+     * @param {object}    opts      - options from the {@link Processor#process}
+     *                                or {@link Root#toResult}
+     */
     constructor(processor, root, opts) {
+        /**
+         * @member {Processor} - The Processor instance used
+         *                       for this transformation.
+         *
+         * @example
+         * result.processor.plugins.forEach(function (plugin) {
+         *   if ( plugin.postcssPlugin == 'postcss-bad' ) {
+         *     throw 'postcss-good is incompatible with postcss-bad';
+         *   }
+         * });
+         */
         this.processor = processor;
-        this.messages  = [];
-        this.root      = root;
-        this.opts      = opts;
-        this.css       = undefined;
-        this.map       = undefined;
+        /**
+         * @member {Message[]} - Contains messages from plugins
+         *                       (e.g., warnings or custom messages).
+         *                       Each message should have type
+         *                       and plugin properties.
+         *
+         * @example
+         * postcss.plugin('postcss-min-browser', function () {
+         *   return function (css, result) {
+         *     var browsers = detectMinBrowsersByCanIUse(css);
+         *     result.messages.push({
+         *       type:    'min-browser',
+         *       plugin:  'postcss-min-browser',
+         *       browsers: browsers
+         *     });
+         *   };
+         * });
+         */
+        this.messages = [];
+        /**
+         * @member {Root} - Root node after all transformations.
+         *
+         * @example
+         * root.toResult().root == root;
+         */
+        this.root = root;
+        /**
+         * @member {object} - Options from the {@link Processor#process}
+         *                    or {@link Root#toResult} call that produced
+         *                    this Result instance.
+         *
+         * @example
+         * root.toResult(opts).opts == opts;
+         */
+        this.opts = opts;
+        /**
+         * @member {string} - A CSS string representing of {@link Result#root}.
+         *
+         * @example
+         * postcss.parse('a{}').toResult().css //=> "a{}"
+         */
+        this.css = undefined;
+        /**
+         * @member {SourceMapGenerator} - An instance of `SourceMapGenerator`
+         *                                class from the `source-map` library,
+         *                                representing changes
+         *                                to the {@link Result#root} instance.
+         *
+         * @example
+         * result.map.toJSON() //=> { version: 3, file: 'a.css', … }
+         *
+         * @example
+         * if ( result.map ) {
+         *   fs.writeFileSync(result.opts.to + '.map', result.map.toString());
+         * }
+         */
+        this.map = undefined;
     }
 
+    /**
+     * Returns for @{link Result#css} content.
+     *
+     * @example
+     * result + '' === result.css
+     *
+     * @return {string} string representing of {@link Result#root}
+     */
     toString() {
         return this.css;
     }
 
+    /**
+     * Creates an instance of {@link Warning} and adds it
+     * to {@link Result#messages}.
+     *
+     * @param {string} text        - warning message
+     * @param {Object} [opts]      - warning options
+     * @param {Node}   opts.node   - CSS node that caused the warning
+     * @param {string} opts.word   - word in CSS source that caused the warning
+     * @param {number} opts.index  - index in CSS node string that caused
+     *                               the warning
+     * @param {string} opts.plugin - name of the plugin that created
+     *                               this warning. {@link Node#warn} fills
+     *                               this property automatically.
+     *
+     * @return {void}
+     */
     warn(text, opts = { }) {
         if ( !opts.plugin ) {
             if ( this.lastPlugin && this.lastPlugin.postcssPlugin ) {
@@ -25,12 +138,34 @@ export default class Result {
         this.messages.push(new Warning(text, opts));
     }
 
+    /**
+     * Returns warnings from plugins. Filters {@link Warning} instances
+     * from {@link Result#messages}.
+     *
+     * @example
+     * result.warnings().forEach(function (message) {
+     *   console.warn(message.toString());
+     * });
+     *
+     * @return {Warning[]} warnings from plugins
+     */
     warnings() {
         return this.messages.filter( i => i.type === 'warning' );
     }
 
+    /**
+     * An alias for the {@link Result#css} property.
+     * Use it with syntaxes that generate non-CSS output.
+     *
+     * @example
+     * result.css === result.content;
+     *
+     * @type {string}
+     */
     get content() {
         return this.css;
     }
 
 }
+
+export default Result;
