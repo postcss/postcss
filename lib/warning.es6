@@ -21,20 +21,20 @@ class Warning {
      */
     constructor(text, opts = { }) {
         /**
-         * @member {string} - type to filter warnings from
+         * @member {string} - Type to filter warnings from
          *                    {@link Result#messages}. Always equal
          *                    to `"warning"`.
          */
         this.type = 'warning';
         /**
-         * @member {string} - Contains the warning message.
+         * @member {string} - The warning message.
          */
         this.text = text;
 
         if ( opts.node && opts.node.source ) {
             let pos     = opts.node.positionBy(opts);
             /**
-             * @member {number} - line in the input file
+             * @member {number} - Line in the input file
              *                    with this warning’s source
              */
             this.line   = pos.line;
@@ -71,7 +71,7 @@ class Warning {
     }
 
     /**
-     * @member {string} plugin - Contains the name of the plugin that created
+     * @member {string} plugin - The name of the plugin that created
      *                           it will fill this property automatically.
      *                           this warning. When you call {@link Node#warn}
      * @memberof Warning#
