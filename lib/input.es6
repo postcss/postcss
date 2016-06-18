@@ -5,9 +5,34 @@ import path from 'path';
 
 let sequence = 0;
 
-export default class Input {
+/**
+ * @typedef  {object} Position
+ * @property {string} file   - path to file
+ * @property {number} line   - source line in file
+ * @property {number} column - source column in file
+ */
 
+/**
+ * Represents the source CSS.
+ *
+ * @example
+ * const root  = postcss.parse(css, { from: file });
+ * const input = root.source.input;
+ */
+class Input {
+
+    /**
+     * @param {string} css    - input CSS source
+     * @param {object} [opts] - {@link Processor#process} options
+     */
     constructor(css, opts = { }) {
+        /**
+         * @member {string} - input CSS source
+         *
+         * @example
+         * const input = postcss.parse('a{}', { from: file }).input;
+         * input.css //=> "a{}";
+         */
         this.css = css.toString();
 
         if ( this.css[0] === '\uFEFF' || this.css[0] === '\uFFFE' ) {
@@ -16,6 +41,14 @@ export default class Input {
 
         if ( opts.from ) {
             if ( /^\w+:\/\//.test(opts.from) ) {
+                /**
+                 * @member {string} - The absolute path to the CSS source file
+                 *                    defined with the `from` option.
+                 *
+                 * @example
+                 * const root = postcss.parse(css, { from: 'a.css' });
+                 * root.source.input.file //=> '/home/ai/a.css'
+                 */
                 this.file = opts.from;
             } else {
                 this.file = path.resolve(opts.from);
@@ -24,6 +57,14 @@ export default class Input {
 
         let map = new PreviousMap(this.css, opts);
         if ( map.text ) {
+            /**
+             * @member {PreviousMap} - The input source map passed from
+             *                         a compilation step before PostCSS
+             *                         (for example, from Sass compiler).
+             *
+             * @example
+             * root.source.input.map.consumer().sources //=> ['a.sass']
+             */
             this.map = map;
             let file = map.consumer().file;
             if ( !this.file && file ) this.file = this.mapResolve(file);
@@ -31,6 +72,16 @@ export default class Input {
 
         if ( !this.file ) {
             sequence += 1;
+            /**
+             * @member {string} - The unique ID of the CSS source. It will be
+             *                    created if `from` option is not provided
+             *                    (because PostCSS does not know the file path).
+             *
+             * @example
+             * const root = postcss.parse(css);
+             * root.source.input.file //=> undefined
+             * root.source.input.id   //=> "<input css 1>"
+             */
             this.id   = '<input css ' + sequence + '>';
         }
         if ( this.map ) this.map.file = this.from;
@@ -53,6 +104,19 @@ export default class Input {
         return result;
     }
 
+    /**
+     * Reads the input source map and returns a symbol position
+     * in the input source (e.g., in a Sass file that was compiled
+     * to CSS before being passed to PostCSS).
+     *
+     * @param {number} line   - line in input CSS
+     * @param {number} column - column in input CSS
+     *
+     * @return {Position} position in input source
+     *
+     * @example
+     * root.source.input.origin(1, 1) //=> { file: 'a.css', line: 3, column: 1 }
+     */
     origin(line, column) {
         if ( !this.map ) return false;
         let consumer = this.map.consumer();
@@ -80,8 +144,22 @@ export default class Input {
         }
     }
 
+    /**
+     * The CSS source identifier. Contains {@link Input#file} if the user
+     * set the `from` option, or {@link Input#id} if they did not.
+     * @type {string}
+     *
+     * @example
+     * var root  = postcss.parse(css, { from: 'a.css' });
+     * root.source.input.from //=> "/home/ai/a.css"
+     *
+     * var root  = postcss.parse(css);
+     * root.source.input.from //=> "<input css 1>"
+     */
     get from() {
         return this.file || this.id;
     }
 
 }
+
+export default Input;
