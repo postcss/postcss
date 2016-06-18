@@ -83,7 +83,13 @@ gulp.task('api', done => {
                 includePattern: '.+\\.es6$'
             },
             opts: {
+                template: 'node_modules/docdash',
                 destination: './api/'
+            },
+            templates: {
+                default: {
+                    layoutFile: 'node_modules/docdash/tmpl/layout.tmpl'
+                }
             }
         }, done));
 });
