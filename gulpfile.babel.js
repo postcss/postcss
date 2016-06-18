@@ -86,6 +86,7 @@ gulp.task('api', done => {
                 template: 'node_modules/docdash',
                 destination: './api/'
             },
+            plugins: ['plugins/markdown'],
             templates: {
                 default: {
                     layoutFile: 'node_modules/docdash/tmpl/layout.tmpl'
