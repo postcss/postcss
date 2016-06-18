@@ -123,10 +123,10 @@ class Result {
      * @param {number} opts.index  - index in CSS node string that caused
      *                               the warning
      * @param {string} opts.plugin - name of the plugin that created
-     *                               this warning. {@link Node#warn} fills
+     *                               this warning. {@link Result#warn} fills
      *                               this property automatically.
      *
-     * @return {void}
+     * @return {Warning} created warning
      */
     warn(text, opts = { }) {
         if ( !opts.plugin ) {
@@ -135,7 +135,10 @@ class Result {
             }
         }
 
-        this.messages.push(new Warning(text, opts));
+        let warning = new Warning(text, opts);
+        this.messages.push(warning);
+
+        return warning;
     }
 
     /**

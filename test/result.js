@@ -11,19 +11,20 @@ test('stringifies', t => {
 });
 
 test('adds warning', t => {
+    let warning;
     let plugin = postcss.plugin('test-plugin', () => {
         return (css, res) => {
-            res.warn('test', { node: css.first });
+            warning = res.warn('test', { node: css.first });
         };
     });
     let result = postcss([plugin]).process('a{}').sync();
 
-    t.deepEqual(result.messages, [
-        new Warning('test', {
-            plugin: 'test-plugin',
-            node:   result.root.first
-        })
-    ]);
+    t.deepEqual(warning, new Warning('test', {
+        plugin: 'test-plugin',
+        node:   result.root.first
+    }));
+
+    t.deepEqual(result.messages, [warning]);
 });
 
 test('allows to override plugin', t => {
