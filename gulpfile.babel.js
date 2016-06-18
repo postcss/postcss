@@ -43,12 +43,6 @@ gulp.task('lint', () => {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('spellcheck', () => {
-    let shell = require('gulp-shell');
-    return gulp.src(['*.md', 'docs/**/*.md'], { read: false })
-        .pipe(shell('yaspeller <%= file.path %>'));
-});
-
 // Tests
 
 gulp.task('test', ['compile'], () => {
@@ -99,4 +93,4 @@ gulp.task('api', done => {
 
 gulp.task('offline', ['version', 'lint', 'test', 'api']);
 
-gulp.task('default', ['offline', 'spellcheck', 'integration']);
+gulp.task('default', ['offline', 'integration']);

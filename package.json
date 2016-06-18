@@ -41,7 +41,6 @@
     "babel-core":                        "6.9.1",
     "gulp-babel":                        "6.1.2",
     "strip-ansi":                        "3.0.1",
-    "gulp-shell":                        "0.5.2",
     "yaspeller":                         "2.8.0",
     "gulp-ava":                          "0.12.1",
     "fs-extra":                          "0.30.0",
@@ -53,7 +52,7 @@
     "del":                               "2.2.0"
   },
   "scripts": {
-    "test": "gulp"
+    "test": "gulp && yaspeller *.md docs/**/*.md"
   },
   "main": "lib/postcss"
 }
