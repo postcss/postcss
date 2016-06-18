@@ -51,16 +51,19 @@ test('error() highlights word in multiline string', t => {
 });
 
 test('warn() attaches a warning to the result object', t => {
+    let warning;
     let warner = postcss.plugin('warner', () => {
         return (css, result) => {
-            css.first.warn(result, 'FIRST!');
+            warning = css.first.warn(result, 'FIRST!');
         };
     });
 
-    let result = postcss([ warner() ]).process('a{}');
-    t.deepEqual(result.warnings().length,    1);
-    t.deepEqual(result.warnings()[0].text,   'FIRST!');
-    t.deepEqual(result.warnings()[0].plugin, 'warner');
+    return postcss([warner]).process('a{}').then(result => {
+        t.deepEqual(warning.type,   'warning');
+        t.deepEqual(warning.text,   'FIRST!');
+        t.deepEqual(warning.plugin, 'warner');
+        t.deepEqual(result.warnings(), [warning]);
+    });
 });
 
 test('warn() accepts options', t => {
