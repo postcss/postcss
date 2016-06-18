@@ -150,10 +150,10 @@ class Input {
      * @type {string}
      *
      * @example
-     * var root  = postcss.parse(css, { from: 'a.css' });
+     * const root = postcss.parse(css, { from: 'a.css' });
      * root.source.input.from //=> "/home/ai/a.css"
      *
-     * var root  = postcss.parse(css);
+     * const root = postcss.parse(css);
      * root.source.input.from //=> "<input css 1>"
      */
     get from() {
