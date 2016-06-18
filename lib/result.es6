@@ -159,11 +159,10 @@ class Result {
     /**
      * An alias for the {@link Result#css} property.
      * Use it with syntaxes that generate non-CSS output.
+     * @type {string}
      *
      * @example
      * result.css === result.content;
-     *
-     * @type {string}
      */
     get content() {
         return this.css;
