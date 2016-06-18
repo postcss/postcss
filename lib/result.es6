@@ -1,7 +1,7 @@
 import Warning from './warning';
 
 /**
- * @typedef {object} Message
+ * @typedef  {object} Message
  * @property {string} type   - message type
  * @property {string} plugin - source PostCSS plugin name
  */
@@ -34,8 +34,8 @@ class Result {
          *                       for this transformation.
          *
          * @example
-         * result.processor.plugins.forEach(function (plugin) {
-         *   if ( plugin.postcssPlugin == 'postcss-bad' ) {
+         * for ( let plugin of result.processor.plugins) {
+         *   if ( plugin.postcssPlugin === 'postcss-bad' ) {
          *     throw 'postcss-good is incompatible with postcss-bad';
          *   }
          * });
@@ -48,8 +48,8 @@ class Result {
          *                       and plugin properties.
          *
          * @example
-         * postcss.plugin('postcss-min-browser', function () {
-         *   return function (css, result) {
+         * postcss.plugin('postcss-min-browser', () => {
+         *   return (css, result) => {
          *     var browsers = detectMinBrowsersByCanIUse(css);
          *     result.messages.push({
          *       type:    'min-browser',
@@ -146,8 +146,8 @@ class Result {
      * from {@link Result#messages}.
      *
      * @example
-     * result.warnings().forEach(function (message) {
-     *   console.warn(message.toString());
+     * result.warnings().forEach(warn => {
+     *   console.warn(warn.toString());
      * });
      *
      * @return {Warning[]} warnings from plugins
