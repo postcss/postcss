@@ -8,7 +8,25 @@ function isPromise(obj) {
     return typeof obj === 'object' && typeof obj.then === 'function';
 }
 
-export default class LazyResult {
+/**
+ * @callback onFulfilled
+ * @param {Result} result
+ */
+
+ /**
+  * @callback onRejected
+  * @param {Error} error
+  */
+
+/**
+ * A Promise proxy for the result of PostCSS transformations.
+ *
+ * A `LazyResult` instance is returned by {@link Processor#process}.
+ *
+ * @example
+ * const lazy = postcss([cssnext]).process(css);
+ */
+class LazyResult {
 
     constructor(processor, css, opts) {
         this.stringified = false;
@@ -40,46 +58,166 @@ export default class LazyResult {
         this.result = new Result(processor, root, opts);
     }
 
+    /**
+     * Returns a {@link Processor} instance, which will be used
+     * for CSS transformations.
+     * @type {Processor}
+     */
     get processor() {
         return this.result.processor;
     }
 
+    /**
+     * Options from the {@link Processor#process} call.
+     * @type {object}
+     */
     get opts() {
         return this.result.opts;
     }
 
+    /**
+     * Processes input CSS through synchronous plugins, converts `Root`
+     * to a CSS string and returns {@link Result#css}.
+     *
+     * This property will only work with synchronous plugins.
+     * If the processor contains any asynchronous plugins
+     * it will throw an error. This is why this method is only
+     * for debug purpose, you should always use {@link LazyResult#then}.
+     *
+     * @type {string}
+     * @see Result#css
+     */
     get css() {
         return this.stringify().css;
     }
 
+    /**
+     * An alias for the `css` property. Use it with syntaxes
+     * that generate non-CSS output.
+     *
+     * This property will only work with synchronous plugins.
+     * If the processor contains any asynchronous plugins
+     * it will throw an error. This is why this method is only
+     * for debug purpose, you should always use {@link LazyResult#then}.
+     *
+     * @type {string}
+     * @see Result#content
+     */
     get content() {
         return this.stringify().content;
     }
 
+    /**
+     * Processes input CSS through synchronous plugins
+     * and returns {@link Result#map}.
+     *
+     * This property will only work with synchronous plugins.
+     * If the processor contains any asynchronous plugins
+     * it will throw an error. This is why this method is only
+     * for debug purpose, you should always use {@link LazyResult#then}.
+     *
+     * @type {SourceMapGenerator}
+     * @see Result#map
+     */
     get map() {
         return this.stringify().map;
     }
 
+    /**
+     * Processes input CSS through synchronous plugins
+     * and returns {@link Result#root}.
+     *
+     * This property will only work with synchronous plugins. If the processor
+     * contains any asynchronous plugins it will throw an error.
+     *
+     * This is why this method is only for debug purpose,
+     * you should always use {@link LazyResult#then}.
+     *
+     * @type {Root}
+     * @see Result#root
+     */
     get root() {
         return this.sync().root;
     }
 
+    /**
+     * Processes input CSS through synchronous plugins
+     * and returns {@link Result#messages}.
+     *
+     * This property will only work with synchronous plugins. If the processor
+     * contains any asynchronous plugins it will throw an error.
+     *
+     * This is why this method is only for debug purpose,
+     * you should always use {@link LazyResult#then}.
+     *
+     * @type {Message[]}
+     * @see Result#messages
+     */
     get messages() {
         return this.sync().messages;
     }
 
+    /**
+     * Processes input CSS through synchronous plugins
+     * and calls {@link Result#warnings()}.
+     *
+     * @return {Warning[]} warnings from plugins
+     */
     warnings() {
         return this.sync().warnings();
     }
 
+    /**
+     * Alias for the {@link LazyResult#css} property.
+     *
+     * @example
+     * lazy + '' === lazy.css;
+     *
+     * @return {string} output CSS
+     */
     toString() {
         return this.css;
     }
 
+    /**
+     * Processes input CSS through synchronous and asynchronous plugins
+     * and calls `onFulfilled` with a Result instance. If a plugin throws
+     * an error, the `onRejected` callback will be executed.
+     *
+     * It implements standard Promise API.
+     *
+     * @param {onFulfilled} onFulfilled - callback will be executed
+     *                                    when all plugins will finish work
+     * @param {onRejected}  onRejected  - callback will be execited on any error
+     *
+     * @return {Promise} Promise API to make queue
+     *
+     * @example
+     * postcss([cssnext]).process(css).then(result => {
+     *   console.log(result.css);
+     * });
+     */
     then(onFulfilled, onRejected) {
         return this.async().then(onFulfilled, onRejected);
     }
 
+    /**
+     * Processes input CSS through synchronous and asynchronous plugins
+     * and calls onRejected for each error thrown in any plugin.
+     *
+     * It implements standard Promise API.
+     *
+     * @param {onRejected} onRejected - callback will be execited on any error
+     *
+     * @return {Promise} Promise API to make queue
+     *
+     * @example
+     * postcss([cssnext]).process(css).then(result => {
+     *   console.log(result.css);
+     * }).catch(error => {
+     *   console.error(error);
+     * });
+     */
     catch(onRejected) {
         return this.async().catch(onRejected);
     }
@@ -218,3 +356,5 @@ export default class LazyResult {
     }
 
 }
+
+export default LazyResult;
