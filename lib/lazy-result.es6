@@ -13,10 +13,10 @@ function isPromise(obj) {
  * @param {Result} result
  */
 
- /**
-  * @callback onRejected
-  * @param {Error} error
-  */
+/**
+ * @callback onRejected
+ * @param {Error} error
+ */
 
 /**
  * A Promise proxy for the result of PostCSS transformations.
@@ -69,7 +69,7 @@ class LazyResult {
 
     /**
      * Options from the {@link Processor#process} call.
-     * @type {object}
+     * @type {processOptions}
      */
     get opts() {
         return this.result.opts;

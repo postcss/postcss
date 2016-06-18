@@ -25,7 +25,7 @@ class Result {
     /**
      * @param {Processor} processor - processor used for this transformation.
      * @param {Root}      root      - Root node after all transformations.
-     * @param {object}    opts      - options from the {@link Processor#process}
+     * @param {processOptions} opts - options from the {@link Processor#process}
      *                                or {@link Root#toResult}
      */
     constructor(processor, root, opts) {
@@ -68,9 +68,9 @@ class Result {
          */
         this.root = root;
         /**
-         * @member {object} - Options from the {@link Processor#process}
-         *                    or {@link Root#toResult} call that produced
-         *                    this Result instance.
+         * @member {processOptions} - Options from the {@link Processor#process}
+         *                            or {@link Root#toResult} call
+         *                            that produced this Result instance.
          *
          * @example
          * root.toResult(opts).opts == opts;

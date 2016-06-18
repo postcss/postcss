@@ -17,8 +17,8 @@ import   fs       from 'fs';
 class PreviousMap {
 
     /**
-     * @param {string} css    - input CSS source
-     * @param {object} [opts] - {@link Processor#process} options
+     * @param {string}         css    - input CSS source
+     * @param {processOptions} [opts] - {@link Processor#process} options
      */
     constructor(css, opts) {
         this.loadAnnotation(css);
