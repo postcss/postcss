@@ -3,6 +3,7 @@
   "extends": "eslint-config-postcss",
   "rules": {
     "consistent-return": [0],
+    "valid-jsdoc":       [2],
     "complexity":        [0]
   },
   "env": {

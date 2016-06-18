@@ -9,8 +9,8 @@
 class Warning {
 
     /**
-     * @param {string} text - warning message
-     * @param {Object} opts - warning options
+     * @param {string} text        - warning message
+     * @param {Object} [opts]      - warning options
      * @param {Node}   opts.node   - CSS node that caused the warning
      * @param {string} opts.word   - word in CSS source that caused the warning
      * @param {number} opts.index  - index in CSS node string that caused
@@ -49,12 +49,12 @@ class Warning {
     }
 
     /**
-     * Returns a string with the error position and message.
+     * Returns a warning position and message.
      *
      * @example
      * warning.toString() //=> 'postcss-lint:a.css:10:14: Avoid !important'
      *
-     * @return {string}
+     * @return {string} warning position and message
      */
     toString() {
         if ( this.node ) {
