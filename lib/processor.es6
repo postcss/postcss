@@ -1,9 +1,36 @@
 import LazyResult  from './lazy-result';
 
 /**
+ * @callback builder
+ * @param {string} part          - part of generated CSS connected to this node
+ * @param {Node}   node          - AST node
+ * @param {"start"|"end"} [type] - node’s part type
+ */
+
+/**
+ * @callback parser
+ *
+ * @param {string|toString} css   - string with input CSS or any object
+ *                                  with toString() method, like a Buffer
+ * @param {processOptions} [opts] - options with only `from` and `map` keys
+ *
+ * @return {Root} PostCSS AST
+ */
+
+ /**
+  * @callback stringifier
+  *
+  * @param {Node} node       - start node for stringifing. Usually {@link Root}.
+  * @param {builder} builder - function to concatenate CSS from node’s parts
+  *                            or generate string and source map
+  *
+  * @return {void}
+  */
+
+/**
  * @typedef {object} Syntax
- * @property {function} parse        - function to generate AST by string
- * @property {Stringifier} stringify - class to generate string by AST
+ * @property {parser} parse          - function to generate AST by string
+ * @property {stringifier} stringify - function to generate string by AST
  */
 
 /**
@@ -31,8 +58,8 @@ import LazyResult  from './lazy-result';
  * @property {string} to               - the path where you’ll put the output
  *                                       CSS file. You should always set `to`
  *                                       to generate correct source maps.
- * @property {function} parser         - function to generate AST by string
- * @property {Stringifier} stringifier - class to generate string by AST
+ * @property {parser} parser           - function to generate AST by string
+ * @property {stringifier} stringifier - class to generate string by AST
  * @property {Syntax} syntax           - object with `parse` and `stringify`
  * @property {object} map              - source map options
  * @property {boolean} map.inline                    - does source map should
