@@ -69,7 +69,7 @@ gulp.task('version', ['build:lib'], () => {
 
 // Docs
 
-gulp.task('api', done => {
+gulp.task('api', ['clean'], done => {
     let jsdoc = require('gulp-jsdoc3');
     gulp.src('lib/*.es6', { read: false })
         .pipe(jsdoc({
