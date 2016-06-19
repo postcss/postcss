@@ -1,3 +1,12 @@
+/**
+ * Contains helpers for safely splitting lists of CSS values,
+ * preserving parentheses and quotes.
+ *
+ * @example
+ * const list = postcss.list;
+ *
+ * @namespace list
+ */
 let list = {
 
     split(string, separators, last) {
@@ -43,11 +52,34 @@ let list = {
         return array;
     },
 
+    /**
+     * Safely splits space-separated values (such as those for `background`,
+     * `border-radius`, and other shorthand properties).
+     *
+     * @param {string} string - space-separated values
+     *
+     * @return {string[]} splitted values
+     *
+     * @example
+     * postcss.list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
+     */
     space(string) {
         let spaces = [' ', '\n', '\t'];
         return list.split(string, spaces);
     },
 
+    /**
+     * Safely splits comma-separated values (such as those for `transition-*`
+     * and `background` properties).
+     *
+     * @param {string} string - comma-separated values
+     *
+     * @return {string[]} splitted values
+     *
+     * @example
+     * postcss.list.comma('black, linear-gradient(white, black)')
+     * //=> ['black', 'linear-gradient(white, black)']
+     */
     comma(string) {
         let comma = ',';
         return list.split(string, [comma], true);
