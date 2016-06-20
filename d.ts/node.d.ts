@@ -9,6 +9,10 @@ export default class Node implements postcss.Node {
      */
     type: string;
     /**
+     * Unique node ID
+     */
+    id: string;
+    /**
      * Contains information to generate byte-to-byte equal node string as it
      * was in origin input.
      */

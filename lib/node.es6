@@ -1,6 +1,7 @@
 import CssSyntaxError from './css-syntax-error';
 import Stringifier    from './stringifier';
 import stringify      from './stringify';
+import uuid           from 'node-uuid';
 import warnOnce       from './warn-once';
 
 let cloneNode = function (obj, parent) {
@@ -31,6 +32,7 @@ export default class Node {
 
     constructor(defaults = { }) {
         this.raws = { };
+        this.id = uuid.v1();
         for ( let name in defaults ) {
             this[name] = defaults[name];
         }
