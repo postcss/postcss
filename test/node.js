@@ -266,11 +266,14 @@ test('toJSON() cleans parents inside', t => {
     let json = rule.toJSON();
     t.deepEqual(typeof json.parent, 'undefined');
     t.deepEqual(typeof json.nodes[0].parent, 'undefined');
+    let ruleId = rule.id;
+    let nodeId = rule.nodes[0].id;
+    let expected = '{"raws":{},"id":"' + ruleId + '",' +
+    '"selector":"a","type":"rule","nodes":[' +
+    '{"raws":{},"id":"' + nodeId + '",' +
+    '"prop":"color","value":"b","type":"decl"}]}';
 
-    t.deepEqual(JSON.stringify(rule),
-        '{"raws":{},"selector":"a","type":"rule","nodes":[' +
-            '{"raws":{},"prop":"color","value":"b","type":"decl"}' +
-        ']}');
+    t.deepEqual(JSON.stringify(rule), expected);
 });
 
 test('toJSON() converts custom properties', t => {
@@ -284,6 +287,7 @@ test('toJSON() converts custom properties', t => {
 
     t.deepEqual(root.toJSON(), {
         type:   'root',
+        id: root.id,
         nodes:  [],
         raws:   { },
         _hack:  'hack',
