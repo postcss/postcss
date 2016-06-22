@@ -52,7 +52,7 @@
     "del":                               "2.2.0"
   },
   "scripts": {
-    "test": "gulp && yaspeller -e '.md' ./docs/"
+    "test": "gulp && yaspeller -e '.md' ./docs/**/"
   },
   "main": "lib/postcss"
 }
