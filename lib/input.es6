@@ -6,7 +6,7 @@ import path from 'path';
 let sequence = 0;
 
 /**
- * @typedef  {object} Position
+ * @typedef  {object} filePosition
  * @property {string} file   - path to file
  * @property {number} line   - source line in file
  * @property {number} column - source column in file
@@ -112,7 +112,7 @@ class Input {
      * @param {number} line   - line in input CSS
      * @param {number} column - column in input CSS
      *
-     * @return {Position} position in input source
+     * @return {filePosition} position in input source
      *
      * @example
      * root.source.input.origin(1, 1) //=> { file: 'a.css', line: 3, column: 1 }
