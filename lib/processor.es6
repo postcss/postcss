@@ -28,7 +28,7 @@ import LazyResult  from './lazy-result';
   */
 
 /**
- * @typedef {object} Syntax
+ * @typedef {object} syntax
  * @property {parser} parse          - function to generate AST by string
  * @property {stringifier} stringify - function to generate string by AST
  */
@@ -60,7 +60,7 @@ import LazyResult  from './lazy-result';
  *                                       to generate correct source maps.
  * @property {parser} parser           - function to generate AST by string
  * @property {stringifier} stringifier - class to generate string by AST
- * @property {Syntax} syntax           - object with `parse` and `stringify`
+ * @property {syntax} syntax           - object with `parse` and `stringify`
  * @property {object} map              - source map options
  * @property {boolean} map.inline                    - does source map should
  *                                                     be embedded in the output
