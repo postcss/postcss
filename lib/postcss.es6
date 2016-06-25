@@ -186,7 +186,7 @@ postcss.list = list;
  * @return {Comment} new Comment node
  *
  * @example
- * postcss.comment({ text: 'test' }).toString() //=> "/* test *&#47;"
+ * postcss.comment({ text: 'test' })
  */
 postcss.comment = defaults => new Comment(defaults);
 
