@@ -17,15 +17,15 @@ import LazyResult  from './lazy-result';
  * @return {Root} PostCSS AST
  */
 
- /**
-  * @callback stringifier
-  *
-  * @param {Node} node       - start node for stringifing. Usually {@link Root}.
-  * @param {builder} builder - function to concatenate CSS from node’s parts
-  *                            or generate string and source map
-  *
-  * @return {void}
-  */
+/**
+ * @callback stringifier
+ *
+ * @param {Node} node       - start node for stringifing. Usually {@link Root}.
+ * @param {builder} builder - function to concatenate CSS from node’s parts
+ *                            or generate string and source map
+ *
+ * @return {void}
+ */
 
 /**
  * @typedef {object} syntax
