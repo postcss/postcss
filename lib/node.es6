@@ -536,6 +536,40 @@ class Node {
        * decl.source.end        //=> { line: 10, column: 12 }
        */
 
+       /**
+        * @memberof Node#
+        * @member {object} raws - Information to generate byte-to-byte equal
+        *                         node string as it was in the origin input.
+        *
+        * Every parser saves its own properties,
+        * but the default CSS parser uses:
+        *
+        * * `before`: the space symbols before the node. It also stores `*`
+        *   and `_` symbols before the declaration (IE hack).
+        * * `after`: the space symbols after the last child of the node
+        *   to the end of the node.
+        * * `between`: the symbols between the property and value
+        *   for declarations, selector and `{` for rules, or last parameter
+        *   and `{` for at-rules.
+        * * `semicolon`: contains true if the last child has
+        *   an (optional) semicolon.
+        * * `afterName`: the space between the at-rule name and its parameters.
+        * * `left`: the space symbols between `/*` and the comment’s text.
+        * * `right`: the space symbols between the comment’s text
+        *   and <code>*&#47;</code>.
+        * * `important`: the content of the important statement,
+        *   if it is not just `!important`.
+        *
+        * PostCSS cleans selectors, declaration values and at-rule parameters
+        * from comments and extra spaces, but it stores origin content in raws
+        * properties. As such, if you don’t change a declaration’s value,
+        * PostCSS will use the raw value with comments.
+        *
+        * @example
+        * const root = postcss.parse('a {\n  color:black\n}')
+        * root.first.first.raws //=> { before: '\n  ', between: ':' }
+        */
+
 }
 
 export default Node;
