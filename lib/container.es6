@@ -32,6 +32,10 @@ function cleanSource(nodes) {
  *
  * Note that all containers can store any content. If you write a rule inside
  * a rule, PostCSS will parse it.
+ *
+ * @extends Node
+ * @abstract
+ * @ignore
  */
 class Container extends Node {
 
