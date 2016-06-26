@@ -92,13 +92,13 @@ class Warning {
      * warning.plugin //=> 'postcss-important'
      */
 
-     /**
-      * @memberof Warning#
-      * @member {Node} node - Contains the CSS node that caused the warning.
-      *
-      * @example
-      * warning.node.toString() //=> 'color: white !important'
-      */
+    /**
+     * @memberof Warning#
+     * @member {Node} node - Contains the CSS node that caused the warning.
+     *
+     * @example
+     * warning.node.toString() //=> 'color: white !important'
+     */
 
 }
 

@@ -36,7 +36,6 @@ class Comment extends Node {
         this.raws.right = val;
     }
 
-
     /**
      * @memberof Comment#
      * @member {object} raws - Information to generate byte-to-byte equal

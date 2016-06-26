@@ -80,21 +80,21 @@ class Root extends Container {
         return this.source.input.map;
     }
 
-   /**
-    * @memberof Root#
-    * @member {object} raws - Information to generate byte-to-byte equal
-    *                         node string as it was in the origin input.
-    *
-    * Every parser saves its own properties,
-    * but the default CSS parser uses:
-    *
-    * * `after`: the space symbols after the last child to the end of file.
-    * * `semicolon`: is the last child has an (optional) semicolon.
-    *
-    * @example
-    * postcss.parse('a {}\n').raws //=> { after: '\n' }
-    * postcss.parse('a {}').raws   //=> { after: '' }
-    */
+    /**
+     * @memberof Root#
+     * @member {object} raws - Information to generate byte-to-byte equal
+     *                         node string as it was in the origin input.
+     *
+     * Every parser saves its own properties,
+     * but the default CSS parser uses:
+     *
+     * * `after`: the space symbols after the last child to the end of file.
+     * * `semicolon`: is the last child has an (optional) semicolon.
+     *
+     * @example
+     * postcss.parse('a {}\n').raws //=> { after: '\n' }
+     * postcss.parse('a {}').raws   //=> { after: '' }
+     */
 
 }
 
