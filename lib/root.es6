@@ -1,7 +1,17 @@
 import Container from './container';
 import warnOnce  from './warn-once';
 
-export default class Root extends Container {
+/**
+ * Represents a CSS file and contains all its parsed nodes.
+ *
+ * @extends Container
+ *
+ * @example
+ * const root = postcss.parse('a{color:black} b{z-index:2}');
+ * root.type         //=> 'root'
+ * root.nodes.length //=> 2
+ */
+class Root extends Container {
 
     constructor(defaults) {
         super(defaults);
@@ -39,6 +49,19 @@ export default class Root extends Container {
         return nodes;
     }
 
+    /**
+     * Returns a {@link Result} instance representing the root’s CSS.
+     *
+     * @param {processOptions} [opts] - options with only `to` and `map` keys
+     *
+     * @return {Result} result with current root’s CSS
+     *
+     * @example
+     * const root1 = postcss.parse(css1, { from: 'a.css' });
+     * const root2 = postcss.parse(css2, { from: 'b.css' });
+     * root1.append(root2);
+     * const result = root1.toResult({ to: 'all.css', map: true });
+     */
     toResult(opts = { }) {
         let LazyResult = require('./lazy-result');
         let Processor  = require('./processor');
@@ -57,4 +80,23 @@ export default class Root extends Container {
         return this.source.input.map;
     }
 
+
+   /**
+    * @memberof Node#
+    * @member {object} raws - Information to generate byte-to-byte equal
+    *                         node string as it was in the origin input.
+    *
+    * Every parser saves its own properties,
+    * but the default CSS parser uses:
+    *
+    * * `after`: the space symbols after the last child to the end of file
+    * * `semicolon`: is the last child has an (optional) semicolon.
+    *
+    * @example
+    * postcss.parse('a {}\n').raws //=> { after: '\n' }
+    * postcss.parse('a {}').raws   //=> { after: '' }
+    */
+
 }
+
+export default Root;
