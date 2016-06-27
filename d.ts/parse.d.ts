@@ -1,5 +1,5 @@
 import LazyResult from './lazy-result';
-import postcss from './postcss';
+import * as postcss from './postcss';
 import Result from './result';
 import Root from './root';
 /**

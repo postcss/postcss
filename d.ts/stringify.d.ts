@@ -1,5 +1,5 @@
 import Stringifier from './stringifier';
-import postcss from './postcss';
+import * as postcss from './postcss';
 import Node from './node';
 /**
  * Default function to convert a node tree into a CSS string.

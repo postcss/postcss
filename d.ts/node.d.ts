@@ -1,6 +1,6 @@
 import Container from './container';
 import CssSyntaxError from './css-syntax-error';
-import postcss from './postcss';
+import * as postcss from './postcss';
 import Result from './result';
 export default class Node implements postcss.Node {
     /**

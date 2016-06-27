@@ -1,4 +1,4 @@
-import postcss from './postcss';
+import * as postcss from './postcss';
 import Node from './node';
 export default class Declaration extends Node implements postcss.Declaration {
     /**
