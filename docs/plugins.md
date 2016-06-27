@@ -320,6 +320,7 @@ See also plugins in modular minifier [`cssnano`].
 ## Others
 
 * [`postcss-autoreset`]  automatically adds reset styles.
+* [`postcss-camelcaser`] transforms selectors to camelcase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-currency`] replaces name of currency with symbols.
@@ -643,3 +644,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-grid-fluid`]:                https://github.com/francoisromain/postcss-grid-fluid
 [`postcss-grid-system`]:               https://github.com/francoisromain/postcss-grid-system
 [`postcss-placehold`]:                 https://github.com/awayken/postcss-placehold
+[`postcss-camelcaser`]:                https://github.com/GMchris/postcss-camelcaser
