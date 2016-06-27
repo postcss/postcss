@@ -23,7 +23,7 @@ function cleanSource(nodes) {
   * @callback childIterator
   * @param {Node} node    - container child
   * @param {number} index - child index
-  * @return {boolean}
+  * @return {false|undefined} returning `false` will break iteration
   */
 
 /**
