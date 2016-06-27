@@ -95,6 +95,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
+[`postcss-material-shadow-helper`]: https://github.com/HarrisRobin/postcss-material-shadow-helper.git
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
 [`react-css-modules`]:        https://github.com/gajus/react-css-modules
 [`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
