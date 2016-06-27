@@ -61,7 +61,7 @@ class Container extends Node {
      *
      * @param {childIterator} callback - iterator receives each node and index
      *
-     * @return {boolean} returns `false` if iteration was broke
+     * @return {false|undefined} returns `false` if iteration was broke
      *
      * @example
      * const root = postcss.parse('a { color: black; z-index: 1 }');
@@ -114,7 +114,7 @@ class Container extends Node {
      *
      * @param {childIterator} callback - iterator receives each node and index
      *
-     * @return {boolean} returns `false` if iteration was broke
+     * @return {false|undefined} returns `false` if iteration was broke
      *
      * @example
      * root.walk(node => {
@@ -145,7 +145,7 @@ class Container extends Node {
      *                                   to filter declarations by property name
      * @param {childIterator} callback - iterator receives each node and index
      *
-     * @return {boolean} returns `false` if iteration was broke
+     * @return {false|undefined} returns `false` if iteration was broke
      *
      * @example
      * root.walkDecls(decl => {
@@ -197,7 +197,7 @@ class Container extends Node {
      *                                     to filter rules by selector
      * @param {childIterator} callback   - iterator receives each node and index
      *
-     * @return {boolean} returns `false` if iteration was broke
+     * @return {false|undefined} returns `false` if iteration was broke
      *
      * @example
      * const selectors = [];
@@ -244,7 +244,7 @@ class Container extends Node {
      *                                   to filter at-rules by name
      * @param {childIterator} callback - iterator receives each node and index
      *
-     * @return {boolean} returns `false` if iteration was broke
+     * @return {false|undefined} returns `false` if iteration was broke
      *
      * @example
      * root.walkAtRules(rule => {
@@ -292,7 +292,7 @@ class Container extends Node {
      *
      * @param {childIterator} callback - iterator receives each node and index
      *
-     * @return {boolean} returns `false` if iteration was broke
+     * @return {false|undefined} returns `false` if iteration was broke
      *
      * @example
      * root.walkComments(comment => {
