@@ -1,4 +1,4 @@
-import postcss from './postcss';
+import * as postcss from './postcss';
 export default class CssSyntaxError implements postcss.CssSyntaxError, SyntaxError {
     /**
      * Contains full error text in the GNU error format.

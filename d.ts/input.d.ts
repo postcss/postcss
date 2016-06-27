@@ -1,7 +1,7 @@
 import CssSyntaxError from './css-syntax-error';
 import PreviousMap from './previous-map';
 import LazyResult from './lazy-result';
-import postcss from './postcss';
+import * as postcss from './postcss';
 import Result from './result';
 export default class Input implements postcss.Input {
     /**

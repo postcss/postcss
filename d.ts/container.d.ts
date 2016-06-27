@@ -1,5 +1,5 @@
 import Comment from './comment';
-import postcss from './postcss';
+import * as postcss from './postcss';
 import AtRule from './at-rule';
 import Node from './node';
 import Rule from './rule';
