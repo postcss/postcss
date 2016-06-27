@@ -38,6 +38,11 @@ class Comment extends Node {
 
     /**
      * @memberof Comment#
+     * @member {string} text - the comment’s text
+     */
+
+    /**
+     * @memberof Comment#
      * @member {object} raws - Information to generate byte-to-byte equal
      *                         node string as it was in the origin input.
      *
@@ -47,11 +52,6 @@ class Comment extends Node {
      * * `before`: the space symbols before the node.
      * * `left`: the space symbols between `/*` and the comment’s text.
      * * `right`: the space symbols between the comment’s text.
-     */
-
-    /**
-     * @memberof Comment#
-     * @member {string} text - the comment’s text
      */
 }
 
