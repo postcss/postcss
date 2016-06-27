@@ -58,6 +58,28 @@ class AtRule extends Container {
 
     /**
      * @memberof AtRule#
+     * @member {string} name - the at-rule’s name immediately follows the `@`
+     *
+     * @example
+     * const root  = postcss.parse('@media print {}');
+     * media.name //=> 'media'
+     * const media = root.first;
+     */
+
+    /**
+     * @memberof AtRule#
+     * @member {string} params - the at-rule’s parameters, the values
+     *                           that follow the at-rule’s name but precede
+     *                           any {} block
+     *
+     * @example
+     * const root  = postcss.parse('@media print, screen {}');
+     * const media = root.first;
+     * media.params //=> 'print, screen'
+     */
+
+    /**
+     * @memberof AtRule#
      * @member {object} raws - Information to generate byte-to-byte equal
      *                         node string as it was in the origin input.
      *
@@ -86,28 +108,6 @@ class AtRule extends Container {
      *                       //     between: ' ',
      *                       //     afterName: '\n',
      *                       //     after: '\n' }
-     */
-
-    /**
-     * @memberof AtRule#
-     * @member {string} name - the at-rule’s name immediately follows the `@`
-     *
-     * @example
-     * const root  = postcss.parse('@media print {}');
-     * media.name //=> 'media'
-     * const media = root.first;
-     */
-
-    /**
-     * @memberof AtRule#
-     * @member {string} params - the at-rule’s parameters, the values
-     *                           that follow the at-rule’s name but precede
-     *                           any {} block
-     *
-     * @example
-     * const root  = postcss.parse('@media print, screen {}');
-     * const media = root.first;
-     * media.params //=> 'print, screen'
      */
 }
 
