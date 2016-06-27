@@ -324,6 +324,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-currency`] replaces name of currency with symbols.
+* [`postcss-camelcaser`] camelcases class and id selectors.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-filter-stream`] blacklist files / folders that you don't want
@@ -548,6 +549,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-colormin`]:                  https://github.com/ben-eb/colormin
 [`postcss-cssstats`]:                  https://github.com/cssstats/postcss-cssstats
 [`postcss-currency`]:                  https://github.com/talgautb/postcss-currency
+[`postcss-camelcaser`]:                https://github.com/GMchris/postcss-camelcaser
 [`postcss-fallback`]:                  https://github.com/MadLittleMods/postcss-fallback
 [`postcss-imperial`]:                  https://github.com/cbas/postcss-imperial
 [`postcss-position`]:                  https://github.com/seaneking/postcss-position
