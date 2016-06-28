@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lazy-result.es6 - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AtRule.html">AtRule</a><ul class='methods'><li data-type='method'><a href="AtRule.html#append">append</a></li><li data-type='method'><a href="AtRule.html#each">each</a></li><li data-type='method'><a href="AtRule.html#every">every</a></li><li data-type='method'><a href="AtRule.html#index">index</a></li><li data-type='method'><a href="AtRule.html#insertAfter">insertAfter</a></li><li data-type='method'><a href="AtRule.html#insertBefore">insertBefore</a></li><li data-type='method'><a href="AtRule.html#prepend">prepend</a></li><li data-type='method'><a href="AtRule.html#removeAll">removeAll</a></li><li data-type='method'><a href="AtRule.html#removeChild">removeChild</a></li><li data-type='method'><a href="AtRule.html#replaceValues">replaceValues</a></li><li data-type='method'><a href="AtRule.html#some">some</a></li><li data-type='method'><a href="AtRule.html#walk">walk</a></li><li data-type='method'><a href="AtRule.html#walkAtRules">walkAtRules</a></li><li data-type='method'><a href="AtRule.html#walkComments">walkComments</a></li><li data-type='method'><a href="AtRule.html#walkDecls">walkDecls</a></li><li data-type='method'><a href="AtRule.html#walkRules">walkRules</a></li></ul></li><li><a href="Comment.html">Comment</a><ul class='methods'><li data-type='method'><a href="Comment.html#clone">clone</a></li><li data-type='method'><a href="Comment.html#cloneAfter">cloneAfter</a></li><li data-type='method'><a href="Comment.html#cloneBefore">cloneBefore</a></li><li data-type='method'><a href="Comment.html#error">error</a></li><li data-type='method'><a href="Comment.html#moveAfter">moveAfter</a></li><li data-type='method'><a href="Comment.html#moveBefore">moveBefore</a></li><li data-type='method'><a href="Comment.html#moveTo">moveTo</a></li><li data-type='method'><a href="Comment.html#next">next</a></li><li data-type='method'><a href="Comment.html#prev">prev</a></li><li data-type='method'><a href="Comment.html#raw">raw</a></li><li data-type='method'><a href="Comment.html#remove">remove</a></li><li data-type='method'><a href="Comment.html#replaceWith">replaceWith</a></li><li data-type='method'><a href="Comment.html#root">root</a></li><li data-type='method'><a href="Comment.html#toString">toString</a></li><li data-type='method'><a href="Comment.html#warn">warn</a></li></ul></li><li><a href="CssSyntaxError.html">CssSyntaxError</a><ul class='methods'><li data-type='method'><a href="CssSyntaxError.html#showSourceCode">showSourceCode</a></li><li data-type='method'><a href="CssSyntaxError.html#toString">toString</a></li></ul></li><li><a href="Declaration.html">Declaration</a><ul class='methods'><li data-type='method'><a href="Declaration.html#clone">clone</a></li><li data-type='method'><a href="Declaration.html#cloneAfter">cloneAfter</a></li><li data-type='method'><a href="Declaration.html#cloneBefore">cloneBefore</a></li><li data-type='method'><a href="Declaration.html#error">error</a></li><li data-type='method'><a href="Declaration.html#moveAfter">moveAfter</a></li><li data-type='method'><a href="Declaration.html#moveBefore">moveBefore</a></li><li data-type='method'><a href="Declaration.html#moveTo">moveTo</a></li><li data-type='method'><a href="Declaration.html#next">next</a></li><li data-type='method'><a href="Declaration.html#prev">prev</a></li><li data-type='method'><a href="Declaration.html#raw">raw</a></li><li data-type='method'><a href="Declaration.html#remove">remove</a></li><li data-type='method'><a href="Declaration.html#replaceWith">replaceWith</a></li><li data-type='method'><a href="Declaration.html#root">root</a></li><li data-type='method'><a href="Declaration.html#toString">toString</a></li><li data-type='method'><a href="Declaration.html#warn">warn</a></li></ul></li><li><a href="Input.html">Input</a><ul class='methods'><li data-type='method'><a href="Input.html#origin">origin</a></li></ul></li><li><a href="LazyResult.html">LazyResult</a><ul class='methods'><li data-type='method'><a href="LazyResult.html#catch">catch</a></li><li data-type='method'><a href="LazyResult.html#then">then</a></li><li data-type='method'><a href="LazyResult.html#toString">toString</a></li><li data-type='method'><a href="LazyResult.html#warnings">warnings</a></li></ul></li><li><a href="PreviousMap.html">PreviousMap</a><ul class='methods'><li data-type='method'><a href="PreviousMap.html#consumer">consumer</a></li><li data-type='method'><a href="PreviousMap.html#withContent">withContent</a></li></ul></li><li><a href="Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="Processor.html#process">process</a></li><li data-type='method'><a href="Processor.html#use">use</a></li></ul></li><li><a href="Result.html">Result</a><ul class='methods'><li data-type='method'><a href="Result.html#toString">toString</a></li><li data-type='method'><a href="Result.html#warn">warn</a></li><li data-type='method'><a href="Result.html#warnings">warnings</a></li></ul></li><li><a href="Root.html">Root</a><ul class='methods'><li data-type='method'><a href="Root.html#append">append</a></li><li data-type='method'><a href="Root.html#clone">clone</a></li><li data-type='method'><a href="Root.html#cloneAfter">cloneAfter</a></li><li data-type='method'><a href="Root.html#cloneBefore">cloneBefore</a></li><li data-type='method'><a href="Root.html#each">each</a></li><li data-type='method'><a href="Root.html#error">error</a></li><li data-type='method'><a href="Root.html#every">every</a></li><li data-type='method'><a href="Root.html#index">index</a></li><li data-type='method'><a href="Root.html#insertAfter">insertAfter</a></li><li data-type='method'><a href="Root.html#insertBefore">insertBefore</a></li><li data-type='method'><a href="Root.html#moveAfter">moveAfter</a></li><li data-type='method'><a href="Root.html#moveBefore">moveBefore</a></li><li data-type='method'><a href="Root.html#moveTo">moveTo</a></li><li data-type='method'><a href="Root.html#next">next</a></li><li data-type='method'><a href="Root.html#prepend">prepend</a></li><li data-type='method'><a href="Root.html#prev">prev</a></li><li data-type='method'><a href="Root.html#raw">raw</a></li><li data-type='method'><a href="Root.html#remove">remove</a></li><li data-type='method'><a href="Root.html#removeAll">removeAll</a></li><li data-type='method'><a href="Root.html#removeChild">removeChild</a></li><li data-type='method'><a href="Root.html#replaceValues">replaceValues</a></li><li data-type='method'><a href="Root.html#replaceWith">replaceWith</a></li><li data-type='method'><a href="Root.html#root">root</a></li><li data-type='method'><a href="Root.html#some">some</a></li><li data-type='method'><a href="Root.html#toResult">toResult</a></li><li data-type='method'><a href="Root.html#toString">toString</a></li><li data-type='method'><a href="Root.html#walk">walk</a></li><li data-type='method'><a href="Root.html#walkAtRules">walkAtRules</a></li><li data-type='method'><a href="Root.html#walkComments">walkComments</a></li><li data-type='method'><a href="Root.html#walkDecls">walkDecls</a></li><li data-type='method'><a href="Root.html#walkRules">walkRules</a></li><li data-type='method'><a href="Root.html#warn">warn</a></li></ul></li><li><a href="Rule.html">Rule</a><ul class='methods'><li data-type='method'><a href="Rule.html#append">append</a></li><li data-type='method'><a href="Rule.html#clone">clone</a></li><li data-type='method'><a href="Rule.html#cloneAfter">cloneAfter</a></li><li data-type='method'><a href="Rule.html#cloneBefore">cloneBefore</a></li><li data-type='method'><a href="Rule.html#each">each</a></li><li data-type='method'><a href="Rule.html#error">error</a></li><li data-type='method'><a href="Rule.html#every">every</a></li><li data-type='method'><a href="Rule.html#index">index</a></li><li data-type='method'><a href="Rule.html#insertAfter">insertAfter</a></li><li data-type='method'><a href="Rule.html#insertBefore">insertBefore</a></li><li data-type='method'><a href="Rule.html#moveAfter">moveAfter</a></li><li data-type='method'><a href="Rule.html#moveBefore">moveBefore</a></li><li data-type='method'><a href="Rule.html#moveTo">moveTo</a></li><li data-type='method'><a href="Rule.html#next">next</a></li><li data-type='method'><a href="Rule.html#prepend">prepend</a></li><li data-type='method'><a href="Rule.html#prev">prev</a></li><li data-type='method'><a href="Rule.html#raw">raw</a></li><li data-type='method'><a href="Rule.html#remove">remove</a></li><li data-type='method'><a href="Rule.html#removeAll">removeAll</a></li><li data-type='method'><a href="Rule.html#removeChild">removeChild</a></li><li data-type='method'><a href="Rule.html#replaceValues">replaceValues</a></li><li data-type='method'><a href="Rule.html#replaceWith">replaceWith</a></li><li data-type='method'><a href="Rule.html#root">root</a></li><li data-type='method'><a href="Rule.html#some">some</a></li><li data-type='method'><a href="Rule.html#toString">toString</a></li><li data-type='method'><a href="Rule.html#walk">walk</a></li><li data-type='method'><a href="Rule.html#walkAtRules">walkAtRules</a></li><li data-type='method'><a href="Rule.html#walkComments">walkComments</a></li><li data-type='method'><a href="Rule.html#walkDecls">walkDecls</a></li><li data-type='method'><a href="Rule.html#walkRules">walkRules</a></li><li data-type='method'><a href="Rule.html#warn">warn</a></li></ul></li><li><a href="Warning.html">Warning</a><ul class='methods'><li data-type='method'><a href="Warning.html#toString">toString</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="list.html">list</a><ul class='methods'><li data-type='method'><a href="list.html#.comma">comma</a></li><li data-type='method'><a href="list.html#.space">space</a></li></ul></li><li><a href="postcss.html">postcss</a><ul class='methods'><li data-type='method'><a href="postcss.html#.atRule">atRule</a></li><li data-type='method'><a href="postcss.html#.comment">comment</a></li><li data-type='method'><a href="postcss.html#.decl">decl</a></li><li data-type='method'><a href="postcss.html#.parse">parse</a></li><li data-type='method'><a href="postcss.html#.plugin">plugin</a></li><li data-type='method'><a href="postcss.html#.root">root</a></li><li data-type='method'><a href="postcss.html#.rule">rule</a></li><li data-type='method'><a href="postcss.html#.stringify">stringify</a></li></ul></li><li><a href="vendor.html">vendor</a><ul class='methods'><li data-type='method'><a href="vendor.html#.prefix">prefix</a></li><li data-type='method'><a href="vendor.html#.unprefixed">unprefixed</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">lazy-result.es6</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import MapGenerator from './map-generator';
+import stringify    from './stringify';
+import warnOnce     from './warn-once';
+import Result       from './result';
+import parse        from './parse';
+
+function isPromise(obj) {
+    return typeof obj === 'object' &amp;&amp; typeof obj.then === 'function';
+}
+
+/**
+ * @callback onFulfilled
+ * @param {Result} result
+ */
+
+/**
+ * @callback onRejected
+ * @param {Error} error
+ */
+
+/**
+ * A Promise proxy for the result of PostCSS transformations.
+ *
+ * A `LazyResult` instance is returned by {@link Processor#process}.
+ *
+ * @example
+ * const lazy = postcss([cssnext]).process(css);
+ */
+class LazyResult {
+
+    constructor(processor, css, opts) {
+        this.stringified = false;
+        this.processed   = false;
+
+        let root;
+        if ( typeof css === 'object' &amp;&amp; css.type === 'root' ) {
+            root = css;
+        } else if ( css instanceof LazyResult || css instanceof Result ) {
+            root = css.root;
+            if ( css.map ) {
+                if ( typeof opts.map === 'undefined' ) opts.map = { };
+                if ( !opts.map.inline ) opts.map.inline = false;
+                opts.map.prev = css.map;
+            }
+        } else {
+            let parser = parse;
+            if ( opts.syntax )  parser = opts.syntax.parse;
+            if ( opts.parser )  parser = opts.parser;
+            if ( parser.parse ) parser = parser.parse;
+
+            try {
+                root = parser(css, opts);
+            } catch (error) {
+                this.error = error;
+            }
+        }
+
+        this.result = new Result(processor, root, opts);
+    }
+
+    /**
+     * Returns a {@link Processor} instance, which will be used
+     * for CSS transformations.
+     * @type {Processor}
+     */
+    get processor() {
+        return this.result.processor;
+    }
+
+    /**
+     * Options from the {@link Processor#process} call.
+     * @type {processOptions}
+     */
+    get opts() {
+        return this.result.opts;
+    }
+
+    /**
+     * Processes input CSS through synchronous plugins, converts `Root`
+     * to a CSS string and returns {@link Result#css}.
+     *
+     * This property will only work with synchronous plugins.
+     * If the processor contains any asynchronous plugins
+     * it will throw an error. This is why this method is only
+     * for debug purpose, you should always use {@link LazyResult#then}.
+     *
+     * @type {string}
+     * @see Result#css
+     */
+    get css() {
+        return this.stringify().css;
+    }
+
+    /**
+     * An alias for the `css` property. Use it with syntaxes
+     * that generate non-CSS output.
+     *
+     * This property will only work with synchronous plugins.
+     * If the processor contains any asynchronous plugins
+     * it will throw an error. This is why this method is only
+     * for debug purpose, you should always use {@link LazyResult#then}.
+     *
+     * @type {string}
+     * @see Result#content
+     */
+    get content() {
+        return this.stringify().content;
+    }
+
+    /**
+     * Processes input CSS through synchronous plugins
+     * and returns {@link Result#map}.
+     *
+     * This property will only work with synchronous plugins.
+     * If the processor contains any asynchronous plugins
+     * it will throw an error. This is why this method is only
+     * for debug purpose, you should always use {@link LazyResult#then}.
+     *
+     * @type {SourceMapGenerator}
+     * @see Result#map
+     */
+    get map() {
+        return this.stringify().map;
+    }
+
+    /**
+     * Processes input CSS through synchronous plugins
+     * and returns {@link Result#root}.
+     *
+     * This property will only work with synchronous plugins. If the processor
+     * contains any asynchronous plugins it will throw an error.
+     *
+     * This is why this method is only for debug purpose,
+     * you should always use {@link LazyResult#then}.
+     *
+     * @type {Root}
+     * @see Result#root
+     */
+    get root() {
+        return this.sync().root;
+    }
+
+    /**
+     * Processes input CSS through synchronous plugins
+     * and returns {@link Result#messages}.
+     *
+     * This property will only work with synchronous plugins. If the processor
+     * contains any asynchronous plugins it will throw an error.
+     *
+     * This is why this method is only for debug purpose,
+     * you should always use {@link LazyResult#then}.
+     *
+     * @type {Message[]}
+     * @see Result#messages
+     */
+    get messages() {
+        return this.sync().messages;
+    }
+
+    /**
+     * Processes input CSS through synchronous plugins
+     * and calls {@link Result#warnings()}.
+     *
+     * @return {Warning[]} warnings from plugins
+     */
+    warnings() {
+        return this.sync().warnings();
+    }
+
+    /**
+     * Alias for the {@link LazyResult#css} property.
+     *
+     * @example
+     * lazy + '' === lazy.css;
+     *
+     * @return {string} output CSS
+     */
+    toString() {
+        return this.css;
+    }
+
+    /**
+     * Processes input CSS through synchronous and asynchronous plugins
+     * and calls `onFulfilled` with a Result instance. If a plugin throws
+     * an error, the `onRejected` callback will be executed.
+     *
+     * It implements standard Promise API.
+     *
+     * @param {onFulfilled} onFulfilled - callback will be executed
+     *                                    when all plugins will finish work
+     * @param {onRejected}  onRejected  - callback will be execited on any error
+     *
+     * @return {Promise} Promise API to make queue
+     *
+     * @example
+     * postcss([cssnext]).process(css).then(result => {
+     *   console.log(result.css);
+     * });
+     */
+    then(onFulfilled, onRejected) {
+        return this.async().then(onFulfilled, onRejected);
+    }
+
+    /**
+     * Processes input CSS through synchronous and asynchronous plugins
+     * and calls onRejected for each error thrown in any plugin.
+     *
+     * It implements standard Promise API.
+     *
+     * @param {onRejected} onRejected - callback will be execited on any error
+     *
+     * @return {Promise} Promise API to make queue
+     *
+     * @example
+     * postcss([cssnext]).process(css).then(result => {
+     *   console.log(result.css);
+     * }).catch(error => {
+     *   console.error(error);
+     * });
+     */
+    catch(onRejected) {
+        return this.async().catch(onRejected);
+    }
+
+    handleError(error, plugin) {
+        try {
+            this.error = error;
+            if ( error.name === 'CssSyntaxError' &amp;&amp; !error.plugin ) {
+                error.plugin = plugin.postcssPlugin;
+                error.setMessage();
+            } else if ( plugin.postcssVersion ) {
+                let pluginName = plugin.postcssPlugin;
+                let pluginVer  = plugin.postcssVersion;
+                let runtimeVer = this.result.processor.version;
+                let a = pluginVer.split('.');
+                let b = runtimeVer.split('.');
+
+                if ( a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1]) ) {
+                    warnOnce('Your current PostCSS version ' +
+                             'is ' + runtimeVer + ', but ' + pluginName + ' ' +
+                             'uses ' + pluginVer + '. Perhaps this is ' +
+                             'the source of the error below.');
+                }
+            }
+        } catch (err) {
+            if ( console &amp;&amp; console.error ) console.error(err);
+        }
+    }
+
+    asyncTick(resolve, reject) {
+        if ( this.plugin >= this.processor.plugins.length ) {
+            this.processed = true;
+            return resolve();
+        }
+
+        try {
+            let plugin  = this.processor.plugins[this.plugin];
+            let promise = this.run(plugin);
+            this.plugin += 1;
+
+            if ( isPromise(promise) ) {
+                promise.then( () => {
+                    this.asyncTick(resolve, reject);
+                }).catch( error => {
+                    this.handleError(error, plugin);
+                    this.processed = true;
+                    reject(error);
+                });
+            } else {
+                this.asyncTick(resolve, reject);
+            }
+
+        } catch (error) {
+            this.processed = true;
+            reject(error);
+        }
+    }
+
+    async() {
+        if ( this.processed ) {
+            return new Promise( (resolve, reject) => {
+                if ( this.error ) {
+                    reject(this.error);
+                } else {
+                    resolve(this.stringify());
+                }
+            });
+        }
+        if ( this.processing ) {
+            return this.processing;
+        }
+
+        this.processing = new Promise( (resolve, reject) => {
+            if ( this.error ) return reject(this.error);
+            this.plugin = 0;
+            this.asyncTick(resolve, reject);
+        }).then( () => {
+            this.processed = true;
+            return this.stringify();
+        });
+
+        return this.processing;
+    }
+
+    sync() {
+        if ( this.processed ) return this.result;
+        this.processed = true;
+
+        if ( this.processing ) {
+            throw new Error(
+                'Use process(css).then(cb) to work with async plugins');
+        }
+
+        if ( this.error ) throw this.error;
+
+        for ( let plugin of this.result.processor.plugins ) {
+            let promise = this.run(plugin);
+            if ( isPromise(promise) ) {
+                throw new Error(
+                    'Use process(css).then(cb) to work with async plugins');
+            }
+        }
+
+        return this.result;
+    }
+
+    run(plugin) {
+        this.result.lastPlugin = plugin;
+
+        try {
+            return plugin(this.result.root, this.result);
+        } catch (error) {
+            this.handleError(error, plugin);
+            throw error;
+        }
+    }
+
+    stringify() {
+        if ( this.stringified ) return this.result;
+        this.stringified = true;
+
+        this.sync();
+
+        let opts = this.result.opts;
+        let str  = stringify;
+        if ( opts.syntax )      str = opts.syntax.stringify;
+        if ( opts.stringifier ) str = opts.stringifier;
+        if ( str.stringify )    str = str.stringify;
+
+        let map  = new MapGenerator(str, this.result.root, this.result.opts);
+        let data = map.generate();
+        this.result.css = data[0];
+        this.result.map = data[1];
+
+        return this.result;
+    }
+
+}
+
+export default LazyResult;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 28 2016 12:03:45 GMT+0300 (EEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

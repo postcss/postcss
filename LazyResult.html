@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>LazyResult - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AtRule.html">AtRule</a><ul class='methods'><li data-type='method'><a href="AtRule.html#append">append</a></li><li data-type='method'><a href="AtRule.html#each">each</a></li><li data-type='method'><a href="AtRule.html#every">every</a></li><li data-type='method'><a href="AtRule.html#index">index</a></li><li data-type='method'><a href="AtRule.html#insertAfter">insertAfter</a></li><li data-type='method'><a href="AtRule.html#insertBefore">insertBefore</a></li><li data-type='method'><a href="AtRule.html#prepend">prepend</a></li><li data-type='method'><a href="AtRule.html#removeAll">removeAll</a></li><li data-type='method'><a href="AtRule.html#removeChild">removeChild</a></li><li data-type='method'><a href="AtRule.html#replaceValues">replaceValues</a></li><li data-type='method'><a href="AtRule.html#some">some</a></li><li data-type='method'><a href="AtRule.html#walk">walk</a></li><li data-type='method'><a href="AtRule.html#walkAtRules">walkAtRules</a></li><li data-type='method'><a href="AtRule.html#walkComments">walkComments</a></li><li data-type='method'><a href="AtRule.html#walkDecls">walkDecls</a></li><li data-type='method'><a href="AtRule.html#walkRules">walkRules</a></li></ul></li><li><a href="Comment.html">Comment</a><ul class='methods'><li data-type='method'><a href="Comment.html#clone">clone</a></li><li data-type='method'><a href="Comment.html#cloneAfter">cloneAfter</a></li><li data-type='method'><a href="Comment.html#cloneBefore">cloneBefore</a></li><li data-type='method'><a href="Comment.html#error">error</a></li><li data-type='method'><a href="Comment.html#moveAfter">moveAfter</a></li><li data-type='method'><a href="Comment.html#moveBefore">moveBefore</a></li><li data-type='method'><a href="Comment.html#moveTo">moveTo</a></li><li data-type='method'><a href="Comment.html#next">next</a></li><li data-type='method'><a href="Comment.html#prev">prev</a></li><li data-type='method'><a href="Comment.html#raw">raw</a></li><li data-type='method'><a href="Comment.html#remove">remove</a></li><li data-type='method'><a href="Comment.html#replaceWith">replaceWith</a></li><li data-type='method'><a href="Comment.html#root">root</a></li><li data-type='method'><a href="Comment.html#toString">toString</a></li><li data-type='method'><a href="Comment.html#warn">warn</a></li></ul></li><li><a href="CssSyntaxError.html">CssSyntaxError</a><ul class='methods'><li data-type='method'><a href="CssSyntaxError.html#showSourceCode">showSourceCode</a></li><li data-type='method'><a href="CssSyntaxError.html#toString">toString</a></li></ul></li><li><a href="Declaration.html">Declaration</a><ul class='methods'><li data-type='method'><a href="Declaration.html#clone">clone</a></li><li data-type='method'><a href="Declaration.html#cloneAfter">cloneAfter</a></li><li data-type='method'><a href="Declaration.html#cloneBefore">cloneBefore</a></li><li data-type='method'><a href="Declaration.html#error">error</a></li><li data-type='method'><a href="Declaration.html#moveAfter">moveAfter</a></li><li data-type='method'><a href="Declaration.html#moveBefore">moveBefore</a></li><li data-type='method'><a href="Declaration.html#moveTo">moveTo</a></li><li data-type='method'><a href="Declaration.html#next">next</a></li><li data-type='method'><a href="Declaration.html#prev">prev</a></li><li data-type='method'><a href="Declaration.html#raw">raw</a></li><li data-type='method'><a href="Declaration.html#remove">remove</a></li><li data-type='method'><a href="Declaration.html#replaceWith">replaceWith</a></li><li data-type='method'><a href="Declaration.html#root">root</a></li><li data-type='method'><a href="Declaration.html#toString">toString</a></li><li data-type='method'><a href="Declaration.html#warn">warn</a></li></ul></li><li><a href="Input.html">Input</a><ul class='methods'><li data-type='method'><a href="Input.html#origin">origin</a></li></ul></li><li><a href="LazyResult.html">LazyResult</a><ul class='methods'><li data-type='method'><a href="LazyResult.html#catch">catch</a></li><li data-type='method'><a href="LazyResult.html#then">then</a></li><li data-type='method'><a href="LazyResult.html#toString">toString</a></li><li data-type='method'><a href="LazyResult.html#warnings">warnings</a></li></ul></li><li><a href="PreviousMap.html">PreviousMap</a><ul class='methods'><li data-type='method'><a href="PreviousMap.html#consumer">consumer</a></li><li data-type='method'><a href="PreviousMap.html#withContent">withContent</a></li></ul></li><li><a href="Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="Processor.html#process">process</a></li><li data-type='method'><a href="Processor.html#use">use</a></li></ul></li><li><a href="Result.html">Result</a><ul class='methods'><li data-type='method'><a href="Result.html#toString">toString</a></li><li data-type='method'><a href="Result.html#warn">warn</a></li><li data-type='method'><a href="Result.html#warnings">warnings</a></li></ul></li><li><a href="Root.html">Root</a><ul class='methods'><li data-type='method'><a href="Root.html#append">append</a></li><li data-type='method'><a href="Root.html#clone">clone</a></li><li data-type='method'><a href="Root.html#cloneAfter">cloneAfter</a></li><li data-type='method'><a href="Root.html#cloneBefore">cloneBefore</a></li><li data-type='method'><a href="Root.html#each">each</a></li><li data-type='method'><a href="Root.html#error">error</a></li><li data-type='method'><a href="Root.html#every">every</a></li><li data-type='method'><a href="Root.html#index">index</a></li><li data-type='method'><a href="Root.html#insertAfter">insertAfter</a></li><li data-type='method'><a href="Root.html#insertBefore">insertBefore</a></li><li data-type='method'><a href="Root.html#moveAfter">moveAfter</a></li><li data-type='method'><a href="Root.html#moveBefore">moveBefore</a></li><li data-type='method'><a href="Root.html#moveTo">moveTo</a></li><li data-type='method'><a href="Root.html#next">next</a></li><li data-type='method'><a href="Root.html#prepend">prepend</a></li><li data-type='method'><a href="Root.html#prev">prev</a></li><li data-type='method'><a href="Root.html#raw">raw</a></li><li data-type='method'><a href="Root.html#remove">remove</a></li><li data-type='method'><a href="Root.html#removeAll">removeAll</a></li><li data-type='method'><a href="Root.html#removeChild">removeChild</a></li><li data-type='method'><a href="Root.html#replaceValues">replaceValues</a></li><li data-type='method'><a href="Root.html#replaceWith">replaceWith</a></li><li data-type='method'><a href="Root.html#root">root</a></li><li data-type='method'><a href="Root.html#some">some</a></li><li data-type='method'><a href="Root.html#toResult">toResult</a></li><li data-type='method'><a href="Root.html#toString">toString</a></li><li data-type='method'><a href="Root.html#walk">walk</a></li><li data-type='method'><a href="Root.html#walkAtRules">walkAtRules</a></li><li data-type='method'><a href="Root.html#walkComments">walkComments</a></li><li data-type='method'><a href="Root.html#walkDecls">walkDecls</a></li><li data-type='method'><a href="Root.html#walkRules">walkRules</a></li><li data-type='method'><a href="Root.html#warn">warn</a></li></ul></li><li><a href="Rule.html">Rule</a><ul class='methods'><li data-type='method'><a href="Rule.html#append">append</a></li><li data-type='method'><a href="Rule.html#clone">clone</a></li><li data-type='method'><a href="Rule.html#cloneAfter">cloneAfter</a></li><li data-type='method'><a href="Rule.html#cloneBefore">cloneBefore</a></li><li data-type='method'><a href="Rule.html#each">each</a></li><li data-type='method'><a href="Rule.html#error">error</a></li><li data-type='method'><a href="Rule.html#every">every</a></li><li data-type='method'><a href="Rule.html#index">index</a></li><li data-type='method'><a href="Rule.html#insertAfter">insertAfter</a></li><li data-type='method'><a href="Rule.html#insertBefore">insertBefore</a></li><li data-type='method'><a href="Rule.html#moveAfter">moveAfter</a></li><li data-type='method'><a href="Rule.html#moveBefore">moveBefore</a></li><li data-type='method'><a href="Rule.html#moveTo">moveTo</a></li><li data-type='method'><a href="Rule.html#next">next</a></li><li data-type='method'><a href="Rule.html#prepend">prepend</a></li><li data-type='method'><a href="Rule.html#prev">prev</a></li><li data-type='method'><a href="Rule.html#raw">raw</a></li><li data-type='method'><a href="Rule.html#remove">remove</a></li><li data-type='method'><a href="Rule.html#removeAll">removeAll</a></li><li data-type='method'><a href="Rule.html#removeChild">removeChild</a></li><li data-type='method'><a href="Rule.html#replaceValues">replaceValues</a></li><li data-type='method'><a href="Rule.html#replaceWith">replaceWith</a></li><li data-type='method'><a href="Rule.html#root">root</a></li><li data-type='method'><a href="Rule.html#some">some</a></li><li data-type='method'><a href="Rule.html#toString">toString</a></li><li data-type='method'><a href="Rule.html#walk">walk</a></li><li data-type='method'><a href="Rule.html#walkAtRules">walkAtRules</a></li><li data-type='method'><a href="Rule.html#walkComments">walkComments</a></li><li data-type='method'><a href="Rule.html#walkDecls">walkDecls</a></li><li data-type='method'><a href="Rule.html#walkRules">walkRules</a></li><li data-type='method'><a href="Rule.html#warn">warn</a></li></ul></li><li><a href="Warning.html">Warning</a><ul class='methods'><li data-type='method'><a href="Warning.html#toString">toString</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="list.html">list</a><ul class='methods'><li data-type='method'><a href="list.html#.comma">comma</a></li><li data-type='method'><a href="list.html#.space">space</a></li></ul></li><li><a href="postcss.html">postcss</a><ul class='methods'><li data-type='method'><a href="postcss.html#.atRule">atRule</a></li><li data-type='method'><a href="postcss.html#.comment">comment</a></li><li data-type='method'><a href="postcss.html#.decl">decl</a></li><li data-type='method'><a href="postcss.html#.parse">parse</a></li><li data-type='method'><a href="postcss.html#.plugin">plugin</a></li><li data-type='method'><a href="postcss.html#.root">root</a></li><li data-type='method'><a href="postcss.html#.rule">rule</a></li><li data-type='method'><a href="postcss.html#.stringify">stringify</a></li></ul></li><li><a href="vendor.html">vendor</a><ul class='methods'><li data-type='method'><a href="vendor.html#.prefix">prefix</a></li><li data-type='method'><a href="vendor.html#.unprefixed">unprefixed</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">LazyResult</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        LazyResult
+        </h2>
+        
+            <div class="class-description"><p>A Promise proxy for the result of PostCSS transformations.</p>
+<p>A <code>LazyResult</code> instance is returned by <a href="Processor.html#process">Processor#process</a>.</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="LazyResult"><span class="type-signature"></span>new LazyResult<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const lazy = postcss([cssnext]).process(css);</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="content"><span class="type-signature"></span>content<span class="type-signature"> :string</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line106">line 106</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Result.html#content">Result#content</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>An alias for the <code>css</code> property. Use it with syntaxes
+that generate non-CSS output.</p>
+<p>This property will only work with synchronous plugins.
+If the processor contains any asynchronous plugins
+it will throw an error. This is why this method is only
+for debug purpose, you should always use <a href="LazyResult.html#then">LazyResult#then</a>.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="css"><span class="type-signature"></span>css<span class="type-signature"> :string</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line90">line 90</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Result.html#css">Result#css</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Processes input CSS through synchronous plugins, converts <code>Root</code>
+to a CSS string and returns <a href="Result.html#css">Result#css</a>.</p>
+<p>This property will only work with synchronous plugins.
+If the processor contains any asynchronous plugins
+it will throw an error. This is why this method is only
+for debug purpose, you should always use <a href="LazyResult.html#then">LazyResult#then</a>.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="map"><span class="type-signature"></span>map<span class="type-signature"> :SourceMapGenerator</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line122">line 122</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Result.html#map">Result#map</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Processes input CSS through synchronous plugins
+and returns <a href="Result.html#map">Result#map</a>.</p>
+<p>This property will only work with synchronous plugins.
+If the processor contains any asynchronous plugins
+it will throw an error. This is why this method is only
+for debug purpose, you should always use <a href="LazyResult.html#then">LazyResult#then</a>.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">SourceMapGenerator</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="messages"><span class="type-signature"></span>messages<span class="type-signature"> :Array.&lt;<a href="global.html#Message">Message</a>></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line156">line 156</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Result.html#messages">Result#messages</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Processes input CSS through synchronous plugins
+and returns <a href="Result.html#messages">Result#messages</a>.</p>
+<p>This property will only work with synchronous plugins. If the processor
+contains any asynchronous plugins it will throw an error.</p>
+<p>This is why this method is only for debug purpose,
+you should always use <a href="LazyResult.html#then">LazyResult#then</a>.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;<a href="global.html#Message">Message</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="opts"><span class="type-signature"></span>opts<span class="type-signature"> :<a href="global.html#processOptions">processOptions</a></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line74">line 74</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Options from the <a href="Processor.html#process">Processor#process</a> call.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="global.html#processOptions">processOptions</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="processor"><span class="type-signature"></span>processor<span class="type-signature"> :<a href="Processor.html">Processor</a></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Returns a <a href="Processor.html">Processor</a> instance, which will be used
+for CSS transformations.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="Processor.html">Processor</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="root"><span class="type-signature"></span>root<span class="type-signature"> :<a href="Root.html">Root</a></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line139">line 139</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Result.html#root">Result#root</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Processes input CSS through synchronous plugins
+and returns <a href="Result.html#root">Result#root</a>.</p>
+<p>This property will only work with synchronous plugins. If the processor
+contains any asynchronous plugins it will throw an error.</p>
+<p>This is why this method is only for debug purpose,
+you should always use <a href="LazyResult.html#then">LazyResult#then</a>.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="Root.html">Root</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="catch"><span class="type-signature"></span>catch<span class="signature">(onRejected)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line221">line 221</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Processes input CSS through synchronous and asynchronous plugins
+and calls onRejected for each error thrown in any plugin.</p>
+<p>It implements standard Promise API.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>postcss([cssnext]).process(css).then(result => {
+  console.log(result.css);
+}).catch(error => {
+  console.error(error);
+});</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>onRejected</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#onRejected">onRejected</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>callback will be execited on any error</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Promise API to make queue</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="then"><span class="type-signature"></span>then<span class="signature">(onFulfilled, onRejected)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line200">line 200</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Processes input CSS through synchronous and asynchronous plugins
+and calls <code>onFulfilled</code> with a Result instance. If a plugin throws
+an error, the <code>onRejected</code> callback will be executed.</p>
+<p>It implements standard Promise API.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>postcss([cssnext]).process(css).then(result => {
+  console.log(result.css);
+});</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>onFulfilled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#onFulfilled">onFulfilled</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>callback will be executed
+                                   when all plugins will finish work</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onRejected</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#onRejected">onRejected</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>callback will be execited on any error</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Promise API to make queue</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line178">line 178</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Alias for the <a href="LazyResult.html#css">LazyResult#css</a> property.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>lazy + '' === lazy.css;</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>output CSS</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="warnings"><span class="type-signature"></span>warnings<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Warning.html">Warning</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lazy-result.es6.html">lazy-result.es6</a>, <a href="lazy-result.es6.html#line166">line 166</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Processes input CSS through synchronous plugins
+and calls Result#warnings().</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>warnings from plugins</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="Warning.html">Warning</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 28 2016 12:03:45 GMT+0300 (EEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
