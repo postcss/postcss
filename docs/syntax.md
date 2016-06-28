@@ -51,7 +51,7 @@ module.exports = function (css, opts) {
 ```
 
 [Safe Parser]: https://github.com/postcss/postcss-safe-parser
-[`Root`]:      https://github.com/postcss/postcss/blob/master/docs/api.md#root-node
+[`Root`]:      http://api.postcss.org/Root.html
 
 ### Main Theory
 
@@ -132,7 +132,7 @@ A good PostCSS parser should provide all information (including spaces symbols)
 to generate byte-to-byte equal output. It is not so difficult, but respectful
 for user input and allow integration smoke tests.
 
-A parser should save all additional symbols to [`node.raws`] object.
+A parser should save all additional symbols to `node.raws` object.
 It is an open structure for you, you can add additional keys.
 For example, [SCSS parser] saves comment types (`/* */` or `//`)
 in `node.raws.inline`.
@@ -142,7 +142,6 @@ It saves the original value with comments to `node.raws.value.raw` and uses it,
 if the node value was not changed.
 
 [SCSS parser]: https://github.com/postcss/postcss-scss
-[`node.raws`]: https://github.com/postcss/postcss/blob/master/docs/api.md#node-raws
 
 ### Tests
 
@@ -212,7 +211,7 @@ this.builder('}', rule, 'end');
 A good PostCSS custom syntax saves all symbols and provide byte-to-byte equal
 output if there were no changes.
 
-This is why every node has [`node.raws`] object to store space symbol, etc.
+This is why every node has `node.raws` object to store space symbol, etc.
 
 Be careful, because sometimes these raw properties will not be present; some
 nodes may be built manually, or may lose their indentation when they are moved
@@ -221,8 +220,6 @@ to another parent node.
 This is why the default stringifier has a `raw()` method to autodetect raw
 properties by other nodes. For example, it will look at other nodes to detect
 indent size and them multiply it with the current node depth.
-
-[`node.raws`]: https://github.com/postcss/postcss/blob/master/docs/api.md#node-raws
 
 ### Tests
 

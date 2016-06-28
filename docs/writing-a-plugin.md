@@ -9,7 +9,7 @@
 
 ## Documentation and Support
 
-* [PostCSS API](https://github.com/postcss/postcss/blob/master/docs/api.md)
+* [PostCSS API](/http://api.postcss.org/)
 * [Ask questions](https://gitter.im/postcss/postcss)
 * [PostCSS twitter](https://twitter.com/postcss) with latest updates.
 
