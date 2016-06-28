@@ -64,7 +64,7 @@ PostCSS runners must not rely on undocumented properties or methods,
 which may be subject to change in any minor release. The public API
 is described in [API docs].
 
-[API docs]: https://github.com/postcss/postcss/blob/master/docs/api.md
+[API docs]: http://api.postcss.org/
 
 ## 3. Output
 
