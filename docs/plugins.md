@@ -319,10 +319,10 @@ See also plugins in modular minifier [`cssnano`].
 
 ## Others
 
+* [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-camelcaser`] transforms selectors to camelcase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
-* [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
@@ -332,31 +332,32 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
+* [`postcss-ie8`] strips out unsupported properties and mediaqueries for IE8.
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
+* * [`postcss-inline-rtl`] converts your CSS to right-to-left,
+  but inline (adding just what you need).
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
-* [`postcss-pseudo-elements-content`] adds `content: ''` to `:before-c`
-  and `:after-c`.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
+* [`postcss-pseudo-elements-content`] adds `content: ''` to `:before-c`
+  and `:after-c`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
+* [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched
+  by other plugins.
+* [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-safe-important`] adds `!important` to style declarations safely.
 * [`postcss-sanitize`] remove properties and values using rules (css sanitization).
+* [`postcss-scopify`] adds a user input scope to each selector.
 * [`postcss-select`] select rules based off a selector list.
 * [`postcss-selector-prefixer`] adds a prefix to css selectors.
 * [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-sorting`] sort rules content with specified order.
-* [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched
-  by other plugins.
-* [`postcss-remove-prefixes`] removes vendor prefixes.
 * [`postcss-style-guide`] generates a style guide automatically.
-* [`postcss-scopify`] adds a user input scope to each selector.
 * [`css-declaration-sorter`] sorts CSS declarations fast and automatically
   in a certain order.
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
-* [`postcss-inline-rtl`] converts your CSS to right-to-left,
-  but inline (adding just what you need).
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
 
@@ -402,246 +403,247 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
-[`postcss-gradient-transparency-fix`]: https://github.com/gilmoreorless/postcss-gradient-transparency-fix
-[`postcss-attribute-selector-prefix`]: https://github.com/GitScrum/postcss-attribute-selector-prefix
-[`postcss-vertical-rhythm-function`]:  https://github.com/F21/postcss-vertical-rhythm-function
-[`postcss-pseudo-class-any-button`]:   https://github.com/andrepolischuk/postcss-pseudo-class-any-button
-[`postcss-pseudo-elements-content`]:   https://github.com/omgovich/postcss-pseudo-elements-content
-[`postcss-australian-stylesheets`]:    https://github.com/dp-lewis/postcss-australian-stylesheets
-[`postcss-andalusian-stylesheets`]:    https://github.com/bameda/postcss-andalusian-stylesheets
-[`postcss-pseudo-class-any-link`]:     https://github.com/jonathantneal/postcss-pseudo-class-any-link
-[`postcss-pseudo-content-insert`]:     https://github.com/liquidlight/postcss-pseudo-content-insert
-[`postcss-canadian-stylesheets`]:      https://github.com/chancancode/postcss-canadian-stylesheets
-[`postcss-chinese-stylesheets`]:       https://github.com/zhouwenbin/postcss-chinese-stylesheets
-[`postcss-czech-stylesheets`]:         https://github.com/HoBi/postcss-czech-stylesheets
-[`postcss-increase-specificity`]:      https://github.com/MadLittleMods/postcss-increase-specificity
-[`postcss-swedish-stylesheets`]:       https://github.com/johnie/postcss-swedish-stylesheets
-[`postcss-russian-stylesheets`]:       https://github.com/Semigradsky/postcss-russian-stylesheets
-[`postcss-color-rebeccapurple`]:       https://github.com/postcss/postcss-color-rebeccapurple
-[`postcss-color-rgba-fallback`]:       https://github.com/postcss/postcss-color-rgba-fallback
-[`postcss-spanish-stylesheets`]:       https://github.com/ismamz/postcss-spanish-stylesheets
-[`postcss-lolcat-stylesheets`]:        https://github.com/sandralundgren/postcss-lolcat-stylesheets
-[`postcss-german-stylesheets`]:        https://github.com/timche/postcss-german-stylesheets
-[`postcss-discard-duplicates`]:        https://github.com/ben-eb/postcss-discard-duplicates
-[`postcss-minify-font-weight`]:        https://github.com/ben-eb/postcss-minify-font-weight
-[`postcss-pseudo-class-enter`]:        https://github.com/jonathantneal/postcss-pseudo-class-enter
-[`postcss-transform-shortcut`]:        https://github.com/jonathantneal/postcss-transform-shortcut
-[`postcss-at-rules-variables`]:        https://github.com/GitScrum/postcss-at-rules-variables
-[`postcss-logical-properties`]:        https://github.com/ahmadalfy/postcss-logical-properties
-[`postcss-responsive-images`]:         https://github.com/azat-io/postcss-responsive-images
-[`postcss-tatar-stylesheets`]:         https://github.com/azat-io/postcss-tatar-stylesheets
-[`postcss-custom-properties`]:         https://github.com/postcss/postcss-custom-properties
-[`postcss-discard-font-face`]:         https://github.com/ben-eb/postcss-discard-font-face
-[`postcss-selector-prefixer`]:         https://github.com/ronnyamarante/postcss-selector-prefixer
-[`postcss-custom-selectors`]:          https://github.com/postcss/postcss-custom-selectors
-[`postcss-discard-comments`]:          https://github.com/ben-eb/postcss-discard-comments
-[`postcss-minify-selectors`]:          https://github.com/ben-eb/postcss-minify-selectors
-[`postcss-mqwidth-to-class`]:          https://github.com/notacouch/postcss-mqwidth-to-class
-[`postcss-quantity-queries`]:          https://github.com/pascalduez/postcss-quantity-queries
-[`postcss-browser-reporter`]:          https://github.com/postcss/postcss-browser-reporter
-[`postcss-selector-matches`]:          https://github.com/postcss/postcss-selector-matches
-[`postcss-shorthand-expand`]:          https://github.com/johnotander/postcss-shorthand-expand
-[`postcss-current-selector`]:          https://github.com/komlev/postcss-current-selector
-[`postcss-all-link-colors`]:           https://github.com/jedmao/postcss-all-link-colors
-[`postcss-color-hex-alpha`]:           https://github.com/postcss/postcss-color-hex-alpha
-[`postcss-define-property`]:           https://github.com/daleeidd/postcss-define-property
-[`postcss-filter-gradient`]:           https://github.com/yuezk/postcss-filter-gradient
-[`postcss-generate-preset`]:           https://github.com/simonsmith/postcss-generate-preset
-[`postcss-media-variables`]:           https://github.com/WolfgangKluge/postcss-media-variables
-[`postcss-property-lookup`]:           https://github.com/simonsmith/postcss-property-lookup
-[`postcss-vertical-rhythm`]:           https://github.com/markgoodyear/postcss-vertical-rhythm
-[`postcss-local-constants`]:           https://github.com/macropodhq/postcss-constants
-[`postcss-remove-prefixes`]:           https://github.com/johnotander/postcss-remove-prefixes
-[`postcss-responsive-type`]:           https://github.com/seaneking/postcss-responsive-type
-[`postcss-round-subpixels`]:           https://github.com/himynameisdave/postcss-round-subpixels
-[`postcss-short-font-size`]:           https://github.com/jonathantneal/postcss-short-font-size
-[`postcss-color-function`]:            https://github.com/postcss/postcss-color-function
-[`postcss-conic-gradient`]:            https://github.com/jonathantneal/postcss-conic-gradient
-[`postcss-convert-values`]:            https://github.com/ben-eb/postcss-convert-values
-[`postcss-partial-import`]:            https://github.com/jonathantneal/postcss-partial-import
-[`postcss-pseudoelements`]:            https://github.com/axa-ch/postcss-pseudoelements
-[`postcss-safe-important`]:            https://github.com/Crimx/postcss-safe-important
-[`postcss-short-position`]:            https://github.com/jonathantneal/postcss-short-position
-[`postcss-single-charset`]:            https://github.com/hail2u/postcss-single-charset
-[`postcss-flexbugs-fixes`]:            https://github.com/luisrudge/postcss-flexbugs-fixes
-[`postcss-shades-of-gray`]:            https://github.com/laureanoarcanio/postcss-shades-of-gray
-[`postcss-hash-classname`]:            https://github.com/ctxhou/postcss-hash-classname
-[`postcss-oldschool-grid`]:            https://github.com/lordgiotto/postcss-oldschool-grid
-[`postcss-alias-atrules`]:             https://github.com/maximkoretskiy/postcss-alias-atrules
-[`postcss-color-palette`]:             https://github.com/zaim/postcss-color-palette
-[`postcss-assets-rebase`]:             https://github.com/devex-web-frontend/postcss-assets-rebase
-[`postcss-color-pantone`]:             https://github.com/longdog/postcss-color-pantone
-[`postcss-css-variables`]:             https://github.com/MadLittleMods/postcss-css-variables
-[`postcss-discard-empty`]:             https://github.com/ben-eb/postcss-discard-empty
-[`postcss-gradientfixer`]:             https://github.com/hallvors/postcss-gradientfixer
-[`postcss-modular-scale`]:             https://github.com/kristoferjoseph/postcss-modular-scale
-[`postcss-normalize-url`]:             https://github.com/ben-eb/postcss-normalize-url
-[`postcss-reduce-idents`]:             https://github.com/ben-eb/postcss-reduce-idents
-[`postcss-short-spacing`]:             https://github.com/jonathantneal/postcss-short-spacing
-[`postcss-simple-extend`]:             https://github.com/davidtheclark/postcss-simple-extend
-[`postcss-russian-units`]:             https://github.com/Semigradsky/postcss-russian-units
-[`postcss-image-inliner`]:             https://github.com/bezoerb/postcss-image-inliner
-[`postcss-reverse-media`]:             https://github.com/MadLittleMods/postcss-reverse-media
-[`postcss-regexp-detect`]:             https://github.com/devex-web-frontend/postcss-regexp-detect
-[`postcss-speech-bubble`]:             https://github.com/archana-s/postcss-speech-bubble
-[`postcss-extract-value`]:             https://github.com/lutien/postcss-extract-value
-[`postcss-mq-keyframes`]:              https://github.com/TCotton/postcss-mq-keyframes
-[`postcss-brand-colors`]:              https://github.com/postcss/postcss-brand-colors
-[`postcss-class-prefix`]:              https://github.com/thompsongl/postcss-class-prefix
-[`postcss-conditionals`]:              https://github.com/andyjansson/postcss-conditionals
-[`postcss-sassy-mixins`]:              https://github.com/andyjansson/postcss-sassy-mixins
-[`postcss-custom-media`]:              https://github.com/postcss/postcss-custom-media
-[`postcss-default-unit`]:              https://github.com/antyakushev/postcss-default-unit
-[`postcss-font-awesome`]:              https://github.com/dan-gamble/postcss-font-awesome
-[`postcss-flexibility`]:               https://github.com/7rulnik/postcss-flexibility
-[`postcss-flexboxfixer`]:              https://github.com/hallvors/postcss-flexboxfixer
-[`postcss-font-normalize`]:            https://github.com/iahu/postcss-font-normalize
-[`postcss-font-variant`]:              https://github.com/postcss/postcss-font-variant
-[`postcss-media-minmax`]:              https://github.com/postcss/postcss-media-minmax
-[`postcss-merge-idents`]:              https://github.com/ben-eb/postcss-merge-idents
-[`postcss-selector-not`]:              https://github.com/postcss/postcss-selector-not
-[`postcss-svg-fallback`]:              https://github.com/justim/postcss-svg-fallback
-[`postcss-nested-props`]:              https://github.com/jedmao/postcss-nested-props
-[`postcss-aspect-ratio`]:              https://github.com/arccoza/postcss-aspect-ratio
-[`postcss-cachebuster`]:               https://github.com/glebmachine/postcss-cachebuster
-[`postcss-easysprites`]:               https://github.com/glebmachine/postcss-easysprites
-[`postcss-nested-vars`]:               https://github.com/jedmao/postcss-nested-vars
-[`postcss-color-alpha`]:               https://github.com/avanes/postcss-color-alpha
-[`postcss-color-scale`]:               https://github.com/kristoferjoseph/postcss-color-scale
-[`postcss-color-short`]:               https://github.com/andrepolischuk/postcss-color-short
-[`postcss-copy-assets`]:               https://github.com/shutterstock/postcss-copy-assets
-[`postcss-data-packer`]:               https://github.com/Ser-Gen/postcss-data-packer
-[`postcss-font-family`]:               https://github.com/ben-eb/postcss-font-family
-[`postcss-simple-grid`]:               https://github.com/admdh/postcss-simple-grid
-[`postcss-merge-rules`]:               https://github.com/ben-eb/postcss-merge-rules
-[`postcss-simple-vars`]:               https://github.com/postcss/postcss-simple-vars
-[`postcss-strip-units`]:               https://github.com/whitneyit/postcss-strip-units
-[`postcss-style-guide`]:               https://github.com/morishitter/postcss-style-guide
-[`postcss-will-change`]:               https://github.com/postcss/postcss-will-change
-[`postcss-input-style`]:               https://github.com/seaneking/postcss-input-style
-[`css-declaration-sorter`]:            https://github.com/Siilwyn/css-declaration-sorter
-[`postcss-remove-root`]:               https://github.com/cbracco/postcss-remove-root
-[`postcss-mq-optimize`]:               https://github.com/panec/postcss-mq-optimize
-[`postcss-ase-colors`]:                https://github.com/dfernandez79/postcss-ase-colors
-[`postcss-bem-linter`]:                https://github.com/postcss/postcss-bem-linter
-[`postcss-color-gray`]:                https://github.com/postcss/postcss-color-gray
-[`postcss-colorblind`]:                https://github.com/btholt/postcss-colorblind
-[`postcss-inline-rtl`]:                https://github.com/jakob101/postcss-inline-rtl
-[`postcss-color-hexa`]:                https://github.com/nicksheffield/postcss-color-hexa
-[`postcss-short-text`]:                https://github.com/jonathantneal/postcss-short-text
-[`postcss-inline-svg`]:                https://github.com/TrySound/postcss-inline-svg
-[`postcss-autoreset`]:                 https://github.com/maximkoretskiy/postcss-autoreset
-[`postcss-font-pack`]:                 https://github.com/jedmao/postcss-font-pack
-[`postcss-reference`]:                 https://github.com/dehuszar/postcss-reference
-[`postcss-functions`]:                 https://github.com/andyjansson/postcss-functions
-[`postcss-color-hcl`]:                 https://github.com/devgru/postcss-color-hcl
-[`postcss-color-hwb`]:                 https://github.com/postcss/postcss-color-hwb
-[`postcss-color-mix`]:                 https://github.com/iamstarkov/postcss-color-mix
-[`postcss-color-yiq`]:                 https://github.com/ben-eb/postcss-color-yiq
-[`postcss-filter-mq`]:                 https://github.com/simeydotme/postcss-filter-mq
-[`postcss-image-set`]:                 https://github.com/alex499/postcss-image-set
-[`postcss-write-svg`]:                 https://github.com/jonathantneal/postcss-write-svg
-[`postcss-animation`]:                 https://github.com/zhouwenbin/postcss-animation
-[`postcss-instagram`]:                 https://github.com/azat-io/postcss-instagram
-[`postcss-namespace`]:                 https://github.com/totora0155/postcss-namespace
-[`postcss-clearfix`]:                  https://github.com/seaneking/postcss-clearfix
-[`postcss-colormin`]:                  https://github.com/ben-eb/colormin
-[`postcss-cssstats`]:                  https://github.com/cssstats/postcss-cssstats
-[`postcss-currency`]:                  https://github.com/talgautb/postcss-currency
-[`postcss-fallback`]:                  https://github.com/MadLittleMods/postcss-fallback
-[`postcss-imperial`]:                  https://github.com/cbas/postcss-imperial
-[`postcss-position`]:                  https://github.com/seaneking/postcss-position
-[`postcss-rgba-hex`]:                  https://github.com/XOP/postcss-rgba-hex
-[`postcss-contrast`]:                  https://github.com/stephenway/postcss-contrast
-[`postcss-spiffing`]:                  https://github.com/HashanP/postcss-spiffing
-[`postcss-triangle`]:                  https://github.com/jedmao/postcss-triangle
-[`postcss-verthorz`]:                  https://github.com/davidhemphill/postcss-verthorz
-[`pleeease-filters`]:                  https://github.com/iamvdo/pleeease-filters
-[`postcss-fontpath`]:                  https://github.com/seaneking/postcss-fontpath
-[`postcss-reporter`]:                  https://github.com/postcss/postcss-reporter
-[`postcss-trolling`]:                  https://github.com/juanfran/postcss-trolling
-[`postcss-if-media`]:                  https://github.com/arccoza/postcss-if-media
-[`postcss-flexbox`]:                   https://github.com/archana-s/postcss-flexbox
-[`postcss-modules`]:                   https://github.com/outpunk/postcss-modules
-[`postcss-easings`]:                   https://github.com/postcss/postcss-easings
-[`postcss-hexrgba`]:                   https://github.com/seaneking/postcss-hexrgba
-[`postcss-initial`]:                   https://github.com/maximkoretskiy/postcss-initial
-[`postcss-rgb-plz`]:                   https://github.com/himynameisdave/postcss-rgb-plz
-[`postcss-opacity`]:                   https://github.com/iamvdo/postcss-opacity
-[`postcss-pointer`]:                   https://github.com/markgoodyear/postcss-pointer
-[`postcss-pxtorem`]:                   https://github.com/cuth/postcss-pxtorem
-[`postcss-scopify`]:                   https://github.com/pazams/postcss-scopify
-[`postcss-sprites`]:                   https://github.com/2createStudio/postcss-sprites
-[`postcss-sorting`]:                   https://github.com/hudochenkov/postcss-sorting
-[`postcss-assets`]:                    https://github.com/borodean/postcss-assets
-[`postcss-border`]:                    https://github.com/andrepolischuk/postcss-border
-[`postcss-center`]:                    https://github.com/jedmao/postcss-center
-[`postcss-circle`]:                    https://github.com/jedmao/postcss-circle
-[`postcss-hidden`]:                    https://github.com/lukelarsen/postcss-hidden
-[`postcss-urlrev`]:                    https://github.com/yuezk/postcss-urlrev
-[`postcss-extend`]:                    https://github.com/travco/postcss-extend
-[`postcss-fakeid`]:                    https://github.com/pathsofdesign/postcss-fakeid
-[`postcss-filter-stream`]:             https://github.com/tsm91/postcss-filter-stream
-[`postcss-filter`]:                    https://github.com/alanev/postcss-filter
-[`postcss-import`]:                    https://github.com/postcss/postcss-import
-[`postcss-mixins`]:                    https://github.com/postcss/postcss-mixins
-[`postcss-nested`]:                    https://github.com/postcss/postcss-nested
-[`postcss-select`]:                    https://github.com/johnotander/postcss-select
-[`postcss-zindex`]:                    https://github.com/ben-eb/postcss-zindex
-[`list-selectors`]:                    https://github.com/davidtheclark/list-selectors
-[`mq4-hover-shim`]:                    https://github.com/twbs/mq4-hover-shim
-[`postcss-atroot`]:                    https://github.com/OEvgeny/postcss-atroot
-[`postcss-layout`]:                    https://github.com/arccoza/postcss-layout
-[`postcss-esplit`]:                    https://github.com/vitaliyr/postcss-esplit
-[`postcss-focus`]:                     https://github.com/postcss/postcss-focus
-[`postcss-apply`]:                     https://github.com/pascalduez/postcss-apply
-[`css2modernizr`]:                     https://github.com/vovanbo/css2modernizr
-[`font-magician`]:                     https://github.com/jonathantneal/postcss-font-magician
-[`postcss-match`]:                     https://github.com/rtsao/postcss-match
-[`postcss-alias`]:                     https://github.com/seaneking/postcss-alias
-[`postcss-scrib`]:                     https://github.com/sneakertack/postcss-scrib
-[`perfectionist`]:                     https://github.com/ben-eb/perfectionist
-[`immutable-css`]:                     https://github.com/johnotander/immutable-css
-[`postcss-at2x`]:                      https://github.com/simonsmith/postcss-at2x
-[`postcss-calc`]:                      https://github.com/postcss/postcss-calc
-[`postcss-crip`]:                      https://github.com/johnie/postcss-crip
-[`postcss-each`]:                      https://github.com/outpunk/postcss-each
-[`postcss-epub`]:                      https://github.com/Rycochet/postcss-epub
-[`postcss-grid`]:                      https://github.com/andyjansson/postcss-grid
-[`postcss-host`]:                      https://github.com/vitkarpov/postcss-host
-[`postcss-neat`]:                      https://github.com/jo-asakura/postcss-neat
-[`postcss-size`]:                      https://github.com/postcss/postcss-size
-[`postcss-svgo`]:                      https://github.com/ben-eb/postcss-svgo
-[`postcss-unmq`]:                      https://github.com/jonathantneal/postcss-unmq
-[`postcss-vmin`]:                      https://github.com/iamvdo/postcss-vmin
-[`autoprefixer`]:                      https://github.com/postcss/autoprefixer
-[`css-mqpacker`]:                      https://github.com/hail2u/node-css-mqpacker
-[`postcss-bem`]:                       https://github.com/ileri/postcss-bem
-[`postcss-for`]:                       https://github.com/antyakushev/postcss-for
-[`postcss-map`]:                       https://github.com/pascalduez/postcss-map
-[`postcss-raw`]:                       https://github.com/MadLittleMods/postcss-raw
-[`postcss-svg`]:                       https://github.com/Pavliko/postcss-svg
-[`postcss-url`]:                       https://github.com/postcss/postcss-url
-[`colorguard`]:                        https://github.com/SlexAxton/css-colorguard
-[`stylehacks`]:                        https://github.com/ben-eb/stylehacks
-[`css-byebye`]:                        https://github.com/AoDev/css-byebye
-[`cssgrace`]:                          https://github.com/cssdream/cssgrace
-[`csstyle`]:                           https://github.com/geddski/csstyle
-[`webpcss`]:                           https://github.com/lexich/webpcss
-[`stylefmt`]:                          https://github.com/morishitter/stylefmt
-[`doiuse`]:                            https://github.com/anandthakker/doiuse
-[`pixrem`]:                            https://github.com/robwierzbowski/node-pixrem
-[`rtlcss`]:                            https://github.com/MohammadYounes/rtlcss
-[`short`]:                             https://github.com/jonathantneal/postcss-short
-[`lost`]:                              https://github.com/corysimmons/lost
-[`postcss-maze`]:                      https://github.com/cathydutton/postcss-maze
-[`postcss-get-color`]:                 https://github.com/ismamz/postcss-get-color
-[`postcss-sanitize`]:                  https://github.com/eramdam/postcss-sanitize
-[`postcss-magic-animations`]:          https://github.com/nucliweb/postcss-magic-animations/
-[`postcss-border-shortcut`]:           https://github.com/michelemazzucco/postcss-border-shortcut
-[`postcss-button`]:                    https://github.com/francoisromain/postcss-button
-[`postcss-typescale`]:                 https://github.com/francoisromain/postcss-typescale
-[`postcss-grid-fluid`]:                https://github.com/francoisromain/postcss-grid-fluid
-[`postcss-grid-system`]:               https://github.com/francoisromain/postcss-grid-system
-[`postcss-placehold`]:                 https://github.com/awayken/postcss-placehold
-[`postcss-camelcaser`]:                https://github.com/GMchris/postcss-camelcaser
+[`postcss-attribute-selector-prefix`]:    https://github.com/GitScrum/postcss-attribute-selector-prefix
+[`postcss-gradient-transparency-fix`]:    https://github.com/gilmoreorless/postcss-gradient-transparency-fix
+[`postcss-vertical-rhythm-function`]:     https://github.com/F21/postcss-vertical-rhythm-function
+[`postcss-pseudo-class-any-button`]:      https://github.com/andrepolischuk/postcss-pseudo-class-any-button
+[`postcss-pseudo-elements-content`]:      https://github.com/omgovich/postcss-pseudo-elements-content
+[`postcss-andalusian-stylesheets`]:       https://github.com/bameda/postcss-andalusian-stylesheets
+[`postcss-australian-stylesheets`]:       https://github.com/dp-lewis/postcss-australian-stylesheets
+[`postcss-pseudo-class-any-link`]:        https://github.com/jonathantneal/postcss-pseudo-class-any-link
+[`postcss-pseudo-content-insert`]:        https://github.com/liquidlight/postcss-pseudo-content-insert
+[`postcss-canadian-stylesheets`]:         https://github.com/chancancode/postcss-canadian-stylesheets
+[`postcss-increase-specificity`]:         https://github.com/MadLittleMods/postcss-increase-specificity
+[`postcss-chinese-stylesheets`]:          https://github.com/zhouwenbin/postcss-chinese-stylesheets
+[`postcss-russian-stylesheets`]:          https://github.com/Semigradsky/postcss-russian-stylesheets
+[`postcss-swedish-stylesheets`]:          https://github.com/johnie/postcss-swedish-stylesheets
+[`postcss-color-rebeccapurple`]:          https://github.com/postcss/postcss-color-rebeccapurple
+[`postcss-color-rgba-fallback`]:          https://github.com/postcss/postcss-color-rgba-fallback
+[`postcss-spanish-stylesheets`]:          https://github.com/ismamz/postcss-spanish-stylesheets
+[`postcss-at-rules-variables`]:           https://github.com/GitScrum/postcss-at-rules-variables
+[`postcss-discard-duplicates`]:           https://github.com/ben-eb/postcss-discard-duplicates
+[`postcss-german-stylesheets`]:           https://github.com/timche/postcss-german-stylesheets
+[`postcss-logical-properties`]:           https://github.com/ahmadalfy/postcss-logical-properties
+[`postcss-lolcat-stylesheets`]:           https://github.com/sandralundgren/postcss-lolcat-stylesheets
+[`postcss-minify-font-weight`]:           https://github.com/ben-eb/postcss-minify-font-weight
+[`postcss-pseudo-class-enter`]:           https://github.com/jonathantneal/postcss-pseudo-class-enter
+[`postcss-transform-shortcut`]:           https://github.com/jonathantneal/postcss-transform-shortcut
+[`postcss-custom-properties`]:            https://github.com/postcss/postcss-custom-properties
+[`postcss-czech-stylesheets`]:            https://github.com/HoBi/postcss-czech-stylesheets
+[`postcss-discard-font-face`]:            https://github.com/ben-eb/postcss-discard-font-face
+[`postcss-responsive-images`]:            https://github.com/azat-io/postcss-responsive-images
+[`postcss-selector-prefixer`]:            https://github.com/ronnyamarante/postcss-selector-prefixer
+[`postcss-tatar-stylesheets`]:            https://github.com/azat-io/postcss-tatar-stylesheets
+[`postcss-browser-reporter`]:             https://github.com/postcss/postcss-browser-reporter
+[`postcss-current-selector`]:             https://github.com/komlev/postcss-current-selector
+[`postcss-custom-selectors`]:             https://github.com/postcss/postcss-custom-selectors
+[`postcss-discard-comments`]:             https://github.com/ben-eb/postcss-discard-comments
+[`postcss-magic-animations`]:             https://github.com/nucliweb/postcss-magic-animations/
+[`postcss-minify-selectors`]:             https://github.com/ben-eb/postcss-minify-selectors
+[`postcss-mqwidth-to-class`]:             https://github.com/notacouch/postcss-mqwidth-to-class
+[`postcss-quantity-queries`]:             https://github.com/pascalduez/postcss-quantity-queries
+[`postcss-selector-matches`]:             https://github.com/postcss/postcss-selector-matches
+[`postcss-shorthand-expand`]:             https://github.com/johnotander/postcss-shorthand-expand
+[`postcss-all-link-colors`]:              https://github.com/jedmao/postcss-all-link-colors
+[`postcss-border-shortcut`]:              https://github.com/michelemazzucco/postcss-border-shortcut
+[`postcss-color-hex-alpha`]:              https://github.com/postcss/postcss-color-hex-alpha
+[`postcss-define-property`]:              https://github.com/daleeidd/postcss-define-property
+[`postcss-filter-gradient`]:              https://github.com/yuezk/postcss-filter-gradient
+[`postcss-generate-preset`]:              https://github.com/simonsmith/postcss-generate-preset
+[`postcss-local-constants`]:              https://github.com/macropodhq/postcss-constants
+[`postcss-media-variables`]:              https://github.com/WolfgangKluge/postcss-media-variables
+[`postcss-property-lookup`]:              https://github.com/simonsmith/postcss-property-lookup
+[`postcss-remove-prefixes`]:              https://github.com/johnotander/postcss-remove-prefixes
+[`postcss-responsive-type`]:              https://github.com/seaneking/postcss-responsive-type
+[`postcss-round-subpixels`]:              https://github.com/himynameisdave/postcss-round-subpixels
+[`postcss-short-font-size`]:              https://github.com/jonathantneal/postcss-short-font-size
+[`postcss-vertical-rhythm`]:              https://github.com/markgoodyear/postcss-vertical-rhythm
+[`postcss-color-function`]:               https://github.com/postcss/postcss-color-function
+[`postcss-conic-gradient`]:               https://github.com/jonathantneal/postcss-conic-gradient
+[`postcss-convert-values`]:               https://github.com/ben-eb/postcss-convert-values
+[`postcss-flexbugs-fixes`]:               https://github.com/luisrudge/postcss-flexbugs-fixes
+[`postcss-font-normalize`]:               https://github.com/iahu/postcss-font-normalize
+[`postcss-hash-classname`]:               https://github.com/ctxhou/postcss-hash-classname
+[`postcss-oldschool-grid`]:               https://github.com/lordgiotto/postcss-oldschool-grid
+[`postcss-partial-import`]:               https://github.com/jonathantneal/postcss-partial-import
+[`postcss-pseudoelements`]:               https://github.com/axa-ch/postcss-pseudoelements
+[`postcss-safe-important`]:               https://github.com/Crimx/postcss-safe-important
+[`postcss-shades-of-gray`]:               https://github.com/laureanoarcanio/postcss-shades-of-gray
+[`postcss-short-position`]:               https://github.com/jonathantneal/postcss-short-position
+[`postcss-single-charset`]:               https://github.com/hail2u/postcss-single-charset
+[`css-declaration-sorter`]:               https://github.com/Siilwyn/css-declaration-sorter
+[`postcss-alias-atrules`]:                https://github.com/maximkoretskiy/postcss-alias-atrules
+[`postcss-assets-rebase`]:                https://github.com/devex-web-frontend/postcss-assets-rebase
+[`postcss-color-palette`]:                https://github.com/zaim/postcss-color-palette
+[`postcss-color-pantone`]:                https://github.com/longdog/postcss-color-pantone
+[`postcss-css-variables`]:                https://github.com/MadLittleMods/postcss-css-variables
+[`postcss-discard-empty`]:                https://github.com/ben-eb/postcss-discard-empty
+[`postcss-extract-value`]:                https://github.com/lutien/postcss-extract-value
+[`postcss-filter-stream`]:                https://github.com/tsm91/postcss-filter-stream
+[`postcss-gradientfixer`]:                https://github.com/hallvors/postcss-gradientfixer
+[`postcss-image-inliner`]:                https://github.com/bezoerb/postcss-image-inliner
+[`postcss-modular-scale`]:                https://github.com/kristoferjoseph/postcss-modular-scale
+[`postcss-normalize-url`]:                https://github.com/ben-eb/postcss-normalize-url
+[`postcss-reduce-idents`]:                https://github.com/ben-eb/postcss-reduce-idents
+[`postcss-regexp-detect`]:                https://github.com/devex-web-frontend/postcss-regexp-detect
+[`postcss-reverse-media`]:                https://github.com/MadLittleMods/postcss-reverse-media
+[`postcss-russian-units`]:                https://github.com/Semigradsky/postcss-russian-units
+[`postcss-short-spacing`]:                https://github.com/jonathantneal/postcss-short-spacing
+[`postcss-simple-extend`]:                https://github.com/davidtheclark/postcss-simple-extend
+[`postcss-speech-bubble`]:                https://github.com/archana-s/postcss-speech-bubble
+[`postcss-aspect-ratio`]:                 https://github.com/arccoza/postcss-aspect-ratio
+[`postcss-brand-colors`]:                 https://github.com/postcss/postcss-brand-colors
+[`postcss-class-prefix`]:                 https://github.com/thompsongl/postcss-class-prefix
+[`postcss-conditionals`]:                 https://github.com/andyjansson/postcss-conditionals
+[`postcss-custom-media`]:                 https://github.com/postcss/postcss-custom-media
+[`postcss-default-unit`]:                 https://github.com/antyakushev/postcss-default-unit
+[`postcss-flexboxfixer`]:                 https://github.com/hallvors/postcss-flexboxfixer
+[`postcss-font-awesome`]:                 https://github.com/dan-gamble/postcss-font-awesome
+[`postcss-font-variant`]:                 https://github.com/postcss/postcss-font-variant
+[`postcss-media-minmax`]:                 https://github.com/postcss/postcss-media-minmax
+[`postcss-merge-idents`]:                 https://github.com/ben-eb/postcss-merge-idents
+[`postcss-mq-keyframes`]:                 https://github.com/TCotton/postcss-mq-keyframes
+[`postcss-nested-props`]:                 https://github.com/jedmao/postcss-nested-props
+[`postcss-sassy-mixins`]:                 https://github.com/andyjansson/postcss-sassy-mixins
+[`postcss-selector-not`]:                 https://github.com/postcss/postcss-selector-not
+[`postcss-svg-fallback`]:                 https://github.com/justim/postcss-svg-fallback
+[`postcss-cachebuster`]:                  https://github.com/glebmachine/postcss-cachebuster
+[`postcss-color-alpha`]:                  https://github.com/avanes/postcss-color-alpha
+[`postcss-color-scale`]:                  https://github.com/kristoferjoseph/postcss-color-scale
+[`postcss-color-short`]:                  https://github.com/andrepolischuk/postcss-color-short
+[`postcss-copy-assets`]:                  https://github.com/shutterstock/postcss-copy-assets
+[`postcss-data-packer`]:                  https://github.com/Ser-Gen/postcss-data-packer
+[`postcss-easysprites`]:                  https://github.com/glebmachine/postcss-easysprites
+[`postcss-flexibility`]:                  https://github.com/7rulnik/postcss-flexibility
+[`postcss-font-family`]:                  https://github.com/ben-eb/postcss-font-family
+[`postcss-grid-system`]:                  https://github.com/francoisromain/postcss-grid-system
+[`postcss-input-style`]:                  https://github.com/seaneking/postcss-input-style
+[`postcss-merge-rules`]:                  https://github.com/ben-eb/postcss-merge-rules
+[`postcss-mq-optimize`]:                  https://github.com/panec/postcss-mq-optimize
+[`postcss-nested-vars`]:                  https://github.com/jedmao/postcss-nested-vars
+[`postcss-remove-root`]:                  https://github.com/cbracco/postcss-remove-root
+[`postcss-simple-grid`]:                  https://github.com/admdh/postcss-simple-grid
+[`postcss-simple-vars`]:                  https://github.com/postcss/postcss-simple-vars
+[`postcss-strip-units`]:                  https://github.com/whitneyit/postcss-strip-units
+[`postcss-style-guide`]:                  https://github.com/morishitter/postcss-style-guide
+[`postcss-will-change`]:                  https://github.com/postcss/postcss-will-change
+[`postcss-ase-colors`]:                   https://github.com/dfernandez79/postcss-ase-colors
+[`postcss-bem-linter`]:                   https://github.com/postcss/postcss-bem-linter
+[`postcss-camelcaser`]:                   https://github.com/GMchris/postcss-camelcaser   
+[`postcss-color-gray`]:                   https://github.com/postcss/postcss-color-gray
+[`postcss-color-hexa`]:                   https://github.com/nicksheffield/postcss-color-hexa
+[`postcss-colorblind`]:                   https://github.com/btholt/postcss-colorblind
+[`postcss-grid-fluid`]:                   https://github.com/francoisromain/postcss-grid-fluid
+[`postcss-inline-rtl`]:                   https://github.com/jakob101/postcss-inline-rtl
+[`postcss-inline-svg`]:                   https://github.com/TrySound/postcss-inline-svg
+[`postcss-short-text`]:                   https://github.com/jonathantneal/postcss-short-text
+[`postcss-animation`]:                    https://github.com/zhouwenbin/postcss-animation
+[`postcss-autoreset`]:                    https://github.com/maximkoretskiy/postcss-autoreset
+[`postcss-color-hcl`]:                    https://github.com/devgru/postcss-color-hcl
+[`postcss-color-hwb`]:                    https://github.com/postcss/postcss-color-hwb
+[`postcss-color-mix`]:                    https://github.com/iamstarkov/postcss-color-mix
+[`postcss-color-yiq`]:                    https://github.com/ben-eb/postcss-color-yiq
+[`postcss-filter-mq`]:                    https://github.com/simeydotme/postcss-filter-mq
+[`postcss-font-pack`]:                    https://github.com/jedmao/postcss-font-pack
+[`postcss-functions`]:                    https://github.com/andyjansson/postcss-functions
+[`postcss-get-color`]:                    https://github.com/ismamz/postcss-get-color
+[`postcss-image-set`]:                    https://github.com/alex499/postcss-image-set
+[`postcss-instagram`]:                    https://github.com/azat-io/postcss-instagram
+[`postcss-namespace`]:                    https://github.com/totora0155/postcss-namespace
+[`postcss-placehold`]:                    https://github.com/awayken/postcss-placehold
+[`postcss-reference`]:                    https://github.com/dehuszar/postcss-reference
+[`postcss-typescale`]:                    https://github.com/francoisromain/postcss-typescale
+[`postcss-write-svg`]:                    https://github.com/jonathantneal/postcss-write-svg
+[`postcss-clearfix`]:                     https://github.com/seaneking/postcss-clearfix
+[`postcss-colormin`]:                     https://github.com/ben-eb/colormin
+[`postcss-contrast`]:                     https://github.com/stephenway/postcss-contrast
+[`postcss-cssstats`]:                     https://github.com/cssstats/postcss-cssstats
+[`postcss-currency`]:                     https://github.com/talgautb/postcss-currency
+[`postcss-fallback`]:                     https://github.com/MadLittleMods/postcss-fallback
+[`postcss-fontpath`]:                     https://github.com/seaneking/postcss-fontpath
+[`postcss-if-media`]:                     https://github.com/arccoza/postcss-if-media
+[`postcss-imperial`]:                     https://github.com/cbas/postcss-imperial
+[`postcss-position`]:                     https://github.com/seaneking/postcss-position
+[`postcss-reporter`]:                     https://github.com/postcss/postcss-reporter
+[`postcss-rgba-hex`]:                     https://github.com/XOP/postcss-rgba-hex
+[`postcss-sanitize`]:                     https://github.com/eramdam/postcss-sanitize
+[`postcss-spiffing`]:                     https://github.com/HashanP/postcss-spiffing
+[`postcss-triangle`]:                     https://github.com/jedmao/postcss-triangle
+[`postcss-trolling`]:                     https://github.com/juanfran/postcss-trolling
+[`postcss-verthorz`]:                     https://github.com/davidhemphill/postcss-verthorz
+[`pleeease-filters`]:                     https://github.com/iamvdo/pleeease-filters
+[`postcss-easings`]:                      https://github.com/postcss/postcss-easings
+[`postcss-flexbox`]:                      https://github.com/archana-s/postcss-flexbox
+[`postcss-hexrgba`]:                      https://github.com/seaneking/postcss-hexrgba
+[`postcss-initial`]:                      https://github.com/maximkoretskiy/postcss-initial
+[`postcss-modules`]:                      https://github.com/outpunk/postcss-modules
+[`postcss-opacity`]:                      https://github.com/iamvdo/postcss-opacity
+[`postcss-pointer`]:                      https://github.com/markgoodyear/postcss-pointer
+[`postcss-pxtorem`]:                      https://github.com/cuth/postcss-pxtorem
+[`postcss-rgb-plz`]:                      https://github.com/himynameisdave/postcss-rgb-plz
+[`postcss-scopify`]:                      https://github.com/pazams/postcss-scopify
+[`postcss-sorting`]:                      https://github.com/hudochenkov/postcss-sorting
+[`postcss-sprites`]:                      https://github.com/2createStudio/postcss-sprites
+[`postcss-assets`]:                       https://github.com/borodean/postcss-assets
+[`postcss-atroot`]:                       https://github.com/OEvgeny/postcss-atroot
+[`postcss-border`]:                       https://github.com/andrepolischuk/postcss-border
+[`postcss-button`]:                       https://github.com/francoisromain/postcss-button
+[`postcss-center`]:                       https://github.com/jedmao/postcss-center
+[`postcss-circle`]:                       https://github.com/jedmao/postcss-circle
+[`postcss-esplit`]:                       https://github.com/vitaliyr/postcss-esplit
+[`postcss-extend`]:                       https://github.com/travco/postcss-extend
+[`postcss-fakeid`]:                       https://github.com/pathsofdesign/postcss-fakeid
+[`postcss-filter`]:                       https://github.com/alanev/postcss-filter
+[`postcss-hidden`]:                       https://github.com/lukelarsen/postcss-hidden
+[`postcss-import`]:                       https://github.com/postcss/postcss-import
+[`postcss-layout`]:                       https://github.com/arccoza/postcss-layout
+[`postcss-mixins`]:                       https://github.com/postcss/postcss-mixins
+[`postcss-nested`]:                       https://github.com/postcss/postcss-nested
+[`postcss-select`]:                       https://github.com/johnotander/postcss-select
+[`postcss-urlrev`]:                       https://github.com/yuezk/postcss-urlrev
+[`postcss-zindex`]:                       https://github.com/ben-eb/postcss-zindex
+[`list-selectors`]:                       https://github.com/davidtheclark/list-selectors
+[`mq4-hover-shim`]:                       https://github.com/twbs/mq4-hover-shim
+[`postcss-alias`]:                        https://github.com/seaneking/postcss-alias
+[`postcss-apply`]:                        https://github.com/pascalduez/postcss-apply
+[`postcss-focus`]:                        https://github.com/postcss/postcss-focus
+[`postcss-match`]:                        https://github.com/rtsao/postcss-match
+[`postcss-scrib`]:                        https://github.com/sneakertack/postcss-scrib
+[`css2modernizr`]:                        https://github.com/vovanbo/css2modernizr
+[`font-magician`]:                        https://github.com/jonathantneal/postcss-font-magician
+[`immutable-css`]:                        https://github.com/johnotander/immutable-css
+[`perfectionist`]:                        https://github.com/ben-eb/perfectionist
+[`postcss-at2x`]:                         https://github.com/simonsmith/postcss-at2x
+[`postcss-calc`]:                         https://github.com/postcss/postcss-calc
+[`postcss-crip`]:                         https://github.com/johnie/postcss-crip
+[`postcss-each`]:                         https://github.com/outpunk/postcss-each
+[`postcss-epub`]:                         https://github.com/Rycochet/postcss-epub
+[`postcss-grid`]:                         https://github.com/andyjansson/postcss-grid
+[`postcss-host`]:                         https://github.com/vitkarpov/postcss-host
+[`postcss-maze`]:                         https://github.com/cathydutton/postcss-maze
+[`postcss-neat`]:                         https://github.com/jo-asakura/postcss-neat
+[`postcss-size`]:                         https://github.com/postcss/postcss-size
+[`postcss-svgo`]:                         https://github.com/ben-eb/postcss-svgo
+[`postcss-unmq`]:                         https://github.com/jonathantneal/postcss-unmq
+[`postcss-vmin`]:                         https://github.com/iamvdo/postcss-vmin
+[`autoprefixer`]:                         https://github.com/postcss/autoprefixer
+[`css-mqpacker`]:                         https://github.com/hail2u/node-css-mqpacker
+[`postcss-bem`]:                          https://github.com/ileri/postcss-bem
+[`postcss-for`]:                          https://github.com/antyakushev/postcss-for
+[`postcss-ie8`]:                          https://github.com/4wdmedia/postcss-ie8
+[`postcss-map`]:                          https://github.com/pascalduez/postcss-map
+[`postcss-raw`]:                          https://github.com/MadLittleMods/postcss-raw
+[`postcss-svg`]:                          https://github.com/Pavliko/postcss-svg
+[`postcss-url`]:                          https://github.com/postcss/postcss-url
+[`colorguard`]:                           https://github.com/SlexAxton/css-colorguard
+[`css-byebye`]:                           https://github.com/AoDev/css-byebye
+[`stylehacks`]:                           https://github.com/ben-eb/stylehacks
+[`cssgrace`]:                             https://github.com/cssdream/cssgrace
+[`stylefmt`]:                             https://github.com/morishitter/stylefmt
+[`csstyle`]:                              https://github.com/geddski/csstyle
+[`webpcss`]:                              https://github.com/lexich/webpcss
+[`doiuse`]:                               https://github.com/anandthakker/doiuse
+[`pixrem`]:                               https://github.com/robwierzbowski/node-pixrem
+[`rtlcss`]:                               https://github.com/MohammadYounes/rtlcss
+[`short`]:                                https://github.com/jonathantneal/postcss-short
+[`lost`]:                                 https://github.com/corysimmons/lost
