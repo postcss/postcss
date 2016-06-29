@@ -93,6 +93,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`cssnano`] is a modular CSS minifier.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-ie8`] strips out unsupported properties and mediaqueries for IE8.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
@@ -109,6 +110,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`autoprefixer`]:             https://github.com/postcss/autoprefixer
 [`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill
 [`postcss-use`]:              https://github.com/postcss/postcss-use
+[`postcss-ie8`]:              https://github.com/4wdmedia/postcss-ie8
 [`css-modules`]:              https://github.com/css-modules/css-modules
 [`colorguard`]:               https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                https://github.com/stylelint/stylelint
