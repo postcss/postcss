@@ -194,7 +194,7 @@ class Node {
     }
 
     /**
-     * hortcut to clone the node and insert the resulting cloned node
+     * Shortcut to clone the node and insert the resulting cloned node
      * before the current node.
      *
      * @param {object} [overrides] - new properties to override in the clone.
@@ -211,7 +211,7 @@ class Node {
     }
 
     /**
-     * hortcut to clone the node and insert the resulting cloned node
+     * Shortcut to clone the node and insert the resulting cloned node
      * after the current node.
      *
      * @param {object} [overrides] - new properties to override in the clone.
