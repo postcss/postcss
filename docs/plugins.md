@@ -648,3 +648,4 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                               https://github.com/MohammadYounes/rtlcss
 [`short`]:                                https://github.com/jonathantneal/postcss-short
 [`lost`]:                                 https://github.com/corysimmons/lost
+[`autorem`]:                              https://github.com/malchata/node-autorem
