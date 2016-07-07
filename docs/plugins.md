@@ -316,6 +316,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
 * [`postcss-magic-animations`] PostCSS plugin that adds `@keyframes` from Magic Animations.
+* [`autorem`] Transforms `px` units in CSS and converts them to `rem` units. Based on `pixrem`.
 
 ## Others
 
@@ -529,7 +530,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-will-change`]:                  https://github.com/postcss/postcss-will-change
 [`postcss-ase-colors`]:                   https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:                   https://github.com/postcss/postcss-bem-linter
-[`postcss-camelcaser`]:                   https://github.com/GMchris/postcss-camelcaser   
+[`postcss-camelcaser`]:                   https://github.com/GMchris/postcss-camelcaser
 [`postcss-color-gray`]:                   https://github.com/postcss/postcss-color-gray
 [`postcss-color-hexa`]:                   https://github.com/nicksheffield/postcss-color-hexa
 [`postcss-colorblind`]:                   https://github.com/btholt/postcss-colorblind
