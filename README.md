@@ -70,6 +70,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`precss`] contains plugins for Sass-like features, like variables, nesting,
   and mixins.
 * [`postcss-sorting`] sorts the content of rules and at-rules.
+* [`postcss-utilities`] includes the most commonly used shortcuts and helpers.
 * [`short`] adds and extends numerous shorthand properties.
 
 ### Images and Fonts
