@@ -22,10 +22,10 @@
   "homepage": "http://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
-    "js-base64": "^2.1.9",
-    "node-uuid": "^1.4.7",
-    "source-map": "^0.5.6",
-    "supports-color": "^3.1.2"
+    "supports-color": "^3.1.2",
+    "source-map":     "^0.5.6",
+    "js-base64":      "^2.1.9",
+    "node-uuid":      "^1.4.7"
   },
   "devDependencies": {
     "babel-plugin-precompile-charcodes": "1.0.0",
