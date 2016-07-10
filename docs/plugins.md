@@ -32,6 +32,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 ## Packs
 
+* [`postcss-utilities`] includes the most commonly used mixins, shortcuts
+  and helpers to use as `@util` rules.
 * [`atcss`] contains plugins that transform your CSS according
   to special annotation comments.
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
@@ -45,17 +47,16 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   the IE9 fallbacks.
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
-* [`utilities`] includes the most commonly used mixins, shortcuts and helpers to use as `@util` rules.
 
+[`utilities`]: https://github.com/ismamz/postcss-utilities
 [`stylelint`]: https://github.com/stylelint/stylelint
 [`rucksack`]:  http://simplaio.github.io/rucksack
 [`cssnano`]:   http://cssnano.co/
 [`cssnext`]:   http://cssnext.io/
-[`oldie`]:     https://github.com/jonathantneal/oldie
-[`precss`]:    https://github.com/jonathantneal/precss
-[`atcss`]:     https://github.com/morishitter/atcss
 [`level4`]:    https://github.com/stephenway/level4
-[`utilities`]: https://github.com/ismamz/postcss-utilities
+[`precss`]:    https://github.com/jonathantneal/precss
+[`oldie`]:     https://github.com/jonathantneal/oldie
+[`atcss`]:     https://github.com/morishitter/atcss
 
 ## Future CSS Syntax
 
