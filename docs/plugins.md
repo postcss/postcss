@@ -48,15 +48,15 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
 
-[`utilities`]: https://github.com/ismamz/postcss-utilities
-[`stylelint`]: https://github.com/stylelint/stylelint
-[`rucksack`]:  http://simplaio.github.io/rucksack
-[`cssnano`]:   http://cssnano.co/
-[`cssnext`]:   http://cssnext.io/
-[`level4`]:    https://github.com/stephenway/level4
-[`precss`]:    https://github.com/jonathantneal/precss
-[`oldie`]:     https://github.com/jonathantneal/oldie
-[`atcss`]:     https://github.com/morishitter/atcss
+[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
+[`stylelint`]:         https://github.com/stylelint/stylelint
+[`rucksack`]:          http://simplaio.github.io/rucksack
+[`cssnano`]:           http://cssnano.co/
+[`cssnext`]:           http://cssnext.io/
+[`level4`]:            https://github.com/stephenway/level4
+[`precss`]:            https://github.com/jonathantneal/precss
+[`oldie`]:             https://github.com/jonathantneal/oldie
+[`atcss`]:             https://github.com/morishitter/atcss
 
 ## Future CSS Syntax
 
