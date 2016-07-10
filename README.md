@@ -100,6 +100,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`react-css-modules`]:        https://github.com/gajus/react-css-modules
 [`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg
+[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
 [`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial
 [`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites
 [`postcss-modules`]:          https://github.com/outpunk/postcss-modules
