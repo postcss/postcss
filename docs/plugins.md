@@ -45,6 +45,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   the IE9 fallbacks.
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
+* [`utilities`] includes the most commonly used mixins, shortcuts and helpers to use as `@util` rules.
 
 [`stylelint`]: https://github.com/stylelint/stylelint
 [`rucksack`]:  http://simplaio.github.io/rucksack
@@ -54,6 +55,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`precss`]:    https://github.com/jonathantneal/precss
 [`atcss`]:     https://github.com/morishitter/atcss
 [`level4`]:    https://github.com/stephenway/level4
+[`utilities`]: https://github.com/ismamz/postcss-utilities
 
 ## Future CSS Syntax
 
