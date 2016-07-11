@@ -154,6 +154,8 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [What PostCSS Really Is; What It Really Does](http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss)
 * [PostCSS Guides](http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)
 
+More articles and videos you can find on [awesome-postcss](https://github.com/jjaderg/awesome-postcss) list.
+
 ## Usage
 
 You can start using PostCSS in just two steps:
