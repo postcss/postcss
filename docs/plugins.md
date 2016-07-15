@@ -435,7 +435,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-czech-stylesheets`]:            https://github.com/HoBi/postcss-czech-stylesheets
 [`postcss-discard-font-face`]:            https://github.com/ben-eb/postcss-discard-font-face
 [`postcss-responsive-images`]:            https://github.com/azat-io/postcss-responsive-images
-[`postcss-selector-prefixer`]:            https://github.com/ronnyamarante/postcss-selector-prefixer
+[`postcss-selector-prefixer`]:            https://github.com/amaranter/postcss-selector-prefixer
 [`postcss-tatar-stylesheets`]:            https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-browser-reporter`]:             https://github.com/postcss/postcss-browser-reporter
 [`postcss-current-selector`]:             https://github.com/komlev/postcss-current-selector
