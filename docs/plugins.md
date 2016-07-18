@@ -127,6 +127,7 @@ See also [`oldie`] plugins pack.
 * [`postcss-aspect-ratio`] fix an element's dimensions to an aspect ratio.
 * [`postcss-atroot`] place rules directly at the root node.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
+* [`postcss-compact-mq`] provides compact syntax for media queries based on viewport width
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-css-variables`] supports variables for selectors, and at-rules
   using W3C similar syntax.
@@ -536,6 +537,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-gray`]:                   https://github.com/postcss/postcss-color-gray
 [`postcss-color-hexa`]:                   https://github.com/nicksheffield/postcss-color-hexa
 [`postcss-colorblind`]:                   https://github.com/btholt/postcss-colorblind
+[`postcss-compact-mq`]:                   https://github.com/rominmx/postcss-compact-mq
 [`postcss-grid-fluid`]:                   https://github.com/francoisromain/postcss-grid-fluid
 [`postcss-inline-rtl`]:                   https://github.com/jakob101/postcss-inline-rtl
 [`postcss-inline-svg`]:                   https://github.com/TrySound/postcss-inline-svg
