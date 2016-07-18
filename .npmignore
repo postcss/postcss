@@ -4,7 +4,6 @@ node_modules/
 npm-debug.log
 
 build/
-/postcss.js
 
 test/
 .travis.yml
