@@ -24,9 +24,8 @@ gulp.task('build:lib', ['compile'], () => {
 gulp.task('build:docs', ['clean'], () => {
     let ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
-        .concat(['.npmignore', 'index.js', 'lib/*', 'test/*',
-                 'node_modules/**/*', 'docs/api.md', 'docs/plugins.md',
-                 'docs/writing-a-plugin.md'])
+        .concat(['.npmignore', 'lib/*', 'test/*', 'node_modules/**/*',
+                 'docs/api.md', 'docs/plugins.md', 'docs/writing-a-plugin.md'])
         .map( i => '!' + i );
     return gulp.src(['**/*'].concat(ignore))
         .pipe(gulp.dest('build'));
