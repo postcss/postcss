@@ -266,6 +266,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
 * [`postcss-mq-optimize`] removes invalid media queries or its expresions.
+* [`postcss-uncss`] removes unused CSS from your stylesheets.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -618,6 +619,7 @@ See also plugins in modular minifier [`cssnano`].
 [`font-magician`]:                        https://github.com/jonathantneal/postcss-font-magician
 [`immutable-css`]:                        https://github.com/johnotander/immutable-css
 [`perfectionist`]:                        https://github.com/ben-eb/perfectionist
+[`postcss-uncss`]:                        https://github.com/RyanZim/postcss-uncss
 [`postcss-at2x`]:                         https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                         https://github.com/postcss/postcss-calc
 [`postcss-crip`]:                         https://github.com/johnie/postcss-crip
