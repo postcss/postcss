@@ -550,6 +550,11 @@ declare module postcss {
          * that was compiled to CSS before being passed to PostCSS):
          */
         origin(line: number, column: number): InputOrigin;
+        
+        /**
+        * Save input css file
+        */
+        css: string;
     }
     interface Node {
         /**
