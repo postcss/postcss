@@ -157,11 +157,7 @@ export default class MapGenerator {
         if ( this.previous().length > 0 ) this.applyPrevMaps();
         if ( this.isAnnotation() )        this.addAnnotation();
 
-        if ( this.isInline() ) {
-            return [this.css];
-        } else {
-            return [this.css, this.map];
-        }
+        return [this.css, this.map];
     }
 
     relative(file) {
