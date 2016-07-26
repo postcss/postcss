@@ -326,7 +326,7 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-autoreset`]  automatically adds reset styles.
-* [`postcss-camelcaser`] transforms selectors to camelcase.
+* [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
@@ -337,7 +337,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
-* [`postcss-ie8`] strips out unsupported properties and mediaqueries for IE8.
+* [`postcss-ie8`] strips out unsupported properties and media queries for IE8.
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
 * * [`postcss-inline-rtl`] converts your CSS to right-to-left,
   but inline (adding just what you need).
