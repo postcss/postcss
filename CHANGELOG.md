@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.1.1
+* Fix TypeScript definitions (by Efremov Alexey).
+
 ## 5.1 “King and President Zagan”
 * Add URI in source map support (by Mark Finger).
 * Add `map.from` option (by Mark Finger).
