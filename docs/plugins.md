@@ -124,6 +124,7 @@ See also [`oldie`] plugins pack.
 
 ## Language Extensions
 
+* [`postcss-responsive-properties`]('https://github.com/alexandr-solovyov/postcss-responsive-properties') allows you to write responsive property values.
 * [`postcss-aspect-ratio`] fix an element's dimensions to an aspect ratio.
 * [`postcss-atroot`] place rules directly at the root node.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
