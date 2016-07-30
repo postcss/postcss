@@ -200,6 +200,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   to a gray palette.
 * [`colorguard`] helps maintain a consistent color palette.
 * [`postcss-get-color`] get the prominent colors from an image.
+* [`postcss-randomcolor`] supports function to use random color.
 
 ## Images and Fonts
 
@@ -532,9 +533,10 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-strip-units`]:                  https://github.com/whitneyit/postcss-strip-units
 [`postcss-style-guide`]:                  https://github.com/morishitter/postcss-style-guide
 [`postcss-will-change`]:                  https://github.com/postcss/postcss-will-change
+[`postcss-randomcolor`]:                  https://github.com/alanev/postcss-randomcolor
 [`postcss-ase-colors`]:                   https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:                   https://github.com/postcss/postcss-bem-linter
-[`postcss-camelcaser`]:                   https://github.com/GMchris/postcss-camelcaser   
+[`postcss-camelcaser`]:                   https://github.com/GMchris/postcss-camelcaser
 [`postcss-color-gray`]:                   https://github.com/postcss/postcss-color-gray
 [`postcss-color-hexa`]:                   https://github.com/nicksheffield/postcss-color-hexa
 [`postcss-colorblind`]:                   https://github.com/btholt/postcss-colorblind
