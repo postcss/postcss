@@ -167,7 +167,8 @@ for targeting all button elements.
 * [`postcss-vertical-rhythm-function`] adds a vertical rhythm `vr()` function
   that is unit agnostic and works in situations where the font-size cannot
   be calculated during build time.
-* [`postcss-responsive-properties`](https://github.com/alexandr-solovyov/postcss-responsive-properties) allows you to write responsive property values
+* [`postcss-responsive-properties`] allows you to write responsive
+  property values.
 * [`csstyle`] adds components workflow to your styles.
 
 See also [`precss`] plugins pack to add them by one line of code.
@@ -417,6 +418,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-elements-content`]:      https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-andalusian-stylesheets`]:       https://github.com/bameda/postcss-andalusian-stylesheets
 [`postcss-australian-stylesheets`]:       https://github.com/dp-lewis/postcss-australian-stylesheets
+[`postcss-responsive-properties`]: https://github.com/alexandr-solovyov/postcss-responsive-properties
 [`postcss-pseudo-class-any-link`]:        https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-pseudo-content-insert`]:        https://github.com/liquidlight/postcss-pseudo-content-insert
 [`postcss-canadian-stylesheets`]:         https://github.com/chancancode/postcss-canadian-stylesheets
