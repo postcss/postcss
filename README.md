@@ -70,6 +70,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`precss`] contains plugins for Sass-like features, like variables, nesting,
   and mixins.
 * [`postcss-sorting`] sorts the content of rules and at-rules.
+* [`css-declaration-sorter`] sorts CSS declarations in a certain order.
 * [`postcss-utilities`] includes the most commonly used shortcuts and helpers.
 * [`short`] adds and extends numerous shorthand properties.
 
@@ -96,6 +97,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
+[`css-declaration-sorter`]:   https://github.com/Siilwyn/css-declaration-sorter
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
 [`react-css-modules`]:        https://github.com/gajus/react-css-modules
 [`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
