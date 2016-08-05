@@ -127,3 +127,25 @@ test('throws on double colon', t => {
         parse('a { one:: 1 }');
     }, /:1:9: Double colon/);
 });
+
+test('does not suggest different parsers for CSS', t => {
+    let error;
+    try {
+        parse('a { one:: 1 }', { from: 'app.css' });
+    } catch (e) {
+        error = e;
+    }
+    t.false(/postcss-less|postcss-scss/.test(error.message));
+});
+
+test('suggests postcss-scss for SCSS sources', t => {
+    t.throws(() => {
+        parse('a { #{var}: 1 }', { from: 'app.scss' });
+    }, /postcss-scss/);
+});
+
+test('suggests postcss-less for Less sources', t => {
+    t.throws(() => {
+        parse('.@{my-selector} { }', { from: 'app.less' });
+    }, /postcss-less/);
+});
