@@ -135,7 +135,7 @@ test('does not suggest different parsers for CSS', t => {
     } catch (e) {
         error = e;
     }
-    t.false(/postcss-less|postcss-scss/.test(error.message));
+    t.notRegex(error.message, /postcss-less|postcss-scss/);
 });
 
 test('suggests postcss-scss for SCSS sources', t => {

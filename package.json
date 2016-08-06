@@ -42,13 +42,13 @@
     "strip-ansi":                        "3.0.1",
     "yaspeller":                         "2.9.1",
     "gulp-run":                          "1.7.1",
-    "gulp-ava":                          "0.12.1",
+    "gulp-ava":                          "0.13.0",
     "fs-extra":                          "0.30.0",
     "docdash":                           "0.4.0",
     "eslint":                            "3.2.2",
     "sinon":                             "1.17.5",
     "gulp":                              "3.9.1",
-    "ava":                               "0.15.2",
+    "ava":                               "0.16.0",
     "del":                               "2.2.1"
   },
   "scripts": {
