@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.1.2
+* Suggests SCSS/Less parsers on parse errors depends on file extension.
+
 ## 5.1.1
 * Fix TypeScript definitions (by Efremov Alexey).
 
