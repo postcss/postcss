@@ -16,13 +16,13 @@ export default function parse(css, opts) {
     } catch (e) {
         if ( e.name === 'CssSyntaxError' && opts && opts.from ) {
             if ( /\.scss$/i.test(opts.from) ) {
-                e.message += '\nYou try to parse SCSS file with standard ' +
-                             'CSS parser. Maybe you need change parser ' +
-                             'to postcss-scss?';
+                e.message += '\nYou tried to parse SCSS with ' +
+                             'the standard CSS parser; ' +
+                             'try again with the postcss-scss parser';
             } else if ( /\.less$/i.test(opts.from) ) {
-                e.message += '\nYou try to parse Less file with standard ' +
-                             'CSS parser. Maybe you need change parser ' +
-                             'to postcss-less?';
+                e.message += '\nYou tried to parse Less with ' +
+                             'the standard CSS parser; ' +
+                             'try again with the postcss-less parser';
             }
         }
         throw e;
