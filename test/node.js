@@ -28,26 +28,23 @@ test('error() generates custom error for nodes without source', t => {
 test('error() highlights index', t => {
     let root  = parse('a { b: c }');
     let error = root.first.first.error('Bad semicolon', { index: 1 });
-    t.deepEqual(error.showSourceCode(false), '\n' +
-                                             'a { b: c }\n' +
-                                             '     ^');
+    t.deepEqual(error.showSourceCode(false), '> 1 | a { b: c }\n' +
+                                             '    |      ^');
 });
 
 test('error() highlights word', t => {
     let root  = parse('a { color: x red }');
     let error = root.first.first.error('Wrong color', { word: 'x' });
-    t.deepEqual(error.showSourceCode(false), '\n' +
-                                             'a { color: x red }\n' +
-                                             '           ^');
+    t.deepEqual(error.showSourceCode(false), '> 1 | a { color: x red }\n' +
+                                             '    |            ^');
 });
 
 test('error() highlights word in multiline string', t => {
     let root  = parse('a { color: red\n           x }');
     let error = root.first.first.error('Wrong color', { word: 'x' });
-    t.deepEqual(error.showSourceCode(false), '\n' +
-                                             'a { color: red\n' +
-                                             '           x }\n' +
-                                             '           ^');
+    t.deepEqual(error.showSourceCode(false), '  1 | a { color: red\n' +
+                                             '> 2 |            x }\n' +
+                                             '    |            ^');
 });
 
 test('warn() attaches a warning to the result object', t => {

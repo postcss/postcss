@@ -144,10 +144,10 @@ class CssSyntaxError {
      *                          and `process.env.NODE_DISABLE_COLORS`.
      *
      * @example
-     * error.showSourceCode() //=> "a {
-     *                        //      bad
-     *                        //      ^
-     *                        //    }"
+     * error.showSourceCode() //=> "  1 | a {
+     *                        //    > 2 |   bad
+     *                        //        |   ^
+     *                        //      3 | }"
      *
      * @return {string} few lines of CSS source that caused the error
      */
@@ -157,11 +157,19 @@ class CssSyntaxError {
         let num   = this.line - 1;
         let lines = this.source.split('\n');
 
-        let prev   = num > 0 ? lines[num - 1] + '\n' : '';
-        let broken = lines[num];
-        let next   = num < lines.length - 1 ? '\n' + lines[num + 1] : '';
+        let prev   = '';
+        if ( num > 0 ) {
+            prev = '  ' + num + ' | ' + lines[num - 1] + '\n';
+        }
 
-        let mark = '\n';
+        let broken = '> ' + (num + 1) + ' | ' + lines[num];
+
+        let next   = '';
+        if ( num < lines.length - 1 ) {
+            next = '\n  ' + (num + 2) + ' | ' + lines[num + 1];
+        }
+
+        let mark = '\n    | ';
         for ( let i = 0; i < this.column - 1; i++ ) {
             mark += ' ';
         }
@@ -173,7 +181,7 @@ class CssSyntaxError {
             mark += '^';
         }
 
-        return '\n' + prev + broken + mark + next;
+        return prev + broken + mark + next;
     }
 
     /**
@@ -181,13 +189,17 @@ class CssSyntaxError {
      *
      * @example
      * error.toString() //=> "CssSyntaxError: app.css:1:1: Unclosed block
-     *                  //    a {
-     *                  //    ^"
+     *                  //    > 1 | a {
+     *                  //        | ^"
      *
      * @return {string} error position, message and source code
      */
     toString() {
-        return this.name + ': ' + this.message + this.showSourceCode();
+        let code = this.showSourceCode();
+        if ( code ) {
+            code = '\n\n' + code + '\n';
+        }
+        return this.name + ': ' + this.message + code;
     }
 
     get generated() {

@@ -44,25 +44,24 @@ test('has stack trace', t => {
 
 test('highlights broken line', t => {
     t.deepEqual(parseError('a {\n  content: "\n}').showSourceCode(true),
-        '\n' +
-        'a {\n' +
-        '  content: "\n' +
-        '           \u001b[1;31m^\u001b[0m\n' +
-        '}');
+        '  1 | a {\n' +
+        '> 2 |   content: "\n' +
+        '    |            \u001b[1;31m^\u001b[0m\n' +
+        '  3 | }');
 });
 
 test('highlights without colors on request', t => {
     t.deepEqual(parseError('a {').showSourceCode(false),
-        '\n' +
-        'a {\n' +
-        '^');
+        '> 1 | a {\n' +
+        '    | ^');
 });
 
 test('prints with highlight', t => {
     t.deepEqual(stripAnsi(parseError('a {').toString()),
         'CssSyntaxError: <css input>:1:1: Unclosed block\n' +
-        'a {\n' +
-        '^');
+        '\n' +
+        '> 1 | a {\n' +
+        '    | ^\n');
 });
 
 test('misses highlights without source content', t => {
