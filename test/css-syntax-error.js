@@ -56,6 +56,16 @@ test('highlights without colors on request', t => {
         '    | ^');
 });
 
+test('add trailing space for line numbers', t => {
+    let css = '\n\n\n\n\n\n\na {\n  content: "\n}';
+    t.deepEqual(parseError(css).showSourceCode(false),
+        '   7 | \n' +
+        '   8 | a {\n' +
+        '>  9 |   content: "\n' +
+        '     |            ^\n' +
+        '  10 | }');
+});
+
 test('prints with highlight', t => {
     t.deepEqual(stripAnsi(parseError('a {').toString()),
         'CssSyntaxError: <css input>:1:1: Unclosed block\n' +

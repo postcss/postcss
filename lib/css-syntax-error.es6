@@ -2,6 +2,23 @@ import supportsColor from 'supports-color';
 
 import warnOnce from './warn-once';
 
+function markSymbol(color) {
+    if ( typeof color === 'undefined' ) color = supportsColor;
+    if ( color ) {
+        return '\x1B[1;31m^\x1B[0m';
+    } else {
+        return '^';
+    }
+}
+
+function pad(number) {
+    let result = '';
+    for ( let i = 0; i < number; i++ ) {
+        result += ' ';
+    }
+    return result;
+}
+
 /**
  * The CSS parser throws this error for broken CSS.
  *
@@ -154,34 +171,49 @@ class CssSyntaxError {
     showSourceCode(color) {
         if ( !this.source ) return '';
 
-        let num   = this.line - 1;
-        let lines = this.source.split('\n');
+        let lines = this.source.split(/\r?\n/);
+        let start = Math.max(this.line - 3, 0);
+        let end   = Math.min(this.line + 3, lines.length);
 
-        let prev   = '';
-        if ( num > 0 ) {
-            prev = '  ' + num + ' | ' + lines[num - 1] + '\n';
-        }
+        let maxWidth = String(end).length;
 
-        let broken = '> ' + (num + 1) + ' | ' + lines[num];
+        return lines.slice(start, end).map( (line, index) => {
+            let number = start + 1 + index;
+            let padded = (' ' + number).slice(-maxWidth);
+            let gutter = ' ' + padded + ' | ';
+            if ( number === this.line ) {
+                let spaces = pad(maxWidth) + '   | ' + pad(this.column - 1);
+                return '>' + gutter + line + '\n' + spaces + markSymbol(color);
+            } else {
+                return ' ' + gutter + line;
+            }
+        }).join('\n');
 
-        let next   = '';
-        if ( num < lines.length - 1 ) {
-            next = '\n  ' + (num + 2) + ' | ' + lines[num + 1];
-        }
-
-        let mark = '\n    | ';
-        for ( let i = 0; i < this.column - 1; i++ ) {
-            mark += ' ';
-        }
-
-        if ( typeof color === 'undefined' ) color = supportsColor;
-        if ( color ) {
-            mark += '\x1B[1;31m^\x1B[0m';
-        } else {
-            mark += '^';
-        }
-
-        return prev + broken + mark + next;
+        // let prev   = '';
+        // if ( num > 0 ) {
+        //     prev = '  ' + lineFormat(num, 0) + ' | ' + lines[num - 1] + '\n';
+        // }
+        //
+        // let broken = '> ' + lineFormat(num, 1) + ' | ' + lines[num];
+        //
+        // let next   = '';
+        // if ( num < lines.length - 1 ) {
+        //     next = '\n  ' + lineFormat(num, 2) + ' | ' + lines[num + 1];
+        // }
+        //
+        // let mark = '\n    | ';
+        // for ( let i = 0; i < this.column - 1; i++ ) {
+        //     mark += ' ';
+        // }
+        //
+        // if ( typeof color === 'undefined' ) color = supportsColor;
+        // if ( color ) {
+        //     mark += '\x1B[1;31m^\x1B[0m';
+        // } else {
+        //     mark += '^';
+        // }
+        //
+        // return prev + broken + mark + next;
     }
 
     /**
