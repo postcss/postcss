@@ -222,3 +222,52 @@ test('throws error on unclosed url', t => {
         tokenize(new Input('url('));
     }, /:1:4: Unclosed bracket/);
 });
+
+test('recovers from unclosed string', t => {
+    t.deepEqual(
+        tokenize(new Input('.kls { x:  " }'), { recover: true }), [
+            ['word', '.kls', 1, 1, 1, 4],
+            ['space', ' '],
+            ['{', '{', 1, 6],
+            ['space', ' '],
+            ['word', 'x', 1, 8, 1, 8],
+            [':', ':', 1, 9],
+            ['space', '  '],
+            ['string', '\" ', 1, 12, 1, 13],
+            ['}', '}', 1, 14]
+        ]
+    );
+});
+
+test('recovers from error on unclosed comment', t => {
+    t.deepEqual(
+        tokenize(new Input('.kls { /*\n  x: 12;\n}'), { recover: true }), [
+            ['word', '.kls', 1, 1, 1, 4],
+            ['space', ' '],
+            ['{', '{', 1, 6],
+            ['space', ' '],
+            ['comment', '/*\n  x: 12;\n}', 1, 8, 3, 1]
+        ]
+    );
+});
+
+
+test('recovers from error on unclosed url', t => {
+    t.deepEqual(
+        tokenize(new Input('.kls {\n  x: url(oops;\n}'), { recover: true }), [
+            ['word', '.kls', 1, 1, 1, 4],
+            ['space', ' '],
+            ['{', '{', 1, 6],
+            ['space', '\n  '],
+            ['word', 'x', 2, 3, 2, 3],
+            [':', ':', 2, 4],
+            ['space', ' '],
+            ['word', 'url', 2, 6, 2, 8],
+            ['brackets', '(', 2, 9, 2, 9],
+            ['word', 'oops', 2, 10, 2, 13],
+            [';', ';', 2, 14],
+            ['space', '\n'],
+            ['}', '}', 3, 1]
+        ]
+    );
+});
