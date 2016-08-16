@@ -34,6 +34,8 @@
     "postcss-parser-tests":              "5.0.9",
     "babel-preset-es2015":               "6.13.2",
     "gulp-sourcemaps":                   "1.6.0",
+    "run-sequence":                      "1.2.2",
+    "gulp-changed":                      "1.3.2",
     "babel-eslint":                      "6.1.2",
     "gulp-eslint":                       "3.0.1",
     "gulp-jsdoc3":                       "0.3.0",

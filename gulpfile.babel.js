@@ -7,10 +7,12 @@ gulp.task('clean', () => {
 
 // Build
 
-gulp.task('compile', ['clean'], () => {
+gulp.task('compile', () => {
     let sourcemaps = require('gulp-sourcemaps');
+    let changed    = require('gulp-changed');
     let babel      = require('gulp-babel');
     return gulp.src('lib/*.es6')
+        .pipe(changed('lib', { extension: '.js' }))
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(sourcemaps.write())
@@ -21,7 +23,7 @@ gulp.task('build:lib', ['compile'], () => {
     return gulp.src('lib/*.js').pipe(gulp.dest('build/lib'));
 });
 
-gulp.task('build:docs', ['clean'], () => {
+gulp.task('build:docs', () => {
     let ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
         .concat(['.npmignore', 'lib/*', 'test/*', 'node_modules/**/*',
@@ -31,7 +33,10 @@ gulp.task('build:docs', ['clean'], () => {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['build:lib', 'build:docs']);
+gulp.task('build', (done) => {
+    let runSequence = require('run-sequence');
+    runSequence('clean', ['build:lib', 'build:docs'], done);
+});
 
 // Lint
 
