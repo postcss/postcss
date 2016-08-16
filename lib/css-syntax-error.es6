@@ -161,10 +161,12 @@ class CssSyntaxError {
      *                          and `process.env.NODE_DISABLE_COLORS`.
      *
      * @example
-     * error.showSourceCode() //=> "  1 | a {
-     *                        //    > 2 |   bad
+     * error.showSourceCode() //=> "  4 | }
+     *                        //      5 | a {
+     *                        //    > 6 |   bad
      *                        //        |   ^
-     *                        //      3 | }"
+     *                        //      7 | }
+     *                        //      8 b {"
      *
      * @return {string} few lines of CSS source that caused the error
      */
@@ -188,32 +190,6 @@ class CssSyntaxError {
                 return ' ' + gutter + line;
             }
         }).join('\n');
-
-        // let prev   = '';
-        // if ( num > 0 ) {
-        //     prev = '  ' + lineFormat(num, 0) + ' | ' + lines[num - 1] + '\n';
-        // }
-        //
-        // let broken = '> ' + lineFormat(num, 1) + ' | ' + lines[num];
-        //
-        // let next   = '';
-        // if ( num < lines.length - 1 ) {
-        //     next = '\n  ' + lineFormat(num, 2) + ' | ' + lines[num + 1];
-        // }
-        //
-        // let mark = '\n    | ';
-        // for ( let i = 0; i < this.column - 1; i++ ) {
-        //     mark += ' ';
-        // }
-        //
-        // if ( typeof color === 'undefined' ) color = supportsColor;
-        // if ( color ) {
-        //     mark += '\x1B[1;31m^\x1B[0m';
-        // } else {
-        //     mark += '^';
-        // }
-        //
-        // return prev + broken + mark + next;
     }
 
     /**
