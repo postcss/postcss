@@ -60,6 +60,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 ## Future CSS Syntax
 
+* [`postcss-apply`] supports custom properties sets references.
+* [`postcss-attribute-case-insensitive`] supports case insensitive attributes.
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
@@ -86,7 +88,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`postcss-selector-matches`] transforms CSS4 `:matches()`
   to more compatible CSS.
-* [`postcss-apply`] supports custom properties sets references
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
 See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
@@ -411,6 +412,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
+[`postcss-attribute-case-insensitive`]:   https://github.com/Semigradsky/postcss-attribute-case-insensitive
 [`postcss-attribute-selector-prefix`]:    https://github.com/GitScrum/postcss-attribute-selector-prefix
 [`postcss-gradient-transparency-fix`]:    https://github.com/gilmoreorless/postcss-gradient-transparency-fix
 [`postcss-vertical-rhythm-function`]:     https://github.com/F21/postcss-vertical-rhythm-function
@@ -418,7 +420,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-elements-content`]:      https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-andalusian-stylesheets`]:       https://github.com/bameda/postcss-andalusian-stylesheets
 [`postcss-australian-stylesheets`]:       https://github.com/dp-lewis/postcss-australian-stylesheets
-[`postcss-responsive-properties`]: https://github.com/alexandr-solovyov/postcss-responsive-properties
+[`postcss-responsive-properties`]:        https://github.com/alexandr-solovyov/postcss-responsive-properties
 [`postcss-pseudo-class-any-link`]:        https://github.com/jonathantneal/postcss-pseudo-class-any-link
 [`postcss-pseudo-content-insert`]:        https://github.com/liquidlight/postcss-pseudo-content-insert
 [`postcss-canadian-stylesheets`]:         https://github.com/chancancode/postcss-canadian-stylesheets
