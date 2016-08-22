@@ -88,6 +88,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to more compatible CSS.
 * [`postcss-apply`] supports custom properties sets references
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
+* [`postcss-attribute-case-insensitive`] supports case insensitive attributes
 
 See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
@@ -437,6 +438,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-minify-font-weight`]:           https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:           https://github.com/jonathantneal/postcss-pseudo-class-enter
 [`postcss-transform-shortcut`]:           https://github.com/jonathantneal/postcss-transform-shortcut
+[`postcss-attribute-case-insensitive`]:           https://github.com/Semigradsky/postcss-attribute-case-insensitive
 [`postcss-custom-properties`]:            https://github.com/postcss/postcss-custom-properties
 [`postcss-czech-stylesheets`]:            https://github.com/HoBi/postcss-czech-stylesheets
 [`postcss-discard-font-face`]:            https://github.com/ben-eb/postcss-discard-font-face
