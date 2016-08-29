@@ -387,9 +387,9 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-browser-reporter`] displays warning messages from other plugins
   right in your browser.
+* [`postcss-forced-variables`] provides warnings and errors when specified rules don't use variables.
 * [`postcss-reporter`] logs warnings and other messages from other plugins
   in the console.
-* [`postcss-forced-variables`] provides warnings and errors when specified rules don't use variables.
 
 ## Fun
 
@@ -449,6 +449,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-current-selector`]:             https://github.com/komlev/postcss-current-selector
 [`postcss-custom-selectors`]:             https://github.com/postcss/postcss-custom-selectors
 [`postcss-discard-comments`]:             https://github.com/ben-eb/postcss-discard-comments
+[`postcss-forced-variables`]:             https://github.com/alekhrycaiko/postcss-forced-variables
 [`postcss-magic-animations`]:             https://github.com/nucliweb/postcss-magic-animations/
 [`postcss-minify-selectors`]:             https://github.com/ben-eb/postcss-minify-selectors
 [`postcss-mqwidth-to-class`]:             https://github.com/notacouch/postcss-mqwidth-to-class
@@ -509,7 +510,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-custom-media`]:                 https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:                 https://github.com/antyakushev/postcss-default-unit
 [`postcss-flexboxfixer`]:                 https://github.com/hallvors/postcss-flexboxfixer
-[`postcss-forced-variables`]:             https://github.com/alekhrycaiko/postcss-forced-variables
 [`postcss-font-awesome`]:                 https://github.com/dan-gamble/postcss-font-awesome
 [`postcss-font-variant`]:                 https://github.com/postcss/postcss-font-variant
 [`postcss-media-minmax`]:                 https://github.com/postcss/postcss-media-minmax
