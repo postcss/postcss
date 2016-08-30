@@ -58,7 +58,7 @@ you are hooking into a common plugin API:
 
 ```js
 module.exports = postcss.plugin('plugin-name', function (opts) {
-    return function (css, result) {
+    return function (root, result) {
         // Plugin code
     };
 });
@@ -79,7 +79,7 @@ For example, use `fs.writeFile` instead of `fs.writeFileSync`:
 
 ```js
 postcss.plugin('plugin-sprite', function (opts) {
-    return function (css, result) {
+    return function (root, result) {
 
         return new Promise(function (resolve, reject) {
             var sprite = makeSprite();

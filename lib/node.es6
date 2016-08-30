@@ -117,8 +117,8 @@ class Node {
      *
      * @example
      * const plugin = postcss.plugin('postcss-deprecated', () => {
-     *   return (css, result) => {
-     *     css.walkDecls('bad', decl => {
+     *   return (root, result) => {
+     *     root.walkDecls('bad', decl => {
      *       decl.warn(result, 'Deprecated property bad');
      *     });
      *   };

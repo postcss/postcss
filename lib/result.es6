@@ -49,8 +49,8 @@ class Result {
          *
          * @example
          * postcss.plugin('postcss-min-browser', () => {
-         *   return (css, result) => {
-         *     var browsers = detectMinBrowsersByCanIUse(css);
+         *   return (root, result) => {
+         *     var browsers = detectMinBrowsersByCanIUse(root);
          *     result.messages.push({
          *       type:    'min-browser',
          *       plugin:  'postcss-min-browser',

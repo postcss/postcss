@@ -53,7 +53,7 @@ function postcss(...plugins) {
  *
  * ```js
  * const cleaner = postcss.plugin('postcss-cleaner', () => {
- *   return (css, result) => {
+ *   return (root, result) => {
  *     result.root = postcss.root();
  *   };
  * });
@@ -72,10 +72,10 @@ function postcss(...plugins) {
  *
  * ```js
  * postcss.plugin('postcss-import', () => {
- *   return (css, result) => {
+ *   return (root, result) => {
  *     return new Promise( (resolve, reject) => {
  *       fs.readFile('base.css', (base) => {
- *         css.prepend(base);
+ *         root.prepend(base);
  *         resolve();
  *       });
  *     });
@@ -88,7 +88,7 @@ function postcss(...plugins) {
  *
  * ```js
  * postcss.plugin('postcss-caniuse-test', () => {
- *   return (css, result) => {
+ *   return (root, result) => {
  *     css.walkDecls(decl => {
  *       if ( !caniuse.support(decl.prop) ) {
  *         decl.warn(result, 'Some browsers do not support ' + decl.prop);
@@ -122,8 +122,8 @@ postcss.plugin = function plugin(name, initializer) {
         }
     });
 
-    creator.process = function (css, opts) {
-        return postcss([ creator(opts) ]).process(css, opts);
+    creator.process = function (root, opts) {
+        return postcss([ creator(opts) ]).process(root, opts);
     };
 
     return creator;
