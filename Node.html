@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Declaration - Documentation</title>
+    <title>Node - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Declaration</h1>
+    <h1 class="page-title">Node</h1>
     
 
     
@@ -40,10 +40,10 @@
 <header>
     
         <h2>
-        Declaration
+        Node
         </h2>
         
-            <div class="class-description"><p>Represents a CSS declaration.</p></div>
+            <div class="class-description"><p>All node classes inherit the following common methods.</p></div>
         
     
 </header>
@@ -57,7 +57,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Declaration"><span class="type-signature"></span>new Declaration<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Node"><span class="type-signature">(abstract) </span>new Node<span class="signature">(defaults<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -69,7 +69,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="declaration.es6.html">declaration.es6</a>, <a href="declaration.es6.html#line15">line 15</a>
+        <a href="node.es6.html">node.es6</a>, <a href="node.es6.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -116,14 +116,67 @@
 
 
 
-    <h5>Example</h5>
+
+
+    <h5>Parameters:</h5>
     
-    <pre class="prettyprint"><code>const root = postcss.parse('a { color: black }');
-const decl = root.first.first;
-decl.type       //=> 'decl'
-decl.toString() //=> ' color: black'</code></pre>
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaults</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
 
 
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>value for node properties</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -144,17 +197,6 @@ decl.toString() //=> ' color: black'</code></pre>
     </div>
 
     
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="Node.html">Node</a></li>
-    </ul>
-
-
-    
 
     
 
@@ -166,87 +208,6 @@ decl.toString() //=> ' color: black'</code></pre>
 
     
         <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="important"><span class="type-signature"></span>important<span class="type-signature"> :boolean</span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="declaration.es6.html">declaration.es6</a>, <a href="declaration.es6.html#line62">line 62</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p><code>true</code> if the declaration
-                              has an !important annotation.</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">boolean</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const root = postcss.parse('a { color: black !important; color: red }');
-root.first.first.important //=> true
-root.first.last.important  //=> undefined</code></pre>
-
-
 
         
             
@@ -269,11 +230,6 @@ root.first.last.important  //=> undefined</code></pre>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#parent">Node#parent</a>
-    </li></ul></dd>
     
 
     
@@ -333,86 +289,6 @@ root.first.last.important  //=> undefined</code></pre>
 
         
             
-<h4 class="name" id="prop"><span class="type-signature"></span>prop<span class="type-signature"> :string</span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="declaration.es6.html">declaration.es6</a>, <a href="declaration.es6.html#line42">line 42</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>the declaration’s property name</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const root = postcss.parse('a { color: black }');
-const decl = root.first.first;
-decl.prop //=> 'color'</code></pre>
-
-
-
-        
-            
 <h4 class="name" id="raws"><span class="type-signature"></span>raws<span class="type-signature"> :object</span></h4>
 
 
@@ -424,7 +300,7 @@ decl.prop //=> 'color'</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="declaration.es6.html">declaration.es6</a>, <a href="declaration.es6.html#line73">line 73</a>
+        <a href="node.es6.html">node.es6</a>, <a href="node.es6.html#line538">line 538</a>
     </li></ul></dd>
     
 
@@ -434,11 +310,6 @@ decl.prop //=> 'color'</code></pre>
 
     
 
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="Node.html#raws">Node#raws</a>
-    </li></ul></dd>
     
 
     
@@ -476,15 +347,23 @@ but the default CSS parser uses:</p>
 <ul>
 <li><code>before</code>: the space symbols before the node. It also stores <code>*</code>
 and <code>_</code> symbols before the declaration (IE hack).</li>
+<li><code>after</code>: the space symbols after the last child of the node
+to the end of the node.</li>
 <li><code>between</code>: the symbols between the property and value
 for declarations, selector and <code>{</code> for rules, or last parameter
 and <code>{</code> for at-rules.</li>
+<li><code>semicolon</code>: contains true if the last child has
+an (optional) semicolon.</li>
+<li><code>afterName</code>: the space between the at-rule name and its parameters.</li>
+<li><code>left</code>: the space symbols between <code>/*</code> and the comment’s text.</li>
+<li><code>right</code>: the space symbols between the comment’s text
+and <code>*&#47;</code>.</li>
 <li><code>important</code>: the content of the important statement,
 if it is not just <code>!important</code>.</li>
 </ul>
-<p>PostCSS cleans declaration from comments and extra spaces,
-but it stores origin content in raws properties.
-As such, if you don’t change a declaration’s value,
+<p>PostCSS cleans selectors, declaration values and at-rule parameters
+from comments and extra spaces, but it stores origin content in raws
+properties. As such, if you don’t change a declaration’s value,
 PostCSS will use the raw value with comments.</p>
 </div>
 
@@ -532,11 +411,6 @@ root.first.first.raws //=> { before: '\n  ', between: ':' }</code></pre>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#source">Node#source</a>
-    </li></ul></dd>
     
 
     
@@ -638,11 +512,6 @@ decl.source.end        //=> { line: 10, column: 12 }</code></pre>
     
 
     
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="Node.html#type">Node#type</a>
-    </li></ul></dd>
-    
 
     
 
@@ -700,86 +569,6 @@ decl.source.end        //=> { line: 10, column: 12 }</code></pre>
 
 
         
-            
-<h4 class="name" id="value"><span class="type-signature"></span>value<span class="type-signature"> :string</span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="declaration.es6.html">declaration.es6</a>, <a href="declaration.es6.html#line52">line 52</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>the declaration’s value</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const root = postcss.parse('a { color: black }');
-const decl = root.first.first;
-decl.value //=> 'black'</code></pre>
-
-
-
-        
     
 
     
@@ -810,11 +599,6 @@ decl.value //=> 'black'</code></pre>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#clone">Node#clone</a>
-    </li></ul></dd>
     
 
     
@@ -993,11 +777,6 @@ cloned.toString()   //=> -moz-transform: scale(0)</code></pre>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#cloneAfter">Node#cloneAfter</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1167,11 +946,6 @@ after the current node.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#cloneBefore">Node#cloneBefore</a>
-    </li></ul></dd>
     
 
     
@@ -1347,11 +1121,6 @@ before the current node.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#error">Node#error</a>
-    </li></ul></dd>
     
 
     
@@ -1667,11 +1436,6 @@ of the source, even from a previous compilation step
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#moveAfter">Node#moveAfter</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1830,11 +1594,6 @@ in <a href="Node.html#moveTo">Node#moveTo</a>.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#moveBefore">Node#moveBefore</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1992,11 +1751,6 @@ in <a href="Node.html#moveTo">Node#moveTo</a>.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#moveTo">Node#moveTo</a>
-    </li></ul></dd>
     
 
     
@@ -2164,11 +1918,6 @@ if <code>newParent</code> is in another <a href="Root.html">Root</a>.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#next">Node#next</a>
-    </li></ul></dd>
-    
 
     
 
@@ -2289,11 +2038,6 @@ Returns <code>undefined</code> if the current node is the last child.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#prev">Node#prev</a>
-    </li></ul></dd>
-    
 
     
 
@@ -2411,11 +2155,6 @@ if ( annotation.type == 'comment' ) {
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#raw">Node#raw</a>
-    </li></ul></dd>
     
 
     
@@ -2627,11 +2366,6 @@ root.nodes[0].nodes[1].raw('before') //=> ' '</code></pre>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#remove">Node#remove</a>
-    </li></ul></dd>
-    
 
     
 
@@ -2745,11 +2479,6 @@ from the node and its children.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#replaceWith">Node#replaceWith</a>
-    </li></ul></dd>
     
 
     
@@ -2925,11 +2654,6 @@ from the node and its children.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#root">Node#root</a>
-    </li></ul></dd>
-    
 
     
 
@@ -3040,11 +2764,6 @@ from the node and its children.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#toString">Node#toString</a>
-    </li></ul></dd>
     
 
     
@@ -3221,11 +2940,6 @@ from the node and its children.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Node.html#warn">Node#warn</a>
-    </li></ul></dd>
     
 
     

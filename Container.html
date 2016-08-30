@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Rule - Documentation</title>
+    <title>Container - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Rule</h1>
+    <h1 class="page-title">Container</h1>
     
 
     
@@ -40,10 +40,13 @@
 <header>
     
         <h2>
-        Rule
+        Container
         </h2>
         
-            <div class="class-description"><p>Represents a CSS rule: a selector followed by a declaration block.</p></div>
+            <div class="class-description"><p>The <a href="Root.html">Root</a>, <a href="AtRule.html">AtRule</a>, and <a href="Rule.html">Rule</a> container nodes
+inherit some common methods to help work with their children.</p>
+<p>Note that all containers can store any content. If you write a rule inside
+a rule, PostCSS will parse it.</p></div>
         
     
 </header>
@@ -57,7 +60,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Rule"><span class="type-signature"></span>new Rule<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Container"><span class="type-signature">(abstract) </span>new Container<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -69,7 +72,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rule.es6.html">rule.es6</a>, <a href="rule.es6.html#line16">line 16</a>
+        <a href="container.es6.html">container.es6</a>, <a href="container.es6.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -116,14 +119,6 @@
 
 
 
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const root = postcss.parse('a{}');
-const rule = root.first;
-rule.type       //=> 'rule'
-rule.toString() //=> 'a{}'</code></pre>
-
-
 
 
 
@@ -150,7 +145,7 @@ rule.toString() //=> 'a{}'</code></pre>
 
 
     <ul>
-        <li><a href="Container.html">Container</a></li>
+        <li><a href="Node.html">Node</a></li>
     </ul>
 
 
@@ -188,11 +183,6 @@ rule.toString() //=> 'a{}'</code></pre>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#first">Container#first</a>
-    </li></ul></dd>
     
 
     
@@ -271,11 +261,6 @@ rule.toString() //=> 'a{}'</code></pre>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#last">Container#last</a>
-    </li></ul></dd>
     
 
     
@@ -356,11 +341,6 @@ rule.toString() //=> 'a{}'</code></pre>
 
     
 
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="Container.html#nodes">Container#nodes</a>
-    </li></ul></dd>
     
 
     
@@ -515,7 +495,7 @@ root.nodes[0].nodes[0].prop //=> 'color'</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rule.es6.html">rule.es6</a>, <a href="rule.es6.html#line71">line 71</a>
+        <a href="node.es6.html">node.es6</a>, <a href="node.es6.html#line538">line 538</a>
     </li></ul></dd>
     
 
@@ -524,12 +504,12 @@ root.nodes[0].nodes[0].prop //=> 'color'</code></pre>
     
 
     
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="Container.html#raws">Container#raws</a>
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Node.html#raws">Node#raws</a>
     </li></ul></dd>
+    
+
     
 
     
@@ -574,10 +554,16 @@ for declarations, selector and <code>{</code> for rules, or last parameter
 and <code>{</code> for at-rules.</li>
 <li><code>semicolon</code>: contains true if the last child has
 an (optional) semicolon.</li>
+<li><code>afterName</code>: the space between the at-rule name and its parameters.</li>
+<li><code>left</code>: the space symbols between <code>/*</code> and the comment’s text.</li>
+<li><code>right</code>: the space symbols between the comment’s text
+and <code>*&#47;</code>.</li>
+<li><code>important</code>: the content of the important statement,
+if it is not just <code>!important</code>.</li>
 </ul>
-<p>PostCSS cleans selectors from comments and extra spaces,
-but it stores origin content in raws properties.
-As such, if you don’t change a declaration’s value,
+<p>PostCSS cleans selectors, declaration values and at-rule parameters
+from comments and extra spaces, but it stores origin content in raws
+properties. As such, if you don’t change a declaration’s value,
 PostCSS will use the raw value with comments.</p>
 </div>
 
@@ -600,174 +586,7 @@ PostCSS will use the raw value with comments.</p>
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>const root = postcss.parse('a {\n  color:black\n}')
-root.first.first.raws //=> { before: '', between: ' ', after: '\n' }</code></pre>
-
-
-
-        
-            
-<h4 class="name" id="selector"><span class="type-signature"></span>selector<span class="type-signature"> :string</span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rule.es6.html">rule.es6</a>, <a href="rule.es6.html#line60">line 60</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>the rule’s full selector represented
-                            as a string</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const root = postcss.parse('a, b { }');
-const rule = root.first;
-rule.selector //=> 'a, b'</code></pre>
-
-
-
-        
-            
-<h4 class="name" id="selectors"><span class="type-signature"></span>selectors<span class="type-signature"> :Array.&lt;string></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rule.es6.html">rule.es6</a>, <a href="rule.es6.html#line40">line 40</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>An array containing the rule’s individual selectors.
-Groups of selectors are split at commas.</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Array.&lt;string></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const root = postcss.parse('a, b { }');
-const rule = root.first;
-
-rule.selector  //=> 'a, b'
-rule.selectors //=> ['a', 'b']
-
-rule.selectors = ['a', 'strong'];
-rule.selector //=> 'a, strong'</code></pre>
+root.first.first.raws //=> { before: '\n  ', between: ':' }</code></pre>
 
 
 
@@ -896,12 +715,12 @@ decl.source.end        //=> { line: 10, column: 12 }</code></pre>
     
 
     
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="Container.html#type">Container#type</a>
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Node.html#type">Node#type</a>
     </li></ul></dd>
+    
+
     
 
     
@@ -990,11 +809,6 @@ decl.source.end        //=> { line: 10, column: 12 }</code></pre>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#append">Container#append</a>
-    </li></ul></dd>
     
 
     
@@ -1724,11 +1538,6 @@ before the current node.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#each">Container#each</a>
-    </li></ul></dd>
-    
 
     
 
@@ -2231,11 +2040,6 @@ of the source, even from a previous compilation step
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#every">Container#every</a>
-    </li></ul></dd>
-    
 
     
 
@@ -2397,11 +2201,6 @@ for all of the container’s children.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#index">Container#index</a>
-    </li></ul></dd>
-    
 
     
 
@@ -2561,11 +2360,6 @@ for all of the container’s children.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#insertAfter">Container#insertAfter</a>
-    </li></ul></dd>
     
 
     
@@ -2756,11 +2550,6 @@ for all of the container’s children.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#insertBefore">Container#insertBefore</a>
-    </li></ul></dd>
     
 
     
@@ -3579,11 +3368,6 @@ Returns <code>undefined</code> if the current node is the last child.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#prepend">Container#prepend</a>
-    </li></ul></dd>
-    
 
     
 
@@ -4113,12 +3897,12 @@ root.nodes[0].nodes[1].raw('before') //=> ' '</code></pre>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
         <a href="Node.html#remove">Node#remove</a>
     </li></ul></dd>
-    
-
     
 
     
@@ -4232,11 +4016,6 @@ from the node and its children.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#removeAll">Container#removeAll</a>
-    </li></ul></dd>
-    
 
     
 
@@ -4349,11 +4128,6 @@ rule.nodes.length //=> 0</code></pre>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#removeChild">Container#removeChild</a>
-    </li></ul></dd>
     
 
     
@@ -4521,11 +4295,6 @@ decl.parent        //=> undefined</code></pre>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#replaceValues">Container#replaceValues</a>
-    </li></ul></dd>
     
 
     
@@ -5119,11 +4888,6 @@ and need to iterate through all values.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#some">Container#some</a>
-    </li></ul></dd>
-    
 
     
 
@@ -5466,11 +5230,6 @@ of the container’s children.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#walk">Container#walk</a>
-    </li></ul></dd>
-    
 
     
 
@@ -5640,11 +5399,6 @@ use <a href="Container.html#each">Container#each</a>.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#walkAtRules">Container#walkAtRules</a>
-    </li></ul></dd>
     
 
     
@@ -5872,11 +5626,6 @@ root.walkAtRules('charset', rule => {
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#walkComments">Container#walkComments</a>
-    </li></ul></dd>
-    
 
     
 
@@ -6044,11 +5793,6 @@ to use if you are mutating arrays during iteration.</p>
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#walkDecls">Container#walkDecls</a>
-    </li></ul></dd>
     
 
     
@@ -6274,11 +6018,6 @@ root.walkDecls(/^background/, decl => {
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Container.html#walkRules">Container#walkRules</a>
-    </li></ul></dd>
     
 
     
