@@ -35,7 +35,6 @@ function cleanSource(nodes) {
  *
  * @extends Node
  * @abstract
- * @ignore
  */
 class Container extends Node {
 

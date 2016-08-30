@@ -44,7 +44,6 @@ let cloneNode = function (obj, parent) {
  * All node classes inherit the following common methods.
  *
  * @abstract
- * @ignore
  */
 class Node {
 
