@@ -66,6 +66,15 @@ test('tokenizes simple brackets', t => {
     run(t, '(ab)', [ ['brackets', '(ab)', 1, 1, 1, 4] ]);
 });
 
+test('tokenizes square brackets', t => {
+    run(t, 'a[bc]', [
+        ['word', 'a',  1, 1, 1, 1],
+        ['[',    '[',  1, 2],
+        ['word', 'bc', 1, 3, 1, 4],
+        [']',    ']',  1, 5]
+    ]);
+});
+
 test('tokenizes complicated brackets', t => {
     run(t, '(())("")(/**/)(\\\\)(\n)(', [
         ['(',        '(',    1, 1],

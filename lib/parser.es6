@@ -29,9 +29,10 @@ export default class Parser {
             token = this.tokens[this.pos];
 
             switch ( token[0] ) {
-            case 'word':
-            case ':':
-                this.word();
+
+            case 'space':
+            case ';':
+                this.spaces += token[1];
                 break;
 
             case '}':
@@ -51,7 +52,7 @@ export default class Parser {
                 break;
 
             default:
-                this.spaces += token[1];
+                this.other();
                 break;
             }
 
@@ -86,25 +87,24 @@ export default class Parser {
         this.current = node;
     }
 
-    word() {
+    other() {
         let token;
         let end      = false;
         let type     = null;
         let colon    = false;
         let bracket  = null;
-        let brackets = 0;
+        let brackets = [];
 
         let start = this.pos;
-        this.pos += 1;
         while ( this.pos < this.tokens.length ) {
             token = this.tokens[this.pos];
             type  = token[0];
 
-            if ( type === '(' ) {
+            if ( type === '(' || type === '[' ) {
                 if ( !bracket ) bracket = token;
-                brackets += 1;
+                brackets.push(type === '(' ? ')' : ']');
 
-            } else if ( brackets === 0 ) {
+            } else if ( brackets.length === 0 ) {
                 if ( type === ';' ) {
                     if ( colon ) {
                         this.decl(this.tokens.slice(start, this.pos + 1));
@@ -126,9 +126,9 @@ export default class Parser {
                     colon = true;
                 }
 
-            } else if ( type === ')' ) {
-                brackets -= 1;
-                if ( brackets === 0 ) bracket = null;
+            } else if ( type === brackets[brackets.length - 1] ) {
+                brackets.pop();
+                if ( brackets.length === 0 ) bracket = null;
             }
 
             this.pos += 1;
@@ -138,7 +138,7 @@ export default class Parser {
             end = true;
         }
 
-        if ( brackets > 0 ) this.unclosedBracket(bracket);
+        if ( brackets.length > 0 ) this.unclosedBracket(bracket);
 
         if ( end && colon ) {
             while ( this.pos > start ) {

@@ -7,6 +7,8 @@ const SPACE             =  ' '.charCodeAt(0);
 const FEED              = '\f'.charCodeAt(0);
 const TAB               = '\t'.charCodeAt(0);
 const CR                = '\r'.charCodeAt(0);
+const OPEN_SQUARE       =  '['.charCodeAt(0);
+const CLOSE_SQUARE      =  ']'.charCodeAt(0);
 const OPEN_PARENTHESES  =  '('.charCodeAt(0);
 const CLOSE_PARENTHESES =  ')'.charCodeAt(0);
 const OPEN_CURLY        =  '{'.charCodeAt(0);
@@ -16,8 +18,8 @@ const ASTERICK          =  '*'.charCodeAt(0);
 const COLON             =  ':'.charCodeAt(0);
 const AT                =  '@'.charCodeAt(0);
 
-const RE_AT_END      = /[ \n\t\r\f\{\(\)'"\\;/]/g;
-const RE_WORD_END    = /[ \n\t\r\f\(\)\{\}:;@!'"\\]|\/(?=\*)/g;
+const RE_AT_END      = /[ \n\t\r\f\{\(\)'"\\;/\[\]]/g;
+const RE_WORD_END    = /[ \n\t\r\f\(\)\{\}:;@!'"\\\]\[]|\/(?=\*)/g;
 const RE_BAD_BRACKET = /.[\\\/\("'\n]/;
 
 export default function tokenize(input) {
@@ -67,6 +69,14 @@ export default function tokenize(input) {
 
             tokens.push(['space', css.slice(pos, next)]);
             pos = next - 1;
+            break;
+
+        case OPEN_SQUARE:
+            tokens.push(['[', '[', line, pos - offset]);
+            break;
+
+        case CLOSE_SQUARE:
+            tokens.push([']', ']', line, pos - offset]);
             break;
 
         case OPEN_CURLY:
