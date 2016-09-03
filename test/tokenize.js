@@ -8,6 +8,10 @@ function run(t, css, opts, tokens) {
     t.deepEqual(tokenize(new Input(css, opts)), tokens);
 }
 
+function ignoreRun(t, css, tokens) {
+    t.deepEqual(tokenize(new Input(css), { ignoreErrors: true }), tokens);
+}
+
 test('tokenizes empty file', t => {
     run(t, '', []);
 });
@@ -230,4 +234,19 @@ test('throws error on unclosed url', t => {
     t.throws(() => {
         tokenize(new Input('url('));
     }, /:1:4: Unclosed bracket/);
+});
+
+test('ignores unclosing string on request', t => {
+    ignoreRun(t, ' "', [['space', ' '], ['string', '\"', 1, 2, 1, 3]]);
+});
+
+test('ignores unclosing comment on request', t => {
+    ignoreRun(t, ' /*', [['space', ' '], ['comment', '/*', 1, 2, 1, 4]]);
+});
+
+test('ignores unclosing comment on request', t => {
+    ignoreRun(t, 'url(', [
+        ['word',     'url', 1, 1, 1, 3],
+        ['brackets', '(',   1, 4, 1, 4]
+    ]);
 });

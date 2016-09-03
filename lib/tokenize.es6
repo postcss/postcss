@@ -22,9 +22,11 @@ const RE_AT_END      = /[ \n\t\r\f\{\(\)'"\\;/\[\]]/g;
 const RE_WORD_END    = /[ \n\t\r\f\(\)\{\}:;@!'"\\\]\[]|\/(?=\*)/g;
 const RE_BAD_BRACKET = /.[\\\/\("'\n]/;
 
-export default function tokenize(input) {
+export default function tokenize(input, options = { }) {
     let tokens = [];
     let css    = input.css.valueOf();
+
+    let ignore = options.ignoreErrors;
 
     let code, next, quote, lines, last, content, escape,
         nextLine, nextOffset, escaped, escapePos, prev, n;
@@ -105,7 +107,14 @@ export default function tokenize(input) {
                 do {
                     escaped = false;
                     next    = css.indexOf(')', next + 1);
-                    if ( next === -1 ) unclosed('bracket');
+                    if ( next === -1 ) {
+                        if ( ignore ) {
+                            next = pos;
+                            break;
+                        } else {
+                            unclosed('bracket');
+                        }
+                    }
                     escapePos = next;
                     while ( css.charCodeAt(escapePos - 1) === BACKSLASH ) {
                         escapePos -= 1;
@@ -147,7 +156,14 @@ export default function tokenize(input) {
             do {
                 escaped = false;
                 next    = css.indexOf(quote, next + 1);
-                if ( next === -1 ) unclosed('quote');
+                if ( next === -1 ) {
+                    if ( ignore ) {
+                        next = pos + 1;
+                        break;
+                    } else {
+                        unclosed('quote');
+                    }
+                }
                 escapePos = next;
                 while ( css.charCodeAt(escapePos - 1) === BACKSLASH ) {
                     escapePos -= 1;
@@ -218,7 +234,13 @@ export default function tokenize(input) {
         default:
             if ( code === SLASH && css.charCodeAt(pos + 1) === ASTERICK ) {
                 next = css.indexOf('*/', pos + 2) + 1;
-                if ( next === 0 ) unclosed('comment');
+                if ( next === 0 ) {
+                    if ( ignore ) {
+                        next = css.length;
+                    } else {
+                        unclosed('comment');
+                    }
+                }
 
                 content = css.slice(pos, next + 1);
                 lines   = content.split('\n');
