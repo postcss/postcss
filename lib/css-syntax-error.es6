@@ -2,15 +2,6 @@ import supportsColor from 'supports-color';
 
 import warnOnce from './warn-once';
 
-function markSymbol(color) {
-    if ( typeof color === 'undefined' ) color = supportsColor;
-    if ( color ) {
-        return '\x1B[1;31m^\x1B[0m';
-    } else {
-        return '^';
-    }
-}
-
 function pad(number) {
     let result = '';
     for ( let i = 0; i < number; i++ ) {
@@ -173,6 +164,8 @@ class CssSyntaxError {
     showSourceCode(color) {
         if ( !this.source ) return '';
 
+        if ( typeof color === 'undefined' ) color = supportsColor;
+
         let lines = this.source.split(/\r?\n/);
         let start = Math.max(this.line - 3, 0);
         let end   = Math.min(this.line + 3, lines.length);
@@ -185,7 +178,7 @@ class CssSyntaxError {
             let gutter = ' ' + padded + ' | ';
             if ( number === this.line ) {
                 let spaces = pad(maxWidth) + '   | ' + pad(this.column - 1);
-                return '>' + gutter + line + '\n' + spaces + markSymbol(color);
+                return '>' + gutter + line + '\n' + spaces + '^';
             } else {
                 return ' ' + gutter + line;
             }

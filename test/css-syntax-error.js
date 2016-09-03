@@ -43,14 +43,14 @@ test('has stack trace', t => {
 });
 
 test('highlights broken line', t => {
-    t.deepEqual(parseError('a {\n  content: "\n}').showSourceCode(true),
+    t.deepEqual(parseError('a {\n  content: "\n}').showSourceCode(false),
         '  1 | a {\n' +
         '> 2 |   content: "\n' +
-        '    |            \u001b[1;31m^\u001b[0m\n' +
+        '    |            ^\n' +
         '  3 | }');
 });
 
-test('highlights without colors on request', t => {
+test('highlights small code example', t => {
     t.deepEqual(parseError('a {').showSourceCode(false),
         '> 1 | a {\n' +
         '    | ^');
