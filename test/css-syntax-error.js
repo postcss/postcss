@@ -3,8 +3,9 @@ import postcss        from '../lib/postcss';
 
 import stripAnsi from 'strip-ansi';
 import Concat    from 'concat-with-sourcemaps';
+import chalk     from 'chalk';
 import path      from 'path';
-import test  from 'ava';
+import test      from 'ava';
 
 function parseError(css, opts) {
     let error;
@@ -40,6 +41,13 @@ test('saves source', t => {
 
 test('has stack trace', t => {
     t.regex(parseError('a {\n  content: "\n}').stack, /css-syntax-error\.js/);
+});
+
+test('highlights broken line with colors', t => {
+    let colors = new chalk.constructor({ enabled: true });
+    t.deepEqual(parseError('a {').showSourceCode(true),
+        '> 1 | a ' + colors.green('{') + '\n' +
+        '    | ^');
 });
 
 test('highlights broken line', t => {

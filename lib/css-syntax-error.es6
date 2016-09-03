@@ -1,6 +1,7 @@
 import supportsColor from 'supports-color';
 
-import warnOnce from './warn-once';
+import terminalHighlight from './terminal-highlight';
+import warnOnce          from './warn-once';
 
 function pad(number) {
     let result = '';
@@ -164,9 +165,11 @@ class CssSyntaxError {
     showSourceCode(color) {
         if ( !this.source ) return '';
 
+        let css = this.source;
         if ( typeof color === 'undefined' ) color = supportsColor;
+        if ( color ) css = terminalHighlight(css);
 
-        let lines = this.source.split(/\r?\n/);
+        let lines = css.split(/\r?\n/);
         let start = Math.max(this.line - 3, 0);
         let end   = Math.min(this.line + 3, lines.length);
 
