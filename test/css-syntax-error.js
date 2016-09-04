@@ -50,11 +50,31 @@ test('highlights broken line with colors', t => {
         '    | ^');
 });
 
+test('highlights multiline tokens with colors, but not the line gutter', t => {
+    let colors = new chalk.constructor({ enabled: true });
+    t.deepEqual(parseError('"a\nb"').showSourceCode(true),
+        '> 1 | ' + colors.red('"a') + '\n' +
+        '    | ^\n' +
+        '  2 | ' + colors.red('b"'));
+    t.deepEqual(parseError('/*\r\n*/a').showSourceCode(true),
+        '  1 | ' + colors.grey('/*') + '\n' +
+        '> 2 | ' + colors.grey('*/') + 'a\n' +
+        '    |   ^');
+});
+
 test('highlights broken line', t => {
     t.deepEqual(parseError('a {\n  content: "\n}').showSourceCode(false),
         '  1 | a {\n' +
         '> 2 |   content: "\n' +
         '    |            ^\n' +
+        '  3 | }');
+});
+
+test('highlights broken line, when indented with tabs', t => {
+    t.deepEqual(parseError('a {\n\t \t  content:\t"\n}').showSourceCode(false),
+        '  1 | a {\n' +
+        '> 2 | \t \t  content:\t"\n' +
+        '    | \t \t          \t^\n' +
         '  3 | }');
 });
 
@@ -64,7 +84,7 @@ test('highlights small code example', t => {
         '    | ^');
 });
 
-test('add trailing space for line numbers', t => {
+test('add leading space for line numbers', t => {
     let css = '\n\n\n\n\n\n\na {\n  content: "\n}';
     t.deepEqual(parseError(css).showSourceCode(false),
         '   7 | \n' +
