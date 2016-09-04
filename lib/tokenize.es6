@@ -18,8 +18,8 @@ const ASTERICK          =  '*'.charCodeAt(0);
 const COLON             =  ':'.charCodeAt(0);
 const AT                =  '@'.charCodeAt(0);
 
-const RE_AT_END      = /[ \n\t\r\f\{\(\)'"\\;/\[\]]/g;
-const RE_WORD_END    = /[ \n\t\r\f\(\)\{\}:;@!'"\\\]\[]|\/(?=\*)/g;
+const RE_AT_END      = /[ \n\t\r\f\{\(\)'"\\;/\[\]#]/g;
+const RE_WORD_END    = /[ \n\t\r\f\(\)\{\}:;@!'"\\\]\[#]|\/(?=\*)/g;
 const RE_BAD_BRACKET = /.[\\\/\("'\n]/;
 
 export default function tokenize(input, options = { }) {
