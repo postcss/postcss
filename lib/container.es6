@@ -203,7 +203,7 @@ class Container extends Node {
      * root.walkRules(rule => {
      *   selectors.push(rule.selector);
      * });
-     * console.log(`Your CSS uses ${selectors.length} selectors');
+     * console.log(`Your CSS uses ${selectors.length} selectors`);
      */
     walkRules(selector, callback) {
         if ( !callback ) {
