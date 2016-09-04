@@ -400,6 +400,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-chinese-stylesheets`] Chinese Style Sheets.
 * [`postcss-czech-stylesheets`] Czech Style Sheets.
 * [`postcss-german-stylesheets`] German Style Sheets.
+* [`postcss-italian-stylesheets`] Italian Style Sheets.
 * [`postcss-russian-stylesheets`] Russian Style Sheets.
 * [`postcss-swedish-stylesheets`] Swedish Style Sheets.
 * [`postcss-tatar-stylesheets`] Tatar Style Sheets
@@ -427,6 +428,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-canadian-stylesheets`]:         https://github.com/chancancode/postcss-canadian-stylesheets
 [`postcss-increase-specificity`]:         https://github.com/MadLittleMods/postcss-increase-specificity
 [`postcss-chinese-stylesheets`]:          https://github.com/zhouwenbin/postcss-chinese-stylesheets
+[`postcss-italian-stylesheets`]:          https://github.com/Pustur/postcss-italian-stylesheets
 [`postcss-russian-stylesheets`]:          https://github.com/Semigradsky/postcss-russian-stylesheets
 [`postcss-swedish-stylesheets`]:          https://github.com/johnie/postcss-swedish-stylesheets
 [`postcss-color-rebeccapurple`]:          https://github.com/postcss/postcss-color-rebeccapurple
