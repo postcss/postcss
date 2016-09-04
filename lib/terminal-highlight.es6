@@ -44,17 +44,19 @@ const HIGHLIGHT_THEME = {
     ')':        [ 1, 22]  // bold
 };
 
+function code(color) {
+    return '\u001b[' + color + 'm';
+}
+
 function terminalHighlight(css) {
     let tokens = tokenize(new Input(css), { ignoreErrors: true });
     let result = [];
     for ( let token of tokens ) {
         let color = HIGHLIGHT_THEME[token[0]];
         if ( color ) {
-            result.push(token[1].split(/\r?\n/).map(str =>
-                '\u001b[' + color[0] + 'm' +
-                str +
-                '\u001b[' + color[1] + 'm'
-            ).join('\n'));
+            result.push(token[1].split(/\r?\n/)
+              .map( i => code(color[0]) + i + code(color[1]) )
+              .join('\n'));
         } else {
             result.push(token[1]);
         }
