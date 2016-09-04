@@ -3,14 +3,6 @@ import supportsColor from 'supports-color';
 import terminalHighlight from './terminal-highlight';
 import warnOnce          from './warn-once';
 
-function pad(number) {
-    let result = '';
-    for ( let i = 0; i < number; i++ ) {
-        result += ' ';
-    }
-    return result;
-}
-
 /**
  * The CSS parser throws this error for broken CSS.
  *
@@ -180,8 +172,10 @@ class CssSyntaxError {
             let padded = (' ' + number).slice(-maxWidth);
             let gutter = ' ' + padded + ' | ';
             if ( number === this.line ) {
-                let spaces = pad(maxWidth) + '   | ' + pad(this.column - 1);
-                return '>' + gutter + line + '\n' + spaces + '^';
+                let spacing =
+                    gutter.replace(/\d/g, ' ') +
+                    line.slice(0, this.column - 1).replace(/[^\t]/g, ' ');
+                return '>' + gutter + line + '\n ' + spacing + '^';
             } else {
                 return ' ' + gutter + line;
             }

@@ -70,6 +70,14 @@ test('highlights broken line', t => {
         '  3 | }');
 });
 
+test('highlights broken line, when indented with tabs', t => {
+    t.deepEqual(parseError('a {\n\t \t  content:\t"\n}').showSourceCode(false),
+        '  1 | a {\n' +
+        '> 2 | \t \t  content:\t"\n' +
+        '    | \t \t          \t^\n' +
+        '  3 | }');
+});
+
 test('highlights small code example', t => {
     t.deepEqual(parseError('a {').showSourceCode(false),
         '> 1 | a {\n' +
