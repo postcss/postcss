@@ -50,9 +50,11 @@ function terminalHighlight(css) {
     for ( let token of tokens ) {
         let color = HIGHLIGHT_THEME[token[0]];
         if ( color ) {
-            result.push('\u001b[' + color[0] + 'm' +
-                        token[1] +
-                        '\u001b[' + color[1] + 'm');
+            result.push(token[1].split(/\r?\n/).map(str =>
+                '\u001b[' + color[0] + 'm' +
+                str +
+                '\u001b[' + color[1] + 'm'
+            ).join('\n'));
         } else {
             result.push(token[1]);
         }

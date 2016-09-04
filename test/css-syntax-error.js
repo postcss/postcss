@@ -50,6 +50,18 @@ test('highlights broken line with colors', t => {
         '    | ^');
 });
 
+test('highlights multiline tokens with colors, but not the line gutter', t => {
+    let colors = new chalk.constructor({ enabled: true });
+    t.deepEqual(parseError('"a\nb"').showSourceCode(true),
+        '> 1 | ' + colors.red('"a') + '\n' +
+        '    | ^\n' +
+        '  2 | ' + colors.red('b"'));
+    t.deepEqual(parseError('/*\r\n*/a').showSourceCode(true),
+        '  1 | ' + colors.grey('/*') + '\n' +
+        '> 2 | ' + colors.grey('*/') + 'a\n' +
+        '    |   ^');
+});
+
 test('highlights broken line', t => {
     t.deepEqual(parseError('a {\n  content: "\n}').showSourceCode(false),
         '  1 | a {\n' +
