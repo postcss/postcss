@@ -64,8 +64,8 @@ gulp.task('test', ['compile'], () => {
     return gulp.src('test/*.js', { read: false }).pipe(ava());
 });
 
-gulp.task('integration', ['build:lib'], done => {
-    let postcss = require('./build/lib/postcss');
+gulp.task('integration', ['build'], done => {
+    let postcss = require('./build');
     let real    = require('postcss-parser-tests/real');
     real(done, css => {
         return postcss.parse(css).toResult({ map: { annotation: false } });
