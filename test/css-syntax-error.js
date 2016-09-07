@@ -85,13 +85,14 @@ test('highlights small code example', t => {
 });
 
 test('add leading space for line numbers', t => {
-    let css = '\n\n\n\n\n\n\na {\n  content: "\n}';
+    let css = '\n\n\n\n\n\n\na {\n  content: "\n}\n\n\n';
     t.deepEqual(parseError(css).showSourceCode(false),
         '   7 | \n' +
         '   8 | a {\n' +
         '>  9 |   content: "\n' +
         '     |            ^\n' +
-        '  10 | }');
+        '  10 | }\n' +
+        '  11 | ');
 });
 
 test('prints with highlight', t => {

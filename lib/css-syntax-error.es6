@@ -163,7 +163,7 @@ class CssSyntaxError {
 
         let lines = css.split(/\r?\n/);
         let start = Math.max(this.line - 3, 0);
-        let end   = Math.min(this.line + 3, lines.length);
+        let end   = Math.min(this.line + 2, lines.length);
 
         let maxWidth = String(end).length;
 
