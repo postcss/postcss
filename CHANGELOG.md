@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2 “Duke Vapula”
+* Add syntax highlight to code frame in syntax error (by Andrey Popp).
+* Use Babel code frame style and size in syntax error.
+* Add `[` and `]` tokens to parse `[attr=;] {}` correctly.
+* Add `ignoreErrors` options to tokenizer (by Andrey Popp).
+* Fix error position on tab indent (by Simon Lydell).
+
 ## 5.1.2
 * Suggests SCSS/Less parsers on parse errors depends on file extension.
 
