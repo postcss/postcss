@@ -150,7 +150,7 @@ class CssSyntaxError {
      *                        //    > 6 |   bad
      *                        //        |   ^
      *                        //      7 | }
-     *                        //      8 b {"
+     *                        //      8 | b {"
      *
      * @return {string} few lines of CSS source that caused the error
      */
