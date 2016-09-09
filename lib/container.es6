@@ -549,10 +549,10 @@ class Container extends Node {
      *
      * @param {childCondition} condition - iterator returns true or false.
      *
-     * @return {boolean} is every child pass condition
+     * @return {boolean} is some child pass condition
      *
      * @example
-     * const hasPrefix = rule.every(i => i.prop[0] === '-');
+     * const hasPrefix = rule.some(i => i.prop[0] === '-');
      */
     some(condition) {
         return this.nodes.some(condition);
