@@ -492,18 +492,19 @@ class Container extends Node {
      * This method is useful if you are using a custom unit or function
      * and need to iterate through all values.
      *
-     * @param {string|RegExp} pattern    - replace pattern
-     * @param {object} opts              - options to speed up the search
-     * @param {string} opts.prop         - an array of property names
-     * @param {string} opts.fast         - string that’s used
-     *                                     to narrow down values and speed up
-     *                                     the regexp search
-     * @param {function|string} callback - string to replace pattern
-     *                                     or callback that returns a new value.
-     *                                     The callback will receive
-     *                                     the same arguments as those passed
-     *                                     to a function parameter
-     *                                     of `String#replace`.
+     * @param {string|RegExp} pattern        - replace pattern
+     * @param {object} opts                  - options to speed up the search
+     * @param {string|string[]} opts.props   - an array of property names
+     * @param {string} opts.fast             - string that’s used
+     *                                         to narrow down values and speed
+                                               up the regexp search
+     * @param {function|string} callback     - string to replace pattern
+     *                                         or callback that returns a new
+     *                                         value.
+     *                                         The callback will receive
+     *                                         the same arguments as those
+     *                                         passed to a function parameter
+     *                                         of `String#replace`.
      *
      * @return {Node} this node for methods chain
      *
