@@ -238,7 +238,7 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 * **HTML**: [`posthtml-postcss`](https://github.com/posthtml/posthtml-postcss)
 * **Stylus**: [`poststylus`](https://github.com/seaneking/poststylus)
 * **Rollup**: [`rollup-plugin-postcss`](https://github.com/egoist/rollup-plugin-postcss)
-* **Brunch**: [`postcss-brunch`](https://github.com/iamvdo/postcss-brunch)
+* **Brunch**: [`postcss-brunch`](https://github.com/brunch/postcss-brunch)
 * **Broccoli**: [`broccoli-postcss`](https://github.com/jeffjewiss/broccoli-postcss)
 * **Meteor**: [`postcss`](https://atmospherejs.com/juliancwirko/postcss)
 * **ENB**: [`enb-postcss`](https://github.com/awinogradov/enb-postcss)
