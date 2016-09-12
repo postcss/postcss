@@ -343,7 +343,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
 * [`postcss-ie8`] strips out unsupported properties and media queries for IE8.
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
-* * [`postcss-inline-rtl`] converts your CSS to right-to-left,
+* [`postcss-inline-rtl`] converts your CSS to right-to-left,
   but inline (adding just what you need).
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
