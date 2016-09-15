@@ -128,6 +128,7 @@ See also [`oldie`] plugins pack.
 * [`postcss-aspect-ratio`] fix an element's dimensions to an aspect ratio.
 * [`postcss-atroot`] place rules directly at the root node.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
+* [`postcss-click`] allows to use the `:click` pseudo class and implement it in JavaScript.
 * [`postcss-compact-mq`] provides compact syntax for media queries based on viewport width
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-css-variables`] supports variables for selectors, and at-rules
@@ -631,6 +632,7 @@ See also plugins in modular minifier [`cssnano`].
 [`immutable-css`]:                        https://github.com/johnotander/immutable-css
 [`perfectionist`]:                        https://github.com/ben-eb/perfectionist
 [`postcss-uncss`]:                        https://github.com/RyanZim/postcss-uncss
+[`postcss-click`]:                        https://github.com/ismamz/postcss-click
 [`postcss-at2x`]:                         https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                         https://github.com/postcss/postcss-calc
 [`postcss-crip`]:                         https://github.com/johnie/postcss-crip
