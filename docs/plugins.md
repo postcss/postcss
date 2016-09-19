@@ -238,6 +238,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-write-svg`] write inline SVGs in CSS.
 * [`postcss-inline-svg`] inline SVG images and customize their styles.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
+* [`postcss-filter-tint`] adds tint filter to elements such as images.
 
 ## Grids
 
@@ -667,3 +668,4 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                               https://github.com/MohammadYounes/rtlcss
 [`short`]:                                https://github.com/jonathantneal/postcss-short
 [`lost`]:                                 https://github.com/corysimmons/lost
+[`postcss-filter-tint`]:                  https://github.com/alexlibby/postcss-filter-tint
