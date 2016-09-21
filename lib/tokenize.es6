@@ -14,7 +14,7 @@ const CLOSE_PARENTHESES =  ')'.charCodeAt(0);
 const OPEN_CURLY        =  '{'.charCodeAt(0);
 const CLOSE_CURLY       =  '}'.charCodeAt(0);
 const SEMICOLON         =  ';'.charCodeAt(0);
-const ASTERICK          =  '*'.charCodeAt(0);
+const ASTERISK          =  '*'.charCodeAt(0);
 const COLON             =  ':'.charCodeAt(0);
 const AT                =  '@'.charCodeAt(0);
 
@@ -232,7 +232,7 @@ export default function tokenize(input, options = { }) {
             break;
 
         default:
-            if ( code === SLASH && css.charCodeAt(pos + 1) === ASTERICK ) {
+            if ( code === SLASH && css.charCodeAt(pos + 1) === ASTERISK ) {
                 next = css.indexOf('*/', pos + 2) + 1;
                 if ( next === 0 ) {
                     if ( ignore ) {
