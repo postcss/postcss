@@ -222,6 +222,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
 * [`postcss-instagram`] adds Instagram filters to `filter`.
+* [`postcss-filter-tint`] adds tint filter to elements such as images.
 * [`postcss-font-awesome`] adds an easy shortcut to font-awesome unicode codes
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
@@ -544,6 +545,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-style-guide`]:                  https://github.com/morishitter/postcss-style-guide
 [`postcss-will-change`]:                  https://github.com/postcss/postcss-will-change
 [`postcss-randomcolor`]:                  https://github.com/alanev/postcss-randomcolor
+[`postcss-filter-tint`]:                  https://github.com/alexlibby/postcss-filter-tint
 [`postcss-ase-colors`]:                   https://github.com/dfernandez79/postcss-ase-colors
 [`postcss-bem-linter`]:                   https://github.com/postcss/postcss-bem-linter
 [`postcss-camelcaser`]:                   https://github.com/GMchris/postcss-camelcaser
