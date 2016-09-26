@@ -58,7 +58,7 @@ let list = {
      *
      * @param {string} string - space-separated values
      *
-     * @return {string[]} splitted values
+     * @return {string[]} split values
      *
      * @example
      * postcss.list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
@@ -74,7 +74,7 @@ let list = {
      *
      * @param {string} string - comma-separated values
      *
-     * @return {string[]} splitted values
+     * @return {string[]} split values
      *
      * @example
      * postcss.list.comma('black, linear-gradient(white, black)')

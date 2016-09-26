@@ -9,7 +9,8 @@
   "plugins": ["plugins/markdown"],
   "templates": {
     "default": {
-      "layoutFile": "node_modules/docdash/tmpl/layout.tmpl"
+      "layoutFile": "node_modules/docdash/tmpl/layout.tmpl",
+      "includeDate": false
     }
   }
 }

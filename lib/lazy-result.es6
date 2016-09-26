@@ -188,7 +188,7 @@ class LazyResult {
      *
      * @param {onFulfilled} onFulfilled - callback will be executed
      *                                    when all plugins will finish work
-     * @param {onRejected}  onRejected  - callback will be execited on any error
+     * @param {onRejected}  onRejected  - callback will be executed on any error
      *
      * @return {Promise} Promise API to make queue
      *
@@ -207,7 +207,7 @@ class LazyResult {
      *
      * It implements standard Promise API.
      *
-     * @param {onRejected} onRejected - callback will be execited on any error
+     * @param {onRejected} onRejected - callback will be executed on any error
      *
      * @return {Promise} Promise API to make queue
      *

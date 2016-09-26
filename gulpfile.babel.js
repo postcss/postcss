@@ -51,9 +51,9 @@ gulp.task('lint', () => {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('spellcheck', () => {
+gulp.task('spellcheck', ['api'], () => {
     let run = require('gulp-run');
-    return gulp.src(['*.md', 'docs/**/*.md'], { read: false })
+    return gulp.src(['api/*.html', '*.md', 'docs/**/*.md'], { read: false })
         .pipe(run('yaspeller <%= file.path %>'));
 });
 

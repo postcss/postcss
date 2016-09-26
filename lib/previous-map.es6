@@ -39,7 +39,7 @@ class PreviousMap {
      * It is lazy method, so it will create object only on first call
      * and then it will use cache.
      *
-     * @return {SourceMapGenerator} object woth source map information
+     * @return {SourceMapGenerator} object with source map information
      */
     consumer() {
         if ( !this.consumerCache ) {
