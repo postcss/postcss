@@ -83,24 +83,9 @@ gulp.task('version', ['build:lib'], () => {
 
 // Docs
 
-gulp.task('api', ['clean'], done => {
-    let jsdoc = require('gulp-jsdoc3');
-    gulp.src('lib/*.es6', { read: false })
-        .pipe(jsdoc({
-            source: {
-                includePattern: '.+\\.es6$'
-            },
-            opts: {
-                template: 'node_modules/docdash',
-                destination: './api/'
-            },
-            plugins: ['plugins/markdown'],
-            templates: {
-                default: {
-                    layoutFile: 'node_modules/docdash/tmpl/layout.tmpl'
-                }
-            }
-        }, done));
+gulp.task('api', ['clean'], () => {
+    let run = require('gulp-run');
+    return run('jsdoc -c .jsdocrc lib/*.es6').exec();
 });
 
 // Common
