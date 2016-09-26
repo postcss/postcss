@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.2
+* Update `Processor#version`.
+
 ## 5.2.1
 * Fix source map path for CSS without `from` option (by Michele Locati).
 
