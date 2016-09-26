@@ -63,7 +63,8 @@
   "main": "lib/postcss",
   "lint-staged": {
     "test/*.js": "eslint",
-    "lib/*.es6": "eslint"
+    "lib/*.es6": "eslint",
+    "*.md":      "yaspeller"
   },
   "pre-commit": ["lint-staged"]
 }
