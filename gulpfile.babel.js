@@ -84,6 +84,7 @@ gulp.task('version', ['build:lib'], () => {
 // Docs
 
 gulp.task('api', ['clean'], () => {
+    if ( /^win/.test(process.platform) ) return false;
     let run = require('gulp-run');
     return run('jsdoc -c .jsdocrc lib/*.es6').exec();
 });
