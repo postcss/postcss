@@ -318,7 +318,6 @@ var postcss = require('postcss');
 
 ### WebStorm
 
-Support is still in progress. Please support [WEB-16601 issue]
-in JetBrains tracker.
+WebStorm 2016.3 [has] built-in PostCSS support.
 
-[WEB-16601 issue]: https://youtrack.jetbrains.com/issue/WEB-16601
+[has]: https://blog.jetbrains.com/webstorm/2016/08/webstorm-2016-3-early-access-preview/
