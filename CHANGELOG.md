@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.1
+* Fix source map path for CSS without `from` option (by Michele Locati).
+
 ## 5.2 “Duke Vapula”
 * Add syntax highlight to code frame in syntax error (by Andrey Popp).
 * Use Babel code frame style and size in syntax error.
