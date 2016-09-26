@@ -53,8 +53,10 @@ gulp.task('lint', () => {
 
 gulp.task('spellcheck', ['api'], () => {
     let run = require('gulp-run');
-    return gulp.src(['api/*.html', '*.md', 'docs/**/*.md'], { read: false })
-        .pipe(run('yaspeller <%= file.path %>'));
+    return gulp.src(
+        ['api/*.html', '!api/*.es6.html', '*.md', 'docs/**/*.md'],
+        { read: false }
+    ).pipe(run('yaspeller <%= file.path %>'));
 });
 
 // Tests
