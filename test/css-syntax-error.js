@@ -44,22 +44,11 @@ test('has stack trace', t => {
 });
 
 test('highlights broken line with colors', t => {
-    let colors = new chalk.constructor({ enabled: true });
+    let c = new chalk.constructor({ enabled: true });
+    let e = c.white.bgRed.bold;
     t.deepEqual(parseError('a {').showSourceCode(true),
-        '> 1 | a ' + colors.green('{') + '\n' +
-        '    | ^');
-});
-
-test('highlights multiline tokens with colors, but not the line gutter', t => {
-    let colors = new chalk.constructor({ enabled: true });
-    t.deepEqual(parseError('"a\nb"').showSourceCode(true),
-        '> 1 | ' + colors.red('"a') + '\n' +
-        '    | ^\n' +
-        '  2 | ' + colors.red('b"'));
-    t.deepEqual(parseError('/*\r\n*/a').showSourceCode(true),
-        '  1 | ' + colors.grey('/*') + '\n' +
-        '> 2 | ' + colors.grey('*/') + 'a\n' +
-        '    |   ^');
+        c.red.bold('>') + c.grey(' 1 | ') + e('a') + ' ' + c.green('{') + '\n' +
+        ' ' + c.grey('   | ') + c.red.bold('^'));
 });
 
 test('highlights broken line', t => {

@@ -1,4 +1,5 @@
 import supportsColor from 'supports-color';
+import chalk         from 'chalk';
 
 import terminalHighlight from './terminal-highlight';
 import warnOnce          from './warn-once';
@@ -159,25 +160,41 @@ class CssSyntaxError {
 
         let css = this.source;
         if ( typeof color === 'undefined' ) color = supportsColor;
-        if ( color ) css = terminalHighlight(css);
+        if ( color ) css = terminalHighlight(css, this.line, this.column);
 
         let lines = css.split(/\r?\n/);
         let start = Math.max(this.line - 3, 0);
         let end   = Math.min(this.line + 2, lines.length);
 
         let maxWidth = String(end).length;
+        let colors = new chalk.constructor({ enabled: true });
+
+        function mark(text) {
+            if ( color ) {
+                return colors.red.bold(text);
+            } else {
+                return text;
+            }
+        }
+        function aside(text) {
+            if ( color ) {
+                return colors.gray(text);
+            } else {
+                return text;
+            }
+        }
 
         return lines.slice(start, end).map( (line, index) => {
             let number = start + 1 + index;
-            let padded = (' ' + number).slice(-maxWidth);
-            let gutter = ' ' + padded + ' | ';
+            let gutter = ' ' + (' ' + number).slice(-maxWidth) + ' | ';
             if ( number === this.line ) {
                 let spacing =
-                    gutter.replace(/\d/g, ' ') +
+                    aside(gutter.replace(/\d/g, ' ')) +
                     line.slice(0, this.column - 1).replace(/[^\t]/g, ' ');
-                return '>' + gutter + line + '\n ' + spacing + '^';
+                return mark('>') + aside(gutter) + line + '\n ' +
+                       spacing + mark('^');
             } else {
-                return ' ' + gutter + line;
+                return ' ' + aside(gutter) + line;
             }
         }).join('\n');
     }
