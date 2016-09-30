@@ -9,16 +9,6 @@ function isPromise(obj) {
 }
 
 /**
- * @callback onFulfilled
- * @param {Result} result
- */
-
-/**
- * @callback onRejected
- * @param {Error} error
- */
-
-/**
  * A Promise proxy for the result of PostCSS transformations.
  *
  * A `LazyResult` instance is returned by {@link Processor#process}.
@@ -358,3 +348,13 @@ class LazyResult {
 }
 
 export default LazyResult;
+
+/**
+ * @callback onFulfilled
+ * @param {Result} result
+ */
+
+/**
+ * @callback onRejected
+ * @param {Error} error
+ */

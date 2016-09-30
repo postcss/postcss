@@ -12,21 +12,6 @@ function cleanSource(nodes) {
 }
 
 /**
- * @callback childCondition
- * @param {Node} node    - container child
- * @param {number} index - child index
- * @param {Node[]} nodes - all container children
- * @return {boolean}
- */
-
- /**
-  * @callback childIterator
-  * @param {Node} node    - container child
-  * @param {number} index - child index
-  * @return {false|undefined} returning `false` will break iteration
-  */
-
-/**
  * The {@link Root}, {@link AtRule}, and {@link Rule} container nodes
  * inherit some common methods to help work with their children.
  *
@@ -742,3 +727,19 @@ class Container extends Node {
 }
 
 export default Container;
+
+
+/**
+ * @callback childCondition
+ * @param {Node} node    - container child
+ * @param {number} index - child index
+ * @param {Node[]} nodes - all container children
+ * @return {boolean}
+ */
+
+/**
+ * @callback childIterator
+ * @param {Node} node    - container child
+ * @param {number} index - child index
+ * @return {false|undefined} returning `false` will break iteration
+ */

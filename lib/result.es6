@@ -1,12 +1,6 @@
 import Warning from './warning';
 
 /**
- * @typedef  {object} Message
- * @property {string} type   - message type
- * @property {string} plugin - source PostCSS plugin name
- */
-
-/**
  * Provides the result of the PostCSS transformations.
  *
  * A Result instance is returned by {@link LazyResult#then}
@@ -171,3 +165,9 @@ class Result {
 }
 
 export default Result;
+
+/**
+ * @typedef  {object} Message
+ * @property {string} type   - message type
+ * @property {string} plugin - source PostCSS plugin name
+ */

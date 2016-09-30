@@ -6,13 +6,6 @@ import path from 'path';
 let sequence = 0;
 
 /**
- * @typedef  {object} filePosition
- * @property {string} file   - path to file
- * @property {number} line   - source line in file
- * @property {number} column - source column in file
- */
-
-/**
  * Represents the source CSS.
  *
  * @example
@@ -163,3 +156,10 @@ class Input {
 }
 
 export default Input;
+
+/**
+ * @typedef  {object} filePosition
+ * @property {string} file   - path to file
+ * @property {number} line   - source line in file
+ * @property {number} column - source column in file
+ */

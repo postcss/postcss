@@ -1,89 +1,6 @@
 import LazyResult  from './lazy-result';
 
 /**
- * @callback builder
- * @param {string} part          - part of generated CSS connected to this node
- * @param {Node}   node          - AST node
- * @param {"start"|"end"} [type] - node’s part type
- */
-
-/**
- * @callback parser
- *
- * @param {string|toString} css   - string with input CSS or any object
- *                                  with toString() method, like a Buffer
- * @param {processOptions} [opts] - options with only `from` and `map` keys
- *
- * @return {Root} PostCSS AST
- */
-
-/**
- * @callback stringifier
- *
- * @param {Node} node       - start node for stringifing. Usually {@link Root}.
- * @param {builder} builder - function to concatenate CSS from node’s parts
- *                            or generate string and source map
- *
- * @return {void}
- */
-
-/**
- * @typedef {object} syntax
- * @property {parser} parse          - function to generate AST by string
- * @property {stringifier} stringify - function to generate string by AST
- */
-
-/**
- * @typedef {object} toString
- * @property {function} toString
- */
-
-/**
- * @callback pluginFunction
- * @param {Root} root     - parsed input CSS
- * @param {Result} result - result to set warnings or check other plugins
- */
-
-/**
- * @typedef {object} Plugin
- * @property {function} postcss - PostCSS plugin function
- */
-
-/**
- * @typedef {object} processOptions
- * @property {string} from             - the path of the CSS source file.
- *                                       You should always set `from`,
- *                                       because it is used in source map
- *                                       generation and syntax error messages.
- * @property {string} to               - the path where you’ll put the output
- *                                       CSS file. You should always set `to`
- *                                       to generate correct source maps.
- * @property {parser} parser           - function to generate AST by string
- * @property {stringifier} stringifier - class to generate string by AST
- * @property {syntax} syntax           - object with `parse` and `stringify`
- * @property {object} map              - source map options
- * @property {boolean} map.inline                    - does source map should
- *                                                     be embedded in the output
- *                                                     CSS as a base64-encoded
- *                                                     comment
- * @property {string|object|false|function} map.prev - source map content
- *                                                     from a previous
- *                                                     processing step
- *                                                     (for example, Sass).
- *                                                     PostCSS will try to find
- *                                                     previous map
- *                                                     automatically, so you
- *                                                     could disable it by
- *                                                     `false` value.
- * @property {boolean} map.sourcesContent            - does PostCSS should set
- *                                                     the origin content to map
- * @property {string|false} map.annotation           - does PostCSS should set
- *                                                     annotation comment to map
- * @property {string} map.from                       - override `from` in map’s
- *                                                     `sources`
- */
-
-/**
  * Contains plugins to process CSS. Create one `Processor` instance,
  * initialize its plugins, and then use that instance on numerous CSS files.
  *
@@ -197,3 +114,86 @@ class Processor {
 }
 
 export default Processor;
+
+/**
+ * @callback builder
+ * @param {string} part          - part of generated CSS connected to this node
+ * @param {Node}   node          - AST node
+ * @param {"start"|"end"} [type] - node’s part type
+ */
+
+/**
+ * @callback parser
+ *
+ * @param {string|toString} css   - string with input CSS or any object
+ *                                  with toString() method, like a Buffer
+ * @param {processOptions} [opts] - options with only `from` and `map` keys
+ *
+ * @return {Root} PostCSS AST
+ */
+
+/**
+ * @callback stringifier
+ *
+ * @param {Node} node       - start node for stringifing. Usually {@link Root}.
+ * @param {builder} builder - function to concatenate CSS from node’s parts
+ *                            or generate string and source map
+ *
+ * @return {void}
+ */
+
+/**
+ * @typedef {object} syntax
+ * @property {parser} parse          - function to generate AST by string
+ * @property {stringifier} stringify - function to generate string by AST
+ */
+
+/**
+ * @typedef {object} toString
+ * @property {function} toString
+ */
+
+/**
+ * @callback pluginFunction
+ * @param {Root} root     - parsed input CSS
+ * @param {Result} result - result to set warnings or check other plugins
+ */
+
+/**
+ * @typedef {object} Plugin
+ * @property {function} postcss - PostCSS plugin function
+ */
+
+/**
+ * @typedef {object} processOptions
+ * @property {string} from             - the path of the CSS source file.
+ *                                       You should always set `from`,
+ *                                       because it is used in source map
+ *                                       generation and syntax error messages.
+ * @property {string} to               - the path where you’ll put the output
+ *                                       CSS file. You should always set `to`
+ *                                       to generate correct source maps.
+ * @property {parser} parser           - function to generate AST by string
+ * @property {stringifier} stringifier - class to generate string by AST
+ * @property {syntax} syntax           - object with `parse` and `stringify`
+ * @property {object} map              - source map options
+ * @property {boolean} map.inline                    - does source map should
+ *                                                     be embedded in the output
+ *                                                     CSS as a base64-encoded
+ *                                                     comment
+ * @property {string|object|false|function} map.prev - source map content
+ *                                                     from a previous
+ *                                                     processing step
+ *                                                     (for example, Sass).
+ *                                                     PostCSS will try to find
+ *                                                     previous map
+ *                                                     automatically, so you
+ *                                                     could disable it by
+ *                                                     `false` value.
+ * @property {boolean} map.sourcesContent            - does PostCSS should set
+ *                                                     the origin content to map
+ * @property {string|false} map.annotation           - does PostCSS should set
+ *                                                     annotation comment to map
+ * @property {string} map.from                       - override `from` in map’s
+ *                                                     `sources`
+ */

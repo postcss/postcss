@@ -1,5 +1,3 @@
-/* eslint-disable valid-jsdoc */
-
 const defaultRaw = {
     colon:         ': ',
     indent:        '    ',

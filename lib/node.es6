@@ -3,19 +3,6 @@ import Stringifier    from './stringifier';
 import stringify      from './stringify';
 import warnOnce       from './warn-once';
 
-/**
- * @typedef {object} position
- * @property {number} line   - source line in file
- * @property {number} column - source column in file
- */
-
-/**
- * @typedef {object} source
- * @property {Input} input    - {@link Input} with input file
- * @property {position} start - The starting position of the node’s source
- * @property {position} end   - The ending position of the node’s source
- */
-
 let cloneNode = function (obj, parent) {
     let cloned = new obj.constructor();
 
@@ -572,3 +559,16 @@ class Node {
 }
 
 export default Node;
+
+/**
+ * @typedef {object} position
+ * @property {number} line   - source line in file
+ * @property {number} column - source column in file
+ */
+
+/**
+ * @typedef {object} source
+ * @property {Input} input    - {@link Input} with input file
+ * @property {position} start - The starting position of the node’s source
+ * @property {position} end   - The ending position of the node’s source
+ */
