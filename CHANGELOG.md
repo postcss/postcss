@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.4
+* Improve terminal CSS syntax highlight (by Simon Lydell).
+
 ## 5.2.3
 * Better color highlight in syntax error code frame.
 * Fix color highlight support in old systems.
