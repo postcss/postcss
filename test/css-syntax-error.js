@@ -45,9 +45,8 @@ test('has stack trace', t => {
 
 test('highlights broken line with colors', t => {
     let c = new chalk.constructor({ enabled: true });
-    let e = c.white.bgRed.bold;
     t.deepEqual(parseError('a {').showSourceCode(true),
-        c.red.bold('>') + c.grey(' 1 | ') + e('a') + ' ' + c.green('{') + '\n' +
+        c.red.bold('>') + c.grey(' 1 | ') + 'a ' + c.yellow('{') + '\n' +
         ' ' + c.grey('   | ') + c.red.bold('^'));
 });
 
