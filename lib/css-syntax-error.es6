@@ -160,7 +160,7 @@ class CssSyntaxError {
 
         let css = this.source;
         if ( typeof color === 'undefined' ) color = supportsColor;
-        if ( color ) css = terminalHighlight(css, this.line, this.column);
+        if ( color ) css = terminalHighlight(css);
 
         let lines = css.split(/\r?\n/);
         let start = Math.max(this.line - 3, 0);
