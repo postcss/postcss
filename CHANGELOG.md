@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.5
+* Better error message on unclosed string (by Ben Briggs).
+
 ## 5.2.4
 * Improve terminal CSS syntax highlight (by Simon Lydell).
 
