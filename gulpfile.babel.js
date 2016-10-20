@@ -7,17 +7,26 @@ gulp.task('clean', () => {
 
 // Build
 
-gulp.task('compile', () => {
-    let sourcemaps = require('gulp-sourcemaps');
-    let changed    = require('gulp-changed');
-    let babel      = require('gulp-babel');
-    return gulp.src('lib/*.es6')
-        .pipe(changed('lib', { extension: '.js' }))
-        .pipe(sourcemaps.init())
-        .pipe(babel())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('lib'));
-});
+if ( parseInt(process.versions.node) < 4 ) {
+    gulp.task('compile', () => {
+        let babel = require('gulp-babel');
+        return gulp.src('lib/*.es6')
+            .pipe(babel())
+            .pipe(gulp.dest('lib'));
+    });
+} else {
+    gulp.task('compile', () => {
+        let sourcemaps = require('gulp-sourcemaps');
+        let changed    = require('gulp-changed');
+        let babel      = require('gulp-babel');
+        return gulp.src('lib/*.es6')
+            .pipe(changed('lib', { extension: '.js' }))
+            .pipe(sourcemaps.init())
+            .pipe(babel())
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('lib'));
+    });
+}
 
 gulp.task('build:lib', ['compile'], () => {
     return gulp.src('lib/*.js').pipe(gulp.dest('build/lib'));
