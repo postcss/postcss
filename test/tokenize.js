@@ -221,7 +221,7 @@ test('tokenizes CSS', t => {
 test('throws error on unclosed string', t => {
     t.throws(() => {
         tokenize(new Input(' "'));
-    }, /:1:2: Unclosed quote/);
+    }, /:1:2: Unclosed string/);
 });
 
 test('throws error on unclosed comment', t => {

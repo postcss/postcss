@@ -26,8 +26,8 @@ test('saves source', t => {
 
     t.truthy(error instanceof CssSyntaxError);
     t.deepEqual(error.name, 'CssSyntaxError');
-    t.deepEqual(error.message, '<css input>:2:12: Unclosed quote');
-    t.deepEqual(error.reason, 'Unclosed quote');
+    t.deepEqual(error.message, '<css input>:2:12: Unclosed string');
+    t.deepEqual(error.reason, 'Unclosed string');
     t.deepEqual(error.line, 2);
     t.deepEqual(error.column, 12);
     t.deepEqual(error.source, 'a {\n  content: "\n}');

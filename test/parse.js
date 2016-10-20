@@ -92,7 +92,7 @@ test('throws on unclosed comment', t => {
 test('throws on unclosed quote', t => {
     t.throws(() => {
         parse('\n"\n\na ');
-    }, /:2:1: Unclosed quote/);
+    }, /:2:1: Unclosed string/);
 });
 
 test('throws on unclosed bracket', t => {

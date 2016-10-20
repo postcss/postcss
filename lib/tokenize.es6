@@ -161,7 +161,7 @@ export default function tokenize(input, options = { }) {
                         next = pos + 1;
                         break;
                     } else {
-                        unclosed('quote');
+                        unclosed('string');
                     }
                 }
                 escapePos = next;
