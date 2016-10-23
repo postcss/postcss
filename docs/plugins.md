@@ -158,6 +158,7 @@ See also [`oldie`] plugins pack.
 for targeting all button elements.
 * [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
 * [`postcss-quantity-queries`] enables quantity queries.
+* [`postcss-ref`] refers properties from another rule.
 * [`postcss-reverse-media`] reverse/Invert media query parameters.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
 * [`postcss-simple-extend`] lightweight extending of silent classes,
@@ -657,6 +658,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-raw`]:                          https://github.com/MadLittleMods/postcss-raw
 [`postcss-svg`]:                          https://github.com/Pavliko/postcss-svg
 [`postcss-url`]:                          https://github.com/postcss/postcss-url
+[`postcss-ref`]:                          https://github.com/morishitter/postcss-ref
 [`colorguard`]:                           https://github.com/SlexAxton/css-colorguard
 [`css-byebye`]:                           https://github.com/AoDev/css-byebye
 [`stylehacks`]:                           https://github.com/ben-eb/stylehacks
