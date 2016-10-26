@@ -228,6 +228,8 @@ See also [`precss`] plugins pack to add them by one line of code.
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
 * [`postcss-placehold`] makes it easy to drop in placeholder images.
+* [`postcss-resemble-image`] provides a gradient fallback for an image that
+loosely resembles the original.
 * [`postcss-responsive-images`] adds stylesheets for making
   your images responsive.
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
@@ -484,6 +486,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-oldschool-grid`]:               https://github.com/lordgiotto/postcss-oldschool-grid
 [`postcss-partial-import`]:               https://github.com/jonathantneal/postcss-partial-import
 [`postcss-pseudoelements`]:               https://github.com/axa-ch/postcss-pseudoelements
+[`postcss-resemble-image`]:               https://github.com/ben-eb/postcss-resemble-image
 [`postcss-safe-important`]:               https://github.com/Crimx/postcss-safe-important
 [`postcss-shades-of-gray`]:               https://github.com/laureanoarcanio/postcss-shades-of-gray
 [`postcss-short-position`]:               https://github.com/jonathantneal/postcss-short-position
