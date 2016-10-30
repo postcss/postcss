@@ -165,9 +165,10 @@ test('walk() iterates', t => {
     });
 
     t.deepEqual(typeof result, 'undefined');
-    t.deepEqual(types, ['rule', 'decl', 'decl', 'comment', 'atrule',
-                        'comment', 'rule', 'decl', 'atrule', 'rule',
-                        'decl', 'atrule', 'decl', 'comment']);
+    t.deepEqual(types, [
+        'rule', 'decl', 'decl', 'comment', 'atrule', 'comment', 'rule', 'decl',
+        'atrule', 'rule', 'decl', 'atrule', 'decl', 'comment'
+    ]);
     t.deepEqual(indexes, [0, 0, 1, 1, 2, 0, 1, 0, 3, 0, 0, 1, 0, 1]);
 });
 
