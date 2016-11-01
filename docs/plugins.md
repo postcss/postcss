@@ -228,6 +228,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
+* [`postcss-lazyimagecss`] generates images's CSS width & height properties automatically.
 * [`postcss-placehold`] makes it easy to drop in placeholder images.
 * [`postcss-resemble-image`] provides a gradient fallback for an image that
 loosely resembles the original.
@@ -521,6 +522,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-flexboxfixer`]:                 https://github.com/hallvors/postcss-flexboxfixer
 [`postcss-font-awesome`]:                 https://github.com/dan-gamble/postcss-font-awesome
 [`postcss-font-variant`]:                 https://github.com/postcss/postcss-font-variant
+[`postcss-lazyimagecss`]:                 https://github.com/Jeff2Ma/postcss-lazyimagecss
 [`postcss-media-minmax`]:                 https://github.com/postcss/postcss-media-minmax
 [`postcss-merge-idents`]:                 https://github.com/ben-eb/postcss-merge-idents
 [`postcss-mq-keyframes`]:                 https://github.com/TCotton/postcss-mq-keyframes
