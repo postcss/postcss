@@ -174,7 +174,7 @@ for targeting all button elements.
   property values.
 * [`postcss-text-remove-gap`] remove space before and after text strings, added
   by line-height and extra space in glyph itself.
-* [`postcss-closest`] plugin to modify closest matching part of current 
+* [`postcss-closest`] plugin to modify closest matching part of current
   selector.
 * [`csstyle`] adds components workflow to your styles.
 
@@ -232,7 +232,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
 * [`postcss-fontpath`] adds font links for different browsers.
-* [`postcss-lazyimagecss`] generates images's CSS width & height properties automatically.
+* [`postcss-lazyimagecss`] adds image width and height automatically.
 * [`postcss-placehold`] makes it easy to drop in placeholder images.
 * [`postcss-resemble-image`] provides a gradient fallback for an image that
 loosely resembles the original.
