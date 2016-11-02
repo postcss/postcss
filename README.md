@@ -93,6 +93,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`cssnano`] is a modular CSS minifier.
+* [`postcss-rtl`] combines both-directional (left-to-right and right-to-left) styles in one CSS.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
@@ -110,6 +111,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:             https://github.com/postcss/autoprefixer
 [`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill
+[`postcss-rtl`]:              https://github.com/vkalinichev/postcss-rtl
 [`postcss-use`]:              https://github.com/postcss/postcss-use
 [`css-modules`]:              https://github.com/css-modules/css-modules
 [`colorguard`]:               https://github.com/SlexAxton/css-colorguard
