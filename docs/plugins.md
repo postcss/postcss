@@ -172,6 +172,8 @@ for targeting all button elements.
   be calculated during build time.
 * [`postcss-responsive-properties`] allows you to write responsive
   property values.
+* [`postcss-text-remove-gap`] remove space before and after text strings, added
+  by line-height and extra space in glyph itself.
 * [`csstyle`] adds components workflow to your styles.
 
 See also [`precss`] plugins pack to add them by one line of code.
@@ -674,3 +676,4 @@ See also plugins in modular minifier [`cssnano`].
 [`rtlcss`]:                               https://github.com/MohammadYounes/rtlcss
 [`short`]:                                https://github.com/jonathantneal/postcss-short
 [`lost`]:                                 https://github.com/corysimmons/lost
+[`postcss-text-remove-gap`]:              https://github.com/m18ru/postcss-text-remove-gap
