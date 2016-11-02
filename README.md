@@ -91,9 +91,9 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 ### Other
 
-* [`lost`] is a feature-rich `calc()` grid system.
+* [`postcss-rtl`] combines both-directional (left-to-right and right-to-left) styles in one CSS file.
 * [`cssnano`] is a modular CSS minifier.
-* [`postcss-rtl`] combines both-directional (left-to-right and right-to-left) styles in one CSS.
+* [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
