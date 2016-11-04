@@ -217,6 +217,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   and inline files.
 * [`postcss-assets-rebase`] rebases assets from `url()`.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
+* [`postcss-border-9-patch`] generates 9-patch like border styles via a custom rule.
 * [`postcss-cachebuster`] adds version parameter to images and fonts
 * [`postcss-copy-assets`] copies assets referenced by relative `url()`s
   into a build directory.
@@ -483,6 +484,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-round-subpixels`]:              https://github.com/himynameisdave/postcss-round-subpixels
 [`postcss-short-font-size`]:              https://github.com/jonathantneal/postcss-short-font-size
 [`postcss-vertical-rhythm`]:              https://github.com/markgoodyear/postcss-vertical-rhythm
+[`postcss-border-9-patch`]:               https://github.com/teaualune/postcss-border-9-patch
 [`postcss-color-function`]:               https://github.com/postcss/postcss-color-function
 [`postcss-conic-gradient`]:               https://github.com/jonathantneal/postcss-conic-gradient
 [`postcss-convert-values`]:               https://github.com/ben-eb/postcss-convert-values
