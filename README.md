@@ -221,7 +221,11 @@ postcss --use autoprefixer -c options.json -o main.css css/*.css
 
 [`postcss-cli`]: https://github.com/postcss/postcss-cli
 
-### CSS-in-JS
+### Browser
+
+If you want to compile CSS string in browser (for instance, in live edit
+tools like CodePen), just use [Browserify] or [webpack]. They will pack
+PostCSS and plugins files into a single file.
 
 To apply PostCSS plugins to React Inline Styles, JSS, Radium
 and other CSS-in-JS, you can use [`postcss-js`] and transforms style objects.
@@ -234,6 +238,8 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 ```
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
+[Browserify]:   http://browserify.org/
+[webpack]:      https://webpack.github.io/
 
 ### Runners
 

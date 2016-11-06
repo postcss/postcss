@@ -182,6 +182,8 @@
     "onFulfilled",
     "onRejected",
     "base64",
-    "stringifing"
+    "stringifing",
+    "Browserify",
+    "CodePen"
   ]
 }
