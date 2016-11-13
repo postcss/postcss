@@ -388,6 +388,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-bem-linter`] lints CSS for conformance to SUIT CSS methodology.
 * [`postcss-cssstats`] returns an object with CSS statistics.
 * [`postcss-regexp-detect`] search for regexp in CSS declarations.
+* [`postcss-stylestats`] returns a data with CSS statistics.
 * [`css2modernizr`] creates a Modernizr config file
   that requires only the tests that your CSS uses.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
@@ -684,3 +685,4 @@ See also plugins in modular minifier [`cssnano`].
 [`lost`]:                                 https://github.com/corysimmons/lost
 [`postcss-text-remove-gap`]:              https://github.com/m18ru/postcss-text-remove-gap
 [`postcss-closest`]:                      https://github.com/m18ru/postcss-closest
+[`postcss-stylestats`]:                   https://github.com/kubosho/postcss-stylestats
