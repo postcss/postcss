@@ -252,6 +252,7 @@ loosely resembles the original.
 ## Grids
 
 * [`postcss-grid`] adds a semantic grid system.
+* [`postcss-grid-kiss`] transforms ASCII-art grids into CSS Grid layout.
 * [`postcss-grid-system`] creates grids based on a fixed column width.
 * [`postcss-grid-fluid`] creates fluid grids.
 * [`postcss-layout`] a plugin for some common CSS layout patterns
@@ -686,3 +687,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-text-remove-gap`]:              https://github.com/m18ru/postcss-text-remove-gap
 [`postcss-closest`]:                      https://github.com/m18ru/postcss-closest
 [`postcss-stylestats`]:                   https://github.com/kubosho/postcss-stylestats
+[`postcss-grid-kiss`]:                    https://github.com/sylvainpolletvillard/postcss-grid-kiss
