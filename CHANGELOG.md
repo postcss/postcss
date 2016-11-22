@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.6
+* Fix `postcss.vendor` for values with spaces (by 刘祺).
+
 ## 5.2.5
 * Better error message on unclosed string (by Ben Briggs).
 
