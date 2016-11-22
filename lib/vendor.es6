@@ -20,7 +20,7 @@ let vendor = {
      * postcss.vendor.prefix('tab-size')      //=> ''
      */
     prefix(prop) {
-        let match = prop.match(/^(-\w+-)/)
+        let match = prop.match(/^(-\w+-)/);
         if ( match ) {
             return match[0];
         } else {
