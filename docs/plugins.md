@@ -115,6 +115,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-vmin`] generates `vm` fallback for `vmin` unit in IE9.
 * [`postcss-will-change`] inserts 3D hack before `will-change` property.
 * [`autoprefixer`] adds vendor prefixes for you, using data from Can I Use.
+* [`postcss-pie`] makes IE several of the most useful CSS3 decoration features.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
@@ -278,6 +279,7 @@ loosely resembles the original.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
 * [`postcss-zindex`] rebases positive `z-index` values.
+* [`postcss-unprefix`] Unprefixes vendor prefixes in legacy CSS.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
