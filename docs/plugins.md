@@ -65,8 +65,12 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
+* [`postcss-color-hsl`]: transforms CSS Colors 4 `hsl()` to more compatible 
+  `hsl()` or `hsla()`.
 * [`postcss-color-hwb`] transforms `hwb()` to widely compatible `rgb()`.
 * [`postcss-color-rebeccapurple`] supports the `rebeccapurple` color.
+* [`postcss-color-rgb`]: transforms CSS Colors 4 `rgb()` to more compatible 
+  `rgb()` or `rgba()`.
 * [`postcss-conic-gradient`] supports the `conic-gradient` background.
 * [`postcss-custom-media`] supports custom aliases for media queries.
 * [`postcss-custom-properties`] supports variables, using syntax from
@@ -692,3 +696,5 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-grid-kiss`]:                    https://github.com/sylvainpolletvillard/postcss-grid-kiss
 [`postcss-unprefix`]:                     https://github.com/gucong3000/postcss-unprefix
 [`postcss-pie`]:                          https://github.com/gucong3000/postcss-pie
+[`postcss-color-hsl`]:                    https://github.com/dmarchena/postcss-color-hsl
+[`postcss-color-rgb`]:                    https://github.com/dmarchena/postcss-color-rgb
