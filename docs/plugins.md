@@ -699,3 +699,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pie`]:                          https://github.com/gucong3000/postcss-pie
 [`postcss-color-hsl`]:                    https://github.com/dmarchena/postcss-color-hsl
 [`postcss-color-rgb`]:                    https://github.com/dmarchena/postcss-color-rgb
+[`postcss-parent-selector`]:              https://github.com/domwashburn/postcss-parent-selector
