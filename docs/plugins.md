@@ -319,6 +319,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-hidden`] allows for easy ways to hide elements.
 * [`postcss-input-style`] adds new pseudo-elements for cross-browser styling
   of inputs.
+* [`postcss-parent-selector`] adds a parent selector to the beginning of all rules.
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
