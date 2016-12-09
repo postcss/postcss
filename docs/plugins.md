@@ -65,11 +65,11 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
-* [`postcss-color-hsl`]: transforms CSS Colors 4 `hsl()` to more compatible 
+* [`postcss-color-hsl`]: transforms CSS Colors 4 `hsl()` to more compatible
   `hsl()` or `hsla()`.
 * [`postcss-color-hwb`] transforms `hwb()` to widely compatible `rgb()`.
 * [`postcss-color-rebeccapurple`] supports the `rebeccapurple` color.
-* [`postcss-color-rgb`]: transforms CSS Colors 4 `rgb()` to more compatible 
+* [`postcss-color-rgb`]: transforms CSS Colors 4 `rgb()` to more compatible
   `rgb()` or `rgba()`.
 * [`postcss-conic-gradient`] supports the `conic-gradient` background.
 * [`postcss-custom-media`] supports custom aliases for media queries.
@@ -87,6 +87,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to clean inherit styles.
 * [`postcss-logical-properties`] transforms `start` and `end` properties
   to `left` and `right` depending on the writing direction of the document.
+* [`postcss-bidirection`] generate left-to-right and right-to-left styles with single syntax.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
 * [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
@@ -458,6 +459,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-discard-duplicates`]:           https://github.com/ben-eb/postcss-discard-duplicates
 [`postcss-german-stylesheets`]:           https://github.com/timche/postcss-german-stylesheets
 [`postcss-logical-properties`]:           https://github.com/ahmadalfy/postcss-logical-properties
+[`postcss-bidirection`]:                  https://github.com/gasolin/postcss-bidirection
 [`postcss-lolcat-stylesheets`]:           https://github.com/sandralundgren/postcss-lolcat-stylesheets
 [`postcss-minify-font-weight`]:           https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:           https://github.com/jonathantneal/postcss-pseudo-class-enter
