@@ -33,6 +33,15 @@ class Processor {
          * processor.plugins.length //=> 2
          */
         this.plugins = this.normalize(plugins);
+        
+        /**
+         * @member {string} - To determine the name of the processor
+         *
+         * @example
+         * see https://github.com/post-org/post-load-plugins#nodejs-with-postcss
+         *
+         */
+        this.processor = 'postcss';
     }
 
     /**
