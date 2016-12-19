@@ -32,7 +32,7 @@ class Processor {
          * const processor = postcss([autoprefixer, precss]);
          * processor.plugins.length //=> 2
          */
-        this.plugins = this.normalize(plugins);      
+        this.plugins = this.normalize(plugins);
         /**
          * @member {string} - To determine the name of the processor
          *
