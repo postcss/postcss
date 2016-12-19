@@ -40,7 +40,7 @@ class Processor {
          * see https://github.com/post-org/post-load-plugins#nodejs-with-postcss
          *
          */
-        this.processor = 'postcss';
+        this.name = 'postcss';
     }
 
     /**
