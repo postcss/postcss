@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.7
+* Better error message on syntax object in plugins list.
+
 ## 5.2.6
 * Fix `postcss.vendor` for values with spaces (by 刘祺).
 
