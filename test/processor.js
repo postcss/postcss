@@ -429,3 +429,12 @@ test('uses custom syntax', t => {
 test('contains PostCSS version', t => {
     t.regex((new Processor()).version, /\d+.\d+.\d+/);
 });
+
+test('throws on syntax as plugin', t => {
+    let processor = new Processor();
+    t.throws( () => {
+        processor.use({
+            parse() { }
+        });
+    }, /syntax/);
+});

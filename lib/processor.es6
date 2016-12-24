@@ -104,6 +104,11 @@ class Processor {
                 normalized = normalized.concat(i.plugins);
             } else if ( typeof i === 'function' ) {
                 normalized.push(i);
+            } else if ( typeof i === 'object' && (i.parse || i.stringify) ) {
+                throw new Error('You pass PostCSS syntax as plugin. ' +
+                                'Check you PostCSS runner docs ' +
+                                'and use syntax, parser or stringifier ' +
+                                'option instead.');
             } else {
                 throw new Error(i + ' is not a PostCSS plugin');
             }
