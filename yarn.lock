@@ -186,7 +186,7 @@ ava-init@^0.1.0:
     the-argv "^1.0.0"
     write-pkg "^1.0.0"
 
-ava@0.17.0, ava@^0.17.0:
+ava@^0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/ava/-/ava-0.17.0.tgz#359e2a89616801ef03929c3cf10a9d4f8e451d02"
   dependencies:
@@ -282,7 +282,7 @@ babel-code-frame@^6.16.0, babel-code-frame@^6.20.0:
     esutils "^2.0.2"
     js-tokens "^2.0.0"
 
-babel-core@6.21.0, babel-core@^6.0.2, babel-core@^6.17.0, babel-core@^6.18.0:
+babel-core@^6.0.2, babel-core@^6.17.0, babel-core@^6.18.0, babel-core@^6.21.0:
   version "6.21.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.21.0.tgz#75525480c21c803f826ef3867d22c19f080a3724"
   dependencies:
@@ -306,7 +306,7 @@ babel-core@6.21.0, babel-core@^6.0.2, babel-core@^6.17.0, babel-core@^6.18.0:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-eslint@7.1.1:
+babel-eslint@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.1.1.tgz#8a6a884f085aa7060af69cfc77341c2f99370fb2"
   dependencies:
@@ -452,7 +452,7 @@ babel-messages@^6.8.0:
   dependencies:
     babel-runtime "^6.0.0"
 
-babel-plugin-add-module-exports@0.2.1:
+babel-plugin-add-module-exports@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-add-module-exports/-/babel-plugin-add-module-exports-0.2.1.tgz#9ae9a1f4a8dc67f0cdec4f4aeda1e43a5ff65e25"
 
@@ -485,7 +485,7 @@ babel-plugin-espower@^2.3.1:
     espurify "^1.6.0"
     estraverse "^4.1.1"
 
-babel-plugin-precompile-charcodes@1.0.0:
+babel-plugin-precompile-charcodes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-precompile-charcodes/-/babel-plugin-precompile-charcodes-1.0.0.tgz#1179ee4864944f3691906198a19601efdde1ef79"
 
@@ -773,7 +773,7 @@ babel-preset-es2015-node4@^2.1.0:
     babel-plugin-transform-es2015-sticky-regex "^6.5.0"
     babel-plugin-transform-es2015-unicode-regex "^6.5.0"
 
-babel-preset-es2015@6.18.0, babel-preset-es2015@^6.16.0:
+babel-preset-es2015@^6.16.0, babel-preset-es2015@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-preset-es2015/-/babel-preset-es2015-6.18.0.tgz#b8c70df84ec948c43dcf2bf770e988eb7da88312"
   dependencies:
@@ -1150,7 +1150,7 @@ concat-stream@^1.4.6, concat-stream@^1.4.7:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-concat-with-sourcemaps@1.0.4:
+concat-with-sourcemaps@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/concat-with-sourcemaps/-/concat-with-sourcemaps-1.0.4.tgz#f55b3be2aeb47601b10a2d5259ccfb70fd2f1dd6"
   dependencies:
@@ -1319,7 +1319,7 @@ defaults@^1.0.0:
   dependencies:
     clone "^1.0.2"
 
-del@2.2.2, del@^2.0.2:
+del@^2.0.2, del@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/del/-/del-2.2.2.tgz#c12c981d067846c84bcaf862cff930d907ffd1a8"
   dependencies:
@@ -1359,7 +1359,7 @@ detect-newline@2.X:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-2.1.0.tgz#f41f1c10be4b00e87b5f13da680759f2c5bfd3e2"
 
-docdash@0.4.0:
+docdash@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/docdash/-/docdash-0.4.0.tgz#05c3a50d83189981699ee0c076d3a3950db7ec00"
 
@@ -1494,11 +1494,11 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-postcss@2.0.2:
+eslint-config-postcss@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/eslint-config-postcss/-/eslint-config-postcss-2.0.2.tgz#cae1c6093ced7850894a5b85fbe1d1e232b72afb"
 
-eslint@3.12.2, eslint@^3.0.0:
+eslint@^3.0.0, eslint@^3.12.2:
   version "3.12.2"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.12.2.tgz#6be5a9aa29658252abd7f91e9132bab1f26f3c34"
   dependencies:
@@ -1783,7 +1783,7 @@ fs-exists-sync@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/fs-exists-sync/-/fs-exists-sync-0.1.0.tgz#982d6893af918e72d08dec9e8673ff2b5a8d6add"
 
-fs-extra@1.0.0:
+fs-extra@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-1.0.0.tgz#cd3ce5f7e7cb6145883fcae3191e9877f8587950"
   dependencies:
@@ -2029,7 +2029,7 @@ graceful-fs@~1.2.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-gulp-ava@0.15.0:
+gulp-ava@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/gulp-ava/-/gulp-ava-0.15.0.tgz#8dc59e4a95d603a2ee1dfaad2993ea8d6cb510c2"
   dependencies:
@@ -2039,7 +2039,7 @@ gulp-ava@0.15.0:
     resolve-cwd "^1.0.0"
     through2 "^2.0.0"
 
-gulp-babel@6.1.2:
+gulp-babel@^6.1.2:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/gulp-babel/-/gulp-babel-6.1.2.tgz#7c0176e4ba3f244c60588a0c4b320a45d1adefce"
   dependencies:
@@ -2050,14 +2050,14 @@ gulp-babel@6.1.2:
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-changed@1.3.2:
+gulp-changed@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/gulp-changed/-/gulp-changed-1.3.2.tgz#9efc8d325f9805cc7668fdf4e7d60d4b1410f2cf"
   dependencies:
     gulp-util "^3.0.0"
     through2 "^2.0.0"
 
-gulp-eslint@3.0.1:
+gulp-eslint@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/gulp-eslint/-/gulp-eslint-3.0.1.tgz#04e57e3e18c6974267c12cf6855dc717d4a313bd"
   dependencies:
@@ -2065,7 +2065,7 @@ gulp-eslint@3.0.1:
     eslint "^3.0.0"
     gulp-util "^3.0.6"
 
-gulp-run@1.7.1:
+gulp-run@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/gulp-run/-/gulp-run-1.7.1.tgz#e17c0acb7c30b6e2aeee23c04442a96c0caceffa"
   dependencies:
@@ -2074,7 +2074,7 @@ gulp-run@1.7.1:
     lodash.template "^4.0.2"
     vinyl "^0.4.6"
 
-gulp-sourcemaps@2.2.1:
+gulp-sourcemaps@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.2.1.tgz#b9c7321526089d022180485a9eba2277d72805a7"
   dependencies:
@@ -2112,7 +2112,7 @@ gulp-util@*, gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7:
     through2 "^2.0.0"
     vinyl "^0.5.0"
 
-gulp@3.9.1:
+gulp@^3.9.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/gulp/-/gulp-3.9.1.tgz#571ce45928dd40af6514fc4011866016c13845b4"
   dependencies:
@@ -2300,10 +2300,6 @@ is-absolute@^0.2.3:
   dependencies:
     is-relative "^0.2.1"
     is-windows "^0.2.0"
-
-is-array@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-array/-/is-array-1.0.1.tgz#e9850cc2cc860c3bc0977e84ccf0dd464584279a"
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -2545,7 +2541,7 @@ jsbn@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.0.tgz#650987da0dd74f4ebf5a11377a2aa2d273e97dfd"
 
-jsdoc@3.4.3:
+jsdoc@^3.4.3:
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/jsdoc/-/jsdoc-3.4.3.tgz#e5740d6145c681f6679e6c17783a88dbdd97ccd3"
   dependencies:
@@ -2669,7 +2665,7 @@ liftoff@^2.1.0:
     rechoir "^0.6.2"
     resolve "^1.1.7"
 
-lint-staged@3.2.4:
+lint-staged@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-3.2.4.tgz#c7601d80480850dc9ca29e76a1f8b49474f4c7a1"
   dependencies:
@@ -3402,7 +3398,7 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
-postcss-parser-tests@5.0.10:
+postcss-parser-tests@^5.0.10:
   version "5.0.10"
   resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-5.0.10.tgz#4b644c6793f78a1340bb6cddcdac9dde4ea9bddb"
   dependencies:
@@ -3456,7 +3452,7 @@ power-assert-util-string-width@^1.1.1:
   dependencies:
     eastasianwidth "^0.1.1"
 
-pre-commit@1.2.2:
+pre-commit@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/pre-commit/-/pre-commit-1.2.2.tgz#dbcee0ee9de7235e57f79c56d7ce94641a69eec6"
   dependencies:
@@ -3797,7 +3793,7 @@ run-async@^0.1.0:
   dependencies:
     once "^1.3.0"
 
-run-sequence@1.2.2:
+run-sequence@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/run-sequence/-/run-sequence-1.2.2.tgz#5095a0bebe98733b0140bd08dd80ec030ddacdeb"
   dependencies:
@@ -3880,7 +3876,7 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-sinon@1.17.6:
+sinon@^1.17.6:
   version "1.17.6"
   resolved "https://registry.yarnpkg.com/sinon/-/sinon-1.17.6.tgz#a43116db59577c8296356afee13fafc2332e58e1"
   dependencies:
@@ -4033,7 +4029,7 @@ stringstream@~0.0.4:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878"
 
-strip-ansi@3.0.1, strip-ansi@^3.0.0, strip-ansi@^3.0.1:
+strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
   dependencies:
@@ -4503,7 +4499,7 @@ yargs@^3.15.0:
     window-size "^0.1.4"
     y18n "^3.2.0"
 
-yaspeller@3.0.0:
+yaspeller@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/yaspeller/-/yaspeller-3.0.0.tgz#0c3025c9b4982fd62f079fa2712a8857fda4c0e9"
   dependencies:
