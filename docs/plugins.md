@@ -249,6 +249,7 @@ loosely resembles the original.
 * [`postcss-svg`] insert inline SVG to CSS and allows to manage it colors.
 * [`postcss-svg-fallback`] converts SVG in your CSS to PNG files for IE 8.
 * [`postcss-svgo`] processes inline SVG through [SVGO].
+* [`postcss-unicode-characters`] makes it easier to write `unicode-range` descriptors.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-urlrev`] adds MD5 hash strings to `url()`s.
 * [`postcss-write-svg`] write inline SVGs in CSS.
@@ -464,6 +465,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-minify-font-weight`]:           https://github.com/ben-eb/postcss-minify-font-weight
 [`postcss-pseudo-class-enter`]:           https://github.com/jonathantneal/postcss-pseudo-class-enter
 [`postcss-transform-shortcut`]:           https://github.com/jonathantneal/postcss-transform-shortcut
+[`postcss-unicode-characters`]:           https://github.com/ben-eb/postcss-unicode-characters
 [`postcss-custom-properties`]:            https://github.com/postcss/postcss-custom-properties
 [`postcss-czech-stylesheets`]:            https://github.com/HoBi/postcss-czech-stylesheets
 [`postcss-discard-font-face`]:            https://github.com/ben-eb/postcss-discard-font-face
