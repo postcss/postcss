@@ -105,10 +105,11 @@ class Processor {
             } else if ( typeof i === 'function' ) {
                 normalized.push(i);
             } else if ( typeof i === 'object' && (i.parse || i.stringify) ) {
-                throw new Error('You pass PostCSS syntax as plugin. ' +
-                                'Check you PostCSS runner docs ' +
-                                'and use syntax, parser or stringifier ' +
-                                'option instead.');
+                throw new Error('PostCSS syntaxes cannot be used as plugins. ' +
+                                'Instead, please use one of the ' +
+                                'syntax/parser/stringifier options as ' +
+                                'outlined in your PostCSS ' +
+                                'runner documentation.');
             } else {
                 throw new Error(i + ' is not a PostCSS plugin');
             }
