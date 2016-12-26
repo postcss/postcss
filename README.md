@@ -260,13 +260,18 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 For other environments, you can use the JS API:
 
 ```js
-var postcss = require('postcss');
-postcss([ require('autoprefixer'), require('cssnano') ])
-    .process(css, { from: 'src/app.css', to: 'app.css' })
-    .then(function (result) {
-        fs.writeFileSync('app.css', result.css);
-        if ( result.map ) fs.writeFileSync('app.css.map', result.map);
-    });
+const postcss = require('postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+
+fs.readFile('src/app.css', (err, css) => {
+    postcss([autoprefixer, cssnano])
+        .process(css, { from: 'src/app.css', to: 'dest/app.css' })
+        .then(result => {
+            fs.writeFile('dest/app.css', result.css);
+            if ( result.map ) fs.writeFile('dest/app.css.map', result.map);
+        });
+});
 ```
 
 Read the [PostCSS API documentation] for more details about the JS API.
