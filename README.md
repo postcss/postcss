@@ -168,6 +168,36 @@ You can start using PostCSS in just two steps:
 
 [Select plugins]: http://postcss.parts
 
+### Webpack
+
+Use [`postcss-loader`] in `wqebpack.config.js`:
+
+```js
+module.exports = {
+    module: {
+        loaders: [
+            {
+                test:   /\.css$/,
+                loader: "style-loader!css-loader!postcss-loader"
+            }
+        ]
+    }
+}
+```
+
+Then create `postcss.config.js`:
+
+```js
+module.exports = {
+  plugins: [
+    require('precss')
+    require('autoprefixer')
+  ]
+}
+```
+
+[`postcss-loader`]: https://github.com/postcss/postcss-loader
+
 ### Gulp
 
 Use [`gulp-postcss`] and [`gulp-sourcemaps`].
@@ -179,7 +209,7 @@ gulp.task('css', function () {
 
     return gulp.src('src/**/*.css')
         .pipe( sourcemaps.init() )
-        .pipe( postcss([ require('autoprefixer'), require('precss') ]) )
+        .pipe( postcss([ require('precss'), require('autoprefixer') ]) )
         .pipe( sourcemaps.write('.') )
         .pipe( gulp.dest('build/') );
 });
@@ -187,28 +217,6 @@ gulp.task('css', function () {
 
 [`gulp-sourcemaps`]: https://github.com/floridoo/gulp-sourcemaps
 [`gulp-postcss`]:    https://github.com/postcss/gulp-postcss
-
-### Webpack
-
-Use [`postcss-loader`]:
-
-```js
-module.exports = {
-    module: {
-        loaders: [
-            {
-                test:   /\.css$/,
-                loader: "style-loader!css-loader!postcss-loader"
-            }
-        ]
-    },
-    postcss: function () {
-        return [require('autoprefixer'), require('precss')];
-    }
-}
-```
-
-[`postcss-loader`]: https://github.com/postcss/postcss-loader
 
 ### npm run / CLI
 
@@ -261,11 +269,11 @@ For other environments, you can use the JS API:
 
 ```js
 const postcss = require('postcss');
+const precss = require('precss');
 const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
 
 fs.readFile('src/app.css', (err, css) => {
-    postcss([autoprefixer, cssnano])
+    postcss([precss, autoprefixer])
         .process(css, { from: 'src/app.css', to: 'dest/app.css' })
         .then(result => {
             fs.writeFile('dest/app.css', result.css);
