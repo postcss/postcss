@@ -535,6 +535,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-speech-bubble`]:                https://github.com/archana-s/postcss-speech-bubble
 [`postcss-aspect-ratio`]:                 https://github.com/arccoza/postcss-aspect-ratio
 [`postcss-brand-colors`]:                 https://github.com/postcss/postcss-brand-colors
+[`postcss-no-important`]: https://github.com/DUBANGARCIA/postcss-no-important
 [`postcss-class-prefix`]:                 https://github.com/thompsongl/postcss-class-prefix
 [`postcss-conditionals`]:                 https://github.com/andyjansson/postcss-conditionals
 [`postcss-custom-media`]:                 https://github.com/postcss/postcss-custom-media
