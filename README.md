@@ -170,7 +170,7 @@ You can start using PostCSS in just two steps:
 
 ### Webpack
 
-Use [`postcss-loader`] in `wqebpack.config.js`:
+Use [`postcss-loader`] in `webpack.config.js`:
 
 ```js
 module.exports = {
