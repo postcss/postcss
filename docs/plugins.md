@@ -291,6 +291,7 @@ loosely resembles the original.
 * [`stylehacks`] removes CSS hacks based on browser support.
 * [`postcss-mq-optimize`] removes invalid media queries or its expresions.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
+* [`postcss-no-important`] delete declarations !important.
 
 See also plugins in modular minifier [`cssnano`].
 
