@@ -435,6 +435,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
+* [`postcss-nope`] lets you write `nope` instead of `none`.
 
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
 [`postcss-attribute-case-insensitive`]:   https://github.com/Semigradsky/postcss-attribute-case-insensitive
@@ -675,6 +676,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-svgo`]:                         https://github.com/ben-eb/postcss-svgo
 [`postcss-unmq`]:                         https://github.com/jonathantneal/postcss-unmq
 [`postcss-vmin`]:                         https://github.com/iamvdo/postcss-vmin
+[`postcss-nope`]:                         https://github.com/dariopog/postcss-nope
 [`autoprefixer`]:                         https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                         https://github.com/hail2u/node-css-mqpacker
 [`postcss-bem`]:                          https://github.com/ileri/postcss-bem
