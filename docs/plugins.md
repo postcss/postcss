@@ -372,6 +372,8 @@ See also plugins in modular minifier [`cssnano`].
   to the end of the file.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
+* [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
+* [`postcss-pseudo-element-colons`] converts `.style:before` into `.style::before` and vice versa.
 * [`postcss-pseudo-elements-content`] adds `content: ''` to `:before-c`
   and `:after-c`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
@@ -443,6 +445,8 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-vertical-rhythm-function`]:     https://github.com/F21/postcss-vertical-rhythm-function
 [`postcss-pseudo-class-any-button`]:      https://github.com/andrepolischuk/postcss-pseudo-class-any-button
 [`postcss-pseudo-elements-content`]:      https://github.com/omgovich/postcss-pseudo-elements-content
+[`postcss-pseudo-element-cases`]:         https://github.com/timelsass/postcss-pseudo-element-cases
+[`postcss-pseudo-element-colons`]:        https://github.com/timelsass/postcss-pseudo-element-colons
 [`postcss-andalusian-stylesheets`]:       https://github.com/bameda/postcss-andalusian-stylesheets
 [`postcss-australian-stylesheets`]:       https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-responsive-properties`]:        https://github.com/alexandr-solovyov/postcss-responsive-properties
