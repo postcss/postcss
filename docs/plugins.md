@@ -291,6 +291,7 @@ loosely resembles the original.
 * [`stylehacks`] removes CSS hacks based on browser support.
 * [`postcss-mq-optimize`] removes invalid media queries or its expresions.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
+* [`postcss-no-important`] delete declarations !important.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -371,6 +372,8 @@ See also plugins in modular minifier [`cssnano`].
   to the end of the file.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
+* [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
+* [`postcss-pseudo-element-colons`] converts `.style:before` into `.style::before` and vice versa.
 * [`postcss-pseudo-elements-content`] adds `content: ''` to `:before-c`
   and `:after-c`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
@@ -434,6 +437,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-pointer`] Replaces `pointer: cursor` with `cursor: pointer`.
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
+* [`postcss-nope`] lets you write `nope` instead of `none`.
 
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
 [`postcss-attribute-case-insensitive`]:   https://github.com/Semigradsky/postcss-attribute-case-insensitive
@@ -442,6 +446,8 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-vertical-rhythm-function`]:     https://github.com/F21/postcss-vertical-rhythm-function
 [`postcss-pseudo-class-any-button`]:      https://github.com/andrepolischuk/postcss-pseudo-class-any-button
 [`postcss-pseudo-elements-content`]:      https://github.com/omgovich/postcss-pseudo-elements-content
+[`postcss-pseudo-element-cases`]:         https://github.com/timelsass/postcss-pseudo-element-cases
+[`postcss-pseudo-element-colons`]:        https://github.com/timelsass/postcss-pseudo-element-colons
 [`postcss-andalusian-stylesheets`]:       https://github.com/bameda/postcss-andalusian-stylesheets
 [`postcss-australian-stylesheets`]:       https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-responsive-properties`]:        https://github.com/alexandr-solovyov/postcss-responsive-properties
@@ -534,6 +540,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-speech-bubble`]:                https://github.com/archana-s/postcss-speech-bubble
 [`postcss-aspect-ratio`]:                 https://github.com/arccoza/postcss-aspect-ratio
 [`postcss-brand-colors`]:                 https://github.com/postcss/postcss-brand-colors
+[`postcss-no-important`]: https://github.com/DUBANGARCIA/postcss-no-important
 [`postcss-class-prefix`]:                 https://github.com/thompsongl/postcss-class-prefix
 [`postcss-conditionals`]:                 https://github.com/andyjansson/postcss-conditionals
 [`postcss-custom-media`]:                 https://github.com/postcss/postcss-custom-media
@@ -673,6 +680,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-svgo`]:                         https://github.com/ben-eb/postcss-svgo
 [`postcss-unmq`]:                         https://github.com/jonathantneal/postcss-unmq
 [`postcss-vmin`]:                         https://github.com/iamvdo/postcss-vmin
+[`postcss-nope`]:                         https://github.com/dariopog/postcss-nope
 [`autoprefixer`]:                         https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                         https://github.com/hail2u/node-css-mqpacker
 [`postcss-bem`]:                          https://github.com/ileri/postcss-bem
