@@ -32,7 +32,7 @@ const RE_BAD_BRACKET = /.[\\\/\("'\n]/;
 export class Tokenizer {
     constructor(input, options = {}) {
         this.scanner = new Scanner(input.css.valueOf(), options);
-        this.currentChar = {};
+        this.currentChar = null;
         this.currentToken = null;
         this.buffer = [];
     }
