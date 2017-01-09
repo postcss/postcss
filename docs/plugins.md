@@ -142,7 +142,7 @@ See also [`oldie`] plugins pack.
   using W3C similar syntax.
 * [`postcss-current-selector`] to get current selector in declaration.
 * [`postcss-define-property`] to define properties shortcut.
-* [`postcss-define-function`] to implement sass `@function` directive.
+* [`postcss-define-function`] to implement Sass `@function` directive.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
 * [`postcss-at-rules-variables`] adds support for custom properties in
