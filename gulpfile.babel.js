@@ -29,10 +29,7 @@ if ( parseInt(process.versions.node) < 4 ) {
 }
 
 gulp.task('build:lib', ['compile'], () => {
-    return gulp.src([
-        'lib/*.js',
-        'lib/*.d.ts'
-    ]).pipe(gulp.dest('build/lib'));
+    return gulp.src(['lib/*.js', 'lib/*.d.ts']).pipe(gulp.dest('build/lib'));
 });
 
 gulp.task('build:docs', () => {
