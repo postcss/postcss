@@ -1303,5 +1303,5 @@ declare module "postcss" {
         interface JsonComment extends JsonNode {
         }
     }
-    export = postcss;
+    export default postcss;
 }
