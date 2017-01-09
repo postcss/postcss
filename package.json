@@ -2,7 +2,6 @@
   "name": "postcss",
   "version": "5.2.8",
   "description": "Tool for transforming styles with JS plugins",
-  "typings": "d.ts/postcss.d.ts",
   "engines": {
     "node": ">=0.12"
   },
@@ -62,6 +61,7 @@
     "test": "gulp"
   },
   "main": "lib/postcss",
+  "types": "lib/postcss.d.ts",
   "lint-staged": {
     "test/*.js": "eslint",
     "lib/*.es6": "eslint",
