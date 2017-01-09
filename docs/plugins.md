@@ -135,13 +135,14 @@ See also [`oldie`] plugins pack.
 * [`postcss-atroot`] place rules directly at the root node.
 * [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-click`] allows to use the `:click` pseudo class and implement it in JavaScript.
-* [`postcss-compact-mq`] provides compact syntax for media queries based on viewport width
+* [`postcss-compact-mq`] provides compact syntax for media queries based
+  on viewport width.
 * [`postcss-conditionals`] adds `@if` statements.
 * [`postcss-css-variables`] supports variables for selectors, and at-rules
   using W3C similar syntax.
 * [`postcss-current-selector`] to get current selector in declaration.
 * [`postcss-define-property`] to define properties shortcut.
-* [`postcss-define-function`] to implement sass @function directive.
+* [`postcss-define-function`] to implement sass `@function` directive.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
 * [`postcss-at-rules-variables`] adds support for custom properties in
