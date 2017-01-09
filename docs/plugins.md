@@ -141,6 +141,7 @@ See also [`oldie`] plugins pack.
   using W3C similar syntax.
 * [`postcss-current-selector`] to get current selector in declaration.
 * [`postcss-define-property`] to define properties shortcut.
+* [`postcss-define-function`] to implement sass @function directive.
 * [`postcss-each`] adds `@each` statement.
 * [`postcss-for`] adds `@for` loops.
 * [`postcss-at-rules-variables`] adds support for custom properties in
@@ -493,6 +494,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-border-shortcut`]:              https://github.com/michelemazzucco/postcss-border-shortcut
 [`postcss-color-hex-alpha`]:              https://github.com/postcss/postcss-color-hex-alpha
 [`postcss-define-property`]:              https://github.com/daleeidd/postcss-define-property
+[`postcss-define-function`]:              https://github.com/titancat/postcss-define-function
 [`postcss-filter-gradient`]:              https://github.com/yuezk/postcss-filter-gradient
 [`postcss-generate-preset`]:              https://github.com/simonsmith/postcss-generate-preset
 [`postcss-local-constants`]:              https://github.com/macropodhq/postcss-constants
