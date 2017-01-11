@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-import tokenize from './tokenize';
+import tokenizer from './tokenize';
 import Input    from './input';
 
 let colors = new chalk.constructor({ enabled: true });
@@ -42,7 +42,7 @@ function getTokenType([type, value], index, tokens) {
 }
 
 function terminalHighlight(css) {
-    let tokens = tokenize(new Input(css), { ignoreErrors: true });
+    let tokens = tokenizer(new Input(css), { ignoreErrors: true }).tokenize();
     return tokens.map((token, index) => {
         let color = HIGHLIGHT_THEME[getTokenType(token, index, tokens)];
         if ( color ) {

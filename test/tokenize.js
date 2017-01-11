@@ -1,15 +1,16 @@
-import tokenize from '../lib/tokenize';
+import tokenizer from '../lib/tokenize';
 import Input    from '../lib/input';
 
 import test from 'ava';
 
 function run(t, css, opts, tokens) {
     if ( typeof tokens === 'undefined' ) [tokens, opts] = [opts, tokens];
-    t.deepEqual(tokenize(new Input(css, opts)), tokens);
+    t.deepEqual(tokenizer(new Input(css, opts)).tokenize(), tokens);
 }
 
 function ignoreRun(t, css, tokens) {
-    t.deepEqual(tokenize(new Input(css), { ignoreErrors: true }), tokens);
+    let tk = tokenizer(new Input(css), { ignoreErrors: true });
+    t.deepEqual(tk.tokenize(), tokens);
 }
 
 test('tokenizes empty file', t => {
@@ -220,19 +221,19 @@ test('tokenizes CSS', t => {
 
 test('throws error on unclosed string', t => {
     t.throws(() => {
-        tokenize(new Input(' "'));
+        tokenizer(new Input(' "')).tokenize();
     }, /:1:2: Unclosed string/);
 });
 
 test('throws error on unclosed comment', t => {
     t.throws(() => {
-        tokenize(new Input(' /*'));
+        tokenizer(new Input(' /*')).tokenize();
     }, /:1:2: Unclosed comment/);
 });
 
 test('throws error on unclosed url', t => {
     t.throws(() => {
-        tokenize(new Input('url('));
+        tokenizer(new Input('url(')).tokenize();
     }, /:1:4: Unclosed bracket/);
 });
 
