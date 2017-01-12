@@ -10,7 +10,7 @@ export default function parse(css, opts) {
     let input = new Input(css, opts);
     let parser = new Parser(input);
     try {
-        parser.loop();
+        parser.parse();
     } catch (e) {
         if ( e.name === 'CssSyntaxError' && opts && opts.from ) {
             if ( /\.scss$/i.test(opts.from) ) {
