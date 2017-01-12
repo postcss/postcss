@@ -43,6 +43,10 @@ export default function tokenizer(input, options = {}) {
         return pos >= length;
     }
 
+    function lastSymbol() {
+        return pos === length;
+    }
+
     function readNextToken() {
         if (!endOfFile()) {
             code = css.charCodeAt(pos);
@@ -313,6 +317,7 @@ export default function tokenizer(input, options = {}) {
     return {
         readNextToken,
         endOfFile,
-        tokenize
+        tokenize,
+        lastSymbol
     };
 }
