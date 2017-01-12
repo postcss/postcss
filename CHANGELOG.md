@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.10
+* Fix TypeScript definitions (by Jed Mao).
+
 ## 5.2.9
 * Update TypeScript definitions (by Jed Mao).
 
