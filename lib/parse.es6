@@ -10,6 +10,7 @@ export default function parse(css, opts) {
     let input = new Input(css, opts);
     let parser = new Parser(input);
     try {
+        parser.tokenize();
         parser.parse();
     } catch (e) {
         if ( e.name === 'CssSyntaxError' && opts && opts.from ) {
