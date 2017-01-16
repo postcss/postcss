@@ -6,6 +6,7 @@ import Root        from './root';
 import Rule        from './rule';
 
 export default class Parser {
+
     constructor(input) {
         this.input = input;
 
@@ -14,17 +15,21 @@ export default class Parser {
         this.current   = this.root;
         this.spaces    = '';
         this.semicolon = false;
-        this.tokenizer = tokenizer(this.input);
 
         this.root.source = { input, start: { line: 1, column: 1 } };
     }
 
+    tokenize() {
+        this.tokens = tokenizer(this.input).tokenize();
+    }
+
     parse() {
         let token;
+        while ( this.pos < this.tokens.length ) {
+            token = this.tokens[this.pos];
 
-        while (!this.tokenizer.endOfFile()) {
-            token = this.tokenizer.readNextToken();
             switch ( token[0] ) {
+
             case 'space':
             case ';':
                 this.spaces += token[1];
@@ -50,8 +55,9 @@ export default class Parser {
                 this.other();
                 break;
             }
-        }
 
+            this.pos += 1;
+        }
         this.endFile();
     }
 
@@ -90,10 +96,9 @@ export default class Parser {
         let brackets = [];
 
         let start = this.pos;
-
-        while (!this.tokenizer.endOfFile()) {
-            token = this.tokenizer.readNextToken();
-            type = token[0];
+        while ( this.pos < this.tokens.length ) {
+            token = this.tokens[this.pos];
+            type  = token[0];
 
             if ( type === '(' || type === '[' ) {
                 if ( !bracket ) bracket = token;
@@ -125,9 +130,10 @@ export default class Parser {
                 brackets.pop();
                 if ( brackets.length === 0 ) bracket = null;
             }
-        }
 
-        if (this.tokenizer.endOfFile()) {
+            this.pos += 1;
+        }
+        if ( this.pos === this.tokens.length ) {
             this.pos -= 1;
             end = true;
         }
@@ -256,8 +262,9 @@ export default class Parser {
         let open   = false;
         let params = [];
 
-        while (!this.tokenizer.endOfFile()) {
-            token = this.tokenizer.readNextToken();
+        this.pos += 1;
+        while ( this.pos < this.tokens.length ) {
+            token = this.tokens[this.pos];
 
             if ( token[0] === ';' ) {
                 node.source.end = { line: token[2], column: token[3] };
@@ -272,9 +279,10 @@ export default class Parser {
             } else {
                 params.push(token);
             }
-        }
 
-        if (this.tokenizer.endOfFile()) {
+            this.pos += 1;
+        }
+        if ( this.pos === this.tokens.length ) {
             last = true;
         }
 

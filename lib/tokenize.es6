@@ -22,6 +22,7 @@ const RE_AT_END      = /[ \n\t\r\f\{\(\)'"\\;/\[\]#]/g;
 const RE_WORD_END    = /[ \n\t\r\f\(\)\{\}:;@!'"\\\]\[#]|\/(?=\*)/g;
 const RE_BAD_BRACKET = /.[\\\/\("'\n]/;
 
+
 export default function tokenizer(input, options = {}) {
     let css = input.css.valueOf();
     let ignore = options.ignoreErrors;
@@ -106,7 +107,7 @@ export default function tokenizer(input, options = {}) {
                 break;
 
             case OPEN_PARENTHESES:
-                prev = buffer.length ? buffer.shift()[1] : '';
+                prev = buffer.length ? buffer.pop()[1] : '';
                 n    = css.charCodeAt(pos + 1);
                 if ( prev === 'url' &&
                      n !== SINGLE_QUOTE && n !== DOUBLE_QUOTE &&
