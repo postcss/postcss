@@ -81,6 +81,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-font-normalize`] to normalize font, especially font-family.
 * [`postcss-font-variant`] transpiles human-readable `font-variant`
   to more widely supported CSS.
+* [`postcss-font-family-system-ui`] transforms W3C CSS font-family: system-ui to a practical font-family list.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
 * [`postcss-initial`] supports `initial` keyword and `all: initial`
@@ -715,3 +716,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-hsl`]:                    https://github.com/dmarchena/postcss-color-hsl
 [`postcss-color-rgb`]:                    https://github.com/dmarchena/postcss-color-rgb
 [`postcss-parent-selector`]:              https://github.com/domwashburn/postcss-parent-selector
+[`postcss-font-family-system-ui`]:        https://github.com/JLHwung/postcss-font-family-system-ui
