@@ -185,6 +185,8 @@
     "stringifing",
     "Browserify",
     "CodePen",
-    "LTS"
+    "LTS",
+    "Garet",
+    "McKinley"
   ]
 }
