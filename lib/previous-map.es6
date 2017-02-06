@@ -1,4 +1,3 @@
-import { Base64 } from 'js-base64';
 import   mozilla  from 'source-map';
 import   path     from 'path';
 import   fs       from 'fs';
@@ -69,22 +68,18 @@ class PreviousMap {
     }
 
     decodeInline(text) {
-        let utfd64 = 'data:application/json;charset=utf-8;base64,';
-        let utf64  = 'data:application/json;charset=utf8;base64,';
-        let b64    = 'data:application/json;base64,';
-        let uri    = 'data:application/json,';
+        // data:application/json;charset=utf-8;base64,
+        // data:application/json;charset=utf8;base64,
+        // data:application/json;base64,
+        let baseUri = /^data:application\/json;(?:charset=utf-?8;)?base64,/;
+        let uri     = 'data:application/json,';
 
         if ( this.startWith(text, uri) ) {
             return decodeURIComponent( text.substr(uri.length) );
 
-        } else if ( this.startWith(text, b64) ) {
-            return Base64.decode( text.substr(b64.length) );
-
-        } else if ( this.startWith(text, utf64) ) {
-            return Base64.decode( text.substr(utf64.length) );
-
-        } else if ( this.startWith(text, utfd64) ) {
-            return Base64.decode( text.substr(utfd64.length) );
+        } else if ( baseUri.test(text) ) {
+            return new Buffer(text.substr(RegExp.lastMatch.length), 'base64')
+                .toString();
 
         } else {
             let encoding = text.match(/data:application\/json;([^,]+),/)[1];
