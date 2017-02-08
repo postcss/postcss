@@ -292,7 +292,7 @@ class Container extends Node {
     }
 
     /**
-     * Inserts new nodes to the start of the container.
+     * Inserts new nodes to the end of the container.
      *
      * @param {...(Node|object|string|Node[])} children - new nodes
      *
@@ -320,7 +320,7 @@ class Container extends Node {
     }
 
     /**
-     * Inserts new nodes to the end of the container.
+     * Inserts new nodes to the start of the container.
      *
      * @param {...(Node|object|string|Node[])} children - new nodes
      *
