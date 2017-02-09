@@ -125,6 +125,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`cssgrace`] provides various helpers and transpiles CSS 3 for IE
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
+* [`postcss-fixie`] adds easy and painless IE hacks
 
 See also [`oldie`] plugins pack.
 
@@ -704,6 +705,7 @@ See also plugins in modular minifier [`cssnano`].
 [`webpcss`]:                              https://github.com/lexich/webpcss
 [`doiuse`]:                               https://github.com/anandthakker/doiuse
 [`pixrem`]:                               https://github.com/robwierzbowski/node-pixrem
+[`postcss-fixie`]:                        https://github.com/tivac/fixie
 [`rtlcss`]:                               https://github.com/MohammadYounes/rtlcss
 [`short`]:                                https://github.com/jonathantneal/postcss-short
 [`lost`]:                                 https://github.com/corysimmons/lost
