@@ -159,7 +159,7 @@ export default class Parser {
         let node = new Rule();
         this.init(node, tokens[0][2], tokens[0][3]);
 
-        node.raws.between = this.spacesFromEnd(tokens);
+        node.raws.between = this.spacesAndCommentsFromEnd(tokens);
         this.raw(node, 'selector', tokens);
         this.current = node;
     }
@@ -211,7 +211,7 @@ export default class Parser {
             node.raws.before += node.prop[0];
             node.prop = node.prop.slice(1);
         }
-        node.raws.between += this.spacesFromStart(tokens);
+        node.raws.between += this.spacesAndCommentsFromStart(tokens);
         this.precheckMissedSemicolon(tokens);
 
         for ( let i = tokens.length - 1; i > 0; i-- ) {
@@ -286,9 +286,9 @@ export default class Parser {
             last = true;
         }
 
-        node.raws.between = this.spacesFromEnd(params);
+        node.raws.between = this.spacesAndCommentsFromEnd(params);
         if ( params.length ) {
-            node.raws.afterName = this.spacesFromStart(params);
+            node.raws.afterName = this.spacesAndCommentsFromStart(params);
             this.raw(node, 'params', params);
             if ( last ) {
                 token = params[params.length - 1];
@@ -364,7 +364,7 @@ export default class Parser {
         node[prop] = value;
     }
 
-    spacesFromEnd(tokens) {
+    spacesAndCommentsFromEnd(tokens) {
         let lastTokenType;
         let spaces = '';
         while ( tokens.length ) {
@@ -376,13 +376,24 @@ export default class Parser {
         return spaces;
     }
 
-    spacesFromStart(tokens) {
+    spacesAndCommentsFromStart(tokens) {
         let next;
         let spaces = '';
         while ( tokens.length ) {
             next = tokens[0][0];
             if ( next !== 'space' && next !== 'comment' ) break;
             spaces += tokens.shift()[1];
+        }
+        return spaces;
+    }
+
+    spacesFromEnd(tokens) {
+        let lastTokenType;
+        let spaces = '';
+        while ( tokens.length ) {
+            lastTokenType = tokens[tokens.length - 1][0];
+            if ( lastTokenType !== 'space' ) break;
+            spaces = tokens.pop()[1] + spaces;
         }
         return spaces;
     }
