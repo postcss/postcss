@@ -71,13 +71,6 @@ test('ignores symbols before declaration', t => {
     t.deepEqual(root.first.first.raws.before, ' :');
 });
 
-test('parses !important after comment', t => {
-    let root = parse('a { width: 1px/*small*/!important }');
-    t.deepEqual(root.first.first.value, '1px');
-    t.truthy(root.first.first.important);
-    t.deepEqual(root.first.first.raws.value.raw, '1px/*small*/');
-});
-
 test('throws on unclosed blocks', t => {
     t.throws(() => {
         parse('\na {\n');

@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "ava": "^0.17.0",
-    "babel-core": "^6.22.1",
+    "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-precompile-charcodes": "^1.0.0",
@@ -49,7 +49,7 @@
     "gulp-sourcemaps": "^2.4.1",
     "jsdoc": "^3.4.3",
     "lint-staged": "^3.3.0",
-    "postcss-parser-tests": "^5.0.10",
+    "postcss-parser-tests": "^5.0.11",
     "pre-commit": "^1.2.2",
     "run-sequence": "^1.2.2",
     "sinon": "^1.17.7",
