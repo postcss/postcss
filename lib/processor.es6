@@ -24,7 +24,7 @@ class Processor {
          *   throw new Error('This plugin works only with PostCSS 5');
          * }
          */
-        this.version = '5.2.12';
+        this.version = '5.2.13';
         /**
          * @member {pluginFunction[]} - Plugins added to this processor.
          *
