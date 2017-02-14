@@ -69,5 +69,8 @@
   },
   "pre-commit": [
     "lint-staged"
-  ]
+  ],
+  "browser": {
+    "fs": false
+  }
 }
