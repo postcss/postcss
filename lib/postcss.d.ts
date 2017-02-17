@@ -1103,10 +1103,6 @@ declare module "postcss" {
                 map?: SourceMapOptions;
             }): Result;
             /**
-             * Deprecated. Use Root#removeChild.
-             */
-            remove(child?: Node | number): this;
-            /**
              * Removes child from the root node, and the parent properties of node and
              * its children.
              * @param child Child or child's index.

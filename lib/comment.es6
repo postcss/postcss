@@ -1,5 +1,4 @@
-import warnOnce from './warn-once';
-import Node     from './node';
+import Node from './node';
 
 /**
  * Represents a comment between declarations or statements (rule and at-rules).
@@ -14,26 +13,6 @@ class Comment extends Node {
     constructor(defaults) {
         super(defaults);
         this.type = 'comment';
-    }
-
-    get left() {
-        warnOnce('Comment#left was deprecated. Use Comment#raws.left');
-        return this.raws.left;
-    }
-
-    set left(val) {
-        warnOnce('Comment#left was deprecated. Use Comment#raws.left');
-        this.raws.left = val;
-    }
-
-    get right() {
-        warnOnce('Comment#right was deprecated. Use Comment#raws.right');
-        return this.raws.right;
-    }
-
-    set right(val) {
-        warnOnce('Comment#right was deprecated. Use Comment#raws.right');
-        this.raws.right = val;
     }
 
     /**

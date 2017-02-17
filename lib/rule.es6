@@ -1,5 +1,4 @@
 import Container from './container';
-import warnOnce  from './warn-once';
 import list      from './list';
 
 /**
@@ -45,16 +44,6 @@ class Rule extends Container {
         let match = this.selector ? this.selector.match(/,\s*/) : null;
         let sep   = match ? match[0] : ',' + this.raw('between', 'beforeOpen');
         this.selector = values.join(sep);
-    }
-
-    get _selector() {
-        warnOnce('Rule#_selector is deprecated. Use Rule#raws.selector');
-        return this.raws.selector;
-    }
-
-    set _selector(val) {
-        warnOnce('Rule#_selector is deprecated. Use Rule#raws.selector');
-        this.raws.selector = val;
     }
 
     /**
