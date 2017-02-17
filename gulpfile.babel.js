@@ -7,26 +7,17 @@ gulp.task('clean', () => {
 
 // Build
 
-if ( parseInt(process.versions.node) < 4 ) {
-    gulp.task('compile', () => {
-        let babel = require('gulp-babel');
-        return gulp.src('lib/*.es6')
-            .pipe(babel())
-            .pipe(gulp.dest('lib'));
-    });
-} else {
-    gulp.task('compile', () => {
-        let sourcemaps = require('gulp-sourcemaps');
-        let changed    = require('gulp-changed');
-        let babel      = require('gulp-babel');
-        return gulp.src('lib/*.es6')
-            .pipe(changed('lib', { extension: '.js' }))
-            .pipe(sourcemaps.init())
-            .pipe(babel())
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest('lib'));
-    });
-}
+gulp.task('compile', () => {
+    let sourcemaps = require('gulp-sourcemaps');
+    let changed    = require('gulp-changed');
+    let babel      = require('gulp-babel');
+    return gulp.src('lib/*.es6')
+        .pipe(changed('lib', { extension: '.js' }))
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('lib'));
+});
 
 gulp.task('build:lib', ['compile'], () => {
     return gulp.src(['lib/*.js', 'lib/*.d.ts']).pipe(gulp.dest('build/lib'));
@@ -51,9 +42,6 @@ gulp.task('build', (done) => {
 // Lint
 
 gulp.task('lint', () => {
-    if ( parseInt(process.versions.node) < 4 ) {
-        return false;
-    }
     let eslint = require('gulp-eslint');
     return gulp.src(['*.js', 'lib/*.es6', 'test/*.js'])
         .pipe(eslint())
@@ -62,9 +50,7 @@ gulp.task('lint', () => {
 });
 
 gulp.task('spellcheck', ['api'], () => {
-    if ( process.env.APPVEYOR || parseInt(process.versions.node) < 4 ) {
-        return false;
-    }
+    if ( process.env.APPVEYOR ) return false;
     let run = require('gulp-run');
     return run('yaspeller-ci api/*.html *.md docs/*.md docs/**/*.md').exec();
 });

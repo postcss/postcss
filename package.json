@@ -3,7 +3,7 @@
   "version": "5.2.17",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
-    "node": ">=0.12"
+    "node": ">=4.0.0"
   },
   "keywords": [
     "css",
