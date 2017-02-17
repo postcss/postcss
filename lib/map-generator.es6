@@ -1,5 +1,5 @@
-import   mozilla  from 'source-map';
-import   path     from 'path';
+import mozilla from 'source-map';
+import path    from 'path';
 
 export default class MapGenerator {
 
