@@ -341,6 +341,12 @@ var postcss = require('postcss');
 [`source-preview-postcss`]:          https://atom.io/packages/source-preview-postcss
 [`language-postcss`]:                https://atom.io/packages/language-postcss
 
+### Vim
+
+* [`postcss.vim`] adds PostCSS highlight.
+
+[`postcss.vim`]: https://github.com/stephenway/postcss.vim
+
 ### WebStorm
 
 WebStorm 2016.3 [has] built-in PostCSS support.
