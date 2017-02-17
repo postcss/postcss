@@ -65,6 +65,9 @@ gulp.task('spellcheck', ['api'], () => {
     if ( parseInt(process.versions.node) < 4 ) {
         return false;
     }
+    if ( process.env.TRAVIS && parseInt(process.versions.node) < 7 ) {
+        return false;
+    }
     let run = require('gulp-run');
     return gulp.src(
         ['api/*.html', '!api/*.es6.html', '*.md', 'docs/**/*.md'],
