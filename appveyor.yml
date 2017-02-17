@@ -16,3 +16,4 @@ cache:
  - "%LOCALAPPDATA%/Yarn"
 
 build: off
+deploy: off
