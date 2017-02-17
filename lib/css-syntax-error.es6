@@ -2,7 +2,6 @@ import supportsColor from 'supports-color';
 import chalk         from 'chalk';
 
 import terminalHighlight from './terminal-highlight';
-import warnOnce          from './warn-once';
 
 /**
  * The CSS parser throws this error for broken CSS.
@@ -215,11 +214,6 @@ class CssSyntaxError {
             code = '\n\n' + code + '\n';
         }
         return this.name + ': ' + this.message + code;
-    }
-
-    get generated() {
-        warnOnce('CssSyntaxError#generated is deprecated. Use input instead.');
-        return this.input;
     }
 
     /**

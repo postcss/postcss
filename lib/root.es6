@@ -1,5 +1,4 @@
 import Container from './container';
-import warnOnce  from './warn-once';
 
 /**
  * Represents a CSS file and contains all its parsed nodes.
@@ -68,16 +67,6 @@ class Root extends Container {
 
         let lazy = new LazyResult(new Processor(), this, opts);
         return lazy.stringify();
-    }
-
-    remove(child) {
-        warnOnce('Root#remove is deprecated. Use Root#removeChild');
-        this.removeChild(child);
-    }
-
-    prevMap() {
-        warnOnce('Root#prevMap is deprecated. Use Root#source.input.map');
-        return this.source.input.map;
     }
 
     /**

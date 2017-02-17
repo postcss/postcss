@@ -1,7 +1,6 @@
 import CssSyntaxError from './css-syntax-error';
 import Stringifier    from './stringifier';
 import stringify      from './stringify';
-import warnOnce       from './warn-once';
 
 let cloneNode = function (obj, parent) {
     let cloned = new obj.constructor();
@@ -430,46 +429,6 @@ class Node {
             if ( index !== -1 ) pos = this.positionInside(index);
         }
         return pos;
-    }
-
-    removeSelf() {
-        warnOnce('Node#removeSelf is deprecated. Use Node#remove.');
-        return this.remove();
-    }
-
-    replace(nodes) {
-        warnOnce('Node#replace is deprecated. Use Node#replaceWith');
-        return this.replaceWith(nodes);
-    }
-
-    style(own, detect) {
-        warnOnce('Node#style() is deprecated. Use Node#raw()');
-        return this.raw(own, detect);
-    }
-
-    cleanStyles(keepBetween) {
-        warnOnce('Node#cleanStyles() is deprecated. Use Node#cleanRaws()');
-        return this.cleanRaws(keepBetween);
-    }
-
-    get before() {
-        warnOnce('Node#before is deprecated. Use Node#raws.before');
-        return this.raws.before;
-    }
-
-    set before(val) {
-        warnOnce('Node#before is deprecated. Use Node#raws.before');
-        this.raws.before = val;
-    }
-
-    get between() {
-        warnOnce('Node#between is deprecated. Use Node#raws.between');
-        return this.raws.between;
-    }
-
-    set between(val) {
-        warnOnce('Node#between is deprecated. Use Node#raws.between');
-        this.raws.between = val;
     }
 
     /**

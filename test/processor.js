@@ -27,11 +27,11 @@ let beforeFix = new Processor([ css => {
 }]);
 
 test.before( () => {
-    sinon.stub(console, 'warn');
+    sinon.stub(console, 'error');
 });
 
 test.after( () => {
-    console.warn.restore();
+    console.error.restore();
 });
 
 test('adds new plugins', t => {
@@ -345,25 +345,25 @@ test('checks plugin compatibility', t => {
     t.throws( () => {
         processBy('1.0.0');
     }, 'Er');
-    t.deepEqual(console.warn.callCount, 1);
-    t.deepEqual(console.warn.args[0][0],
+    t.deepEqual(console.error.callCount, 1);
+    t.deepEqual(console.error.args[0][0],
         'Your current PostCSS version is 1.0.0, but test uses 2.1.5. ' +
         'Perhaps this is the source of the error below.');
 
     t.throws( () => {
         processBy('3.0.0');
     }, 'Er');
-    t.deepEqual(console.warn.callCount, 2);
+    t.deepEqual(console.error.callCount, 2);
 
     t.throws( () => {
         processBy('2.0.0');
     }, 'Er');
-    t.deepEqual(console.warn.callCount, 3);
+    t.deepEqual(console.error.callCount, 3);
 
     t.throws( () => {
         processBy('2.1.0');
     }, 'Er');
-    t.deepEqual(console.warn.callCount, 3);
+    t.deepEqual(console.error.callCount, 3);
 });
 
 test('sets last plugin to result', t => {

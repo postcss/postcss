@@ -1,5 +1,4 @@
 import Declaration from './declaration';
-import warnOnce    from './warn-once';
 import Comment     from './comment';
 import Node        from './node';
 
@@ -412,17 +411,6 @@ class Container extends Node {
         return this;
     }
 
-    remove(child) {
-        if ( typeof child !== 'undefined' ) {
-            warnOnce('Container#remove is deprecated. ' +
-                     'Use Container#removeChild');
-            this.removeChild(child);
-        } else {
-            super.remove();
-        }
-        return this;
-    }
-
     /**
      * Removes node from the container and cleans the parent properties
      * from the node and its children.
@@ -618,8 +606,6 @@ class Container extends Node {
         }
 
         let processed = nodes.map( i => {
-            if ( typeof i.raws === 'undefined' ) i = this.rebuild(i);
-
             if ( i.parent ) i = i.clone();
             if ( typeof i.raws.before === 'undefined' ) {
                 if ( sample && typeof sample.raws.before !== 'undefined' ) {
@@ -631,86 +617,6 @@ class Container extends Node {
         });
 
         return processed;
-    }
-
-    rebuild(node, parent) {
-        let fix;
-        if ( node.type === 'root' ) {
-            let Root = require('./root');
-            fix = new Root();
-        } else if ( node.type === 'atrule' ) {
-            let AtRule = require('./at-rule');
-            fix = new AtRule();
-        } else if ( node.type === 'rule' ) {
-            let Rule = require('./rule');
-            fix = new Rule();
-        } else if ( node.type === 'decl' ) {
-            fix = new Declaration();
-        } else if ( node.type === 'comment' ) {
-            fix = new Comment();
-        }
-
-        for ( let i in node ) {
-            if ( i === 'nodes' ) {
-                fix.nodes = node.nodes.map( j => this.rebuild(j, fix) );
-            } else if ( i === 'parent' && parent ) {
-                fix.parent = parent;
-            } else if ( node.hasOwnProperty(i) ) {
-                fix[i] = node[i];
-            }
-        }
-
-        return fix;
-    }
-
-    eachInside(callback) {
-        warnOnce('Container#eachInside is deprecated. ' +
-                 'Use Container#walk instead.');
-        return this.walk(callback);
-    }
-
-    eachDecl(prop, callback) {
-        warnOnce('Container#eachDecl is deprecated. ' +
-                 'Use Container#walkDecls instead.');
-        return this.walkDecls(prop, callback);
-    }
-
-    eachRule(selector, callback) {
-        warnOnce('Container#eachRule is deprecated. ' +
-                 'Use Container#walkRules instead.');
-        return this.walkRules(selector, callback);
-    }
-
-    eachAtRule(name, callback) {
-        warnOnce('Container#eachAtRule is deprecated. ' +
-                 'Use Container#walkAtRules instead.');
-        return this.walkAtRules(name, callback);
-    }
-
-    eachComment(callback) {
-        warnOnce('Container#eachComment is deprecated. ' +
-                 'Use Container#walkComments instead.');
-        return this.walkComments(callback);
-    }
-
-    get semicolon() {
-        warnOnce('Node#semicolon is deprecated. Use Node#raws.semicolon');
-        return this.raws.semicolon;
-    }
-
-    set semicolon(val) {
-        warnOnce('Node#semicolon is deprecated. Use Node#raws.semicolon');
-        this.raws.semicolon = val;
-    }
-
-    get after() {
-        warnOnce('Node#after is deprecated. Use Node#raws.after');
-        return this.raws.after;
-    }
-
-    set after(val) {
-        warnOnce('Node#after is deprecated. Use Node#raws.after');
-        this.raws.after = val;
     }
 
     /**

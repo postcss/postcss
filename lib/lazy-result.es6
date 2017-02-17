@@ -1,6 +1,5 @@
 import MapGenerator from './map-generator';
 import stringify    from './stringify';
-import warnOnce     from './warn-once';
 import Result       from './result';
 import parse        from './parse';
 
@@ -226,10 +225,11 @@ class LazyResult {
                 let b = runtimeVer.split('.');
 
                 if ( a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1]) ) {
-                    warnOnce('Your current PostCSS version ' +
-                             'is ' + runtimeVer + ', but ' + pluginName + ' ' +
-                             'uses ' + pluginVer + '. Perhaps this is ' +
-                             'the source of the error below.');
+                    console.error(
+                        'Your current PostCSS version ' +
+                        'is ' + runtimeVer + ', but ' + pluginName + ' ' +
+                        'uses ' + pluginVer + '. Perhaps this is ' +
+                        'the source of the error below.');
                 }
             }
         } catch (err) {

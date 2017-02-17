@@ -1,5 +1,4 @@
 import Container from './container';
-import warnOnce  from './warn-once';
 
 /**
  * Represents an at-rule.
@@ -34,26 +33,6 @@ class AtRule extends Container {
     prepend(...children) {
         if ( !this.nodes ) this.nodes = [];
         return super.prepend(...children);
-    }
-
-    get afterName() {
-        warnOnce('AtRule#afterName was deprecated. Use AtRule#raws.afterName');
-        return this.raws.afterName;
-    }
-
-    set afterName(val) {
-        warnOnce('AtRule#afterName was deprecated. Use AtRule#raws.afterName');
-        this.raws.afterName = val;
-    }
-
-    get _params() {
-        warnOnce('AtRule#_params was deprecated. Use AtRule#raws.params');
-        return this.raws.params;
-    }
-
-    set _params(val) {
-        warnOnce('AtRule#_params was deprecated. Use AtRule#raws.params');
-        this.raws.params = val;
     }
 
     /**
