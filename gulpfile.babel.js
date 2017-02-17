@@ -69,10 +69,8 @@ gulp.task('spellcheck', ['api'], () => {
         return false;
     }
     let run = require('gulp-run');
-    return gulp.src(
-        ['api/*.html', '!api/*.es6.html', '*.md', 'docs/**/*.md'],
-        { read: false }
-    ).pipe(run('yaspeller <%= file.path %>'));
+    return run('rm api/*.es6.html && ' +
+               'yaspeller api/*.html *.md docs/*.md docs/**/*.md').exec();
 });
 
 // Tests
