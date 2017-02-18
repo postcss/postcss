@@ -101,6 +101,8 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 ## Fallbacks
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
+* [`postcss-disabled`] adds a `[disabled]` attribute and/or a `.disabled` class
+  when the `:disabled` pseudo class is present.
 * [`postcss-epub`] adds the `-epub-` prefix to relevant properties.
 * [`postcss-esplit`] splits your CSS exceeding 4095 selectors for IE.
 * [`postcss-fallback`] adds `fallback` function to avoid duplicate declarations.
@@ -613,6 +615,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-reference`]:                    https://github.com/dehuszar/postcss-reference
 [`postcss-typescale`]:                    https://github.com/francoisromain/postcss-typescale
 [`postcss-write-svg`]:                    https://github.com/jonathantneal/postcss-write-svg
+[`postcss-disabled`]:                     https://github.com/cocco3/postcss-disabled
 [`postcss-clearfix`]:                     https://github.com/seaneking/postcss-clearfix
 [`postcss-colormin`]:                     https://github.com/ben-eb/colormin
 [`postcss-contrast`]:                     https://github.com/stephenway/postcss-contrast
