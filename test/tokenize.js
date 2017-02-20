@@ -3,14 +3,17 @@ import Input    from '../lib/input';
 
 import test from 'ava';
 
-function run(t, css, opts, tokens) {
-    if ( typeof tokens === 'undefined' ) [tokens, opts] = [opts, tokens];
-    t.deepEqual(tokenizer(new Input(css, opts)).tokenize(), tokens);
+function tokenize(css, opts) {
+    let processor = tokenizer(new Input(css), opts);
+    let tokens = [];
+    while (!processor.endOfFile()) {
+        tokens.push(processor.nextToken());
+    }
+    return tokens;
 }
 
-function ignoreRun(t, css, tokens) {
-    let tk = tokenizer(new Input(css), { ignoreErrors: true });
-    t.deepEqual(tk.tokenize(), tokens);
+function run(t, css, tokens, opts) {
+    t.deepEqual(tokenize(css, opts), tokens);
 }
 
 test('tokenizes empty file', t => {
@@ -221,33 +224,37 @@ test('tokenizes CSS', t => {
 
 test('throws error on unclosed string', t => {
     t.throws(() => {
-        tokenizer(new Input(' "')).tokenize();
+        tokenize(' "');
     }, /:1:2: Unclosed string/);
 });
 
 test('throws error on unclosed comment', t => {
     t.throws(() => {
-        tokenizer(new Input(' /*')).tokenize();
+        tokenize(' /*');
     }, /:1:2: Unclosed comment/);
 });
 
 test('throws error on unclosed url', t => {
     t.throws(() => {
-        tokenizer(new Input('url(')).tokenize();
+        tokenize('url(');
     }, /:1:4: Unclosed bracket/);
 });
 
 test('ignores unclosing string on request', t => {
-    ignoreRun(t, ' "', [['space', ' '], ['string', '\"', 1, 2, 1, 3]]);
+    run(t, ' "', [
+        ['space', ' '], ['string', '\"', 1, 2, 1, 3]
+    ], { ignoreErrors: true });
 });
 
 test('ignores unclosing comment on request', t => {
-    ignoreRun(t, ' /*', [['space', ' '], ['comment', '/*', 1, 2, 1, 4]]);
+    run(t, ' /*', [
+        ['space', ' '], ['comment', '/*', 1, 2, 1, 4]
+    ], { ignoreErrors: true });
 });
 
 test('ignores unclosing comment on request', t => {
-    ignoreRun(t, 'url(', [
+    run(t, 'url(', [
         ['word',     'url', 1, 1, 1, 3],
         ['brackets', '(',   1, 4, 1, 4]
-    ]);
+    ], { ignoreErrors: true });
 });

@@ -10,23 +10,20 @@ export default class Parser {
     constructor(input) {
         this.input = input;
 
-        this.pos       = 0;
         this.root      = new Root();
         this.current   = this.root;
         this.spaces    = '';
         this.semicolon = false;
 
-        this.root.source = { input, start: { line: 1, column: 1 } };
-    }
+        this.tokenizer = tokenizer(this.input);
 
-    tokenize() {
-        this.tokens = tokenizer(this.input).tokenize();
+        this.root.source = { input, start: { line: 1, column: 1 } };
     }
 
     parse() {
         let token;
-        while ( this.pos < this.tokens.length ) {
-            token = this.tokens[this.pos];
+        while ( !this.tokenizer.endOfFile() ) {
+            token = this.tokenizer.nextToken();
 
             switch ( token[0] ) {
 
@@ -52,11 +49,9 @@ export default class Parser {
                 break;
 
             default:
-                this.other();
+                this.other(token);
                 break;
             }
-
-            this.pos += 1;
         }
         this.endFile();
     }
@@ -87,18 +82,18 @@ export default class Parser {
         this.current = node;
     }
 
-    other() {
-        let token;
+    other(start) {
         let end      = false;
         let type     = null;
         let colon    = false;
         let bracket  = null;
         let brackets = [];
 
-        let start = this.pos;
-        while ( this.pos < this.tokens.length ) {
-            token = this.tokens[this.pos];
-            type  = token[0];
+        let tokens = [];
+        let token = start;
+        while ( token ) {
+            type = token[0];
+            tokens.push(token);
 
             if ( type === '(' || type === '[' ) {
                 if ( !bracket ) bracket = token;
@@ -107,18 +102,18 @@ export default class Parser {
             } else if ( brackets.length === 0 ) {
                 if ( type === ';' ) {
                     if ( colon ) {
-                        this.decl(this.tokens.slice(start, this.pos + 1));
+                        this.decl(tokens);
                         return;
                     } else {
                         break;
                     }
 
                 } else if ( type === '{' ) {
-                    this.rule(this.tokens.slice(start, this.pos + 1));
+                    this.rule(tokens);
                     return;
 
                 } else if ( type === '}' ) {
-                    this.pos -= 1;
+                    this.tokenizer.back(tokens.pop());
                     end = true;
                     break;
 
@@ -131,26 +126,23 @@ export default class Parser {
                 if ( brackets.length === 0 ) bracket = null;
             }
 
-            this.pos += 1;
-        }
-        if ( this.pos === this.tokens.length ) {
-            this.pos -= 1;
-            end = true;
+            token = this.tokenizer.nextToken();
         }
 
+        if ( this.tokenizer.endOfFile() ) end = true;
         if ( brackets.length > 0 ) this.unclosedBracket(bracket);
 
         if ( end && colon ) {
-            while ( this.pos > start ) {
-                token = this.tokens[this.pos][0];
+            while ( tokens.length ) {
+                token = tokens[tokens.length - 1][0];
                 if ( token !== 'space' && token !== 'comment' ) break;
-                this.pos -= 1;
+                this.tokenizer.back(tokens.pop());
             }
-            this.decl(this.tokens.slice(start, this.pos + 1));
+            this.decl(tokens);
             return;
+        } else {
+            this.unknownWord(start);
         }
-
-        this.unknownWord(start);
     }
 
     rule(tokens) {
@@ -262,9 +254,8 @@ export default class Parser {
         let open   = false;
         let params = [];
 
-        this.pos += 1;
-        while ( this.pos < this.tokens.length ) {
-            token = this.tokens[this.pos];
+        while ( !this.tokenizer.endOfFile() ) {
+            token = this.tokenizer.nextToken();
 
             if ( token[0] === ';' ) {
                 node.source.end = { line: token[2], column: token[3] };
@@ -280,10 +271,10 @@ export default class Parser {
                 params.push(token);
             }
 
-            this.pos += 1;
-        }
-        if ( this.pos === this.tokens.length ) {
-            last = true;
+            if ( this.tokenizer.endOfFile() ) {
+                last = true;
+                break;
+            }
         }
 
         node.raws.between = this.spacesAndCommentsFromEnd(params);
@@ -439,8 +430,7 @@ export default class Parser {
         throw this.input.error('Unclosed bracket', bracket[2], bracket[3]);
     }
 
-    unknownWord(start) {
-        let token = this.tokens[start];
+    unknownWord(token) {
         throw this.input.error('Unknown word', token[2], token[3]);
     }
 
