@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.15
+* Fix TypeScript definitions (by bumbleblym).
+
 ## 5.2.14
 * Fix browser bundle building in webpack (by janschoenherr).
 
