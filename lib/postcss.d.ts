@@ -3,10 +3,10 @@ declare module "postcss" {
      * @param plugins Can also be included with the Processor#use method.
      * @returns A processor that will apply plugins as CSS processors.
      */
-    function postcss(plugins?: (typeof postcss.acceptedPlugin)[]): postcss.Processor;
-    function postcss(...plugins: (typeof postcss.acceptedPlugin)[]): postcss.Processor;
+    function postcss(plugins?: postcss.AcceptedPlugin[]): postcss.Processor;
+    function postcss(...plugins: postcss.AcceptedPlugin[]): postcss.Processor;
     namespace postcss {
-        var acceptedPlugin: Plugin<any> | Transformer | {
+        type AcceptedPlugin = Plugin<any> | Transformer | {
             postcss: TransformCallback | Processor;
         } | Processor;
         /**
@@ -195,7 +195,7 @@ declare module "postcss" {
              * Adds a plugin to be used as a CSS processor. Plugins can also be
              * added by passing them as arguments when creating a postcss instance.
              */
-            use(plugin: typeof acceptedPlugin): Processor;
+            use(plugin: AcceptedPlugin): Processor;
             /**
              * Parses source CSS. Because some plugins can be asynchronous it doesn't
              * make any transformations. Transformations will be applied in LazyResult's
