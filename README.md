@@ -64,6 +64,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
 * [`postcss-cssnext`] allows you to use future CSS features today
   (includes `autoprefixer`).
+* [`postcss-image-set-polyfill`] emulates [`image-set`] function logic for all browsers
 
 ### Better CSS Readability
 
@@ -107,6 +108,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-modules`]:          https://github.com/outpunk/postcss-modules
 [`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting
 [`postcss-cssnext`]:          http://cssnext.io
+[`postcss-image-set-polyfill`]: https://github.com/SuperOl3g/postcss-image-set-polyfill
 [`postcss-assets`]:           https://github.com/assetsjs/postcss-assets
 [`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:             https://github.com/postcss/autoprefixer
@@ -123,6 +125,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
 [`short`]:                    https://github.com/jonathantneal/postcss-short
 [`lost`]:                     https://github.com/peterramsing/lost
+[`image-set`]:                https://drafts.csswg.org/css-images-3/#image-set-notation
 
 ## Syntaxes
 
