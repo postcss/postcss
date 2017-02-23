@@ -125,7 +125,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
 [`short`]:                    https://github.com/jonathantneal/postcss-short
 [`lost`]:                     https://github.com/peterramsing/lost
-[`image-set`]:                https://www.w3.org/TR/css4-images/#image-set-notation
+[`image-set`]:                https://drafts.csswg.org/css-images-3/#image-set-notation
 
 ## Syntaxes
 
