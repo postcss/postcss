@@ -81,8 +81,7 @@ class Declaration extends Node {
      * * `before`: the space symbols before the node. It also stores `*`
      *   and `_` symbols before the declaration (IE hack).
      * * `between`: the symbols between the property and value
-     *   for declarations, selector and `{` for rules, or last parameter
-     *   and `{` for at-rules.
+     *   for declarations.
      * * `important`: the content of the important statement,
      *   if it is not just `!important`.
      *
