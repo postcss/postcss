@@ -65,12 +65,11 @@ gulp.task('spellcheck', ['api'], () => {
     if ( parseInt(process.versions.node) < 4 ) {
         return false;
     }
-    if ( process.env.TRAVIS && parseInt(process.versions.node) < 7 ) {
+    if ( process.env.CI && parseInt(process.versions.node) < 7 ) {
         return false;
     }
     let run = require('gulp-run');
-    return run('rm api/*.es6.html && ' +
-               'yaspeller api/*.html *.md docs/*.md docs/**/*.md').exec();
+    return run('yaspeller api/*.html *.md docs/*.md docs/**/*.md').exec();
 });
 
 // Tests
