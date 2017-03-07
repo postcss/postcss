@@ -11,6 +11,12 @@ import test from 'ava';
 
 let stringify  = (node, builder) => builder(node.selector);
 
+test('shows error on wrong constructor types', t => {
+    t.throws(() => {
+        new Rule('a');
+    }, 'PostCSS nodes constructor accepts object, not "a"');
+});
+
 test('error() generates custom error', t => {
     let file  = path.resolve('a.css');
     let css   = parse('a{}', { from: file });

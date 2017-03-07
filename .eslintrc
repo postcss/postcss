@@ -4,7 +4,8 @@
   "rules": {
     "consistent-return": [0],
     "valid-jsdoc":       [2],
-    "complexity":        [0]
+    "complexity":        [0],
+    "no-new":            [0]
   },
   "env": {
     "mocha": true
