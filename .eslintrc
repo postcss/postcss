@@ -2,10 +2,10 @@
   "parser": "babel-eslint",
   "extends": "eslint-config-postcss",
   "rules": {
-    "consistent-return": [0],
-    "valid-jsdoc":       [2],
-    "complexity":        [0],
-    "no-new":            [0]
+    "consistent-return": "off",
+    "valid-jsdoc":       "error",
+    "complexity":        "off",
+    "no-new":            "off"
   },
   "env": {
     "mocha": true
