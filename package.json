@@ -65,7 +65,7 @@
   "lint-staged": {
     "test/*.js": "eslint",
     "lib/*.es6": "eslint",
-    "*.md": "yaspeller"
+    "*.md": "yaspeller-ci"
   },
   "pre-commit": [
     "lint-staged"
