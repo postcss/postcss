@@ -158,9 +158,15 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong)
 * [What PostCSS Really Is; What It Really Does](http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss)
 * [PostCSS Guides](http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)
-* [Mastering PostCSS for Web Design](https://www.packtpub.com/web-development/mastering-postcss-web-design)
 
 More articles and videos you can find on [awesome-postcss](https://github.com/jjaderg/awesome-postcss) list.
+
+## Books
+
+* [Web Developer's Reference Guide](https://www.packtpub.com/web-development/web-developers-reference-guide) by Joshua Johanan, Talha Khan & Ricardo Zea, Packt. (March 2016)
+* [Sass and Compass Designer's Cookbook](https://www.packtpub.com/web-development/sass-and-compass-designers-cookbook) by Bass Jobsen, Packt. (April 2016)
+* [Professional CSS3](https://www.packtpub.com/web-development/professional-css3) by Piotr Sikora, Packt. (May 2016)
+* [Mastering PostCSS for Web Design](https://www.packtpub.com/web-development/mastering-postcss-web-design) by Alex Libby, Packt. (June 2016)
 
 ## Usage
 
