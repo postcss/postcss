@@ -178,20 +178,83 @@ You can start using PostCSS in just two steps:
 
 Use [`postcss-loader`] in `webpack.config.js`:
 
+Use this if you are bundling your CSS into your JS (the default Webpack behaviour)
+
 ```js
+const path = require('path');
+
 module.exports = {
+    entry: './app/index',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
     module: {
         loaders: [
             {
                 test: /\.css$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader?importLoaders=1',
-                    'postcss-loader'
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: 'inline',
+                        }
+                    }
                 ]
             }
         ]
     }
+}
+```
+
+Use this with if you are extracting your CSS from your Webpack bundle
+```js
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = {
+    entry: './app/index',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    module: {
+        loaders: [
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                loader: [
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: 'inline',
+                        }
+                    },
+                ]
+            })
+        ]
+    },
+    plugins: [
+        new ExtractTextPlugin('bundle.css'),
+    ],
 }
 ```
 
