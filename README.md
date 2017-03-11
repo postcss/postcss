@@ -184,10 +184,24 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader?importLoaders=1',
-                    'postcss-loader'
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: 'inline',
+                        }
+                    }
                 ]
             }
         ]
