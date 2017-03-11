@@ -181,14 +181,7 @@ Use [`postcss-loader`] in `webpack.config.js`:
 Use this if you are bundling your CSS into your JS (the default Webpack behaviour)
 
 ```js
-const path = require('path');
-
 module.exports = {
-    entry: './app/index',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
     module: {
         loaders: [
             {
@@ -218,17 +211,11 @@ module.exports = {
 }
 ```
 
-Use this with if you are extracting your CSS from your Webpack bundle
+Use this with if you are extracting your CSS from your Webpack bundle using the [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin).
 ```js
-const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: './app/index',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
     module: {
         loaders: [
             test: /\.css$/,
