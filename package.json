@@ -38,7 +38,7 @@
     "docdash": "^0.4.0",
     "eslint": "^3.18.0",
     "eslint-config-postcss": "^2.0.2",
-    "fs-extra": "^1.0.0",
+    "fs-extra": "^2.1.2",
     "gulp": "^3.9.1",
     "gulp-ava": "^0.16.0",
     "gulp-babel": "^6.1.2",
