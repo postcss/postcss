@@ -292,6 +292,7 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 For other environments, you can use the JS API:
 
 ```js
+const fs = require('fs');
 const postcss = require('postcss');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
