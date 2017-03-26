@@ -96,6 +96,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`cssnano`] is a modular CSS minifier.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-ant`] is a size-getting function capable of working with fixed lengths, fractions, auto sizes, and more.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
@@ -126,6 +127,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`short`]:                    https://github.com/jonathantneal/postcss-short
 [`lost`]:                     https://github.com/peterramsing/lost
 [`image-set`]:                https://drafts.csswg.org/css-images-3/#image-set-notation
+[`postcss-ant`]:              https://github.com/corysimmons/postcss-ant
 
 ## Syntaxes
 
