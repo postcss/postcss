@@ -726,4 +726,3 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-rgb`]:                    https://github.com/dmarchena/postcss-color-rgb
 [`postcss-parent-selector`]:              https://github.com/domwashburn/postcss-parent-selector
 [`postcss-font-family-system-ui`]:        https://github.com/JLHwung/postcss-font-family-system-ui
-
