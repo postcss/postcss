@@ -357,6 +357,7 @@ See also plugins in modular minifier [`cssnano`].
 
 ## Others
 
+* [`postcss-alter-property-value`] alters your CSS declarations from a rule based configuration.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
@@ -400,7 +401,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
-* [`postcss-alter-property-value`] Alter your css declarations from a rule based configuration.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -449,6 +449,7 @@ See also plugins in modular minifier [`cssnano`].
 
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
 [`postcss-attribute-case-insensitive`]:   https://github.com/Semigradsky/postcss-attribute-case-insensitive
+[`postcss-alter-property-value`]:         https://github.com/kunukn/postcss-alter-property-value
 [`postcss-attribute-selector-prefix`]:    https://github.com/GitScrum/postcss-attribute-selector-prefix
 [`postcss-gradient-transparency-fix`]:    https://github.com/gilmoreorless/postcss-gradient-transparency-fix
 [`postcss-vertical-rhythm-function`]:     https://github.com/F21/postcss-vertical-rhythm-function
@@ -725,4 +726,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-rgb`]:                    https://github.com/dmarchena/postcss-color-rgb
 [`postcss-parent-selector`]:              https://github.com/domwashburn/postcss-parent-selector
 [`postcss-font-family-system-ui`]:        https://github.com/JLHwung/postcss-font-family-system-ui
-[`postcss-alter-property-value`]:         https://github.com/kunukn/postcss-alter-property-value
+
