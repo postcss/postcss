@@ -357,6 +357,7 @@ See also plugins in modular minifier [`cssnano`].
 
 ## Others
 
+* [`postcss-alter-property-value`] alters your CSS declarations from a rule based configuration.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
@@ -448,6 +449,7 @@ See also plugins in modular minifier [`cssnano`].
 
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
 [`postcss-attribute-case-insensitive`]:   https://github.com/Semigradsky/postcss-attribute-case-insensitive
+[`postcss-alter-property-value`]:         https://github.com/kunukn/postcss-alter-property-value
 [`postcss-attribute-selector-prefix`]:    https://github.com/GitScrum/postcss-attribute-selector-prefix
 [`postcss-gradient-transparency-fix`]:    https://github.com/gilmoreorless/postcss-gradient-transparency-fix
 [`postcss-vertical-rhythm-function`]:     https://github.com/F21/postcss-vertical-rhythm-function
