@@ -401,6 +401,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
+* [`postcss-mediaquery-writer`] Extracts mediaqueries and writes them to separate files.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -726,3 +727,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-rgb`]:                    https://github.com/dmarchena/postcss-color-rgb
 [`postcss-parent-selector`]:              https://github.com/domwashburn/postcss-parent-selector
 [`postcss-font-family-system-ui`]:        https://github.com/JLHwung/postcss-font-family-system-ui
+[`postcss-mediaquery-writer`]:            https://github.com/martinkr/postcss-mediaquery-writer/
