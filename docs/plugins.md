@@ -189,6 +189,7 @@ for targeting all button elements.
 * [`postcss-closest`] plugin to modify closest matching part of current
   selector.
 * [`csstyle`] adds components workflow to your styles.
+* [`postcss-percentage`] support Sass-like `percentage()` function.
 
 See also [`precss`] plugins pack to add them by one line of code.
 
@@ -726,3 +727,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-color-rgb`]:                    https://github.com/dmarchena/postcss-color-rgb
 [`postcss-parent-selector`]:              https://github.com/domwashburn/postcss-parent-selector
 [`postcss-font-family-system-ui`]:        https://github.com/JLHwung/postcss-font-family-system-ui
+[`postcss-percentage`]:                   https://github.com/creeperyang/postcss-percentage
