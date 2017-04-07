@@ -6,8 +6,5 @@
     "valid-jsdoc":       "error",
     "complexity":        "off",
     "no-new":            "off"
-  },
-  "env": {
-    "mocha": true
   }
 }
