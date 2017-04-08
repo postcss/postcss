@@ -136,6 +136,8 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [`sugarss`] is a indent-based syntax like Sass or Stylus.
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
+* [`postcss-sass`] allows you to work with SASS
+    *(but does not compile SASS to CSS)*.
 * [`postcss-less`] allows you to work with Less
   *(but does not compile LESS to CSS)*.
 * [`postcss-less-engine`] allows you to work with Less
@@ -145,12 +147,13 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [`postcss-safe-parser`] finds and fixes CSS syntax errors.
 * [`midas`] converts a CSS string to highlighted HTML.
 
-[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
+[`sugarss`]:             https://github.com/postcss/sugarss
+[`postcss-scss`]:        https://github.com/postcss/postcss-scss
+[`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass
 [`postcss-less`]:        https://github.com/webschik/postcss-less
 [`postcss-less-engine`]: https://github.com/Crunch/postcss-less
-[`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-js`]:          https://github.com/postcss/postcss-js
-[`sugarss`]:             https://github.com/postcss/sugarss
+[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
 [`midas`]:               https://github.com/ben-eb/midas
 
 ## Articles
