@@ -136,8 +136,8 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [`sugarss`] is a indent-based syntax like Sass or Stylus.
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
-* [`postcss-sass`] allows you to work with SASS
-    *(but does not compile SASS to CSS)*.
+* [`postcss-sass`] allows you to work with Sass
+    *(but does not compile Sass to CSS)*.
 * [`postcss-less`] allows you to work with Less
   *(but does not compile LESS to CSS)*.
 * [`postcss-less-engine`] allows you to work with Less
