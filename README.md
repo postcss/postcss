@@ -181,6 +181,8 @@ You can start using PostCSS in just two steps:
 
 Use [`postcss-loader`] in `webpack.config.js`:
 
+Use this if you are bundling your CSS into your JS (the default Webpack behaviour)
+
 ```js
 module.exports = {
     module: {
@@ -209,6 +211,40 @@ module.exports = {
             }
         ]
     }
+}
+```
+
+Use this with if you are extracting your CSS from your Webpack bundle using the [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin).
+```js
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = {
+    module: {
+        loaders: [
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                loader: [
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: 'inline',
+                        }
+                    },
+                ]
+            })
+        ]
+    },
+    plugins: [
+        new ExtractTextPlugin('bundle.css'),
+    ],
 }
 ```
 
