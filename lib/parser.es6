@@ -172,6 +172,7 @@ export default class Parser {
         }
 
         while ( tokens[0][0] !== 'word' ) {
+            if ( tokens.length === 1 ) this.unknownWord(tokens[0]);
             node.raws.before += tokens.shift()[1];
         }
         node.source.start = { line: tokens[0][2], column: tokens[0][3] };

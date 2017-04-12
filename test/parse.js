@@ -128,6 +128,15 @@ test('throws on double colon', t => {
     }, /:1:9: Double colon/);
 });
 
+test('throws on just colon', t => {
+    t.throws(() => {
+        parse(':');
+    }, /:1:1: Unknown word/);
+    t.throws(() => {
+        parse(' : ');
+    }, /:1:2: Unknown word/);
+});
+
 test('does not suggest different parsers for CSS', t => {
     let error;
     try {
