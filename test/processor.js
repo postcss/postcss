@@ -184,6 +184,7 @@ test('parses, converts and stringifies CSS', t => {
 });
 
 test('send result to plugins', t => {
+    t.plan(4);
     let processor = new Processor();
     let a = (css, result) => {
         t.truthy(result instanceof Result);
@@ -191,7 +192,7 @@ test('send result to plugins', t => {
         t.deepEqual(result.opts, { map: true });
         t.deepEqual(result.root, css);
     };
-    processor.use(a).process('a {}', { map: true });
+    return processor.use(a).process('a {}', { map: true });
 });
 
 test('accepts source map from PostCSS', t => {
