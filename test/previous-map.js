@@ -138,7 +138,7 @@ test('sets uniq name for inline map', t => {
     t.notDeepEqual(file1, file2);
 });
 
-test('should accept an empty mappings string', () => {
+test('accepts an empty mappings string', t => {
     let emptyMap = {
         version:  3,
         sources:  [],
@@ -146,9 +146,10 @@ test('should accept an empty mappings string', () => {
         mappings: ''
     };
     parse('body{}', { map: { prev: emptyMap } } );
+    t.pass();
 });
 
-test('should accept a function', t => {
+test('accepts a function', t => {
     let css  = 'body{}\n/*# sourceMappingURL=a.map */';
     let file = path.join(dir, 'previous-sourcemap-function.map');
     fs.outputFileSync(file, map);
@@ -162,7 +163,7 @@ test('should accept a function', t => {
     t.deepEqual(root.source.input.map.annotation, 'a.map');
 });
 
-test('should call function with opts.from', t => {
+test('calls function with opts.from', t => {
     t.plan(1);
 
     let css  = 'body{}\n/*# sourceMappingURL=a.map */';
@@ -180,7 +181,7 @@ test('should call function with opts.from', t => {
     parse(css, opts);
 });
 
-test('should raise when function returns invalid path', t => {
+test('raises when function returns invalid path', t => {
     let css = 'body{}\n/*# sourceMappingURL=a.map */';
     let fakeMap  = Number.MAX_SAFE_INTEGER.toString() + '.map';
     let fakePath = path.join(dir, fakeMap);
