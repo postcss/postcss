@@ -19,6 +19,10 @@ export default function parse(css, opts) {
                 e.message += '\nYou tried to parse SCSS with ' +
                              'the standard CSS parser; ' +
                              'try again with the postcss-scss parser';
+            } else if ( /\.sass/i.test(opts.from) ) {
+                e.message += '\nYou tried to parse Sass with ' +
+                             'the standard CSS parser; ' +
+                             'try again with the postcss-sass parser';
             } else if ( /\.less$/i.test(opts.from) ) {
                 e.message += '\nYou tried to parse Less with ' +
                              'the standard CSS parser; ' +

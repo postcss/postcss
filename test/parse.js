@@ -144,6 +144,12 @@ test('suggests postcss-scss for SCSS sources', t => {
     }, /postcss-scss/);
 });
 
+test('suggests postcss-sass for Sass sources', t => {
+    t.throws(() => {
+        parse('a\n  #{var}: 1', { from: 'app.sass' });
+    }, /postcss-sass/);
+});
+
 test('suggests postcss-less for Less sources', t => {
     t.throws(() => {
         parse('.@{my-selector} { }', { from: 'app.less' });
