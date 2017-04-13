@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.17
+* Add `postcss-sass` suggestion to syntax error on `.sass` input.
+
 ## 5.2.16
 * Better error on wrong argument in node constructor.
 
