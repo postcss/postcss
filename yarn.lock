@@ -444,9 +444,9 @@ babel-core@^6.0.2, babel-core@^6.17.0, babel-core@^6.24.1:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-eslint@^7.2.1:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.2.1.tgz#079422eb73ba811e3ca0865ce87af29327f8c52f"
+babel-eslint@^7.2.2:
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.2.2.tgz#0da2cbe6554fd0fb069f19674f2db2f9c59270ff"
   dependencies:
     babel-code-frame "^6.22.0"
     babel-traverse "^6.23.1"
@@ -2401,8 +2401,8 @@ homedir-polyfill@^1.0.0:
     parse-passwd "^1.0.0"
 
 hosted-git-info@^2.1.4:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.4.1.tgz#4b0445e41c004a8bd1337773a4ff790ca40318c8"
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.4.2.tgz#0076b9f46a270506ddbaaea56496897460612a67"
 
 http-signature@~1.1.0:
   version "1.1.1"
@@ -3442,8 +3442,8 @@ mute-stream@0.0.5:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 
 nan@^2.3.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.1.tgz#8c84f7b14c96b89f57fbc838012180ec8ca39a01"
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
 
 native-promise-only@^0.8.1:
   version "0.8.1"
@@ -4426,8 +4426,8 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
 sshpk@^1.7.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.11.0.tgz#2d8d5ebb4a6fab28ffba37fa62a90f4a3ea59d77"
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.13.0.tgz#ff2a3e4fd04497555fed97b39a0fd82fafb3a33c"
   dependencies:
     asn1 "~0.2.3"
     assert-plus "^1.0.0"
