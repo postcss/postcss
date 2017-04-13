@@ -28,7 +28,7 @@
   "devDependencies": {
     "ava": "^0.19.1",
     "babel-core": "^6.24.1",
-    "babel-eslint": "^7.2.1",
+    "babel-eslint": "^7.2.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-precompile-charcodes": "^1.0.0",
     "babel-preset-es2015": "^6.24.1",
