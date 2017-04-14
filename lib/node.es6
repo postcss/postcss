@@ -334,6 +334,40 @@ class Node {
         return this.parent.nodes[index - 1];
     }
 
+    /**
+     * Insert new node before current node to current node’s parent.
+     *
+     * Just alias for `node.parent.insertBefore(node, add)`.
+     *
+     * @param {Node|object|string|Node[]} add - new node
+     *
+     * @return {Node} this node for methods chain.
+     *
+     * @example
+     * decl.before('content: ""');
+     */
+    before(add) {
+        this.parent.insertBefore(this, add);
+        return this;
+    }
+
+    /**
+     * Insert new node after current node to current node’s parent.
+     *
+     * Just alias for `node.parent.insertAfter(node, add)`.
+     *
+     * @param {Node|object|string|Node[]} add - new node
+     *
+     * @return {Node} this node for methods chain.
+     *
+     * @example
+     * decl.after('color: black');
+     */
+    after(add) {
+        this.parent.insertAfter(this, add);
+        return this;
+    }
+
     toJSON() {
         let fixed = { };
 

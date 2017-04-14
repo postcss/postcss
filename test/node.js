@@ -199,6 +199,26 @@ test('cloneAfter() clones and insert after current node', t => {
     t.deepEqual(rule.toString(), 'a {z-index: 1;z-index: 2}');
 });
 
+test('before() insert before current node', t => {
+    let rule = new Rule({ selector: 'a', raws: { after: '' } });
+    rule.append({ prop: 'z-index', value: '1', raws: { before: '' } });
+
+    let result = rule.first.before('color: black');
+
+    t.is(result, rule.last);
+    t.deepEqual(rule.toString(), 'a {color: black;z-index: 1}');
+});
+
+test('after() insert after current node', t => {
+    let rule = new Rule({ selector: 'a', raws: { after: '' } });
+    rule.append({ prop: 'z-index', value: '1', raws: { before: '' } });
+
+    let result = rule.first.after('color: black');
+
+    t.is(result, rule.first);
+    t.deepEqual(rule.toString(), 'a {z-index: 1;color: black}');
+});
+
 test('next() returns next node', t => {
     let css = parse('a{one:1;two:2}');
     t.is(css.first.first.next(), css.first.last);
