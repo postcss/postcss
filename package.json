@@ -30,7 +30,7 @@
     "babel-eslint": "^7.2.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-precompile-charcodes": "^1.0.0",
-    "babel-preset-env": "^1.3.3",
+    "babel-preset-env": "^1.4.0",
     "chalk": "^1.1.3",
     "concat-with-sourcemaps": "^1.0.4",
     "del": "^2.2.2",
