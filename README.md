@@ -223,6 +223,39 @@ module.exports = {
 }
 ```
 
+### Webpack 2
+
+Use [`postcss-loader`] in `webpack.config.js` and add post-css into webpack's `LoaderOptionsPlugin`, like so:
+
+```js
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader?importLoaders=1',
+                    'postcss-loader'
+                ],
+            },
+        ],
+    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [
+                    require('postcss-import'),
+                    require('postcss-mixins'),
+                    require('postcss-nested'),
+                    require('postcss-cssnext'),
+                ],
+            },
+        }),
+    ],
+}
+```
+
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
 
 ### Gulp
