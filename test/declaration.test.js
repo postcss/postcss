@@ -2,30 +2,28 @@ import Declaration from '../lib/declaration';
 import parse       from '../lib/parse';
 import Rule        from '../lib/rule';
 
-import test from 'ava';
-
-test('initializes with properties', t => {
+it('initializes with properties', () => {
     let decl = new Declaration({ prop: 'color', value: 'black' });
-    t.deepEqual(decl.prop,  'color');
-    t.deepEqual(decl.value, 'black');
+    expect(decl.prop).toEqual('color');
+    expect(decl.value).toEqual('black');
 });
 
-test('returns boolean important', t => {
+it('returns boolean important', () => {
     let decl = new Declaration({ prop: 'color', value: 'black' });
     decl.important = true;
-    t.deepEqual(decl.toString(), 'color: black !important');
+    expect(decl.toString()).toEqual('color: black !important');
 });
 
-test('inserts default spaces', t => {
+it('inserts default spaces', () => {
     let decl = new Declaration({ prop: 'color', value: 'black' });
     let rule = new Rule({ selector: 'a' });
     rule.append(decl);
-    t.deepEqual(rule.toString(), 'a {\n    color: black\n}');
+    expect(rule.toString()).toEqual('a {\n    color: black\n}');
 });
 
-test('clones spaces from another declaration', t => {
+it('clones spaces from another declaration', () => {
     let root = parse('a{color:black}');
     let decl = new Declaration({ prop: 'margin', value: '0' });
     root.first.append(decl);
-    t.deepEqual(root.toString(), 'a{color:black;margin:0}');
+    expect(root.toString()).toEqual('a{color:black;margin:0}');
 });

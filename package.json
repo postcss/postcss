@@ -26,7 +26,6 @@
     "supports-color": "^3.2.3"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.2",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -40,18 +39,18 @@
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^2.1.2",
     "gulp": "^3.9.1",
-    "gulp-ava": "^0.16.0",
     "gulp-babel": "^6.1.2",
     "gulp-changed": "^2.0.0",
     "gulp-eslint": "^3.0.1",
+    "gulp-jest": "^1.0.0",
     "gulp-run": "^1.7.1",
     "gulp-sourcemaps": "^2.6.0",
+    "jest": "^19.0.2",
     "jsdoc": "^3.4.3",
     "lint-staged": "^3.4.0",
     "postcss-parser-tests": "^5.0.11",
     "pre-commit": "^1.2.2",
     "run-sequence": "^1.2.2",
-    "sinon": "^2.1.0",
     "strip-ansi": "^3.0.1",
     "yaspeller-ci": "^0.4.0"
   },
@@ -98,6 +97,9 @@
       "valid-jsdoc": "error",
       "complexity": "off",
       "no-new": "off"
+    },
+    "env": {
+      "jest": true
     }
   }
 }

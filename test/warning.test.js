@@ -3,35 +3,34 @@ import Warning     from '../lib/warning';
 import parse       from '../lib/parse';
 
 import path from 'path';
-import test from 'ava';
 
-test('outputs simple warning', t => {
+it('outputs simple warning', () => {
     let warning = new Warning('text');
-    t.deepEqual(warning.toString(), 'text');
+    expect(warning.toString()).toEqual('text');
 });
 
-test('outputs warning with plugin', t => {
+it('outputs warning with plugin', () => {
     let warning = new Warning('text', { plugin: 'plugin' });
-    t.deepEqual(warning.toString(), 'plugin: text');
+    expect(warning.toString()).toEqual('plugin: text');
 });
 
-test('outputs warning with position', t => {
+it('outputs warning with position', () => {
     let root    = parse('a{}');
     let warning = new Warning('text', { node: root.first });
-    t.deepEqual(warning.toString(), '<css input>:1:1: text');
+    expect(warning.toString()).toEqual('<css input>:1:1: text');
 });
 
-test('outputs warning with plugin and node', t => {
+it('outputs warning with plugin and node', () => {
     let file    = path.resolve('a.css');
     let root    = parse('a{}', { from: file });
     let warning = new Warning('text', {
         plugin: 'plugin',
         node:   root.first
     });
-    t.deepEqual(warning.toString(), `plugin: ${ file }:1:1: text`);
+    expect(warning.toString()).toEqual(`plugin: ${ file }:1:1: text`);
 });
 
-test('outputs warning with index', t => {
+it('outputs warning with index', () => {
     let file    = path.resolve('a.css');
     let root    = parse('@rule param {}', { from: file });
     let warning = new Warning('text', {
@@ -39,10 +38,10 @@ test('outputs warning with index', t => {
         node:   root.first,
         index:  7
     });
-    t.deepEqual(warning.toString(), `plugin: ${ file }:1:8: text`);
+    expect(warning.toString()).toEqual(`plugin: ${ file }:1:8: text`);
 });
 
-test('outputs warning with word', t => {
+it('outputs warning with word', () => {
     let file    = path.resolve('a.css');
     let root    = parse('@rule param {}', { from: file });
     let warning = new Warning('text', {
@@ -50,38 +49,38 @@ test('outputs warning with word', t => {
         node:   root.first,
         word:   'am'
     });
-    t.deepEqual(warning.toString(), `plugin: ${ file }:1:10: text`);
+    expect(warning.toString()).toEqual(`plugin: ${ file }:1:10: text`);
 });
 
-test('generates warning without source', t => {
+it('generates warning without source', () => {
     let decl    = new Declaration({ prop: 'color', value: 'black' });
     let warning = new Warning('text', { node: decl });
-    t.deepEqual(warning.toString(), '<css input>: text');
+    expect(warning.toString()).toEqual('<css input>: text');
 });
 
-test('has line and column is undefined by default', t => {
+it('has line and column is undefined by default', () => {
     let warning = new Warning('text');
-    t.deepEqual(typeof warning.line,   'undefined');
-    t.deepEqual(typeof warning.column, 'undefined');
+    expect(warning.line).not.toBeDefined();
+    expect(warning.column).not.toBeDefined();
 });
 
-test('gets position from node', t => {
+it('gets position from node', () => {
     let root    = parse('a{}');
     let warning = new Warning('text', { node: root.first });
-    t.deepEqual(warning.line, 1);
-    t.deepEqual(warning.column, 1);
+    expect(warning.line).toEqual(1);
+    expect(warning.column).toEqual(1);
 });
 
-test('gets position from word', t => {
+it('gets position from word', () => {
     let root    = parse('a b{}');
     let warning = new Warning('text', { node: root.first, word: 'b' });
-    t.deepEqual(warning.line, 1);
-    t.deepEqual(warning.column, 3);
+    expect(warning.line).toEqual(1);
+    expect(warning.column).toEqual(3);
 });
 
-test('gets position from index', t => {
+it('gets position from index', () => {
     let root    = parse('a b{}');
     let warning = new Warning('text', { node: root.first, index: 2 });
-    t.deepEqual(warning.line, 1);
-    t.deepEqual(warning.column, 3);
+    expect(warning.line).toEqual(1);
+    expect(warning.column).toEqual(3);
 });

@@ -58,8 +58,8 @@ gulp.task('spellcheck', ['api'], () => {
 // Tests
 
 gulp.task('test', ['compile'], () => {
-    let ava = require('gulp-ava');
-    return gulp.src('test/*.js', { read: false }).pipe(ava());
+    let jest = require('gulp-jest').default;
+    return gulp.src('test').pipe(jest());
 });
 
 gulp.task('integration', ['build'], done => {
