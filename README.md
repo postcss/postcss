@@ -184,7 +184,7 @@ Use [`postcss-loader`] in `webpack.config.js`:
 ```js
 module.exports = {
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
@@ -195,15 +195,11 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
-                            sourceMap: true,
                             importLoaders: 1,
                         }
                     },
                     {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: 'inline',
-                        }
+                        loader: 'postcss-loader'
                     }
                 ]
             }
@@ -220,39 +216,6 @@ module.exports = {
         require('precss'),
         require('autoprefixer')
     ]
-}
-```
-
-### Webpack 2
-
-Use [`postcss-loader`] in `webpack.config.js` and add post-css into webpack's `LoaderOptionsPlugin`, like so:
-
-```js
-module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader?importLoaders=1',
-                    'postcss-loader'
-                ],
-            },
-        ],
-    },
-    plugins: [
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                postcss: [
-                    require('postcss-import'),
-                    require('postcss-mixins'),
-                    require('postcss-nested'),
-                    require('postcss-cssnext'),
-                ],
-            },
-        }),
-    ],
 }
 ```
 
