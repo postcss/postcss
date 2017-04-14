@@ -75,8 +75,12 @@
   "babel": {
     "presets": [
       [
-        "es2015",
+        "env",
         {
+          "targets": {
+            "browsers": "last 1 version",
+            "node": 4
+          },
           "loose": true
         }
       ]
