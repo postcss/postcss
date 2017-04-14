@@ -63,9 +63,9 @@ function postcss(...plugins) {
  * them as standalone tools.
  *
  * ```js
- * cleaner.process(css, options);
+ * cleaner.process(css, processOpts, pluginOpts);
  * // This is equivalent to:
- * postcss([ cleaner(options) ]).process(css);
+ * postcss([ cleaner(pluginOpts) ]).process(css, processOpts);
  * ```
  *
  * Asynchronous plugins should return a `Promise` instance.
@@ -122,8 +122,8 @@ postcss.plugin = function plugin(name, initializer) {
         }
     });
 
-    creator.process = function (root, opts) {
-        return postcss([ creator(opts) ]).process(root, opts);
+    creator.process = function (css, processOpts, pluginOpts) {
+        return postcss([ creator(pluginOpts) ]).process(css, processOpts);
     };
 
     return creator;
