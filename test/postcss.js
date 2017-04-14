@@ -97,11 +97,12 @@ test('creates a shortcut to process css', t => {
     let result1 = plugin.process('a{value:foo}');
     t.deepEqual(result1.css, 'a{value:bar}');
 
-    let result2 = plugin.process('a{value:foo}', 'baz');
+    let result2 = plugin.process('a{value:foo}', { }, 'baz');
     t.deepEqual(result2.css, 'a{value:baz}');
 
-    plugin.process('a{value:foo}').then( result => {
-        t.deepEqual(result.css, 'a{value:bar}');
+    plugin.process('a{value:foo}', { from: 'a' }, 'baz').then( result => {
+        t.deepEqual(result.opts, { from: 'a' });
+        t.deepEqual(result.css, 'a{value:baz}');
     });
 });
 
