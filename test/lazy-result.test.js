@@ -2,52 +2,51 @@ import LazyResult from '../lib/lazy-result';
 import Processor  from '../lib/processor';
 
 import mozilla from 'source-map';
-import test    from 'ava';
 
 let processor = new Processor();
 
-test('contains AST', t => {
+it('contains AST', () => {
     let result = new LazyResult(processor, 'a {}', { });
-    t.deepEqual(result.root.type, 'root');
+    expect(result.root.type).toEqual('root');
 });
 
-test('will stringify css', t => {
+it('will stringify css', () => {
     let result = new LazyResult(processor, 'a {}', { });
-    t.deepEqual(result.css, 'a {}');
+    expect(result.css).toEqual('a {}');
 });
 
-test('stringifies css', t => {
+it('stringifies css', () => {
     let result = new LazyResult(processor, 'a {}', { });
-    t.deepEqual('' + result, result.css);
+    expect('' + result).toEqual(result.css);
 });
 
-test('has content alias for css', t => {
+it('has content alias for css', () => {
     let result = new LazyResult(processor, 'a {}', { });
-    t.deepEqual(result.content, 'a {}');
+    expect(result.content).toEqual('a {}');
 });
 
-test('has map only if necessary', t => {
+it('has map only if necessary', () => {
     let result = new LazyResult(processor, '', { });
-    t.deepEqual(typeof result.map, 'undefined');
+    expect(result.map).not.toBeDefined();
 
     result = new LazyResult(processor, '', { });
-    t.deepEqual(typeof result.map, 'undefined');
+    expect(result.map).not.toBeDefined();
 
     result = new LazyResult(processor, '', { map: { inline: false } });
-    t.truthy(result.map instanceof mozilla.SourceMapGenerator);
+    expect(result.map instanceof mozilla.SourceMapGenerator).toBeTruthy();
 });
 
-test('contains options', t => {
+it('contains options', () => {
     let result = new LazyResult(processor, 'a {}', { to: 'a.css' });
-    t.deepEqual(result.opts, { to: 'a.css' });
+    expect(result.opts).toEqual({ to: 'a.css' });
 });
 
-test('contains warnings', t => {
+it('contains warnings', () => {
     let result = new LazyResult(processor, 'a {}', { });
-    t.deepEqual(result.warnings(), []);
+    expect(result.warnings()).toEqual([]);
 });
 
-test('contains messages', t => {
+it('contains messages', () => {
     let result = new LazyResult(processor, 'a {}', { });
-    t.deepEqual(result.messages, []);
+    expect(result.messages).toEqual([]);
 });

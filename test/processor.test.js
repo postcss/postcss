@@ -5,9 +5,7 @@ import Result     from '../lib/result';
 import parse      from '../lib/parse';
 import Root       from '../lib/root';
 
-import sinon from 'sinon';
 import path  from 'path';
-import test  from 'ava';
 
 function prs() {
     return new Root({ raws: { after: 'ok' } });
@@ -26,95 +24,92 @@ let beforeFix = new Processor([ css => {
     });
 }]);
 
-test.before( () => {
-    sinon.stub(console, 'error');
+const originError = console.error;
+afterAll(() => {
+    console.error = originError;
 });
 
-test.after( () => {
-    console.error.restore();
-});
-
-test('adds new plugins', t => {
+it('adds new plugins', () => {
     let a = () => 1;
     let processor = new Processor();
     processor.use(a);
-    t.deepEqual(processor.plugins, [a]);
+    expect(processor.plugins).toEqual([a]);
 });
 
-test('adds new plugin by object', t => {
+it('adds new plugin by object', () => {
     let a = () => 1;
     let processor = new Processor();
     processor.use({ postcss: a });
-    t.deepEqual(processor.plugins, [a]);
+    expect(processor.plugins).toEqual([a]);
 });
 
-test('adds new plugin by object-function', t => {
+it('adds new plugin by object-function', () => {
     let a   = () => 1;
     let obj = () => 2;
     obj.postcss = a;
     let processor = new Processor();
     processor.use(obj);
-    t.deepEqual(processor.plugins, [a]);
+    expect(processor.plugins).toEqual([a]);
 });
 
-test('adds new processors of another postcss instance', t => {
+it('adds new processors of another postcss instance', () => {
     let a = () => 1;
     let processor = new Processor();
     let other     = new Processor([a]);
     processor.use(other);
-    t.deepEqual(processor.plugins, [a]);
+    expect(processor.plugins).toEqual([a]);
 });
 
-test('adds new processors from object', t => {
+it('adds new processors from object', () => {
     let a = () => 1;
     let processor = new Processor();
     let other     = new Processor([a]);
     processor.use({ postcss: other });
-    t.deepEqual(processor.plugins, [a]);
+    expect(processor.plugins).toEqual([a]);
 });
 
-test('returns itself', t => {
+it('returns itself', () => {
     let a = () => 1;
     let b = () => 2;
     let processor = new Processor();
-    t.deepEqual(processor.use(a).use(b).plugins, [a, b]);
+    expect(processor.use(a).use(b).plugins).toEqual([a, b]);
 });
 
-test('throws on wrong format', t => {
+it('throws on wrong format', () => {
     let pr = new Processor();
-    t.throws( () => {
+    expect(() => {
         pr.use(1);
-    }, /1 is not a PostCSS plugin/);
+    }).toThrowError(/1 is not a PostCSS plugin/);
 });
 
-test('processes CSS', t => {
+it('processes CSS', () => {
     let result = beforeFix.process('a::before{top:0}');
-    t.deepEqual(result.css, 'a::before{content:"";top:0}');
+    expect(result.css).toEqual('a::before{content:"";top:0}');
 });
 
-test('processes parsed AST', t => {
+it('processes parsed AST', () => {
     let root   = parse('a::before{top:0}');
     let result = beforeFix.process(root);
-    t.deepEqual(result.css, 'a::before{content:"";top:0}');
+    expect(result.css).toEqual('a::before{content:"";top:0}');
 });
 
-test('processes previous result', t => {
+it('processes previous result', () => {
     let result = (new Processor()).process('a::before{top:0}');
     result = beforeFix.process(result);
-    t.deepEqual(result.css, 'a::before{content:"";top:0}');
+    expect(result.css).toEqual('a::before{content:"";top:0}');
 });
 
-test('takes maps from previous result', t => {
+it('takes maps from previous result', () => {
     let one = (new Processor()).process('a{}', {
         from: 'a.css',
         to:   'b.css',
         map:  { inline: false }
     });
     let two = (new Processor()).process(one, { to: 'c.css' });
-    t.deepEqual(two.map.toJSON().sources, ['a.css']);
+    expect(two.map.toJSON().sources).toEqual(['a.css']);
 });
 
-test('inlines maps from previous result', t => {
+it('inlines maps from previous result', () => {
     let one = (new Processor()).process('a{}', {
         from: 'a.css',
         to:   'b.css',
@@ -124,10 +119,10 @@ test('inlines maps from previous result', t => {
         to:  'c.css',
         map: { inline: true }
     });
-    t.deepEqual(typeof two.map, 'undefined');
+    expect(two.map).not.toBeDefined();
 });
 
-test('throws with file name', t => {
+it('throws with file name', () => {
     let error;
     try {
         (new Processor()).process('a {', { from: 'a.css' }).css;
@@ -139,27 +134,27 @@ test('throws with file name', t => {
         }
     }
 
-    t.deepEqual(error.file, path.resolve('a.css'));
-    t.regex(error.message, /a.css:1:1: Unclosed block$/);
+    expect(error.file).toEqual(path.resolve('a.css'));
+    expect(error.message).toMatch(/a.css:1:1: Unclosed block$/);
 });
 
-test('allows to replace Root', t => {
+it('allows to replace Root', () => {
     let plugin = (css, result) => {
         result.root = new Root();
     };
     let processor = new Processor([plugin]);
-    t.deepEqual(processor.process('a {}').css, '');
+    expect(processor.process('a {}').css).toEqual('');
 });
 
-test('returns LazyResult object', t => {
+it('returns LazyResult object', () => {
     let result = (new Processor()).process('a{}');
-    t.truthy(result instanceof LazyResult);
-    t.deepEqual(result.css,        'a{}');
-    t.deepEqual(result.toString(), 'a{}');
+    expect(result instanceof LazyResult).toBeTruthy();
+    expect(result.css).toEqual('a{}');
+    expect(result.toString()).toEqual('a{}');
 });
 
-test('calls all plugins once', t => {
-    t.plan(1);
+it('calls all plugins once', () => {
+    expect.assertions(1);
 
     let calls = '';
     let a = () => {
@@ -174,28 +169,28 @@ test('calls all plugins once', t => {
     result.map;
     result.root;
     return result.then( () => {
-        t.deepEqual(calls, 'ab');
+        expect(calls).toEqual('ab');
     });
 });
 
-test('parses, converts and stringifies CSS', t => {
-    let a = css => t.truthy(css instanceof Root);
-    t.deepEqual(typeof (new Processor([a])).process('a {}').css, 'string');
+it('parses, converts and stringifies CSS', () => {
+    let a = css => expect(css instanceof Root).toBeTruthy();
+    expect(typeof (new Processor([a])).process('a {}').css).toEqual('string');
 });
 
-test('send result to plugins', t => {
-    t.plan(4);
+it('send result to plugins', () => {
+    expect.assertions(4);
     let processor = new Processor();
     let a = (css, result) => {
-        t.truthy(result instanceof Result);
-        t.deepEqual(result.processor, processor);
-        t.deepEqual(result.opts, { map: true });
-        t.deepEqual(result.root, css);
+        expect(result instanceof Result).toBeTruthy();
+        expect(result.processor).toEqual(processor);
+        expect(result.opts).toEqual({ map: true });
+        expect(result.root).toEqual(css);
     };
     return processor.use(a).process('a {}', { map: true });
 });
 
-test('accepts source map from PostCSS', t => {
+it('accepts source map from PostCSS', () => {
     let one = (new Processor()).process('a{}', {
         from: 'a.css',
         to:   'b.css',
@@ -206,17 +201,17 @@ test('accepts source map from PostCSS', t => {
         to:   'c.css',
         map:  { prev: one.map, inline: false }
     });
-    t.deepEqual(two.map.toJSON().sources, ['a.css']);
+    expect(two.map.toJSON().sources).toEqual(['a.css']);
 });
 
-test('supports async plugins', t => {
+it('supports async plugins', () => {
     let starts = 0;
     let finish = 0;
     let async1 = css => {
         return new Promise(resolve => {
             starts += 1;
             setTimeout(() => {
-                t.deepEqual(starts, 1);
+                expect(starts).toEqual(1);
 
                 css.append('a {}');
                 finish += 1;
@@ -226,8 +221,8 @@ test('supports async plugins', t => {
     };
     let async2 = css => {
         return new Promise(resolve => {
-            t.deepEqual(starts, 1);
-            t.deepEqual(finish, 1);
+            expect(starts).toEqual(1);
+            expect(finish).toEqual(1);
 
             starts += 1;
             setTimeout(() => {
@@ -238,20 +233,20 @@ test('supports async plugins', t => {
         });
     };
     return (new Processor([async1, async2])).process('').then( result => {
-        t.deepEqual(starts, 2);
-        t.deepEqual(finish, 2);
-        t.deepEqual(result.css, 'a {}\nb {}');
+        expect(starts).toEqual(2);
+        expect(finish).toEqual(2);
+        expect(result.css).toEqual('a {}\nb {}');
     });
 });
 
-test('works async without plugins', t => {
+it('works async without plugins', () => {
     return (new Processor()).process('a {}').then( result => {
-        t.deepEqual(result.css, 'a {}');
+        expect(result.css).toEqual('a {}');
     });
 });
 
-test('runs async plugin only once', t => {
-    t.plan(1);
+it('runs async plugin only once', () => {
+    expect.assertions(1);
 
     let calls = 0;
     let async = () => {
@@ -267,12 +262,12 @@ test('runs async plugin only once', t => {
     result.then( () => { });
     return result.then( () => {
         return result.then( () => {
-            t.deepEqual(calls, 1);
+            expect(calls).toEqual(1);
         });
     });
 });
 
-test('supports async errors', t => {
+it('supports async errors', done => {
     let error = new Error('Async');
     let async = () => {
         return new Promise( (resolve, reject) => {
@@ -280,55 +275,57 @@ test('supports async errors', t => {
         });
     };
     let result = (new Processor([async])).process('');
-    return result.then( () => {
-        t.fail();
+    result.then( () => {
+        done.fail();
     }).catch( err => {
-        t.deepEqual(err, error);
+        expect(err).toEqual(error);
         return result.catch( err2 => {
-            t.deepEqual(err2, error);
+            expect(err2).toEqual(error);
+            done();
         });
     });
 });
 
-test('supports sync errors in async mode', t => {
+it('supports sync errors in async mode', done => {
     let error = new Error('Async');
     let async = () => {
         throw error;
     };
-    return (new Processor([async])).process('').then( () => {
-        t.fail();
+    (new Processor([async])).process('').then( () => {
+        done.fail();
     }).catch( err => {
-        t.deepEqual(err, error);
+        expect(err).toEqual(error);
+        done();
     });
 });
 
-test('throws parse error in async', t => {
+it('throws parse error in async', () => {
     return (new Processor()).process('a{').catch( err => {
-        t.deepEqual(err.message, '<css input>:1:1: Unclosed block');
+        expect(err.message).toEqual('<css input>:1:1: Unclosed block');
     });
 });
 
-test('throws error on sync method to async plugin', t => {
+it('throws error on sync method to async plugin', () => {
     let async = () => {
         return new Promise( resolve => resolve() );
     };
-    t.throws( () => {
+    expect(() => {
         (new Processor([async])).process('a{}').css;
-    }, /async/);
+    }).toThrowError(/async/);
 });
 
-test('throws a sync call in async running', t => {
+it('throws a sync call in async running', () => {
     let async = () => new Promise( done => setTimeout(done, 1) );
 
     let processor = (new Processor([async])).process('a{}');
     processor.async();
 
-    t.throws( () => {
+    expect(() => {
         processor.sync();
-    }, /then/);
+    }).toThrowError(/then/);
 });
 
-test('checks plugin compatibility', t => {
+it('checks plugin compatibility', () => {
     let plugin = postcss.plugin('test', () => {
         return () => {
             throw new Error('Er');
@@ -343,99 +340,101 @@ test('checks plugin compatibility', t => {
         processor.process('a{}').css;
     };
 
-    t.throws( () => {
+    console.error = jest.fn();
+
+    expect(() => {
         processBy('1.0.0');
-    }, 'Er');
-    t.deepEqual(console.error.callCount, 1);
-    t.deepEqual(console.error.args[0][0],
+    }).toThrowError('Er');
+    expect(console.error.mock.calls.length).toEqual(1);
+    expect(console.error.mock.calls[0][0]).toEqual(
         'Your current PostCSS version is 1.0.0, but test uses 2.1.5. ' +
         'Perhaps this is the source of the error below.');
 
-    t.throws( () => {
+    expect(() => {
         processBy('3.0.0');
-    }, 'Er');
-    t.deepEqual(console.error.callCount, 2);
+    }).toThrowError('Er');
+    expect(console.error.mock.calls.length).toEqual(2);
 
-    t.throws( () => {
+    expect(() => {
         processBy('2.0.0');
-    }, 'Er');
-    t.deepEqual(console.error.callCount, 3);
+    }).toThrowError('Er');
+    expect(console.error.mock.calls.length).toEqual(3);
 
-    t.throws( () => {
+    expect(() => {
         processBy('2.1.0');
-    }, 'Er');
-    t.deepEqual(console.error.callCount, 3);
+    }).toThrowError('Er');
+    expect(console.error.mock.calls.length).toEqual(3);
 });
 
-test('sets last plugin to result', t => {
+it('sets last plugin to result', () => {
     let plugin1 = function (css, result) {
-        t.is(result.lastPlugin, plugin1);
+        expect(result.lastPlugin).toBe(plugin1);
     };
     let plugin2 = function (css, result) {
-        t.is(result.lastPlugin, plugin2);
+        expect(result.lastPlugin).toBe(plugin2);
     };
 
     let processor = new Processor([plugin1, plugin2]);
     return processor.process('a{}').then( result => {
-        t.is(result.lastPlugin, plugin2);
+        expect(result.lastPlugin).toBe(plugin2);
     });
 });
 
-test('uses custom parsers', t => {
+it('uses custom parsers', () => {
     let processor = new Processor([]);
     return processor.process('a{}', { parser: prs }).then( result => {
-        t.deepEqual(result.css, 'ok');
+        expect(result.css).toEqual('ok');
     });
 });
 
-test('uses custom parsers from object', t => {
+it('uses custom parsers from object', () => {
     let processor = new Processor([]);
     let syntax    = { parse: prs, stringify: str };
     return processor.process('a{}', { parser: syntax }).then( result => {
-        t.deepEqual(result.css, 'ok');
+        expect(result.css).toEqual('ok');
     });
 });
 
-test('uses custom stringifier', t => {
+it('uses custom stringifier', () => {
     let processor = new Processor([]);
     return processor.process('a{}', { stringifier: str }).then( result => {
-        t.deepEqual(result.css, '!');
+        expect(result.css).toEqual('!');
     });
 });
 
-test('uses custom stringifier from object', t => {
+it('uses custom stringifier from object', () => {
     let processor = new Processor([]);
     let syntax    = { parse: prs, stringify: str };
     return processor.process('', { stringifier: syntax }).then( result => {
-        t.deepEqual(result.css, '!');
+        expect(result.css).toEqual('!');
     });
 });
 
-test('uses custom stringifier with source maps', t => {
+it('uses custom stringifier with source maps', () => {
     let processor = new Processor([]);
     return processor.process('a{}', { map: true, stringifier: str })
         .then( result => {
-            t.regex(result.css, /!\n\/\*# sourceMap/);
+            expect(result.css).toMatch(/!\n\/\*# sourceMap/);
         });
 });
 
-test('uses custom syntax', t => {
+it('uses custom syntax', () => {
     let processor = new Processor([]);
     let syntax    = { parse: prs, stringify: str };
     return processor.process('a{}', { syntax }).then( result => {
-        t.deepEqual(result.css, 'ok!');
+        expect(result.css).toEqual('ok!');
     });
 });
 
-test('contains PostCSS version', t => {
-    t.regex((new Processor()).version, /\d+.\d+.\d+/);
+it('contains PostCSS version', () => {
+    expect((new Processor()).version).toMatch(/\d+.\d+.\d+/);
 });
 
-test('throws on syntax as plugin', t => {
+it('throws on syntax as plugin', () => {
     let processor = new Processor();
-    t.throws( () => {
+    expect(() => {
         processor.use({
             parse() { }
         });
-    }, /syntax/);
+    }).toThrowError(/syntax/);
 });

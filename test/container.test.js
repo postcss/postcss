@@ -3,8 +3,6 @@ import parse       from '../lib/parse';
 import Rule        from '../lib/rule';
 import Root        from '../lib/root';
 
-import test from 'ava';
-
 let example = 'a { a: 1; b: 2 }' +
               '/* a */' +
               '@keyframes anim {' +
@@ -19,40 +17,40 @@ let example = 'a { a: 1; b: 2 }' +
                   '}' +
               '}';
 
-test('throws error on declaration without value', t => {
-    t.throws( () => {
+it('throws error on declaration without value', () => {
+    expect(() => {
         (new Rule()).append({ prop: 'color', vlaue: 'black' });
-    }, /Value field is missed/);
+    }).toThrowError(/Value field is missed/);
 });
 
-test('throws error on unknown node type', t => {
-    t.throws( () => {
+it('throws error on unknown node type', () => {
+    expect(() => {
         (new Rule()).append({ foo: 'bar' });
-    }, /Unknown node type/);
+    }).toThrowError(/Unknown node type/);
 });
 
-test('push() adds child without checks', t => {
+it('push() adds child without checks', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.push(new Declaration({ prop: 'c', value: '3' }));
-    t.deepEqual(rule.toString(), 'a { a: 1; b: 2; c: 3 }');
-    t.deepEqual(rule.nodes.length, 3);
-    t.deepEqual(typeof rule.last.raws.before, 'undefined');
+    expect(rule.toString()).toEqual('a { a: 1; b: 2; c: 3 }');
+    expect(rule.nodes.length).toEqual(3);
+    expect(rule.last.raws.before).not.toBeDefined();
 });
 
-test('each() iterates', t => {
+it('each() iterates', () => {
     let rule    = parse('a { a: 1; b: 2 }').first;
     let indexes = [];
 
     let result = rule.each( (decl, i) => {
         indexes.push(i);
-        t.is(decl, rule.nodes[i]);
+        expect(decl).toBe(rule.nodes[i]);
     });
 
-    t.deepEqual(typeof result, 'undefined');
-    t.deepEqual(indexes, [0, 1]);
+    expect(result).not.toBeDefined();
+    expect(indexes).toEqual([0, 1]);
 });
 
-test('each() iterates with prepend', t => {
+it('each() iterates with prepend', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     let size = 0;
 
@@ -61,10 +59,10 @@ test('each() iterates with prepend', t => {
         size += 1;
     });
 
-    t.deepEqual(size, 2);
+    expect(size).toEqual(2);
 });
 
-test('each() iterates with prepend insertBefore', t => {
+it('each() iterates with prepend insertBefore', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     let size = 0;
 
@@ -75,10 +73,10 @@ test('each() iterates with prepend insertBefore', t => {
         size += 1;
     });
 
-    t.deepEqual(size, 2);
+    expect(size).toEqual(2);
 });
 
-test('each() iterates with append insertBefore', t => {
+it('each() iterates with append insertBefore', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     let size = 0;
 
@@ -89,10 +87,10 @@ test('each() iterates with append insertBefore', t => {
         size += 1;
     });
 
-    t.deepEqual(size, 3);
+    expect(size).toEqual(3);
 });
 
-test('each() iterates with prepend insertAfter', t => {
+it('each() iterates with prepend insertAfter', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     let size = 0;
 
@@ -101,10 +99,10 @@ test('each() iterates with prepend insertAfter', t => {
         size += 1;
     });
 
-    t.deepEqual(size, 2);
+    expect(size).toEqual(2);
 });
 
-test('each() iterates with append insertAfter', t => {
+it('each() iterates with append insertAfter', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     let size = 0;
 
@@ -115,10 +113,10 @@ test('each() iterates with append insertAfter', t => {
         size += 1;
     });
 
-    t.deepEqual(size, 3);
+    expect(size).toEqual(3);
 });
 
-test('each() iterates with remove', t => {
+it('each() iterates with remove', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     let size = 0;
 
@@ -127,10 +125,10 @@ test('each() iterates with remove', t => {
         size += 1;
     });
 
-    t.deepEqual(size, 2);
+    expect(size).toEqual(2);
 });
 
-test('each() breaks iteration', t => {
+it('each() breaks iteration', () => {
     let rule    = parse('a { a: 1; b: 2 }').first;
     let indexes = [];
 
@@ -139,11 +137,11 @@ test('each() breaks iteration', t => {
         return false;
     });
 
-    t.false(result);
-    t.deepEqual(indexes, [0]);
+    expect(result).toBe(false);
+    expect(indexes).toEqual([0]);
 });
 
-test('each() allows to change children', t => {
+it('each() allows to change children', () => {
     let rule  = parse('a { a: 1; b: 2 }').first;
     let props = [];
 
@@ -152,10 +150,10 @@ test('each() allows to change children', t => {
         rule.nodes = [rule.last, rule.first];
     });
 
-    t.deepEqual(props, ['a', 'a']);
+    expect(props).toEqual(['a', 'a']);
 });
 
-test('walk() iterates', t => {
+it('walk() iterates', () => {
     let types   = [];
     let indexes = [];
 
@@ -164,15 +162,15 @@ test('walk() iterates', t => {
         indexes.push(i);
     });
 
-    t.deepEqual(typeof result, 'undefined');
-    t.deepEqual(types, [
+    expect(result).not.toBeDefined();
+    expect(types).toEqual([
         'rule', 'decl', 'decl', 'comment', 'atrule', 'comment', 'rule', 'decl',
         'atrule', 'rule', 'decl', 'atrule', 'decl', 'comment'
     ]);
-    t.deepEqual(indexes, [0, 0, 1, 1, 2, 0, 1, 0, 3, 0, 0, 1, 0, 1]);
+    expect(indexes).toEqual([0, 0, 1, 1, 2, 0, 1, 0, 3, 0, 0, 1, 0, 1]);
 });
 
-test('walk() breaks iteration', t => {
+it('walk() breaks iteration', () => {
     let indexes = [];
 
     let result = parse(example).walk( (decl, i) => {
@@ -180,11 +178,11 @@ test('walk() breaks iteration', t => {
         return false;
     });
 
-    t.false(result);
-    t.deepEqual(indexes, [0]);
+    expect(result).toBe(false);
+    expect(indexes).toEqual([0]);
 });
 
-test('walkDecls() iterates', t => {
+it('walkDecls() iterates', () => {
     let props   = [];
     let indexes = [];
 
@@ -193,21 +191,21 @@ test('walkDecls() iterates', t => {
         indexes.push(i);
     });
 
-    t.deepEqual(typeof result, 'undefined');
-    t.deepEqual(props, ['a', 'b', 'c', 'd', 'e']);
-    t.deepEqual(indexes, [0, 1, 0, 0, 0]);
+    expect(result).not.toBeDefined();
+    expect(props).toEqual(['a', 'b', 'c', 'd', 'e']);
+    expect(indexes).toEqual([0, 1, 0, 0, 0]);
 });
 
-test('walkDecls() iterates with changes', t => {
+it('walkDecls() iterates with changes', () => {
     let size = 0;
     parse(example).walkDecls( (decl, i) => {
         decl.parent.removeChild(i);
         size += 1;
     });
-    t.deepEqual(size, 5);
+    expect(size).toEqual(5);
 });
 
-test('walkDecls() breaks iteration', t => {
+it('walkDecls() breaks iteration', () => {
     let indexes = [];
 
     let result = parse(example).walkDecls( (decl, i) => {
@@ -215,23 +213,23 @@ test('walkDecls() breaks iteration', t => {
         return false;
     });
 
-    t.false(result);
-    t.deepEqual(indexes, [0]);
+    expect(result).toBe(false);
+    expect(indexes).toEqual([0]);
 });
 
-test('walkDecls() filters declarations by property name', t => {
+it('walkDecls() filters declarations by property name', () => {
     let css  = parse('@page{a{one:1}}b{one:1;two:2}');
     let size = 0;
 
     css.walkDecls('one', decl => {
-        t.deepEqual(decl.prop, 'one');
+        expect(decl.prop).toEqual('one');
         size += 1;
     });
 
-    t.deepEqual(size, 2);
+    expect(size).toEqual(2);
 });
 
-test('walkDecls() breaks declarations filter by name', t => {
+it('walkDecls() breaks declarations filter by name', () => {
     let css  = parse('@page{a{one:1}}b{one:1;two:2}');
     let size = 0;
 
@@ -240,10 +238,10 @@ test('walkDecls() breaks declarations filter by name', t => {
         return false;
     });
 
-    t.deepEqual(size, 1);
+    expect(size).toEqual(1);
 });
 
-test('walkDecls() filters declarations by property regexp', t => {
+it('walkDecls() filters declarations by property regexp', () => {
     let css  = parse('@page{a{one:1}}b{one-x:1;two:2}');
     let size = 0;
 
@@ -251,10 +249,10 @@ test('walkDecls() filters declarations by property regexp', t => {
         size += 1;
     });
 
-    t.deepEqual(size, 2);
+    expect(size).toEqual(2);
 });
 
-test('walkDecls() breaks declarations filters by regexp', t => {
+it('walkDecls() breaks declarations filters by regexp', () => {
     let css  = parse('@page{a{one:1}}b{one-x:1;two:2}');
     let size = 0;
 
@@ -263,10 +261,10 @@ test('walkDecls() breaks declarations filters by regexp', t => {
         return false;
     });
 
-    t.deepEqual(size, 1);
+    expect(size).toEqual(1);
 });
 
-test('walkComments() iterates', t => {
+it('walkComments() iterates', () => {
     let texts   = [];
     let indexes = [];
 
@@ -275,21 +273,21 @@ test('walkComments() iterates', t => {
         indexes.push(i);
     });
 
-    t.deepEqual(typeof result, 'undefined');
-    t.deepEqual(texts,   ['a', 'b', 'c']);
-    t.deepEqual(indexes, [1, 0, 1]);
+    expect(result).not.toBeDefined();
+    expect(texts).toEqual(['a', 'b', 'c']);
+    expect(indexes).toEqual([1, 0, 1]);
 });
 
-test('walkComments() iterates with changes', t => {
+it('walkComments() iterates with changes', () => {
     let size = 0;
     parse(example).walkComments( (comment, i) => {
         comment.parent.removeChild(i);
         size += 1;
     });
-    t.deepEqual(size, 3);
+    expect(size).toEqual(3);
 });
 
-test('walkComments() breaks iteration', t => {
+it('walkComments() breaks iteration', () => {
     let indexes = [];
 
     let result = parse(example).walkComments( (comment, i) => {
@@ -297,11 +295,11 @@ test('walkComments() breaks iteration', t => {
         return false;
     });
 
-    t.false(result);
-    t.deepEqual(indexes, [1]);
+    expect(result).toBe(false);
+    expect(indexes).toEqual([1]);
 });
 
-test('walkRules() iterates', t => {
+it('walkRules() iterates', () => {
     let selectors = [];
     let indexes   = [];
 
@@ -310,21 +308,21 @@ test('walkRules() iterates', t => {
         indexes.push(i);
     });
 
-    t.deepEqual(typeof result, 'undefined');
-    t.deepEqual(selectors, ['a', 'to', 'em']);
-    t.deepEqual(indexes, [0, 1, 0]);
+    expect(result).not.toBeDefined();
+    expect(selectors).toEqual(['a', 'to', 'em']);
+    expect(indexes).toEqual([0, 1, 0]);
 });
 
-test('walkRules() iterates with changes', t => {
+it('walkRules() iterates with changes', () => {
     let size = 0;
     parse(example).walkRules( (rule, i) => {
         rule.parent.removeChild(i);
         size += 1;
     });
-    t.deepEqual(size, 3);
+    expect(size).toEqual(3);
 });
 
-test('walkRules() breaks iteration', t => {
+it('walkRules() breaks iteration', () => {
     let indexes = [];
 
     let result = parse(example).walkRules( (rule, i) => {
@@ -332,47 +330,47 @@ test('walkRules() breaks iteration', t => {
         return false;
     });
 
-    t.false(result);
-    t.deepEqual(indexes, [0]);
+    expect(result).toBe(false);
+    expect(indexes).toEqual([0]);
 });
 
-test('walkRules() filters by selector', t => {
+it('walkRules() filters by selector', () => {
     let size = 0;
     parse('a{}b{}a{}').walkRules('a', rule => {
-        t.deepEqual(rule.selector, 'a');
+        expect(rule.selector).toEqual('a');
         size += 1;
     });
-    t.deepEqual(size, 2);
+    expect(size).toEqual(2);
 });
 
-test('walkRules() breaks selector filters', t => {
+it('walkRules() breaks selector filters', () => {
     let size = 0;
     parse('a{}b{}a{}').walkRules('a', () => {
         size += 1;
         return false;
     });
-    t.deepEqual(size, 1);
+    expect(size).toEqual(1);
 });
 
-test('walkRules() filters by regexp', t => {
+it('walkRules() filters by regexp', () => {
     let size = 0;
     parse('a{}a b{}b a{}').walkRules(/^a/, rule => {
-        t.regex(rule.selector, /^a/);
+        expect(rule.selector).toMatch(/^a/);
         size += 1;
     });
-    t.deepEqual(size, 2);
+    expect(size).toEqual(2);
 });
 
-test('walkRules() breaks selector regexp', t => {
+it('walkRules() breaks selector regexp', () => {
     let size = 0;
     parse('a{}b a{}b a{}').walkRules(/^a/, () => {
         size += 1;
         return false;
     });
-    t.deepEqual(size, 1);
+    expect(size).toEqual(1);
 });
 
-test('walkAtRules() iterates', t => {
+it('walkAtRules() iterates', () => {
     let names   = [];
     let indexes = [];
 
@@ -381,21 +379,21 @@ test('walkAtRules() iterates', t => {
         indexes.push(i);
     });
 
-    t.deepEqual(typeof result, 'undefined');
-    t.deepEqual(names, ['keyframes', 'media', 'page']);
-    t.deepEqual(indexes, [2, 3, 1]);
+    expect(result).not.toBeDefined();
+    expect(names).toEqual(['keyframes', 'media', 'page']);
+    expect(indexes).toEqual([2, 3, 1]);
 });
 
-test('walkAtRules() iterates with changes', t => {
+it('walkAtRules() iterates with changes', () => {
     let size = 0;
     parse(example).walkAtRules( (atrule, i) => {
         atrule.parent.removeChild(i);
         size += 1;
     });
-    t.deepEqual(size, 3);
+    expect(size).toEqual(3);
 });
 
-test('walkAtRules() breaks iteration', t => {
+it('walkAtRules() breaks iteration', () => {
     let indexes = [];
 
     let result = parse(example).walkAtRules( (atrule, i) => {
@@ -403,32 +401,32 @@ test('walkAtRules() breaks iteration', t => {
         return false;
     });
 
-    t.false(result);
-    t.deepEqual(indexes, [2]);
+    expect(result).toBe(false);
+    expect(indexes).toEqual([2]);
 });
 
-test('walkAtRules() filters at-rules by name', t => {
+it('walkAtRules() filters at-rules by name', () => {
     let css  = parse('@page{@page 2{}}@media print{@page{}}');
     let size = 0;
 
     css.walkAtRules('page', atrule => {
-        t.deepEqual(atrule.name, 'page');
+        expect(atrule.name).toEqual('page');
         size += 1;
     });
 
-    t.deepEqual(size, 3);
+    expect(size).toEqual(3);
 });
 
-test('walkAtRules() breaks name filter', t => {
+it('walkAtRules() breaks name filter', () => {
     let size = 0;
     parse('@page{@page{@page{}}}').walkAtRules('page', () => {
         size += 1;
         return false;
     });
-    t.deepEqual(size, 1);
+    expect(size).toEqual(1);
 });
 
-test('walkAtRules() filters at-rules by name regexp', t => {
+it('walkAtRules() filters at-rules by name regexp', () => {
     let css  = parse('@page{@page 2{}}@media print{@pages{}}');
     let size = 0;
 
@@ -436,287 +434,287 @@ test('walkAtRules() filters at-rules by name regexp', t => {
         size += 1;
     });
 
-    t.deepEqual(size, 3);
+    expect(size).toEqual(3);
 });
 
-test('walkAtRules() breaks regexp filter', t => {
+it('walkAtRules() breaks regexp filter', () => {
     let size = 0;
     parse('@page{@pages{@page{}}}').walkAtRules(/page/, () => {
         size += 1;
         return false;
     });
-    t.deepEqual(size, 1);
+    expect(size).toEqual(1);
 });
 
-test('append() appends child', t => {
+it('append() appends child', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.append({ prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { a: 1; b: 2; c: 3 }');
-    t.deepEqual(rule.last.raws.before, ' ');
+    expect(rule.toString()).toEqual('a { a: 1; b: 2; c: 3 }');
+    expect(rule.last.raws.before).toEqual(' ');
 });
 
-test('append() appends multiple children', t => {
+it('append() appends multiple children', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.append({ prop: 'c', value: '3' }, { prop: 'd', value: '4' });
-    t.deepEqual(rule.toString(), 'a { a: 1; b: 2; c: 3; d: 4 }');
-    t.deepEqual(rule.last.raws.before, ' ');
+    expect(rule.toString()).toEqual('a { a: 1; b: 2; c: 3; d: 4 }');
+    expect(rule.last.raws.before).toEqual(' ');
 });
 
-test('append() has declaration shortcut', t => {
+it('append() has declaration shortcut', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.append({ prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { a: 1; b: 2; c: 3 }');
+    expect(rule.toString()).toEqual('a { a: 1; b: 2; c: 3 }');
 });
 
-test('append() has rule shortcut', t => {
+it('append() has rule shortcut', () => {
     let root = new Root();
     root.append({ selector: 'a' });
-    t.deepEqual(root.first.toString(), 'a {}');
+    expect(root.first.toString()).toEqual('a {}');
 });
 
-test('append() has at-rule shortcut', t => {
+it('append() has at-rule shortcut', () => {
     let root = new Root();
     root.append({ name: 'encoding', params: '"utf-8"' });
-    t.deepEqual(root.first.toString(), '@encoding "utf-8"');
+    expect(root.first.toString()).toEqual('@encoding "utf-8"');
 });
 
-test('append() has comment shortcut', t => {
+it('append() has comment shortcut', () => {
     let root = new Root();
     root.append({ text: 'ok' });
-    t.deepEqual(root.first.toString(), '/* ok */');
+    expect(root.first.toString()).toEqual('/* ok */');
 });
 
-test('append() receives root', t => {
+it('append() receives root', () => {
     let css = parse('a {}');
     css.append( parse('b {}') );
-    t.deepEqual(css.toString(), 'a {}\nb {}');
+    expect(css.toString()).toEqual('a {}\nb {}');
 });
 
-test('append() reveives string', t => {
+it('append() reveives string', () => {
     let root = new Root();
     root.append('a{}b{}');
     root.first.append('color:black');
-    t.deepEqual(root.toString(), 'a {\n    color: black\n}\nb {}');
-    t.deepEqual(typeof root.first.first.source, 'undefined');
+    expect(root.toString()).toEqual('a {\n    color: black\n}\nb {}');
+    expect(root.first.first.source).not.toBeDefined();
 });
 
-test('append() receives array', t => {
+it('append() receives array', () => {
     let a = parse('a{ z-index: 1 }');
     let b = parse('b{width:1px;height:2px}');
 
     a.first.append( b.first.nodes );
-    t.deepEqual(a.toString(), 'a{ z-index: 1; width: 1px; height: 2px }');
-    t.deepEqual(b.toString(), 'b{width:1px;height:2px}');
+    expect(a.toString()).toEqual('a{ z-index: 1; width: 1px; height: 2px }');
+    expect(b.toString()).toEqual('b{width:1px;height:2px}');
 });
 
-test('append() clones node on insert', t => {
+it('append() clones node on insert', () => {
     let a = parse('a{}');
     let b = parse('b{}');
 
     b.append(a.first);
     b.last.selector = 'b a';
 
-    t.deepEqual(a.toString(), 'a{}');
-    t.deepEqual(b.toString(), 'b{}\nb a{}');
+    expect(a.toString()).toEqual('a{}');
+    expect(b.toString()).toEqual('b{}\nb a{}');
 });
 
-test('prepend() prepends child', t => {
+it('prepend() prepends child', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.prepend({ prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { c: 3; a: 1; b: 2 }');
-    t.deepEqual(rule.first.raws.before, ' ');
+    expect(rule.toString()).toEqual('a { c: 3; a: 1; b: 2 }');
+    expect(rule.first.raws.before).toEqual(' ');
 });
 
-test('prepend() prepends multiple children', t => {
+it('prepend() prepends multiple children', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.prepend({ prop: 'c', value: '3' }, { prop: 'd', value: '4' });
-    t.deepEqual(rule.toString(), 'a { c: 3; d: 4; a: 1; b: 2 }');
-    t.deepEqual(rule.first.raws.before, ' ');
+    expect(rule.toString()).toEqual('a { c: 3; d: 4; a: 1; b: 2 }');
+    expect(rule.first.raws.before).toEqual(' ');
 });
 
-test('prepend() receive hash instead of declaration', t => {
+it('prepend() receive hash instead of declaration', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.prepend({ prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { c: 3; a: 1; b: 2 }');
+    expect(rule.toString()).toEqual('a { c: 3; a: 1; b: 2 }');
 });
 
-test('prepend() receives root', t => {
+it('prepend() receives root', () => {
     let css = parse('a {}');
     css.prepend( parse('b {}') );
-    t.deepEqual(css.toString(), 'b {}\na {}');
+    expect(css.toString()).toEqual('b {}\na {}');
 });
 
-test('prepend() receives root', t => {
+it('prepend() receives root', () => {
     let css = parse('a {}');
     css.prepend('b {}');
-    t.deepEqual(css.toString(), 'b {}\na {}');
+    expect(css.toString()).toEqual('b {}\na {}');
 });
 
-test('prepend() receives array', t => {
+it('prepend() receives array', () => {
     let a = parse('a{ z-index: 1 }');
     let b = parse('b{width:1px;height:2px}');
 
     a.first.prepend( b.first.nodes );
-    t.deepEqual(a.toString(), 'a{ width: 1px; height: 2px; z-index: 1 }');
+    expect(a.toString()).toEqual('a{ width: 1px; height: 2px; z-index: 1 }');
 });
 
-test('prepend() works on empty container', t => {
+it('prepend() works on empty container', () => {
     let root = parse('');
     root.prepend( new Rule({ selector: 'a' }) );
-    t.deepEqual(root.toString(), 'a {}');
+    expect(root.toString()).toEqual('a {}');
 });
 
-test('insertBefore() inserts child', t => {
+it('insertBefore() inserts child', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.insertBefore(1, { prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { a: 1; c: 3; b: 2 }');
-    t.deepEqual(rule.nodes[1].raws.before, ' ');
+    expect(rule.toString()).toEqual('a { a: 1; c: 3; b: 2 }');
+    expect(rule.nodes[1].raws.before).toEqual(' ');
 });
 
-test('insertBefore() works with nodes too', t => {
+it('insertBefore() works with nodes too', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.insertBefore(rule.nodes[1], { prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { a: 1; c: 3; b: 2 }');
+    expect(rule.toString()).toEqual('a { a: 1; c: 3; b: 2 }');
 });
 
-test('insertBefore() receive hash instead of declaration', t => {
+it('insertBefore() receive hash instead of declaration', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.insertBefore(1, { prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { a: 1; c: 3; b: 2 }');
+    expect(rule.toString()).toEqual('a { a: 1; c: 3; b: 2 }');
 });
 
-test('insertBefore() receives array', t => {
+it('insertBefore() receives array', () => {
     let a = parse('a{ color: red; z-index: 1 }');
     let b = parse('b{width:1;height:2}');
 
     a.first.insertBefore(1, b.first.nodes);
-    t.deepEqual(a.toString(),
-                'a{ color: red; width: 1; height: 2; z-index: 1 }');
+    expect(a.toString())
+        .toEqual('a{ color: red; width: 1; height: 2; z-index: 1 }');
 });
 
-test('insertAfter() inserts child', t => {
+it('insertAfter() inserts child', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.insertAfter(0, { prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { a: 1; c: 3; b: 2 }');
-    t.deepEqual(rule.nodes[1].raws.before, ' ');
+    expect(rule.toString()).toEqual('a { a: 1; c: 3; b: 2 }');
+    expect(rule.nodes[1].raws.before).toEqual(' ');
 });
 
-test('insertAfter() works with nodes too', t => {
+it('insertAfter() works with nodes too', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.insertAfter(rule.first, { prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { a: 1; c: 3; b: 2 }');
+    expect(rule.toString()).toEqual('a { a: 1; c: 3; b: 2 }');
 });
 
-test('insertAfter() receive hash instead of declaration', t => {
+it('insertAfter() receive hash instead of declaration', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.insertAfter(0, { prop: 'c', value: '3' });
-    t.deepEqual(rule.toString(), 'a { a: 1; c: 3; b: 2 }');
+    expect(rule.toString()).toEqual('a { a: 1; c: 3; b: 2 }');
 });
 
-test('insertAfter() receives array', t => {
+it('insertAfter() receives array', () => {
     let a = parse('a{ color: red; z-index: 1 }');
     let b = parse('b{width:1;height:2}');
 
     a.first.insertAfter(0, b.first.nodes);
-    t.deepEqual(a.toString(),
-                'a{ color: red; width: 1; height: 2; z-index: 1 }');
+    expect(a.toString())
+        .toEqual('a{ color: red; width: 1; height: 2; z-index: 1 }');
 });
 
-test('removeChild() removes by index', t => {
+it('removeChild() removes by index', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.removeChild(1);
-    t.deepEqual(rule.toString(), 'a { a: 1 }');
+    expect(rule.toString()).toEqual('a { a: 1 }');
 });
 
-test('removeChild() removes by node', t => {
+it('removeChild() removes by node', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.removeChild(rule.last);
-    t.deepEqual(rule.toString(), 'a { a: 1 }');
+    expect(rule.toString()).toEqual('a { a: 1 }');
 });
 
-test('removeChild() cleans parent in removed node', t => {
+it('removeChild() cleans parent in removed node', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     let decl = rule.first;
     rule.removeChild(decl);
-    t.deepEqual(typeof decl.parent, 'undefined');
+    expect(decl.parent).not.toBeDefined();
 });
 
-test('removeAll() removes all children', t => {
+it('removeAll() removes all children', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     let decl = rule.first;
     rule.removeAll();
 
-    t.deepEqual(typeof decl.parent, 'undefined');
-    t.deepEqual(rule.toString(), 'a { }');
+    expect(decl.parent).not.toBeDefined();
+    expect(rule.toString()).toEqual('a { }');
 });
 
-test('replaceValues() replaces strings', t => {
+it('replaceValues() replaces strings', () => {
     let css    = parse('a{one:1}b{two:1 2}');
     let result = css.replaceValues('1', 'A');
 
-    t.deepEqual(result, css);
-    t.deepEqual(css.toString(), 'a{one:A}b{two:A 2}');
+    expect(result).toEqual(css);
+    expect(css.toString()).toEqual('a{one:A}b{two:A 2}');
 });
 
-test('replaceValues() replaces regpexp', t => {
+it('replaceValues() replaces regpexp', () => {
     let css = parse('a{one:1}b{two:1 2}');
     css.replaceValues(/\d/g, i => i + 'A');
-    t.deepEqual(css.toString(), 'a{one:1A}b{two:1A 2A}');
+    expect(css.toString()).toEqual('a{one:1A}b{two:1A 2A}');
 });
 
-test('replaceValues() filters properties', t => {
+it('replaceValues() filters properties', () => {
     let css = parse('a{one:1}b{two:1 2}');
     css.replaceValues('1', { props: ['one'] }, 'A');
-    t.deepEqual(css.toString(), 'a{one:A}b{two:1 2}');
+    expect(css.toString()).toEqual('a{one:A}b{two:1 2}');
 });
 
-test('replaceValues() uses fast check', t => {
+it('replaceValues() uses fast check', () => {
     let css = parse('a{one:1}b{two:1 2}');
     css.replaceValues('1', { fast: '2' }, 'A');
-    t.deepEqual(css.toString(), 'a{one:1}b{two:A 2}');
+    expect(css.toString()).toEqual('a{one:1}b{two:A 2}');
 });
 
-test('any() return true if all children return true', t => {
+it('any() return true if all children return true', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
-    t.true(rule.every( i => i.prop.match(/a|b/) ));
-    t.false(rule.every( i => i.prop.match(/b/) ));
+    expect(rule.every( i => i.prop.match(/a|b/) )).toBe(true);
+    expect(rule.every( i => i.prop.match(/b/) )).toBe(false);
 });
 
-test('some() return true if all children return true', t => {
+it('some() return true if all children return true', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
-    t.true(rule.some( i => i.prop === 'b' ));
-    t.false(rule.some( i => i.prop === 'c' ));
+    expect(rule.some( i => i.prop === 'b' )).toBe(true);
+    expect(rule.some( i => i.prop === 'c' )).toBe(false);
 });
 
-test('index() returns child index', t => {
+it('index() returns child index', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
-    t.deepEqual(rule.index( rule.nodes[1] ), 1);
+    expect(rule.index( rule.nodes[1] )).toEqual(1);
 });
 
-test('index() returns argument if it(is number', t => {
+it('index() returns argument if it(is number', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
-    t.deepEqual(rule.index(2), 2);
+    expect(rule.index(2)).toEqual(2);
 });
 
-test('returns first child', t => {
+it('returns first child', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
-    t.deepEqual(rule.first.prop, 'a');
+    expect(rule.first.prop).toEqual('a');
 });
 
-test('returns last child', t => {
+it('returns last child', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
-    t.deepEqual(rule.last.prop, 'b');
+    expect(rule.last.prop).toEqual('b');
 });
 
-test('normalize() does not normalize new children with exists before', t => {
+it('normalize() does not normalize new children with exists before', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.append({ prop: 'c', value: '3', raws: { before: '\n ' } });
-    t.deepEqual(rule.toString(), 'a { a: 1; b: 2;\n c: 3 }');
+    expect(rule.toString()).toEqual('a { a: 1; b: 2;\n c: 3 }');
 });
 
-test('forces Declaration#value to be string', t => {
+it('forces Declaration#value to be string', () => {
     let rule = parse('a { a: 1; b: 2 }').first;
     rule.append({ prop: 'c', value: 3 });
-    t.deepEqual(typeof rule.first.value, 'string');
-    t.deepEqual(typeof rule.last.value,  'string');
+    expect(typeof rule.first.value).toEqual('string');
+    expect(typeof rule.last.value).toEqual('string');
 });

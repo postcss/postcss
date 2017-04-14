@@ -2,15 +2,13 @@ import Warning from '../lib/warning';
 import postcss from '../lib/postcss';
 import Result  from '../lib/result';
 
-import test from 'ava';
-
-test('stringifies', t => {
+it('stringifies', () => {
     let result = new Result();
     result.css = 'a{}';
-    t.deepEqual('' + result, result.css);
+    expect('' + result).toEqual(result.css);
 });
 
-test('adds warning', t => {
+it('adds warning', () => {
     let warning;
     let plugin = postcss.plugin('test-plugin', () => {
         return (css, res) => {
@@ -19,15 +17,15 @@ test('adds warning', t => {
     });
     let result = postcss([plugin]).process('a{}').sync();
 
-    t.deepEqual(warning, new Warning('test', {
+    expect(warning).toEqual(new Warning('test', {
         plugin: 'test-plugin',
         node:   result.root.first
     }));
 
-    t.deepEqual(result.messages, [warning]);
+    expect(result.messages).toEqual([warning]);
 });
 
-test('allows to override plugin', t => {
+it('allows to override plugin', () => {
     let plugin = postcss.plugin('test-plugin', () => {
         return (css, res) => {
             res.warn('test', { plugin: 'test-plugin#one' });
@@ -35,22 +33,24 @@ test('allows to override plugin', t => {
     });
     let result = postcss([plugin]).process('a{}').sync();
 
-    t.deepEqual(result.messages[0].plugin, 'test-plugin#one');
+    expect(result.messages[0].plugin).toEqual('test-plugin#one');
 });
 
-test('allows Root', t => {
+it('allows Root', () => {
     let result = new Result();
     let root   = postcss.parse('a{}');
     result.warn('TT', { node: root });
 
-    t.deepEqual(result.messages[0].toString(), '<css input>:1:1: TT');
+    expect(result.messages[0].toString()).toEqual('<css input>:1:1: TT');
 });
 
-test('returns only warnings', t => {
+it('returns only warnings', () => {
     let result = new Result();
     result.messages = [{ type: 'warning', text: 'a' },
                        { type: 'custom' },
                        { type: 'warning', text: 'b' }];
-    t.deepEqual(result.warnings(), [{ type: 'warning', text: 'a' },
-                                    { type: 'warning', text: 'b' }]);
+    expect(result.warnings()).toEqual([
+        { type: 'warning', text: 'a' },
+        { type: 'warning', text: 'b' }
+    ]);
 });

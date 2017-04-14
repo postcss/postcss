@@ -1,17 +1,15 @@
 import Comment from '../lib/comment';
 import parse   from '../lib/parse';
 
-import test from 'ava';
-
-test('toString() inserts default spaces', t => {
+it('toString() inserts default spaces', () => {
     let comment = new Comment({ text: 'hi' });
-    t.deepEqual(comment.toString(), '/* hi */');
+    expect(comment.toString()).toEqual('/* hi */');
 });
 
-test('toString() clones spaces from another comment', t => {
+it('toString() clones spaces from another comment', () => {
     let root    = parse('a{} /*hello*/');
     let comment = new Comment({ text: 'world' });
     root.append(comment);
 
-    t.deepEqual(root.toString(), 'a{} /*hello*/ /*world*/');
+    expect(root.toString()).toEqual('a{} /*hello*/ /*world*/');
 });

@@ -1,8 +1,6 @@
 import tokenizer from '../lib/tokenize';
 import Input    from '../lib/input';
 
-import test from 'ava';
-
 function tokenize(css, opts) {
     let processor = tokenizer(new Input(css), opts);
     let tokens = [];
@@ -12,39 +10,39 @@ function tokenize(css, opts) {
     return tokens;
 }
 
-function run(t, css, tokens, opts) {
-    t.deepEqual(tokenize(css, opts), tokens);
+function run(css, tokens, opts) {
+    expect(tokenize(css, opts)).toEqual(tokens);
 }
 
-test('tokenizes empty file', t => {
-    run(t, '', []);
+it('tokenizes empty file', () => {
+    run('', []);
 });
 
-test('tokenizes space', t => {
-    run(t, '\r\n \f\t', [ ['space', '\r\n \f\t'] ]);
+it('tokenizes space', () => {
+    run('\r\n \f\t', [ ['space', '\r\n \f\t'] ]);
 });
 
-test('tokenizes word', t => {
-    run(t, 'ab', [ ['word', 'ab', 1, 1, 1, 2] ]);
+it('tokenizes word', () => {
+    run('ab', [ ['word', 'ab', 1, 1, 1, 2] ]);
 });
 
-test('splits word by !', t => {
-    run(t, 'aa!bb', [
+it('splits word by !', () => {
+    run('aa!bb', [
         ['word', 'aa',  1, 1, 1, 2],
         ['word', '!bb', 1, 3, 1, 5]
     ]);
 });
 
-test('changes lines in spaces', t => {
-    run(t, 'a \n b', [
+it('changes lines in spaces', () => {
+    run('a \n b', [
         ['word',  'a', 1, 1, 1, 1],
         ['space', ' \n '],
         ['word',  'b', 2, 2, 2, 2]
     ]);
 });
 
-test('tokenizes control chars', t => {
-    run(t, '{:;}', [
+it('tokenizes control chars', () => {
+    run('{:;}', [
         ['{', '{', 1, 1],
         [':', ':', 1, 2],
         [';', ';', 1, 3],
@@ -52,8 +50,8 @@ test('tokenizes control chars', t => {
     ]);
 });
 
-test('escapes control symbols', t => {
-    run(t, '\\(\\{\\"\\@\\\\""', [
+it('escapes control symbols', () => {
+    run('\\(\\{\\"\\@\\\\""', [
         ['word',   '\\(',  1,  1, 1,  2],
         ['word',   '\\{',  1,  3, 1,  4],
         ['word',   '\\"',  1,  5, 1,  6],
@@ -63,19 +61,19 @@ test('escapes control symbols', t => {
     ]);
 });
 
-test('escapes backslash', t => {
-    run(t, '\\\\\\\\{', [
+it('escapes backslash', () => {
+    run('\\\\\\\\{', [
         ['word', '\\\\\\\\', 1, 1, 1, 4],
         ['{',    '{',        1, 5]
     ]);
 });
 
-test('tokenizes simple brackets', t => {
-    run(t, '(ab)', [ ['brackets', '(ab)', 1, 1, 1, 4] ]);
+it('tokenizes simple brackets', () => {
+    run('(ab)', [ ['brackets', '(ab)', 1, 1, 1, 4] ]);
 });
 
-test('tokenizes square brackets', t => {
-    run(t, 'a[bc]', [
+it('tokenizes square brackets', () => {
+    run('a[bc]', [
         ['word', 'a',  1, 1, 1, 1],
         ['[',    '[',  1, 2],
         ['word', 'bc', 1, 3, 1, 4],
@@ -83,8 +81,8 @@ test('tokenizes square brackets', t => {
     ]);
 });
 
-test('tokenizes complicated brackets', t => {
-    run(t, '(())("")(/**/)(\\\\)(\n)(', [
+it('tokenizes complicated brackets', () => {
+    run('(())("")(/**/)(\\\\)(\n)(', [
         ['(',        '(',    1, 1],
         ['brackets', '()',   1, 2, 1, 3],
         [')',        ')',    1, 4],
@@ -104,30 +102,30 @@ test('tokenizes complicated brackets', t => {
     ]);
 });
 
-test('tokenizes string', t => {
-    run(t, '\'"\'"\\""', [
+it('tokenizes string', () => {
+    run('\'"\'"\\""', [
         ['string', '\'"\'',  1, 1, 1, 3],
         ['string', '"\\""', 1, 4, 1, 7]
     ]);
 });
 
-test('tokenizes escaped string', t => {
-    run(t, '"\\\\"', [ ['string', '"\\\\"', 1, 1, 1, 4] ]);
+it('tokenizes escaped string', () => {
+    run('"\\\\"', [ ['string', '"\\\\"', 1, 1, 1, 4] ]);
 });
 
-test('changes lines in strings', t => {
-    run(t, '"\n\n""\n\n"', [
+it('changes lines in strings', () => {
+    run('"\n\n""\n\n"', [
         ['string', '"\n\n"', 1, 1, 3, 1],
         ['string', '"\n\n"', 3, 2, 5, 1]
     ]);
 });
 
-test('tokenizes at-word', t => {
-    run(t, '@word ', [ ['at-word', '@word', 1, 1, 1, 5], ['space', ' '] ]);
+it('tokenizes at-word', () => {
+    run('@word ', [ ['at-word', '@word', 1, 1, 1, 5], ['space', ' '] ]);
 });
 
-test('tokenizes at-word end', t => {
-    run(t, '@one{@two()@three""@four;', [
+it('tokenizes at-word end', () => {
+    run('@one{@two()@three""@four;', [
         ['at-word',  '@one',   1,  1, 1,  4],
         ['{',        '{',      1,  5],
         ['at-word',  '@two',   1,  6, 1,  9],
@@ -139,44 +137,44 @@ test('tokenizes at-word end', t => {
     ]);
 });
 
-test('tokenizes urls', t => {
-    run(t, 'url(/*\\))', [ ['word',     'url',     1, 1, 1, 3],
+it('tokenizes urls', () => {
+    run('url(/*\\))', [ ['word',     'url',     1, 1, 1, 3],
                          ['brackets', '(/*\\))', 1, 4, 1, 9] ]);
 });
 
-test('tokenizes quoted urls', t => {
-    run(t, 'url(")")', [ ['word',   'url', 1, 1, 1, 3],
+it('tokenizes quoted urls', () => {
+    run('url(")")', [ ['word',   'url', 1, 1, 1, 3],
                        ['(',      '(',   1, 4],
                        ['string', '")"', 1, 5, 1, 7],
                        [')',      ')',   1, 8] ]);
 });
 
-test('tokenizes at-symbol', t => {
-    run(t, '@', [ ['at-word', '@', 1, 1, 1, 1] ]);
+it('tokenizes at-symbol', () => {
+    run('@', [ ['at-word', '@', 1, 1, 1, 1] ]);
 });
 
-test('tokenizes comment', t => {
-    run(t, '/* a\nb */', [ ['comment', '/* a\nb */', 1, 1, 2, 4] ]);
+it('tokenizes comment', () => {
+    run('/* a\nb */', [ ['comment', '/* a\nb */', 1, 1, 2, 4] ]);
 });
 
-test('changes lines in comments', t => {
-    run(t, 'a/* \n */b', [
+it('changes lines in comments', () => {
+    run('a/* \n */b', [
         ['word',    'a',        1, 1, 1, 1],
         ['comment', '/* \n */', 1, 2, 2, 3],
         ['word',    'b',        2, 4, 2, 4]
     ]);
 });
 
-test('supports line feed', t => {
-    run(t, 'a\fb', [
+it('supports line feed', () => {
+    run('a\fb', [
         ['word',  'a', 1, 1, 1, 1],
         ['space', '\f'],
         ['word',  'b', 2, 1, 2, 1]
     ]);
 });
 
-test('supports carriage return', t => {
-    run(t, 'a\rb\r\nc', [
+it('supports carriage return', () => {
+    run('a\rb\r\nc', [
         ['word',  'a', 1, 1, 1, 1],
         ['space', '\r'],
         ['word',  'b', 2, 1, 2, 1],
@@ -185,14 +183,14 @@ test('supports carriage return', t => {
     ]);
 });
 
-test('tokenizes CSS', t => {
+it('tokenizes CSS', () => {
     let css = 'a {\n' +
               '  content: "a";\n' +
               '  width: calc(1px;)\n' +
               '  }\n' +
               '/* small screen */\n' +
               '@media screen {}';
-    run(t, css, [
+    run(css, [
         ['word',     'a',                  1,  1, 1,  1],
         ['space',    ' '],
         ['{',        '{',                  1,  3],
@@ -222,38 +220,38 @@ test('tokenizes CSS', t => {
     ]);
 });
 
-test('throws error on unclosed string', t => {
-    t.throws(() => {
+it('throws error on unclosed string', () => {
+    expect(() => {
         tokenize(' "');
-    }, /:1:2: Unclosed string/);
+    }).toThrowError(/:1:2: Unclosed string/);
 });
 
-test('throws error on unclosed comment', t => {
-    t.throws(() => {
+it('throws error on unclosed comment', () => {
+    expect(() => {
         tokenize(' /*');
-    }, /:1:2: Unclosed comment/);
+    }).toThrowError(/:1:2: Unclosed comment/);
 });
 
-test('throws error on unclosed url', t => {
-    t.throws(() => {
+it('throws error on unclosed url', () => {
+    expect(() => {
         tokenize('url(');
-    }, /:1:4: Unclosed bracket/);
+    }).toThrowError(/:1:4: Unclosed bracket/);
 });
 
-test('ignores unclosing string on request', t => {
-    run(t, ' "', [
+it('ignores unclosing string on request', () => {
+    run(' "', [
         ['space', ' '], ['string', '\"', 1, 2, 1, 3]
     ], { ignoreErrors: true });
 });
 
-test('ignores unclosing comment on request', t => {
-    run(t, ' /*', [
+it('ignores unclosing comment on request', () => {
+    run(' /*', [
         ['space', ' '], ['comment', '/*', 1, 2, 1, 4]
     ], { ignoreErrors: true });
 });
 
-test('ignores unclosing comment on request', t => {
-    run(t, 'url(', [
+it('ignores unclosing comment on request', () => {
+    run('url(', [
         ['word',     'url', 1, 1, 1, 3],
         ['brackets', '(',   1, 4, 1, 4]
     ], { ignoreErrors: true });
