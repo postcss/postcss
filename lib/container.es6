@@ -580,35 +580,35 @@ class Container extends Node {
         if ( typeof nodes === 'string' ) {
             let parse = require('./parse');
             nodes = cleanSource(parse(nodes).nodes);
-        } else if ( !Array.isArray(nodes) ) {
-            if ( nodes.type === 'root' ) {
-                nodes = nodes.nodes;
-            } else if ( nodes.type ) {
-                nodes = [nodes];
-            } else if ( nodes.prop ) {
-                if ( typeof nodes.value === 'undefined' ) {
-                    throw new Error('Value field is missed in node creation');
-                } else if ( typeof nodes.value !== 'string' ) {
-                    nodes.value = String(nodes.value);
-                }
-                nodes = [new Declaration(nodes)];
-            } else if ( nodes.selector ) {
-                let Rule = require('./rule');
-                nodes = [new Rule(nodes)];
-            } else if ( nodes.name ) {
-                let AtRule = require('./at-rule');
-                nodes = [new AtRule(nodes)];
-            } else if ( nodes.text ) {
-                nodes = [new Comment(nodes)];
-            } else {
-                throw new Error('Unknown node type in node creation');
+        } else if ( Array.isArray(nodes) ) {
+            nodes = nodes.slice(0);
+        } else if ( nodes.type === 'root' ) {
+            nodes = nodes.nodes.slice(0);
+        } else if ( nodes.type ) {
+            nodes = [nodes];
+        } else if ( nodes.prop ) {
+            if ( typeof nodes.value === 'undefined' ) {
+                throw new Error('Value field is missed in node creation');
+            } else if ( typeof nodes.value !== 'string' ) {
+                nodes.value = String(nodes.value);
             }
+            nodes = [new Declaration(nodes)];
+        } else if ( nodes.selector ) {
+            let Rule = require('./rule');
+            nodes = [new Rule(nodes)];
+        } else if ( nodes.name ) {
+            let AtRule = require('./at-rule');
+            nodes = [new AtRule(nodes)];
+        } else if ( nodes.text ) {
+            nodes = [new Comment(nodes)];
+        } else {
+            throw new Error('Unknown node type in node creation');
         }
 
         let processed = nodes.map( i => {
             if ( typeof i.before !== 'function' ) i = this.rebuild(i);
 
-            if ( i.parent ) i = i.clone();
+            if ( i.parent ) i.parent.removeChild(i);
             if ( typeof i.raws.before === 'undefined' ) {
                 if ( sample && typeof sample.raws.before !== 'undefined' ) {
                     i.raws.before = sample.raws.before.replace(/[^\s]/g, '');

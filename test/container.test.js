@@ -487,35 +487,35 @@ it('append() has comment shortcut', () => {
 it('append() receives root', () => {
     let css = parse('a {}');
     css.append( parse('b {}') );
-    expect(css.toString()).toEqual('a {}\nb {}');
+    expect(css.toString()).toEqual('a {}b {}');
 });
 
 it('append() reveives string', () => {
     let root = new Root();
     root.append('a{}b{}');
     root.first.append('color:black');
-    expect(root.toString()).toEqual('a {\n    color: black\n}\nb {}');
+    expect(root.toString()).toEqual('a{color:black}b{}');
     expect(root.first.first.source).not.toBeDefined();
 });
 
 it('append() receives array', () => {
     let a = parse('a{ z-index: 1 }');
-    let b = parse('b{width:1px;height:2px}');
+    let b = parse('b{ width: 1px; height: 2px }');
 
     a.first.append( b.first.nodes );
     expect(a.toString()).toEqual('a{ z-index: 1; width: 1px; height: 2px }');
-    expect(b.toString()).toEqual('b{width:1px;height:2px}');
+    expect(b.toString()).toEqual('b{ }');
 });
 
-it('append() clones node on insert', () => {
+it('append() move node on insert', () => {
     let a = parse('a{}');
     let b = parse('b{}');
 
     b.append(a.first);
     b.last.selector = 'b a';
 
-    expect(a.toString()).toEqual('a{}');
-    expect(b.toString()).toEqual('b{}\nb a{}');
+    expect(a.toString()).toEqual('');
+    expect(b.toString()).toEqual('b{}b a{}');
 });
 
 it('prepend() prepends child', () => {
@@ -552,7 +552,7 @@ it('prepend() receives root', () => {
 
 it('prepend() receives array', () => {
     let a = parse('a{ z-index: 1 }');
-    let b = parse('b{width:1px;height:2px}');
+    let b = parse('b{ width: 1px; height: 2px }');
 
     a.first.prepend( b.first.nodes );
     expect(a.toString()).toEqual('a{ width: 1px; height: 2px; z-index: 1 }');
@@ -585,7 +585,7 @@ it('insertBefore() receive hash instead of declaration', () => {
 
 it('insertBefore() receives array', () => {
     let a = parse('a{ color: red; z-index: 1 }');
-    let b = parse('b{width:1;height:2}');
+    let b = parse('b{ width: 1; height: 2 }');
 
     a.first.insertBefore(1, b.first.nodes);
     expect(a.toString())
@@ -613,7 +613,7 @@ it('insertAfter() receive hash instead of declaration', () => {
 
 it('insertAfter() receives array', () => {
     let a = parse('a{ color: red; z-index: 1 }');
-    let b = parse('b{width:1;height:2}');
+    let b = parse('b{ width: 1; height: 2 }');
 
     a.first.insertAfter(0, b.first.nodes);
     expect(a.toString())

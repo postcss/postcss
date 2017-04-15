@@ -235,7 +235,7 @@ it('supports async plugins', () => {
     return (new Processor([async1, async2])).process('').then( result => {
         expect(starts).toEqual(2);
         expect(finish).toEqual(2);
-        expect(result.css).toEqual('a {}\nb {}');
+        expect(result.css).toEqual('a {}b {}');
     });
 });
 
