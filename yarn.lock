@@ -3156,9 +3156,9 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
-postcss-parser-tests@^5.0.11:
+postcss-parser-tests@postcss/postcss-parser-tests:
   version "5.0.11"
-  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-5.0.11.tgz#46cfad57a4b628767c46d61a70a4a87dd446d038"
+  resolved "https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/2e583772b6e67dff3e1e8bb534a690ad78786300"
   dependencies:
     gulp-util "^3.0.7"
     load-resources "^0.1.1"
