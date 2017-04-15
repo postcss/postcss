@@ -48,7 +48,7 @@
     "jest": "^19.0.2",
     "jsdoc": "^3.4.3",
     "lint-staged": "^3.4.0",
-    "postcss-parser-tests": "^5.0.11",
+    "postcss-parser-tests": "postcss/postcss-parser-tests",
     "pre-commit": "^1.2.2",
     "run-sequence": "^1.2.2",
     "strip-ansi": "^3.0.1",

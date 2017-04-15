@@ -28,8 +28,11 @@ export default class Parser {
             switch ( token[0] ) {
 
             case 'space':
-            case ';':
                 this.spaces += token[1];
+                break;
+
+            case ';':
+                this.freeSemicolon(token);
                 break;
 
             case '}':
@@ -322,6 +325,17 @@ export default class Parser {
             this.current.raws.semicolon = this.semicolon;
         }
         this.current.raws.after = (this.current.raws.after || '') + this.spaces;
+    }
+
+    freeSemicolon(token) {
+        this.spaces += token[1];
+        if ( this.current.nodes ) {
+            let prev = this.current.nodes[this.current.nodes.length - 1];
+            if ( prev && prev.type === 'rule' ) {
+                prev.raws.ownSemicolon = this.spaces;
+                this.spaces = '';
+            }
+        }
     }
 
     // Helpers

@@ -51,6 +51,9 @@ class Stringifier {
 
     rule(node) {
         this.block(node, this.rawValue(node, 'selector'));
+        if ( node.raws.ownSemicolon ) {
+            this.builder(node.raws.ownSemicolon, node, 'end');
+        }
     }
 
     atrule(node, semicolon) {
