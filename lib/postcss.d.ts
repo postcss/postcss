@@ -709,31 +709,6 @@ declare module "postcss" {
              */
             cloneAfter(overrides?: Object): this;
             /**
-             * Removes the node from its current parent and inserts it at the end of
-             * newParent. This will clean the before and after code style properties
-             * from the node and replace them with the indentation style of newParent.
-             * It will also clean the between property if newParent is in another Root.
-             * @param newParent Where the current node will be moved.
-             * @returns This node for chaining.
-             */
-            moveTo(newParent: Container): this;
-            /**
-             * Removes the node from its current parent and inserts it into a new
-             * parent before otherNode. This will also clean the node's code style
-             * properties just as it would in node.moveTo(newParent).
-             * @param otherNode Will be after the current node after moving.
-             * @returns This node for chaining.
-             */
-            moveBefore(otherNode: Node): this;
-            /**
-             * Removes the node from its current parent and inserts it into a new
-             * parent after otherNode. This will also clean the node's code style
-             * properties just as it would in node.moveTo(newParent).
-             * @param otherNode Will be before the current node after moving.
-             * @returns This node for chaining.
-             */
-            moveAfter(otherNode: Node): this;
-            /**
              * @param prop Name or code style property.
              * @param defaultType Name of default value. It can be easily missed if the
              * value is the same as prop.
