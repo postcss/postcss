@@ -80,7 +80,7 @@ it('warn() accepts options', () => {
     expect(result.warnings()[0].index).toEqual(1);
 });
 
-it('remove() emoves node from parent', () => {
+it('remove() removes node from parent', () => {
     let rule = new Rule({ selector: 'a' });
     let decl = new Declaration({ prop: 'color', value: 'black' });
     rule.append(decl);
@@ -228,57 +228,6 @@ it('prev() returns previous node', () => {
     let css = parse('a{one:1;two:2}');
     expect(css.first.last.prev()).toBe(css.first.first);
     expect(css.first.first.prev()).not.toBeDefined();
-});
-
-it('moveTo() moves node between roots', () => {
-    let css1 = parse('a{one:1}b{two:2}');
-    let css2 = parse('c {\n thr: 3\n}');
-    css1.first.moveTo(css2);
-
-    expect(css1.toString()).toEqual('b{two:2}');
-    expect(css2.toString()).toEqual('c {\n thr: 3\n}\na {\n one: 1\n}');
-});
-
-it('moveTo() moves node inside one root', () => {
-    let css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
-    css.first.moveTo(css.last);
-
-    expect(css.toString())
-        .toEqual('@page {\n b {\n  two: 2\n }\n a{\n  one:1\n }\n}');
-});
-
-it('moveBefore() moves node between roots', () => {
-    let css1 = parse('a{one:1}b{two:2}');
-    let css2 = parse('c {\n thr: 3\n}');
-    css1.first.moveBefore(css2.first);
-
-    expect(css1.toString()).toEqual('b{two:2}');
-    expect(css2.toString()).toEqual('a {\n one: 1\n}\nc {\n thr: 3\n}');
-});
-
-it('moveBefore() moves node inside one root', () => {
-    let css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
-    css.first.moveBefore(css.last.first);
-
-    expect(css.toString())
-        .toEqual('@page {\n a{\n  one:1\n }\n b {\n  two: 2\n }\n}');
-});
-
-it('moveAfter() moves node between roots', () => {
-    let css1 = parse('a{one:1}b{two:2}');
-    let css2 = parse('c {\n thr: 3\n}');
-    css1.first.moveAfter(css2.first);
-
-    expect(css1.toString()).toEqual('b{two:2}');
-    expect(css2.toString()).toEqual('c {\n thr: 3\n}\na {\n one: 1\n}');
-});
-
-it('moveAfter() moves node inside one root', () => {
-    let css = parse('a{\n one:1}\n@page {\n b {\n  two: 2\n }\n}');
-    css.first.moveAfter(css.last.first);
-
-    expect(css.toString())
-        .toEqual('@page {\n b {\n  two: 2\n }\n a{\n  one:1\n }\n}');
 });
 
 it('toJSON() cleans parents inside', () => {

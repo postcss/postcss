@@ -1,6 +1,7 @@
 import CssSyntaxError from './css-syntax-error';
 import Stringifier    from './stringifier';
 import stringify      from './stringify';
+import warnOnce       from './warn-once';
 
 let cloneNode = function (obj, parent) {
     let cloned = new obj.constructor();
@@ -238,60 +239,24 @@ class Node {
         return this;
     }
 
-    /**
-     * Removes the node from its current parent and inserts it
-     * at the end of `newParent`.
-     *
-     * This will clean the `before` and `after` code {@link Node#raws} data
-     * from the node and replace them with the indentation style of `newParent`.
-     * It will also clean the `between` property
-     * if `newParent` is in another {@link Root}.
-     *
-     * @param {Container} newParent - container node where the current node
-     *                                will be moved
-     *
-     * @example
-     * atrule.moveTo(atrule.root());
-     *
-     * @return {Node} current node to methods chain
-     */
     moveTo(newParent) {
+        warnOnce('Node#moveTo was deprecated. Use Container#append.');
         this.cleanRaws(this.root() === newParent.root());
         this.remove();
         newParent.append(this);
         return this;
     }
 
-    /**
-     * Removes the node from its current parent and inserts it into
-     * a new parent before `otherNode`.
-     *
-     * This will also clean the node’s code style properties just as it would
-     * in {@link Node#moveTo}.
-     *
-     * @param {Node} otherNode - node that will be before current node
-     *
-     * @return {Node} current node to methods chain
-     */
     moveBefore(otherNode) {
+        warnOnce('Node#moveBefore was deprecated. Use Node#before.');
         this.cleanRaws(this.root() === otherNode.root());
         this.remove();
         otherNode.parent.insertBefore(otherNode, this);
         return this;
     }
 
-    /**
-     * Removes the node from its current parent and inserts it into
-     * a new parent after `otherNode`.
-     *
-     * This will also clean the node’s code style properties just as it would
-     * in {@link Node#moveTo}.
-     *
-     * @param {Node} otherNode - node that will be after current node
-     *
-     * @return {Node} current node to methods chain
-     */
     moveAfter(otherNode) {
+        warnOnce('Node#moveAfter was deprecated. Use Node#after.');
         this.cleanRaws(this.root() === otherNode.root());
         this.remove();
         otherNode.parent.insertAfter(otherNode, this);
