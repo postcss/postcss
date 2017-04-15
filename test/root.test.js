@@ -25,25 +25,6 @@ it('append() sets new line between rules in multiline files', () => {
     expect(a.append(b).toString()).toEqual('a {}\n\na {}\n\nb {}\n');
 });
 
-it('append() sets new line between rules on last newline', () => {
-    let a = parse('a {}\n');
-    let b = parse('b {}\n');
-    expect(a.append(b).toString()).toEqual('a {}\nb {}\n');
-});
-
-it('append() saves compressed style', () => {
-    let a = parse('a{}a{}');
-    let b = parse('b {\n}\n');
-    expect(a.append(b).toString()).toEqual('a{}a{}b{}');
-});
-
-it('append() saves compressed style with multiple nodes', () => {
-    let a = parse('a{}a{}');
-    let b = parse('b {\n}\n');
-    let c = parse('c {\n}\n');
-    expect(a.append(b, c).toString()).toEqual('a{}a{}b{}c{}');
-});
-
 it('insertAfter() does not use before of first rule', () => {
     let css = parse('a{} b{}');
     css.insertAfter(0, { selector: '.a' });
