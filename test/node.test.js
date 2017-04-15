@@ -159,13 +159,9 @@ it('clone() overrides properties', () => {
     expect(clone.selector).toEqual('b');
 });
 
-it('clone() cleans code style', () => {
+it('clone() keeps code style', () => {
     let css = parse('@page 1{a{color:black;}}');
-    expect(css.clone().toString()).toEqual('@page 1 {\n' +
-                                           '    a {\n' +
-                                           '        color: black\n' +
-                                           '    }\n' +
-                                           '}');
+    expect(css.clone().toString()).toEqual('@page 1{a{color:black;}}');
 });
 
 it('clone() works with null in raws', () => {

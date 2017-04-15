@@ -17,8 +17,7 @@ let cloneNode = function (obj, parent) {
             cloned[i] = value;
         } else if ( value instanceof Array ) {
             cloned[i] = value.map( j => cloneNode(j, cloned) );
-        } else if ( i !== 'before'  && i !== 'after' &&
-                    i !== 'between' && i !== 'semicolon' ) {
+        } else {
             if ( type === 'object' && value !== null ) value = cloneNode(value);
             cloned[i] = value;
         }
