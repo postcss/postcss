@@ -402,7 +402,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
-
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
 ## Analysis
@@ -425,6 +424,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-forced-variables`] provides warnings and errors when specified properties don't use variables.
 * [`postcss-reporter`] logs warnings and other messages from other plugins
   in the console.
+* [`postcss-forced-variables`] provides warnings and errors when specified rules don't use variables.
 
 ## Fun
 
@@ -557,6 +557,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-custom-media`]:                 https://github.com/postcss/postcss-custom-media
 [`postcss-default-unit`]:                 https://github.com/antyakushev/postcss-default-unit
 [`postcss-flexboxfixer`]:                 https://github.com/hallvors/postcss-flexboxfixer
+[`postcss-forced-variables`]:             https://github.com/alekhrycaiko/postcss-forced-variables
 [`postcss-font-awesome`]:                 https://github.com/dan-gamble/postcss-font-awesome
 [`postcss-font-variant`]:                 https://github.com/postcss/postcss-font-variant
 [`postcss-lazyimagecss`]:                 https://github.com/Jeff2Ma/postcss-lazyimagecss
