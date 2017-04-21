@@ -122,8 +122,12 @@ export default class MapGenerator {
 
     b64Encode(str) {
         let b64str;
-        if (typeof Buffer !== 'undefined') { // In Node.JS
-            b64str = new Buffer(str).toString('base64');
+        if (Buffer) { // In Node.JS
+            if (Buffer.from) {
+                b64str = Buffer.from(str).toString('base64');
+            } else {
+                b64str = new Buffer(str).toString('base64');
+            }
         } else { // In Browsers
             /* global btoa */
             /* eslint no-undef: "error" */
