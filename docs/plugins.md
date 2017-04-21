@@ -287,6 +287,7 @@ loosely resembles the original.
 * [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
+* [`postcss-nested-import`] inlines stylesheets referred to by `@import` rules inside nested rule blocks.
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
 * [`postcss-reference`] emulates Less’s [`@import (reference)`].
 * [`postcss-remove-root`] removes all instances of `:root` from a stylesheet.
@@ -661,6 +662,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-filter`]:                       https://github.com/alanev/postcss-filter
 [`postcss-hidden`]:                       https://github.com/lukelarsen/postcss-hidden
 [`postcss-import`]:                       https://github.com/postcss/postcss-import
+[`postcss-nested-import`]:                https://github.com/eriklharper/postcss-nested-import
 [`postcss-layout`]:                       https://github.com/arccoza/postcss-layout
 [`postcss-mixins`]:                       https://github.com/postcss/postcss-mixins
 [`postcss-nested`]:                       https://github.com/postcss/postcss-nested
