@@ -141,6 +141,7 @@ export default class MapGenerator {
         let content;
 
         if ( this.isInline() ) {
+
             content = 'data:application/json;base64,' +
                 this.b64Encode(this.map.toString());
 
