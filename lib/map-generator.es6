@@ -124,8 +124,32 @@ export default class MapGenerator {
         let content;
 
         if ( this.isInline() ) {
-            content = 'data:application/json;base64,' +
-                       new Buffer( this.map.toString() ).toString('base64');
+
+            let mapString = this.map.toString();
+
+            let mapLen = mapString.length;
+            let SafeUint8Array = typeof Uint8Array !== 'undefined' ?
+                Uint8Array :
+                Array;
+            let mapBuffer = new SafeUint8Array(mapLen);
+            let b64map;
+
+            // Fix UTF-16 bug in browsers.
+            for (let i = 0; i < mapLen; i++) {
+                mapBuffer[i] = mapString.charCodeAt(i);
+            }
+
+            if (typeof Buffer !== 'undefined') { // In Node.JS
+                b64map = new Buffer(mapBuffer).toString('base64');
+            } else { // In Browsers
+                /* global btoa */
+                /* eslint no-undef: "error" */
+                b64map = btoa(
+                    String.fromCharCode.apply(null, mapBuffer)
+                );
+            }
+
+            content = 'data:application/json;base64,' + b64map;
 
         } else if ( typeof this.mapOpts.annotation === 'string' ) {
             content = this.mapOpts.annotation;
