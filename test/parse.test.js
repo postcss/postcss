@@ -5,15 +5,63 @@ import cases from 'postcss-parser-tests';
 import path  from 'path';
 import fs    from 'fs';
 
+require('colors');
+const jsdiff = require('diff');
+
+function viewDiff(diff) {
+
+    let output = '';
+
+    if (diff) {
+
+        diff.forEach(part => {
+            let color;
+            if (part.added) {
+                color = 'green';
+            } else if (part.removed) {
+                color = 'red';
+            } else {
+                color = 'gray';
+            }
+            output += part.value[color];
+        });
+
+    }
+
+    return output;
+}
+
+function compare(str, refStr) {
+
+    let result = {
+        identical: false,
+        diff: ''
+    };
+
+    result.identical = str === refStr;
+
+    if (!result.identical) {
+        result.diff = viewDiff(jsdiff.diffWordsWithSpace(str, refStr));
+    }
+
+    return result;
+}
+
 it('works with file reads', () => {
     let stream = fs.readFileSync(cases.path('atrule-empty.css'));
     expect(parse(stream) instanceof Root).toBeTruthy();
 });
 
 cases.each( (name, css, json) => {
-    it('parses ' + name, () => {
+    it('parses ' + name, done => {
         let parsed = cases.jsonify(parse(css, { from: name }));
-        expect(parsed).toEqual(json);
+        let tcompare = compare(parsed, json);
+        if (tcompare.identical) {
+            expect(tcompare.identical).toBeTruthy();
+        } else {
+            done.fail(tcompare.diff);
+        }
+        done();
     });
 });
 
