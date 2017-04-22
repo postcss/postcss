@@ -120,12 +120,26 @@ export default class MapGenerator {
         }
     }
 
+    b64Encode(str) {
+        let b64str;
+        if (Buffer) { // In Node.JS
+            b64str = Buffer.from ?
+                Buffer.from(str).toString('base64') :
+                new Buffer(str).toString('base64');
+        } else { // In Browsers
+            /* global window */
+            b64str = window.btoa(unescape(encodeURIComponent(str)));
+        }
+        return b64str;
+    }
+
     addAnnotation() {
         let content;
 
         if ( this.isInline() ) {
+
             content = 'data:application/json;base64,' +
-                       new Buffer( this.map.toString() ).toString('base64');
+                this.b64Encode(this.map.toString());
 
         } else if ( typeof this.mapOpts.annotation === 'string' ) {
             content = this.mapOpts.annotation;
