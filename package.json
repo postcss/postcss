@@ -99,6 +99,7 @@
       "no-new": "off"
     },
     "env": {
+      "browser": true,
       "jest": true
     }
   }
