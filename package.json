@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
-    "babel-eslint": "^7.2.2",
+    "babel-eslint": "^7.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-precompile-charcodes": "^1.0.0",
     "babel-preset-env": "^1.4.0",
