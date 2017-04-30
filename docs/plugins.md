@@ -94,6 +94,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`postcss-selector-matches`] transforms CSS4 `:matches()`
   to more compatible CSS.
+* [`postcss-start-to-end`] lets you control your layout (ltr or rtl) through logical rather than direction / physical rules.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
 See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
@@ -730,3 +731,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-parent-selector`]:              https://github.com/domwashburn/postcss-parent-selector
 [`postcss-font-family-system-ui`]:        https://github.com/JLHwung/postcss-font-family-system-ui
 [`postcss-percentage`]:                   https://github.com/creeperyang/postcss-percentage
+[`postcss-start-to-end`]:                 https://github.com/sandrina-p/postcss-start-to-end
