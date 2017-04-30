@@ -1,14 +1,16 @@
 import Declaration from './declaration';
-import tokenizer   from './tokenize';
+// import tokenizer   from './tokenize';
 import Comment     from './comment';
 import AtRule      from './at-rule';
 import Root        from './root';
 import Rule        from './rule';
+import { Tokenizer } from './tokenizer';
 
 export default class Parser {
-
     constructor(input) {
         this.input = input;
+
+        let css = input.css.valueOf();
 
         this.pos       = 0;
         this.root      = new Root();
@@ -16,20 +18,24 @@ export default class Parser {
         this.spaces    = '';
         this.semicolon = false;
 
+        this.tokenizer = new Tokenizer(css);
+        this.currentToken = null;
+
         this.root.source = { input, start: { line: 1, column: 1 } };
     }
 
-    tokenize() {
-        this.tokens = tokenizer(this.input);
+    /* Read next token value */
+    getNextToken() {
+        this.tokenizer.readNextToken();
+        this.currentToken = this.tokenizer.tokenType;
     }
 
-    loop() {
-        let token;
-        while ( this.pos < this.tokens.length ) {
-            token = this.tokens[this.pos];
-
+    /* Parser driver, parse full file, construct AST*/
+    parse() {
+        while (!this.tokenizer.eof) {
+            this.getNextToken();
+            const token = this.currentToken;
             switch ( token[0] ) {
-
             case 'space':
             case ';':
                 this.spaces += token[1];
