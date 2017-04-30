@@ -405,6 +405,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
+* [`postcss-autocorrect`] Corrects typos and notifies in the console.
+
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -733,3 +735,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-font-family-system-ui`]:        https://github.com/JLHwung/postcss-font-family-system-ui
 [`postcss-percentage`]:                   https://github.com/creeperyang/postcss-percentage
 [`postcss-start-to-end`]:                 https://github.com/sandrina-p/postcss-start-to-end
+[`postcss-autocorrect`]:                  https://github.com/DimitrisNL/postcss-autocorrect
