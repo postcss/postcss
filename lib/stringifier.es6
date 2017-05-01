@@ -34,7 +34,7 @@ class Stringifier {
     comment(node) {
         let left  = this.raw(node, 'left',  'commentLeft');
         let right = this.raw(node, 'right', 'commentRight');
-        this.builder('/*' + left + node.text + right + '*/', node);
+        this.builder(`/*${left}${node.text}${right}*/`, node);
     }
 
     decl(node, semicolon) {
@@ -54,7 +54,7 @@ class Stringifier {
     }
 
     atrule(node, semicolon) {
-        let name   = '@' + node.name;
+        let name   = `@${node.name}`;
         let params = node.params ? this.rawValue(node, 'params') : '';
 
         if ( typeof node.raws.afterName !== 'undefined' ) {
@@ -89,7 +89,7 @@ class Stringifier {
 
     block(node, start) {
         let between = this.raw(node, 'between', 'beforeOpen');
-        this.builder(start + between + '{', node, 'start');
+        this.builder(`${start + between}{`, node, 'start');
 
         let after;
         if ( node.nodes && node.nodes.length ) {
@@ -135,7 +135,7 @@ class Stringifier {
         if ( detect === 'before' || detect === 'after' ) {
             return this.beforeAfter(node, detect);
         } else {
-            let method = 'raw' + capitalize(detect);
+            let method = `raw${capitalize(detect)}`;
             if ( this[method] ) {
                 value = this[method](root, node);
             } else {
@@ -196,7 +196,7 @@ class Stringifier {
         root.walkComments( i => {
             if ( typeof i.raws.before !== 'undefined' ) {
                 value = i.raws.before;
-                if ( value.indexOf('\n') !== -1 ) {
+                if ( value.includes('\n') ) {
                     value = value.replace(/[^\n]+$/, '');
                 }
                 return false;
@@ -213,7 +213,7 @@ class Stringifier {
         root.walkDecls( i => {
             if ( typeof i.raws.before !== 'undefined' ) {
                 value = i.raws.before;
-                if ( value.indexOf('\n') !== -1 ) {
+                if ( value.includes('\n') ) {
                     value = value.replace(/[^\n]+$/, '');
                 }
                 return false;
@@ -231,7 +231,7 @@ class Stringifier {
             if ( i.nodes && (i.parent !== root || root.first !== i) ) {
                 if ( typeof i.raws.before !== 'undefined' ) {
                     value = i.raws.before;
-                    if ( value.indexOf('\n') !== -1 ) {
+                    if ( value.includes('\n') ) {
                         value = value.replace(/[^\n]+$/, '');
                     }
                     return false;
@@ -247,7 +247,7 @@ class Stringifier {
             if ( i.nodes && i.nodes.length > 0 ) {
                 if ( typeof i.raws.after !== 'undefined' ) {
                     value = i.raws.after;
-                    if ( value.indexOf('\n') !== -1 ) {
+                    if ( value.includes('\n') ) {
                         value = value.replace(/[^\n]+$/, '');
                     }
                     return false;
@@ -298,7 +298,7 @@ class Stringifier {
             buf = buf.parent;
         }
 
-        if ( value.indexOf('\n') !== -1 ) {
+        if ( value.includes('\n') ) {
             let indent = this.raw(node, null, 'indent');
             if ( indent.length ) {
                 for ( let step = 0; step < depth; step++ ) value += indent;
