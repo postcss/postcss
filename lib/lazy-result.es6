@@ -358,4 +358,3 @@ export default LazyResult;
  * @callback onRejected
  * @param {Error} error
  */
- 
