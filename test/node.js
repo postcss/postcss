@@ -22,7 +22,7 @@ test('error() generates custom error', t => {
     let css   = parse('a{}', { from: file });
     let error = css.first.error('Test');
     t.truthy(error instanceof CssSyntaxError);
-    t.deepEqual(error.message, file + ':1:1: Test');
+    t.deepEqual(error.message, `${file}:1:1: Test`);
 });
 
 test('error() generates custom error for nodes without source', t => {

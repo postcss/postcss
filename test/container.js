@@ -660,7 +660,7 @@ test('replaceValues() replaces strings', t => {
 
 test('replaceValues() replaces regpexp', t => {
     let css = parse('a{one:1}b{two:1 2}');
-    css.replaceValues(/\d/g, i => i + 'A');
+    css.replaceValues(/\d/g, i => `${i}A`);
     t.deepEqual(css.toString(), 'a{one:1A}b{two:1A 2A}');
 });
 

@@ -7,7 +7,7 @@ import test from 'ava';
 test('stringifies', t => {
     let result = new Result();
     result.css = 'a{}';
-    t.deepEqual('' + result, result.css);
+    t.deepEqual(`${result}`, result.css);
 });
 
 test('adds warning', t => {
