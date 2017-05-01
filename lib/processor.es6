@@ -111,7 +111,7 @@ class Processor {
                                 'outlined in your PostCSS ' +
                                 'runner documentation.');
             } else {
-                throw new Error(i + ' is not a PostCSS plugin');
+                throw new Error(`${i} is not a PostCSS plugin`);
             }
         }
         return normalized;
