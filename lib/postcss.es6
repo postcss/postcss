@@ -27,107 +27,111 @@ import Root        from './root';
  *
  * @namespace postcss
  */
-function postcss(...plugins) {
-    if ( plugins.length === 1 && Array.isArray(plugins[0]) ) {
-        plugins = plugins[0];
-    }
-    return new Processor(plugins);
+class postcss {
+ constructor(...plugins) {
+     if ( plugins.length === 1 && Array.isArray(plugins[0]) ) {
+         plugins = plugins[0];
+     }
+     return new Processor(plugins);
+ }
+
+ /**
+  * Creates a PostCSS plugin with a standard API.
+  *
+  * The newly-wrapped function will provide both the name and PostCSS
+  * version of the plugin.
+  *
+  * ```js
+  *  const processor = postcss([replace]);
+  *  processor.plugins[0].postcssPlugin  //=> 'postcss-replace'
+  *  processor.plugins[0].postcssVersion //=> '5.1.0'
+  * ```
+  *
+  * The plugin function receives 2 arguments: {@link Root}
+  * and {@link Result} instance. The function should mutate the provided
+  * `Root` node. Alternatively, you can create a new `Root` node
+  * and override the `result.root` property.
+  *
+  * ```js
+  * const cleaner = postcss.plugin('postcss-cleaner', () => {
+  *   return (root, result) => {
+  *     result.root = postcss.root();
+  *   };
+  * });
+  * ```
+  *
+  * As a convenience, plugins also expose a `process` method so that you can use
+  * them as standalone tools.
+  *
+  * ```js
+  * cleaner.process(css, options);
+  * // This is equivalent to:
+  * postcss([ cleaner(options) ]).process(css);
+  * ```
+  *
+  * Asynchronous plugins should return a `Promise` instance.
+  *
+  * ```js
+  * postcss.plugin('postcss-import', () => {
+  *   return (root, result) => {
+  *     return new Promise( (resolve, reject) => {
+  *       fs.readFile('base.css', (base) => {
+  *         root.prepend(base);
+  *         resolve();
+  *       });
+  *     });
+  *   };
+  * });
+  * ```
+  *
+  * Add warnings using the {@link Node#warn} method.
+  * Send data to other plugins using the {@link Result#messages} array.
+  *
+  * ```js
+  * postcss.plugin('postcss-caniuse-test', () => {
+  *   return (root, result) => {
+  *     css.walkDecls(decl => {
+  *       if ( !caniuse.support(decl.prop) ) {
+  *         decl.warn(result, 'Some browsers do not support ' + decl.prop);
+  *       }
+  *     });
+  *   };
+  * });
+  * ```
+  *
+  * @param {string} name          - PostCSS plugin name. Same as in `name`
+  *                                 property in `package.json`. It will be saved
+  *                                 in `plugin.postcssPlugin` property.
+  * @param {function} initializer - will receive plugin options
+  *                                 and should return {@link pluginFunction}
+  *
+  * @return {Plugin} PostCSS plugin
+  */
+ static plugin(name, initializer) {
+  class creator {
+   constructor(...args) {
+       let transformer = initializer(...args);
+       transformer.postcssPlugin  = name;
+       transformer.postcssVersion = (new Processor()).version;
+       return transformer;
+   }
+
+   static process(root, opts) {
+       return postcss([ creator(opts) ]).process(root, opts);
+   }
+  }
+
+  let cache;
+  Object.defineProperty(creator, 'postcss', {
+      get() {
+          if ( !cache ) cache = creator();
+          return cache;
+      }
+  });
+
+  return creator;
+ }
 }
-
-/**
- * Creates a PostCSS plugin with a standard API.
- *
- * The newly-wrapped function will provide both the name and PostCSS
- * version of the plugin.
- *
- * ```js
- *  const processor = postcss([replace]);
- *  processor.plugins[0].postcssPlugin  //=> 'postcss-replace'
- *  processor.plugins[0].postcssVersion //=> '5.1.0'
- * ```
- *
- * The plugin function receives 2 arguments: {@link Root}
- * and {@link Result} instance. The function should mutate the provided
- * `Root` node. Alternatively, you can create a new `Root` node
- * and override the `result.root` property.
- *
- * ```js
- * const cleaner = postcss.plugin('postcss-cleaner', () => {
- *   return (root, result) => {
- *     result.root = postcss.root();
- *   };
- * });
- * ```
- *
- * As a convenience, plugins also expose a `process` method so that you can use
- * them as standalone tools.
- *
- * ```js
- * cleaner.process(css, options);
- * // This is equivalent to:
- * postcss([ cleaner(options) ]).process(css);
- * ```
- *
- * Asynchronous plugins should return a `Promise` instance.
- *
- * ```js
- * postcss.plugin('postcss-import', () => {
- *   return (root, result) => {
- *     return new Promise( (resolve, reject) => {
- *       fs.readFile('base.css', (base) => {
- *         root.prepend(base);
- *         resolve();
- *       });
- *     });
- *   };
- * });
- * ```
- *
- * Add warnings using the {@link Node#warn} method.
- * Send data to other plugins using the {@link Result#messages} array.
- *
- * ```js
- * postcss.plugin('postcss-caniuse-test', () => {
- *   return (root, result) => {
- *     css.walkDecls(decl => {
- *       if ( !caniuse.support(decl.prop) ) {
- *         decl.warn(result, 'Some browsers do not support ' + decl.prop);
- *       }
- *     });
- *   };
- * });
- * ```
- *
- * @param {string} name          - PostCSS plugin name. Same as in `name`
- *                                 property in `package.json`. It will be saved
- *                                 in `plugin.postcssPlugin` property.
- * @param {function} initializer - will receive plugin options
- *                                 and should return {@link pluginFunction}
- *
- * @return {Plugin} PostCSS plugin
- */
-postcss.plugin = function plugin(name, initializer) {
-    let creator = function (...args) {
-        let transformer = initializer(...args);
-        transformer.postcssPlugin  = name;
-        transformer.postcssVersion = (new Processor()).version;
-        return transformer;
-    };
-
-    let cache;
-    Object.defineProperty(creator, 'postcss', {
-        get() {
-            if ( !cache ) cache = creator();
-            return cache;
-        }
-    });
-
-    creator.process = function (root, opts) {
-        return postcss([ creator(opts) ]).process(root, opts);
-    };
-
-    return creator;
-};
 
 /**
  * Default function to convert a node tree into a CSS string.
