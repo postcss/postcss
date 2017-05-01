@@ -3,7 +3,7 @@ import Stringifier    from './stringifier';
 import stringify      from './stringify';
 import warnOnce       from './warn-once';
 
-let cloneNode = function (obj, parent) {
+let cloneNode = (obj, parent) => {
     let cloned = new obj.constructor();
 
     for ( let i in obj ) {
@@ -41,8 +41,7 @@ class Node {
         this.raws = { };
         if ( typeof defaults !== 'object' && typeof defaults !== 'undefined' ) {
             throw new Error(
-                'PostCSS nodes constructor accepts object, not ' +
-                JSON.stringify(defaults));
+                `PostCSS nodes constructor accepts object, not ${JSON.stringify(defaults)}`);
         }
         for ( let name in defaults ) {
             this[name] = defaults[name];
