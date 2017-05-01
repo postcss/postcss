@@ -72,7 +72,8 @@ class Container extends Node {
 
         if ( !this.nodes ) return undefined;
 
-        let index, result;
+        let index;
+        let result;
         while ( this.indexes[id] < this.nodes.length ) {
             index  = this.indexes[id];
             result = callback(this.nodes[index], index);
@@ -505,8 +506,8 @@ class Container extends Node {
         }
 
         this.walkDecls( decl => {
-            if ( opts.props && opts.props.indexOf(decl.prop) === -1 ) return;
-            if ( opts.fast  && decl.value.indexOf(opts.fast) === -1 ) return;
+            if ( opts.props && !opts.props.includes(decl.prop) ) return;
+            if ( opts.fast  && !decl.value.includes(opts.fast) ) return;
 
             decl.value = decl.value.replace(pattern, callback);
         });
