@@ -247,7 +247,7 @@ export default class Parser {
 
         this.raw(node, 'value', tokens);
 
-        if ( node.value.indexOf(':') !== -1 ) this.checkMissedSemicolon(tokens);
+        if ( node.value.includes(':') ) this.checkMissedSemicolon(tokens);
     }
 
     atrule(token) {
@@ -344,7 +344,8 @@ export default class Parser {
     }
 
     raw(node, prop, tokens) {
-        let token, type;
+        let token;
+        let type;
         let length = tokens.length;
         let value  = '';
         let clean  = true;
@@ -409,7 +410,9 @@ export default class Parser {
 
     colon(tokens) {
         let brackets = 0;
-        let token, type, prev;
+        let token;
+        let type;
+        let prev;
         for ( let i = 0; i < tokens.length; i++ ) {
             token = tokens[i];
             type  = token[0];
