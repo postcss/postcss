@@ -76,7 +76,7 @@ class Warning {
                 word:   this.word
             }).message;
         } else if ( this.plugin ) {
-            return this.plugin + ': ' + this.text;
+            return `${this.plugin}: ${this.text}`;
         } else {
             return this.text;
         }
