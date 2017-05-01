@@ -176,7 +176,7 @@ test('generates inline map', t => {
 
     let base64 = new Buffer(separated.map.toString()).toString('base64');
     let end    = inline.css.slice(-base64.length - 3);
-    t.deepEqual(end, base64 + ' */');
+    t.deepEqual(end, `${base64} */`);
 });
 
 test('generates inline map by default', t => {
@@ -239,7 +239,7 @@ test('misses check files on requires', t => {
         map:  true
     });
 
-    fs.outputFileSync(file + '.map', step1.map);
+    fs.outputFileSync(`${file}.map`, step1.map);
     let step2 = lighter.process(step1.css, {
         from: file,
         to:   'b.css',

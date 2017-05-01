@@ -14,7 +14,7 @@ function prs() {
 }
 
 function str(node, builder) {
-    builder(node.raws.after + '!');
+    builder(`${node.raws.after}!`);
 }
 
 let beforeFix = new Processor([ css => {
@@ -367,10 +367,10 @@ test('checks plugin compatibility', t => {
 });
 
 test('sets last plugin to result', t => {
-    let plugin1 = function (css, result) {
+    let plugin1 = (css, result) => {
         t.is(result.lastPlugin, plugin1);
     };
-    let plugin2 = function (css, result) {
+    let plugin2 = (css, result) => {
         t.is(result.lastPlugin, plugin2);
     };
 

@@ -61,37 +61,34 @@ test('checks previous sources content', t => {
 
 test('decodes base64 maps', t => {
     let b64 = new Buffer(map).toString('base64');
-    let css = 'a{}\n' +
-              `/*# sourceMappingURL=data:application/json;base64,${b64} */`;
+    let css = `a{}\n${`/*# sourceMappingURL=data:application/json;base64,${b64} */`}`;
 
     t.deepEqual(parse(css).source.input.map.text, map);
 });
 
 test('decodes base64 UTF-8 maps', t => {
     let b64 = new Buffer(map).toString('base64');
-    let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
-              'charset=utf-8;base64,' + b64 + ' */';
+    let css = `a{}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${b64} */`;
 
     t.deepEqual(parse(css).source.input.map.text, map);
 });
 
 test('accepts different name for UTF-8 encoding', t => {
     let b64 = new Buffer(map).toString('base64');
-    let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
-              'charset=utf8;base64,' + b64 + ' */';
+    let css = `a{}\n/*# sourceMappingURL=data:application/json;charset=utf8;base64,${b64} */`;
 
     t.deepEqual(parse(css).source.input.map.text, map);
 });
 
 test('decodes URI maps', t => {
-    let uri = 'data:application/json,' + decodeURI(map);
+    let uri = `data:application/json,${decodeURI(map)}`;
     let css = `a{}\n/*# sourceMappingURL=${ uri } */`;
 
     t.deepEqual(parse(css).source.input.map.text, map);
 });
 
 test('removes map on request', t => {
-    let uri = 'data:application/json,' + decodeURI(map);
+    let uri = `data:application/json,${decodeURI(map)}`;
     let css = `a{}\n/*# sourceMappingURL=${ uri } */`;
 
     let input = parse(css, { map: { prev: false } }).source.input;
@@ -182,7 +179,7 @@ test('should call function with opts.from', t => {
 
 test('should raise when function returns invalid path', t => {
     let css = 'body{}\n/*# sourceMappingURL=a.map */';
-    let fakeMap  = Number.MAX_SAFE_INTEGER.toString() + '.map';
+    let fakeMap  = `${Number.MAX_SAFE_INTEGER.toString()}.map`;
     let fakePath = path.join(dir, fakeMap);
     let opts = {
         map: {
@@ -191,5 +188,5 @@ test('should raise when function returns invalid path', t => {
     };
     t.throws( () => {
         parse(css, opts);
-    }, 'Unable to load previous source map: ' + fakePath);
+    }, `Unable to load previous source map: ${fakePath}`);
 });

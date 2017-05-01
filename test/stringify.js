@@ -7,7 +7,7 @@ import test  from 'ava';
 cases.each( (name, css) => {
     if ( name === 'bom.css' ) return;
 
-    test('stringifies ' + name, t => {
+    test(`stringifies ${name}`, t => {
         let root   = parse(css);
         let result = '';
         stringify(root, i => {

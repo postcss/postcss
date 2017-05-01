@@ -50,7 +50,7 @@ test('supports injecting additional processors at runtime', t => {
 
 test('creates plugin', t => {
     let plugin = postcss.plugin('test', filter => {
-        return function (css) {
+        return css => {
             css.walkDecls(filter || 'two', i => i.remove() );
         };
     });
@@ -74,7 +74,7 @@ test('does not call plugin constructor', t => {
     let calls = 0;
     let plugin = postcss.plugin('test', () => {
         calls += 1;
-        return function () { };
+        return () => { };
     });
     t.is(calls, 0);
 
@@ -87,7 +87,7 @@ test('does not call plugin constructor', t => {
 
 test('creates a shortcut to process css', t => {
     let plugin = postcss.plugin('test', (str = 'bar') => {
-        return function (css) {
+        return css => {
             css.walkDecls(i => {
                 i.value = str;
             });

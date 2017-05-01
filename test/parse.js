@@ -12,7 +12,7 @@ test('works with file reads', t => {
 });
 
 cases.each( (name, css, json) => {
-    test('parses ' + name, t => {
+    test(`parses ${name}`, t => {
         let parsed = cases.jsonify(parse(css, { from: name }));
         t.deepEqual(parsed, json);
     });

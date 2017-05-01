@@ -18,7 +18,7 @@ test('will stringify css', t => {
 
 test('stringifies css', t => {
     let result = new LazyResult(processor, 'a {}', { });
-    t.deepEqual('' + result, result.css);
+    t.deepEqual(`${result}`, result.css);
 });
 
 test('has content alias for css', t => {
