@@ -28,19 +28,8 @@ export default function tokenize(input, options = { }) {
 
     let ignore = options.ignoreErrors;
 
-    let code;
-    let next;
-    let quote;
-    let lines;
-    let last;
-    let content;
-    let escape;
-    let nextLine;
-    let nextOffset;
-    let escaped;
-    let escapePos;
-    let prev;
-    let n;
+    let code, next, quote, lines, last, content, escape,
+        nextLine, nextOffset, escaped, escapePos, prev, n;
 
     let length = css.length;
     let offset = -1;
@@ -48,7 +37,7 @@ export default function tokenize(input, options = { }) {
     let pos    =  0;
 
     function unclosed(what) {
-        throw input.error(`Unclosed ${what}`, line, pos - offset);
+        throw input.error('Unclosed ' + what, line, pos - offset);
     }
 
     while ( pos < length ) {
