@@ -75,7 +75,7 @@ class Input {
              * root.source.input.file //=> undefined
              * root.source.input.id   //=> "<input css 1>"
              */
-            this.id   = '<input css ' + sequence + '>';
+            this.id   = `<input css ${sequence}>`;
         }
         if ( this.map ) this.map.file = this.from;
     }
