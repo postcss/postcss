@@ -1,4 +1,3 @@
-import { Base64 } from 'js-base64';
 import   mozilla  from 'source-map';
 import   path     from 'path';
 
@@ -126,7 +125,7 @@ export default class MapGenerator {
 
         if ( this.isInline() ) {
             content = 'data:application/json;base64,' +
-                       Base64.encode( this.map.toString() );
+                       new Buffer( this.map.toString() ).toString('base64');
 
         } else if ( typeof this.mapOpts.annotation === 'string' ) {
             content = this.mapOpts.annotation;
