@@ -20,10 +20,10 @@ export default class Parser {
     }
 
     tokenize() {
-        this.tokens = tokenizer(this.input);
+        this.tokens = tokenizer(this.input).tokenize();
     }
 
-    loop() {
+    parse() {
         let token;
         while ( this.pos < this.tokens.length ) {
             token = this.tokens[this.pos];
