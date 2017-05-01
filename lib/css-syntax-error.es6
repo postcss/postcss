@@ -126,12 +126,12 @@ class CssSyntaxError {
          * @example
          * error.message //=> 'a.css:1:1: Unclosed block'
          */
-        this.message  = this.plugin ? `${this.plugin}: ` : '';
+        this.message  = this.plugin ? this.plugin + ': ' : '';
         this.message += this.file ? this.file : '<css input>';
         if ( typeof this.line !== 'undefined' ) {
-            this.message += `:${this.line}:${this.column}`;
+            this.message += ':' + this.line + ':' + this.column;
         }
-        this.message += `: ${this.reason}`;
+        this.message += ': ' + this.reason;
     }
 
     /**
@@ -186,14 +186,15 @@ class CssSyntaxError {
 
         return lines.slice(start, end).map( (line, index) => {
             let number = start + 1 + index;
-            let gutter = ` ${(' ' + number).slice(-maxWidth)} | `;
+            let gutter = ' ' + (' ' + number).slice(-maxWidth) + ' | ';
             if ( number === this.line ) {
                 let spacing =
                     aside(gutter.replace(/\d/g, ' ')) +
                     line.slice(0, this.column - 1).replace(/[^\t]/g, ' ');
-                return `${mark('>') + aside(gutter) + line}\n ${spacing}${mark('^')}`;
+                return mark('>') + aside(gutter) + line + '\n ' +
+                       spacing + mark('^');
             } else {
-                return ` ${aside(gutter)}${line}`;
+                return ' ' + aside(gutter) + line;
             }
         }).join('\n');
     }
@@ -211,9 +212,9 @@ class CssSyntaxError {
     toString() {
         let code = this.showSourceCode();
         if ( code ) {
-            code = `\n\n${code}\n`;
+            code = '\n\n' + code + '\n';
         }
-        return `${this.name}: ${this.message}${code}`;
+        return this.name + ': ' + this.message + code;
     }
 
     get generated() {

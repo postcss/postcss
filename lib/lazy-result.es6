@@ -226,7 +226,10 @@ class LazyResult {
                 let b = runtimeVer.split('.');
 
                 if ( a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1]) ) {
-                    warnOnce(`Your current PostCSS version is ${runtimeVer}, but ${pluginName} uses ${pluginVer}. Perhaps this is the source of the error below.`);
+                    warnOnce('Your current PostCSS version ' +
+                             'is ' + runtimeVer + ', but ' + pluginName + ' ' +
+                             'uses ' + pluginVer + '. Perhaps this is ' +
+                             'the source of the error below.');
                 }
             }
         } catch (err) {

@@ -25,7 +25,7 @@ export default class MapGenerator {
             this.root.walk( node => {
                 if ( node.source && node.source.input.map ) {
                     let map = node.source.input.map;
-                    if ( !this.previousMaps.includes(map) ) {
+                    if ( this.previousMaps.indexOf(map) === -1 ) {
                         this.previousMaps.push(map);
                     }
                 }
@@ -125,19 +125,20 @@ export default class MapGenerator {
         let content;
 
         if ( this.isInline() ) {
-            content = `data:application/json;base64,${Base64.encode( this.map.toString() )}`;
+            content = 'data:application/json;base64,' +
+                       Base64.encode( this.map.toString() );
 
         } else if ( typeof this.mapOpts.annotation === 'string' ) {
             content = this.mapOpts.annotation;
 
         } else {
-            content = `${this.outputFile()}.map`;
+            content = this.outputFile() + '.map';
         }
 
         let eol   = '\n';
-        if ( this.css.includes('\r\n') ) eol = '\r\n';
+        if ( this.css.indexOf('\r\n') !== -1 ) eol = '\r\n';
 
-        this.css += `${eol}/*# sourceMappingURL=${content} */`;
+        this.css += eol + '/*# sourceMappingURL=' + content + ' */';
     }
 
     outputFile() {
@@ -196,8 +197,7 @@ export default class MapGenerator {
         let line   = 1;
         let column = 1;
 
-        let lines;
-        let last;
+        let lines, last;
         this.stringify(this.root, (str, node, type) => {
             this.css += str;
 
