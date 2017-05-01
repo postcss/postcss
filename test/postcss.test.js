@@ -48,8 +48,8 @@ it('supports injecting additional processors at runtime', () => {
 
 it('creates plugin', () => {
     let plugin = postcss.plugin('test', filter => {
-        return function (css) {
-            css.walkDecls(filter || 'two', i => i.remove() );
+        return root => {
+            root.walkDecls(filter || 'two', i => i.remove());
         };
     });
 
@@ -72,7 +72,7 @@ it('does not call plugin constructor', () => {
     let calls = 0;
     let plugin = postcss.plugin('test', () => {
         calls += 1;
-        return function () { };
+        return () => { };
     });
     expect(calls).toBe(0);
 
@@ -85,8 +85,8 @@ it('does not call plugin constructor', () => {
 
 it('creates a shortcut to process css', () => {
     let plugin = postcss.plugin('test', (str = 'bar') => {
-        return function (css) {
-            css.walkDecls(i => {
+        return root => {
+            root.walkDecls(i => {
                 i.value = str;
             });
         };
