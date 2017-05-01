@@ -88,7 +88,7 @@ class PreviousMap {
 
         } else {
             let encoding = text.match(/data:application\/json;([^,]+),/)[1];
-            throw new Error('Unsupported source map encoding ' + encoding);
+            throw new Error(`Unsupported source map encoding ${encoding}`);
         }
     }
 
@@ -103,8 +103,7 @@ class PreviousMap {
                 if ( prevPath && fs.existsSync && fs.existsSync(prevPath) ) {
                     return fs.readFileSync(prevPath, 'utf-8').toString().trim();
                 } else {
-                    throw new Error('Unable to load previous source map: ' +
-                    prevPath.toString());
+                    throw new Error(`Unable to load previous source map: ${prevPath.toString()}`);
                 }
             } else if ( prev instanceof mozilla.SourceMapConsumer ) {
                 return mozilla.SourceMapGenerator
@@ -114,8 +113,7 @@ class PreviousMap {
             } else if ( this.isMap(prev) ) {
                 return JSON.stringify(prev);
             } else {
-                throw new Error('Unsupported previous source map format: ' +
-                    prev.toString());
+                throw new Error(`Unsupported previous source map format: ${prev.toString()}`);
             }
 
         } else if ( this.inline ) {
