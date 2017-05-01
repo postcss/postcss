@@ -577,4 +577,3 @@ export default Node;
  * @property {position} start - The starting position of the node’s source
  * @property {position} end   - The ending position of the node’s source
  */
- 
