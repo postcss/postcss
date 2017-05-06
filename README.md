@@ -334,17 +334,6 @@ Common options:
 [Midas]:              https://github.com/ben-eb/midas
 [SCSS]:               https://github.com/postcss/postcss-scss
 
-### Node.js 0.10 and the Promise API
-
-If you want to run PostCSS in Node.js 0.10, add the [Promise polyfill]:
-
-```js
-require('es6-promise').polyfill();
-var postcss = require('postcss');
-```
-
-[Promise polyfill]: https://github.com/jakearchibald/es6-promise
-
 ## Editors & IDE Integration
 
 ### Atom
