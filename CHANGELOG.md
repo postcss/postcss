@@ -1,6 +1,22 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0 “Marquis Orias”
+* Remove node.js 0.12 support.
+* Remove deprecated method from PostCSS 4.
+* Insert methods remove child from previous parent, instead of closing.
+* Insert methods and cloning doesn’t clean `raws` anymore.
+* Methods `moveTo`, `moveAfter`, `moveBefore` were deprecated.
+* Options was changed in `Plugin#process(css, processOptions, pluginOptions)`.
+* Add stream parser to reduce memory usage (by Oleh Kuchuk).
+* Add `before()`/`after()` shortcuts for `node.parent.insertBefore(node, x)`.
+* Add `Rule#raws.ownSemicolon` for semicolon after templates for `@apply`.
+* Use `babel-preset-env` to compile npm package.
+* Remove `js-base64` from dependencies (by Roman Dvornov).
+* Fix error message on single `:` in CSS.
+* Move tests to Jest.
+* Clean up test (by Gabriel Kalani).
+
 ## 5.2.17
 * Add `postcss-sass` suggestion to syntax error on `.sass` input.
 
