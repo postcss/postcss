@@ -144,7 +144,7 @@ export default class Parser {
             this.decl(tokens);
             return;
         } else {
-            this.unknownWord(start);
+            this.unknownWord(tokens);
         }
     }
 
@@ -175,7 +175,7 @@ export default class Parser {
         }
 
         while ( tokens[0][0] !== 'word' ) {
-            if ( tokens.length === 1 ) this.unknownWord(tokens[0]);
+            if ( tokens.length === 1 ) this.unknownWord(tokens);
             node.raws.before += tokens.shift()[1];
         }
         node.source.start = { line: tokens[0][2], column: tokens[0][3] };
@@ -445,8 +445,8 @@ export default class Parser {
         throw this.input.error('Unclosed bracket', bracket[2], bracket[3]);
     }
 
-    unknownWord(token) {
-        throw this.input.error('Unknown word', token[2], token[3]);
+    unknownWord(tokens) {
+        throw this.input.error('Unknown word', tokens[0][2], tokens[0][3]);
     }
 
     unexpectedClose(token) {
