@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.1
+* Fix parser extensibility to use it in Safe Parser.
+
 ## 6.0 “Marquis Orias”
 * Remove node.js 0.12 support.
 * Remove deprecated method from PostCSS 4.
