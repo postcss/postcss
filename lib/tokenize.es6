@@ -50,13 +50,13 @@ export default function tokenizer(input, options = {}) {
         if ( pos >= length ) return;
 
         code = css.charCodeAt(pos);
-        if (code === NEWLINE || code === FEED ||
-            code === CR && css.charCodeAt(pos + 1) !== NEWLINE) {
+        if ( code === NEWLINE || code === FEED ||
+             code === CR && css.charCodeAt(pos + 1) !== NEWLINE ) {
             offset = pos;
             line += 1;
         }
 
-        switch (code) {
+        switch ( code ) {
         case NEWLINE:
         case SPACE:
         case TAB:
@@ -66,15 +66,15 @@ export default function tokenizer(input, options = {}) {
             do {
                 next += 1;
                 code = css.charCodeAt(next);
-                if (code === NEWLINE) {
+                if ( code === NEWLINE ) {
                     offset = next;
                     line += 1;
                 }
             } while ( code === SPACE   ||
-                          code === NEWLINE ||
-                          code === TAB     ||
-                          code === CR      ||
-                          code === FEED );
+                      code === NEWLINE ||
+                      code === TAB     ||
+                      code === CR      ||
+                      code === FEED );
 
             currentToken = ['space', css.slice(pos, next)];
             pos = next - 1;
@@ -228,11 +228,11 @@ export default function tokenizer(input, options = {}) {
             }
             code = css.charCodeAt(next + 1);
             if ( escape && (code !== SLASH   &&
-                                code !== SPACE   &&
-                                code !== NEWLINE &&
-                                code !== TAB     &&
-                                code !== CR      &&
-                                code !== FEED ) ) {
+                            code !== SPACE   &&
+                            code !== NEWLINE &&
+                            code !== TAB     &&
+                            code !== CR      &&
+                            code !== FEED ) ) {
                 next += 1;
             }
 
