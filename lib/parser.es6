@@ -15,9 +15,12 @@ export default class Parser {
         this.spaces    = '';
         this.semicolon = false;
 
-        this.tokenizer = tokenizer(this.input);
-
+        this.createTokenizer();
         this.root.source = { input, start: { line: 1, column: 1 } };
+    }
+
+    createTokenizer() {
+        this.tokenizer = tokenizer(this.input);
     }
 
     parse() {
