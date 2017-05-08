@@ -19,17 +19,24 @@ We may suggest some changes or improvements or alternatives, but for small chang
 
 ## Set Up Instructions
   1.Fork the repo
+
   2.Clone your Fork
+
   3.Run `npm install` /`yarn install`.
+
   4.Make your changes and try to make the tests pass.
+
   5.Push your changes to your fork with `git push` .
+
   6.Create a pull request.
+
   7.Iterate on the solution.
+
   8.Get your PR merged YAY!!🎉 🎊.
 
 You may open the pull request against the postcss's master branch after pushing the changes on your branch.
 
-##Running Tests
+## Running Tests
 
 To run tests locally,
 ```sh
