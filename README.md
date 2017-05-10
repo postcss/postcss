@@ -96,6 +96,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`cssnano`] is a modular CSS minifier.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-bidirectional`] use proposed CSS standard properties to generate left-to-right and right-to-left styles.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
