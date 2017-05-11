@@ -192,6 +192,7 @@ for targeting all button elements.
   selector.
 * [`csstyle`] adds components workflow to your styles.
 * [`postcss-percentage`] support Sass-like `percentage()` function.
+* [`postcss-state-selector`] write CSS based on component's state.
 
 See also [`precss`] plugins pack to add them by one line of code.
 
@@ -736,3 +737,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-percentage`]:                   https://github.com/creeperyang/postcss-percentage
 [`postcss-start-to-end`]:                 https://github.com/sandrina-p/postcss-start-to-end
 [`postcss-autocorrect`]:                  https://github.com/DimitrisNL/postcss-autocorrect
+[`postcss-state-selector`]:               https://github.com/binjospookie/postcss-state-selector
