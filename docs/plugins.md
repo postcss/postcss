@@ -47,7 +47,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   the IE9 fallbacks.
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
-* [`postcss-hamster`] Vertical rhythm, Typogrаphy, Modular scale functions for CSS. Supports VW unit.
+* [`postcss-hamster`] for vertical rhythm, typography, modular scale functions.
 
 [`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
 [`stylelint`]:         https://github.com/stylelint/stylelint
