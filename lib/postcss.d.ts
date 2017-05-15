@@ -612,7 +612,8 @@ declare module "postcss" {
              */
             origin(line: number, column: number): InputOrigin;
         }
-        type Node = Container | Declaration | Comment;
+        type ChildNode = AtRule | Rule | Declaration | Comment;
+        type Node = Root | ChildNode;
         interface NodeBase {
             /**
              * Returns the input source of the node. The property is used in source
@@ -659,12 +660,12 @@ declare module "postcss" {
              * @returns The next child of the node's parent; or, returns undefined if
              * the current node is the last child.
              */
-            next(): Node;
+            next(): ChildNode | void;
             /**
              * @returns The previous child of the node's parent; or, returns undefined
              * if the current node is the first child.
              */
-            prev(): Node;
+            prev(): ChildNode | void;
             /**
              * @returns The Root instance of the node's tree.
              */
@@ -819,15 +820,15 @@ declare module "postcss" {
             /**
              * Contains the container's children.
              */
-            nodes?: Node[];
+            nodes?: ChildNode[];
             /**
              * @returns The container's first child.
              */
-            first?: Node;
+            first?: ChildNode;
             /**
              * @returns The container's last child.
              */
-            last?: Node;
+            last?: ChildNode;
             /**
              * @param overrides New properties to override in the clone.
              * @returns A clone of this node. The node and its (cloned) children will
@@ -838,7 +839,7 @@ declare module "postcss" {
              * @param child Child of the current container.
              * @returns The child's index within the container's "nodes" array.
              */
-            index(child: Node | number): number;
+            index(child: ChildNode | number): number;
             /**
              * Determines whether all child nodes satisfy the specified test.
              * @param callback A function that accepts up to three arguments. The
@@ -847,7 +848,7 @@ declare module "postcss" {
              * @returns True if the callback returns true for all of the container's
              * children.
              */
-            every(callback: (node: Node, index: number, nodes: Node[]) => any, thisArg?: any): boolean;
+            every(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => any, thisArg?: any): boolean;
             /**
              * Determines whether the specified callback returns true for any child node.
              * @param callback A function that accepts up to three arguments. The some
@@ -859,7 +860,7 @@ declare module "postcss" {
              * @returns True if callback returns true for (at least) one of the
              * container's children.
              */
-            some(callback: (node: Node, index: number, nodes: Node[]) => boolean, thisArg?: any): boolean;
+            some(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean, thisArg?: any): boolean;
             /**
              * Iterates through the container's immediate children, calling the
              * callback function for each child. If you need to recursively iterate
@@ -871,7 +872,7 @@ declare module "postcss" {
              * will adjust the current index to match the mutations.
              * @returns False if the callback returns false during iteration.
              */
-            each(callback: (node: Node, index: number) => any): boolean | void;
+            each(callback: (node: ChildNode, index: number) => any): boolean | void;
             /**
              * Traverses the container's descendant nodes, calling `callback` for each
              * node. Like container.each(), this method is safe to use if you are
@@ -879,7 +880,7 @@ declare module "postcss" {
              * the container's immediate children, use container.each().
              * @param callback Iterator.
              */
-            walk(callback: (node: Node, index: number) => any): boolean | void;
+            walk(callback: (node: ChildNode, index: number) => any): boolean | void;
             /**
              * Traverses the container's descendant nodes, calling `callback` for each
              * declaration. Like container.each(), this method is safe to use if you
@@ -990,13 +991,13 @@ declare module "postcss" {
              * @param oldNode Child or child's index.
              * @returns This container for chaining.
              */
-            insertBefore(oldNode: Node | number, newNode: Node | Object | string): this;
+            insertBefore(oldNode: ChildNode | number, newNode: ChildNode | Object | string): this;
             /**
              * Insert newNode after oldNode within the container.
              * @param oldNode Child or child's index.
              * @returns This container for chaining.
              */
-            insertAfter(oldNode: Node | number, newNode: Node | Object | string): this;
+            insertAfter(oldNode: ChildNode | number, newNode: ChildNode | Object | string): this;
             /**
              * Removes the container from its parent and cleans the parent property in the
              * container and its children.
@@ -1009,7 +1010,7 @@ declare module "postcss" {
              * @param child Child or child's index.
              * @returns This container for chaining.
              */
-            removeChild(child: Node | number): this;
+            removeChild(child: ChildNode | number): this;
             /**
              * Removes all children from the container and cleans their parent
              * properties.
@@ -1021,7 +1022,7 @@ declare module "postcss" {
             /**
              * Contains the container's children.
              */
-            nodes?: Node[];
+            nodes?: ChildNode[];
             raws?: ContainerRaws;
         }
         interface ContainerRaws extends NodeRaws {
@@ -1031,15 +1032,15 @@ declare module "postcss" {
             /**
              * Contains the container's children.
              */
-            nodes?: Node[];
+            nodes?: ChildNode[];
             /**
              * @returns The container's first child.
              */
-            first?: Node;
+            first?: ChildNode;
             /**
              * @returns The container's last child.
              */
-            last?: Node;
+            last?: ChildNode;
         }
         /**
          * Represents a CSS file and contains all its parsed nodes.
@@ -1073,7 +1074,7 @@ declare module "postcss" {
              * @param child Child or child's index.
              * @returns This root node for chaining.
              */
-            removeChild(child: Node | number): this;
+            removeChild(child: ChildNode | number): this;
         }
         interface RootNewProps extends ContainerNewProps {
         }
