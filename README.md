@@ -96,11 +96,13 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`cssnano`] is a modular CSS minifier.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`postcss-hamster`] Vertical rhythm, Typogrаphy, Modular scale functions for CSS. Supports VW unit.
 
 [PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
 [`react-css-modules`]:        https://github.com/gajus/react-css-modules
 [`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
+[`postcss-hamster`]:          https://github.com/h0tc0d3/postcss-hamster
 [`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg
 [`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
 [`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial
