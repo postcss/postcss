@@ -612,16 +612,8 @@ declare module "postcss" {
              */
             origin(line: number, column: number): InputOrigin;
         }
-        interface Node {
-            /**
-             * Returns a string representing the node's type. Possible values are
-             * root, atrule, rule, decl or comment.
-             */
-            type: string;
-            /**
-             * Returns the node's parent node.
-             */
-            parent: Container;
+        type Node = Container | Declaration | Comment;
+        interface NodeBase {
             /**
              * Returns the input source of the node. The property is used in source
              * map generation. If you create a node manually
@@ -818,15 +810,12 @@ declare module "postcss" {
              */
             raws?: NodeRaws;
         }
+        type Container = Root | AtRule | Rule;
         /**
          * Containers can store any content. If you write a rule inside a rule,
          * PostCSS will parse it.
          */
-        interface Container extends Node {
-            /**
-             * Returns the container's parent node.
-             */
-            parent: Container;
+        interface ContainerBase extends NodeBase {
             /**
              * Contains the container's children.
              */
@@ -1055,11 +1044,12 @@ declare module "postcss" {
         /**
          * Represents a CSS file and contains all its parsed nodes.
          */
-        interface Root extends Container {
+        interface Root extends ContainerBase {
+            type: 'root';
             /**
              * Inherited from Container. Should always be undefined for a Root node.
              */
-            parent: Container;
+            parent: void;
             /**
              * @param overrides New properties to override in the clone.
              * @returns A clone of this node. The node and its (cloned) children will
@@ -1093,7 +1083,12 @@ declare module "postcss" {
          * Represents an at-rule. If it's followed in the CSS by a {} block, this
          * node will have a nodes property representing its children.
          */
-        interface AtRule extends Container {
+        interface AtRule extends ContainerBase {
+            type: 'atrule';
+            /**
+             * Returns the atrule's parent node.
+             */
+            parent: Container;
             /**
              * The identifier that immediately follows the @.
              */
@@ -1139,7 +1134,8 @@ declare module "postcss" {
         /**
          * Represents a CSS rule: a selector followed by a declaration block.
          */
-        interface Rule extends Container {
+        interface Rule extends ContainerBase {
+            type: 'rule';
             /**
              * Returns the rule's parent node.
              */
@@ -1196,7 +1192,12 @@ declare module "postcss" {
         /**
          * Represents a CSS declaration.
          */
-        interface Declaration extends Node {
+        interface Declaration extends NodeBase {
+            type: 'decl';
+            /**
+             * Returns the declaration's parent node.
+             */
+            parent: Container;
             /**
              * The declaration's property name.
              */
@@ -1253,7 +1254,12 @@ declare module "postcss" {
          * Comments inside selectors, at-rule parameters, or declaration values will
          * be stored in the Node#raws properties.
          */
-        interface Comment extends Node {
+        interface Comment extends NodeBase {
+            type: 'comment';
+            /**
+             * Returns the comment's parent node.
+             */
+            parent: Container;
             /**
              * The comment's text.
              */
