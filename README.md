@@ -134,6 +134,7 @@ If there is not yet support for your favorite syntax,
 you can write a parser and/or stringifier to extend PostCSS.
 
 * [`sugarss`] is a indent-based syntax like Sass or Stylus.
+* [`postcss-html`] allows you to write styles in HTML or [Vue components](https://vue-loader.vuejs.org/en/).
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
 * [`postcss-sass`] allows you to work with Sass
@@ -148,6 +149,7 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [`midas`] converts a CSS string to highlighted HTML.
 
 [`sugarss`]:             https://github.com/postcss/sugarss
+[`postcss-html`]:        https://github.com/gucong3000/postcss-html
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass
 [`postcss-less`]:        https://github.com/webschik/postcss-less
