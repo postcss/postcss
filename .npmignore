@@ -6,7 +6,7 @@ yarn-error.log
 yarn.lock
 
 build/
-
+docs/
 test/
 .travis.yml
 appveyor.yml
