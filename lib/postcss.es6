@@ -219,7 +219,7 @@ postcss.decl = defaults => new Declaration(defaults);
  *
  * @param {object} [defaults] - properties for the new node.
  *
- * @return {AtRule} new Rule node
+ * @return {Rule} new Rule node
  *
  * @example
  * postcss.rule({ selector: 'a' }).toString() //=> "a {\n}"
