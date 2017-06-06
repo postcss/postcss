@@ -184,6 +184,8 @@ You can start using PostCSS in just two steps:
 Use [`postcss-loader`] in `webpack.config.js`:
 
 ```js
+
+// Webpack v1.x
 module.exports = {
     module: {
         rules: [
@@ -203,6 +205,31 @@ module.exports = {
                     {
                         loader: 'postcss-loader'
                     }
+                ]
+            }
+        ]
+    }
+}
+
+// Webpack v2.x
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                  {
+                    loader: 'style-loader',
+                  },
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      importLoaders: 1
+                    }
+                  },
+                  {
+                    loader: 'postcss-loader',
+                  }
                 ]
             }
         ]
