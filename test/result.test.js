@@ -46,9 +46,11 @@ it('allows Root', () => {
 
 it('returns only warnings', () => {
     let result = new Result();
-    result.messages = [{ type: 'warning', text: 'a' },
-                       { type: 'custom' },
-                       { type: 'warning', text: 'b' }];
+    result.messages = [
+        { type: 'warning', text: 'a' },
+        { type: 'custom' },
+        { type: 'warning', text: 'b' }
+    ];
     expect(result.warnings()).toEqual([
         { type: 'warning', text: 'a' },
         { type: 'warning', text: 'b' }

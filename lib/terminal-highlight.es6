@@ -50,8 +50,8 @@ function terminalHighlight(css) {
         let color = HIGHLIGHT_THEME[getTokenType(token, processor)];
         if ( color ) {
             result += token[1].split(/\r?\n/)
-              .map( i => color(i) )
-              .join('\n');
+                .map( i => color(i) )
+                .join('\n');
         } else {
             result += token[1];
         }

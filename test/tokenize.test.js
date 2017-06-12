@@ -138,15 +138,19 @@ it('tokenizes at-word end', () => {
 });
 
 it('tokenizes urls', () => {
-    run('url(/*\\))', [ ['word',     'url',     1, 1, 1, 3],
-                         ['brackets', '(/*\\))', 1, 4, 1, 9] ]);
+    run('url(/*\\))', [
+        ['word',     'url',     1, 1, 1, 3],
+        ['brackets', '(/*\\))', 1, 4, 1, 9]
+    ]);
 });
 
 it('tokenizes quoted urls', () => {
-    run('url(")")', [ ['word',   'url', 1, 1, 1, 3],
-                       ['(',      '(',   1, 4],
-                       ['string', '")"', 1, 5, 1, 7],
-                       [')',      ')',   1, 8] ]);
+    run('url(")")', [
+        ['word',   'url', 1, 1, 1, 3],
+        ['(',      '(',   1, 4],
+        ['string', '")"', 1, 5, 1, 7],
+        [')',      ')',   1, 8]
+    ]);
 });
 
 it('tokenizes at-symbol', () => {
