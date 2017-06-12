@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.2
+* Keep `raws.before` on moving `Root` children to new `Root`.
+
 ## 6.0.1
 * Fix parser extensibility to use it in Safe Parser.
 
