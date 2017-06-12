@@ -41,6 +41,18 @@ it('fixes spaces on removing first rule', () => {
     expect(css.toString()).toEqual('b{}\n');
 });
 
+it('keeps spaces on moving root', () => {
+    let css1 = parse('a{}\nb{}\n');
+
+    let css2 = parse('');
+    css2.append(css1);
+    expect(css2.toString()).toEqual('a{}\nb{}');
+
+    let css3 = parse('\n');
+    css3.append(css2.nodes);
+    expect(css3.toString()).toEqual('a{}\nb{}\n');
+});
+
 it('generates result with map', () => {
     let root   = parse('a {}');
     let result = root.toResult({ map: true });

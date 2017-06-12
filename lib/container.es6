@@ -582,8 +582,14 @@ class Container extends Node {
             nodes = cleanSource(parse(nodes).nodes);
         } else if ( Array.isArray(nodes) ) {
             nodes = nodes.slice(0);
+            for ( let i of nodes ) {
+                if ( i.parent ) i.parent.removeChild(i, 'ignore');
+            }
         } else if ( nodes.type === 'root' ) {
             nodes = nodes.nodes.slice(0);
+            for ( let i of nodes ) {
+                if ( i.parent ) i.parent.removeChild(i, 'ignore');
+            }
         } else if ( nodes.type ) {
             nodes = [nodes];
         } else if ( nodes.prop ) {

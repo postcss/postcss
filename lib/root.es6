@@ -18,11 +18,11 @@ class Root extends Container {
         if ( !this.nodes ) this.nodes = [];
     }
 
-    removeChild(child) {
-        child = this.index(child);
+    removeChild(child, ignore) {
+        const index = this.index(child);
 
-        if ( child === 0 && this.nodes.length > 1 ) {
-            this.nodes[1].raws.before = this.nodes[child].raws.before;
+        if ( !ignore && index === 0 && this.nodes.length > 1 ) {
+            this.nodes[1].raws.before = this.nodes[index].raws.before;
         }
 
         return super.removeChild(child);
