@@ -20,8 +20,8 @@ class Processor {
          * @member {string} - Current PostCSS version.
          *
          * @example
-         * if ( result.processor.version.split('.')[0] !== '5' ) {
-         *   throw new Error('This plugin works only with PostCSS 5');
+         * if ( result.processor.version.split('.')[0] !== '6' ) {
+         *   throw new Error('This plugin works only with PostCSS 6');
          * }
          */
         this.version = '6.0.1';
