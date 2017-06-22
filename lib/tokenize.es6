@@ -223,7 +223,6 @@ export default function tokenizer(input, options = {}) {
         case BACKSLASH:
             next   = pos;
             escape = true;
-            let hexEscape;
             while ( css.charCodeAt(next + 1) === BACKSLASH ) {
                 next  += 1;
                 escape = !escape;
@@ -236,17 +235,10 @@ export default function tokenizer(input, options = {}) {
                             code !== CR      &&
                             code !== FEED ) ) {
                 next += 1;
-
                 if (RE_HEX_ESCAPE.test(css.charAt(next))) {
-                    hexEscape = true;
-                    next += 1;
-                    while (RE_HEX_ESCAPE.test(css.charAt(next))) {
+                    while (RE_HEX_ESCAPE.test(css.charAt(next + 1))) {
                         next += 1;
                     }
-                }
-
-                if (hexEscape) {
-                    next -= 1;
                 }
             }
 
