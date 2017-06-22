@@ -21,6 +21,7 @@ const AT                =  '@'.charCodeAt(0);
 const RE_AT_END      = /[ \n\t\r\f\{\(\)'"\\;/\[\]#]/g;
 const RE_WORD_END    = /[ \n\t\r\f\(\)\{\}:;@!'"\\\]\[#]|\/(?=\*)/g;
 const RE_BAD_BRACKET = /.[\\\/\("'\n]/;
+const RE_HEX_ESCAPE  = /[0-9A-Fa-f]+/g;
 
 
 export default function tokenizer(input, options = {}) {
@@ -233,7 +234,15 @@ export default function tokenizer(input, options = {}) {
                             code !== TAB     &&
                             code !== CR      &&
                             code !== FEED ) ) {
+
                 next += 1;
+                RE_HEX_ESCAPE.lastIndex = next;
+                if (RE_HEX_ESCAPE.test(css)) {
+                    next = RE_HEX_ESCAPE.lastIndex;
+                    if (css.charCodeAt(next) !== SPACE) {
+                        next -= 1;
+                    }
+                }
             }
 
             currentToken = ['word', css.slice(pos, next + 1),

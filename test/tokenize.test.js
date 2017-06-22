@@ -14,6 +14,13 @@ function run(css, tokens, opts) {
     expect(tokenize(css, opts)).toEqual(tokens);
 }
 
+it('tokenizes hex notation', () => {
+    run('\\0a \\09 ', [
+        [ 'word', '\\0a ', 1, 1, 1, 4 ],
+        [ 'word', '\\09 ', 1, 5, 1, 8 ]
+    ]);
+});
+
 it('tokenizes empty file', () => {
     run('', []);
 });
