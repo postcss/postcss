@@ -21,7 +21,7 @@ const AT                =  '@'.charCodeAt(0);
 const RE_AT_END      = /[ \n\t\r\f\{\(\)'"\\;/\[\]#]/g;
 const RE_WORD_END    = /[ \n\t\r\f\(\)\{\}:;@!'"\\\]\[#]|\/(?=\*)/g;
 const RE_BAD_BRACKET = /.[\\\/\("'\n]/;
-const RE_HEX_ESCAPE  = /[0-9A-Fa-f]+/g;
+const RE_HEX_ESCAPE  = /[a-z0-9\s]/i;
 
 
 export default function tokenizer(input, options = {}) {
@@ -223,6 +223,7 @@ export default function tokenizer(input, options = {}) {
         case BACKSLASH:
             next   = pos;
             escape = true;
+            let hexEscape;
             while ( css.charCodeAt(next + 1) === BACKSLASH ) {
                 next  += 1;
                 escape = !escape;
@@ -234,14 +235,18 @@ export default function tokenizer(input, options = {}) {
                             code !== TAB     &&
                             code !== CR      &&
                             code !== FEED ) ) {
-
                 next += 1;
-                RE_HEX_ESCAPE.lastIndex = next;
-                if (RE_HEX_ESCAPE.test(css)) {
-                    next = RE_HEX_ESCAPE.lastIndex;
-                    if (css.charCodeAt(next) !== SPACE) {
-                        next -= 1;
+
+                if (RE_HEX_ESCAPE.test(css.charAt(next))) {
+                    hexEscape = true;
+                    next += 1;
+                    while (RE_HEX_ESCAPE.test(css.charAt(next))) {
+                        next += 1;
                     }
+                }
+
+                if (hexEscape) {
+                    next -= 1;
                 }
             }
 

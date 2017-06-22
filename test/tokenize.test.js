@@ -14,13 +14,6 @@ function run(css, tokens, opts) {
     expect(tokenize(css, opts)).toEqual(tokens);
 }
 
-it('tokenizes hex notation', () => {
-    run('\\0a \\09 ', [
-        [ 'word', '\\0a ', 1, 1, 1, 4 ],
-        [ 'word', '\\09 ', 1, 5, 1, 8 ]
-    ]);
-});
-
 it('tokenizes empty file', () => {
     run('', []);
 });
@@ -267,3 +260,20 @@ it('ignores unclosing comment on request', () => {
         ['brackets', '(',   1, 4, 1, 4]
     ], { ignoreErrors: true });
 });
+
+it('tokenizes hexadecimal escape', () => {
+    run('\\0a \\09 ', [
+        [ 'word', '\\0a ', 1, 1, 1, 4 ],
+        [ 'word', '\\09 ', 1, 5, 1, 8 ]
+    ]);
+});
+
+it('tokenizes hexadecimal escape with proper word matching', () => {
+    run('\\0FF color: blue;',  [
+        ['word', '\\0FF color', 1, 1, 1, 10],
+        [':', ':', 1, 11], ['space', ' '],
+        ['word', 'blue', 1, 13, 1, 16],
+        [';', ';', 1, 17]
+    ]);
+});
+
