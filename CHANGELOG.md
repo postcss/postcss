@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.3
+* Fix escape sequences parsing (by Oleh Kuchuk).
+* Added ability to force disable colors with an environment variable.
+* Improved color detection of some terminal apps.
+
 ## 6.0.2
 * Keep `raws.before` on moving `Root` children to new `Root`.
 
