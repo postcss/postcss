@@ -183,13 +183,7 @@ async@^1.4.0:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
-async@^2.1.4:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/async/-/async-2.4.1.tgz#62a56b279c98a11d0987096a01cc3eeb8eb7bbd7"
-  dependencies:
-    lodash "^4.14.0"
-
-async@~2.1.5:
+async@^2.1.4, async@~2.1.5:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/async/-/async-2.1.5.tgz#e587c68580994ac67fc56ff86d3ac56bdbe810bc"
   dependencies:
@@ -3220,9 +3214,9 @@ pluralize@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-4.0.0.tgz#59b708c1c0190a2f692f1c7618c446b052fd1762"
 
-postcss-parser-tests@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-6.0.0.tgz#a8b4120c85d9cf285876981fbffb5e7a3817ef17"
+postcss-parser-tests@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-6.0.1.tgz#aaf8e37a779d5c896f5feafcd8a222074a868dc5"
   dependencies:
     gulp-util "^3.0.7"
     load-resources "^0.1.1"
