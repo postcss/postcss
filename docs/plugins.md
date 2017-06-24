@@ -305,6 +305,7 @@ loosely resembles the original.
 * [`stylehacks`] removes CSS hacks based on browser support.
 * [`postcss-mq-optimize`] removes invalid media queries or its expresions.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
+* [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
 * [`postcss-no-important`] delete declarations !important.
 
 See also plugins in modular minifier [`cssnano`].
@@ -740,3 +741,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-start-to-end`]:                 https://github.com/sandrina-p/postcss-start-to-end
 [`postcss-autocorrect`]:                  https://github.com/DimitrisNL/postcss-autocorrect
 [`postcss-state-selector`]:               https://github.com/binjospookie/postcss-state-selector
+[`postcss-html-filter`]:                  https://github.com/mapbox/postcss-html-filter
