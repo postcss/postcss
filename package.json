@@ -35,7 +35,7 @@
     "concat-with-sourcemaps": "^1.0.4",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.0.0",
+    "eslint": "^4.1.1",
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^3.0.1",
     "gulp": "^3.9.1",
