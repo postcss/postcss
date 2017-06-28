@@ -53,7 +53,7 @@ class CssSyntaxError {
          *   error //=> CssSyntaxError
          * }
          */
-        this.name   = 'CssSyntaxError';
+        this.name = 'CssSyntaxError';
         /**
          * @member {string} - Error message.
          *
