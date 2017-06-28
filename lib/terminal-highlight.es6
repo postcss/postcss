@@ -3,24 +3,22 @@ import chalk from 'chalk';
 import tokenizer from './tokenize';
 import Input    from './input';
 
-let colors = new chalk.constructor({ enabled: true });
-
 const HIGHLIGHT_THEME = {
-    'brackets': colors.cyan,
-    'at-word':  colors.cyan,
-    'call':     colors.cyan,
-    'comment':  colors.gray,
-    'string':   colors.green,
-    'class':    colors.yellow,
-    'hash':     colors.magenta,
-    '(':        colors.cyan,
-    ')':        colors.cyan,
-    '{':        colors.yellow,
-    '}':        colors.yellow,
-    '[':        colors.yellow,
-    ']':        colors.yellow,
-    ':':        colors.yellow,
-    ';':        colors.yellow
+    'brackets': chalk.cyan,
+    'at-word':  chalk.cyan,
+    'call':     chalk.cyan,
+    'comment':  chalk.gray,
+    'string':   chalk.green,
+    'class':    chalk.yellow,
+    'hash':     chalk.magenta,
+    '(':        chalk.cyan,
+    ')':        chalk.cyan,
+    '{':        chalk.yellow,
+    '}':        chalk.yellow,
+    '[':        chalk.yellow,
+    ']':        chalk.yellow,
+    ':':        chalk.yellow,
+    ';':        chalk.yellow
 };
 
 function getTokenType([type, value], processor) {
