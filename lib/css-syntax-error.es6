@@ -166,18 +166,17 @@ class CssSyntaxError {
         let end   = Math.min(this.line + 2, lines.length);
 
         let maxWidth = String(end).length;
-        let colors = new chalk.constructor({ enabled: true });
 
         function mark(text) {
             if ( color ) {
-                return colors.red.bold(text);
+                return chalk.red.bold(text);
             } else {
                 return text;
             }
         }
         function aside(text) {
             if ( color ) {
-                return colors.gray(text);
+                return chalk.gray(text);
             } else {
                 return text;
             }
