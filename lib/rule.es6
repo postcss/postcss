@@ -72,8 +72,9 @@ class Rule extends Container {
      * * `between`: the symbols between the property and value
      *   for declarations, selector and `{` for rules, or last parameter
      *   and `{` for at-rules.
-     * * `semicolon`: contains true if the last child has
+     * * `semicolon`: contains `true` if the last child has
      *   an (optional) semicolon.
+     * * `ownSemicolon`: contains `true` if there is semicolon after rule.
      *
      * PostCSS cleans selectors from comments and extra spaces,
      * but it stores origin content in raws properties.
