@@ -70,6 +70,10 @@ it('ignores symbols before declaration', () => {
     expect(root.first.first.raws.before).toEqual(' :');
 });
 
+it('parses double semicolon after rule', () => {
+    expect(parse('a { };;').toString()).toEqual('a { };;');
+});
+
 it('throws on unclosed blocks', () => {
     expect(() => {
         parse('\na {\n');

@@ -334,7 +334,7 @@ export default class Parser {
         this.spaces += token[1];
         if ( this.current.nodes ) {
             let prev = this.current.nodes[this.current.nodes.length - 1];
-            if ( prev && prev.type === 'rule' ) {
+            if ( prev && prev.type === 'rule' && !prev.raws.ownSemicolon ) {
                 prev.raws.ownSemicolon = this.spaces;
                 this.spaces = '';
             }
