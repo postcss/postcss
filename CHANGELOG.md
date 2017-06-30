@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.4
+* Fix parsing `;;` after rules.
+* Use Chalk 2.0.
+
 ## 6.0.3
 * Fix escape sequences parsing (by Oleh Kuchuk).
 * Added ability to force disable colors with an environment variable.
