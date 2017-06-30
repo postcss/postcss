@@ -70,24 +70,6 @@
   "browser": {
     "fs": false
   },
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "browsers": "last 1 version",
-            "node": 4
-          },
-          "loose": true
-        }
-      ]
-    ],
-    "plugins": [
-      "add-module-exports",
-      "precompile-charcodes"
-    ]
-  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "eslint-config-postcss",
