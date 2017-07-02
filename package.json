@@ -50,6 +50,7 @@
     "postcss-parser-tests": "^6.0.1",
     "pre-commit": "^1.2.2",
     "run-sequence": "^1.2.2",
+    "size-limit": "^0.2.0",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^0.4.0"
   },

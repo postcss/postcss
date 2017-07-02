@@ -55,6 +55,11 @@ gulp.task('spellcheck', ['api'], () => {
     return run('yaspeller-ci api/*.html *.md docs/*.md docs/**/*.md').exec();
 });
 
+gulp.task('size', ['build:lib'], () => {
+    let run = require('gulp-run');
+    return run('size-limit --babili 36KB build/lib/postcss.js').exec();
+});
+
 // Tests
 
 gulp.task('test', ['compile'], () => {
@@ -89,6 +94,6 @@ gulp.task('api', ['clean'], () => {
 
 // Common
 
-gulp.task('offline', ['version', 'lint', 'test', 'api']);
+gulp.task('offline', ['version', 'lint', 'test', 'api', 'size']);
 
 gulp.task('default', ['offline', 'spellcheck', 'integration']);
