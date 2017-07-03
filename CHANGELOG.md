@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.5
+* Move Babel config from package.json for node_modules compiling cases.
+
 ## 6.0.4
 * Fix parsing `;;` after rules.
 * Use Chalk 2.0.
