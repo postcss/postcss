@@ -29,8 +29,8 @@
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-precompile-charcodes": "^1.0.0",
-    "babel-preset-env": "^1.5.2",
+    "babel-plugin-precompile-charcodes": "^1.1.0",
+    "babel-preset-env": "^1.6.0",
     "concat-with-sourcemaps": "^1.0.4",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
@@ -50,9 +50,9 @@
     "postcss-parser-tests": "^6.0.1",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.0.0",
-    "size-limit": "^0.3.0",
+    "size-limit": "^0.3.1",
     "strip-ansi": "^4.0.0",
-    "yaspeller-ci": "^0.4.0"
+    "yaspeller-ci": "^0.4.1"
   },
   "scripts": {
     "lint-staged": "lint-staged",

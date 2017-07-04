@@ -557,9 +557,9 @@ babel-plugin-minify-type-constructors@^0.1.2:
   dependencies:
     babel-helper-is-void-0 "^0.1.1"
 
-babel-plugin-precompile-charcodes@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-precompile-charcodes/-/babel-plugin-precompile-charcodes-1.0.0.tgz#1179ee4864944f3691906198a19601efdde1ef79"
+babel-plugin-precompile-charcodes@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-precompile-charcodes/-/babel-plugin-precompile-charcodes-1.1.0.tgz#8ac6bacb196c001146296467700df3e8e6079714"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
@@ -844,9 +844,9 @@ babel-preset-babili@^0.1.4:
     babel-plugin-transform-undefined-to-void "^6.8.2"
     lodash.isplainobject "^4.0.6"
 
-babel-preset-env@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.5.2.tgz#cd4ae90a6e94b709f97374b33e5f8b983556adef"
+babel-preset-env@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.6.0.tgz#2de1c782a780a0a5d605d199c957596da43c44e4"
   dependencies:
     babel-plugin-check-es2015-constants "^6.22.0"
     babel-plugin-syntax-trailing-function-commas "^6.22.0"
@@ -1198,6 +1198,10 @@ ci-info@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.0.0.tgz#dc5285f2b4e251821683681c381c3388f46ec534"
 
+ci-job-number@^0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ci-job-number/-/ci-job-number-0.1.1.tgz#aabe28ddf46284b9a4ebafa5a76234570e082832"
+
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/cipher-base/-/cipher-base-1.0.3.tgz#eeabf194419ce900da3018c207d212f2a6df0a07"
@@ -1288,10 +1292,8 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
     delayed-stream "~1.0.0"
 
 commander@^2.9.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.10.0.tgz#e1f5d3245de246d1a5ca04702fa1ad1bd7e405fe"
-  dependencies:
-    graceful-readlink ">= 1.0.0"
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
 commander@~2.9.0:
   version "2.9.0"
@@ -4753,15 +4755,17 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-size-limit@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-0.3.0.tgz#da930c0c02855cde23ac1b5fa9abf891ac14c288"
+size-limit@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-0.3.1.tgz#df530a3255a32f1e248fca30701edfe9ae4c33cf"
   dependencies:
     babili-webpack-plugin "^0.1.2"
     bytes "^2.5.0"
     chalk "^2.0.1"
+    ci-job-number "^0.1.0"
     gzip-size "^3.0.0"
     memory-fs "^0.4.1"
+    read-pkg-up "^2.0.0"
     webpack "^3.0.0"
     webpack-bundle-analyzer "^2.8.2"
     yargs "^8.0.2"
@@ -5593,13 +5597,14 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-yaspeller-ci@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/yaspeller-ci/-/yaspeller-ci-0.4.0.tgz#7d05a85fdbb3482335296d1c25beb26646857f9e"
+yaspeller-ci@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/yaspeller-ci/-/yaspeller-ci-0.4.1.tgz#6843e1f7e81856be444b6f5708959811d1d0b860"
   dependencies:
-    yaspeller "^3.1.0"
+    ci-job-number "^0.1.0"
+    yaspeller "^3.2.0"
 
-yaspeller@^3.1.0:
+yaspeller@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/yaspeller/-/yaspeller-3.2.0.tgz#9d0ca63b417777a03aada0a935848ce70ec06f0b"
   dependencies:
