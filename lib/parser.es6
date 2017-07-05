@@ -257,6 +257,8 @@ export default class Parser {
         }
         this.init(node, token[2], token[3]);
 
+        let prev;
+        let shift;
         let last   = false;
         let open   = false;
         let params = [];
@@ -272,6 +274,12 @@ export default class Parser {
                 open = true;
                 break;
             } else if ( token[0] === '}') {
+                shift = params.length - 1;
+                prev = params[shift];
+                while (prev[0] === 'space') {
+                    prev = params[--shift];
+                }
+                node.source.end = { line: prev[4], column: prev[5] };
                 this.end(token);
                 break;
             } else {
