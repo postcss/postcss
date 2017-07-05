@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.6
+* Fix `end` position in at-rule without semicolon (by Oleh Kuchuk).
+
 ## 6.0.5
 * Move Babel config from `package.json` for `node_modules` compiling cases.
 
