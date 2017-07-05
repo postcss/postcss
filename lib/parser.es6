@@ -274,12 +274,16 @@ export default class Parser {
                 open = true;
                 break;
             } else if ( token[0] === '}') {
-                shift = params.length - 1;
-                prev = params[shift];
-                while (prev[0] === 'space') {
-                    prev = params[--shift];
+                if (params.length) {
+                    shift = params.length - 1;
+                    prev = params[shift];
+                    while (prev && prev[0] === 'space') {
+                        prev = params[--shift];
+                    }
+                    if (prev) {
+                        node.source.end = { line: prev[4], column: prev[5] };
+                    }
                 }
-                node.source.end = { line: prev[4], column: prev[5] };
                 this.end(token);
                 break;
             } else {
