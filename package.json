@@ -50,7 +50,7 @@
     "postcss-parser-tests": "^6.0.2",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.0.0",
-    "size-limit": "^0.5.1",
+    "size-limit": "^0.6.0",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^0.6.0"
   },
@@ -71,6 +71,13 @@
   "browser": {
     "fs": false
   },
+  "sizeLimit": [
+    {
+      "path": "build/lib/postcss.js",
+      "babili": true,
+      "limit": "36 KB"
+    }
+  ],
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "eslint-config-postcss",

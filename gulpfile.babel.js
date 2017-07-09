@@ -57,7 +57,7 @@ gulp.task('spellcheck', ['api'], () => {
 
 gulp.task('size', ['build:lib'], () => {
     let run = require('gulp-run');
-    return run('size-limit --babili 36KB build/lib/postcss.js').exec();
+    return run('size-limit').exec();
 });
 
 // Tests
