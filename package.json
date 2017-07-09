@@ -23,7 +23,7 @@
   "dependencies": {
     "chalk": "^2.0.1",
     "source-map": "^0.5.6",
-    "supports-color": "^4.1.0"
+    "supports-color": "^4.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -34,7 +34,7 @@
     "concat-with-sourcemaps": "^1.0.4",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.1.1",
+    "eslint": "^4.2.0",
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^3.0.1",
     "gulp": "^3.9.1",
@@ -46,13 +46,13 @@
     "gulp-sourcemaps": "^2.6.0",
     "jest": "^20.0.4",
     "jsdoc": "^3.4.3",
-    "lint-staged": "^4.0.0",
+    "lint-staged": "^4.0.1",
     "postcss-parser-tests": "^6.0.2",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.0.0",
-    "size-limit": "^0.3.2",
+    "size-limit": "^0.5.1",
     "strip-ansi": "^4.0.0",
-    "yaspeller-ci": "^0.4.1"
+    "yaspeller-ci": "^0.6.0"
   },
   "scripts": {
     "lint-staged": "lint-staged",
