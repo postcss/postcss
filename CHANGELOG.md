@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.7
+* Fix base64 decoding for old Node.js and browser.
+
 ## 6.0.6
 * Fix `end` position in at-rule without semicolon (by Oleh Kuchuk).
 
