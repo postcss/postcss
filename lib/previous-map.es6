@@ -4,9 +4,11 @@ import fs       from 'fs';
 
 function fromBase64(str) {
     if ( Buffer ) {
-        return Buffer.from ?
-            Buffer.from(str, 'base64').toString() :
-            new Buffer(str, 'base64').toString();
+        if ( Buffer.from && Buffer.from !== Uint8Array.from ) {
+            return Buffer.from(str, 'base64').toString();
+        } else {
+            return new Buffer(str, 'base64').toString();
+        }
     } else {
         return window.atob(str);
     }

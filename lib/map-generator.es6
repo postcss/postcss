@@ -122,9 +122,11 @@ export default class MapGenerator {
 
     toBase64(str) {
         if ( Buffer ) {
-            return Buffer.from ?
-                Buffer.from(str).toString('base64') :
-                new Buffer(str).toString('base64');
+            if ( Buffer.from && Buffer.from !== Uint8Array.from ) {
+                return Buffer.from(str).toString('base64');
+            } else {
+                return new Buffer(str).toString('base64');
+            }
         } else {
             return window.btoa(unescape(encodeURIComponent(str)));
         }
