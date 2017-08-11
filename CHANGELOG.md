@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.9
+* Improve error message for plugin with old PostCSS (by Igor Adamenko).
+
 ## 6.0.8
 * Fix Node.js 4.2.2 support.
 
