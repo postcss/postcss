@@ -21,9 +21,9 @@
   "homepage": "http://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
-    "chalk": "^2.0.1",
+    "chalk": "^2.1.0",
     "source-map": "^0.5.6",
-    "supports-color": "^4.2.0"
+    "supports-color": "^4.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -34,23 +34,23 @@
     "concat-with-sourcemaps": "^1.0.4",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.2.0",
+    "eslint": "^4.4.1",
     "eslint-config-postcss": "^2.0.2",
-    "fs-extra": "^4.0.0",
+    "fs-extra": "^4.0.1",
     "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
+    "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.0",
     "gulp-eslint": "^4.0.0",
     "gulp-jest": "^2.0.0",
     "gulp-run": "^1.7.1",
     "gulp-sourcemaps": "^2.6.0",
     "jest": "^20.0.4",
-    "jsdoc": "^3.5.3",
-    "lint-staged": "^4.0.2",
+    "jsdoc": "^3.5.4",
+    "lint-staged": "^4.0.3",
     "postcss-parser-tests": "^6.0.2",
     "pre-commit": "^1.2.2",
-    "run-sequence": "^2.0.0",
-    "size-limit": "^0.7.0",
+    "run-sequence": "^2.1.0",
+    "size-limit": "^0.8.4",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^0.6.0"
   },
@@ -71,7 +71,7 @@
   "browser": {
     "fs": false
   },
-  "sizeLimit": [
+  "size-limit": [
     {
       "path": "build/lib/postcss.js",
       "babili": true,
