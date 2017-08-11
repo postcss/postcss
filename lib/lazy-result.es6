@@ -226,6 +226,7 @@ class LazyResult {
 
                 if ( a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1]) ) {
                     console.error(
+                        'Unknown error from PostCSS plugin. ' +
                         'Your current PostCSS version ' +
                         'is ' + runtimeVer + ', but ' + pluginName + ' ' +
                         'uses ' + pluginVer + '. Perhaps this is ' +

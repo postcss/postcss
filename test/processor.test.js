@@ -347,6 +347,7 @@ it('checks plugin compatibility', () => {
     }).toThrowError('Er');
     expect(console.error.mock.calls.length).toEqual(1);
     expect(console.error.mock.calls[0][0]).toEqual(
+        'Unknown error from PostCSS plugin. ' +
         'Your current PostCSS version is 1.0.0, but test uses 2.1.5. ' +
         'Perhaps this is the source of the error below.');
 
