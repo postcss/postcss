@@ -75,7 +75,7 @@
   },
   "size-limit": [
     {
-      "path": "build/lib/postcss.js",
+      "path": "lib/postcss.js",
       "limit": "28 KB"
     }
   ],
