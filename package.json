@@ -69,12 +69,14 @@
     "lint-staged"
   ],
   "browser": {
+    "supports-color": false,
+    "chalk": false,
     "fs": false
   },
   "size-limit": [
     {
       "path": "build/lib/postcss.js",
-      "limit": "36 KB"
+      "limit": "28 KB"
     }
   ],
   "eslintConfig": {

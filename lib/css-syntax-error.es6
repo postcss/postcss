@@ -168,14 +168,14 @@ class CssSyntaxError {
         let maxWidth = String(end).length;
 
         function mark(text) {
-            if ( color ) {
+            if ( color && chalk.red ) {
                 return chalk.red.bold(text);
             } else {
                 return text;
             }
         }
         function aside(text) {
-            if ( color ) {
+            if ( color && chalk.gray ) {
                 return chalk.gray(text);
             } else {
                 return text;
