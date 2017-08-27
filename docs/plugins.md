@@ -379,7 +379,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
-* [`postcss-hash`] replaces output file names with any supporeted HASH algorithms for cache busting.
+* [`postcss-hash`] replaces output file names with hash algorithms
+  for cache busting.
 * [`postcss-ie8`] strips out unsupported properties and media queries for IE8.
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
 * [`postcss-inline-rtl`] converts your CSS to right-to-left,
