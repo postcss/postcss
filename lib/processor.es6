@@ -24,7 +24,7 @@ class Processor {
          *   throw new Error('This plugin works only with PostCSS 6');
          * }
          */
-        this.version = '6.0.9';
+        this.version = '6.0.10';
         /**
          * @member {pluginFunction[]} - Plugins added to this processor.
          *

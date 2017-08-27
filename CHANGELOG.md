@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.10
+* Reduce PostCSS size in webpack bundle.
+
 ## 6.0.9
 * Improve error message for plugin with old PostCSS (by Igor Adamenko).
 
