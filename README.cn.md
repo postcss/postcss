@@ -125,8 +125,8 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 * [`postcss-html`] 允许你在 HTML / [Markdown](https://daringfireball.net/projects/markdown/syntax) / [Vue component](https://vue-loader.vuejs.org/) 里编写样式。
 * [`postcss-scss`] 允许你使用 SCSS *(但并没有将 SCSS 编译到 CSS)*。
 * [`postcss-sass`] 允许你使用 Sass *(但并没有将 Sass 编译到 CSS)*。
-* [`postcss-less`] 允许你使用 Less *(但并没有将 Less 编译到 CSS)*。
-* [`postcss-less-engine`] 允许你使用 LESS *(并且使用真正的 Less.js 把 LESS 编译到 CSS)*。
+* [`postcss-less`] 允许你使用 Less *(但并没有将 LESS 编译到 CSS)*。
+* [`postcss-less-engine`] 允许你使用 Less *(并且使用真正的 Less.js 把 LESS 编译到 CSS)*。
 * [`postcss-js`] 允许你在 JS 里编写样式，或者转换成 React 的内联样式／Radium／JSS。
 * [`postcss-safe-parser`] 查找并修复 CSS 语法错误。
 * [`midas`] 将 CSS 字符串转化成高亮的 HTML。
