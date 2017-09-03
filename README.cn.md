@@ -1,3 +1,5 @@
+<meta charset="utf-8">
+
 # PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
