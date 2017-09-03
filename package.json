@@ -23,7 +23,7 @@
   "dependencies": {
     "chalk": "^2.1.0",
     "source-map": "^0.5.7",
-    "supports-color": "^4.2.1"
+    "supports-color": "^4.4.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -34,7 +34,7 @@
     "concat-with-sourcemaps": "^1.0.4",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.5.0",
+    "eslint": "^4.6.0",
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^4.0.1",
     "gulp": "^3.9.1",
