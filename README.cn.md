@@ -1,5 +1,3 @@
-<meta charset="utf-8">
-
 # PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
@@ -14,7 +12,7 @@
 [chat]:         https://gitter.im/postcss/postcss
 
 PostCSS 是一个允许使用 JS 插件转换样式的工具。
-这些插件可以检查（lint）你的 CSS，支持 CSS Variables 和 Mixins，
+这些插件可以检查（lint）你的 CSS，支持 CSS Variables 和 Mixins，
 编译尚未被浏览器广泛支持的先进的 CSS 语法，内联图片，以及其它很多优秀的功能。
 
 PostCSS 在工业界被广泛地应用，其中不乏很多有名的行业领导者，如：维基百科，Twitter，阿里巴巴，
@@ -37,7 +35,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 ## 插件
 
-截止到目前，PostCSS 有 200 多个插件。你可以在 [插件列表] 或 [搜索目录] 找到它们。
+截止到目前，PostCSS 有 200 多个插件。你可以在 [插件列表] 或 [搜索目录] 找到它们。
 下方的列表是我们最喜欢的插件 - 它们很好地演示了我们可以用 PostCSS 做些什么。
 
 如果你有任何新的想法，[开发 PostCSS 插件] 非常简单易上手。
@@ -49,20 +47,20 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 * [`postcss-use`] 允许你在 CSS 里明确地设置 PostCSS 插件，并且只在当前文件执行它们。
 * [`postcss-modules`] 和 [`react-css-modules`] 可以自动以组件为单位隔绝 CSS 选择器。 
-* [`postcss-autoreset`] 是全局样式重置的又一个选择，它更适用于分离的组件。
+* [`postcss-autoreset`] 是全局样式重置的又一个选择，它更适用于分离的组件。
 * [`postcss-initial`] 添加了 `all: initial` 的支持，重置了所有继承的样式。
 * [`cq-prolyfill`] 添加了容器查询的支持，允许添加响应于父元素宽度的样式.
 
 ### 提前使用先进的 CSS 特性
 
 * [`autoprefixer`] 添加了 vendor 浏览器前缀，它使用 Can I Use 上面的数据。
-* [`postcss-cssnext`] 允许你使用未来的 CSS 特性（包括 `autoprefixer`）。
+* [`postcss-cssnext`] 允许你使用未来的 CSS 特性（包括 `autoprefixer`）。
 * [`postcss-image-set-polyfill`] 为所有浏览器模拟了 [`image-set`] 函数逻辑。
 
 ### 更佳的 CSS 可读性
 
 * [`precss`] 囊括了许多插件来支持类似 Sass 的特性，比如 CSS 变量，套嵌，mixins 等。
-* [`postcss-sorting`] 给规则的内容以及@规则排序。
+* [`postcss-sorting`] 给规则的内容以及@规则排序。
 * [`postcss-utilities`] 囊括了最常用的简写方式和书写帮助。
 * [`short`] 添加并拓展了大量的缩写属性。
 
@@ -79,13 +77,13 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 * [`stylelint`] 是一个模块化的样式提示器。
 * [`stylefmt`] 是一个能根据 `stylelint` 规则自动优化 CSS 格式的工具。
 * [`doiuse`] 提示 CSS 的浏览器支持性，使用的数据来自于 Can I Use。
-* [`colorguard`] 帮助你保持一个始终如一的调色板。
+* [`colorguard`] 帮助你保持一个始终如一的调色板。
 
 ### 其它
 
 * [`postcss-rtl`] 在单个 CSS 文件里组合了两个方向（左到右，右到左）的样式。
 * [`cssnano`] 是一个模块化的 CSS 压缩器。
-* [`lost`] 是一个功能强大的 `calc()` 栅格系统。
+* [`lost`] 是一个功能强大的 `calc()` 栅格系统。
 * [`rtlcss`] 镜像翻转 CSS 样式，适用于 right-to-left 的应用场景。
 
 [开发 PostCSS 插件]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
