@@ -1,7 +1,7 @@
 # PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
-     title="Philosopher’s stone, logo of PostCSS"
+     title="哲学家的石头 - PostCSS 的 logo"
      src="http://postcss.github.io/postcss/logo.svg">
 
 [appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
@@ -30,7 +30,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 <a href="https://evilmartians.com/?utm_source=postcss">
   <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
-       alt="Sponsored by Evil Martians" width="236" height="54">
+       alt="由 Evil Martians 赞助" width="236" height="54">
 </a>
 
 ## 插件
@@ -124,8 +124,8 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 * [`sugarss`] 是一个以缩进为基础的语法，类似于 Sass 和 Stylus。
 * [`postcss-html`] 允许你在 HTML / [Markdown](https://daringfireball.net/projects/markdown/syntax) / [Vue component](https://vue-loader.vuejs.org/) 里编写样式。
 * [`postcss-scss`] 允许你使用 SCSS *(但并没有将 SCSS 编译到 CSS)*。
-* [`postcss-sass`] 允许你使用 SASS *(但并没有将 SASS 编译到 CSS)*。
-* [`postcss-less`] 允许你使用 LESS *(但并没有将 LESS 编译到 CSS)*。
+* [`postcss-sass`] 允许你使用 Sass *(但并没有将 Sass 编译到 CSS)*。
+* [`postcss-less`] 允许你使用 Less *(但并没有将 Less 编译到 CSS)*。
 * [`postcss-less-engine`] 允许你使用 LESS *(并且使用真正的 Less.js 把 LESS 编译到 CSS)*。
 * [`postcss-js`] 允许你在 JS 里编写样式，或者转换成 React 的内联样式／Radium／JSS。
 * [`postcss-safe-parser`] 查找并修复 CSS 语法错误。
