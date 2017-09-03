@@ -1,7 +1,7 @@
 # PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
-     title="Philosopher’s stone, logo of PostCSS"
+     alt="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo.svg">
 
 [appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
@@ -97,35 +97,35 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
-[PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
-[`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
-[`react-css-modules`]:        https://github.com/gajus/react-css-modules
-[`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
-[`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg
-[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
-[`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial
-[`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites
-[`postcss-modules`]:          https://github.com/outpunk/postcss-modules
-[`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting
-[`postcss-cssnext`]:          http://cssnext.io
 [`postcss-image-set-polyfill`]: https://github.com/SuperOl3g/postcss-image-set-polyfill
-[`postcss-assets`]:           https://github.com/assetsjs/postcss-assets
-[`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
-[`autoprefixer`]:             https://github.com/postcss/autoprefixer
-[`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill
-[`postcss-rtl`]:              https://github.com/vkalinichev/postcss-rtl
-[`postcss-use`]:              https://github.com/postcss/postcss-use
-[`css-modules`]:              https://github.com/css-modules/css-modules
-[`colorguard`]:               https://github.com/SlexAxton/css-colorguard
-[`stylelint`]:                https://github.com/stylelint/stylelint
-[`stylefmt`]:                 https://github.com/morishitter/stylefmt
-[`cssnano`]:                  http://cssnano.co
-[`precss`]:                   https://github.com/jonathantneal/precss
-[`doiuse`]:                   https://github.com/anandthakker/doiuse
-[`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
-[`short`]:                    https://github.com/jonathantneal/postcss-short
-[`lost`]:                     https://github.com/peterramsing/lost
-[`image-set`]:                https://drafts.csswg.org/css-images-3/#image-set-notation
+[PostCSS plugin development]:   https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
+[`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
+[`react-css-modules`]:          https://github.com/gajus/react-css-modules
+[`postcss-autoreset`]:          https://github.com/maximkoretskiy/postcss-autoreset
+[`postcss-write-svg`]:          https://github.com/jonathantneal/postcss-write-svg
+[`postcss-utilities`]:          https://github.com/ismamz/postcss-utilities
+[`postcss-initial`]:            https://github.com/maximkoretskiy/postcss-initial
+[`postcss-sprites`]:            https://github.com/2createStudio/postcss-sprites
+[`postcss-modules`]:            https://github.com/outpunk/postcss-modules
+[`postcss-sorting`]:            https://github.com/hudochenkov/postcss-sorting
+[`postcss-cssnext`]:            http://cssnext.io
+[`postcss-assets`]:             https://github.com/assetsjs/postcss-assets
+[`font-magician`]:              https://github.com/jonathantneal/postcss-font-magician
+[`autoprefixer`]:               https://github.com/postcss/autoprefixer
+[`cq-prolyfill`]:               https://github.com/ausi/cq-prolyfill
+[`postcss-rtl`]:                https://github.com/vkalinichev/postcss-rtl
+[`postcss-use`]:                https://github.com/postcss/postcss-use
+[`css-modules`]:                https://github.com/css-modules/css-modules
+[`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
+[`stylelint`]:                  https://github.com/stylelint/stylelint
+[`image-set`]:                  https://drafts.csswg.org/css-images-3/#image-set-notation
+[`stylefmt`]:                   https://github.com/morishitter/stylefmt
+[`cssnano`]:                    http://cssnano.co
+[`precss`]:                     https://github.com/jonathantneal/precss
+[`doiuse`]:                     https://github.com/anandthakker/doiuse
+[`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
+[`short`]:                      https://github.com/jonathantneal/postcss-short
+[`lost`]:                       https://github.com/peterramsing/lost
 
 ## Syntaxes
 
@@ -148,14 +148,14 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [`postcss-safe-parser`] finds and fixes CSS syntax errors.
 * [`midas`] converts a CSS string to highlighted HTML.
 
-[`sugarss`]:             https://github.com/postcss/sugarss
+[`postcss-less-engine`]: https://github.com/Crunch/postcss-less
+[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
 [`postcss-html`]:        https://github.com/gucong3000/postcss-html
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass
 [`postcss-less`]:        https://github.com/webschik/postcss-less
-[`postcss-less-engine`]: https://github.com/Crunch/postcss-less
 [`postcss-js`]:          https://github.com/postcss/postcss-js
-[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
+[`sugarss`]:             https://github.com/postcss/sugarss
 [`midas`]:               https://github.com/ben-eb/midas
 
 ## Articles
@@ -272,8 +272,8 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
 [Browserify]:   http://browserify.org/
-[webpack]:      https://webpack.github.io/
 [CSS-in-JS]:    https://github.com/MicheleBertoli/css-in-js
+[webpack]:      https://webpack.github.io/
 
 ### Runners
 

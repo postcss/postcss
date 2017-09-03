@@ -1,7 +1,7 @@
 # PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
-     title="哲学家的石头 - PostCSS 的 logo"
+     alt="哲学家的石头 - PostCSS 的 logo"
      src="http://postcss.github.io/postcss/logo.svg">
 
 [appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
@@ -46,7 +46,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 ### 解决全局 CSS 的问题
 
 * [`postcss-use`] 允许你在 CSS 里明确地设置 PostCSS 插件，并且只在当前文件执行它们。
-* [`postcss-modules`] 和 [`react-css-modules`] 可以自动以组件为单位隔绝 CSS 选择器。 
+* [`postcss-modules`] 和 [`react-css-modules`] 可以自动以组件为单位隔绝 CSS 选择器。
 * [`postcss-autoreset`] 是全局样式重置的又一个选择，它更适用于分离的组件。
 * [`postcss-initial`] 添加了 `all: initial` 的支持，重置了所有继承的样式。
 * [`cq-prolyfill`] 添加了容器查询的支持，允许添加响应于父元素宽度的样式.
@@ -86,35 +86,35 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 * [`lost`] 是一个功能强大的 `calc()` 栅格系统。
 * [`rtlcss`] 镜像翻转 CSS 样式，适用于 right-to-left 的应用场景。
 
-[开发 PostCSS 插件]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
-[`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
-[`react-css-modules`]:        https://github.com/gajus/react-css-modules
-[`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
-[`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg
-[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
-[`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial
-[`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites
-[`postcss-modules`]:          https://github.com/outpunk/postcss-modules
-[`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting
-[`postcss-cssnext`]:          http://cssnext.io
 [`postcss-image-set-polyfill`]: https://github.com/SuperOl3g/postcss-image-set-polyfill
-[`postcss-assets`]:           https://github.com/assetsjs/postcss-assets
-[`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
-[`autoprefixer`]:             https://github.com/postcss/autoprefixer
-[`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill
-[`postcss-rtl`]:              https://github.com/vkalinichev/postcss-rtl
-[`postcss-use`]:              https://github.com/postcss/postcss-use
-[`css-modules`]:              https://github.com/css-modules/css-modules
-[`colorguard`]:               https://github.com/SlexAxton/css-colorguard
-[`stylelint`]:                https://github.com/stylelint/stylelint
-[`stylefmt`]:                 https://github.com/morishitter/stylefmt
-[`cssnano`]:                  http://cssnano.co
-[`precss`]:                   https://github.com/jonathantneal/precss
-[`doiuse`]:                   https://github.com/anandthakker/doiuse
-[`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
-[`short`]:                    https://github.com/jonathantneal/postcss-short
-[`lost`]:                     https://github.com/peterramsing/lost
-[`image-set`]:                https://drafts.csswg.org/css-images-3/#image-set-notatio
+[`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
+[`react-css-modules`]:          https://github.com/gajus/react-css-modules
+[`postcss-autoreset`]:          https://github.com/maximkoretskiy/postcss-autoreset
+[`postcss-write-svg`]:          https://github.com/jonathantneal/postcss-write-svg
+[`postcss-utilities`]:          https://github.com/ismamz/postcss-utilities
+[`postcss-initial`]:            https://github.com/maximkoretskiy/postcss-initial
+[`postcss-sprites`]:            https://github.com/2createStudio/postcss-sprites
+[`postcss-modules`]:            https://github.com/outpunk/postcss-modules
+[`postcss-sorting`]:            https://github.com/hudochenkov/postcss-sorting
+[`postcss-cssnext`]:            http://cssnext.io
+[`postcss-assets`]:             https://github.com/assetsjs/postcss-assets
+[开发 PostCSS 插件]:             https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
+[`font-magician`]:              https://github.com/jonathantneal/postcss-font-magician
+[`autoprefixer`]:               https://github.com/postcss/autoprefixer
+[`cq-prolyfill`]:               https://github.com/ausi/cq-prolyfill
+[`postcss-rtl`]:                https://github.com/vkalinichev/postcss-rtl
+[`postcss-use`]:                https://github.com/postcss/postcss-use
+[`css-modules`]:                https://github.com/css-modules/css-modules
+[`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
+[`stylelint`]:                  https://github.com/stylelint/stylelint
+[`image-set`]:                  https://drafts.csswg.org/css-images-3/#image-set-notatio
+[`stylefmt`]:                   https://github.com/morishitter/stylefmt
+[`cssnano`]:                    http://cssnano.co
+[`precss`]:                     https://github.com/jonathantneal/precss
+[`doiuse`]:                     https://github.com/anandthakker/doiuse
+[`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
+[`short`]:                      https://github.com/jonathantneal/postcss-short
+[`lost`]:                       https://github.com/peterramsing/lost
 
 ## 语法
 
@@ -131,14 +131,14 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 * [`postcss-safe-parser`] 查找并修复 CSS 语法错误。
 * [`midas`] 将 CSS 字符串转化成高亮的 HTML。
 
-[`sugarss`]:             https://github.com/postcss/sugarss
+[`postcss-less-engine`]: https://github.com/Crunch/postcss-less
+[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
 [`postcss-html`]:        https://github.com/gucong3000/postcss-html
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass
 [`postcss-less`]:        https://github.com/webschik/postcss-less
-[`postcss-less-engine`]: https://github.com/Crunch/postcss-less
 [`postcss-js`]:          https://github.com/postcss/postcss-js
-[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
+[`sugarss`]:             https://github.com/postcss/sugarss
 [`midas`]:               https://github.com/ben-eb/midas
 
 ## 文章
@@ -253,8 +253,8 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
 [Browserify]:   http://browserify.org/
-[webpack]:      https://webpack.github.io/
 [CSS-in-JS]:    https://github.com/MicheleBertoli/css-in-js
+[webpack]:      https://webpack.github.io/
 
 ### 运行器
 
@@ -295,7 +295,7 @@ fs.readFile('src/app.css', (err, css) => {
 所有的 PostCSS 运行器应当通过 [PostCSS 运行器指南]。
 
 [PostCSS 运行器指南]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
-[PostCSS API 文档]: http://api.postcss.org/postcss.html
+[PostCSS API 文档]:  http://api.postcss.org/postcss.html
 
 ### 配置选项
 
@@ -314,8 +314,8 @@ fs.readFile('src/app.css', (err, css) => {
 * `to`: output 文件名称（大多数运行器自动设置了这个）。
 
 [source map 选项]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md
-[Midas]:              https://github.com/ben-eb/midas
-[SCSS]:               https://github.com/postcss/postcss-scss
+[Midas]:          https://github.com/ben-eb/midas
+[SCSS]:           https://github.com/postcss/postcss-scss
 
 ### Atom
 
