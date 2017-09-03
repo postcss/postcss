@@ -11,15 +11,19 @@
 [travis]:       https://travis-ci.org/postcss/postcss
 [chat]:         https://gitter.im/postcss/postcss
 
-PostCSS 是一个允许使用 JS 插件转换样式的工具。这些插件可以检查（lint）你的 CSS，支持 CSS Variables 和 Mixins，编译尚未被浏览器广泛支持的先进的 CSS 语法，内联图片，以及其它很多优秀的功能。
+PostCSS 是一个允许使用 JS 插件转换样式的工具。
+这些插件可以检查（lint）你的 CSS，支持 CSS Variables 和 Mixins，
+编译尚未被浏览器广泛支持的先进的 CSS 语法，内联图片，以及其它很多优秀的功能。
 
-PostCSS 在工业界被广泛地应用，其中不乏很多有名的行业领导者，如：维基百科，Twitter，阿里巴巴，JetBrains。PostCSS 的 [Autoprefixer] 插件是最流行的 CSS 处理工具之一。
+PostCSS 在工业界被广泛地应用，其中不乏很多有名的行业领导者，如：维基百科，Twitter，阿里巴巴，
+JetBrains。PostCSS 的 [Autoprefixer] 插件是最流行的 CSS 处理工具之一。
 
 Twitter 账号: [@postcss](https://twitter.com/postcss)。
 VK.com page:  [postcss](https://vk.com/postcss)。
 支持 / 讨论:   [Gitter](https://gitter.im/postcss/postcss)。
 
-如果需要 PostCSS 商业支持（如咨询，提升公司的前端文化，PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_source=postcss)
+如果需要 PostCSS 商业支持（如咨询，提升公司的前端文化，
+PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_source=postcss)
 邮箱 <surrender@evilmartians.com>。
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
@@ -31,12 +35,13 @@ VK.com page:  [postcss](https://vk.com/postcss)。
 
 ## 插件
 
-截止到目前，PostCSS 有 200 多个插件。你可以在 [插件列表] 或 [搜索目录] 找到它们。下方的列表是我们最喜欢的插件 - 它们很好地演示了我们可以用 PostCSS 做些什么。
+截止到目前，PostCSS 有 200 多个插件。你可以在 [插件列表] 或 [搜索目录] 找到它们。
+下方的列表是我们最喜欢的插件 - 它们很好地演示了我们可以用 PostCSS 做些什么。
 
 如果你有任何新的想法，[开发 PostCSS 插件] 非常简单易上手。
 
 [搜索目录]: http://postcss.parts
-[插件列表]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
+[插件列表]: https://github.com/postcss/postcss/blob/master/docs/plugins.md
 
 ### 解决全局 CSS 的问题
 
@@ -113,7 +118,8 @@ VK.com page:  [postcss](https://vk.com/postcss)。
 
 ## 语法
 
-PostCSS 可以转化样式到任意语法，不仅仅是 CSS。如果还没有支持你最喜欢的语法，你可以编写一个解释器以及（或者）一个 stringifier 来拓展 PostCSS。
+PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
+如果还没有支持你最喜欢的语法，你可以编写一个解释器以及（或者）一个 stringifier 来拓展 PostCSS。
 
 * [`sugarss`] 是一个以缩进为基础的语法，类似于 Sass 和 Stylus。
 * [`postcss-html`] 允许你在 HTML / [Markdown](https://daringfireball.net/projects/markdown/syntax) / [Vue component](https://vue-loader.vuejs.org/) 里编写样式。
@@ -232,9 +238,11 @@ postcss --use autoprefixer -c options.json -o main.css css/*.css
 
 ### 浏览器
 
-如果你想编译浏览器里的 CSS 字符串（例如像 CodePen 一样的在线编辑器），只需使用 [Browserify] 或  [webpack]。它们会把 PostCSS 和插件文件打包进一个独立文件。
+如果你想编译浏览器里的 CSS 字符串（例如像 CodePen 一样的在线编辑器），
+只需使用 [Browserify] 或  [webpack]。它们会把 PostCSS 和插件文件打包进一个独立文件。
 
-如果想要在 React 内联样式／JSS／Radium／其它 [CSS-in-JS] 里使用 PostCSS，你可以用 [`postcss-js`] 然后转换样式对象。
+如果想要在 React 内联样式／JSS／Radium／其它 [CSS-in-JS] 里使用 PostCSS，
+你可以用 [`postcss-js`] 然后转换样式对象。
 
 ```js
 var postcss  = require('postcss-js');
