@@ -79,6 +79,11 @@
       "limit": "28 KB"
     }
   ],
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "build"
+    ]
+  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "eslint-config-postcss",
