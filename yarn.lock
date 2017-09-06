@@ -4698,9 +4698,9 @@ postcss-ordered-values@^2.1.0:
     postcss "^5.0.4"
     postcss-value-parser "^3.0.1"
 
-postcss-parser-tests@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-6.0.2.tgz#4a6f6450095ca8ca5772d420ceeedc7d93fd0939"
+postcss-parser-tests@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-6.1.0.tgz#a93e9af50b4a0e5e108d33fe36651cf61b1a1ddb"
   dependencies:
     gulp-util "^3.0.7"
     load-resources "^0.1.1"

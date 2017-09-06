@@ -215,14 +215,14 @@ export default class Parser {
 
         for ( let i = tokens.length - 1; i > 0; i-- ) {
             token = tokens[i];
-            if ( token[1] === '!important' ) {
+            if ( token[1].toLowerCase() === '!important' ) {
                 node.important = true;
                 let string = this.stringFrom(tokens, i);
                 string = this.spacesFromEnd(tokens) + string;
                 if ( string !== ' !important' ) node.raws.important = string;
                 break;
 
-            } else if (token[1] === 'important') {
+            } else if (token[1].toLowerCase() === 'important') {
                 let cache = tokens.slice(0);
                 let str   = '';
                 for ( let j = i; j > 0; j-- ) {
