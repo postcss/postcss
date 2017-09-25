@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.12
+* Don’t copy `*` hack to declaration indent.
+
 ## 6.0.11
 * Add upper case `!IMPORTANT` support.
 
