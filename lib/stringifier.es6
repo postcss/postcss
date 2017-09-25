@@ -207,6 +207,8 @@ class Stringifier {
         });
         if ( typeof value === 'undefined' ) {
             value = this.raw(node, null, 'beforeDecl');
+        } else if ( value ) {
+            value = value.replace(/[^\s]/g, '');
         }
         return value;
     }
@@ -224,6 +226,8 @@ class Stringifier {
         });
         if ( typeof value === 'undefined' ) {
             value = this.raw(node, null, 'beforeRule');
+        } else if ( value ) {
+            value = value.replace(/[^\s]/g, '');
         }
         return value;
     }
@@ -241,6 +245,7 @@ class Stringifier {
                 }
             }
         });
+        if ( value ) value = value.replace(/[^\s]/g, '');
         return value;
     }
 
@@ -257,6 +262,7 @@ class Stringifier {
                 }
             }
         });
+        if ( value ) value = value.replace(/[^\s]/g, '');
         return value;
     }
 

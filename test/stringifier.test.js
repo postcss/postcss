@@ -123,6 +123,13 @@ it('clones declaration before for comment', () => {
 });
 
 it('clones indent by types', () => {
+    let css = parse('a {\n  *color: black\n}\n\nb {\n}');
+    css.append(new Rule({ selector: 'em' }));
+    css.last.append({ prop: 'z-index', value: '1' });
+    expect(css.last.first.raw('before')).toEqual('\n  ');
+});
+
+it('ignores non-space symbols in indent cloning', () => {
     let css = parse('a {\n  color: black\n}\n\nb {\n}');
     css.append(new Rule({ selector: 'em' }));
     css.last.append({ prop: 'z-index', value: '1' });
