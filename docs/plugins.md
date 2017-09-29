@@ -704,6 +704,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-maze`]:                         https://github.com/cathydutton/postcss-maze
 [`postcss-neat`]:                         https://github.com/jo-asakura/postcss-neat
 [`postcss-size`]:                         https://github.com/postcss/postcss-size
+[`postcss-size-advanced`]:                https://github.com/jhpratt/postcss-size-advanced
 [`postcss-svgo`]:                         https://github.com/ben-eb/postcss-svgo
 [`postcss-unmq`]:                         https://github.com/jonathantneal/postcss-unmq
 [`postcss-vmin`]:                         https://github.com/iamvdo/postcss-vmin
