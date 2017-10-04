@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.13
+* Fix TypeScript definitions for case of multiple PostCSS versions
+  in `node_modules` (by Chris Eppstein).
+* Use `source-map` 0.6.
+
 ## 6.0.12
 * Don’t copy `*` hack to declaration indent.
 
