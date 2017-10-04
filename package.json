@@ -22,19 +22,19 @@
   "repository": "postcss/postcss",
   "dependencies": {
     "chalk": "^2.1.0",
-    "source-map": "^0.5.7",
+    "source-map": "^0.6.1",
     "supports-color": "^4.4.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.0.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-precompile-charcodes": "^1.1.0",
     "babel-preset-env": "^1.6.0",
     "concat-with-sourcemaps": "^1.0.4",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.7.2",
+    "eslint": "^4.8.0",
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^4.0.2",
     "gulp": "^3.9.1",
@@ -44,13 +44,13 @@
     "gulp-jest": "^2.0.0",
     "gulp-run": "^1.7.1",
     "gulp-sourcemaps": "^2.6.1",
-    "jest": "^21.1.0",
+    "jest": "^21.2.1",
     "jsdoc": "^3.5.5",
     "lint-staged": "^4.2.3",
     "postcss-parser-tests": "^6.1.0",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.2.0",
-    "size-limit": "^0.11.4",
+    "size-limit": "^0.11.6",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^0.7.0"
   },
@@ -76,7 +76,7 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "28 KB"
+      "limit": "29 KB"
     }
   ],
   "jest": {
