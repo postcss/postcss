@@ -56,6 +56,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Move tests to Jest.
 * Clean up test (by Gabriel Kalani).
 
+## 5.2.18
+* Fix TypeScript definitions for case of multiple PostCSS versions
+  in `node_modules` (by Chris Eppstein).
+
 ## 5.2.17
 * Add `postcss-sass` suggestion to syntax error on `.sass` input.
 
