@@ -386,6 +386,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-inline-rtl`] converts your CSS to right-to-left,
   but inline (adding just what you need).
 * [`postcss-letter-tracking`] generates relative, Photoshop-compatible letter tracking for improved letter spacing.
+* [`postcss-light-text`]  adds webkit antialiasing for light text.
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
@@ -748,3 +749,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-state-selector`]:               https://github.com/binjospookie/postcss-state-selector
 [`postcss-html-filter`]:                  https://github.com/mapbox/postcss-html-filter
 [`postcss-hash`]:                         https://github.com/dacodekid/postcss-hash
+[`postcss-light-text`]:                   https://github.com/jdsteinbach/postcss-light-text
