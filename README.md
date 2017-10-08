@@ -119,7 +119,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`css-modules`]:                https://github.com/css-modules/css-modules
 [`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                  https://github.com/stylelint/stylelint
-[`image-set`]:                  https://drafts.csswg.org/css-images-3/#image-set-notation
+[`image-set`]:                  https://drafts.csswg.org/css-images-4/#image-set-notation
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
 [`cssnano`]:                    http://cssnano.co
 [`precss`]:                     https://github.com/jonathantneal/precss
