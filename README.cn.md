@@ -265,7 +265,7 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 * **Broccoli**: [`broccoli-postcss`](https://github.com/jeffjewiss/broccoli-postcss)
 * **Meteor**: [`postcss`](https://atmospherejs.com/juliancwirko/postcss)
 * **ENB**: [`enb-postcss`](https://github.com/awinogradov/enb-postcss)
-* **Fly**: [`fly-postcss`](https://github.com/postcss/fly-postcss)
+* **Taskr**: [`taskr-postcss`](https://github.com/lukeed/taskr/tree/master/packages/postcss)
 * **Start**: [`start-postcss`](https://github.com/start-runner/postcss)
 * **Connect/Express**: [`postcss-middleware`](https://github.com/jedmao/postcss-middleware)
 
