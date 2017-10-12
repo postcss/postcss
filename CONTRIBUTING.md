@@ -32,3 +32,14 @@ If you found a bug or want to add certain improvements to types declaration file
 - *Check current TypeScript styling*
 
    Be sure that your changes wont break anything as well as match TypeScript styling rules defined in typings file.
+
+### Core development
+
+If you want to add new feature or fix existed issue
+
+- *Become familiar with PostCSS architecture*
+
+    For adding new feature you certainly should be good understanding of PostCSS architecture as well as principles it follows.
+
+    For gentle intro to PostCSS architecture look through our [guide]()
+
