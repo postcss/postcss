@@ -4,7 +4,7 @@ If you want contribute to PostCSS, there are few things that you should be famil
 
 ### In case you have question about using PostCSS
 
-- *Check official PostCSS [documentation]()*
+- *Check official PostCSS [documentation](https://github.com/postcss/postcss/tree/master/docs)*
 
     If you can not find answer to your question try to search proper Q/A resources (Stack Overflow etc.) before creating issue with question.
 
