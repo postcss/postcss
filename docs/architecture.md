@@ -38,4 +38,4 @@ To be defined
 
 ### API
 
-More descriptive API documentation could be found [here]()
+More descriptive API documentation could be found [here](http://api.postcss.org/)
