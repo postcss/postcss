@@ -3,14 +3,15 @@
 General overview of PostCSS architecture.
 It can be useful for everyone who wish to contribute to core or develop better understanding of the tool.
 
-Table of Contents
+**Table of Contents**
 
-- [Overview](#Overview)
-- [Diagram](#Diagram)
-- [Core Structures](#Structures)
-    * [Tokenizer](#Tokenizer)
-    * [Parser](#Parser)
-    * [Plugin]()
+- [Overview](#overview)
+- [Diagram](#diagram)
+- [Core Structures](#core-structures)
+    * [Tokenizer](#tokenizer)
+    * [Parser](#parser)
+    * [Plugin](#plugin)
+    * [Stringifier](#stringifier)
 - [API](#api)
 
 ### Overview
