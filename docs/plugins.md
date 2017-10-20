@@ -392,6 +392,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
+* [`postcss-node-modules-replacer`] replaces path than includes node_modules to ~.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
@@ -754,3 +755,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-light-text`]:                   https://github.com/jdsteinbach/postcss-light-text
 [`postcss-bom`]:                          https://github.com/dichuvichkin/postcss-bom
 [`postcss-eol`]:                          https://github.com/dichuvichkin/postcss-eol
+[`postcss-node-modules-replacer`]:        https://github.com/dichuvichkin/postcss-node-modules-replacer
