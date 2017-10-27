@@ -33,7 +33,7 @@ Before diving deeper into development of PostCSS let's briefly describe what is 
 
 This is high level overview of whole PostCSS architecture
 
-<img width="360" src="https://rawgit.com/hzlmn/postcss/master/media/arch.jpg" alt="arch">
+<img width="600" src="https://rawgit.com/hzlmn/postcss/docs/media/architecture.jpg" alt="arch">
 
 ### Core Structures
 
