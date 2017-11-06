@@ -368,9 +368,11 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-alter-property-value`] alters your CSS declarations from a rule based configuration.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-autoreset`]  automatically adds reset styles.
+* [`postcss-bom`] adds a UTF-8 BOM to files.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-currency`] replaces name of currency with symbols.
+* [`postcss-eol`] replaces EOL of files.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-filter-stream`] blacklist files / folders that you don't want
@@ -390,6 +392,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
+* [`postcss-node-modules-replacer`] replaces path than includes `node_modules`
+  to `~`.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
@@ -750,3 +754,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-html-filter`]:                  https://github.com/mapbox/postcss-html-filter
 [`postcss-hash`]:                         https://github.com/dacodekid/postcss-hash
 [`postcss-light-text`]:                   https://github.com/jdsteinbach/postcss-light-text
+[`postcss-bom`]:                          https://github.com/dichuvichkin/postcss-bom
+[`postcss-eol`]:                          https://github.com/dichuvichkin/postcss-eol
+[`postcss-node-modules-replacer`]:        https://github.com/dichuvichkin/postcss-node-modules-replacer

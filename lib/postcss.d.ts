@@ -665,6 +665,28 @@ declare namespace postcss {
          * if the current node is the first child.
          */
         prev(): ChildNode | void;
+		/**
+		 * Insert new node before current node to current node’s parent.
+		 * 
+		 * Just an alias for `node.parent.insertBefore(node, newNode)`.
+		 * 
+		 * @returns this node for method chaining.
+		 * 
+		 * @example
+		 * decl.before('content: ""');
+		 */
+		before(newNode: Node | object | string | Node[]): this;
+		/**
+		 * Insert new node after current node to current node’s parent.
+		 * 
+		 * Just an alias for `node.parent.insertAfter(node, newNode)`.
+		 * 
+		 * @returns this node for method chaining.
+		 * 
+		 * @example
+		 * decl.after('color: black');
+		 */
+		after(newNode: Node | object | string | Node[]): this;
         /**
          * @returns The Root instance of the node's tree.
          */

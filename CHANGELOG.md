@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.14
+* Fix TypeScript definitions (by Jed Mao).
+
 ## 6.0.13
 * Fix TypeScript definitions for case of multiple PostCSS versions
   in `node_modules` (by Chris Eppstein).
