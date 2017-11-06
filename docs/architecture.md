@@ -10,9 +10,10 @@ It can be useful for everyone who wish to contribute to core or develop better u
 - [Core Structures](#core-structures)
     * [Tokenizer](#tokenizer)
     * [Parser](#parser)
-    * [Plugin](#plugin)
+    * [Processor](#processor)
     * [Stringifier](#stringifier)
 - [API](#api)
+- [Misc](#misc)
 
 ### Overview
 
@@ -68,6 +69,16 @@ So lets look closely on structures that play main role in PostCSS' workflow.
     It use mostly `nextToken` and `back` methods provided by Tokenizer for obtaining single or multiple tokens and than construct part of AST called `Node`
 
     There are multiple Node types that PostCSS could produce but all of them inherits from base Node [class]().
+
+- #### Processor ( [lib/processor.es6]() )
+
+    Processor is a structure that initializes plugins and run syntax transformations.
+    More later on.
+
+- #### Stringifier ( [lib/stringify.es6](), [lib/stringifier.es6]() )
+
+    Stringifier is a base class that translates modified AST to pure CSS string.
+    More later on.
 
 ### API
 
