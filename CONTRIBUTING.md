@@ -48,7 +48,6 @@ Plugins submitted by community located in [`docs/plugins`](https://github.com/po
     Make sure your pull request have link to plugin you are willing to add.
 
 
-
 ### TypeScript declaration file improvements
 
 If you found a bug or want to add certain improvements to types declaration file
@@ -67,5 +66,5 @@ If you want to add new feature or fix existed issue
 
     For adding new feature you certainly should have good understanding of `PostCSS` architecture as well as principles it follows.
 
-    For gentle intro to PostCSS architecture look through our [guide]()
+    For gentle intro to PostCSS architecture look through our [guide](https://github.com/postcss/postcss/blob/master/docs/architecture.md)
 
