@@ -61,7 +61,13 @@ So lets look closely on structures that play main role in PostCSS' workflow.
 
 - #### Parser ( [lib/parse.es6](), [lib/parser.es6]() )
 
-    TBD
+    Parser is main structure that responsible for [syntax analysis](https://en.wikipedia.org/wiki/Parsing) of incoming CSS. Parser produces structure called [Abstract Syntax Tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that could then be transformed by plugins later on.
+
+    Parser works collaboratively with Tokenizer and operates over Tokens not source string, as it would be very inefficient operation.
+
+    It use mostly `nextToken` and `back` methods provided by Tokenizer for obtaining single or multiple tokens and than construct part of AST called `Node`
+
+    There are multiple Node types that PostCSS could produce but all of them inherits from base Node [class]().
 
 ### API
 
