@@ -6,7 +6,7 @@ It can be useful for everyone who wish to contribute to core or develop better u
 **Table of Contents**
 
 - [Overview](#overview)
-- [Diagram](#diagram)
+- [Workflow](#workflow)
 - [Core Structures](#core-structures)
     * [Tokenizer](#tokenizer)
     * [Parser](#parser)
@@ -21,7 +21,7 @@ It can be useful for everyone who wish to contribute to core or develop better u
 
 Before diving deeper into development of PostCSS let's briefly describe what is PostCSS and what is not.
 
-PostCSS ,
+PostCSS
 
 - *is NOT a style preprocessor like `Sass` or `Less`.*
 
@@ -36,7 +36,7 @@ PostCSS ,
 
     Large amount of lovely tools like `Autoprefixer`, `Stylelint`, `CSSnano` were built on PostCSS ecosystem. There is big chance that you already use it implicitly, just check your `node_modules` ;)
 
-### Diagram
+### Workflow
 
 This is high level overview of whole PostCSS workflow
 
@@ -44,7 +44,29 @@ This is high level overview of whole PostCSS workflow
 
 As you can see from diagram above, PostCSS architecture pretty straightforward but some parts could be misunderstanded.
 
-So lets look closely on structures that play main role in PostCSS' workflow.
+From diagram above you can see part called Parser, this construct will be described in details later on, just for now think about it as a structure that can understand your CSS like syntax and create object representation of it.
+
+That being said, there are few ways to write parser
+
+ - *Write a single file with string to AST transformation*
+
+    This method is quite popular, for example, the [Rework analyzer](https://github.com/reworkcss/css/blob/master/lib/parse/index.js) was written in this style. But with a large code base, the code becomes hard to read and pretty slow.
+
+ - *Split it into tokenizing/parsing steps (source string → tokens → AST)*
+
+    This is the way of how we do it in PostCSS and also the most popular one.
+    A lot of parsers like [Babylon (parser behind Babel)](), [Esprima]() were written in this way.
+    The main reasons to separate tokenizing from parsing steps are performance and abstracting complexity.
+
+Let thing about why second way is better for our needs.
+
+First of all because string to tokens step takes more time than parsing step. We operate on large source string and process it char by char, this is why it is very inefficient operation in terms of performance and we should perform it only once.
+
+But from other side tokens to AST transformation is logically more complex so with such separation we could write very fast tokenizer (but from this comes sometimes hard to read code) and easy-to-read (but slow) parser.
+
+Summing it up splitting in two steps improve performance and code readability.
+
+So now lets look more closely on structures that play main role in PostCSS' workflow.
 
 ### Core Structures
 
