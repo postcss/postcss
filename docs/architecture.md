@@ -13,7 +13,7 @@ It can be useful for everyone who wish to contribute to core or develop better u
     * [Processor](#processor)
     * [Stringifier](#stringifier)
 - [API](#api)
-- [Misc](#misc)
+- [Other](#other)
 
 ### Overview
 
@@ -42,7 +42,7 @@ This is high level overview of whole PostCSS workflow
 
 <img width="300" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/PostCSS_scheme.svg/512px-PostCSS_scheme.svg.png" alt="workflow">
 
-As you can see from diagram above, PostCSS architecture pretty straightforward but some parts could be misunderstanded.
+As you can see from diagram above, PostCSS architecture pretty straightforward but some parts could be misunderstood.
 
 From diagram above you can see part called Parser, this construct will be described in details later on, just for now think about it as a structure that can understand your CSS like syntax and create object representation of it.
 
@@ -52,11 +52,11 @@ That being said, there are few ways to write parser
 
     This method is quite popular, for example, the [Rework analyzer](https://github.com/reworkcss/css/blob/master/lib/parse/index.js) was written in this style. But with a large code base, the code becomes hard to read and pretty slow.
 
- - *Split it into tokenizing/parsing steps (source string → tokens → AST)*
+ - *Split it into lexical analysis/parsing steps (source string → tokens → AST)*
 
     This is the way of how we do it in PostCSS and also the most popular one.
-    A lot of parsers like [Babylon (parser behind Babel)](), [Esprima]() were written in this way.
-    The main reasons to separate tokenizing from parsing steps are performance and abstracting complexity.
+    A lot of parsers like [`Babylon` (parser behind Babel)](), [`CSSTree`]() were written in this way.
+    The main reasons to separate tokenization from parsing steps are performance and abstracting complexity.
 
 Let thing about why second way is better for our needs.
 
@@ -103,9 +103,30 @@ So now lets look more closely on structures that play main role in PostCSS' work
 
     As you can see from the example above single token represented as a list and also `space` token doesn't have positional information.
 
-   There are many patterns how tokenizing could be done, PostCSS motto is performance and simplicity. Tokenizing is complex computing operation and take large amount of syntax analysis time ( ~90% ), that why PostCSS' Tokenizer looks dirty but it was optimized for speed. Any high-level constructs like classes could dramatically slow down tokenizer.
+    Lets look more closely on single token like `word`. It was said each token represented as a list and follow such pattern.
 
-    PostCSS' Tokenizer use some sort of streaming/chaining API where you exposes [nextToken()](https://github.com/postcss/postcss/blob/master/lib/tokenize.es6#L48-L308) method to Parser. In this manner we provide clean interface for Parser and reduce memory usage by storing only few tokens and not whole list of tokens.
+    ```typescript
+    const token = [
+         // represents token type
+        'word',
+
+        // represents matched word
+        '.className',
+
+        // This two numbers represent start position of token.
+        // It's optional value as we saw in example above,
+        // tokens like `space` don't have such information.
+
+        // Here is first number is line number and second one is corresponding column.
+        1, 1,
+
+        // Next two numbers also optional and reresent end position for multichar tokens like this one. Numbers follow same rule as was described above
+        1, 10
+    ];
+    ```
+   There are many patterns how tokenization could be done, PostCSS motto is performance and simplicity. Tokenization is complex computing operation and take large amount of syntax analysis time ( ~90% ), that why PostCSS' Tokenizer looks dirty but it was optimized for speed. Any high-level constructs like classes could dramatically slow down tokenizer.
+
+    PostCSS' Tokenizer use some sort of streaming/chaining API where you exposes [`nextToken()`](https://github.com/postcss/postcss/blob/master/lib/tokenize.es6#L48-L308) method to Parser. In this manner we provide clean interface for Parser and reduce memory usage by storing only few tokens and not whole list of tokens.
 
     We will look more closely on this pattern in the next section.
 
@@ -113,7 +134,7 @@ So now lets look more closely on structures that play main role in PostCSS' work
 
     Parser is main structure that responsible for [syntax analysis](https://en.wikipedia.org/wiki/Parsing) of incoming CSS. Parser produces structure called [Abstract Syntax Tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that could then be transformed by plugins later on.
 
-    Parser works collaboratively with Tokenizer and operates over tokens not source string, as it would be very inefficient operation.
+    Parser works in common with Tokenizer and operates over tokens not source string, as it would be very inefficient operation.
 
     It use mostly `nextToken` and `back` methods provided by Tokenizer for obtaining single or multiple tokens and than construct part of AST called `Node`
 
