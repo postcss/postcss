@@ -28,9 +28,9 @@ PostCSS
     It does not define custom syntax and semantic, it's not actually a language.
     PostCSS works with CSS and can be easily integrated with tools described above. That being said any valid CSS can be processed by PostCSS.
 
-- *is a tool for CSS transformation*
+- *is a tool for CSS syntax transformations*
 
-    It allows you to define custom syntax that could be understandable and transformed by plugins. PostCSS play a role of framework for building outstanding tools for CSS manipulations.
+    It allows you to define custom CSS like syntax that could be understandable and transformed by plugins. That being said PostCSS is not strictly about CSS spec but about syntax definition manner of CSS. In such way you can define custom syntax constructs like at-rule, that could be very helpful for tools build around PostCSS. PostCSS plays a role of framework for building outstanding tools for CSS manipulations.
 
 - *is a big player in CSS ecosystem*
 
