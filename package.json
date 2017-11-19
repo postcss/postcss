@@ -34,7 +34,7 @@
     "concat-with-sourcemaps": "^1.0.4",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.10.0",
+    "eslint": "^4.11.0",
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^4.0.2",
     "gulp": "^3.9.1",
@@ -47,13 +47,13 @@
     "jest": "^21.2.1",
     "jest-cli": "^21.2.1",
     "jsdoc": "^3.5.5",
-    "lint-staged": "^4.3.0",
+    "lint-staged": "^5.0.0",
     "postcss-parser-tests": "^6.1.0",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.2.0",
-    "size-limit": "^0.13.1",
+    "size-limit": "^0.13.2",
     "strip-ansi": "^4.0.0",
-    "yaspeller-ci": "^0.7.0"
+    "yaspeller-ci": "^1.0.0"
   },
   "scripts": {
     "lint-staged": "lint-staged",
