@@ -60,36 +60,46 @@ declare namespace postcss {
         endOfFile(): boolean;
     }
 
+    type TokenKind = "[" | "]" | "(" | ")" | "{" | "}" | ";" | ":" | "space" | "brackets" | "string" | "at-word" | "word" | "comment";
+    type StringToken = ["string", string, number, number, number, number];
+    type WordToken = ["word", string, number, number, number, number];
+    type SpaceToken = ["space", string];
+    type AtWordToken = ["at-word", string, number, number, number, number];
+    type CommentToken = ["comment", string, number, number, number, number];
+    type BracketsToken = ["brackets", string, number, number, number, number];
+    type SyntaxToken = [ "[" | "]" | "{" | "}" | ":" | ";" | "(" | ")", string, number, number];
+    export type Token = StringToken|WordToken|SpaceToken|BracketsToken|AtWordToken|CommentToken|SyntaxToken;
+
     export function tokenizer(input: Input, opts?: Partial<TokenizerOptions>): TokenizerResult;
 
     export class Parser {
         constructor(input: Input);
         createTokenizer(): void;
         parser(): void;
-        comment(token: string): void;
-        emptyRule(token: string): void;
-        other(start: string): void;
-        rule(tokens: string[]): void;
-        decl(tokens: string[]): void;
-        atrule(token: string): void;
-        end(token: string): void;
+        comment(token: CommentToken): void;
+        emptyRule(token: Token): void;
+        other(start: Token): void;
+        rule(tokens: Token[]): void;
+        decl(tokens: Token[]): void;
+        atrule(token: Token): void;
+        end(token: Token): void;
         endFile(): void;
-        freeSemicolon(token: string): void;
-        init(node: Node, line: string, column: string): void;
-        raw(node: Node, prop: string, tokens: string[]): void;
-        spacesAndCommentsFromEnd(tokens: string[]): string;
-        spacesAndCommentsFromStart(tokens: string[]): string;
-        spacesFromEnd(tokens: string[]): string;
-        stringFrom(tokens: string[], from: number): string;
-        colon(tokens: string[]): number|false;
-        unclosedBracket(bracket: string[]): void;
-        unknownWord(tokens: string[]): void;
-        unexpectedClose(token: string[]): void;
+        freeSemicolon(token: Token): void;
+        init(node: Node, line: number, column: number): void;
+        raw(node: Node, prop: string, tokens: Token[]): void;
+        spacesAndCommentsFromEnd(tokens: Token[]): string;
+        spacesAndCommentsFromStart(tokens: Token[]): string;
+        spacesFromEnd(tokens: Token[]): string;
+        stringFrom(tokens: Token[], from: number): string;
+        colon(tokens: Token[]): number|false;
+        unclosedBracket(bracket: Token): void;
+        unknownWord(tokens: Token): void;
+        unexpectedClose(token: Token): void;
         unclosedBlock(): void;
-        doubleColon(token: string[]): void;
-        unnamedAtrule(node: Node, token: string[]): void;
-        precheckMissedSemicolon(tokens: string[]): string[];
-        checkMissedSemicolon(tokens: string[]): void;
+        doubleColon(token: Token): void;
+        unnamedAtrule(node: Node, token: Token): void;
+        precheckMissedSemicolon(tokens: Token[]): string[];
+        checkMissedSemicolon(tokens: Token[]): void;
     }
 
     export class Stringifier {
