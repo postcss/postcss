@@ -49,6 +49,49 @@ declare namespace postcss {
          */
         function unprefixed(prop: string): string;
     }
+
+    interface TokenizerOptions {
+        ignoreErrors: boolean;
+    }
+
+    interface TokenizerResult {
+        back (token: string): void;
+        nextToken(): string;
+        endOfFile(): boolean;
+    }
+
+    export function tokenizer(input: Input, opts?: Partial<TokenizerOptions>): TokenizerResult;
+
+    export class Parser {
+        constructor(input: Input);
+        createTokenizer(): void;
+        parser(): void;
+        comment(token: string): void;
+        emptyRule(token: string): void;
+        other(start: string): void;
+        rule(tokens: string[]): void;
+        decl(tokens: string[]): void;
+        atrule(token: string): void;
+        end(token: string): void;
+        endFile(): void;
+        freeSemicolon(token: string): void;
+        init(node: Node, line: string, column: string): void;
+        raw(node: Node, prop: string, tokens: string[]): void;
+        spacesAndCommentsFromEnd(tokens: string[]): string;
+        spacesAndCommentsFromStart(tokens: string[]): string;
+        spacesFromEnd(tokens: string[]): string;
+        stringFrom(tokens: string[], from: number): string;
+        colon(tokens: string[]): number|false;
+        unclosedBracket(bracket: string[]): void;
+        unknownWord(tokens: string[]): void;
+        unexpectedClose(token: string[]): void;
+        unclosedBlock(): void;
+        doubleColon(token: string[]): void;
+        unnamedAtrule(node: Node, token: string[]): void;
+        precheckMissedSemicolon(tokens: string[]): string[];
+        checkMissedSemicolon(tokens: string[]): void;
+    }
+
     export class Stringifier {
         builder: Stringifier.Builder;
         constructor(builder?: Stringifier.Builder);
@@ -667,22 +710,22 @@ declare namespace postcss {
         prev(): ChildNode | void;
 		/**
 		 * Insert new node before current node to current node’s parent.
-		 * 
+		 *
 		 * Just an alias for `node.parent.insertBefore(node, newNode)`.
-		 * 
+		 *
 		 * @returns this node for method chaining.
-		 * 
+		 *
 		 * @example
 		 * decl.before('content: ""');
 		 */
 		before(newNode: Node | object | string | Node[]): this;
 		/**
 		 * Insert new node after current node to current node’s parent.
-		 * 
+		 *
 		 * Just an alias for `node.parent.insertAfter(node, newNode)`.
-		 * 
+		 *
 		 * @returns this node for method chaining.
-		 * 
+		 *
 		 * @example
 		 * decl.after('color: black');
 		 */

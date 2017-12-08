@@ -8,6 +8,8 @@ import parse       from './parse';
 import list        from './list';
 import Rule        from './rule';
 import Root        from './root';
+import tokenizer   from './tokenize';
+import Parser      from './parser';
 
 /**
  * Create a new {@link Processor} instance that will apply `plugins`
@@ -239,3 +241,4 @@ postcss.rule = defaults => new Rule(defaults);
 postcss.root = defaults => new Root(defaults);
 
 export default postcss;
+export { tokenizer, Comment, Parser };
