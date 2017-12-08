@@ -106,11 +106,24 @@ class Container extends Node {
      */
     walk(callback) {
         return this.each( (child, i) => {
-            let result = callback(child, i);
-            if ( result !== false && child.walk ) {
-                result = child.walk(callback);
+            try {
+                let result = callback(child, i);
+                if ( result !== false && child.walk ) {
+                    result = child.walk(callback);
+                }
+                return result;
+            } catch (exception) {
+                // If an error occurs, attempt to print
+                // out information that will narrow down
+                // where the problem can be found.
+                throw new Error(
+                    `${exception.message}
+                    File: ${child.source.input.file}
+                    CSS Rule: ${child.selector} (lines: 
+                        ${child.source.start.line}
+                        -${child.source.end.line})`
+                );
             }
-            return result;
         });
     }
 
