@@ -1329,7 +1329,7 @@ declare namespace postcss {
      * Comments inside selectors, at-rule parameters, or declaration values will
      * be stored in the Node#raws properties.
      */
-    interface Comment extends NodeBase {
+    class Comment extends Node {
         type: 'comment';
         /**
          * Returns the comment's parent node.
