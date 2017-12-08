@@ -49,6 +49,59 @@ declare namespace postcss {
          */
         function unprefixed(prop: string): string;
     }
+
+    interface TokenizerOptions {
+        ignoreErrors: boolean;
+    }
+
+    interface TokenizerResult {
+        back (token: string): void;
+        nextToken(): string;
+        endOfFile(): boolean;
+    }
+
+    type TokenKind = "[" | "]" | "(" | ")" | "{" | "}" | ";" | ":" | "space" | "brackets" | "string" | "at-word" | "word" | "comment";
+    type StringToken = ["string", string, number, number, number, number];
+    type WordToken = ["word", string, number, number, number, number];
+    type SpaceToken = ["space", string];
+    type AtWordToken = ["at-word", string, number, number, number, number];
+    type CommentToken = ["comment", string, number, number, number, number];
+    type BracketsToken = ["brackets", string, number, number, number, number];
+    type SyntaxToken = [ "[" | "]" | "{" | "}" | ":" | ";" | "(" | ")", string, number, number];
+    export type Token = StringToken|WordToken|SpaceToken|BracketsToken|AtWordToken|CommentToken|SyntaxToken;
+
+    export function tokenizer(input: Input, opts?: Partial<TokenizerOptions>): TokenizerResult;
+
+    export class Parser {
+        constructor(input: Input);
+        createTokenizer(): void;
+        parser(): void;
+        comment(token: CommentToken): void;
+        emptyRule(token: Token): void;
+        other(start: Token): void;
+        rule(tokens: Token[]): void;
+        decl(tokens: Token[]): void;
+        atrule(token: Token): void;
+        end(token: Token): void;
+        endFile(): void;
+        freeSemicolon(token: Token): void;
+        init(node: Node, line: number, column: number): void;
+        raw(node: Node, prop: string, tokens: Token[]): void;
+        spacesAndCommentsFromEnd(tokens: Token[]): string;
+        spacesAndCommentsFromStart(tokens: Token[]): string;
+        spacesFromEnd(tokens: Token[]): string;
+        stringFrom(tokens: Token[], from: number): string;
+        colon(tokens: Token[]): number|false;
+        unclosedBracket(bracket: Token): void;
+        unknownWord(tokens: Token): void;
+        unexpectedClose(token: Token): void;
+        unclosedBlock(): void;
+        doubleColon(token: Token): void;
+        unnamedAtrule(node: Node, token: Token): void;
+        precheckMissedSemicolon(tokens: Token[]): string[];
+        checkMissedSemicolon(tokens: Token[]): void;
+    }
+
     export class Stringifier {
         builder: Stringifier.Builder;
         constructor(builder?: Stringifier.Builder);
@@ -667,22 +720,22 @@ declare namespace postcss {
         prev(): ChildNode | void;
 		/**
 		 * Insert new node before current node to current node’s parent.
-		 * 
+		 *
 		 * Just an alias for `node.parent.insertBefore(node, newNode)`.
-		 * 
+		 *
 		 * @returns this node for method chaining.
-		 * 
+		 *
 		 * @example
 		 * decl.before('content: ""');
 		 */
 		before(newNode: Node | object | string | Node[]): this;
 		/**
 		 * Insert new node after current node to current node’s parent.
-		 * 
+		 *
 		 * Just an alias for `node.parent.insertAfter(node, newNode)`.
-		 * 
+		 *
 		 * @returns this node for method chaining.
-		 * 
+		 *
 		 * @example
 		 * decl.after('color: black');
 		 */
@@ -1276,7 +1329,7 @@ declare namespace postcss {
      * Comments inside selectors, at-rule parameters, or declaration values will
      * be stored in the Node#raws properties.
      */
-    interface Comment extends NodeBase {
+    class Comment extends Node {
         type: 'comment';
         /**
          * Returns the comment's parent node.
