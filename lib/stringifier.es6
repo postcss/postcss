@@ -1,12 +1,13 @@
+const endOfLine = require('os').EOL;
 const defaultRaw = {
     colon:         ': ',
     indent:        '    ',
-    beforeDecl:    '\n',
-    beforeRule:    '\n',
+    beforeDecl:    endOfLine,
+    beforeRule:    endOfLine,
     beforeOpen:    ' ',
-    beforeClose:   '\n',
-    beforeComment: '\n',
-    after:         '\n',
+    beforeClose:   endOfLine,
+    beforeComment: endOfLine,
+    after:         endOfLine,
     emptyBody:     '',
     commentLeft:   ' ',
     commentRight:  ' '
