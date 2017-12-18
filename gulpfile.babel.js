@@ -62,11 +62,6 @@ gulp.task('size', ['build:lib'], () => {
 
 // Tests
 
-gulp.task('test', ['compile'], () => {
-    let run = require('gulp-run');
-    return run('jest').exec();
-});
-
 gulp.task('integration', ['build'], done => {
     let postcss = require('./build');
     let real    = require('postcss-parser-tests/real');

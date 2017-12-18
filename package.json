@@ -56,7 +56,7 @@
   },
   "scripts": {
     "lint-staged": "lint-staged",
-    "test": "gulp"
+    "test": "gulp && jest"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
