@@ -14,5 +14,8 @@
   "plugins": [
     "add-module-exports",
     "precompile-charcodes"
+  ],
+  "ignore": [
+    "test/*.js"
   ]
 }
