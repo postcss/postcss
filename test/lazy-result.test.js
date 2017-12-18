@@ -1,7 +1,7 @@
-import LazyResult from '../lib/lazy-result';
-import Processor  from '../lib/processor';
+const LazyResult = require('../lib/lazy-result');
+const Processor  = require('../lib/processor');
 
-import mozilla from 'source-map';
+const mozilla = require('source-map');
 
 let processor = new Processor();
 

@@ -1,9 +1,9 @@
-import parse from '../lib/parse';
-import Root  from '../lib/root';
+const parse = require('../lib/parse');
+const Root  = require('../lib/root');
 
-import cases from 'postcss-parser-tests';
-import path  from 'path';
-import fs    from 'fs';
+const cases = require('postcss-parser-tests');
+const path  = require('path');
+const fs    = require('fs');
 
 it('works with file reads', () => {
     let stream = fs.readFileSync(cases.path('atrule-empty.css'));

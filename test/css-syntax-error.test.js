@@ -1,10 +1,10 @@
-import CssSyntaxError from '../lib/css-syntax-error';
-import postcss        from '../lib/postcss';
+const CssSyntaxError = require('../lib/css-syntax-error');
+const postcss        = require('../lib/postcss');
 
-import stripAnsi from 'strip-ansi';
-import Concat    from 'concat-with-sourcemaps';
-import chalk     from 'chalk';
-import path      from 'path';
+const stripAnsi = require('strip-ansi');
+const Concat    = require('concat-with-sourcemaps');
+const chalk     = require('chalk');
+const path      = require('path');
 
 function parseError(css, opts) {
     let error;

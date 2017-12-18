@@ -1,5 +1,5 @@
-import Processor from '../lib/processor';
-import postcss   from '../lib/postcss';
+const Processor = require('../lib/processor');
+const postcss   = require('../lib/postcss');
 
 it('creates plugins list', () => {
     let processor = postcss();

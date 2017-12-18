@@ -1,11 +1,11 @@
-import LazyResult from '../lib/lazy-result';
-import Processor  from '../lib/processor';
-import postcss    from '../lib/postcss';
-import Result     from '../lib/result';
-import parse      from '../lib/parse';
-import Root       from '../lib/root';
+const LazyResult = require('../lib/lazy-result');
+const Processor  = require('../lib/processor');
+const postcss    = require('../lib/postcss');
+const Result     = require('../lib/result');
+const parse      = require('../lib/parse');
+const Root       = require('../lib/root');
 
-import path  from 'path';
+const path  = require('path');
 
 function prs() {
     return new Root({ raws: { after: 'ok' } });

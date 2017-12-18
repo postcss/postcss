@@ -1,5 +1,5 @@
-import tokenizer from '../lib/tokenize';
-import Input    from '../lib/input';
+const tokenizer = require('../lib/tokenize');
+const Input    = require('../lib/input');
 
 function tokenize(css, opts) {
     let processor = tokenizer(new Input(css), opts);

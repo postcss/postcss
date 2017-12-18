@@ -1,5 +1,5 @@
-import parse from '../lib/parse';
-import Rule  from '../lib/rule';
+const parse = require('../lib/parse');
+const Rule  = require('../lib/rule');
 
 it('initializes with properties', () => {
     let rule = new Rule({ selector: 'a' });

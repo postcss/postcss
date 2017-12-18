@@ -1,14 +1,14 @@
-import CssSyntaxError from '../lib/css-syntax-error';
-import Declaration    from '../lib/declaration';
-import postcss        from '../lib/postcss';
-import AtRule         from '../lib/at-rule';
-import parse          from '../lib/parse';
-import Root           from '../lib/root';
-import Rule           from '../lib/rule';
+const CssSyntaxError = require('../lib/css-syntax-error');
+const Declaration    = require('../lib/declaration');
+const postcss        = require('../lib/postcss');
+const AtRule         = require('../lib/at-rule');
+const parse          = require('../lib/parse');
+const Root           = require('../lib/root');
+const Rule           = require('../lib/rule');
 
-import path from 'path';
+const path = require('path');
 
-let stringify  = (node, builder) => builder(node.selector);
+let stringify = (node, builder) => builder(node.selector);
 
 it('shows error on wrong constructor types', () => {
     expect(() => {

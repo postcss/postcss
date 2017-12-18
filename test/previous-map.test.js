@@ -1,8 +1,8 @@
-import parse from '../lib/parse';
+const parse = require('../lib/parse');
 
-import mozilla from 'source-map';
-import path    from 'path';
-import fs      from 'fs-extra';
+const mozilla = require('source-map');
+const path    = require('path');
+const fs      = require('fs-extra');
 
 let dir = path.join(__dirname, 'prevmap-fixtures');
 let mapObj = {
@@ -153,7 +153,7 @@ it('accepts a function', () => {
     fs.outputFileSync(file, map);
     let opts = {
         map: {
-            prev: (/* from */) => file
+            prev: () => file
         }
     };
     let root = parse(css, opts);
