@@ -1,4 +1,6 @@
-import gulp from 'gulp';
+'use strict';
+
+const gulp = require('gulp');
 
 gulp.task('clean', () => {
     let del = require('del');
@@ -14,7 +16,21 @@ gulp.task('compile', () => {
     return gulp.src('lib/*.es6')
         .pipe(changed('lib', { extension: '.js' }))
         .pipe(sourcemaps.init())
-        .pipe(babel())
+        .pipe(babel({
+            presets: [
+                [
+                    'env',
+                    {
+                        targets: {
+                            browsers: 'last 1 version',
+                            node: 4
+                        },
+                        loose: true
+                    }
+                ]
+            ],
+            plugins: ['add-module-exports', 'precompile-charcodes']
+        }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('lib'));
 });
