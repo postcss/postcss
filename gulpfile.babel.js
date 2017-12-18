@@ -39,27 +39,6 @@ gulp.task('build', (done) => {
     runSequence('clean', ['build:lib', 'build:docs'], done);
 });
 
-// Lint
-
-gulp.task('lint', () => {
-    let eslint = require('gulp-eslint');
-    return gulp.src(['*.js', 'lib/*.es6', 'test/*.js'])
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
-});
-
-gulp.task('spellcheck', ['api'], () => {
-    if ( process.env.APPVEYOR ) return false;
-    let run = require('gulp-run');
-    return run('yaspeller-ci api/*.html *.md docs/*.md docs/**/*.md').exec();
-});
-
-gulp.task('size', ['build:lib'], () => {
-    let run = require('gulp-run');
-    return run('size-limit').exec();
-});
-
 // Tests
 
 gulp.task('integration', ['build'], done => {
@@ -89,6 +68,4 @@ gulp.task('api', ['clean'], () => {
 
 // Common
 
-gulp.task('offline', ['version', 'lint', 'api', 'size']);
-
-gulp.task('default', ['offline', 'spellcheck', 'integration']);
+gulp.task('default', ['version', 'api', 'integration']);

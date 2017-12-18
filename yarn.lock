@@ -2111,7 +2111,7 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.0.0, eslint@^4.13.1:
+eslint@^4.13.1:
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.13.1.tgz#0055e0014464c7eb7878caf549ef2941992b444f"
   dependencies:
@@ -2888,13 +2888,6 @@ gulp-changed@^3.1.1:
     gulp-util "^3.0.0"
     pify "^3.0.0"
     through2 "^2.0.0"
-
-gulp-eslint@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-eslint/-/gulp-eslint-4.0.0.tgz#16d9ea4d696e7b7a9d65eeb1aa5bc4ba0a22c7f7"
-  dependencies:
-    eslint "^4.0.0"
-    gulp-util "^3.0.8"
 
 gulp-run@^1.7.1:
   version "1.7.1"

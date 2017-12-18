@@ -40,7 +40,6 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.1",
-    "gulp-eslint": "^4.0.0",
     "gulp-run": "^1.7.1",
     "gulp-sourcemaps": "^2.6.1",
     "jest": "^22.0.1",
@@ -56,7 +55,9 @@
   },
   "scripts": {
     "lint-staged": "lint-staged",
-    "test": "gulp && jest"
+    "spellcheck": "yaspeller-ci api/*.html *.md docs/*.md docs/**/*.md",
+    "lint": "eslint *.js lib/*.es6 test/*.js",
+    "test": "gulp && jest && npm run lint && npm run spellcheck && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
