@@ -41,7 +41,6 @@
     "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.1",
     "gulp-eslint": "^4.0.0",
-    "gulp-jest": "^3.0.1",
     "gulp-run": "^1.7.1",
     "gulp-sourcemaps": "^2.6.1",
     "jest": "^22.0.1",
