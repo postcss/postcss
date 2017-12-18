@@ -89,6 +89,6 @@ gulp.task('api', ['clean'], () => {
 
 // Common
 
-gulp.task('offline', ['version', 'lint', 'test', 'api', 'size']);
+gulp.task('offline', ['version', 'lint', 'api', 'size']);
 
 gulp.task('default', ['offline', 'spellcheck', 'integration']);
