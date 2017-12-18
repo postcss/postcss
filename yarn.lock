@@ -2100,6 +2100,12 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
+eslint-ci@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-ci/-/eslint-ci-0.1.1.tgz#4601539547e8369d3ea9d1075166dcffb6a54f4b"
+  dependencies:
+    ci-job-number "^0.3.0"
+
 eslint-config-postcss@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/eslint-config-postcss/-/eslint-config-postcss-2.0.2.tgz#cae1c6093ced7850894a5b85fbe1d1e232b72afb"

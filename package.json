@@ -35,6 +35,7 @@
     "del": "^3.0.0",
     "docdash": "^0.4.0",
     "eslint": "^4.13.1",
+    "eslint-ci": "^0.1.1",
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^5.0.0",
     "gulp": "^3.9.1",
@@ -56,7 +57,7 @@
   "scripts": {
     "lint-staged": "lint-staged",
     "spellcheck": "yaspeller-ci api/*.html *.md docs/*.md docs/**/*.md",
-    "lint": "eslint *.js lib/*.es6 test/*.js",
+    "lint": "eslint-ci *.js lib/*.es6 test/*.js",
     "test": "gulp && jest && yarn lint && yarn spellcheck && size-limit"
   },
   "main": "lib/postcss",
