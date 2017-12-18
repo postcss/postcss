@@ -70,7 +70,7 @@ So now lets look more closely on structures that play main role in PostCSS' work
 
 ### Core Structures
 
- - #### Tokenizer ( [lib/tokenize.es6]() )
+ - #### Tokenizer ( [lib/tokenize.es6](https://github.com/postcss/postcss/blob/master/lib/tokenize.es6) )
 
     Tokenizer (aka Lexer) plays important role in syntax analysis.
 
@@ -130,7 +130,7 @@ So now lets look more closely on structures that play main role in PostCSS' work
 
     We will look more closely on this pattern in the next section.
 
-- #### Parser ( [lib/parse.es6](), [lib/parser.es6]() )
+- #### Parser ( [lib/parse.es6](https://github.com/postcss/postcss/blob/master/lib/parse.es6), [lib/parser.es6](https://github.com/postcss/postcss/blob/master/lib/parser.es6) )
 
     Parser is main structure that responsible for [syntax analysis](https://en.wikipedia.org/wiki/Parsing) of incoming CSS. Parser produces structure called [Abstract Syntax Tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that could then be transformed by plugins later on.
 
@@ -138,14 +138,14 @@ So now lets look more closely on structures that play main role in PostCSS' work
 
     It use mostly `nextToken` and `back` methods provided by Tokenizer for obtaining single or multiple tokens and than construct part of AST called `Node`
 
-    There are multiple Node types that PostCSS could produce but all of them inherit from base Node [class]().
+    There are multiple Node types that PostCSS could produce but all of them inherit from base Node [class](https://github.com/postcss/postcss/blob/master/lib/node.es6#L34).
 
-- #### Processor ( [lib/processor.es6]() )
+- #### Processor ( [lib/processor.es6](https://github.com/postcss/postcss/blob/master/lib/processor.es6) )
 
     Processor is a structure that initializes plugins and run syntax transformations.
     More later on.
 
-- #### Stringifier ( [lib/stringify.es6](), [lib/stringifier.es6]() )
+- #### Stringifier ( [lib/stringify.es6](https://github.com/postcss/postcss/blob/master/lib/stringify.es6), [lib/stringifier.es6](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6) )
 
     Stringifier is a base class that translates modified AST to pure CSS string.
     More later on.
