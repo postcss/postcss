@@ -81,6 +81,7 @@
     }
   ],
   "jest": {
+    "testEnvironment": "node",
     "modulePathIgnorePatterns": [
       "build"
     ]

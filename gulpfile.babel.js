@@ -64,7 +64,7 @@ gulp.task('size', ['build:lib'], () => {
 
 gulp.task('test', ['compile'], () => {
     let jest = require('gulp-jest').default;
-    return gulp.src('test').pipe(jest());
+    return gulp.src('.').pipe(jest());
 });
 
 gulp.task('integration', ['build'], done => {
