@@ -57,7 +57,8 @@
     "lint-staged": "lint-staged",
     "spellcheck": "yaspeller-ci api/*.html *.md docs/*.md docs/**/*.md",
     "lint": "eslint *.js lib/*.es6 test/*.js",
-    "test": "gulp && jest && npm run lint && npm run spellcheck && size-limit"
+    "unit": "jest test/*.test.js",
+    "test": "gulp && yarn unit && yarn lint && yarn spellcheck && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
