@@ -82,7 +82,10 @@
     }
   ],
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/build"
+    ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
