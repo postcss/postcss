@@ -41,7 +41,6 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.1",
-    "gulp-run": "^1.7.1",
     "gulp-sourcemaps": "^2.6.1",
     "jest": "^22.0.3",
     "jest-cli": "^22.0.3",
@@ -56,9 +55,10 @@
   },
   "scripts": {
     "lint-staged": "lint-staged",
-    "spellcheck": "yaspeller-ci api/*.html *.md docs/*.md docs/**/*.md",
+    "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
+    "docs": "jsdoc -c .jsdocrc lib/*.es6",
     "lint": "eslint-ci *.js lib/*.es6 test/*.js",
-    "test": "gulp && jest && yarn lint && yarn spellcheck && size-limit"
+    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
