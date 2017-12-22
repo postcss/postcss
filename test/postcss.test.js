@@ -86,10 +86,10 @@ it('does not call plugin constructor', () => {
 });
 
 it('creates a shortcut to process css', () => {
-    let plugin = postcss.plugin('test', (str = 'bar') => {
+    let plugin = postcss.plugin('test', str => {
         return root => {
             root.walkDecls(i => {
-                i.value = str;
+                i.value = str || 'bar';
             });
         };
     });
@@ -100,7 +100,7 @@ it('creates a shortcut to process css', () => {
     let result2 = plugin.process('a{value:foo}', { }, 'baz');
     expect(result2.css).toEqual('a{value:baz}');
 
-    plugin.process('a{value:foo}', { from: 'a' }, 'baz').then( result => {
+    plugin.process('a{value:foo}', { from: 'a' }, 'baz').then(result => {
         expect(result.opts).toEqual({ from: 'a' });
         expect(result.css).toEqual('a{value:baz}');
     });
