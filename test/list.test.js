@@ -1,3 +1,5 @@
+'use strict';
+
 const list = require('../lib/list');
 
 it('space() splits list by spaces', () => {

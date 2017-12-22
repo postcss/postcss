@@ -1,3 +1,5 @@
+'use strict';
+
 const PreviousMap = require('../lib/previous-map');
 const postcss     = require('../lib/postcss');
 

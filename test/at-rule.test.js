@@ -1,3 +1,5 @@
+'use strict';
+
 const AtRule = require('../lib/at-rule');
 const parse  = require('../lib/parse');
 

@@ -1,3 +1,5 @@
+'use strict';
+
 const LazyResult = require('../lib/lazy-result');
 const Processor  = require('../lib/processor');
 const postcss    = require('../lib/postcss');

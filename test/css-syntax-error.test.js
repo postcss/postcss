@@ -1,3 +1,5 @@
+'use strict';
+
 const CssSyntaxError = require('../lib/css-syntax-error');
 const postcss        = require('../lib/postcss');
 

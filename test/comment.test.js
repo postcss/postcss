@@ -1,3 +1,5 @@
+'use strict';
+
 const Comment = require('../lib/comment');
 const parse   = require('../lib/parse');
 

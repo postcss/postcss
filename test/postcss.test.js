@@ -1,3 +1,5 @@
+'use strict';
+
 const Processor = require('../lib/processor');
 const postcss   = require('../lib/postcss');
 

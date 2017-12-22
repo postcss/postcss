@@ -1,3 +1,5 @@
+'use strict';
+
 const Result = require('../lib/result');
 const parse  = require('../lib/parse');
 

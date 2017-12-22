@@ -1,3 +1,5 @@
+'use strict';
+
 const parse = require('../lib/parse');
 
 const mozilla = require('source-map');

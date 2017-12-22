@@ -1,3 +1,5 @@
+'use strict';
+
 const vendor = require('../lib/vendor');
 
 const VALUE = '-1px -1px 1px rgba(0, 0, 0, 0.2) inset';

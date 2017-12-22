@@ -1,3 +1,5 @@
+'use strict';
+
 const tokenizer = require('../lib/tokenize');
 const Input    = require('../lib/input');
 

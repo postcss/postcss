@@ -1,3 +1,5 @@
+'use strict';
+
 const Warning = require('../lib/warning');
 const postcss = require('../lib/postcss');
 const Result  = require('../lib/result');

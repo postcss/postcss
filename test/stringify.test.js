@@ -1,3 +1,5 @@
+'use strict';
+
 const stringify = require('../lib/stringify');
 const parse     = require('../lib/parse');
 

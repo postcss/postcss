@@ -1,3 +1,5 @@
+'use strict';
+
 const Stringifier = require('../lib/stringifier');
 const Declaration = require('../lib/declaration');
 const AtRule      = require('../lib/at-rule');

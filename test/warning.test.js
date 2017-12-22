@@ -1,3 +1,5 @@
+'use strict';
+
 const Declaration = require('../lib/declaration');
 const Warning     = require('../lib/warning');
 const parse       = require('../lib/parse');
