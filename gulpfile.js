@@ -50,7 +50,7 @@ gulp.task('build:docs', () => {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', (done) => {
+gulp.task('build', done => {
     let runSequence = require('run-sequence');
     runSequence('clean', ['build:lib', 'build:docs'], done);
 });
