@@ -6,7 +6,7 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - yarn install
+  - YARN_IGNORE_ENGINES=true yarn install
 
 test_script:
   - yarn test
