@@ -12,8 +12,8 @@ install:
   - yarn install
 
 test_script:
-  - gulp build
-  - jest
+  - ./node_modules/.bin/gulp build
+  - ./node_modules/.bin/jest
 
 cache:
  - node_modules
