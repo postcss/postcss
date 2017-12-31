@@ -7,10 +7,10 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - YARN_IGNORE_ENGINES=true yarn install
+  - yarn install
 
 test_script:
-  - yarn test
+  - gulp && jest && yarn lint
 
 cache:
  - node_modules
@@ -18,3 +18,6 @@ cache:
 
 build: off
 deploy: off
+
+environment:
+  YARN_IGNORE_ENGINES: true
