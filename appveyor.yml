@@ -10,7 +10,8 @@ install:
   - yarn install
 
 test_script:
-  - gulp && jest && yarn lint
+  - gulp build
+  - jest
 
 cache:
  - node_modules
