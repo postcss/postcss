@@ -62,12 +62,13 @@ it('warn() attaches a warning to the result object', () => {
         };
     });
 
-    return postcss([warner]).process('a{}').then(result => {
-        expect(warning.type).toEqual('warning');
-        expect(warning.text).toEqual('FIRST!');
-        expect(warning.plugin).toEqual('warner');
-        expect(result.warnings()).toEqual([warning]);
-    });
+    return postcss([warner]).process('a{}', { from: undefined })
+        .then(result => {
+            expect(warning.type).toEqual('warning');
+            expect(warning.text).toEqual('FIRST!');
+            expect(warning.plugin).toEqual('warner');
+            expect(result.warnings()).toEqual([warning]);
+        });
 });
 
 it('warn() accepts options', () => {

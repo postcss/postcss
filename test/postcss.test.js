@@ -43,9 +43,10 @@ it('supports injecting additional processors at runtime', () => {
         };
     });
 
-    return postcss([ plugin2 ]).process('a{hello: bob}').then(result => {
-        expect(result.css).toEqual('a{hello: world}');
-    });
+    return postcss([ plugin2 ]).process('a{hello: bob}', { from: undefined })
+        .then(result => {
+            expect(result.css).toEqual('a{hello: world}');
+        });
 });
 
 it('creates plugin', () => {
