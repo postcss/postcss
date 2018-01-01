@@ -1,5 +1,6 @@
 import MapGenerator from './map-generator';
 import stringify    from './stringify';
+import warnOnce     from './warn-once';
 import Result       from './result';
 import parse        from './parse';
 
@@ -188,14 +189,12 @@ class LazyResult {
      */
     then(onFulfilled, onRejected) {
         if (!('from' in this.opts)) {
-            if (typeof console !== 'undefined' && console.warn) {
-                console.warn(
-                    'Witout `from` option PostCSS could generate wrong ' +
-                    'source map or do not find Browserslist config. ' +
-                    'Set it to CSS file path or to `undefined` to prevent ' +
-                    'this warning'
-                );
-            }
+            warnOnce(
+                'Witout `from` option PostCSS could generate wrong ' +
+                'source map or do not find Browserslist config. ' +
+                'Set it to CSS file path or to `undefined` to prevent ' +
+                'this warning'
+            );
         }
         return this.async().then(onFulfilled, onRejected);
     }

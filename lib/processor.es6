@@ -1,4 +1,4 @@
-import LazyResult  from './lazy-result';
+import LazyResult from './lazy-result';
 
 /**
  * Contains plugins to process CSS. Create one `Processor` instance,

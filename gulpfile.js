@@ -43,7 +43,6 @@ gulp.task('build:package', ['clean'], () => {
     const editor = require('gulp-json-editor');
     return gulp.src('./package.json')
         .pipe(editor((json) => {
-            delete json.dependencies['babel-register'];
             delete json.babel;
             delete json.scripts;
             delete json.jest;
