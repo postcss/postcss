@@ -39,12 +39,31 @@ gulp.task('build:lib', ['compile'], () => {
     return gulp.src(['lib/*.js', 'lib/*.d.ts']).pipe(gulp.dest('build/lib'));
 });
 
+gulp.task('build:package', ['clean'], () => {
+    const editor = require('gulp-json-editor');
+    return gulp.src('./package.json')
+        .pipe(editor((json) => {
+            delete json.dependencies['babel-register'];
+            delete json.babel;
+            delete json.scripts;
+            delete json.jest;
+            delete json.eslintConfig;
+            delete json['size-limit'];
+            delete json['pre-commit'];
+            delete json['lint-staged'];
+            delete json.devDependencies;
+            return json;
+        }))
+        .pipe(gulp.dest('build'));
+});
+
 gulp.task('build:docs', () => {
     let ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
         .concat([
-            '.npmignore', 'lib/*', 'test/*', 'node_modules/**/*',
-            'docs/api.md', 'docs/plugins.md', 'docs/writing-a-plugin.md'
+            'package.json', '.npmignore', 'lib/*', 'test/*',
+            'node_modules/**/*', 'docs/api.md', 'docs/plugins.md',
+            'docs/writing-a-plugin.md'
         ]).map( i => '!' + i );
     return gulp.src(['**/*'].concat(ignore))
         .pipe(gulp.dest('build'));
@@ -52,7 +71,7 @@ gulp.task('build:docs', () => {
 
 gulp.task('build', done => {
     let runSequence = require('run-sequence');
-    runSequence('clean', ['build:lib', 'build:docs'], done);
+    runSequence('clean', ['build:lib', 'build:docs', 'build:package'], done);
 });
 
 // Tests
