@@ -23,7 +23,7 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "source-map": "^0.6.1",
-    "supports-color": "^4.4.0"
+    "supports-color": "^5.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
