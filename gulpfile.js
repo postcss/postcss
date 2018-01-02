@@ -39,7 +39,7 @@ gulp.task('build:lib', ['compile'], () => {
     return gulp.src(['lib/*.js', 'lib/*.d.ts']).pipe(gulp.dest('build/lib'));
 });
 
-gulp.task('build:package', ['clean'], () => {
+gulp.task('build:package', () => {
     const editor = require('gulp-json-editor');
     return gulp.src('./package.json')
         .pipe(editor((json) => {
