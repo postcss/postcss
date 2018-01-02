@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.15
+* Add warning about missed `from` option on `process().then()` call.
+* Add IE 10 support.
+
 ## 6.0.14
 * Fix TypeScript definitions (by Jed Mao).
 
