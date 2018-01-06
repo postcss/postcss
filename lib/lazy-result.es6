@@ -190,10 +190,10 @@ class LazyResult {
     then(onFulfilled, onRejected) {
         if (!('from' in this.opts)) {
             warnOnce(
-                'Witout `from` option PostCSS could generate wrong ' +
-                'source map or do not find Browserslist config. ' +
+                'Without `from` option PostCSS could generate wrong ' +
+                'source map and will not find Browserslist config. ' +
                 'Set it to CSS file path or to `undefined` to prevent ' +
-                'this warning'
+                'this warning.'
             );
         }
         return this.async().then(onFulfilled, onRejected);

@@ -455,16 +455,15 @@ it('throws on syntax as plugin', () => {
 it('warns about missed from', () => {
     console.warn = jest.fn();
     let processor = new Processor();
-    let result = processor.process('a{}');
 
-    result.css;
+    processor.process('a{}').css;
     expect(console.warn).not.toBeCalled();
 
-    return result.then(() => {
+    return processor.process('a{}').then(() => {
         expect(console.warn).toBeCalledWith(
-            'Witout `from` option PostCSS could generate wrong source map ' +
-            'or do not find Browserslist config. Set it to CSS file path ' +
-            'or to `undefined` to prevent this warning'
+            'Without `from` option PostCSS could generate wrong source map ' +
+            'and will not find Browserslist config. Set it to CSS file path ' +
+            'or to `undefined` to prevent this warning.'
         );
     });
 });
