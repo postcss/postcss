@@ -372,7 +372,19 @@ export default class Parser {
         for ( let i = 0; i < length; i += 1 ) {
             token = tokens[i];
             type  = token[0];
-            if ( type === 'comment' || type === 'space' && i === length - 1 ) {
+            if ( type === 'comment' ) {
+                if (
+                    node.type === 'rule' &&
+                    !(
+                        tokens[i + 1][0] === 'space' ||
+                        tokens[i - 1][0]  === 'space'
+                    )
+                ) {
+                    value += token[1];
+                } else {
+                    clean = false;
+                }
+            } else if (type === 'space' && i === length - 1 ) {
                 clean = false;
             } else {
                 value += token[1];
