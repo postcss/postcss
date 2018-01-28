@@ -104,7 +104,7 @@ next = string.indexOf('"', currentPosition + 1);
 
 // Jump by RegExp
 regexp.lastIndex = currentPosion + 1;
-regexp.text(string);
+regexp.test(string);
 next = regexp.lastIndex;
 ```
 
