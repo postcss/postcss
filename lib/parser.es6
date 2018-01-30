@@ -370,7 +370,7 @@ export default class Parser {
         let value  = '';
         let clean  = true;
         let next, prev;
-        const pattern = /^(.|#)([\w-])+$/i;
+        const pattern = /^([.|#])?([\w])+/i;
 
         for ( let i = 0; i < length; i += 1 ) {
             token = tokens[i];
