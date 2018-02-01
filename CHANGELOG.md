@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.17
+* Fix parsing comment in selector between word tokens (by Oleh Kuchuk).
+
 ## 6.0.16
 * Fix warning text (by Michael Keller).
 
