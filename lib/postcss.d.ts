@@ -139,7 +139,7 @@ declare namespace postcss {
      * @param defaults Properties for the new Root node.
      * @returns The new node.
      */
-    function root(defaults?: Object): Root;
+    function root(defaults?: object): Root;
     interface SourceMapOptions {
         /**
          * Indicates that the source map should be embedded in the output CSS as a
@@ -667,22 +667,22 @@ declare namespace postcss {
         prev(): ChildNode | void;
 		/**
 		 * Insert new node before current node to current node’s parent.
-		 * 
+		 *
 		 * Just an alias for `node.parent.insertBefore(node, newNode)`.
-		 * 
+		 *
 		 * @returns this node for method chaining.
-		 * 
+		 *
 		 * @example
 		 * decl.before('content: ""');
 		 */
 		before(newNode: Node | object | string | Node[]): this;
 		/**
 		 * Insert new node after current node to current node’s parent.
-		 * 
+		 *
 		 * Just an alias for `node.parent.insertAfter(node, newNode)`.
-		 * 
+		 *
 		 * @returns this node for method chaining.
-		 * 
+		 *
 		 * @example
 		 * decl.after('color: black');
 		 */
@@ -701,27 +701,27 @@ declare namespace postcss {
          * Inserts node(s) before the current node and removes the current node.
          * @returns This node for chaining.
          */
-        replaceWith(...nodes: (Node | Object)[]): this;
+        replaceWith(...nodes: (Node | object)[]): this;
         /**
          * @param overrides New properties to override in the clone.
          * @returns A clone of this node. The node and its (cloned) children will
          * have a clean parent and code style properties.
          */
-        clone(overrides?: Object): this;
+        clone(overrides?: object): this;
         /**
          * Shortcut to clone the node and insert the resulting cloned node before
          * the current node.
          * @param overrides New Properties to override in the clone.
          * @returns The cloned node.
          */
-        cloneBefore(overrides?: Object): this;
+        cloneBefore(overrides?: object): this;
         /**
          * Shortcut to clone the node and insert the resulting cloned node after
          * the current node.
          * @param overrides New Properties to override in the clone.
          * @returns The cloned node.
          */
-        cloneAfter(overrides?: Object): this;
+        cloneAfter(overrides?: object): this;
         /**
          * @param prop Name or code style property.
          * @param defaultType Name of default value. It can be easily missed if the
@@ -855,7 +855,7 @@ declare namespace postcss {
          * @returns A clone of this node. The node and its (cloned) children will
          * have a clean parent and code style properties.
          */
-        clone(overrides?: Object): this;
+        clone(overrides?: object): this;
         /**
          * @param child Child of the current container.
          * @returns The child's index within the container's "nodes" array.
@@ -990,7 +990,7 @@ declare namespace postcss {
          * @param nodes New nodes.
          * @returns This container for chaining.
          */
-        prepend(...nodes: (Node | Object | string)[]): this;
+        prepend(...nodes: (Node | object | string)[]): this;
         /**
          * Inserts new nodes to the end of the container.
          * Because each node class is identifiable by unique properties, use the
@@ -1006,19 +1006,19 @@ declare namespace postcss {
          * @param nodes New nodes.
          * @returns This container for chaining.
          */
-        append(...nodes: (Node | Object | string)[]): this;
+        append(...nodes: (Node | object | string)[]): this;
         /**
          * Insert newNode before oldNode within the container.
          * @param oldNode Child or child's index.
          * @returns This container for chaining.
          */
-        insertBefore(oldNode: ChildNode | number, newNode: ChildNode | Object | string): this;
+        insertBefore(oldNode: ChildNode | number, newNode: ChildNode | object | string): this;
         /**
          * Insert newNode after oldNode within the container.
          * @param oldNode Child or child's index.
          * @returns This container for chaining.
          */
-        insertAfter(oldNode: ChildNode | number, newNode: ChildNode | Object | string): this;
+        insertAfter(oldNode: ChildNode | number, newNode: ChildNode | object | string): this;
         /**
          * Removes the container from its parent and cleans the parent property in the
          * container and its children.
@@ -1077,7 +1077,7 @@ declare namespace postcss {
          * @returns A clone of this node. The node and its (cloned) children will
          * have a clean parent and code style properties.
          */
-        clone(overrides?: Object): this;
+        clone(overrides?: object): this;
         /**
          * @returns A Result instance representing the root's CSS.
          */
@@ -1125,7 +1125,7 @@ declare namespace postcss {
          * @returns A clone of this node. The node and its (cloned) children will
          * have a clean parent and code style properties.
          */
-        clone(overrides?: Object): this;
+        clone(overrides?: object): this;
     }
     interface AtRuleNewProps extends ContainerNewProps {
         /**
@@ -1177,7 +1177,7 @@ declare namespace postcss {
          * @returns A clone of this node. The node and its (cloned) children will
          * have a clean parent and code style properties.
          */
-        clone(overrides?: Object): this;
+        clone(overrides?: object): this;
     }
     interface RuleNewProps extends ContainerNewProps {
         /**
@@ -1240,7 +1240,7 @@ declare namespace postcss {
          * @returns A clone of this node. The node and its (cloned) children will
          * have a clean parent and code style properties.
          */
-        clone(overrides?: Object): this;
+        clone(overrides?: object): this;
     }
     interface DeclarationNewProps {
         /**
@@ -1291,7 +1291,7 @@ declare namespace postcss {
          * @returns A clone of this node. The node and its (cloned) children will
          * have a clean parent and code style properties.
          */
-        clone(overrides?: Object): this;
+        clone(overrides?: object): this;
     }
     interface CommentNewProps {
         /**
