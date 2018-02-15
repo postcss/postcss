@@ -734,6 +734,7 @@ declare namespace postcss {
         raw(prop: string, defaultType?: string): any;
     }
     interface NodeNewProps {
+        source?: NodeSource;
         raws?: NodeRaws;
     }
     interface NodeRaws {
