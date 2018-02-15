@@ -21,9 +21,9 @@
   "homepage": "http://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
-    "chalk": "^2.3.0",
+    "chalk": "^2.3.1",
     "source-map": "^0.6.1",
-    "supports-color": "^5.1.0"
+    "supports-color": "^5.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -34,7 +34,7 @@
     "concat-with-sourcemaps": "^1.0.5",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.16.0",
+    "eslint": "^4.17.0",
     "eslint-ci": "^0.1.1",
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^5.0.0",
@@ -43,14 +43,14 @@
     "gulp-changed": "^3.2.0",
     "gulp-json-editor": "^2.2.1",
     "gulp-sourcemaps": "^2.6.4",
-    "jest": "^22.1.4",
-    "jest-cli": "^22.1.4",
+    "jest": "^22.3.0",
+    "jest-cli": "^22.3.0",
     "jsdoc": "^3.5.5",
     "lint-staged": "^6.1.0",
     "postcss-parser-tests": "^6.2.0",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.2.1",
-    "size-limit": "^0.14.0",
+    "size-limit": "^0.14.1",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^1.0.0"
   },
