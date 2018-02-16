@@ -1,3 +1,5 @@
+import * as mozilla from 'source-map';
+
 /**
  * @param plugins Can also be included with the Processor#use method.
  * @returns A processor that will apply plugins as CSS processors.
@@ -399,21 +401,7 @@ declare namespace postcss {
          * @param mapping
          * @returns {}
          */
-        addMapping(mapping: {
-            generated: {
-                line: number;
-                column: number;
-            };
-            original: {
-                line: number;
-                column: number;
-            };
-            /**
-             * The original source file (relative to the sourceRoot).
-             */
-            source: string;
-            name?: string;
-        }): void;
+        addMapping(mapping: mozilla.Mapping): void;
         /**
          * Set the source content for an original source file.
          * @param sourceFile The URL of the original source file.
@@ -436,11 +424,15 @@ declare namespace postcss {
          * If omitted, it is assumed that both SourceMaps are in the same directory;
          * thus, not needing any rewriting (Supplying '.' has the same effect).
          */
-        applySourceMap(sourceMapConsumer: any, sourceFile?: string, sourceMapPath?: string): void;
+        applySourceMap(
+            sourceMapConsumer: mozilla.SourceMapConsumer,
+            sourceFile?: string,
+            sourceMapPath?: string
+        ): void;
         /**
          * Renders the source map being generated to JSON.
          */
-        toJSON: () => any;
+        toJSON: () => mozilla.RawSourceMap;
         /**
          * Renders the source map being generated to a string.
          */
@@ -573,12 +565,15 @@ declare namespace postcss {
         text: string;
         file: string;
         constructor(css: any, opts: any);
-        consumer(): any;
+        consumer(): mozilla.SourceMapConsumer;
         withContent(): boolean;
-        startWith(string: any, start: any): boolean;
-        loadAnnotation(css: any): void;
-        decodeInline(text: any): any;
-        loadMap(file: any, prev: any): any;
+        startWith(string: string, start: string): boolean;
+        loadAnnotation(css: string): void;
+        decodeInline(text: string): string;
+        loadMap(
+            file: any,
+            prev: string | Function | mozilla.SourceMapConsumer | mozilla.SourceMapGenerator | mozilla.RawSourceMap
+        ): string;
         isMap(map: any): boolean;
     }
     /**
@@ -675,7 +670,7 @@ declare namespace postcss {
 		 * @example
 		 * decl.before('content: ""');
 		 */
-		before(newNode: Node | object | string | Node[]): this;
+        before(newNode: Node | object | string | Node[]): this;
 		/**
 		 * Insert new node after current node to current node’s parent.
 		 *
@@ -686,7 +681,7 @@ declare namespace postcss {
 		 * @example
 		 * decl.after('color: black');
 		 */
-		after(newNode: Node | object | string | Node[]): this;
+        after(newNode: Node | object | string | Node[]): this;
         /**
          * @returns The Root instance of the node's tree.
          */
