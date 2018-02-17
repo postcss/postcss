@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.19
+* Fix TypeScript definitions for source maps (by Oleh Kuchuk).
+* Fix `source` field in TypeScript definitions (by Sylvain Pollet-Villard).
+
 ## 6.0.18
 * Use primitive object in TypeScript definitions (by Sylvain Pollet-Villard).
 
