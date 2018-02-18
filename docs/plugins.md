@@ -117,6 +117,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-hash-classname`] append hash string to your css class name.
 * [`postcss-mqwidth-to-class`] converts min/max-width media queries to classes.
 * [`postcss-opacity`] adds opacity filter for IE8.
+* [`postcss-page-break`] adds `page-break-` fallback to `break-` properties.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
 * [`postcss-round-subpixels`] plugin that rounds sub-pixel values
@@ -527,6 +528,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-generate-preset`]:              https://github.com/simonsmith/postcss-generate-preset
 [`postcss-local-constants`]:              https://github.com/macropodhq/postcss-constants
 [`postcss-media-variables`]:              https://github.com/WolfgangKluge/postcss-media-variables
+[`postcss-page-break`]:                   https://github.com/shrpne/postcss-page-break
 [`postcss-property-lookup`]:              https://github.com/simonsmith/postcss-property-lookup
 [`postcss-remove-prefixes`]:              https://github.com/johnotander/postcss-remove-prefixes
 [`postcss-responsive-type`]:              https://github.com/seaneking/postcss-responsive-type
