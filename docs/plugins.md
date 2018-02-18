@@ -119,6 +119,7 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-opacity`] adds opacity filter for IE8.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
+* [`postcss-replace-overflow-wrap`] replace `overflow-wrap` with `word-wrap`.
 * [`postcss-round-subpixels`] plugin that rounds sub-pixel values
   to the nearest
   full pixel.
@@ -529,6 +530,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-media-variables`]:              https://github.com/WolfgangKluge/postcss-media-variables
 [`postcss-property-lookup`]:              https://github.com/simonsmith/postcss-property-lookup
 [`postcss-remove-prefixes`]:              https://github.com/johnotander/postcss-remove-prefixes
+[`postcss-replace-overflow-wrap`]:        https://github.com/MattDiMu/postcss-replace-overflow-wrap
 [`postcss-responsive-type`]:              https://github.com/seaneking/postcss-responsive-type
 [`postcss-round-subpixels`]:              https://github.com/himynameisdave/postcss-round-subpixels
 [`postcss-short-font-size`]:              https://github.com/jonathantneal/postcss-short-font-size
