@@ -48,17 +48,19 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
 * [`postcss-hamster`] for vertical rhythm, typography, modular scale functions.
+* [`postcss-preset-env`] lets you convert modern CSS into something most browsers can understand, determining the polyfills you need based on your targeted browsers or runtime environments.
 
-[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
-[`stylelint`]:         https://github.com/stylelint/stylelint
-[`rucksack`]:          http://simplaio.github.io/rucksack
-[`cssnano`]:           http://cssnano.co/
-[`cssnext`]:           http://cssnext.io/
-[`level4`]:            https://github.com/stephenway/level4
-[`precss`]:            https://github.com/jonathantneal/precss
-[`oldie`]:             https://github.com/jonathantneal/oldie
-[`atcss`]:             https://github.com/morishitter/atcss
-[`postcss-hamster`]:   https://github.com/h0tc0d3/postcss-hamster
+[`postcss-utilities`]:  https://github.com/ismamz/postcss-utilities
+[`stylelint`]:          https://github.com/stylelint/stylelint
+[`rucksack`]:           http://simplaio.github.io/rucksack
+[`cssnano`]:            http://cssnano.co/
+[`cssnext`]:            http://cssnext.io/
+[`level4`]:             https://github.com/stephenway/level4
+[`precss`]:             https://github.com/jonathantneal/precss
+[`oldie`]:              https://github.com/jonathantneal/oldie
+[`atcss`]:              https://github.com/morishitter/atcss
+[`postcss-hamster`]:    https://github.com/h0tc0d3/postcss-hamster
+[`postcss-preset-env`]: https://github.com/jonathantneal/postcss-preset-env/
 
 ## Future CSS Syntax
 
