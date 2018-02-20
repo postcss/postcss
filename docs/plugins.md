@@ -372,6 +372,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-alter-property-value`] alters your CSS declarations from a rule based configuration.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-autoreset`]  automatically adds reset styles.
+* [`postcss-bem-to-js`] creates a JavaScript type definition file from BEM-style CSS classes.
 * [`postcss-bom`] adds a UTF-8 BOM to files.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
@@ -765,3 +766,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-eol`]:                          https://github.com/dichuvichkin/postcss-eol
 [`postcss-node-modules-replacer`]:        https://github.com/dichuvichkin/postcss-node-modules-replacer
 [`postcss-mq-last`]:                      https://github.com/JGJP/postcss-mq-last
+[`postcss-bem-to-js`]:                    https://github.com/WebSeed/postcss-bem-to-js
