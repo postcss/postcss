@@ -181,7 +181,7 @@ for targeting all button elements.
 * [`postcss-ref`] refers properties from another rule.
 * [`postcss-reverse-media`] reverse/Invert media query parameters.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
-* [`postcss-map-get`] adds the ability to use sass like Map Function `map-get`.
+* [`postcss-map-get`] adds the ability to use Sass like map function `map-get`.
 * [`postcss-simple-extend`] lightweight extending of silent classes,
   like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
