@@ -181,6 +181,7 @@ for targeting all button elements.
 * [`postcss-ref`] refers properties from another rule.
 * [`postcss-reverse-media`] reverse/Invert media query parameters.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
+* [`postcss-map-get`] adds the ability to use Sass like map function `map-get`.
 * [`postcss-simple-extend`] lightweight extending of silent classes,
   like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
@@ -672,6 +673,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pointer`]:                      https://github.com/markgoodyear/postcss-pointer
 [`postcss-pxtorem`]:                      https://github.com/cuth/postcss-pxtorem
 [`postcss-rgb-plz`]:                      https://github.com/himynameisdave/postcss-rgb-plz
+[`postcss-map-get`]:                      https://github.com/GitScrum/postcss-map-get
 [`postcss-scopify`]:                      https://github.com/pazams/postcss-scopify
 [`postcss-sorting`]:                      https://github.com/hudochenkov/postcss-sorting
 [`postcss-sprites`]:                      https://github.com/2createStudio/postcss-sprites
