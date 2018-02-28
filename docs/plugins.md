@@ -252,6 +252,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-image-inliner`] inlines local and remote images.
 * [`postcss-instagram`] adds Instagram filters to `filter`.
 * [`postcss-filter-tint`] adds tint filter to elements such as images.
+* [`postcss-foft-classes`] adds guarding classes to blocks using web fonts for better font loading strategies.
 * [`postcss-font-awesome`] adds an easy shortcut to font-awesome unicode codes
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
@@ -769,3 +770,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-node-modules-replacer`]:        https://github.com/dichuvichkin/postcss-node-modules-replacer
 [`postcss-mq-last`]:                      https://github.com/JGJP/postcss-mq-last
 [`postcss-bem-to-js`]:                    https://github.com/WebSeed/postcss-bem-to-js
+[`postcss-foft-classes`]:                 https://github.com/zachleat/postcss-foft-classes
