@@ -1,7 +1,9 @@
-import Declaration from '../lib/declaration';
-import parse       from '../lib/parse';
-import Rule        from '../lib/rule';
-import Root        from '../lib/root';
+'use strict';
+
+const Declaration = require('../lib/declaration');
+const parse       = require('../lib/parse');
+const Rule        = require('../lib/rule');
+const Root        = require('../lib/root');
 
 let example = 'a { a: 1; b: 2 }' +
               '/* a */' +

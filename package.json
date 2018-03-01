@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "6.0.14",
+  "version": "6.0.19",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": ">=4.0.0"
@@ -21,42 +21,45 @@
   "homepage": "http://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
-    "chalk": "^2.3.0",
+    "chalk": "^2.3.1",
     "source-map": "^0.6.1",
-    "supports-color": "^4.4.0"
+    "supports-color": "^5.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^8.2.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-precompile-charcodes": "^1.1.0",
     "babel-preset-env": "^1.6.1",
-    "concat-with-sourcemaps": "^1.0.4",
+    "concat-with-sourcemaps": "^1.0.5",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.10.0",
+    "eslint": "^4.18.0",
+    "eslint-ci": "^0.1.1",
     "eslint-config-postcss": "^2.0.2",
-    "fs-extra": "^4.0.2",
+    "fs-extra": "^5.0.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-changed": "^3.1.1",
-    "gulp-eslint": "^4.0.0",
-    "gulp-jest": "^2.0.0",
-    "gulp-run": "^1.7.1",
-    "gulp-sourcemaps": "^2.6.1",
-    "jest": "^21.2.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-changed": "^3.2.0",
+    "gulp-json-editor": "^2.2.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "jest": "^22.3.0",
+    "jest-cli": "^22.3.0",
     "jsdoc": "^3.5.5",
-    "lint-staged": "^4.3.0",
-    "postcss-parser-tests": "^6.1.0",
+    "lint-staged": "^6.1.1",
+    "postcss-parser-tests": "^6.2.0",
     "pre-commit": "^1.2.2",
-    "run-sequence": "^2.2.0",
-    "size-limit": "^0.12.1",
+    "run-sequence": "^2.2.1",
+    "size-limit": "^0.14.1",
     "strip-ansi": "^4.0.0",
-    "yaspeller-ci": "^0.7.0"
+    "yaspeller-ci": "^1.0.0"
   },
   "scripts": {
     "lint-staged": "lint-staged",
-    "test": "gulp"
+    "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
+    "docs": "jsdoc -c .jsdocrc lib/*.es6",
+    "lint": "eslint-ci *.js lib/*.es6 test/*.js",
+    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
@@ -80,8 +83,9 @@
     }
   ],
   "jest": {
+    "testEnvironment": "node",
     "modulePathIgnorePatterns": [
-      "build"
+      "<rootDir>/build"
     ]
   },
   "eslintConfig": {

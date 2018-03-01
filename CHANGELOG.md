@@ -1,6 +1,23 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.19
+* Fix TypeScript definitions for source maps (by Oleh Kuchuk).
+* Fix `source` field in TypeScript definitions (by Sylvain Pollet-Villard).
+
+## 6.0.18
+* Use primitive object in TypeScript definitions (by Sylvain Pollet-Villard).
+
+## 6.0.17
+* Fix parsing comment in selector between word tokens (by Oleh Kuchuk).
+
+## 6.0.16
+* Fix warning text (by Michael Keller).
+
+## 6.0.15
+* Add warning about missed `from` option on `process().then()` call.
+* Add IE 10 support.
+
 ## 6.0.14
 * Fix TypeScript definitions (by Jed Mao).
 

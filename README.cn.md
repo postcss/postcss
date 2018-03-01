@@ -53,7 +53,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 ### 提前使用先进的 CSS 特性
 
 * [`autoprefixer`] 添加了 vendor 浏览器前缀，它使用 Can I Use 上面的数据。
-* [`postcss-cssnext`] 允许你使用未来的 CSS 特性（包括 `autoprefixer`）。
+* [`postcss-preset-env`] 允许你使用未来的 CSS 特性。
 * [`postcss-image-set-polyfill`] 为所有浏览器模拟了 [`image-set`] 函数逻辑。
 
 ### 更佳的 CSS 可读性
@@ -87,6 +87,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 [`postcss-image-set-polyfill`]: https://github.com/SuperOl3g/postcss-image-set-polyfill
 [`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
+[`postcss-preset-env`]:         https://github.com/jonathantneal/postcss-preset-env
 [`react-css-modules`]:          https://github.com/gajus/react-css-modules
 [`postcss-autoreset`]:          https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-write-svg`]:          https://github.com/jonathantneal/postcss-write-svg
@@ -95,7 +96,6 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 [`postcss-sprites`]:            https://github.com/2createStudio/postcss-sprites
 [`postcss-modules`]:            https://github.com/outpunk/postcss-modules
 [`postcss-sorting`]:            https://github.com/hudochenkov/postcss-sorting
-[`postcss-cssnext`]:            http://cssnext.io
 [`postcss-assets`]:             https://github.com/assetsjs/postcss-assets
 [开发 PostCSS 插件]:             https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`font-magician`]:              https://github.com/jonathantneal/postcss-font-magician

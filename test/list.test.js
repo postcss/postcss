@@ -1,4 +1,6 @@
-import list from '../lib/list';
+'use strict';
+
+const list = require('../lib/list');
 
 it('space() splits list by spaces', () => {
     expect(list.space('a b')).toEqual(['a', 'b']);

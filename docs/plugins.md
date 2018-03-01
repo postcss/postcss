@@ -48,17 +48,19 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
 * [`postcss-hamster`] for vertical rhythm, typography, modular scale functions.
+* [`postcss-preset-env`] lets you convert modern CSS into something most browsers can understand, determining the polyfills you need based on your targeted browsers or runtime environments.
 
-[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
-[`stylelint`]:         https://github.com/stylelint/stylelint
-[`rucksack`]:          http://simplaio.github.io/rucksack
-[`cssnano`]:           http://cssnano.co/
-[`cssnext`]:           http://cssnext.io/
-[`level4`]:            https://github.com/stephenway/level4
-[`precss`]:            https://github.com/jonathantneal/precss
-[`oldie`]:             https://github.com/jonathantneal/oldie
-[`atcss`]:             https://github.com/morishitter/atcss
-[`postcss-hamster`]:   https://github.com/h0tc0d3/postcss-hamster
+[`postcss-utilities`]:  https://github.com/ismamz/postcss-utilities
+[`stylelint`]:          https://github.com/stylelint/stylelint
+[`rucksack`]:           http://simplaio.github.io/rucksack
+[`cssnano`]:            http://cssnano.co/
+[`cssnext`]:            http://cssnext.io/
+[`level4`]:             https://github.com/stephenway/level4
+[`precss`]:             https://github.com/jonathantneal/precss
+[`oldie`]:              https://github.com/jonathantneal/oldie
+[`atcss`]:              https://github.com/morishitter/atcss
+[`postcss-hamster`]:    https://github.com/h0tc0d3/postcss-hamster
+[`postcss-preset-env`]: https://github.com/jonathantneal/postcss-preset-env/
 
 ## Future CSS Syntax
 
@@ -117,8 +119,10 @@ See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 * [`postcss-hash-classname`] append hash string to your css class name.
 * [`postcss-mqwidth-to-class`] converts min/max-width media queries to classes.
 * [`postcss-opacity`] adds opacity filter for IE8.
+* [`postcss-page-break`] adds `page-break-` fallback to `break-` properties.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
+* [`postcss-replace-overflow-wrap`] replace `overflow-wrap` with `word-wrap`.
 * [`postcss-round-subpixels`] plugin that rounds sub-pixel values
   to the nearest
   full pixel.
@@ -177,6 +181,7 @@ for targeting all button elements.
 * [`postcss-ref`] refers properties from another rule.
 * [`postcss-reverse-media`] reverse/Invert media query parameters.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
+* [`postcss-map-get`] adds the ability to use Sass like map function `map-get`.
 * [`postcss-simple-extend`] lightweight extending of silent classes,
   like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
@@ -247,6 +252,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-image-inliner`] inlines local and remote images.
 * [`postcss-instagram`] adds Instagram filters to `filter`.
 * [`postcss-filter-tint`] adds tint filter to elements such as images.
+* [`postcss-foft-classes`] adds guarding classes to blocks using web fonts for better font loading strategies.
 * [`postcss-font-awesome`] adds an easy shortcut to font-awesome unicode codes
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
@@ -368,6 +374,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-alter-property-value`] alters your CSS declarations from a rule based configuration.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-autoreset`]  automatically adds reset styles.
+* [`postcss-bem-to-js`] creates a JavaScript definition file for BEM-style CSS.
 * [`postcss-bom`] adds a UTF-8 BOM to files.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
@@ -392,6 +399,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
+* [`postcss-mq-last`] gives media query rules precedence by moving them to the end of the file.
 * [`postcss-node-modules-replacer`] replaces path than includes `node_modules`
   to `~`.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
@@ -427,7 +435,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-bem-linter`] lints CSS for conformance to SUIT CSS methodology.
 * [`postcss-cssstats`] returns an object with CSS statistics.
 * [`postcss-regexp-detect`] search for regexp in CSS declarations.
-* [`postcss-stylestats`] returns a data with CSS statistics.
 * [`css2modernizr`] creates a Modernizr config file
   that requires only the tests that your CSS uses.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
@@ -526,8 +533,10 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-generate-preset`]:              https://github.com/simonsmith/postcss-generate-preset
 [`postcss-local-constants`]:              https://github.com/macropodhq/postcss-constants
 [`postcss-media-variables`]:              https://github.com/WolfgangKluge/postcss-media-variables
+[`postcss-page-break`]:                   https://github.com/shrpne/postcss-page-break
 [`postcss-property-lookup`]:              https://github.com/simonsmith/postcss-property-lookup
 [`postcss-remove-prefixes`]:              https://github.com/johnotander/postcss-remove-prefixes
+[`postcss-replace-overflow-wrap`]:        https://github.com/MattDiMu/postcss-replace-overflow-wrap
 [`postcss-responsive-type`]:              https://github.com/seaneking/postcss-responsive-type
 [`postcss-round-subpixels`]:              https://github.com/himynameisdave/postcss-round-subpixels
 [`postcss-short-font-size`]:              https://github.com/jonathantneal/postcss-short-font-size
@@ -664,6 +673,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pointer`]:                      https://github.com/markgoodyear/postcss-pointer
 [`postcss-pxtorem`]:                      https://github.com/cuth/postcss-pxtorem
 [`postcss-rgb-plz`]:                      https://github.com/himynameisdave/postcss-rgb-plz
+[`postcss-map-get`]:                      https://github.com/GitScrum/postcss-map-get
 [`postcss-scopify`]:                      https://github.com/pazams/postcss-scopify
 [`postcss-sorting`]:                      https://github.com/hudochenkov/postcss-sorting
 [`postcss-sprites`]:                      https://github.com/2createStudio/postcss-sprites
@@ -739,7 +749,6 @@ See also plugins in modular minifier [`cssnano`].
 [`lost`]:                                 https://github.com/corysimmons/lost
 [`postcss-text-remove-gap`]:              https://github.com/m18ru/postcss-text-remove-gap
 [`postcss-closest`]:                      https://github.com/m18ru/postcss-closest
-[`postcss-stylestats`]:                   https://github.com/kubosho/postcss-stylestats
 [`postcss-grid-kiss`]:                    https://github.com/sylvainpolletvillard/postcss-grid-kiss
 [`postcss-unprefix`]:                     https://github.com/gucong3000/postcss-unprefix
 [`postcss-pie`]:                          https://github.com/gucong3000/postcss-pie
@@ -757,3 +766,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-bom`]:                          https://github.com/dichuvichkin/postcss-bom
 [`postcss-eol`]:                          https://github.com/dichuvichkin/postcss-eol
 [`postcss-node-modules-replacer`]:        https://github.com/dichuvichkin/postcss-node-modules-replacer
+[`postcss-mq-last`]:                      https://github.com/JGJP/postcss-mq-last
+[`postcss-bem-to-js`]:                    https://github.com/WebSeed/postcss-bem-to-js
+[`postcss-foft-classes`]:                 https://github.com/zachleat/postcss-foft-classes

@@ -63,8 +63,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 ### Use Future CSS, Today
 
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
-* [`postcss-cssnext`] allows you to use future CSS features today
-  (includes `autoprefixer`).
+* [`postcss-preset-env`] allows you to use future CSS features today.
 * [`postcss-image-set-polyfill`] emulates [`image-set`] function logic for all browsers
 
 ### Better CSS Readability
@@ -101,6 +100,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-image-set-polyfill`]: https://github.com/SuperOl3g/postcss-image-set-polyfill
 [PostCSS plugin development]:   https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
+[`postcss-preset-env`]:         https://github.com/jonathantneal/postcss-preset-env
 [`react-css-modules`]:          https://github.com/gajus/react-css-modules
 [`postcss-autoreset`]:          https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-write-svg`]:          https://github.com/jonathantneal/postcss-write-svg
@@ -109,7 +109,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-sprites`]:            https://github.com/2createStudio/postcss-sprites
 [`postcss-modules`]:            https://github.com/outpunk/postcss-modules
 [`postcss-sorting`]:            https://github.com/hudochenkov/postcss-sorting
-[`postcss-cssnext`]:            http://cssnext.io
 [`postcss-assets`]:             https://github.com/assetsjs/postcss-assets
 [`font-magician`]:              https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:               https://github.com/postcss/autoprefixer

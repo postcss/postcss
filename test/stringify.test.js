@@ -1,7 +1,9 @@
-import stringify from '../lib/stringify';
-import parse     from '../lib/parse';
+'use strict';
 
-import cases from 'postcss-parser-tests';
+const stringify = require('../lib/stringify');
+const parse     = require('../lib/parse');
+
+const cases = require('postcss-parser-tests');
 
 cases.each( (name, css) => {
     if ( name === 'bom.css' ) return;

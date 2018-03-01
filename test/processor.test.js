@@ -1,11 +1,13 @@
-import LazyResult from '../lib/lazy-result';
-import Processor  from '../lib/processor';
-import postcss    from '../lib/postcss';
-import Result     from '../lib/result';
-import parse      from '../lib/parse';
-import Root       from '../lib/root';
+'use strict';
 
-import path  from 'path';
+const LazyResult = require('../lib/lazy-result');
+const Processor  = require('../lib/processor');
+const postcss    = require('../lib/postcss');
+const Result     = require('../lib/result');
+const parse      = require('../lib/parse');
+const Root       = require('../lib/root');
+
+const path  = require('path');
 
 function prs() {
     return new Root({ raws: { after: 'ok' } });
@@ -24,8 +26,10 @@ let beforeFix = new Processor([ css => {
     });
 }]);
 
+const originWarn = console.warn;
 const originError = console.error;
 afterAll(() => {
+    console.warn = originWarn;
     console.error = originError;
 });
 
@@ -164,7 +168,7 @@ it('calls all plugins once', () => {
         calls += 'b';
     };
 
-    let result = new Processor([a, b]).process('');
+    let result = new Processor([a, b]).process('', { from: undefined });
     result.css;
     result.map;
     result.root;
@@ -187,7 +191,7 @@ it('send result to plugins', () => {
         expect(result.opts).toEqual({ map: true });
         expect(result.root).toEqual(css);
     };
-    return processor.use(a).process('a {}', { map: true });
+    return processor.use(a).process('a {}', { map: true, from: undefined });
 });
 
 it('accepts source map from PostCSS', () => {
@@ -232,17 +236,19 @@ it('supports async plugins', () => {
             }, 1);
         });
     };
-    return (new Processor([async1, async2])).process('').then( result => {
-        expect(starts).toEqual(2);
-        expect(finish).toEqual(2);
-        expect(result.css).toEqual('a {}b {}');
-    });
+    return (new Processor([async1, async2])).process('', { from: undefined })
+        .then( result => {
+            expect(starts).toEqual(2);
+            expect(finish).toEqual(2);
+            expect(result.css).toEqual('a {}b {}');
+        });
 });
 
 it('works async without plugins', () => {
-    return (new Processor()).process('a {}').then( result => {
-        expect(result.css).toEqual('a {}');
-    });
+    return (new Processor()).process('a {}', { from: undefined })
+        .then( result => {
+            expect(result.css).toEqual('a {}');
+        });
 });
 
 it('runs async plugin only once', () => {
@@ -258,7 +264,7 @@ it('runs async plugin only once', () => {
         });
     };
 
-    let result = (new Processor([async])).process('a {}');
+    let result = (new Processor([async])).process('a {}', { from: undefined });
     result.then( () => { });
     return result.then( () => {
         return result.then( () => {
@@ -274,7 +280,7 @@ it('supports async errors', done => {
             reject(error);
         });
     };
-    let result = (new Processor([async])).process('');
+    let result = (new Processor([async])).process('', { from: undefined });
     result.then( () => {
         done.fail();
     }).catch( err => {
@@ -291,7 +297,7 @@ it('supports sync errors in async mode', done => {
     let async = () => {
         throw error;
     };
-    (new Processor([async])).process('').then( () => {
+    (new Processor([async])).process('', { from: undefined }).then( () => {
         done.fail();
     }).catch( err => {
         expect(err).toEqual(error);
@@ -376,53 +382,59 @@ it('sets last plugin to result', () => {
     };
 
     let processor = new Processor([plugin1, plugin2]);
-    return processor.process('a{}').then( result => {
+    return processor.process('a{}', { from: undefined }).then( result => {
         expect(result.lastPlugin).toBe(plugin2);
     });
 });
 
 it('uses custom parsers', () => {
     let processor = new Processor([]);
-    return processor.process('a{}', { parser: prs }).then( result => {
-        expect(result.css).toEqual('ok');
-    });
+    return processor.process('a{}', { parser: prs, from: undefined })
+        .then( result => {
+            expect(result.css).toEqual('ok');
+        });
 });
 
 it('uses custom parsers from object', () => {
     let processor = new Processor([]);
     let syntax    = { parse: prs, stringify: str };
-    return processor.process('a{}', { parser: syntax }).then( result => {
-        expect(result.css).toEqual('ok');
-    });
+    return processor.process('a{}', { parser: syntax, from: undefined })
+        .then( result => {
+            expect(result.css).toEqual('ok');
+        });
 });
 
 it('uses custom stringifier', () => {
     let processor = new Processor([]);
-    return processor.process('a{}', { stringifier: str }).then( result => {
-        expect(result.css).toEqual('!');
-    });
+    return processor.process('a{}', { stringifier: str, from: undefined })
+        .then( result => {
+            expect(result.css).toEqual('!');
+        });
 });
 
 it('uses custom stringifier from object', () => {
     let processor = new Processor([]);
     let syntax    = { parse: prs, stringify: str };
-    return processor.process('', { stringifier: syntax }).then( result => {
-        expect(result.css).toEqual('!');
-    });
+    return processor.process('', { stringifier: syntax, from: undefined })
+        .then( result => {
+            expect(result.css).toEqual('!');
+        });
 });
 
 it('uses custom stringifier with source maps', () => {
     let processor = new Processor([]);
-    return processor.process('a{}', { map: true, stringifier: str })
-        .then( result => {
-            expect(result.css).toMatch(/!\n\/\*# sourceMap/);
-        });
+    return processor.process('a{}', {
+        map: true, stringifier: str, from: undefined
+    }).then( result => {
+        expect(result.css).toMatch(/!\n\/\*# sourceMap/);
+    });
 });
 
 it('uses custom syntax', () => {
     let processor = new Processor([]);
-    let syntax    = { parse: prs, stringify: str };
-    return processor.process('a{}', { syntax }).then( result => {
+    return processor.process('a{}', {
+        syntax: { parse: prs, stringify: str }, from: undefined
+    }).then( result => {
         expect(result.css).toEqual('ok!');
     });
 });
@@ -438,4 +450,20 @@ it('throws on syntax as plugin', () => {
             parse() { }
         });
     }).toThrowError(/syntax/);
+});
+
+it('warns about missed from', () => {
+    console.warn = jest.fn();
+    let processor = new Processor();
+
+    processor.process('a{}').css;
+    expect(console.warn).not.toBeCalled();
+
+    return processor.process('a{}').then(() => {
+        expect(console.warn).toBeCalledWith(
+            'Without `from` option PostCSS could generate wrong source map ' +
+            'and will not find Browserslist config. Set it to CSS file path ' +
+            'or to `undefined` to prevent this warning.'
+        );
+    });
 });

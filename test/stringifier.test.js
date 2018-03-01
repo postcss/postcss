@@ -1,10 +1,12 @@
-import Stringifier from '../lib/stringifier';
-import Declaration from '../lib/declaration';
-import AtRule      from '../lib/at-rule';
-import parse       from '../lib/parse';
-import Node        from '../lib/node';
-import Root        from '../lib/root';
-import Rule        from '../lib/rule';
+'use strict';
+
+const Stringifier = require('../lib/stringifier');
+const Declaration = require('../lib/declaration');
+const AtRule      = require('../lib/at-rule');
+const parse       = require('../lib/parse');
+const Node        = require('../lib/node');
+const Root        = require('../lib/root');
+const Rule        = require('../lib/rule');
 
 let str;
 beforeAll(() => {

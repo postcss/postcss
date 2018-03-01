@@ -1,14 +1,16 @@
-import CssSyntaxError from '../lib/css-syntax-error';
-import Declaration    from '../lib/declaration';
-import postcss        from '../lib/postcss';
-import AtRule         from '../lib/at-rule';
-import parse          from '../lib/parse';
-import Root           from '../lib/root';
-import Rule           from '../lib/rule';
+'use strict';
 
-import path from 'path';
+const CssSyntaxError = require('../lib/css-syntax-error');
+const Declaration    = require('../lib/declaration');
+const postcss        = require('../lib/postcss');
+const AtRule         = require('../lib/at-rule');
+const parse          = require('../lib/parse');
+const Root           = require('../lib/root');
+const Rule           = require('../lib/rule');
 
-let stringify  = (node, builder) => builder(node.selector);
+const path = require('path');
+
+let stringify = (node, builder) => builder(node.selector);
 
 it('shows error on wrong constructor types', () => {
     expect(() => {
@@ -60,12 +62,13 @@ it('warn() attaches a warning to the result object', () => {
         };
     });
 
-    return postcss([warner]).process('a{}').then(result => {
-        expect(warning.type).toEqual('warning');
-        expect(warning.text).toEqual('FIRST!');
-        expect(warning.plugin).toEqual('warner');
-        expect(result.warnings()).toEqual([warning]);
-    });
+    return postcss([warner]).process('a{}', { from: undefined })
+        .then(result => {
+            expect(warning.type).toEqual('warning');
+            expect(warning.text).toEqual('FIRST!');
+            expect(warning.plugin).toEqual('warner');
+            expect(result.warnings()).toEqual([warning]);
+        });
 });
 
 it('warn() accepts options', () => {

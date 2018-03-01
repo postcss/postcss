@@ -369,9 +369,31 @@ export default class Parser {
         let length = tokens.length;
         let value  = '';
         let clean  = true;
+        let next, prev;
+        const pattern = /^([.|#])?([\w])+/i;
+
         for ( let i = 0; i < length; i += 1 ) {
             token = tokens[i];
             type  = token[0];
+
+            if ( type === 'comment' && node.type === 'rule' ) {
+                prev = tokens[i - 1];
+                next = tokens[i + 1];
+
+                if (
+                    prev[0] !== 'space' &&
+                    next[0] !== 'space' &&
+                    pattern.test(prev[1]) &&
+                    pattern.test(next[1])
+                ) {
+                    value += token[1];
+                } else {
+                    clean = false;
+                }
+
+                continue;
+            }
+
             if ( type === 'comment' || type === 'space' && i === length - 1 ) {
                 clean = false;
             } else {

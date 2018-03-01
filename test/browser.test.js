@@ -1,3 +1,5 @@
+'use strict';
+
 jest.doMock('fs', () => ({ }));
 jest.doMock('chalk', () => ({ }));
 jest.doMock('supports-color', () => ({ }));

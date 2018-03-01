@@ -1,5 +1,7 @@
-import AtRule from '../lib/at-rule';
-import parse  from '../lib/parse';
+'use strict';
+
+const AtRule = require('../lib/at-rule');
+const parse  = require('../lib/parse');
 
 it('initializes with properties', () => {
     let rule = new AtRule({ name: 'encoding', params: '"utf-8"' });

@@ -1,4 +1,4 @@
-import LazyResult  from './lazy-result';
+import LazyResult from './lazy-result';
 
 /**
  * Contains plugins to process CSS. Create one `Processor` instance,
@@ -24,7 +24,7 @@ class Processor {
          *   throw new Error('This plugin works only with PostCSS 6');
          * }
          */
-        this.version = '6.0.14';
+        this.version = '6.0.19';
         /**
          * @member {pluginFunction[]} - Plugins added to this processor.
          *
