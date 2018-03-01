@@ -8,10 +8,10 @@ It can be useful for everyone who wish to contribute to core or develop better u
 - [Overview](#overview)
 - [Workflow](#workflow)
 - [Core Structures](#core-structures)
-    * [Tokenizer](#tokenizer)
-    * [Parser](#parser)
-    * [Processor](#processor)
-    * [Stringifier](#stringifier)
+    * [Tokenizer](#tokenizer--libtokenizees6-)
+    * [Parser](#parser--libparsees6-libparseres6-)
+    * [Processor](#processor--libprocessores6-)
+    * [Stringifier](#stringifier--libstringifyes6-libstringifieres6-)
 - [API](#api-reference)
 
 ### Overview
@@ -140,11 +140,13 @@ So now lets look more closely on structures that play main role in PostCSS workf
 - #### Processor ( [lib/processor.es6](https://github.com/postcss/postcss/blob/master/lib/processor.es6) )
 
     Processor is a very plain structure that initializes plugins and run syntax transformations. Plugin is just a function registered with [postcss.plugin](https://github.com/postcss/postcss/blob/master/lib/postcss.es6#L109) call.
+
     It exposes quite few public API methods. Description of them could be found on [api.postcss.org/Processor](http://api.postcss.org/Processor.html)
 
 - #### Stringifier ( [lib/stringify.es6](https://github.com/postcss/postcss/blob/master/lib/stringify.es6), [lib/stringifier.es6](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6) )
 
     Stringifier is a base class that translates modified AST to pure CSS string. Stringifier traverse AST starting from provided Node and generate raw string representation of it calling corresponding methods.
+
     The most essential method is [`Stringifier.stringify`](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6#L25-L27)
     that accepts initial Node and semicolon indicator.
     You can learn more by checking [stringifier.es6](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6)
