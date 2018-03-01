@@ -42,9 +42,9 @@ This is high level overview of whole PostCSS workflow
 
 <img width="300" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/PostCSS_scheme.svg/512px-PostCSS_scheme.svg.png" alt="workflow">
 
-As you can see from diagram above, PostCSS architecture pretty straightforward but some parts could be misunderstood.
+As you can see from diagram above, PostCSS architecture is pretty straightforward but some parts of it could be misunderstood.
 
-From diagram above you can see part called Parser, this construct will be described in details later on, just for now think about it as a structure that can understand your CSS like syntax and create object representation of it.
+From diagram above you can see part called *Parser*, this construct will be described in details later on, just for now think about it as a structure that can understand your CSS like syntax and create object representation of it.
 
 That being said, there are few ways to write parser
 
@@ -55,18 +55,18 @@ That being said, there are few ways to write parser
  - *Split it into lexical analysis/parsing steps (source string → tokens → AST)*
 
     This is the way of how we do it in PostCSS and also the most popular one.
-    A lot of parsers like [`Babylon` (parser behind Babel)](), [`CSSTree`]() were written in this way.
+    A lot of parsers like [`Babylon` (parser behind Babel)](https://github.com/babel/babel/tree/master/packages/babylon), [`CSSTree`](https://github.com/csstree/csstree) were written in such way.
     The main reasons to separate tokenization from parsing steps are performance and abstracting complexity.
 
-Let thing about why second way is better for our needs.
+Let think about why second way is better for our needs.
 
 First of all because string to tokens step takes more time than parsing step. We operate on large source string and process it char by char, this is why it is very inefficient operation in terms of performance and we should perform it only once.
 
-But from other side tokens to AST transformation is logically more complex so with such separation we could write very fast tokenizer (but from this comes sometimes hard to read code) and easy-to-read (but slow) parser.
+But from other side tokens to AST transformation is logically more complex so with such separation we could write very fast tokenizer (but from this comes sometimes hard to read code) and easy to read (but slow) parser.
 
 Summing it up splitting in two steps improve performance and code readability.
 
-So now lets look more closely on structures that play main role in PostCSS' workflow.
+So now lets look more closely on structures that play main role in PostCSS workflow.
 
 ### Core Structures
 
@@ -76,7 +76,7 @@ So now lets look more closely on structures that play main role in PostCSS' work
 
     It accepts CSS string and returns list of tokens.
 
-    Token is plain structure that describes some part of syntax like `at-rule`, `comment` or `word`. It could also contain positional information for more descriptive errors.
+    Token is a simple structure that describes some part of syntax like `at-rule`, `comment` or `word`. It can also contain positional information for more descriptive errors.
 
     For example if we consider following css
 
@@ -84,7 +84,7 @@ So now lets look more closely on structures that play main role in PostCSS' work
     .className { color: #FFF; }
     ```
 
-    corresponding tokens representation would be
+    corresponding tokens representation from PostCSS will be
     ```js
     [
         ["word", ".className", 1, 1, 1, 10]
@@ -103,7 +103,7 @@ So now lets look more closely on structures that play main role in PostCSS' work
 
     As you can see from the example above single token represented as a list and also `space` token doesn't have positional information.
 
-    Lets look more closely on single token like `word`. It was said each token represented as a list and follow such pattern.
+    Lets look more closely on single token like `word`. As it was said each token represented as a list and follow such pattern.
 
     ```typescript
     const token = [
@@ -117,18 +117,16 @@ So now lets look more closely on structures that play main role in PostCSS' work
         // It's optional value as we saw in example above,
         // tokens like `space` don't have such information.
 
-        // Here is first number is line number and second one is corresponding column.
+        // Here the first number is line number and the second one is corresponding column.
         1, 1,
 
-        // Next two numbers also optional and reresent end position for multichar tokens like this one. Numbers follow same rule as was described above
+        // Next two numbers also optional and represent end position for multichar tokens like this one. Numbers follow same rule as was described above
         1, 10
     ];
     ```
    There are many patterns how tokenization could be done, PostCSS motto is performance and simplicity. Tokenization is complex computing operation and take large amount of syntax analysis time ( ~90% ), that why PostCSS' Tokenizer looks dirty but it was optimized for speed. Any high-level constructs like classes could dramatically slow down tokenizer.
 
     PostCSS' Tokenizer use some sort of streaming/chaining API where you exposes [`nextToken()`](https://github.com/postcss/postcss/blob/master/lib/tokenize.es6#L48-L308) method to Parser. In this manner we provide clean interface for Parser and reduce memory usage by storing only few tokens and not whole list of tokens.
-
-    We will look more closely on this pattern in the next section.
 
 - #### Parser ( [lib/parse.es6](https://github.com/postcss/postcss/blob/master/lib/parse.es6), [lib/parser.es6](https://github.com/postcss/postcss/blob/master/lib/parser.es6) )
 
