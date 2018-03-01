@@ -12,8 +12,7 @@ It can be useful for everyone who wish to contribute to core or develop better u
     * [Parser](#parser)
     * [Processor](#processor)
     * [Stringifier](#stringifier)
-- [API](#api)
-- [Other](#other)
+- [API](#api-reference)
 
 ### Overview
 
@@ -21,9 +20,9 @@ It can be useful for everyone who wish to contribute to core or develop better u
 
 Before diving deeper into development of PostCSS let's briefly describe what is PostCSS and what is not.
 
-PostCSS
+**PostCSS**
 
-- *is NOT a style preprocessor like `Sass` or `Less`.*
+- *is **NOT** a style preprocessor like `Sass` or `Less`.*
 
     It does not define custom syntax and semantic, it's not actually a language.
     PostCSS works with CSS and can be easily integrated with tools described above. That being said any valid CSS can be processed by PostCSS.
@@ -34,7 +33,7 @@ PostCSS
 
 - *is a big player in CSS ecosystem*
 
-    Large amount of lovely tools like `Autoprefixer`, `Stylelint`, `CSSnano` were built on PostCSS ecosystem. There is big chance that you already use it implicitly, just check your `node_modules` ;)
+    Large amount of lovely tools like `Autoprefixer`, `Stylelint`, `CSSnano` were built on PostCSS ecosystem. There is big chance that you already use it implicitly, just check your `node_modules` :smiley:
 
 ### Workflow
 
@@ -140,14 +139,16 @@ So now lets look more closely on structures that play main role in PostCSS workf
 
 - #### Processor ( [lib/processor.es6](https://github.com/postcss/postcss/blob/master/lib/processor.es6) )
 
-    Processor is a structure that initializes plugins and run syntax transformations.
-    More later on.
+    Processor is a very plain structure that initializes plugins and run syntax transformations. Plugin is just a function registered with [postcss.plugin](https://github.com/postcss/postcss/blob/master/lib/postcss.es6#L109) call.
+    It exposes quite few public API methods. Description of them could be found on [api.postcss.org/Processor](http://api.postcss.org/Processor.html)
 
 - #### Stringifier ( [lib/stringify.es6](https://github.com/postcss/postcss/blob/master/lib/stringify.es6), [lib/stringifier.es6](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6) )
 
-    Stringifier is a base class that translates modified AST to pure CSS string.
-    More later on.
+    Stringifier is a base class that translates modified AST to pure CSS string. Stringifier traverse AST starting from provided Node and generate raw string representation of it calling corresponding methods.
+    The most essential method is [`Stringifier.stringify`](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6#L25-L27)
+    that accepts initial Node and semicolon indicator.
+    You can learn more by checking [stringifier.es6](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6)
 
-### API
+### API Reference
 
 More descriptive API documentation could be found [here](http://api.postcss.org/)
