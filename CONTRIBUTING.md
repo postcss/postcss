@@ -1,6 +1,6 @@
 ## Contributing guide to PostCSS
 
-If you want contribute to PostCSS, there are few things that you should be familiar with
+If you want contribute to PostCSS, there are few things that you should be familiar with.
 
 ### In case you have question about using PostCSS
 
@@ -54,9 +54,12 @@ If you found a bug or want to add certain improvements to types declaration file
 
 - *Check current TypeScript styling*
 
-   Be sure that your changes wont break anything as well as match TypeScript styling rules defined in typings file.
+   Be sure that your changes match TypeScript styling rules defined in typings file.
+    - We use classes for existing JS classes like *Stringifier*.
+    - Namespaces used for separating functions related to same subject.
+    - Interfaces used for defining custom types.
 
-   Make sure you read through declaration file writing best practices by TypeScript team [here](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
+   Make sure you read through declaration file writing best practices by TypeScript team [here](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html).
 
 ### Core development
 
@@ -64,7 +67,7 @@ If you want to add new feature or fix existed issue
 
 - *Become familiar with PostCSS architecture*
 
-    For adding new feature you certainly should have good understanding of `PostCSS` architecture as well as principles it follows.
+    For adding new feature you certainly should have good understanding of `PostCSS` architecture as well as principles it follows
 
     For gentle intro to PostCSS architecture look through our [guide](https://github.com/postcss/postcss/blob/master/docs/architecture.md)
 
