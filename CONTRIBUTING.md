@@ -4,7 +4,7 @@ If you want contribute to PostCSS, there are few things that you should be famil
 
 ### In case you have question about using PostCSS
 
-- *Ask for help in `Gitter`*
+- *Ask for help in [`Gitter`](https://gitter.im/postcss/postcss)*
 
     If you stuck on something there is a big chance that someone had similar problem before.
 
@@ -21,11 +21,11 @@ If you want contribute to PostCSS, there are few things that you should be famil
 
 If you created or found a plugin and want to add it to PostCSS plugins list follow this simple steps.
 
-`Note!` *PR should not change plugins defined in README it contains only favorite plugins and moderated by PostCSS author.*
+*PR should not change plugins defined in README it contains only favorite plugins and moderated by PostCSS author.*
 
 Plugins submitted by community located in [`docs/plugins`](https://github.com/postcss/postcss/blob/master/docs/plugins.md)
 
-- *Carefully check current list of plugins*
+- *Keep plugins order*
 
     Be sure that plugin not presented yet and find suitable position in alphabetic order for it.
     But plugins with `postcss-` prefix should come first.
@@ -40,12 +40,9 @@ Plugins submitted by community located in [`docs/plugins`](https://github.com/po
 
     Provided plugin should match plugin [guidance](https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md).
 
-- *Create a pull request with descriptive naming*
+- *Provide link to suggested plugin*
 
-   "*Updated plugins*" is tell nothing for PR reviewer. Try to come with more specific name like
-    "*Added my-awesome-postcss-plugin to plugins list*". Also be sure to include updates in other translations as well.
-
-    Make sure your pull request have link to plugin you are willing to add.
+    Make sure your pull request contains link to plugin you are willing to add.
 
 
 ### TypeScript declaration file improvements
