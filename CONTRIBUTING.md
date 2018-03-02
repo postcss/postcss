@@ -1,10 +1,10 @@
-## Contributing guide to PostCSS
+# Contributing Guide to PostCSS
 
 If you want contribute to PostCSS, there are few things that you should
 be familiar with.
 
 
-### In case you have question about using PostCSS
+## In Case You Have Question About Using PostCSS
 
 * **Ask for help in [the chat]**
 
@@ -14,7 +14,7 @@ be familiar with.
 [the chat]: https://gitter.im/postcss/postcss
 
 
-### Adding your plugin to the list
+## Adding Your Plugin to the List
 
 If you created or found a plugin and want to add it to PostCSS plugins list
 follow this simple steps.
@@ -50,7 +50,7 @@ Plugins submitted by community located in [`docs/plugins`].
 [guidelines]:     https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md
 
 
-### TypeScript declaration file improvements
+## TypeScript Declaration Improvements
 
 If you found a bug or want to add certain improvements to types declaration file
 
@@ -67,7 +67,7 @@ If you found a bug or want to add certain improvements to types declaration file
 [best practices]: https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html
 
 
-### Core development
+## Core Development
 
 If you want to add new feature or fix existed issue
 
