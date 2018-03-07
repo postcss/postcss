@@ -303,7 +303,10 @@ fs.readFile('src/app.css', (err, css) => {
     postcss([precss, autoprefixer])
         .process(css, { from: 'src/app.css', to: 'dest/app.css' })
         .then(result => {
-            fs.writeFile('dest/app.css', result.css);
+            //When you run this code make sure the dest directory exists first.  
+            //The [npm mkdirp](https://www.npmjs.com/package/mkdirp) module
+            //is good at this.  For example mkdirp.sync('dest').
+            fs.writeFileSync('dest/app.css', result.css);
             if ( result.map ) fs.writeFile('dest/app.css.map', result.map);
         });
 });
