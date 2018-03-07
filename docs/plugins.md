@@ -162,6 +162,8 @@ See also [`oldie`] plugins pack.
 * [`postcss-functions`] enables exposure of JavaScript functions.
 * [`postcss-if-media`] inline or nest media queries within
   CSS rules & properties.
+* [`postcss-inline-media`] inline multiple media queries into CSS property
+  values.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
 * [`postcss-match`] adds `@match` for [Rust-style pattern matching].
@@ -769,3 +771,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-mq-last`]:                      https://github.com/JGJP/postcss-mq-last
 [`postcss-bem-to-js`]:                    https://github.com/WebSeed/postcss-bem-to-js
 [`postcss-foft-classes`]:                 https://github.com/zachleat/postcss-foft-classes
+[`postcss-inline-media`]:                 https://github.com/dimitrinicolas/postcss-inline-media
