@@ -162,7 +162,7 @@ See also [`oldie`] plugins pack.
 * [`postcss-functions`] enables exposure of JavaScript functions.
 * [`postcss-if-media`] inline or nest media queries within
   CSS rules & properties.
-* [`postcss-inline-media`] inline multiple media queries into css property
+* [`postcss-inline-media`] inline multiple media queries into CSS property
   values.
 * [`postcss-local-constants`] adds support for localized constants.
 * [`postcss-map`] enables configuration maps.
