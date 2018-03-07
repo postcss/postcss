@@ -771,3 +771,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-mq-last`]:                      https://github.com/JGJP/postcss-mq-last
 [`postcss-bem-to-js`]:                    https://github.com/WebSeed/postcss-bem-to-js
 [`postcss-foft-classes`]:                 https://github.com/zachleat/postcss-foft-classes
+[`postcss-inline-media`]:                 https://github.com/dimitrinicolas/postcss-inline-media
