@@ -47,10 +47,10 @@
     "jest-cli": "^22.4.2",
     "jsdoc": "^3.5.5",
     "lint-staged": "^7.0.0",
-    "postcss-parser-tests": "^6.2.0",
+    "postcss-parser-tests": "^6.2.1",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.2.1",
-    "size-limit": "^0.15.2",
+    "size-limit": "^0.16.1",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^1.0.0"
   },
