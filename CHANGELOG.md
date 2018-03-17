@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.20
+* Better error message on `null` as input CSS.
+
 ## 6.0.19
 * Fix TypeScript definitions for source maps (by Oleh Kuchuk).
 * Fix `source` field in TypeScript definitions (by Sylvain Pollet-Villard).
