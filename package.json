@@ -34,7 +34,7 @@
     "concat-with-sourcemaps": "^1.0.5",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.18.2",
+    "eslint": "^4.19.0",
     "eslint-ci": "^0.1.1",
     "eslint-config-postcss": "^2.0.2",
     "fs-extra": "^5.0.0",
@@ -50,7 +50,7 @@
     "postcss-parser-tests": "^6.2.1",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.2.1",
-    "size-limit": "^0.16.1",
+    "size-limit": "^0.17.0",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^1.0.0"
   },
