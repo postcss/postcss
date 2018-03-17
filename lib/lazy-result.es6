@@ -23,7 +23,7 @@ class LazyResult {
         this.processed   = false;
 
         let root;
-        if ( typeof css === 'object' && css.type === 'root' ) {
+        if ( typeof css === 'object' && css !== null && css.type === 'root' ) {
             root = css;
         } else if ( css instanceof LazyResult || css instanceof Result ) {
             root = css.root;

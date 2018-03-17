@@ -142,3 +142,9 @@ it('contains vendor module', () => {
 it('contains list module', () => {
     expect(postcss.list.space('a b')).toEqual(['a', 'b']);
 });
+
+it('works with null', () => {
+    expect(() => {
+        postcss().process(null).css;
+    }).toThrowError(/PostCSS received null instead of CSS string/);
+});
