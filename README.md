@@ -22,7 +22,7 @@ CSS processors.
 **Twitter account:**      [@postcss](https://twitter.com/postcss).<br>
 **VK.com page:**          [postcss](https://vk.com/postcss).<br>
 **Support / Discussion:** [Gitter](https://gitter.im/postcss/postcss).<br>
-**中文翻译**:              [`README.cn.md`](./README.cn.md).
+**中文翻译**:              [`README-cn.md`](./README-cn.md).
 
 For PostCSS commercial support (consulting, improving the front-end culture
 of your company, PostCSS plugins), contact [Evil Martians](https://evilmartians.com/?utm_source=postcss)
