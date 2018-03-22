@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.21
+* Rename Chinese docs to fix `yarnpkg.com` issue.
+
 ## 6.0.20
 * Better error message on `null` as input CSS.
 
