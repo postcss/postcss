@@ -1,15 +1,11 @@
-# PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
+# PostCSS [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
      alt="哲学家的石头 - PostCSS 的 logo"
      src="http://postcss.github.io/postcss/logo.svg">
 
-[appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
-[travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix
-[chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
-[appveyor]:     https://ci.appveyor.com/project/ai/postcss
-[travis]:       https://travis-ci.org/postcss/postcss
-[chat]:         https://gitter.im/postcss/postcss
+[chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
+[chat]:     https://gitter.im/postcss/postcss
 
 PostCSS 是一个允许使用 JS 插件转换样式的工具。
 这些插件可以检查（lint）你的 CSS，支持 CSS Variables 和 Mixins，

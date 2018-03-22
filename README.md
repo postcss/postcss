@@ -1,15 +1,11 @@
-# PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
+# PostCSS [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
      alt="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo.svg">
 
-[appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
-[travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix
-[chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
-[appveyor]:     https://ci.appveyor.com/project/ai/postcss
-[travis]:       https://travis-ci.org/postcss/postcss
-[chat]:         https://gitter.im/postcss/postcss
+[chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
+[chat]:     https://gitter.im/postcss/postcss
 
 PostCSS is a tool for transforming styles with JS plugins.
 These plugins can lint your CSS, support variables and mixins,
