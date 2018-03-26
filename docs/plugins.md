@@ -101,6 +101,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-start-to-end`] lets you control your layout (LTR or RTL)
   through logical rather than direction / physical rules.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
+* [`postcss-subgrid`] provides a basic shim for the CSS `display:subgrid` spec.
 
 See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
@@ -772,3 +773,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-bem-to-js`]:                    https://github.com/WebSeed/postcss-bem-to-js
 [`postcss-foft-classes`]:                 https://github.com/zachleat/postcss-foft-classes
 [`postcss-inline-media`]:                 https://github.com/dimitrinicolas/postcss-inline-media
+[`postcss-subgrid`]:                      https://github.com/seaneking/postcss-subgrid
