@@ -346,6 +346,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-hidden`] allows for easy ways to hide elements.
 * [`postcss-input-style`] adds new pseudo-elements for cross-browser styling
   of inputs.
+* [`postcss-nested-ancestors`] reference any parent/ancestor selector in nested CSS.
 * [`postcss-parent-selector`] adds a parent selector to the beginning of all rules.
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
@@ -773,4 +774,5 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-bem-to-js`]:                    https://github.com/WebSeed/postcss-bem-to-js
 [`postcss-foft-classes`]:                 https://github.com/zachleat/postcss-foft-classes
 [`postcss-inline-media`]:                 https://github.com/dimitrinicolas/postcss-inline-media
+[`postcss-nested-ancestors`]:             https://github.com/toomuchdesign/postcss-nested-ancestors
 [`postcss-subgrid`]:                      https://github.com/seaneking/postcss-subgrid
