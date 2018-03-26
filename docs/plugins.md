@@ -100,8 +100,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to more compatible CSS.
 * [`postcss-start-to-end`] lets you control your layout (LTR or RTL)
   through logical rather than direction / physical rules.
+* [`postcss-subgrid`] provides a basic shim for the CSS `display: subgrid` spec.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
-* [`postcss-subgrid`] provides a basic shim for the CSS `display:subgrid` spec.
 
 See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
 
