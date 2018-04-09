@@ -398,6 +398,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
 * [`postcss-inline-rtl`] converts your CSS to right-to-left,
   but inline (adding just what you need).
+* [`postcss-join-transitions`] joins conflicting transition declarations.
 * [`postcss-letter-tracking`] generates relative, Photoshop-compatible letter tracking for improved letter spacing.
 * [`postcss-light-text`]  adds `-webkit-` antialiasing for light text.
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
@@ -776,3 +777,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-inline-media`]:                 https://github.com/dimitrinicolas/postcss-inline-media
 [`postcss-nested-ancestors`]:             https://github.com/toomuchdesign/postcss-nested-ancestors
 [`postcss-subgrid`]:                      https://github.com/seaneking/postcss-subgrid
+[`postcss-join-transitions`]:             https://github.com/JGJP/postcss-join-transitions
