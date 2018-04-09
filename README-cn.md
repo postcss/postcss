@@ -117,7 +117,8 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 如果还没有支持你最喜欢的语法，你可以编写一个解释器以及（或者）一个 stringifier 来拓展 PostCSS。
 
 * [`sugarss`] 是一个以缩进为基础的语法，类似于 Sass 和 Stylus。
-* [`postcss-html`] 允许你在 HTML / [Markdown](https://daringfireball.net/projects/markdown/syntax) / [Vue component](https://vue-loader.vuejs.org/) 里编写样式。
+* [`postcss-html`] 允许你在 HTML (还有类HTML) 里编写样式。
+* [`postcss-markdown`] 允许你在 [Markdown](https://daringfireball.net/projects/markdown/syntax) 里编写样式。
 * [`postcss-scss`] 允许你使用 SCSS *(但并没有将 SCSS 编译到 CSS)*。
 * [`postcss-sass`] 允许你使用 Sass *(但并没有将 Sass 编译到 CSS)*。
 * [`postcss-less`] 允许你使用 Less *(但并没有将 LESS 编译到 CSS)*。
@@ -129,6 +130,7 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 [`postcss-less-engine`]: https://github.com/Crunch/postcss-less
 [`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
 [`postcss-html`]:        https://github.com/gucong3000/postcss-html
+[`postcss-markdown`]:    https://github.com/gucong3000/postcss-markdown
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass
 [`postcss-less`]:        https://github.com/webschik/postcss-less
