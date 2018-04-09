@@ -130,8 +130,8 @@ If there is not yet support for your favorite syntax,
 you can write a parser and/or stringifier to extend PostCSS.
 
 * [`sugarss`] is a indent-based syntax like Sass or Stylus.
-* [`postcss-html`] allows you to write styles in HTML  (and HTML-like)
-* [`postcss-markdown`] allows you to write styles in [Markdown](https://daringfireball.net/projects/markdown/syntax)
+* [`postcss-html`] allows you to write styles in HTML  (and HTML-like).
+* [`postcss-markdown`] allows you to write styles in Markdown.
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
 * [`postcss-sass`] allows you to work with Sass
