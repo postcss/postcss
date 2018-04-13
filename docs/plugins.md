@@ -259,6 +259,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-font-awesome`] adds an easy shortcut to font-awesome unicode codes
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
+* [`postcss-fontsize`] generates `rem` unit `font-size` and `line-height` with `px` fallbacks.
 * [`postcss-fontpath`] adds font links for different browsers.
 * [`postcss-lazyimagecss`] adds image width and height automatically.
 * [`postcss-lazysprite`] generates sprites from the directory of images.
@@ -609,6 +610,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-easysprites`]:                  https://github.com/glebmachine/postcss-easysprites
 [`postcss-flexibility`]:                  https://github.com/7rulnik/postcss-flexibility
 [`postcss-font-family`]:                  https://github.com/ben-eb/postcss-font-family
+[`postcss-fontsize`]:                     https://github.com/richbachman/postcss-fontsize
 [`postcss-grid-system`]:                  https://github.com/francoisromain/postcss-grid-system
 [`postcss-input-style`]:                  https://github.com/seaneking/postcss-input-style
 [`postcss-merge-rules`]:                  https://github.com/ben-eb/postcss-merge-rules
