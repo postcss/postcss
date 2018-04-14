@@ -130,8 +130,10 @@ If there is not yet support for your favorite syntax,
 you can write a parser and/or stringifier to extend PostCSS.
 
 * [`sugarss`] is a indent-based syntax like Sass or Stylus.
-* [`postcss-html`] allows you to write styles in HTML  (and HTML-like).
-* [`postcss-markdown`] allows you to write styles in Markdown.
+* [`postcss-syntax`] switch syntax automatically by file extensions.
+* [`postcss-html`] parsing styles in `<style>` tags of HTML-like files.
+* [`postcss-markdown`] parsing styles in code blocks of Markdown files.
+* [`postcss-styled`] parsing CSS in template literals of source files.
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
 * [`postcss-sass`] allows you to work with Sass
@@ -147,9 +149,11 @@ you can write a parser and/or stringifier to extend PostCSS.
 
 [`postcss-less-engine`]: https://github.com/Crunch/postcss-less
 [`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
+[`postcss-syntax`]:      https://github.com/gucong3000/postcss-syntax
 [`postcss-html`]:        https://github.com/gucong3000/postcss-html
-[`postcss-markdown`]:    https://github.com/gucong3000/postcss-markdown
-[`postcss-scss`]:        https://github.com/postcss/postcss-scss
+[`postcss-markdown`]:    https://github.com/gucong3000/postcss-markdown
+[`postcss-styled`]:      https://github.com/gucong3000/postcss-styled
+[`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass
 [`postcss-less`]:        https://github.com/webschik/postcss-less
 [`postcss-js`]:          https://github.com/postcss/postcss-js
