@@ -781,3 +781,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-nested-ancestors`]:             https://github.com/toomuchdesign/postcss-nested-ancestors
 [`postcss-subgrid`]:                      https://github.com/seaneking/postcss-subgrid
 [`postcss-join-transitions`]:             https://github.com/JGJP/postcss-join-transitions
+[`postcss-font-display`]:                 https://github.com/dkrnl/postcss-font-display
