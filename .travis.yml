@@ -5,5 +5,9 @@ node_js:
   - "8"
   - "6"
   - "4"
+before_install:
+  - npm install grunt-cli -g
+  - npm install npm@latest -g
 install:
   - YARN_IGNORE_ENGINES=true yarn
+  - npm ci
