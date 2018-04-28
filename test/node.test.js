@@ -223,10 +223,20 @@ it('next() returns next node', () => {
     expect(css.first.last.next()).not.toBeDefined();
 });
 
+it('next() returns undefined on no parent', () => {
+    let css = parse('');
+    expect(css.next()).not.toBeDefined();
+});
+
 it('prev() returns previous node', () => {
     let css = parse('a{one:1;two:2}');
     expect(css.first.last.prev()).toBe(css.first.first);
     expect(css.first.first.prev()).not.toBeDefined();
+});
+
+it('prev() returns undefined on no parent', () => {
+    let css = parse('');
+    expect(css.prev()).not.toBeDefined();
 });
 
 it('toJSON() cleans parents inside', () => {

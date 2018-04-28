@@ -277,6 +277,7 @@ class Node {
      * }
      */
     next() {
+        if ( !this.parent ) return undefined;
         let index = this.parent.index(this);
         return this.parent.nodes[index + 1];
     }
@@ -294,6 +295,7 @@ class Node {
      * }
      */
     prev() {
+        if ( !this.parent ) return undefined;
         let index = this.parent.index(this);
         return this.parent.nodes[index - 1];
     }
