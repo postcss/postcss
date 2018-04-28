@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.22
+* Fix `Node#prev` and `Node#next` on missed parent.
+
 ## 6.0.21
 * Rename Chinese docs to fix `yarnpkg.com` issue.
 
