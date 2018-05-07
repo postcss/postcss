@@ -104,7 +104,7 @@ So now lets look more closely on structures that play main role in PostCSS workf
 
     Lets look more closely on single token like `word`. As it was said each token represented as a list and follow such pattern.
 
-    ```typescript
+    ```js
     const token = [
          // represents token type
         'word',

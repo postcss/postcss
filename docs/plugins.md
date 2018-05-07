@@ -6,7 +6,7 @@ There are two ways to make PostCSS magic more explicit.
 
 Limit a plugin's local stylesheet context using [`postcss-plugin-context`]:
 
-```css
+```pcss
 .css-example.is-test-for-css4-browsers {
     color: gray(255, 50%);
 }
@@ -19,7 +19,7 @@ Limit a plugin's local stylesheet context using [`postcss-plugin-context`]:
 
 Or enable plugins directly in CSS using [`postcss-use`]:
 
-```css
+```pcss
 @use autoprefixer(browsers: ['last 2 versions']);
 
 :fullscreen a {
