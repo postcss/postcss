@@ -18,7 +18,7 @@
   ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
-  "homepage": "http://postcss.org/",
+  "homepage": "https://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
     "chalk": "^2.4.1",
