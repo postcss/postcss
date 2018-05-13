@@ -30,7 +30,7 @@
     "babel-eslint": "^8.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-precompile-charcodes": "^1.1.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "concat-with-sourcemaps": "^1.1.0",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
@@ -50,7 +50,7 @@
     "postcss-parser-tests": "^6.2.1",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.2.1",
-    "size-limit": "^0.17.0",
+    "size-limit": "^0.17.1",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^1.0.0"
   },
