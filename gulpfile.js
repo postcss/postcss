@@ -22,7 +22,7 @@ gulp.task('compile', () => {
                     'env',
                     {
                         targets: {
-                            browsers: 'last 2 version',
+                            browsers: ['last 2 version', 'not dead'],
                             node: 6
                         },
                         loose: true
