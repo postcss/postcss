@@ -24,9 +24,9 @@ functions:
 
 ```js
 module.exports = {
-    parse:     require('./parse'),
-    stringify: require('./stringify')
-};
+  parse:     require('./parse'),
+  stringify: require('./stringify')
+}
 ```
 
 [SCSS]: https://github.com/postcss/postcss-scss
@@ -41,13 +41,13 @@ The parser API is a function which receives a string & returns a [`Root`] node.
 The second argument is a function which receives an object with PostCSS options.
 
 ```js
-var postcss = require('postcss');
+const postcss = require('postcss')
 
-module.exports = function (css, opts) {
-    var root = postcss.root();
-    // Add other nodes to root
-    return root;
-};
+module.exports = function parse (css, opts) {
+  const root = postcss.root()
+  // Add other nodes to root
+  return root
+}
 ```
 
 [Safe Parser]: https://github.com/postcss/postcss-safe-parser
@@ -88,11 +88,11 @@ Second optimization is using character codes instead of strings.
 
 ```js
 // Slow
-string[i] === '{';
+string[i] === '{'
 
 // Fast
-const OPEN_CURLY = 123; // `{'
-string.charCodeAt(i) === OPEN_CURLY;
+const OPEN_CURLY = 123 // `{'
+string.charCodeAt(i) === OPEN_CURLY
 ```
 
 Third optimization is “fast jumps”. If you find open quotes, you can find
@@ -100,12 +100,12 @@ next closing quote much faster by `indexOf`:
 
 ```js
 // Simple jump
-next = string.indexOf('"', currentPosition + 1);
+next = string.indexOf('"', currentPosition + 1)
 
 // Jump by RegExp
-regexp.lastIndex = currentPosion + 1;
-regexp.test(string);
-next = regexp.lastIndex;
+regexp.lastIndex = currentPosion + 1
+regexp.test(string)
+next = regexp.lastIndex
 ```
 
 The parser can be a well written class. There is no need in copy-paste and
@@ -166,11 +166,11 @@ A Stringifier is a function which receives [`Root`] node and builder callback.
 Then it calls builder with every node’s string and node instance.
 
 ```js
-module.exports = function (root, builder) {
-    // Some magic
-    var string = decl.prop + ':' + decl.value + ';';
-    builder(string, decl);
-    // Some science
+module.exports = function stringify (root, builder) {
+  // Some magic
+  const string = decl.prop + ':' + decl.value + ';'
+  builder(string, decl)
+  // Some science
 };
 ```
 
@@ -201,9 +201,9 @@ For these cases, you should pass a third argument to builder function:
 `'start'` or `'end'` string:
 
 ```js
-this.builder(rule.selector + '{', rule, 'start');
+this.builder(rule.selector + '{', rule, 'start')
 // Stringify declarations inside
-this.builder('}', rule, 'end');
+this.builder('}', rule, 'end')
 ```
 
 ### Raw Values

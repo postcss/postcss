@@ -1,8 +1,10 @@
-let printed = { };
+const printed = { }
 
-export default function warnOnce(message) {
-    if ( printed[message] ) return;
-    printed[message] = true;
+export default function warnOnce (message) {
+  if (printed[message]) return
+  printed[message] = true
 
-    if ( typeof console !== 'undefined' && console.warn ) console.warn(message);
+  if (typeof console !== 'undefined' && console.warn) {
+    console.warn(message)
+  }
 }
