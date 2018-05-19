@@ -172,28 +172,28 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 
 ```js
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader'
-                    }
-                ]
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
             }
+          },
+          {
+            loader: 'postcss-loader'
+          }
         ]
-    }
+      }
+    ]
+  }
 }
 ```
 
@@ -201,10 +201,10 @@ module.exports = {
 
 ```js
 module.exports = {
-    plugins: [
-        require('precss'),
-        require('autoprefixer')
-    ]
+  plugins: [
+    require('precss'),
+    require('autoprefixer')
+  ]
 }
 ```
 
@@ -215,16 +215,16 @@ module.exports = {
 使用 [`gulp-postcss`] 和 [`gulp-sourcemaps`].
 
 ```js
-gulp.task('css', function () {
-    var postcss    = require('gulp-postcss');
-    var sourcemaps = require('gulp-sourcemaps');
+gulp.task('css', () => {
+  const postcss    = require('gulp-postcss')
+  const sourcemaps = require('gulp-sourcemaps')
 
-    return gulp.src('src/**/*.css')
-        .pipe( sourcemaps.init() )
-        .pipe( postcss([ require('precss'), require('autoprefixer') ]) )
-        .pipe( sourcemaps.write('.') )
-        .pipe( gulp.dest('build/') );
-});
+  return gulp.src('src/**/*.css')
+    .pipe( sourcemaps.init() )
+    .pipe( postcss([ require('precss'), require('autoprefixer') ]) )
+    .pipe( sourcemaps.write('.') )
+    .pipe( gulp.dest('build/') )
+})
 ```
 
 [`gulp-sourcemaps`]: https://github.com/floridoo/gulp-sourcemaps
@@ -249,10 +249,10 @@ postcss --use autoprefixer -c options.json -o main.css css/*.css
 你可以用 [`postcss-js`] 然后转换样式对象。
 
 ```js
-var postcss  = require('postcss-js');
-var prefixer = postcss.sync([ require('autoprefixer') ]);
+var postcss  = require('postcss-js')
+var prefixer = postcss.sync([ require('autoprefixer') ])
 
-prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }
+prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }
 ```
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
@@ -279,19 +279,19 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 对于其它的应用环境，你可以使用 JS API：
 
 ```js
-const fs = require('fs');
-const postcss = require('postcss');
-const precss = require('precss');
-const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer')
+const postcss = require('postcss')
+const precss = require('precss')
+const fs = require('fs')
 
 fs.readFile('src/app.css', (err, css) => {
-    postcss([precss, autoprefixer])
-        .process(css, { from: 'src/app.css', to: 'dest/app.css' })
-        .then(result => {
-            fs.writeFile('dest/app.css', result.css);
-            if ( result.map ) fs.writeFile('dest/app.css.map', result.map);
-        });
-});
+  postcss([precss, autoprefixer])
+    .process(css, { from: 'src/app.css', to: 'dest/app.css' })
+    .then(result => {
+      fs.writeFile('dest/app.css', result.css)
+      if ( result.map ) fs.writeFile('dest/app.css.map', result.map)
+    })
+})
 ```
 
 阅读 [PostCSS API 文档] 获取更多有关 JS API 的信息.

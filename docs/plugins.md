@@ -8,12 +8,12 @@ Limit a plugin's local stylesheet context using [`postcss-plugin-context`]:
 
 ```pcss
 .css-example.is-test-for-css4-browsers {
-    color: gray(255, 50%);
+  color: gray(255, 50%);
 }
 @context cssnext {
-    .css-example.is-fallback-for-all-browsers {
-        color: gray(255, 50%);
-    }
+  .css-example.is-fallback-for-all-browsers {
+    color: gray(255, 50%);
+  }
 }
 ```
 
@@ -23,7 +23,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 @use autoprefixer(browsers: ['last 2 versions']);
 
 :fullscreen a {
-    display: flex
+  display: flex;
 }
 ```
 
@@ -50,7 +50,9 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-hamster`] for vertical rhythm, typography, modular scale functions.
 * [`postcss-preset-env`] lets you convert modern CSS into something most browsers can understand, determining the polyfills you need based on your targeted browsers or runtime environments.
 
+[`postcss-preset-env`]: https://github.com/jonathantneal/postcss-preset-env/
 [`postcss-utilities`]:  https://github.com/ismamz/postcss-utilities
+[`postcss-hamster`]:    https://github.com/h0tc0d3/postcss-hamster
 [`stylelint`]:          https://github.com/stylelint/stylelint
 [`rucksack`]:           http://simplaio.github.io/rucksack
 [`cssnano`]:            http://cssnano.co/
@@ -59,8 +61,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`precss`]:             https://github.com/jonathantneal/precss
 [`oldie`]:              https://github.com/jonathantneal/oldie
 [`atcss`]:              https://github.com/morishitter/atcss
-[`postcss-hamster`]:    https://github.com/h0tc0d3/postcss-hamster
-[`postcss-preset-env`]: https://github.com/jonathantneal/postcss-preset-env/
 
 ## Future CSS Syntax
 

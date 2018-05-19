@@ -57,11 +57,11 @@ By wrapping your function in this method,
 you are hooking into a common plugin API:
 
 ```js
-module.exports = postcss.plugin('plugin-name', function (opts) {
-    return function (root, result) {
-        // Plugin code
-    };
-});
+module.exports = postcss.plugin('plugin-name', opts => {
+  return (root, result) => {
+    // Plugin code
+  }
+})
 ```
 
 ## 2. Processing
@@ -78,19 +78,19 @@ different environments. You should test in (at least) Node.js [active LTS](https
 For example, use `fs.writeFile` instead of `fs.writeFileSync`:
 
 ```js
-postcss.plugin('plugin-sprite', function (opts) {
-    return function (root, result) {
+postcss.plugin('plugin-sprite', opts => {
+  return (root, result) => {
 
-        return new Promise(function (resolve, reject) {
-            var sprite = makeSprite();
-            fs.writeFile(opts.file, function (err) {
-                if ( err ) return reject(err);
-                resolve();
-            })
-        });
+    return new Promise((resolve, reject) => {
+      const sprite = makeSprite()
+      fs.writeFile(opts.file, sprite, err => {
+        if (err) return reject(err)
+        resolve()
+      })
+    })
 
-    };
-});
+  }
+})
 ```
 
 ### 2.3. Set `node.source` for new nodes
@@ -102,18 +102,18 @@ So if you add new declaration based on some existing declaration, you should
 clone the existing declaration in order to save that original `source`.
 
 ```js
-if ( needPrefix(decl.prop) ) {
-    decl.cloneBefore({ prop: '-webkit-' + decl.prop });
+if (needPrefix(decl.prop)) {
+  decl.cloneBefore({ prop: '-webkit-' + decl.prop })
 }
 ```
 
 You can also set `source` directly, copying from some existing node:
 
 ```js
-if ( decl.prop === 'animation' ) {
-    var keyframe = createAnimationByName(decl.value);
-    keyframes.source = decl.source;
-    decl.root().append(keyframes);
+if (decl.prop === 'animation') {
+  const keyframe = createAnimationByName(decl.value)
+  keyframes.source = decl.source
+  decl.root().append(keyframes)
 }
 ```
 
@@ -134,8 +134,8 @@ in a mixin plugin) you should use `node.error` to create an error
 that includes source position:
 
 ```js
-if ( typeof mixins[name] === 'undefined' ) {
-    throw decl.error('Unknown mixin ' + name, { plugin: 'postcss-mixins' });
+if (typeof mixins[name] === 'undefined') {
+  throw decl.error('Unknown mixin ' + name, { plugin: 'postcss-mixins' })
 }
 ```
 
@@ -145,8 +145,8 @@ Do not print warnings with `console.log` or `console.warn`,
 because some PostCSS runner may not allow console output.
 
 ```js
-if ( outdated(decl.prop) ) {
-    result.warn(decl.prop + ' is outdated', { node: decl });
+if (outdated(decl.prop)) {
+  result.warn(decl.prop + ' is outdated', { node: decl })
 }
 ```
 

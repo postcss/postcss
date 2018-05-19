@@ -36,7 +36,14 @@
     "docdash": "^0.4.0",
     "eslint": "^4.19.1",
     "eslint-ci": "^0.1.1",
-    "eslint-config-postcss": "^2.0.2",
+    "eslint-config-logux": "^21.0.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^3.1.0",
     "fs-extra": "^5.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
@@ -90,16 +97,45 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": "eslint-config-postcss",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "extends": "eslint-config-logux/node4",
     "rules": {
+      "node/no-unsupported-features": [
+        "error",
+        {
+          "ignores": [
+            "modules"
+          ]
+        }
+      ],
       "consistent-return": "off",
-      "valid-jsdoc": "error",
-      "complexity": "off",
-      "no-new": "off"
+      "global-require": "off",
+      "valid-jsdoc": "error"
     },
     "env": {
-      "browser": true,
-      "jest": true
-    }
+      "browser": true
+    },
+    "overrides": [
+      {
+        "files": [
+          "gulpfile.js"
+        ],
+        "rules": {
+          "node/no-unpublished-require": "off",
+          "global-require": "off"
+        }
+      },
+      {
+        "files": [
+          "*.test.js"
+        ],
+        "rules": {
+          "no-unused-expressions": "off",
+          "func-style": "off"
+        }
+      }
+    ]
   }
 }
