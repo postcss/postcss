@@ -121,7 +121,7 @@ So now lets look more closely on structures that play main role in PostCSS workf
 
         // Next two numbers also optional and represent end position for multichar tokens like this one. Numbers follow same rule as was described above
         1, 10
-    ];
+    ]
     ```
    There are many patterns how tokenization could be done, PostCSS motto is performance and simplicity. Tokenization is complex computing operation and take large amount of syntax analysis time ( ~90% ), that why PostCSS' Tokenizer looks dirty but it was optimized for speed. Any high-level constructs like classes could dramatically slow down tokenizer.
 

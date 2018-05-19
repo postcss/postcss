@@ -193,28 +193,28 @@ Use [`postcss-loader`] in `webpack.config.js`:
 
 ```js
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader'
-                    }
-                ]
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
             }
+          },
+          {
+            loader: 'postcss-loader'
+          }
         ]
-    }
+      }
+    ]
+  }
 }
 ```
 
@@ -222,10 +222,10 @@ Then create `postcss.config.js`:
 
 ```js
 module.exports = {
-    plugins: [
-        require('precss'),
-        require('autoprefixer')
-    ]
+  plugins: [
+    require('precss'),
+    require('autoprefixer')
+  ]
 }
 ```
 
@@ -236,16 +236,16 @@ module.exports = {
 Use [`gulp-postcss`] and [`gulp-sourcemaps`].
 
 ```js
-gulp.task('css', function () {
-    var postcss    = require('gulp-postcss');
-    var sourcemaps = require('gulp-sourcemaps');
+gulp.task('css', () => {
+  const postcss    = require('gulp-postcss')
+  const sourcemaps = require('gulp-sourcemaps')
 
-    return gulp.src('src/**/*.css')
-        .pipe( sourcemaps.init() )
-        .pipe( postcss([ require('precss'), require('autoprefixer') ]) )
-        .pipe( sourcemaps.write('.') )
-        .pipe( gulp.dest('build/') );
-});
+  return gulp.src('src/**/*.css')
+    .pipe( sourcemaps.init() )
+    .pipe( postcss([ require('precss'), require('autoprefixer') ]) )
+    .pipe( sourcemaps.write('.') )
+    .pipe( gulp.dest('build/') )
+})
 ```
 
 [`gulp-sourcemaps`]: https://github.com/floridoo/gulp-sourcemaps
@@ -272,10 +272,10 @@ To apply PostCSS plugins to React Inline Styles, JSS, Radium
 and other [CSS-in-JS], you can use [`postcss-js`] and transforms style objects.
 
 ```js
-var postcss  = require('postcss-js');
-var prefixer = postcss.sync([ require('autoprefixer') ]);
+var postcss  = require('postcss-js')
+var prefixer = postcss.sync([ require('autoprefixer') ])
 
-prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }
+prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }
 ```
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
@@ -302,21 +302,21 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 For other environments, you can use the JS API:
 
 ```js
-const fs = require('fs');
-const postcss = require('postcss');
-const precss = require('precss');
-const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer')
+const postcss = require('postcss')
+const precss = require('precss')
+const fs = require('fs')
 
 fs.readFile('src/app.css', (err, css) => {
-    postcss([precss, autoprefixer])
-        .process(css, { from: 'src/app.css', to: 'dest/app.css' })
-        .then(result => {
-            fs.writeFile('dest/app.css', result.css, () => true);
-            if ( result.map ) {
-                fs.writeFile('dest/app.css.map', result.map, () => true);
-            }
-        });
-});
+  postcss([precss, autoprefixer])
+    .process(css, { from: 'src/app.css', to: 'dest/app.css' })
+    .then(result => {
+      fs.writeFile('dest/app.css', result.css, () => true)
+      if ( result.map ) {
+        fs.writeFile('dest/app.css.map', result.map, () => true)
+      }
+    })
+})
 ```
 
 Read the [PostCSS API documentation] for more details about the JS API.
