@@ -1,7 +1,6 @@
 import CssSyntaxError from './css-syntax-error';
 import Stringifier    from './stringifier';
 import stringify      from './stringify';
-import warnOnce       from './warn-once';
 
 let cloneNode = function (obj, parent) {
     let cloned = new obj.constructor();
@@ -235,30 +234,6 @@ class Node {
             this.remove();
         }
 
-        return this;
-    }
-
-    moveTo(newParent) {
-        warnOnce('Node#moveTo was deprecated. Use Container#append.');
-        this.cleanRaws(this.root() === newParent.root());
-        this.remove();
-        newParent.append(this);
-        return this;
-    }
-
-    moveBefore(otherNode) {
-        warnOnce('Node#moveBefore was deprecated. Use Node#before.');
-        this.cleanRaws(this.root() === otherNode.root());
-        this.remove();
-        otherNode.parent.insertBefore(otherNode, this);
-        return this;
-    }
-
-    moveAfter(otherNode) {
-        warnOnce('Node#moveAfter was deprecated. Use Node#after.');
-        this.cleanRaws(this.root() === otherNode.root());
-        this.remove();
-        otherNode.parent.insertAfter(otherNode, this);
         return this;
     }
 
