@@ -25,8 +25,8 @@ gulp.task('compile', () => {
                             browsers: [
                                 'last 2 version',
                                 'not dead',
-                                'not IE 11',
-                                'not IEMobile 11'
+                                'not Explorer 11',
+                                'not ExplorerMobile 11'
                             ],
                             node: 6
                         },
