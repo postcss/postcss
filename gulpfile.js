@@ -22,7 +22,12 @@ gulp.task('compile', () => {
                     'env',
                     {
                         targets: {
-                            browsers: ['last 2 version', 'not dead'],
+                            browsers: [
+                                'last 2 version',
+                                'not dead',
+                                'not IE 11',
+                                'not IEMobile 11'
+                            ],
                             node: 6
                         },
                         loose: true
