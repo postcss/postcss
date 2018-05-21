@@ -36,7 +36,8 @@
     "docdash": "^0.4.0",
     "eslint": "^4.19.1",
     "eslint-ci": "^0.1.1",
-    "eslint-config-logux": "^21.0.0",
+    "eslint-config-logux": "^23.0.0",
+    "eslint-config-postcss": "^3.0.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jest": "^21.15.1",
@@ -44,7 +45,7 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^3.1.0",
-    "fs-extra": "^5.0.0",
+    "fs-extra": "^6.0.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-changed": "^3.2.0",
@@ -57,7 +58,7 @@
     "postcss-parser-tests": "^6.2.1",
     "pre-commit": "^1.2.2",
     "run-sequence": "^2.2.1",
-    "size-limit": "^0.17.1",
+    "size-limit": "^0.18.0",
     "strip-ansi": "^4.0.0",
     "yaspeller-ci": "^1.0.0"
   },
@@ -100,7 +101,7 @@
     "parserOptions": {
       "sourceType": "module"
     },
-    "extends": "eslint-config-logux/node4",
+    "extends": "eslint-config-postcss",
     "rules": {
       "node/no-unsupported-features": [
         "error",
@@ -111,8 +112,7 @@
         }
       ],
       "consistent-return": "off",
-      "global-require": "off",
-      "valid-jsdoc": "error"
+      "global-require": "off"
     },
     "env": {
       "browser": true
