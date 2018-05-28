@@ -133,6 +133,7 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [`postcss-syntax`] switch syntax automatically by file extensions.
 * [`postcss-html`] parsing styles in `<style>` tags of HTML-like files.
 * [`postcss-markdown`] parsing styles in code blocks of Markdown files.
+* [`postcss-jsx`] parsing CSS in template / object literals of source files.
 * [`postcss-styled`] parsing CSS in template literals of source files.
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
@@ -152,6 +153,7 @@ you can write a parser and/or stringifier to extend PostCSS.
 [`postcss-syntax`]:      https://github.com/gucong3000/postcss-syntax
 [`postcss-html`]:        https://github.com/gucong3000/postcss-html
 [`postcss-markdown`]:    https://github.com/gucong3000/postcss-markdown
+[`postcss-jsx`]:         https://github.com/gucong3000/postcss-jsx
 [`postcss-styled`]:      https://github.com/gucong3000/postcss-styled
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass

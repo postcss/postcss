@@ -120,6 +120,7 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 * [`postcss-syntax`] 通过文件扩展名自动切换语法。
 * [`postcss-html`] 解析类 HTML 文件里`<style>`标签中的样式。
 * [`postcss-markdown`] 解析 Markdown 文件里代码块中的样式。
+* [`postcss-jsx`] 解析源文件里模板或对象字面量中的CSS。
 * [`postcss-styled`] 解析源文件里模板字面量中的CSS。
 * [`postcss-scss`] 允许你使用 SCSS *(但并没有将 SCSS 编译到 CSS)*。
 * [`postcss-sass`] 允许你使用 Sass *(但并没有将 Sass 编译到 CSS)*。
@@ -134,6 +135,7 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 [`postcss-syntax`]:      https://github.com/gucong3000/postcss-syntax
 [`postcss-html`]:        https://github.com/gucong3000/postcss-html
 [`postcss-markdown`]:    https://github.com/gucong3000/postcss-markdown
+[`postcss-jsx`]:         https://github.com/gucong3000/postcss-jsx
 [`postcss-styled`]:      https://github.com/gucong3000/postcss-styled
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass
