@@ -89,7 +89,7 @@ function postcss(...plugins) {
  * ```js
  * postcss.plugin('postcss-caniuse-test', () => {
  *   return (root, result) => {
- *     css.walkDecls(decl => {
+ *     root.walkDecls(decl => {
  *       if ( !caniuse.support(decl.prop) ) {
  *         decl.warn(result, 'Some browsers do not support ' + decl.prop);
  *       }
