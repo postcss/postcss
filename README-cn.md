@@ -50,7 +50,6 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 * [`autoprefixer`] 添加了 vendor 浏览器前缀，它使用 Can I Use 上面的数据。
 * [`postcss-preset-env`] 允许你使用未来的 CSS 特性。
-* [`postcss-image-set-polyfill`] 为所有浏览器模拟了 [`image-set`] 函数逻辑。
 
 ### 更佳的 CSS 可读性
 
@@ -81,7 +80,6 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 * [`lost`] 是一个功能强大的 `calc()` 栅格系统。
 * [`rtlcss`] 镜像翻转 CSS 样式，适用于 right-to-left 的应用场景。
 
-[`postcss-image-set-polyfill`]: https://github.com/SuperOl3g/postcss-image-set-polyfill
 [`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
 [`postcss-preset-env`]:         https://github.com/jonathantneal/postcss-preset-env
 [`react-css-modules`]:          https://github.com/gajus/react-css-modules
@@ -102,7 +100,6 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 [`css-modules`]:                https://github.com/css-modules/css-modules
 [`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                  https://github.com/stylelint/stylelint
-[`image-set`]:                  https://drafts.csswg.org/css-images-4/#image-set-notation
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
 [`cssnano`]:                    http://cssnano.co
 [`precss`]:                     https://github.com/jonathantneal/precss

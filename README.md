@@ -60,7 +60,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
 * [`postcss-preset-env`] allows you to use future CSS features today.
-* [`postcss-image-set-polyfill`] emulates [`image-set`] function logic for all browsers
 
 ### Better CSS Readability
 
@@ -93,7 +92,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
-[`postcss-image-set-polyfill`]: https://github.com/SuperOl3g/postcss-image-set-polyfill
 [PostCSS plugin development]:   https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
 [`postcss-preset-env`]:         https://github.com/jonathantneal/postcss-preset-env
@@ -114,7 +112,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`css-modules`]:                https://github.com/css-modules/css-modules
 [`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                  https://github.com/stylelint/stylelint
-[`image-set`]:                  https://drafts.csswg.org/css-images-4/#image-set-notation
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
 [`cssnano`]:                    http://cssnano.co
 [`precss`]:                     https://github.com/jonathantneal/precss
