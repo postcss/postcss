@@ -9,3 +9,5 @@ build/
 lib/*.js
 
 api/
+.idea
+
