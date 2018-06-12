@@ -63,7 +63,7 @@ class PreviousMap {
    */
   withContent () {
     return !!(this.consumer().sourcesContent &&
-                  this.consumer().sourcesContent.length > 0)
+              this.consumer().sourcesContent.length > 0)
   }
 
   startWith (string, start) {
