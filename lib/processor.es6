@@ -73,27 +73,27 @@ class Processor {
   }
 
   /**
-     * Parses source CSS and returns a {@link LazyResult} Promise proxy.
-     * Because some plugins can be asynchronous it doesn’t make
-     * any transformations. Transformations will be applied
-     * in the {@link LazyResult} methods.
-     *
-     * @param {string|toString|Result} css String with input CSS or any object
-     *                                     with a `toString()` method,
-     *                                     like a Buffer. Optionally, send
-     *                                     a {@link Result} instance
-     *                                     and the processor will take
-     *                                     the {@link Root} from it.
-     * @param {processOptions} [opts]      Options.
-     *
-     * @return {LazyResult} Promise proxy.
-     *
-     * @example
-     * processor.process(css, { from: 'a.css', to: 'a.out.css' })
-     *   .then(result => {
-     *      console.log(result.css)
-     *   })
-     */
+   * Parses source CSS and returns a {@link LazyResult} Promise proxy.
+   * Because some plugins can be asynchronous it doesn’t make
+   * any transformations. Transformations will be applied
+   * in the {@link LazyResult} methods.
+   *
+   * @param {string|toString|Result} css String with input CSS or any object
+   *                                     with a `toString()` method,
+   *                                     like a Buffer. Optionally, send
+   *                                     a {@link Result} instance
+   *                                     and the processor will take
+   *                                     the {@link Root} from it.
+   * @param {processOptions} [opts]      Options.
+   *
+   * @return {LazyResult} Promise proxy.
+   *
+   * @example
+   * processor.process(css, { from: 'a.css', to: 'a.out.css' })
+   *   .then(result => {
+   *      console.log(result.css)
+   *   })
+   */
   process (css, opts = { }) {
     return new LazyResult(this, css, opts)
   }
