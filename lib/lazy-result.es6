@@ -226,7 +226,8 @@ class LazyResult {
    *
    * It implements standard Promise API.
    *
-   * @param {onFinally} onFinally Callback will be executed on any error or when all plugins will finish work.
+   * @param {onFinally} onFinally Callback will be executed on any error or
+   *                              when all plugins will finish work.
    *
    * @return {Promise} Promise API to make queue.
    *
