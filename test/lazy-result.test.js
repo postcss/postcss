@@ -50,3 +50,8 @@ it('contains messages', () => {
   const result = new LazyResult(processor, 'a {}', { })
   expect(result.messages).toEqual([])
 })
+
+it('execute onFinally callback with `undefined` param', () => {
+  new LazyResult(processor, 'a {}', { })
+    .finally(result => expect(result).toBeUndefined())
+})
