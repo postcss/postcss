@@ -237,7 +237,7 @@ class LazyResult {
    * })
    */
   finally (onFinally) {
-    return this.async().finally(onFinally)
+    return this.async().then(onFinally, onFinally)
   }
 
   handleError (error, plugin) {
