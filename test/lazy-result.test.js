@@ -51,7 +51,10 @@ it('contains messages', () => {
   expect(result.messages).toEqual([])
 })
 
-it('execute onFinally callback with `undefined` param', () => {
-  new LazyResult(processor, 'a {}', { })
-    .finally(result => expect(result).toBeUndefined())
+it('executes on finally callback', () => {
+  const mockCallback = jest.fn()
+
+  return new LazyResult(processor, 'a {}', { })
+    .finally(mockCallback)
+    .then(() => expect(mockCallback).toHaveBeenCalledTimes(1))
 })
