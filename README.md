@@ -15,10 +15,9 @@ PostCSS is used by industry leaders including Wikipedia, Twitter, Alibaba,
 and JetBrains. The [Autoprefixer] PostCSS plugin is one of the most popular
 CSS processors.
 
-Put simply, PostCSS transforms CSS into an "[abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)" (AST) which provides an extensive API to analyze its styling rules iteratively. 
-This API  can then be used by [plugins](https://github.com/postcss/postcss#plugins) 
-to do any arbitrary operation on these rules, like eg. linting or automatic 
-vendor prefixes.
+Put simply, PostCSS takes a CSS source (file or stream) and provides an API to analyze and modify its rules (by transforming them into an [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)).
+This API can then be used by [plugins](https://github.com/postcss/postcss#plugins) 
+to do a lot of useful things, e.g. syntax checks or automatic vendor prefixes.
 
 **Support / Discussion:** [Gitter](https://gitter.im/postcss/postcss)<br>
 **Twitter account:**      [@postcss](https://twitter.com/postcss)<br>
