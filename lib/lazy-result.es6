@@ -1,5 +1,6 @@
 import MapGenerator from './map-generator';
 import stringify    from './stringify';
+import warnOnce     from './warn-once';
 import Result       from './result';
 import parse        from './parse';
 
@@ -22,7 +23,7 @@ class LazyResult {
         this.processed   = false;
 
         let root;
-        if ( typeof css === 'object' && css.type === 'root' ) {
+        if ( typeof css === 'object' && css !== null && css.type === 'root' ) {
             root = css;
         } else if ( css instanceof LazyResult || css instanceof Result ) {
             root = css.root;
@@ -182,11 +183,19 @@ class LazyResult {
      * @return {Promise} Promise API to make queue
      *
      * @example
-     * postcss([cssnext]).process(css).then(result => {
+     * postcss([cssnext]).process(css, { from: cssPath }).then(result => {
      *   console.log(result.css);
      * });
      */
     then(onFulfilled, onRejected) {
+        if (!('from' in this.opts)) {
+            warnOnce(
+                'Without `from` option PostCSS could generate wrong ' +
+                'source map and will not find Browserslist config. ' +
+                'Set it to CSS file path or to `undefined` to prevent ' +
+                'this warning.'
+            );
+        }
         return this.async().then(onFulfilled, onRejected);
     }
 

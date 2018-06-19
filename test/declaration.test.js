@@ -1,6 +1,8 @@
-import Declaration from '../lib/declaration';
-import parse       from '../lib/parse';
-import Rule        from '../lib/rule';
+'use strict';
+
+const Declaration = require('../lib/declaration');
+const parse       = require('../lib/parse');
+const Rule        = require('../lib/rule');
 
 it('initializes with properties', () => {
     let decl = new Declaration({ prop: 'color', value: 'black' });

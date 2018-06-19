@@ -2,7 +2,8 @@
 
 ## Getting Started
 
-* [“Create Your Own Plugin” tutorial](http://webdesign.tutsplus.com/tutorials/postcss-deep-dive-create-your-own-plugin--cms-24605)
+* [Writing Your First PostCSS Plugin](https://dockyard.com/blog/2018/02/01/writing-your-first-postcss-plugin)
+* [Create Your Own Plugin tutorial](http://webdesign.tutsplus.com/tutorials/postcss-deep-dive-create-your-own-plugin--cms-24605)
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
 * [Plugin Guidelines](https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md)
 * [AST explorer with playground](http://astexplorer.net/#/2uBU1BLuJ1)

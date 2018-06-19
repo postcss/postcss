@@ -1,5 +1,7 @@
-import Result from '../lib/result';
-import parse  from '../lib/parse';
+'use strict';
+
+const Result = require('../lib/result');
+const parse  = require('../lib/parse');
 
 it('prepend() fixes spaces on insert before first', () => {
     let css = parse('a {} b {}');

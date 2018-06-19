@@ -1,8 +1,10 @@
-import Declaration from '../lib/declaration';
-import Warning     from '../lib/warning';
-import parse       from '../lib/parse';
+'use strict';
 
-import path from 'path';
+const Declaration = require('../lib/declaration');
+const Warning     = require('../lib/warning');
+const parse       = require('../lib/parse');
+
+const path = require('path');
 
 it('outputs simple warning', () => {
     let warning = new Warning('text');

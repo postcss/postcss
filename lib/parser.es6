@@ -215,14 +215,14 @@ export default class Parser {
 
         for ( let i = tokens.length - 1; i > 0; i-- ) {
             token = tokens[i];
-            if ( token[1] === '!important' ) {
+            if ( token[1].toLowerCase() === '!important' ) {
                 node.important = true;
                 let string = this.stringFrom(tokens, i);
                 string = this.spacesFromEnd(tokens) + string;
                 if ( string !== ' !important' ) node.raws.important = string;
                 break;
 
-            } else if (token[1] === 'important') {
+            } else if (token[1].toLowerCase() === 'important') {
                 let cache = tokens.slice(0);
                 let str   = '';
                 for ( let j = i; j > 0; j-- ) {
@@ -369,9 +369,31 @@ export default class Parser {
         let length = tokens.length;
         let value  = '';
         let clean  = true;
+        let next, prev;
+        const pattern = /^([.|#])?([\w])+/i;
+
         for ( let i = 0; i < length; i += 1 ) {
             token = tokens[i];
             type  = token[0];
+
+            if ( type === 'comment' && node.type === 'rule' ) {
+                prev = tokens[i - 1];
+                next = tokens[i + 1];
+
+                if (
+                    prev[0] !== 'space' &&
+                    next[0] !== 'space' &&
+                    pattern.test(prev[1]) &&
+                    pattern.test(next[1])
+                ) {
+                    value += token[1];
+                } else {
+                    clean = false;
+                }
+
+                continue;
+            }
+
             if ( type === 'comment' || type === 'space' && i === length - 1 ) {
                 clean = false;
             } else {

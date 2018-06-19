@@ -1,4 +1,6 @@
-import gulp from 'gulp';
+'use strict';
+
+const gulp = require('gulp');
 
 gulp.task('clean', () => {
     let del = require('del');
@@ -14,7 +16,21 @@ gulp.task('compile', () => {
     return gulp.src('lib/*.es6')
         .pipe(changed('lib', { extension: '.js' }))
         .pipe(sourcemaps.init())
-        .pipe(babel())
+        .pipe(babel({
+            presets: [
+                [
+                    'env',
+                    {
+                        targets: {
+                            browsers: 'last 2 version',
+                            node: 4
+                        },
+                        loose: true
+                    }
+                ]
+            ],
+            plugins: ['add-module-exports', 'precompile-charcodes']
+        }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('lib'));
 });
@@ -23,49 +39,41 @@ gulp.task('build:lib', ['compile'], () => {
     return gulp.src(['lib/*.js', 'lib/*.d.ts']).pipe(gulp.dest('build/lib'));
 });
 
+gulp.task('build:package', () => {
+    const editor = require('gulp-json-editor');
+    return gulp.src('./package.json')
+        .pipe(editor((json) => {
+            delete json.babel;
+            delete json.scripts;
+            delete json.jest;
+            delete json.eslintConfig;
+            delete json['size-limit'];
+            delete json['pre-commit'];
+            delete json['lint-staged'];
+            delete json.devDependencies;
+            return json;
+        }))
+        .pipe(gulp.dest('build'));
+});
+
 gulp.task('build:docs', () => {
     let ignore = require('fs').readFileSync('.npmignore').toString()
         .trim().split(/\n+/)
         .concat([
-            '.npmignore', 'lib/*', 'test/*', 'node_modules/**/*',
-            'docs/api.md', 'docs/plugins.md', 'docs/writing-a-plugin.md'
+            'package.json', '.npmignore', 'lib/*', 'test/*',
+            'node_modules/**/*', 'docs/api.md', 'docs/plugins.md',
+            'docs/writing-a-plugin.md'
         ]).map( i => '!' + i );
     return gulp.src(['**/*'].concat(ignore))
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', (done) => {
+gulp.task('build', done => {
     let runSequence = require('run-sequence');
-    runSequence('clean', ['build:lib', 'build:docs'], done);
-});
-
-// Lint
-
-gulp.task('lint', () => {
-    let eslint = require('gulp-eslint');
-    return gulp.src(['*.js', 'lib/*.es6', 'test/*.js'])
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
-});
-
-gulp.task('spellcheck', ['api'], () => {
-    if ( process.env.APPVEYOR ) return false;
-    let run = require('gulp-run');
-    return run('yaspeller-ci api/*.html *.md docs/*.md docs/**/*.md').exec();
-});
-
-gulp.task('size', ['build:lib'], () => {
-    let run = require('gulp-run');
-    return run('size-limit').exec();
+    runSequence('clean', ['build:lib', 'build:docs', 'build:package'], done);
 });
 
 // Tests
-
-gulp.task('test', ['compile'], () => {
-    let jest = require('gulp-jest').default;
-    return gulp.src('test').pipe(jest());
-});
 
 gulp.task('integration', ['build'], done => {
     let postcss = require('./build');
@@ -84,16 +92,6 @@ gulp.task('version', ['build:lib'], () => {
     }
 });
 
-// Docs
-
-gulp.task('api', ['clean'], () => {
-    if ( /^win/.test(process.platform) ) return false;
-    let run = require('gulp-run');
-    return run('jsdoc -c .jsdocrc lib/*.es6').exec();
-});
-
 // Common
 
-gulp.task('offline', ['version', 'lint', 'test', 'api', 'size']);
-
-gulp.task('default', ['offline', 'spellcheck', 'integration']);
+gulp.task('default', ['version', 'integration']);

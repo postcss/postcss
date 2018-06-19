@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "6.0.10",
+  "version": "6.0.22",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": ">=4.0.0"
@@ -18,45 +18,48 @@
   ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
-  "homepage": "http://postcss.org/",
+  "homepage": "https://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
-    "chalk": "^2.1.0",
-    "source-map": "^0.5.7",
-    "supports-color": "^4.2.1"
+    "chalk": "^2.4.1",
+    "source-map": "^0.6.1",
+    "supports-color": "^5.4.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-precompile-charcodes": "^1.1.0",
-    "babel-preset-env": "^1.6.0",
-    "concat-with-sourcemaps": "^1.0.4",
+    "babel-preset-env": "^1.7.0",
+    "concat-with-sourcemaps": "^1.1.0",
     "del": "^3.0.0",
     "docdash": "^0.4.0",
-    "eslint": "^4.5.0",
+    "eslint": "^4.19.1",
+    "eslint-ci": "^0.1.1",
     "eslint-config-postcss": "^2.0.2",
-    "fs-extra": "^4.0.1",
+    "fs-extra": "^5.0.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-changed": "^3.1.0",
-    "gulp-eslint": "^4.0.0",
-    "gulp-jest": "^2.0.0",
-    "gulp-run": "^1.7.1",
-    "gulp-sourcemaps": "^2.6.1",
-    "jest": "^20.0.4",
-    "jsdoc": "^3.5.4",
-    "lint-staged": "^4.0.4",
-    "postcss-parser-tests": "^6.0.2",
+    "gulp-babel": "^7.0.1",
+    "gulp-changed": "^3.2.0",
+    "gulp-json-editor": "^2.3.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
+    "jsdoc": "^3.5.5",
+    "lint-staged": "^7.1.0",
+    "postcss-parser-tests": "^6.2.1",
     "pre-commit": "^1.2.2",
-    "run-sequence": "^2.1.0",
-    "size-limit": "^0.10.0",
+    "run-sequence": "^2.2.1",
+    "size-limit": "^0.17.1",
     "strip-ansi": "^4.0.0",
-    "yaspeller-ci": "^0.6.0"
+    "yaspeller-ci": "^1.0.0"
   },
   "scripts": {
     "lint-staged": "lint-staged",
-    "test": "gulp"
+    "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
+    "docs": "jsdoc -c .jsdocrc lib/*.es6",
+    "lint": "eslint-ci *.js lib/*.es6 test/*.js",
+    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
@@ -76,9 +79,15 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "28 KB"
+      "limit": "29 KB"
     }
   ],
+  "jest": {
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/build"
+    ]
+  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "eslint-config-postcss",

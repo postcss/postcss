@@ -1,15 +1,11 @@
-# PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]
+# PostCSS [![Gitter][chat-img]][chat]
 
 <img align="right" width="95" height="95"
-     title="Philosopher’s stone, logo of PostCSS"
+     alt="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo.svg">
 
-[appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows
-[travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix
-[chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
-[appveyor]:     https://ci.appveyor.com/project/ai/postcss
-[travis]:       https://travis-ci.org/postcss/postcss
-[chat]:         https://gitter.im/postcss/postcss
+[chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
+[chat]:     https://gitter.im/postcss/postcss
 
 PostCSS is a tool for transforming styles with JS plugins.
 These plugins can lint your CSS, support variables and mixins,
@@ -19,15 +15,23 @@ PostCSS is used by industry leaders including Wikipedia, Twitter, Alibaba,
 and JetBrains. The [Autoprefixer] PostCSS plugin is one of the most popular
 CSS processors.
 
-Twitter account:      [@postcss](https://twitter.com/postcss).
-VK.com page:          [postcss](https://vk.com/postcss).
-Support / Discussion: [Gitter](https://gitter.im/postcss/postcss).
+PostCSS takes a CSS file and provides an API to analyze and modify its rules
+(by transforming them into an [Abstract Syntax Tree]).
+This API can then be used by [plugins] to do a lot of useful things,
+e.g. to find errors automatically insert vendor prefixes.
+
+**Support / Discussion:** [Gitter](https://gitter.im/postcss/postcss)<br>
+**Twitter account:**      [@postcss](https://twitter.com/postcss)<br>
+**VK.com page:**          [postcss](https://vk.com/postcss)<br>
+**中文翻译**:              [`README-cn.md`](./README-cn.md)
 
 For PostCSS commercial support (consulting, improving the front-end culture
 of your company, PostCSS plugins), contact [Evil Martians](https://evilmartians.com/?utm_source=postcss)
 at <surrender@evilmartians.com>.
 
-[Autoprefixer]: https://github.com/postcss/autoprefixer
+[Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
+[Autoprefixer]:         https://github.com/postcss/autoprefixer
+[plugins]:              https://github.com/postcss/postcss#plugins
 
 <a href="https://evilmartians.com/?utm_source=postcss">
   <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
@@ -62,9 +66,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 ### Use Future CSS, Today
 
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
-* [`postcss-cssnext`] allows you to use future CSS features today
-  (includes `autoprefixer`).
-* [`postcss-image-set-polyfill`] emulates [`image-set`] function logic for all browsers
+* [`postcss-preset-env`] allows you to use future CSS features today.
 
 ### Better CSS Readability
 
@@ -97,35 +99,33 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
-[PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
-[`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg
-[`react-css-modules`]:        https://github.com/gajus/react-css-modules
-[`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset
-[`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg
-[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities
-[`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial
-[`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites
-[`postcss-modules`]:          https://github.com/outpunk/postcss-modules
-[`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting
-[`postcss-cssnext`]:          http://cssnext.io
-[`postcss-image-set-polyfill`]: https://github.com/SuperOl3g/postcss-image-set-polyfill
-[`postcss-assets`]:           https://github.com/assetsjs/postcss-assets
-[`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician
-[`autoprefixer`]:             https://github.com/postcss/autoprefixer
-[`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill
-[`postcss-rtl`]:              https://github.com/vkalinichev/postcss-rtl
-[`postcss-use`]:              https://github.com/postcss/postcss-use
-[`css-modules`]:              https://github.com/css-modules/css-modules
-[`colorguard`]:               https://github.com/SlexAxton/css-colorguard
-[`stylelint`]:                https://github.com/stylelint/stylelint
-[`stylefmt`]:                 https://github.com/morishitter/stylefmt
-[`cssnano`]:                  http://cssnano.co
-[`precss`]:                   https://github.com/jonathantneal/precss
-[`doiuse`]:                   https://github.com/anandthakker/doiuse
-[`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss
-[`short`]:                    https://github.com/jonathantneal/postcss-short
-[`lost`]:                     https://github.com/peterramsing/lost
-[`image-set`]:                https://drafts.csswg.org/css-images-3/#image-set-notation
+[PostCSS plugin development]:   https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
+[`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
+[`postcss-preset-env`]:         https://github.com/jonathantneal/postcss-preset-env
+[`react-css-modules`]:          https://github.com/gajus/react-css-modules
+[`postcss-autoreset`]:          https://github.com/maximkoretskiy/postcss-autoreset
+[`postcss-write-svg`]:          https://github.com/jonathantneal/postcss-write-svg
+[`postcss-utilities`]:          https://github.com/ismamz/postcss-utilities
+[`postcss-initial`]:            https://github.com/maximkoretskiy/postcss-initial
+[`postcss-sprites`]:            https://github.com/2createStudio/postcss-sprites
+[`postcss-modules`]:            https://github.com/outpunk/postcss-modules
+[`postcss-sorting`]:            https://github.com/hudochenkov/postcss-sorting
+[`postcss-assets`]:             https://github.com/assetsjs/postcss-assets
+[`font-magician`]:              https://github.com/jonathantneal/postcss-font-magician
+[`autoprefixer`]:               https://github.com/postcss/autoprefixer
+[`cq-prolyfill`]:               https://github.com/ausi/cq-prolyfill
+[`postcss-rtl`]:                https://github.com/vkalinichev/postcss-rtl
+[`postcss-use`]:                https://github.com/postcss/postcss-use
+[`css-modules`]:                https://github.com/css-modules/css-modules
+[`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
+[`stylelint`]:                  https://github.com/stylelint/stylelint
+[`stylefmt`]:                   https://github.com/morishitter/stylefmt
+[`cssnano`]:                    http://cssnano.co
+[`precss`]:                     https://github.com/jonathantneal/precss
+[`doiuse`]:                     https://github.com/anandthakker/doiuse
+[`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
+[`short`]:                      https://github.com/jonathantneal/postcss-short
+[`lost`]:                       https://github.com/peterramsing/lost
 
 ## Syntaxes
 
@@ -134,7 +134,11 @@ If there is not yet support for your favorite syntax,
 you can write a parser and/or stringifier to extend PostCSS.
 
 * [`sugarss`] is a indent-based syntax like Sass or Stylus.
-* [`postcss-html`] allows you to write styles in HTML / [Markdown](https://daringfireball.net/projects/markdown/syntax) / [Vue component](https://vue-loader.vuejs.org/)
+* [`postcss-syntax`] switch syntax automatically by file extensions.
+* [`postcss-html`] parsing styles in `<style>` tags of HTML-like files.
+* [`postcss-markdown`] parsing styles in code blocks of Markdown files.
+* [`postcss-jsx`] parsing CSS in template / object literals of source files.
+* [`postcss-styled`] parsing CSS in template literals of source files.
 * [`postcss-scss`] allows you to work with SCSS
   *(but does not compile SCSS to CSS)*.
 * [`postcss-sass`] allows you to work with Sass
@@ -148,14 +152,18 @@ you can write a parser and/or stringifier to extend PostCSS.
 * [`postcss-safe-parser`] finds and fixes CSS syntax errors.
 * [`midas`] converts a CSS string to highlighted HTML.
 
-[`sugarss`]:             https://github.com/postcss/sugarss
+[`postcss-less-engine`]: https://github.com/Crunch/postcss-less
+[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
+[`postcss-syntax`]:      https://github.com/gucong3000/postcss-syntax
 [`postcss-html`]:        https://github.com/gucong3000/postcss-html
+[`postcss-markdown`]:    https://github.com/gucong3000/postcss-markdown
+[`postcss-jsx`]:         https://github.com/gucong3000/postcss-jsx
+[`postcss-styled`]:      https://github.com/gucong3000/postcss-styled
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
 [`postcss-sass`]:        https://github.com/AleshaOleg/postcss-sass
 [`postcss-less`]:        https://github.com/webschik/postcss-less
-[`postcss-less-engine`]: https://github.com/Crunch/postcss-less
 [`postcss-js`]:          https://github.com/postcss/postcss-js
-[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
+[`sugarss`]:             https://github.com/postcss/sugarss
 [`midas`]:               https://github.com/ben-eb/midas
 
 ## Articles
@@ -272,8 +280,8 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
 [Browserify]:   http://browserify.org/
-[webpack]:      https://webpack.github.io/
 [CSS-in-JS]:    https://github.com/MicheleBertoli/css-in-js
+[webpack]:      https://webpack.github.io/
 
 ### Runners
 
@@ -285,7 +293,7 @@ prefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '
 * **Broccoli**: [`broccoli-postcss`](https://github.com/jeffjewiss/broccoli-postcss)
 * **Meteor**: [`postcss`](https://atmospherejs.com/juliancwirko/postcss)
 * **ENB**: [`enb-postcss`](https://github.com/awinogradov/enb-postcss)
-* **Fly**: [`fly-postcss`](https://github.com/postcss/fly-postcss)
+* **Taskr**: [`taskr-postcss`](https://github.com/lukeed/taskr/tree/master/packages/postcss)
 * **Start**: [`start-postcss`](https://github.com/start-runner/postcss)
 * **Connect/Express**: [`postcss-middleware`](https://github.com/jedmao/postcss-middleware)
 
@@ -303,8 +311,10 @@ fs.readFile('src/app.css', (err, css) => {
     postcss([precss, autoprefixer])
         .process(css, { from: 'src/app.css', to: 'dest/app.css' })
         .then(result => {
-            fs.writeFile('dest/app.css', result.css);
-            if ( result.map ) fs.writeFile('dest/app.css.map', result.map);
+            fs.writeFile('dest/app.css', result.css, () => true);
+            if ( result.map ) {
+                fs.writeFile('dest/app.css.map', result.map, () => true);
+            }
         });
 });
 ```

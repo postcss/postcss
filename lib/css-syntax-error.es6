@@ -158,7 +158,7 @@ class CssSyntaxError {
         if ( !this.source ) return '';
 
         let css = this.source;
-        if ( typeof color === 'undefined' ) color = supportsColor;
+        if ( typeof color === 'undefined' ) color = supportsColor.stdout;
         if ( color ) css = terminalHighlight(css);
 
         let lines = css.split(/\r?\n/);

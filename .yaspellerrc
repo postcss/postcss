@@ -2,7 +2,9 @@
   "lang": "en",
   "format": "markdown",
   "fileExtensions": [".md"],
-  "excludeFiles": [".git", "node_modules", "build", "api/*.es6.html"],
+  "excludeFiles": [
+      ".git", "node_modules", "build", "api/*.es6.html", "README-cn.md"
+  ],
   "ignoreCapitalization": true,
   "dictionary": [
     "6to5",
@@ -198,6 +200,14 @@
     "Oleh",
     "Kuchuk",
     "Kalani",
-    "Adamenko"
+    "Adamenko",
+    "Eppstein",
+    "Taskr",
+    "AST",
+    "EOL",
+    "Keller",
+    "Sylvain",
+    "Pollet",
+    "Villard"
   ]
 }

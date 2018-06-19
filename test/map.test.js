@@ -1,9 +1,11 @@
-import PreviousMap from '../lib/previous-map';
-import postcss     from '../lib/postcss';
+'use strict';
 
-import mozilla from 'source-map';
-import path    from 'path';
-import fs      from 'fs-extra';
+const PreviousMap = require('../lib/previous-map');
+const postcss     = require('../lib/postcss');
+
+const mozilla = require('source-map');
+const path    = require('path');
+const fs      = require('fs-extra');
 
 let consumer = map => mozilla.SourceMapConsumer.fromSourceMap(map);
 

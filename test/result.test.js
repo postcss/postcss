@@ -1,6 +1,8 @@
-import Warning from '../lib/warning';
-import postcss from '../lib/postcss';
-import Result  from '../lib/result';
+'use strict';
+
+const Warning = require('../lib/warning');
+const postcss = require('../lib/postcss');
+const Result  = require('../lib/result');
 
 it('stringifies', () => {
     let result = new Result();

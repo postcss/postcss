@@ -1,6 +1,46 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.22
+* Fix `Node#prev` and `Node#next` on missed parent.
+
+## 6.0.21
+* Rename Chinese docs to fix `yarnpkg.com` issue.
+
+## 6.0.20
+* Better error message on `null` as input CSS.
+
+## 6.0.19
+* Fix TypeScript definitions for source maps (by Oleh Kuchuk).
+* Fix `source` field in TypeScript definitions (by Sylvain Pollet-Villard).
+
+## 6.0.18
+* Use primitive object in TypeScript definitions (by Sylvain Pollet-Villard).
+
+## 6.0.17
+* Fix parsing comment in selector between word tokens (by Oleh Kuchuk).
+
+## 6.0.16
+* Fix warning text (by Michael Keller).
+
+## 6.0.15
+* Add warning about missed `from` option on `process().then()` call.
+* Add IE 10 support.
+
+## 6.0.14
+* Fix TypeScript definitions (by Jed Mao).
+
+## 6.0.13
+* Fix TypeScript definitions for case of multiple PostCSS versions
+  in `node_modules` (by Chris Eppstein).
+* Use `source-map` 0.6.
+
+## 6.0.12
+* Don’t copy `*` hack to declaration indent.
+
+## 6.0.11
+* Add upper case `!IMPORTANT` support.
+
 ## 6.0.10
 * Reduce PostCSS size in webpack bundle.
 
@@ -49,6 +89,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Fix error message on single `:` in CSS.
 * Move tests to Jest.
 * Clean up test (by Gabriel Kalani).
+
+## 5.2.18
+* Fix TypeScript definitions for case of multiple PostCSS versions
+  in `node_modules` (by Chris Eppstein).
 
 ## 5.2.17
 * Add `postcss-sass` suggestion to syntax error on `.sass` input.

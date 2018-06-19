@@ -1,5 +1,7 @@
-import Comment from '../lib/comment';
-import parse   from '../lib/parse';
+'use strict';
+
+const Comment = require('../lib/comment');
+const parse   = require('../lib/parse');
 
 it('toString() inserts default spaces', () => {
     let comment = new Comment({ text: 'hi' });

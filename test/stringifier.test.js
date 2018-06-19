@@ -1,10 +1,12 @@
-import Stringifier from '../lib/stringifier';
-import Declaration from '../lib/declaration';
-import AtRule      from '../lib/at-rule';
-import parse       from '../lib/parse';
-import Node        from '../lib/node';
-import Root        from '../lib/root';
-import Rule        from '../lib/rule';
+'use strict';
+
+const Stringifier = require('../lib/stringifier');
+const Declaration = require('../lib/declaration');
+const AtRule      = require('../lib/at-rule');
+const parse       = require('../lib/parse');
+const Node        = require('../lib/node');
+const Root        = require('../lib/root');
+const Rule        = require('../lib/rule');
 
 let str;
 beforeAll(() => {
@@ -123,6 +125,13 @@ it('clones declaration before for comment', () => {
 });
 
 it('clones indent by types', () => {
+    let css = parse('a {\n  *color: black\n}\n\nb {\n}');
+    css.append(new Rule({ selector: 'em' }));
+    css.last.append({ prop: 'z-index', value: '1' });
+    expect(css.last.first.raw('before')).toEqual('\n  ');
+});
+
+it('ignores non-space symbols in indent cloning', () => {
     let css = parse('a {\n  color: black\n}\n\nb {\n}');
     css.append(new Rule({ selector: 'em' }));
     css.last.append({ prop: 'z-index', value: '1' });
