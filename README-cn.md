@@ -14,6 +14,8 @@ PostCSS 是一个允许使用 JS 插件转换样式的工具。
 PostCSS 在工业界被广泛地应用，其中不乏很多有名的行业领导者，如：维基百科，Twitter，阿里巴巴，
 JetBrains。PostCSS 的 [Autoprefixer] 插件是最流行的 CSS 处理工具之一。
 
+PostCSS 接收一个 CSS 文件并提供了一个 API 来分析、修改它的规则（通过把 CSS 规则转换成一个 [Abstract Syntax Tree] 的方式）。在这之后，这个 API 便可被许多[插件]利用来做有用的事情，比如寻错或自动添加 CSS vendor 前缀。
+
 **Twitter 账号:** [@postcss](https://twitter.com/postcss)<br>
 **支持 / 讨论:**   [Gitter](https://gitter.im/postcss/postcss)<br>
 
@@ -21,7 +23,9 @@ JetBrains。PostCSS 的 [Autoprefixer] 插件是最流行的 CSS 处理工具之
 PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_source=postcss)
 邮箱 <surrender@evilmartians.com>。
 
-[Autoprefixer]: https://github.com/postcss/autoprefixer
+[Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
+[Autoprefixer]:         https://github.com/postcss/autoprefixer
+[插件]:              https://github.com/postcss/postcss#plugins
 
 <a href="https://evilmartians.com/?utm_source=postcss">
   <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
