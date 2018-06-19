@@ -18,7 +18,7 @@ CSS processors.
 PostCSS takes a CSS file and provides an API to analyze and modify its rules
 (by transforming them into an [Abstract Syntax Tree]).
 This API can then be used by [plugins] to do a lot of useful things,
-e.g. to find errors or automatic insert vendor prefixes.
+e.g. to find errors or automatic insert vendor prefixes.
 
 **Support / Discussion:** [Gitter](https://gitter.im/postcss/postcss)<br>
 **Twitter account:**      [@postcss](https://twitter.com/postcss)<br>
@@ -29,7 +29,7 @@ For PostCSS commercial support (consulting, improving the front-end culture
 of your company, PostCSS plugins), contact [Evil Martians](https://evilmartians.com/?utm_source=postcss)
 at <surrender@evilmartians.com>.
 
-[Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
+[Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
 [plugins]:              https://github.com/postcss/postcss#plugins
 
