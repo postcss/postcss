@@ -25,7 +25,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 [Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
-[插件]:              https://github.com/postcss/postcss#plugins
+[插件]:                  https://github.com/postcss/postcss/blob/master/README-cn.md#%E6%8F%92%E4%BB%B6
 
 <a href="https://evilmartians.com/?utm_source=postcss">
   <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
