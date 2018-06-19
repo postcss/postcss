@@ -17,8 +17,8 @@ CSS processors.
 
 PostCSS takes a CSS file and provides an API to analyze and modify its rules
 (by transforming them into an [Abstract Syntax Tree]).
-This API can then be used by [plugins] to do a lot of useful things,
-e.g. to find errors or automatic insert vendor prefixes.
+This API can then be used by [plugins] to do a lot of useful things,
+e.g. to find errors or automatic insert vendor prefixes.
 
 **Support / Discussion:** [Gitter](https://gitter.im/postcss/postcss)<br>
 **Twitter account:**      [@postcss](https://twitter.com/postcss)<br>
