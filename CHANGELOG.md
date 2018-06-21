@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.23
+* Fix parsing nested at-rules without semicolon, params, and spaces.
+
 ## 6.0.22
 * Fix `Node#prev` and `Node#next` on missed parent.
 
