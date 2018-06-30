@@ -22,10 +22,6 @@ const HIGHLIGHT_THEME = {
   [tokenCodes.SEMICOLON]: chalk.yellow
 }
 
-// function getTokenContent(token) {
-//   return this.input.css.slice(token[1], token[2])
-// }
-
 function getTokenType ([type], content, processor) {
   if (type === tokenCodes.WORD) {
     if (content[0] === '.') {
@@ -37,10 +33,10 @@ function getTokenType ([type], content, processor) {
   }
 
   if (!processor.endOfFile()) {
-    const next = processor.nextToken()
+    const next = new Uint32Array(processor.nextToken())
     processor.back(next)
     if (
-      next[0] === tokenCodes.BRACKETS || 
+      next[0] === tokenCodes.BRACKETS ||
       next[0] === tokenCodes.OPEN_PARENTHESES
     ) {
       return tokenCodes.CALL
@@ -54,7 +50,7 @@ function terminalHighlight (css) {
   const processor = tokenizer(new Input(css), { ignoreErrors: true })
   let result = ''
   while (!processor.endOfFile()) {
-    const token = processor.nextToken()
+    const token = new Uint32Array(processor.nextToken())
     const content = css.slice(token[1], token[2])
     const color = HIGHLIGHT_THEME[getTokenType(token, content, processor)]
     if (color) {

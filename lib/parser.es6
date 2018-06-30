@@ -100,15 +100,17 @@ export default class Parser {
     let token = start
     while (token) {
       type = token[0]
-      tokens.push(token)
+      tokens.push(new Uint32Array(token))
 
       if (
         type === tokenCodes.OPEN_PARENTHESES ||
         type === tokenCodes.OPEN_SQUARE
       ) {
-        if (!bracket) bracket = token
+        if (!bracket) bracket = new Uint32Array(token)
         brackets.push(
+          /* eslint-disable-next-line multiline-ternary */
           type === tokenCodes.OPEN_PARENTHESES
+            /* eslint-disable-next-line multiline-ternary */
             ? tokenCodes.CLOSE_PARENTHESES
             : tokenCodes.CLOSE_SQUARE
         )
@@ -295,7 +297,7 @@ export default class Parser {
         this.end(token)
         break
       } else {
-        params.push(token)
+        params.push(new Uint32Array(token))
       }
 
       if (this.tokenizer.endOfFile()) {
@@ -520,6 +522,7 @@ export default class Parser {
 
   precheckMissedSemicolon (tokens) {
     // Hook for Safe Parser
+    /* eslint-disable-next-line no-unused-expressions */
     tokens
   }
 

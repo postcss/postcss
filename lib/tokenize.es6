@@ -42,9 +42,9 @@ export default function tokenizer (input, options = {}) {
     escapePos,
     prev,
     prevToken,
-    n,
-    currentToken
+    n
 
+  const currentToken = new Uint32Array(7)
   const length = css.length
   let offset = -1
   let line = 1
@@ -60,7 +60,11 @@ export default function tokenizer (input, options = {}) {
     return returned.length === 0 && pos >= length
   }
 
+  function clearToken () {
+    currentToken.fill(0)
+  }
   function nextToken () {
+    clearToken()
     if (returned.length) return returned.pop()
     if (pos >= length) return
 
@@ -95,12 +99,12 @@ export default function tokenizer (input, options = {}) {
           code === CR ||
           code === FEED
         )
-        currentToken = new Uint32Array([tokenCodes.SPACE, pos, next])
+        currentToken.set([tokenCodes.SPACE, pos, next])
         pos = next - 1
         break
 
       case OPEN_SQUARE:
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.OPEN_SQUARE,
           pos,
           pos + 1,
@@ -110,7 +114,7 @@ export default function tokenizer (input, options = {}) {
         break
 
       case CLOSE_SQUARE:
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.CLOSE_SQUARE,
           pos,
           pos + 1,
@@ -120,7 +124,7 @@ export default function tokenizer (input, options = {}) {
         break
 
       case OPEN_CURLY:
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.OPEN_CURLY,
           pos,
           pos + 1,
@@ -130,7 +134,7 @@ export default function tokenizer (input, options = {}) {
         break
 
       case CLOSE_CURLY:
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.CLOSE_CURLY,
           pos,
           pos + 1,
@@ -140,7 +144,7 @@ export default function tokenizer (input, options = {}) {
         break
 
       case COLON:
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.COLON,
           pos,
           pos + 1,
@@ -150,7 +154,7 @@ export default function tokenizer (input, options = {}) {
         break
 
       case SEMICOLON:
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.SEMICOLON,
           pos,
           pos + 1,
@@ -191,7 +195,7 @@ export default function tokenizer (input, options = {}) {
               escaped = !escaped
             }
           } while (escaped)
-          currentToken = new Uint32Array([
+          currentToken.set([
             tokenCodes.BRACKETS,
             pos,
             next + 1,
@@ -206,7 +210,7 @@ export default function tokenizer (input, options = {}) {
           content = css.slice(pos, next + 1)
 
           if (next === -1 || RE_BAD_BRACKET.test(content)) {
-            currentToken = new Uint32Array([
+            currentToken.set([
               tokenCodes.OPEN_PARENTHESES,
               pos,
               pos + 1,
@@ -214,7 +218,7 @@ export default function tokenizer (input, options = {}) {
               pos - offset
             ])
           } else {
-            currentToken = new Uint32Array([
+            currentToken.set([
               tokenCodes.BRACKETS,
               pos,
               next + 1,
@@ -230,7 +234,7 @@ export default function tokenizer (input, options = {}) {
         break
 
       case CLOSE_PARENTHESES:
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.CLOSE_PARENTHESES,
           pos,
           pos + 1,
@@ -272,7 +276,7 @@ export default function tokenizer (input, options = {}) {
           nextLine = line
           nextOffset = offset
         }
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.STRING,
           pos,
           next + 1,
@@ -296,7 +300,7 @@ export default function tokenizer (input, options = {}) {
           next = RE_AT_END.lastIndex - 2
         }
 
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.AT,
           pos,
           next + 1,
@@ -336,7 +340,7 @@ export default function tokenizer (input, options = {}) {
             }
           }
         }
-        currentToken = new Uint32Array([
+        currentToken.set([
           tokenCodes.WORD,
           pos,
           next + 1,
@@ -372,7 +376,7 @@ export default function tokenizer (input, options = {}) {
             nextOffset = offset
           }
 
-          currentToken = new Uint32Array([
+          currentToken.set([
             tokenCodes.COMMENT,
             pos,
             next + 1,
@@ -394,7 +398,7 @@ export default function tokenizer (input, options = {}) {
             next = RE_WORD_END.lastIndex - 2
           }
 
-          currentToken = new Uint32Array([
+          currentToken.set([
             tokenCodes.WORD,
             pos,
             next + 1,
@@ -404,7 +408,7 @@ export default function tokenizer (input, options = {}) {
             next - offset
           ])
 
-          buffer.push(currentToken)
+          buffer.push(new Uint32Array(currentToken))
           pos = next
         }
 
