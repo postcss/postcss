@@ -2,39 +2,49 @@ import chalk from 'chalk'
 
 import tokenizer from './tokenize'
 import Input from './input'
+import * as tokenCodes from './token-codes'
 
 const HIGHLIGHT_THEME = {
-  'brackets': chalk.cyan,
-  'at-word': chalk.cyan,
-  'comment': chalk.gray,
-  'string': chalk.green,
-  'class': chalk.yellow,
-  'call': chalk.cyan,
-  'hash': chalk.magenta,
-  '(': chalk.cyan,
-  ')': chalk.cyan,
-  '{': chalk.yellow,
-  '}': chalk.yellow,
-  '[': chalk.yellow,
-  ']': chalk.yellow,
-  ':': chalk.yellow,
-  ';': chalk.yellow
+  [tokenCodes.BRACKETS]: chalk.cyan,
+  [tokenCodes.AT]: chalk.cyan,
+  [tokenCodes.COMMENT]: chalk.gray,
+  [tokenCodes.STRING]: chalk.green,
+  [tokenCodes.CLASS]: chalk.yellow,
+  [tokenCodes.CALL]: chalk.cyan,
+  [tokenCodes.HASH]: chalk.magenta,
+  [tokenCodes.OPEN_PARENTHESES]: chalk.cyan,
+  [tokenCodes.CLOSE_PARENTHESES]: chalk.cyan,
+  [tokenCodes.OPEN_CURLY]: chalk.yellow,
+  [tokenCodes.CLOSE_CURLY]: chalk.yellow,
+  [tokenCodes.OPEN_SQUARE]: chalk.yellow,
+  [tokenCodes.CLOSE_SQUARE]: chalk.yellow,
+  [tokenCodes.COLON]: chalk.yellow,
+  [tokenCodes.SEMICOLON]: chalk.yellow
 }
 
-function getTokenType ([type, value], processor) {
-  if (type === 'word') {
-    if (value[0] === '.') {
-      return 'class'
+// function getTokenContent(token) {
+//   return this.input.css.slice(token[1], token[2])
+// }
+
+function getTokenType ([type], content, processor) {
+  if (type === tokenCodes.WORD) {
+    if (content[0] === '.') {
+      return tokenCodes.CLASS
     }
-    if (value[0] === '#') {
-      return 'hash'
+    if (content[0] === '#') {
+      return tokenCodes.HASH
     }
   }
 
   if (!processor.endOfFile()) {
     const next = processor.nextToken()
     processor.back(next)
-    if (next[0] === 'brackets' || next[0] === '(') return 'call'
+    if (
+      next[0] === tokenCodes.BRACKETS || 
+      next[0] === tokenCodes.OPEN_PARENTHESES
+    ) {
+      return tokenCodes.CALL
+    }
   }
 
   return type
@@ -45,13 +55,14 @@ function terminalHighlight (css) {
   let result = ''
   while (!processor.endOfFile()) {
     const token = processor.nextToken()
-    const color = HIGHLIGHT_THEME[getTokenType(token, processor)]
+    const content = css.slice(token[1], token[2])
+    const color = HIGHLIGHT_THEME[getTokenType(token, content, processor)]
     if (color) {
-      result += token[1].split(/\r?\n/)
+      result += content.split(/\r?\n/)
         .map(i => color(i))
         .join('\n')
     } else {
-      result += token[1]
+      result += content
     }
   }
   return result

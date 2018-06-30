@@ -1,5 +1,8 @@
+'use strict'
+
 const tokenizer = require('../lib/tokenize')
 const Input = require('../lib/input')
+const tokenCodes = require('../lib/token-codes')
 
 function tokenize (css, opts) {
   const processor = tokenizer(new Input(css), opts)
@@ -19,208 +22,212 @@ it('tokenizes empty file', () => {
 })
 
 it('tokenizes space', () => {
-  run('\r\n \f\t', [['space', '\r\n \f\t']])
+  run('\r\n \f\t', [new Uint32Array([tokenCodes.SPACE, 0, 5])])
 })
 
 it('tokenizes word', () => {
-  run('ab', [['word', 'ab', 1, 1, 1, 2]])
+  run('ab', [new Uint32Array([tokenCodes.WORD, 0, 2, 1, 1, 1, 2])])
 })
 
 it('splits word by !', () => {
   run('aa!bb', [
-    ['word', 'aa', 1, 1, 1, 2],
-    ['word', '!bb', 1, 3, 1, 5]
+    new Uint32Array([tokenCodes.WORD, 0, 2, 1, 1, 1, 2]),
+    new Uint32Array([tokenCodes.WORD, 2, 5, 1, 3, 1, 5])
   ])
 })
 
 it('changes lines in spaces', () => {
   run('a \n b', [
-    ['word', 'a', 1, 1, 1, 1],
-    ['space', ' \n '],
-    ['word', 'b', 2, 2, 2, 2]
+    new Uint32Array([tokenCodes.WORD, 0, 1, 1, 1, 1, 1]),
+    new Uint32Array([tokenCodes.SPACE, 1, 4]),
+    new Uint32Array([tokenCodes.WORD, 4, 5, 2, 2, 2, 2])
   ])
 })
 
 it('tokenizes control chars', () => {
   run('{:;}', [
-    ['{', '{', 1, 1],
-    [':', ':', 1, 2],
-    [';', ';', 1, 3],
-    ['}', '}', 1, 4]
+    new Uint32Array([tokenCodes.OPEN_CURLY, 0, 1, 1, 1]),
+    new Uint32Array([tokenCodes.COLON, 1, 2, 1, 2]),
+    new Uint32Array([tokenCodes.SEMICOLON, 2, 3, 1, 3]),
+    new Uint32Array([tokenCodes.CLOSE_CURLY, 3, 4, 1, 4])
   ])
 })
 
 it('escapes control symbols', () => {
   run('\\(\\{\\"\\@\\\\""', [
-    ['word', '\\(', 1, 1, 1, 2],
-    ['word', '\\{', 1, 3, 1, 4],
-    ['word', '\\"', 1, 5, 1, 6],
-    ['word', '\\@', 1, 7, 1, 8],
-    ['word', '\\\\', 1, 9, 1, 10],
-    ['string', '""', 1, 11, 1, 12]
+    new Uint32Array([tokenCodes.WORD, 0, 2, 1, 1, 1, 2]),
+    new Uint32Array([tokenCodes.WORD, 2, 4, 1, 3, 1, 4]),
+    new Uint32Array([tokenCodes.WORD, 4, 6, 1, 5, 1, 6]),
+    new Uint32Array([tokenCodes.WORD, 6, 8, 1, 7, 1, 8]),
+    new Uint32Array([tokenCodes.WORD, 8, 10, 1, 9, 1, 10]),
+    new Uint32Array([tokenCodes.STRING, 10, 12, 1, 11, 1, 12])
   ])
 })
 
 it('escapes backslash', () => {
   run('\\\\\\\\{', [
-    ['word', '\\\\\\\\', 1, 1, 1, 4],
-    ['{', '{', 1, 5]
+    new Uint32Array([tokenCodes.WORD, 0, 4, 1, 1, 1, 4]),
+    new Uint32Array([tokenCodes.OPEN_CURLY, 4, 5, 1, 5])
   ])
 })
 
 it('tokenizes simple brackets', () => {
-  run('(ab)', [['brackets', '(ab)', 1, 1, 1, 4]])
+  run('(ab)', [new Uint32Array([tokenCodes.BRACKETS, 0, 4, 1, 1, 1, 4])])
 })
 
 it('tokenizes square brackets', () => {
   run('a[bc]', [
-    ['word', 'a', 1, 1, 1, 1],
-    ['[', '[', 1, 2],
-    ['word', 'bc', 1, 3, 1, 4],
-    [']', ']', 1, 5]
+    new Uint32Array([tokenCodes.WORD, 0, 1, 1, 1, 1, 1]),
+    new Uint32Array([tokenCodes.OPEN_SQUARE, 1, 2, 1, 2]),
+    new Uint32Array([tokenCodes.WORD, 2, 4, 1, 3, 1, 4]),
+    new Uint32Array([tokenCodes.CLOSE_SQUARE, 4, 5, 1, 5])
   ])
 })
 
 it('tokenizes complicated brackets', () => {
   run('(())("")(/**/)(\\\\)(\n)(', [
-    ['(', '(', 1, 1],
-    ['brackets', '()', 1, 2, 1, 3],
-    [')', ')', 1, 4],
-    ['(', '(', 1, 5],
-    ['string', '""', 1, 6, 1, 7],
-    [')', ')', 1, 8],
-    ['(', '(', 1, 9],
-    ['comment', '/**/', 1, 10, 1, 13],
-    [')', ')', 1, 14],
-    ['(', '(', 1, 15],
-    ['word', '\\\\', 1, 16, 1, 17],
-    [')', ')', 1, 18],
-    ['(', '(', 1, 19],
-    ['space', '\n'],
-    [')', ')', 2, 1],
-    ['(', '(', 2, 2]
+    new Uint32Array([tokenCodes.OPEN_PARENTHESES, 0, 1, 1, 1]),
+    new Uint32Array([tokenCodes.BRACKETS, 1, 3, 1, 2, 1, 3]),
+    new Uint32Array([tokenCodes.CLOSE_PARENTHESES, 3, 4, 1, 4]),
+    new Uint32Array([tokenCodes.OPEN_PARENTHESES, 4, 5, 1, 5]),
+    new Uint32Array([tokenCodes.STRING, 5, 7, 1, 6, 1, 7]),
+    new Uint32Array([tokenCodes.CLOSE_PARENTHESES, 7, 8, 1, 8]),
+    new Uint32Array([tokenCodes.OPEN_PARENTHESES, 8, 9, 1, 9]),
+    new Uint32Array([tokenCodes.COMMENT, 9, 13, 1, 10, 1, 13]),
+    new Uint32Array([tokenCodes.CLOSE_PARENTHESES, 13, 14, 1, 14]),
+    new Uint32Array([tokenCodes.OPEN_PARENTHESES, 14, 15, 1, 15]),
+    new Uint32Array([tokenCodes.WORD, 15, 17, 1, 16, 1, 17]),
+    new Uint32Array([tokenCodes.CLOSE_PARENTHESES, 17, 18, 1, 18]),
+    new Uint32Array([tokenCodes.OPEN_PARENTHESES, 18, 19, 1, 19]),
+    new Uint32Array([tokenCodes.SPACE, 19, 20]),
+    new Uint32Array([tokenCodes.CLOSE_PARENTHESES, 20, 21, 2, 1]),
+    new Uint32Array([tokenCodes.OPEN_PARENTHESES, 21, 22, 2, 2])
   ])
 })
 
 it('tokenizes string', () => {
   run('\'"\'"\\""', [
-    ['string', '\'"\'', 1, 1, 1, 3],
-    ['string', '"\\""', 1, 4, 1, 7]
+    new Uint32Array([tokenCodes.STRING, 0, 3, 1, 1, 1, 3]),
+    new Uint32Array([tokenCodes.STRING, 3, 7, 1, 4, 1, 7])
   ])
 })
 
 it('tokenizes escaped string', () => {
-  run('"\\\\"', [['string', '"\\\\"', 1, 1, 1, 4]])
+  run('"\\\\"', [new Uint32Array([tokenCodes.STRING, 0, 4, 1, 1, 1, 4])])
 })
 
 it('changes lines in strings', () => {
   run('"\n\n""\n\n"', [
-    ['string', '"\n\n"', 1, 1, 3, 1],
-    ['string', '"\n\n"', 3, 2, 5, 1]
+    new Uint32Array([tokenCodes.STRING, 0, 4, 1, 1, 3, 1]),
+    new Uint32Array([tokenCodes.STRING, 4, 8, 3, 2, 5, 1])
   ])
 })
 
 it('tokenizes at-word', () => {
-  run('@word ', [['at-word', '@word', 1, 1, 1, 5], ['space', ' ']])
+  run('@word ', [
+    new Uint32Array([tokenCodes.AT, 0, 5, 1, 1, 1, 5]),
+    new Uint32Array([tokenCodes.SPACE, 5, 6])
+  ])
 })
 
 it('tokenizes at-word end', () => {
   run('@one{@two()@three""@four;', [
-    ['at-word', '@one', 1, 1, 1, 4],
-    ['{', '{', 1, 5],
-    ['at-word', '@two', 1, 6, 1, 9],
-    ['brackets', '()', 1, 10, 1, 11],
-    ['at-word', '@three', 1, 12, 1, 17],
-    ['string', '""', 1, 18, 1, 19],
-    ['at-word', '@four', 1, 20, 1, 24],
-    [';', ';', 1, 25]
+    new Uint32Array([tokenCodes.AT, 0, 4, 1, 1, 1, 4]),
+    new Uint32Array([tokenCodes.OPEN_CURLY, 4, 5, 1, 5]),
+    new Uint32Array([tokenCodes.AT, 5, 9, 1, 6, 1, 9]),
+    new Uint32Array([tokenCodes.BRACKETS, 9, 11, 1, 10, 1, 11]),
+    new Uint32Array([tokenCodes.AT, 11, 17, 1, 12, 1, 17]),
+    new Uint32Array([tokenCodes.STRING, 17, 19, 1, 18, 1, 19]),
+    new Uint32Array([tokenCodes.AT, 19, 24, 1, 20, 1, 24]),
+    new Uint32Array([tokenCodes.SEMICOLON, 24, 25, 1, 25])
   ])
 })
 
 it('tokenizes urls', () => {
   run('url(/*\\))', [
-    ['word', 'url', 1, 1, 1, 3],
-    ['brackets', '(/*\\))', 1, 4, 1, 9]
+    new Uint32Array([tokenCodes.WORD, 0, 3, 1, 1, 1, 3]),
+    new Uint32Array([tokenCodes.BRACKETS, 3, 9, 1, 4, 1, 9])
   ])
 })
 
 it('tokenizes quoted urls', () => {
   run('url(")")', [
-    ['word', 'url', 1, 1, 1, 3],
-    ['(', '(', 1, 4],
-    ['string', '")"', 1, 5, 1, 7],
-    [')', ')', 1, 8]
+    new Uint32Array([tokenCodes.WORD, 0, 3, 1, 1, 1, 3]),
+    new Uint32Array([tokenCodes.OPEN_PARENTHESES, 3, 4, 1, 4]),
+    new Uint32Array([tokenCodes.STRING, 4, 7, 1, 5, 1, 7]),
+    new Uint32Array([tokenCodes.CLOSE_PARENTHESES, 7, 8, 1, 8])
   ])
 })
 
 it('tokenizes at-symbol', () => {
-  run('@', [['at-word', '@', 1, 1, 1, 1]])
+  run('@', [new Uint32Array([tokenCodes.AT, 0, 1, 1, 1, 1, 1])])
 })
 
 it('tokenizes comment', () => {
-  run('/* a\nb */', [['comment', '/* a\nb */', 1, 1, 2, 4]])
+  run('/* a\nb */', [new Uint32Array([tokenCodes.COMMENT, 0, 9, 1, 1, 2, 4])])
 })
 
 it('changes lines in comments', () => {
   run('a/* \n */b', [
-    ['word', 'a', 1, 1, 1, 1],
-    ['comment', '/* \n */', 1, 2, 2, 3],
-    ['word', 'b', 2, 4, 2, 4]
+    new Uint32Array([tokenCodes.WORD, 0, 1, 1, 1, 1, 1]),
+    new Uint32Array([tokenCodes.COMMENT, 1, 8, 1, 2, 2, 3]),
+    new Uint32Array([tokenCodes.WORD, 8, 9, 2, 4, 2, 4])
   ])
 })
 
 it('supports line feed', () => {
   run('a\fb', [
-    ['word', 'a', 1, 1, 1, 1],
-    ['space', '\f'],
-    ['word', 'b', 2, 1, 2, 1]
+    new Uint32Array([tokenCodes.WORD, 0, 1, 1, 1, 1, 1]),
+    new Uint32Array([tokenCodes.SPACE, 1, 2]),
+    new Uint32Array([tokenCodes.WORD, 2, 3, 2, 1, 2, 1])
   ])
 })
 
 it('supports carriage return', () => {
   run('a\rb\r\nc', [
-    ['word', 'a', 1, 1, 1, 1],
-    ['space', '\r'],
-    ['word', 'b', 2, 1, 2, 1],
-    ['space', '\r\n'],
-    ['word', 'c', 3, 1, 3, 1]
+    new Uint32Array([tokenCodes.WORD, 0, 1, 1, 1, 1, 1]),
+    new Uint32Array([tokenCodes.SPACE, 1, 2]),
+    new Uint32Array([tokenCodes.WORD, 2, 3, 2, 1, 2, 1]),
+    new Uint32Array([tokenCodes.SPACE, 3, 5]),
+    new Uint32Array([tokenCodes.WORD, 5, 6, 3, 1, 3, 1])
   ])
 })
 
 it('tokenizes CSS', () => {
-  const css = 'a {\n' +
-              '  content: "a";\n' +
-              '  width: calc(1px;)\n' +
-              '  }\n' +
-              '/* small screen */\n' +
-              '@media screen {}'
+  const css =
+    'a {\n' +
+    '  content: "a";\n' +
+    '  width: calc(1px;)\n' +
+    '  }\n' +
+    '/* small screen */\n' +
+    '@media screen {}'
   run(css, [
-    ['word', 'a', 1, 1, 1, 1],
-    ['space', ' '],
-    ['{', '{', 1, 3],
-    ['space', '\n  '],
-    ['word', 'content', 2, 3, 2, 9],
-    [':', ':', 2, 10],
-    ['space', ' '],
-    ['string', '"a"', 2, 12, 2, 14],
-    [';', ';', 2, 15],
-    ['space', '\n  '],
-    ['word', 'width', 3, 3, 3, 7],
-    [':', ':', 3, 8],
-    ['space', ' '],
-    ['word', 'calc', 3, 10, 3, 13],
-    ['brackets', '(1px;)', 3, 14, 3, 19],
-    ['space', '\n  '],
-    ['}', '}', 4, 3],
-    ['space', '\n'],
-    ['comment', '/* small screen */', 5, 1, 5, 18],
-    ['space', '\n'],
-    ['at-word', '@media', 6, 1, 6, 6],
-    ['space', ' '],
-    ['word', 'screen', 6, 8, 6, 13],
-    ['space', ' '],
-    ['{', '{', 6, 15],
-    ['}', '}', 6, 16]
+    new Uint32Array([tokenCodes.WORD, 0, 1, 1, 1, 1, 1]),
+    new Uint32Array([tokenCodes.SPACE, 1, 2]),
+    new Uint32Array([tokenCodes.OPEN_CURLY, 2, 3, 1, 3]),
+    new Uint32Array([tokenCodes.SPACE, 3, 6]),
+    new Uint32Array([tokenCodes.WORD, 6, 13, 2, 3, 2, 9]),
+    new Uint32Array([tokenCodes.COLON, 13, 14, 2, 10]),
+    new Uint32Array([tokenCodes.SPACE, 14, 15]),
+    new Uint32Array([tokenCodes.STRING, 15, 18, 2, 12, 2, 14]),
+    new Uint32Array([tokenCodes.SEMICOLON, 18, 19, 2, 15]),
+    new Uint32Array([tokenCodes.SPACE, 19, 22]),
+    new Uint32Array([tokenCodes.WORD, 22, 27, 3, 3, 3, 7]),
+    new Uint32Array([tokenCodes.COLON, 27, 28, 3, 8]),
+    new Uint32Array([tokenCodes.SPACE, 28, 29]),
+    new Uint32Array([tokenCodes.WORD, 29, 33, 3, 10, 3, 13]),
+    new Uint32Array([tokenCodes.BRACKETS, 33, 39, 3, 14, 3, 19]),
+    new Uint32Array([tokenCodes.SPACE, 39, 42]),
+    new Uint32Array([tokenCodes.CLOSE_CURLY, 42, 43, 4, 3]),
+    new Uint32Array([tokenCodes.SPACE, 43, 44]),
+    new Uint32Array([tokenCodes.COMMENT, 44, 62, 5, 1, 5, 18]),
+    new Uint32Array([tokenCodes.SPACE, 62, 63]),
+    new Uint32Array([tokenCodes.AT, 63, 69, 6, 1, 6, 6]),
+    new Uint32Array([tokenCodes.SPACE, 69, 70]),
+    new Uint32Array([tokenCodes.WORD, 70, 76, 6, 8, 6, 13]),
+    new Uint32Array([tokenCodes.SPACE, 76, 77]),
+    new Uint32Array([tokenCodes.OPEN_CURLY, 77, 78, 6, 15]),
+    new Uint32Array([tokenCodes.CLOSE_CURLY, 78, 79, 6, 16])
   ])
 })
 
@@ -243,29 +250,43 @@ it('throws error on unclosed url', () => {
 })
 
 it('ignores unclosing string on request', () => {
-  run(' "', [
-    ['space', ' '], ['string', '"', 1, 2, 1, 3]
-  ], { ignoreErrors: true })
+  run(
+    ' "',
+    [
+      new Uint32Array([tokenCodes.SPACE, 0, 1]),
+      new Uint32Array([tokenCodes.STRING, 1, 3, 1, 2, 1, 3])
+    ],
+    { ignoreErrors: true }
+  )
 })
 
 it('ignores unclosing comment on request', () => {
-  run(' /*', [
-    ['space', ' '], ['comment', '/*', 1, 2, 1, 4]
-  ], { ignoreErrors: true })
+  run(
+    ' /*',
+    [
+      new Uint32Array([tokenCodes.SPACE, 0, 1]),
+      new Uint32Array([tokenCodes.COMMENT, 1, 4, 1, 2, 1, 4])
+    ],
+    { ignoreErrors: true }
+  )
 })
 
-it('ignores unclosing function on request', () => {
-  run('url(', [
-    ['word', 'url', 1, 1, 1, 3],
-    ['brackets', '(', 1, 4, 1, 4]
-  ], { ignoreErrors: true })
+it('ignores unclosing url statement on request', () => {
+  run(
+    'url(',
+    [
+      new Uint32Array([tokenCodes.WORD, 0, 3, 1, 1, 1, 3]),
+      new Uint32Array([tokenCodes.BRACKETS, 3, 4, 1, 4, 1, 4])
+    ],
+    { ignoreErrors: true }
+  )
 })
 
 it('tokenizes hexadecimal escape', () => {
   run('\\0a \\09 \\z ', [
-    ['word', '\\0a ', 1, 1, 1, 4],
-    ['word', '\\09 ', 1, 5, 1, 8],
-    ['word', '\\z', 1, 9, 1, 10],
-    ['space', ' ']
+    new Uint32Array([tokenCodes.WORD, 0, 4, 1, 1, 1, 4]),
+    new Uint32Array([tokenCodes.WORD, 4, 8, 1, 5, 1, 8]),
+    new Uint32Array([tokenCodes.WORD, 8, 10, 1, 9, 1, 10]),
+    new Uint32Array([tokenCodes.SPACE, 10, 11])
   ])
 })
