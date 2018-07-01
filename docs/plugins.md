@@ -279,6 +279,7 @@ loosely resembles the original.
 * [`postcss-write-svg`] write inline SVGs in CSS.
 * [`postcss-inline-svg`] inline SVG images and customize their styles.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
+* [`postcss-font-grabber`] it grabs remote fonts in `@font-face`, download them and update your CSS.
 
 ## Grids
 

@@ -83,6 +83,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-inline-svg`] allows you to inline SVG and customize its styles.
 * [`postcss-write-svg`] allows you to write simple SVG directly in your CSS.
+* [`postcss-font-grabber`] it grabs remote fonts in `@font-face`, download them and update your CSS.
 
 ### Linters
 
