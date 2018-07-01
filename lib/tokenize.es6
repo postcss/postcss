@@ -63,6 +63,13 @@ export default function tokenizer (input, options = {}) {
   function clearToken () {
     currentToken.fill(0)
   }
+
+  function fillToken (...args) {
+    for (let i = 0; i < args.length; i++) {
+      currentToken[i] = args[i]
+    }
+  }
+
   function nextToken () {
     clearToken()
     if (returned.length) return returned.pop()
@@ -99,68 +106,68 @@ export default function tokenizer (input, options = {}) {
           code === CR ||
           code === FEED
         )
-        currentToken.set([tokenCodes.SPACE, pos, next])
+        fillToken(tokenCodes.SPACE, pos, next)
         pos = next - 1
         break
 
       case OPEN_SQUARE:
-        currentToken.set([
+        fillToken(
           tokenCodes.OPEN_SQUARE,
           pos,
           pos + 1,
           line,
           pos - offset
-        ])
+        )
         break
 
       case CLOSE_SQUARE:
-        currentToken.set([
+        fillToken(
           tokenCodes.CLOSE_SQUARE,
           pos,
           pos + 1,
           line,
           pos - offset
-        ])
+        )
         break
 
       case OPEN_CURLY:
-        currentToken.set([
+        fillToken(
           tokenCodes.OPEN_CURLY,
           pos,
           pos + 1,
           line,
           pos - offset
-        ])
+        )
         break
 
       case CLOSE_CURLY:
-        currentToken.set([
+        fillToken(
           tokenCodes.CLOSE_CURLY,
           pos,
           pos + 1,
           line,
           pos - offset
-        ])
+        )
         break
 
       case COLON:
-        currentToken.set([
+        fillToken(
           tokenCodes.COLON,
           pos,
           pos + 1,
           line,
           pos - offset
-        ])
+        )
         break
 
       case SEMICOLON:
-        currentToken.set([
+        fillToken(
           tokenCodes.SEMICOLON,
           pos,
           pos + 1,
           line,
           pos - offset
-        ])
+        )
         break
 
       case OPEN_PARENTHESES:
@@ -195,7 +202,7 @@ export default function tokenizer (input, options = {}) {
               escaped = !escaped
             }
           } while (escaped)
-          currentToken.set([
+          fillToken(
             tokenCodes.BRACKETS,
             pos,
             next + 1,
@@ -203,22 +210,22 @@ export default function tokenizer (input, options = {}) {
             pos - offset,
             line,
             next - offset
-          ])
+          )
           pos = next
         } else {
           next = css.indexOf(')', pos + 1)
           content = css.slice(pos, next + 1)
 
           if (next === -1 || RE_BAD_BRACKET.test(content)) {
-            currentToken.set([
+            fillToken(
               tokenCodes.OPEN_PARENTHESES,
               pos,
               pos + 1,
               line,
               pos - offset
-            ])
+            )
           } else {
-            currentToken.set([
+            fillToken(
               tokenCodes.BRACKETS,
               pos,
               next + 1,
@@ -226,7 +233,7 @@ export default function tokenizer (input, options = {}) {
               pos - offset,
               line,
               next - offset
-            ])
+            )
             pos = next
           }
         }
@@ -234,13 +241,13 @@ export default function tokenizer (input, options = {}) {
         break
 
       case CLOSE_PARENTHESES:
-        currentToken.set([
+        fillToken(
           tokenCodes.CLOSE_PARENTHESES,
           pos,
           pos + 1,
           line,
           pos - offset
-        ])
+        )
         break
 
       case SINGLE_QUOTE:
@@ -276,7 +283,7 @@ export default function tokenizer (input, options = {}) {
           nextLine = line
           nextOffset = offset
         }
-        currentToken.set([
+        fillToken(
           tokenCodes.STRING,
           pos,
           next + 1,
@@ -284,7 +291,7 @@ export default function tokenizer (input, options = {}) {
           pos - offset,
           nextLine,
           next - nextOffset
-        ])
+        )
 
         offset = nextOffset
         line = nextLine
@@ -300,7 +307,7 @@ export default function tokenizer (input, options = {}) {
           next = RE_AT_END.lastIndex - 2
         }
 
-        currentToken.set([
+        fillToken(
           tokenCodes.AT,
           pos,
           next + 1,
@@ -308,7 +315,7 @@ export default function tokenizer (input, options = {}) {
           pos - offset,
           line,
           next - offset
-        ])
+        )
 
         pos = next
         break
@@ -340,7 +347,7 @@ export default function tokenizer (input, options = {}) {
             }
           }
         }
-        currentToken.set([
+        fillToken(
           tokenCodes.WORD,
           pos,
           next + 1,
@@ -348,7 +355,7 @@ export default function tokenizer (input, options = {}) {
           pos - offset,
           line,
           next - offset
-        ])
+        )
 
         pos = next
         break
@@ -376,7 +383,7 @@ export default function tokenizer (input, options = {}) {
             nextOffset = offset
           }
 
-          currentToken.set([
+          fillToken(
             tokenCodes.COMMENT,
             pos,
             next + 1,
@@ -384,7 +391,7 @@ export default function tokenizer (input, options = {}) {
             pos - offset,
             nextLine,
             next - nextOffset
-          ])
+          )
 
           offset = nextOffset
           line = nextLine
@@ -398,7 +405,7 @@ export default function tokenizer (input, options = {}) {
             next = RE_WORD_END.lastIndex - 2
           }
 
-          currentToken.set([
+          fillToken(
             tokenCodes.WORD,
             pos,
             next + 1,
@@ -406,7 +413,7 @@ export default function tokenizer (input, options = {}) {
             pos - offset,
             line,
             next - offset
-          ])
+          )
 
           buffer.push(new Uint32Array(currentToken))
           pos = next
