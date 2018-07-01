@@ -64,10 +64,22 @@ export default function tokenizer (input, options = {}) {
     currentToken.fill(0)
   }
 
-  function fillToken (...args) {
-    for (let i = 0; i < args.length; i++) {
-      currentToken[i] = args[i]
-    }
+  function fillToken (
+    tokenCode,
+    offsetStart,
+    offsetEnd,
+    startLine,
+    startColumn,
+    endLine,
+    endColumn
+  ) {
+    currentToken[0] = tokenCode
+    currentToken[1] = offsetStart
+    currentToken[2] = offsetEnd
+    currentToken[3] = startLine
+    currentToken[4] = startColumn
+    currentToken[5] = endLine
+    currentToken[6] = endColumn
   }
 
   function nextToken () {
