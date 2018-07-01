@@ -61,7 +61,7 @@ export default function tokenizer (input, options = {}) {
   }
 
   function nextToken () {
-    currentToken.fill(0)
+    // currentToken.fill(0)
     if (returned.length) return returned.pop()
     if (pos >= length) return
 
