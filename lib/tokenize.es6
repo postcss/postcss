@@ -1,4 +1,6 @@
-const SINGLE_QUOTE = '\''.charCodeAt(0)
+import * as tokenCodes from './token-codes'
+
+const SINGLE_QUOTE = "'".charCodeAt(0)
 const DOUBLE_QUOTE = '"'.charCodeAt(0)
 const BACKSLASH = '\\'.charCodeAt(0)
 const SLASH = '/'.charCodeAt(0)
@@ -18,7 +20,7 @@ const ASTERISK = '*'.charCodeAt(0)
 const COLON = ':'.charCodeAt(0)
 const AT = '@'.charCodeAt(0)
 
-const RE_AT_END = /[ \n\t\r\f{()'"\\;/[\]#]/g
+const RE_AT_END = /[ \n\t\r\f{}()'"\\;/[\]#]/g
 const RE_WORD_END = /[ \n\t\r\f(){}:;@!'"\\\][#]|\/(?=\*)/g
 const RE_BAD_BRACKET = /.[\\/("'\n]/
 const RE_HEX_ESCAPE = /[a-f0-9]/i
@@ -27,9 +29,22 @@ export default function tokenizer (input, options = {}) {
   const css = input.css.valueOf()
   const ignore = options.ignoreErrors
 
-  let code, next, quote, lines, last, content, escape
-  let nextLine, nextOffset, escaped, escapePos, prev, n, currentToken
+  let code,
+    next,
+    quote,
+    lines,
+    last,
+    content,
+    escape,
+    nextLine,
+    nextOffset,
+    escaped,
+    escapePos,
+    prev,
+    prevToken,
+    n
 
+  const currentToken = new Uint32Array(7)
   const length = css.length
   let offset = -1
   let line = 1
@@ -45,13 +60,18 @@ export default function tokenizer (input, options = {}) {
     return returned.length === 0 && pos >= length
   }
 
+  function clearToken () {
+    currentToken.fill(0)
+  }
   function nextToken () {
+    clearToken()
     if (returned.length) return returned.pop()
     if (pos >= length) return
 
     code = css.charCodeAt(pos)
     if (
-      code === NEWLINE || code === FEED ||
+      code === NEWLINE ||
+      code === FEED ||
       (code === CR && css.charCodeAt(pos + 1) !== NEWLINE)
     ) {
       offset = pos
@@ -79,43 +99,83 @@ export default function tokenizer (input, options = {}) {
           code === CR ||
           code === FEED
         )
-
-        currentToken = ['space', css.slice(pos, next)]
+        currentToken.set([tokenCodes.SPACE, pos, next])
         pos = next - 1
         break
 
       case OPEN_SQUARE:
-        currentToken = ['[', '[', line, pos - offset]
+        currentToken.set([
+          tokenCodes.OPEN_SQUARE,
+          pos,
+          pos + 1,
+          line,
+          pos - offset
+        ])
         break
 
       case CLOSE_SQUARE:
-        currentToken = [']', ']', line, pos - offset]
+        currentToken.set([
+          tokenCodes.CLOSE_SQUARE,
+          pos,
+          pos + 1,
+          line,
+          pos - offset
+        ])
         break
 
       case OPEN_CURLY:
-        currentToken = ['{', '{', line, pos - offset]
+        currentToken.set([
+          tokenCodes.OPEN_CURLY,
+          pos,
+          pos + 1,
+          line,
+          pos - offset
+        ])
         break
 
       case CLOSE_CURLY:
-        currentToken = ['}', '}', line, pos - offset]
+        currentToken.set([
+          tokenCodes.CLOSE_CURLY,
+          pos,
+          pos + 1,
+          line,
+          pos - offset
+        ])
         break
 
       case COLON:
-        currentToken = [':', ':', line, pos - offset]
+        currentToken.set([
+          tokenCodes.COLON,
+          pos,
+          pos + 1,
+          line,
+          pos - offset
+        ])
         break
 
       case SEMICOLON:
-        currentToken = [';', ';', line, pos - offset]
+        currentToken.set([
+          tokenCodes.SEMICOLON,
+          pos,
+          pos + 1,
+          line,
+          pos - offset
+        ])
         break
 
       case OPEN_PARENTHESES:
-        prev = buffer.length ? buffer.pop()[1] : ''
+        prevToken = buffer.length ? buffer.pop() : []
+        prev = prevToken.length ? css.slice(prevToken[1], prevToken[2]) : ''
         n = css.charCodeAt(pos + 1)
         if (
           prev === 'url' &&
-          n !== SINGLE_QUOTE && n !== DOUBLE_QUOTE &&
-          n !== SPACE && n !== NEWLINE && n !== TAB &&
-          n !== FEED && n !== CR
+          n !== SINGLE_QUOTE &&
+          n !== DOUBLE_QUOTE &&
+          n !== SPACE &&
+          n !== NEWLINE &&
+          n !== TAB &&
+          n !== FEED &&
+          n !== CR
         ) {
           next = pos
           do {
@@ -135,24 +195,38 @@ export default function tokenizer (input, options = {}) {
               escaped = !escaped
             }
           } while (escaped)
-
-          currentToken = ['brackets', css.slice(pos, next + 1),
-            line, pos - offset,
-            line, next - offset
-          ]
-
+          currentToken.set([
+            tokenCodes.BRACKETS,
+            pos,
+            next + 1,
+            line,
+            pos - offset,
+            line,
+            next - offset
+          ])
           pos = next
         } else {
           next = css.indexOf(')', pos + 1)
           content = css.slice(pos, next + 1)
 
           if (next === -1 || RE_BAD_BRACKET.test(content)) {
-            currentToken = ['(', '(', line, pos - offset]
+            currentToken.set([
+              tokenCodes.OPEN_PARENTHESES,
+              pos,
+              pos + 1,
+              line,
+              pos - offset
+            ])
           } else {
-            currentToken = ['brackets', content,
-              line, pos - offset,
-              line, next - offset
-            ]
+            currentToken.set([
+              tokenCodes.BRACKETS,
+              pos,
+              next + 1,
+              line,
+              pos - offset,
+              line,
+              next - offset
+            ])
             pos = next
           }
         }
@@ -160,12 +234,18 @@ export default function tokenizer (input, options = {}) {
         break
 
       case CLOSE_PARENTHESES:
-        currentToken = [')', ')', line, pos - offset]
+        currentToken.set([
+          tokenCodes.CLOSE_PARENTHESES,
+          pos,
+          pos + 1,
+          line,
+          pos - offset
+        ])
         break
 
       case SINGLE_QUOTE:
       case DOUBLE_QUOTE:
-        quote = code === SINGLE_QUOTE ? '\'' : '"'
+        quote = code === SINGLE_QUOTE ? "'" : '"'
         next = pos
         do {
           escaped = false
@@ -196,11 +276,15 @@ export default function tokenizer (input, options = {}) {
           nextLine = line
           nextOffset = offset
         }
-
-        currentToken = ['string', css.slice(pos, next + 1),
-          line, pos - offset,
-          nextLine, next - nextOffset
-        ]
+        currentToken.set([
+          tokenCodes.STRING,
+          pos,
+          next + 1,
+          line,
+          pos - offset,
+          nextLine,
+          next - nextOffset
+        ])
 
         offset = nextOffset
         line = nextLine
@@ -216,10 +300,15 @@ export default function tokenizer (input, options = {}) {
           next = RE_AT_END.lastIndex - 2
         }
 
-        currentToken = ['at-word', css.slice(pos, next + 1),
-          line, pos - offset,
-          line, next - offset
-        ]
+        currentToken.set([
+          tokenCodes.AT,
+          pos,
+          next + 1,
+          line,
+          pos - offset,
+          line,
+          next - offset
+        ])
 
         pos = next
         break
@@ -234,12 +323,12 @@ export default function tokenizer (input, options = {}) {
         code = css.charCodeAt(next + 1)
         if (
           escape &&
-          code !== SLASH &&
-          code !== SPACE &&
-          code !== NEWLINE &&
-          code !== TAB &&
-          code !== CR &&
-          code !== FEED
+          (code !== SLASH &&
+            code !== SPACE &&
+            code !== NEWLINE &&
+            code !== TAB &&
+            code !== CR &&
+            code !== FEED)
         ) {
           next += 1
           if (RE_HEX_ESCAPE.test(css.charAt(next))) {
@@ -251,11 +340,15 @@ export default function tokenizer (input, options = {}) {
             }
           }
         }
-
-        currentToken = ['word', css.slice(pos, next + 1),
-          line, pos - offset,
-          line, next - offset
-        ]
+        currentToken.set([
+          tokenCodes.WORD,
+          pos,
+          next + 1,
+          line,
+          pos - offset,
+          line,
+          next - offset
+        ])
 
         pos = next
         break
@@ -283,10 +376,15 @@ export default function tokenizer (input, options = {}) {
             nextOffset = offset
           }
 
-          currentToken = ['comment', content,
-            line, pos - offset,
-            nextLine, next - nextOffset
-          ]
+          currentToken.set([
+            tokenCodes.COMMENT,
+            pos,
+            next + 1,
+            line,
+            pos - offset,
+            nextLine,
+            next - nextOffset
+          ])
 
           offset = nextOffset
           line = nextLine
@@ -300,13 +398,17 @@ export default function tokenizer (input, options = {}) {
             next = RE_WORD_END.lastIndex - 2
           }
 
-          currentToken = ['word', css.slice(pos, next + 1),
-            line, pos - offset,
-            line, next - offset
-          ]
+          currentToken.set([
+            tokenCodes.WORD,
+            pos,
+            next + 1,
+            line,
+            pos - offset,
+            line,
+            next - offset
+          ])
 
-          buffer.push(currentToken)
-
+          buffer.push(new Uint32Array(currentToken))
           pos = next
         }
 

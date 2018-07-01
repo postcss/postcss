@@ -1,0 +1,17 @@
+export const SPACE = 0
+export const SEMICOLON = 1
+export const CLOSE_CURLY = 2
+export const OPEN_CURLY = 3
+export const COMMENT = 4
+export const AT = 5
+export const OPEN_SQUARE = 6
+export const CLOSE_SQUARE = 7
+export const OPEN_PARENTHESES = 8
+export const CLOSE_PARENTHESES = 9
+export const COLON = 10
+export const BRACKETS = 11
+export const WORD = 12
+export const STRING = 13
+export const HASH = 14
+export const CLASS = 15
+export const CALL = 16
