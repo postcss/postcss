@@ -60,30 +60,8 @@ export default function tokenizer (input, options = {}) {
     return returned.length === 0 && pos >= length
   }
 
-  function clearToken () {
-    currentToken.fill(0)
-  }
-
-  function fillToken (
-    tokenCode,
-    offsetStart,
-    offsetEnd,
-    startLine,
-    startColumn,
-    endLine,
-    endColumn
-  ) {
-    currentToken[0] = tokenCode
-    currentToken[1] = offsetStart
-    currentToken[2] = offsetEnd
-    currentToken[3] = startLine
-    currentToken[4] = startColumn
-    currentToken[5] = endLine
-    currentToken[6] = endColumn
-  }
-
   function nextToken () {
-    clearToken()
+    currentToken.fill(0)
     if (returned.length) return returned.pop()
     if (pos >= length) return
 
@@ -118,68 +96,58 @@ export default function tokenizer (input, options = {}) {
           code === CR ||
           code === FEED
         )
-        fillToken(tokenCodes.SPACE, pos, next)
+        currentToken[0] = tokenCodes.SPACE
+        currentToken[1] = pos
+        currentToken[2] = next
         pos = next - 1
         break
 
       case OPEN_SQUARE:
-        fillToken(
-          tokenCodes.OPEN_SQUARE,
-          pos,
-          pos + 1,
-          line,
-          pos - offset
-        )
+        currentToken[0] = tokenCodes.OPEN_SQUARE
+        currentToken[1] = pos
+        currentToken[2] = pos + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
         break
 
       case CLOSE_SQUARE:
-        fillToken(
-          tokenCodes.CLOSE_SQUARE,
-          pos,
-          pos + 1,
-          line,
-          pos - offset
-        )
+        currentToken[0] = tokenCodes.CLOSE_SQUARE
+        currentToken[1] = pos
+        currentToken[2] = pos + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
         break
 
       case OPEN_CURLY:
-        fillToken(
-          tokenCodes.OPEN_CURLY,
-          pos,
-          pos + 1,
-          line,
-          pos - offset
-        )
+        currentToken[0] = tokenCodes.OPEN_CURLY
+        currentToken[1] = pos
+        currentToken[2] = pos + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
         break
 
       case CLOSE_CURLY:
-        fillToken(
-          tokenCodes.CLOSE_CURLY,
-          pos,
-          pos + 1,
-          line,
-          pos - offset
-        )
+        currentToken[0] = tokenCodes.CLOSE_CURLY
+        currentToken[1] = pos
+        currentToken[2] = pos + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
         break
 
       case COLON:
-        fillToken(
-          tokenCodes.COLON,
-          pos,
-          pos + 1,
-          line,
-          pos - offset
-        )
+        currentToken[0] = tokenCodes.COLON
+        currentToken[1] = pos
+        currentToken[2] = pos + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
         break
 
       case SEMICOLON:
-        fillToken(
-          tokenCodes.SEMICOLON,
-          pos,
-          pos + 1,
-          line,
-          pos - offset
-        )
+        currentToken[0] = tokenCodes.SEMICOLON
+        currentToken[1] = pos
+        currentToken[2] = pos + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
         break
 
       case OPEN_PARENTHESES:
@@ -214,38 +182,33 @@ export default function tokenizer (input, options = {}) {
               escaped = !escaped
             }
           } while (escaped)
-          fillToken(
-            tokenCodes.BRACKETS,
-            pos,
-            next + 1,
-            line,
-            pos - offset,
-            line,
-            next - offset
-          )
+          currentToken[0] = tokenCodes.BRACKETS
+          currentToken[1] = pos
+          currentToken[2] = next + 1
+          currentToken[3] = line
+          currentToken[4] = pos - offset
+          currentToken[5] = line
+          currentToken[6] = next - offset
+
           pos = next
         } else {
           next = css.indexOf(')', pos + 1)
           content = css.slice(pos, next + 1)
 
           if (next === -1 || RE_BAD_BRACKET.test(content)) {
-            fillToken(
-              tokenCodes.OPEN_PARENTHESES,
-              pos,
-              pos + 1,
-              line,
-              pos - offset
-            )
+            currentToken[0] = tokenCodes.OPEN_PARENTHESES
+            currentToken[1] = pos
+            currentToken[2] = pos + 1
+            currentToken[3] = line
+            currentToken[4] = pos - offset
           } else {
-            fillToken(
-              tokenCodes.BRACKETS,
-              pos,
-              next + 1,
-              line,
-              pos - offset,
-              line,
-              next - offset
-            )
+            currentToken[0] = tokenCodes.BRACKETS
+            currentToken[1] = pos
+            currentToken[2] = next + 1
+            currentToken[3] = line
+            currentToken[4] = pos - offset
+            currentToken[5] = line
+            currentToken[6] = next - offset
             pos = next
           }
         }
@@ -253,13 +216,11 @@ export default function tokenizer (input, options = {}) {
         break
 
       case CLOSE_PARENTHESES:
-        fillToken(
-          tokenCodes.CLOSE_PARENTHESES,
-          pos,
-          pos + 1,
-          line,
-          pos - offset
-        )
+        currentToken[0] = tokenCodes.CLOSE_PARENTHESES
+        currentToken[1] = pos
+        currentToken[2] = pos + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
         break
 
       case SINGLE_QUOTE:
@@ -295,16 +256,13 @@ export default function tokenizer (input, options = {}) {
           nextLine = line
           nextOffset = offset
         }
-        fillToken(
-          tokenCodes.STRING,
-          pos,
-          next + 1,
-          line,
-          pos - offset,
-          nextLine,
-          next - nextOffset
-        )
-
+        currentToken[0] = tokenCodes.STRING
+        currentToken[1] = pos
+        currentToken[2] = next + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
+        currentToken[5] = nextLine
+        currentToken[6] = next - nextOffset
         offset = nextOffset
         line = nextLine
         pos = next
@@ -318,17 +276,13 @@ export default function tokenizer (input, options = {}) {
         } else {
           next = RE_AT_END.lastIndex - 2
         }
-
-        fillToken(
-          tokenCodes.AT,
-          pos,
-          next + 1,
-          line,
-          pos - offset,
-          line,
-          next - offset
-        )
-
+        currentToken[0] = tokenCodes.AT
+        currentToken[1] = pos
+        currentToken[2] = next + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
+        currentToken[5] = line
+        currentToken[6] = next - offset
         pos = next
         break
 
@@ -359,16 +313,13 @@ export default function tokenizer (input, options = {}) {
             }
           }
         }
-        fillToken(
-          tokenCodes.WORD,
-          pos,
-          next + 1,
-          line,
-          pos - offset,
-          line,
-          next - offset
-        )
-
+        currentToken[0] = tokenCodes.WORD
+        currentToken[1] = pos
+        currentToken[2] = next + 1
+        currentToken[3] = line
+        currentToken[4] = pos - offset
+        currentToken[5] = line
+        currentToken[6] = next - offset
         pos = next
         break
 
@@ -394,17 +345,13 @@ export default function tokenizer (input, options = {}) {
             nextLine = line
             nextOffset = offset
           }
-
-          fillToken(
-            tokenCodes.COMMENT,
-            pos,
-            next + 1,
-            line,
-            pos - offset,
-            nextLine,
-            next - nextOffset
-          )
-
+          currentToken[0] = tokenCodes.COMMENT
+          currentToken[1] = pos
+          currentToken[2] = next + 1
+          currentToken[3] = line
+          currentToken[4] = pos - offset
+          currentToken[5] = nextLine
+          currentToken[6] = next - nextOffset
           offset = nextOffset
           line = nextLine
           pos = next
@@ -416,16 +363,13 @@ export default function tokenizer (input, options = {}) {
           } else {
             next = RE_WORD_END.lastIndex - 2
           }
-
-          fillToken(
-            tokenCodes.WORD,
-            pos,
-            next + 1,
-            line,
-            pos - offset,
-            line,
-            next - offset
-          )
+          currentToken[0] = tokenCodes.WORD
+          currentToken[1] = pos
+          currentToken[2] = next + 1
+          currentToken[3] = line
+          currentToken[4] = pos - offset
+          currentToken[5] = line
+          currentToken[6] = next - offset
 
           buffer.push(new Uint32Array(currentToken))
           pos = next
