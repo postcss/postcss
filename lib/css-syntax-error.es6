@@ -172,8 +172,10 @@ class CssSyntaxError {
     if (!this.source) return ''
 
     let css = this.source
-    if (typeof color === 'undefined') color = supportsColor.stdout
-    if (color) css = terminalHighlight(css)
+    if (terminalHighlight) {
+      if (typeof color === 'undefined') color = supportsColor.stdout
+      if (color) css = terminalHighlight(css)
+    }
 
     const lines = css.split(/\r?\n/)
     const start = Math.max(this.line - 3, 0)

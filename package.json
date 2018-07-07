@@ -80,6 +80,7 @@
     "lint-staged"
   ],
   "browser": {
+    "./lib/terminal-highlight": false,
     "supports-color": false,
     "chalk": false,
     "fs": false
