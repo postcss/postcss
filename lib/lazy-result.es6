@@ -189,12 +189,14 @@ class LazyResult {
    * })
    */
   then (onFulfilled, onRejected) {
-    if (!('from' in this.opts)) {
-      warnOnce(
-        'Without `from` option PostCSS could generate wrong source map ' +
-        'and will not find Browserslist config. Set it to CSS file path ' +
-        'or to `undefined` to prevent this warning.'
-      )
+    if (process.env.NODE_ENV !== 'production') {
+      if (!('from' in this.opts)) {
+        warnOnce(
+          'Without `from` option PostCSS could generate wrong source map ' +
+          'and will not find Browserslist config. Set it to CSS file path ' +
+          'or to `undefined` to prevent this warning.'
+        )
+      }
     }
     return this.async().then(onFulfilled, onRejected)
   }
@@ -227,18 +229,20 @@ class LazyResult {
         error.plugin = plugin.postcssPlugin
         error.setMessage()
       } else if (plugin.postcssVersion) {
-        const pluginName = plugin.postcssPlugin
-        const pluginVer = plugin.postcssVersion
-        const runtimeVer = this.result.processor.version
-        const a = pluginVer.split('.')
-        const b = runtimeVer.split('.')
+        if (process.env.NODE_ENV !== 'production') {
+          const pluginName = plugin.postcssPlugin
+          const pluginVer = plugin.postcssVersion
+          const runtimeVer = this.result.processor.version
+          const a = pluginVer.split('.')
+          const b = runtimeVer.split('.')
 
-        if (a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1])) {
-          console.error(
-            'Unknown error from PostCSS plugin. Your current PostCSS version ' +
-            'is ' + runtimeVer + ', but ' + pluginName + ' uses ' +
-            pluginVer + '. Perhaps this is the source of the error below.'
-          )
+          if (a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1])) {
+            console.error(
+              'Unknown error from PostCSS plugin. Your current PostCSS ' +
+              'version is ' + runtimeVer + ', but ' + pluginName + ' uses ' +
+              pluginVer + '. Perhaps this is the source of the error below.'
+            )
+          }
         }
       }
     } catch (err) {

@@ -36,11 +36,13 @@ class Node {
    */
   constructor (defaults = { }) {
     this.raws = { }
-    if (typeof defaults !== 'object' && typeof defaults !== 'undefined') {
-      throw new Error(
-        'PostCSS nodes constructor accepts object, not ' +
-        JSON.stringify(defaults)
-      )
+    if (process.env.NODE_ENV !== 'production') {
+      if (typeof defaults !== 'object' && typeof defaults !== 'undefined') {
+        throw new Error(
+          'PostCSS nodes constructor accepts object, not ' +
+          JSON.stringify(defaults)
+        )
+      }
     }
     for (const name in defaults) {
       this[name] = defaults[name]
