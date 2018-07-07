@@ -143,6 +143,6 @@ it('contains list module', () => {
 
 it('works with null', () => {
   expect(() => {
-    postcss().process(null).css
+    postcss([() => true]).process(null).css
   }).toThrowError(/PostCSS received null instead of CSS string/)
 })

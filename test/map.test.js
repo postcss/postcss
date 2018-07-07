@@ -30,11 +30,13 @@ afterEach(() => {
 })
 
 it('adds map field only on request', () => {
-  expect(postcss().process('a {}').map).not.toBeDefined()
+  expect(postcss([() => true]).process('a {}').map).not.toBeDefined()
 })
 
 it('return map generator', () => {
-  const map = postcss().process('a {}', { map: { inline: false } }).map
+  const map = postcss([() => true]).process('a {}', {
+    map: { inline: false }
+  }).map
   expect(map instanceof mozilla.SourceMapGenerator).toBeTruthy()
 })
 
@@ -104,7 +106,7 @@ it('changes previous source map', () => {
 
 it('adds source map annotation', () => {
   const css = 'a { }/*# sourceMappingURL=a.css.map */'
-  const result = postcss().process(css, {
+  const result = postcss([() => true]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
@@ -115,7 +117,7 @@ it('adds source map annotation', () => {
 
 it('misses source map annotation, if user ask', () => {
   const css = 'a { }'
-  const result = postcss().process(css, {
+  const result = postcss([() => true]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { annotation: false }
@@ -127,13 +129,13 @@ it('misses source map annotation, if user ask', () => {
 it('misses source map annotation, if previous map missed it', () => {
   const css = 'a { }'
 
-  const step1 = postcss().process(css, {
+  const step1 = postcss([() => true]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { annotation: false }
   })
 
-  const step2 = postcss().process(step1.css, {
+  const step2 = postcss([() => true]).process(step1.css, {
     from: 'b.css',
     to: 'c.css',
     map: { prev: step1.map }
@@ -143,7 +145,7 @@ it('misses source map annotation, if previous map missed it', () => {
 })
 
 it('uses user path in annotation, relative to options.to', () => {
-  const result = postcss().process('a { }', {
+  const result = postcss([() => true]).process('a { }', {
     from: 'source/a.css',
     to: 'build/b.css',
     map: { annotation: 'maps/b.map' }
@@ -160,7 +162,7 @@ it('uses user path in annotation, relative to options.to', () => {
 it('generates inline map', () => {
   const css = 'a { }'
 
-  const inline = postcss().process(css, {
+  const inline = postcss([() => true]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { inline: true }
@@ -169,7 +171,7 @@ it('generates inline map', () => {
   expect(inline.map).not.toBeDefined()
   expect(inline.css).toMatch(/# sourceMappingURL=data:/)
 
-  const separated = postcss().process(css, {
+  const separated = postcss([() => true]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
@@ -181,7 +183,7 @@ it('generates inline map', () => {
 })
 
 it('generates inline map by default', () => {
-  const inline = postcss().process('a { }', {
+  const inline = postcss([() => true]).process('a { }', {
     from: 'a.css',
     to: 'b.css',
     map: true
@@ -205,7 +207,7 @@ it('generates separated map if previous map was not inlined', () => {
 })
 
 it('generates separated map on annotation option', () => {
-  const result = postcss().process('a { }', {
+  const result = postcss([() => true]).process('a { }', {
     from: 'a.css',
     to: 'b.css',
     map: { annotation: false }
@@ -215,13 +217,13 @@ it('generates separated map on annotation option', () => {
 })
 
 it('allows change map type', () => {
-  const step1 = postcss().process('a { }', {
+  const step1 = postcss([() => true]).process('a { }', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: true }
   })
 
-  const step2 = postcss().process(step1.css, {
+  const step2 = postcss([() => true]).process(step1.css, {
     from: 'b.css',
     to: 'c.css',
     map: { inline: false }
@@ -475,7 +477,7 @@ it('uses to.css as default output name', () => {
 
 it('supports annotation comment in any place', () => {
   const css = '/*# sourceMappingURL=a.css.map */a { }'
-  const result = postcss().process(css, {
+  const result = postcss([() => true]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
@@ -486,7 +488,7 @@ it('supports annotation comment in any place', () => {
 
 it('does not update annotation on request', () => {
   const css = 'a { }/*# sourceMappingURL=a.css.map */'
-  const result = postcss().process(css, {
+  const result = postcss([() => true]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { annotation: false, inline: false }
@@ -508,12 +510,12 @@ it('clears source map', () => {
 })
 
 it('uses Windows line separation too', () => {
-  const result = postcss().process('a {\r\n}', { map: true })
+  const result = postcss([() => true]).process('a {\r\n}', { map: true })
   expect(result.css).toMatch(/a \{\r\n\}\r\n\/\*# sourceMappingURL=/)
 })
 
 it('`map.from` should override the source map sources', () => {
-  const result = postcss().process('a{}', {
+  const result = postcss([() => true]).process('a{}', {
     map: {
       inline: false,
       from: 'file:///dir/a.css'
@@ -523,7 +525,7 @@ it('`map.from` should override the source map sources', () => {
 })
 
 it('preserves absolute urls in `to`', () => {
-  const result = postcss().process('a{}', {
+  const result = postcss([() => true]).process('a{}', {
     from: '/dir/to/a.css',
     to: 'http://example.com/a.css',
     map: { inline: false }
@@ -532,7 +534,7 @@ it('preserves absolute urls in `to`', () => {
 })
 
 it('preserves absolute urls in sources', () => {
-  const result = postcss().process('a{}', {
+  const result = postcss([() => true]).process('a{}', {
     from: 'file:///dir/a.css',
     to: 'http://example.com/a.css',
     map: { inline: false }
@@ -541,12 +543,12 @@ it('preserves absolute urls in sources', () => {
 })
 
 it('preserves absolute urls in sources from previous map', () => {
-  const result1 = postcss().process('a{}', {
+  const result1 = postcss([() => true]).process('a{}', {
     from: 'http://example.com/a.css',
     to: 'http://example.com/b.css',
     map: true
   })
-  const result2 = postcss().process(result1.css, {
+  const result2 = postcss([() => true]).process(result1.css, {
     to: 'http://example.com/c.css',
     map: {
       inline: false

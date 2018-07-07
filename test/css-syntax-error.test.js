@@ -127,7 +127,7 @@ it('uses source map', () => {
 })
 
 it('shows origin source', () => {
-  const input = postcss().process('a{}', {
+  const input = postcss([() => true]).process('a{}', {
     from: '/a.css',
     to: '/b.css',
     map: { inline: false }

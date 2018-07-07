@@ -96,28 +96,28 @@ it('processes parsed AST', () => {
 })
 
 it('processes previous result', () => {
-  let result = (new Processor()).process('a::before{top:0}')
+  let result = (new Processor([() => true])).process('a::before{top:0}')
   result = beforeFix.process(result)
   expect(result.css).toEqual('a::before{content:"";top:0}')
 })
 
 it('takes maps from previous result', () => {
-  const one = (new Processor()).process('a{}', {
+  const one = (new Processor([() => true])).process('a{}', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
   })
-  const two = (new Processor()).process(one, { to: 'c.css' })
+  const two = (new Processor([() => true])).process(one, { to: 'c.css' })
   expect(two.map.toJSON().sources).toEqual(['a.css'])
 })
 
 it('inlines maps from previous result', () => {
-  const one = (new Processor()).process('a{}', {
+  const one = (new Processor([() => true])).process('a{}', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
   })
-  const two = (new Processor()).process(one, {
+  const two = (new Processor([() => true])).process(one, {
     to: 'c.css',
     map: { inline: true }
   })
@@ -127,7 +127,7 @@ it('inlines maps from previous result', () => {
 it('throws with file name', () => {
   let error
   try {
-    (new Processor()).process('a {', { from: 'a.css' }).css
+    (new Processor([() => true])).process('a {', { from: 'a.css' }).css
   } catch (e) {
     if (e.name === 'CssSyntaxError') {
       error = e
@@ -149,7 +149,7 @@ it('allows to replace Root', () => {
 })
 
 it('returns LazyResult object', () => {
-  const result = (new Processor()).process('a{}')
+  const result = (new Processor([() => true])).process('a{}')
   expect(result instanceof LazyResult).toBeTruthy()
   expect(result.css).toEqual('a{}')
   expect(result.toString()).toEqual('a{}')
@@ -182,7 +182,7 @@ it('parses, converts and stringifies CSS', () => {
 
 it('send result to plugins', () => {
   expect.assertions(4)
-  const processor = new Processor()
+  const processor = new Processor([() => true])
   const a = (css, result) => {
     expect(result instanceof Result).toBeTruthy()
     expect(result.processor).toEqual(processor)
@@ -193,12 +193,12 @@ it('send result to plugins', () => {
 })
 
 it('accepts source map from PostCSS', () => {
-  const one = (new Processor()).process('a{}', {
+  const one = (new Processor([() => true])).process('a{}', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
   })
-  const two = (new Processor()).process(one.css, {
+  const two = (new Processor([() => true])).process(one.css, {
     from: 'b.css',
     to: 'c.css',
     map: { prev: one.map, inline: false }
@@ -243,7 +243,7 @@ it('supports async plugins', () => {
 })
 
 it('works async without plugins', () => {
-  return (new Processor()).process('a {}', { from: undefined })
+  return (new Processor([() => true])).process('a {}', { from: undefined })
     .then(result => {
       expect(result.css).toEqual('a {}')
     })
@@ -304,7 +304,7 @@ it('supports sync errors in async mode', done => {
 })
 
 it('throws parse error in async', () => {
-  return (new Processor()).process('a{').catch(err => {
+  return (new Processor([() => true])).process('a{').catch(err => {
     expect(err.message).toEqual('<css input>:1:1: Unclosed block')
   })
 })
@@ -387,9 +387,11 @@ it('sets last plugin to result', () => {
 })
 
 it('uses custom parsers', () => {
+  console.warn = jest.fn()
   const processor = new Processor([])
   return processor.process('a{}', { parser: prs, from: undefined })
     .then(result => {
+      expect(console.warn).not.toHaveBeenCalled()
       expect(result.css).toEqual('ok')
     })
 })
@@ -404,9 +406,11 @@ it('uses custom parsers from object', () => {
 })
 
 it('uses custom stringifier', () => {
+  console.warn = jest.fn()
   const processor = new Processor([])
   return processor.process('a{}', { stringifier: str, from: undefined })
     .then(result => {
+      expect(console.warn).not.toHaveBeenCalled()
       expect(result.css).toEqual('!')
     })
 })
@@ -430,7 +434,7 @@ it('uses custom stringifier with source maps', () => {
 })
 
 it('uses custom syntax', () => {
-  const processor = new Processor([])
+  const processor = new Processor([() => true])
   return processor.process('a{}', {
     syntax: { parse: prs, stringify: str }, from: undefined
   }).then(result => {
@@ -443,7 +447,7 @@ it('contains PostCSS version', () => {
 })
 
 it('throws on syntax as plugin', () => {
-  const processor = new Processor()
+  const processor = new Processor([() => true])
   expect(() => {
     processor.use({
       parse () { }
@@ -453,7 +457,7 @@ it('throws on syntax as plugin', () => {
 
 it('warns about missed from', () => {
   console.warn = jest.fn()
-  const processor = new Processor()
+  const processor = new Processor([() => true])
 
   processor.process('a{}').css
   expect(console.warn).not.toBeCalled()
@@ -463,6 +467,17 @@ it('warns about missed from', () => {
       'Without `from` option PostCSS could generate wrong source map ' +
       'and will not find Browserslist config. Set it to CSS file path ' +
       'or to `undefined` to prevent this warning.'
+    )
+  })
+})
+
+it('warns about missed plugins', () => {
+  console.warn = jest.fn()
+  return (new Processor()).process('a{}').then(() => {
+    expect(console.warn).toBeCalledWith(
+      'You did not set any plugins, parser, or stringifier. ' +
+      'Right now PostCSS do nothing. Pick plugins for your case ' +
+      'on https://www.postcss.parts/ and usem them in postcss.config.js.'
     )
   })
 })

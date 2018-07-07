@@ -95,6 +95,15 @@ class Processor {
    *   })
    */
   process (css, opts = { }) {
+    if (this.plugins.length === 0 && opts.parser === opts.stringifier) {
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(
+          'You did not set any plugins, parser, or stringifier. ' +
+          'Right now PostCSS do nothing. Pick plugins for your case ' +
+          'on https://www.postcss.parts/ and usem them in postcss.config.js.'
+        )
+      }
+    }
     return new LazyResult(this, css, opts)
   }
 
