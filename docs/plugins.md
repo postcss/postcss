@@ -479,6 +479,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spiffing`] lets you use British English in your CSS.
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 * [`postcss-nope`] lets you write `nope` instead of `none`.
+* [`postcss-glitch`] add glitch effect to your text.
 
 [`postcss-letter-tracking`]:              https://github.com/letsjaam/postcss-letter-tracking
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
@@ -783,3 +784,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-subgrid`]:                      https://github.com/seaneking/postcss-subgrid
 [`postcss-join-transitions`]:             https://github.com/JGJP/postcss-join-transitions
 [`postcss-font-display`]:                 https://github.com/dkrnl/postcss-font-display
+[`postcss-glitch`]:                       https://github.com/crftd/postcss-glitch
