@@ -3,7 +3,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 7.0 “President Amy”
 * Remove Node.js 9 and Node.js 4 support.
-* Remove IE and “dead” browsers support.
+* Remove IE and “dead” browsers from Babel.
 * Add CSS position on error happened inside `walk()` (by Nikhil Gaba).
 * Add `LazyResult#finally` (by Igor Kamyshev).
 * Add warning on calling PostCSS without plugins and syntax options.
