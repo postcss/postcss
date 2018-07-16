@@ -53,6 +53,7 @@ gulp.task('build:package', () => {
       delete json['size-limit']
       delete json['pre-commit']
       delete json['lint-staged']
+      delete json.yaspeller
       delete json.devDependencies
       return json
     }))
