@@ -105,7 +105,18 @@ class Container extends Node {
    */
   walk (callback) {
     return this.each((child, i) => {
-      let result = callback(child, i)
+      let result
+      try {
+        result = callback(child, i)
+      } catch (e) {
+        e.postcssNode = child
+        if (e.stack && child.source && /\n\s{4}at /.test(e.stack)) {
+          const s = child.source
+          e.stack = e.stack.replace(/\n\s{4}at /,
+            `$&${ s.input.from }:${ s.start.line }:${ s.start.column }$&`)
+        }
+        throw e
+      }
       if (result !== false && child.walk) {
         result = child.walk(callback)
       }
