@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0 “President Amy”
+* Remove Node.js 9 and Node.js 4 support.
+* Remove IE and “dead” browsers support.
+* Add CSS position on error happened inside `walk()` (by Nikhil Gaba).
+* Add `LazyResult#finally` (by Igor Kamyshev).
+* Add warning on calling PostCSS without plugins and syntax options.
+* Reduce client-side size.
+
 ## 6.0.23
 * Fix parsing nested at-rules without semicolon, params, and spaces.
 * Fix docs (by Kevin Schiffer and Pat Cavit).

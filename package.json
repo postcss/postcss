@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "6.0.23",
+  "version": "7.0.0",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": ">=6.0.0"
@@ -357,7 +357,10 @@
       "Pollet",
       "Villard",
       "Schiffer",
-      "Cavit"
+      "Cavit",
+      "Nikhil",
+      "Gaba",
+      "Kamyshev"
     ]
   }
 }
