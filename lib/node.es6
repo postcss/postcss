@@ -161,17 +161,17 @@ class Node {
   }
 
   /**
-   * Returns a clone of the node.
+   * Returns an exact clone of the node.
    *
-   * The resulting cloned node and its (cloned) children will have
-   * a clean parent and code style properties.
+   * The resulting cloned node and its (cloned) children will retain
+   * code style properties.
    *
    * @param {object} [overrides] New properties to override in the clone.
    *
    * @example
+   * decl.raws.before    //=> "\n  "
    * const cloned = decl.clone({ prop: '-moz-' + decl.prop })
-   * cloned.raws.before  //=> undefined
-   * cloned.parent       //=> undefined
+   * cloned.raws.before  //=> "\n  "
    * cloned.toString()   //=> -moz-transform: scale(0)
    *
    * @return {Node} Clone of the node.
@@ -374,6 +374,18 @@ class Node {
     return result
   }
 
+  /**
+   * Clear the code style properties for the node and its children.
+   *
+   * @param {boolean} [keepBetween] Keep the raws.between symbols.
+   *
+   * @returns {void}
+   *
+   * @example
+   * node.raws.before  //=> ' '
+   * node.cleanRaws()
+   * node.raws.before  //=> undefined
+   */
   cleanRaws (keepBetween) {
     delete this.raws.before
     delete this.raws.after
