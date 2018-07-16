@@ -221,6 +221,25 @@ class LazyResult {
   catch (onRejected) {
     return this.async().catch(onRejected)
   }
+  /**
+   * Processes input CSS through synchronous and asynchronous plugins
+   * and calls onFinally on any error or when all plugins will finish work.
+   *
+   * It implements standard Promise API.
+   *
+   * @param {onFinally} onFinally Callback will be executed on any error or
+   *                              when all plugins will finish work.
+   *
+   * @return {Promise} Promise API to make queue.
+   *
+   * @example
+   * postcss([cssnext]).process(css).finally(() => {
+   *   console.log('processing ended')
+   * })
+   */
+  finally (onFinally) {
+    return this.async().then(onFinally, onFinally)
+  }
 
   handleError (error, plugin) {
     try {

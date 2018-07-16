@@ -323,6 +323,7 @@
       "SourceMapGenerator",
       "onFulfilled",
       "onRejected",
+      "onFinally",
       "base64",
       "stringifing",
       "Browserify",

@@ -50,3 +50,10 @@ it('contains messages', () => {
   const result = new LazyResult(processor, 'a {}', { })
   expect(result.messages).toEqual([])
 })
+
+it('executes on finally callback', () => {
+  const mockCallback = jest.fn()
+  return new LazyResult(processor, 'a {}', { })
+    .finally(mockCallback)
+    .then(() => expect(mockCallback).toHaveBeenCalledTimes(1))
+})
