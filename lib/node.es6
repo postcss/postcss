@@ -379,7 +379,7 @@ class Node {
    *
    * @param {boolean} [keepBetween] Keep the raws.between symbols.
    *
-   * @return {Node} This node for methods chain.
+   * @returns {void}
    *
    * @example
    * node.raws.before  //=> ' '
@@ -390,7 +390,6 @@ class Node {
     delete this.raws.before
     delete this.raws.after
     if (!keepBetween) delete this.raws.between
-    return this
   }
 
   positionInside (index) {
