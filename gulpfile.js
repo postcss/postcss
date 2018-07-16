@@ -66,7 +66,7 @@ gulp.task('build:docs', () => {
     .concat([
       'package.json', '.npmignore', 'lib/*', 'test/*',
       'node_modules/**/*', 'docs/api.md', 'docs/plugins.md',
-      'docs/writing-a-plugin.md'
+      'docs/writing-a-plugin.md', 'CONTRIBUTING.md'
     ]).map(i => '!' + i)
   return gulp.src(['**/*'].concat(ignore))
     .pipe(gulp.dest('build'))

@@ -12,8 +12,3 @@ appveyor.yml
 gulpfile.babel.js
 
 api/
-
-CONTRIBUTING.md
-docs/api.md
-docs/plugins.md
-docs/writing-a-plugin.md
