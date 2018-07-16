@@ -9,3 +9,4 @@ build/
 lib/*.js
 
 api/
+coverage/

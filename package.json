@@ -67,7 +67,7 @@
     "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
     "docs": "jsdoc -c .jsdocrc lib/*.es6",
     "lint": "eslint-ci *.js lib/*.es6 test/*.js",
-    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
+    "test": "gulp && jest --coverage && yarn lint && yarn spell && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
@@ -88,14 +88,19 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "29 KB"
+      "limit": "28 KB"
     }
   ],
   "jest": {
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
       "<rootDir>/build"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 99.42
+      }
+    }
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -144,7 +149,7 @@
     "format": "markdown",
     "fileExtensions": [".md"],
     "excludeFiles": [
-        ".git", "node_modules", "build", "api/*.es6.html", "README-cn.md"
+      ".git", "node_modules", "build", "api/*.es6.html", "README-cn.md"
     ],
     "ignoreCapitalization": true,
     "dictionary": [

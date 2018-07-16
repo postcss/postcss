@@ -64,9 +64,9 @@ gulp.task('build:docs', () => {
   const ignore = require('fs').readFileSync('.npmignore').toString()
     .trim().split(/\n+/)
     .concat([
-      'package.json', '.npmignore', 'lib/*', 'test/*',
+      'package.json', '.npmignore', 'lib/*', 'test/*', 'CONTRIBUTING.md',
       'node_modules/**/*', 'docs/api.md', 'docs/plugins.md',
-      'docs/writing-a-plugin.md', 'CONTRIBUTING.md'
+      'docs/writing-a-plugin.md', 'coverage', 'coverage/*', 'coverage/**/*'
     ]).map(i => '!' + i)
   return gulp.src(['**/*'].concat(ignore))
     .pipe(gulp.dest('build'))
