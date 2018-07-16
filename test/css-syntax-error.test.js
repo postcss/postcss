@@ -45,8 +45,10 @@ it('has stack trace', () => {
 
 it('highlights broken line with colors', () => {
   const c = chalk
-  expect(parseError('a {').showSourceCode(true)).toEqual(
-    c.red.bold('>') + c.gray(' 1 | ') + 'a ' + c.yellow('{') + '\n ' +
+  expect(parseError('#a .b {').showSourceCode(true)).toEqual(
+    c.red.bold('>') + c.gray(' 1 | ') +
+    c.magenta('#a') + ' ' + c.yellow('.b') + ' ' +
+    c.yellow('{') + '\n ' +
     c.gray('   | ') + c.red.bold('^'))
 })
 
