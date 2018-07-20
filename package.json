@@ -36,16 +36,16 @@
     "docdash": "^0.4.0",
     "eslint": "^5.1.0",
     "eslint-ci": "^0.1.1",
-    "eslint-config-logux": "^23.0.2",
-    "eslint-config-postcss": "^3.0.2",
+    "eslint-config-logux": "^23.0.4",
+    "eslint-config-postcss": "^3.0.3",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jest": "^21.17.0",
-    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-jest": "^21.18.0",
+    "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^3.1.0",
-    "fs-extra": "^6.0.1",
+    "fs-extra": "^7.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-changed": "^3.2.0",
@@ -109,7 +109,7 @@
     },
     "extends": "eslint-config-postcss",
     "rules": {
-      "node/no-unsupported-features": [
+      "node/no-unsupported-features/es-syntax": [
         "error",
         {
           "ignores": [
@@ -147,9 +147,15 @@
   "yaspeller": {
     "lang": "en",
     "format": "markdown",
-    "fileExtensions": [".md"],
+    "fileExtensions": [
+      ".md"
+    ],
     "excludeFiles": [
-      ".git", "node_modules", "build", "api/*.es6.html", "README-cn.md"
+      ".git",
+      "node_modules",
+      "build",
+      "api/*.es6.html",
+      "README-cn.md"
     ],
     "ignoreCapitalization": true,
     "dictionary": [
