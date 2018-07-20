@@ -379,7 +379,7 @@ class Node {
    *
    * @param {boolean} [keepBetween] Keep the raws.between symbols.
    *
-   * @returns {void}
+   * @return {undefined}
    *
    * @example
    * node.raws.before  //=> ' '
