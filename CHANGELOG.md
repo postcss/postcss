@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.1
+* Fix JSDoc (by Steven Lambert).
+
 ## 7.0 “President Amy”
 * Remove Node.js 9 and Node.js 4 support.
 * Remove IE and “dead” browsers from Babel.
