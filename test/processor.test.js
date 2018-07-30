@@ -477,7 +477,7 @@ it('warns about missed plugins', () => {
     expect(console.warn).toBeCalledWith(
       'You did not set any plugins, parser, or stringifier. ' +
       'Right now PostCSS do nothing. Pick plugins for your case ' +
-      'on https://www.postcss.parts/ and usem them in postcss.config.js.'
+      'on https://www.postcss.parts/ and use them in postcss.config.js.'
     )
   })
 })
