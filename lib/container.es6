@@ -65,7 +65,7 @@ class Container extends Node {
     if (!this.indexes) this.indexes = { }
 
     this.lastEach += 1
-    const id = this.lastEach
+    let id = this.lastEach
     this.indexes[id] = 0
 
     if (!this.nodes) return undefined
@@ -111,7 +111,7 @@ class Container extends Node {
       } catch (e) {
         e.postcssNode = child
         if (e.stack && child.source && /\n\s{4}at /.test(e.stack)) {
-          const s = child.source
+          let s = child.source
           e.stack = e.stack.replace(/\n\s{4}at /,
             `$&${ s.input.from }:${ s.start.line }:${ s.start.column }$&`)
         }
@@ -321,9 +321,9 @@ class Container extends Node {
    * root.first.append('color: black; z-index: 1')
    */
   append (...children) {
-    for (const child of children) {
-      const nodes = this.normalize(child, this.last)
-      for (const node of nodes) this.nodes.push(node)
+    for (let child of children) {
+      let nodes = this.normalize(child, this.last)
+      for (let node of nodes) this.nodes.push(node)
     }
     return this
   }
@@ -350,10 +350,10 @@ class Container extends Node {
    */
   prepend (...children) {
     children = children.reverse()
-    for (const child of children) {
-      const nodes = this.normalize(child, this.first, 'prepend').reverse()
-      for (const node of nodes) this.nodes.unshift(node)
-      for (const id in this.indexes) {
+    for (let child of children) {
+      let nodes = this.normalize(child, this.first, 'prepend').reverse()
+      for (let node of nodes) this.nodes.unshift(node)
+      for (let id in this.indexes) {
         this.indexes[id] = this.indexes[id] + nodes.length
       }
     }
@@ -363,7 +363,7 @@ class Container extends Node {
   cleanRaws (keepBetween) {
     super.cleanRaws(keepBetween)
     if (this.nodes) {
-      for (const node of this.nodes) node.cleanRaws(keepBetween)
+      for (let node of this.nodes) node.cleanRaws(keepBetween)
     }
   }
 
@@ -381,12 +381,12 @@ class Container extends Node {
   insertBefore (exist, add) {
     exist = this.index(exist)
 
-    const type = exist === 0 ? 'prepend' : false
-    const nodes = this.normalize(add, this.nodes[exist], type).reverse()
-    for (const node of nodes) this.nodes.splice(exist, 0, node)
+    let type = exist === 0 ? 'prepend' : false
+    let nodes = this.normalize(add, this.nodes[exist], type).reverse()
+    for (let node of nodes) this.nodes.splice(exist, 0, node)
 
     let index
-    for (const id in this.indexes) {
+    for (let id in this.indexes) {
       index = this.indexes[id]
       if (exist <= index) {
         this.indexes[id] = index + nodes.length
@@ -407,11 +407,11 @@ class Container extends Node {
   insertAfter (exist, add) {
     exist = this.index(exist)
 
-    const nodes = this.normalize(add, this.nodes[exist]).reverse()
-    for (const node of nodes) this.nodes.splice(exist + 1, 0, node)
+    let nodes = this.normalize(add, this.nodes[exist]).reverse()
+    for (let node of nodes) this.nodes.splice(exist + 1, 0, node)
 
     let index
-    for (const id in this.indexes) {
+    for (let id in this.indexes) {
       index = this.indexes[id]
       if (exist < index) {
         this.indexes[id] = index + nodes.length
@@ -441,7 +441,7 @@ class Container extends Node {
     this.nodes.splice(child, 1)
 
     let index
-    for (const id in this.indexes) {
+    for (let id in this.indexes) {
       index = this.indexes[id]
       if (index >= child) {
         this.indexes[id] = index - 1
@@ -462,7 +462,7 @@ class Container extends Node {
    * rule.nodes.length //=> 0
    */
   removeAll () {
-    for (const node of this.nodes) node.parent = undefined
+    for (let node of this.nodes) node.parent = undefined
     this.nodes = []
     return this
   }
@@ -585,16 +585,16 @@ class Container extends Node {
 
   normalize (nodes, sample) {
     if (typeof nodes === 'string') {
-      const parse = require('./parse')
+      let parse = require('./parse')
       nodes = cleanSource(parse(nodes).nodes)
     } else if (Array.isArray(nodes)) {
       nodes = nodes.slice(0)
-      for (const i of nodes) {
+      for (let i of nodes) {
         if (i.parent) i.parent.removeChild(i, 'ignore')
       }
     } else if (nodes.type === 'root') {
       nodes = nodes.nodes.slice(0)
-      for (const i of nodes) {
+      for (let i of nodes) {
         if (i.parent) i.parent.removeChild(i, 'ignore')
       }
     } else if (nodes.type) {
@@ -607,10 +607,10 @@ class Container extends Node {
       }
       nodes = [new Declaration(nodes)]
     } else if (nodes.selector) {
-      const Rule = require('./rule')
+      let Rule = require('./rule')
       nodes = [new Rule(nodes)]
     } else if (nodes.name) {
-      const AtRule = require('./at-rule')
+      let AtRule = require('./at-rule')
       nodes = [new AtRule(nodes)]
     } else if (nodes.text) {
       nodes = [new Comment(nodes)]
@@ -618,7 +618,7 @@ class Container extends Node {
       throw new Error('Unknown node type in node creation')
     }
 
-    const processed = nodes.map(i => {
+    let processed = nodes.map(i => {
       if (i.parent) i.parent.removeChild(i)
       if (typeof i.raws.before === 'undefined') {
         if (sample && typeof sample.raws.before !== 'undefined') {

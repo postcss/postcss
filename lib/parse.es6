@@ -2,8 +2,8 @@ import Parser from './parser'
 import Input from './input'
 
 function parse (css, opts) {
-  const input = new Input(css, opts)
-  const parser = new Parser(input)
+  let input = new Input(css, opts)
+  let parser = new Parser(input)
   try {
     parser.parse()
   } catch (e) {

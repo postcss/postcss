@@ -6,7 +6,7 @@
  *
  * @namespace vendor
  */
-const vendor = {
+let vendor = {
 
   /**
    * Returns the vendor prefix extracted from an input string.
@@ -20,7 +20,7 @@ const vendor = {
    * postcss.vendor.prefix('tab-size')      //=> ''
    */
   prefix (prop) {
-    const match = prop.match(/^(-\w+-)/)
+    let match = prop.match(/^(-\w+-)/)
     if (match) {
       return match[0]
     } else {

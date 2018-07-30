@@ -7,10 +7,10 @@
  *
  * @namespace list
  */
-const list = {
+let list = {
 
   split (string, separators, last) {
-    const array = []
+    let array = []
     let current = ''
     let split = false
 
@@ -19,7 +19,7 @@ const list = {
     let escape = false
 
     for (let i = 0; i < string.length; i++) {
-      const letter = string[i]
+      let letter = string[i]
 
       if (quote) {
         if (escape) {
@@ -64,7 +64,7 @@ const list = {
    * postcss.list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
    */
   space (string) {
-    const spaces = [' ', '\n', '\t']
+    let spaces = [' ', '\n', '\t']
     return list.split(string, spaces)
   },
 
@@ -81,8 +81,7 @@ const list = {
    * //=> ['black', 'linear-gradient(white, black)']
    */
   comma (string) {
-    const comma = ','
-    return list.split(string, [comma], true)
+    return list.split(string, [','], true)
   }
 
 }

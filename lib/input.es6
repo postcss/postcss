@@ -55,7 +55,7 @@ class Input {
       }
     }
 
-    const map = new PreviousMap(this.css, opts)
+    let map = new PreviousMap(this.css, opts)
     if (map.text) {
       /**
        * The input source map passed from a compilation step before PostCSS
@@ -67,7 +67,7 @@ class Input {
        * root.source.input.map.consumer().sources //=> ['a.sass']
        */
       this.map = map
-      const file = map.consumer().file
+      let file = map.consumer().file
       if (!this.file && file) this.file = this.mapResolve(file)
     }
 
@@ -91,7 +91,7 @@ class Input {
 
   error (message, line, column, opts = { }) {
     let result
-    const origin = this.origin(line, column)
+    let origin = this.origin(line, column)
     if (origin) {
       result = new CssSyntaxError(
         message, origin.line, origin.column,
@@ -123,18 +123,18 @@ class Input {
    */
   origin (line, column) {
     if (!this.map) return false
-    const consumer = this.map.consumer()
+    let consumer = this.map.consumer()
 
-    const from = consumer.originalPositionFor({ line, column })
+    let from = consumer.originalPositionFor({ line, column })
     if (!from.source) return false
 
-    const result = {
+    let result = {
       file: this.mapResolve(from.source),
       line: from.line,
       column: from.column
     }
 
-    const source = consumer.sourceContentFor(from.source)
+    let source = consumer.sourceContentFor(from.source)
     if (source) result.source = source
 
     return result

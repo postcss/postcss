@@ -134,7 +134,7 @@ class Result {
       }
     }
 
-    const warning = new Warning(text, opts)
+    let warning = new Warning(text, opts)
     this.messages.push(warning)
 
     return warning

@@ -1,4 +1,4 @@
-const printed = { }
+let printed = { }
 
 export default function warnOnce (message) {
   if (printed[message]) return

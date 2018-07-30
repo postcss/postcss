@@ -1,16 +1,16 @@
-const gulp = require('gulp')
+let gulp = require('gulp')
 
 gulp.task('clean', () => {
-  const del = require('del')
+  let del = require('del')
   return del(['lib/*.js', 'postcss.js', 'build/', 'api/'])
 })
 
 // Build
 
 gulp.task('compile', () => {
-  const sourcemaps = require('gulp-sourcemaps')
-  const changed = require('gulp-changed')
-  const babel = require('gulp-babel')
+  let sourcemaps = require('gulp-sourcemaps')
+  let changed = require('gulp-changed')
+  let babel = require('gulp-babel')
   return gulp.src('lib/*.es6')
     .pipe(changed('lib', { extension: '.js' }))
     .pipe(sourcemaps.init())
@@ -43,7 +43,7 @@ gulp.task('build:lib', ['compile'], () => {
 })
 
 gulp.task('build:package', () => {
-  const editor = require('gulp-json-editor')
+  let editor = require('gulp-json-editor')
   return gulp.src('./package.json')
     .pipe(editor(json => {
       delete json.babel
@@ -61,7 +61,7 @@ gulp.task('build:package', () => {
 })
 
 gulp.task('build:docs', () => {
-  const ignore = require('fs').readFileSync('.npmignore').toString()
+  let ignore = require('fs').readFileSync('.npmignore').toString()
     .trim().split(/\n+/)
     .concat([
       'package.json', '.npmignore', 'lib/*', 'test/*', 'CONTRIBUTING.md',
@@ -73,24 +73,24 @@ gulp.task('build:docs', () => {
 })
 
 gulp.task('build', done => {
-  const runSequence = require('run-sequence')
+  let runSequence = require('run-sequence')
   runSequence('clean', ['build:lib', 'build:docs', 'build:package'], done)
 })
 
 // Tests
 
 gulp.task('integration', ['build'], done => {
-  const postcss = require('./build')
-  const real = require('postcss-parser-tests/real')
+  let postcss = require('./build')
+  let real = require('postcss-parser-tests/real')
   real(done, css => {
     return postcss.parse(css).toResult({ map: { annotation: false } })
   })
 })
 
 gulp.task('version', ['build:lib'], () => {
-  const Processor = require('./lib/processor')
-  const instance = new Processor()
-  const pkg = require('./package')
+  let Processor = require('./lib/processor')
+  let instance = new Processor()
+  let pkg = require('./package')
   if (pkg.version !== instance.version) {
     throw new Error('Version in Processor is not equal to package.json')
   }

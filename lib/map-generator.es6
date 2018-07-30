@@ -22,7 +22,7 @@ class MapGenerator {
       this.previousMaps = []
       this.root.walk(node => {
         if (node.source && node.source.input.map) {
-          const map = node.source.input.map
+          let map = node.source.input.map
           if (this.previousMaps.indexOf(map) === -1) {
             this.previousMaps.push(map)
           }
@@ -38,7 +38,7 @@ class MapGenerator {
       return this.mapOpts.inline
     }
 
-    const annotation = this.mapOpts.annotation
+    let annotation = this.mapOpts.annotation
     if (typeof annotation !== 'undefined' && annotation !== true) {
       return false
     }
@@ -75,13 +75,13 @@ class MapGenerator {
   }
 
   setSourcesContent () {
-    const already = { }
+    let already = { }
     this.root.walk(node => {
       if (node.source) {
-        const from = node.source.input.from
+        let from = node.source.input.from
         if (from && !already[from]) {
           already[from] = true
-          const relative = this.relative(from)
+          let relative = this.relative(from)
           this.map.setSourceContent(relative, node.source.input.css)
         }
       }
@@ -89,9 +89,9 @@ class MapGenerator {
   }
 
   applyPrevMaps () {
-    for (const prev of this.previous()) {
-      const from = this.relative(prev.file)
-      const root = prev.root || path.dirname(prev.file)
+    for (let prev of this.previous()) {
+      let from = this.relative(prev.file)
+      let root = prev.root || path.dirname(prev.file)
       let map
 
       if (this.mapOpts.sourcesContent === false) {

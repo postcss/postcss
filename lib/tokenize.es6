@@ -24,18 +24,18 @@ const RE_BAD_BRACKET = /.[\\/("'\n]/
 const RE_HEX_ESCAPE = /[a-f0-9]/i
 
 export default function tokenizer (input, options = {}) {
-  const css = input.css.valueOf()
-  const ignore = options.ignoreErrors
+  let css = input.css.valueOf()
+  let ignore = options.ignoreErrors
 
   let code, next, quote, lines, last, content, escape
   let nextLine, nextOffset, escaped, escapePos, prev, n, currentToken
 
-  const length = css.length
+  let length = css.length
   let offset = -1
   let line = 1
   let pos = 0
-  const buffer = []
-  const returned = []
+  let buffer = []
+  let returned = []
 
   function unclosed (what) {
     throw input.error('Unclosed ' + what, line, pos - offset)

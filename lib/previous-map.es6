@@ -35,8 +35,8 @@ class PreviousMap {
      */
     this.inline = this.startWith(this.annotation, 'data:')
 
-    const prev = opts.map ? opts.map.prev : undefined
-    const text = this.loadMap(opts.from, prev)
+    let prev = opts.map ? opts.map.prev : undefined
+    let text = this.loadMap(opts.from, prev)
     if (text) this.text = text
   }
 
@@ -72,21 +72,21 @@ class PreviousMap {
   }
 
   loadAnnotation (css) {
-    const match = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//)
+    let match = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//)
     if (match) this.annotation = match[1].trim()
   }
 
   decodeInline (text) {
-    const baseCharsetUri = /^data:application\/json;charset=utf-?8;base64,/
-    const baseUri = /^data:application\/json;base64,/
-    const uri = 'data:application/json,'
+    let baseCharsetUri = /^data:application\/json;charset=utf-?8;base64,/
+    let baseUri = /^data:application\/json;base64,/
+    let uri = 'data:application/json,'
 
     if (this.startWith(text, uri)) {
       return decodeURIComponent(text.substr(uri.length))
     } else if (baseCharsetUri.test(text) || baseUri.test(text)) {
       return fromBase64(text.substr(RegExp.lastMatch.length))
     } else {
-      const encoding = text.match(/data:application\/json;([^,]+),/)[1]
+      let encoding = text.match(/data:application\/json;([^,]+),/)[1]
       throw new Error('Unsupported source map encoding ' + encoding)
     }
   }
@@ -98,7 +98,7 @@ class PreviousMap {
       if (typeof prev === 'string') {
         return prev
       } else if (typeof prev === 'function') {
-        const prevPath = prev(file)
+        let prevPath = prev(file)
         if (prevPath && fs.existsSync && fs.existsSync(prevPath)) {
           return fs.readFileSync(prevPath, 'utf-8').toString().trim()
         } else {

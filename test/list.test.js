@@ -1,4 +1,4 @@
-const list = require('../lib/list')
+let list = require('../lib/list')
 
 it('space() splits list by spaces', () => {
   expect(list.space('a b')).toEqual(['a', 'b'])
@@ -17,7 +17,7 @@ it('space() checks functions', () => {
 })
 
 it('space() works from variable', () => {
-  const space = list.space
+  let space = list.space
   expect(space('a b')).toEqual(['a', 'b'])
 })
 
@@ -38,6 +38,6 @@ it('comma() checks functions', () => {
 })
 
 it('comma() works from variable', () => {
-  const comma = list.comma
+  let comma = list.comma
   expect(comma('a, b')).toEqual(['a', 'b'])
 })

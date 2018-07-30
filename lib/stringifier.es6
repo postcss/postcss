@@ -31,13 +31,13 @@ class Stringifier {
   }
 
   comment (node) {
-    const left = this.raw(node, 'left', 'commentLeft')
-    const right = this.raw(node, 'right', 'commentRight')
+    let left = this.raw(node, 'left', 'commentLeft')
+    let right = this.raw(node, 'right', 'commentRight')
     this.builder('/*' + left + node.text + right + '*/', node)
   }
 
   decl (node, semicolon) {
-    const between = this.raw(node, 'between', 'colon')
+    let between = this.raw(node, 'between', 'colon')
     let string = node.prop + between + this.rawValue(node, 'value')
 
     if (node.important) {
@@ -57,7 +57,7 @@ class Stringifier {
 
   atrule (node, semicolon) {
     let name = '@' + node.name
-    const params = node.params ? this.rawValue(node, 'params') : ''
+    let params = node.params ? this.rawValue(node, 'params') : ''
 
     if (typeof node.raws.afterName !== 'undefined') {
       name += node.raws.afterName
@@ -68,7 +68,7 @@ class Stringifier {
     if (node.nodes) {
       this.block(node, name + params)
     } else {
-      const end = (node.raws.between || '') + (semicolon ? ';' : '')
+      let end = (node.raws.between || '') + (semicolon ? ';' : '')
       this.builder(name + params + end, node)
     }
   }
@@ -80,17 +80,17 @@ class Stringifier {
       last -= 1
     }
 
-    const semicolon = this.raw(node, 'semicolon')
+    let semicolon = this.raw(node, 'semicolon')
     for (let i = 0; i < node.nodes.length; i++) {
-      const child = node.nodes[i]
-      const before = this.raw(child, 'before')
+      let child = node.nodes[i]
+      let before = this.raw(child, 'before')
       if (before) this.builder(before)
       this.stringify(child, last !== i || semicolon)
     }
   }
 
   block (node, start) {
-    const between = this.raw(node, 'between', 'beforeOpen')
+    let between = this.raw(node, 'between', 'beforeOpen')
     this.builder(start + between + '{', node, 'start')
 
     let after
@@ -115,7 +115,7 @@ class Stringifier {
       if (typeof value !== 'undefined') return value
     }
 
-    const parent = node.parent
+    let parent = node.parent
 
     // Hack for first rule in CSS
     if (detect === 'before') {
@@ -128,7 +128,7 @@ class Stringifier {
     if (!parent) return DEFAULT_RAW[detect]
 
     // Detect style by other nodes
-    const root = node.root()
+    let root = node.root()
     if (!root.rawCache) root.rawCache = { }
     if (typeof root.rawCache[detect] !== 'undefined') {
       return root.rawCache[detect]
@@ -137,7 +137,7 @@ class Stringifier {
     if (detect === 'before' || detect === 'after') {
       return this.beforeAfter(node, detect)
     } else {
-      const method = 'raw' + capitalize(detect)
+      let method = 'raw' + capitalize(detect)
       if (this[method]) {
         value = this[method](root, node)
       } else {
@@ -180,10 +180,10 @@ class Stringifier {
     if (root.raws.indent) return root.raws.indent
     let value
     root.walk(i => {
-      const p = i.parent
+      let p = i.parent
       if (p && p !== root && p.parent && p.parent === root) {
         if (typeof i.raws.before !== 'undefined') {
-          const parts = i.raws.before.split('\n')
+          let parts = i.raws.before.split('\n')
           value = parts[parts.length - 1]
           value = value.replace(/[^\s]/g, '')
           return false
@@ -307,7 +307,7 @@ class Stringifier {
     }
 
     if (value.indexOf('\n') !== -1) {
-      const indent = this.raw(node, null, 'indent')
+      let indent = this.raw(node, null, 'indent')
       if (indent.length) {
         for (let step = 0; step < depth; step++) value += indent
       }
@@ -317,8 +317,8 @@ class Stringifier {
   }
 
   rawValue (node, prop) {
-    const value = node[prop]
-    const raw = node.raws[prop]
+    let value = node[prop]
+    let raw = node.raws[prop]
     if (raw && raw.value === value) {
       return raw.raw
     } else {

@@ -40,7 +40,7 @@ class Warning {
     this.text = text
 
     if (opts.node && opts.node.source) {
-      const pos = opts.node.positionBy(opts)
+      let pos = opts.node.positionBy(opts)
       /**
        * Line in the input file with this warning’s source.
        * @type {number}
@@ -60,7 +60,7 @@ class Warning {
       this.column = pos.column
     }
 
-    for (const opt in opts) this[opt] = opts[opt]
+    for (let opt in opts) this[opt] = opts[opt]
   }
 
   /**

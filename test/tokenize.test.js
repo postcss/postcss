@@ -1,9 +1,9 @@
-const tokenizer = require('../lib/tokenize')
-const Input = require('../lib/input')
+let tokenizer = require('../lib/tokenize')
+let Input = require('../lib/input')
 
 function tokenize (css, opts) {
-  const processor = tokenizer(new Input(css), opts)
-  const tokens = []
+  let processor = tokenizer(new Input(css), opts)
+  let tokens = []
   while (!processor.endOfFile()) {
     tokens.push(processor.nextToken())
   }
@@ -188,7 +188,7 @@ it('supports carriage return', () => {
 })
 
 it('tokenizes CSS', () => {
-  const css = 'a {\n' +
+  let css = 'a {\n' +
               '  content: "a";\n' +
               '  width: calc(1px;)\n' +
               '  }\n' +

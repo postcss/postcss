@@ -2,7 +2,7 @@ jest.doMock('fs', () => ({ }))
 jest.doMock('chalk', () => ({ }))
 jest.doMock('supports-color', () => ({ }))
 
-const postcss = require('..')
+let postcss = require('..')
 
 it('shows code without chalk', () => {
   let error

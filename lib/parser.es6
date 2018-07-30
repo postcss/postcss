@@ -61,17 +61,17 @@ export default class Parser {
   }
 
   comment (token) {
-    const node = new Comment()
+    let node = new Comment()
     this.init(node, token[2], token[3])
     node.source.end = { line: token[4], column: token[5] }
 
-    const text = token[1].slice(2, -2)
+    let text = token[1].slice(2, -2)
     if (/^\s*$/.test(text)) {
       node.text = ''
       node.raws.left = text
       node.raws.right = ''
     } else {
-      const match = text.match(/^(\s*)([^]*[^\s])(\s*)$/)
+      let match = text.match(/^(\s*)([^]*[^\s])(\s*)$/)
       node.text = match[2]
       node.raws.left = match[1]
       node.raws.right = match[3]
@@ -79,7 +79,7 @@ export default class Parser {
   }
 
   emptyRule (token) {
-    const node = new Rule()
+    let node = new Rule()
     this.init(node, token[2], token[3])
     node.selector = ''
     node.raws.between = ''
@@ -91,9 +91,9 @@ export default class Parser {
     let type = null
     let colon = false
     let bracket = null
-    const brackets = []
+    let brackets = []
 
-    const tokens = []
+    let tokens = []
     let token = start
     while (token) {
       type = token[0]
@@ -146,7 +146,7 @@ export default class Parser {
   rule (tokens) {
     tokens.pop()
 
-    const node = new Rule()
+    let node = new Rule()
     this.init(node, tokens[0][2], tokens[0][3])
 
     node.raws.between = this.spacesAndCommentsFromEnd(tokens)
@@ -155,10 +155,10 @@ export default class Parser {
   }
 
   decl (tokens) {
-    const node = new Declaration()
+    let node = new Declaration()
     this.init(node)
 
-    const last = tokens[tokens.length - 1]
+    let last = tokens[tokens.length - 1]
     if (last[0] === ';') {
       this.semicolon = true
       tokens.pop()
@@ -177,7 +177,7 @@ export default class Parser {
 
     node.prop = ''
     while (tokens.length) {
-      const type = tokens[0][0]
+      let type = tokens[0][0]
       if (type === ':' || type === 'space' || type === 'comment') {
         break
       }
@@ -214,10 +214,10 @@ export default class Parser {
         if (string !== ' !important') node.raws.important = string
         break
       } else if (token[1].toLowerCase() === 'important') {
-        const cache = tokens.slice(0)
+        let cache = tokens.slice(0)
         let str = ''
         for (let j = i; j > 0; j--) {
-          const type = cache[j][0]
+          let type = cache[j][0]
           if (str.trim().indexOf('!') === 0 && type !== 'space') {
             break
           }
@@ -241,7 +241,7 @@ export default class Parser {
   }
 
   atrule (token) {
-    const node = new AtRule()
+    let node = new AtRule()
     node.name = token[1].slice(1)
     if (node.name === '') {
       this.unnamedAtrule(node, token)
@@ -252,7 +252,7 @@ export default class Parser {
     let shift
     let last = false
     let open = false
-    const params = []
+    let params = []
 
     while (!this.tokenizer.endOfFile()) {
       token = this.tokenizer.nextToken()
@@ -336,7 +336,7 @@ export default class Parser {
   freeSemicolon (token) {
     this.spaces += token[1]
     if (this.current.nodes) {
-      const prev = this.current.nodes[this.current.nodes.length - 1]
+      let prev = this.current.nodes[this.current.nodes.length - 1]
       if (prev && prev.type === 'rule' && !prev.raws.ownSemicolon) {
         prev.raws.ownSemicolon = this.spaces
         this.spaces = ''
@@ -357,11 +357,11 @@ export default class Parser {
 
   raw (node, prop, tokens) {
     let token, type
-    const length = tokens.length
+    let length = tokens.length
     let value = ''
     let clean = true
     let next, prev
-    const pattern = /^([.|#])?([\w])+/i
+    let pattern = /^([.|#])?([\w])+/i
 
     for (let i = 0; i < length; i += 1) {
       token = tokens[i]
@@ -392,7 +392,7 @@ export default class Parser {
       }
     }
     if (!clean) {
-      const raw = tokens.reduce((all, i) => all + i[1], '')
+      let raw = tokens.reduce((all, i) => all + i[1], '')
       node.raws[prop] = { value, raw }
     }
     node[prop] = value
@@ -481,7 +481,7 @@ export default class Parser {
   }
 
   unclosedBlock () {
-    const pos = this.current.source.start
+    let pos = this.current.source.start
     throw this.input.error('Unclosed block', pos.line, pos.column)
   }
 
@@ -498,7 +498,7 @@ export default class Parser {
   }
 
   checkMissedSemicolon (tokens) {
-    const colon = this.colon(tokens)
+    let colon = this.colon(tokens)
     if (colon === false) return
 
     let founded = 0

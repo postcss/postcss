@@ -40,8 +40,8 @@ class Rule extends Container {
   }
 
   set selectors (values) {
-    const match = this.selector ? this.selector.match(/,\s*/) : null
-    const sep = match ? match[0] : ',' + this.raw('between', 'beforeOpen')
+    let match = this.selector ? this.selector.match(/,\s*/) : null
+    let sep = match ? match[0] : ',' + this.raw('between', 'beforeOpen')
     this.selector = values.join(sep)
   }
 

@@ -3,12 +3,12 @@ import Stringifier from './stringifier'
 import stringify from './stringify'
 
 function cloneNode (obj, parent) {
-  const cloned = new obj.constructor()
+  let cloned = new obj.constructor()
 
-  for (const i in obj) {
+  for (let i in obj) {
     if (!obj.hasOwnProperty(i)) continue
     let value = obj[i]
-    const type = typeof value
+    let type = typeof value
 
     if (i === 'parent' && type === 'object') {
       if (parent) cloned[i] = parent
@@ -44,7 +44,7 @@ class Node {
         )
       }
     }
-    for (const name in defaults) {
+    for (let name in defaults) {
       this[name] = defaults[name]
     }
   }
@@ -83,7 +83,7 @@ class Node {
    */
   error (message, opts = { }) {
     if (this.source) {
-      const pos = this.positionBy(opts)
+      let pos = this.positionBy(opts)
       return this.source.input.error(message, pos.line, pos.column, opts)
     } else {
       return new CssSyntaxError(message)
@@ -116,8 +116,8 @@ class Node {
    * })
    */
   warn (result, text, opts) {
-    const data = { node: this }
-    for (const i in opts) data[i] = opts[i]
+    let data = { node: this }
+    for (let i in opts) data[i] = opts[i]
     return result.warn(text, data)
   }
 
@@ -177,8 +177,8 @@ class Node {
    * @return {Node} Clone of the node.
    */
   clone (overrides = { }) {
-    const cloned = cloneNode(this)
-    for (const name in overrides) {
+    let cloned = cloneNode(this)
+    for (let name in overrides) {
       cloned[name] = overrides[name]
     }
     return cloned
@@ -196,7 +196,7 @@ class Node {
    * @return {Node} New node
    */
   cloneBefore (overrides = { }) {
-    const cloned = this.clone(overrides)
+    let cloned = this.clone(overrides)
     this.parent.insertBefore(this, cloned)
     return cloned
   }
@@ -210,7 +210,7 @@ class Node {
    * @return {Node} New node.
    */
   cloneAfter (overrides = { }) {
-    const cloned = this.clone(overrides)
+    let cloned = this.clone(overrides)
     this.parent.insertAfter(this, cloned)
     return cloned
   }
@@ -229,7 +229,7 @@ class Node {
    */
   replaceWith (...nodes) {
     if (this.parent) {
-      for (const node of nodes) {
+      for (let node of nodes) {
         this.parent.insertBefore(this, node)
       }
 
@@ -255,7 +255,7 @@ class Node {
    */
   next () {
     if (!this.parent) return undefined
-    const index = this.parent.index(this)
+    let index = this.parent.index(this)
     return this.parent.nodes[index + 1]
   }
 
@@ -273,7 +273,7 @@ class Node {
    */
   prev () {
     if (!this.parent) return undefined
-    const index = this.parent.index(this)
+    let index = this.parent.index(this)
     return this.parent.nodes[index - 1]
   }
 
@@ -312,12 +312,12 @@ class Node {
   }
 
   toJSON () {
-    const fixed = { }
+    let fixed = { }
 
-    for (const name in this) {
+    for (let name in this) {
       if (!this.hasOwnProperty(name)) continue
       if (name === 'parent') continue
-      const value = this[name]
+      let value = this[name]
 
       if (value instanceof Array) {
         fixed[name] = value.map(i => {
@@ -356,7 +356,7 @@ class Node {
    * @return {string} Code style value.
    */
   raw (prop, defaultType) {
-    const str = new Stringifier()
+    let str = new Stringifier()
     return str.raw(this, prop, defaultType)
   }
 
@@ -393,7 +393,7 @@ class Node {
   }
 
   positionInside (index) {
-    const string = this.toString()
+    let string = this.toString()
     let column = this.source.start.column
     let line = this.source.start.line
 
@@ -414,7 +414,7 @@ class Node {
     if (opts.index) {
       pos = this.positionInside(opts.index)
     } else if (opts.word) {
-      const index = this.toString().indexOf(opts.word)
+      let index = this.toString().indexOf(opts.word)
       if (index !== -1) pos = this.positionInside(index)
     }
     return pos

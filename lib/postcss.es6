@@ -108,7 +108,7 @@ function postcss (...plugins) {
  */
 postcss.plugin = function plugin (name, initializer) {
   function creator (...args) {
-    const transformer = initializer(...args)
+    let transformer = initializer(...args)
     transformer.postcssPlugin = name
     transformer.postcssVersion = (new Processor()).version
     return transformer

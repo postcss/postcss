@@ -1,32 +1,32 @@
-const Result = require('../lib/result')
-const parse = require('../lib/parse')
+let Result = require('../lib/result')
+let parse = require('../lib/parse')
 
 it('prepend() fixes spaces on insert before first', () => {
-  const css = parse('a {} b {}')
+  let css = parse('a {} b {}')
   css.prepend({ selector: 'em' })
   expect(css.toString()).toEqual('em {} a {} b {}')
 })
 
 it('prepend() fixes spaces on multiple inserts before first', () => {
-  const css = parse('a {} b {}')
+  let css = parse('a {} b {}')
   css.prepend({ selector: 'em' }, { selector: 'strong' })
   expect(css.toString()).toEqual('em {} strong {} a {} b {}')
 })
 
 it('prepend() uses default spaces on only first', () => {
-  const css = parse('a {}')
+  let css = parse('a {}')
   css.prepend({ selector: 'em' })
   expect(css.toString()).toEqual('em {}\na {}')
 })
 
 it('append() sets new line between rules in multiline files', () => {
-  const a = parse('a {}\n\na {}\n')
-  const b = parse('b {}\n')
+  let a = parse('a {}\n\na {}\n')
+  let b = parse('b {}\n')
   expect(a.append(b).toString()).toEqual('a {}\n\na {}\n\nb {}\n')
 })
 
 it('insertAfter() does not use before of first rule', () => {
-  const css = parse('a{} b{}')
+  let css = parse('a{} b{}')
   css.insertAfter(0, { selector: '.a' })
   css.insertAfter(2, { selector: '.b' })
 
@@ -36,26 +36,26 @@ it('insertAfter() does not use before of first rule', () => {
 })
 
 it('fixes spaces on removing first rule', () => {
-  const css = parse('a{}\nb{}\n')
+  let css = parse('a{}\nb{}\n')
   css.first.remove()
   expect(css.toString()).toEqual('b{}\n')
 })
 
 it('keeps spaces on moving root', () => {
-  const css1 = parse('a{}\nb{}\n')
+  let css1 = parse('a{}\nb{}\n')
 
-  const css2 = parse('')
+  let css2 = parse('')
   css2.append(css1)
   expect(css2.toString()).toEqual('a{}\nb{}')
 
-  const css3 = parse('\n')
+  let css3 = parse('\n')
   css3.append(css2.nodes)
   expect(css3.toString()).toEqual('a{}\nb{}\n')
 })
 
 it('generates result with map', () => {
-  const root = parse('a {}')
-  const result = root.toResult({ map: true })
+  let root = parse('a {}')
+  let result = root.toResult({ map: true })
 
   expect(result instanceof Result).toBeTruthy()
   expect(result.css).toMatch(/a \{\}\n\/\*# sourceMappingURL=/)

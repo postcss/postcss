@@ -1,10 +1,10 @@
-const CssSyntaxError = require('../lib/css-syntax-error')
-const postcss = require('../lib/postcss')
+let CssSyntaxError = require('../lib/css-syntax-error')
+let postcss = require('../lib/postcss')
 
-const stripAnsi = require('strip-ansi')
-const Concat = require('concat-with-sourcemaps')
-const chalk = require('chalk')
-const path = require('path')
+let stripAnsi = require('strip-ansi')
+let Concat = require('concat-with-sourcemaps')
+let chalk = require('chalk')
+let path = require('path')
 
 function parseError (css, opts) {
   let error
@@ -21,7 +21,7 @@ function parseError (css, opts) {
 }
 
 it('saves source', () => {
-  const error = parseError('a {\n  content: "\n}')
+  let error = parseError('a {\n  content: "\n}')
 
   expect(error instanceof CssSyntaxError).toBeTruthy()
   expect(error.name).toEqual('CssSyntaxError')
@@ -44,7 +44,7 @@ it('has stack trace', () => {
 })
 
 it('highlights broken line with colors', () => {
-  const c = chalk
+  let c = chalk
   expect(parseError('#a .b {').showSourceCode(true)).toEqual(
     c.red.bold('>') + c.gray(' 1 | ') +
     c.magenta('#a') + ' ' + c.yellow('.b') + ' ' +
@@ -75,7 +75,7 @@ it('highlights small code example', () => {
 })
 
 it('add leading space for line numbers', () => {
-  const css = '\n\n\n\n\n\n\na {\n  content: "\n}\n\n\n'
+  let css = '\n\n\n\n\n\n\na {\n  content: "\n}\n\n\n'
   expect(parseError(css).showSourceCode(false))
     .toEqual('   7 | \n' +
              '   8 | a {\n' +
@@ -94,24 +94,24 @@ it('prints with highlight', () => {
 })
 
 it('misses highlights without source content', () => {
-  const error = parseError('a {')
+  let error = parseError('a {')
   error.source = null
   expect(error.toString())
     .toEqual('CssSyntaxError: <css input>:1:1: Unclosed block')
 })
 
 it('misses position without source', () => {
-  const decl = postcss.decl({ prop: 'color', value: 'black' })
-  const error = decl.error('Test')
+  let decl = postcss.decl({ prop: 'color', value: 'black' })
+  let error = decl.error('Test')
   expect(error.toString()).toEqual('CssSyntaxError: <css input>: Test')
 })
 
 it('uses source map', () => {
-  const concat = new Concat(true, 'all.css')
+  let concat = new Concat(true, 'all.css')
   concat.add('a.css', 'a { }\n')
   concat.add('b.css', '\nb {\n')
 
-  const error = parseError(concat.content, {
+  let error = parseError(concat.content, {
     from: 'build/all.css',
     map: { prev: concat.sourceMap }
   })
@@ -129,12 +129,12 @@ it('uses source map', () => {
 })
 
 it('shows origin source', () => {
-  const input = postcss([() => true]).process('a{}', {
+  let input = postcss([() => true]).process('a{}', {
     from: '/a.css',
     to: '/b.css',
     map: { inline: false }
   })
-  const error = parseError('a{', {
+  let error = parseError('a{', {
     from: '/b.css',
     to: '/c.css',
     map: { prev: input.map }
@@ -143,7 +143,7 @@ it('shows origin source', () => {
 })
 
 it('does not uses wrong source map', () => {
-  const error = parseError('a { }\nb {', {
+  let error = parseError('a { }\nb {', {
     from: 'build/all.css',
     map: {
       prev: {
@@ -158,14 +158,14 @@ it('does not uses wrong source map', () => {
 })
 
 it('set source plugin', () => {
-  const error = postcss.parse('a{}').first.error('Error', { plugin: 'PL' })
+  let error = postcss.parse('a{}').first.error('Error', { plugin: 'PL' })
   expect(error.plugin).toEqual('PL')
   expect(error.toString())
     .toMatch(/^CssSyntaxError: PL: <css input>:1:1: Error/)
 })
 
 it('set source plugin automatically', () => {
-  const plugin = postcss.plugin('test-plugin', () => {
+  let plugin = postcss.plugin('test-plugin', () => {
     return css => {
       throw css.first.error('Error')
     }
@@ -179,7 +179,7 @@ it('set source plugin automatically', () => {
 })
 
 it('set plugin automatically in async', () => {
-  const plugin = postcss.plugin('async-plugin', () => {
+  let plugin = postcss.plugin('async-plugin', () => {
     return css => {
       return new Promise((resolve, reject) => {
         reject(css.first.error('Error'))

@@ -177,11 +177,11 @@ class CssSyntaxError {
       if (color) css = terminalHighlight(css)
     }
 
-    const lines = css.split(/\r?\n/)
-    const start = Math.max(this.line - 3, 0)
-    const end = Math.min(this.line + 2, lines.length)
+    let lines = css.split(/\r?\n/)
+    let start = Math.max(this.line - 3, 0)
+    let end = Math.min(this.line + 2, lines.length)
 
-    const maxWidth = String(end).length
+    let maxWidth = String(end).length
 
     function mark (text) {
       if (color && chalk.red) {
@@ -199,10 +199,10 @@ class CssSyntaxError {
     }
 
     return lines.slice(start, end).map((line, index) => {
-      const number = start + 1 + index
-      const gutter = ' ' + (' ' + number).slice(-maxWidth) + ' | '
+      let number = start + 1 + index
+      let gutter = ' ' + (' ' + number).slice(-maxWidth) + ' | '
       if (number === this.line) {
-        const spacing = aside(gutter.replace(/\d/g, ' ')) +
+        let spacing = aside(gutter.replace(/\d/g, ' ')) +
           line.slice(0, this.column - 1).replace(/[^\t]/g, ' ')
         return mark('>') + aside(gutter) + line + '\n ' + spacing + mark('^')
       } else {

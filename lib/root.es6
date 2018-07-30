@@ -18,7 +18,7 @@ class Root extends Container {
   }
 
   removeChild (child, ignore) {
-    const index = this.index(child)
+    let index = this.index(child)
 
     if (!ignore && index === 0 && this.nodes.length > 1) {
       this.nodes[1].raws.before = this.nodes[index].raws.before
@@ -28,7 +28,7 @@ class Root extends Container {
   }
 
   normalize (child, sample, type) {
-    const nodes = super.normalize(child)
+    let nodes = super.normalize(child)
 
     if (sample) {
       if (type === 'prepend') {
@@ -38,7 +38,7 @@ class Root extends Container {
           delete sample.raws.before
         }
       } else if (this.first !== sample) {
-        for (const node of nodes) {
+        for (let node of nodes) {
           node.raws.before = sample.raws.before
         }
       }
@@ -61,10 +61,10 @@ class Root extends Container {
    * const result = root1.toResult({ to: 'all.css', map: true })
    */
   toResult (opts = { }) {
-    const LazyResult = require('./lazy-result')
-    const Processor = require('./processor')
+    let LazyResult = require('./lazy-result')
+    let Processor = require('./processor')
 
-    const lazy = new LazyResult(new Processor(), this, opts)
+    let lazy = new LazyResult(new Processor(), this, opts)
     return lazy.stringify()
   }
 

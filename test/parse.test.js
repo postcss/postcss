@@ -1,58 +1,58 @@
-const parse = require('../lib/parse')
-const Root = require('../lib/root')
+let parse = require('../lib/parse')
+let Root = require('../lib/root')
 
-const cases = require('postcss-parser-tests')
-const path = require('path')
-const fs = require('fs')
+let cases = require('postcss-parser-tests')
+let path = require('path')
+let fs = require('fs')
 
 it('works with file reads', () => {
-  const stream = fs.readFileSync(cases.path('atrule-empty.css'))
+  let stream = fs.readFileSync(cases.path('atrule-empty.css'))
   expect(parse(stream) instanceof Root).toBeTruthy()
 })
 
 cases.each((name, css, json) => {
   it('parses ' + name, () => {
-    const parsed = cases.jsonify(parse(css, { from: name }))
+    let parsed = cases.jsonify(parse(css, { from: name }))
     expect(parsed).toEqual(json)
   })
 })
 
 it('saves source file', () => {
-  const css = parse('a {}', { from: 'a.css' })
+  let css = parse('a {}', { from: 'a.css' })
   expect(css.first.source.input.css).toEqual('a {}')
   expect(css.first.source.input.file).toEqual(path.resolve('a.css'))
   expect(css.first.source.input.from).toEqual(path.resolve('a.css'))
 })
 
 it('keeps absolute path in source', () => {
-  const css = parse('a {}', { from: 'http://example.com/a.css' })
+  let css = parse('a {}', { from: 'http://example.com/a.css' })
   expect(css.first.source.input.file).toEqual('http://example.com/a.css')
   expect(css.first.source.input.from).toEqual('http://example.com/a.css')
 })
 
 it('saves source file on previous map', () => {
-  const root1 = parse('a {}', { map: { inline: true } })
-  const css = root1.toResult({ map: { inline: true } }).css
-  const root2 = parse(css)
+  let root1 = parse('a {}', { map: { inline: true } })
+  let css = root1.toResult({ map: { inline: true } }).css
+  let root2 = parse(css)
   expect(root2.first.source.input.file).toEqual(path.resolve('to.css'))
 })
 
 it('sets unique ID for file without name', () => {
-  const css1 = parse('a {}')
-  const css2 = parse('a {}')
+  let css1 = parse('a {}')
+  let css2 = parse('a {}')
   expect(css1.first.source.input.id).toMatch(/^<input css \d+>$/)
   expect(css1.first.source.input.from).toMatch(/^<input css \d+>$/)
   expect(css2.first.source.input.id).not.toEqual(css1.first.source.input.id)
 })
 
 it('sets parent node', () => {
-  const file = cases.path('atrule-rules.css')
-  const css = parse(fs.readFileSync(file))
+  let file = cases.path('atrule-rules.css')
+  let css = parse(fs.readFileSync(file))
 
-  const support = css.first
-  const keyframes = support.first
-  const from = keyframes.first
-  const decl = from.first
+  let support = css.first
+  let keyframes = support.first
+  let from = keyframes.first
+  let decl = from.first
 
   expect(decl.parent).toBe(from)
   expect(from.parent).toBe(keyframes)
@@ -61,12 +61,12 @@ it('sets parent node', () => {
 })
 
 it('ignores wrong close bracket', () => {
-  const root = parse('a { p: ()) }')
+  let root = parse('a { p: ()) }')
   expect(root.first.first.value).toEqual('())')
 })
 
 it('ignores symbols before declaration', () => {
-  const root = parse('a { :one: 1 }')
+  let root = parse('a { :one: 1 }')
   expect(root.first.first.raws.before).toEqual(' :')
 })
 

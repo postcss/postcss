@@ -249,11 +249,11 @@ class LazyResult {
         error.setMessage()
       } else if (plugin.postcssVersion) {
         if (process.env.NODE_ENV !== 'production') {
-          const pluginName = plugin.postcssPlugin
-          const pluginVer = plugin.postcssVersion
-          const runtimeVer = this.result.processor.version
-          const a = pluginVer.split('.')
-          const b = runtimeVer.split('.')
+          let pluginName = plugin.postcssPlugin
+          let pluginVer = plugin.postcssVersion
+          let runtimeVer = this.result.processor.version
+          let a = pluginVer.split('.')
+          let b = runtimeVer.split('.')
 
           if (a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1])) {
             console.error(
@@ -276,8 +276,8 @@ class LazyResult {
     }
 
     try {
-      const plugin = this.processor.plugins[this.plugin]
-      const promise = this.run(plugin)
+      let plugin = this.processor.plugins[this.plugin]
+      let promise = this.run(plugin)
       this.plugin += 1
 
       if (isPromise(promise)) {
@@ -334,8 +334,8 @@ class LazyResult {
 
     if (this.error) throw this.error
 
-    for (const plugin of this.result.processor.plugins) {
-      const promise = this.run(plugin)
+    for (let plugin of this.result.processor.plugins) {
+      let promise = this.run(plugin)
       if (isPromise(promise)) {
         throw new Error(
           'Use process(css).then(cb) to work with async plugins')
@@ -362,14 +362,14 @@ class LazyResult {
 
     this.sync()
 
-    const opts = this.result.opts
+    let opts = this.result.opts
     let str = stringify
     if (opts.syntax) str = opts.syntax.stringify
     if (opts.stringifier) str = opts.stringifier
     if (str.stringify) str = str.stringify
 
-    const map = new MapGenerator(str, this.result.root, this.result.opts)
-    const data = map.generate()
+    let map = new MapGenerator(str, this.result.root, this.result.opts)
+    let data = map.generate()
     this.result.css = data[0]
     this.result.map = data[1]
 
