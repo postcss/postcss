@@ -324,6 +324,11 @@ declare namespace postcss {
      * this Result instance.
      */
     opts: ResultOptions;
+    
+    /**
+     * @returns Exists when an error occurs
+     */
+    error?: CssSyntaxError;
   }
   /**
    * Provides the result of the PostCSS transformations.
