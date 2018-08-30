@@ -138,13 +138,15 @@ it('sets uniq name for inline map', () => {
 })
 
 it('accepts an empty mappings string', () => {
-  let emptyMap = {
-    version: 3,
-    sources: [],
-    names: [],
-    mappings: ''
-  }
-  parse('body{}', { map: { prev: emptyMap } })
+  expect(() => {
+    let emptyMap = {
+      version: 3,
+      sources: [],
+      names: [],
+      mappings: ''
+    }
+    parse('body{}', { map: { prev: emptyMap } })
+  }).not.toThrowError()
 })
 
 it('accepts a function', () => {
