@@ -92,7 +92,7 @@
     "not dead",
     "not Explorer 11",
     "not ExplorerMobile 11",
-    "node 6.x.x"
+    "node 6"
   ],
   "babel": {
     "presets": [
