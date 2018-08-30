@@ -315,7 +315,7 @@ loosely resembles the original.
 * [`css-byebye`] removes the CSS rules that you don’t want.
 * [`css-mqpacker`] joins matching CSS media queries into a single statement.
 * [`stylehacks`] removes CSS hacks based on browser support.
-* [`postcss-mq-optimize`] removes invalid media queries or its expresions.
+* [`postcss-mq-optimize`] removes invalid media queries or its expressions.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
 * [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
 * [`postcss-no-important`] delete declarations !important.

@@ -14,26 +14,7 @@ gulp.task('compile', () => {
   return gulp.src('lib/*.es6')
     .pipe(changed('lib', { extension: '.js' }))
     .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: [
-        [
-          'env',
-          {
-            targets: {
-              browsers: [
-                'last 2 version',
-                'not dead',
-                'not Explorer 11',
-                'not ExplorerMobile 11'
-              ],
-              node: 6
-            },
-            loose: true
-          }
-        ]
-      ],
-      plugins: ['add-module-exports', 'precompile-charcodes']
-    }))
+    .pipe(babel())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('lib'))
 })
@@ -49,6 +30,7 @@ gulp.task('build:package', () => {
       delete json.babel
       delete json.scripts
       delete json.jest
+      delete json.babel
       delete json.eslintConfig
       delete json['size-limit']
       delete json['pre-commit']

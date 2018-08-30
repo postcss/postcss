@@ -26,11 +26,13 @@
     "supports-color": "^5.5.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.4.2",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-precompile-charcodes": "^1.1.0",
-    "babel-preset-env": "^1.7.0",
     "concat-with-sourcemaps": "^1.1.0",
     "del": "^3.0.0",
     "docdash": "^1.0.0",
@@ -48,7 +50,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "fs-extra": "^7.0.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
+    "gulp-babel": "^8.0.0",
     "gulp-changed": "^3.2.0",
     "gulp-json-editor": "^2.4.2",
     "gulp-sourcemaps": "^2.6.4",
@@ -68,7 +70,7 @@
     "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
     "docs": "jsdoc -c .jsdocrc lib/*.es6",
     "lint": "eslint-ci *.js lib/*.es6 test/*.js",
-    "test": "gulp && jest --coverage && yarn lint && yarn spell && size-limit"
+    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
@@ -86,6 +88,28 @@
     "chalk": false,
     "fs": false
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 version",
+              "not dead",
+              "not Explorer 11",
+              "not ExplorerMobile 11"
+            ],
+            "node": 6
+          },
+          "loose": true
+        }
+      ]
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
+  },
   "size-limit": [
     {
       "path": "lib/postcss.js",
@@ -96,12 +120,7 @@
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
       "<rootDir>/build"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 99.54
-      }
-    }
+    ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -373,7 +392,25 @@
       "keepBetween",
       "Steven",
       "Rui",
-      "Pedro"
+      "Pedro",
+      "Versioning",
+      "JSDoc",
+      "PreviousMap",
+      "walkAtRules",
+      "tokenization",
+      "childCondition",
+      "filePosition",
+      "pluginFunction",
+      "processOptions",
+      "is SCSS",
+      "SVGs",
+      "polyfills",
+      "replaces EOL",
+      "JSS",
+      "sanitization",
+      "A CI",
+      "Browserify or",
+      "as ES6"
     ]
   }
 }
