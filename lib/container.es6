@@ -167,13 +167,12 @@ class Container extends Node {
           return callback(child, i)
         }
       })
-    } else {
-      return this.walk((child, i) => {
-        if (child.type === 'decl' && child.prop === prop) {
-          return callback(child, i)
-        }
-      })
     }
+    return this.walk((child, i) => {
+      if (child.type === 'decl' && child.prop === prop) {
+        return callback(child, i)
+      }
+    })
   }
 
   /**
@@ -214,13 +213,12 @@ class Container extends Node {
           return callback(child, i)
         }
       })
-    } else {
-      return this.walk((child, i) => {
-        if (child.type === 'rule' && child.selector === selector) {
-          return callback(child, i)
-        }
-      })
     }
+    return this.walk((child, i) => {
+      if (child.type === 'rule' && child.selector === selector) {
+        return callback(child, i)
+      }
+    })
   }
 
   /**
@@ -267,13 +265,12 @@ class Container extends Node {
           return callback(child, i)
         }
       })
-    } else {
-      return this.walk((child, i) => {
-        if (child.type === 'atrule' && child.name === name) {
-          return callback(child, i)
-        }
-      })
     }
+    return this.walk((child, i) => {
+      if (child.type === 'atrule' && child.name === name) {
+        return callback(child, i)
+      }
+    })
   }
 
   /**
@@ -552,9 +549,8 @@ class Container extends Node {
   index (child) {
     if (typeof child === 'number') {
       return child
-    } else {
-      return this.nodes.indexOf(child)
     }
+    return this.nodes.indexOf(child)
   }
 
   /**
