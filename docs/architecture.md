@@ -54,7 +54,7 @@ That being said, there are few ways to write parser
  - *Split it into lexical analysis/parsing steps (source string → tokens → AST)*
 
     This is the way of how we do it in PostCSS and also the most popular one.
-    A lot of parsers like [`Babylon` (parser behind Babel)](https://github.com/babel/babel/tree/master/packages/babylon), [`CSSTree`](https://github.com/csstree/csstree) were written in such way.
+    A lot of parsers like [`@babel/parser` (parser behind Babel)](https://github.com/babel/babel/tree/master/packages/babel-parser), [`CSSTree`](https://github.com/csstree/csstree) were written in such way.
     The main reasons to separate tokenization from parsing steps are performance and abstracting complexity.
 
 Let think about why second way is better for our needs.
