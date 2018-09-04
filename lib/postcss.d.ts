@@ -411,7 +411,7 @@ declare namespace postcss {
     /**
      * Applies a SourceMap for a source file to the SourceMap. Each mapping to
      * the supplied source file is rewritten using the supplied SourceMap.
-     * Note: The resolution for the resulting mappings is the minimium of this
+     * Note: The resolution for the resulting mappings is the minimum of this
      * map and the supplied map.
      * @param sourceMapConsumer The SourceMap to be applied.
      * @param sourceFile The filename of the source file. If omitted, sourceMapConsumer
