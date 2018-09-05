@@ -100,7 +100,7 @@ class Processor {
         if (typeof console !== 'undefined' && console.warn) {
           console.warn(
             'You did not set any plugins, parser, or stringifier. ' +
-            'Right now PostCSS do nothing. Pick plugins for your case ' +
+            'Right now, PostCSS does nothing. Pick plugins for your case ' +
             'on https://www.postcss.parts/ and use them in postcss.config.js.'
           )
         }
