@@ -23,9 +23,9 @@ let vendor = {
     let match = prop.match(/^(-\w+-)/)
     if (match) {
       return match[0]
-    } else {
-      return ''
     }
+
+    return ''
   },
 
   /**

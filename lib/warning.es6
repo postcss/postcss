@@ -78,11 +78,13 @@ class Warning {
         index: this.index,
         word: this.word
       }).message
-    } else if (this.plugin) {
-      return this.plugin + ': ' + this.text
-    } else {
-      return this.text
     }
+
+    if (this.plugin) {
+      return this.plugin + ': ' + this.text
+    }
+
+    return this.text
   }
 
   /**

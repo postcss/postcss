@@ -321,9 +321,9 @@ class Stringifier {
     let raw = node.raws[prop]
     if (raw && raw.value === value) {
       return raw.raw
-    } else {
-      return value
     }
+
+    return value
   }
 }
 

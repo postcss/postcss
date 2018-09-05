@@ -83,12 +83,14 @@ class PreviousMap {
 
     if (this.startWith(text, uri)) {
       return decodeURIComponent(text.substr(uri.length))
-    } else if (baseCharsetUri.test(text) || baseUri.test(text)) {
-      return fromBase64(text.substr(RegExp.lastMatch.length))
-    } else {
-      let encoding = text.match(/data:application\/json;([^,]+),/)[1]
-      throw new Error('Unsupported source map encoding ' + encoding)
     }
+
+    if (baseCharsetUri.test(text) || baseUri.test(text)) {
+      return fromBase64(text.substr(RegExp.lastMatch.length))
+    }
+
+    let encoding = text.match(/data:application\/json;([^,]+),/)[1]
+    throw new Error('Unsupported source map encoding ' + encoding)
   }
 
   loadMap (file, prev) {
