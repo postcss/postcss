@@ -115,7 +115,7 @@ if (result.map) {
 
 ### 4.1. Document your runner in English
 
-PostCSS runners must have their `README.md` written in English. Do not be afraid
+PostCSS runners must have their `README.md` wrote in English. Do not be afraid
 of your English skills, as the open source community will fix your errors.
 
 Of course, you are welcome to write documentation in other languages;
@@ -127,7 +127,7 @@ PostCSS runners must describe changes of all releases in a separate file,
 such as `ChangeLog.md`, `History.md`, or with [GitHub Releases].
 Visit [Keep A Changelog] for more information on how to write one of these.
 
-Of course you should use [SemVer].
+Of course, you should use [SemVer].
 
 [Keep A Changelog]: http://keepachangelog.com/
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
