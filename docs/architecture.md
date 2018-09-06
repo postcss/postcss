@@ -1,6 +1,6 @@
 ## PostCSS Architecture
 
-General overview of PostCSS architecture.
+General overview of the PostCSS architecture.
 It can be useful for everyone who wish to contribute to core or develop better understanding of the tool.
 
 **Table of Contents**
@@ -37,7 +37,7 @@ Before diving deeper into development of PostCSS let's briefly describe what is 
 
 ### Workflow
 
-This is high level overview of whole PostCSS workflow
+This is high-level overview of whole PostCSS workflow
 
 <img width="300" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/PostCSS_scheme.svg/512px-PostCSS_scheme.svg.png" alt="workflow">
 
@@ -77,7 +77,7 @@ So now lets look more closely on structures that play main role in PostCSS workf
 
     Token is a simple structure that describes some part of syntax like `at-rule`, `comment` or `word`. It can also contain positional information for more descriptive errors.
 
-    For example if we consider following css
+    For example if we consider following CSS
 
     ```css
     .className { color: #FFF; }
@@ -133,7 +133,7 @@ So now lets look more closely on structures that play main role in PostCSS workf
 
     Parser works in common with Tokenizer and operates over tokens not source string, as it would be very inefficient operation.
 
-    It use mostly `nextToken` and `back` methods provided by Tokenizer for obtaining single or multiple tokens and than construct part of AST called `Node`
+    It use mostly `nextToken` and `back` methods provided by Tokenizer for obtaining single or multiple tokens and then construct part of AST called `Node`
 
     There are multiple Node types that PostCSS could produce but all of them inherit from base Node [class](https://github.com/postcss/postcss/blob/master/lib/node.es6#L34).
 

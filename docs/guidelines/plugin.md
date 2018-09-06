@@ -98,7 +98,7 @@ postcss.plugin('plugin-sprite', opts => {
 Every node must have a relevant `source` so PostCSS can generate
 an accurate source map.
 
-So if you add new declaration based on some existing declaration, you should
+So if you add a new declaration based on some existing declaration, you should
 clone the existing declaration in order to save that original `source`.
 
 ```js
@@ -156,7 +156,7 @@ If CSS input is a source of the warning, the plugin must set the `node` option.
 
 ### 4.1. Document your plugin in English
 
-PostCSS plugins must have their `README.md` written in English. Do not be afraid
+PostCSS plugins must have their `README.md` wrote in English. Do not be afraid
 of your English skills, as the open source community will fix your errors.
 
 Of course, you are welcome to write documentation in other languages;
