@@ -449,16 +449,18 @@ export default class Parser {
 
       if (type === '(') {
         brackets += 1
-      } else if (type === ')') {
+      }
+      if (type === ')') {
         brackets -= 1
-      } else if (brackets === 0 && type === ':') {
+      }
+      if (brackets === 0 && type === ':') {
         if (!prev) {
           this.doubleColon(token)
-        } else if (prev[0] === 'word' && prev[1] === 'progid') {
-          continue
-        } else {
-          return i
         }
+        if (prev[0] === 'word' && prev[1] === 'progid') {
+          continue
+        }
+        return i
       }
 
       prev = token

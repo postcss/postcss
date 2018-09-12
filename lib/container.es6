@@ -161,7 +161,8 @@ class Container extends Node {
           return callback(child, i)
         }
       })
-    } else if (prop instanceof RegExp) {
+    }
+    if (prop instanceof RegExp) {
       return this.walk((child, i) => {
         if (child.type === 'decl' && prop.test(child.prop)) {
           return callback(child, i)
@@ -207,7 +208,8 @@ class Container extends Node {
           return callback(child, i)
         }
       })
-    } else if (selector instanceof RegExp) {
+    }
+    if (selector instanceof RegExp) {
       return this.walk((child, i) => {
         if (child.type === 'rule' && selector.test(child.selector)) {
           return callback(child, i)
@@ -259,7 +261,8 @@ class Container extends Node {
           return callback(child, i)
         }
       })
-    } else if (name instanceof RegExp) {
+    }
+    if (name instanceof RegExp) {
       return this.walk((child, i) => {
         if (child.type === 'atrule' && name.test(child.name)) {
           return callback(child, i)

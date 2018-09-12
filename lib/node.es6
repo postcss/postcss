@@ -85,9 +85,8 @@ class Node {
     if (this.source) {
       let pos = this.positionBy(opts)
       return this.source.input.error(message, pos.line, pos.column, opts)
-    } else {
-      return new CssSyntaxError(message)
     }
+    return new CssSyntaxError(message)
   }
 
   /**

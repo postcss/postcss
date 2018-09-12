@@ -12,9 +12,8 @@ class MapGenerator {
   isMap () {
     if (typeof this.opts.map !== 'undefined') {
       return !!this.opts.map
-    } else {
-      return this.previous().length > 0
     }
+    return this.previous().length > 0
   }
 
   previous () {
@@ -45,9 +44,8 @@ class MapGenerator {
 
     if (this.previous().length) {
       return this.previous().some(i => i.inline)
-    } else {
-      return true
     }
+    return true
   }
 
   isSourcesContent () {
@@ -56,9 +54,8 @@ class MapGenerator {
     }
     if (this.previous().length) {
       return this.previous().some(i => i.withContent())
-    } else {
-      return true
     }
+    return true
   }
 
   clearAnnotation () {
@@ -110,21 +107,21 @@ class MapGenerator {
   isAnnotation () {
     if (this.isInline()) {
       return true
-    } else if (typeof this.mapOpts.annotation !== 'undefined') {
-      return this.mapOpts.annotation
-    } else if (this.previous().length) {
-      return this.previous().some(i => i.annotation)
-    } else {
-      return true
     }
+    if (typeof this.mapOpts.annotation !== 'undefined') {
+      return this.mapOpts.annotation
+    }
+    if (this.previous().length) {
+      return this.previous().some(i => i.annotation)
+    }
+    return true
   }
 
   toBase64 (str) {
     if (Buffer) {
       return Buffer.from(str).toString('base64')
-    } else {
-      return window.btoa(unescape(encodeURIComponent(str)))
     }
+    return window.btoa(unescape(encodeURIComponent(str)))
   }
 
   addAnnotation () {
@@ -148,11 +145,11 @@ class MapGenerator {
   outputFile () {
     if (this.opts.to) {
       return this.relative(this.opts.to)
-    } else if (this.opts.from) {
-      return this.relative(this.opts.from)
-    } else {
-      return 'to.css'
     }
+    if (this.opts.from) {
+      return this.relative(this.opts.from)
+    }
+    return 'to.css'
   }
 
   generateMap () {
@@ -163,9 +160,8 @@ class MapGenerator {
 
     if (this.isInline()) {
       return [this.css]
-    } else {
-      return [this.css, this.map]
     }
+    return [this.css, this.map]
   }
 
   relative (file) {
@@ -181,17 +177,15 @@ class MapGenerator {
     file = path.relative(from, file)
     if (path.sep === '\\') {
       return file.replace(/\\/g, '/')
-    } else {
-      return file
     }
+    return file
   }
 
   sourcePath (node) {
     if (this.mapOpts.from) {
       return this.mapOpts.from
-    } else {
-      return this.relative(node.source.input.from)
     }
+    return this.relative(node.source.input.from)
   }
 
   generateString () {
@@ -259,13 +253,13 @@ class MapGenerator {
 
     if (this.isMap()) {
       return this.generateMap()
-    } else {
-      let result = ''
-      this.stringify(this.root, i => {
-        result += i
-      })
-      return [result]
     }
+
+    let result = ''
+    this.stringify(this.root, i => {
+      result += i
+    })
+    return [result]
   }
 }
 

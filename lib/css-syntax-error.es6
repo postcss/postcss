@@ -186,16 +186,14 @@ class CssSyntaxError {
     function mark (text) {
       if (color && chalk.red) {
         return chalk.red.bold(text)
-      } else {
-        return text
       }
+      return text
     }
     function aside (text) {
       if (color && chalk.gray) {
         return chalk.gray(text)
-      } else {
-        return text
       }
+      return text
     }
 
     return lines.slice(start, end).map((line, index) => {
@@ -205,9 +203,8 @@ class CssSyntaxError {
         let spacing = aside(gutter.replace(/\d/g, ' ')) +
           line.slice(0, this.column - 1).replace(/[^\t]/g, ' ')
         return mark('>') + aside(gutter) + line + '\n ' + spacing + mark('^')
-      } else {
-        return ' ' + aside(gutter) + line
       }
+      return ' ' + aside(gutter) + line
     }).join('\n')
   }
 
