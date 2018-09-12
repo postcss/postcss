@@ -143,9 +143,8 @@ class Input {
   mapResolve (file) {
     if (/^\w+:\/\//.test(file)) {
       return file
-    } else {
-      return path.resolve(this.map.consumer().sourceRoot || '.', file)
     }
+    return path.resolve(this.map.consumer().sourceRoot || '.', file)
   }
 
   /**
