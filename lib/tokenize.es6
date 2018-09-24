@@ -85,27 +85,14 @@ export default function tokenizer (input, options = {}) {
         break
 
       case OPEN_SQUARE:
-        currentToken = ['[', '[', line, pos - offset]
-        break
-
       case CLOSE_SQUARE:
-        currentToken = [']', ']', line, pos - offset]
-        break
-
       case OPEN_CURLY:
-        currentToken = ['{', '{', line, pos - offset]
-        break
-
       case CLOSE_CURLY:
-        currentToken = ['}', '}', line, pos - offset]
-        break
-
       case COLON:
-        currentToken = [':', ':', line, pos - offset]
-        break
-
       case SEMICOLON:
-        currentToken = [';', ';', line, pos - offset]
+      case CLOSE_PARENTHESES:
+        let controlChar = String.fromCharCode(code)
+        currentToken = [controlChar, controlChar, line, pos - offset]
         break
 
       case OPEN_PARENTHESES:
@@ -157,10 +144,6 @@ export default function tokenizer (input, options = {}) {
           }
         }
 
-        break
-
-      case CLOSE_PARENTHESES:
-        currentToken = [')', ')', line, pos - offset]
         break
 
       case SINGLE_QUOTE:
