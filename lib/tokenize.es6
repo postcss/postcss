@@ -45,12 +45,11 @@ export default function tokenizer (input, options = {}) {
     return returned.length === 0 && pos >= length
   }
 
-  function nextToken (opts = {}) {
+  function nextToken (opts) {
     if (returned.length) return returned.pop()
     if (pos >= length) return
 
-    let defaults = { ignoreUnclosed: false }
-    opts = Object.assign({}, defaults, opts)
+    let ignoreUnclosed = opts ? opts.ignoreUnclosed : false
 
     code = css.charCodeAt(pos)
     if (
@@ -112,7 +111,7 @@ export default function tokenizer (input, options = {}) {
             escaped = false
             next = css.indexOf(')', next + 1)
             if (next === -1) {
-              if (ignore || opts.ignoreUnclosed) {
+              if (ignore || ignoreUnclosed) {
                 next = pos
                 break
               } else {
@@ -157,7 +156,7 @@ export default function tokenizer (input, options = {}) {
           escaped = false
           next = css.indexOf(quote, next + 1)
           if (next === -1) {
-            if (ignore || opts.ignoreUnclosed) {
+            if (ignore || ignoreUnclosed) {
               next = pos + 1
               break
             } else {
@@ -250,7 +249,7 @@ export default function tokenizer (input, options = {}) {
         if (code === SLASH && css.charCodeAt(pos + 1) === ASTERISK) {
           next = css.indexOf('*/', pos + 2) + 1
           if (next === 0) {
-            if (ignore || opts.ignoreUnclosed) {
+            if (ignore || ignoreUnclosed) {
               next = css.length
             } else {
               unclosed('comment')
