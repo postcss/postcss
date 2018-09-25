@@ -269,3 +269,27 @@ it('tokenizes hexadecimal escape', () => {
     ['space', ' ']
   ])
 })
+
+it('ignore unclosed per token request', () => {
+  function tokn (css, opts) {
+    let processor = tokenizer(new Input(css), opts)
+    let tokens = []
+    while (!processor.endOfFile()) {
+      tokens.push(processor.nextToken({ ignoreUnclosed: true }))
+    }
+    return tokens
+  }
+
+  let css = `How's it going (`
+  let tokens = tokn(css, {})
+  let expected = [['word', 'How', 1, 1, 1, 3],
+    ['string', "'s", 1, 4, 1, 5],
+    ['space', ' '],
+    ['word', 'it', 1, 7, 1, 8],
+    ['space', ' '],
+    ['word', 'going', 1, 10, 1, 14],
+    ['space', ' '],
+    ['(', '(', 1, 16]]
+
+  expect(tokens).toEqual(expected)
+})
