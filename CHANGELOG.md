@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.3
+* Fix tokenizer extendability (by Andrew Powell).
+* Reduce npm package size.
+
 ## 7.0.2
 * Fix warning text (by Rui Pedro M Lima).
 
