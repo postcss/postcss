@@ -456,11 +456,11 @@ export default class Parser {
       if (brackets === 0 && type === ':') {
         if (!prev) {
           this.doubleColon(token)
-        }
-        if (prev[0] === 'word' && prev[1] === 'progid') {
+        } else if (prev[0] === 'word' && prev[1] === 'progid') {
           continue
+        } else {
+          return i
         }
-        return i
       }
 
       prev = token
