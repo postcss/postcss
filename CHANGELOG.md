@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.4
+* Fix safe parser regression.
+
 ## 7.0.3
 * Fix tokenizer extendability (by Andrew Powell).
 * Reduce npm package size.
