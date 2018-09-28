@@ -462,6 +462,7 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-andalusian-stylesheets`] Andalusian Style Sheets.
+* [`postcss-aze-stylesheets`] Azerbaijanian Style Sheets.
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-chinese-stylesheets`] Chinese Style Sheets.
 * [`postcss-czech-stylesheets`] Czech Style Sheets.
@@ -492,6 +493,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-elements-content`]:      https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-pseudo-element-cases`]:         https://github.com/timelsass/postcss-pseudo-element-cases
 [`postcss-pseudo-element-colons`]:        https://github.com/timelsass/postcss-pseudo-element-colons
+[`postcss-aze-stylesheets`]:              https://github.com/iskandarovBakshi/postcss-aze-stylesheets
 [`postcss-andalusian-stylesheets`]:       https://github.com/bameda/postcss-andalusian-stylesheets
 [`postcss-australian-stylesheets`]:       https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-responsive-properties`]:        https://github.com/alexandr-solovyov/postcss-responsive-properties
