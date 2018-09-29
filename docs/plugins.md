@@ -37,7 +37,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`atcss`] contains plugins that transform your CSS according
   to special annotation comments.
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
-* [`cssnext`] contains plugins that allow you to use future CSS features today.
+* [`cssnext`] contains plugins that allow you to use future CSS features today. ([deprecated](https://moox.io/blog/deprecating-cssnext/))
 * [`oldie`] contains plugins that transform your CSS
   for older Internet Explorer compatibility.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
