@@ -10,7 +10,7 @@ Limit a plugin's local stylesheet context using [`postcss-plugin-context`]:
 .css-example.is-test-for-css4-browsers {
   color: gray(255, 50%);
 }
-@context cssnext {
+@context postcss-preset-env {
   .css-example.is-fallback-for-all-browsers {
     color: gray(255, 50%);
   }
@@ -37,7 +37,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`atcss`] contains plugins that transform your CSS according
   to special annotation comments.
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
-* [`cssnext`] contains plugins that allow you to use future CSS features today. ([deprecated](https://moox.io/blog/deprecating-cssnext/))
 * [`oldie`] contains plugins that transform your CSS
   for older Internet Explorer compatibility.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
@@ -56,7 +55,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`stylelint`]:          https://github.com/stylelint/stylelint
 [`rucksack`]:           http://simplaio.github.io/rucksack
 [`cssnano`]:            http://cssnano.co/
-[`cssnext`]:            http://cssnext.io/
 [`level4`]:             https://github.com/stephenway/level4
 [`precss`]:             https://github.com/jonathantneal/precss
 [`oldie`]:              https://github.com/jonathantneal/oldie
@@ -104,7 +102,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-subgrid`] provides a basic shim for the CSS `display: subgrid` spec.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
-See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
+See also [`posctss-preset-env`] plugins pack to add future CSS syntax
+by one line of code.
 
 ## Fallbacks
 

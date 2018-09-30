@@ -7,7 +7,7 @@ import Warning from './warning'
  * or {@link Root#toResult} methods.
  *
  * @example
- * postcss([cssnext]).process(css).then(result => {
+ * postcss([autoprefixer]).process(css).then(result => {
  *  console.log(result.css)
  * })
  *

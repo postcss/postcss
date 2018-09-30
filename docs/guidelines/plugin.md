@@ -22,34 +22,34 @@ The prefix `postcss-` shows that the plugin is part of the PostCSS ecosystem.
 
 This rule is not mandatory for plugins that can run as independent tools,
 without the user necessarily knowing that it is powered by
-PostCSS — for example, [cssnext] and [Autoprefixer].
+PostCSS — for example, [RTLCSS] and [Autoprefixer].
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
-[cssnext]:      http://cssnext.io/
+[RTLCSS]:       https://rtlcss.com/
 
 ### 1.2. Do one thing, and do it well
 
 Do not create multitool plugins. Several small, one-purpose plugins bundled into
 a plugin pack is usually a better solution.
 
-For example, [cssnext] contains many small plugins,
-one for each W3C specification. And [cssnano] contains a separate plugin
+For example, [`postcss-preset-env`] contains many small plugins,
+one for each W3C specification. And [`cssnano`] contains a separate plugin
 for each of its optimization.
 
-[cssnext]: http://cssnext.io/
-[cssnano]: https://github.com/ben-eb/cssnano
+[`postcss-preset-env`]: https://preset-env.cssdb.org/
+[`cssnano`]:            https://github.com/ben-eb/cssnano
 
 ### 1.3. Do not use mixins
 
 Preprocessors libraries like Compass provide an API with mixins.
 
 PostCSS plugins are different.
-A plugin cannot be just a set of mixins for [postcss-mixins].
+A plugin cannot be just a set of mixins for [`postcss-mixins`].
 
 To achieve your goal, consider transforming valid CSS
 or using custom at-rules and custom properties.
 
-[postcss-mixins]: https://github.com/postcss/postcss-mixins
+[`postcss-mixins`]: https://github.com/postcss/postcss-mixins
 
 ### 1.4. Create plugin by `postcss.plugin`
 

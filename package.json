@@ -182,7 +182,6 @@
       "AtCSS",
       "Autoprefixer",
       "Base64",
-      "cssnext",
       "cssnano",
       "Browserhacks",
       "CoffeeScript",
@@ -409,7 +408,8 @@
       "Browserify or",
       "as ES6",
       "extendability",
-      "Powell"
+      "Powell",
+      "RTLCSS"
     ]
   }
 }
