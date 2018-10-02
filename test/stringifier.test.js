@@ -85,11 +85,9 @@ it('indents by default', () => {
   root.first.append(new Rule({ selector: 'a' }))
   root.first.first.append({ prop: 'color', value: 'black' })
 
-  expect(root.toString()).toEqual('@page {\n' +
-                                  '    a {\n' +
-                                  '        color: black\n' +
-                                  '    }\n' +
-                                  '}')
+  expect(root.toString()).toEqual(
+    '@page {\n' + '    a {\n' + '        color: black\n' + '    }\n' + '}'
+  )
 })
 
 it('clones style', () => {
@@ -100,8 +98,7 @@ it('clones style', () => {
   expect(compress.toString()).toEqual('@page{ a{ color: black } }')
 
   spaces.first.first.append({ prop: 'color', value: 'black' })
-  expect(spaces.toString())
-    .toEqual('@page {\n  a {\n    color: black\n  }\n}')
+  expect(spaces.toString()).toEqual('@page {\n  a {\n    color: black\n  }\n}')
 })
 
 it('clones indent', () => {

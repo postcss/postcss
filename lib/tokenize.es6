@@ -1,4 +1,4 @@
-const SINGLE_QUOTE = '\''.charCodeAt(0)
+const SINGLE_QUOTE = "'".charCodeAt(0)
 const DOUBLE_QUOTE = '"'.charCodeAt(0)
 const BACKSLASH = '\\'.charCodeAt(0)
 const SLASH = '/'.charCodeAt(0)
@@ -23,7 +23,7 @@ const RE_WORD_END = /[ \n\t\r\f(){}:;@!'"\\\][#]|\/(?=\*)/g
 const RE_BAD_BRACKET = /.[\\/("'\n]/
 const RE_HEX_ESCAPE = /[a-f0-9]/i
 
-export default function tokenizer (input, options = {}) {
+export default function tokenizer(input, options = {}) {
   let css = input.css.valueOf()
   let ignore = options.ignoreErrors
 
@@ -37,15 +37,15 @@ export default function tokenizer (input, options = {}) {
   let buffer = []
   let returned = []
 
-  function unclosed (what) {
+  function unclosed(what) {
     throw input.error('Unclosed ' + what, line, pos - offset)
   }
 
-  function endOfFile () {
+  function endOfFile() {
     return returned.length === 0 && pos >= length
   }
 
-  function nextToken (opts) {
+  function nextToken(opts) {
     if (returned.length) return returned.pop()
     if (pos >= length) return
 
@@ -53,7 +53,8 @@ export default function tokenizer (input, options = {}) {
 
     code = css.charCodeAt(pos)
     if (
-      code === NEWLINE || code === FEED ||
+      code === NEWLINE ||
+      code === FEED ||
       (code === CR && css.charCodeAt(pos + 1) !== NEWLINE)
     ) {
       offset = pos
@@ -102,9 +103,13 @@ export default function tokenizer (input, options = {}) {
         n = css.charCodeAt(pos + 1)
         if (
           prev === 'url' &&
-          n !== SINGLE_QUOTE && n !== DOUBLE_QUOTE &&
-          n !== SPACE && n !== NEWLINE && n !== TAB &&
-          n !== FEED && n !== CR
+          n !== SINGLE_QUOTE &&
+          n !== DOUBLE_QUOTE &&
+          n !== SPACE &&
+          n !== NEWLINE &&
+          n !== TAB &&
+          n !== FEED &&
+          n !== CR
         ) {
           next = pos
           do {
@@ -125,9 +130,13 @@ export default function tokenizer (input, options = {}) {
             }
           } while (escaped)
 
-          currentToken = ['brackets', css.slice(pos, next + 1),
-            line, pos - offset,
-            line, next - offset
+          currentToken = [
+            'brackets',
+            css.slice(pos, next + 1),
+            line,
+            pos - offset,
+            line,
+            next - offset
           ]
 
           pos = next
@@ -138,9 +147,13 @@ export default function tokenizer (input, options = {}) {
           if (next === -1 || RE_BAD_BRACKET.test(content)) {
             currentToken = ['(', '(', line, pos - offset]
           } else {
-            currentToken = ['brackets', content,
-              line, pos - offset,
-              line, next - offset
+            currentToken = [
+              'brackets',
+              content,
+              line,
+              pos - offset,
+              line,
+              next - offset
             ]
             pos = next
           }
@@ -150,7 +163,7 @@ export default function tokenizer (input, options = {}) {
 
       case SINGLE_QUOTE:
       case DOUBLE_QUOTE:
-        quote = code === SINGLE_QUOTE ? '\'' : '"'
+        quote = code === SINGLE_QUOTE ? "'" : '"'
         next = pos
         do {
           escaped = false
@@ -182,9 +195,13 @@ export default function tokenizer (input, options = {}) {
           nextOffset = offset
         }
 
-        currentToken = ['string', css.slice(pos, next + 1),
-          line, pos - offset,
-          nextLine, next - nextOffset
+        currentToken = [
+          'string',
+          css.slice(pos, next + 1),
+          line,
+          pos - offset,
+          nextLine,
+          next - nextOffset
         ]
 
         offset = nextOffset
@@ -201,9 +218,13 @@ export default function tokenizer (input, options = {}) {
           next = RE_AT_END.lastIndex - 2
         }
 
-        currentToken = ['at-word', css.slice(pos, next + 1),
-          line, pos - offset,
-          line, next - offset
+        currentToken = [
+          'at-word',
+          css.slice(pos, next + 1),
+          line,
+          pos - offset,
+          line,
+          next - offset
         ]
 
         pos = next
@@ -237,9 +258,13 @@ export default function tokenizer (input, options = {}) {
           }
         }
 
-        currentToken = ['word', css.slice(pos, next + 1),
-          line, pos - offset,
-          line, next - offset
+        currentToken = [
+          'word',
+          css.slice(pos, next + 1),
+          line,
+          pos - offset,
+          line,
+          next - offset
         ]
 
         pos = next
@@ -268,9 +293,13 @@ export default function tokenizer (input, options = {}) {
             nextOffset = offset
           }
 
-          currentToken = ['comment', content,
-            line, pos - offset,
-            nextLine, next - nextOffset
+          currentToken = [
+            'comment',
+            content,
+            line,
+            pos - offset,
+            nextLine,
+            next - nextOffset
           ]
 
           offset = nextOffset
@@ -285,9 +314,13 @@ export default function tokenizer (input, options = {}) {
             next = RE_WORD_END.lastIndex - 2
           }
 
-          currentToken = ['word', css.slice(pos, next + 1),
-            line, pos - offset,
-            line, next - offset
+          currentToken = [
+            'word',
+            css.slice(pos, next + 1),
+            line,
+            pos - offset,
+            line,
+            next - offset
           ]
 
           buffer.push(currentToken)
@@ -302,7 +335,7 @@ export default function tokenizer (input, options = {}) {
     return currentToken
   }
 
-  function back (token) {
+  function back(token) {
     returned.push(token)
   }
 

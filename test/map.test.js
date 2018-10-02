@@ -5,12 +5,12 @@ let mozilla = require('source-map')
 let path = require('path')
 let fs = require('fs-extra')
 
-function consumer (map) {
+function consumer(map) {
   return mozilla.SourceMapConsumer.fromSourceMap(map)
 }
 
-function read (result) {
-  let prev = new PreviousMap(result.css, { })
+function read(result) {
+  let prev = new PreviousMap(result.css, {})
   return prev.consumer()
 }
 
@@ -155,8 +155,9 @@ it('uses user path in annotation, relative to options.to', () => {
   let map = consumer(result.map)
 
   expect(map.file).toEqual('../b.css')
-  expect(map.originalPositionFor({ line: 1, column: 0 }).source)
-    .toEqual('../../source/a.css')
+  expect(map.originalPositionFor({ line: 1, column: 0 }).source).toEqual(
+    '../../source/a.css'
+  )
 })
 
 it('generates inline map', () => {
@@ -279,8 +280,8 @@ it('uses map from subdir', () => {
     map: { prev: step1.map }
   })
 
-  let source = consumer(step2.map)
-    .originalPositionFor({ line: 1, column: 0 }).source
+  let source = consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
+    .source
   expect(source).toEqual('../../a.css')
 
   let step3 = doubler.process(step2.css, {
@@ -289,8 +290,8 @@ it('uses map from subdir', () => {
     map: { prev: step2.map }
   })
 
-  source = consumer(step3.map)
-    .originalPositionFor({ line: 1, column: 0 }).source
+  source = consumer(step3.map).originalPositionFor({ line: 1, column: 0 })
+    .source
   expect(source).toEqual('../../a.css')
 })
 
@@ -307,8 +308,8 @@ it('uses map from subdir if it inlined', () => {
     map: { inline: false }
   })
 
-  let source = consumer(step2.map)
-    .originalPositionFor({ line: 1, column: 0 }).source
+  let source = consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
+    .source
   expect(source).toEqual('../../a.css')
 })
 
@@ -319,8 +320,8 @@ it('uses map from subdir if it written as a file', () => {
     map: { annotation: 'maps/b.css.map', inline: false }
   })
 
-  let source = consumer(step1.map)
-    .originalPositionFor({ line: 1, column: 0 }).source
+  let source = consumer(step1.map).originalPositionFor({ line: 1, column: 0 })
+    .source
   expect(source).toEqual('../../source/a.css')
 
   let file = path.join(dir, 'one', 'maps', 'b.css.map')
@@ -332,8 +333,8 @@ it('uses map from subdir if it written as a file', () => {
     map: true
   })
 
-  source = consumer(step2.map)
-    .originalPositionFor({ line: 1, column: 0 }).source
+  source = consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
+    .source
   expect(source).toEqual('../source/a.css')
 })
 
@@ -353,8 +354,8 @@ it('works with different types of maps', () => {
       to: 'c.css',
       map: { prev: i }
     })
-    let source = consumer(step2.map)
-      .originalPositionFor({ line: 1, column: 0 }).source
+    let source = consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
+      .source
     expect(source).toEqual('a.css')
   }
 })

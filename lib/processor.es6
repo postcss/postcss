@@ -14,7 +14,7 @@ class Processor {
    * @param {Array.<Plugin|pluginFunction>|Processor} plugins PostCSS plugins.
    *        See {@link Processor#use} for plugin format.
    */
-  constructor (plugins = []) {
+  constructor(plugins = []) {
     /**
      * Current PostCSS version.
      *
@@ -67,7 +67,7 @@ class Processor {
    *
    * @return {Processes} Current processor to make methods chain.
    */
-  use (plugin) {
+  use(plugin) {
     this.plugins = this.plugins.concat(this.normalize([plugin]))
     return this
   }
@@ -94,14 +94,14 @@ class Processor {
    *      console.log(result.css)
    *   })
    */
-  process (css, opts = { }) {
+  process(css, opts = {}) {
     if (this.plugins.length === 0 && opts.parser === opts.stringifier) {
       if (process.env.NODE_ENV !== 'production') {
         if (typeof console !== 'undefined' && console.warn) {
           console.warn(
             'You did not set any plugins, parser, or stringifier. ' +
-            'Right now, PostCSS does nothing. Pick plugins for your case ' +
-            'on https://www.postcss.parts/ and use them in postcss.config.js.'
+              'Right now, PostCSS does nothing. Pick plugins for your case ' +
+              'on https://www.postcss.parts/ and use them in postcss.config.js.'
           )
         }
       }
@@ -109,7 +109,7 @@ class Processor {
     return new LazyResult(this, css, opts)
   }
 
-  normalize (plugins) {
+  normalize(plugins) {
     let normalized = []
     for (let i of plugins) {
       if (i.postcss) i = i.postcss
@@ -122,8 +122,8 @@ class Processor {
         if (process.env.NODE_ENV !== 'production') {
           throw new Error(
             'PostCSS syntaxes cannot be used as plugins. Instead, please use ' +
-            'one of the syntax/parser/stringifier options as outlined ' +
-            'in your PostCSS runner documentation.'
+              'one of the syntax/parser/stringifier options as outlined ' +
+              'in your PostCSS runner documentation.'
           )
         }
       } else {

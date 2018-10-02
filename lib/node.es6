@@ -2,7 +2,7 @@ import CssSyntaxError from './css-syntax-error'
 import Stringifier from './stringifier'
 import stringify from './stringify'
 
-function cloneNode (obj, parent) {
+function cloneNode(obj, parent) {
   let cloned = new obj.constructor()
 
   for (let i in obj) {
@@ -34,13 +34,13 @@ class Node {
   /**
    * @param {object} [defaults] Value for node properties.
    */
-  constructor (defaults = { }) {
-    this.raws = { }
+  constructor(defaults = {}) {
+    this.raws = {}
     if (process.env.NODE_ENV !== 'production') {
       if (typeof defaults !== 'object' && typeof defaults !== 'undefined') {
         throw new Error(
           'PostCSS nodes constructor accepts object, not ' +
-          JSON.stringify(defaults)
+            JSON.stringify(defaults)
         )
       }
     }
@@ -81,7 +81,7 @@ class Node {
    *   //   background: white
    * }
    */
-  error (message, opts = { }) {
+  error(message, opts = {}) {
     if (this.source) {
       let pos = this.positionBy(opts)
       return this.source.input.error(message, pos.line, pos.column, opts)
@@ -114,7 +114,7 @@ class Node {
    *   }
    * })
    */
-  warn (result, text, opts) {
+  warn(result, text, opts) {
     let data = { node: this }
     for (let i in opts) data[i] = opts[i]
     return result.warn(text, data)
@@ -131,7 +131,7 @@ class Node {
    *
    * @return {Node} Node to make calls chain.
    */
-  remove () {
+  remove() {
     if (this.parent) {
       this.parent.removeChild(this)
     }
@@ -150,7 +150,7 @@ class Node {
    * @example
    * postcss.rule({ selector: 'a' }).toString() //=> "a {}"
    */
-  toString (stringifier = stringify) {
+  toString(stringifier = stringify) {
     if (stringifier.stringify) stringifier = stringifier.stringify
     let result = ''
     stringifier(this, i => {
@@ -175,7 +175,7 @@ class Node {
    *
    * @return {Node} Clone of the node.
    */
-  clone (overrides = { }) {
+  clone(overrides = {}) {
     let cloned = cloneNode(this)
     for (let name in overrides) {
       cloned[name] = overrides[name]
@@ -194,7 +194,7 @@ class Node {
    *
    * @return {Node} New node
    */
-  cloneBefore (overrides = { }) {
+  cloneBefore(overrides = {}) {
     let cloned = this.clone(overrides)
     this.parent.insertBefore(this, cloned)
     return cloned
@@ -208,7 +208,7 @@ class Node {
    *
    * @return {Node} New node.
    */
-  cloneAfter (overrides = { }) {
+  cloneAfter(overrides = {}) {
     let cloned = this.clone(overrides)
     this.parent.insertAfter(this, cloned)
     return cloned
@@ -226,7 +226,7 @@ class Node {
    *
    * @return {Node} Current node to methods chain.
    */
-  replaceWith (...nodes) {
+  replaceWith(...nodes) {
     if (this.parent) {
       for (let node of nodes) {
         this.parent.insertBefore(this, node)
@@ -252,7 +252,7 @@ class Node {
    *   }
    * }
    */
-  next () {
+  next() {
     if (!this.parent) return undefined
     let index = this.parent.index(this)
     return this.parent.nodes[index + 1]
@@ -270,7 +270,7 @@ class Node {
    *   readAnnotation(annotation.text)
    * }
    */
-  prev () {
+  prev() {
     if (!this.parent) return undefined
     let index = this.parent.index(this)
     return this.parent.nodes[index - 1]
@@ -288,7 +288,7 @@ class Node {
    * @example
    * decl.before('content: ""')
    */
-  before (add) {
+  before(add) {
     this.parent.insertBefore(this, add)
     return this
   }
@@ -305,13 +305,13 @@ class Node {
    * @example
    * decl.after('color: black')
    */
-  after (add) {
+  after(add) {
     this.parent.insertAfter(this, add)
     return this
   }
 
-  toJSON () {
-    let fixed = { }
+  toJSON() {
+    let fixed = {}
 
     for (let name in this) {
       if (!this.hasOwnProperty(name)) continue
@@ -354,7 +354,7 @@ class Node {
    *
    * @return {string} Code style value.
    */
-  raw (prop, defaultType) {
+  raw(prop, defaultType) {
     let str = new Stringifier()
     return str.raw(this, prop, defaultType)
   }
@@ -367,7 +367,7 @@ class Node {
    *
    * @return {Root} Root parent.
    */
-  root () {
+  root() {
     let result = this
     while (result.parent) result = result.parent
     return result
@@ -385,13 +385,13 @@ class Node {
    * node.cleanRaws()
    * node.raws.before  //=> undefined
    */
-  cleanRaws (keepBetween) {
+  cleanRaws(keepBetween) {
     delete this.raws.before
     delete this.raws.after
     if (!keepBetween) delete this.raws.between
   }
 
-  positionInside (index) {
+  positionInside(index) {
     let string = this.toString()
     let column = this.source.start.column
     let line = this.source.start.line
@@ -408,7 +408,7 @@ class Node {
     return { line, column }
   }
 
-  positionBy (opts) {
+  positionBy(opts) {
     let pos = this.source.start
     if (opts.index) {
       pos = this.positionInside(opts.index)

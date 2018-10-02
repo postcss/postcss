@@ -4,7 +4,7 @@ import warnOnce from './warn-once'
 import Result from './result'
 import parse from './parse'
 
-function isPromise (obj) {
+function isPromise(obj) {
   return typeof obj === 'object' && typeof obj.then === 'function'
 }
 
@@ -17,7 +17,7 @@ function isPromise (obj) {
  * const lazy = postcss([autoprefixer]).process(css)
  */
 class LazyResult {
-  constructor (processor, css, opts) {
+  constructor(processor, css, opts) {
     this.stringified = false
     this.processed = false
 
@@ -27,7 +27,7 @@ class LazyResult {
     } else if (css instanceof LazyResult || css instanceof Result) {
       root = css.root
       if (css.map) {
-        if (typeof opts.map === 'undefined') opts.map = { }
+        if (typeof opts.map === 'undefined') opts.map = {}
         if (!opts.map.inline) opts.map.inline = false
         opts.map.prev = css.map
       }
@@ -53,7 +53,7 @@ class LazyResult {
    *
    * @type {Processor}
    */
-  get processor () {
+  get processor() {
     return this.result.processor
   }
 
@@ -62,7 +62,7 @@ class LazyResult {
    *
    * @type {processOptions}
    */
-  get opts () {
+  get opts() {
     return this.result.opts
   }
 
@@ -78,7 +78,7 @@ class LazyResult {
    * @type {string}
    * @see Result#css
    */
-  get css () {
+  get css() {
     return this.stringify().css
   }
 
@@ -94,7 +94,7 @@ class LazyResult {
    * @type {string}
    * @see Result#content
    */
-  get content () {
+  get content() {
     return this.stringify().content
   }
 
@@ -110,7 +110,7 @@ class LazyResult {
    * @type {SourceMapGenerator}
    * @see Result#map
    */
-  get map () {
+  get map() {
     return this.stringify().map
   }
 
@@ -127,7 +127,7 @@ class LazyResult {
    * @type {Root}
    * @see Result#root
    */
-  get root () {
+  get root() {
     return this.sync().root
   }
 
@@ -144,7 +144,7 @@ class LazyResult {
    * @type {Message[]}
    * @see Result#messages
    */
-  get messages () {
+  get messages() {
     return this.sync().messages
   }
 
@@ -154,7 +154,7 @@ class LazyResult {
    *
    * @return {Warning[]} Warnings from plugins.
    */
-  warnings () {
+  warnings() {
     return this.sync().warnings()
   }
 
@@ -166,7 +166,7 @@ class LazyResult {
    *
    * @return {string} Output CSS.
    */
-  toString () {
+  toString() {
     return this.css
   }
 
@@ -188,13 +188,13 @@ class LazyResult {
    *   console.log(result.css)
    * })
    */
-  then (onFulfilled, onRejected) {
+  then(onFulfilled, onRejected) {
     if (process.env.NODE_ENV !== 'production') {
       if (!('from' in this.opts)) {
         warnOnce(
           'Without `from` option PostCSS could generate wrong source map ' +
-          'and will not find Browserslist config. Set it to CSS file path ' +
-          'or to `undefined` to prevent this warning.'
+            'and will not find Browserslist config. Set it to CSS file path ' +
+            'or to `undefined` to prevent this warning.'
         )
       }
     }
@@ -218,7 +218,7 @@ class LazyResult {
    *   console.error(error)
    * })
    */
-  catch (onRejected) {
+  catch(onRejected) {
     return this.async().catch(onRejected)
   }
   /**
@@ -237,11 +237,11 @@ class LazyResult {
    *   console.log('processing ended')
    * })
    */
-  finally (onFinally) {
+  finally(onFinally) {
     return this.async().then(onFinally, onFinally)
   }
 
-  handleError (error, plugin) {
+  handleError(error, plugin) {
     try {
       this.error = error
       if (error.name === 'CssSyntaxError' && !error.plugin) {
@@ -258,8 +258,13 @@ class LazyResult {
           if (a[0] !== b[0] || parseInt(a[1]) > parseInt(b[1])) {
             console.error(
               'Unknown error from PostCSS plugin. Your current PostCSS ' +
-              'version is ' + runtimeVer + ', but ' + pluginName + ' uses ' +
-              pluginVer + '. Perhaps this is the source of the error below.'
+                'version is ' +
+                runtimeVer +
+                ', but ' +
+                pluginName +
+                ' uses ' +
+                pluginVer +
+                '. Perhaps this is the source of the error below.'
             )
           }
         }
@@ -269,7 +274,7 @@ class LazyResult {
     }
   }
 
-  asyncTick (resolve, reject) {
+  asyncTick(resolve, reject) {
     if (this.plugin >= this.processor.plugins.length) {
       this.processed = true
       return resolve()
@@ -281,13 +286,15 @@ class LazyResult {
       this.plugin += 1
 
       if (isPromise(promise)) {
-        promise.then(() => {
-          this.asyncTick(resolve, reject)
-        }).catch(error => {
-          this.handleError(error, plugin)
-          this.processed = true
-          reject(error)
-        })
+        promise
+          .then(() => {
+            this.asyncTick(resolve, reject)
+          })
+          .catch(error => {
+            this.handleError(error, plugin)
+            this.processed = true
+            reject(error)
+          })
       } else {
         this.asyncTick(resolve, reject)
       }
@@ -297,7 +304,7 @@ class LazyResult {
     }
   }
 
-  async () {
+  async() {
     if (this.processed) {
       return new Promise((resolve, reject) => {
         if (this.error) {
@@ -323,13 +330,12 @@ class LazyResult {
     return this.processing
   }
 
-  sync () {
+  sync() {
     if (this.processed) return this.result
     this.processed = true
 
     if (this.processing) {
-      throw new Error(
-        'Use process(css).then(cb) to work with async plugins')
+      throw new Error('Use process(css).then(cb) to work with async plugins')
     }
 
     if (this.error) throw this.error
@@ -337,15 +343,14 @@ class LazyResult {
     for (let plugin of this.result.processor.plugins) {
       let promise = this.run(plugin)
       if (isPromise(promise)) {
-        throw new Error(
-          'Use process(css).then(cb) to work with async plugins')
+        throw new Error('Use process(css).then(cb) to work with async plugins')
       }
     }
 
     return this.result
   }
 
-  run (plugin) {
+  run(plugin) {
     this.result.lastPlugin = plugin
 
     try {
@@ -356,7 +361,7 @@ class LazyResult {
     }
   }
 
-  stringify () {
+  stringify() {
     if (this.stringified) return this.result
     this.stringified = true
 

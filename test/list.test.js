@@ -9,7 +9,7 @@ it('space() trims values', () => {
 })
 
 it('space() checks quotes', () => {
-  expect(list.space('"a b\\"" \'\'')).toEqual(['"a b\\""', '\'\''])
+  expect(list.space('"a b\\"" \'\'')).toEqual(['"a b\\""', "''"])
 })
 
 it('space() checks functions', () => {
@@ -30,7 +30,7 @@ it('comma() adds last empty', () => {
 })
 
 it('comma() checks quotes', () => {
-  expect(list.comma('"a,b\\"", \'\'')).toEqual(['"a,b\\""', '\'\''])
+  expect(list.comma('"a,b\\"", \'\'')).toEqual(['"a,b\\""', "''"])
 })
 
 it('comma() checks functions', () => {

@@ -12,7 +12,7 @@ import Node from './node'
  * decl.toString() //=> ' color: black'
  */
 class Declaration extends Node {
-  constructor (defaults) {
+  constructor(defaults) {
     super(defaults)
     this.type = 'decl'
   }

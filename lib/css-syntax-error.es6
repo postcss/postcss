@@ -39,7 +39,7 @@ class CssSyntaxError {
    * @param {string} [file]   Absolute path to the broken file.
    * @param {string} [plugin] PostCSS plugin name, if error came from plugin.
    */
-  constructor (message, line, column, source, file, plugin) {
+  constructor(message, line, column, source, file, plugin) {
     /**
      * Always equal to `'CssSyntaxError'`. You should always check error type
      * by `error.name === 'CssSyntaxError'`
@@ -129,7 +129,7 @@ class CssSyntaxError {
     }
   }
 
-  setMessage () {
+  setMessage() {
     /**
      * Full error text in the GNU error format
      * with plugin, file, line and column.
@@ -168,7 +168,7 @@ class CssSyntaxError {
    *
    * @return {string} Few lines of CSS source that caused the error.
    */
-  showSourceCode (color) {
+  showSourceCode(color) {
     if (!this.source) return ''
 
     let css = this.source
@@ -183,29 +183,33 @@ class CssSyntaxError {
 
     let maxWidth = String(end).length
 
-    function mark (text) {
+    function mark(text) {
       if (color && chalk.red) {
         return chalk.red.bold(text)
       }
       return text
     }
-    function aside (text) {
+    function aside(text) {
       if (color && chalk.gray) {
         return chalk.gray(text)
       }
       return text
     }
 
-    return lines.slice(start, end).map((line, index) => {
-      let number = start + 1 + index
-      let gutter = ' ' + (' ' + number).slice(-maxWidth) + ' | '
-      if (number === this.line) {
-        let spacing = aside(gutter.replace(/\d/g, ' ')) +
-          line.slice(0, this.column - 1).replace(/[^\t]/g, ' ')
-        return mark('>') + aside(gutter) + line + '\n ' + spacing + mark('^')
-      }
-      return ' ' + aside(gutter) + line
-    }).join('\n')
+    return lines
+      .slice(start, end)
+      .map((line, index) => {
+        let number = start + 1 + index
+        let gutter = ' ' + (' ' + number).slice(-maxWidth) + ' | '
+        if (number === this.line) {
+          let spacing =
+            aside(gutter.replace(/\d/g, ' ')) +
+            line.slice(0, this.column - 1).replace(/[^\t]/g, ' ')
+          return mark('>') + aside(gutter) + line + '\n ' + spacing + mark('^')
+        }
+        return ' ' + aside(gutter) + line
+      })
+      .join('\n')
   }
 
   /**
@@ -218,7 +222,7 @@ class CssSyntaxError {
    *
    * @return {string} Error position, message and source code.
    */
-  toString () {
+  toString() {
     let code = this.showSourceCode()
     if (code) {
       code = '\n\n' + code + '\n'

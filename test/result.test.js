@@ -15,12 +15,16 @@ it('adds warning', () => {
       warning = res.warn('test', { node: css.first })
     }
   })
-  let result = postcss([plugin]).process('a{}').sync()
+  let result = postcss([plugin])
+    .process('a{}')
+    .sync()
 
-  expect(warning).toEqual(new Warning('test', {
-    plugin: 'test-plugin',
-    node: result.root.first
-  }))
+  expect(warning).toEqual(
+    new Warning('test', {
+      plugin: 'test-plugin',
+      node: result.root.first
+    })
+  )
 
   expect(result.messages).toEqual([warning])
 })
@@ -31,7 +35,9 @@ it('allows to override plugin', () => {
       res.warn('test', { plugin: 'test-plugin#one' })
     }
   })
-  let result = postcss([plugin]).process('a{}').sync()
+  let result = postcss([plugin])
+    .process('a{}')
+    .sync()
 
   expect(result.messages[0].plugin).toEqual('test-plugin#one')
 })

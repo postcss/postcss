@@ -27,7 +27,7 @@ import Root from './root'
  *
  * @namespace postcss
  */
-function postcss (...plugins) {
+function postcss(...plugins) {
   if (plugins.length === 1 && Array.isArray(plugins[0])) {
     plugins = plugins[0]
   }
@@ -106,23 +106,23 @@ function postcss (...plugins) {
  *
  * @return {Plugin} PostCSS plugin.
  */
-postcss.plugin = function plugin (name, initializer) {
-  function creator (...args) {
+postcss.plugin = function plugin(name, initializer) {
+  function creator(...args) {
     let transformer = initializer(...args)
     transformer.postcssPlugin = name
-    transformer.postcssVersion = (new Processor()).version
+    transformer.postcssVersion = new Processor().version
     return transformer
   }
 
   let cache
   Object.defineProperty(creator, 'postcss', {
-    get () {
+    get() {
       if (!cache) cache = creator()
       return cache
     }
   })
 
-  creator.process = function (css, processOpts, pluginOpts) {
+  creator.process = function(css, processOpts, pluginOpts) {
     return postcss([creator(pluginOpts)]).process(css, processOpts)
   }
 

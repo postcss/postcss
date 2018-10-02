@@ -8,8 +8,7 @@
  * @namespace list
  */
 let list = {
-
-  split (string, separators, last) {
+  split(string, separators, last) {
     let array = []
     let current = ''
     let split = false
@@ -29,7 +28,7 @@ let list = {
         } else if (letter === quote) {
           quote = false
         }
-      } else if (letter === '"' || letter === '\'') {
+      } else if (letter === '"' || letter === "'") {
         quote = letter
       } else if (letter === '(') {
         func += 1
@@ -63,7 +62,7 @@ let list = {
    * @example
    * postcss.list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
    */
-  space (string) {
+  space(string) {
     let spaces = [' ', '\n', '\t']
     return list.split(string, spaces)
   },
@@ -80,10 +79,9 @@ let list = {
    * postcss.list.comma('black, linear-gradient(white, black)')
    * //=> ['black', 'linear-gradient(white, black)']
    */
-  comma (string) {
+  comma(string) {
     return list.split(string, [','], true)
   }
-
 }
 
 export default list

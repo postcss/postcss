@@ -11,7 +11,8 @@ gulp.task('compile', () => {
   let sourcemaps = require('gulp-sourcemaps')
   let changed = require('gulp-changed')
   let babel = require('gulp-babel')
-  return gulp.src('lib/*.es6')
+  return gulp
+    .src('lib/*.es6')
     .pipe(changed('lib', { extension: '.js' }))
     .pipe(sourcemaps.init())
     .pipe(babel())
@@ -25,34 +26,50 @@ gulp.task('build:lib', ['compile'], () => {
 
 gulp.task('build:package', () => {
   let editor = require('gulp-json-editor')
-  return gulp.src('./package.json')
-    .pipe(editor(json => {
-      delete json.babel
-      delete json.scripts
-      delete json.jest
-      delete json.babel
-      delete json.eslintConfig
-      delete json['size-limit']
-      delete json['pre-commit']
-      delete json['lint-staged']
-      delete json.yaspeller
-      delete json.devDependencies
-      return json
-    }))
+  return gulp
+    .src('./package.json')
+    .pipe(
+      editor(json => {
+        delete json.babel
+        delete json.scripts
+        delete json.jest
+        delete json.babel
+        delete json.eslintConfig
+        delete json['size-limit']
+        delete json['pre-commit']
+        delete json['lint-staged']
+        delete json.yaspeller
+        delete json.devDependencies
+        return json
+      })
+    )
     .pipe(gulp.dest('build'))
 })
 
 gulp.task('build:docs', () => {
-  let ignore = require('fs').readFileSync('.npmignore').toString()
-    .trim().split(/\n+/)
+  let ignore = require('fs')
+    .readFileSync('.npmignore')
+    .toString()
+    .trim()
+    .split(/\n+/)
     .concat([
-      'package.json', '.npmignore', 'lib/*', 'test/*', 'CONTRIBUTING.md',
-      'node_modules/**/*', 'docs/api.md', 'docs/plugins.md', '*-cn.md',
-      'docs/writing-a-plugin.md', 'coverage', 'coverage/*', 'coverage/**/*',
+      'package.json',
+      '.npmignore',
+      'lib/*',
+      'test/*',
+      'CONTRIBUTING.md',
+      'node_modules/**/*',
+      'docs/api.md',
+      'docs/plugins.md',
+      '*-cn.md',
+      'docs/writing-a-plugin.md',
+      'coverage',
+      'coverage/*',
+      'coverage/**/*',
       'gulpfile.js'
-    ]).map(i => '!' + i)
-  return gulp.src(['**/*'].concat(ignore))
-    .pipe(gulp.dest('build'))
+    ])
+    .map(i => '!' + i)
+  return gulp.src(['**/*'].concat(ignore)).pipe(gulp.dest('build'))
 })
 
 gulp.task('build', done => {

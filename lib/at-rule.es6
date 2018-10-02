@@ -19,17 +19,17 @@ import Container from './container'
  * media.nodes   //=> []
  */
 class AtRule extends Container {
-  constructor (defaults) {
+  constructor(defaults) {
     super(defaults)
     this.type = 'atrule'
   }
 
-  append (...children) {
+  append(...children) {
     if (!this.nodes) this.nodes = []
     return super.append(...children)
   }
 
-  prepend (...children) {
+  prepend(...children) {
     if (!this.nodes) this.nodes = []
     return super.prepend(...children)
   }

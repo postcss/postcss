@@ -59,6 +59,7 @@
     "lint-staged": "^7.3.0",
     "postcss-parser-tests": "^6.3.0",
     "pre-commit": "^1.2.2",
+    "prettier": "^1.14.3",
     "run-sequence": "^2.2.1",
     "size-limit": "^0.20.0",
     "strip-ansi": "^5.0.0",
@@ -69,13 +70,27 @@
     "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
     "docs": "jsdoc -c .jsdocrc lib/*.es6",
     "lint": "eslint-ci *.js lib/*.es6 test/*.js",
-    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
+    "prettier": "prettier --write '*.js' 'lib/*.{es6,ts}' 'test/*.js'",
+    "prettier-verify": "prettier -l '*.js' 'lib/*.{es6,ts}' 'test/*.js'",
+    "test": "gulp && jest && yarn prettier-verify && yarn lint && yarn spell && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
   "lint-staged": {
-    "test/*.js": "eslint",
-    "lib/*.es6": "eslint",
+    "test/*.js": [
+      "eslint",
+      "yarn prettier-verify"
+    ],
+    "lib/*.es6": [
+      "eslint",
+      "yarn prettier-verify"
+    ],
+    "lib/*.ts": [
+      "yarn prettier-verify"
+    ],
+    "*.js": [
+      "yarn prettier-verify"
+    ],
     "*.md": "yaspeller-ci"
   },
   "pre-commit": [
@@ -126,6 +141,8 @@
     },
     "extends": "eslint-config-postcss",
     "rules": {
+      "space-before-function-paren": "off",
+      "template-curly-spacing": "off",
       "node/no-unsupported-features/es-syntax": [
         "error",
         {
