@@ -53,13 +53,23 @@ gulp.task('build:docs', () => {
     .trim()
     .split(/\n+/)
     .concat([
-      'package.json', '.npmignore', 'lib/*', 'test/*', 'CONTRIBUTING.md',
-      'node_modules/**/*', 'docs/api.md', 'docs/plugins.md', '*-cn.md',
-      'docs/writing-a-plugin.md', 'coverage', 'coverage/*', 'coverage/**/*',
+      'package.json',
+      '.npmignore',
+      'lib/*',
+      'test/*',
+      'CONTRIBUTING.md',
+      'node_modules/**/*',
+      'docs/api.md',
+      'docs/plugins.md',
+      '*-cn.md',
+      'docs/writing-a-plugin.md',
+      'coverage',
+      'coverage/*',
+      'coverage/**/*',
       'gulpfile.js'
-    ]).map(i => '!' + i)
-  return gulp.src(['**/*'].concat(ignore))
-    .pipe(gulp.dest('build'))
+    ])
+    .map(i => '!' + i)
+  return gulp.src(['**/*'].concat(ignore)).pipe(gulp.dest('build'))
 })
 
 gulp.task('build', done => {
