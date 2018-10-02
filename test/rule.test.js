@@ -18,11 +18,11 @@ it('trims selectors', () => {
 
 it('is smart about selectors commas', () => {
   let rule = new Rule({
-    selector: '[foo=\'a, b\'], a:-moz-any(:focus, [href*=\',\'])'
+    selector: "[foo='a, b'], a:-moz-any(:focus, [href*=','])"
   })
   expect(rule.selectors).toEqual([
-    '[foo=\'a, b\']',
-    'a:-moz-any(:focus, [href*=\',\'])'
+    "[foo='a, b']",
+    "a:-moz-any(:focus, [href*=','])"
   ])
 })
 

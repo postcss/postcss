@@ -4,13 +4,13 @@ import tokenizer from './tokenize'
 import Input from './input'
 
 const HIGHLIGHT_THEME = {
-  'brackets': chalk.cyan,
+  brackets: chalk.cyan,
   'at-word': chalk.cyan,
-  'comment': chalk.gray,
-  'string': chalk.green,
-  'class': chalk.yellow,
-  'call': chalk.cyan,
-  'hash': chalk.magenta,
+  comment: chalk.gray,
+  string: chalk.green,
+  class: chalk.yellow,
+  call: chalk.cyan,
+  hash: chalk.magenta,
   '(': chalk.cyan,
   ')': chalk.cyan,
   '{': chalk.yellow,
@@ -21,7 +21,7 @@ const HIGHLIGHT_THEME = {
   ';': chalk.yellow
 }
 
-function getTokenType ([type, value], processor) {
+function getTokenType([type, value], processor) {
   if (type === 'word') {
     if (value[0] === '.') {
       return 'class'
@@ -40,14 +40,15 @@ function getTokenType ([type, value], processor) {
   return type
 }
 
-function terminalHighlight (css) {
+function terminalHighlight(css) {
   let processor = tokenizer(new Input(css), { ignoreErrors: true })
   let result = ''
   while (!processor.endOfFile()) {
     let token = processor.nextToken()
     let color = HIGHLIGHT_THEME[getTokenType(token, processor)]
     if (color) {
-      result += token[1].split(/\r?\n/)
+      result += token[1]
+        .split(/\r?\n/)
         .map(i => color(i))
         .join('\n')
     } else {

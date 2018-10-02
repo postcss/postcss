@@ -21,7 +21,7 @@ class Result {
    * @param {processOptions} opts Options from the {@link Processor#process}
    *                              or {@link Root#toResult}.
    */
-  constructor (processor, root, opts) {
+  constructor(processor, root, opts) {
     /**
      * The Processor instance used for this transformation.
      *
@@ -107,7 +107,7 @@ class Result {
    *
    * @return {string} String representing of {@link Result#root}.
    */
-  toString () {
+  toString() {
     return this.css
   }
 
@@ -127,7 +127,7 @@ class Result {
    *
    * @return {Warning} Created warning.
    */
-  warn (text, opts = { }) {
+  warn(text, opts = {}) {
     if (!opts.plugin) {
       if (this.lastPlugin && this.lastPlugin.postcssPlugin) {
         opts.plugin = this.lastPlugin.postcssPlugin
@@ -141,17 +141,17 @@ class Result {
   }
 
   /**
-     * Returns warnings from plugins. Filters {@link Warning} instances
-     * from {@link Result#messages}.
-     *
-     * @example
-     * result.warnings().forEach(warn => {
-     *   console.warn(warn.toString())
-     * })
-     *
-     * @return {Warning[]} Warnings from plugins.
-     */
-  warnings () {
+   * Returns warnings from plugins. Filters {@link Warning} instances
+   * from {@link Result#messages}.
+   *
+   * @example
+   * result.warnings().forEach(warn => {
+   *   console.warn(warn.toString())
+   * })
+   *
+   * @return {Warning[]} Warnings from plugins.
+   */
+  warnings() {
     return this.messages.filter(i => i.type === 'warning')
   }
 
@@ -164,7 +164,7 @@ class Result {
    * @example
    * result.css === result.content
    */
-  get content () {
+  get content() {
     return this.css
   }
 }

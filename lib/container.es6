@@ -2,7 +2,7 @@ import Declaration from './declaration'
 import Comment from './comment'
 import Node from './node'
 
-function cleanSource (nodes) {
+function cleanSource(nodes) {
   return nodes.map(i => {
     if (i.nodes) i.nodes = cleanSource(i.nodes)
     delete i.source
@@ -21,7 +21,7 @@ function cleanSource (nodes) {
  * @abstract
  */
 class Container extends Node {
-  push (child) {
+  push(child) {
     child.parent = this
     this.nodes.push(child)
     return this
@@ -60,9 +60,9 @@ class Container extends Node {
    *   // Will be executed only for color and z-index
    * })
    */
-  each (callback) {
+  each(callback) {
     if (!this.lastEach) this.lastEach = 0
-    if (!this.indexes) this.indexes = { }
+    if (!this.indexes) this.indexes = {}
 
     this.lastEach += 1
     let id = this.lastEach
@@ -103,7 +103,7 @@ class Container extends Node {
    *   // Traverses all descendant nodes.
    * })
    */
-  walk (callback) {
+  walk(callback) {
     return this.each((child, i) => {
       let result
       try {
@@ -112,8 +112,10 @@ class Container extends Node {
         e.postcssNode = child
         if (e.stack && child.source && /\n\s{4}at /.test(e.stack)) {
           let s = child.source
-          e.stack = e.stack.replace(/\n\s{4}at /,
-            `$&${ s.input.from }:${ s.start.line }:${ s.start.column }$&`)
+          e.stack = e.stack.replace(
+            /\n\s{4}at /,
+            `$&${s.input.from}:${s.start.line}:${s.start.column}$&`
+          )
         }
         throw e
       }
@@ -153,7 +155,7 @@ class Container extends Node {
    *   decl.value = takeFirstColorFromGradient(decl.value)
    * })
    */
-  walkDecls (prop, callback) {
+  walkDecls(prop, callback) {
     if (!callback) {
       callback = prop
       return this.walk((child, i) => {
@@ -199,7 +201,7 @@ class Container extends Node {
    * })
    * console.log(`Your CSS uses ${ selectors.length } selectors`)
    */
-  walkRules (selector, callback) {
+  walkRules(selector, callback) {
     if (!callback) {
       callback = selector
 
@@ -253,7 +255,7 @@ class Container extends Node {
    *   }
    * })
    */
-  walkAtRules (name, callback) {
+  walkAtRules(name, callback) {
     if (!callback) {
       callback = name
       return this.walk((child, i) => {
@@ -292,7 +294,7 @@ class Container extends Node {
    *   comment.remove()
    * })
    */
-  walkComments (callback) {
+  walkComments(callback) {
     return this.walk((child, i) => {
       if (child.type === 'comment') {
         return callback(child, i)
@@ -320,7 +322,7 @@ class Container extends Node {
    * root.append('a {}')
    * root.first.append('color: black; z-index: 1')
    */
-  append (...children) {
+  append(...children) {
     for (let child of children) {
       let nodes = this.normalize(child, this.last)
       for (let node of nodes) this.nodes.push(node)
@@ -348,7 +350,7 @@ class Container extends Node {
    * root.append('a {}')
    * root.first.append('color: black; z-index: 1')
    */
-  prepend (...children) {
+  prepend(...children) {
     children = children.reverse()
     for (let child of children) {
       let nodes = this.normalize(child, this.first, 'prepend').reverse()
@@ -360,7 +362,7 @@ class Container extends Node {
     return this
   }
 
-  cleanRaws (keepBetween) {
+  cleanRaws(keepBetween) {
     super.cleanRaws(keepBetween)
     if (this.nodes) {
       for (let node of this.nodes) node.cleanRaws(keepBetween)
@@ -378,7 +380,7 @@ class Container extends Node {
    * @example
    * rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }))
    */
-  insertBefore (exist, add) {
+  insertBefore(exist, add) {
     exist = this.index(exist)
 
     let type = exist === 0 ? 'prepend' : false
@@ -404,7 +406,7 @@ class Container extends Node {
    *
    * @return {Node} This node for methods chain.
    */
-  insertAfter (exist, add) {
+  insertAfter(exist, add) {
     exist = this.index(exist)
 
     let nodes = this.normalize(add, this.nodes[exist]).reverse()
@@ -435,7 +437,7 @@ class Container extends Node {
    * rule.nodes.length  //=> 4
    * decl.parent        //=> undefined
    */
-  removeChild (child) {
+  removeChild(child) {
     child = this.index(child)
     this.nodes[child].parent = undefined
     this.nodes.splice(child, 1)
@@ -461,7 +463,7 @@ class Container extends Node {
    * rule.removeAll()
    * rule.nodes.length //=> 0
    */
-  removeAll () {
+  removeAll() {
     for (let node of this.nodes) node.parent = undefined
     this.nodes = []
     return this
@@ -493,10 +495,10 @@ class Container extends Node {
    *   return 15 * parseInt(string) + 'px'
    * })
    */
-  replaceValues (pattern, opts, callback) {
+  replaceValues(pattern, opts, callback) {
     if (!callback) {
       callback = opts
-      opts = { }
+      opts = {}
     }
 
     this.walkDecls(decl => {
@@ -520,7 +522,7 @@ class Container extends Node {
    * @example
    * const noPrefixes = rule.every(i => i.prop[0] !== '-')
    */
-  every (condition) {
+  every(condition) {
     return this.nodes.every(condition)
   }
 
@@ -535,7 +537,7 @@ class Container extends Node {
    * @example
    * const hasPrefix = rule.some(i => i.prop[0] === '-')
    */
-  some (condition) {
+  some(condition) {
     return this.nodes.some(condition)
   }
 
@@ -549,7 +551,7 @@ class Container extends Node {
    * @example
    * rule.index( rule.nodes[2] ) //=> 2
    */
-  index (child) {
+  index(child) {
     if (typeof child === 'number') {
       return child
     }
@@ -564,7 +566,7 @@ class Container extends Node {
    * @example
    * rule.first === rules.nodes[0]
    */
-  get first () {
+  get first() {
     if (!this.nodes) return undefined
     return this.nodes[0]
   }
@@ -577,12 +579,12 @@ class Container extends Node {
    * @example
    * rule.last === rule.nodes[rule.nodes.length - 1]
    */
-  get last () {
+  get last() {
     if (!this.nodes) return undefined
     return this.nodes[this.nodes.length - 1]
   }
 
-  normalize (nodes, sample) {
+  normalize(nodes, sample) {
     if (typeof nodes === 'string') {
       let parse = require('./parse')
       nodes = cleanSource(parse(nodes).nodes)

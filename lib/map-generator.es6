@@ -2,21 +2,21 @@ import mozilla from 'source-map'
 import path from 'path'
 
 class MapGenerator {
-  constructor (stringify, root, opts) {
+  constructor(stringify, root, opts) {
     this.stringify = stringify
-    this.mapOpts = opts.map || { }
+    this.mapOpts = opts.map || {}
     this.root = root
     this.opts = opts
   }
 
-  isMap () {
+  isMap() {
     if (typeof this.opts.map !== 'undefined') {
       return !!this.opts.map
     }
     return this.previous().length > 0
   }
 
-  previous () {
+  previous() {
     if (!this.previousMaps) {
       this.previousMaps = []
       this.root.walk(node => {
@@ -32,7 +32,7 @@ class MapGenerator {
     return this.previousMaps
   }
 
-  isInline () {
+  isInline() {
     if (typeof this.mapOpts.inline !== 'undefined') {
       return this.mapOpts.inline
     }
@@ -48,7 +48,7 @@ class MapGenerator {
     return true
   }
 
-  isSourcesContent () {
+  isSourcesContent() {
     if (typeof this.mapOpts.sourcesContent !== 'undefined') {
       return this.mapOpts.sourcesContent
     }
@@ -58,7 +58,7 @@ class MapGenerator {
     return true
   }
 
-  clearAnnotation () {
+  clearAnnotation() {
     if (this.mapOpts.annotation === false) return
 
     let node
@@ -71,8 +71,8 @@ class MapGenerator {
     }
   }
 
-  setSourcesContent () {
-    let already = { }
+  setSourcesContent() {
+    let already = {}
     this.root.walk(node => {
       if (node.source) {
         let from = node.source.input.from
@@ -85,7 +85,7 @@ class MapGenerator {
     })
   }
 
-  applyPrevMaps () {
+  applyPrevMaps() {
     for (let prev of this.previous()) {
       let from = this.relative(prev.file)
       let root = prev.root || path.dirname(prev.file)
@@ -104,7 +104,7 @@ class MapGenerator {
     }
   }
 
-  isAnnotation () {
+  isAnnotation() {
     if (this.isInline()) {
       return true
     }
@@ -117,19 +117,19 @@ class MapGenerator {
     return true
   }
 
-  toBase64 (str) {
+  toBase64(str) {
     if (Buffer) {
       return Buffer.from(str).toString('base64')
     }
     return window.btoa(unescape(encodeURIComponent(str)))
   }
 
-  addAnnotation () {
+  addAnnotation() {
     let content
 
     if (this.isInline()) {
-      content = 'data:application/json;base64,' +
-                this.toBase64(this.map.toString())
+      content =
+        'data:application/json;base64,' + this.toBase64(this.map.toString())
     } else if (typeof this.mapOpts.annotation === 'string') {
       content = this.mapOpts.annotation
     } else {
@@ -142,7 +142,7 @@ class MapGenerator {
     this.css += eol + '/*# sourceMappingURL=' + content + ' */'
   }
 
-  outputFile () {
+  outputFile() {
     if (this.opts.to) {
       return this.relative(this.opts.to)
     }
@@ -152,7 +152,7 @@ class MapGenerator {
     return 'to.css'
   }
 
-  generateMap () {
+  generateMap() {
     this.generateString()
     if (this.isSourcesContent()) this.setSourcesContent()
     if (this.previous().length > 0) this.applyPrevMaps()
@@ -164,7 +164,7 @@ class MapGenerator {
     return [this.css, this.map]
   }
 
-  relative (file) {
+  relative(file) {
     if (file.indexOf('<') === 0) return file
     if (/^\w+:\/\//.test(file)) return file
 
@@ -181,14 +181,14 @@ class MapGenerator {
     return file
   }
 
-  sourcePath (node) {
+  sourcePath(node) {
     if (this.mapOpts.from) {
       return this.mapOpts.from
     }
     return this.relative(node.source.input.from)
   }
 
-  generateString () {
+  generateString() {
     this.css = ''
     this.map = new mozilla.SourceMapGenerator({ file: this.outputFile() })
 
@@ -248,7 +248,7 @@ class MapGenerator {
     })
   }
 
-  generate () {
+  generate() {
     this.clearAnnotation()
 
     if (this.isMap()) {

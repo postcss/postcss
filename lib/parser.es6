@@ -6,7 +6,7 @@ import Root from './root'
 import Rule from './rule'
 
 export default class Parser {
-  constructor (input) {
+  constructor(input) {
     this.input = input
 
     this.root = new Root()
@@ -18,11 +18,11 @@ export default class Parser {
     this.root.source = { input, start: { line: 1, column: 1 } }
   }
 
-  createTokenizer () {
+  createTokenizer() {
     this.tokenizer = tokenizer(this.input)
   }
 
-  parse () {
+  parse() {
     let token
     while (!this.tokenizer.endOfFile()) {
       token = this.tokenizer.nextToken()
@@ -60,7 +60,7 @@ export default class Parser {
     this.endFile()
   }
 
-  comment (token) {
+  comment(token) {
     let node = new Comment()
     this.init(node, token[2], token[3])
     node.source.end = { line: token[4], column: token[5] }
@@ -78,7 +78,7 @@ export default class Parser {
     }
   }
 
-  emptyRule (token) {
+  emptyRule(token) {
     let node = new Rule()
     this.init(node, token[2], token[3])
     node.selector = ''
@@ -86,7 +86,7 @@ export default class Parser {
     this.current = node
   }
 
-  other (start) {
+  other(start) {
     let end = false
     let type = null
     let colon = false
@@ -143,7 +143,7 @@ export default class Parser {
     }
   }
 
-  rule (tokens) {
+  rule(tokens) {
     tokens.pop()
 
     let node = new Rule()
@@ -154,7 +154,7 @@ export default class Parser {
     this.current = node
   }
 
-  decl (tokens) {
+  decl(tokens) {
     let node = new Declaration()
     this.init(node)
 
@@ -240,7 +240,7 @@ export default class Parser {
     if (node.value.indexOf(':') !== -1) this.checkMissedSemicolon(tokens)
   }
 
-  atrule (token) {
+  atrule(token) {
     let node = new AtRule()
     node.name = token[1].slice(1)
     if (node.name === '') {
@@ -308,7 +308,7 @@ export default class Parser {
     }
   }
 
-  end (token) {
+  end(token) {
     if (this.current.nodes && this.current.nodes.length) {
       this.current.raws.semicolon = this.semicolon
     }
@@ -325,7 +325,7 @@ export default class Parser {
     }
   }
 
-  endFile () {
+  endFile() {
     if (this.current.parent) this.unclosedBlock()
     if (this.current.nodes && this.current.nodes.length) {
       this.current.raws.semicolon = this.semicolon
@@ -333,7 +333,7 @@ export default class Parser {
     this.current.raws.after = (this.current.raws.after || '') + this.spaces
   }
 
-  freeSemicolon (token) {
+  freeSemicolon(token) {
     this.spaces += token[1]
     if (this.current.nodes) {
       let prev = this.current.nodes[this.current.nodes.length - 1]
@@ -346,7 +346,7 @@ export default class Parser {
 
   // Helpers
 
-  init (node, line, column) {
+  init(node, line, column) {
     this.current.push(node)
 
     node.source = { start: { line, column }, input: this.input }
@@ -355,7 +355,7 @@ export default class Parser {
     if (node.type !== 'comment') this.semicolon = false
   }
 
-  raw (node, prop, tokens) {
+  raw(node, prop, tokens) {
     let token, type
     let length = tokens.length
     let value = ''
@@ -398,7 +398,7 @@ export default class Parser {
     node[prop] = value
   }
 
-  spacesAndCommentsFromEnd (tokens) {
+  spacesAndCommentsFromEnd(tokens) {
     let lastTokenType
     let spaces = ''
     while (tokens.length) {
@@ -409,7 +409,7 @@ export default class Parser {
     return spaces
   }
 
-  spacesAndCommentsFromStart (tokens) {
+  spacesAndCommentsFromStart(tokens) {
     let next
     let spaces = ''
     while (tokens.length) {
@@ -420,7 +420,7 @@ export default class Parser {
     return spaces
   }
 
-  spacesFromEnd (tokens) {
+  spacesFromEnd(tokens) {
     let lastTokenType
     let spaces = ''
     while (tokens.length) {
@@ -431,7 +431,7 @@ export default class Parser {
     return spaces
   }
 
-  stringFrom (tokens, from) {
+  stringFrom(tokens, from) {
     let result = ''
     for (let i = from; i < tokens.length; i++) {
       result += tokens[i][1]
@@ -440,7 +440,7 @@ export default class Parser {
     return result
   }
 
-  colon (tokens) {
+  colon(tokens) {
     let brackets = 0
     let token, type, prev
     for (let i = 0; i < tokens.length; i++) {
@@ -470,36 +470,36 @@ export default class Parser {
 
   // Errors
 
-  unclosedBracket (bracket) {
+  unclosedBracket(bracket) {
     throw this.input.error('Unclosed bracket', bracket[2], bracket[3])
   }
 
-  unknownWord (tokens) {
+  unknownWord(tokens) {
     throw this.input.error('Unknown word', tokens[0][2], tokens[0][3])
   }
 
-  unexpectedClose (token) {
+  unexpectedClose(token) {
     throw this.input.error('Unexpected }', token[2], token[3])
   }
 
-  unclosedBlock () {
+  unclosedBlock() {
     let pos = this.current.source.start
     throw this.input.error('Unclosed block', pos.line, pos.column)
   }
 
-  doubleColon (token) {
+  doubleColon(token) {
     throw this.input.error('Double colon', token[2], token[3])
   }
 
-  unnamedAtrule (node, token) {
+  unnamedAtrule(node, token) {
     throw this.input.error('At-rule without name', token[2], token[3])
   }
 
-  precheckMissedSemicolon (/* tokens */) {
+  precheckMissedSemicolon(/* tokens */) {
     // Hook for Safe Parser
   }
 
-  checkMissedSemicolon (tokens) {
+  checkMissedSemicolon(tokens) {
     let colon = this.colon(tokens)
     if (colon === false) return
 

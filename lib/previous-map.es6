@@ -2,7 +2,7 @@ import mozilla from 'source-map'
 import path from 'path'
 import fs from 'fs'
 
-function fromBase64 (str) {
+function fromBase64(str) {
   if (Buffer) {
     return Buffer.from(str, 'base64').toString()
   } else {
@@ -26,7 +26,7 @@ class PreviousMap {
    * @param {string}         css    Input CSS source.
    * @param {processOptions} [opts] {@link Processor#process} options.
    */
-  constructor (css, opts) {
+  constructor(css, opts) {
     this.loadAnnotation(css)
     /**
      * Was source map inlined by data-uri to input CSS.
@@ -49,7 +49,7 @@ class PreviousMap {
    *
    * @return {SourceMapGenerator} Object with source map information.
    */
-  consumer () {
+  consumer() {
     if (!this.consumerCache) {
       this.consumerCache = new mozilla.SourceMapConsumer(this.text)
     }
@@ -61,22 +61,24 @@ class PreviousMap {
    *
    * @return {boolean} Is `sourcesContent` present.
    */
-  withContent () {
-    return !!(this.consumer().sourcesContent &&
-              this.consumer().sourcesContent.length > 0)
+  withContent() {
+    return !!(
+      this.consumer().sourcesContent &&
+      this.consumer().sourcesContent.length > 0
+    )
   }
 
-  startWith (string, start) {
+  startWith(string, start) {
     if (!string) return false
     return string.substr(0, start.length) === start
   }
 
-  loadAnnotation (css) {
+  loadAnnotation(css) {
     let match = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//)
     if (match) this.annotation = match[1].trim()
   }
 
-  decodeInline (text) {
+  decodeInline(text) {
     let baseCharsetUri = /^data:application\/json;charset=utf-?8;base64,/
     let baseUri = /^data:application\/json;base64,/
     let uri = 'data:application/json,'
@@ -93,7 +95,7 @@ class PreviousMap {
     throw new Error('Unsupported source map encoding ' + encoding)
   }
 
-  loadMap (file, prev) {
+  loadMap(file, prev) {
     if (prev === false) return false
 
     if (prev) {
@@ -102,10 +104,14 @@ class PreviousMap {
       } else if (typeof prev === 'function') {
         let prevPath = prev(file)
         if (prevPath && fs.existsSync && fs.existsSync(prevPath)) {
-          return fs.readFileSync(prevPath, 'utf-8').toString().trim()
+          return fs
+            .readFileSync(prevPath, 'utf-8')
+            .toString()
+            .trim()
         } else {
           throw new Error(
-            'Unable to load previous source map: ' + prevPath.toString())
+            'Unable to load previous source map: ' + prevPath.toString()
+          )
         }
       } else if (prev instanceof mozilla.SourceMapConsumer) {
         return mozilla.SourceMapGenerator.fromSourceMap(prev).toString()
@@ -115,7 +121,8 @@ class PreviousMap {
         return JSON.stringify(prev)
       } else {
         throw new Error(
-          'Unsupported previous source map format: ' + prev.toString())
+          'Unsupported previous source map format: ' + prev.toString()
+        )
       }
     } else if (this.inline) {
       return this.decodeInline(this.annotation)
@@ -125,14 +132,17 @@ class PreviousMap {
 
       this.root = path.dirname(map)
       if (fs.existsSync && fs.existsSync(map)) {
-        return fs.readFileSync(map, 'utf-8').toString().trim()
+        return fs
+          .readFileSync(map, 'utf-8')
+          .toString()
+          .trim()
       } else {
         return false
       }
     }
   }
 
-  isMap (map) {
+  isMap(map) {
     if (typeof map !== 'object') return false
     return typeof map.mappings === 'string' || typeof map._mappings === 'string'
   }

@@ -11,13 +11,13 @@ import Container from './container'
  * root.nodes.length //=> 2
  */
 class Root extends Container {
-  constructor (defaults) {
+  constructor(defaults) {
     super(defaults)
     this.type = 'root'
     if (!this.nodes) this.nodes = []
   }
 
-  removeChild (child, ignore) {
+  removeChild(child, ignore) {
     let index = this.index(child)
 
     if (!ignore && index === 0 && this.nodes.length > 1) {
@@ -27,7 +27,7 @@ class Root extends Container {
     return super.removeChild(child)
   }
 
-  normalize (child, sample, type) {
+  normalize(child, sample, type) {
     let nodes = super.normalize(child)
 
     if (sample) {
@@ -60,7 +60,7 @@ class Root extends Container {
    * root1.append(root2)
    * const result = root1.toResult({ to: 'all.css', map: true })
    */
-  toResult (opts = { }) {
+  toResult(opts = {}) {
     let LazyResult = require('./lazy-result')
     let Processor = require('./processor')
 

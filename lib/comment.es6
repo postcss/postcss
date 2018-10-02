@@ -9,7 +9,7 @@ import Node from './node'
  * @extends Node
  */
 class Comment extends Node {
-  constructor (defaults) {
+  constructor(defaults) {
     super(defaults)
     this.type = 'comment'
   }

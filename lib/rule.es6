@@ -13,7 +13,7 @@ import list from './list'
  * rule.toString() //=> 'a{}'
  */
 class Rule extends Container {
-  constructor (defaults) {
+  constructor(defaults) {
     super(defaults)
     this.type = 'rule'
     if (!this.nodes) this.nodes = []
@@ -35,11 +35,11 @@ class Rule extends Container {
    * rule.selectors = ['a', 'strong']
    * rule.selector //=> 'a, strong'
    */
-  get selectors () {
+  get selectors() {
     return list.comma(this.selector)
   }
 
-  set selectors (values) {
+  set selectors(values) {
     let match = this.selector ? this.selector.match(/,\s*/) : null
     let sep = match ? match[0] : ',' + this.raw('between', 'beforeOpen')
     this.selector = values.join(sep)

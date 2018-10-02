@@ -41,7 +41,8 @@ it('supports injecting additional processors at runtime', () => {
     }
   })
 
-  return postcss([plugin2]).process('a{hello: bob}', { from: undefined })
+  return postcss([plugin2])
+    .process('a{hello: bob}', { from: undefined })
     .then(result => {
       expect(result.css).toEqual('a{hello: world}')
     })
@@ -73,7 +74,7 @@ it('does not call plugin constructor', () => {
   let calls = 0
   let plugin = postcss.plugin('test', () => {
     calls += 1
-    return () => { }
+    return () => {}
   })
   expect(calls).toBe(0)
 
@@ -96,7 +97,7 @@ it('creates a shortcut to process css', () => {
   let result1 = plugin.process('a{value:foo}')
   expect(result1.css).toEqual('a{value:bar}')
 
-  let result2 = plugin.process('a{value:foo}', { }, 'baz')
+  let result2 = plugin.process('a{value:foo}', {}, 'baz')
   expect(result2.css).toEqual('a{value:baz}')
 
   return plugin.process('a{value:foo}', { from: 'a' }, 'baz').then(result => {
@@ -125,12 +126,14 @@ it('allows to build own CSS', () => {
   media.append(rule)
   root.append(media)
 
-  expect(root.toString()).toEqual('/* Example */\n' +
-                                  '@media screen {\n' +
-                                  '    a {\n' +
-                                  '        color: black\n' +
-                                  '    }\n' +
-                                  '}\n')
+  expect(root.toString()).toEqual(
+    '/* Example */\n' +
+      '@media screen {\n' +
+      '    a {\n' +
+      '        color: black\n' +
+      '    }\n' +
+      '}\n'
+  )
 })
 
 it('contains vendor module', () => {

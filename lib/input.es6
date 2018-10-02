@@ -17,9 +17,9 @@ class Input {
    * @param {string} css    Input CSS source.
    * @param {object} [opts] {@link Processor#process} options.
    */
-  constructor (css, opts = { }) {
+  constructor(css, opts = {}) {
     if (css === null || (typeof css === 'object' && !css.toString)) {
-      throw new Error(`PostCSS received ${ css } instead of CSS string`)
+      throw new Error(`PostCSS received ${css} instead of CSS string`)
     }
 
     /**
@@ -89,17 +89,27 @@ class Input {
     if (this.map) this.map.file = this.from
   }
 
-  error (message, line, column, opts = { }) {
+  error(message, line, column, opts = {}) {
     let result
     let origin = this.origin(line, column)
     if (origin) {
       result = new CssSyntaxError(
-        message, origin.line, origin.column,
-        origin.source, origin.file, opts.plugin
+        message,
+        origin.line,
+        origin.column,
+        origin.source,
+        origin.file,
+        opts.plugin
       )
     } else {
       result = new CssSyntaxError(
-        message, line, column, this.css, this.file, opts.plugin)
+        message,
+        line,
+        column,
+        this.css,
+        this.file,
+        opts.plugin
+      )
     }
 
     result.input = { line, column, source: this.css }
@@ -121,7 +131,7 @@ class Input {
    * @example
    * root.source.input.origin(1, 1) //=> { file: 'a.css', line: 3, column: 1 }
    */
-  origin (line, column) {
+  origin(line, column) {
     if (!this.map) return false
     let consumer = this.map.consumer()
 
@@ -140,7 +150,7 @@ class Input {
     return result
   }
 
-  mapResolve (file) {
+  mapResolve(file) {
     if (/^\w+:\/\//.test(file)) {
       return file
     }
@@ -160,7 +170,7 @@ class Input {
    * const root = postcss.parse(css)
    * root.source.input.from //=> "<input css 1>"
    */
-  get from () {
+  get from() {
     return this.file || this.id
   }
 }

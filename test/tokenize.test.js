@@ -1,7 +1,7 @@
 let tokenizer = require('../lib/tokenize')
 let Input = require('../lib/input')
 
-function tokenize (css, opts) {
+function tokenize(css, opts) {
   let processor = tokenizer(new Input(css), opts)
   let tokens = []
   while (!processor.endOfFile()) {
@@ -10,7 +10,7 @@ function tokenize (css, opts) {
   return tokens
 }
 
-function run (css, tokens, opts) {
+function run(css, tokens, opts) {
   expect(tokenize(css, opts)).toEqual(tokens)
 }
 
@@ -27,10 +27,7 @@ it('tokenizes word', () => {
 })
 
 it('splits word by !', () => {
-  run('aa!bb', [
-    ['word', 'aa', 1, 1, 1, 2],
-    ['word', '!bb', 1, 3, 1, 5]
-  ])
+  run('aa!bb', [['word', 'aa', 1, 1, 1, 2], ['word', '!bb', 1, 3, 1, 5]])
 })
 
 it('changes lines in spaces', () => {
@@ -62,10 +59,7 @@ it('escapes control symbols', () => {
 })
 
 it('escapes backslash', () => {
-  run('\\\\\\\\{', [
-    ['word', '\\\\\\\\', 1, 1, 1, 4],
-    ['{', '{', 1, 5]
-  ])
+  run('\\\\\\\\{', [['word', '\\\\\\\\', 1, 1, 1, 4], ['{', '{', 1, 5]])
 })
 
 it('tokenizes simple brackets', () => {
@@ -104,7 +98,7 @@ it('tokenizes complicated brackets', () => {
 
 it('tokenizes string', () => {
   run('\'"\'"\\""', [
-    ['string', '\'"\'', 1, 1, 1, 3],
+    ['string', "'\"'", 1, 1, 1, 3],
     ['string', '"\\""', 1, 4, 1, 7]
   ])
 })
@@ -188,12 +182,13 @@ it('supports carriage return', () => {
 })
 
 it('tokenizes CSS', () => {
-  let css = 'a {\n' +
-              '  content: "a";\n' +
-              '  width: calc(1px;)\n' +
-              '  }\n' +
-              '/* small screen */\n' +
-              '@media screen {}'
+  let css =
+    'a {\n' +
+    '  content: "a";\n' +
+    '  width: calc(1px;)\n' +
+    '  }\n' +
+    '/* small screen */\n' +
+    '@media screen {}'
   run(css, [
     ['word', 'a', 1, 1, 1, 1],
     ['space', ' '],
@@ -243,22 +238,21 @@ it('throws error on unclosed url', () => {
 })
 
 it('ignores unclosing string on request', () => {
-  run(' "', [
-    ['space', ' '], ['string', '"', 1, 2, 1, 3]
-  ], { ignoreErrors: true })
+  run(' "', [['space', ' '], ['string', '"', 1, 2, 1, 3]], {
+    ignoreErrors: true
+  })
 })
 
 it('ignores unclosing comment on request', () => {
-  run(' /*', [
-    ['space', ' '], ['comment', '/*', 1, 2, 1, 4]
-  ], { ignoreErrors: true })
+  run(' /*', [['space', ' '], ['comment', '/*', 1, 2, 1, 4]], {
+    ignoreErrors: true
+  })
 })
 
 it('ignores unclosing function on request', () => {
-  run('url(', [
-    ['word', 'url', 1, 1, 1, 3],
-    ['brackets', '(', 1, 4, 1, 4]
-  ], { ignoreErrors: true })
+  run('url(', [['word', 'url', 1, 1, 1, 3], ['brackets', '(', 1, 4, 1, 4]], {
+    ignoreErrors: true
+  })
 })
 
 it('tokenizes hexadecimal escape', () => {
@@ -271,7 +265,7 @@ it('tokenizes hexadecimal escape', () => {
 })
 
 it('ignore unclosed per token request', () => {
-  function tokn (css, opts) {
+  function tokn(css, opts) {
     let processor = tokenizer(new Input(css), opts)
     let tokens = []
     while (!processor.endOfFile()) {
@@ -282,14 +276,16 @@ it('ignore unclosed per token request', () => {
 
   let css = `How's it going (`
   let tokens = tokn(css, {})
-  let expected = [['word', 'How', 1, 1, 1, 3],
+  let expected = [
+    ['word', 'How', 1, 1, 1, 3],
     ['string', "'s", 1, 4, 1, 5],
     ['space', ' '],
     ['word', 'it', 1, 7, 1, 8],
     ['space', ' '],
     ['word', 'going', 1, 10, 1, 14],
     ['space', ' '],
-    ['(', '(', 1, 16]]
+    ['(', '(', 1, 16]
+  ]
 
   expect(tokens).toEqual(expected)
 })

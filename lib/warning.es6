@@ -18,7 +18,7 @@ class Warning {
    *                             this warning. {@link Result#warn} fills
    *                             this property automatically.
    */
-  constructor (text, opts = { }) {
+  constructor(text, opts = {}) {
     /**
      * Type to filter warnings from {@link Result#messages}.
      * Always equal to `"warning"`.
@@ -71,7 +71,7 @@ class Warning {
    *
    * @return {string} Warning position and message.
    */
-  toString () {
+  toString() {
     if (this.node) {
       return this.node.error(this.text, {
         plugin: this.plugin,

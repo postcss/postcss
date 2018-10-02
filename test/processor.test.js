@@ -7,22 +7,24 @@ let Root = require('../lib/root')
 
 let path = require('path')
 
-function prs () {
+function prs() {
   return new Root({ raws: { after: 'ok' } })
 }
 
-function str (node, builder) {
+function str(node, builder) {
   builder(node.raws.after + '!')
 }
 
-let beforeFix = new Processor([css => {
-  css.walkRules(rule => {
-    if (!rule.selector.match(/::(before|after)/)) return
-    if (!rule.some(i => i.prop === 'content')) {
-      rule.prepend({ prop: 'content', value: '""' })
-    }
-  })
-}])
+let beforeFix = new Processor([
+  css => {
+    css.walkRules(rule => {
+      if (!rule.selector.match(/::(before|after)/)) return
+      if (!rule.some(i => i.prop === 'content')) {
+        rule.prepend({ prop: 'content', value: '""' })
+      }
+    })
+  }
+])
 
 let originWarn = console.warn
 let originError = console.error
@@ -96,28 +98,28 @@ it('processes parsed AST', () => {
 })
 
 it('processes previous result', () => {
-  let result = (new Processor([() => true])).process('a::before{top:0}')
+  let result = new Processor([() => true]).process('a::before{top:0}')
   result = beforeFix.process(result)
   expect(result.css).toEqual('a::before{content:"";top:0}')
 })
 
 it('takes maps from previous result', () => {
-  let one = (new Processor([() => true])).process('a{}', {
+  let one = new Processor([() => true]).process('a{}', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
   })
-  let two = (new Processor([() => true])).process(one, { to: 'c.css' })
+  let two = new Processor([() => true]).process(one, { to: 'c.css' })
   expect(two.map.toJSON().sources).toEqual(['a.css'])
 })
 
 it('inlines maps from previous result', () => {
-  let one = (new Processor([() => true])).process('a{}', {
+  let one = new Processor([() => true]).process('a{}', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
   })
-  let two = (new Processor([() => true])).process(one, {
+  let two = new Processor([() => true]).process(one, {
     to: 'c.css',
     map: { inline: true }
   })
@@ -127,7 +129,7 @@ it('inlines maps from previous result', () => {
 it('throws with file name', () => {
   let error
   try {
-    (new Processor([() => true])).process('a {', { from: 'a.css' }).css
+    new Processor([() => true]).process('a {', { from: 'a.css' }).css
   } catch (e) {
     if (e.name === 'CssSyntaxError') {
       error = e
@@ -149,7 +151,7 @@ it('allows to replace Root', () => {
 })
 
 it('returns LazyResult object', () => {
-  let result = (new Processor([() => true])).process('a{}')
+  let result = new Processor([() => true]).process('a{}')
   expect(result instanceof LazyResult).toBeTruthy()
   expect(result.css).toEqual('a{}')
   expect(result.toString()).toEqual('a{}')
@@ -177,7 +179,7 @@ it('calls all plugins once', () => {
 
 it('parses, converts and stringifies CSS', () => {
   let a = css => expect(css instanceof Root).toBeTruthy()
-  expect(typeof (new Processor([a])).process('a {}').css).toEqual('string')
+  expect(typeof new Processor([a]).process('a {}').css).toEqual('string')
 })
 
 it('send result to plugins', () => {
@@ -193,12 +195,12 @@ it('send result to plugins', () => {
 })
 
 it('accepts source map from PostCSS', () => {
-  let one = (new Processor([() => true])).process('a{}', {
+  let one = new Processor([() => true]).process('a{}', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
   })
-  let two = (new Processor([() => true])).process(one.css, {
+  let two = new Processor([() => true]).process(one.css, {
     from: 'b.css',
     to: 'c.css',
     map: { prev: one.map, inline: false }
@@ -234,7 +236,8 @@ it('supports async plugins', () => {
       }, 1)
     })
   }
-  return (new Processor([async1, async2])).process('', { from: undefined })
+  return new Processor([async1, async2])
+    .process('', { from: undefined })
     .then(result => {
       expect(starts).toEqual(2)
       expect(finish).toEqual(2)
@@ -243,7 +246,8 @@ it('supports async plugins', () => {
 })
 
 it('works async without plugins', () => {
-  return (new Processor([() => true])).process('a {}', { from: undefined })
+  return new Processor([() => true])
+    .process('a {}', { from: undefined })
     .then(result => {
       expect(result.css).toEqual('a {}')
     })
@@ -262,8 +266,8 @@ it('runs async plugin only once', () => {
     })
   }
 
-  let result = (new Processor([async])).process('a {}', { from: undefined })
-  result.then(() => { })
+  let result = new Processor([async]).process('a {}', { from: undefined })
+  result.then(() => {})
   return result.then(() => {
     return result.then(() => {
       expect(calls).toEqual(1)
@@ -278,33 +282,38 @@ it('supports async errors', done => {
       reject(error)
     })
   }
-  let result = (new Processor([async])).process('', { from: undefined })
-  result.then(() => {
-    done.fail()
-  }).catch(err => {
-    expect(err).toEqual(error)
-    return result.catch(err2 => {
-      expect(err2).toEqual(error)
-      done()
+  let result = new Processor([async]).process('', { from: undefined })
+  result
+    .then(() => {
+      done.fail()
     })
-  })
+    .catch(err => {
+      expect(err).toEqual(error)
+      return result.catch(err2 => {
+        expect(err2).toEqual(error)
+        done()
+      })
+    })
 })
 
 it('supports sync errors in async mode', done => {
   let error = new Error('Async')
   let async = () => {
     throw error
-  };
-  (new Processor([async])).process('', { from: undefined }).then(() => {
-    done.fail()
-  }).catch(err => {
-    expect(err).toEqual(error)
-    done()
-  })
+  }
+  new Processor([async])
+    .process('', { from: undefined })
+    .then(() => {
+      done.fail()
+    })
+    .catch(err => {
+      expect(err).toEqual(error)
+      done()
+    })
 })
 
 it('throws parse error in async', () => {
-  return (new Processor([() => true])).process('a{').catch(err => {
+  return new Processor([() => true]).process('a{').catch(err => {
     expect(err.message).toEqual('<css input>:1:1: Unclosed block')
   })
 })
@@ -314,14 +323,14 @@ it('throws error on sync method to async plugin', () => {
     return new Promise(resolve => resolve())
   }
   expect(() => {
-    (new Processor([async])).process('a{}').css
+    new Processor([async]).process('a{}').css
   }).toThrowError(/async/)
 })
 
 it('throws a sync call in async running', () => {
   let async = () => new Promise(resolve => setTimeout(resolve, 1))
 
-  let processor = (new Processor([async])).process('a{}')
+  let processor = new Processor([async]).process('a{}')
   processor.async()
 
   expect(() => {
@@ -352,8 +361,8 @@ it('checks plugin compatibility', () => {
   expect(console.error.mock.calls).toHaveLength(1)
   expect(console.error.mock.calls[0][0]).toEqual(
     'Unknown error from PostCSS plugin. ' +
-    'Your current PostCSS version is 1.0.0, but test uses 2.1.5. ' +
-    'Perhaps this is the source of the error below.'
+      'Your current PostCSS version is 1.0.0, but test uses 2.1.5. ' +
+      'Perhaps this is the source of the error below.'
   )
 
   expect(() => {
@@ -373,10 +382,10 @@ it('checks plugin compatibility', () => {
 })
 
 it('sets last plugin to result', () => {
-  let plugin1 = function (css, result) {
+  let plugin1 = function(css, result) {
     expect(result.lastPlugin).toBe(plugin1)
   }
-  let plugin2 = function (css, result) {
+  let plugin2 = function(css, result) {
     expect(result.lastPlugin).toBe(plugin2)
   }
 
@@ -389,7 +398,8 @@ it('sets last plugin to result', () => {
 it('uses custom parsers', () => {
   console.warn = jest.fn()
   let processor = new Processor([])
-  return processor.process('a{}', { parser: prs, from: undefined })
+  return processor
+    .process('a{}', { parser: prs, from: undefined })
     .then(result => {
       expect(console.warn).not.toHaveBeenCalled()
       expect(result.css).toEqual('ok')
@@ -399,7 +409,8 @@ it('uses custom parsers', () => {
 it('uses custom parsers from object', () => {
   let processor = new Processor([])
   let syntax = { parse: prs, stringify: str }
-  return processor.process('a{}', { parser: syntax, from: undefined })
+  return processor
+    .process('a{}', { parser: syntax, from: undefined })
     .then(result => {
       expect(result.css).toEqual('ok')
     })
@@ -408,7 +419,8 @@ it('uses custom parsers from object', () => {
 it('uses custom stringifier', () => {
   console.warn = jest.fn()
   let processor = new Processor([])
-  return processor.process('a{}', { stringifier: str, from: undefined })
+  return processor
+    .process('a{}', { stringifier: str, from: undefined })
     .then(result => {
       expect(console.warn).not.toHaveBeenCalled()
       expect(result.css).toEqual('!')
@@ -418,7 +430,8 @@ it('uses custom stringifier', () => {
 it('uses custom stringifier from object', () => {
   let processor = new Processor([])
   let syntax = { parse: prs, stringify: str }
-  return processor.process('', { stringifier: syntax, from: undefined })
+  return processor
+    .process('', { stringifier: syntax, from: undefined })
     .then(result => {
       expect(result.css).toEqual('!')
     })
@@ -426,31 +439,38 @@ it('uses custom stringifier from object', () => {
 
 it('uses custom stringifier with source maps', () => {
   let processor = new Processor([])
-  return processor.process('a{}', {
-    map: true, stringifier: str, from: undefined
-  }).then(result => {
-    expect(result.css).toMatch(/!\n\/\*# sourceMap/)
-  })
+  return processor
+    .process('a{}', {
+      map: true,
+      stringifier: str,
+      from: undefined
+    })
+    .then(result => {
+      expect(result.css).toMatch(/!\n\/\*# sourceMap/)
+    })
 })
 
 it('uses custom syntax', () => {
   let processor = new Processor([() => true])
-  return processor.process('a{}', {
-    syntax: { parse: prs, stringify: str }, from: undefined
-  }).then(result => {
-    expect(result.css).toEqual('ok!')
-  })
+  return processor
+    .process('a{}', {
+      syntax: { parse: prs, stringify: str },
+      from: undefined
+    })
+    .then(result => {
+      expect(result.css).toEqual('ok!')
+    })
 })
 
 it('contains PostCSS version', () => {
-  expect((new Processor()).version).toMatch(/\d+.\d+.\d+/)
+  expect(new Processor().version).toMatch(/\d+.\d+.\d+/)
 })
 
 it('throws on syntax as plugin', () => {
   let processor = new Processor([() => true])
   expect(() => {
     processor.use({
-      parse () { }
+      parse() {}
     })
   }).toThrowError(/syntax/)
 })
@@ -465,19 +485,19 @@ it('warns about missed from', () => {
   return processor.process('a{}').then(() => {
     expect(console.warn).toBeCalledWith(
       'Without `from` option PostCSS could generate wrong source map ' +
-      'and will not find Browserslist config. Set it to CSS file path ' +
-      'or to `undefined` to prevent this warning.'
+        'and will not find Browserslist config. Set it to CSS file path ' +
+        'or to `undefined` to prevent this warning.'
     )
   })
 })
 
 it('warns about missed plugins', () => {
   console.warn = jest.fn()
-  return (new Processor()).process('a{}').then(() => {
+  return new Processor().process('a{}').then(() => {
     expect(console.warn).toBeCalledWith(
       'You did not set any plugins, parser, or stringifier. ' +
-      'Right now, PostCSS does nothing. Pick plugins for your case ' +
-      'on https://www.postcss.parts/ and use them in postcss.config.js.'
+        'Right now, PostCSS does nothing. Pick plugins for your case ' +
+        'on https://www.postcss.parts/ and use them in postcss.config.js.'
     )
   })
 })
