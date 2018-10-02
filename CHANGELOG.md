@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.5
+* Reduce npm package size (by Gilad Peleg).
+
 ## 7.0.4
 * Fix safe parser regression.
 
