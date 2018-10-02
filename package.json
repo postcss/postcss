@@ -77,10 +77,20 @@
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
   "lint-staged": {
-    "test/*.js": ["eslint", "yarn prettier-verify"],
-    "lib/*.es6": ["eslint", "yarn prettier-verify"],
-    "lib/*.ts": ["yarn prettier-verify"],
-    "*.js": ["yarn prettier-verify"],
+    "test/*.js": [
+      "eslint",
+      "yarn prettier-verify"
+    ],
+    "lib/*.es6": [
+      "eslint",
+      "yarn prettier-verify"
+    ],
+    "lib/*.ts": [
+      "yarn prettier-verify"
+    ],
+    "*.js": [
+      "yarn prettier-verify"
+    ],
     "*.md": "yaspeller-ci"
   },
   "pre-commit": [
