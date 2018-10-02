@@ -20,6 +20,9 @@
   "license": "MIT",
   "homepage": "https://postcss.org/",
   "repository": "postcss/postcss",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "chalk": "^2.4.1",
     "source-map": "^0.6.1",
