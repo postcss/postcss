@@ -65,7 +65,8 @@ gulp.task('build:docs', () => {
       'docs/writing-a-plugin.md',
       'coverage',
       'coverage/*',
-      'coverage/**/*'
+      'coverage/**/*',
+      'gulpfile.js'
     ])
     .map(i => '!' + i)
   return gulp.src(['**/*'].concat(ignore)).pipe(gulp.dest('build'))

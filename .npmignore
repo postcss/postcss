@@ -1,0 +1,14 @@
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+build/
+
+test/
+.travis.yml
+appveyor.yml
+
+gulpfile.babel.js
+
+api/
