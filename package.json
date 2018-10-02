@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "7.0.4",
+  "version": "7.0.5",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": ">=6.0.0"
@@ -409,7 +409,9 @@
       "as ES6",
       "extendability",
       "Powell",
-      "RTLCSS"
+      "RTLCSS",
+      "Gilad",
+      "Peleg"
     ]
   }
 }
