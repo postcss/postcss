@@ -76,8 +76,9 @@
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
   "lint-staged": {
-    "test/*.js": "eslint",
-    "lib/*.es6": "eslint",
+    "test/*.js": ["eslint", "yarn prettier"],
+    "lib/*.es6": ["eslint", "yarn prettier"],
+    "lib/*.ts": ["yarn prettier"],
     "*.md": "yaspeller-ci"
   },
   "pre-commit": [
