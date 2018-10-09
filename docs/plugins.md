@@ -300,6 +300,7 @@ loosely resembles the original.
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
+* [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
 * [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
@@ -318,7 +319,6 @@ loosely resembles the original.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
 * [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
 * [`postcss-no-important`] delete declarations !important.
-* [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
 
 See also plugins in modular minifier [`cssnano`].
 
