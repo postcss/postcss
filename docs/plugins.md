@@ -318,6 +318,7 @@ loosely resembles the original.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
 * [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
 * [`postcss-no-important`] delete declarations !important.
+* [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -786,3 +787,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-join-transitions`]:             https://github.com/JGJP/postcss-join-transitions
 [`postcss-font-display`]:                 https://github.com/dkrnl/postcss-font-display
 [`postcss-glitch`]:                       https://github.com/crftd/postcss-glitch
+[`postcss-class-name-shortener`]:         https://github.com/mbrandau/postcss-class-name-shortener
