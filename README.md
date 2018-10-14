@@ -231,6 +231,41 @@ module.exports = {
 
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
 
+### CSS-in-JS
+
+The best way to use PostCSS with CSS-in-JS is [`astroturf`].
+Add it’s loader to your `webpack.config.js`:
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'postss-loader'],
+      },
+      {
+        test: /\.jsx?$/,
+        use: ['babel-loader', 'astroturf/loader'],
+      }
+    ]
+  }
+}
+```
+
+Then create `postcss.config.js`:
+
+```js
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-nested')
+  ]
+}
+```
+
+[`astroturf`]: https://github.com/4Catalyzer/astroturf
+
 ### Gulp
 
 Use [`gulp-postcss`] and [`gulp-sourcemaps`].
