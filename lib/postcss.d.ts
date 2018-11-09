@@ -600,6 +600,10 @@ declare namespace postcss {
      */
     map: PreviousMap;
     /**
+     * The flag to indicate whether or not the source code has Unicode BOM.
+     */
+    hasBOM: boolean;
+    /**
      * Reads the input source map.
      * @returns A symbol position in the input source (e.g., in a Sass file
      * that was compiled to CSS before being passed to PostCSS):
