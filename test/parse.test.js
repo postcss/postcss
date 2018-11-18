@@ -17,6 +17,21 @@ cases.each((name, css, json) => {
   })
 })
 
+it('parses UTF-8 BOM', () => {
+  let css = parse('\uFEFF@host { a {\f} }')
+  expect(css.nodes[0].raws.before).toEqual('')
+})
+
+it('should has true at `hasBOM` property', () => {
+  let css = parse('\uFEFF@host { a {\f} }')
+  expect(css.first.source.input.hasBOM).toBeTruthy()
+})
+
+it('should has false at `hasBOM` property', () => {
+  let css = parse('@host { a {\f} }')
+  expect(css.first.source.input.hasBOM).toBeFalsy()
+})
+
 it('saves source file', () => {
   let css = parse('a {}', { from: 'a.css' })
   expect(css.first.source.input.css).toEqual('a {}')
