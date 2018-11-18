@@ -24,13 +24,6 @@ let beforeFix = new Processor([css => {
   })
 }])
 
-let originWarn = console.warn
-let originError = console.error
-afterAll(() => {
-  console.warn = originWarn
-  console.error = originError
-})
-
 it('adds new plugins', () => {
   let a = () => 1
   let processor = new Processor()
@@ -344,7 +337,7 @@ it('checks plugin compatibility', () => {
     processor.process('a{}').css
   }
 
-  console.error = jest.fn()
+  jest.spyOn(console, 'error').mockImplementation(() => true)
 
   expect(() => {
     processBy('1.0.0')
@@ -387,7 +380,7 @@ it('sets last plugin to result', () => {
 })
 
 it('uses custom parsers', () => {
-  console.warn = jest.fn()
+  jest.spyOn(console, 'warn').mockImplementation(() => true)
   let processor = new Processor([])
   return processor.process('a{}', { parser: prs, from: undefined })
     .then(result => {
@@ -406,7 +399,7 @@ it('uses custom parsers from object', () => {
 })
 
 it('uses custom stringifier', () => {
-  console.warn = jest.fn()
+  jest.spyOn(console, 'warn').mockImplementation(() => true)
   let processor = new Processor([])
   return processor.process('a{}', { stringifier: str, from: undefined })
     .then(result => {
@@ -456,7 +449,7 @@ it('throws on syntax as plugin', () => {
 })
 
 it('warns about missed from', () => {
-  console.warn = jest.fn()
+  jest.spyOn(console, 'warn').mockImplementation(() => true)
   let processor = new Processor([() => true])
 
   processor.process('a{}').css
@@ -472,7 +465,7 @@ it('warns about missed from', () => {
 })
 
 it('warns about missed plugins', () => {
-  console.warn = jest.fn()
+  jest.spyOn(console, 'warn').mockImplementation(() => true)
   return (new Processor()).process('a{}').then(() => {
     expect(console.warn).toBeCalledWith(
       'You did not set any plugins, parser, or stringifier. ' +
