@@ -16,6 +16,13 @@
     "manipulation",
     "transpiler"
   ],
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
+    "docs": "jsdoc -c .jsdocrc lib/*.es6",
+    "lint": "eslint-ci *.js lib/*.es6 test/*.js",
+    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
+  },
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "homepage": "https://postcss.org/",
@@ -63,13 +70,6 @@
     "size-limit": "^0.21.0",
     "strip-ansi": "^5.0.0",
     "yaspeller-ci": "^1.0.0"
-  },
-  "scripts": {
-    "lint-staged": "lint-staged",
-    "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
-    "docs": "jsdoc -c .jsdocrc lib/*.es6",
-    "lint": "eslint-ci *.js lib/*.es6 test/*.js",
-    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
