@@ -33,11 +33,11 @@ class Input {
      */
     this.css = css.toString()
 
-    if (this.css[0] === "\uFEFF" || this.css[0] === "\uFFFE") {
-      this.hasBOM = true;
-      this.css = this.css.slice(1);
+    if (this.css[0] === '\uFEFF' || this.css[0] === '\uFFFE') {
+      this.hasBOM = true
+      this.css = this.css.slice(1)
     } else {
-      this.hasBOM = false;
+      this.hasBOM = false
     }
 
     if (opts.from) {
