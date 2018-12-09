@@ -383,19 +383,17 @@ Common options:
 
 ### Treat Warnings as Errors
 
-In some situations it might be helpful to fail the build on any warning from PostCSS or one of its plugins. This guarantees that no warnings go unnoticed, and helps to avoid bugs. While there is no option to enable treating warnings as errors, it can easily be done by appending a custom plugin to `postcss.config.js`:
+In some situations it might be helpful to fail the build on any warning
+from PostCSS or one of its plugins. This guarantees that no warnings
+go unnoticed, and helps to avoid bugs. While there is no option to enable
+treating warnings as errors, it can easily be done
+by adding `postcss-fail-on-warn` plugin in the end of PostCSS plugins:
 
 ```js
 module.exports = {
   plugins: [
     require('autoprefixer'),
-    require('postcss').plugin("postcss-fail-on-warn", () => {
-      return (root, result) => {
-        if (result.warnings().length > 0) {
-          throw new Error(result.warnings()[0])
-        }
-      }
-    })
+    require('postcss-fail-on-warn')
   ]
 }
 ```
