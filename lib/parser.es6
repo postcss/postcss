@@ -184,6 +184,10 @@ export default class Parser {
       node.prop += tokens.shift()[1]
     }
 
+    if (/^(--|\$|@)/.test(node.prop)) {
+      node.variable = true
+    }
+
     node.raws.between = ''
 
     let token
