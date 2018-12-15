@@ -26,10 +26,11 @@ e.g. to find errors automatically insert vendor prefixes.
 **中文翻译**:              [`README-cn.md`](./README-cn.md)
 
 For PostCSS commercial support (consulting, improving the front-end culture
-of your company, PostCSS plugins), contact [Evil Martians](https://evilmartians.com/?utm_source=postcss)
+of your company, PostCSS plugins), contact [Evil Martians]
 at <surrender@evilmartians.com>.
 
 [Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
+[Evil Martians]:        https://evilmartians.com/?utm_source=postcss
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
 [plugins]:              https://github.com/postcss/postcss#plugins
 
