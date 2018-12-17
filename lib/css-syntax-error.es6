@@ -30,7 +30,7 @@ import terminalHighlight from './terminal-highlight'
  * // Raising error from plugin
  * throw node.error('Unknown variable', { plugin: 'postcss-vars' })
  */
-class CssSyntaxError {
+class CssSyntaxError extends Error {
   /**
    * @param {string} message  Error message.
    * @param {number} [line]   Source line of the error.
@@ -40,6 +40,8 @@ class CssSyntaxError {
    * @param {string} [plugin] PostCSS plugin name, if error came from plugin.
    */
   constructor (message, line, column, source, file, plugin) {
+    super(message)
+
     /**
      * Always equal to `'CssSyntaxError'`. You should always check error type
      * by `error.name === 'CssSyntaxError'`
