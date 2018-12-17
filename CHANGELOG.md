@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.7
+* Extend `Error` in `CssSyntaxError`.
+
 ## 7.0.6
 * Fix parsing files with BOM (by Veniamin Krol).
 
