@@ -235,7 +235,7 @@ module.exports = {
 ### CSS-in-JS
 
 The best way to use PostCSS with CSS-in-JS is [`astroturf`].
-Add it’s loader to your `webpack.config.js`:
+Add its loader to your `webpack.config.js`:
 
 ```js
 module.exports = {
