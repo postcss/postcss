@@ -33,7 +33,7 @@ declare namespace postcss {
     /**
      * @returns Asynchronous plugins should return a promise.
      */
-    (root: Root, result?: Result): void | Function | any;
+    (root: Root, result: Result): Promise<any> | any;
   }
   interface PluginInitializer<T> {
     (pluginOptions?: T): Transformer;
