@@ -440,9 +440,8 @@ declare namespace postcss {
   }
   interface ResultMessage {
     type: string;
-    text?: string;
-    plugin?: string;
-    browsers?: string[];
+    plugin: string;
+    [others: string]: any;
   }
   /**
    * Represents a plugin warning. It can be created using Result#warn().
