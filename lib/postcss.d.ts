@@ -31,10 +31,10 @@ declare namespace postcss {
   }
   interface TransformCallback {
     /**
-     * @returns Plugins should return a Promise that resolves when all work is
-     * complete. They may return synchronously, but that style of plugin is only
-     * meant for debugging and development. In either case, the resolved or
-     * returned value is not used - the "result" is the output.
+     * @returns A Promise that resolves when all work is complete. May return
+     * synchronously, but that style of plugin is only meant for debugging and
+     * development. In either case, the resolved or returned value is not used -
+     * the "result" is the output.
      */
     (root: Root, result: Result): Promise<any> | any;
   }
