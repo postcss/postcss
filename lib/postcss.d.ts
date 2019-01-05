@@ -31,7 +31,10 @@ declare namespace postcss {
   }
   interface TransformCallback {
     /**
-     * @returns Asynchronous plugins should return a promise.
+     * @returns Plugins should return a Promise that resolves when all modifications
+     * to work is complete. They may return synchronously, but that style of plugin is
+     * only meant for debugging and development. In either case, the resolved or
+     * returned value is not used - the "result" is the output.
      */
     (root: Root, result: Result): Promise<any> | any;
   }
@@ -581,13 +584,15 @@ declare namespace postcss {
   interface Input {
     /**
      * The absolute path to the CSS source file defined with the "from" option.
+     * Either this property or the "id" property are always defined.
      */
-    file: string;
+    file?: string;
     /**
      * The unique ID of the CSS source. Used if "from" option is not provided
-     * (because PostCSS does not know the file path).
+     * (because PostCSS does not know the file path). Either this property
+     * or the "file" property are always defined.
      */
-    id: string;
+    id?: string;
     /**
      * The CSS source identifier. Contains input.file if the user set the
      * "from" option, or input.id if they did not.
@@ -621,7 +626,7 @@ declare namespace postcss {
      * (in which case the new node's source will reference the original,
      * cloned node) or setting the source property manually.
      */
-    source: NodeSource;
+    source?: NodeSource;
     /**
      * Contains information to generate byte-to-byte equal node string as it
      * was in origin input.
