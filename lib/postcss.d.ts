@@ -181,13 +181,11 @@ declare namespace postcss {
      *
      * If you have set inline: true, annotation cannot be disabled.
      */
-    annotation?: boolean | string;
+    annotation?: string | false;
     /**
-     * If true, PostCSS will try to correct any syntax errors that it finds in the CSS.
-     * This is useful for legacy code filled with hacks. Another use-case is interactive
-     * tools with live input — for example, the Autoprefixer demo.
+     * Override "from" in map's sources.
      */
-    safe?: boolean;
+    from?: string;
   }
   /**
    * A Processor instance contains plugins to process CSS. Create one
@@ -220,47 +218,52 @@ declare namespace postcss {
      */
     version: string;
   }
-  interface ProcessOptions extends Syntax {
+  interface ProcessOptions {
     /**
-     * The path of the CSS source file. You should always set from, because it is
+     * The path of the CSS source file. You should always set "from", because it is
      * used in source map generation and syntax error messages.
      */
     from?: string;
     /**
-     * The path where you'll put the output CSS file. You should always set it
+     * The path where you'll put the output CSS file. You should always set "to"
      * to generate correct source maps.
      */
     to?: string;
-    syntax?: Syntax;
-    /**
-     * Enable Safe Mode, in which PostCSS will try to fix CSS syntax errors.
-     */
-    safe?: boolean;
-    map?: postcss.SourceMapOptions;
     /**
      * Function to generate AST by string.
      */
-    parser?: Parse | Syntax;
+    parser?: Parser;
     /**
      * Class to generate string by AST.
      */
-    stringifier?: Stringify | Syntax;
+    stringifier?: Stringifier;
+    /**
+     * Object with parse and stringify.
+     */
+    syntax?: Syntax;
+    /**
+     * Source map options
+     */
+    map?: SourceMapOptions;
   }
   interface Syntax {
     /**
      * Function to generate AST by string.
      */
-    parse?: Parse;
+    parse?: Parser;
     /**
      * Class to generate string by AST.
      */
-    stringify?: Stringify;
+    stringify?: Stringifier;
   }
-  interface Parse {
-    (css?: string, opts?: postcss.SourceMapOptions): Root;
+  interface Parser {
+    (css: string, opts?: Pick<ProcessOptions, 'map' |'from'>): Root;
   }
-  interface Stringify {
-    (node?: postcss.Node, builder?: any): postcss.Result | void;
+  interface Stringifier {
+    (node: Node, builder: Builder): void;
+  }
+  interface Builder {
+    (part: string, node?: Node, type?: 'start' | 'end'): void;
   }
   /**
    * A promise proxy for the result of PostCSS transformations.
