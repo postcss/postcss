@@ -244,7 +244,7 @@ declare namespace postcss {
     /**
      * Source map options
      */
-    map?: SourceMapOptions;
+    map?: SourceMapOptions | true;
   }
   interface Syntax {
     /**
