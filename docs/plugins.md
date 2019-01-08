@@ -300,6 +300,7 @@ loosely resembles the original.
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
+* [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
 * [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
@@ -786,3 +787,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-join-transitions`]:             https://github.com/JGJP/postcss-join-transitions
 [`postcss-font-display`]:                 https://github.com/dkrnl/postcss-font-display
 [`postcss-glitch`]:                       https://github.com/crftd/postcss-glitch
+[`postcss-class-name-shortener`]:         https://github.com/mbrandau/postcss-class-name-shortener
