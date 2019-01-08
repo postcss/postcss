@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "7.0.7",
+  "version": "7.0.8",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": ">=6.0.0"
@@ -415,7 +415,9 @@
       "Gilad",
       "Peleg",
       "Veniamin",
-      "Krol"
+      "Krol",
+      "Ankur",
+      "Oberoi"
     ]
   }
 }

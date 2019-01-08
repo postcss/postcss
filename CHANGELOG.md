@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.8
+* Fix TypeScript definitions (by Ankur Oberoi).
+* Use `support-colors` 6.0.
+
 ## 7.0.7
 * Extend `Error` in `CssSyntaxError`.
 
