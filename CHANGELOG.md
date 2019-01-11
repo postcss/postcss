@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.9
+* Increase stringifing performance for non-raws AST.
+
 ## 7.0.8
 * Fix TypeScript definitions (by Ankur Oberoi).
 * Use `support-colors` 6.0.
