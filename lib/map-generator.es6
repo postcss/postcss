@@ -231,10 +231,10 @@ class MapGenerator {
         if (node.source && node.source.end) {
           this.map.addMapping({
             source: this.sourcePath(node),
-            generated: { line, column: column - 1 },
+            generated: { line, column: column - 2 },
             original: {
               line: node.source.end.line,
-              column: node.source.end.column
+              column: node.source.end.column - 1
             }
           })
         } else {

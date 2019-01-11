@@ -66,6 +66,12 @@ it('generate right source map', () => {
     column: 0,
     name: null
   })
+  expect(map.originalPositionFor({ line: 1, column: 2 })).toEqual({
+    source: 'a.css',
+    line: 1,
+    column: 0,
+    name: null
+  })
   expect(map.originalPositionFor({ line: 2, column: 2 })).toEqual({
     source: 'a.css',
     line: 2,
@@ -75,6 +81,18 @@ it('generate right source map', () => {
   expect(map.originalPositionFor({ line: 3, column: 2 })).toEqual({
     source: 'a.css',
     line: 2,
+    column: 2,
+    name: null
+  })
+  expect(map.originalPositionFor({ line: 3, column: 14 })).toEqual({
+    source: 'a.css',
+    line: 2,
+    column: 14,
+    name: null
+  })
+  expect(map.originalPositionFor({ line: 4, column: 2 })).toEqual({
+    source: 'a.css',
+    line: 3,
     column: 2,
     name: null
   })
