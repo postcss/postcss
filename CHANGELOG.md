@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.10
+* Fix source maps (by Niklas Mischkulnig).
+
 ## 7.0.9
 * Increase stringifing performance for non-raws AST.
 
