@@ -9,7 +9,8 @@ const DEFAULT_RAW = {
   after: '\n',
   emptyBody: '',
   commentLeft: ' ',
-  commentRight: ' '
+  commentRight: ' ',
+  semicolon: false
 }
 
 function capitalize (str) {
