@@ -227,23 +227,25 @@ class MapGenerator {
         column += str.length
       }
 
-      if (node && type !== 'start' &&
-           (node === node.parent.last ? node.parent.raws.semi : true)) {
-        if (node.source && node.source.end) {
-          this.map.addMapping({
-            source: this.sourcePath(node),
-            generated: { line, column: column - 2 },
-            original: {
-              line: node.source.end.line,
-              column: node.source.end.column - 1
-            }
-          })
-        } else {
-          this.map.addMapping({
-            source: '<no source>',
-            original: { line: 1, column: 0 },
-            generated: { line, column: column - 1 }
-          })
+      if (node && type !== 'start') {
+        let p = node.parent || { raws: { } }
+        if (node.type !== 'decl' || node !== p.last || p.raws.semicolon) {
+          if (node.source && node.source.end) {
+            this.map.addMapping({
+              source: this.sourcePath(node),
+              generated: { line, column: column - 2 },
+              original: {
+                line: node.source.end.line,
+                column: node.source.end.column - 1
+              }
+            })
+          } else {
+            this.map.addMapping({
+              source: '<no source>',
+              original: { line: 1, column: 0 },
+              generated: { line, column: column - 1 }
+            })
+          }
         }
       }
     })
