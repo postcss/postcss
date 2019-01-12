@@ -227,7 +227,8 @@ class MapGenerator {
         column += str.length
       }
 
-      if (node && type !== 'start') {
+      if (node && type !== 'start' &&
+           (node === node.parent.last ? node.parent.raws.semi : true)) {
         if (node.source && node.source.end) {
           this.map.addMapping({
             source: this.sourcePath(node),
