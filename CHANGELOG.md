@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.11
+* Fix source maps on declaration semicolon (by Niklas Mischkulnig).
+
 ## 7.0.10
 * Fix source maps (by Niklas Mischkulnig).
 
