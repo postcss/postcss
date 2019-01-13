@@ -410,6 +410,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-mq-last`] gives media query rules precedence by moving them to the end of the file.
 * [`postcss-node-modules-replacer`] replaces path than includes `node_modules`
   to `~`.
+* [`postcss-plugin-namespace`] add a css selector to all rules, so that css file don't affect other element.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
@@ -788,3 +789,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-font-display`]:                 https://github.com/dkrnl/postcss-font-display
 [`postcss-glitch`]:                       https://github.com/crftd/postcss-glitch
 [`postcss-class-name-shortener`]:         https://github.com/mbrandau/postcss-class-name-shortener
+[`postcss-plugin-namespace`]:             https://github.com/ymrdf/postcss-plugin-namespace
