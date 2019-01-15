@@ -146,6 +146,12 @@ it('throws on double colon', () => {
   }).toThrowError(/:1:9: Double colon/)
 })
 
+it('throws on two words in between', () => {
+  expect(() => {
+    parse('a { b c: 1 }')
+  }).toThrowError(/:1:7: Unknown word/)
+})
+
 it('throws on just colon', () => {
   expect(() => {
     parse(':')
