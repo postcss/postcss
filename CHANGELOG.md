@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.13
+* Fix parsing regression in 7.0.12 for comments between property and value.
+
 ## 7.0.12
 * Fix parsing broken CSS with two words in declaration property.
 
