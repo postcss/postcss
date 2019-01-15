@@ -146,6 +146,10 @@ it('throws on double colon', () => {
   }).toThrowError(/:1:9: Double colon/)
 })
 
+it('do not throws on comment in between', () => {
+  parse('a { b/* c */: 1 }')
+})
+
 it('throws on two words in between', () => {
   expect(() => {
     parse('a { b c: 1 }')
