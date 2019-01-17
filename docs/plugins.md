@@ -239,6 +239,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 ## Images and Fonts
 
+* [`postcss-background-image-auto-size`] generates the `width` and `height` rules for `background-image` automatically.
 * [`postcss-assets`] allows you to simplify URLs, insert image dimensions,
   and inline files.
 * [`postcss-assets-rebase`] rebases assets from `url()`.
