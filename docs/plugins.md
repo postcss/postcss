@@ -386,6 +386,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-bom`] adds a UTF-8 BOM to files.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
+* [`postcss-classes-to-mixins`] converts classes to Sass, Less and Stylus mixins
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-eol`] replaces EOL of files.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
@@ -792,3 +793,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-glitch`]:                       https://github.com/crftd/postcss-glitch
 [`postcss-class-name-shortener`]:         https://github.com/mbrandau/postcss-class-name-shortener
 [`postcss-plugin-namespace`]:             https://github.com/ymrdf/postcss-plugin-namespace
+[`postcss-classes-to-mixins`]:            https://github.com/nrkno/postcss-classes-to-mixins  
