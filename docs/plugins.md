@@ -82,7 +82,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   and placeholders, recursively.
 * [`postcss-font-normalize`] to normalize font, especially `font-family`.
 * [`postcss-font-variant`] transpiles human-readable `font-variant`
-  to more widely supported CSS.
+  to more widely supported CSS.
 * [`postcss-font-family-system-ui`] transforms W3C CSS `font-family: system-ui` to a practical font list.
 * [`postcss-font-display`] add `font-display` css rule.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
@@ -186,7 +186,7 @@ for targeting all button elements.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
 * [`postcss-map-get`] adds the ability to use Sass like map function `map-get`.
 * [`postcss-simple-extend`] lightweight extending of silent classes,
-  like Sass’ `@extend`.
+  like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`postcss-strip-units`] strips units off of property values.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
@@ -243,6 +243,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   and inline files.
 * [`postcss-assets-rebase`] rebases assets from `url()`.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
+* [`postcss-background-image-auto-size`] generates CSS rules `width` and `height` for `background-image` automatically.
 * [`postcss-border-9-patch`] generates 9-patch like border styles via a custom rule.
 * [`postcss-cachebuster`] adds version parameter to images and fonts
 * [`postcss-copy-assets`] copies assets referenced by relative `url()`s
@@ -483,6 +484,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-nope`] lets you write `nope` instead of `none`.
 * [`postcss-glitch`] add glitch effect to your text.
 
+[`postcss-background-image-auto-size`]:   https://github.com/JustClear/postcss-background-image-auto-size
 [`postcss-letter-tracking`]:              https://github.com/letsjaam/postcss-letter-tracking
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
 [`postcss-attribute-case-insensitive`]:   https://github.com/Semigradsky/postcss-attribute-case-insensitive
