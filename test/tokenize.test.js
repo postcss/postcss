@@ -293,3 +293,17 @@ it('ignore unclosed per token request', () => {
 
   expect(tokens).toEqual(expected)
 })
+
+it('provides correct position', () => {
+  let css = `Three tokens`
+  let processor = tokenizer(new Input(css))
+  expect(processor.position()).toEqual(0)
+  processor.nextToken()
+  expect(processor.position()).toEqual(5)
+  processor.nextToken()
+  expect(processor.position()).toEqual(6)
+  processor.nextToken()
+  expect(processor.position()).toEqual(12)
+  processor.nextToken()
+  expect(processor.position()).toEqual(12)
+})
