@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.14
+* Fix tokenizer for `postcss-less` (by Matt Lyons).
+
 ## 7.0.13
 * Fix parsing regression in 7.0.12 for comments between property and value.
 
