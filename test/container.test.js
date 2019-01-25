@@ -196,7 +196,7 @@ it('walk() adds CSS position to error stack', () => {
   }
   expect(catched).toBe(error)
   expect(catched.postcssNode.toString()).toEqual('a { a: 1; b: 2 }')
-  expect(catched.stack.replace('C:\\', '/')).toEqual(
+  expect(catched.stack.replace(/.:\\/i, '/')).toEqual(
     'Error: T\n    at /c.css:1:1\n    at b (b.js:2:4)\n    at a (a.js:2:1)')
 })
 
