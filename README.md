@@ -99,6 +99,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`cssnano`] is a modular CSS minifier.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
+* [`px-to-viewport`] generates viewport units (vw, vh, vmin, vmax) from pixel units
 
 [PostCSS plugin development]:   https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
@@ -127,6 +128,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
 [`short`]:                      https://github.com/jonathantneal/postcss-short
 [`lost`]:                       https://github.com/peterramsing/lost
+[`px-to-viewport`]:             https://github.com/evrone/postcss-px-to-viewport
 
 ## Syntaxes
 
