@@ -437,7 +437,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
 * [`postcss-autocorrect`] Corrects typos and notifies in the console.
-* [`postcss-px-to-viewport`] Generates viewport units (vw, vh, vmin, vmax) from pixel units.
+* [`postcss-px-to-viewport`] Generates viewport units (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
