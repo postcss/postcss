@@ -188,6 +188,60 @@ You can start using PostCSS in just two steps:
 
 [Select plugins]: http://postcss.parts
 
+### CSS-in-JS
+
+The best way to use PostCSS with CSS-in-JS is [`astroturf`].
+Add its loader to your `webpack.config.js`:
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'postcss-loader'],
+      },
+      {
+        test: /\.jsx?$/,
+        use: ['babel-loader', 'astroturf/loader'],
+      }
+    ]
+  }
+}
+```
+
+Then create `postcss.config.js`:
+
+```js
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-nested')
+  ]
+}
+```
+
+[`astroturf`]: https://github.com/4Catalyzer/astroturf
+
+### Parcel
+
+[Parcel] has perfect built-in PostCSS support. It already uses Autoprefixer
+and cssnano. If you want to change plugins, create `postcss.config.js`
+in project’s root:
+
+```js
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-nested')
+  ]
+}
+```
+
+Parcel will even automatically install these plugins for you.
+
+[Parcel]: https://parceljs.org
+
 ### Webpack
 
 Use [`postcss-loader`] in `webpack.config.js`:
@@ -231,41 +285,6 @@ module.exports = {
 ```
 
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
-
-### CSS-in-JS
-
-The best way to use PostCSS with CSS-in-JS is [`astroturf`].
-Add its loader to your `webpack.config.js`:
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'postcss-loader'],
-      },
-      {
-        test: /\.jsx?$/,
-        use: ['babel-loader', 'astroturf/loader'],
-      }
-    ]
-  }
-}
-```
-
-Then create `postcss.config.js`:
-
-```js
-module.exports = {
-  plugins: [
-    require('autoprefixer'),
-    require('postcss-nested')
-  ]
-}
-```
-
-[`astroturf`]: https://github.com/4Catalyzer/astroturf
 
 ### Gulp
 
