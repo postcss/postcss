@@ -447,3 +447,11 @@ module.exports = {
 WebStorm 2016.3 [has] built-in PostCSS support.
 
 [has]: https://blog.jetbrains.com/webstorm/2016/08/webstorm-2016-3-early-access-preview/
+
+
+## Security Contact
+
+To report a security vulnerability, please use the [Tidelift security contact].
+Tidelift will coordinate the fix and disclosure.
+
+[Tidelift security contact]: https://tidelift.com/security
