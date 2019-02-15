@@ -796,3 +796,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-plugin-namespace`]:             https://github.com/ymrdf/postcss-plugin-namespace
 [`postcss-classes-to-mixins`]:            https://github.com/nrkno/postcss-classes-to-mixins
 [`postcss-px-to-viewport`]:               https://github.com/evrone/postcss-px-to-viewport
+[`postcss-font-grabber`]:                 https://github.com/AaronJan/postcss-font-grabber
