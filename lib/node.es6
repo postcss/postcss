@@ -25,6 +25,26 @@ function cloneNode (obj, parent) {
   return cloned
 }
 
+const isComplete = Symbol('isComplete')
+const isClean = Symbol('isClean')
+const resetNodeWalk = Symbol('resetNodeWalk')
+
+function defineProperty (target, publicPropName, privatePropName) {
+  let cache = target[publicPropName]
+  Object.defineProperty(target, publicPropName, {
+    enumerable: true,
+    get () {
+      return target[privatePropName]
+    },
+    set (value) {
+      target[privatePropName] = value
+      target[resetNodeWalk]()
+    }
+  })
+
+  target[publicPropName] = cache
+}
+
 /**
  * All node classes inherit the following common methods.
  *
@@ -36,6 +56,9 @@ class Node {
    */
   constructor (defaults = { }) {
     this.raws = { }
+    this[isComplete] = false
+    this[isClean] = false
+
     if (process.env.NODE_ENV !== 'production') {
       if (typeof defaults !== 'object' && typeof defaults !== 'undefined') {
         throw new Error(
@@ -419,6 +442,22 @@ class Node {
     return pos
   }
 
+  [resetNodeWalk] () {
+    if (this.root().isVisitorMode === false) {
+      return
+    }
+
+    this[isClean] = false
+
+    if (this[isComplete]) {
+      this[isComplete] = false
+
+      if (this.parent) {
+        this.parent[resetNodeWalk]()
+      }
+    }
+  }
+
   /**
    * @memberof Node#
    * @member {string} type String representing the node’s type.
@@ -510,6 +549,7 @@ class Node {
 }
 
 export default Node
+export { isComplete, isClean, resetNodeWalk, defineProperty }
 
 /**
  * @typedef {object} position
