@@ -1,4 +1,69 @@
-import Container from './container'
+import Container, { isComplete, isClean, walkVisitor } from './container'
+
+function isString (obj) {
+  return typeof obj === 'string' ||
+    (!!obj && typeof obj === 'object' && obj.constructor === String)
+}
+
+function validateNameTypeNode (typeNode) {
+  let type = typeNode
+
+  if (!isString(type)) {
+    throw new Error('typeNode must be a string')
+  }
+
+  let arr = type.split('.')
+  if (arr.length === 2) {
+    if (arr[1] !== 'enter' && arr[1] !== 'exit') {
+      throw new Error(
+        'The plugin must subscribe to either the enter or exit node')
+    }
+  } else if (arr.length > 2) {
+    throw new Error('The plugin must subscribe ' +
+      'to either the enter or exit node')
+  }
+}
+
+/* General view of node type names */
+function normalizeVisitorPlugin (typeNode, cb = () => {}) {
+  // typeNode have view "decl" or "decl.exit" or "decl.enter"
+  // return { decl: {enter: cb}}
+  let type = typeNode
+  if (!type.includes('.')) {
+    type = `${ type }.enter`
+  }
+
+  let arr = type.split('.')
+  return ({
+    [arr[0]]: {
+      [arr[1]]: cb
+    }
+  })
+}
+
+function buildVisitorObject (plugin, listeners) {
+  let type = Object.keys(plugin).pop()
+  let eventName = Object.keys(plugin[type]).pop()
+  let cb = plugin[type][eventName]
+
+  let visitorPlugins = listeners
+  let eventByType = visitorPlugins[type] || {}
+  let callbacksByEvent = eventByType[eventName] || []
+
+  return ({
+    ...visitorPlugins,
+    [type]: {
+      ...eventByType,
+      [eventName]: [
+        ...callbacksByEvent,
+        cb
+      ]
+    }
+  })
+}
+
+const isVisitorMode = Symbol('isVisitorMode')
+const listeners = Symbol('listeners')
 
 /**
  * Represents a CSS file and contains all its parsed nodes.
@@ -14,6 +79,9 @@ class Root extends Container {
   constructor (defaults) {
     super(defaults)
     this.type = 'root'
+    this[isVisitorMode] = false // mode work
+    this[listeners] = {}
+
     if (!this.nodes) this.nodes = []
   }
 
@@ -68,6 +136,16 @@ class Root extends Container {
     return lazy.stringify()
   }
 
+  on (typeNode, cb) {
+    /*
+    css.on("decl", (node) => {})  or  css.on("decl.enter", (node) => {})
+    css.on("rule.exit", (node) => {})
+     */
+    validateNameTypeNode(typeNode)
+    let plugin = normalizeVisitorPlugin(typeNode, cb)
+    this[listeners] = buildVisitorObject(plugin, this[listeners])
+  }
+
   /**
    * @memberof Root#
    * @member {object} raws Information to generate byte-to-byte equal
@@ -85,4 +163,5 @@ class Root extends Container {
    */
 }
 
+export { isVisitorMode, listeners, isComplete, isClean, walkVisitor }
 export default Root
