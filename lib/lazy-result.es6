@@ -3,6 +3,13 @@ import stringify from './stringify'
 import warnOnce from './warn-once'
 import Result from './result'
 import parse from './parse'
+import {
+  isVisitorMode,
+  listeners,
+  isComplete,
+  isClean,
+  walkVisitor
+} from './root'
 
 function isPromise (obj) {
   return typeof obj === 'object' && typeof obj.then === 'function'
@@ -271,6 +278,8 @@ class LazyResult {
 
   asyncTick (resolve, reject) {
     if (this.plugin >= this.processor.plugins.length) {
+      this.walkVisitorPlugins()
+
       this.processed = true
       return resolve()
     }
@@ -342,6 +351,8 @@ class LazyResult {
       }
     }
 
+    this.walkVisitorPlugins()
+
     return this.result
   }
 
@@ -374,6 +385,33 @@ class LazyResult {
     this.result.map = data[1]
 
     return this.result
+  }
+
+  walkVisitorPlugins () {
+    let root = this.result.root
+    let plugins = root[listeners]
+
+    if (!plugins) {
+      return
+    }
+
+    root[isVisitorMode] = true
+    while (!root[isClean]) {
+      root[isClean] = true
+      root[walkVisitor]((node, index, isPostOrder) => {
+        let { type } = node
+        let visitorsByType = plugins[type] || {}
+        let order = !isPostOrder ? 'enter' : 'exit'
+        let visitorsByOrder = visitorsByType[order] || []
+
+        visitorsByOrder.map(visitor => {
+          visitor(node, index)
+        })
+      })
+    }
+
+    root[isComplete] = true
+    root[isVisitorMode] = false
   }
 }
 
