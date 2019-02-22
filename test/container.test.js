@@ -1,7 +1,7 @@
 let Declaration = require('../lib/declaration')
 let parse = require('../lib/parse')
 let Rule = require('../lib/rule')
-let Root = require('../lib/root')
+let Root = require('../lib/root').default
 
 let example = 'a { a: 1; b: 2 }' +
                 '/* a */' +

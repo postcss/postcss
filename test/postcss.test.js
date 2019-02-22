@@ -1,6 +1,95 @@
 let Processor = require('../lib/processor')
 let postcss = require('../lib/postcss')
 
+let replaceColorGreenClassicPlugin = postcss.plugin('replace-color', () => {
+  return function (css) {
+    css.walkDecls('color', decl => {
+      decl.value = 'green'
+    })
+  }
+})
+
+let willChangeVisitorPlugin = postcss.plugin('will-change', () => {
+  return function (css) {
+    css.on('decl', node => {
+      if (node.prop !== 'will-change') {
+        return
+      }
+
+      let already = node.parent.some(i => {
+        return i.type === 'decl' && i.prop === 'backface-visibility'
+      })
+
+      if (already) {
+        return
+      }
+
+      node.cloneBefore({
+        prop: 'backface-visibility',
+        value: 'hidden'
+      })
+    })
+  }
+})
+
+let addPropsVisitorPlugin = postcss.plugin('add-props', () => {
+  return function (css) {
+    css.on('decl', node => {
+      if (node.prop !== 'will-change') {
+        return
+      }
+      let root = node.root()
+
+      root.walkDecls('color', decl => {
+        let already = decl.parent.some(i => {
+          return i.type === 'decl' && i.prop === 'will-change'
+        })
+
+        if (already) {
+          return
+        }
+
+        decl.cloneBefore({
+          prop: 'will-change',
+          value: 'transform'
+        })
+      })
+    })
+  }
+})
+
+let replaceAllButRedToGreen = postcss.plugin(
+  'replace-all-but-red-to-green',
+  () => {
+    return function (css) {
+      css.on('decl', node => {
+        if (node.prop !== 'color') {
+          return
+        }
+        if (node.prop === 'color' && node.value === 'red') {
+          return
+        }
+
+        node.prop = 'color'
+        node.value = 'green'
+      })
+    }
+  })
+
+let replaceGreenToRed = postcss.plugin('replace-green-to-red', () => {
+  return function (css) {
+    css.on('decl', node => {
+      if (node.prop !== 'color') {
+        return
+      }
+      if (node.prop === 'color' && node.value === 'green') {
+        node.prop = 'color'
+        node.value = 'red'
+      }
+    })
+  }
+})
+
 it('creates plugins list', () => {
   let processor = postcss()
   expect(processor instanceof Processor).toBeTruthy()
@@ -145,4 +234,105 @@ it('works with null', () => {
   expect(() => {
     postcss([() => true]).process(null).css
   }).toThrowError(/PostCSS received null instead of CSS string/)
+})
+
+it('works classic plugin replace-color', () => {
+  return postcss([replaceColorGreenClassicPlugin]).process(
+    '.a{ color: red; } ' +
+    '.b{ will-change: transform; }', { from: undefined })
+    .then(result => {
+      expect(result.css).toEqual(
+        '.a{ color: green; } ' +
+        '.b{ will-change: transform; }'
+      )
+    })
+})
+
+it('works visitor plugin will-change', () => {
+  return postcss([willChangeVisitorPlugin])
+    .process(
+      '.foo { will-change: transform; }', { from: undefined })
+    .then(result => {
+      expect(result.css).toEqual(
+        '.foo { backface-visibility: hidden; will-change: transform; }'
+      )
+    })
+})
+
+it('works visitor plugin add-prop', () => {
+  return postcss([addPropsVisitorPlugin]).process(
+    '.a{ color: red; } ' +
+    '.b{ will-change: transform; }', { from: undefined })
+    .then(result => {
+      expect(result.css).toEqual(
+        '.a{ will-change: transform; color: red; } ' +
+        '.b{ will-change: transform; }'
+      )
+    })
+})
+
+it('work of three plug-ins; sequence 1', () => {
+  return postcss([
+    replaceColorGreenClassicPlugin,
+    willChangeVisitorPlugin,
+    addPropsVisitorPlugin
+  ]).process(
+    '.a{ color: red; } ' +
+    '.b{ will-change: transform; }', { from: undefined })
+    .then(result => {
+      expect(result.css).toEqual(
+        '.a{ ' +
+          'backface-visibility: hidden; ' +
+          'will-change: transform; ' +
+          'color: green; ' +
+        '} ' +
+        '.b{ backface-visibility: hidden; will-change: transform; }'
+      )
+    })
+})
+
+it('work of three plug-ins; sequence 2', () => {
+  return postcss([
+    addPropsVisitorPlugin,
+    replaceColorGreenClassicPlugin,
+    willChangeVisitorPlugin
+  ]).process(
+    '.a{ color: red; } ' +
+    '.b{ will-change: transform; }', { from: undefined })
+    .then(result => {
+      expect(result.css).toEqual(
+        '.a{ ' +
+          'backface-visibility: hidden; ' +
+          'will-change: transform; ' +
+          'color: green; ' +
+        '} ' +
+        '.b{ backface-visibility: hidden; will-change: transform; }'
+      )
+    })
+})
+
+it('change in node values through props; sequence 1', () => {
+  return postcss([
+    replaceGreenToRed,
+    replaceAllButRedToGreen
+  ]).process(
+    '.a{color: yellow;}', { from: undefined })
+    .then(result => {
+      expect(result.css).toEqual(
+        '.a{color: red;}'
+      )
+    })
+})
+
+it('change in node values through props; sequence 2', () => {
+  return postcss([
+    replaceAllButRedToGreen,
+    replaceGreenToRed
+  ]).process(
+    '.a{color: yellow;}', { from: undefined })
+    .then(result => {
+      expect(result.css).toEqual(
+        '.a{color: red;}'
+      )
+    })
 })

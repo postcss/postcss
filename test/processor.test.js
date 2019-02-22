@@ -3,7 +3,7 @@ let Processor = require('../lib/processor')
 let postcss = require('../lib/postcss')
 let Result = require('../lib/result')
 let parse = require('../lib/parse')
-let Root = require('../lib/root')
+let Root = require('../lib/root').default
 
 let path = require('path')
 

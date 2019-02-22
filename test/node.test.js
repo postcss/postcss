@@ -3,7 +3,7 @@ let Declaration = require('../lib/declaration')
 let postcss = require('../lib/postcss')
 let AtRule = require('../lib/at-rule')
 let parse = require('../lib/parse')
-let Root = require('../lib/root')
+let Root = require('../lib/root').default
 let Rule = require('../lib/rule')
 
 let path = require('path')

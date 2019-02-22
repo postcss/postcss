@@ -2,8 +2,8 @@ let Stringifier = require('../lib/stringifier')
 let Declaration = require('../lib/declaration')
 let AtRule = require('../lib/at-rule')
 let parse = require('../lib/parse')
-let Node = require('../lib/node')
-let Root = require('../lib/root')
+let Node = require('../lib/node').default
+let Root = require('../lib/root').default
 let Rule = require('../lib/rule')
 
 let str
