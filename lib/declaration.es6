@@ -1,4 +1,7 @@
-import Node from './node'
+import Node, { defineProperty } from './node'
+
+const prop = Symbol('prop')
+const value = Symbol('value')
 
 /**
  * Represents a CSS declaration.
@@ -15,6 +18,8 @@ class Declaration extends Node {
   constructor (defaults) {
     super(defaults)
     this.type = 'decl'
+    defineProperty(this, 'prop', prop)
+    defineProperty(this, 'value', value)
   }
 
   /**

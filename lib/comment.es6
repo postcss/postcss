@@ -1,4 +1,6 @@
-import Node from './node'
+import Node, { defineProperty } from './node'
+
+const text = Symbol('text')
 
 /**
  * Represents a comment between declarations or statements (rule and at-rules).
@@ -12,6 +14,7 @@ class Comment extends Node {
   constructor (defaults) {
     super(defaults)
     this.type = 'comment'
+    defineProperty(this, 'text', text)
   }
 
   /**
