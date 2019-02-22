@@ -1,13 +1,14 @@
 environment:
 
   matrix:
+    - nodejs_version: "11"
     - nodejs_version: "10"
     - nodejs_version: "8"
     - nodejs_version: "6"
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - yarn install
+  - yarn install --ignore-engines
 
 test_script:
   - ./node_modules/.bin/gulp build

@@ -10,7 +10,7 @@ Limit a plugin's local stylesheet context using [`postcss-plugin-context`]:
 .css-example.is-test-for-css4-browsers {
   color: gray(255, 50%);
 }
-@context cssnext {
+@context postcss-preset-env {
   .css-example.is-fallback-for-all-browsers {
     color: gray(255, 50%);
   }
@@ -37,7 +37,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`atcss`] contains plugins that transform your CSS according
   to special annotation comments.
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
-* [`cssnext`] contains plugins that allow you to use future CSS features today.
 * [`oldie`] contains plugins that transform your CSS
   for older Internet Explorer compatibility.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
@@ -56,7 +55,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`stylelint`]:          https://github.com/stylelint/stylelint
 [`rucksack`]:           http://simplaio.github.io/rucksack
 [`cssnano`]:            http://cssnano.co/
-[`cssnext`]:            http://cssnext.io/
 [`level4`]:             https://github.com/stephenway/level4
 [`precss`]:             https://github.com/jonathantneal/precss
 [`oldie`]:              https://github.com/jonathantneal/oldie
@@ -84,7 +82,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   and placeholders, recursively.
 * [`postcss-font-normalize`] to normalize font, especially `font-family`.
 * [`postcss-font-variant`] transpiles human-readable `font-variant`
-  to more widely supported CSS.
+  to more widely supported CSS.
 * [`postcss-font-family-system-ui`] transforms W3C CSS `font-family: system-ui` to a practical font list.
 * [`postcss-font-display`] add `font-display` css rule.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
@@ -104,7 +102,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-subgrid`] provides a basic shim for the CSS `display: subgrid` spec.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
 
-See also [`cssnext`] plugins pack to add future CSS syntax by one line of code.
+See also [`posctss-preset-env`] plugins pack to add future CSS syntax
+by one line of code.
 
 ## Fallbacks
 
@@ -187,7 +186,7 @@ for targeting all button elements.
 * [`postcss-sassy-mixins`] enables mixins with Sass keywords.
 * [`postcss-map-get`] adds the ability to use Sass like map function `map-get`.
 * [`postcss-simple-extend`] lightweight extending of silent classes,
-  like Sass’ `@extend`.
+  like Sass’ `@extend`.
 * [`postcss-simple-vars`] supports for Sass-style variables.
 * [`postcss-strip-units`] strips units off of property values.
 * [`postcss-vertical-rhythm`] adds a vertical rhythm unit
@@ -244,6 +243,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   and inline files.
 * [`postcss-assets-rebase`] rebases assets from `url()`.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
+* [`postcss-background-image-auto-size`] generates CSS rules `width` and `height` for `background-image` automatically.
 * [`postcss-border-9-patch`] generates 9-patch like border styles via a custom rule.
 * [`postcss-cachebuster`] adds version parameter to images and fonts
 * [`postcss-copy-assets`] copies assets referenced by relative `url()`s
@@ -301,6 +301,7 @@ loosely resembles the original.
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
+* [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
 * [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
@@ -385,6 +386,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-bom`] adds a UTF-8 BOM to files.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
+* [`postcss-classes-to-mixins`] converts classes to Sass, Less and Stylus mixins
 * [`postcss-currency`] replaces name of currency with symbols.
 * [`postcss-eol`] replaces EOL of files.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
@@ -410,6 +412,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-mq-last`] gives media query rules precedence by moving them to the end of the file.
 * [`postcss-node-modules-replacer`] replaces path than includes `node_modules`
   to `~`.
+* [`postcss-plugin-namespace`] add a css selector to all rules, so that css file don't affect other element.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
@@ -433,7 +436,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`perfectionist`] formats poorly written CSS and renders a “pretty” result.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
-* [`postcss-autocorrect`] Corrects typos and notifies in the console.
+* [`postcss-autocorrect`] corrects typos and notifies in the console.
+* [`postcss-px-to-viewport`] generates viewport units (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -462,6 +466,7 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-australian-stylesheets`] Australian Style Sheets.
 * [`postcss-andalusian-stylesheets`] Andalusian Style Sheets.
+* [`postcss-aze-stylesheets`] Azerbaijanian Style Sheets.
 * [`postcss-canadian-stylesheets`] Canadian Style Sheets.
 * [`postcss-chinese-stylesheets`] Chinese Style Sheets.
 * [`postcss-czech-stylesheets`] Czech Style Sheets.
@@ -481,6 +486,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-nope`] lets you write `nope` instead of `none`.
 * [`postcss-glitch`] add glitch effect to your text.
 
+[`postcss-background-image-auto-size`]:   https://github.com/JustClear/postcss-background-image-auto-size
 [`postcss-letter-tracking`]:              https://github.com/letsjaam/postcss-letter-tracking
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
 [`postcss-attribute-case-insensitive`]:   https://github.com/Semigradsky/postcss-attribute-case-insensitive
@@ -492,6 +498,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-elements-content`]:      https://github.com/omgovich/postcss-pseudo-elements-content
 [`postcss-pseudo-element-cases`]:         https://github.com/timelsass/postcss-pseudo-element-cases
 [`postcss-pseudo-element-colons`]:        https://github.com/timelsass/postcss-pseudo-element-colons
+[`postcss-aze-stylesheets`]:              https://github.com/iskandarovBakshi/postcss-aze-stylesheets
 [`postcss-andalusian-stylesheets`]:       https://github.com/bameda/postcss-andalusian-stylesheets
 [`postcss-australian-stylesheets`]:       https://github.com/dp-lewis/postcss-australian-stylesheets
 [`postcss-responsive-properties`]:        https://github.com/alexandr-solovyov/postcss-responsive-properties
@@ -785,3 +792,8 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-join-transitions`]:             https://github.com/JGJP/postcss-join-transitions
 [`postcss-font-display`]:                 https://github.com/dkrnl/postcss-font-display
 [`postcss-glitch`]:                       https://github.com/crftd/postcss-glitch
+[`postcss-class-name-shortener`]:         https://github.com/mbrandau/postcss-class-name-shortener
+[`postcss-plugin-namespace`]:             https://github.com/ymrdf/postcss-plugin-namespace
+[`postcss-classes-to-mixins`]:            https://github.com/nrkno/postcss-classes-to-mixins
+[`postcss-px-to-viewport`]:               https://github.com/evrone/postcss-px-to-viewport
+[`postcss-font-grabber`]:                 https://github.com/AaronJan/postcss-font-grabber

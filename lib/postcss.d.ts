@@ -31,9 +31,12 @@ declare namespace postcss {
   }
   interface TransformCallback {
     /**
-     * @returns Asynchronous plugins should return a promise.
+     * @returns A Promise that resolves when all work is complete. May return
+     * synchronously, but that style of plugin is only meant for debugging and
+     * development. In either case, the resolved or returned value is not used -
+     * the "result" is the output.
      */
-    (root: Root, result?: Result): void | Function | any;
+    (root: Root, result: Result): Promise<any> | any;
   }
   interface PluginInitializer<T> {
     (pluginOptions?: T): Transformer;
@@ -178,13 +181,11 @@ declare namespace postcss {
      *
      * If you have set inline: true, annotation cannot be disabled.
      */
-    annotation?: boolean | string;
+    annotation?: string | false;
     /**
-     * If true, PostCSS will try to correct any syntax errors that it finds in the CSS.
-     * This is useful for legacy code filled with hacks. Another use-case is interactive
-     * tools with live input — for example, the Autoprefixer demo.
+     * Override "from" in map's sources.
      */
-    safe?: boolean;
+    from?: string;
   }
   /**
    * A Processor instance contains plugins to process CSS. Create one
@@ -217,47 +218,52 @@ declare namespace postcss {
      */
     version: string;
   }
-  interface ProcessOptions extends Syntax {
+  interface ProcessOptions {
     /**
-     * The path of the CSS source file. You should always set from, because it is
+     * The path of the CSS source file. You should always set "from", because it is
      * used in source map generation and syntax error messages.
      */
     from?: string;
     /**
-     * The path where you'll put the output CSS file. You should always set it
+     * The path where you'll put the output CSS file. You should always set "to"
      * to generate correct source maps.
      */
     to?: string;
-    syntax?: Syntax;
-    /**
-     * Enable Safe Mode, in which PostCSS will try to fix CSS syntax errors.
-     */
-    safe?: boolean;
-    map?: postcss.SourceMapOptions;
     /**
      * Function to generate AST by string.
      */
-    parser?: Parse | Syntax;
+    parser?: Parser;
     /**
      * Class to generate string by AST.
      */
-    stringifier?: Stringify | Syntax;
+    stringifier?: Stringifier;
+    /**
+     * Object with parse and stringify.
+     */
+    syntax?: Syntax;
+    /**
+     * Source map options
+     */
+    map?: SourceMapOptions | true;
   }
   interface Syntax {
     /**
      * Function to generate AST by string.
      */
-    parse?: Parse;
+    parse?: Parser;
     /**
      * Class to generate string by AST.
      */
-    stringify?: Stringify;
+    stringify?: Stringifier;
   }
-  interface Parse {
-    (css?: string, opts?: postcss.SourceMapOptions): Root;
+  interface Parser {
+    (css: string, opts?: Pick<ProcessOptions, 'map' |'from'>): Root;
   }
-  interface Stringify {
-    (node?: postcss.Node, builder?: any): postcss.Result | void;
+  interface Stringifier {
+    (node: Node, builder: Builder): void;
+  }
+  interface Builder {
+    (part: string, node?: Node, type?: 'start' | 'end'): void;
   }
   /**
    * A promise proxy for the result of PostCSS transformations.
@@ -440,9 +446,8 @@ declare namespace postcss {
   }
   interface ResultMessage {
     type: string;
-    text?: string;
-    plugin?: string;
-    browsers?: string[];
+    plugin: string;
+    [others: string]: any;
   }
   /**
    * Represents a plugin warning. It can be created using Result#warn().
@@ -582,13 +587,15 @@ declare namespace postcss {
   interface Input {
     /**
      * The absolute path to the CSS source file defined with the "from" option.
+     * Either this property or the "id" property are always defined.
      */
-    file: string;
+    file?: string;
     /**
      * The unique ID of the CSS source. Used if "from" option is not provided
-     * (because PostCSS does not know the file path).
+     * (because PostCSS does not know the file path). Either this property
+     * or the "file" property are always defined.
      */
-    id: string;
+    id?: string;
     /**
      * The CSS source identifier. Contains input.file if the user set the
      * "from" option, or input.id if they did not.
@@ -599,6 +606,10 @@ declare namespace postcss {
      * PostCSS (e.g., from the Sass compiler).
      */
     map: PreviousMap;
+    /**
+     * The flag to indicate whether or not the source code has Unicode BOM.
+     */
+    hasBOM: boolean;
     /**
      * Reads the input source map.
      * @returns A symbol position in the input source (e.g., in a Sass file
@@ -618,7 +629,7 @@ declare namespace postcss {
      * (in which case the new node's source will reference the original,
      * cloned node) or setting the source property manually.
      */
-    source: NodeSource;
+    source?: NodeSource;
     /**
      * Contains information to generate byte-to-byte equal node string as it
      * was in origin input.

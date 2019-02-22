@@ -194,6 +194,9 @@ export default class Parser {
         node.raws.between += token[1]
         break
       } else {
+        if (token[0] === 'word' && /\w/.test(token[1])) {
+          this.unknownWord([token])
+        }
         node.raws.between += token[1]
       }
     }
@@ -456,11 +459,11 @@ export default class Parser {
       if (brackets === 0 && type === ':') {
         if (!prev) {
           this.doubleColon(token)
-        }
-        if (prev[0] === 'word' && prev[1] === 'progid') {
+        } else if (prev[0] === 'word' && prev[1] === 'progid') {
           continue
+        } else {
+          return i
         }
-        return i
       }
 
       prev = token

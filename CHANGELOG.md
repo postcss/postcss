@@ -1,6 +1,44 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.14
+* Fix tokenizer for `postcss-less` (by Matt Lyons).
+
+## 7.0.13
+* Fix parsing regression in 7.0.12 for comments between property and value.
+
+## 7.0.12
+* Fix parsing broken CSS with two words in declaration property.
+
+## 7.0.11
+* Fix source maps on declaration semicolon (by Niklas Mischkulnig).
+
+## 7.0.10
+* Fix source maps (by Niklas Mischkulnig).
+
+## 7.0.9
+* Increase stringifing performance for non-raws AST.
+
+## 7.0.8
+* Fix TypeScript definitions (by Ankur Oberoi).
+* Use `support-colors` 6.0.
+
+## 7.0.7
+* Extend `Error` in `CssSyntaxError`.
+
+## 7.0.6
+* Fix parsing files with BOM (by Veniamin Krol).
+
+## 7.0.5
+* Reduce npm package size (by Gilad Peleg).
+
+## 7.0.4
+* Fix safe parser regression.
+
+## 7.0.3
+* Fix tokenizer extendability (by Andrew Powell).
+* Reduce npm package size.
+
 ## 7.0.2
 * Fix warning text (by Rui Pedro M Lima).
 

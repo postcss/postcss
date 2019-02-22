@@ -26,10 +26,11 @@ e.g. to find errors automatically insert vendor prefixes.
 **中文翻译**:              [`README-cn.md`](./README-cn.md)
 
 For PostCSS commercial support (consulting, improving the front-end culture
-of your company, PostCSS plugins), contact [Evil Martians](https://evilmartians.com/?utm_source=postcss)
+of your company, PostCSS plugins), contact [Evil Martians]
 at <surrender@evilmartians.com>.
 
 [Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
+[Evil Martians]:        https://evilmartians.com/?utm_source=postcss
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
 [plugins]:              https://github.com/postcss/postcss#plugins
 
@@ -186,6 +187,60 @@ You can start using PostCSS in just two steps:
 2. [Select plugins] and add them to your PostCSS process.
 
 [Select plugins]: http://postcss.parts
+
+### CSS-in-JS
+
+The best way to use PostCSS with CSS-in-JS is [`astroturf`].
+Add its loader to your `webpack.config.js`:
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'postcss-loader'],
+      },
+      {
+        test: /\.jsx?$/,
+        use: ['babel-loader', 'astroturf/loader'],
+      }
+    ]
+  }
+}
+```
+
+Then create `postcss.config.js`:
+
+```js
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-nested')
+  ]
+}
+```
+
+[`astroturf`]: https://github.com/4Catalyzer/astroturf
+
+### Parcel
+
+[Parcel] has perfect built-in PostCSS support. It already uses Autoprefixer
+and cssnano. If you want to change plugins, create `postcss.config.js`
+in project’s root:
+
+```js
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-nested')
+  ]
+}
+```
+
+Parcel will even automatically install these plugins for you.
+
+[Parcel]: https://parceljs.org
 
 ### Webpack
 
@@ -346,6 +401,24 @@ Common options:
 [Midas]:              https://github.com/ben-eb/midas
 [SCSS]:               https://github.com/postcss/postcss-scss
 
+### Treat Warnings as Errors
+
+In some situations it might be helpful to fail the build on any warning
+from PostCSS or one of its plugins. This guarantees that no warnings
+go unnoticed, and helps to avoid bugs. While there is no option to enable
+treating warnings as errors, it can easily be done
+by adding `postcss-fail-on-warn` plugin in the end of PostCSS plugins:
+
+```js
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-fail-on-warn')
+  ]
+}
+```
+
+
 ## Editors & IDE Integration
 
 ### Atom
@@ -374,3 +447,11 @@ Common options:
 WebStorm 2016.3 [has] built-in PostCSS support.
 
 [has]: https://blog.jetbrains.com/webstorm/2016/08/webstorm-2016-3-early-access-preview/
+
+
+## Security Contact
+
+To report a security vulnerability, please use the [Tidelift security contact].
+Tidelift will coordinate the fix and disclosure.
+
+[Tidelift security contact]: https://tidelift.com/security

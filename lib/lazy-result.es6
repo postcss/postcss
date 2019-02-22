@@ -14,7 +14,7 @@ function isPromise (obj) {
  * A `LazyResult` instance is returned by {@link Processor#process}.
  *
  * @example
- * const lazy = postcss([cssnext]).process(css)
+ * const lazy = postcss([autoprefixer]).process(css)
  */
 class LazyResult {
   constructor (processor, css, opts) {
@@ -184,7 +184,7 @@ class LazyResult {
    * @return {Promise} Promise API to make queue.
    *
    * @example
-   * postcss([cssnext]).process(css, { from: cssPath }).then(result => {
+   * postcss([autoprefixer]).process(css, { from: cssPath }).then(result => {
    *   console.log(result.css)
    * })
    */
@@ -212,7 +212,7 @@ class LazyResult {
    * @return {Promise} Promise API to make queue.
    *
    * @example
-   * postcss([cssnext]).process(css).then(result => {
+   * postcss([autoprefixer]).process(css).then(result => {
    *   console.log(result.css)
    * }).catch(error => {
    *   console.error(error)
@@ -233,7 +233,7 @@ class LazyResult {
    * @return {Promise} Promise API to make queue.
    *
    * @example
-   * postcss([cssnext]).process(css).finally(() => {
+   * postcss([autoprefixer]).process(css).finally(() => {
    *   console.log('processing ended')
    * })
    */

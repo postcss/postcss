@@ -37,6 +37,10 @@ export default function tokenizer (input, options = {}) {
   let buffer = []
   let returned = []
 
+  function position () {
+    return pos
+  }
+
   function unclosed (what) {
     throw input.error('Unclosed ' + what, line, pos - offset)
   }
@@ -309,6 +313,7 @@ export default function tokenizer (input, options = {}) {
   return {
     back,
     nextToken,
-    endOfFile
+    endOfFile,
+    position
   }
 }

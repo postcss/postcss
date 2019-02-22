@@ -23,6 +23,6 @@ it('generates source map without fs', () => {
   expect(postcss([() => true]).process('a{}', { from: 'a.css', map: true }).css)
     .toEqual('a{}\n/*# sourceMappingURL=data:application/json;base64,' +
              'eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImEuY3NzIl0sIm5hbWVzIjpbXSw' +
-             'ibWFwcGluZ3MiOiJBQUFBLEdBQUciLCJmaWxlIjoiYS5jc3MiLCJzb3VyY2' +
+             'ibWFwcGluZ3MiOiJBQUFBLEVBQUUiLCJmaWxlIjoiYS5jc3MiLCJzb3VyY2' +
              'VzQ29udGVudCI6WyJhe30iXX0= */')
 })
