@@ -1,7 +1,6 @@
-import Container, { defineProperty } from './container'
-
-const name = Symbol('name')
-const params = Symbol('params')
+import Container from './container'
+import defineProperty from './define-property'
+import { name, params } from './symbols'
 
 /**
  * Represents an at-rule.

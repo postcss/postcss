@@ -9,7 +9,7 @@ import {
   isComplete,
   isClean,
   walkVisitor
-} from './root'
+} from './symbols'
 
 function isPromise (obj) {
   return typeof obj === 'object' && typeof obj.then === 'function'

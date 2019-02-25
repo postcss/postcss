@@ -1,8 +1,7 @@
 import Declaration from './declaration'
 import Comment from './comment'
-import Node, {
-  isComplete, isClean, resetNodeWalk, defineProperty
-} from './node'
+import Node from './node'
+import { isComplete, isClean, resetNodeWalk, walkVisitor } from './symbols'
 
 function cleanSource (nodes) {
   return nodes.map(i => {
@@ -22,8 +21,6 @@ function throwError (e, child) {
   }
   throw error
 }
-
-const walkVisitor = Symbol('walkVisitor')
 
 /**
  * The {@link Root}, {@link AtRule}, and {@link Rule} container nodes
@@ -710,7 +707,6 @@ class Container extends Node {
 }
 
 export default Container
-export { isComplete, isClean, walkVisitor, defineProperty }
 
 /**
  * @callback childCondition

@@ -1,6 +1,6 @@
-import Node, { defineProperty } from './node'
-
-const text = Symbol('text')
+import Node from './node'
+import defineProperty from './define-property'
+import { text } from './symbols'
 
 /**
  * Represents a comment between declarations or statements (rule and at-rules).

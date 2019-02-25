@@ -1,6 +1,7 @@
 import CssSyntaxError from './css-syntax-error'
 import Stringifier from './stringifier'
 import stringify from './stringify'
+import { isComplete, isClean, resetNodeWalk } from './symbols'
 
 function cloneNode (obj, parent) {
   let cloned = new obj.constructor()
@@ -23,26 +24,6 @@ function cloneNode (obj, parent) {
   }
 
   return cloned
-}
-
-const isComplete = Symbol('isComplete')
-const isClean = Symbol('isClean')
-const resetNodeWalk = Symbol('resetNodeWalk')
-
-function defineProperty (target, publicPropName, privatePropName) {
-  let cache = target[publicPropName]
-  Object.defineProperty(target, publicPropName, {
-    enumerable: true,
-    get () {
-      return target[privatePropName]
-    },
-    set (value) {
-      target[privatePropName] = value
-      target[resetNodeWalk]()
-    }
-  })
-
-  target[publicPropName] = cache
 }
 
 /**
@@ -549,7 +530,6 @@ class Node {
 }
 
 export default Node
-export { isComplete, isClean, resetNodeWalk, defineProperty }
 
 /**
  * @typedef {object} position

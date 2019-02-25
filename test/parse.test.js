@@ -1,5 +1,5 @@
 let parse = require('../lib/parse')
-let Root = require('../lib/root').default
+let Root = require('../lib/root')
 
 let cases = require('postcss-parser-tests')
 let path = require('path')

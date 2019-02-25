@@ -1,4 +1,5 @@
-import Container, { isComplete, isClean, walkVisitor } from './container'
+import Container from './container'
+import { isVisitorMode, listeners } from './symbols'
 
 function isString (obj) {
   return typeof obj === 'string' ||
@@ -41,12 +42,12 @@ function normalizeVisitorPlugin (typeNode, cb = () => {}) {
   })
 }
 
-function buildVisitorObject (plugin, listeners) {
+function buildVisitorObject (plugin, listenersForUpdate) {
   let type = Object.keys(plugin).pop()
   let eventName = Object.keys(plugin[type]).pop()
   let cb = plugin[type][eventName]
 
-  let visitorPlugins = listeners
+  let visitorPlugins = listenersForUpdate
   let eventByType = visitorPlugins[type] || {}
   let callbacksByEvent = eventByType[eventName] || []
 
@@ -61,9 +62,6 @@ function buildVisitorObject (plugin, listeners) {
     }
   })
 }
-
-const isVisitorMode = Symbol('isVisitorMode')
-const listeners = Symbol('listeners')
 
 /**
  * Represents a CSS file and contains all its parsed nodes.
@@ -163,5 +161,4 @@ class Root extends Container {
    */
 }
 
-export { isVisitorMode, listeners, isComplete, isClean, walkVisitor }
 export default Root

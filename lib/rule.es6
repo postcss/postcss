@@ -1,7 +1,7 @@
-import Container, { defineProperty } from './container'
+import Container from './container'
 import list from './list'
-
-const selector = Symbol('selector')
+import defineProperty from './define-property'
+import { selector } from './symbols'
 
 /**
  * Represents a CSS rule: a selector followed by a declaration block.

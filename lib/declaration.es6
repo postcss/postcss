@@ -1,7 +1,6 @@
-import Node, { defineProperty } from './node'
-
-const prop = Symbol('prop')
-const value = Symbol('value')
+import Node from './node'
+import defineProperty from './define-property'
+import { prop, value } from './symbols'
 
 /**
  * Represents a CSS declaration.
