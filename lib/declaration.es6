@@ -1,6 +1,6 @@
 import Node from './node'
 import defineProperty from './define-property'
-import { prop, value } from './symbols'
+import { prop, value, important } from './symbols'
 
 /**
  * Represents a CSS declaration.
@@ -19,6 +19,7 @@ class Declaration extends Node {
     this.type = 'decl'
     defineProperty(this, 'prop', prop)
     defineProperty(this, 'value', value)
+    defineProperty(this, 'important', important)
   }
 
   /**
