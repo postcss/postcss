@@ -204,6 +204,29 @@ let hidden = postcss.plugin('hidden', options => {
   }
 })
 
+let postcssAlias = postcss.plugin('postcss-alias', () => {
+  return function (css) {
+    let aliases = {}
+    css.walkAtRules('alias', rule => {
+      rule.walkDecls(decl => {
+        aliases[decl.prop] = decl.value
+      })
+      rule.remove()
+    })
+
+    css.on('decl', decl => {
+      let value = aliases[decl.prop]
+      if (value !== undefined) {
+        decl.replaceWith({
+          prop: value,
+          value: decl.value,
+          important: decl.important
+        })
+      }
+    })
+  }
+})
+
 it('works classic plugin replace-color', () => {
   return postcss([replaceColorGreenClassicPlugin]).process(
     '.a{ color: red; } ' +
@@ -383,5 +406,20 @@ it('works visitor plugins postcss-focus and hidden; sequence 2', () => {
   ]).process(cssPostcssfocusHidden, { from: undefined })
     .then(result => {
       expect(result.css).toEqual(expectedPostcssfocusHidden)
+    })
+})
+
+it('works visitor plugin postcss-alias', () => {
+  let css =
+    '@alias { fs: font-size; bg: background; }' +
+    '.aliased { fs: 16px; bg: white; }'
+
+  let expected = '.aliased { font-size: 16px; background: white; }'
+
+  return postcss([
+    postcssAlias
+  ]).process(css, { from: undefined })
+    .then(result => {
+      expect(result.css).toEqual(expected)
     })
 })
