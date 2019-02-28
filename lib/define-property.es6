@@ -11,8 +11,11 @@ export default function defineProperty (
       return target[privatePropName]
     },
     set (value) {
+      let curValue = target[privatePropName]
       target[privatePropName] = value
-      target[resetNodeWalk]()
+      if (curValue !== value) {
+        target[resetNodeWalk]()
+      }
     }
   })
 
