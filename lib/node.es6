@@ -1,7 +1,7 @@
 import CssSyntaxError from './css-syntax-error'
 import Stringifier from './stringifier'
 import stringify from './stringify'
-import { isComplete, isClean, resetNodeWalk } from './symbols'
+import { isComplete, isClean } from './symbols'
 
 function cloneNode (obj, parent) {
   let cloned = new obj.constructor()
@@ -421,22 +421,6 @@ class Node {
       if (index !== -1) pos = this.positionInside(index)
     }
     return pos
-  }
-
-  [resetNodeWalk] () {
-    if (this.root().isVisitorMode === false) {
-      return
-    }
-
-    this[isClean] = false
-
-    if (this[isComplete]) {
-      this[isComplete] = false
-
-      if (this.parent) {
-        this.parent[resetNodeWalk]()
-      }
-    }
   }
 
   /**

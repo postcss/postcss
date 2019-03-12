@@ -1,4 +1,4 @@
-import { resetNodeWalk } from './symbols'
+import resetNodeWalk from './reset-node-walk'
 
 export default function defineProperty (
   target,
@@ -14,7 +14,7 @@ export default function defineProperty (
       let curValue = target[privatePropName]
       target[privatePropName] = value
       if (curValue !== value) {
-        target[resetNodeWalk]()
+        resetNodeWalk(target)
       }
     }
   })

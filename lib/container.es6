@@ -1,7 +1,8 @@
 import Declaration from './declaration'
 import Comment from './comment'
 import Node from './node'
-import { isComplete, isClean, resetNodeWalk, walkVisitor } from './symbols'
+import resetNodeWalk from './reset-node-walk'
+import { isComplete, isClean, walkVisitor } from './symbols'
 
 function cleanSource (nodes) {
   return nodes.map(i => {
@@ -372,7 +373,7 @@ class Container extends Node {
       for (let node of nodes) this.nodes.push(node)
     }
 
-    this[resetNodeWalk]()
+    resetNodeWalk(this)
 
     return this
   }
@@ -407,7 +408,7 @@ class Container extends Node {
       }
     }
 
-    this[resetNodeWalk]()
+    resetNodeWalk(this)
 
     return this
   }
@@ -445,7 +446,7 @@ class Container extends Node {
       }
     }
 
-    this[resetNodeWalk]()
+    resetNodeWalk(this)
 
     return this
   }
@@ -472,7 +473,7 @@ class Container extends Node {
       }
     }
 
-    this[resetNodeWalk]()
+    resetNodeWalk(this)
 
     return this
   }
@@ -504,7 +505,7 @@ class Container extends Node {
       }
     }
 
-    this[resetNodeWalk]()
+    resetNodeWalk(this)
 
     return this
   }
@@ -523,7 +524,7 @@ class Container extends Node {
     for (let node of this.nodes) node.parent = undefined
     this.nodes = []
 
-    this[resetNodeWalk]()
+    resetNodeWalk(this)
 
     return this
   }
@@ -567,7 +568,7 @@ class Container extends Node {
       decl.value = decl.value.replace(pattern, callback)
     })
 
-    this[resetNodeWalk]()
+    resetNodeWalk(this)
 
     return this
   }
