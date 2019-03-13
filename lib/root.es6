@@ -134,11 +134,30 @@ class Root extends Container {
     return lazy.stringify()
   }
 
+  /**
+   * The method registrations the plugins in postcss to their bypass with
+   * algoritm visitor. The plugin must subscribes to the type of the node.
+   * It can be "atrule", "rule", "decl", "comment". Example: "atrule" is
+   * "@media", "@keyframes"; "rule" is selector (class, id, tag); "decl" is
+   * property (color, border, etc.); "comment" is comment. The plugin will
+   * call on the type of the node to which it is subscribed. The plugin can
+   * be subscribed at the enter to node or at the exit from node. The plugin get
+   * node and index.
+   *
+   * @param {string} [typeNode] The type of the node ("atrule", "rule",
+   * "decl", "comment").
+   * @param {function} [cb] Function receives node and index.
+   *
+   * @return {undefined}
+   *
+   * @example
+   * css.on("decl", (node, index) => {})
+   * // is shorthand for
+   * css.on("decl.enter", (node, index) => {})
+   *
+   * css.on("decl.exit", (node, index) => {})
+   */
   on (typeNode, cb) {
-    /*
-    css.on("decl", (node) => {})  or  css.on("decl.enter", (node) => {})
-    css.on("rule.exit", (node) => {})
-     */
     validateNameTypeNode(typeNode)
     let plugin = normalizeVisitorPlugin(typeNode, cb)
     this[listeners] = buildVisitorObject(plugin, this[listeners])
