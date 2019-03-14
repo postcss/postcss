@@ -26,7 +26,7 @@ function validateNameTypeNode (typeNode) {
 }
 
 /* General view of node type names */
-function normalizeVisitorPlugin (typeNode, cb = () => {}) {
+function normalizeVisitorPlugin (typeNode, callback = () => {}) {
   // typeNode have view "decl" or "decl.exit" or "decl.enter"
   // return { decl: {enter: cb}}
   let type = typeNode
@@ -34,10 +34,12 @@ function normalizeVisitorPlugin (typeNode, cb = () => {}) {
     type = `${ type }.enter`
   }
 
+  type = type.toLowerCase()
+
   let arr = type.split('.')
   return ({
     [arr[0]]: {
-      [arr[1]]: cb
+      [arr[1]]: callback
     }
   })
 }
@@ -136,7 +138,7 @@ class Root extends Container {
 
   /**
    * The method registrations the plugins in postcss to their bypass with
-   * algoritm visitor. The plugin must subscribes to the type of the node.
+   * algorithm visitor. The plugin must subscribes to the type of the node.
    * It can be "atrule", "rule", "decl", "comment". Example: "atrule" is
    * "@media", "@keyframes"; "rule" is selector (class, id, tag); "decl" is
    * property (color, border, etc.); "comment" is comment. The plugin will
@@ -144,9 +146,9 @@ class Root extends Container {
    * be subscribed at the enter to node or at the exit from node. The plugin get
    * node and index.
    *
-   * @param {string} [typeNode] The type of the node ("atrule", "rule",
+   * @param {string} [type] The type of the node ("atrule", "rule",
    * "decl", "comment").
-   * @param {function} [cb] Function receives node and index.
+   * @param {function} [callback] Function receives node and index.
    *
    * @return {undefined}
    *
@@ -157,9 +159,9 @@ class Root extends Container {
    *
    * css.on("decl.exit", (node, index) => {})
    */
-  on (typeNode, cb) {
-    validateNameTypeNode(typeNode)
-    let plugin = normalizeVisitorPlugin(typeNode, cb)
+  on (type, callback) {
+    validateNameTypeNode(type)
+    let plugin = normalizeVisitorPlugin(type, callback)
     this[listeners] = buildVisitorObject(plugin, this[listeners])
   }
 
