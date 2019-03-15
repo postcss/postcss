@@ -743,7 +743,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-nope`]:                         https://github.com/dariopog/postcss-nope
 [`autoprefixer`]:                         https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                         https://github.com/hail2u/node-css-mqpacker
-[`postcss-bem`]:                          https://github.com/ileri/postcss-bem
 [`postcss-bem-fix`]:                      https://github.com/supermonkeyz/postcss-bem-fix
 [`postcss-for`]:                          https://github.com/antyakushev/postcss-for
 [`postcss-ie8`]:                          https://github.com/4wdmedia/postcss-ie8
