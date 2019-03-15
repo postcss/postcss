@@ -146,7 +146,7 @@ See also [`oldie`] plugins pack.
 
 * [`postcss-aspect-ratio`] fix an element's dimensions to an aspect ratio.
 * [`postcss-atroot`] place rules directly at the root node.
-* [`postcss-bem`] adds at-rules for BEM and SUIT style classes.
+* [`postcss-bem-fix`] adds at-rules for BEM and SUIT style classes.
 * [`postcss-click`] allows to use the `:click` pseudo class and implement it in JavaScript.
 * [`postcss-compact-mq`] provides compact syntax for media queries based
   on viewport width.
@@ -744,6 +744,7 @@ See also plugins in modular minifier [`cssnano`].
 [`autoprefixer`]:                         https://github.com/postcss/autoprefixer
 [`css-mqpacker`]:                         https://github.com/hail2u/node-css-mqpacker
 [`postcss-bem`]:                          https://github.com/ileri/postcss-bem
+[`postcss-bem-fix`]:                      https://github.com/supermonkeyz/postcss-bem-fix
 [`postcss-for`]:                          https://github.com/antyakushev/postcss-for
 [`postcss-ie8`]:                          https://github.com/4wdmedia/postcss-ie8
 [`postcss-map`]:                          https://github.com/pascalduez/postcss-map
