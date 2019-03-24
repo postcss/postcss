@@ -123,6 +123,8 @@ by one line of code.
 * [`postcss-page-break`] adds `page-break-` fallback to `break-` properties.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
+* [`postcss-redundant-color-vars`] adds custom property for certain border and
+  box-shadow declarations to fix a known Safari bug
 * [`postcss-replace-overflow-wrap`] replace `overflow-wrap` with `word-wrap`.
 * [`postcss-round-subpixels`] plugin that rounds sub-pixel values
   to the nearest
@@ -797,3 +799,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-classes-to-mixins`]:            https://github.com/nrkno/postcss-classes-to-mixins
 [`postcss-px-to-viewport`]:               https://github.com/evrone/postcss-px-to-viewport
 [`postcss-font-grabber`]:                 https://github.com/AaronJan/postcss-font-grabber
+[`postcss-redundant-color-vars`]:         https://github.com/caseyjacobson/postcss-redundant-color-vars
