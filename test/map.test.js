@@ -1,9 +1,9 @@
-let PreviousMap = require('../lib/previous-map')
-let postcss = require('../lib/postcss')
-
 let mozilla = require('source-map')
 let path = require('path')
 let fs = require('fs-extra')
+
+let PreviousMap = require('../lib/previous-map')
+let postcss = require('../lib/postcss')
 
 function consumer (map) {
   return mozilla.SourceMapConsumer.fromSourceMap(map)

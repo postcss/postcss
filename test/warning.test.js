@@ -1,8 +1,8 @@
+let path = require('path')
+
 let Declaration = require('../lib/declaration')
 let Warning = require('../lib/warning')
 let parse = require('../lib/parse')
-
-let path = require('path')
 
 it('outputs simple warning', () => {
   let warning = new Warning('text')

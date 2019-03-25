@@ -1,7 +1,7 @@
+let cases = require('postcss-parser-tests')
+
 let stringify = require('../lib/stringify')
 let parse = require('../lib/parse')
-
-let cases = require('postcss-parser-tests')
 
 cases.each((name, css) => {
   if (name === 'bom.css') return

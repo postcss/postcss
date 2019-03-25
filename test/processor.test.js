@@ -1,11 +1,11 @@
+let path = require('path')
+
 let LazyResult = require('../lib/lazy-result')
 let Processor = require('../lib/processor')
 let postcss = require('../lib/postcss')
 let Result = require('../lib/result')
 let parse = require('../lib/parse')
 let Root = require('../lib/root')
-
-let path = require('path')
 
 function prs () {
   return new Root({ raws: { after: 'ok' } })

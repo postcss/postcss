@@ -1,10 +1,10 @@
-let CssSyntaxError = require('../lib/css-syntax-error')
-let postcss = require('../lib/postcss')
-
 let stripAnsi = require('strip-ansi')
 let Concat = require('concat-with-sourcemaps')
 let chalk = require('chalk')
 let path = require('path')
+
+let CssSyntaxError = require('../lib/css-syntax-error')
+let postcss = require('../lib/postcss')
 
 function parseError (css, opts) {
   let error

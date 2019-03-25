@@ -1,3 +1,5 @@
+let path = require('path')
+
 let CssSyntaxError = require('../lib/css-syntax-error')
 let Declaration = require('../lib/declaration')
 let postcss = require('../lib/postcss')
@@ -5,8 +7,6 @@ let AtRule = require('../lib/at-rule')
 let parse = require('../lib/parse')
 let Root = require('../lib/root')
 let Rule = require('../lib/rule')
-
-let path = require('path')
 
 function stringify (node, builder) {
   return builder(node.selector)

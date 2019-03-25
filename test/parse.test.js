@@ -1,9 +1,9 @@
-let parse = require('../lib/parse')
-let Root = require('../lib/root')
-
 let cases = require('postcss-parser-tests')
 let path = require('path')
 let fs = require('fs')
+
+let parse = require('../lib/parse')
+let Root = require('../lib/root')
 
 it('works with file reads', () => {
   let stream = fs.readFileSync(cases.path('atrule-empty.css'))

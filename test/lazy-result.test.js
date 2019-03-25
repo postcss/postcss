@@ -1,7 +1,7 @@
+let mozilla = require('source-map')
+
 let LazyResult = require('../lib/lazy-result')
 let Processor = require('../lib/processor')
-
-let mozilla = require('source-map')
 
 let processor = new Processor()
 

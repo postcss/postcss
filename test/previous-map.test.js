@@ -1,8 +1,8 @@
-let parse = require('../lib/parse')
-
 let mozilla = require('source-map')
 let path = require('path')
 let fs = require('fs-extra')
+
+let parse = require('../lib/parse')
 
 let dir = path.join(__dirname, 'prevmap-fixtures')
 let mapObj = {
