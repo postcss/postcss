@@ -36,7 +36,12 @@ function normalizeVisitorPlugin (typeNode, callback = () => {}) {
 
   type = type.toLowerCase()
 
-  let arr = type.split('.')
+  let [decl, phase] = type.split('.')
+  return ({
+    [decl]: {
+      [phase]: callback
+    }
+  })
   return ({
     [arr[0]]: {
       [arr[1]]: callback
