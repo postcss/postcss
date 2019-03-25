@@ -14,6 +14,12 @@ function validateNameTypeNode (typeNode) {
   }
 
   let arr = type.split('.')
+  let [_, phase] = arr
+  let validPhases = ['enter', 'exit']
+  
+  if (phase && !validPhases.contains(phase)) {
+    throw new Error('The plugin must subscribe to either the enter or exit node')
+  }
   if (arr.length === 2) {
     if (arr[1] !== 'enter' && arr[1] !== 'exit') {
       throw new Error(
