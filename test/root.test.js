@@ -1,4 +1,5 @@
 let rewire = require('rewire')
+
 let Result = require('../lib/result')
 let parse = require('../lib/parse')
 
