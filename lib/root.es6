@@ -6,51 +6,38 @@ function isString (obj) {
     (!!obj && typeof obj === 'object' && obj.constructor === String)
 }
 
-function validateNameTypeNode (typeNode) {
-  let type = typeNode
-
+function validateNameTypeNode (type) {
   if (!isString(type)) {
-    throw new Error('typeNode must be a string')
+    throw new Error('type must be a string')
   }
 
-  let arr = type.split('.')
-  let [_, phase] = arr
+  // eslint-disable-next-line no-unused-vars
+  let [_, phase, ...rest] = type.split('.')
+
   let validPhases = ['enter', 'exit']
-  
-  if (phase && !validPhases.contains(phase)) {
-    throw new Error('The plugin must subscribe to either the enter or exit node')
-  }
-  if (arr.length === 2) {
-    if (arr[1] !== 'enter' && arr[1] !== 'exit') {
-      throw new Error(
-        'The plugin must subscribe to either the enter or exit node')
-    }
-  } else if (arr.length > 2) {
-    throw new Error('The plugin must subscribe ' +
-      'to either the enter or exit node')
+  let isValidPhase = phase === undefined || validPhases.includes(phase)
+
+  if (!isValidPhase || rest.length > 0) {
+    throw new Error(
+      'The plugin must subscribe to either the enter or exit node')
   }
 }
 
 /* General view of node type names */
-function normalizeVisitorPlugin (typeNode, callback = () => {}) {
-  // typeNode have view "decl" or "decl.exit" or "decl.enter"
-  // return { decl: {enter: cb}}
-  let type = typeNode
-  if (!type.includes('.')) {
-    type = `${ type }.enter`
+function normalizeVisitorPlugin (type, callback = () => {}) {
+  // type have view "decl" or "decl.exit" or "decl.enter"
+  // return { decl: {enter: callback} }
+
+  let tp = type
+  if (!tp.includes('.')) {
+    tp = `${ tp }.enter`
   }
+  tp = tp.toLowerCase()
 
-  type = type.toLowerCase()
-
-  let [decl, phase] = type.split('.')
+  let [typeNode, phase] = tp.split('.')
   return ({
-    [decl]: {
+    [typeNode]: {
       [phase]: callback
-    }
-  })
-  return ({
-    [arr[0]]: {
-      [arr[1]]: callback
     }
   })
 }
@@ -58,7 +45,7 @@ function normalizeVisitorPlugin (typeNode, callback = () => {}) {
 function buildVisitorObject (plugin, listenersForUpdate) {
   let type = Object.keys(plugin).pop()
   let eventName = Object.keys(plugin[type]).pop()
-  let cb = plugin[type][eventName]
+  let callback = plugin[type][eventName]
 
   let visitorPlugins = listenersForUpdate
   let eventByType = visitorPlugins[type] || {}
@@ -70,7 +57,7 @@ function buildVisitorObject (plugin, listenersForUpdate) {
       ...eventByType,
       [eventName]: [
         ...callbacksByEvent,
-        cb
+        callback
       ]
     }
   })

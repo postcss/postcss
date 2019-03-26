@@ -92,6 +92,11 @@ it('validateNameTypeNode("decl.exit.abcd") should throw an error', () => {
     .toThrowError(/enter/)
 })
 
+it('validateNameTypeNode("decl.exitabcd") should throw an error', () => {
+  expect(() => { validateNameTypeNode('decl.exitabcd') })
+    .toThrowError(/enter/)
+})
+
 it('normalizeVisitorPlugin("decl") => "decl.enter"', () => {
   let normalize = normalizeVisitorPlugin('decl')
 
