@@ -65,6 +65,7 @@
     "jsdoc": "^3.5.5",
     "lint-staged": "^8.1.5",
     "postcss-parser-tests": "6.3.1",
+    "rewire": "^4.0.1",
     "run-sequence": "^2.2.1",
     "size-limit": "^1.0.1",
     "strip-ansi": "^5.2.0",
@@ -111,7 +112,7 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "28 KB"
+      "limit": "29 KB"
     }
   ],
   "jest": {
@@ -419,7 +420,8 @@
       "Niklas",
       "Mischkulnig",
       "Tidelift",
-      "Solovev"
+      "Solovev",
+      "atrule"
     ]
   }
 }
