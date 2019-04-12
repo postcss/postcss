@@ -1,7 +1,4 @@
 {
-  "source": {
-    "includePattern": ".+\\.es6$"
-  },
   "opts": {
     "template": "node_modules/docdash",
     "destination": "./api/"
