@@ -157,7 +157,6 @@
         ],
         "rules": {
           "no-unused-expressions": "off",
-          "jest/expect-expect": "off",
           "func-style": "off"
         }
       }
