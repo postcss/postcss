@@ -67,8 +67,8 @@ The default PostCSS parser contains two steps:
 2. [Parser] which reads the tokens array, creates node instances and
   builds a tree.
 
-[Tokenizer]: https://github.com/postcss/postcss/blob/master/lib/tokenize.es6
-[Parser]:    https://github.com/postcss/postcss/blob/master/lib/parser.es6
+[Tokenizer]: https://github.com/postcss/postcss/blob/master/lib/tokenize.js
+[Parser]:    https://github.com/postcss/postcss/blob/master/lib/parser.js
 
 ### Performance
 
@@ -112,8 +112,8 @@ The parser can be a well written class. There is no need in copy-paste and
 hardcore optimization there. You can extend the default [PostCSS parser].
 
 [PostCSS benchmarks]: https://github.com/postcss/benchmark
-[PostCSS tokenizer]:  https://github.com/postcss/postcss/blob/master/lib/tokenize.es6
-[PostCSS parser]:     https://github.com/postcss/postcss/blob/master/lib/parser.es6
+[PostCSS tokenizer]:  https://github.com/postcss/postcss/blob/master/lib/tokenize.js
+[PostCSS parser]:     https://github.com/postcss/postcss/blob/master/lib/parser.js
 
 ### Node Source
 
@@ -124,7 +124,7 @@ and `input` property with an [`Input`] instance.
 Your tokenizer should save the original position so that you can propagate
 the values to the parser, to ensure that the source map is correctly updated.
 
-[`Input`]: https://github.com/postcss/postcss/blob/master/lib/input.es6
+[`Input`]: https://github.com/postcss/postcss/blob/master/lib/input.js
 
 ### Raw Values
 
@@ -182,8 +182,8 @@ and many methods to detect raw properties.
 In most cases it will be enough just to extend this class,
 like in [SCSS stringifier].
 
-[default stringifier]: https://github.com/postcss/postcss/blob/master/lib/stringifier.es6
-[SCSS stringifier]:    https://github.com/postcss/postcss-scss/blob/master/lib/scss-stringifier.es6
+[default stringifier]: https://github.com/postcss/postcss/blob/master/lib/stringifier.js
+[SCSS stringifier]:    https://github.com/postcss/postcss-scss/blob/master/lib/scss-stringifier.js
 
 ### Builder Function
 
