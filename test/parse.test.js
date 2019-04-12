@@ -13,7 +13,7 @@ it('works with file reads', () => {
 cases.each((name, css, json) => {
   it('parses ' + name, () => {
     let parsed = cases.jsonify(parse(css, { from: name }))
-    expect(parsed).toEqual(json)
+    expect(JSON.parse(parsed)).toEqual(JSON.parse(json))
   })
 })
 
