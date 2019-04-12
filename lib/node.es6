@@ -1,6 +1,7 @@
 import CssSyntaxError from './css-syntax-error'
 import Stringifier from './stringifier'
 import stringify from './stringify'
+import { isComplete, isClean } from './symbols'
 
 function cloneNode (obj, parent) {
   let cloned = new obj.constructor()
@@ -36,6 +37,9 @@ class Node {
    */
   constructor (defaults = { }) {
     this.raws = { }
+    this[isComplete] = false
+    this[isClean] = false
+
     if (process.env.NODE_ENV !== 'production') {
       if (typeof defaults !== 'object' && typeof defaults !== 'undefined') {
         throw new Error(

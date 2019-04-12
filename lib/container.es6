@@ -1,6 +1,8 @@
 import Declaration from './declaration'
 import Comment from './comment'
 import Node from './node'
+import resetNodeWalk from './reset-node-walk'
+import { isComplete, isClean, walkVisitor } from './symbols'
 
 function cleanSource (nodes) {
   return nodes.map(i => {
@@ -8,6 +10,17 @@ function cleanSource (nodes) {
     delete i.source
     return i
   })
+}
+
+function throwError (e, child) {
+  let error = e || {}
+  error.postcssNode = child
+  if (error.stack && child.source && /\n\s{4}at /.test(error.stack)) {
+    let s = child.source
+    error.stack = error.stack.replace(/\n\s{4}at /,
+      `$&${ s.input.from }:${ s.start.line }:${ s.start.column }$&`)
+  }
+  throw error
 }
 
 /**
@@ -77,6 +90,10 @@ class Container extends Node {
       if (result === false) break
 
       this.indexes[id] += 1
+
+      if (result === 'reset-loop') {
+        this.indexes[id] = 0
+      }
     }
 
     delete this.indexes[id]
@@ -109,17 +126,47 @@ class Container extends Node {
       try {
         result = callback(child, i)
       } catch (e) {
-        e.postcssNode = child
-        if (e.stack && child.source && /\n\s{4}at /.test(e.stack)) {
-          let s = child.source
-          e.stack = e.stack.replace(/\n\s{4}at /,
-            `$&${ s.input.from }:${ s.start.line }:${ s.start.column }$&`)
-        }
-        throw e
+        throwError(e, child)
       }
       if (result !== false && child.walk) {
         result = child.walk(callback)
       }
+
+      return result
+    })
+  }
+
+  [walkVisitor] (callback) {
+    return this.each((child, i) => {
+      if (child[isClean]) {
+        return
+      }
+
+      child[isClean] = true
+
+      let result
+      try {
+        result = callback(child, i)
+      } catch (e) {
+        throwError(e, child)
+      }
+
+      if (result !== false && child.walk) {
+        result = child[walkVisitor](callback)
+      }
+
+      try {
+        result = callback(child, i, true)
+      } catch (e) {
+        throwError(e, child)
+      }
+
+      if (!child[isClean]) {
+        return 'reset-loop'
+      }
+
+      child[isComplete] = true
+
       return result
     })
   }
@@ -325,6 +372,9 @@ class Container extends Node {
       let nodes = this.normalize(child, this.last)
       for (let node of nodes) this.nodes.push(node)
     }
+
+    resetNodeWalk(this)
+
     return this
   }
 
@@ -357,6 +407,9 @@ class Container extends Node {
         this.indexes[id] = this.indexes[id] + nodes.length
       }
     }
+
+    resetNodeWalk(this)
+
     return this
   }
 
@@ -393,6 +446,8 @@ class Container extends Node {
       }
     }
 
+    resetNodeWalk(this)
+
     return this
   }
 
@@ -417,6 +472,8 @@ class Container extends Node {
         this.indexes[id] = index + nodes.length
       }
     }
+
+    resetNodeWalk(this)
 
     return this
   }
@@ -448,6 +505,8 @@ class Container extends Node {
       }
     }
 
+    resetNodeWalk(this)
+
     return this
   }
 
@@ -464,6 +523,9 @@ class Container extends Node {
   removeAll () {
     for (let node of this.nodes) node.parent = undefined
     this.nodes = []
+
+    resetNodeWalk(this)
+
     return this
   }
 
@@ -505,6 +567,8 @@ class Container extends Node {
 
       decl.value = decl.value.replace(pattern, callback)
     })
+
+    resetNodeWalk(this)
 
     return this
   }
