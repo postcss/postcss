@@ -19,8 +19,8 @@
   "scripts": {
     "lint-staged": "lint-staged",
     "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
-    "docs": "jsdoc -c .jsdocrc lib/*.es6",
-    "lint": "eslint-ci *.js lib/*.es6 test/*.js",
+    "docs": "jsdoc -c .jsdocrc lib/*.js",
+    "lint": "eslint-ci *.js lib/*.js test/*.js",
     "test": "gulp && jest && yarn lint && yarn spell && size-limit"
   },
   "funding": {
@@ -37,11 +37,7 @@
     "supports-color": "^6.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
     "@logux/eslint-config": "^28.1.0",
-    "babel-eslint": "^10.0.1",
-    "babel-plugin-add-module-exports": "^1.0.0",
     "concat-with-sourcemaps": "^1.1.0",
     "del": "^4.1.0",
     "docdash": "^1.1.0",
@@ -59,7 +55,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "fs-extra": "^7.0.1",
     "gulp": "^4.0.0",
-    "gulp-babel": "^8.0.0",
     "gulp-changed": "^3.2.0",
     "gulp-json-editor": "^2.5.1",
     "gulp-sourcemaps": "^2.6.5",
@@ -78,8 +73,7 @@
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
   "lint-staged": {
-    "test/*.js": "eslint",
-    "lib/*.es6": "eslint",
+    "/*.js": "eslint",
     "*.md": "yaspeller-ci"
   },
   "husky": {
@@ -100,23 +94,10 @@
     "not ExplorerMobile 11",
     "node 6"
   ],
-  "babel": {
-    "presets": [
-      [
-        "@babel/env",
-        {
-          "loose": true
-        }
-      ]
-    ],
-    "plugins": [
-      "add-module-exports"
-    ]
-  },
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "29 KB"
+      "limit": "27 KB"
     }
   ],
   "jest": {
@@ -126,20 +107,8 @@
     ]
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "sourceType": "module"
-    },
     "extends": "eslint-config-postcss",
     "rules": {
-      "node/no-unsupported-features/es-syntax": [
-        "error",
-        {
-          "ignores": [
-            "modules"
-          ]
-        }
-      ],
       "consistent-return": "off",
       "global-require": "off"
     },
@@ -177,7 +146,7 @@
       ".git",
       "node_modules",
       "build",
-      "api/*.es6.html",
+      "api/*.js.html",
       "README-cn.md"
     ],
     "ignoreText": [

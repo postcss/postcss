@@ -69,7 +69,7 @@ So now let's look more closely on structures that play the main role in PostCSS 
 
 ### Core Structures
 
- - #### Tokenizer ( [lib/tokenize.es6](https://github.com/postcss/postcss/blob/master/lib/tokenize.es6) )
+ - #### Tokenizer [`lib/tokenize.js`](https://github.com/postcss/postcss/blob/master/lib/tokenize.js)
 
     Tokenizer (aka Lexer) plays important role in syntax analysis.
 
@@ -125,9 +125,9 @@ So now let's look more closely on structures that play the main role in PostCSS 
     ```
    There are many patterns how tokenization could be done, PostCSS motto is performance and simplicity. Tokenization is a complex computing operation and takes a large amount of syntax analysis time ( ~90% ), that why PostCSS' Tokenizer looks dirty but it was optimized for speed. Any high-level constructs like classes could dramatically slow down tokenizer.
 
-    PostCSS' Tokenizer uses some sort of streaming/chaining API where you expose [`nextToken()`](https://github.com/postcss/postcss/blob/master/lib/tokenize.es6#L48-L308) method to Parser. In this manner, we provide a clean interface for Parser and reduce memory usage by storing only a few tokens and not the whole list of tokens.
+    PostCSS' Tokenizer uses some sort of streaming/chaining API where you expose [`nextToken()`](https://github.com/postcss/postcss/blob/master/lib/tokenize.js#L48-L308) method to Parser. In this manner, we provide a clean interface for Parser and reduce memory usage by storing only a few tokens and not the whole list of tokens.
 
-- #### Parser ( [lib/parse.es6](https://github.com/postcss/postcss/blob/master/lib/parse.es6), [lib/parser.es6](https://github.com/postcss/postcss/blob/master/lib/parser.es6) )
+- #### Parser [`lib/parse.js`](https://github.com/postcss/postcss/blob/master/lib/parse.js), [`lib/parser.js`](https://github.com/postcss/postcss/blob/master/lib/parser.js)
 
     Parser is the main structure responsible for [syntax analysis](https://en.wikipedia.org/wiki/Parsing) of incoming CSS. Parser produces a structure called [Abstract Syntax Tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree) that could then be transformed by plugins later on.
 
@@ -135,21 +135,21 @@ So now let's look more closely on structures that play the main role in PostCSS 
 
     It uses mostly `nextToken` and `back` methods provided by Tokenizer for obtaining single or multiple tokens and then construct part of AST called `Node`.
 
-    There are multiple Node types that PostCSS could produce but all of them inherit from base Node [class](https://github.com/postcss/postcss/blob/master/lib/node.es6#L34).
+    There are multiple Node types that PostCSS could produce but all of them inherit from base Node [class](https://github.com/postcss/postcss/blob/master/lib/node.js#L34).
 
-- #### Processor ( [lib/processor.es6](https://github.com/postcss/postcss/blob/master/lib/processor.es6) )
+- #### Processor [`lib/processor.js`](https://github.com/postcss/postcss/blob/master/lib/processor.js)
 
-    Processor is a very plain structure that initializes plugins and runs syntax transformations. Plugin is just a function registered with [postcss.plugin](https://github.com/postcss/postcss/blob/master/lib/postcss.es6#L109) call.
+    Processor is a very plain structure that initializes plugins and runs syntax transformations. Plugin is just a function registered with [`postcss.plugin`](https://github.com/postcss/postcss/blob/master/lib/postcss.js#L109) call.
 
     It exposes only a few public API methods. Description of them could be found on [api.postcss.org/Processor](http://api.postcss.org/Processor.html)
 
-- #### Stringifier ( [lib/stringify.es6](https://github.com/postcss/postcss/blob/master/lib/stringify.es6), [lib/stringifier.es6](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6) )
+- #### Stringifier [`lib/stringify.js`](https://github.com/postcss/postcss/blob/master/lib/stringify.js), [`lib/stringifier.js`](https://github.com/postcss/postcss/blob/master/lib/stringifier.js)
 
     Stringifier is a base class that translates modified AST to pure CSS string. Stringifier traverses AST starting from provided Node and generates a raw string representation of it calling corresponding methods.
 
-    The most essential method is [`Stringifier.stringify`](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6#L25-L27)
+    The most essential method is [`Stringifier.stringify`](https://github.com/postcss/postcss/blob/master/lib/stringifier.js#L25-L27)
     that accepts initial Node and semicolon indicator.
-    You can learn more by checking [stringifier.es6](https://github.com/postcss/postcss/blob/master/lib/stringifier.es6)
+    You can learn more by checking [stringifier.js](https://github.com/postcss/postcss/blob/master/lib/stringifier.js)
 
 ### API Reference
 
