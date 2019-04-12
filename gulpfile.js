@@ -1,10 +1,5 @@
 let gulp = require('gulp')
 
-gulp.task('clean', () => {
-  let del = require('del')
-  return del(['build/', 'api/'])
-})
-
 // Build
 
 gulp.task('build:lib', () => {
@@ -40,10 +35,7 @@ gulp.task('build:docs', () => {
     .pipe(gulp.dest('build'))
 })
 
-gulp.task('build', gulp.series(
-  'clean',
-  gulp.parallel('build:lib', 'build:docs', 'build:package')
-))
+gulp.task('build', gulp.parallel('build:lib', 'build:docs', 'build:package'))
 
 // Tests
 
