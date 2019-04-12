@@ -12,3 +12,6 @@ appveyor.yml
 gulpfile.js
 
 api/
+docs/
+CONTRIBUTING.md
+README-cn.md
