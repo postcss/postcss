@@ -92,6 +92,7 @@ export default class Parser {
     let colon = false
     let bracket = null
     let brackets = []
+    let customProperty = /^--/.test(start[1])
 
     let tokens = []
     let token = start
@@ -111,9 +112,16 @@ export default class Parser {
             break
           }
         } else if (type === '{') {
-          this.rule(tokens)
-          return
-        } else if (type === '}') {
+          token = this.tokenizer.nextToken()
+
+          if (customProperty && !/\n/.test(token[1])) {
+            continue
+          } else {
+            this.tokenizer.back(token)
+            this.rule(tokens)
+            return
+          }
+        } else if (type === '}' && !customProperty) {
           this.tokenizer.back(tokens.pop())
           end = true
           break
@@ -240,7 +248,18 @@ export default class Parser {
 
     this.raw(node, 'value', tokens)
 
-    if (node.value.indexOf(':') !== -1) this.checkMissedSemicolon(tokens)
+    /**
+     * TODO IF node >= 8.10 THEN /(?<!{[^:]*):/.test(node.value)
+     * (lookbehind assertions)
+     */
+    let colonIndex = node.value.indexOf(':')
+    if (colonIndex !== -1) {
+      let presenceBrace = node.value
+        .substr(0, colonIndex)
+        .indexOf('{')
+
+      if (presenceBrace === -1) this.checkMissedSemicolon(tokens)
+    }
   }
 
   atrule (token) {
