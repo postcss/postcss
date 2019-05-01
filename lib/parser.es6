@@ -106,7 +106,7 @@ export default class Parser {
       } else if (brackets.length === 0) {
         if (type === ';') {
           if (colon) {
-            this.decl(tokens)
+            this.decl(tokens, customProperty)
             return
           } else {
             break
@@ -145,7 +145,7 @@ export default class Parser {
         if (token !== 'space' && token !== 'comment') break
         this.tokenizer.back(tokens.pop())
       }
-      this.decl(tokens)
+      this.decl(tokens, customProperty)
     } else {
       this.unknownWord(tokens)
     }
@@ -162,7 +162,7 @@ export default class Parser {
     this.current = node
   }
 
-  decl (tokens) {
+  decl (tokens, customProperty) {
     let node = new Declaration()
     this.init(node)
 
@@ -248,17 +248,8 @@ export default class Parser {
 
     this.raw(node, 'value', tokens)
 
-    /**
-     * TODO IF node >= 8.10 THEN /(?<!{[^:]*):/.test(node.value)
-     * (lookbehind assertions)
-     */
-    let colonIndex = node.value.indexOf(':')
-    if (colonIndex !== -1) {
-      let presenceBrace = node.value
-        .substr(0, colonIndex)
-        .indexOf('{')
-
-      if (presenceBrace === -1) this.checkMissedSemicolon(tokens)
+    if (node.value.indexOf(':') !== -1 && !customProperty) {
+      this.checkMissedSemicolon(tokens)
     }
   }
 
