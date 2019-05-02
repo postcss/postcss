@@ -13,6 +13,7 @@ export default class Parser {
     this.current = this.root
     this.spaces = ''
     this.semicolon = false
+    this.customProperty = false
 
     this.createTokenizer()
     this.root.source = { input, start: { line: 1, column: 1 } }
@@ -92,7 +93,7 @@ export default class Parser {
     let colon = false
     let bracket = null
     let brackets = []
-    let customProperty = /^--/.test(start[1])
+    this.customProperty = start[1].slice(0, 2) === '--'
 
     let tokens = []
     let token = start
@@ -106,22 +107,25 @@ export default class Parser {
       } else if (brackets.length === 0) {
         if (type === ';') {
           if (colon) {
-            this.decl(tokens, customProperty)
+            this.decl(tokens)
             return
           } else {
             break
           }
-        } else if (type === '{') {
+        } else if (type === '{' && this.customProperty) {
           token = this.tokenizer.nextToken()
 
-          if (customProperty && !/\n/.test(token[1])) {
-            continue
-          } else {
+          if (/\n/.test(token[1])) {
             this.tokenizer.back(token)
             this.rule(tokens)
             return
+          } else {
+            continue
           }
-        } else if (type === '}' && !customProperty) {
+        } else if (type === '{') {
+          this.rule(tokens)
+          return
+        } else if (type === '}' && !this.customProperty) {
           this.tokenizer.back(tokens.pop())
           end = true
           break
@@ -145,7 +149,7 @@ export default class Parser {
         if (token !== 'space' && token !== 'comment') break
         this.tokenizer.back(tokens.pop())
       }
-      this.decl(tokens, customProperty)
+      this.decl(tokens)
     } else {
       this.unknownWord(tokens)
     }
@@ -162,7 +166,7 @@ export default class Parser {
     this.current = node
   }
 
-  decl (tokens, customProperty) {
+  decl (tokens) {
     let node = new Declaration()
     this.init(node)
 
@@ -248,7 +252,7 @@ export default class Parser {
 
     this.raw(node, 'value', tokens)
 
-    if (node.value.indexOf(':') !== -1 && !customProperty) {
+    if (node.value.indexOf(':') !== -1 && !this.customProperty) {
       this.checkMissedSemicolon(tokens)
     }
   }
