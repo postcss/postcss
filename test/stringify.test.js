@@ -5,7 +5,6 @@ let parse = require('../lib/parse')
 
 cases.each((name, css) => {
   if (name === 'bom.css') return
-  if (name === 'apply.css') return
 
   it('stringifies ' + name, () => {
     let root = parse(css)
