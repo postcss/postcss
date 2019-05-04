@@ -7,3 +7,4 @@ matrix:
   include:
     os: windows
     node_js: "11"
+    script: npx jest
