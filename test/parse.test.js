@@ -80,6 +80,11 @@ it('ignores wrong close bracket', () => {
   expect(root.first.first.value).toEqual('())')
 })
 
+it('parses unofficial --mixins', () => {
+  let root = parse(':root { --x { color: pink; }; }')
+  expect(root.first.first.selector).toEqual('--x')
+})
+
 it('ignores symbols before declaration', () => {
   let root = parse('a { :one: 1 }')
   expect(root.first.first.raws.before).toEqual(' :')

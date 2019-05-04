@@ -93,7 +93,7 @@ export default class Parser {
     let colon = false
     let bracket = null
     let brackets = []
-    this.customProperty = start[1].slice(0, 2) === '--'
+    let customProperty = start[1].slice(0, 2) === '--'
 
     let tokens = []
     let token = start
@@ -104,28 +104,23 @@ export default class Parser {
       if (type === '(' || type === '[') {
         if (!bracket) bracket = token
         brackets.push(type === '(' ? ')' : ']')
+      } else if (customProperty && colon && type === '{') {
+        if (!bracket) bracket = token
+        brackets.push('}')
       } else if (brackets.length === 0) {
         if (type === ';') {
           if (colon) {
-            this.decl(tokens)
+            this.decl(tokens, customProperty)
             return
           } else {
             break
           }
-        } else if (type === '{' && this.customProperty) {
-          token = this.tokenizer.nextToken()
-
-          if (/\n/.test(token[1])) {
-            this.tokenizer.back(token)
+        } else if (type === '{') {
+          if (!customProperty || !colon) {
             this.rule(tokens)
             return
-          } else {
-            continue
           }
-        } else if (type === '{') {
-          this.rule(tokens)
-          return
-        } else if (type === '}' && !this.customProperty) {
+        } else if (type === '}' && !customProperty) {
           this.tokenizer.back(tokens.pop())
           end = true
           break
@@ -149,7 +144,7 @@ export default class Parser {
         if (token !== 'space' && token !== 'comment') break
         this.tokenizer.back(tokens.pop())
       }
-      this.decl(tokens)
+      this.decl(tokens, customProperty)
     } else {
       this.unknownWord(tokens)
     }
@@ -166,7 +161,7 @@ export default class Parser {
     this.current = node
   }
 
-  decl (tokens) {
+  decl (tokens, customProperty) {
     let node = new Declaration()
     this.init(node)
 
@@ -252,7 +247,7 @@ export default class Parser {
 
     this.raw(node, 'value', tokens)
 
-    if (node.value.indexOf(':') !== -1 && !this.customProperty) {
+    if (node.value.indexOf(':') !== -1 && !customProperty) {
       this.checkMissedSemicolon(tokens)
     }
   }

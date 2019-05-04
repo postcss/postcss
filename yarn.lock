@@ -7028,10 +7028,10 @@ postcss-ordered-values@^4.1.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-postcss-parser-tests@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-6.4.0.tgz#d52ccb32079c9602c9d19c0af840d84a731929f9"
-  integrity sha512-e/w5rigsefHuoSgUS0YkrxhUVbv/zQ753kErxKig04Tfj0n0IVNU3UA1NkJMuBN2WdOpJ8c83Z9uGr9092cFLQ==
+postcss-parser-tests@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-6.5.0.tgz#254341c280dd8d65e53e2f09f5494b2f18795185"
+  integrity sha512-cu4ZyT7d9wYtu3c53ctmysICecoznJquYxLMJHxNhjZdsk3kycAmU31cHp37guVTUSVWXXi37idRBMRvRfe+rA==
   dependencies:
     chalk "^2.4.2"
     fancy-log "^1.3.3"
