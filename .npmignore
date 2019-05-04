@@ -9,8 +9,6 @@ test/
 .travis.yml
 appveyor.yml
 
-gulpfile.js
-
 api/
 docs/
 CONTRIBUTING.md
