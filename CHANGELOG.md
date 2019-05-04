@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.16
+* Revert Custom Properties fix until PostCSS 8.0.
+
 ## 7.0.15
 * Fix Custom Properties support (by Ivan Solovev).
 
