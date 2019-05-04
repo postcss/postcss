@@ -7,3 +7,5 @@ matrix:
   include:
     os: windows
     node_js: "11"
+    before_install:
+      - npm config set registry=https://registry.npmjs.com/
