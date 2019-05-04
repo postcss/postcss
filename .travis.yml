@@ -4,7 +4,3 @@ node_js:
   - node
   - "12"
   - "10"
-git:
-  depth: 5
-install:
- - yarn install --ignore-engines
