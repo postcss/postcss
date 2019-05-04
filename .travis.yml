@@ -3,7 +3,3 @@ cache: yarn
 node_js:
   - "11"
   - "10"
-git:
-  depth: 5
-install:
- - yarn install --ignore-engines
