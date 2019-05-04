@@ -7,7 +7,6 @@ build/
 
 test/
 .travis.yml
-appveyor.yml
 
 api/
 docs/
