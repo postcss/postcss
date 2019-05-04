@@ -3,3 +3,7 @@ cache: yarn
 node_js:
   - "11"
   - "10"
+matrix:
+  include:
+    os: windows
+    node_js: "11"
