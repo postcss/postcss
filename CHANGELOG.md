@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.15
+* Fix Custom Properties support (by Ivan Solovev).
+
 ## 7.0.14
 * Fix tokenizer for `postcss-less` (by Matt Lyons).
 

@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "7.0.14",
+  "version": "7.0.15",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": ">=6.0.0"
@@ -418,7 +418,8 @@
       "Oberoi",
       "Niklas",
       "Mischkulnig",
-      "Tidelift"
+      "Tidelift",
+      "Solovev"
     ]
   }
 }
