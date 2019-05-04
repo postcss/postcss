@@ -64,7 +64,7 @@
     "jest-cli": "^24.7.1",
     "jsdoc": "^3.5.5",
     "lint-staged": "^8.1.5",
-    "postcss-parser-tests": "^6.3.1",
+    "postcss-parser-tests": "^6.4.0",
     "run-sequence": "^2.2.1",
     "size-limit": "^1.0.1",
     "strip-ansi": "^5.2.0",

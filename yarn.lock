@@ -3454,7 +3454,7 @@ eyo-kernel@^2.5.0:
   resolved "https://registry.yarnpkg.com/eyo-kernel/-/eyo-kernel-2.5.1.tgz#2027236f34f49c589112fffdfcbae946caf0cdfa"
   integrity sha512-j1XA6t+shZySaT+yYKSGN5c05z5sNtqod8NtxSz/z+mZwrBS3IJ2LmmItekkxRDS6sgcEoOK6hTBezfK+R68eA==
 
-fancy-log@^1.3.2:
+fancy-log@^1.3.2, fancy-log@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/fancy-log/-/fancy-log-1.3.3.tgz#dbc19154f558690150a23953a0adbd035be45fc7"
   integrity sha512-k9oEhlyc0FrVh25qYuSELjr8oxsCoc4/LEZfg2iJJrfEk/tZL9bCoJE47gqAvI2m/AUjluCS4+3I0eTx8n3AEw==
@@ -7028,13 +7028,13 @@ postcss-ordered-values@^4.1.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-postcss-parser-tests@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-6.3.1.tgz#aacaba481b3cd1b9710df445e7d774c687fbe244"
-  integrity sha512-GL74Di0wqtE+2i/Q74MyJ2D6+XLVYHaM4TbD+/fd08qa2406dtEoNZqS1aLTvTJG5/tjKvCIPjJHx6q3aCdnvg==
+postcss-parser-tests@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-6.4.0.tgz#d52ccb32079c9602c9d19c0af840d84a731929f9"
+  integrity sha512-e/w5rigsefHuoSgUS0YkrxhUVbv/zQ753kErxKig04Tfj0n0IVNU3UA1NkJMuBN2WdOpJ8c83Z9uGr9092cFLQ==
   dependencies:
-    chalk "^2.4.1"
-    fancy-log "^1.3.2"
+    chalk "^2.4.2"
+    fancy-log "^1.3.3"
     load-resources "^0.1.1"
     plugin-error "^1.0.1"
 
