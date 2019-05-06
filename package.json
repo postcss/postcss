@@ -370,7 +370,8 @@
       "readFile",
       "caniuse",
       "fs",
-      "postcssPlugin"
+      "postcssPlugin",
+      "JSDoc"
     ]
   }
 }
