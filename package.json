@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "clean": "rimraf build/ api/",
-    "docs": "jsdoc -c .jsdocrc lib/*.js",
+    "docs": "node ./generate-docs.js",
     "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
     "lint": "eslint-ci lib/*.js test/*.js",
     "test": "jest && yarn lint && ./test/integration.js && yarn spell && size-limit"
@@ -40,7 +40,8 @@
     "@logux/eslint-config": "^28.2.1",
     "clean-publish": "^1.1.2",
     "concat-with-sourcemaps": "^1.1.0",
-    "docdash": "^1.1.0",
+    "documentation": "^10.1.0",
+    "documentation-theme-light": "^1.0.1",
     "eslint": "^5.16.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-postcss": "^3.0.7",
@@ -56,8 +57,6 @@
     "fs-extra": "^7.0.1",
     "husky": "^2.2.0",
     "jest": "^24.7.1",
-    "jsdoc": "^3.6.3",
-    "lint-staged": "^8.1.5",
     "lint-staged": "^8.1.6",
     "postcss-parser-tests": "^6.5.0",
     "rewire": "^4.0.1",
@@ -341,7 +340,6 @@
       "Rui",
       "Pedro",
       "Versioning",
-      "JSDoc",
       "PreviousMap",
       "walkAtRules",
       "tokenization",
@@ -372,7 +370,15 @@
       "Tidelift",
       "Solovev",
       "VS",
-      "atrule"
+      "atrule",
+      "postcssVersion",
+      "processOpts",
+      "pluginOpts",
+      "readFile",
+      "caniuse",
+      "fs",
+      "postcssPlugin",
+      "JSDoc"
     ]
   }
 }
