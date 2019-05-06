@@ -10,39 +10,10 @@ const API_FOLDER = join(__dirname, 'api')
 
 function generateDocs (data) {
   let docs = Object.values(data)
-  docs
-    .filter(doc => doc.augments.length > 0)
-    .forEach(doc => {
-      doc.augments.forEach(augment => {
-        let essence = docs.find(i => i.name === augment.name)
-        if (!essence) return
-        let instance = essence.members.instance
-          .filter(i => i.memberof === essence.name)
-        doc.members.instance = doc.members.instance
-          .concat(instance)
-          .map(i => ({
-            ...i,
-            namespace: i.namespace.replace(essence.name, doc.name)
-          }))
-          .filter((i, index, list) => {
-            if (i.memberof === essence.name) {
-              return true
-            } else {
-              let same = list.find(e => {
-                return e.name === i.name && e.memberof === essence.name
-              })
-              return i.memberof === doc.name && !same
-            }
-          })
-          .sort((a, b) => a.name > b.name ? 1 : -1)
-      })
-    })
 
-  docs
-    .sort((a, b) => a.name > b.name ? 1 : -1)
-    .forEach(doc => {
-      doc.members.instance = doc.members.instance.filter(i => i.name)
-    })
+  extendClasses(docs)
+  sortClasses(docs)
+  removeEmptyMethods(docs)
 
   return [].concat(
     getSectionsSeparator('Classes'),
@@ -57,6 +28,66 @@ function generateDocs (data) {
         hideAtNavigation: true
       }))
   )
+}
+
+function extendClasses (docs) {
+  docs
+    .filter(filterExtendedClasses)
+    .forEach(targetClass => {
+      targetClass.augments.forEach(augment => {
+        let parentClass = docs.find(i => i.name === augment.name)
+        if (!parentClass) return
+
+        targetClass.members.instance = targetClass.members.instance
+          .concat(getParentMethods(parentClass))
+          .map(changeNamespaceForMethod(targetClass, parentClass))
+          .filter(cleanFromDuplicated(targetClass, parentClass))
+          .sort(sortAtAlphabet)
+      })
+    })
+}
+
+function filterExtendedClasses (extendedClass) {
+  return extendedClass.augments.length > 0
+}
+
+function getParentMethods (parentClass) {
+  return parentClass.members.instance
+    .filter(i => i.memberof === parentClass.name)
+}
+
+function changeNamespaceForMethod (targetClass, parentClass) {
+  return i => ({
+    ...i,
+    namespace: i.namespace.replace(parentClass.name, targetClass.name)
+  })
+}
+
+function cleanFromDuplicated (targetClass, parentClass) {
+  return (i, index, list) => {
+    if (i.memberof === parentClass.name) {
+      return true
+    } else {
+      let same = list.find(e => {
+        return e.name === i.name && e.memberof === parentClass.name
+      })
+      return i.memberof === targetClass.name && !same
+    }
+  }
+}
+
+function sortClasses (docs) {
+  docs.sort(sortAtAlphabet)
+}
+
+function removeEmptyMethods (docs) {
+  docs.forEach(doc => {
+    doc.members.instance = doc.members.instance.filter(i => i.name)
+  })
+}
+
+function sortAtAlphabet (a, b) {
+  return a.name > b.name ? 1 : -1
 }
 
 function renderTemplate (output) {
