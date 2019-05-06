@@ -50,7 +50,12 @@ function generateDocs (data) {
     getSectionsSeparator('Namespaces'),
     docs.filter(item => item.kind === 'namespace'),
     getSectionsSeparator('Global'),
-    docs.filter(item => item.kind === 'typedef')
+    docs
+      .filter(item => item.kind === 'typedef')
+      .map(i => ({
+        ...i,
+        hideAtNavigation: true
+      }))
   )
 }
 
