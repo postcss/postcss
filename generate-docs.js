@@ -67,10 +67,15 @@ async function saveDocs (output) {
     if (extname(name)) {
       let content = file.contents.toString()
       if (name === 'index.html') {
-        content = content.replace(
-          /regular blockmt1 quiet rounded/g,
-          'blockmt1 quiet rounded bold block h4 mt2'
-        )
+        content = content
+          .replace(
+            /regular blockmt1 quiet rounded/g,
+            'blockmt1 quiet rounded bold block h4 mt2'
+          )
+          .replace(
+            /<div class='keyline-top-not py2'>/g,
+            `<div class='hide'>`
+          )
       }
       await writeFile(join(API_FOLDER, name), content)
     } else {
@@ -84,7 +89,6 @@ function getSectionsSeparator (name = '') {
     name: name.toUpperCase(),
     namespace: name,
     kind: 'note',
-    children: [{}],
     description: {
       type: 'root',
       children: [],
