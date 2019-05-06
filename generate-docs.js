@@ -3,8 +3,8 @@ let documentation = require('documentation')
 let { promisify } = require('util')
 let fs = require('fs')
 
-let mkdir = promisify(fs.mkdir)
 let writeFile = promisify(fs.writeFile)
+let mkdir = promisify(fs.mkdir)
 
 const API_FOLDER = join(__dirname, 'api')
 
@@ -15,28 +15,26 @@ function generateDocs (data) {
     .forEach(doc => {
       doc.augments.forEach(augment => {
         let essence = docs.find(i => i.name === augment.name)
-        if (essence) {
-          let instance = essence.members.instance
-            .filter(i => i.memberof === essence.name)
-
-          doc.members.instance = doc.members.instance
-            .concat(instance)
-            .map(i => ({
-              ...i,
-              namespace: i.namespace.replace(essence.name, doc.name)
-            }))
-            .filter((i, index, list) => {
-              if (i.memberof === essence.name) {
-                return true
-              } else {
-                let same = list.find(e => {
-                  return e.name === i.name && e.memberof === essence.name
-                })
-                return i.memberof === doc.name && !same
-              }
-            })
-            .sort((a, b) => a.name > b.name ? 1 : -1)
-        }
+        if (!essence) return
+        let instance = essence.members.instance
+          .filter(i => i.memberof === essence.name)
+        doc.members.instance = doc.members.instance
+          .concat(instance)
+          .map(i => ({
+            ...i,
+            namespace: i.namespace.replace(essence.name, doc.name)
+          }))
+          .filter((i, index, list) => {
+            if (i.memberof === essence.name) {
+              return true
+            } else {
+              let same = list.find(e => {
+                return e.name === i.name && e.memberof === essence.name
+              })
+              return i.memberof === doc.name && !same
+            }
+          })
+          .sort((a, b) => a.name > b.name ? 1 : -1)
       })
     })
 
@@ -46,17 +44,13 @@ function generateDocs (data) {
       doc.members.instance = doc.members.instance.filter(i => i.name)
     })
 
-  let classes = docs.filter(item => item.kind === 'class')
-  let namespace = docs.filter(item => item.kind === 'namespace')
-  let typedef = docs.filter(item => item.kind === 'typedef')
-
   return [].concat(
     getSectionsSeparator('Classes'),
-    classes,
+    docs.filter(item => item.kind === 'class'),
     getSectionsSeparator('Namespaces'),
-    namespace,
+    docs.filter(item => item.kind === 'namespace'),
     getSectionsSeparator('Global'),
-    typedef
+    docs.filter(item => item.kind === 'typedef')
   )
 }
 
