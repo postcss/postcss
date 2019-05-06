@@ -1,12 +1,12 @@
 let fs = require('fs')
-let path = require('path')
+let { join, extname } = require('path')
 let { promisify } = require('util')
 let documentation = require('documentation')
 
 let mkdir = promisify(fs.mkdir)
 let writeFile = promisify(fs.writeFile)
 
-let API_FOLDER = path.join(process.cwd(), 'api')
+const API_FOLDER = join(__dirname, 'api')
 
 documentation
   .build('./lib/*.js', {
@@ -96,8 +96,8 @@ async function saveDocs (output) {
 
   output.forEach(async file => {
     let fileName = file.history[0].replace(file.base, '')
-    let fileExt = path.extname(fileName)
-    let filePath = path.join(API_FOLDER, fileName)
+    let fileExt = extname(fileName)
+    let filePath = join(API_FOLDER, fileName)
 
     if (fileExt) {
       let content = file.contents
