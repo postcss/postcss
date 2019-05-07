@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^28.2.1",
+    "ci-job-number": "^0.3.0",
     "clean-publish": "^1.1.2",
     "concat-with-sourcemaps": "^1.1.0",
     "documentation": "^10.1.0",

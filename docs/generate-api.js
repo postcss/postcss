@@ -3,10 +3,13 @@
 let { join, extname } = require('path')
 let documentation = require('documentation')
 let { promisify } = require('util')
+let ciJobNumber = require('ci-job-number')
 let fs = require('fs')
 
 let writeFile = promisify(fs.writeFile)
 let mkdir = promisify(fs.mkdir)
+
+if (ciJobNumber() !== 1) return
 
 const API_FOLDER = join(__dirname, '..', 'api')
 
