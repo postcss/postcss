@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "clean": "rimraf api/index.html api/assets/",
-    "spell": "./docs/generate-api.js && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
+    "spell": "./api/generate.js && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
     "lint": "eslint-ci lib/*.js test/*.js",
     "test": "jest && yarn lint && ./test/integration.js && yarn spell && size-limit"
   },
@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^28.2.1",
-    "ci-job-number": "^0.3.0",
     "clean-publish": "^1.1.2",
     "concat-with-sourcemaps": "^1.1.0",
     "documentation": "^10.1.0",

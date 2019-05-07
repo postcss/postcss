@@ -9,7 +9,6 @@ matrix:
     os: windows
     cache: false
     node_js: node
-    script: npx jest
     env:
       - YARN_GPG=no
 deploy:
