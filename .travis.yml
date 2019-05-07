@@ -16,6 +16,6 @@ deploy:
   github-token: $GITHUB_TOKEN
   local-dir: docs/api
   on:
-    branch: ose
+    branch: master
     node_js: node
     os: linux
