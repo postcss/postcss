@@ -11,7 +11,7 @@ let mkdir = promisify(fs.mkdir)
 
 if (ciJobNumber() !== 1) return
 
-const API_FOLDER = join(__dirname, '..', 'api')
+const API_FOLDER = __dirname
 
 function generateDocs (data) {
   let docs = Object.values(data)
