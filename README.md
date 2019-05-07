@@ -23,7 +23,7 @@ e.g. to find errors automatically insert vendor prefixes.
 **Support / Discussion:** [Gitter](https://gitter.im/postcss/postcss)<br>
 **Twitter account:**      [@postcss](https://twitter.com/postcss)<br>
 **VK.com page:**          [postcss](https://vk.com/postcss)<br>
-**中文翻译**:              [`README-cn.md`](./README-cn.md)
+**中文翻译**:              [`docs/README-cn.md`](./docs/README-cn.md)
 
 For PostCSS commercial support (consulting, improving the front-end culture
 of your company, PostCSS plugins), contact [Evil Martians]
