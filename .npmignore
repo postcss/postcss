@@ -8,8 +8,6 @@ build/
 test/
 .travis.yml
 
-api/
 docs/
 CONTRIBUTING.md
 README-cn.md
-docs/generate-api.js

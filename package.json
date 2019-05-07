@@ -17,9 +17,9 @@
     "transpiler"
   ],
   "scripts": {
-    "clean": "rimraf api/index.html api/assets/",
-    "spell": "./api/generate.js && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
-    "lint": "eslint-ci lib/*.js test/*.js",
+    "clean": "rimraf docs/api/index.html docs/api/assets/",
+    "spell": "./docs/api/generate.js && yaspeller-ci docs/api/*.html *.md docs/{**/,}*.md",
+    "lint": "eslint-ci lib/*.js test/*.js docs/api/generate.js",
     "test": "jest && yarn lint && ./test/integration.js && yarn spell && size-limit"
   },
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
