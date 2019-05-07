@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
+let ciJobNumber = require('ci-job-number')
 let real = require('postcss-parser-tests/real')
 
 let Processor = require('../lib/processor')
 let postcss = require('../')
 let pkg = require('../package')
+
+if (ciJobNumber() !== 1) return
 
 let instance = new Processor()
 if (pkg.version !== instance.version) {
