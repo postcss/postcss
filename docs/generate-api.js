@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 let { join, extname } = require('path')
 let documentation = require('documentation')
 let { promisify } = require('util')
