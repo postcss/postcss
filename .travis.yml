@@ -17,4 +17,4 @@ deploy:
   github-token: $GITHUB_TOKEN
   local-dir: api
   on:
-    branch: master
+    branch: ose
