@@ -111,16 +111,8 @@
   },
   "yaspeller": {
     "lang": "en",
-    "format": "markdown",
-    "fileExtensions": [
-      ".md"
-    ],
     "excludeFiles": [
-      ".git",
-      "node_modules",
-      "build",
-      "api/*.js.html",
-      "README-cn.md"
+      "docs/README-cn.md"
     ],
     "ignoreText": [
       " \\(by [^)]+\\)."
