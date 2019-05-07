@@ -3157,10 +3157,9 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-documentation-theme-light@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/documentation-theme-light/-/documentation-theme-light-1.0.1.tgz#52dc0451022bf0bff8c76ea8dc1a392df9076e46"
-  integrity sha512-CSVlskgCcmsLVjG2+62FJCWRJYUs79SfbqvZksezYL8Riw3j/vsJZpp/XAjz1AKEnJIVemTuLSZa3kZo5O1xsg==
+"documentation-theme-light@https://github.com/isolovev/documentation-theme-light":
+  version "1.0.0"
+  resolved "https://github.com/isolovev/documentation-theme-light#b716641f25ce62c01a41b3a975616ac8b8ae29b7"
 
 documentation@^10.1.0:
   version "10.1.0"
