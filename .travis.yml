@@ -1,13 +1,13 @@
 language: node_js
 cache: yarn
 node_js:
-  - "11"
+  - node
   - "10"
 matrix:
   include:
     os: windows
     cache: false
-    node_js: "11"
+    node_js: node
     script: npx jest
     env:
       - YARN_GPG=no
