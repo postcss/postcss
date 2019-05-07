@@ -17,3 +17,5 @@ deploy:
   local-dir: docs/api
   on:
     branch: ose
+    node_js: node
+    os: linux
