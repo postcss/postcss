@@ -3155,9 +3155,9 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-"documentation-theme-light@https://github.com/isolovev/documentation-theme-light":
+"documentation-theme-light@https://github.com/ur300/documentation-theme-light.git":
   version "1.0.0"
-  resolved "https://github.com/isolovev/documentation-theme-light#b716641f25ce62c01a41b3a975616ac8b8ae29b7"
+  resolved "https://github.com/ur300/documentation-theme-light.git#f4c279fe5beca13b6d11bf073730e42908780349"
 
 documentation@^10.1.0:
   version "10.1.0"
