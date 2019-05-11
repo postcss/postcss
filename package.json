@@ -111,13 +111,13 @@
   },
   "yaspeller": {
     "lang": "en",
+    "ignoreCapitalization": true,
     "excludeFiles": [
       "docs/README-cn.md"
     ],
     "ignoreText": [
       " \\(by [^)]+\\)."
     ],
-    "ignoreCapitalization": true,
     "dictionary": [
       "6to5",
       "A CI",
