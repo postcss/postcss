@@ -27,7 +27,7 @@ e.g. to find errors automatically insert vendor prefixes.
 
 For PostCSS commercial support (consulting, improving the front-end culture
 of your company, PostCSS plugins), contact [Evil Martians]
-at <surrender@evilmartians.com>.
+at <postcss@evilmartians.com>.
 
 [Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
 [Evil Martians]:        https://evilmartians.com/?utm_source=postcss
