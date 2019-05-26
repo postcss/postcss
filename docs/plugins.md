@@ -48,7 +48,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`stylelint`] contains plugins that lint your stylesheets.
 * [`postcss-hamster`] for vertical rhythm, typography, modular scale functions.
 * [`postcss-preset-env`] lets you convert modern CSS into something most browsers can understand, determining the polyfills you need based on your targeted browsers or runtime environments.
-* [`postcss-ui-theme`] mature ui package manager proposal。 css like sass and let you change theme and compiled anywhere.
+* [`postcss-ui-theme`] gives you syntax sugar and allow you change theme.
 
 [`postcss-preset-env`]: https://github.com/jonathantneal/postcss-preset-env/
 [`postcss-utilities`]:  https://github.com/ismamz/postcss-utilities
