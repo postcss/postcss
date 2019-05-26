@@ -76,6 +76,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`postcss-sorting`] sorts the content of rules and at-rules.
 * [`postcss-utilities`] includes the most commonly used shortcuts and helpers.
 * [`short`] adds and extends numerous shorthand properties.
+* [`postcss-ui-theme`] mature ui package manager proposal。 css like sass and let you change theme and compiled anywhere.
 
 ### Images and Fonts
 
