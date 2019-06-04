@@ -54,51 +54,27 @@ declare namespace postcss {
      */
     function unprefixed(prop: string): string;
   }
-  export class Stringifier {
-    builder: Stringifier.Builder;
-    constructor(builder?: Stringifier.Builder);
-    stringify(node: Node, semicolon?: boolean): void;
-    root(node: any): void;
-    comment(node: any): void;
-    decl(node: any, semicolon: any): void;
-    rule(node: any): void;
-    atrule(node: any, semicolon: any): void;
-    body(node: any): void;
-    block(node: any, start: any): void;
-    raw(node: Node, own: string, detect?: string): any;
-    rawSemicolon(root: any): any;
-    rawEmptyBody(root: any): any;
-    rawIndent(root: any): any;
-    rawBeforeComment(root: any, node: any): any;
-    rawBeforeDecl(root: any, node: any): any;
-    rawBeforeRule(root: any): any;
-    rawBeforeClose(root: any): any;
-    rawBeforeOpen(root: any): any;
-    rawColon(root: any): any;
-    beforeAfter(node: any, detect: any): any;
-    rawValue(node: any, prop: any): any;
+  type ParserInput = string | { toString(): string };
+  interface Parser {
+    (css: ParserInput, opts?: Pick<ProcessOptions, 'map' | 'from'>): Root;
   }
-  export namespace Stringifier {
-    interface Builder {
-      (str: string, node?: Node, str2?: string): void;
-    }
+  interface Builder {
+    (part: string, node?: Node, type?: 'start' | 'end'): void;
+  }
+  interface Stringifier {
+    (node: Node, builder: Builder): void;
   }
   /**
    * Default function to convert a node tree into a CSS string.
    */
-  function stringify(node: Node, builder: Stringifier.Builder): void;
+  const stringify: Stringifier;
   /**
    * Parses source CSS.
    * @param css The CSS to parse.
    * @param options
    * @returns {} A new Root node, which contains the source CSS nodes.
    */
-  function parse(css: string | {
-    toString(): string;
-  } | LazyResult | Result, options?: {
-    from?: string;
-    map?: postcss.SourceMapOptions;
-  }): Root;
+  const parse: Parser;
   /**
    * Contains helpers for safely splitting lists of CSS values, preserving
    * parentheses and quotes.
@@ -206,9 +182,7 @@ declare namespace postcss {
      * stream. If a Result instance is passed the processor will take the
      * existing Root parser from it.
      */
-    process(css: string | {
-      toString(): string;
-    } | Result, options?: ProcessOptions): LazyResult;
+    process(css: ParserInput | Result | LazyResult | Root, options?: ProcessOptions): LazyResult;
     /**
      * Contains plugins added to this processor.
      */
@@ -244,7 +218,7 @@ declare namespace postcss {
     /**
      * Source map options
      */
-    map?: SourceMapOptions | true;
+    map?: SourceMapOptions | boolean;
   }
   interface Syntax {
     /**
@@ -256,15 +230,6 @@ declare namespace postcss {
      */
     stringify?: Stringifier;
   }
-  interface Parser {
-    (css: string, opts?: Pick<ProcessOptions, 'map' |'from'>): Root;
-  }
-  interface Stringifier {
-    (node: Node, builder: Builder): void;
-  }
-  interface Builder {
-    (part: string, node?: Node, type?: 'start' | 'end'): void;
-  }
   /**
    * A promise proxy for the result of PostCSS transformations.
    */
@@ -273,12 +238,12 @@ declare namespace postcss {
      * Processes input CSS through synchronous and asynchronous plugins.
      * @param onRejected Called if any plugin throws an error.
      */
-    then(onFulfilled: (result: Result) => void, onRejected?: (error: Error) => void): Function | any;
+    then: Promise<Result>["then"];
     /**
      * Processes input CSS through synchronous and asynchronous plugins.
      * @param onRejected Called if any plugin throws an error.
      */
-    catch(onRejected: (error: Error) => void): Function | any;
+    catch: Promise<Result>["catch"];
     /**
      * Alias for css property.
      */
@@ -671,27 +636,27 @@ declare namespace postcss {
      * if the current node is the first child.
      */
     prev(): ChildNode | void;
-  	/**
-  	 * Insert new node before current node to current node’s parent.
-  	 *
-  	 * Just an alias for `node.parent.insertBefore(node, newNode)`.
-  	 *
-  	 * @returns this node for method chaining.
-  	 *
-  	 * @example
-  	 * decl.before('content: ""');
-  	 */
+    /**
+     * Insert new node before current node to current node’s parent.
+     *
+     * Just an alias for `node.parent.insertBefore(node, newNode)`.
+     *
+     * @returns this node for method chaining.
+     *
+     * @example
+     * decl.before('content: ""');
+     */
     before(newNode: Node | object | string | Node[]): this;
-		/**
-		 * Insert new node after current node to current node’s parent.
-		 *
-		 * Just an alias for `node.parent.insertAfter(node, newNode)`.
-		 *
-		 * @returns this node for method chaining.
-		 *
-		 * @example
-		 * decl.after('color: black');
-		 */
+    /**
+     * Insert new node after current node to current node’s parent.
+     *
+     * Just an alias for `node.parent.insertAfter(node, newNode)`.
+     *
+     * @returns this node for method chaining.
+     *
+     * @example
+     * decl.after('color: black');
+     */
     after(newNode: Node | object | string | Node[]): this;
     /**
      * @returns The Root instance of the node's tree.
