@@ -1178,7 +1178,7 @@ declare namespace postcss {
      * An array containing the rule's individual selectors.
      * Groups of selectors are split at commas.
      */
-    selectors?: string[];
+    selectors: string[];
     /**
      * @param overrides New properties to override in the clone.
      * @returns A clone of this node. The node and its (cloned) children will
