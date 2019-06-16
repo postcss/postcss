@@ -432,6 +432,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-select`] select rules based off a selector list.
 * [`postcss-selector-prefixer`] adds a prefix to css selectors.
 * [`postcss-shorthand-expand`] expands shorthand properties.
+* [`postcss-simple-trig`] calculate trigonometric functions: sin/cos/tan.
 * [`postcss-sorting`] sort rules content with specified order.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`css-declaration-sorter`] sorts CSS declarations fast and automatically
@@ -631,6 +632,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-nested-vars`]:                  https://github.com/jedmao/postcss-nested-vars
 [`postcss-remove-root`]:                  https://github.com/cbracco/postcss-remove-root
 [`postcss-simple-grid`]:                  https://github.com/admdh/postcss-simple-grid
+[`postcss-simple-trig`]:                  https://github.com/Rplus/postcss-simple-trig
 [`postcss-simple-vars`]:                  https://github.com/postcss/postcss-simple-vars
 [`postcss-strip-units`]:                  https://github.com/whitneyit/postcss-strip-units
 [`postcss-style-guide`]:                  https://github.com/morishitter/postcss-style-guide
