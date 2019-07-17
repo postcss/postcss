@@ -225,7 +225,7 @@ module.exports = {
 
 ### Parcel
 
-[Parcel] has ~~perfect~~ built-in PostCSS support. It already uses Autoprefixer
+[Parcel] has built-in PostCSS support. It already uses Autoprefixer
 and cssnano. If you want to change plugins, create `postcss.config.js`
 in project’s root:
 
