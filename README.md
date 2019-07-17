@@ -225,7 +225,7 @@ module.exports = {
 
 ### Parcel
 
-[Parcel] has perfect built-in PostCSS support. It already uses Autoprefixer
+[Parcel] has ~~perfect~~ built-in PostCSS support. It already uses Autoprefixer
 and cssnano. If you want to change plugins, create `postcss.config.js`
 in project’s root:
 
@@ -239,6 +239,8 @@ module.exports = {
 ```
 
 Parcel will even automatically install these plugins for you.
+
+> Please be aware of [the several issues in Version 1](https://github.com/parcel-bundler/parcel/labels/CSS%20Preprocessing). [Version 2](https://github.com/parcel-bundler/parcel/projects/5) may resolved the issues via [issue #2157](https://github.com/parcel-bundler/parcel/issues/2157).
 
 [Parcel]: https://parceljs.org
 
