@@ -288,11 +288,11 @@ it('supports sync errors in async mode', done => {
 it('throws parse error in async', async () => {
   let err
   try {
-    await (new Processor([() => true])).process('a{', { from: '/a.css' })
+    await (new Processor([() => true])).process('a{', { from: undefined })
   } catch (e) {
     err = e
   }
-  expect(err.message).toEqual('/a.css:1:1: Unclosed block')
+  expect(err.message).toEqual('<css input>:1:1: Unclosed block')
 })
 
 it('throws error on sync method to async plugin', () => {
