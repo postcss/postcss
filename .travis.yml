@@ -1,7 +1,7 @@
 language: node_js
 cache: yarn
 node_js:
-  - "12"
+  - node
   - "10"
   - "8"
   - "6"
