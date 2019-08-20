@@ -140,7 +140,7 @@ by one line of code.
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
 * [`postcss-fixie`] adds easy and painless IE hacks
-* [`postcss-safe-area`] adds browser fallbacks for safe-area-inset env variables.
+* [`postcss-safe-area`] adds browser fallbacks for `safe-area-inset` `env` variables.
 
 See also [`oldie`] plugins pack.
 
@@ -804,3 +804,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-px-to-viewport`]:               https://github.com/evrone/postcss-px-to-viewport
 [`postcss-font-grabber`]:                 https://github.com/AaronJan/postcss-font-grabber
 [`postcss-redundant-color-vars`]:         https://github.com/caseyjacobson/postcss-redundant-color-vars
+[`postcss-safe-area`]:                    https://github.com/plegner/postcss-safe-area
