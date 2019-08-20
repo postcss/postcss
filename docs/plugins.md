@@ -140,6 +140,7 @@ by one line of code.
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
 * [`postcss-fixie`] adds easy and painless IE hacks
+* [`postcss-safe-area`] adds browser fallbacks for safe-area-inset env variables.
 
 See also [`oldie`] plugins pack.
 
