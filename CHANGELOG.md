@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.18
+* Fix TypeScript type definitions (by Jan Buschtöns).
+
 ## 7.0.17
 * Fix TypeScript type definitions (by Bob Matcuk and Jan Buschtöns).
 
