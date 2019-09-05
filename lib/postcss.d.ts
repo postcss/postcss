@@ -279,7 +279,7 @@ declare namespace postcss {
      * contains any asynchronous plugins it will throw an error. In this case,
      * you should use LazyResult#then() instead.
      */
-    warnings(): ResultMessage[];
+    warnings(): Warning[];
     /**
      * Processes input CSS through synchronous plugins. This property will work
      * only with synchronous plugins. If processor contains any asynchronous
@@ -313,7 +313,7 @@ declare namespace postcss {
     /**
      * @returns Warnings from plugins, filtered from messages.
      */
-    warnings(): ResultMessage[];
+    warnings(): Warning[];
     /**
      * A CSS string representing this Result's Root instance.
      */
