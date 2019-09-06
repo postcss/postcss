@@ -106,7 +106,7 @@ async function saveDocs (output) {
           )
           .replace(
             /<div class='keyline-top-not py2'>/g,
-            `<div class='hide'>`
+            '<div class="hide">'
           )
       }
       await writeFile(join(API_FOLDER, name), content)
