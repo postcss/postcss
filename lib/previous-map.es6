@@ -10,6 +10,8 @@ function fromBase64 (str) {
   }
 }
 
+const sourceMapRegex = /(?:\/\/[@#][\s]*sourceMappingURL=([^\s'"]+)[\s]*$)|(?:\/\*[@#][\s]*sourceMappingURL=([^\s*'"]+)[\s]*(?:\*\/)[\s]*$)/mg
+
 /**
  * Source map information from input CSS.
  * For example, source map after Sass compiler.
@@ -72,8 +74,12 @@ class PreviousMap {
   }
 
   loadAnnotation (css) {
-    let match = css.match(/^\/\*\s*# sourceMappingURL=(.*)\s*\*\//m)
-    if (match) this.annotation = match[1].trim()
+    let lastMatch
+    let match
+    // Locate the last sourceMappingURL to avoid picking up
+    // sourceMappingURLs from comments, strings, etc.
+    while (match = sourceMapRegex.exec(css)) lastMatch = match;
+    if (lastMatch) this.annotation = lastMatch[1].trim()
   }
 
   decodeInline (text) {
