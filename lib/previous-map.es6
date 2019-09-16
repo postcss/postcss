@@ -72,7 +72,7 @@ class PreviousMap {
   }
 
   loadAnnotation (css) {
-    let match = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//)
+    let match = css.match(/^\/\*\s*# sourceMappingURL=(.*)\s*\*\//m)
     if (match) this.annotation = match[1].trim()
   }
 
