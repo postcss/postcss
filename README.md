@@ -423,6 +423,13 @@ module.exports = {
 
 ## Editors & IDE Integration
 
+### VS Code
+
+* [`csstools.postcss`] adds support for PostCSS, `postcss-preset-env`
+  and CSS Modules.
+
+[`csstools.postcss`]: https://marketplace.visualstudio.com/items?itemName=csstools.postcss
+
 ### Atom
 
 * [`language-postcss`] adds PostCSS and [SugarSS] highlight.
