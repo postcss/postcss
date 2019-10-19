@@ -17,8 +17,8 @@
     "transpiler"
   ],
   "scripts": {
-    "clean": "rimraf api/index.html api/assets/",
-    "spell": "./api/generate.js && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
+    "clean": "rimraf ./docs/api/index.html ./docs/api/assets/",
+    "spell": "./docs/api/generate.js && yaspeller-ci ./docs/api/*.html *.md docs/{**/,}*.md",
     "test": "jest && eslint-ci . && ./test/integration.js && yarn spell && size-limit"
   },
   "funding": {
