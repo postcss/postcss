@@ -61,7 +61,6 @@
     "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "postcss-parser-tests": "^6.5.0",
-    "rewire": "^4.0.1",
     "rimraf": "^3.0.0",
     "strip-ansi": "^5.2.0",
     "yaspeller-ci": "^1.0.1"

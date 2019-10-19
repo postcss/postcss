@@ -1,12 +1,5 @@
-let rewire = require('rewire')
-
 let Result = require('../lib/result')
 let parse = require('../lib/parse')
-
-let rootRewire = rewire('../lib/root')
-let validateNameTypeNode = rootRewire.__get__('validateNameTypeNode')
-let normalizeVisitorPlugin = rootRewire.__get__('normalizeVisitorPlugin')
-let buildVisitorObject = rootRewire.__get__('buildVisitorObject')
 
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
@@ -68,107 +61,18 @@ it('generates result with map', () => {
   expect(result.css).toMatch(/a \{\}\n\/\*# sourceMappingURL=/)
 })
 
-it('validateNameTypeNode("decl") => ok', () => {
-  let validate = validateNameTypeNode('decl')
-  expect(validate).toBeUndefined()
+it('adds visitors', () => {
+  let root = parse('')
+  let cb1 = () => true
+  let cb2 = () => true
+  root.on('decl.enter', cb1)
+  root.on('decl.enter', cb2)
+  expect(root.listeners).toEqual({ 'decl.enter': [cb1, cb2] })
 })
 
-it('validateNameTypeNode("decl.exit") => ok', () => {
-  let validate = validateNameTypeNode('decl.exit')
-  expect(validate).toBeUndefined()
-})
-
-it('validateNameTypeNode(123) should throw an error', () => {
-  expect(() => { validateNameTypeNode(123) })
-    .toThrowError(/must be a string/)
-})
-
-it('validateNameTypeNode("decl.abcd") should throw an error', () => {
-  expect(() => { validateNameTypeNode('decl.abcd') })
-    .toThrowError(/enter/)
-})
-
-it('validateNameTypeNode("decl.exit.abcd") should throw an error', () => {
-  expect(() => { validateNameTypeNode('decl.exit.abcd') })
-    .toThrowError(/enter/)
-})
-
-it('validateNameTypeNode("decl.exitabcd") should throw an error', () => {
-  expect(() => { validateNameTypeNode('decl.exitabcd') })
-    .toThrowError(/enter/)
-})
-
-it('normalizeVisitorPlugin("decl") => "decl.enter"', () => {
-  let normalize = normalizeVisitorPlugin('decl')
-
-  expect(normalize).toHaveProperty('decl')
-  expect(normalize).toHaveProperty('decl.enter')
-})
-
-it('normalizeVisitorPlugin("decl.enter") => "decl.enter"', () => {
-  let normalize = normalizeVisitorPlugin('decl.enter')
-
-  expect(normalize).toHaveProperty('decl')
-  expect(normalize).toHaveProperty('decl.enter')
-})
-
-it('normalizeVisitorPlugin("decl.exit") => "decl.exit"', () => {
-  let normalize = normalizeVisitorPlugin('decl.exit')
-
-  expect(normalize).toHaveProperty('decl')
-  expect(normalize).toHaveProperty('decl.exit')
-})
-
-it('buildVisitorObject. Empty listeners', () => {
-  let cb = () => {}
-
-  let plugin = {
-    decl: {
-      enter: cb
-    }
-  }
-
-  let listeners = {}
-
-  let expected = {
-    decl: {
-      enter: [cb]
-    }
-  }
-
-  let result = buildVisitorObject(plugin, listeners)
-  expect(result).toEqual(expected)
-})
-
-it('buildVisitorObject. Not empty listeners', () => {
-  let cb = () => {}
-
-  let plugin = {
-    decl: {
-      enter: cb
-    }
-  }
-
-  let listeners = {
-    decl: {
-      enter: [cb],
-      exit: [cb]
-    },
-    role: {
-      exit: [cb]
-    }
-  }
-
-  let expected = {
-    decl: {
-      enter: [cb, cb],
-      exit: [cb]
-    },
-    role: {
-      exit: [cb]
-    }
-  }
-
-  let result = buildVisitorObject(plugin, listeners)
-  expect(result).toEqual(expected)
+it('adds visitors with enter phase by default', () => {
+  let root = parse('')
+  let cb = () => true
+  root.on('rule', cb)
+  expect(root.listeners).toEqual({ 'rule.enter': [cb] })
 })
