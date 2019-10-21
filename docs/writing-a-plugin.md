@@ -73,11 +73,14 @@ return function(root) {
 [rule](http://api.postcss.org/postcss.html#.rule).
 Не забудьте указать [source](http://api.postcss.org/Node.html#source).
  
-Например, нужно найти свойство `animation-play-state`
+Например:
 ```javascript
 return function(root) {
-  root.walkDecls('animation-play-state', function(decl) {
-    decl.cloneAfter({ prop: '-moz-' + decl.prop })
+  root.walkAtRules(function(atrule) {
+    if (atrule.name === 'add-link') {
+      const rule = postcss.rule({ selector: 'a', source: atrule.source })
+      atrule.parent.insertBefore(atrule, rule)
+    }
   });
 }
 ```
