@@ -21,8 +21,8 @@
 осуществляет обход AST дерева. Все плагины обрабатываются параллельно, а, следовательно, 
 быстрее. Если вы писали Babel-плагины, то написать PostCSS плагин будет просто. 
 Писать плагины в этом стиле предпочтительнее, так как это ускоряет обработку 
-файла стилей за счет параллельной работы плагинов. АПИ для посетителя достаточно простое.
-Писать плагины в таком стиле не сложнее, чем в объектном стиле
+файла стилей за счет снижения обходов AST дерева. АПИ для посетителя достаточно простое.
+Писать плагины в таком стиле не сложнее, чем в объектном стиле.
 
 ### Пишем плагин объектном стиле
 
@@ -35,7 +35,7 @@
 выбрав сответствующий раздел. (CSS → CSS; Transform → postcss;)
 
 ##### Шаг 3
-В шаблонном коде есть строчка: `return function (root, result) { }`
+В шаблонном [коде](https://github.com/postcss/postcss-plugin-boilerplate/blob/35081b09dc5568f261b30d0bde9598ffd46450ac/index.js#L7) есть строчка: `return (root, result) => {`
 Здесь плагину в переменной `root` передается весь файл стиля в виде AST дерева.
 Решите, какой с каким типом узла необходимо работать. Это можно определить, изучив 
 пример в песочнице [AST Explorer](https://astexplorer.net/)
@@ -89,18 +89,35 @@ return function(root) {
 ### Пишем плагин в стиле посетитель
 
 ##### Шаг 1
-Пока нет шаблонного генератора кода, можно воспользоваться следующим шаблоном:
-```javascript
-var postcss = require('postcss')
+Воспользуемся бойлерплейт кодом [postcss-plugin-boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
 
-module.exports = postcss.plugin('PLUGIN_NAME', function() {
-  return function(root) {
+И немного его дополним:
+```javascript
+let postcss = require('postcss')
+
+module.exports = postcss.plugin('PLUGIN_NAME', (opts = {}) => {
+
+  // Work with options here
+
+  return (root, result) => {
+
+    // Transform CSS AST here
+    
     root.on('TYPE_NODE', node => {
       // your code
     });
-  };
-});
-````
+
+  }
+})
+```
+
+`TYPE_NODE` состоит из двух частей - **тип** и **фаза**.
+
+**Тип** может быть одним из следующих: `atRule`, `comment`, `decl`, `rule`.
+
+**Фаз** может быть всего две: `enter` и `exit`. Более подробно про фазы можно прочитать [далее](#фазы-обхода-ast-дерева).
+
+Тип и фаза разделяются точкой, например, `decl.exit`.
 
 ##### Шаг 2
 Решили писать плагин в стиле посетитель - изучите АПИ по работе с PostCSS [http://api.postcss.org](http://api.postcss.org/postcss.html).
