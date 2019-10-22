@@ -61,6 +61,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`oldie`]:              https://github.com/jonathantneal/oldie
 [`atcss`]:              https://github.com/morishitter/atcss
 [`postcss-ui-theme`]:   https://github.com/cleverboy32/postcss-ui-theme
+
 ## Future CSS Syntax
 
 * [`postcss-apply`] supports custom properties sets references.
@@ -141,6 +142,7 @@ by one line of code.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
 * [`postcss-fixie`] adds easy and painless IE hacks
 * [`postcss-safe-area`] adds browser fallbacks for `safe-area-inset` `env` variables.
+* [`webp-in-css`] to use WebP background images in CSS.
 
 See also [`oldie`] plugins pack.
 
@@ -232,6 +234,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-colorblind`] transforms colors using filters to simulate
   colorblindness.
 * [`postcss-contrast`] checks background-color and gives either white or black.
+* [`postcss-dark-theme-class`] to force dark or light theme by custom switcher.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
 * [`postcss-rgba-hex`] converts `rgba` values to `hex` analogues.
@@ -545,6 +548,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-quantity-queries`]:             https://github.com/pascalduez/postcss-quantity-queries
 [`postcss-selector-matches`]:             https://github.com/postcss/postcss-selector-matches
 [`postcss-shorthand-expand`]:             https://github.com/johnotander/postcss-shorthand-expand
+[`postcss-dark-theme-class`]:             https://github.com/postcss/postcss-dark-theme-class
 [`postcss-all-link-colors`]:              https://github.com/jedmao/postcss-all-link-colors
 [`postcss-border-shortcut`]:              https://github.com/michelemazzucco/postcss-border-shortcut
 [`postcss-color-hex-alpha`]:              https://github.com/postcss/postcss-color-hex-alpha
@@ -756,6 +760,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-raw`]:                          https://github.com/MadLittleMods/postcss-raw
 [`postcss-svg`]:                          https://github.com/Pavliko/postcss-svg
 [`postcss-url`]:                          https://github.com/postcss/postcss-url
+[`webp-in-css`]:                          https://github.com/ai/webp-in-css
 [`postcss-ref`]:                          https://github.com/morishitter/postcss-ref
 [`colorguard`]:                           https://github.com/SlexAxton/css-colorguard
 [`css-byebye`]:                           https://github.com/AoDev/css-byebye
