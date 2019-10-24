@@ -45,7 +45,12 @@ class Node {
       }
     }
     for (let name in defaults) {
-      this[name] = defaults[name]
+      if (name === 'nodes') {
+        this.nodes = []
+        for (let i of defaults[name]) this.append(i)
+      } else {
+        this[name] = defaults[name]
+      }
     }
   }
 
