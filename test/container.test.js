@@ -746,3 +746,10 @@ it('updates parent in overrides.nodes in constructor', () => {
   })
   expect(root.last.first.parent).toBe(root.last)
 })
+
+it('allows to clone nodes', () => {
+  let root1 = parse('a { color: black; z-index: 1 } b {}')
+  let root2 = new Root({ nodes: root1.nodes })
+  expect(root1.toString()).toEqual('a { color: black; z-index: 1 } b {}')
+  expect(root2.toString()).toEqual('a { color: black; z-index: 1 } b {}')
+})
