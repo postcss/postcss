@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.19
+* Fix passing `nodes` property to node constructor.
+
 ## 7.0.18
 * Fix TypeScript type definitions (by Jan Buschtöns).
 
