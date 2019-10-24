@@ -2121,10 +2121,15 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.14.1, commander@^2.17.1, commander@^2.18.0, commander@^2.19.0, commander@^2.9.0, commander@~2.20.0:
+commander@^2.14.1, commander@^2.17.1, commander@^2.18.0, commander@^2.19.0, commander@^2.9.0:
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
   integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
+
+commander@~2.20.3:
+  version "2.20.3"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -4073,9 +4078,9 @@ gzip-size@^5.0.0:
     pify "^3.0.0"
 
 handlebars@^4.1.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.1.1.tgz#6e4e41c18ebe7719ae4d38e5aca3d32fa3dd23d3"
-  integrity sha512-3Zhi6C0euYZL5sM0Zcy7lInLXKQ+YLcF/olbN010mzGQ4XVm50JeyBnMqofHh696GrciGruC7kCcApPDJvVgwA==
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.4.5.tgz#1b1f94f9bfe7379adda86a8b73fb570265a0dddd"
+  integrity sha512-0Ce31oWVB7YidkaTq33ZxEbN+UDxMMgThvCe8ptgQViymL5DPis9uLdTA13MiRPhgvqyxIegugrP97iK3JeBHg==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"
@@ -6091,9 +6096,9 @@ negotiator@0.6.1:
   integrity sha1-KzJxhOiZIQEXeyhWP7XnECrNDKk=
 
 neo-async@^2.5.0, neo-async@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
-  integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
+  integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
 next-tick@1, next-tick@^1.0.0:
   version "1.0.0"
@@ -8732,11 +8737,11 @@ uc.micro@^1.0.1, uc.micro@^1.0.5:
   integrity sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
 
 uglify-js@^3.1.4:
-  version "3.5.4"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.5.4.tgz#4a64d57f590e20a898ba057f838dcdfb67a939b9"
-  integrity sha512-GpKo28q/7Bm5BcX9vOu4S46FwisbPbAmkkqPnGIpKvKTM96I85N6XHQV+k4I6FA2wxgLhcsSyHoNhzucwCflvA==
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.6.4.tgz#88cc880c6ed5cf9868fdfa0760654e7bed463f1d"
+  integrity sha512-9Yc2i881pF4BPGhjteCXQNaXx1DCwm3dtOyBaG2hitHjLWOczw/ki8vD1bqyT3u6K0Ms/FpCShkmfg+FtlOfYA==
   dependencies:
-    commander "~2.20.0"
+    commander "~2.20.3"
     source-map "~0.6.1"
 
 unc-path-regex@^0.1.2:
