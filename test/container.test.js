@@ -736,3 +736,20 @@ it('forces Declaration#value to be string', () => {
   expect(typeof rule.first.value).toEqual('string')
   expect(typeof rule.last.value).toEqual('string')
 })
+
+it('updates parent in overrides.nodes in constructor', () => {
+  let root = new Root({ nodes: [{ selector: 'a' }] })
+  expect(root.first.parent).toBe(root)
+  root.append({
+    selector: 'b',
+    nodes: [{ prop: 'color', value: 'black' }]
+  })
+  expect(root.last.first.parent).toBe(root.last)
+})
+
+it('allows to clone nodes', () => {
+  let root1 = parse('a { color: black; z-index: 1 } b {}')
+  let root2 = new Root({ nodes: root1.nodes })
+  expect(root1.toString()).toEqual('a { color: black; z-index: 1 } b {}')
+  expect(root2.toString()).toEqual('a { color: black; z-index: 1 } b {}')
+})
