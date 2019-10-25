@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.21
+* Revert passing `nodes` property to node constructor.
+
 ## 7.0.20
 * Allow to pass PostCSS’s nodes in `nodes` property to node constructor.
 
