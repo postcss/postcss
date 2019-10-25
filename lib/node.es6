@@ -45,18 +45,7 @@ class Node {
       }
     }
     for (let name in defaults) {
-      if (name === 'nodes') {
-        this.nodes = []
-        for (let node of defaults[name]) {
-          if (typeof node.clone === 'function') {
-            this.append(node.clone())
-          } else {
-            this.append(node)
-          }
-        }
-      } else {
-        this[name] = defaults[name]
-      }
+      this[name] = defaults[name]
     }
   }
 
