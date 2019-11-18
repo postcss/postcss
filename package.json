@@ -23,6 +23,10 @@
     "lint": "eslint-ci *.js lib/*.es6 test/*.js",
     "test": "gulp && jest && yarn lint && yarn spell && size-limit"
   },
+  "funding": {
+    "type": "tidelift",
+    "url": "https://tidelift.com/funding/github/npm/postcss"
+  },
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "homepage": "https://postcss.org/",
