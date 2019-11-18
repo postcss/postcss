@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.23
+* Update `Processor#version`.
+
 ## 7.0.22
 * Add funding link for `npm fund`.
 
