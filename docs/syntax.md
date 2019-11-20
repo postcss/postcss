@@ -213,6 +213,8 @@ output if there were no changes.
 
 This is why every node has `node.raws` object to store space symbol, etc.
 
+All data related to source code and not CSS structure, should be in `Node#raws`. For instance, `postcss-scss` keep in `Comment#raws.inline` boolean marker of inline comment (`// comment` instead of `/* comment */`).
+
 Be careful, because sometimes these raw properties will not be present; some
 nodes may be built manually, or may lose their indentation when they are moved
 to another parent node.
