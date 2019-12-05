@@ -157,7 +157,7 @@ declare namespace postcss {
      *
      * If you have set inline: true, annotation cannot be disabled.
      */
-    annotation?: string | false;
+    annotation?: string | boolean;
     /**
      * Override "from" in map's sources.
      */
