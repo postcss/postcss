@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.24
+* Fix TypeScript definition (by Keith Cirkel).
+
 ## 7.0.23
 * Update `Processor#version`.
 
