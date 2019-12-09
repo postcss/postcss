@@ -82,6 +82,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-custom-selectors`] adds custom aliases for selectors.
 * [`postcss-extend`] supports spec-approximate `@extend` for rules
   and placeholders, recursively.
+* [`postcss-font-format-keywords`] transforms keywords in `@font-face` rule’s
+  `format()` function to widely supported strings.
 * [`postcss-font-normalize`] to normalize font, especially `font-family`.
 * [`postcss-font-variant`] transpiles human-readable `font-variant`
   to more widely supported CSS.
@@ -571,6 +573,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-conic-gradient`]:               https://github.com/jonathantneal/postcss-conic-gradient
 [`postcss-convert-values`]:               https://github.com/ben-eb/postcss-convert-values
 [`postcss-flexbugs-fixes`]:               https://github.com/luisrudge/postcss-flexbugs-fixes
+[`postcss-font-format-keywords`]:         https://github.com/valtlai/postcss-font-format-keywords
 [`postcss-font-normalize`]:               https://github.com/iahu/postcss-font-normalize
 [`postcss-hash-classname`]:               https://github.com/ctxhou/postcss-hash-classname
 [`postcss-oldschool-grid`]:               https://github.com/lordgiotto/postcss-oldschool-grid
