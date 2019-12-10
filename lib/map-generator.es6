@@ -108,6 +108,9 @@ class MapGenerator {
     if (this.isInline()) {
       return true
     }
+    if (typeof this.mapOpts.annotationPrefix !== 'undefined') {
+      return this.mapOpts.annotationPrefix
+    }
     if (typeof this.mapOpts.annotation !== 'undefined') {
       return this.mapOpts.annotation
     }
@@ -132,6 +135,8 @@ class MapGenerator {
                 this.toBase64(this.map.toString())
     } else if (typeof this.mapOpts.annotation === 'string') {
       content = this.mapOpts.annotation
+    } else if (typeof this.mapOpts.annotationPrefix === 'string} {
+      content = this.mapOpts.annotationPrefix + this.outputFile() + '.map'
     } else {
       content = this.outputFile() + '.map'
     }
