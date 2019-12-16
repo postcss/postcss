@@ -54,7 +54,9 @@ class Input {
          */
         this.file = opts.from
       } else {
-        this.file = path.resolve(opts.from)
+        this.file = path.isAbsolute(opts.from) 
+          ? opts.from
+          : path.resolve(opts.from)
       }
     }
 
