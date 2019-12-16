@@ -41,7 +41,7 @@ class Input {
     }
 
     if (opts.from) {
-      if (/^\w+:\/\//.test(opts.from)) {
+      if (/^\w+:\/\//.test(opts.from) || path.isAbsolute(opts.from)) {
         /**
          * The absolute path to the CSS source file defined
          * with the `from` option.
@@ -54,7 +54,7 @@ class Input {
          */
         this.file = opts.from
       } else {
-        this.file = path.isAbsolute(opts.from) ? opts.from : path.resolve(opts.from)
+        this.file = path.resolve(opts.from)
       }
     }
 
