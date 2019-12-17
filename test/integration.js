@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 let ciJobNumber = require('ci-job-number')
+let chalk = require('chalk')
 let real = require('postcss-parser-tests/real')
 
 let Processor = require('../lib/processor')
@@ -14,7 +15,10 @@ if (ciJobNumber() === 1) {
   }
 
   real(error => {
-    if (error) throw error
+    if (error) {
+      process.stderr.write(chalk.red(error.toString()) + '\n')
+      process.exit(1)
+    }
   }, css => {
     return postcss.parse(css).toResult({ map: { annotation: false } })
   })
