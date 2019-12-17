@@ -57,8 +57,8 @@ it('generates result with map', () => {
   let root = parse('a {}')
   let result = root.toResult({ map: true })
 
-  expect(result instanceof Result).toBeTruthy()
-  expect(result.css).toMatch(/a \{\}\n\/\*# sourceMappingURL=/)
+  expect(result instanceof Result).toBe(true)
+  expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
 })
 
 it('adds visitors', () => {

@@ -227,19 +227,19 @@ it('tokenizes CSS', () => {
 it('throws error on unclosed string', () => {
   expect(() => {
     tokenize(' "')
-  }).toThrowError(/:1:2: Unclosed string/)
+  }).toThrow(/:1:2: Unclosed string/)
 })
 
 it('throws error on unclosed comment', () => {
   expect(() => {
     tokenize(' /*')
-  }).toThrowError(/:1:2: Unclosed comment/)
+  }).toThrow(/:1:2: Unclosed comment/)
 })
 
 it('throws error on unclosed url', () => {
   expect(() => {
     tokenize('url(')
-  }).toThrowError(/:1:4: Unclosed bracket/)
+  }).toThrow(/:1:4: Unclosed bracket/)
 })
 
 it('ignores unclosing string on request', () => {

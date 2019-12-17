@@ -37,7 +37,7 @@ it('return map generator', () => {
   let map = postcss([() => true]).process('a {}', {
     map: { inline: false }
   }).map
-  expect(map instanceof mozilla.SourceMapGenerator).toBeTruthy()
+  expect(map instanceof mozilla.SourceMapGenerator).toBe(true)
 })
 
 it('generate right source map', () => {
@@ -449,7 +449,7 @@ it('detects input file name from map', () => {
 it('works without file names', () => {
   let step1 = doubler.process('a { }', { map: true })
   let step2 = doubler.process(step1.css)
-  expect(step2.css).toMatch(/a \{ \}\n\/\*/)
+  expect(step2.css).toMatch(/a { }\n\/\*/)
 })
 
 it('supports UTF-8', () => {
@@ -529,7 +529,7 @@ it('clears source map', () => {
 
 it('uses Windows line separation too', () => {
   let result = postcss([() => true]).process('a {\r\n}', { map: true })
-  expect(result.css).toMatch(/a \{\r\n\}\r\n\/\*# sourceMappingURL=/)
+  expect(result.css).toMatch(/a {\r\n}\r\n\/\*# sourceMappingURL=/)
 })
 
 it('`map.from` should override the source map sources', () => {
