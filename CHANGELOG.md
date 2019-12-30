@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.26
+* Fix TypeScript definition (by Natalie Weizenbaum).
+
 ## 7.0.25
 * Fix absolute path support for Windows (by Tom Raviv).
 
