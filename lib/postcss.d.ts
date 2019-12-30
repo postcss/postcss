@@ -603,7 +603,7 @@ declare namespace postcss {
     /**
      * @returns A CSS string representing the node.
      */
-    toString(): string;
+    toString(stringifier?: Stringifier | Syntax): string;
     /**
      * This method produces very useful error messages. If present, an input
      * source map will be used to get the original position of the source, even
