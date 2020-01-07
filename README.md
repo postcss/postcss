@@ -422,7 +422,8 @@ module.exports = {
 
 ## Contributing
 
-Please see the [contributing guidelines](./CONTRIBUTING.md).
+[Our contributing guidelines](./CONTRIBUTING.md) will help you
+with making pull request to this project.
 
 ## Editors & IDE Integration
 
