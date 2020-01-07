@@ -420,6 +420,9 @@ module.exports = {
 }
 ```
 
+## Contributing
+
+Please see the [contributing guidelines](./CONTRIBUTING.md).
 
 ## Editors & IDE Integration
 
