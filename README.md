@@ -179,10 +179,6 @@ More articles and videos you can find on [awesome-postcss](https://github.com/jj
 
 * [Mastering PostCSS for Web Design](https://www.packtpub.com/web-development/mastering-postcss-web-design) by Alex Libby, Packt. (June 2016)
 
-## Contributing
-
-Please see the [contributing guidelines](./CONTRIBUTING.md).
-
 ## Usage
 
 You can start using PostCSS in just two steps:
@@ -424,6 +420,9 @@ module.exports = {
 }
 ```
 
+## Contributing
+
+Please see the [contributing guidelines](./CONTRIBUTING.md).
 
 ## Editors & IDE Integration
 
