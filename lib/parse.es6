@@ -1,5 +1,6 @@
 import Parser from './parser'
 import Input from './input'
+import { registerParse } from './container'
 
 function parse (css, opts) {
   let input = new Input(css, opts)
@@ -31,3 +32,5 @@ function parse (css, opts) {
 }
 
 export default parse
+
+registerParse(parse)

@@ -1,6 +1,10 @@
 let Result = require('../lib/result')
 let parse = require('../lib/parse')
 
+require('../lib/rule')
+require('../lib/at-rule')
+require('../lib/processor')
+
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
   css.prepend({ selector: 'em' })

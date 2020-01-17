@@ -2,6 +2,7 @@ import path from 'path'
 
 import CssSyntaxError from './css-syntax-error'
 import PreviousMap from './previous-map'
+import { registerInput } from './terminal-highlight'
 
 let sequence = 0
 
@@ -169,6 +170,8 @@ class Input {
 }
 
 export default Input
+
+registerInput(Input)
 
 /**
  * @typedef  {object} filePosition

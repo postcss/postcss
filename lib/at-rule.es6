@@ -1,4 +1,4 @@
-import Container from './container'
+import Container, { registerAtRule } from './container'
 
 /**
  * Represents an at-rule.
@@ -90,3 +90,5 @@ class AtRule extends Container {
 }
 
 export default AtRule
+
+registerAtRule(AtRule)

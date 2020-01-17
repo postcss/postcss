@@ -1,5 +1,6 @@
 let tokenizer = require('../lib/tokenize')
 let Input = require('../lib/input')
+require('../lib/rule')
 
 function tokenize (css, opts) {
   let processor = tokenizer(new Input(css), opts)

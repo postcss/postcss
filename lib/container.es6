@@ -2,6 +2,20 @@ import Declaration from './declaration'
 import Comment from './comment'
 import Node from './node'
 
+let parse, Rule, AtRule
+
+export function registerParse (dependant) {
+  parse = dependant
+}
+
+export function registerRule (dependant) {
+  Rule = dependant
+}
+
+export function registerAtRule (dependant) {
+  AtRule = dependant
+}
+
 function cleanSource (nodes) {
   return nodes.map(i => {
     if (i.nodes) i.nodes = cleanSource(i.nodes)
@@ -584,7 +598,6 @@ class Container extends Node {
 
   normalize (nodes, sample) {
     if (typeof nodes === 'string') {
-      let parse = require('./parse')
       nodes = cleanSource(parse(nodes).nodes)
     } else if (Array.isArray(nodes)) {
       nodes = nodes.slice(0)
@@ -606,10 +619,8 @@ class Container extends Node {
       }
       nodes = [new Declaration(nodes)]
     } else if (nodes.selector) {
-      let Rule = require('./rule')
       nodes = [new Rule(nodes)]
     } else if (nodes.name) {
-      let AtRule = require('./at-rule')
       nodes = [new AtRule(nodes)]
     } else if (nodes.text) {
       nodes = [new Comment(nodes)]

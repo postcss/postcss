@@ -1,7 +1,12 @@
 import chalk from 'chalk'
 
 import tokenizer from './tokenize'
-import Input from './input'
+
+let Input
+
+export function registerInput (dependant) {
+  Input = dependant
+}
 
 const HIGHLIGHT_THEME = {
   'brackets': chalk.cyan,

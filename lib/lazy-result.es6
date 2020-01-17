@@ -3,6 +3,7 @@ import stringify from './stringify'
 import warnOnce from './warn-once'
 import Result from './result'
 import parse from './parse'
+import { registerLazyResult } from './root'
 
 function isPromise (obj) {
   return typeof obj === 'object' && typeof obj.then === 'function'
@@ -378,6 +379,8 @@ class LazyResult {
 }
 
 export default LazyResult
+
+registerLazyResult(LazyResult)
 
 /**
  * @callback onFulfilled

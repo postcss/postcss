@@ -1,4 +1,4 @@
-import Container from './container'
+import Container, { registerRule } from './container'
 import list from './list'
 
 /**
@@ -87,3 +87,5 @@ class Rule extends Container {
 }
 
 export default Rule
+
+registerRule(Rule)

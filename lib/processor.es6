@@ -1,4 +1,5 @@
 import LazyResult from './lazy-result'
+import { registerProcessor } from './root'
 
 /**
  * Contains plugins to process CSS. Create one `Processor` instance,
@@ -135,6 +136,8 @@ class Processor {
 }
 
 export default Processor
+
+registerProcessor(Processor)
 
 /**
  * @callback builder

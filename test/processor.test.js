@@ -5,7 +5,7 @@ let Processor = require('../lib/processor')
 let postcss = require('../lib/postcss')
 let Result = require('../lib/result')
 let parse = require('../lib/parse')
-let Root = require('../lib/root')
+let { default: Root } = require('../lib/root')
 
 function prs () {
   return new Root({ raws: { after: 'ok' } })

@@ -1,5 +1,15 @@
 import Container from './container'
 
+let LazyResult, Processor
+
+export function registerLazyResult (dependant) {
+  LazyResult = dependant
+}
+
+export function registerProcessor (dependant) {
+  Processor = dependant
+}
+
 /**
  * Represents a CSS file and contains all its parsed nodes.
  *
@@ -61,9 +71,6 @@ class Root extends Container {
    * const result = root1.toResult({ to: 'all.css', map: true })
    */
   toResult (opts = { }) {
-    let LazyResult = require('./lazy-result')
-    let Processor = require('./processor')
-
     let lazy = new LazyResult(new Processor(), this, opts)
     return lazy.stringify()
   }
