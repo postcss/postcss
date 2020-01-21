@@ -3,7 +3,7 @@ let Declaration = require('../lib/declaration')
 let AtRule = require('../lib/at-rule')
 let parse = require('../lib/parse')
 let Node = require('../lib/node')
-let { default: Root } = require('../lib/root')
+let Root = require('../lib/root')
 let Rule = require('../lib/rule')
 
 let str

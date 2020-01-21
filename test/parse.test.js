@@ -3,7 +3,7 @@ let path = require('path')
 let fs = require('fs')
 
 let parse = require('../lib/parse')
-let { default: Root } = require('../lib/root')
+let Root = require('../lib/root')
 require('../lib/processor')
 
 it('works with file reads', () => {
