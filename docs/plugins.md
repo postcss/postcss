@@ -416,6 +416,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-letter-tracking`] generates relative, Photoshop-compatible letter tracking for improved letter spacing.
 * [`postcss-light-text`]  adds `-webkit-` antialiasing for light text.
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
+* [`postcss-momentum-scrolling`] adding momentum style scrolling behavior (`-webkit-overflow-scrolling:touch`) for elements with overflow (scroll, auto) on iOS.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
 * [`postcss-mq-last`] gives media query rules precedence by moving them to the end of the file.
@@ -440,6 +441,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-simple-trig`] calculate trigonometric functions: sin/cos/tan.
 * [`postcss-sorting`] sort rules content with specified order.
+* [`postcss-sort-media-queries`] combine and sort CSS media queries with mobile first or desktop first methods
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`css-declaration-sorter`] sorts CSS declarations fast and automatically
   in a certain order.
@@ -813,3 +815,5 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-font-grabber`]:                 https://github.com/AaronJan/postcss-font-grabber
 [`postcss-redundant-color-vars`]:         https://github.com/caseyjacobson/postcss-redundant-color-vars
 [`postcss-safe-area`]:                    https://github.com/plegner/postcss-safe-area
+[`postcss-sort-media-queries`]:           https://github.com/solversgroup/postcss-sort-media-queries
+[`postcss-momentum-scrolling`]:           https://github.com/solversgroup/postcss-momentum-scrolling
