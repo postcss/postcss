@@ -63,6 +63,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
   all inherited styles.
 * [`cq-prolyfill`] adds container query support, allowing styles that respond
   to the width of the parent.
+* [`postcss-viewport-height-correction`] solves the popular problem when 100vh doesn’t fit the mobile browser screen.
 
 ### Use Future CSS, Today
 
@@ -127,6 +128,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
 [`short`]:                      https://github.com/jonathantneal/postcss-short
 [`lost`]:                       https://github.com/peterramsing/lost
+[`postcss-viewport-height-correction`]: https://github.com/Faisal-Manzer/postcss-viewport-height-correction
 
 ## Syntaxes
 
