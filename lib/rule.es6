@@ -1,5 +1,7 @@
 import Container from './container'
 import list from './list'
+import defineProperty from './define-property'
+import { selector } from './symbols'
 
 /**
  * Represents a CSS rule: a selector followed by a declaration block.
@@ -17,6 +19,7 @@ class Rule extends Container {
     super(defaults)
     this.type = 'rule'
     if (!this.nodes) this.nodes = []
+    defineProperty(this, 'selector', selector)
   }
 
   /**

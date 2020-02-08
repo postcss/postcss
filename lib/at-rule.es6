@@ -1,4 +1,6 @@
 import Container from './container'
+import defineProperty from './define-property'
+import { name, params } from './symbols'
 
 /**
  * Represents an at-rule.
@@ -22,6 +24,8 @@ class AtRule extends Container {
   constructor (defaults) {
     super(defaults)
     this.type = 'atrule'
+    defineProperty(this, 'name', name)
+    defineProperty(this, 'params', params)
   }
 
   append (...children) {
