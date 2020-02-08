@@ -6,7 +6,6 @@ npm-debug.log
 yarn-error.log
 
 build/
-lib/*.js
 
 api/
 coverage/
