@@ -280,7 +280,7 @@ it('ignore unclosed per token request', () => {
     return tokens
   }
 
-  let css = `How's it going (`
+  let css = 'How\'s it going ('
   let tokens = tokn(css, {})
   let expected = [['word', 'How', 1, 1, 1, 3],
     ['string', "'s", 1, 4, 1, 5],
@@ -295,7 +295,7 @@ it('ignore unclosed per token request', () => {
 })
 
 it('provides correct position', () => {
-  let css = `Three tokens`
+  let css = 'Three tokens'
   let processor = tokenizer(new Input(css))
   expect(processor.position()).toEqual(0)
   processor.nextToken()
