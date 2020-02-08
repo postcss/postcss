@@ -87,13 +87,6 @@
     "chalk": false,
     "fs": false
   },
-  "browserslist": [
-    "last 2 version",
-    "not dead",
-    "not Explorer 11",
-    "not ExplorerMobile 11",
-    "node 6"
-  ],
   "size-limit": [
     {
       "path": "lib/postcss.js",
@@ -111,9 +104,6 @@
     "rules": {
       "consistent-return": "off",
       "global-require": "off"
-    },
-    "env": {
-      "browser": true
     },
     "overrides": [
       {
