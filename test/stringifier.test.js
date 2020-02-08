@@ -149,7 +149,7 @@ it('clones indent by before and after', () => {
 
 it('clones semicolon only from rules with children', () => {
   let css = parse('a{}b{one:1;}')
-  expect(str.raw(css.first, 'semicolon')).toBeTruthy()
+  expect(str.raw(css.first, 'semicolon')).toBe(true)
 })
 
 it('clones only spaces in before', () => {
