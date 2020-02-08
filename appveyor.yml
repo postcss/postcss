@@ -9,8 +9,7 @@ install:
   - yarn install --ignore-engines
 
 test_script:
-  - ./node_modules/.bin/gulp build
-  - ./node_modules/.bin/jest
+  - npx jest
 
 cache:
  - node_modules
