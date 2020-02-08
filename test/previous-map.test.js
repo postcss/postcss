@@ -162,7 +162,7 @@ it('sets unique name for inline map', () => {
   let file1 = parse('a{}', opts).source.input.map.file
   let file2 = parse('a{}', opts).source.input.map.file
 
-  expect(file1).toMatch(/^<input css \d+>$/)
+  expect(file1).toMatch(/^<input css [\d\w_-]+>$/)
   expect(file1).not.toEqual(file2)
 })
 
