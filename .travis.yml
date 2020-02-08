@@ -8,4 +8,3 @@ matrix:
   include:
     os: windows
     node_js: "11"
-    install: yarn install --network-timeout=30000
