@@ -4,6 +4,7 @@ let fs = require('fs')
 
 let parse = require('../lib/parse')
 let Root = require('../lib/root')
+require('../lib/processor')
 
 it('works with file reads', () => {
   let stream = fs.readFileSync(cases.path('atrule-empty.css'))
