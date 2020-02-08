@@ -18,8 +18,7 @@
   ],
   "scripts": {
     "clean": "rimraf build/ api/",
-    "api": "node ./docs/generate-api.js",
-    "spell": "yarn api && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
+    "spell": "./docs/generate-api.js && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
     "lint": "eslint-ci lib/*.js test/*.js",
     "test": "jest && yarn lint && ./test/integration.js && yarn spell && size-limit"
   },
