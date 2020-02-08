@@ -11,5 +11,4 @@ test/
 api/
 docs/
 CONTRIBUTING.md
-README-cn.md
 docs/generate-api.js
