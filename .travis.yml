@@ -9,8 +9,7 @@ matrix:
     os: windows
     cache: false
     node_js: node
-    env:
-      - YARN_GPG=no
+    env: "YARN_GPG=no"
 deploy:
   provider: pages
   skip-cleanup: true
