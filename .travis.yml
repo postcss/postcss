@@ -12,3 +12,10 @@ matrix:
     script: npx jest
     env:
       - YARN_GPG=no
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local-dir: api
+  on:
+    branch: ose
