@@ -1,14 +1,13 @@
 node_modules/
-npm-debug.log
 yarn-error.log
 yarn.lock
 
-build/
-
+.editorconfig
 test/
 .travis.yml
 
 api/
 docs/
-CONTRIBUTING.md
-docs/generate-api.js
+build/
+docs/
+.github/
