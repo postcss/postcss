@@ -9,7 +9,7 @@ let fs = require('fs')
 let writeFile = promisify(fs.writeFile)
 let mkdir = promisify(fs.mkdir)
 
-if (ciJobNumber() !== 1) return
+if (ciJobNumber() !== 1) process.exit()
 
 const API_FOLDER = join(__dirname, '..', 'api')
 
