@@ -450,7 +450,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
 * [`postcss-autocorrect`] corrects typos and notifies in the console.
 * [`postcss-px-to-viewport`] generates viewport units (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
-
+* [`postcss-viewport-height-correction`] solves the popular problem when `100vh`
+  doesn’t fit the mobile browser screen.
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
@@ -817,3 +818,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-safe-area`]:                    https://github.com/plegner/postcss-safe-area
 [`postcss-sort-media-queries`]:           https://github.com/solversgroup/postcss-sort-media-queries
 [`postcss-momentum-scrolling`]:           https://github.com/solversgroup/postcss-momentum-scrolling
+[`postcss-viewport-height-correction`]:   https://github.com/Faisal-Manzer/postcss-viewport-height-correction
