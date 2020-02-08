@@ -27,31 +27,23 @@ it('takes plugin from other processor', () => {
   expect(postcss([other, c]).plugins).toEqual([a, b, c])
 })
 
-it('supports injecting additional processors at runtime', () => {
-  let plugin1 = postcss.plugin('one', () => {
-    return css => {
-      css.walkDecls(decl => {
-        decl.value = 'world'
-      })
-    }
+it('supports injecting additional processors at runtime', async () => {
+  let plugin1 = postcss.plugin('one', () => css => {
+    css.walkDecls(decl => {
+      decl.value = 'world'
+    })
   })
-  let plugin2 = postcss.plugin('two', () => {
-    return (css, result) => {
-      result.processor.use(plugin1())
-    }
+  let plugin2 = postcss.plugin('two', () => (css, result) => {
+    result.processor.use(plugin1())
   })
 
-  return postcss([plugin2]).process('a{hello: bob}', { from: undefined })
-    .then(result => {
-      expect(result.css).toEqual('a{hello: world}')
-    })
+  let r = await postcss([plugin2]).process('a{hello: bob}', { from: undefined })
+  expect(r.css).toEqual('a{hello: world}')
 })
 
 it('creates plugin', () => {
-  let plugin = postcss.plugin('test', filter => {
-    return root => {
-      root.walkDecls(filter || 'two', i => i.remove())
-    }
+  let plugin = postcss.plugin('test', filter => root => {
+    root.walkDecls(filter || 'two', i => i.remove())
   })
 
   let func1 = postcss(plugin).plugins[0]
@@ -84,13 +76,11 @@ it('does not call plugin constructor', () => {
   expect(calls).toBe(2)
 })
 
-it('creates a shortcut to process css', () => {
-  let plugin = postcss.plugin('test', str => {
-    return root => {
-      root.walkDecls(i => {
-        i.value = str || 'bar'
-      })
-    }
+it('creates a shortcut to process css', async () => {
+  let plugin = postcss.plugin('test', str => root => {
+    root.walkDecls(i => {
+      i.value = str || 'bar'
+    })
   })
 
   let result1 = plugin.process('a{value:foo}')
@@ -99,10 +89,9 @@ it('creates a shortcut to process css', () => {
   let result2 = plugin.process('a{value:foo}', { }, 'baz')
   expect(result2.css).toEqual('a{value:baz}')
 
-  return plugin.process('a{value:foo}', { from: 'a' }, 'baz').then(result => {
-    expect(result.opts).toEqual({ from: 'a' })
-    expect(result.css).toEqual('a{value:baz}')
-  })
+  let result = await plugin.process('a{value:foo}', { from: 'a' }, 'baz')
+  expect(result.opts).toEqual({ from: 'a' })
+  expect(result.css).toEqual('a{value:baz}')
 })
 
 it('contains parser', () => {

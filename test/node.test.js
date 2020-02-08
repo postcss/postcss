@@ -54,27 +54,22 @@ it('error() highlights word in multiline string', () => {
                                              '    |            ^')
 })
 
-it('warn() attaches a warning to the result object', () => {
+it('warn() attaches a warning to the result object', async () => {
   let warning
-  let warner = postcss.plugin('warner', () => {
-    return (css, result) => {
-      warning = css.first.warn(result, 'FIRST!')
-    }
+  let warner = postcss.plugin('warner', () => (css, result) => {
+    warning = css.first.warn(result, 'FIRST!')
   })
 
-  return postcss([warner]).process('a{}', { from: undefined }).then(result => {
-    expect(warning.type).toEqual('warning')
-    expect(warning.text).toEqual('FIRST!')
-    expect(warning.plugin).toEqual('warner')
-    expect(result.warnings()).toEqual([warning])
-  })
+  let result = await postcss([warner]).process('a{}', { from: undefined })
+  expect(warning.type).toEqual('warning')
+  expect(warning.text).toEqual('FIRST!')
+  expect(warning.plugin).toEqual('warner')
+  expect(result.warnings()).toEqual([warning])
 })
 
 it('warn() accepts options', () => {
-  let warner = postcss.plugin('warner', () => {
-    return (css, result) => {
-      css.first.warn(result, 'FIRST!', { index: 1 })
-    }
+  let warner = postcss.plugin('warner', () => (css, result) => {
+    css.first.warn(result, 'FIRST!', { index: 1 })
   })
 
   let result = postcss([warner()]).process('a{}')
