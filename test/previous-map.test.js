@@ -74,7 +74,7 @@ it('decodes base64 UTF-8 maps', () => {
   expect(parse(css).source.input.map.text).toEqual(map)
 })
 
-it('accepts different name for UTF-8 encoding', () => {
+it('accepts different name for base64 maps with UTF-8 encoding', () => {
   let b64 = Buffer.from(map).toString('base64')
   let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
               'charset=utf8;base64,' + b64 + ' */'
@@ -85,6 +85,22 @@ it('accepts different name for UTF-8 encoding', () => {
 it('decodes URI maps', () => {
   let uri = 'data:application/json,' + decodeURI(map)
   let css = `a{}\n/*# sourceMappingURL=${ uri } */`
+
+  expect(parse(css).source.input.map.text).toEqual(map)
+})
+
+it('decodes URI UTF-8 maps', () => {
+  let uri = decodeURI(map)
+  let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
+              'charset=utf-8,' + uri + ' */'
+
+  expect(parse(css).source.input.map.text).toEqual(map)
+})
+
+it('accepts different name for URI maps with UTF-8 encoding', () => {
+  let uri = decodeURI(map)
+  let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
+              'charset=utf8,' + uri + ' */'
 
   expect(parse(css).source.input.map.text).toEqual(map)
 })
