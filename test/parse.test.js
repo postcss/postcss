@@ -55,8 +55,8 @@ it('saves source file on previous map', () => {
 it('sets unique ID for file without name', () => {
   let css1 = parse('a {}')
   let css2 = parse('a {}')
-  expect(css1.first.source.input.id).toMatch(/^<input css \d+>$/)
-  expect(css1.first.source.input.from).toMatch(/^<input css \d+>$/)
+  expect(css1.first.source.input.id).toMatch(/^<input css [\d\w_-]+>$/)
+  expect(css1.first.source.input.from).toMatch(/^<input css [\d\w_-]+>$/)
   expect(css2.first.source.input.id).not.toEqual(css1.first.source.input.id)
 })
 
