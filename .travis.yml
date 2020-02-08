@@ -4,3 +4,7 @@ node_js:
   - node
   - "12"
   - "10"
+matrix:
+  include:
+    os: windows
+    node_js: "11"
