@@ -8,7 +8,7 @@ matrix:
   include:
     os: windows
     cache: false
-    node_js: "11"
+    node_js: node
     script: npx jest
     env:
       - YARN_GPG=no
