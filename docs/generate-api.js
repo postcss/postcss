@@ -6,7 +6,7 @@ let fs = require('fs')
 let writeFile = promisify(fs.writeFile)
 let mkdir = promisify(fs.mkdir)
 
-const API_FOLDER = join(__dirname, 'api')
+const API_FOLDER = join(__dirname, '..', 'api')
 
 function generateDocs (data) {
   let docs = Object.values(data)
@@ -23,10 +23,7 @@ function generateDocs (data) {
     getSectionsSeparator('Global'),
     docs
       .filter(item => item.kind === 'typedef')
-      .map(i => ({
-        ...i,
-        hideAtNavigation: true
-      }))
+      .map(i => ({ ...i, hideAtNavigation: true }))
   )
 }
 
@@ -42,7 +39,7 @@ function extendClasses (docs) {
           .concat(getParentMethods(parentClass))
           .map(changeNamespaceForMethod(targetClass, parentClass))
           .filter(cleanFromDuplicated(targetClass, parentClass))
-          .sort(sortAtAlphabet)
+          .sort((a, b) => a.name > b.name ? 1 : -1)
       })
     })
 }
@@ -51,15 +48,13 @@ function filterExtendedClasses (extendedClass) {
   return extendedClass.augments.length > 0
 }
 
-function getParentMethods (parentClass) {
-  return parentClass.members.instance
-    .filter(i => i.memberof === parentClass.name)
+function getParentMethods (parentCls) {
+  return parentCls.members.instance.filter(i => i.memberof === parentCls.name)
 }
 
-function changeNamespaceForMethod (targetClass, parentClass) {
+function changeNamespaceForMethod (targetCls, parentCls) {
   return i => ({
-    ...i,
-    namespace: i.namespace.replace(parentClass.name, targetClass.name)
+    ...i, namespace: i.namespace.replace(parentCls.name, targetCls.name)
   })
 }
 
@@ -77,17 +72,13 @@ function cleanFromDuplicated (targetClass, parentClass) {
 }
 
 function sortClasses (docs) {
-  docs.sort(sortAtAlphabet)
+  docs.sort((a, b) => a.name > b.name ? 1 : -1)
 }
 
 function removeEmptyMethods (docs) {
   docs.forEach(doc => {
     doc.members.instance = doc.members.instance.filter(i => i.name)
   })
-}
-
-function sortAtAlphabet (a, b) {
-  return a.name > b.name ? 1 : -1
 }
 
 function renderTemplate (output) {

@@ -12,4 +12,4 @@ api/
 docs/
 CONTRIBUTING.md
 README-cn.md
-generate-docs.js
+docs/generate-api.js
