@@ -382,3 +382,20 @@ it('works visitor plugin postcss-alias', async () => {
   let { css } = await postcss([postcssAlias]).process(input, { from: 'a.css' })
   expect(css).toEqual(expected)
 })
+
+it('adds node to error', async () => {
+  function broken (root) {
+    root.on('rule.enter', () => {
+      throw new Error('test')
+    })
+  }
+  let error
+  try {
+    await postcss([broken]).process('a{}', { from: 'broken.css' })
+  } catch (e) {
+    error = e
+  }
+  expect(error.message).toEqual('test')
+  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.stack).toContain('broken.css:1:1')
+})
