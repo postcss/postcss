@@ -7,7 +7,7 @@ let Root = require('../lib/root')
 
 it('works with file reads', () => {
   let stream = fs.readFileSync(cases.path('atrule-empty.css'))
-  expect(parse(stream) instanceof Root).toBeTruthy()
+  expect(parse(stream) instanceof Root).toBe(true)
 })
 
 cases.each((name, css, json) => {
@@ -24,12 +24,12 @@ it('parses UTF-8 BOM', () => {
 
 it('should has true at `hasBOM` property', () => {
   let css = parse('\uFEFF@host { a {\f} }')
-  expect(css.first.source.input.hasBOM).toBeTruthy()
+  expect(css.first.source.input.hasBOM).toBe(true)
 })
 
 it('should has false at `hasBOM` property', () => {
   let css = parse('@host { a {\f} }')
-  expect(css.first.source.input.hasBOM).toBeFalsy()
+  expect(css.first.source.input.hasBOM).toBe(false)
 })
 
 it('saves source file', () => {
@@ -55,8 +55,8 @@ it('saves source file on previous map', () => {
 it('sets unique ID for file without name', () => {
   let css1 = parse('a {}')
   let css2 = parse('a {}')
-  expect(css1.first.source.input.id).toMatch(/^<input css [\d\w_-]+>$/)
-  expect(css1.first.source.input.from).toMatch(/^<input css [\d\w_-]+>$/)
+  expect(css1.first.source.input.id).toMatch(/^<input css [\w-]+>$/)
+  expect(css1.first.source.input.from).toMatch(/^<input css [\w-]+>$/)
   expect(css2.first.source.input.id).not.toEqual(css1.first.source.input.id)
 })
 
@@ -97,58 +97,58 @@ it('parses double semicolon after rule', () => {
 it('throws on unclosed blocks', () => {
   expect(() => {
     parse('\na {\n')
-  }).toThrowError(/:2:1: Unclosed block/)
+  }).toThrow(/:2:1: Unclosed block/)
 })
 
 it('throws on unnecessary block close', () => {
   expect(() => {
     parse('a {\n} }')
-  }).toThrowError(/:2:3: Unexpected }/)
+  }).toThrow(/:2:3: Unexpected }/)
 })
 
 it('throws on unclosed comment', () => {
   expect(() => {
     parse('\n/*\n ')
-  }).toThrowError(/:2:1: Unclosed comment/)
+  }).toThrow(/:2:1: Unclosed comment/)
 })
 
 it('throws on unclosed quote', () => {
   expect(() => {
     parse('\n"\n\na ')
-  }).toThrowError(/:2:1: Unclosed string/)
+  }).toThrow(/:2:1: Unclosed string/)
 })
 
 it('throws on unclosed bracket', () => {
   expect(() => {
     parse(':not(one() { }')
-  }).toThrowError(/:1:5: Unclosed bracket/)
+  }).toThrow(/:1:5: Unclosed bracket/)
 })
 
 it('throws on property without value', () => {
   expect(() => {
     parse('a { b;}')
-  }).toThrowError(/:1:5: Unknown word/)
+  }).toThrow(/:1:5: Unknown word/)
   expect(() => {
     parse('a { b b }')
-  }).toThrowError(/:1:5: Unknown word/)
+  }).toThrow(/:1:5: Unknown word/)
 })
 
 it('throws on nameless at-rule', () => {
   expect(() => {
     parse('@')
-  }).toThrowError(/:1:1: At-rule without name/)
+  }).toThrow(/:1:1: At-rule without name/)
 })
 
 it('throws on property without semicolon', () => {
   expect(() => {
     parse('a { one: filter(a:"") two: 2 }')
-  }).toThrowError(/:1:21: Missed semicolon/)
+  }).toThrow(/:1:21: Missed semicolon/)
 })
 
 it('throws on double colon', () => {
   expect(() => {
     parse('a { one:: 1 }')
-  }).toThrowError(/:1:9: Double colon/)
+  }).toThrow(/:1:9: Double colon/)
 })
 
 it('do not throws on comment in between', () => {
@@ -158,16 +158,16 @@ it('do not throws on comment in between', () => {
 it('throws on two words in between', () => {
   expect(() => {
     parse('a { b c: 1 }')
-  }).toThrowError(/:1:7: Unknown word/)
+  }).toThrow(/:1:7: Unknown word/)
 })
 
 it('throws on just colon', () => {
   expect(() => {
     parse(':')
-  }).toThrowError(/:1:1: Unknown word/)
+  }).toThrow(/:1:1: Unknown word/)
   expect(() => {
     parse(' : ')
-  }).toThrowError(/:1:2: Unknown word/)
+  }).toThrow(/:1:2: Unknown word/)
 })
 
 it('does not suggest different parsers for CSS', () => {
@@ -183,17 +183,17 @@ it('does not suggest different parsers for CSS', () => {
 it('suggests postcss-scss for SCSS sources', () => {
   expect(() => {
     parse('a { #{var}: 1 }', { from: 'app.scss' })
-  }).toThrowError(/postcss-scss/)
+  }).toThrow(/postcss-scss/)
 })
 
 it('suggests postcss-sass for Sass sources', () => {
   expect(() => {
     parse('a\n  #{var}: 1', { from: 'app.sass' })
-  }).toThrowError(/postcss-sass/)
+  }).toThrow(/postcss-sass/)
 })
 
 it('suggests postcss-less for Less sources', () => {
   expect(() => {
     parse('.@{my-selector} { }', { from: 'app.less' })
-  }).toThrowError(/postcss-less/)
+  }).toThrow(/postcss-less/)
 })

@@ -3,7 +3,7 @@ let postcss = require('../lib/postcss')
 
 it('creates plugins list', () => {
   let processor = postcss()
-  expect(processor instanceof Processor).toBeTruthy()
+  expect(processor instanceof Processor).toBe(true)
   expect(processor.plugins).toEqual([])
 })
 
@@ -133,5 +133,5 @@ it('contains list module', () => {
 it('works with null', () => {
   expect(() => {
     postcss([() => true]).process(null).css
-  }).toThrowError(/PostCSS received null instead of CSS string/)
+  }).toThrow(/PostCSS received null instead of CSS string/)
 })

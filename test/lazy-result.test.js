@@ -33,7 +33,7 @@ it('has map only if necessary', () => {
   expect(result2.map).not.toBeDefined()
 
   let result3 = new LazyResult(processor, '', { map: { inline: false } })
-  expect(result3.map instanceof mozilla.SourceMapGenerator).toBeTruthy()
+  expect(result3.map instanceof mozilla.SourceMapGenerator).toBe(true)
 })
 
 it('contains options', () => {

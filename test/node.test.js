@@ -15,14 +15,14 @@ function stringify (node, builder) {
 it('shows error on wrong constructor types', () => {
   expect(() => {
     new Rule('a')
-  }).toThrowError('PostCSS nodes constructor accepts object, not "a"')
+  }).toThrow('PostCSS nodes constructor accepts object, not "a"')
 })
 
 it('error() generates custom error', () => {
   let file = path.resolve('a.css')
   let css = parse('a{}', { from: file })
   let error = css.first.error('Test')
-  expect(error instanceof CssSyntaxError).toBeTruthy()
+  expect(error instanceof CssSyntaxError).toBe(true)
   expect(error.message).toEqual(file + ':1:1: Test')
 })
 
