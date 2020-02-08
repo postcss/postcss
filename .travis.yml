@@ -10,3 +10,5 @@ matrix:
     cache: false
     node_js: "11"
     script: npx jest
+    env:
+      - YARN_GPG=no
