@@ -15,7 +15,7 @@ deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
-  local-dir: api
+  local-dir: docs/api/
   on:
     branch: master
     node_js: node

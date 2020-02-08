@@ -6,6 +6,5 @@ yarn.lock
 test/
 .travis.yml
 
-api/
 docs/
 .github/
