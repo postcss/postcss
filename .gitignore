@@ -1,5 +1,5 @@
 node_modules/
 yarn-error.log
 
-api/index.html
-api/assets/
+docs/api/index.html
+docs/api/assets/
