@@ -23,7 +23,7 @@ function parseError (css, opts) {
 it('saves source', () => {
   let error = parseError('a {\n  content: "\n}')
 
-  expect(error instanceof CssSyntaxError).toBeTruthy()
+  expect(error instanceof CssSyntaxError).toBe(true)
   expect(error.name).toEqual('CssSyntaxError')
   expect(error.message).toEqual('<css input>:2:12: Unclosed string')
   expect(error.reason).toEqual('Unclosed string')

@@ -74,7 +74,7 @@ it('throws on wrong format', () => {
   let pr = new Processor()
   expect(() => {
     pr.use(1)
-  }).toThrowError(/1 is not a PostCSS plugin/)
+  }).toThrow(/1 is not a PostCSS plugin/)
 })
 
 it('processes CSS', () => {
@@ -143,7 +143,7 @@ it('allows to replace Root', () => {
 
 it('returns LazyResult object', () => {
   let result = (new Processor([() => true])).process('a{}')
-  expect(result instanceof LazyResult).toBeTruthy()
+  expect(result instanceof LazyResult).toBe(true)
   expect(result.css).toEqual('a{}')
   expect(result.toString()).toEqual('a{}')
 })
@@ -168,7 +168,7 @@ it('calls all plugins once', async () => {
 })
 
 it('parses, converts and stringifies CSS', () => {
-  let a = css => expect(css instanceof Root).toBeTruthy()
+  let a = css => expect(css instanceof Root).toBe(true)
   expect(typeof (new Processor([a])).process('a {}').css).toEqual('string')
 })
 
@@ -176,7 +176,7 @@ it('send result to plugins', () => {
   expect.assertions(4)
   let processor = new Processor([() => true])
   let a = (css, result) => {
-    expect(result instanceof Result).toBeTruthy()
+    expect(result instanceof Result).toBe(true)
     expect(result.processor).toEqual(processor)
     expect(result.opts).toEqual({ map: true })
     expect(result.root).toEqual(css)
@@ -253,35 +253,39 @@ it('runs async plugin only once', async () => {
   expect(calls).toEqual(1)
 })
 
-it('supports async errors', done => {
+it('supports async errors', () => {
   let error = new Error('Async')
   let async = () => {
     return new Promise((resolve, reject) => {
       reject(error)
     })
   }
-  let result = (new Processor([async])).process('', { from: undefined })
-  result.then(() => {
-    done.fail()
-  }).catch(err => {
-    expect(err).toEqual(error)
-    return result.catch(err2 => {
-      expect(err2).toEqual(error)
-      done()
+  return new Promise((resolve, reject) => {
+    let result = (new Processor([async])).process('', { from: undefined })
+    result.then(() => {
+      reject(new Error('Called .then in failed processing'))
+    }).catch(err => {
+      expect(err).toEqual(error)
+      return result.catch(err2 => {
+        expect(err2).toEqual(error)
+        resolve()
+      })
     })
   })
 })
 
-it('supports sync errors in async mode', done => {
+it('supports sync errors in async mode', () => {
   let error = new Error('Async')
   let async = () => {
     throw error
-  };
-  (new Processor([async])).process('', { from: undefined }).then(() => {
-    done.fail()
-  }).catch(err => {
-    expect(err).toEqual(error)
-    done()
+  }
+  return new Promise((resolve, reject) => {
+    (new Processor([async])).process('', { from: undefined }).then(() => {
+      reject(new Error('Called .then in failed processing'))
+    }).catch(err => {
+      expect(err).toEqual(error)
+      resolve()
+    })
   })
 })
 
@@ -301,7 +305,7 @@ it('throws error on sync method to async plugin', () => {
   }
   expect(() => {
     (new Processor([async])).process('a{}').css
-  }).toThrowError(/async/)
+  }).toThrow(/async/)
 })
 
 it('throws a sync call in async running', () => {
@@ -312,7 +316,7 @@ it('throws a sync call in async running', () => {
 
   expect(() => {
     processor.sync()
-  }).toThrowError(/then/)
+  }).toThrow(/then/)
 })
 
 it('checks plugin compatibility', () => {
@@ -334,7 +338,7 @@ it('checks plugin compatibility', () => {
 
   expect(() => {
     processBy('1.0.0')
-  }).toThrowError('Er')
+  }).toThrow('Er')
   expect(console.error.mock.calls).toHaveLength(1)
   expect(console.error.mock.calls[0][0]).toEqual(
     'Unknown error from PostCSS plugin. ' +
@@ -344,17 +348,17 @@ it('checks plugin compatibility', () => {
 
   expect(() => {
     processBy('3.0.0')
-  }).toThrowError('Er')
+  }).toThrow('Er')
   expect(console.error.mock.calls).toHaveLength(2)
 
   expect(() => {
     processBy('2.0.0')
-  }).toThrowError('Er')
+  }).toThrow('Er')
   expect(console.error.mock.calls).toHaveLength(3)
 
   expect(() => {
     processBy('2.1.0')
-  }).toThrowError('Er')
+  }).toThrow('Er')
   expect(console.error.mock.calls).toHaveLength(3)
 })
 
@@ -427,7 +431,7 @@ it('throws on syntax as plugin', () => {
     processor.use({
       parse () { }
     })
-  }).toThrowError(/syntax/)
+  }).toThrow(/syntax/)
 })
 
 it('warns about missed from', async () => {
@@ -435,10 +439,10 @@ it('warns about missed from', async () => {
   let processor = new Processor([() => true])
 
   processor.process('a{}').css
-  expect(console.warn).not.toBeCalled()
+  expect(console.warn).not.toHaveBeenCalled()
 
   await processor.process('a{}')
-  expect(console.warn).toBeCalledWith(
+  expect(console.warn).toHaveBeenCalledWith(
     'Without `from` option PostCSS could generate wrong source map ' +
     'and will not find Browserslist config. Set it to CSS file path ' +
     'or to `undefined` to prevent this warning.'
@@ -448,7 +452,7 @@ it('warns about missed from', async () => {
 it('warns about missed plugins', async () => {
   jest.spyOn(console, 'warn').mockImplementation(() => true)
   await (new Processor()).process('a{}')
-  expect(console.warn).toBeCalledWith(
+  expect(console.warn).toHaveBeenCalledWith(
     'You did not set any plugins, parser, or stringifier. ' +
     'Right now, PostCSS does nothing. Pick plugins for your case ' +
     'on https://www.postcss.parts/ and use them in postcss.config.js.'

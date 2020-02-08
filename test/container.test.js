@@ -20,13 +20,13 @@ let example = 'a { a: 1; b: 2 }' +
 it('throws error on declaration without value', () => {
   expect(() => {
     (new Rule()).append({ prop: 'color', vlaue: 'black' })
-  }).toThrowError(/Value field is missed/)
+  }).toThrow(/Value field is missed/)
 })
 
 it('throws error on unknown node type', () => {
   expect(() => {
     (new Rule()).append({ foo: 'bar' })
-  }).toThrowError(/Unknown node type/)
+  }).toThrow(/Unknown node type/)
 })
 
 it('push() adds child without checks', () => {
