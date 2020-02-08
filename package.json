@@ -89,10 +89,7 @@
     }
   ],
   "jest": {
-    "testEnvironment": "node",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/build"
-    ]
+    "testEnvironment": "node"
   },
   "eslintConfig": {
     "extends": "eslint-config-postcss",
@@ -101,15 +98,6 @@
       "global-require": "off"
     },
     "overrides": [
-      {
-        "files": [
-          "gulpfile.js"
-        ],
-        "rules": {
-          "node/no-unpublished-require": "off",
-          "global-require": "off"
-        }
-      },
       {
         "files": [
           "*.test.js"
