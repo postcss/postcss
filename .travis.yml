@@ -7,5 +7,6 @@ node_js:
 matrix:
   include:
     os: windows
+    cache: false
     node_js: "11"
     script: npx jest
