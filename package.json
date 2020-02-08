@@ -19,8 +19,7 @@
   "scripts": {
     "clean": "rimraf api/index.html api/assets/",
     "spell": "./api/generate.js && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
-    "lint": "eslint-ci lib/*.js test/*.js",
-    "test": "jest && yarn lint && ./test/integration.js && yarn spell && size-limit"
+    "test": "jest && eslint-ci . && ./test/integration.js && yarn spell && size-limit"
   },
   "funding": {
     "type": "tidelift",
@@ -110,7 +109,6 @@
     ]
   },
   "eslintIgnore": [
-    "node_modules",
     "docs/api/assets/"
   ],
   "yaspeller": {
