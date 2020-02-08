@@ -41,7 +41,7 @@
     "clean-publish": "^1.1.2",
     "concat-with-sourcemaps": "^1.1.0",
     "documentation": "^10.1.0",
-    "documentation-theme-light": "^1.0.1",
+    "documentation-theme-light": "https://github.com/isolovev/documentation-theme-light",
     "eslint": "^5.16.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-postcss": "^3.0.7",
