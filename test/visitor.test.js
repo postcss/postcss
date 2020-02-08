@@ -2,7 +2,7 @@ let postcss = require('../lib/postcss')
 
 function hasAlready (parent, selector) {
   return parent.nodes.some(i => {
-    return i.type === 'rule' && i.selectors.indexOf(selector) !== -1
+    return i.type === 'rule' && i.selectors.includes(selector)
   })
 }
 
@@ -62,10 +62,10 @@ let replaceGreenToRed = postcss.plugin('replace-green-to-red', () => root => {
 
 let postcssFocus = postcss.plugin('postcss-focus', () => root => {
   root.on('rule', rule => {
-    if (rule.selector.indexOf(':hover') !== -1) {
+    if (rule.selector.includes(':hover')) {
       let focuses = []
       rule.selectors.forEach(selector => {
-        if (selector.indexOf(':hover') !== -1) {
+        if (selector.includes(':hover')) {
           let replaced = selector.replace(/:hover/g, ':focus')
           if (!hasAlready(rule.parent, replaced)) {
             focuses.push(replaced)
@@ -85,7 +85,7 @@ let hidden = postcss.plugin('hidden', () => root => {
 
     let value = decl.value
 
-    if (value.indexOf('disappear') !== -1) {
+    if (value.includes('disappear')) {
       decl.cloneBefore({
         prop: 'display',
         value: 'none !important'
@@ -98,7 +98,7 @@ let hidden = postcss.plugin('hidden', () => root => {
       decl.remove()
     }
 
-    if (value.indexOf('hidden') !== -1) {
+    if (value.includes('hidden')) {
       let ruleSelectors = decl.parent.selectors.map(i => {
         return `${ i }.focusable:active,${ i }.focusable:focus`
       })
@@ -119,7 +119,7 @@ let hidden = postcss.plugin('hidden', () => root => {
       decl.remove()
     }
 
-    if (value.indexOf('invisible') !== -1) {
+    if (value.includes('invisible')) {
       decl.cloneBefore({ prop: 'visibility', value: 'hidden' })
       decl.remove()
     }
