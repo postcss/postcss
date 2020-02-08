@@ -147,6 +147,71 @@ let postcssAlias = postcss.plugin('postcss-alias', () => root => {
   })
 })
 
+it('walks through after all plugins', async () => {
+  let events = []
+  function visitor (root) {
+    root.on('atrule.enter', (node, i) => {
+      events.push(['atrule.enter', node.name, i])
+    })
+    root.on('atrule.exit', (node, i) => {
+      events.push(['atrule.exit', node.name, i])
+    })
+    root.on('rule.enter', (node, i) => {
+      events.push(['rule.enter', node.selector, i])
+    })
+    root.on('rule.exit', (node, i) => {
+      events.push(['rule.exit', node.selector, i])
+    })
+    root.on('decl.enter', (node, i) => {
+      events.push(['decl.enter', node.prop, i])
+    })
+    root.on('decl.exit', (node, i) => {
+      events.push(['decl.exit', node.prop, i])
+    })
+    root.on('comment.enter', (node, i) => {
+      events.push(['comment.enter', node.text, i])
+    })
+    root.on('comment.exit', (node, i) => {
+      events.push(['comment.exit', node.text, i])
+    })
+  }
+  function follower (root) {
+    expect(events).toHaveLength(0)
+    root.on('decl.enter', (node, i) => {
+      expect(events[events.length - 1]).toEqual(['decl.enter', node.prop, i])
+    })
+    root.on('decl.exit', (node, i) => {
+      expect(events[events.length - 1]).toEqual(['decl.exit', node.prop, i])
+    })
+  }
+  await postcss([visitor, follower]).process(
+    `@media screen {
+      body {
+        background: white;
+        padding: 10px;
+      }
+      a {
+        color: blue;
+      }
+    }`,
+    { from: 'a.css' }
+  )
+  expect(events).toEqual([
+    ['atrule.enter', 'media', 0],
+    ['rule.enter', 'body', 0],
+    ['decl.enter', 'background', 0],
+    ['decl.exit', 'background', 0],
+    ['decl.enter', 'padding', 1],
+    ['decl.exit', 'padding', 1],
+    ['rule.exit', 'body', 0],
+    ['rule.enter', 'a', 1],
+    ['decl.enter', 'color', 0],
+    ['decl.exit', 'color', 0],
+    ['rule.exit', 'a', 1],
+    ['atrule.exit', 'media', 0]
+  ])
+})
+
 it('works classic plugin replace-color', async () => {
   let { css } = await postcss([replaceColorGreenClassic]).process(
     '.a{ color: red; } ' +
