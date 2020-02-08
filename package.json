@@ -18,10 +18,10 @@
   ],
   "scripts": {
     "clean": "rimraf build/ api/",
-    "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
     "docs": "jsdoc -c .jsdocrc lib/*.js",
-    "lint": "eslint-ci *.js lib/*.js test/*.js",
-    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
+    "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
+    "lint": "eslint-ci lib/*.js test/*.js",
+    "test": "jest && yarn lint && ./test/integration.js && yarn spell && size-limit"
   },
   "funding": {
     "type": "tidelift",
@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^28.1.0",
+    "clean-publish": "^1.1.2",
     "concat-with-sourcemaps": "^1.1.0",
     "docdash": "^1.1.0",
     "eslint": "^5.16.0",
@@ -53,19 +54,13 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.0",
     "fs-extra": "^7.0.1",
-    "gulp": "^4.0.0",
-    "gulp-changed": "^3.2.0",
-    "gulp-json-editor": "^2.5.1",
-    "gulp-sourcemaps": "^2.6.5",
     "husky": "^1.3.1",
     "jest": "^24.7.1",
-    "jest-cli": "^24.7.1",
     "jsdoc": "^3.6.3",
     "lint-staged": "^8.1.5",
     "postcss-parser-tests": "6.3.1",
     "rewire": "^4.0.1",
     "rimraf": "^2.6.3",
-    "run-sequence": "^2.2.1",
     "size-limit": "^1.0.1",
     "strip-ansi": "^5.2.0",
     "yaspeller-ci": "^1.0.0"
