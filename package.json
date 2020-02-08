@@ -17,7 +17,7 @@
     "transpiler"
   ],
   "scripts": {
-    "clean": "rimraf build/ api/",
+    "clean": "rimraf api/",
     "spell": "./docs/generate-api.js && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
     "lint": "eslint-ci lib/*.js test/*.js",
     "test": "jest && yarn lint && ./test/integration.js && yarn spell && size-limit"
