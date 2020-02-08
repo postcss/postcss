@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^30.0.2",
+    "@logux/sharec-config": "^0.3.5",
     "ci-job-number": "^0.3.0",
     "clean-publish": "^1.1.2",
     "concat-with-sourcemaps": "^1.1.0",
@@ -44,7 +45,6 @@
     "documentation-theme-light": "^1.0.0",
     "eslint": "^6.1.0",
     "eslint-ci": "^1.0.0",
-    "eslint-config-postcss": "^3.0.7",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-es5": "^1.4.1",
     "eslint-plugin-import": "^2.18.2",
@@ -69,8 +69,8 @@
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
   "lint-staged": {
-    "/*.js": "eslint",
-    "*.md": "yaspeller-ci"
+    "*.md": "yaspeller-ci",
+    "*.js": "eslint"
   },
   "husky": {
     "hooks": {
@@ -93,7 +93,7 @@
     "testEnvironment": "node"
   },
   "eslintConfig": {
-    "extends": "eslint-config-postcss",
+    "extends": "@logux/eslint-config/node",
     "rules": {
       "consistent-return": "off",
       "global-require": "off"
@@ -110,6 +110,10 @@
       }
     ]
   },
+  "eslintIgnore": [
+    "node_modules",
+    "docs/api/assets/"
+  ],
   "yaspeller": {
     "lang": "en",
     "ignoreCapitalization": true,
@@ -285,5 +289,8 @@
       "YIQ",
       "Zagan"
     ]
+  },
+  "sharec": {
+    "version": "0.3.5"
   }
 }
