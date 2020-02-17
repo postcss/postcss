@@ -580,7 +580,7 @@ declare namespace postcss {
      * @returns A symbol position in the input source (e.g., in a Sass file
      * that was compiled to CSS before being passed to PostCSS):
      */
-    origin(line: number, column: number): InputOrigin;
+    origin(line: number, column: number): InputOrigin | false;
   }
   type ChildNode = AtRule | Rule | Declaration | Comment;
   type Node = Root | ChildNode;
