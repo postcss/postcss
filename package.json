@@ -31,6 +31,7 @@
   "repository": "postcss/postcss",
   "dependencies": {
     "chalk": "^3.0.0",
+    "line-column": "^1.0.2",
     "nanoid": "^2.1.10",
     "source-map": "^0.6.1",
     "supports-color": "^7.1.0"
