@@ -34,32 +34,21 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 * [`postcss-utilities`] includes the most commonly used mixins, shortcuts
   and helpers to use as `@util` rules.
-* [`atcss`] contains plugins that transform your CSS according
-  to special annotation comments.
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
-* [`oldie`] contains plugins that transform your CSS
-  for older Internet Explorer compatibility.
 * [`precss`] contains plugins that allow you to use Sass-like CSS.
 * [`rucksack`] contains plugins to speed up CSS development
   with new features and shortcuts.
-* [`level4`] contains only plugins that let you write CSS4 without
-  the IE9 fallbacks.
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
-* [`postcss-hamster`] for vertical rhythm, typography, modular scale functions.
 * [`postcss-preset-env`] lets you convert modern CSS into something most browsers can understand, determining the polyfills you need based on your targeted browsers or runtime environments.
 * [`postcss-ui-theme`] gives you syntax sugar and allow you change theme.
 
 [`postcss-preset-env`]: https://github.com/jonathantneal/postcss-preset-env/
 [`postcss-utilities`]:  https://github.com/ismamz/postcss-utilities
-[`postcss-hamster`]:    https://github.com/h0tc0d3/postcss-hamster
 [`stylelint`]:          https://github.com/stylelint/stylelint
-[`rucksack`]:           http://simplaio.github.io/rucksack
+[`rucksack`]:           https://www.rucksackcss.org/
 [`cssnano`]:            http://cssnano.co/
-[`level4`]:             https://github.com/stephenway/level4
 [`precss`]:             https://github.com/jonathantneal/precss
-[`oldie`]:              https://github.com/jonathantneal/oldie
-[`atcss`]:              https://github.com/morishitter/atcss
 [`postcss-ui-theme`]:   https://github.com/cleverboy32/postcss-ui-theme
 
 ## Future CSS Syntax
