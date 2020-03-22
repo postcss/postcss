@@ -18,10 +18,10 @@ const ASTERISK = '*'.charCodeAt(0)
 const COLON = ':'.charCodeAt(0)
 const AT = '@'.charCodeAt(0)
 
-const RE_AT_END = /[ \n\t\r\f{}()'"\\;/[\]#]/g
-const RE_WORD_END = /[ \n\t\r\f(){}:;@!'"\\\][#]|\/(?=\*)/g
-const RE_BAD_BRACKET = /.[\\/("'\n]/
-const RE_HEX_ESCAPE = /[a-f0-9]/i
+const RE_AT_END = /[\t\n\f\r "#'()/;[\\\]{}]/g
+const RE_WORD_END = /[\t\n\f\r !"#'():;@[\\\]{}]|\/(?=\*)/g
+const RE_BAD_BRACKET = /.[\n"'(/\\]/
+const RE_HEX_ESCAPE = /[\da-f]/i
 
 export default function tokenizer (input, options = {}) {
   let css = input.css.valueOf()
@@ -96,11 +96,11 @@ export default function tokenizer (input, options = {}) {
       case CLOSE_CURLY:
       case COLON:
       case SEMICOLON:
-      case CLOSE_PARENTHESES:
+      case CLOSE_PARENTHESES: {
         let controlChar = String.fromCharCode(code)
         currentToken = [controlChar, controlChar, line, pos - offset]
         break
-
+      }
       case OPEN_PARENTHESES:
         prev = buffer.length ? buffer.pop()[1] : ''
         n = css.charCodeAt(pos + 1)

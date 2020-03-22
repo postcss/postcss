@@ -500,8 +500,8 @@ class Container extends Node {
     }
 
     this.walkDecls(decl => {
-      if (opts.props && opts.props.indexOf(decl.prop) === -1) return
-      if (opts.fast && decl.value.indexOf(opts.fast) === -1) return
+      if (opts.props && !opts.props.includes(decl.prop)) return
+      if (opts.fast && !decl.value.includes(opts.fast)) return
 
       decl.value = decl.value.replace(pattern, callback)
     })
@@ -621,7 +621,7 @@ class Container extends Node {
       if (i.parent) i.parent.removeChild(i)
       if (typeof i.raws.before === 'undefined') {
         if (sample && typeof sample.raws.before !== 'undefined') {
-          i.raws.before = sample.raws.before.replace(/[^\s]/g, '')
+          i.raws.before = sample.raws.before.replace(/\S/g, '')
         }
       }
       i.parent = this

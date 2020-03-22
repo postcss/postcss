@@ -29,7 +29,7 @@ it('creates property if map present', () => {
 
 it('returns consumer', () => {
   let obj = parse('a{}', { map: { prev: map } }).source.input.map.consumer()
-  expect(obj instanceof mozilla.SourceMapConsumer).toBeTruthy()
+  expect(obj).toBeInstanceOf(mozilla.SourceMapConsumer)
 })
 
 it('sets annotation property', () => {
@@ -103,13 +103,13 @@ it('raises on unknown inline encoding', () => {
 
   expect(() => {
     parse(css)
-  }).toThrowError('Unsupported source map encoding md5')
+  }).toThrow('Unsupported source map encoding md5')
 })
 
 it('raises on unknown map format', () => {
   expect(() => {
     parse('a{}', { map: { prev: 1 } })
-  }).toThrowError('Unsupported previous source map format: 1')
+  }).toThrow('Unsupported previous source map format: 1')
 })
 
 it('reads map from annotation', () => {
@@ -146,7 +146,7 @@ it('accepts an empty mappings string', () => {
       mappings: ''
     }
     parse('body{}', { map: { prev: emptyMap } })
-  }).not.toThrowError()
+  }).not.toThrow()
 })
 
 it('accepts a function', () => {
@@ -192,5 +192,5 @@ it('raises when function returns invalid path', () => {
   }
   expect(() => {
     parse(css, opts)
-  }).toThrowError('Unable to load previous source map: ' + fakePath)
+  }).toThrow('Unable to load previous source map: ' + fakePath)
 })

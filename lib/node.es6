@@ -2,11 +2,13 @@ import CssSyntaxError from './css-syntax-error'
 import Stringifier from './stringifier'
 import stringify from './stringify'
 
+const { hasOwnProperty } = Object.prototype
+
 function cloneNode (obj, parent) {
   let cloned = new obj.constructor()
 
   for (let i in obj) {
-    if (!obj.hasOwnProperty(i)) continue
+    if (!hasOwnProperty.call(obj, i)) continue
     let value = obj[i]
     let type = typeof value
 
@@ -14,7 +16,7 @@ function cloneNode (obj, parent) {
       if (parent) cloned[i] = parent
     } else if (i === 'source') {
       cloned[i] = value
-    } else if (value instanceof Array) {
+    } else if (Array.isArray(value)) {
       cloned[i] = value.map(j => cloneNode(j, cloned))
     } else {
       if (type === 'object' && value !== null) value = cloneNode(value)
@@ -314,11 +316,11 @@ class Node {
     let fixed = { }
 
     for (let name in this) {
-      if (!this.hasOwnProperty(name)) continue
+      if (!hasOwnProperty.call(this, name)) continue
       if (name === 'parent') continue
       let value = this[name]
 
-      if (value instanceof Array) {
+      if (Array.isArray(value)) {
         fixed[name] = value.map(i => {
           if (typeof i === 'object' && i.toJSON) {
             return i.toJSON()

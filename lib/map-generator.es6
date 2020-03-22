@@ -22,7 +22,7 @@ class MapGenerator {
       this.root.walk(node => {
         if (node.source && node.source.input.map) {
           let map = node.source.input.map
-          if (this.previousMaps.indexOf(map) === -1) {
+          if (!this.previousMaps.includes(map)) {
             this.previousMaps.push(map)
           }
         }
@@ -137,7 +137,7 @@ class MapGenerator {
     }
 
     let eol = '\n'
-    if (this.css.indexOf('\r\n') !== -1) eol = '\r\n'
+    if (this.css.includes('\r\n')) eol = '\r\n'
 
     this.css += eol + '/*# sourceMappingURL=' + content + ' */'
   }

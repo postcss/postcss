@@ -71,7 +71,7 @@ export default class Parser {
       node.raws.left = text
       node.raws.right = ''
     } else {
-      let match = text.match(/^(\s*)([^]*[^\s])(\s*)$/)
+      let match = text.match(/^(\s*)([^]*\S)(\s*)$/)
       node.text = match[2]
       node.raws.left = match[1]
       node.raws.right = match[3]
@@ -240,7 +240,7 @@ export default class Parser {
 
     this.raw(node, 'value', tokens)
 
-    if (node.value.indexOf(':') !== -1) this.checkMissedSemicolon(tokens)
+    if (node.value.includes(':')) this.checkMissedSemicolon(tokens)
   }
 
   atrule (token) {
@@ -364,7 +364,7 @@ export default class Parser {
     let value = ''
     let clean = true
     let next, prev
-    let pattern = /^([.|#])?([\w])+/i
+    let pattern = /^([#.|])?(\w)+/i
 
     for (let i = 0; i < length; i += 1) {
       token = tokens[i]
@@ -446,8 +446,8 @@ export default class Parser {
   colon (tokens) {
     let brackets = 0
     let token, type, prev
-    for (let i = 0; i < tokens.length; i++) {
-      token = tokens[i]
+    for (const [i, element] of tokens.entries()) {
+      token = element
       type = token[0]
 
       if (type === '(') {

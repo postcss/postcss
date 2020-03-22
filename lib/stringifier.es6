@@ -186,7 +186,7 @@ class Stringifier {
         if (typeof i.raws.before !== 'undefined') {
           let parts = i.raws.before.split('\n')
           value = parts[parts.length - 1]
-          value = value.replace(/[^\s]/g, '')
+          value = value.replace(/\S/g, '')
           return false
         }
       }
@@ -199,7 +199,7 @@ class Stringifier {
     root.walkComments(i => {
       if (typeof i.raws.before !== 'undefined') {
         value = i.raws.before
-        if (value.indexOf('\n') !== -1) {
+        if (value.includes('\n')) {
           value = value.replace(/[^\n]+$/, '')
         }
         return false
@@ -208,7 +208,7 @@ class Stringifier {
     if (typeof value === 'undefined') {
       value = this.raw(node, null, 'beforeDecl')
     } else if (value) {
-      value = value.replace(/[^\s]/g, '')
+      value = value.replace(/\S/g, '')
     }
     return value
   }
@@ -218,7 +218,7 @@ class Stringifier {
     root.walkDecls(i => {
       if (typeof i.raws.before !== 'undefined') {
         value = i.raws.before
-        if (value.indexOf('\n') !== -1) {
+        if (value.includes('\n')) {
           value = value.replace(/[^\n]+$/, '')
         }
         return false
@@ -227,7 +227,7 @@ class Stringifier {
     if (typeof value === 'undefined') {
       value = this.raw(node, null, 'beforeRule')
     } else if (value) {
-      value = value.replace(/[^\s]/g, '')
+      value = value.replace(/\S/g, '')
     }
     return value
   }
@@ -238,14 +238,14 @@ class Stringifier {
       if (i.nodes && (i.parent !== root || root.first !== i)) {
         if (typeof i.raws.before !== 'undefined') {
           value = i.raws.before
-          if (value.indexOf('\n') !== -1) {
+          if (value.includes('\n')) {
             value = value.replace(/[^\n]+$/, '')
           }
           return false
         }
       }
     })
-    if (value) value = value.replace(/[^\s]/g, '')
+    if (value) value = value.replace(/\S/g, '')
     return value
   }
 
@@ -255,14 +255,14 @@ class Stringifier {
       if (i.nodes && i.nodes.length > 0) {
         if (typeof i.raws.after !== 'undefined') {
           value = i.raws.after
-          if (value.indexOf('\n') !== -1) {
+          if (value.includes('\n')) {
             value = value.replace(/[^\n]+$/, '')
           }
           return false
         }
       }
     })
-    if (value) value = value.replace(/[^\s]/g, '')
+    if (value) value = value.replace(/\S/g, '')
     return value
   }
 
@@ -307,7 +307,7 @@ class Stringifier {
       buf = buf.parent
     }
 
-    if (value.indexOf('\n') !== -1) {
+    if (value.includes('\n')) {
       let indent = this.raw(node, null, 'indent')
       if (indent.length) {
         for (let step = 0; step < depth; step++) value += indent

@@ -1,12 +1,6 @@
 language: node_js
-cache: yarn
+
 node_js:
-  - node
-  - "12"
-  - "10"
-  - "8"
-  - "6"
-git:
-  depth: 5
-install:
- - yarn install --ignore-engines
+  - 13
+  - 12
+  - 10

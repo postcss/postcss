@@ -57,6 +57,6 @@ it('generates result with map', () => {
   let root = parse('a {}')
   let result = root.toResult({ map: true })
 
-  expect(result instanceof Result).toBeTruthy()
-  expect(result.css).toMatch(/a \{\}\n\/\*# sourceMappingURL=/)
+  expect(result).toBeInstanceOf(Result)
+  expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
 })
