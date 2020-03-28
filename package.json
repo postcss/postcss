@@ -19,7 +19,7 @@
   "scripts": {
     "clean": "rimraf ./docs/api/index.html ./docs/api/assets/",
     "spell": "./docs/api/generate.js && yaspeller-ci ./docs/api/*.html *.md docs/{**/,}*.md",
-    "test": "jest && eslint-ci . && ./test/integration.js && yarn spell && size-limit"
+    "test": "jest && eslint-ci . && check-dts && ./test/integration.js && yarn spell && size-limit"
   },
   "funding": {
     "type": "tidelift",
@@ -39,6 +39,8 @@
     "@logux/eslint-config": "^36.1.2",
     "@logux/sharec-config": "^0.6.2",
     "@size-limit/preset-small-lib": "^4.4.2",
+    "@types/node": "^13.9.5",
+    "check-dts": "^0.1.4",
     "ci-job-number": "^1.2.1",
     "clean-publish": "^1.1.6",
     "concat-with-sourcemaps": "^1.1.0",
