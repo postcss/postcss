@@ -7478,7 +7478,7 @@ postcss-ordered-values@^4.1.2:
 
 postcss-parser-tests@postcss/postcss-parser-tests:
   version "6.5.0"
-  resolved "https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/9334e341ee6e1f09c40c983ffcc65434700f2cb1"
+  resolved "https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/6b85c365c98eab85165267fea0fd8de88ae573be"
   dependencies:
     chalk "^3.0.0"
     ci-job-number "^1.2.1"
