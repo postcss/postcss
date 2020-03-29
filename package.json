@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^36.1.2",
-    "@logux/sharec-config": "^0.6.2",
     "@size-limit/preset-small-lib": "^4.4.2",
     "@types/node": "^13.9.5",
     "check-dts": "^0.1.4",
@@ -287,9 +286,5 @@
       "Zagan",
       "visitingEvent"
     ]
-  },
-  "sharec": {
-    "config": "@logux/sharec-config",
-    "version": "0.6.2"
   }
 }
