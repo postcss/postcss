@@ -31,7 +31,7 @@
   "repository": "postcss/postcss",
   "dependencies": {
     "chalk": "^3.0.0",
-    "nanoid": "^3.0.1",
+    "nanoid": "^3.0.2",
     "source-map": "^0.6.1",
     "supports-color": "^7.1.0"
   },
@@ -48,7 +48,7 @@
     "eslint": "^6.8.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^1.0.1",
@@ -58,8 +58,8 @@
     "eslint-plugin-unicorn": "^18.0.1",
     "fs-extra": "^9.0.0",
     "husky": "^4.2.3",
-    "jest": "^25.2.3",
-    "lint-staged": "^10.0.9",
+    "jest": "^25.2.4",
+    "lint-staged": "^10.0.10",
     "postcss-parser-tests": "postcss/postcss-parser-tests",
     "rimraf": "^3.0.2",
     "size-limit": "^4.3.1",
