@@ -39,6 +39,13 @@ at <surrender@evilmartians.com>.
        alt="Sponsored by Evil Martians" width="236" height="54">
 </a>
 
+## Sponsorship
+
+<a href="https://tailwindcss.com/">
+  <img src="https://refactoringui.nyc3.cdn.digitaloceanspaces.com/tailwind-logo.svg"
+       alt="Sponsored by Tailwind CSS" width="273" height="64">
+</a>
+
 ## Plugins
 
 Currently, PostCSS has more than 200 plugins. You can find all of the plugins
