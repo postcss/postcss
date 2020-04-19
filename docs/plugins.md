@@ -364,8 +364,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
+* [`postcss-range-value`] range value with a max and min value between two screen sizes.
 * [`postcss-responsive-type`] changes `font-size` depends on screen size.
-* [`postcss-responsive-units`] responsive min/max units between two screen sizes.
 * [`postcss-scrib`] define your own aliases/shortcuts for properties or values.
 * [`postcss-short-font-size`] extends `font-size` to define line-height
   s a second value.
@@ -568,8 +568,8 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-property-lookup`]:              https://github.com/simonsmith/postcss-property-lookup
 [`postcss-remove-prefixes`]:              https://github.com/johnotander/postcss-remove-prefixes
 [`postcss-replace-overflow-wrap`]:        https://github.com/MattDiMu/postcss-replace-overflow-wrap
+[`postcss-range-value`]:                  https://github.com/soberwp/postcss-range-value
 [`postcss-responsive-type`]:              https://github.com/seaneking/postcss-responsive-type
-[`postcss-responsive-units`]:             https://github.com/soberwp/postcss-responsive-units
 [`postcss-round-subpixels`]:              https://github.com/himynameisdave/postcss-round-subpixels
 [`postcss-short-font-size`]:              https://github.com/jonathantneal/postcss-short-font-size
 [`postcss-vertical-rhythm`]:              https://github.com/markgoodyear/postcss-vertical-rhythm
