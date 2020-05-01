@@ -23,7 +23,7 @@ declare namespace postcss {
     postcss: Transformer;
     process: (css: string | {
       toString(): string;
-    } | Result, opts?: any) => LazyResult;
+    } | Result, processOpts?: ProcessOptions, pluginOpts?: T) => LazyResult;
   }
   interface Transformer extends TransformCallback {
     postcssPlugin?: string;
