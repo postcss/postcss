@@ -257,10 +257,10 @@ it('misses check files on requires', () => {
   let step1 = doubler.process('a { }', {
     from: 'a.css',
     to: file,
-    map: true
+    map: { inline: false }
   })
 
-  fs.outputFileSync(file + '.map', step1.map)
+  fs.outputFileSync(file + '.map', step1.map.toString())
   let step2 = lighter.process(step1.css, {
     from: file,
     to: 'b.css',
@@ -342,7 +342,7 @@ it('uses map from subdir if it written as a file', () => {
   expect(source).toEqual('../../source/a.css')
 
   let file = path.join(dir, 'one', 'maps', 'b.css.map')
-  fs.outputFileSync(file, step1.map)
+  fs.outputFileSync(file, step1.map.toString())
 
   let step2 = doubler.process(step1.css, {
     from: path.join(dir, 'one', 'b.css'),
