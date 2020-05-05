@@ -145,6 +145,7 @@ by one line of code.
 * [`postcss-fixie`] adds easy and painless IE hacks
 * [`postcss-safe-area`] adds browser fallbacks for `safe-area-inset` `env` variables.
 * [`webp-in-css`] to use WebP background images in CSS.
+* [`postcss-clamp`] transform `clamp()` to combination of `min/max`
 
 See also [`oldie`] plugins pack.
 
@@ -821,3 +822,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-sort-media-queries`]:           https://github.com/solversgroup/postcss-sort-media-queries
 [`postcss-momentum-scrolling`]:           https://github.com/solversgroup/postcss-momentum-scrolling
 [`postcss-viewport-height-correction`]:   https://github.com/Faisal-Manzer/postcss-viewport-height-correction
+[`postcss-clamp`]:                        https://github.com/polemius/postcss-clamp
