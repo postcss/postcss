@@ -702,7 +702,7 @@ declare namespace postcss {
      * will try to autodetect the code style property by looking at other nodes
      * in the tree.
      */
-    raw(prop: string, defaultType?: string): any;
+    raw(prop: string, defaultType?: string): string;
   }
   interface NodeNewProps {
     source?: NodeSource;
