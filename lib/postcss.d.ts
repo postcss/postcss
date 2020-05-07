@@ -841,19 +841,16 @@ declare namespace postcss {
      * @returns True if the callback returns true for all of the container's
      * children.
      */
-    every(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => any, thisArg?: any): boolean;
+    every(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean): boolean;
     /**
      * Determines whether the specified callback returns true for any child node.
      * @param callback A function that accepts up to three arguments. The some
      * method calls the callback for each node until the callback returns true,
      * or until the end of the array.
-     * @param thisArg An object to which the this keyword can refer in the
-     * callback function. If thisArg is omitted, undefined is used as the
-     * this value.
      * @returns True if callback returns true for (at least) one of the
      * container's children.
      */
-    some(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean, thisArg?: any): boolean;
+    some(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean): boolean;
     /**
      * Iterates through the container's immediate children, calling the
      * callback function for each child. If you need to recursively iterate
