@@ -105,6 +105,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   through logical rather than direction / physical rules.
 * [`postcss-subgrid`] provides a basic shim for the CSS `display: subgrid` spec.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
+* [`postcss-pseudo-is`] transforms `:is()` to more compatible CSS.
 
 See also [`posctss-preset-env`] plugins pack to add future CSS syntax
 by one line of code.
@@ -823,3 +824,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-momentum-scrolling`]:           https://github.com/solversgroup/postcss-momentum-scrolling
 [`postcss-viewport-height-correction`]:   https://github.com/Faisal-Manzer/postcss-viewport-height-correction
 [`postcss-clamp`]:                        https://github.com/polemius/postcss-clamp
+[`postcss-pseudo-is`]:                    https://github.com/IlyaUpyackovich/postcss-pseudo-is
