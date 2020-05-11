@@ -630,12 +630,12 @@ declare namespace postcss {
      * @returns The next child of the node's parent; or, returns undefined if
      * the current node is the last child.
      */
-    next(): ChildNode | void;
+    next(): ChildNode | undefined;
     /**
      * @returns The previous child of the node's parent; or, returns undefined
      * if the current node is the first child.
      */
-    prev(): ChildNode | void;
+    prev(): ChildNode | undefined;
     /**
      * Insert new node before current node to current node’s parent.
      *
@@ -702,7 +702,7 @@ declare namespace postcss {
      * will try to autodetect the code style property by looking at other nodes
      * in the tree.
      */
-    raw(prop: string, defaultType?: string): any;
+    raw(prop: string, defaultType?: string): string;
   }
   interface NodeNewProps {
     source?: NodeSource;
@@ -841,19 +841,16 @@ declare namespace postcss {
      * @returns True if the callback returns true for all of the container's
      * children.
      */
-    every(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => any, thisArg?: any): boolean;
+    every(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean): boolean;
     /**
      * Determines whether the specified callback returns true for any child node.
      * @param callback A function that accepts up to three arguments. The some
      * method calls the callback for each node until the callback returns true,
      * or until the end of the array.
-     * @param thisArg An object to which the this keyword can refer in the
-     * callback function. If thisArg is omitted, undefined is used as the
-     * this value.
      * @returns True if callback returns true for (at least) one of the
      * container's children.
      */
-    some(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean, thisArg?: any): boolean;
+    some(callback: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean): boolean;
     /**
      * Iterates through the container's immediate children, calling the
      * callback function for each child. If you need to recursively iterate
@@ -865,7 +862,8 @@ declare namespace postcss {
      * will adjust the current index to match the mutations.
      * @returns False if the callback returns false during iteration.
      */
-    each(callback: (node: ChildNode, index: number) => any): boolean | void;
+    each(callback: (node: ChildNode, index: number) => void): void;
+    each(callback: (node: ChildNode, index: number) => boolean): boolean;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * node. Like container.each(), this method is safe to use if you are
@@ -873,7 +871,8 @@ declare namespace postcss {
      * the container's immediate children, use container.each().
      * @param callback Iterator.
      */
-    walk(callback: (node: ChildNode, index: number) => any): boolean | void;
+    walk(callback: (node: ChildNode, index: number) => void): void;
+    walk(callback: (node: ChildNode, index: number) => boolean): boolean;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * declaration. Like container.each(), this method is safe to use if you
@@ -882,8 +881,10 @@ declare namespace postcss {
      * declarations whose property matches propFilter will be iterated over.
      * @param callback Called for each declaration node within the container.
      */
-    walkDecls(propFilter: string | RegExp, callback?: (decl: Declaration, index: number) => any): boolean | void;
-    walkDecls(callback: (decl: Declaration, index: number) => any): boolean | void;
+    walkDecls(propFilter: string | RegExp, callback: (decl: Declaration, index: number) => void): void;
+    walkDecls(callback: (decl: Declaration, index: number) => void): void;
+    walkDecls(propFilter: string | RegExp, callback: (decl: Declaration, index: number) => boolean): boolean;
+    walkDecls(callback: (decl: Declaration, index: number) => boolean): boolean;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * at-rule. Like container.each(), this method is safe to use if you are
@@ -893,8 +894,10 @@ declare namespace postcss {
      * @param callback Iterator called for each at-rule node within the
      * container.
      */
-    walkAtRules(nameFilter: string | RegExp, callback: (atRule: AtRule, index: number) => any): boolean | void;
-    walkAtRules(callback: (atRule: AtRule, index: number) => any): boolean | void;
+    walkAtRules(nameFilter: string | RegExp, callback: (atRule: AtRule, index: number) => void): void;
+    walkAtRules(callback: (atRule: AtRule, index: number) => void): void;
+    walkAtRules(nameFilter: string | RegExp, callback: (atRule: AtRule, index: number) => boolean): boolean;
+    walkAtRules(callback: (atRule: AtRule, index: number) => boolean): boolean;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * rule. Like container.each(), this method is safe to use if you are
@@ -904,16 +907,18 @@ declare namespace postcss {
      * @param callback Iterator called for each rule node within the
      * container.
      */
-    walkRules(selectorFilter: string | RegExp, callback: (atRule: Rule, index: number) => any): boolean | void;
-    walkRules(callback: (atRule: Rule, index: number) => any): boolean | void;
-    walkRules(selectorFilter: any, callback?: (atRule: Rule, index: number) => any): boolean | void;
+    walkRules(selectorFilter: string | RegExp, callback: (atRule: Rule, index: number) => void): void;
+    walkRules(callback: (atRule: Rule, index: number) => void): void;
+    walkRules(selectorFilter: string | RegExp, callback: (atRule: Rule, index: number) => boolean): boolean;
+    walkRules(callback: (atRule: Rule, index: number) => boolean): boolean;
     /**
      * Traverses the container's descendant nodes, calling `callback` for each
      * comment. Like container.each(), this method is safe to use if you are
      * mutating arrays during iteration.
      * @param callback Iterator called for each comment node within the container.
      */
-    walkComments(callback: (comment: Comment, indexed: number) => any): void | boolean;
+    walkComments(callback: (comment: Comment, indexed: number) => void): void;
+    walkComments(callback: (comment: Comment, indexed: number) => boolean): boolean;
     /**
      * Passes all declaration values within the container that match pattern
      * through the callback, replacing those values with the returned result of
