@@ -71,29 +71,21 @@ class PreviousMap {
     return string.substr(0, start.length) === start
   }
 
+  getAnnotationURL (sourceMapString) {
+    return sourceMapString
+      .match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//)[1]
+      .trim()
+  }
+
   loadAnnotation (css) {
-    let sourceMapRegExp = '/\\*\\s*# sourceMappingURL=(.*)\\s*\\*/'
+    let sourceMapMatch = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//mg)
 
-    /* eslint-disable security/detect-non-literal-regexp */
-    let lastSourceMapRegex = new RegExp(sourceMapRegExp, 'mg')
-    let sourceMapSourceRegex = new RegExp(sourceMapRegExp)
-    /* eslint-enable security/detect-non-literal-regexp */
-
-    let lastSourceMapMatch
-    let sourceMapSourceMatch
-    let lastSourceMap
-    let sourceMapSource
-
-    lastSourceMapMatch = css.match(lastSourceMapRegex)
-
-    if (lastSourceMapMatch) {
+    if (sourceMapMatch) {
       // Locate the last sourceMappingURL to avoid picking up
       // sourceMappingURLs from comments, strings, etc.
-      lastSourceMap = lastSourceMapMatch[lastSourceMapMatch.length - 1]
-      sourceMapSourceMatch = lastSourceMap.match(sourceMapSourceRegex)
-      if (sourceMapSourceMatch) {
-        sourceMapSource = sourceMapSourceMatch[1]
-        this.annotation = sourceMapSource.trim()
+      let lastSourceMap = sourceMapMatch[sourceMapMatch.length - 1]
+      if (lastSourceMap) {
+        this.annotation = this.getAnnotationURL(lastSourceMap)
       }
     }
   }
