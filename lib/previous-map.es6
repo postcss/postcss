@@ -78,14 +78,14 @@ class PreviousMap {
   }
 
   loadAnnotation (css) {
-    let sourceMapMatch = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//mg)
+    let annotations = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//mg)
 
-    if (sourceMapMatch) {
+    if (annotations && annotations.length > 0) {
       // Locate the last sourceMappingURL to avoid picking up
       // sourceMappingURLs from comments, strings, etc.
-      let lastSourceMap = sourceMapMatch[sourceMapMatch.length - 1]
-      if (lastSourceMap) {
-        this.annotation = this.getAnnotationURL(lastSourceMap)
+      let lastAnnotation = annotations[annotations.length - 1]
+      if (lastAnnotation) {
+        this.annotation = this.getAnnotationURL(lastAnnotation)
       }
     }
   }
