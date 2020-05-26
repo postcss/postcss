@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.31
+* Use only the latest source map annotation (by Emmanouil Zoumpoulakis).
+
 ## 7.0.30
 * Fix TypeScript definition (by Natalie Weizenbaum).
 
