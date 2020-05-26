@@ -72,6 +72,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-color-hsl`]: transforms CSS Colors 4 `hsl()` to more compatible
   `hsl()` or `hsla()`.
 * [`postcss-color-hwb`] transforms `hwb()` to widely compatible `rgb()`.
+* [`postcss-color-image`] supports `image(<color>)` syntax
+  allowing to use a solid color as an image.
 * [`postcss-color-rebeccapurple`] supports the `rebeccapurple` color.
 * [`postcss-color-rgb`]: transforms CSS Colors 4 `rgb()` to more compatible
   `rgb()` or `rgba()`.
@@ -669,6 +671,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-autoreset`]:                    https://github.com/maximkoretskiy/postcss-autoreset
 [`postcss-color-hcl`]:                    https://github.com/devgru/postcss-color-hcl
 [`postcss-color-hwb`]:                    https://github.com/postcss/postcss-color-hwb
+[`postcss-color-image`]:                  https://github.com/valtlai/postcss-color-image
 [`postcss-color-mix`]:                    https://github.com/iamstarkov/postcss-color-mix
 [`postcss-color-yiq`]:                    https://github.com/ben-eb/postcss-color-yiq
 [`postcss-filter-mq`]:                    https://github.com/simeydotme/postcss-filter-mq
