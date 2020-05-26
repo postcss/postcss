@@ -121,7 +121,20 @@ it('reads map from annotation', () => {
   expect(root.source.input.map.root).toEqual(dir)
 })
 
-it('sets uniq name for inline map', () => {
+it('reads only the last map from annotation', () => {
+  let file = path.join(dir, 'c.map')
+  fs.outputFileSync(file, map)
+  let root = parse('a{}' +
+    '\n/*# sourceMappingURL=a.map */' +
+    '\n/*# sourceMappingURL=b.map */' +
+    '\n/*# sourceMappingURL=c.map */',
+  { from: file })
+
+  expect(root.source.input.map.text).toEqual(map)
+  expect(root.source.input.map.root).toEqual(dir)
+})
+
+it('sets unique name for inline map', () => {
   let map2 = {
     version: 3,
     sources: ['a'],

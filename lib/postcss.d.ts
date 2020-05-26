@@ -538,6 +538,7 @@ declare namespace postcss {
     consumer(): mozilla.SourceMapConsumer;
     withContent(): boolean;
     startWith(string: string, start: string): boolean;
+    getAnnotationURL(sourceMapString: string): string;
     loadAnnotation(css: string): void;
     decodeInline(text: string): string;
     loadMap(

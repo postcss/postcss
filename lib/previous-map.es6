@@ -71,9 +71,23 @@ class PreviousMap {
     return string.substr(0, start.length) === start
   }
 
+  getAnnotationURL (sourceMapString) {
+    return sourceMapString
+      .match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//)[1]
+      .trim()
+  }
+
   loadAnnotation (css) {
-    let match = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//)
-    if (match) this.annotation = match[1].trim()
+    let annotations = css.match(/\/\*\s*# sourceMappingURL=(.*)\s*\*\//mg)
+
+    if (annotations && annotations.length > 0) {
+      // Locate the last sourceMappingURL to avoid picking up
+      // sourceMappingURLs from comments, strings, etc.
+      let lastAnnotation = annotations[annotations.length - 1]
+      if (lastAnnotation) {
+        this.annotation = this.getAnnotationURL(lastAnnotation)
+      }
+    }
   }
 
   decodeInline (text) {
