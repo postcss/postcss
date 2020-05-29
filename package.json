@@ -19,7 +19,7 @@
   "scripts": {
     "clean": "rimraf ./docs/api/index.html ./docs/api/assets/",
     "spell": "./docs/api/generate.js && yaspeller-ci ./docs/api/*.html *.md docs/{**/,}*.md",
-    "test": "jest && eslint-ci . && check-dts && ./test/integration.js && yarn spell && size-limit"
+    "test": "jest && eslint-ci . && check-dts && ./test/integration.js && npm run spell && size-limit"
   },
   "funding": {
     "type": "tidelift",
