@@ -18,7 +18,11 @@ class Input {
    * @param {object} [opts] {@link Processor#process} options.
    */
   constructor (css, opts = { }) {
-    if (css === null || css === undefined || (typeof css === 'object' && !css.toString)) {
+    if (
+      css === null ||
+      typeof css === 'undefined' ||
+      (typeof css === 'object' && !css.toString)
+    ) {
       throw new Error(`PostCSS received ${ css } instead of CSS string`)
     }
 
