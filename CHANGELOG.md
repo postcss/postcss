@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.32
+* Fix error message (by @admosity).
+
 ## 7.0.31
 * Use only the latest source map annotation (by Emmanouil Zoumpoulakis).
 
