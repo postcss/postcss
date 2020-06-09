@@ -4,11 +4,11 @@ If you want contribute to PostCSS, there are few things that you should
 be familiar with.
 
 
-## In Case You Have Question About Using PostCSS
+## In Case You Have Questions About Using PostCSS
 
 * **Ask for help in [the chat]**
 
-    If you stuck on something there is a big chance
+    If you are stuck on something there is a big chance
     that someone had similar problem before.
 
 [the chat]: https://gitter.im/postcss/postcss
@@ -17,12 +17,12 @@ be familiar with.
 ## Adding Your Plugin to the List
 
 If you created or found a plugin and want to add it to PostCSS plugins list
-follow this simple steps.
+follow these simple steps.
 
 PR should not change plugins defined in README it contains only favorite plugins
 and moderated by PostCSS author.
 
-Plugins submitted by community located in [`docs/plugins`].
+Plugins submitted by the community are located in [`docs/plugins`].
 
 * **Keep plugins order**
 
@@ -69,10 +69,10 @@ If you found a bug or want to add certain improvements to types declaration file
 
 ## Core Development
 
-If you want to add new feature or fix existed issue
+If you want to add new features or fix existing issues
 
 - **Become familiar with PostCSS architecture**
 
-    For gentle intro to PostCSS architecture look through our [guide].
+    For a gentle intro to PostCSS architecture look through our [guide].
 
 [guide]: https://github.com/postcss/postcss/blob/master/docs/architecture.md
