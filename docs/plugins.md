@@ -314,6 +314,7 @@ loosely resembles the original.
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
+* [`postcss-remove-nested-calc`] `calc(100vw - calc(20% - 10px))` to `calc(100vw - (20% - 10px))` for ie11 compatibility.  
 * [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
 * [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
@@ -751,6 +752,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-click`]:                        https://github.com/ismamz/postcss-click
 [`postcss-at2x`]:                         https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                         https://github.com/postcss/postcss-calc
+[`postcss-remove-nested-calc`]            https://github.com/nico-jacobs/postcss-remove-nested-calc
 [`postcss-crip`]:                         https://github.com/johnie/postcss-crip
 [`postcss-each`]:                         https://github.com/outpunk/postcss-each
 [`postcss-epub`]:                         https://github.com/Rycochet/postcss-epub
