@@ -752,7 +752,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-click`]:                        https://github.com/ismamz/postcss-click
 [`postcss-at2x`]:                         https://github.com/simonsmith/postcss-at2x
 [`postcss-calc`]:                         https://github.com/postcss/postcss-calc
-[`postcss-remove-nested-calc`]            https://github.com/nico-jacobs/postcss-remove-nested-calc
+[`postcss-remove-nested-calc`]:           https://github.com/nico-jacobs/postcss-remove-nested-calc
 [`postcss-crip`]:                         https://github.com/johnie/postcss-crip
 [`postcss-each`]:                         https://github.com/outpunk/postcss-each
 [`postcss-epub`]:                         https://github.com/Rycochet/postcss-epub
