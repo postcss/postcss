@@ -127,6 +127,16 @@ it('replaceWith() replaces node', () => {
   expect(css.toString()).toEqual('a{fix:fixed;two:2}')
 })
 
+it('replaceWith() can include itself', () => {
+  let css = parse('a{one:1;two:2}')
+  let one = css.first.first
+  let beforeDecl = { prop: 'fix1', value: 'fixedOne' }
+  let afterDecl = { prop: 'fix2', value: 'fixedTwo' }
+  one.replaceWith(beforeDecl, one, afterDecl)
+
+  expect(css.toString()).toEqual('a{fix1:fixedOne;one:1;fix2:fixedTwo;two:2}')
+})
+
 it('toString() accepts custom stringifier', () => {
   expect(new Rule({ selector: 'a' }).toString(stringify)).toEqual('a')
 })
