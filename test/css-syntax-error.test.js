@@ -1,6 +1,6 @@
 let stripAnsi = require('strip-ansi')
 let Concat = require('concat-with-sourcemaps')
-let chalk = require('chalk')
+let kleur = require('kleur/colors')
 let path = require('path')
 
 let CssSyntaxError = require('../lib/css-syntax-error')
@@ -44,12 +44,13 @@ it('has stack trace', () => {
 })
 
 it('highlights broken line with colors', () => {
-  let c = chalk
+  let c = kleur
   expect(parseError('#a .b {').showSourceCode(true)).toEqual(
-    c.red.bold('>') + c.gray(' 1 | ') +
+    c.bold(c.red('>')) + c.gray(' 1 | ') +
     c.magenta('#a') + ' ' + c.yellow('.b') + ' ' +
     c.yellow('{') + '\n ' +
-    c.gray('   | ') + c.red.bold('^'))
+    c.gray('   | ') + c.bold(c.red('^'))
+  )
 })
 
 it('highlights broken line', () => {

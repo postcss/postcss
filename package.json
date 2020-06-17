@@ -30,10 +30,9 @@
   "homepage": "https://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
-    "chalk": "^4.0.0",
+    "kleur": "^4.0.0",
     "nanoid": "^3.1.9",
-    "source-map": "^0.6.1",
-    "supports-color": "^7.1.0"
+    "source-map": "^0.6.1"
   },
   "devDependencies": {
     "@logux/eslint-config": "^36.1.3",

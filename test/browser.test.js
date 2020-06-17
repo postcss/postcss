@@ -1,10 +1,11 @@
+let { $, ...colors } = require('kleur/colors')
+
 jest.doMock('fs', () => ({ }))
-jest.doMock('chalk', () => ({ }))
-jest.doMock('supports-color', () => ({ }))
+jest.doMock('kleur/colors', () => ({ $, ...colors }))
 
 let postcss = require('..')
 
-it('shows code without chalk', () => {
+it('shows code with colors (default)', () => {
   let error
   try {
     postcss.parse('a{')
@@ -15,8 +16,43 @@ it('shows code without chalk', () => {
       throw e
     }
   }
-  expect(error.showSourceCode(true)).toEqual('> 1 | a{\n' +
-                                             '    | ^')
+  let c = colors
+  expect(error.showSourceCode()).toEqual(
+    c.bold(c.red('>')) + c.gray(' 1 | ') + 'a' + c.yellow('{') + '\n ' +
+    c.gray('   | ') + c.bold(c.red('^')))
+})
+
+it('shows code without colors (default)', () => {
+  let error
+  $.enabled = false
+
+  try {
+    postcss.parse('a{')
+  } catch (e) {
+    if (e.name === 'CssSyntaxError') {
+      error = e
+    } else {
+      throw e
+    }
+  }
+  expect(error.showSourceCode()).toEqual('> 1 | a{\n' +
+                                         '    | ^')
+  $.enabled = true // restore
+})
+
+it('shows code without colors (setting)', () => {
+  let error
+  try {
+    postcss.parse('a{')
+  } catch (e) {
+    if (e.name === 'CssSyntaxError') {
+      error = e
+    } else {
+      throw e
+    }
+  }
+  expect(error.showSourceCode(false)).toEqual('> 1 | a{\n' +
+                                              '    | ^')
 })
 
 it('generates source map without fs', () => {
