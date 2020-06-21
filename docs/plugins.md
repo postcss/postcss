@@ -314,7 +314,7 @@ loosely resembles the original.
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
-* [`postcss-remove-nested-calc`] `calc(100vw - calc(20% - 10px))` to `calc(100vw - (20% - 10px))` for ie11 compatibility.  
+* [`postcss-remove-nested-calc`] `calc(100vw - calc(20% - 10px))` to `calc(100vw - (20% - 10px))` for IE 11 compatibility.
 * [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
 * [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
