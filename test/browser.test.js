@@ -1,9 +1,13 @@
-let { $, ...colors } = require('kleur/colors')
+let { options, ...colors } = require('colorette')
 
 jest.doMock('fs', () => ({ }))
-jest.doMock('kleur/colors', () => ({ $, ...colors }))
+jest.doMock('colorette', () => ({ options, ...colors }))
 
 let postcss = require('..')
+
+afterEach(() => {
+  options.enabled = true
+})
 
 it('shows code with colors (default)', () => {
   let error
@@ -24,7 +28,7 @@ it('shows code with colors (default)', () => {
 
 it('shows code without colors (default)', () => {
   let error
-  $.enabled = false
+  options.enabled = false
 
   try {
     postcss.parse('a{')
@@ -37,7 +41,6 @@ it('shows code without colors (default)', () => {
   }
   expect(error.showSourceCode()).toEqual('> 1 | a{\n' +
                                          '    | ^')
-  $.enabled = true // restore
 })
 
 it('shows code without colors (setting)', () => {

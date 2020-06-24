@@ -1,6 +1,6 @@
+let { red, bold, magenta, yellow, gray } = require('colorette')
 let stripAnsi = require('strip-ansi')
 let Concat = require('concat-with-sourcemaps')
-let kleur = require('kleur/colors')
 let path = require('path')
 
 let CssSyntaxError = require('../lib/css-syntax-error')
@@ -44,12 +44,11 @@ it('has stack trace', () => {
 })
 
 it('highlights broken line with colors', () => {
-  let c = kleur
   expect(parseError('#a .b {').showSourceCode(true)).toEqual(
-    c.bold(c.red('>')) + c.gray(' 1 | ') +
-    c.magenta('#a') + ' ' + c.yellow('.b') + ' ' +
-    c.yellow('{') + '\n ' +
-    c.gray('   | ') + c.bold(c.red('^'))
+    bold(red('>')) + gray(' 1 | ') +
+    magenta('#a') + ' ' + yellow('.b') + ' ' +
+    yellow('{') + '\n ' +
+    gray('   | ') + bold(red('^'))
   )
 })
 
