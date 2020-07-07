@@ -1,6 +1,6 @@
 let { options, ...colors } = require('colorette')
 
-jest.doMock('fs', () => ({ }))
+jest.doMock('fs', () => ({}))
 jest.doMock('colorette', () => ({ options, ...colors }))
 
 let postcss = require('..')
@@ -22,8 +22,14 @@ it('shows code with colors (default)', () => {
   }
   let c = colors
   expect(error.showSourceCode()).toEqual(
-    c.bold(c.red('>')) + c.gray(' 1 | ') + 'a' + c.yellow('{') + '\n ' +
-    c.gray('   | ') + c.bold(c.red('^')))
+    c.bold(c.red('>')) +
+      c.gray(' 1 | ') +
+      'a' +
+      c.yellow('{') +
+      '\n ' +
+      c.gray('   | ') +
+      c.bold(c.red('^'))
+  )
 })
 
 it('shows code without colors (default)', () => {
@@ -39,8 +45,7 @@ it('shows code without colors (default)', () => {
       throw e
     }
   }
-  expect(error.showSourceCode()).toEqual('> 1 | a{\n' +
-                                         '    | ^')
+  expect(error.showSourceCode()).toEqual('> 1 | a{\n' + '    | ^')
 })
 
 it('shows code without colors (setting)', () => {
@@ -54,14 +59,16 @@ it('shows code without colors (setting)', () => {
       throw e
     }
   }
-  expect(error.showSourceCode(false)).toEqual('> 1 | a{\n' +
-                                              '    | ^')
+  expect(error.showSourceCode(false)).toEqual('> 1 | a{\n' + '    | ^')
 })
 
 it('generates source map without fs', () => {
-  expect(postcss([() => true]).process('a{}', { from: 'a.css', map: true }).css)
-    .toEqual('a{}\n/*# sourceMappingURL=data:application/json;base64,' +
-             'eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImEuY3NzIl0sIm5hbWVzIjpbXSw' +
-             'ibWFwcGluZ3MiOiJBQUFBLEVBQUUiLCJmaWxlIjoiYS5jc3MiLCJzb3VyY2' +
-             'VzQ29udGVudCI6WyJhe30iXX0= */')
+  expect(
+    postcss([() => true]).process('a{}', { from: 'a.css', map: true }).css
+  ).toEqual(
+    'a{}\n/*# sourceMappingURL=data:application/json;base64,' +
+      'eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImEuY3NzIl0sIm5hbWVzIjpbXSw' +
+      'ibWFwcGluZ3MiOiJBQUFBLEVBQUUiLCJmaWxlIjoiYS5jc3MiLCJzb3VyY2' +
+      'VzQ29udGVudCI6WyJhe30iXX0= */'
+  )
 })

@@ -35,23 +35,25 @@ it('error() generates custom error for nodes without source', () => {
 it('error() highlights index', () => {
   let root = parse('a { b: c }')
   let error = root.first.first.error('Bad semicolon', { index: 1 })
-  expect(error.showSourceCode(false)).toEqual('> 1 | a { b: c }\n' +
-                                             '    |      ^')
+  expect(error.showSourceCode(false)).toEqual(
+    '> 1 | a { b: c }\n' + '    |      ^'
+  )
 })
 
 it('error() highlights word', () => {
   let root = parse('a { color: x red }')
   let error = root.first.first.error('Wrong color', { word: 'x' })
-  expect(error.showSourceCode(false)).toEqual('> 1 | a { color: x red }\n' +
-                                             '    |            ^')
+  expect(error.showSourceCode(false)).toEqual(
+    '> 1 | a { color: x red }\n' + '    |            ^'
+  )
 })
 
 it('error() highlights word in multiline string', () => {
   let root = parse('a { color: red\n           x }')
   let error = root.first.first.error('Wrong color', { word: 'x' })
-  expect(error.showSourceCode(false)).toEqual('  1 | a { color: red\n' +
-                                             '> 2 |            x }\n' +
-                                             '    |            ^')
+  expect(error.showSourceCode(false)).toEqual(
+    '  1 | a { color: red\n' + '> 2 |            x }\n' + '    |            ^'
+  )
 })
 
 it('warn() attaches a warning to the result object', async () => {
@@ -98,11 +100,13 @@ it('replaceWith() inserts new node', () => {
   let result = width.replaceWith(node)
 
   expect(result).toEqual(width)
-  expect(rule.toString()).toEqual('a {\n' +
-                                  '    color: black;\n' +
-                                  '    min-width: 1px;\n' +
-                                  '    height: 1px\n' +
-                                  '}')
+  expect(rule.toString()).toEqual(
+    'a {\n' +
+      '    color: black;\n' +
+      '    min-width: 1px;\n' +
+      '    height: 1px\n' +
+      '}'
+  )
 })
 
 it('replaceWith() inserts new root', () => {
@@ -251,10 +255,11 @@ it('toJSON() cleans parents inside', () => {
   expect(json.parent).not.toBeDefined()
   expect(json.nodes[0].parent).not.toBeDefined()
 
-  expect(JSON.stringify(rule))
-    .toEqual('{"raws":{},"selector":"a","type":"rule","nodes":[' +
-             '{"raws":{},"prop":"color","value":"b","type":"decl"}' +
-             ']}')
+  expect(JSON.stringify(rule)).toEqual(
+    '{"raws":{},"selector":"a","type":"rule","nodes":[' +
+      '{"raws":{},"prop":"color","value":"b","type":"decl"}' +
+      ']}'
+  )
 })
 
 it('toJSON() converts custom properties', () => {
@@ -269,7 +274,7 @@ it('toJSON() converts custom properties', () => {
   expect(root.toJSON()).toEqual({
     type: 'root',
     nodes: [],
-    raws: { },
+    raws: {},
     _hack: 'hack',
     _cache: [1]
   })
@@ -300,8 +305,9 @@ it('cleanRaws() cleans style recursivelly', () => {
   let css = parse('@page{a{color:black}}')
   css.cleanRaws()
 
-  expect(css.toString())
-    .toEqual('@page {\n    a {\n        color: black\n    }\n}')
+  expect(css.toString()).toEqual(
+    '@page {\n    a {\n        color: black\n    }\n}'
+  )
   expect(css.first.raws.before).not.toBeDefined()
   expect(css.first.first.first.raws.before).not.toBeDefined()
   expect(css.first.raws.between).not.toBeDefined()
@@ -313,8 +319,9 @@ it('cleanRaws() keeps between on request', () => {
   let css = parse('@page{a{color:black}}')
   css.cleanRaws(true)
 
-  expect(css.toString())
-    .toEqual('@page{\n    a{\n        color:black\n    }\n}')
+  expect(css.toString()).toEqual(
+    '@page{\n    a{\n        color:black\n    }\n}'
+  )
   expect(css.first.raws.between).toBeDefined()
   expect(css.first.first.first.raws.between).toBeDefined()
   expect(css.first.raws.before).not.toBeDefined()

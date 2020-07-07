@@ -104,7 +104,7 @@ it('tokenizes complicated brackets', () => {
 
 it('tokenizes string', () => {
   run('\'"\'"\\""', [
-    ['string', '\'"\'', 1, 1, 1, 3],
+    ['string', "'\"'", 1, 1, 1, 3],
     ['string', '"\\""', 1, 4, 1, 7]
   ])
 })
@@ -121,7 +121,10 @@ it('changes lines in strings', () => {
 })
 
 it('tokenizes at-word', () => {
-  run('@word ', [['at-word', '@word', 1, 1, 1, 5], ['space', ' ']])
+  run('@word ', [
+    ['at-word', '@word', 1, 1, 1, 5],
+    ['space', ' ']
+  ])
 })
 
 it('tokenizes at-word end', () => {
@@ -188,12 +191,13 @@ it('supports carriage return', () => {
 })
 
 it('tokenizes CSS', () => {
-  let css = 'a {\n' +
-              '  content: "a";\n' +
-              '  width: calc(1px;)\n' +
-              '  }\n' +
-              '/* small screen */\n' +
-              '@media screen {}'
+  let css =
+    'a {\n' +
+    '  content: "a";\n' +
+    '  width: calc(1px;)\n' +
+    '  }\n' +
+    '/* small screen */\n' +
+    '@media screen {}'
   run(css, [
     ['word', 'a', 1, 1, 1, 1],
     ['space', ' '],
@@ -243,22 +247,36 @@ it('throws error on unclosed url', () => {
 })
 
 it('ignores unclosing string on request', () => {
-  run(' "', [
-    ['space', ' '], ['string', '"', 1, 2, 1, 3]
-  ], { ignoreErrors: true })
+  run(
+    ' "',
+    [
+      ['space', ' '],
+      ['string', '"', 1, 2, 1, 3]
+    ],
+    { ignoreErrors: true }
+  )
 })
 
 it('ignores unclosing comment on request', () => {
-  run(' /*', [
-    ['space', ' '], ['comment', '/*', 1, 2, 1, 4]
-  ], { ignoreErrors: true })
+  run(
+    ' /*',
+    [
+      ['space', ' '],
+      ['comment', '/*', 1, 2, 1, 4]
+    ],
+    { ignoreErrors: true }
+  )
 })
 
 it('ignores unclosing function on request', () => {
-  run('url(', [
-    ['word', 'url', 1, 1, 1, 3],
-    ['brackets', '(', 1, 4, 1, 4]
-  ], { ignoreErrors: true })
+  run(
+    'url(',
+    [
+      ['word', 'url', 1, 1, 1, 3],
+      ['brackets', '(', 1, 4, 1, 4]
+    ],
+    { ignoreErrors: true }
+  )
 })
 
 it('tokenizes hexadecimal escape', () => {
@@ -280,16 +298,18 @@ it('ignore unclosed per token request', () => {
     return tokens
   }
 
-  let css = 'How\'s it going ('
+  let css = "How's it going ("
   let tokens = tokn(css, {})
-  let expected = [['word', 'How', 1, 1, 1, 3],
+  let expected = [
+    ['word', 'How', 1, 1, 1, 3],
     ['string', "'s", 1, 4, 1, 5],
     ['space', ' '],
     ['word', 'it', 1, 7, 1, 8],
     ['space', ' '],
     ['word', 'going', 1, 10, 1, 14],
     ['space', ' '],
-    ['(', '(', 1, 16]]
+    ['(', '(', 1, 16]
+  ]
 
   expect(tokens).toEqual(expected)
 })

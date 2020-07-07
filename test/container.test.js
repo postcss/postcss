@@ -3,29 +3,30 @@ let parse = require('../lib/parse')
 let Rule = require('../lib/rule')
 let Root = require('../lib/root')
 
-let example = 'a { a: 1; b: 2 }' +
-                '/* a */' +
-                '@keyframes anim {' +
-                    '/* b */' +
-                    'to { c: 3 }' +
-                '}' +
-                '@media all and (min-width: 100) {' +
-                    'em { d: 4 }' +
-                    '@page {' +
-                         'e: 5;' +
-                        '/* c */' +
-                    '}' +
-                '}'
+let example =
+  'a { a: 1; b: 2 }' +
+  '/* a */' +
+  '@keyframes anim {' +
+  '/* b */' +
+  'to { c: 3 }' +
+  '}' +
+  '@media all and (min-width: 100) {' +
+  'em { d: 4 }' +
+  '@page {' +
+  'e: 5;' +
+  '/* c */' +
+  '}' +
+  '}'
 
 it('throws error on declaration without value', () => {
   expect(() => {
-    (new Rule()).append({ prop: 'color', vlaue: 'black' })
+    new Rule().append({ prop: 'color', vlaue: 'black' })
   }).toThrow(/Value field is missed/)
 })
 
 it('throws error on unknown node type', () => {
   expect(() => {
-    (new Rule()).append({ foo: 'bar' })
+    new Rule().append({ foo: 'bar' })
   }).toThrow(/Unknown node type/)
 })
 
@@ -164,8 +165,20 @@ it('walk() iterates', () => {
 
   expect(result).not.toBeDefined()
   expect(types).toEqual([
-    'rule', 'decl', 'decl', 'comment', 'atrule', 'comment', 'rule', 'decl',
-    'atrule', 'rule', 'decl', 'atrule', 'decl', 'comment'
+    'rule',
+    'decl',
+    'decl',
+    'comment',
+    'atrule',
+    'comment',
+    'rule',
+    'decl',
+    'atrule',
+    'rule',
+    'decl',
+    'atrule',
+    'decl',
+    'comment'
   ])
   expect(indexes).toEqual([0, 0, 1, 1, 2, 0, 1, 0, 3, 0, 0, 1, 0, 1])
 })
@@ -197,7 +210,8 @@ it('walk() adds CSS position to error stack', () => {
   expect(catched).toBe(error)
   expect(catched.postcssNode.toString()).toEqual('a { a: 1; b: 2 }')
   expect(catched.stack.replace(/.:\\/i, '/')).toEqual(
-    'Error: T\n    at /c.css:1:1\n    at b (b.js:2:4)\n    at a (a.js:2:1)')
+    'Error: T\n    at /c.css:1:1\n    at b (b.js:2:4)\n    at a (a.js:2:1)'
+  )
 })
 
 it('walkDecls() iterates', () => {
@@ -606,8 +620,9 @@ it('insertBefore() receives array', () => {
   let b = parse('b{ width: 1; height: 2 }')
 
   a.first.insertBefore(1, b.first.nodes)
-  expect(a.toString())
-    .toEqual('a{ color: red; width: 1; height: 2; z-index: 1 }')
+  expect(a.toString()).toEqual(
+    'a{ color: red; width: 1; height: 2; z-index: 1 }'
+  )
 })
 
 it('insertAfter() inserts child', () => {
@@ -634,8 +649,9 @@ it('insertAfter() receives array', () => {
   let b = parse('b{ width: 1; height: 2 }')
 
   a.first.insertAfter(0, b.first.nodes)
-  expect(a.toString())
-    .toEqual('a{ color: red; width: 1; height: 2; z-index: 1 }')
+  expect(a.toString()).toEqual(
+    'a{ color: red; width: 1; height: 2; z-index: 1 }'
+  )
 })
 
 it('removeChild() removes by index', () => {

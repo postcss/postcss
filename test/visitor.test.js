@@ -100,7 +100,7 @@ let hidden = postcss.plugin('hidden', () => root => {
 
     if (value.includes('hidden')) {
       let ruleSelectors = decl.parent.selectors.map(i => {
-        return `${ i }.focusable:active,${ i }.focusable:focus`
+        return `${i}.focusable:active,${i}.focusable:focus`
       })
 
       let newRule = decl.parent
@@ -214,19 +214,16 @@ it('walks through after all plugins', async () => {
 
 it('works classic plugin replace-color', async () => {
   let { css } = await postcss([replaceColorGreenClassic]).process(
-    '.a{ color: red; } ' +
-    '.b{ will-change: transform; }',
+    '.a{ color: red; } ' + '.b{ will-change: transform; }',
     { from: 'a.css' }
   )
-  expect(css).toEqual(
-    '.a{ color: green; } ' +
-    '.b{ will-change: transform; }'
-  )
+  expect(css).toEqual('.a{ color: green; } ' + '.b{ will-change: transform; }')
 })
 
 it('works visitor plugin will-change', async () => {
   let { css } = await postcss([willChangeVisitor]).process(
-    '.foo { will-change: transform; }', { from: 'a.css' }
+    '.foo { will-change: transform; }',
+    { from: 'a.css' }
   )
   expect(css).toEqual(
     '.foo { backface-visibility: hidden; will-change: transform; }'
@@ -235,23 +232,22 @@ it('works visitor plugin will-change', async () => {
 
 it('works visitor plugin add-prop', async () => {
   let { css } = await postcss([addPropsVisitor]).process(
-    '.a{ color: red; } .b{ will-change: transform; }', { from: 'a.css' }
+    '.a{ color: red; } .b{ will-change: transform; }',
+    { from: 'a.css' }
   )
   expect(css).toEqual(
     '.a{ will-change: transform; color: red; } ' +
-    '.b{ will-change: transform; }'
+      '.b{ will-change: transform; }'
   )
 })
 
-const cssThree =
-  '.a{ color: red; } ' +
-  '.b{ will-change: transform; }'
+const cssThree = '.a{ color: red; } ' + '.b{ will-change: transform; }'
 
 const expectedThree =
   '.a{ ' +
-    'backface-visibility: hidden; ' +
-    'will-change: transform; ' +
-    'color: green; ' +
+  'backface-visibility: hidden; ' +
+  'will-change: transform; ' +
+  'color: green; ' +
   '} ' +
   '.b{ backface-visibility: hidden; will-change: transform; }'
 
@@ -293,9 +289,7 @@ it('change in node values through props; sequence 2', async () => {
 })
 
 it('works visitor plugin postcss-focus', async () => {
-  let input =
-    '*:focus { outline: 0; }' +
-    '.button:hover { background: red; }'
+  let input = '*:focus { outline: 0; }' + '.button:hover { background: red; }'
   let expected =
     '*:focus { outline: 0; }' +
     '.button:hover, .button:focus { background: red; }'
@@ -304,27 +298,24 @@ it('works visitor plugin postcss-focus', async () => {
 })
 
 it('works visitor plugin hidden', async () => {
-  let input =
-    'h2{' +
-    'display: hidden;' +
-    '}'
+  let input = 'h2{' + 'display: hidden;' + '}'
 
   let expected =
     'h2{' +
-      'position: absolute;' +
-      'width: 1px;' +
-      'height: 1px;' +
-      'margin: -1px;' +
-      'padding: 0;' +
-      'border: 0;' +
-      'overflow: hidden;' +
-      'clip: rect(0 0 0 0);' +
+    'position: absolute;' +
+    'width: 1px;' +
+    'height: 1px;' +
+    'margin: -1px;' +
+    'padding: 0;' +
+    'border: 0;' +
+    'overflow: hidden;' +
+    'clip: rect(0 0 0 0);' +
     '}' +
     'h2.focusable:active,' +
     'h2.focusable:focus{' +
-      'display: table;' +
-      'position: static;' +
-      'clear: both;' +
+    'display: table;' +
+    'position: static;' +
+    'clear: both;' +
     '}'
 
   let { css } = await postcss([hidden]).process(input, { from: 'a.css' })
@@ -335,42 +326,42 @@ let cssFocusHidden =
   '*:focus { outline: 0; }' +
   '.button:hover { background: red; }' +
   'h2:hover{' +
-    'display: hidden;' +
+  'display: hidden;' +
   '}'
 
 let expectedFocusHidden =
   '*:focus { outline: 0; }' +
   '.button:hover, .button:focus { background: red; }' +
   'h2:hover,h2:focus{' +
-    'position: absolute;' +
-    'width: 1px;' +
-    'height: 1px;' +
-    'margin: -1px;' +
-    'padding: 0;' +
-    'border: 0;' +
-    'overflow: hidden;' +
-    'clip: rect(0 0 0 0);' +
+  'position: absolute;' +
+  'width: 1px;' +
+  'height: 1px;' +
+  'margin: -1px;' +
+  'padding: 0;' +
+  'border: 0;' +
+  'overflow: hidden;' +
+  'clip: rect(0 0 0 0);' +
   '}' +
   'h2:hover.focusable:active,' +
   'h2:hover.focusable:focus,' +
   'h2:focus.focusable:active,' +
   'h2:focus.focusable:focus{' +
-    'display: table;' +
-    'position: static;' +
-    'clear: both;' +
+  'display: table;' +
+  'position: static;' +
+  'clear: both;' +
   '}'
 
 it('works visitor plugins postcss-focus and hidden; sequence 1', async () => {
-  let { css } = await postcss([hidden, postcssFocus]).process(
-    cssFocusHidden, { from: 'a.css' }
-  )
+  let { css } = await postcss([hidden, postcssFocus]).process(cssFocusHidden, {
+    from: 'a.css'
+  })
   expect(css).toEqual(expectedFocusHidden)
 })
 
 it('works visitor plugins postcss-focus and hidden; sequence 2', async () => {
-  let { css } = await postcss([postcssFocus, hidden]).process(
-    cssFocusHidden, { from: 'a.css' }
-  )
+  let { css } = await postcss([postcssFocus, hidden]).process(cssFocusHidden, {
+    from: 'a.css'
+  })
   expect(css).toEqual(expectedFocusHidden)
 })
 

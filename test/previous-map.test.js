@@ -60,62 +60,75 @@ it('checks previous sources content', () => {
 
 it('decodes base64 maps', () => {
   let b64 = Buffer.from(map).toString('base64')
-  let css = 'a{}\n' +
-              `/*# sourceMappingURL=data:application/json;base64,${ b64 } */`
+  let css =
+    'a{}\n' + `/*# sourceMappingURL=data:application/json;base64,${b64} */`
 
   expect(parse(css).source.input.map.text).toEqual(map)
 })
 
 it('decodes base64 UTF-8 maps', () => {
   let b64 = Buffer.from(map).toString('base64')
-  let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
-              'charset=utf-8;base64,' + b64 + ' */'
+  let css =
+    'a{}\n/*# sourceMappingURL=data:application/json;' +
+    'charset=utf-8;base64,' +
+    b64 +
+    ' */'
 
   expect(parse(css).source.input.map.text).toEqual(map)
 })
 
 it('accepts different name for base64 maps with UTF-8 encoding', () => {
   let b64 = Buffer.from(map).toString('base64')
-  let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
-              'charset=utf8;base64,' + b64 + ' */'
+  let css =
+    'a{}\n/*# sourceMappingURL=data:application/json;' +
+    'charset=utf8;base64,' +
+    b64 +
+    ' */'
 
   expect(parse(css).source.input.map.text).toEqual(map)
 })
 
 it('decodes URI maps', () => {
   let uri = 'data:application/json,' + decodeURI(map)
-  let css = `a{}\n/*# sourceMappingURL=${ uri } */`
+  let css = `a{}\n/*# sourceMappingURL=${uri} */`
 
   expect(parse(css).source.input.map.text).toEqual(map)
 })
 
 it('decodes URI UTF-8 maps', () => {
   let uri = decodeURI(map)
-  let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
-              'charset=utf-8,' + uri + ' */'
+  let css =
+    'a{}\n/*# sourceMappingURL=data:application/json;' +
+    'charset=utf-8,' +
+    uri +
+    ' */'
 
   expect(parse(css).source.input.map.text).toEqual(map)
 })
 
 it('accepts different name for URI maps with UTF-8 encoding', () => {
   let uri = decodeURI(map)
-  let css = 'a{}\n/*# sourceMappingURL=data:application/json;' +
-              'charset=utf8,' + uri + ' */'
+  let css =
+    'a{}\n/*# sourceMappingURL=data:application/json;' +
+    'charset=utf8,' +
+    uri +
+    ' */'
 
   expect(parse(css).source.input.map.text).toEqual(map)
 })
 
 it('removes map on request', () => {
   let uri = 'data:application/json,' + decodeURI(map)
-  let css = `a{}\n/*# sourceMappingURL=${ uri } */`
+  let css = `a{}\n/*# sourceMappingURL=${uri} */`
 
   let input = parse(css, { map: { prev: false } }).source.input
   expect(input.map).not.toBeDefined()
 })
 
 it('raises on unknown inline encoding', () => {
-  let css = 'a { }\n/*# sourceMappingURL=data:application/json;' +
-              'md5,68b329da9893e34099c7d8ad5cb9c940*/'
+  let css =
+    'a { }\n/*# sourceMappingURL=data:application/json;' +
+    'md5,68b329da9893e34099c7d8ad5cb9c940*/'
 
   expect(() => {
     parse(css)
@@ -140,11 +153,13 @@ it('reads map from annotation', () => {
 it('reads only the last map from annotation', () => {
   let file = path.join(dir, 'c.map')
   fs.outputFileSync(file, map)
-  let root = parse('a{}' +
-    '\n/*# sourceMappingURL=a.map */' +
-    '\n/*# sourceMappingURL=b.map */' +
-    '\n/*# sourceMappingURL=c.map */',
-  { from: file })
+  let root = parse(
+    'a{}' +
+      '\n/*# sourceMappingURL=a.map */' +
+      '\n/*# sourceMappingURL=b.map */' +
+      '\n/*# sourceMappingURL=c.map */',
+    { from: file }
+  )
 
   expect(root.source.input.map.text).toEqual(map)
   expect(root.source.input.map.root).toEqual(dir)

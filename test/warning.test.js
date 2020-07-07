@@ -27,7 +27,7 @@ it('outputs warning with plugin and node', () => {
     plugin: 'plugin',
     node: root.first
   })
-  expect(warning.toString()).toEqual(`plugin: ${ file }:1:1: text`)
+  expect(warning.toString()).toEqual(`plugin: ${file}:1:1: text`)
 })
 
 it('outputs warning with index', () => {
@@ -38,7 +38,7 @@ it('outputs warning with index', () => {
     node: root.first,
     index: 7
   })
-  expect(warning.toString()).toEqual(`plugin: ${ file }:1:8: text`)
+  expect(warning.toString()).toEqual(`plugin: ${file}:1:8: text`)
 })
 
 it('outputs warning with word', () => {
@@ -49,7 +49,7 @@ it('outputs warning with word', () => {
     node: root.first,
     word: 'am'
   })
-  expect(warning.toString()).toEqual(`plugin: ${ file }:1:10: text`)
+  expect(warning.toString()).toEqual(`plugin: ${file}:1:10: text`)
 })
 
 it('generates warning without source', () => {

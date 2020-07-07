@@ -33,20 +33,18 @@ function generateDocs (data) {
 }
 
 function extendClasses (docs) {
-  docs
-    .filter(filterExtendedClasses)
-    .forEach(targetClass => {
-      targetClass.augments.forEach(augment => {
-        let parentClass = docs.find(i => i.name === augment.name)
-        if (!parentClass) return
+  docs.filter(filterExtendedClasses).forEach(targetClass => {
+    targetClass.augments.forEach(augment => {
+      let parentClass = docs.find(i => i.name === augment.name)
+      if (!parentClass) return
 
-        targetClass.members.instance = targetClass.members.instance
-          .concat(getParentMethods(parentClass))
-          .map(changeNamespaceForMethod(targetClass, parentClass))
-          .filter(cleanFromDuplicated(targetClass, parentClass))
-          .sort((a, b) => a.name > b.name ? 1 : -1)
-      })
+      targetClass.members.instance = targetClass.members.instance
+        .concat(getParentMethods(parentClass))
+        .map(changeNamespaceForMethod(targetClass, parentClass))
+        .filter(cleanFromDuplicated(targetClass, parentClass))
+        .sort((a, b) => (a.name > b.name ? 1 : -1))
     })
+  })
 }
 
 function filterExtendedClasses (extendedClass) {
@@ -59,7 +57,8 @@ function getParentMethods (parentCls) {
 
 function changeNamespaceForMethod (targetCls, parentCls) {
   return i => ({
-    ...i, namespace: i.namespace.replace(parentCls.name, targetCls.name)
+    ...i,
+    namespace: i.namespace.replace(parentCls.name, targetCls.name)
   })
 }
 
@@ -77,7 +76,7 @@ function cleanFromDuplicated (targetClass, parentClass) {
 }
 
 function sortClasses (docs) {
-  docs.sort((a, b) => a.name > b.name ? 1 : -1)
+  docs.sort((a, b) => (a.name > b.name ? 1 : -1))
 }
 
 function removeEmptyMethods (docs) {
@@ -104,10 +103,7 @@ async function saveDocs (output) {
             /regular blockmt1 quiet rounded/g,
             'blockmt1 quiet rounded bold block h4 mt2'
           )
-          .replace(
-            /<div class='keyline-top-not py2'>/g,
-            '<div class="hide">'
-          )
+          .replace(/<div class='keyline-top-not py2'>/g, '<div class="hide">')
       }
       await writeFile(join(API_FOLDER, name), content)
     } else {
