@@ -124,10 +124,6 @@ it('allows to build own CSS', () => {
   )
 })
 
-it('contains vendor module', () => {
-  expect(postcss.vendor.prefix('-moz-tab')).toEqual('-moz-')
-})
-
 it('contains list module', () => {
   expect(postcss.list.space('a b')).toEqual(['a', 'b'])
 })
