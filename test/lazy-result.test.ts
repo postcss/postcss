@@ -1,7 +1,7 @@
-let mozilla = require('source-map')
+import mozilla from 'source-map'
 
-let LazyResult = require('../lib/lazy-result')
-let Processor = require('../lib/processor')
+import LazyResult from '../lib/lazy-result.js'
+import Processor from '../lib/processor.js'
 
 let processor = new Processor()
 
@@ -17,7 +17,7 @@ it('will stringify css', () => {
 
 it('stringifies css', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect('' + result).toEqual(result.css)
+  expect(`${result}`).toEqual(result.css)
 })
 
 it('has content alias for css', () => {

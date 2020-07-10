@@ -61,6 +61,13 @@ export default class LazyResult {
   finally: Promise<Result>['finally']
 
   /**
+   * @param processor Processor used for this transformation.
+   * @param css       CSS to parse and transform.
+   * @param opts      Options from the `Processor#process` or `Root#toResult`.
+   */
+  constructor (processor: Processor, css: string, opts: ResultOptions)
+
+  /**
    * Returns a `Processor` instance, which will be used
    * for CSS transformations.
    */
