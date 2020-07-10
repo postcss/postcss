@@ -1,5 +1,5 @@
-let Comment = require('../lib/comment')
-let parse = require('../lib/parse')
+import Comment from '../lib/comment'
+import parse from '../lib/parse'
 
 it('toString() inserts default spaces', () => {
   let comment = new Comment({ text: 'hi' })
