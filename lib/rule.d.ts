@@ -1,4 +1,4 @@
-import Container, { ContainerProps } from './container'
+import Container, { ContainerProps } from './container.js'
 
 interface RuleRaws {
   /**

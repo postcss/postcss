@@ -30,12 +30,12 @@
   "homepage": "https://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
+    "@logux/eslint-config": "^40.0.0",
     "colorette": "^1.2.1",
     "nanoid": "^3.1.10",
     "source-map": "^0.6.1"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^39.0.3",
     "@size-limit/preset-small-lib": "^4.5.3",
     "@types/jest": "^26.0.4",
     "@types/node": "^14.0.20",

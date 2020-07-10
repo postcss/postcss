@@ -1,20 +1,23 @@
-let cases = require('postcss-parser-tests')
-let path = require('path')
-let fs = require('fs')
+import { testPath, jsonify, eachTest } from 'postcss-parser-tests'
+import { readFileSync } from 'fs'
+import { resolve } from 'path'
 
-let parse = require('../lib/parse')
-let Root = require('../lib/root')
-require('../lib/processor')
+import Declaration from '../lib/declaration.js'
+import AtRule from '../lib/at-rule.js'
+import parse from '../lib/parse.js'
+import Root from '../lib/root.js'
+import Rule from '../lib/rule.js'
+import '../lib/processor.js'
 
 it('works with file reads', () => {
-  let stream = fs.readFileSync(cases.path('atrule-empty.css'))
+  let stream = readFileSync(testPath('atrule-empty.css'))
   expect(parse(stream) instanceof Root).toBe(true)
 })
 
-cases.each((name, css, json) => {
-  it('parses ' + name, () => {
+eachTest((name, css, json) => {
+  it(`parses ${name}`, () => {
     css = css.replace(/\r\n/g, '\n')
-    let parsed = cases.jsonify(parse(css, { from: name }))
+    let parsed = jsonify(parse(css, { from: name }))
     expect(JSON.parse(parsed)).toEqual(JSON.parse(json))
   })
 })
@@ -26,50 +29,50 @@ it('parses UTF-8 BOM', () => {
 
 it('should has true at `hasBOM` property', () => {
   let css = parse('\uFEFF@host { a {\f} }')
-  expect(css.first.source.input.hasBOM).toBe(true)
+  expect(css.first?.source?.input.hasBOM).toBe(true)
 })
 
 it('should has false at `hasBOM` property', () => {
   let css = parse('@host { a {\f} }')
-  expect(css.first.source.input.hasBOM).toBe(false)
+  expect(css.first?.source?.input.hasBOM).toBe(false)
 })
 
 it('saves source file', () => {
   let css = parse('a {}', { from: 'a.css' })
-  expect(css.first.source.input.css).toEqual('a {}')
-  expect(css.first.source.input.file).toEqual(path.resolve('a.css'))
-  expect(css.first.source.input.from).toEqual(path.resolve('a.css'))
+  expect(css.first?.source?.input.css).toEqual('a {}')
+  expect(css.first?.source?.input.file).toEqual(resolve('a.css'))
+  expect(css.first?.source?.input.from).toEqual(resolve('a.css'))
 })
 
 it('keeps absolute path in source', () => {
   let css = parse('a {}', { from: 'http://example.com/a.css' })
-  expect(css.first.source.input.file).toEqual('http://example.com/a.css')
-  expect(css.first.source.input.from).toEqual('http://example.com/a.css')
+  expect(css.first?.source?.input.file).toEqual('http://example.com/a.css')
+  expect(css.first?.source?.input.from).toEqual('http://example.com/a.css')
 })
 
 it('saves source file on previous map', () => {
   let root1 = parse('a {}', { map: { inline: true } })
   let css = root1.toResult({ map: { inline: true } }).css
   let root2 = parse(css)
-  expect(root2.first.source.input.file).toEqual(path.resolve('to.css'))
+  expect(root2.first?.source?.input.file).toEqual(resolve('to.css'))
 })
 
 it('sets unique ID for file without name', () => {
   let css1 = parse('a {}')
   let css2 = parse('a {}')
-  expect(css1.first.source.input.id).toMatch(/^<input css [\w-]+>$/)
-  expect(css1.first.source.input.from).toMatch(/^<input css [\w-]+>$/)
-  expect(css2.first.source.input.id).not.toEqual(css1.first.source.input.id)
+  expect(css1.first?.source?.input.id).toMatch(/^<input css [\w-]+>$/)
+  expect(css1.first?.source?.input.from).toMatch(/^<input css [\w-]+>$/)
+  expect(css2.first?.source?.input.id).not.toEqual(css1.first?.source?.input.id)
 })
 
 it('sets parent node', () => {
-  let file = cases.path('atrule-rules.css')
-  let css = parse(fs.readFileSync(file))
+  let file = testPath('atrule-rules.css')
+  let css = parse(readFileSync(file))
 
-  let support = css.first
-  let keyframes = support.first
-  let from = keyframes.first
-  let decl = from.first
+  let support = css.first as AtRule
+  let keyframes = support.first as AtRule
+  let from = keyframes.first as Rule
+  let decl = from.first as Declaration
 
   expect(decl.parent).toBe(from)
   expect(from.parent).toBe(keyframes)
@@ -79,17 +82,23 @@ it('sets parent node', () => {
 
 it('ignores wrong close bracket', () => {
   let root = parse('a { p: ()) }')
-  expect(root.first.first.value).toEqual('())')
+  let a = root.first as Rule
+  let decl = a.first as Declaration
+  expect(decl.value).toEqual('())')
 })
 
 it('parses unofficial --mixins', () => {
   let root = parse(':root { --x { color: pink; }; }')
-  expect(root.first.first.selector).toEqual('--x')
+  let rule = root.first as Rule
+  let prop = rule.first as Rule
+  expect(prop.selector).toEqual('--x')
 })
 
 it('ignores symbols before declaration', () => {
   let root = parse('a { :one: 1 }')
-  expect(root.first.first.raws.before).toEqual(' :')
+  let a = root.first as Rule
+  let prop = a.first as Declaration
+  expect(prop.raws.before).toEqual(' :')
 })
 
 it('parses double semicolon after rule', () => {

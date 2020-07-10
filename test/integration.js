@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-let real = require('postcss-parser-tests/real')
+let { testOnReal } = require('postcss-parser-tests')
 
 let Processor = require('../lib/processor')
 let postcss = require('../')
@@ -11,4 +11,4 @@ if (pkg.version !== instance.version) {
   throw new Error('Version in Processor is not equal to package.json')
 }
 
-real(css => postcss.parse(css).toResult({ map: { annotation: false } }))
+testOnReal(css => postcss.parse(css).toResult({ map: { annotation: false } }))
