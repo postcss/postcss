@@ -4,23 +4,23 @@ export interface WarningOptions {
   /**
    * CSS node that caused the warning.
    */
-  node: Node
+  node?: Node
 
   /**
    * Word in CSS source that caused the warning.
    */
-  word: string
+  word?: string
 
   /**
    * Index in CSS node string that caused the warning.
    */
-  index: number
+  index?: number
 
   /**
    * Name of the plugin that created this warning. `Result#warn` fills
    * this property automatically.
    */
-  plugin: string
+  plugin?: string
 }
 
 /**

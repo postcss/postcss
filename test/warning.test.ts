@@ -1,8 +1,8 @@
-let path = require('path')
+import { resolve } from 'path'
 
-let Declaration = require('../lib/declaration')
-let Warning = require('../lib/warning')
-let parse = require('../lib/parse')
+import Declaration from '../lib/declaration'
+import Warning from '../lib/warning'
+import parse from '../lib/parse'
 
 it('outputs simple warning', () => {
   let warning = new Warning('text')
@@ -21,7 +21,7 @@ it('outputs warning with position', () => {
 })
 
 it('outputs warning with plugin and node', () => {
-  let file = path.resolve('a.css')
+  let file = resolve('a.css')
   let root = parse('a{}', { from: file })
   let warning = new Warning('text', {
     plugin: 'plugin',
@@ -31,7 +31,7 @@ it('outputs warning with plugin and node', () => {
 })
 
 it('outputs warning with index', () => {
-  let file = path.resolve('a.css')
+  let file = resolve('a.css')
   let root = parse('@rule param {}', { from: file })
   let warning = new Warning('text', {
     plugin: 'plugin',
@@ -42,7 +42,7 @@ it('outputs warning with index', () => {
 })
 
 it('outputs warning with word', () => {
-  let file = path.resolve('a.css')
+  let file = resolve('a.css')
   let root = parse('@rule param {}', { from: file })
   let warning = new Warning('text', {
     plugin: 'plugin',
