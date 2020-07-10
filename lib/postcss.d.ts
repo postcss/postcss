@@ -126,7 +126,7 @@ interface SourceMapOptions {
    *
    * If desired, you can omit the previous map with prev: `false`.
    */
-  prev?: any
+  prev?: string | boolean | object | ((file: string) => string)
 
   /**
    * Indicates that PostCSS should set the origin content (e.g., Sass source)

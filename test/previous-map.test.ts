@@ -1,10 +1,11 @@
-let mozilla = require('source-map')
-let path = require('path')
-let fs = require('fs-extra')
+import { removeSync, outputFileSync } from 'fs-extra'
+import { SourceMapConsumer } from 'source-map'
+import { existsSync } from 'fs'
+import { join } from 'path'
 
-let parse = require('../lib/parse')
+import parse from '../lib/parse.js'
 
-let dir = path.join(__dirname, 'prevmap-fixtures')
+let dir = join(__dirname, 'prevmap-fixtures')
 let mapObj = {
   version: 3,
   file: null,
@@ -15,35 +16,35 @@ let mapObj = {
 let map = JSON.stringify(mapObj)
 
 afterEach(() => {
-  if (fs.existsSync(dir)) fs.removeSync(dir)
+  if (existsSync(dir)) removeSync(dir)
 })
 
 it('misses property if no map', () => {
-  expect(parse('a{}').source.input.map).not.toBeDefined()
+  expect(parse('a{}').source?.input.map).not.toBeDefined()
 })
 
 it('creates property if map present', () => {
   let root = parse('a{}', { map: { prev: map } })
-  expect(root.source.input.map.text).toEqual(map)
+  expect(root.source?.input.map.text).toEqual(map)
 })
 
 it('returns consumer', () => {
-  let obj = parse('a{}', { map: { prev: map } }).source.input.map.consumer()
-  expect(obj instanceof mozilla.SourceMapConsumer).toBe(true)
+  let obj = parse('a{}', { map: { prev: map } }).source?.input.map.consumer()
+  expect(obj instanceof SourceMapConsumer).toBe(true)
 })
 
 it('sets annotation property', () => {
   let mapOpts = { map: { prev: map } }
 
   let root1 = parse('a{}', mapOpts)
-  expect(root1.source.input.map.annotation).not.toBeDefined()
+  expect(root1.source?.input.map.annotation).not.toBeDefined()
 
   let root2 = parse('a{}/*# sourceMappingURL=a.css.map */', mapOpts)
-  expect(root2.source.input.map.annotation).toEqual('a.css.map')
+  expect(root2.source?.input.map.annotation).toEqual('a.css.map')
 })
 
 it('checks previous sources content', () => {
-  let map2 = {
+  let map2: any = {
     version: 3,
     file: 'b',
     sources: ['a'],
@@ -52,10 +53,10 @@ it('checks previous sources content', () => {
   }
 
   let opts = { map: { prev: map2 } }
-  expect(parse('a{}', opts).source.input.map.withContent()).toBe(false)
+  expect(parse('a{}', opts).source?.input.map.withContent()).toBe(false)
 
   map2.sourcesContent = ['a{}']
-  expect(parse('a{}', opts).source.input.map.withContent()).toBe(true)
+  expect(parse('a{}', opts).source?.input.map.withContent()).toBe(true)
 })
 
 it('decodes base64 maps', () => {
@@ -63,7 +64,7 @@ it('decodes base64 maps', () => {
   let css =
     'a{}\n' + `/*# sourceMappingURL=data:application/json;base64,${b64} */`
 
-  expect(parse(css).source.input.map.text).toEqual(map)
+  expect(parse(css).source?.input.map.text).toEqual(map)
 })
 
 it('decodes base64 UTF-8 maps', () => {
@@ -74,7 +75,7 @@ it('decodes base64 UTF-8 maps', () => {
     b64 +
     ' */'
 
-  expect(parse(css).source.input.map.text).toEqual(map)
+  expect(parse(css).source?.input.map.text).toEqual(map)
 })
 
 it('accepts different name for base64 maps with UTF-8 encoding', () => {
@@ -85,14 +86,14 @@ it('accepts different name for base64 maps with UTF-8 encoding', () => {
     b64 +
     ' */'
 
-  expect(parse(css).source.input.map.text).toEqual(map)
+  expect(parse(css).source?.input.map.text).toEqual(map)
 })
 
 it('decodes URI maps', () => {
   let uri = 'data:application/json,' + decodeURI(map)
   let css = `a{}\n/*# sourceMappingURL=${uri} */`
 
-  expect(parse(css).source.input.map.text).toEqual(map)
+  expect(parse(css).source?.input.map.text).toEqual(map)
 })
 
 it('decodes URI UTF-8 maps', () => {
@@ -103,7 +104,7 @@ it('decodes URI UTF-8 maps', () => {
     uri +
     ' */'
 
-  expect(parse(css).source.input.map.text).toEqual(map)
+  expect(parse(css).source?.input.map.text).toEqual(map)
 })
 
 it('accepts different name for URI maps with UTF-8 encoding', () => {
@@ -114,15 +115,15 @@ it('accepts different name for URI maps with UTF-8 encoding', () => {
     uri +
     ' */'
 
-  expect(parse(css).source.input.map.text).toEqual(map)
+  expect(parse(css).source?.input.map.text).toEqual(map)
 })
 
 it('removes map on request', () => {
   let uri = 'data:application/json,' + decodeURI(map)
   let css = `a{}\n/*# sourceMappingURL=${uri} */`
 
-  let input = parse(css, { map: { prev: false } }).source.input
-  expect(input.map).not.toBeDefined()
+  let input = parse(css, { map: { prev: false } }).source?.input
+  expect(input?.map).not.toBeDefined()
 })
 
 it('raises on unknown inline encoding', () => {
@@ -137,22 +138,23 @@ it('raises on unknown inline encoding', () => {
 
 it('raises on unknown map format', () => {
   expect(() => {
+    // @ts-expect-error
     parse('a{}', { map: { prev: 1 } })
   }).toThrow('Unsupported previous source map format: 1')
 })
 
 it('reads map from annotation', () => {
-  let file = path.join(dir, 'a.map')
-  fs.outputFileSync(file, map)
+  let file = join(dir, 'a.map')
+  outputFileSync(file, map)
   let root = parse('a{}\n/*# sourceMappingURL=a.map */', { from: file })
 
-  expect(root.source.input.map.text).toEqual(map)
-  expect(root.source.input.map.root).toEqual(dir)
+  expect(root.source?.input.map.text).toEqual(map)
+  expect(root.source?.input.map.root).toEqual(dir)
 })
 
 it('reads only the last map from annotation', () => {
-  let file = path.join(dir, 'c.map')
-  fs.outputFileSync(file, map)
+  let file = join(dir, 'c.map')
+  outputFileSync(file, map)
   let root = parse(
     'a{}' +
       '\n/*# sourceMappingURL=a.map */' +
@@ -161,8 +163,8 @@ it('reads only the last map from annotation', () => {
     { from: file }
   )
 
-  expect(root.source.input.map.text).toEqual(map)
-  expect(root.source.input.map.root).toEqual(dir)
+  expect(root.source?.input.map.text).toEqual(map)
+  expect(root.source?.input.map.root).toEqual(dir)
 })
 
 it('sets unique name for inline map', () => {
@@ -174,8 +176,8 @@ it('sets unique name for inline map', () => {
   }
 
   let opts = { map: { prev: map2 } }
-  let file1 = parse('a{}', opts).source.input.map.file
-  let file2 = parse('a{}', opts).source.input.map.file
+  let file1 = parse('a{}', opts).source?.input.map.file
+  let file2 = parse('a{}', opts).source?.input.map.file
 
   expect(file1).toMatch(/^<input css [\w-]+>$/)
   expect(file1).not.toEqual(file2)
@@ -195,25 +197,25 @@ it('accepts an empty mappings string', () => {
 
 it('accepts a function', () => {
   let css = 'body{}\n/*# sourceMappingURL=a.map */'
-  let file = path.join(dir, 'previous-sourcemap-function.map')
-  fs.outputFileSync(file, map)
+  let file = join(dir, 'previous-sourcemap-function.map')
+  outputFileSync(file, map)
   let opts = {
     map: {
       prev: () => file
     }
   }
   let root = parse(css, opts)
-  expect(root.source.input.map.text).toEqual(map)
-  expect(root.source.input.map.annotation).toEqual('a.map')
+  expect(root.source?.input.map.text).toEqual(map)
+  expect(root.source?.input.map.annotation).toEqual('a.map')
 })
 
 it('calls function with opts.from', () => {
   expect.assertions(1)
 
   let css = 'body{}\n/*# sourceMappingURL=a.map */'
-  let file = path.join(dir, 'previous-sourcemap-function.map')
-  fs.outputFileSync(file, map)
-  let opts = {
+  let file = join(dir, 'previous-sourcemap-function.map')
+  outputFileSync(file, map)
+  parse(css, {
     from: 'a.css',
     map: {
       prev: from => {
@@ -221,14 +223,13 @@ it('calls function with opts.from', () => {
         return file
       }
     }
-  }
-  parse(css, opts)
+  })
 })
 
 it('raises when function returns invalid path', () => {
   let css = 'body{}\n/*# sourceMappingURL=a.map */'
   let fakeMap = Number.MAX_SAFE_INTEGER.toString() + '.map'
-  let fakePath = path.join(dir, fakeMap)
+  let fakePath = join(dir, fakeMap)
   let opts = {
     map: {
       prev: () => fakePath

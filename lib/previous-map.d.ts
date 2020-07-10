@@ -36,6 +36,12 @@ export default class PreviousMap {
   root?: string
 
   /**
+   * The CSS source identifier. Contains `Input#file` if the user
+   * set the `from` option, or `Input#id` if they did not.
+   */
+  file?: string
+
+  /**
    * @param css  Input CSS source.
    * @param opts Process options.
    */
