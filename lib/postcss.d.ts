@@ -10,7 +10,7 @@ import { WarningOptions } from './warning'
 import { FilePosition } from './input'
 import LazyResult from './lazy-result'
 import Processor from './processor'
-import list from './list'
+import { List } from './list'
 
 export {
   WarningOptions,
@@ -177,7 +177,7 @@ export interface ProcessOptions {
   map?: SourceMapOptions | boolean
 }
 
-export default interface postcss {
+export interface Postcss {
   /**
    * Create a new `Processor` instance that will apply `plugins`
    * as CSS processors.
@@ -295,7 +295,7 @@ export default interface postcss {
    * postcss.list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
    * ```
    */
-  list: list
+  list: List
 
   /**
    * Creates a new `Comment` node.
@@ -357,3 +357,7 @@ export default interface postcss {
    */
   root(defaults?: RootProps): Root
 }
+
+declare const postcss: Postcss
+
+export default postcss
