@@ -1,4 +1,10 @@
-import { Position, Source, ChildNode, NodeProps, ChildProps } from './node.js'
+import Node, {
+  Position,
+  Source,
+  ChildNode,
+  NodeProps,
+  ChildProps
+} from './node.js'
 import Declaration, { DeclarationProps } from './declaration.js'
 import Root, { Event, RootProps } from './root.js'
 import Comment, { CommentProps } from './comment.js'
