@@ -179,7 +179,7 @@ export interface ProcessOptions {
 
 export default interface postcss {
   /**
-   * Create a new {@link Processor} instance that will apply `plugins`
+   * Create a new `Processor` instance that will apply `plugins`
    * as CSS processors.
    *
    * ```js
@@ -208,8 +208,8 @@ export default interface postcss {
    * processor.plugins[0].postcssVersion //=> '6.0.0'
    * ```
    *
-   * The plugin function receives 2 arguments: {@link Root}
-   * and {@link Result} instance. The function should mutate the provided
+   * The plugin function receives 2 arguments: `Root`
+   * and `Result` instance. The function should mutate the provided
    * `Root` node. Alternatively, you can create a new `Root` node
    * and override the `result.root` property.
    *
@@ -245,8 +245,8 @@ export default interface postcss {
    * })
    * ```
    *
-   * Add warnings using the {@link Node#warn} method.
-   * Send data to other plugins using the {@link Result#messages} array.
+   * Add warnings using the `Node#warn` method.
+   * Send data to other plugins using the `Result#messages` array.
    *
    * ```js
    * postcss.plugin('postcss-caniuse-test', () => {
@@ -264,7 +264,7 @@ export default interface postcss {
    *                    property in `package.json`. It will be saved
    *                    in `plugin.postcssPlugin` property.
    * @param initializer Will receive plugin options
-   *                    and should return {@link pluginFunction}.
+   *                    and should return plugin function.
    *
    * @return PostCSS plugin.
    */
@@ -276,7 +276,7 @@ export default interface postcss {
   stringify: Stringifier
 
   /**
-   * Parses source css and returns a new {@link Root} node,
+   * Parses source css and returns a new `Root` node,
    * which contains the source CSS nodes.
    *
    * ```js
@@ -289,7 +289,7 @@ export default interface postcss {
   parse: Parser
 
   /**
-   * Contains the {@link list} module.
+   * Contains the `list` module.
    *
    * ```js
    * postcss.list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
@@ -298,7 +298,7 @@ export default interface postcss {
   list: list
 
   /**
-   * Creates a new {@link Comment} node.
+   * Creates a new `Comment` node.
    *
    * ```js
    * postcss.comment({ text: 'test' })
@@ -310,7 +310,7 @@ export default interface postcss {
   comment(defaults?: CommentProps): Comment
 
   /**
-   * Creates a new {@link AtRule} node.
+   * Creates a new `AtRule` node.
    *
    * ```js
    * postcss.atRule({ name: 'charset' }).toString() //=> "@charset"
@@ -322,7 +322,7 @@ export default interface postcss {
   atRule(defaults?: AtRuleProps): AtRule
 
   /**
-   * Creates a new {@link Declaration} node.
+   * Creates a new `Declaration` node.
    *
    * ```js
    * postcss.decl({ prop: 'color', value: 'red' }).toString() //=> "color: red"
@@ -334,7 +334,7 @@ export default interface postcss {
   decl(defaults?: DeclarationProps): Declaration
 
   /**
-   * Creates a new {@link Rule} node.
+   * Creates a new `Rule` node.
    *
    * ```js
    * postcss.rule({ selector: 'a' }).toString() //=> "a {\n}"
@@ -346,7 +346,7 @@ export default interface postcss {
   rule(defaults?: RuleProps): Rule
 
   /**
-   * Creates a new {@link Root} node.
+   * Creates a new `Root` node.
    *
    * ```js
    * postcss.root({ after: '\n' }).toString() //=> "\n"

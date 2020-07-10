@@ -39,13 +39,13 @@ export default class Processor {
    * Adds a plugin to be used as a CSS processor.
    *
    * PostCSS plugin can be in 4 formats:
-   * * A plugin created by {@link postcss.plugin} method.
+   * * A plugin created by `postcss.plugin` method.
    * * A function. PostCSS will pass the function a @{link Root}
-   *   as the first argument and current {@link Result} instance
+   *   as the first argument and current `Result` instance
    *   as the second.
    * * An object with a `postcss` method. PostCSS will use that method
    *   as described in #2.
-   * * Another {@link Processor} instance. PostCSS will copy plugins
+   * * Another `Processor` instance. PostCSS will copy plugins
    *   from that instance into this one.
    *
    * Plugins can also be added by passing them as arguments when creating
@@ -59,16 +59,16 @@ export default class Processor {
    *   .use(precss)
    * ```
    *
-   * @param plugin PostCSS plugin or {@link Processor} with plugins.
+   * @param plugin PostCSS plugin or `Processor` with plugins.
    * @return {Processes} Current processor to make methods chain.
    */
   use (plugin: AcceptedPlugin): this
 
   /**
-   * Parses source CSS and returns a {@link LazyResult} Promise proxy.
+   * Parses source CSS and returns a `LazyResult` Promise proxy.
    * Because some plugins can be asynchronous it doesn’t make
    * any transformations. Transformations will be applied
-   * in the {@link LazyResult} methods.
+   * in the `LazyResult` methods.
    *
    * ```js
    * processor.process(css, { from: 'a.css', to: 'a.out.css' })
@@ -78,8 +78,8 @@ export default class Processor {
    * ```
    *
    * @param css String with input CSS or any object with a `toString()` method,
-   *            like a Buffer. Optionally, senda {@link Result} instance
-   *            and the processor will take the {@link Root} from it.
+   *            like a Buffer. Optionally, senda `Result` instance
+   *            and the processor will take the `Root` from it.
    * @param opts Options.
    * @return Promise proxy.
    */

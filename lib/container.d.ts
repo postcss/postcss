@@ -21,7 +21,7 @@ export interface ContainerProps extends NodeProps {
 }
 
 /**
- * The {@link Root}, {@link AtRule}, and {@link Rule} container nodes
+ * The `Root`, `AtRule`, and `Rule` container nodes
  * inherit some common methods to help work with their children.
  *
  * Note that all containers can store any content. If you write a rule inside
@@ -66,7 +66,7 @@ export default abstract class Container extends Node {
    *
    * This method only iterates through the container’s immediate children.
    * If you need to recursively iterate through all the container’s descendant
-   * nodes, use {@link Container#walk}.
+   * nodes, use `Container#walk`.
    *
    * Unlike the for `{}`-cycle or `Array#forEach` this iterator is safe
    * if you are mutating the array of child nodes during iteration.
@@ -102,7 +102,7 @@ export default abstract class Container extends Node {
    * if you are mutating arrays during iteration.
    *
    * If you only need to iterate through the container’s immediate children,
-   * use {@link Container#each}.
+   * use `Container#each`.
    *
    * ```js
    * root.walk(node => {
@@ -137,7 +137,7 @@ export default abstract class Container extends Node {
    * })
    * ```
    *
-   * Like {@link Container#each}, this method is safe
+   * Like `Container#each`, this method is safe
    * to use if you are mutating arrays during iteration.
    *
    * @param prop     String or regular expression to filter declarations
@@ -163,7 +163,7 @@ export default abstract class Container extends Node {
    * If you pass a filter, iteration will only happen over rules
    * with matching selectors.
    *
-   * Like {@link Container#each}, this method is safe
+   * Like `Container#each`, this method is safe
    * to use if you are mutating arrays during iteration.
    *
    * ```js
@@ -196,7 +196,7 @@ export default abstract class Container extends Node {
    * If you pass a filter, iteration will only happen over at-rules
    * that have matching names.
    *
-   * Like {@link Container#each}, this method is safe
+   * Like `Container#each`, this method is safe
    * to use if you are mutating arrays during iteration.
    *
    * ```js
@@ -233,7 +233,7 @@ export default abstract class Container extends Node {
    * Traverses the container’s descendant nodes, calling callback
    * for each comment node.
    *
-   * Like {@link Container#each}, this method is safe
+   * Like `Container#each`, this method is safe
    * to use if you are mutating arrays during iteration.
    *
    * ```js
@@ -416,7 +416,7 @@ export default abstract class Container extends Node {
   ): boolean
 
   /**
-   * Returns a `child`’s index within the {@link Container#nodes} array.
+   * Returns a `child`’s index within the `Container#nodes` array.
    *
    * ```js
    * rule.index( rule.nodes[2] ) //=> 2

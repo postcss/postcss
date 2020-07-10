@@ -50,7 +50,7 @@ export default class Root extends Container {
   constructor (defaults?: RootProps)
 
   /**
-   * Returns a {@link Result} instance representing the root’s CSS.
+   * Returns a `Result` instance representing the root’s CSS.
    *
    * ```js
    * const root1 = postcss.parse(css1, { from: 'a.css' })

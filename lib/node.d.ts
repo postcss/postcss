@@ -197,7 +197,7 @@ export default abstract class Node {
   error (message: string, options?: NodeErrorOptions): CssSyntaxError
 
   /**
-   * This method is provided as a convenience wrapper for {@link Result#warn}.
+   * This method is provided as a convenience wrapper for `Result#warn`.
    *
    * ```js
    * const plugin = postcss.plugin('postcss-deprecated', () => {
@@ -209,7 +209,7 @@ export default abstract class Node {
    * })
    * ```
    *
-   * @param result The {@link Result} instance that will receive the warning.
+   * @param result The `Result` instance that will receive the warning.
    * @param text   Warning message.
    * @param opts   Warning Options.
    *
@@ -370,7 +370,7 @@ export default abstract class Node {
   root (): Root
 
   /**
-   * Returns a {@link Node#raws} value. If the node is missing
+   * Returns a `Node#raws` value. If the node is missing
    * the code style property (because the node was manually built or cloned),
    * PostCSS will try to autodetect the code style property by looking
    * at other nodes in the tree.

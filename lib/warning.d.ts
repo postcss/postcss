@@ -1,4 +1,4 @@
-import Node = require('./node')
+import Node from './node'
 
 export interface WarningOptions {
   /**
@@ -17,14 +17,14 @@ export interface WarningOptions {
   index: number
 
   /**
-   * Name of the plugin that created this warning. {@link Result#warn} fills
+   * Name of the plugin that created this warning. `Result#warn` fills
    * this property automatically.
    */
   plugin: string
 }
 
 /**
- * Represents a plugin’s warning. It can be created using {@link Node#warn}.
+ * Represents a plugin’s warning. It can be created using `Node#warn`.
  *
  * ```js
  * if (decl.important) {
@@ -34,7 +34,7 @@ export interface WarningOptions {
  */
 export default class Warning {
   /**
-   * Type to filter warnings from {@link Result#messages}.
+   * Type to filter warnings from `Result#messages`.
    * Always equal to `"warning"`.
    */
   type: 'warning'
@@ -50,7 +50,7 @@ export default class Warning {
 
   /**
    * The name of the plugin that created this warning.
-   * When you call {@link Node#warn} it will fill this property automatically.
+   * When you call `Node#warn` it will fill this property automatically.
    *
    * ```js
    * warning.plugin //=> 'postcss-important'

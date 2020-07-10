@@ -4,7 +4,7 @@ import Input from './input'
  * The CSS parser throws this error for broken CSS.
  *
  * Custom parsers can throw this error for broken custom syntax using
- * the {@link Node#error} method.
+ * the `Node#error` method.
  *
  * PostCSS will use the input source map to detect the original error location.
  * If you wrote a Sass file, compiled it to CSS and then parsed it with PostCSS,

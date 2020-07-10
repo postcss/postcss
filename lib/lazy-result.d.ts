@@ -8,7 +8,7 @@ import Root from './root'
 /**
  * A Promise proxy for the result of PostCSS transformations.
  *
- * A `LazyResult` instance is returned by {@link Processor#process}.
+ * A `LazyResult` instance is returned by `Processor#process`.
  *
  * ```js
  * const lazy = postcss([autoprefixer]).process(css)
@@ -61,24 +61,24 @@ export default class LazyResult {
   finally: Promise<Result>['finally']
 
   /**
-   * Returns a {@link Processor} instance, which will be used
+   * Returns a `Processor` instance, which will be used
    * for CSS transformations.
    */
   get processor (): Processor
 
   /**
-   * Options from the {@link Processor#process} call.
+   * Options from the `Processor#process` call.
    */
   get opts (): ResultOptions
 
   /**
    * Processes input CSS through synchronous plugins, converts `Root`
-   * to a CSS string and returns {@link Result#css}.
+   * to a CSS string and returns `Result#css`.
    *
    * This property will only work with synchronous plugins.
    * If the processor contains any asynchronous plugins
    * it will throw an error. This is why this method is only
-   * for debug purpose, you should always use {@link LazyResult#then}.
+   * for debug purpose, you should always use `LazyResult#then`.
    */
   get css (): string
 
@@ -89,58 +89,55 @@ export default class LazyResult {
    * This property will only work with synchronous plugins.
    * If the processor contains any asynchronous plugins
    * it will throw an error. This is why this method is only
-   * for debug purpose, you should always use {@link LazyResult#then}.
+   * for debug purpose, you should always use `LazyResult#then`.
    */
   get content (): string
 
   /**
    * Processes input CSS through synchronous plugins
-   * and returns {@link Result#map}.
+   * and returns `Result#map`.
    *
    * This property will only work with synchronous plugins.
    * If the processor contains any asynchronous plugins
    * it will throw an error. This is why this method is only
-   * for debug purpose, you should always use {@link LazyResult#then}.
+   * for debug purpose, you should always use `LazyResult#then`.
    */
   get map (): SourceMapGenerator
 
   /**
    * Processes input CSS through synchronous plugins
-   * and returns {@link Result#root}.
+   * and returns `Result#root`.
    *
    * This property will only work with synchronous plugins. If the processor
    * contains any asynchronous plugins it will throw an error.
    *
    * This is why this method is only for debug purpose,
-   * you should always use {@link LazyResult#then}.
+   * you should always use `LazyResult#then`.
    */
   get root (): Root
 
   /**
    * Processes input CSS through synchronous plugins
-   * and returns {@link Result#messages}.
+   * and returns `Result#messages`.
    *
    * This property will only work with synchronous plugins. If the processor
    * contains any asynchronous plugins it will throw an error.
    *
    * This is why this method is only for debug purpose,
-   * you should always use {@link LazyResult#then}.
-   *
-   * @type {Message[]}
-   * @see Result#messages
+   * you should always use `LazyResult#then`.
    */
   get messages (): Message[]
 
   /**
    * Processes input CSS through synchronous plugins
-   * and calls {@link Result#warnings()}.
+   * and calls `Result#warnings()`.
    *
    * @return Warnings from plugins.
    */
   warnings (): Warning[]
 
   /**
-   * Alias for the {@link LazyResult#css} property.
+   * Alias for the `LazyResult#css` property.
    *
    * ```js
    * lazy + '' === lazy.css

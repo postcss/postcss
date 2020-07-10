@@ -36,8 +36,8 @@ export interface ResultOptions extends ProcessOptions {
 /**
  * Provides the result of the PostCSS transformations.
  *
- * A Result instance is returned by {@link LazyResult#then}
- * or {@link Root#toResult} methods.
+ * A Result instance is returned by `LazyResult#then`
+ * or `Root#toResult` methods.
  *
  * ```js
  * postcss([autoprefixer]).process(css).then(result => {
@@ -92,7 +92,7 @@ export default class Result {
   root: Root
 
   /**
-   * Options from the {@link Processor#process} or {@link Root#toResult} call
+   * Options from the `Processor#process` or `Root#toResult` call
    * that produced this Result instance.]
    *
    * ```js
@@ -102,7 +102,7 @@ export default class Result {
   opts: ResultOptions
 
   /**
-   * A CSS string representing of {@link Result#root}.
+   * A CSS string representing of `Result#root`.
    *
    * ```js
    * postcss.parse('a{}').toResult().css //=> "a{}"
@@ -112,7 +112,7 @@ export default class Result {
 
   /**
    * An instance of `SourceMapGenerator` class from the `source-map` library,
-   * representing changes to the {@link Result#root} instance.
+   * representing changes to the `Result#root` instance.
    *
    * ```js
    * result.map.toJSON() //=> { version: 3, file: 'a.css', … }
@@ -129,13 +129,12 @@ export default class Result {
   /**
    * @param processor Processor used for this transformation.
    * @param root      Root node after all transformations.
-   * @param opts      Options from the {@link Processor#process}
-   *                  or {@link Root#toResult}.
+   * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
   constructor (processor: Processor, root: Root, opts: ResultOptions)
 
   /**
-   * An alias for the {@link Result#css} property.
+   * An alias for the `Result#css` property.
    * Use it with syntaxes that generate non-CSS output.
    *
    * ```js
@@ -151,13 +150,12 @@ export default class Result {
    * result + '' === result.css
    * ```
    *
-   * @return String representing of {@link Result#root}.
+   * @return String representing of `Result#root`.
    */
   toString (): string
 
   /**
-   * Creates an instance of {@link Warning} and adds it
-   * to {@link Result#messages}.
+   * Creates an instance of `Warning` and adds it to `Result#messages`.
    *
    * ```js
    * if (decl.important) {
@@ -172,8 +170,8 @@ export default class Result {
   warn (message: string, options?: WarningOptions): void
 
   /**
-   * Returns warnings from plugins. Filters {@link Warning} instances
-   * from {@link Result#messages}.
+   * Returns warnings from plugins. Filters `Warning` instances
+   * from `Result#messages`.
    *
    * ```js
    * result.warnings().forEach(warn => {
