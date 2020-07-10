@@ -114,6 +114,15 @@
           "no-unused-expressions": "off",
           "func-style": "off"
         }
+      },
+      {
+        "files": [
+          "*.test.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/no-unused-expressions": "off",
+          "func-style": "off"
+        }
       }
     ],
     "rules": {

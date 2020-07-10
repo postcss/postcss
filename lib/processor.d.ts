@@ -36,6 +36,11 @@ export default class Processor {
   plugins: Plugin<any>[]
 
   /**
+   * @param plugins PostCSS plugins
+   */
+  constructor (plugins?: AcceptedPlugin[])
+
+  /**
    * Adds a plugin to be used as a CSS processor.
    *
    * PostCSS plugin can be in 4 formats:

@@ -160,7 +160,7 @@ export default abstract class Node {
    * root.first.first.raws //=> { before: '\n  ', between: ':' }
    * ```
    */
-  raws: object
+  raws: any
 
   /**
    * @param defaults Value for node properties.

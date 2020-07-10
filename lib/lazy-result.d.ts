@@ -1,6 +1,5 @@
-import { SourceMapGenerator } from 'source-map'
-
 import Result, { Message, ResultOptions } from './result.js'
+import { SourceMap } from './postcss.js'
 import Processor from './processor.js'
 import Warning from './warning.js'
 import Root from './root.js'
@@ -109,7 +108,7 @@ export default class LazyResult {
    * it will throw an error. This is why this method is only
    * for debug purpose, you should always use `LazyResult#then`.
    */
-  get map (): SourceMapGenerator
+  get map (): SourceMap
 
   /**
    * Processes input CSS through synchronous plugins
@@ -160,4 +159,11 @@ export default class LazyResult {
    * @return Result with output content.
    */
   sync (): Result
+
+  /**
+   * Run plugin in async way and return `Result`.
+   *
+   * @return Result with output content.
+   */
+  async (): Promise<Result>
 }

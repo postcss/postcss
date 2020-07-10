@@ -1,7 +1,5 @@
-import { SourceMapGenerator } from 'source-map'
-
+import { ProcessOptions, Plugin, SourceMap } from './postcss.js'
 import Warning, { WarningOptions } from './warning.js'
-import { ProcessOptions } from './postcss.js'
 import Processor from './processor.js'
 import Root from './root.js'
 import Node from './node.js'
@@ -124,7 +122,12 @@ export default class Result {
    * }
    * ```
    */
-  map: SourceMapGenerator
+  map: SourceMap
+
+  /**
+   * Last runned PostCSS plugin.
+   */
+  lastPlugin: Plugin<any>
 
   /**
    * @param processor Processor used for this transformation.

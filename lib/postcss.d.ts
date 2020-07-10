@@ -1,3 +1,5 @@
+import { SourceMapGenerator, RawSourceMap } from 'source-map'
+
 import Node, {
   Position,
   Source,
@@ -34,6 +36,10 @@ export {
   ChildProps,
   AtRuleProps,
   RootProps
+}
+
+export type SourceMap = SourceMapGenerator & {
+  toJSON(): RawSourceMap
 }
 
 interface Transformer extends TransformCallback {
@@ -92,6 +98,7 @@ export interface Syntax {
    * Function to generate AST by string.
    */
   parse?: Parser
+
   /**
    * Class to generate string by AST.
    */
@@ -165,12 +172,12 @@ export interface ProcessOptions {
   /**
    * Function to generate AST by string.
    */
-  parser?: Parser
+  parser?: Syntax | Parser
 
   /**
    * Class to generate string by AST.
    */
-  stringifier?: Stringifier
+  stringifier?: Syntax | Stringifier
 
   /**
    * Object with parse and stringify.
