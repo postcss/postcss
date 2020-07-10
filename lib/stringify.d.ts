@@ -1,4 +1,4 @@
-import { Stringifier } from './postcss'
+import { Stringifier } from './postcss.js'
 
 declare const stringify: Stringifier
 

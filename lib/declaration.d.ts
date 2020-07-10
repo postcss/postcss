@@ -1,4 +1,4 @@
-import Node, { NodeProps } from './node'
+import Node from './node.js'
 
 interface DeclarationRaws {
   /**

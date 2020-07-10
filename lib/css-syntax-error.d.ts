@@ -1,4 +1,4 @@
-import Input from './input'
+import Input from './input.js'
 
 /**
  * The CSS parser throws this error for broken CSS.

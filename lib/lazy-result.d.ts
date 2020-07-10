@@ -1,9 +1,9 @@
 import { SourceMapGenerator } from 'source-map'
 
-import Result, { Message, ResultOptions } from './result'
-import Processor from './processor'
-import Warning from './warning'
-import Root from './root'
+import Result, { Message, ResultOptions } from './result.js'
+import Processor from './processor.js'
+import Warning from './warning.js'
+import Root from './root.js'
 
 /**
  * A Promise proxy for the result of PostCSS transformations.

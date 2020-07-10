@@ -1,8 +1,8 @@
-import Node, { ChildNode, NodeProps, ChildProps } from './node'
-import Declaration from './declaration'
-import Comment from './comment'
-import AtRule from './at-rule'
-import Rule from './rule'
+import Node, { ChildNode, NodeProps, ChildProps } from './node.js'
+import Declaration from './declaration.js'
+import Comment from './comment.js'
+import AtRule from './at-rule.js'
+import Rule from './rule.js'
 
 interface ValueOptions {
   /**

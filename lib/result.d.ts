@@ -1,10 +1,10 @@
 import { SourceMapGenerator } from 'source-map'
 
-import Warning, { WarningOptions } from './warning'
-import { ProcessOptions } from './postcss'
-import Processor from './processor'
-import Root from './root'
-import Node from './node'
+import Warning, { WarningOptions } from './warning.js'
+import { ProcessOptions } from './postcss.js'
+import Processor from './processor.js'
+import Root from './root.js'
+import Node from './node.js'
 
 export interface Message {
   /**

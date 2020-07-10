@@ -1,7 +1,7 @@
-import Container, { ContainerProps } from './container'
-import { ProcessOptions } from './postcss'
-import { ChildNode } from './node'
-import Result from './result'
+import Container, { ContainerProps } from './container.js'
+import { ProcessOptions } from './postcss.js'
+import { ChildNode } from './node.js'
+import Result from './result.js'
 
 interface RootRaws {
   /**

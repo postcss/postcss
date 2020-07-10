@@ -1,6 +1,6 @@
 import { SourceMapConsumer } from 'source-map'
 
-import { ProcessOptions } from './postcss'
+import { ProcessOptions } from './postcss.js'
 
 /**
  * Source map information from input CSS.

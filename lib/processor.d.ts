@@ -1,7 +1,7 @@
-import { AcceptedPlugin, Plugin, ProcessOptions } from './postcss'
-import LazyResult from './lazy-result'
-import Result from './result'
-import Root from './root'
+import { AcceptedPlugin, Plugin, ProcessOptions } from './postcss.js'
+import LazyResult from './lazy-result.js'
+import Result from './result.js'
+import Root from './root.js'
 
 /**
  * Contains plugins to process CSS. Create one `Processor` instance,

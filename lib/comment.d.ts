@@ -1,4 +1,4 @@
-import Node, { NodeProps } from './node'
+import Node, { NodeProps } from './node.js'
 
 interface CommentRaws {
   /**
