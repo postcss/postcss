@@ -1,9 +1,9 @@
-let { options, ...colors } = require('colorette')
+import { options, bold, red, gray, yellow } from 'colorette'
+
+import postcss from '../lib/postcss.js'
 
 jest.doMock('fs', () => ({}))
-jest.doMock('colorette', () => ({ options, ...colors }))
-
-let postcss = require('..')
+jest.doMock('colorette', () => ({ options, bold, red, gray, yellow }))
 
 afterEach(() => {
   options.enabled = true
@@ -20,15 +20,14 @@ it('shows code with colors (default)', () => {
       throw e
     }
   }
-  let c = colors
   expect(error.showSourceCode()).toEqual(
-    c.bold(c.red('>')) +
-      c.gray(' 1 | ') +
+    bold(red('>')) +
+      gray(' 1 | ') +
       'a' +
-      c.yellow('{') +
+      yellow('{') +
       '\n ' +
-      c.gray('   | ') +
-      c.bold(c.red('^'))
+      gray('   | ') +
+      bold(red('^'))
   )
 })
 
@@ -64,7 +63,7 @@ it('shows code without colors (setting)', () => {
 
 it('generates source map without fs', () => {
   expect(
-    postcss([() => true]).process('a{}', { from: 'a.css', map: true }).css
+    postcss([() => {}]).process('a{}', { from: 'a.css', map: true }).css
   ).toEqual(
     'a{}\n/*# sourceMappingURL=data:application/json;base64,' +
       'eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImEuY3NzIl0sIm5hbWVzIjpbXSw' +
