@@ -1,6 +1,6 @@
-let Declaration = require('../lib/declaration')
-let parse = require('../lib/parse')
-let Rule = require('../lib/rule')
+import Declaration from '../lib/declaration.js'
+import parse from '../lib/parse.js'
+import Rule from '../lib/rule.js'
 
 it('initializes with properties', () => {
   let decl = new Declaration({ prop: 'color', value: 'black' })
@@ -23,7 +23,8 @@ it('inserts default spaces', () => {
 
 it('clones spaces from another declaration', () => {
   let root = parse('a{color:black}')
+  let rule = root.first as Rule
   let decl = new Declaration({ prop: 'margin', value: '0' })
-  root.first.append(decl)
+  rule.append(decl)
   expect(root.toString()).toEqual('a{color:black;margin:0}')
 })
