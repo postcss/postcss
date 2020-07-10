@@ -25,7 +25,7 @@ interface RuleRaws {
   /**
    * Contains `true` if there is semicolon after rule.
    */
-  ownSemicolon: string
+  ownSemicolon?: string
 
   /**
    * The rule’s selector with comments.
