@@ -1,6 +1,10 @@
-let Result = require('../lib/result')
-let parse = require('../lib/parse')
-require('../lib/processor')
+import Result from '../lib/result'
+import parse from '../lib/parse'
+import '../lib/processor'
+
+function privateMethods (obj: object): any {
+  return obj
+}
 
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
@@ -38,6 +42,7 @@ it('insertAfter() does not use before of first rule', () => {
 
 it('fixes spaces on removing first rule', () => {
   let css = parse('a{}\nb{}\n')
+  if (!css.first) throw new Error('No nodes were parsed')
   css.first.remove()
   expect(css.toString()).toEqual('b{}\n')
 })
@@ -68,12 +73,12 @@ it('adds visitors', () => {
   let cb2 = () => true
   root.on('decl.enter', cb1)
   root.on('decl.enter', cb2)
-  expect(root.listeners).toEqual({ 'decl.enter': [cb1, cb2] })
+  expect(privateMethods(root).listeners).toEqual({ 'decl.enter': [cb1, cb2] })
 })
 
 it('adds visitors with enter phase by default', () => {
   let root = parse('')
   let cb = () => true
   root.on('rule', cb)
-  expect(root.listeners).toEqual({ 'rule.enter': [cb] })
+  expect(privateMethods(root).listeners).toEqual({ 'rule.enter': [cb] })
 })

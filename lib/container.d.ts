@@ -38,7 +38,7 @@ export default abstract class Container extends Node {
    * root.nodes[0].nodes[0].prop //=> 'color'
    * ```
    */
-  nodes?: ChildNode[]
+  nodes: ChildNode[]
 
   /**
    * The container’s first child.
@@ -271,7 +271,7 @@ export default abstract class Container extends Node {
    * @param nodes New nodes.
    * @return This node for methods chain.
    */
-  append (...nodes: (Node | ChildProps | string)[]): this
+  append (...nodes: (Node | Node[] | ChildProps | string)[]): this
 
   /**
    * Inserts new nodes to the start of the container.
@@ -293,7 +293,7 @@ export default abstract class Container extends Node {
    * root.first.append('color: black; z-index: 1')
    * ```
    */
-  prepend (...nodes: (Node | ChildProps | string)[]): this
+  prepend (...nodes: (Node | Node[] | ChildProps | string)[]): this
 
   /**
    * Insert new node before old node within the container.
