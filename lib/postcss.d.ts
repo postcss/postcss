@@ -40,7 +40,7 @@ interface TransformCallback {
 }
 
 interface PluginInitializer<T> {
-  (pluginOptions?: T): Transformer
+  (pluginOptions?: T): TransformCallback
 }
 
 export interface Plugin<T> extends Transformer {
@@ -60,7 +60,7 @@ export interface Plugin<T> extends Transformer {
 
 export type AcceptedPlugin =
   | Plugin<any>
-  | Transformer
+  | TransformCallback
   | {
       postcss: TransformCallback | Processor
     }

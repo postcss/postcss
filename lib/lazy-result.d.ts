@@ -146,4 +146,11 @@ export default class LazyResult {
    * @return Output CSS.
    */
   toString (): string
+
+  /**
+   * Run plugin in sync way and return `Result`.
+   *
+   * @return Result with output content.
+   */
+  sync (): Result
 }

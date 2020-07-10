@@ -15,7 +15,7 @@ export interface Message {
   /**
    * Source PostCSS plugin name.
    */
-  plugin: string
+  plugin?: string
 
   [others: string]: any
 }

@@ -1,11 +1,16 @@
-let Warning = require('../lib/warning')
-let postcss = require('../lib/postcss')
-let Result = require('../lib/result')
+import Processor from '../lib/processor.js'
+import Warning from '../lib/warning.js'
+import postcss from '../lib/postcss.js'
+import Result from '../lib/result.js'
+import Root from '../lib/root.js'
+
+let processor = new Processor()
+let root = new Root()
 
 it('stringifies', () => {
-  let result = new Result()
+  let result = new Result(processor, root, {})
   result.css = 'a{}'
-  expect('' + result).toEqual(result.css)
+  expect(`${result}`).toEqual(result.css)
 })
 
 it('adds warning', () => {
@@ -43,15 +48,15 @@ it('allows to override plugin', () => {
 })
 
 it('allows Root', () => {
-  let result = new Result()
-  let root = postcss.parse('a{}')
-  result.warn('TT', { node: root })
+  let css = postcss.parse('a{}')
+  let result = new Result(processor, css, {})
+  result.warn('TT', { node: css.first })
 
   expect(result.messages[0].toString()).toEqual('<css input>:1:1: TT')
 })
 
 it('returns only warnings', () => {
-  let result = new Result()
+  let result = new Result(processor, root, {})
   result.messages = [
     { type: 'warning', text: 'a' },
     { type: 'custom' },
