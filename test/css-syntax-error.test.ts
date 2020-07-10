@@ -1,12 +1,13 @@
-let { red, bold, magenta, yellow, gray } = require('colorette')
-let stripAnsi = require('strip-ansi')
-let Concat = require('concat-with-sourcemaps')
-let path = require('path')
+import { red, bold, magenta, yellow, gray } from 'colorette'
+import path from 'path'
+import stripAnsi from 'strip-ansi'
+import Concat from 'concat-with-sourcemaps'
 
-let CssSyntaxError = require('../lib/css-syntax-error')
-let postcss = require('../lib/postcss')
+import postcss, { ProcessOptions } from '../lib/postcss.js'
+import CssSyntaxError from '../lib/css-syntax-error.js'
+import Rule from '../lib/rule.js'
 
-function parseError (css, opts) {
+function parseError (css: string, opts?: Pick<ProcessOptions, 'map' | 'from'>) {
   let error
   try {
     postcss.parse(css, opts)
@@ -40,7 +41,7 @@ it('saves source', () => {
 
 it('has stack trace', () => {
   expect(parseError('a {\n  content: "\n}').stack).toMatch(
-    /css-syntax-error\.test\.js/
+    /css-syntax-error\.test\.ts/
   )
 })
 
@@ -122,7 +123,7 @@ it('uses source map', () => {
   concat.add('a.css', 'a { }\n')
   concat.add('b.css', '\nb {\n')
 
-  let error = parseError(concat.content, {
+  let error = parseError(concat.content.toString(), {
     from: 'build/all.css',
     map: { prev: concat.sourceMap }
   })
@@ -140,14 +141,13 @@ it('uses source map', () => {
 })
 
 it('shows origin source', () => {
-  let input = postcss([() => true]).process('a{}', {
+  let input = postcss([() => {}]).process('a{}', {
     from: '/a.css',
     to: '/b.css',
     map: { inline: false }
   })
   let error = parseError('a{', {
     from: '/b.css',
-    to: '/c.css',
     map: { prev: input.map }
   })
   expect(error.source).toEqual('a{}')
@@ -169,7 +169,8 @@ it('does not uses wrong source map', () => {
 })
 
 it('set source plugin', () => {
-  let error = postcss.parse('a{}').first.error('Error', { plugin: 'PL' })
+  let a = postcss.parse('a{}').first as Rule
+  let error = a.error('Error', { plugin: 'PL' })
   expect(error.plugin).toEqual('PL')
   expect(error.toString()).toMatch(
     /^CssSyntaxError: PL: <css input>:1:1: Error/
@@ -179,7 +180,9 @@ it('set source plugin', () => {
 it('set source plugin automatically', () => {
   let plugin = postcss.plugin('test-plugin', () => {
     return css => {
-      throw css.first.error('Error')
+      if (css.first) {
+        throw css.first.error('Error')
+      }
     }
   })
 
@@ -196,7 +199,9 @@ it('set plugin automatically in async', () => {
   let plugin = postcss.plugin('async-plugin', () => {
     return css => {
       return new Promise((resolve, reject) => {
-        reject(css.first.error('Error'))
+        if (css.first) {
+          reject(css.first.error('Error'))
+        }
       })
     }
   })
