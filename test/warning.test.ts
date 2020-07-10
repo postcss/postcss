@@ -1,8 +1,8 @@
 import { resolve } from 'path'
 
-import Declaration from '../lib/declaration'
-import Warning from '../lib/warning'
-import parse from '../lib/parse'
+import Declaration from '../lib/declaration.js'
+import Warning from '../lib/warning.js'
+import parse from '../lib/parse.js'
 
 it('outputs simple warning', () => {
   let warning = new Warning('text')
