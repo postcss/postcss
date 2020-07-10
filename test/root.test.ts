@@ -1,6 +1,6 @@
-import Result from '../lib/result'
-import parse from '../lib/parse'
-import '../lib/processor'
+import Result from '../lib/result.js'
+import parse from '../lib/parse.js'
+import '../lib/processor.js'
 
 function privateMethods (obj: object): any {
   return obj
