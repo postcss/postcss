@@ -1,5 +1,5 @@
-let AtRule = require('../lib/at-rule')
-let parse = require('../lib/parse')
+import AtRule from '../lib/at-rule.js'
+import parse from '../lib/parse.js'
 
 it('initializes with properties', () => {
   let rule = new AtRule({ name: 'encoding', params: '"utf-8"' })
