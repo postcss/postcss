@@ -1,23 +1,25 @@
-let mozilla = require('source-map')
-let path = require('path')
-let fs = require('fs-extra')
+import { SourceMapConsumer, SourceMapGenerator } from 'source-map'
+import { removeSync, outputFileSync } from 'fs-extra'
+import { join, resolve } from 'path'
+import { existsSync } from 'fs'
 
-let PreviousMap = require('../lib/previous-map')
-let postcss = require('../lib/postcss')
+import postcss, { SourceMap } from '../lib/postcss.js'
+import PreviousMap from '../lib/previous-map.js'
+import LazyResult from '../lib/lazy-result.js'
 
-function consumer (map) {
-  return mozilla.SourceMapConsumer.fromSourceMap(map)
+function consumer (map: SourceMap): any {
+  return (SourceMapConsumer as any).fromSourceMap(map)
 }
 
-function read (result) {
+function read (result: { css: string }): any {
   let prev = new PreviousMap(result.css, {})
   return prev.consumer()
 }
 
-let dir = path.join(__dirname, 'map-fixtures')
+let dir = join(__dirname, 'map-fixtures')
 
 let doubler = postcss(css => {
-  css.walkDecls(decl => decl.parent.prepend(decl.clone()))
+  css.walkDecls(decl => decl.parent?.prepend(decl.clone()))
 })
 let lighter = postcss(css => {
   css.walkDecls(decl => {
@@ -26,18 +28,18 @@ let lighter = postcss(css => {
 })
 
 afterEach(() => {
-  if (fs.existsSync(dir)) fs.removeSync(dir)
+  if (existsSync(dir)) removeSync(dir)
 })
 
 it('adds map field only on request', () => {
-  expect(postcss([() => true]).process('a {}').map).not.toBeDefined()
+  expect(postcss([() => {}]).process('a {}').map).not.toBeDefined()
 })
 
 it('return map generator', () => {
-  let map = postcss([() => true]).process('a {}', {
+  let map = postcss([() => {}]).process('a {}', {
     map: { inline: false }
   }).map
-  expect(map instanceof mozilla.SourceMapGenerator).toBe(true)
+  expect(map instanceof SourceMapGenerator).toBe(true)
 })
 
 it('generate right source map', () => {
@@ -47,7 +49,7 @@ it('generate right source map', () => {
       rule.selector = 'strong'
     })
     root.walkDecls(decl => {
-      decl.parent.prepend(decl.clone({ prop: 'background' }))
+      decl.parent?.prepend(decl.clone({ prop: 'background', value: 'black' }))
     })
   })
 
@@ -124,7 +126,7 @@ it('changes previous source map', () => {
 
 it('adds source map annotation', () => {
   let css = 'a { }/*# sourceMappingURL=a.css.map */'
-  let result = postcss([() => true]).process(css, {
+  let result = postcss([() => {}]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
@@ -135,7 +137,7 @@ it('adds source map annotation', () => {
 
 it('misses source map annotation, if user ask', () => {
   let css = 'a { }'
-  let result = postcss([() => true]).process(css, {
+  let result = postcss([() => {}]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { annotation: false }
@@ -147,13 +149,13 @@ it('misses source map annotation, if user ask', () => {
 it('misses source map annotation, if previous map missed it', () => {
   let css = 'a { }'
 
-  let step1 = postcss([() => true]).process(css, {
+  let step1 = postcss([() => {}]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { annotation: false }
   })
 
-  let step2 = postcss([() => true]).process(step1.css, {
+  let step2 = postcss([() => {}]).process(step1.css, {
     from: 'b.css',
     to: 'c.css',
     map: { prev: step1.map }
@@ -163,7 +165,7 @@ it('misses source map annotation, if previous map missed it', () => {
 })
 
 it('uses user path in annotation, relative to options.to', () => {
-  let result = postcss([() => true]).process('a { }', {
+  let result = postcss([() => {}]).process('a { }', {
     from: 'source/a.css',
     to: 'build/b.css',
     map: { annotation: 'maps/b.map' }
@@ -181,7 +183,7 @@ it('uses user path in annotation, relative to options.to', () => {
 it('generates inline map', () => {
   let css = 'a { }'
 
-  let inline = postcss([() => true]).process(css, {
+  let inline = postcss([() => {}]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { inline: true }
@@ -190,7 +192,7 @@ it('generates inline map', () => {
   expect(inline.map).not.toBeDefined()
   expect(inline.css).toMatch(/# sourceMappingURL=data:/)
 
-  let separated = postcss([() => true]).process(css, {
+  let separated = postcss([() => {}]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
@@ -202,7 +204,7 @@ it('generates inline map', () => {
 })
 
 it('generates inline map by default', () => {
-  let inline = postcss([() => true]).process('a { }', {
+  let inline = postcss([() => {}]).process('a { }', {
     from: 'a.css',
     to: 'b.css',
     map: true
@@ -226,7 +228,7 @@ it('generates separated map if previous map was not inlined', () => {
 })
 
 it('generates separated map on annotation option', () => {
-  let result = postcss([() => true]).process('a { }', {
+  let result = postcss([() => {}]).process('a { }', {
     from: 'a.css',
     to: 'b.css',
     map: { annotation: false }
@@ -236,13 +238,13 @@ it('generates separated map on annotation option', () => {
 })
 
 it('allows change map type', () => {
-  let step1 = postcss([() => true]).process('a { }', {
+  let step1 = postcss([() => {}]).process('a { }', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: true }
   })
 
-  let step2 = postcss([() => true]).process(step1.css, {
+  let step2 = postcss([() => {}]).process(step1.css, {
     from: 'b.css',
     to: 'c.css',
     map: { inline: false }
@@ -253,7 +255,7 @@ it('allows change map type', () => {
 })
 
 it('misses check files on requires', () => {
-  let file = path.join(dir, 'a.css')
+  let file = join(dir, 'a.css')
 
   let step1 = doubler.process('a { }', {
     from: 'a.css',
@@ -261,7 +263,7 @@ it('misses check files on requires', () => {
     map: { inline: false }
   })
 
-  fs.outputFileSync(file + '.map', step1.map.toString())
+  outputFileSync(file + '.map', step1.map.toString())
   let step2 = lighter.process(step1.css, {
     from: file,
     to: 'b.css',
@@ -342,12 +344,12 @@ it('uses map from subdir if it written as a file', () => {
     .source
   expect(source).toEqual('../../source/a.css')
 
-  let file = path.join(dir, 'one', 'maps', 'b.css.map')
-  fs.outputFileSync(file, step1.map.toString())
+  let file = join(dir, 'one', 'maps', 'b.css.map')
+  outputFileSync(file, step1.map.toString())
 
   let step2 = doubler.process(step1.css, {
-    from: path.join(dir, 'one', 'b.css'),
-    to: path.join(dir, 'two', 'c.css'),
+    from: join(dir, 'one', 'b.css'),
+    to: join(dir, 'two', 'c.css'),
     map: true
   })
 
@@ -411,7 +413,7 @@ it('misses source content if previous not have', () => {
   })
   let file2 = postcss.parse('b { }', { from: 'b.css', map: true })
 
-  file2.append(file1.first.clone())
+  if (file1.first) file2.append(file1.first.clone())
   let step2 = file2.toResult({ to: 'c.css', map: true })
 
   expect(read(step2).sourceContentFor('b.css')).toBeNull()
@@ -430,7 +432,7 @@ it('misses source content on request in multiple steps', () => {
   })
   let file2 = postcss.parse('b { }', { from: 'b.css', map: true })
 
-  file2.append(file1.first.clone())
+  if (file1.first) file2.append(file1.first.clone())
   let step2 = file2.toResult({
     to: 'c.css',
     map: { sourcesContent: false }
@@ -444,7 +446,7 @@ it('misses source content on request in multiple steps', () => {
 it('detects input file name from map', () => {
   let one = doubler.process('a { }', { to: 'a.css', map: true })
   let two = doubler.process(one.css, { map: { prev: one.map } })
-  expect(two.root.first.source.input.file).toEqual(path.resolve('a.css'))
+  expect(two.root.first?.source?.input.file).toEqual(resolve('a.css'))
 })
 
 it('works without file names', () => {
@@ -469,7 +471,9 @@ it('supports UTF-8', () => {
 
 it('generates map for node created manually', () => {
   let contenter = postcss(css => {
-    css.first.prepend({ prop: 'content', value: '""' })
+    if (css.first && css.first.type === 'rule') {
+      css.first.prepend({ prop: 'content', value: '""' })
+    }
   })
   let result = contenter.process('a:after{\n}', { map: true })
   let map = read(result)
@@ -496,7 +500,7 @@ it('uses to.css as default output name', () => {
 
 it('supports annotation comment in any place', () => {
   let css = '/*# sourceMappingURL=a.css.map */a { }'
-  let result = postcss([() => true]).process(css, {
+  let result = postcss([() => {}]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
@@ -507,7 +511,7 @@ it('supports annotation comment in any place', () => {
 
 it('does not update annotation on request', () => {
   let css = 'a { }/*# sourceMappingURL=a.css.map */'
-  let result = postcss([() => true]).process(css, {
+  let result = postcss([() => {}]).process(css, {
     from: 'a.css',
     to: 'b.css',
     map: { annotation: false, inline: false }
@@ -529,12 +533,12 @@ it('clears source map', () => {
 })
 
 it('uses Windows line separation too', () => {
-  let result = postcss([() => true]).process('a {\r\n}', { map: true })
+  let result = postcss([() => {}]).process('a {\r\n}', { map: true })
   expect(result.css).toMatch(/a {\r\n}\r\n\/\*# sourceMappingURL=/)
 })
 
 it('`map.from` should override the source map sources', () => {
-  let result = postcss([() => true]).process('a{}', {
+  let result = postcss([() => {}]).process('a{}', {
     map: {
       inline: false,
       from: 'file:///dir/a.css'
@@ -544,7 +548,7 @@ it('`map.from` should override the source map sources', () => {
 })
 
 it('preserves absolute urls in `to`', () => {
-  let result = postcss([() => true]).process('a{}', {
+  let result = postcss([() => {}]).process('a{}', {
     from: '/dir/to/a.css',
     to: 'http://example.com/a.css',
     map: { inline: false }
@@ -553,7 +557,7 @@ it('preserves absolute urls in `to`', () => {
 })
 
 it('preserves absolute urls in sources', () => {
-  let result = postcss([() => true]).process('a{}', {
+  let result = postcss([() => {}]).process('a{}', {
     from: 'file:///dir/a.css',
     to: 'http://example.com/a.css',
     map: { inline: false }
@@ -562,17 +566,17 @@ it('preserves absolute urls in sources', () => {
 })
 
 it('preserves absolute urls in sources from previous map', () => {
-  let result1 = postcss([() => true]).process('a{}', {
+  let result1 = postcss([() => {}]).process('a{}', {
     from: 'http://example.com/a.css',
     to: 'http://example.com/b.css',
     map: true
   })
-  let result2 = postcss([() => true]).process(result1.css, {
+  let result2 = postcss([() => {}]).process(result1.css, {
     to: 'http://example.com/c.css',
     map: {
       inline: false
     }
   })
-  expect(result2.root.source.input.file).toEqual('http://example.com/b.css')
+  expect(result2.root.source?.input.file).toEqual('http://example.com/b.css')
   expect(result2.map.toJSON().sources).toEqual(['http://example.com/a.css'])
 })
