@@ -1,5 +1,5 @@
-let Processor = require('../lib/processor')
-let postcss = require('../lib/postcss')
+import Processor from '../lib/processor.js'
+import postcss from '../lib/postcss.js'
 
 it('creates plugins list', () => {
   let processor = postcss()
@@ -8,21 +8,21 @@ it('creates plugins list', () => {
 })
 
 it('saves plugins list', () => {
-  let a = () => 1
-  let b = () => 2
+  let a = () => {}
+  let b = () => {}
   expect(postcss(a, b).plugins).toEqual([a, b])
 })
 
 it('saves plugins list as array', () => {
-  let a = () => 1
-  let b = () => 2
+  let a = () => {}
+  let b = () => {}
   expect(postcss([a, b]).plugins).toEqual([a, b])
 })
 
 it('takes plugin from other processor', () => {
-  let a = () => 1
-  let b = () => 2
-  let c = () => 3
+  let a = () => {}
+  let b = () => {}
+  let c = () => {}
   let other = postcss([a, b])
   expect(postcss([other, c]).plugins).toEqual([a, b, c])
 })
@@ -42,8 +42,8 @@ it('supports injecting additional processors at runtime', async () => {
 })
 
 it('creates plugin', () => {
-  let plugin = postcss.plugin('test', filter => root => {
-    root.walkDecls(filter || 'two', i => i.remove())
+  let plugin = postcss.plugin<string>('test', filter => root => {
+    root.walkDecls(filter ?? 'two', i => i.remove())
   })
 
   let func1 = postcss(plugin).plugins[0]
@@ -77,9 +77,9 @@ it('does not call plugin constructor', () => {
 })
 
 it('creates a shortcut to process css', async () => {
-  let plugin = postcss.plugin('test', str => root => {
+  let plugin = postcss.plugin<string>('test', str => root => {
     root.walkDecls(i => {
-      i.value = str || 'bar'
+      i.value = str ?? 'bar'
     })
   })
 
@@ -130,6 +130,7 @@ it('contains list module', () => {
 
 it('works with null', () => {
   expect(() => {
-    postcss([() => true]).process(null).css
+    // @ts-expect-error
+    postcss([() => {}]).process(null).css
   }).toThrow(/PostCSS received null instead of CSS string/)
 })
