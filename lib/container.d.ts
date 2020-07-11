@@ -17,7 +17,7 @@ interface ValueOptions {
 }
 
 export interface ContainerProps extends NodeProps {
-  nodes?: ChildNode[]
+  nodes?: (ChildNode | ChildProps)[]
 }
 
 /**
@@ -276,9 +276,6 @@ export default abstract class Container extends Node {
   /**
    * Inserts new nodes to the start of the container.
    *
-   * @param nodes New nodes.
-   * @return This node for methods chain.
-   *
    * ```js
    * const decl1 = postcss.decl({ prop: 'color', value: 'black' })
    * const decl2 = postcss.decl({ prop: 'background-color', value: 'white' })
@@ -292,8 +289,23 @@ export default abstract class Container extends Node {
    * root.append('a {}')
    * root.first.append('color: black; z-index: 1')
    * ```
+   *
+   * @param nodes New nodes.
+   * @return This node for methods chain.
    */
   prepend (...nodes: (Node | Node[] | ChildProps | string)[]): this
+
+  /**
+   * Add child to the end of the node.
+   *
+   * ```js
+   * rule.push(postcss.decl({ prop: 'color', value: 'black' }}))
+   * ```
+   *
+   * @param child New node.
+   * @return This node for methods chain.
+   */
+  push (child: ChildNode): this
 
   /**
    * Insert new node before old node within the container.
@@ -425,5 +437,5 @@ export default abstract class Container extends Node {
    * @param child Child of the current container.
    * @return Child index.
    */
-  index (child: ChildNode): number
+  index (child: ChildNode | number): number
 }
