@@ -1,6 +1,10 @@
-let postcss = require('../lib/postcss')
+import Container from '../lib/container.js'
+import postcss from '../lib/postcss.js'
+import Root from '../lib/root.js'
+import Rule from '../lib/rule.js'
 
-function hasAlready (parent, selector) {
+function hasAlready (parent: Container | undefined, selector: string) {
+  if (typeof parent === 'undefined') return false
   return parent.nodes.some(i => {
     return i.type === 'rule' && i.selectors.includes(selector)
   })
@@ -15,6 +19,7 @@ let replaceColorGreenClassic = postcss.plugin('replace-color', () => root => {
 let willChangeVisitor = postcss.plugin('will-change', () => root => {
   root.on('decl', node => {
     if (node.prop !== 'will-change') return
+    if (!node.parent) return
 
     let already = node.parent.some(i => {
       return i.type === 'decl' && i.prop === 'backface-visibility'
@@ -30,6 +35,7 @@ let addPropsVisitor = postcss.plugin('add-props', () => root => {
     if (node.prop !== 'will-change') return
 
     node.root().walkDecls('color', decl => {
+      if (!decl.parent) return
       let already = decl.parent.some(i => {
         return i.type === 'decl' && i.prop === 'will-change'
       })
@@ -43,7 +49,7 @@ let addPropsVisitor = postcss.plugin('add-props', () => root => {
 let replaceAllButRedToGreen = postcss.plugin('not-red-to-green', () => root => {
   root.on('decl', node => {
     if (node.prop !== 'color') return
-    if (node.prop === 'color' && node.value === 'red') return
+    if (node.value === 'red') return
 
     node.prop = 'color'
     node.value = 'green'
@@ -53,7 +59,7 @@ let replaceAllButRedToGreen = postcss.plugin('not-red-to-green', () => root => {
 let replaceGreenToRed = postcss.plugin('replace-green-to-red', () => root => {
   root.on('decl', node => {
     if (node.prop !== 'color') return
-    if (node.prop === 'color' && node.value === 'green') {
+    if (node.value === 'green') {
       node.prop = 'color'
       node.value = 'red'
     }
@@ -63,7 +69,7 @@ let replaceGreenToRed = postcss.plugin('replace-green-to-red', () => root => {
 let postcssFocus = postcss.plugin('postcss-focus', () => root => {
   root.on('rule', rule => {
     if (rule.selector.includes(':hover')) {
-      let focuses = []
+      let focuses: string[] = []
       rule.selectors.forEach(selector => {
         if (selector.includes(':hover')) {
           let replaced = selector.replace(/:hover/g, ':focus')
@@ -84,6 +90,7 @@ let hidden = postcss.plugin('hidden', () => root => {
     if (decl.prop !== 'display') return
 
     let value = decl.value
+    let rule = decl.parent as Rule
 
     if (value.includes('disappear')) {
       decl.cloneBefore({
@@ -99,13 +106,11 @@ let hidden = postcss.plugin('hidden', () => root => {
     }
 
     if (value.includes('hidden')) {
-      let ruleSelectors = decl.parent.selectors.map(i => {
+      let ruleSelectors = rule.selectors.map(i => {
         return `${i}.focusable:active,${i}.focusable:focus`
       })
 
-      let newRule = decl.parent
-        .cloneAfter({ selectors: ruleSelectors })
-        .removeAll()
+      let newRule = rule.cloneAfter({ selectors: ruleSelectors }).removeAll()
       newRule.append('display: table; position: static; clear: both;')
 
       decl.cloneBefore({ prop: 'position', value: 'absolute' })
@@ -127,7 +132,7 @@ let hidden = postcss.plugin('hidden', () => root => {
 })
 
 let postcssAlias = postcss.plugin('postcss-alias', () => root => {
-  let aliases = {}
+  let aliases: any = {}
   root.walkAtRules('alias', rule => {
     rule.walkDecls(decl => {
       aliases[decl.prop] = decl.value
@@ -148,8 +153,8 @@ let postcssAlias = postcss.plugin('postcss-alias', () => root => {
 })
 
 it('walks through after all plugins', async () => {
-  let events = []
-  function visitor (root) {
+  let events: [string, string, number][] = []
+  function visitor (root: Root) {
     root.on('atrule.enter', (node, i) => {
       events.push(['atrule.enter', node.name, i])
     })
@@ -175,7 +180,7 @@ it('walks through after all plugins', async () => {
       events.push(['comment.exit', node.text, i])
     })
   }
-  function follower (root) {
+  function follower (root: Root) {
     expect(events).toHaveLength(0)
     root.on('decl.enter', (node, i) => {
       expect(events[events.length - 1]).toEqual(['decl.enter', node.prop, i])
@@ -375,7 +380,7 @@ it('works visitor plugin postcss-alias', async () => {
 })
 
 it('adds node to error', async () => {
-  function broken (root) {
+  function broken (root: Root) {
     root.on('rule.enter', () => {
       throw new Error('test')
     })
