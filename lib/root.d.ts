@@ -1,7 +1,11 @@
 import Container, { ContainerProps } from './container.js'
 import { ProcessOptions } from './postcss.js'
 import { ChildNode } from './node.js'
+import Declaration from './declaration.js'
+import Comment from './comment.js'
+import AtRule from './at-rule.js'
 import Result from './result.js'
+import Rule from './rule.js'
 
 interface RootRaws {
   /**
@@ -21,17 +25,32 @@ export interface RootProps extends ContainerProps {
 
 export type Event =
   | 'atrule'
-  | 'rule'
-  | 'decl'
-  | 'comment'
   | 'atrule.enter'
-  | 'rule.enter'
-  | 'decl.enter'
-  | 'comment.enter'
   | 'atrule.exit'
+  | 'rule'
+  | 'rule.enter'
   | 'rule.exit'
+  | 'decl'
+  | 'decl.enter'
   | 'decl.exit'
+  | 'comment'
+  | 'comment.enter'
   | 'comment.exit'
+
+interface EventOptions {
+  'atrule': AtRule
+  'atrule.enter': AtRule
+  'atrule.exit': AtRule
+  'rule': Rule
+  'rule.enter': Rule
+  'rule.exit': Rule
+  'decl': Declaration
+  'decl.enter': Declaration
+  'decl.exit': Declaration
+  'comment': Comment
+  'comment.enter': Comment
+  'comment.exit': Comment
+}
 
 /**
  * Represents a CSS file and contains all its parsed nodes.
@@ -87,5 +106,8 @@ export default class Root extends Container {
    * @param visitor Function receives node and index.
    * @return The root node to bind another listener.
    */
-  on (event: Event, visitor: (node: ChildNode, index: number) => void): this
+  on<E extends keyof EventOptions> (
+    event: E,
+    visitor: (node: EventOptions[E], index: number) => void
+  ): this
 }
