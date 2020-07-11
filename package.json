@@ -64,7 +64,6 @@
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
-    "npm-upgrade": "^2.0.3",
     "postcss-parser-tests": "github:postcss/postcss-parser-tests",
     "rimraf": "^3.0.2",
     "size-limit": "^4.5.3",
