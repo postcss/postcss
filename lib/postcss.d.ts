@@ -5,7 +5,8 @@ import Node, {
   Source,
   ChildNode,
   NodeProps,
-  ChildProps
+  ChildProps,
+  AnyNode
 } from './node.js'
 import Declaration, { DeclarationProps } from './declaration.js'
 import Root, { Event, RootProps } from './root.js'
@@ -86,11 +87,11 @@ export interface Parser {
 }
 
 export interface Builder {
-  (part: string, node?: Node, type?: 'start' | 'end'): void
+  (part: string, node?: AnyNode, type?: 'start' | 'end'): void
 }
 
 export interface Stringifier {
-  (node: Node, builder: Builder): void
+  (node: AnyNode, builder: Builder): void
 }
 
 export interface Syntax {

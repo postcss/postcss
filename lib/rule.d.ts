@@ -85,7 +85,7 @@ export default class Rule extends Container {
   selectors: string[]
 
   constructor (defaults?: RuleProps)
-  clone (overrides?: RuleProps): this
-  cloneBefore (overrides?: RuleProps): this
-  cloneAfter (overrides?: RuleProps): this
+  clone (overrides?: Partial<RuleProps>): this
+  cloneBefore (overrides?: Partial<RuleProps>): this
+  cloneAfter (overrides?: Partial<RuleProps>): this
 }

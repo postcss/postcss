@@ -38,7 +38,7 @@ export default class Comment extends Node {
   text: string
 
   constructor (defaults?: CommentProps)
-  clone (overrides?: CommentProps): this
-  cloneBefore (overrides?: CommentProps): this
-  cloneAfter (overrides?: CommentProps): this
+  clone (overrides?: Partial<CommentProps>): this
+  cloneBefore (overrides?: Partial<CommentProps>): this
+  cloneAfter (overrides?: Partial<CommentProps>): this
 }

@@ -78,10 +78,10 @@ export default class Root extends Container {
    * const result = root1.toResult({ to: 'all.css', map: true })
    * ```
    *
-   * @param opts Options with only `to` and `map` keys.
+   * @param opts Options.
    * @return Result with current root’s CSS.
    */
-  toResult (options?: Pick<ProcessOptions, 'from' | 'map'>): Result
+  toResult (options?: ProcessOptions): Result
 
   /**
    * Add visitor for next PostCSS walk.

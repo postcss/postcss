@@ -12,6 +12,8 @@ import Root from './root.js'
 
 export type ChildNode = AtRule | Rule | Declaration | Comment
 
+export type AnyNode = ChildNode | Root
+
 export type ChildProps =
   | AtRuleProps
   | RuleProps
@@ -401,4 +403,19 @@ export default abstract class Node {
    * @param keepBetween Keep the `raws.between` symbols.
    */
   cleanRaws (keepBetween?: boolean): void
+
+  /**
+   * Fix circular links on `JSON.stringify()`.
+   *
+   * @return Cleaned object.
+   */
+  toJSON (): object
+
+  /**
+   * Convert string index to line/column.
+   *
+   * @param index The symbol number in the node’s string.
+   * @return Symbol position in file.
+   */
+  positionInside (index: number): Position
 }

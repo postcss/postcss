@@ -87,7 +87,7 @@ export default class AtRule extends Container {
   params: string
 
   constructor (defaults?: AtRuleProps)
-  clone (overrides?: AtRuleProps): this
-  cloneBefore (overrides?: AtRuleProps): this
-  cloneAfter (overrides?: AtRuleProps): this
+  clone (overrides?: Partial<AtRuleProps>): this
+  cloneBefore (overrides?: Partial<AtRuleProps>): this
+  cloneAfter (overrides?: Partial<AtRuleProps>): this
 }
