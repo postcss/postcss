@@ -1,8 +1,5 @@
+import postcss, { Warning, Result, Root } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
-import Warning from '../lib/warning.js'
-import postcss from '../lib/postcss.js'
-import Result from '../lib/result.js'
-import Root from '../lib/root.js'
 
 let processor = new Processor()
 let root = new Root()

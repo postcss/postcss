@@ -1,5 +1,4 @@
-import Comment from '../lib/comment.js'
-import parse from '../lib/parse.js'
+import { Comment, parse } from '../lib/postcss.js'
 
 it('toString() inserts default spaces', () => {
   let comment = new Comment({ text: 'hi' })

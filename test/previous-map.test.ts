@@ -3,7 +3,7 @@ import { SourceMapConsumer } from 'source-map'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
-import parse from '../lib/parse.js'
+import { parse } from '../lib/postcss.js'
 
 let dir = join(__dirname, 'prevmap-fixtures')
 let mapObj = {

@@ -1,8 +1,6 @@
 import { resolve } from 'path'
 
-import Declaration from '../lib/declaration.js'
-import Warning from '../lib/warning.js'
-import parse from '../lib/parse.js'
+import { Warning, parse, decl } from '../lib/postcss.js'
 
 it('outputs simple warning', () => {
   let warning = new Warning('text')
@@ -53,8 +51,8 @@ it('outputs warning with word', () => {
 })
 
 it('generates warning without source', () => {
-  let decl = new Declaration({ prop: 'color', value: 'black' })
-  let warning = new Warning('text', { node: decl })
+  let node = decl({ prop: 'color', value: 'black' })
+  let warning = new Warning('text', { node })
   expect(warning.toString()).toEqual('<css input>: text')
 })
 

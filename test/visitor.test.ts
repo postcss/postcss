@@ -1,7 +1,4 @@
-import Container from '../lib/container.js'
-import postcss from '../lib/postcss.js'
-import Root from '../lib/root.js'
-import Rule from '../lib/rule.js'
+import postcss, { Container, Root, Rule } from '../lib/postcss.js'
 
 function hasAlready (parent: Container | undefined, selector: string) {
   if (typeof parent === 'undefined') return false

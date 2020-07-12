@@ -1,7 +1,4 @@
-import Declaration from '../lib/declaration.js'
-import parse from '../lib/parse.js'
-import Rule from '../lib/rule.js'
-import Root from '../lib/root.js'
+import { Declaration, Root, Rule, parse } from '../lib/postcss.js'
 
 let example =
   'a { a: 1; b: 2 }' +

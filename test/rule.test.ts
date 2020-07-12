@@ -1,5 +1,4 @@
-import parse from '../lib/parse.js'
-import Rule from '../lib/rule.js'
+import { Rule, parse } from '../lib/postcss.js'
 
 it('initializes with properties', () => {
   let rule = new Rule({ selector: 'a' })

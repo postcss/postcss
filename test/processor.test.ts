@@ -1,12 +1,8 @@
 import path from 'path'
 
+import postcss, { Result, Node, Root, parse } from '../lib/postcss.js'
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'
-import postcss from '../lib/postcss.js'
-import Result from '../lib/result.js'
-import parse from '../lib/parse.js'
-import Root from '../lib/root.js'
-import Node from '../lib/node.js'
 
 function prs () {
   return new Root({ raws: { after: 'ok' } })

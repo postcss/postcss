@@ -1,4 +1,4 @@
-import list from '../lib/list.js'
+import { list } from '../lib/postcss.js'
 
 it('space() splits list by spaces', () => {
   expect(list.space('a b')).toEqual(['a', 'b'])

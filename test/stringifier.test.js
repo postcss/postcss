@@ -1,10 +1,5 @@
+let { Declaration, AtRule, Node, Root, Rule, parse } = require('..')
 let Stringifier = require('../lib/stringifier')
-let Declaration = require('../lib/declaration')
-let AtRule = require('../lib/at-rule')
-let parse = require('../lib/parse')
-let Node = require('../lib/node')
-let Root = require('../lib/root')
-let Rule = require('../lib/rule')
 
 let str
 beforeAll(() => {

@@ -5,7 +5,6 @@ import { existsSync } from 'fs'
 
 import postcss, { SourceMap } from '../lib/postcss.js'
 import PreviousMap from '../lib/previous-map.js'
-import LazyResult from '../lib/lazy-result.js'
 
 function consumer (map: SourceMap): any {
   return (SourceMapConsumer as any).fromSourceMap(map)

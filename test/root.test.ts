@@ -1,6 +1,4 @@
-import Result from '../lib/result.js'
-import parse from '../lib/parse.js'
-import '../lib/processor.js'
+import { Result, parse } from '../lib/postcss.js'
 
 function privateMethods (obj: object): any {
   return obj

@@ -14,12 +14,13 @@ import Comment, { CommentProps } from './comment.js'
 import AtRule, { AtRuleProps } from './at-rule.js'
 import Result, { Message } from './result.js'
 import Rule, { RuleProps } from './rule.js'
-import { ContainerProps } from './container.js'
-import { WarningOptions } from './warning.js'
-import { FilePosition } from './input.js'
+import Container, { ContainerProps } from './container.js'
+import Warning, { WarningOptions } from './warning.js'
+import Input, { FilePosition } from './input.js'
+import CssSyntaxError from './css-syntax-error.js'
+import list, { List } from './list.js'
 import LazyResult from './lazy-result.js'
 import Processor from './processor.js'
-import { List } from './list.js'
 
 export {
   WarningOptions,
@@ -27,6 +28,7 @@ export {
   Position,
   Source,
   ChildNode,
+  AnyNode,
   Message,
   Event,
   NodeProps,
@@ -36,7 +38,19 @@ export {
   RuleProps,
   ChildProps,
   AtRuleProps,
-  RootProps
+  RootProps,
+  Warning,
+  CssSyntaxError,
+  Node,
+  Container,
+  list,
+  Declaration,
+  Comment,
+  AtRule,
+  Rule,
+  Root,
+  Result,
+  Input
 }
 
 export type SourceMap = SourceMapGenerator & {
@@ -106,7 +120,7 @@ export interface Syntax {
   stringify?: Stringifier
 }
 
-interface SourceMapOptions {
+export interface SourceMapOptions {
   /**
    * Indicates that the source map should be embedded in the output CSS
    * as a Base64-encoded comment. By default, it is `true`.
@@ -371,6 +385,14 @@ export interface Postcss {
    */
   root(defaults?: RootProps): Root
 }
+
+export const stringify: Stringifier
+export const plugin: Postcss['plugin']
+export const atRule: Postcss['atRule']
+export const parse: Parser
+export const decl: Postcss['decl']
+export const rule: Postcss['rule']
+export const root: Postcss['root']
 
 declare const postcss: Postcss
 

@@ -1,7 +1,6 @@
 import { eachTest } from 'postcss-parser-tests'
 
-import stringify from '../lib/stringify.js'
-import parse from '../lib/parse.js'
+import { stringify, parse } from '../lib/postcss.js'
 
 eachTest((name, css) => {
   if (name === 'bom.css') return

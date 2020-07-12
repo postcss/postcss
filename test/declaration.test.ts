@@ -1,6 +1,4 @@
-import Declaration from '../lib/declaration.js'
-import parse from '../lib/parse.js'
-import Rule from '../lib/rule.js'
+import { Declaration, parse, Rule } from '../lib/postcss.js'
 
 it('initializes with properties', () => {
   let decl = new Declaration({ prop: 'color', value: 'black' })

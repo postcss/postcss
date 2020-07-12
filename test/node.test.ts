@@ -1,13 +1,14 @@
 import { resolve } from 'path'
 
-import CssSyntaxError from '../lib/css-syntax-error.js'
-import Declaration from '../lib/declaration.js'
-import { AnyNode } from '../lib/node.js'
-import postcss from '../lib/postcss.js'
-import AtRule from '../lib/at-rule.js'
-import parse from '../lib/parse.js'
-import Root from '../lib/root.js'
-import Rule from '../lib/rule.js'
+import postcss, {
+  AnyNode,
+  AtRule,
+  Root,
+  Rule,
+  CssSyntaxError,
+  Declaration,
+  parse
+} from '../lib/postcss.js'
 
 function stringify (node: AnyNode, builder: (str: string) => void) {
   if (node.type === 'rule') {

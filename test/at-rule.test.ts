@@ -1,5 +1,4 @@
-import AtRule from '../lib/at-rule.js'
-import parse from '../lib/parse.js'
+import { AtRule, parse } from '../lib/postcss.js'
 
 it('initializes with properties', () => {
   let rule = new AtRule({ name: 'encoding', params: '"utf-8"' })

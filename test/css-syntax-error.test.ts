@@ -3,9 +3,11 @@ import path from 'path'
 import stripAnsi from 'strip-ansi'
 import Concat from 'concat-with-sourcemaps'
 
-import postcss, { ProcessOptions } from '../lib/postcss.js'
-import CssSyntaxError from '../lib/css-syntax-error.js'
-import Rule from '../lib/rule.js'
+import postcss, {
+  ProcessOptions,
+  CssSyntaxError,
+  Rule
+} from '../lib/postcss.js'
 
 function parseError (css: string, opts?: Pick<ProcessOptions, 'map' | 'from'>) {
   let error

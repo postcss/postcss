@@ -1,6 +1,6 @@
-import postcss from '../lib/postcss.js'
+import { plugin } from '../lib/postcss.js'
 
-export default postcss.plugin<{ a: number }>('remover', opts => {
+export default plugin<{ a: number }>('remover', opts => {
   // THROWS Object is possibly 'undefined'
   console.log(opts.a)
   // THROWS Property 'b' does not exist on type '{ a: number; }'

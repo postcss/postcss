@@ -2,12 +2,7 @@ import { testPath, jsonify, eachTest } from 'postcss-parser-tests'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
-import Declaration from '../lib/declaration.js'
-import AtRule from '../lib/at-rule.js'
-import parse from '../lib/parse.js'
-import Root from '../lib/root.js'
-import Rule from '../lib/rule.js'
-import '../lib/processor.js'
+import { Declaration, AtRule, parse, Root, Rule } from '../lib/postcss.js'
 
 it('works with file reads', () => {
   let stream = readFileSync(testPath('atrule-empty.css'))
