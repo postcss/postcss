@@ -5,6 +5,13 @@
   "engines": {
     "node": "^10 || ^12 || >=14"
   },
+  "exports": {
+    ".": {
+      "require": "./lib/postcss.js",
+      "import": "./lib/postcss.mjs"
+    },
+    "./": "./"
+  },
   "keywords": [
     "css",
     "postcss",
@@ -72,7 +79,7 @@
     "typescript": "^3.9.6",
     "yaspeller-ci": "^1.0.2"
   },
-  "main": "lib/postcss",
+  "main": "lib/postcss.js",
   "lint-staged": {
     "*.md": "yaspeller",
     "*.js": "eslint --fix",
