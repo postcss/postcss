@@ -163,7 +163,7 @@ export interface SourceMapOptions {
    *
    * If you have set `inline: true`, annotation cannot be disabled.
    */
-  annotation?: string | boolean
+  annotation?: string | boolean | ((file: string, root: Root) => string)
 
   /**
    * Override `from` in map’s sources.

@@ -3,7 +3,7 @@ import { removeSync, outputFileSync } from 'fs-extra'
 import { join, resolve } from 'path'
 import { existsSync } from 'fs'
 
-import postcss, { SourceMap } from '../lib/postcss.js'
+import postcss, { SourceMap, Rule } from '../lib/postcss.js'
 import PreviousMap from '../lib/previous-map.js'
 
 function consumer (map: SourceMap): any {
@@ -578,4 +578,17 @@ it('preserves absolute urls in sources from previous map', () => {
   })
   expect(result2.root.source?.input.file).toEqual('http://example.com/b.css')
   expect(result2.map.toJSON().sources).toEqual(['http://example.com/a.css'])
+})
+
+it('allows dynamic annotations', () => {
+  let result = postcss([() => {}]).process('a{}', {
+    to: 'out.css',
+    map: {
+      annotation (to, root) {
+        let rule = root.first as Rule
+        return to + '-' + rule.selector + '.map'
+      }
+    }
+  })
+  expect(result.css).toEqual('a{}\n/*# sourceMappingURL=out.css-a.map */')
 })
