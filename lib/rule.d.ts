@@ -46,6 +46,13 @@ export interface RuleProps extends ContainerProps {
  * Represents a CSS rule: a selector followed by a declaration block.
  *
  * ```js
+ * let { rule } = require('postcss')
+ * let a = rule({ selector: 'a' })
+ * a.append(…)
+ * root.append(a)
+ * ```
+ *
+ * ```js
  * const root = postcss.parse('a{}')
  * const rule = root.first
  * rule.type       //=> 'rule'

@@ -10,7 +10,7 @@ import { ProcessOptions } from './postcss.js'
  * near input file (according `from` option).
  *
  * ```js
- * const root = postcss.parse(css, { from: 'a.sass.css' })
+ * const root = parse(css, { from: 'a.sass.css' })
  * root.input.map //=> PreviousMap
  * ```
  */

@@ -14,6 +14,11 @@ import Input from './input.js'
  * (e.g., to debug the previous compiler), use `error.input.file`.
  *
  * ```js
+ * // Raising error from plugin
+ * throw node.error('Unknown variable', { plugin: 'postcss-vars' })
+ * ```
+ *
+ * ```js
  * // Catching and checking syntax error
  * try {
  *   postcss.parse('a{')
@@ -22,11 +27,6 @@ import Input from './input.js'
  *     error //=> CssSyntaxError
  *   }
  * }
- * ```
- *
- * ```js
- * // Raising error from plugin
- * throw node.error('Unknown variable', { plugin: 'postcss-vars' })
  * ```
  */
 export default class CssSyntaxError {

@@ -231,23 +231,18 @@ export interface Postcss {
    * version of the plugin.
    *
    * ```js
-   * const processor = postcss([replace])
-   * processor.plugins[0].postcssPlugin  //=> 'postcss-replace'
-   * processor.plugins[0].postcssVersion //=> '6.0.0'
+   * let { plugin } = require('postcss')
+   * const cleaner = plugin('postcss-cleaner', () => {
+   *   return (root, result) => {
+   *     …
+   *   }
+   * })
    * ```
    *
    * The plugin function receives 2 arguments: `Root`
    * and `Result` instance. The function should mutate the provided
    * `Root` node. Alternatively, you can create a new `Root` node
    * and override the `result.root` property.
-   *
-   * ```js
-   * const cleaner = postcss.plugin('postcss-cleaner', () => {
-   *   return (root, result) => {
-   *     result.root = postcss.root()
-   *   }
-   * })
-   * ```
    *
    * As a convenience, plugins also expose a `process` method so that you can use
    * them as standalone tools.
@@ -261,7 +256,7 @@ export interface Postcss {
    * Asynchronous plugins should return a `Promise` instance.
    *
    * ```js
-   * postcss.plugin('postcss-import', () => {
+   * plugin('postcss-import', () => {
    *   return (root, result) => {
    *     return new Promise( (resolve, reject) => {
    *       fs.readFile('base.css', (base) => {
@@ -277,7 +272,7 @@ export interface Postcss {
    * Send data to other plugins using the `Result#messages` array.
    *
    * ```js
-   * postcss.plugin('postcss-caniuse-test', () => {
+   * plugin('postcss-caniuse-test', () => {
    *   return (root, result) => {
    *     root.walkDecls(decl => {
    *       if (!caniuse.support(decl.prop)) {
@@ -320,7 +315,8 @@ export interface Postcss {
    * Contains the `list` module.
    *
    * ```js
-   * postcss.list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
+   * let { list } = require('postcss')
+   * list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
    * ```
    */
   list: List
@@ -329,7 +325,8 @@ export interface Postcss {
    * Creates a new `Comment` node.
    *
    * ```js
-   * postcss.comment({ text: 'test' })
+   * let { comment } = require('postcss')
+   * comment({ text: 'test' })
    * ```
    *
    * @param defaults Properties for the new node.
@@ -341,7 +338,8 @@ export interface Postcss {
    * Creates a new `AtRule` node.
    *
    * ```js
-   * postcss.atRule({ name: 'charset' }).toString() //=> "@charset"
+   * let { atRule } = require('postcss')
+   * atRule({ name: 'charset' }).toString() //=> "@charset"
    * ```
    *
    * @param defaults Properties for the new node.
@@ -353,7 +351,8 @@ export interface Postcss {
    * Creates a new `Declaration` node.
    *
    * ```js
-   * postcss.decl({ prop: 'color', value: 'red' }).toString() //=> "color: red"
+   * let { decl } = require('postcss')
+   * decl({ prop: 'color', value: 'red' }).toString() //=> "color: red"
    * ```
    *
    * @param defaults Properties for the new node.
@@ -365,7 +364,8 @@ export interface Postcss {
    * Creates a new `Rule` node.
    *
    * ```js
-   * postcss.rule({ selector: 'a' }).toString() //=> "a {\n}"
+   * let { rule } = require('postcss')
+   * rule({ selector: 'a' }).toString() //=> "a {\n}"
    * ```
    *
    * @param default Properties for the new node.
@@ -377,7 +377,8 @@ export interface Postcss {
    * Creates a new `Root` node.
    *
    * ```js
-   * postcss.root({ after: '\n' }).toString() //=> "\n"
+   * let { root } = require('postcss')
+   * root({ after: '\n' }).toString() //=> "\n"
    * ```
    *
    * @param defaults Properties for the new node.

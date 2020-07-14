@@ -3,7 +3,8 @@
  * `border-radius`, and other shorthand properties).
  *
  * ```js
- * postcss.list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
+ * let { list } = require('postcss')
+ * list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
  * ```
  *
  * @param str Space-separated values.
@@ -16,7 +17,8 @@ declare function space (str: string): string[]
  * and `background` properties).
  *
  * ```js
- * postcss.list.comma('black, linear-gradient(white, black)')
+ * let { list } = require('postcss')
+ * list.comma('black, linear-gradient(white, black)')
  * //=> ['black', 'linear-gradient(white, black)']
  * ```
  *

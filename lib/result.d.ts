@@ -66,7 +66,7 @@ export default class Result {
    * Each message should have type and plugin properties.
    *
    * ```js
-   * postcss.plugin('postcss-min-browser', () => {
+   * plugin('postcss-min-browser', () => {
    *   return (root, result) => {
    *     const browsers = detectMinBrowsersByCanIUse(root)
    *     result.messages.push({
