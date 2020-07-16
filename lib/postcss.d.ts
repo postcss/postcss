@@ -218,7 +218,7 @@ export interface Postcss {
    * })
    * ```
    *
-   * @param plugins PostCSS plugins
+   * @param plugins PostCSS plugins.
    * @return Processor to process multiple CSS.
    */
   (plugins?: AcceptedPlugin[]): Processor
@@ -285,7 +285,7 @@ export interface Postcss {
    *
    * @param name        PostCSS plugin name. Same as in `name`
    *                    property in `package.json`. It will be saved
-   *                    in `plugin.postcssPlugin` property.
+   *                    in `Plugin#postcssPlugin` property.
    * @param initializer Will receive plugin options
    *                    and should return plugin function.
    *

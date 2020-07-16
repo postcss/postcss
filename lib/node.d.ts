@@ -341,7 +341,7 @@ export default abstract class Node {
    * decl.before('content: ""')
    * ```
    *
-   * @param add New node.
+   * @param newNode New node.
    * @return This node for methods chain.
    */
   before (newNode: Node | object | string | Node[]): this
@@ -355,7 +355,7 @@ export default abstract class Node {
    * decl.after('color: black')
    * ```
    *
-   * @param add New node.
+   * @param newNode New node.
    * @return This node for methods chain.
    */
   after (newNode: Node | object | string | Node[]): this

@@ -26,7 +26,7 @@ export interface ResultOptions extends ProcessOptions {
 
   /**
    * Name of plugin that created this warning. `Result#warn()` will fill it
-   * automatically with plugin.postcssPlugin value.
+   * automatically with `Plugin#postcssPlugin` value.
    */
   plugin?: string
 }
