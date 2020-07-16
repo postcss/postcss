@@ -136,7 +136,7 @@ export default class LazyResult {
 
   /**
    * Processes input CSS through synchronous plugins
-   * and calls `Result#warnings()`.
+   * and calls `Result#warnings`.
    *
    * @return Warnings from plugins.
    */

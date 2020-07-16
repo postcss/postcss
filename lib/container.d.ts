@@ -88,7 +88,7 @@ export default abstract class Container extends Node {
    * })
    * ```
    *
-   * @param callback Iterator receives each node and index.`
+   * @param callback Iterator receives each node and index.
    * @return Returns `false` if iteration was broke.
    */
   each (callback: (node: ChildNode, index: number) => void): void
@@ -271,7 +271,9 @@ export default abstract class Container extends Node {
    * @param nodes New nodes.
    * @return This node for methods chain.
    */
-  append (...nodes: (Node | Node[] | ChildProps | string)[]): this
+  append (
+    ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
+  ): this
 
   /**
    * Inserts new nodes to the start of the container.
@@ -293,7 +295,9 @@ export default abstract class Container extends Node {
    * @param nodes New nodes.
    * @return This node for methods chain.
    */
-  prepend (...nodes: (Node | Node[] | ChildProps | string)[]): this
+  prepend (
+    ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
+  ): this
 
   /**
    * Add child to the end of the node.
@@ -320,7 +324,13 @@ export default abstract class Container extends Node {
    */
   insertBefore (
     oldNode: ChildNode | number,
-    newNode: ChildNode | ChildNode[] | ChildProps | ChildProps[] | string
+    newNode:
+      | ChildNode
+      | ChildProps
+      | string
+      | ChildNode[]
+      | ChildProps[]
+      | string[]
   ): this
 
   /**
@@ -332,7 +342,13 @@ export default abstract class Container extends Node {
    */
   insertAfter (
     oldNode: ChildNode | number,
-    newNode: ChildNode | ChildNode[] | ChildProps | ChildProps[] | string
+    newNode:
+      | ChildNode
+      | ChildProps
+      | string
+      | ChildNode[]
+      | ChildProps[]
+      | string[]
   ): this
 
   /**

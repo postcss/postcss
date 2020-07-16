@@ -12,7 +12,7 @@ import Root from './root.js'
 
 export type ChildNode = AtRule | Rule | Declaration | Comment
 
-export type AnyNode = ChildNode | Root
+export type AnyNode = AtRule | Rule | Declaration | Comment | Root
 
 export type ChildProps =
   | AtRuleProps
@@ -298,7 +298,9 @@ export default abstract class Node {
    * @param nodes Mode(s) to replace current one.
    * @return Current node to methods chain.
    */
-  replaceWith (...nodes: (Node | object)[]): this
+  replaceWith (
+    ...nodes: (ChildNode | ChildProps | ChildNode[] | ChildProps[])[]
+  ): this
 
   /**
    * Returns the next child of the node’s parent.
@@ -344,7 +346,7 @@ export default abstract class Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  before (newNode: Node | object | string | Node[]): this
+  before (newNode: Node | ChildProps | string | Node[]): this
 
   /**
    * Insert new node after current node to current node’s parent.
@@ -358,7 +360,7 @@ export default abstract class Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  after (newNode: Node | object | string | Node[]): this
+  after (newNode: Node | ChildProps | string | Node[]): this
 
   /**
    * Finds the Root instance of the node’s tree.

@@ -25,7 +25,7 @@ export interface ResultOptions extends ProcessOptions {
   node?: Node
 
   /**
-   * Name of plugin that created this warning. `Result#warn()` will fill it
+   * Name of plugin that created this warning. `Result#warn` will fill it
    * automatically with `Plugin#postcssPlugin` value.
    */
   plugin?: string
@@ -147,7 +147,7 @@ export default class Result {
   get content (): string
 
   /**
-   * Returns for @{link Result#css} content.
+   * Returns for `Result#css` content.
    *
    * ```js
    * result + '' === result.css
