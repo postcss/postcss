@@ -339,15 +339,15 @@ export default abstract class Container extends Node {
    * Removes node from the container and cleans the parent properties
    * from the node and its children.
    *
-   * @param child Child or child’s index.
-   * @return This node for methods chain
-   *
    * ```js
    * rule.nodes.length  //=> 5
    * rule.removeChild(decl)
    * rule.nodes.length  //=> 4
    * decl.parent        //=> undefined
    * ```
+   *
+   * @param child Child or child’s index.
+   * @return This node for methods chain.
    */
   removeChild (child: ChildNode | number): this
 
