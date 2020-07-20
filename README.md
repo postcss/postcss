@@ -409,7 +409,7 @@ Common options:
 * `from`: the input file name (most runners set it automatically).
 * `to`: the output file name (most runners set it automatically).
 
-[source map options]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md
+[source map options]: https://postcss.org/api/#sourcemapoptions
 [Midas]:              https://github.com/ben-eb/midas
 [SCSS]:               https://github.com/postcss/postcss-scss
 

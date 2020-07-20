@@ -317,7 +317,7 @@ fs.readFile('src/app.css', (err, css) => {
 * `from`: input 文件名称（大多数运行器自动设置了这个）。
 * `to`: output 文件名称（大多数运行器自动设置了这个）。
 
-[source map 选项]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md
+[source map 选项]: https://postcss.org/api/#sourcemapoptions
 [Midas]:          https://github.com/ben-eb/midas
 [SCSS]:           https://github.com/postcss/postcss-scss
 
