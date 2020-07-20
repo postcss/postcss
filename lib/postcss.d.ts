@@ -169,6 +169,11 @@ export interface SourceMapOptions {
    * Override `from` in map’s sources.
    */
   from?: string
+
+  /**
+   * Use absolute path in generated source map.
+   */
+  absolute?: boolean
 }
 
 export interface ProcessOptions {

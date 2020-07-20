@@ -564,6 +564,15 @@ it('preserves absolute urls in sources', () => {
   expect(result.map.toJSON().sources).toEqual(['file:///dir/a.css'])
 })
 
+it('uses absolute path on request', () => {
+  let result = postcss([() => {}]).process('a{}', {
+    from: resolve('a.css'),
+    to: resolve('b.css'),
+    map: { inline: false, absolute: true }
+  })
+  expect(result.map.toJSON().sources).toEqual([resolve('a.css')])
+})
+
 it('preserves absolute urls in sources from previous map', () => {
   let result1 = postcss([() => {}]).process('a{}', {
     from: 'http://example.com/a.css',
