@@ -26,3 +26,9 @@ it('clones spaces from another declaration', () => {
   rule.append(decl)
   expect(root.toString()).toEqual('a{color:black;margin:0}')
 })
+
+it('converts value to string', () => {
+  // @ts-expect-error
+  let decl = new Declaration({ prop: 'color', value: 1 })
+  expect(decl.value).toEqual('1')
+})
