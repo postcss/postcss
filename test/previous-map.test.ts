@@ -239,3 +239,43 @@ it('raises when function returns invalid path', () => {
     parse(css, opts)
   }).toThrow('Unable to load previous source map: ' + fakePath)
 })
+
+it('uses source map path as a root', () => {
+  let from = join(dir, 'a.css')
+  outputFileSync(
+    join(dir, 'maps', 'a.map'),
+    JSON.stringify({
+      version: 3,
+      mappings: 'AAAA,CAAC;EAAC,CAAC,EAAC,CAAC',
+      sources: ['../../test.scss'],
+      names: [],
+      file: 'test.css'
+    })
+  )
+  let root = parse('a{}\n/*# sourceMappingURL=maps/a.map */', { from })
+  expect(root.source?.input.origin(1, 1)).toEqual({
+    file: join(dir, '..', 'test.scss'),
+    line: 1,
+    column: 1
+  })
+})
+
+it('uses current file path for source map', () => {
+  let root = parse('a{b:1}', {
+    from: '/dir/subdir/a.css',
+    map: {
+      prev: {
+        version: 3,
+        mappings: 'AAAA,CAAC;EAAC,CAAC,EAAC,CAAC',
+        sources: ['../test.scss'],
+        names: [],
+        file: 'test.css'
+      }
+    }
+  })
+  expect(root.source?.input.origin(1, 1)).toEqual({
+    file: '/dir/test.scss',
+    line: 1,
+    column: 1
+  })
+})
