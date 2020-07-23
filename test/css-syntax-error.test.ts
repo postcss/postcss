@@ -1,7 +1,8 @@
 import { red, bold, magenta, yellow, gray } from 'colorette'
-import path from 'path'
+import { pathToFileURL } from 'url'
 import stripAnsi from 'strip-ansi'
 import Concat from 'concat-with-sourcemaps'
+import path from 'path'
 
 import postcss, {
   ProcessOptions,
@@ -121,9 +122,13 @@ it('misses position without source', () => {
 })
 
 it('uses source map', () => {
+  function urlOf (file: string) {
+    return pathToFileURL(path.join(__dirname, file)).toString()
+  }
+
   let concat = new Concat(true, path.join(__dirname, 'build', 'all.css'))
-  concat.add(path.join(__dirname, 'a.css'), 'a { }\n')
-  concat.add(path.join(__dirname, 'b.css'), '\nb {\n')
+  concat.add(urlOf('a.css'), 'a { }\n')
+  concat.add(urlOf('b.css'), '\nb {\n')
 
   let error = parseError(concat.content.toString(), {
     from: path.join(__dirname, 'build', 'all.css'),
@@ -135,6 +140,34 @@ it('uses source map', () => {
   expect(error.source).not.toBeDefined()
 
   expect(error.input).toEqual({
+    url: urlOf(path.join('build', 'all.css')),
+    file: path.join(__dirname, 'build', 'all.css'),
+    line: 3,
+    column: 1,
+    source: 'a { }\n\nb {\n'
+  })
+})
+
+it('works with path in sources', () => {
+  function pathOf (file: string) {
+    return path.join(__dirname, file)
+  }
+
+  let concat = new Concat(true, path.join(__dirname, 'build', 'all.css'))
+  concat.add(pathOf('a.css'), 'a { }\n')
+  concat.add(pathOf('b.css'), '\nb {\n')
+
+  let error = parseError(concat.content.toString(), {
+    from: path.join(__dirname, 'build', 'all.css'),
+    map: { prev: concat.sourceMap }
+  })
+
+  expect(error.file).toEqual(path.join(__dirname, 'b.css'))
+  expect(error.line).toEqual(2)
+  expect(error.source).not.toBeDefined()
+
+  expect(error.input).toEqual({
+    url: pathToFileURL(pathOf(path.join('build', 'all.css'))).toString(),
     file: path.join(__dirname, 'build', 'all.css'),
     line: 3,
     column: 1,

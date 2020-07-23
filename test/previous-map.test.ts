@@ -1,7 +1,8 @@
 import { removeSync, outputFileSync } from 'fs-extra'
 import { SourceMapConsumer } from 'source-map'
+import { pathToFileURL } from 'url'
 import { existsSync } from 'fs'
-import { join, resolve } from 'path'
+import { join } from 'path'
 
 import { parse } from '../lib/postcss.js'
 
@@ -254,6 +255,7 @@ it('uses source map path as a root', () => {
   )
   let root = parse('a{}\n/*# sourceMappingURL=maps/a.map */', { from })
   expect(root.source?.input.origin(1, 1)).toEqual({
+    url: pathToFileURL(join(dir, '..', 'test.scss')).href,
     file: join(dir, '..', 'test.scss'),
     line: 1,
     column: 1
@@ -274,7 +276,28 @@ it('uses current file path for source map', () => {
     }
   })
   expect(root.source?.input.origin(1, 1)).toEqual({
+    url: pathToFileURL(join(__dirname, 'dir', 'test.scss')).href,
     file: join(__dirname, 'dir', 'test.scss'),
+    line: 1,
+    column: 1
+  })
+})
+
+it('works with non-file sources', () => {
+  let root = parse('a{b:1}', {
+    from: join(__dirname, 'dir', 'subdir', 'a.css'),
+    map: {
+      prev: {
+        version: 3,
+        mappings: 'AAAA,CAAC;EAAC,CAAC,EAAC,CAAC',
+        sources: ['http://example.com/test.scss'],
+        names: [],
+        file: 'test.css'
+      }
+    }
+  })
+  expect(root.source?.input.origin(1, 1)).toEqual({
+    url: 'http://example.com/test.scss',
     line: 1,
     column: 1
   })

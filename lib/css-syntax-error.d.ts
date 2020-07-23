@@ -1,4 +1,4 @@
-import Input from './input.js'
+import Input, { FilePosition } from './input.js'
 
 /**
  * The CSS parser throws this error for broken CSS.
@@ -87,6 +87,9 @@ export default class CssSyntaxError {
    * error.file       //=> 'a.sass'
    * error.input.file //=> 'a.css'
    * ```
+   *
+   * PostCSS will use the input source map to detect the original location.
+   * If you need the position in the PostCSS input, use `error.input.file`.
    */
   file?: string
 
@@ -97,6 +100,9 @@ export default class CssSyntaxError {
    * error.line       //=> 2
    * error.input.line //=> 4
    * ```
+   *
+   * PostCSS will use the input source map to detect the original location.
+   * If you need the position in the PostCSS input, use `error.input.line`.
    */
   line?: number
 
@@ -107,6 +113,9 @@ export default class CssSyntaxError {
    * error.column       //=> 1
    * error.input.column //=> 4
    * ```
+   *
+   * PostCSS will use the input source map to detect the original location.
+   * If you need the position in the PostCSS input, use `error.input.column`.
    */
   column?: number
 
@@ -141,7 +150,7 @@ export default class CssSyntaxError {
    * error.file       //=> 'a.sass'
    * ```
    */
-  input?: Input
+  input?: FilePosition
 
   /**
    * Returns error position, message and source code of the broken part.

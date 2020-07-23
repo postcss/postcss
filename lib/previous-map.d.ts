@@ -42,6 +42,11 @@ export default class PreviousMap {
   file?: string
 
   /**
+   * Path to source map file.
+   */
+  mapFile?: string
+
+  /**
    * @param css  Input CSS source.
    * @param opts Process options.
    */
