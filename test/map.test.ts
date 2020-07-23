@@ -566,11 +566,11 @@ it('preserves absolute urls in sources', () => {
 
 it('uses absolute path on request', () => {
   let result = postcss([() => {}]).process('a{}', {
-    from: resolve('a.css'),
-    to: resolve('b.css'),
+    from: '/dir/a.css',
+    to: '/dir/b.css',
     map: { inline: false, absolute: true }
   })
-  expect(result.map.toJSON().sources).toEqual([resolve('a.css')])
+  expect(result.map.toJSON().sources).toEqual(['file:///dir/a.css'])
 })
 
 it('preserves absolute urls in sources from previous map', () => {
@@ -600,4 +600,13 @@ it('allows dynamic annotations', () => {
     }
   })
   expect(result.css).toEqual('a{}\n/*# sourceMappingURL=out.css-a.map */')
+})
+
+it('uses URLs in sources', () => {
+  let result = postcss([() => {}]).process('a{}', {
+    from: 'a b.css',
+    to: 'dir/b.css',
+    map: { inline: false }
+  })
+  expect(result.map.toJSON().sources).toEqual(['../a%20b.css'])
 })
