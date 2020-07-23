@@ -1,6 +1,6 @@
 import { SourceMapConsumer, SourceMapGenerator } from 'source-map'
 import { removeSync, outputFileSync } from 'fs-extra'
-import { join, resolve } from 'path'
+import { join, resolve, sep } from 'path'
 import { existsSync } from 'fs'
 
 import postcss, { SourceMap, Rule } from '../lib/postcss.js'
@@ -173,7 +173,7 @@ it('uses user path in annotation, relative to options.to', () => {
   expect(result.css).toEqual('a { }\n/*# sourceMappingURL=maps/b.map */')
   let map = consumer(result.map)
 
-  expect(map.file).toEqual('../b.css')
+  expect(map.file).toEqual(join('..', 'b.css'))
   expect(map.originalPositionFor({ line: 1, column: 0 }).source).toEqual(
     '../../source/a.css'
   )
@@ -570,7 +570,11 @@ it('uses absolute path on request', () => {
     to: '/dir/b.css',
     map: { inline: false, absolute: true }
   })
-  expect(result.map.toJSON().sources).toEqual(['file:///dir/a.css'])
+  if (process.platform === 'win32') {
+    expect(result.map.toJSON().sources).toEqual(['file:///C:/dir/a.css'])
+  } else {
+    expect(result.map.toJSON().sources).toEqual(['file:///dir/a.css'])
+  }
 })
 
 it('preserves absolute urls in sources from previous map', () => {
