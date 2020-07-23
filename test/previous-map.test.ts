@@ -1,7 +1,7 @@
 import { removeSync, outputFileSync } from 'fs-extra'
 import { SourceMapConsumer } from 'source-map'
 import { existsSync } from 'fs'
-import { join } from 'path'
+import { join, resolve } from 'path'
 
 import { parse } from '../lib/postcss.js'
 
@@ -262,7 +262,7 @@ it('uses source map path as a root', () => {
 
 it('uses current file path for source map', () => {
   let root = parse('a{b:1}', {
-    from: '/dir/subdir/a.css',
+    from: join(__dirname, 'dir', 'subdir', 'a.css'),
     map: {
       prev: {
         version: 3,
@@ -274,7 +274,7 @@ it('uses current file path for source map', () => {
     }
   })
   expect(root.source?.input.origin(1, 1)).toEqual({
-    file: '/dir/test.scss',
+    file: join(__dirname, 'dir', 'test.scss'),
     line: 1,
     column: 1
   })

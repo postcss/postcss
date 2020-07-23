@@ -121,21 +121,21 @@ it('misses position without source', () => {
 })
 
 it('uses source map', () => {
-  let concat = new Concat(true, '/build/all.css')
-  concat.add('/a.css', 'a { }\n')
-  concat.add('/b.css', '\nb {\n')
+  let concat = new Concat(true, path.join(__dirname, 'build', 'all.css'))
+  concat.add(path.join(__dirname, 'a.css'), 'a { }\n')
+  concat.add(path.join(__dirname, 'b.css'), '\nb {\n')
 
   let error = parseError(concat.content.toString(), {
-    from: '/build/all.css',
+    from: path.join(__dirname, 'build', 'all.css'),
     map: { prev: concat.sourceMap }
   })
 
-  expect(error.file).toEqual('/b.css')
+  expect(error.file).toEqual(path.join(__dirname, 'b.css'))
   expect(error.line).toEqual(2)
   expect(error.source).not.toBeDefined()
 
   expect(error.input).toEqual({
-    file: path.resolve('/build/all.css'),
+    file: path.join(__dirname, 'build', 'all.css'),
     line: 3,
     column: 1,
     source: 'a { }\n\nb {\n'
