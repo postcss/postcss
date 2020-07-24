@@ -571,7 +571,11 @@ declare namespace postcss {
      * Represents the input source map passed from a compilation step before
      * PostCSS (e.g., from the Sass compiler).
      */
-    map: PreviousMap;
+    map?: PreviousMap;
+    /**
+     * Input CSS source.
+     */
+    css: string;
     /**
      * The flag to indicate whether or not the source code has Unicode BOM.
      */
