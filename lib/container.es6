@@ -437,7 +437,7 @@ class Container extends Node {
    */
   removeChild (child) {
     child = this.index(child)
-    this.nodes[child].parent = undefined
+    (this.nodes[child] || {}).parent = undefined
     this.nodes.splice(child, 1)
 
     let index
