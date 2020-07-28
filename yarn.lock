@@ -7892,7 +7892,7 @@ postcss-ordered-values@^4.1.2:
 
 "postcss-parser-tests@github:postcss/postcss-parser-tests":
   version "6.5.0"
-  resolved "https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/239fb1e1b017e4766a9afcb967f474930d68e87b"
+  resolved "https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/33fcecb4121b8237f0504750b60d810840603a4a"
   dependencies:
     ci-job-number "^1.2.2"
     colorette "^1.2.1"
