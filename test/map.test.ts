@@ -570,11 +570,9 @@ it('uses absolute path on request', () => {
     to: '/dir/b.css',
     map: { inline: false, absolute: true }
   })
-  if (process.platform === 'win32') {
-    expect(result.map.toJSON().sources).toEqual(['file:///C:/dir/a.css'])
-  } else {
-    expect(result.map.toJSON().sources).toEqual(['file:///dir/a.css'])
-  }
+  expect(result.map.toJSON().sources).toEqual([
+    process.platform === 'win32' ? 'file:///C:/dir/a.css' : 'file:///dir/a.css'
+  ])
 })
 
 it('preserves absolute urls in sources from previous map', () => {
