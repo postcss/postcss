@@ -68,7 +68,7 @@
     "eslint-plugin-unicorn": "^21.0.0",
     "fs-extra": "^9.0.1",
     "husky": "^4.2.5",
-    "jest": "^26.1.0",
+    "jest": "^26.2.1",
     "lint-staged": "^10.2.11",
     "postcss-parser-tests": "github:postcss/postcss-parser-tests",
     "size-limit": "^4.5.5",
