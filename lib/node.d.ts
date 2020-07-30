@@ -70,6 +70,9 @@ interface NodeErrorOptions {
 
 /**
  * All node classes inherit the following common methods.
+ *
+ * You should not extend this classes to create AST for selector or value
+ * parser.
  */
 export default abstract class Node {
   /**
