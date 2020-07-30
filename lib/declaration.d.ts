@@ -90,6 +90,24 @@ export default class Declaration extends Node {
    */
   important: boolean
 
+  /**
+   * `true` if declaration is declaration of CSS Custom Property
+   * or Sass variable.
+   *
+   * ```js
+   * const root = postcss.parse(':root { --one: 1 }')
+   * let one = root.first.first
+   * one.variable //=> true
+   * ```
+   *
+   * ```js
+   * const root = postcss.parse('$one: 1')
+   * let one = root.first
+   * one.variable //=> true
+   * ```
+   */
+  variable: boolean
+
   constructor (defaults?: DeclarationProps)
   clone (overrides?: Partial<DeclarationProps>): this
   cloneBefore (overrides?: Partial<DeclarationProps>): this

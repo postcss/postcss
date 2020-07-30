@@ -32,3 +32,12 @@ it('converts value to string', () => {
   let decl = new Declaration({ prop: 'color', value: 1 })
   expect(decl.value).toEqual('1')
 })
+
+it('detects variable declarations', () => {
+  let prop = new Declaration({ prop: '--color', value: 'black' })
+  expect(prop.variable).toBe(true)
+  let sass = new Declaration({ prop: '$color', value: 'black' })
+  expect(sass.variable).toBe(true)
+  let decl = new Declaration({ prop: 'color', value: 'black' })
+  expect(decl.variable).toBe(false)
+})
