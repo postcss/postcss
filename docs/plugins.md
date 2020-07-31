@@ -334,7 +334,7 @@ loosely resembles the original.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
 * [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
 * [`postcss-no-important`] delete declarations !important.
-* [`postcss-deep-scopable`] unified deep scoped style postcss plugin for vue
+* [`postcss-deep-scopable`] unified deep scoped style for Vue.js.
 
 See also plugins in modular minifier [`cssnano`].
 
