@@ -54,7 +54,7 @@
     "concat-with-sourcemaps": "^1.1.0",
     "documentation": "^13.0.2",
     "documentation-theme-light": "^1.1.1",
-    "eslint": "^7.5.0",
+    "eslint": "^7.6.0",
     "eslint-ci": "^1.0.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0",
