@@ -70,6 +70,7 @@
     "husky": "^4.2.5",
     "jest": "^26.2.2",
     "lint-staged": "^10.2.11",
+    "nanodelay": "^1.0.3",
     "postcss-parser-tests": "github:postcss/postcss-parser-tests",
     "size-limit": "^4.5.5",
     "strip-ansi": "^6.0.0",

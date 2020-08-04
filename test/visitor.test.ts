@@ -1,3 +1,5 @@
+import { delay } from 'nanodelay'
+
 import postcss, { Container, Root, Rule } from '../lib/postcss.js'
 
 function hasAlready (parent: Container | undefined, selector: string) {
@@ -186,6 +188,72 @@ it('walks through after all plugins', async () => {
       expect(events[events.length - 1]).toEqual(['decl.exit', node.prop, i])
     })
   }
+  postcss([visitor, follower]).process(
+    `@media screen {
+      body {
+        background: white;
+        padding: 10px;
+      }
+      a {
+        color: blue;
+      }
+    }`,
+    { from: 'a.css' }
+  ).css
+  expect(events).toEqual([
+    ['atrule.enter', 'media', 0],
+    ['rule.enter', 'body', 0],
+    ['decl.enter', 'background', 0],
+    ['decl.exit', 'background', 0],
+    ['decl.enter', 'padding', 1],
+    ['decl.exit', 'padding', 1],
+    ['rule.exit', 'body', 0],
+    ['rule.enter', 'a', 1],
+    ['decl.enter', 'color', 0],
+    ['decl.exit', 'color', 0],
+    ['rule.exit', 'a', 1],
+    ['atrule.exit', 'media', 0]
+  ])
+})
+
+it('walks asynchronously through after all plugins', async () => {
+  let events: [string, string, number][] = []
+  function visitor (root: Root) {
+    root.on('atrule.enter', async (node, i) => {
+      delay(10)
+      events.push(['atrule.enter', node.name, i])
+    })
+    root.on('atrule.exit', async (node, i) => {
+      events.push(['atrule.exit', node.name, i])
+    })
+    root.on('rule.enter', async (node, i) => {
+      events.push(['rule.enter', node.selector, i])
+    })
+    root.on('rule.exit', (node, i) => {
+      events.push(['rule.exit', node.selector, i])
+    })
+    root.on('decl.enter', (node, i) => {
+      events.push(['decl.enter', node.prop, i])
+    })
+    root.on('decl.exit', (node, i) => {
+      events.push(['decl.exit', node.prop, i])
+    })
+    root.on('comment.enter', (node, i) => {
+      events.push(['comment.enter', node.text, i])
+    })
+    root.on('comment.exit', (node, i) => {
+      events.push(['comment.exit', node.text, i])
+    })
+  }
+  function follower (root: Root) {
+    expect(events).toHaveLength(0)
+    root.on('decl.enter', (node, i) => {
+      expect(events[events.length - 1]).toEqual(['decl.enter', node.prop, i])
+    })
+    root.on('decl.exit', (node, i) => {
+      expect(events[events.length - 1]).toEqual(['decl.exit', node.prop, i])
+    })
+  }
   await postcss([visitor, follower]).process(
     `@media screen {
       body {
@@ -223,7 +291,7 @@ it('works classic plugin replace-color', async () => {
 })
 
 it('works visitor plugin will-change', async () => {
-  let { css } = await postcss([willChangeVisitor]).process(
+  let { css } = postcss([willChangeVisitor]).process(
     '.foo { will-change: transform; }',
     { from: 'a.css' }
   )
@@ -372,13 +440,31 @@ it('works visitor plugin postcss-alias', async () => {
     '@alias { fs: font-size; bg: background; }' +
     '.aliased { fs: 16px; bg: white; }'
   let expected = '.aliased { font-size: 16px; background: white; }'
-  let { css } = await postcss([postcssAlias]).process(input, { from: 'a.css' })
+  let { css } = postcss([postcssAlias]).process(input, { from: 'a.css' })
   expect(css).toEqual(expected)
 })
 
 it('adds node to error', async () => {
   function broken (root: Root) {
     root.on('rule.enter', () => {
+      throw new Error('test')
+    })
+  }
+  let error
+  try {
+    postcss([broken]).process('a{}', { from: 'broken.css' }).css
+  } catch (e) {
+    error = e
+  }
+  expect(error.message).toEqual('test')
+  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.stack).toContain('broken.css:1:1')
+})
+
+it('adds node to async error', async () => {
+  function broken (root: Root) {
+    root.on('rule.enter', async () => {
+      await delay(1)
       throw new Error('test')
     })
   }

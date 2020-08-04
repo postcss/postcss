@@ -108,6 +108,6 @@ export default class Root extends Container {
    */
   on<E extends keyof EventOptions> (
     event: E,
-    visitor: (node: EventOptions[E], index: number) => void
+    visitor: (node: EventOptions[E], index: number) => Promise<void> | void
   ): this
 }
