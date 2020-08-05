@@ -1,6 +1,6 @@
 import { delay } from 'nanodelay'
 
-import postcss, { Container, Root, Rule } from '../lib/postcss.js'
+import postcss, { Container, Root, Rule, Declaration } from '../lib/postcss.js'
 
 function hasAlready (parent: Container | undefined, selector: string) {
   if (typeof parent === 'undefined') return false
@@ -61,6 +61,22 @@ let replaceGreenToRed = postcss.plugin('replace-green-to-red', () => root => {
     if (node.value === 'green') {
       node.prop = 'color'
       node.value = 'red'
+    }
+  })
+})
+
+let replacePrintToMobile = postcss.plugin('replace-to-mobile', () => root => {
+  root.on('atrule', node => {
+    if (node.params === '(print)') {
+      node.params = '(mobile)'
+    }
+  })
+})
+
+let replaceScreenToPrint = postcss.plugin('replace-to-print', () => root => {
+  root.on('atrule', node => {
+    if (node.params === '(screen)') {
+      node.params = '(print)'
     }
   })
 })
@@ -311,6 +327,35 @@ it('works visitor plugin add-prop', async () => {
   )
 })
 
+it('works with at-rule params', () => {
+  let { css } = postcss([replacePrintToMobile, replaceScreenToPrint]).process(
+    '@media (screen) {}',
+    { from: 'a.css' }
+  )
+  expect(css).toEqual('@media (mobile) {}')
+})
+
+it('wraps node to proxies', () => {
+  let proxy: any, root: Root | undefined
+  postcss(rootNode => {
+    root = rootNode
+    rootNode.on('rule', node => {
+      proxy = node
+    })
+  }).process('a{color:black}', { from: 'a.css' }).css
+  if (!root) throw new Error('Nodes were not catched')
+  let rule = root.first as Rule
+  expect(proxy.proxyOf).toBe(rule)
+  expect(proxy.nodes[0].proxyOf).toBe(rule.first)
+  expect(proxy.first.proxyOf).toBe(rule.first)
+  expect(proxy.unknown).toBeUndefined()
+  expect(proxy.some((decl: Declaration) => decl.prop === 'color')).toBe(true)
+  expect(proxy.every((decl: Declaration) => decl.prop === 'color')).toBe(true)
+  let props: string[] = []
+  proxy.walkDecls((decl: Declaration) => props.push(decl.prop))
+  expect(props).toEqual(['color'])
+})
+
 const cssThree = '.a{ color: red; } ' + '.b{ will-change: transform; }'
 
 const expectedThree =
@@ -477,4 +522,17 @@ it('adds node to async error', async () => {
   expect(error.message).toEqual('test')
   expect(error.postcssNode.toString()).toEqual('a{}')
   expect(error.stack).toContain('broken.css:1:1')
+})
+
+it('shows error on sync call async plugins', () => {
+  function asyncPlugin (root: Root) {
+    root.on('rule.enter', async () => {})
+  }
+  let error
+  try {
+    postcss([asyncPlugin]).process('a{}', { from: 'broken.css' }).css
+  } catch (e) {
+    error = e
+  }
+  expect(error.message).toContain('work with async plugins')
 })

@@ -1,4 +1,4 @@
-import { red, bold, magenta, yellow, gray } from 'colorette'
+import { red, bold, magenta, yellow, gray, cyan } from 'colorette'
 import { pathToFileURL } from 'url'
 import stripAnsi from 'strip-ansi'
 import Concat from 'concat-with-sourcemaps'
@@ -49,12 +49,15 @@ it('has stack trace', () => {
 })
 
 it('highlights broken line with colors', () => {
-  expect(parseError('#a .b {').showSourceCode(true)).toEqual(
+  expect(parseError('#a .b c() {').showSourceCode(true)).toEqual(
     bold(red('>')) +
       gray(' 1 | ') +
       magenta('#a') +
       ' ' +
       yellow('.b') +
+      ' ' +
+      cyan('c') +
+      cyan('()') +
       ' ' +
       yellow('{') +
       '\n ' +

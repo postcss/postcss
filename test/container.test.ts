@@ -1,4 +1,4 @@
-import { Declaration, Root, Rule, parse } from '../lib/postcss.js'
+import { Declaration, Root, Rule, AtRule, parse } from '../lib/postcss.js'
 
 let example =
   'a { a: 1; b: 2 }' +
@@ -738,9 +738,19 @@ it('index() returns child index', () => {
   expect(rule.index(rule.nodes[1])).toEqual(1)
 })
 
-it('index() returns argument if it(is number', () => {
+it('index() returns argument if it is number', () => {
   let rule = parse('a { a: 1; b: 2 }').first as Rule
   expect(rule.index(2)).toEqual(2)
+})
+
+it('first() works for children-less nodes', () => {
+  let atRule = parse('@charset "UTF-*"').first as AtRule
+  expect(atRule.first).toBeUndefined()
+})
+
+it('last() works for children-less nodes', () => {
+  let atRule = parse('@charset "UTF-*"').first as AtRule
+  expect(atRule.last).toBeUndefined()
 })
 
 it('returns first child', () => {

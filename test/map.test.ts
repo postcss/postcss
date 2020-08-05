@@ -471,7 +471,7 @@ it('supports UTF-8', () => {
 it('generates map for node created manually', () => {
   let contenter = postcss(css => {
     if (css.first && css.first.type === 'rule') {
-      css.first.prepend({ prop: 'content', value: '""' })
+      css.first.prepend({ selector: 'b' })
     }
   })
   let result = contenter.process('a:after{\n}', { map: true })
