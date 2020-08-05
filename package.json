@@ -112,6 +112,11 @@
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config/ts",
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off",
+      "consistent-return": "off",
+      "global-require": "off"
+    },
     "overrides": [
       {
         "files": [
@@ -131,12 +136,7 @@
           "func-style": "off"
         }
       }
-    ],
-    "rules": {
-      "@typescript-eslint/no-explicit-any": "off",
-      "consistent-return": "off",
-      "global-require": "off"
-    }
+    ]
   },
   "eslintIgnore": [
     "docs/api/assets/"
