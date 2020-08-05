@@ -62,7 +62,7 @@ interface Transformer extends TransformCallback {
   postcssVersion: string
 }
 
-interface TransformCallback {
+export interface TransformCallback {
   (root: Root, result: Result): Promise<void> | void
 }
 
