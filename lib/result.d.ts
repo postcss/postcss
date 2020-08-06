@@ -1,8 +1,14 @@
-import { ProcessOptions, Plugin, SourceMap } from './postcss.js'
-import Warning, { WarningOptions } from './warning.js'
+import {
+  ProcessOptions,
+  Plugin,
+  SourceMap,
+  TransformCallback,
+  Root,
+  Node,
+  Warning,
+  WarningOptions
+} from './postcss.js'
 import Processor from './processor.js'
-import Root from './root.js'
-import Node from './node.js'
 
 export interface Message {
   /**
@@ -127,7 +133,7 @@ export default class Result {
   /**
    * Last runned PostCSS plugin.
    */
-  lastPlugin: Plugin<any>
+  lastPlugin: Plugin | TransformCallback
 
   /**
    * @param processor Processor used for this transformation.

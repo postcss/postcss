@@ -205,13 +205,11 @@ export default abstract class Node {
    * This method is provided as a convenience wrapper for `Result#warn`.
    *
    * ```js
-   * const plugin = postcss.plugin('postcss-deprecated', () => {
-   *   return (root, result) => {
+   *   (root, result) => {
    *     root.walkDecls('bad', decl => {
    *       decl.warn(result, 'Deprecated property bad')
    *     })
    *   }
-   * })
    * ```
    *
    * @param result The `Result` instance that will receive the warning.

@@ -1,4 +1,4 @@
-import postcss, { Warning, Result, Root } from '../lib/postcss.js'
+import postcss, { Warning, Result, Root, Plugin } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 
 let processor = new Processor()
@@ -12,11 +12,12 @@ it('stringifies', () => {
 
 it('adds warning', () => {
   let warning
-  let plugin = postcss.plugin('test-plugin', () => {
-    return (css, res) => {
-      warning = res.warn('test', { node: css.first })
+  let plugin: Plugin = {
+    postcssPlugin: 'test-plugin',
+    root (css, result) {
+      warning = result.warn('test', { node: css.first })
     }
-  })
+  }
   let result = postcss([plugin])
     .process('a{}')
     .sync()
@@ -32,11 +33,12 @@ it('adds warning', () => {
 })
 
 it('allows to override plugin', () => {
-  let plugin = postcss.plugin('test-plugin', () => {
-    return (css, res) => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test-plugin',
+    root (css, res) {
       res.warn('test', { plugin: 'test-plugin#one' })
     }
-  })
+  }
   let result = postcss([plugin])
     .process('a{}')
     .sync()

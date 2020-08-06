@@ -1,6 +1,14 @@
 import { delay } from 'nanodelay'
+import { resolve } from 'path'
 
-import postcss, { Container, Root, Rule, Declaration } from '../lib/postcss.js'
+import postcss, {
+  Container,
+  Root,
+  Rule,
+  Declaration,
+  Plugin,
+  PluginCreator
+} from '../lib/postcss.js'
 
 function hasAlready (parent: Container | undefined, selector: string) {
   if (typeof parent === 'undefined') return false
@@ -9,14 +17,18 @@ function hasAlready (parent: Container | undefined, selector: string) {
   })
 }
 
-let replaceColorGreenClassic = postcss.plugin('replace-color', () => root => {
-  root.walkDecls('color', decl => {
-    decl.value = 'green'
-  })
-})
+let replaceColorGreenClassic: Plugin = {
+  postcssPlugin: 'replace-color',
+  root (root) {
+    root.walkDecls('color', decl => {
+      decl.value = 'green'
+    })
+  }
+}
 
-let willChangeVisitor = postcss.plugin('will-change', () => root => {
-  root.on('decl', node => {
+let willChangeVisitor: Plugin = {
+  postcssPlugin: 'will-change',
+  decl (node) {
     if (node.prop !== 'will-change') return
     if (!node.parent) return
 
@@ -26,11 +38,12 @@ let willChangeVisitor = postcss.plugin('will-change', () => root => {
     if (already) return
 
     node.cloneBefore({ prop: 'backface-visibility', value: 'hidden' })
-  })
-})
+  }
+}
 
-let addPropsVisitor = postcss.plugin('add-props', () => root => {
-  root.on('decl', node => {
+let addPropsVisitor: Plugin = {
+  postcssPlugin: 'add-props',
+  decl (node) {
     if (node.prop !== 'will-change') return
 
     node.root().walkDecls('color', decl => {
@@ -42,47 +55,52 @@ let addPropsVisitor = postcss.plugin('add-props', () => root => {
 
       decl.cloneBefore({ prop: 'will-change', value: 'transform' })
     })
-  })
-})
+  }
+}
 
-let replaceAllButRedToGreen = postcss.plugin('not-red-to-green', () => root => {
-  root.on('decl', node => {
+let replaceAllButRedToGreen: Plugin = {
+  postcssPlugin: 'not-red-to-green',
+  decl (node) {
     if (node.prop !== 'color') return
     if (node.value === 'red') return
 
     node.prop = 'color'
     node.value = 'green'
-  })
-})
+  }
+}
 
-let replaceGreenToRed = postcss.plugin('replace-green-to-red', () => root => {
-  root.on('decl', node => {
+let replaceGreenToRed: Plugin = {
+  postcssPlugin: 'replace-green-to-red',
+  decl (node) {
     if (node.prop !== 'color') return
     if (node.value === 'green') {
       node.prop = 'color'
       node.value = 'red'
     }
-  })
-})
+  }
+}
 
-let replacePrintToMobile = postcss.plugin('replace-to-mobile', () => root => {
-  root.on('atrule', node => {
+let replacePrintToMobile: Plugin = {
+  postcssPlugin: 'replace-to-mobile',
+  atrule (node) {
     if (node.params === '(print)') {
       node.params = '(mobile)'
     }
-  })
-})
+  }
+}
 
-let replaceScreenToPrint = postcss.plugin('replace-to-print', () => root => {
-  root.on('atrule', node => {
+let replaceScreenToPrint: Plugin = {
+  postcssPlugin: 'replace-to-print',
+  atrule (node) {
     if (node.params === '(screen)') {
       node.params = '(print)'
     }
-  })
-})
+  }
+}
 
-let postcssFocus = postcss.plugin('postcss-focus', () => root => {
-  root.on('rule', rule => {
+let postcssFocus: Plugin = {
+  postcssPlugin: 'postcss-focus',
+  rule (rule) {
     if (rule.selector.includes(':hover')) {
       let focuses: string[] = []
       rule.selectors.forEach(selector => {
@@ -97,11 +115,12 @@ let postcssFocus = postcss.plugin('postcss-focus', () => root => {
         rule.selectors = rule.selectors.concat(focuses)
       }
     }
-  })
-})
+  }
+}
 
-let hidden = postcss.plugin('hidden', () => root => {
-  root.on('decl', decl => {
+let hidden: Plugin = {
+  postcssPlugin: 'hidden',
+  decl (decl) {
     if (decl.prop !== 'display') return
 
     let value = decl.value
@@ -143,68 +162,78 @@ let hidden = postcss.plugin('hidden', () => root => {
       decl.cloneBefore({ prop: 'visibility', value: 'hidden' })
       decl.remove()
     }
-  })
-})
+  }
+}
 
-let postcssAlias = postcss.plugin('postcss-alias', () => root => {
+function createPlugin (creator: () => Plugin): PluginCreator<void> {
+  let result = creator as PluginCreator<void>
+  result.postcss = true
+  return result
+}
+
+let postcssAlias = createPlugin(() => {
   let aliases: any = {}
-  root.walkAtRules('alias', rule => {
-    rule.walkDecls(decl => {
-      aliases[decl.prop] = decl.value
-    })
-    rule.remove()
-  })
-
-  root.on('decl', decl => {
-    let value = aliases[decl.prop]
-    if (value !== undefined) {
-      decl.replaceWith({
-        prop: value,
-        value: decl.value,
-        important: decl.important
+  return {
+    postcssPlugin: 'postcss-alias',
+    root (root) {
+      root.walkAtRules('alias', rule => {
+        rule.walkDecls(decl => {
+          aliases[decl.prop] = decl.value
+        })
+        rule.remove()
       })
+    },
+    decl (decl) {
+      let value = aliases[decl.prop]
+      if (value !== undefined) {
+        decl.replaceWith({
+          prop: value,
+          value: decl.value,
+          important: decl.important
+        })
+      }
     }
-  })
+  }
 })
+
+let visitorEvents: [string, string][] = []
+let postcssVisitor: Plugin = {
+  postcssPlugin: 'visitor',
+  root (node) {
+    visitorEvents.push(['root', `${node.nodes.length}`])
+  },
+  rootExit (node) {
+    visitorEvents.push(['rootExit', `${node.nodes.length}`])
+  },
+  atrule (node) {
+    visitorEvents.push(['atrule', node.name])
+  },
+  atruleExit (node) {
+    visitorEvents.push(['atruleExit', node.name])
+  },
+  rule (node) {
+    visitorEvents.push(['rule', node.selector])
+  },
+  ruleExit (node) {
+    visitorEvents.push(['ruleExit', node.selector])
+  },
+  decl (node) {
+    visitorEvents.push(['decl', node.prop])
+  },
+  declExit (node) {
+    visitorEvents.push(['declExit', node.prop])
+  },
+  comment (node) {
+    visitorEvents.push(['comment', node.text])
+  },
+  commentExit (node) {
+    visitorEvents.push(['commentExit', node.text])
+  }
+}
 
 it('walks through after all plugins', async () => {
-  let events: [string, string, number][] = []
-  function visitor (root: Root) {
-    root.on('atrule.enter', (node, i) => {
-      events.push(['atrule.enter', node.name, i])
-    })
-    root.on('atrule.exit', (node, i) => {
-      events.push(['atrule.exit', node.name, i])
-    })
-    root.on('rule.enter', (node, i) => {
-      events.push(['rule.enter', node.selector, i])
-    })
-    root.on('rule.exit', (node, i) => {
-      events.push(['rule.exit', node.selector, i])
-    })
-    root.on('decl.enter', (node, i) => {
-      events.push(['decl.enter', node.prop, i])
-    })
-    root.on('decl.exit', (node, i) => {
-      events.push(['decl.exit', node.prop, i])
-    })
-    root.on('comment.enter', (node, i) => {
-      events.push(['comment.enter', node.text, i])
-    })
-    root.on('comment.exit', (node, i) => {
-      events.push(['comment.exit', node.text, i])
-    })
-  }
-  function follower (root: Root) {
-    expect(events).toHaveLength(0)
-    root.on('decl.enter', (node, i) => {
-      expect(events[events.length - 1]).toEqual(['decl.enter', node.prop, i])
-    })
-    root.on('decl.exit', (node, i) => {
-      expect(events[events.length - 1]).toEqual(['decl.exit', node.prop, i])
-    })
-  }
-  postcss([visitor, follower]).process(
+  visitorEvents = []
+  postcss([postcssVisitor]).process(
     `@media screen {
       body {
         background: white;
@@ -216,61 +245,27 @@ it('walks through after all plugins', async () => {
     }`,
     { from: 'a.css' }
   ).css
-  expect(events).toEqual([
-    ['atrule.enter', 'media', 0],
-    ['rule.enter', 'body', 0],
-    ['decl.enter', 'background', 0],
-    ['decl.exit', 'background', 0],
-    ['decl.enter', 'padding', 1],
-    ['decl.exit', 'padding', 1],
-    ['rule.exit', 'body', 0],
-    ['rule.enter', 'a', 1],
-    ['decl.enter', 'color', 0],
-    ['decl.exit', 'color', 0],
-    ['rule.exit', 'a', 1],
-    ['atrule.exit', 'media', 0]
+  expect(visitorEvents).toEqual([
+    ['root', '1'],
+    ['atrule', 'media'],
+    ['rule', 'body'],
+    ['decl', 'background'],
+    ['declExit', 'background'],
+    ['decl', 'padding'],
+    ['declExit', 'padding'],
+    ['ruleExit', 'body'],
+    ['rule', 'a'],
+    ['decl', 'color'],
+    ['declExit', 'color'],
+    ['ruleExit', 'a'],
+    ['atruleExit', 'media'],
+    ['rootExit', '1']
   ])
 })
 
 it('walks asynchronously through after all plugins', async () => {
-  let events: [string, string, number][] = []
-  function visitor (root: Root) {
-    root.on('atrule.enter', async (node, i) => {
-      delay(10)
-      events.push(['atrule.enter', node.name, i])
-    })
-    root.on('atrule.exit', async (node, i) => {
-      events.push(['atrule.exit', node.name, i])
-    })
-    root.on('rule.enter', async (node, i) => {
-      events.push(['rule.enter', node.selector, i])
-    })
-    root.on('rule.exit', (node, i) => {
-      events.push(['rule.exit', node.selector, i])
-    })
-    root.on('decl.enter', (node, i) => {
-      events.push(['decl.enter', node.prop, i])
-    })
-    root.on('decl.exit', (node, i) => {
-      events.push(['decl.exit', node.prop, i])
-    })
-    root.on('comment.enter', (node, i) => {
-      events.push(['comment.enter', node.text, i])
-    })
-    root.on('comment.exit', (node, i) => {
-      events.push(['comment.exit', node.text, i])
-    })
-  }
-  function follower (root: Root) {
-    expect(events).toHaveLength(0)
-    root.on('decl.enter', (node, i) => {
-      expect(events[events.length - 1]).toEqual(['decl.enter', node.prop, i])
-    })
-    root.on('decl.exit', (node, i) => {
-      expect(events[events.length - 1]).toEqual(['decl.exit', node.prop, i])
-    })
-  }
-  await postcss([visitor, follower]).process(
+  visitorEvents = []
+  await postcss([postcssVisitor]).process(
     `@media screen {
       body {
         background: white;
@@ -282,19 +277,21 @@ it('walks asynchronously through after all plugins', async () => {
     }`,
     { from: 'a.css' }
   )
-  expect(events).toEqual([
-    ['atrule.enter', 'media', 0],
-    ['rule.enter', 'body', 0],
-    ['decl.enter', 'background', 0],
-    ['decl.exit', 'background', 0],
-    ['decl.enter', 'padding', 1],
-    ['decl.exit', 'padding', 1],
-    ['rule.exit', 'body', 0],
-    ['rule.enter', 'a', 1],
-    ['decl.enter', 'color', 0],
-    ['decl.exit', 'color', 0],
-    ['rule.exit', 'a', 1],
-    ['atrule.exit', 'media', 0]
+  expect(visitorEvents).toEqual([
+    ['root', '1'],
+    ['atrule', 'media'],
+    ['rule', 'body'],
+    ['decl', 'background'],
+    ['declExit', 'background'],
+    ['decl', 'padding'],
+    ['declExit', 'padding'],
+    ['ruleExit', 'body'],
+    ['rule', 'a'],
+    ['decl', 'color'],
+    ['declExit', 'color'],
+    ['ruleExit', 'a'],
+    ['atruleExit', 'media'],
+    ['rootExit', '1']
   ])
 })
 
@@ -336,12 +333,16 @@ it('works with at-rule params', () => {
 })
 
 it('wraps node to proxies', () => {
-  let proxy: any, root: Root | undefined
-  postcss(rootNode => {
-    root = rootNode
-    rootNode.on('rule', node => {
+  let proxy: any
+  let root: Root | undefined
+  postcss({
+    postcssPlugin: 'proxyCatcher',
+    rule (node) {
       proxy = node
-    })
+    },
+    root (node) {
+      root = node
+    }
   }).process('a{color:black}', { from: 'a.css' }).css
   if (!root) throw new Error('Nodes were not catched')
   let rule = root.first as Rule
@@ -489,11 +490,49 @@ it('works visitor plugin postcss-alias', async () => {
   expect(css).toEqual(expected)
 })
 
+it('adds plugin to error', async () => {
+  let broken: Plugin = {
+    postcssPlugin: 'broken',
+    rule (rule) {
+      throw rule.error('test')
+    }
+  }
+  let error
+  try {
+    postcss([broken]).process('a{}', { from: 'broken.css' }).css
+  } catch (e) {
+    error = e
+  }
+  expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
+  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.stack).toContain('broken.css:1:1')
+})
+
+it('adds plugin to async error', async () => {
+  let broken: Plugin = {
+    postcssPlugin: 'broken',
+    async rule (rule) {
+      await delay(1)
+      throw rule.error('test')
+    }
+  }
+  let error
+  try {
+    await postcss([broken]).process('a{}', { from: 'broken.css' })
+  } catch (e) {
+    error = e
+  }
+  expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
+  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.stack).toContain('broken.css:1:1')
+})
+
 it('adds node to error', async () => {
-  function broken (root: Root) {
-    root.on('rule.enter', () => {
+  let broken: Plugin = {
+    postcssPlugin: 'broken',
+    rule () {
       throw new Error('test')
-    })
+    }
   }
   let error
   try {
@@ -507,11 +546,12 @@ it('adds node to error', async () => {
 })
 
 it('adds node to async error', async () => {
-  function broken (root: Root) {
-    root.on('rule.enter', async () => {
+  let broken: Plugin = {
+    postcssPlugin: 'broken',
+    async rule () {
       await delay(1)
       throw new Error('test')
-    })
+    }
   }
   let error
   try {
@@ -525,8 +565,9 @@ it('adds node to async error', async () => {
 })
 
 it('shows error on sync call async plugins', () => {
-  function asyncPlugin (root: Root) {
-    root.on('rule.enter', async () => {})
+  let asyncPlugin = {
+    postcssPlugin: 'asyncPlugin',
+    async rule () {}
   }
   let error
   try {

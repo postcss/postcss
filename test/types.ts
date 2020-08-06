@@ -1,11 +1,16 @@
-import { plugin } from '../lib/postcss.js'
+import { PluginCreator } from '../lib/postcss.js'
 
-export default plugin<string>('remover', prop => {
-  return root => {
-    root.on('decl', decl => {
+const plugin: PluginCreator<string> = prop => {
+  return {
+    postcssPlugin: 'remover',
+    decl: decl => {
       if (decl.prop === prop) {
         decl.remove()
       }
-    })
+    }
   }
-})
+}
+
+plugin.postcss = true
+
+export default plugin

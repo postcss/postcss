@@ -1,4 +1,9 @@
-import { AcceptedPlugin, Plugin, ProcessOptions } from './postcss.js'
+import {
+  AcceptedPlugin,
+  Plugin,
+  ProcessOptions,
+  TransformCallback
+} from './postcss.js'
 import LazyResult from './lazy-result.js'
 import Result from './result.js'
 import Root from './root.js'
@@ -33,7 +38,7 @@ export default class Processor {
    * processor.plugins.length //=> 2
    * ```
    */
-  plugins: Plugin<any>[]
+  plugins: (Plugin | Transformer | TransformCallback)[]
 
   /**
    * @param plugins PostCSS plugins
@@ -44,12 +49,12 @@ export default class Processor {
    * Adds a plugin to be used as a CSS processor.
    *
    * PostCSS plugin can be in 4 formats:
-   * * A plugin created by `postcss.plugin` method.
+   * * A plugin in `Plugin` format.
+   * * A plugin creator function with `pluginCreator.postcss = true`.
+   *   PostCSS will call this function without argument to get plugin.
    * * A function. PostCSS will pass the function a @{link Root}
    *   as the first argument and current `Result` instance
    *   as the second.
-   * * An object with a `postcss` method. PostCSS will use that method
-   *   as described in #2.
    * * Another `Processor` instance. PostCSS will copy plugins
    *   from that instance into this one.
    *

@@ -9,7 +9,7 @@ import Node, {
   AnyNode
 } from './node.js'
 import Declaration, { DeclarationProps } from './declaration.js'
-import Root, { Event, RootProps } from './root.js'
+import Root, { RootProps } from './root.js'
 import Comment, { CommentProps } from './comment.js'
 import AtRule, { AtRuleProps } from './at-rule.js'
 import Result, { Message } from './result.js'
@@ -19,7 +19,6 @@ import Warning, { WarningOptions } from './warning.js'
 import Input, { FilePosition } from './input.js'
 import CssSyntaxError from './css-syntax-error.js'
 import list, { List } from './list.js'
-import LazyResult from './lazy-result.js'
 import Processor from './processor.js'
 
 export {
@@ -30,7 +29,6 @@ export {
   ChildNode,
   AnyNode,
   Message,
-  Event,
   NodeProps,
   DeclarationProps,
   ContainerProps,
@@ -57,6 +55,25 @@ export type SourceMap = SourceMapGenerator & {
   toJSON(): RawSourceMap
 }
 
+export interface Plugin {
+  postcssPlugin: string
+  root?: (root: Root, result: Result) => Promise<void> | void
+  rootExit?: (root: Root, result: Result) => Promise<void> | void
+  decl?: (decl: Declaration, result: Result) => Promise<void> | void
+  declExit?: (decl: Declaration, result: Result) => Promise<void> | void
+  rule?: (rule: Rule, result: Result) => Promise<void> | void
+  ruleExit?: (rule: Rule, result: Result) => Promise<void> | void
+  atrule?: (atRule: AtRule, result: Result) => Promise<void> | void
+  atruleExit?: (atRule: AtRule, result: Result) => Promise<void> | void
+  comment?: (comment: Comment, result: Result) => Promise<void> | void
+  commentExit?: (comment: Comment, result: Result) => Promise<void> | void
+}
+
+export interface PluginCreator<PluginOptions> {
+  (opts?: PluginOptions): Plugin
+  postcss: true
+}
+
 interface Transformer extends TransformCallback {
   postcssPlugin: string
   postcssVersion: string
@@ -66,27 +83,15 @@ export interface TransformCallback {
   (root: Root, result: Result): Promise<void> | void
 }
 
-interface PluginInitializer<T> {
-  (pluginOptions?: T): TransformCallback
-}
-
-export interface Plugin<T> extends Transformer {
+export interface OldPlugin<T> extends Transformer {
   (opts?: T): Transformer
   postcss: Transformer
-  process: (
-    css:
-      | string
-      | {
-          toString(): string
-        }
-      | Result,
-    processOpts?: ProcessOptions,
-    pluginOpts?: T
-  ) => LazyResult
 }
 
 export type AcceptedPlugin =
-  | Plugin<any>
+  | Plugin
+  | PluginCreator<any>
+  | OldPlugin<any>
   | TransformCallback
   | {
       postcss: TransformCallback | Processor
@@ -230,75 +235,6 @@ export interface Postcss {
   (...plugins: AcceptedPlugin[]): Processor
 
   /**
-   * Creates a PostCSS plugin with a standard API.
-   *
-   * The newly-wrapped function will provide both the name and PostCSS
-   * version of the plugin.
-   *
-   * ```js
-   * let { plugin } = require('postcss')
-   * const cleaner = plugin('postcss-cleaner', () => {
-   *   return (root, result) => {
-   *     …
-   *   }
-   * })
-   * ```
-   *
-   * The plugin function receives 2 arguments: `Root`
-   * and `Result` instance. The function should mutate the provided
-   * `Root` node. Alternatively, you can create a new `Root` node
-   * and override the `result.root` property.
-   *
-   * As a convenience, plugins also expose a `process` method so that you can use
-   * them as standalone tools.
-   *
-   * ```js
-   * cleaner.process(css, processOpts, pluginOpts)
-   * // This is equivalent to:
-   * postcss([ cleaner(pluginOpts) ]).process(css, processOpts)
-   * ```
-   *
-   * Asynchronous plugins should return a `Promise` instance.
-   *
-   * ```js
-   * plugin('postcss-import', () => {
-   *   return (root, result) => {
-   *     return new Promise( (resolve, reject) => {
-   *       fs.readFile('base.css', (base) => {
-   *         root.prepend(base)
-   *         resolve()
-   *       })
-   *     })
-   *   }
-   * })
-   * ```
-   *
-   * Add warnings using the `Node#warn` method.
-   * Send data to other plugins using the `Result#messages` array.
-   *
-   * ```js
-   * plugin('postcss-caniuse-test', () => {
-   *   return (root, result) => {
-   *     root.walkDecls(decl => {
-   *       if (!caniuse.support(decl.prop)) {
-   *         decl.warn(result, 'Some browsers do not support ' + decl.prop)
-   *       }
-   *     })
-   *   }
-   * })
-   * ```
-   *
-   * @param name        PostCSS plugin name. Same as in `name`
-   *                    property in `package.json`. It will be saved
-   *                    in `Plugin#postcssPlugin` property.
-   * @param initializer Will receive plugin options
-   *                    and should return plugin function.
-   *
-   * @return PostCSS plugin.
-   */
-  plugin<T>(name: string, initializer: PluginInitializer<T>): Plugin<T>
-
-  /**
    * Default function to convert a node tree into a CSS string.
    */
   stringify: Stringifier
@@ -393,7 +329,6 @@ export interface Postcss {
 }
 
 export const stringify: Stringifier
-export const plugin: Postcss['plugin']
 export const atRule: Postcss['atRule']
 export const parse: Parser
 export const decl: Postcss['decl']

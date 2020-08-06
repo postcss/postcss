@@ -7,6 +7,7 @@ import path from 'path'
 import postcss, {
   ProcessOptions,
   CssSyntaxError,
+  Plugin,
   Rule
 } from '../lib/postcss.js'
 
@@ -216,13 +217,14 @@ it('set source plugin', () => {
 })
 
 it('set source plugin automatically', () => {
-  let plugin = postcss.plugin('test-plugin', () => {
-    return css => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test-plugin',
+    root (css) {
       if (css.first) {
         throw css.first.error('Error')
       }
     }
-  })
+  }
 
   return postcss([plugin])
     .process('a{}')
@@ -234,15 +236,16 @@ it('set source plugin automatically', () => {
 })
 
 it('set plugin automatically in async', () => {
-  let plugin = postcss.plugin('async-plugin', () => {
-    return css => {
+  let plugin: Plugin = {
+    postcssPlugin: 'async-plugin',
+    root (css) {
       return new Promise((resolve, reject) => {
         if (css.first) {
           reject(css.first.error('Error'))
         }
       })
     }
-  })
+  }
 
   return postcss([plugin])
     .process('a{}')

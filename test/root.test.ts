@@ -64,19 +64,3 @@ it('generates result with map', () => {
   expect(result instanceof Result).toBe(true)
   expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
 })
-
-it('adds visitors', () => {
-  let root = parse('')
-  let cb1 = () => {}
-  let cb2 = () => {}
-  root.on('decl.enter', cb1)
-  root.on('decl.enter', cb2)
-  expect(privateMethods(root).listeners).toEqual({ 'decl.enter': [cb1, cb2] })
-})
-
-it('adds visitors with enter phase by default', () => {
-  let root = parse('')
-  let cb = () => {}
-  root.on('rule', cb)
-  expect(privateMethods(root).listeners).toEqual({ 'rule.enter': [cb] })
-})

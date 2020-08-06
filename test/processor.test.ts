@@ -4,6 +4,10 @@ import postcss, { Result, Node, Root, parse } from '../lib/postcss.js'
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'
 
+afterEach(() => {
+  jest.resetAllMocks()
+})
+
 function prs () {
   return new Root({ raws: { after: 'ok' } })
 }
@@ -17,7 +21,7 @@ function getCalls (func: any) {
 }
 
 let beforeFix = new Processor([
-  root => {
+  (root: Root) => {
     root.walkRules(rule => {
       if (!rule.selector.match(/::(before|after)/)) return
       if (!rule.some(i => i.type === 'decl' && i.prop === 'content')) {
@@ -175,7 +179,7 @@ it('calls all plugins once', async () => {
 it('parses, converts and stringifies CSS', () => {
   expect(
     typeof new Processor([
-      css => expect(css instanceof Root).toBe(true)
+      (css: Root) => expect(css instanceof Root).toBe(true)
     ]).process('a {}').css
   ).toEqual('string')
 })
@@ -336,11 +340,13 @@ it('throws a sync call in async running', async () => {
 })
 
 it('checks plugin compatibility', () => {
-  let plugin = postcss.plugin('test', () => {
+  jest.spyOn(console, 'warn').mockImplementation(() => true)
+  let plugin = (postcss as any).plugin('test', () => {
     return () => {
       throw new Error('Er')
     }
   })
+  expect(console.warn).toHaveBeenCalledTimes(1)
   let func = plugin()
   func.postcssVersion = '2.1.5'
 

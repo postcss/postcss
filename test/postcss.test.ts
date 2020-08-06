@@ -1,5 +1,9 @@
 import Processor from '../lib/processor.js'
-import postcss from '../lib/postcss.js'
+import postcss, { Root, TransformCallback } from '../lib/postcss.js'
+
+afterEach(() => {
+  jest.resetAllMocks()
+})
 
 it('creates plugins list', () => {
   let processor = postcss()
@@ -28,29 +32,33 @@ it('takes plugin from other processor', () => {
 })
 
 it('supports injecting additional processors at runtime', async () => {
-  let plugin1 = postcss.plugin('one', () => css => {
+  let plugin1: TransformCallback = css => {
     css.walkDecls(decl => {
       decl.value = 'world'
     })
-  })
-  let plugin2 = postcss.plugin('two', () => (css, result) => {
-    result.processor.use(plugin1())
-  })
+  }
+  let plugin2: TransformCallback = (css, result) => {
+    result.processor.use(plugin1)
+  }
 
   let r = await postcss([plugin2]).process('a{hello: bob}', { from: undefined })
   expect(r.css).toEqual('a{hello: world}')
 })
 
 it('creates plugin', () => {
-  let plugin = postcss.plugin<string>('test', filter => root => {
-    root.walkDecls(filter ?? 'two', i => i.remove())
+  jest.spyOn(console, 'warn').mockImplementation(() => true)
+  let plugin = (postcss as any).plugin('test', (filter?: string) => {
+    return (root: Root) => {
+      root.walkDecls(filter ?? 'two', i => i.remove())
+    }
   })
+  expect(console.warn).toHaveBeenCalledTimes(1)
 
-  let func1 = postcss(plugin).plugins[0]
+  let func1: any = postcss(plugin).plugins[0]
   expect(func1.postcssPlugin).toEqual('test')
   expect(func1.postcssVersion).toMatch(/\d+.\d+.\d+/)
 
-  let func2 = postcss(plugin()).plugins[0]
+  let func2: any = postcss(plugin()).plugins[0]
   expect(func2.postcssPlugin).toEqual(func1.postcssPlugin)
   expect(func2.postcssVersion).toEqual(func1.postcssVersion)
 
@@ -62,12 +70,14 @@ it('creates plugin', () => {
 })
 
 it('does not call plugin constructor', () => {
+  jest.spyOn(console, 'warn').mockImplementation(() => true)
   let calls = 0
-  let plugin = postcss.plugin('test', () => {
+  let plugin = (postcss as any).plugin('test', () => {
     calls += 1
     return () => {}
   })
   expect(calls).toBe(0)
+  expect(console.warn).toHaveBeenCalledTimes(1)
 
   postcss(plugin).process('a{}')
   expect(calls).toBe(1)
@@ -77,10 +87,12 @@ it('does not call plugin constructor', () => {
 })
 
 it('creates a shortcut to process css', async () => {
-  let plugin = postcss.plugin<string>('test', str => root => {
-    root.walkDecls(i => {
-      i.value = str ?? 'bar'
-    })
+  let plugin = (postcss as any).plugin('test', (str?: string) => {
+    return (root: Root) => {
+      root.walkDecls(i => {
+        i.value = str ?? 'bar'
+      })
+    }
   })
 
   let result1 = plugin.process('a{value:foo}')

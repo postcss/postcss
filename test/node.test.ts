@@ -7,7 +7,9 @@ import postcss, {
   Rule,
   CssSyntaxError,
   Declaration,
-  parse
+  parse,
+  Result,
+  Plugin
 } from '../lib/postcss.js'
 
 function stringify (node: AnyNode, builder: (str: string) => void) {
@@ -70,9 +72,12 @@ it('error() highlights word in multiline string', () => {
 
 it('warn() attaches a warning to the result object', async () => {
   let warning: any
-  let warner = postcss.plugin('warner', () => (css, result) => {
-    warning = css.first?.warn(result, 'FIRST!')
-  })
+  let warner: Plugin = {
+    postcssPlugin: 'warner',
+    root (css: Root, result: Result) {
+      warning = css.first?.warn(result, 'FIRST!')
+    }
+  }
 
   let result = await postcss([warner]).process('a{}', { from: undefined })
   expect(warning.type).toEqual('warning')
@@ -82,11 +87,11 @@ it('warn() attaches a warning to the result object', async () => {
 })
 
 it('warn() accepts options', () => {
-  let warner = postcss.plugin('warner', () => (css, result) => {
+  let warner = (css: Root, result: Result) => {
     css.first?.warn(result, 'FIRST!', { index: 1 })
-  })
+  }
 
-  let result = postcss([warner()]).process('a{}')
+  let result = postcss([warner]).process('a{}')
   expect(result.warnings()).toHaveLength(1)
   let warning = result.warnings()[0] as any
   expect(warning.index).toEqual(1)

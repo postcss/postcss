@@ -3,7 +3,7 @@ import { removeSync, outputFileSync } from 'fs-extra'
 import { join, resolve, sep } from 'path'
 import { existsSync } from 'fs'
 
-import postcss, { SourceMap, Rule } from '../lib/postcss.js'
+import postcss, { SourceMap, Rule, Root } from '../lib/postcss.js'
 import PreviousMap from '../lib/previous-map.js'
 
 function consumer (map: SourceMap): any {
@@ -17,10 +17,10 @@ function read (result: { css: string }): any {
 
 let dir = join(__dirname, 'map-fixtures')
 
-let doubler = postcss(css => {
+let doubler = postcss((css: Root) => {
   css.walkDecls(decl => decl.parent?.prepend(decl.clone()))
 })
-let lighter = postcss(css => {
+let lighter = postcss((css: Root) => {
   css.walkDecls(decl => {
     decl.value = 'white'
   })
@@ -43,7 +43,7 @@ it('return map generator', () => {
 
 it('generate right source map', () => {
   let css = 'a {\n  color: black;\n  }'
-  let processor = postcss(root => {
+  let processor = postcss((root: Root) => {
     root.walkRules(rule => {
       rule.selector = 'strong'
     })
@@ -469,7 +469,7 @@ it('supports UTF-8', () => {
 })
 
 it('generates map for node created manually', () => {
-  let contenter = postcss(css => {
+  let contenter = postcss((css: Root) => {
     if (css.first && css.first.type === 'rule') {
       css.first.prepend({ selector: 'b' })
     }

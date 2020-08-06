@@ -5,14 +5,11 @@ It can be useful for everyone who wishes to contribute to the core or develop a 
 
 **Table of Contents**
 
-- [Overview](#overview)
-- [Workflow](#workflow)
-- [Core Structures](#core-structures)
-    * [Tokenizer](#tokenizer--libtokenizees6-)
-    * [Parser](#parser--libparsees6-libparseres6-)
-    * [Processor](#processor--libprocessores6-)
-    * [Stringifier](#stringifier--libstringifyes6-libstringifieres6-)
-- [API](#api-reference)
+* [PostCSS Architecture](#postcss-architecture)
+  * [Overview](#overview)
+  * [Workflow](#workflow)
+  * [Core Structures](#core-structures)
+  * [API Reference](#api-reference)
 
 ### Overview
 
@@ -139,7 +136,7 @@ So now let's look more closely on structures that play the main role in PostCSS 
 
 - #### Processor [`lib/processor.js`](https://github.com/postcss/postcss/blob/master/lib/processor.js)
 
-    Processor is a very plain structure that initializes plugins and runs syntax transformations. Plugin is just a function registered with [`postcss.plugin`](https://github.com/postcss/postcss/blob/master/lib/postcss.js#L109) call.
+    Processor is a very plain structure that initializes plugins and runs syntax transformations
 
     It exposes only a few public API methods. Description of them could be found on [api.postcss.org/Processor](http://api.postcss.org/Processor.html)
 
