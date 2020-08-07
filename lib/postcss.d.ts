@@ -55,18 +55,20 @@ export type SourceMap = SourceMapGenerator & {
   toJSON(): RawSourceMap
 }
 
+export type Helpers = { result: Result } & Postcss
+
 export interface Plugin {
   postcssPlugin: string
-  root?: (root: Root, result: Result) => Promise<void> | void
-  rootExit?: (root: Root, result: Result) => Promise<void> | void
-  decl?: (decl: Declaration, result: Result) => Promise<void> | void
-  declExit?: (decl: Declaration, result: Result) => Promise<void> | void
-  rule?: (rule: Rule, result: Result) => Promise<void> | void
-  ruleExit?: (rule: Rule, result: Result) => Promise<void> | void
-  atrule?: (atRule: AtRule, result: Result) => Promise<void> | void
-  atruleExit?: (atRule: AtRule, result: Result) => Promise<void> | void
-  comment?: (comment: Comment, result: Result) => Promise<void> | void
-  commentExit?: (comment: Comment, result: Result) => Promise<void> | void
+  root?: (root: Root, helper: Helpers) => Promise<void> | void
+  rootExit?: (root: Root, helper: Helpers) => Promise<void> | void
+  decl?: (decl: Declaration, helper: Helpers) => Promise<void> | void
+  declExit?: (decl: Declaration, helper: Helpers) => Promise<void> | void
+  rule?: (rule: Rule, helper: Helpers) => Promise<void> | void
+  ruleExit?: (rule: Rule, helper: Helpers) => Promise<void> | void
+  atrule?: (atRule: AtRule, helper: Helpers) => Promise<void> | void
+  atruleExit?: (atRule: AtRule, helper: Helpers) => Promise<void> | void
+  comment?: (comment: Comment, helper: Helpers) => Promise<void> | void
+  commentExit?: (comment: Comment, helper: Helpers) => Promise<void> | void
 }
 
 export interface PluginCreator<PluginOptions> {

@@ -7,7 +7,9 @@ import postcss, {
   Rule,
   Declaration,
   Plugin,
-  PluginCreator
+  PluginCreator,
+  AnyNode,
+  Helpers
 } from '../lib/postcss.js'
 
 function hasAlready (parent: Container | undefined, selector: string) {
@@ -576,4 +578,39 @@ it('shows error on sync call async plugins', () => {
     error = e
   }
   expect(error.message).toContain('work with async plugins')
+})
+
+it('passes helpers', async () => {
+  function check (node: AnyNode, helpers: Helpers) {
+    expect(helpers.result.messages).toEqual([])
+    expect(helpers.comment().type).toEqual('comment')
+    expect(helpers.list).toBe(postcss.list)
+  }
+
+  let syncPlugin: Plugin = {
+    postcssPlugin: 'syncPlugin',
+    root: check,
+    rule: check,
+    ruleExit: check,
+    rootExit: check
+  }
+
+  let asyncPlugin: Plugin = {
+    postcssPlugin: 'syncPlugin',
+    async root (node, helpers) {
+      await delay(1)
+      check(node, helpers)
+    },
+    async rule (node, helpers) {
+      await delay(1)
+      check(node, helpers)
+    },
+    async rootExit (node, helpers) {
+      await delay(1)
+      check(node, helpers)
+    }
+  }
+
+  postcss([syncPlugin]).process('a{}', { from: 'a.css' }).css
+  await postcss([asyncPlugin]).process('a{}', { from: 'a.css' })
 })
