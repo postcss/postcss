@@ -3,7 +3,7 @@ import { PluginCreator } from '../lib/postcss.js'
 const plugin: PluginCreator<string> = prop => {
   return {
     postcssPlugin: 'remover',
-    decl: (decl, { result, comment }) => {
+    Declaration: (decl, { result, comment }) => {
       if (decl.prop === prop) {
         decl.warn(result, `${decl.prop} found`)
         decl.replaceWith(comment({ text: `${decl.prop} removed` }))

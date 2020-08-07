@@ -14,7 +14,7 @@ it('adds warning', () => {
   let warning
   let plugin: Plugin = {
     postcssPlugin: 'test-plugin',
-    root (css, { result }) {
+    Root (css, { result }) {
       warning = result.warn('test', { node: css.first })
     }
   }
@@ -35,7 +35,7 @@ it('adds warning', () => {
 it('allows to override plugin', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test-plugin',
-    root (css, { result }) {
+    Root (css, { result }) {
       result.warn('test', { plugin: 'test-plugin#one' })
     }
   }

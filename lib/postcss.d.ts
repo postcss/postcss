@@ -59,16 +59,16 @@ export type Helpers = { result: Result } & Postcss
 
 export interface Plugin {
   postcssPlugin: string
-  root?: (root: Root, helper: Helpers) => Promise<void> | void
-  rootExit?: (root: Root, helper: Helpers) => Promise<void> | void
-  decl?: (decl: Declaration, helper: Helpers) => Promise<void> | void
-  declExit?: (decl: Declaration, helper: Helpers) => Promise<void> | void
-  rule?: (rule: Rule, helper: Helpers) => Promise<void> | void
-  ruleExit?: (rule: Rule, helper: Helpers) => Promise<void> | void
-  atrule?: (atRule: AtRule, helper: Helpers) => Promise<void> | void
-  atruleExit?: (atRule: AtRule, helper: Helpers) => Promise<void> | void
-  comment?: (comment: Comment, helper: Helpers) => Promise<void> | void
-  commentExit?: (comment: Comment, helper: Helpers) => Promise<void> | void
+  Root?: (root: Root, helper: Helpers) => Promise<void> | void
+  RootExit?: (root: Root, helper: Helpers) => Promise<void> | void
+  Declaration?: (decl: Declaration, helper: Helpers) => Promise<void> | void
+  DeclarationExit?: (decl: Declaration, helper: Helpers) => Promise<void> | void
+  Rule?: (rule: Rule, helper: Helpers) => Promise<void> | void
+  RuleExit?: (rule: Rule, helper: Helpers) => Promise<void> | void
+  AtRule?: (atRule: AtRule, helper: Helpers) => Promise<void> | void
+  AtRuleExit?: (atRule: AtRule, helper: Helpers) => Promise<void> | void
+  Comment?: (comment: Comment, helper: Helpers) => Promise<void> | void
+  CommentExit?: (comment: Comment, helper: Helpers) => Promise<void> | void
 }
 
 export interface PluginCreator<PluginOptions> {

@@ -21,7 +21,7 @@ function hasAlready (parent: Container | undefined, selector: string) {
 
 let replaceColorGreenClassic: Plugin = {
   postcssPlugin: 'replace-color',
-  root (root) {
+  Root (root) {
     root.walkDecls('color', decl => {
       decl.value = 'green'
     })
@@ -30,7 +30,7 @@ let replaceColorGreenClassic: Plugin = {
 
 let willChangeVisitor: Plugin = {
   postcssPlugin: 'will-change',
-  decl (node) {
+  Declaration (node) {
     if (node.prop !== 'will-change') return
     if (!node.parent) return
 
@@ -45,7 +45,7 @@ let willChangeVisitor: Plugin = {
 
 let addPropsVisitor: Plugin = {
   postcssPlugin: 'add-props',
-  decl (node) {
+  Declaration (node) {
     if (node.prop !== 'will-change') return
 
     node.root().walkDecls('color', decl => {
@@ -62,7 +62,7 @@ let addPropsVisitor: Plugin = {
 
 let replaceAllButRedToGreen: Plugin = {
   postcssPlugin: 'not-red-to-green',
-  decl (node) {
+  Declaration (node) {
     if (node.prop !== 'color') return
     if (node.value === 'red') return
 
@@ -73,7 +73,7 @@ let replaceAllButRedToGreen: Plugin = {
 
 let replaceGreenToRed: Plugin = {
   postcssPlugin: 'replace-green-to-red',
-  decl (node) {
+  Declaration (node) {
     if (node.prop !== 'color') return
     if (node.value === 'green') {
       node.prop = 'color'
@@ -84,7 +84,7 @@ let replaceGreenToRed: Plugin = {
 
 let replacePrintToMobile: Plugin = {
   postcssPlugin: 'replace-to-mobile',
-  atrule (node) {
+  AtRule (node) {
     if (node.params === '(print)') {
       node.params = '(mobile)'
     }
@@ -93,7 +93,7 @@ let replacePrintToMobile: Plugin = {
 
 let replaceScreenToPrint: Plugin = {
   postcssPlugin: 'replace-to-print',
-  atrule (node) {
+  AtRule (node) {
     if (node.params === '(screen)') {
       node.params = '(print)'
     }
@@ -102,7 +102,7 @@ let replaceScreenToPrint: Plugin = {
 
 let postcssFocus: Plugin = {
   postcssPlugin: 'postcss-focus',
-  rule (rule) {
+  Rule (rule) {
     if (rule.selector.includes(':hover')) {
       let focuses: string[] = []
       rule.selectors.forEach(selector => {
@@ -122,7 +122,7 @@ let postcssFocus: Plugin = {
 
 let hidden: Plugin = {
   postcssPlugin: 'hidden',
-  decl (decl) {
+  Declaration (decl) {
     if (decl.prop !== 'display') return
 
     let value = decl.value
@@ -177,7 +177,7 @@ let postcssAlias = createPlugin(() => {
   let aliases: any = {}
   return {
     postcssPlugin: 'postcss-alias',
-    root (root) {
+    Root (root) {
       root.walkAtRules('alias', rule => {
         rule.walkDecls(decl => {
           aliases[decl.prop] = decl.value
@@ -185,7 +185,7 @@ let postcssAlias = createPlugin(() => {
         rule.remove()
       })
     },
-    decl (decl) {
+    Declaration (decl) {
       let value = aliases[decl.prop]
       if (value !== undefined) {
         decl.replaceWith({
@@ -201,34 +201,34 @@ let postcssAlias = createPlugin(() => {
 let visitorEvents: [string, string][] = []
 let postcssVisitor: Plugin = {
   postcssPlugin: 'visitor',
-  root (node) {
+  Root (node) {
     visitorEvents.push(['root', `${node.nodes.length}`])
   },
-  rootExit (node) {
+  RootExit (node) {
     visitorEvents.push(['rootExit', `${node.nodes.length}`])
   },
-  atrule (node) {
+  AtRule (node) {
     visitorEvents.push(['atrule', node.name])
   },
-  atruleExit (node) {
+  AtRuleExit (node) {
     visitorEvents.push(['atruleExit', node.name])
   },
-  rule (node) {
+  Rule (node) {
     visitorEvents.push(['rule', node.selector])
   },
-  ruleExit (node) {
+  RuleExit (node) {
     visitorEvents.push(['ruleExit', node.selector])
   },
-  decl (node) {
+  Declaration (node) {
     visitorEvents.push(['decl', node.prop])
   },
-  declExit (node) {
+  DeclarationExit (node) {
     visitorEvents.push(['declExit', node.prop])
   },
-  comment (node) {
+  Comment (node) {
     visitorEvents.push(['comment', node.text])
   },
-  commentExit (node) {
+  CommentExit (node) {
     visitorEvents.push(['commentExit', node.text])
   }
 }
@@ -339,11 +339,11 @@ it('wraps node to proxies', () => {
   let root: Root | undefined
   postcss({
     postcssPlugin: 'proxyCatcher',
-    rule (node) {
-      proxy = node
-    },
-    root (node) {
+    Root (node) {
       root = node
+    },
+    Rule (node) {
+      proxy = node
     }
   }).process('a{color:black}', { from: 'a.css' }).css
   if (!root) throw new Error('Nodes were not catched')
@@ -495,7 +495,7 @@ it('works visitor plugin postcss-alias', async () => {
 it('adds plugin to error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    rule (rule) {
+    Rule (rule) {
       throw rule.error('test')
     }
   }
@@ -513,7 +513,7 @@ it('adds plugin to error', async () => {
 it('adds plugin to async error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    async rule (rule) {
+    async Rule (rule) {
       await delay(1)
       throw rule.error('test')
     }
@@ -532,7 +532,7 @@ it('adds plugin to async error', async () => {
 it('adds node to error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    rule () {
+    Rule () {
       throw new Error('test')
     }
   }
@@ -550,7 +550,7 @@ it('adds node to error', async () => {
 it('adds node to async error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    async rule () {
+    async Rule () {
       await delay(1)
       throw new Error('test')
     }
@@ -567,9 +567,9 @@ it('adds node to async error', async () => {
 })
 
 it('shows error on sync call async plugins', () => {
-  let asyncPlugin = {
+  let asyncPlugin: Plugin = {
     postcssPlugin: 'asyncPlugin',
-    async rule () {}
+    async Rule () {}
   }
   let error
   try {
@@ -589,23 +589,23 @@ it('passes helpers', async () => {
 
   let syncPlugin: Plugin = {
     postcssPlugin: 'syncPlugin',
-    root: check,
-    rule: check,
-    ruleExit: check,
-    rootExit: check
+    Root: check,
+    Rule: check,
+    RuleExit: check,
+    RootExit: check
   }
 
   let asyncPlugin: Plugin = {
     postcssPlugin: 'syncPlugin',
-    async root (node, helpers) {
+    async Root (node, helpers) {
       await delay(1)
       check(node, helpers)
     },
-    async rule (node, helpers) {
+    async Rule (node, helpers) {
       await delay(1)
       check(node, helpers)
     },
-    async rootExit (node, helpers) {
+    async RootExit (node, helpers) {
       await delay(1)
       check(node, helpers)
     }
