@@ -328,6 +328,18 @@ export interface Postcss {
    * @return New root node.
    */
   root(defaults?: RootProps): Root
+
+  CssSyntaxError: typeof CssSyntaxError
+  Declaration: typeof Declaration
+  Container: typeof Container
+  Comment: typeof Comment
+  Warning: typeof Warning
+  AtRule: typeof AtRule
+  Result: typeof Result
+  Input: typeof Input
+  Rule: typeof Rule
+  Root: typeof Root
+  Node: typeof Node
 }
 
 export const stringify: Stringifier
