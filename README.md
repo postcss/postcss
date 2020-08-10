@@ -2,7 +2,7 @@
 
 <img align="right" width="95" height="95"
      alt="Philosopher’s stone, logo of PostCSS"
-     src="http://postcss.github.io/postcss/logo.svg">
+     src="https://postcss.org/logo.svg">
 
 [chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
 [chat]:     https://gitter.im/postcss/postcss
