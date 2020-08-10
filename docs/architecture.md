@@ -141,7 +141,7 @@ So now let's look more closely on structures that play the main role in PostCSS 
 
     Processor is a very plain structure that initializes plugins and runs syntax transformations
 
-    It exposes only a few public API methods. Description of them could be found on [api.postcss.org/Processor](http://api.postcss.org/Processor.html)
+    It exposes only a few public API methods. Description of them could be found on [API](https://postcss.org/api/#processor)
 
 - #### Stringifier [`lib/stringify.js`](https://github.com/postcss/postcss/blob/master/lib/stringify.js), [`lib/stringifier.js`](https://github.com/postcss/postcss/blob/master/lib/stringifier.js)
 
@@ -154,4 +154,4 @@ So now let's look more closely on structures that play the main role in PostCSS 
 
 ### API Reference
 
-More descriptive API documentation could be found [here](http://api.postcss.org/)
+More descriptive API documentation could be found [here](https://postcss.org/api/)

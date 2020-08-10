@@ -53,7 +53,7 @@ module.exports = function parse (css, opts) {
 ```
 
 [Safe Parser]: https://github.com/postcss/postcss-safe-parser
-[`Root`]:      http://api.postcss.org/Root.html
+[`Root`]:      https://postcss.org/api/#root
 
 
 ### Main Theory

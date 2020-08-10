@@ -299,7 +299,7 @@ fs.readFile('src/app.css', (err, css) => {
 所有的 PostCSS 运行器应当通过 [PostCSS 运行器指南]。
 
 [PostCSS 运行器指南]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
-[PostCSS API 文档]:  http://api.postcss.org/postcss.html
+[PostCSS API 文档]:  https://postcss.org/api/
 
 ### 配置选项
 
