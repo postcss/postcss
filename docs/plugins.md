@@ -30,6 +30,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`postcss-plugin-context`]: https://github.com/postcss/postcss-plugin-context
 [`postcss-use`]:            https://github.com/postcss/postcss-use
 
+
 ## Packs
 
 * [`postcss-utilities`] includes the most commonly used mixins, shortcuts
@@ -61,6 +62,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`oldie`]:              https://github.com/jonathantneal/oldie
 [`atcss`]:              https://github.com/morishitter/atcss
 [`postcss-ui-theme`]:   https://github.com/cleverboy32/postcss-ui-theme
+
 
 ## Future CSS Syntax
 
@@ -112,6 +114,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 See also [`posctss-preset-env`] plugins pack to add future CSS syntax
 by one line of code.
 
+
 ## Fallbacks
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
@@ -153,6 +156,7 @@ by one line of code.
 See also [`oldie`] plugins pack.
 
 [`Flexibility polyfill`]: https://github.com/10up/flexibility
+
 
 ## Language Extensions
 
@@ -220,6 +224,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 [Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
 
+
 ## Colors
 
 * [`postcss-ase-colors`] replaces color names with values read
@@ -249,6 +254,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`colorguard`] helps maintain a consistent color palette.
 * [`postcss-get-color`] get the prominent colors from an image.
 * [`postcss-randomcolor`] supports function to use random color.
+
 
 ## Images and Fonts
 
@@ -294,6 +300,7 @@ loosely resembles the original.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
 * [`postcss-font-grabber`] it grabs remote fonts in `@font-face`, download them and update your CSS.
 
+
 ## Grids
 
 * [`postcss-grid`] adds a semantic grid system.
@@ -309,6 +316,7 @@ loosely resembles the original.
   and padding gutters.
 * [`postcss-simple-grid`] create grid with one line.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
+
 
 ## Optimizations
 
@@ -340,6 +348,7 @@ See also plugins in modular minifier [`cssnano`].
 
 [@import (reference)]: http://lesscss.org/features/#import-options-reference
 [SVGO]: https://github.com/svg/svgo
+
 
 ## Shortcuts
 
@@ -392,6 +401,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
 * [`postcss-magic-animations`] PostCSS plugin that adds `@keyframes` from Magic Animations.
+
 
 ## Others
 
@@ -462,6 +472,7 @@ See also plugins in modular minifier [`cssnano`].
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
+
 ## Analysis
 
 * [`postcss-bem-linter`] lints CSS for conformance to SUIT CSS methodology.
@@ -474,6 +485,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
 
+
 ## Reporters
 
 * [`postcss-browser-reporter`] displays warning messages from other plugins
@@ -481,6 +493,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-forced-variables`] provides warnings and errors when specified properties don't use variables.
 * [`postcss-reporter`] logs warnings and other messages from other plugins
   in the console.
+
 
 ## Fun
 

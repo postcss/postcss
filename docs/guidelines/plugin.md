@@ -9,6 +9,7 @@ See also [ClojureWerkz’s recommendations] for open source projects.
 
 [ClojureWerkz’s recommendations]:  http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
 
+
 ## 1. API
 
 ### 1.1 Clear name with `postcss-` prefix
@@ -27,6 +28,7 @@ PostCSS — for example, [RTLCSS] and [Autoprefixer].
 [Autoprefixer]: https://github.com/postcss/autoprefixer
 [RTLCSS]:       https://rtlcss.com/
 
+
 ### 1.2. Do one thing, and do it well
 
 Do not create multitool plugins. Several small, one-purpose plugins bundled into
@@ -39,6 +41,7 @@ for each of its optimization.
 [`postcss-preset-env`]: https://preset-env.cssdb.org/
 [`cssnano`]:            https://github.com/ben-eb/cssnano
 
+
 ### 1.3. Do not use mixins
 
 Preprocessors libraries like Compass provide an API with mixins.
@@ -50,6 +53,7 @@ To achieve your goal, consider transforming valid CSS
 or using custom at-rules and custom properties.
 
 [`postcss-mixins`]: https://github.com/postcss/postcss-mixins
+
 
 ### 1.4. Create plugin by `postcss.plugin`
 
@@ -64,6 +68,7 @@ module.exports = postcss.plugin('plugin-name', opts => {
 })
 ```
 
+
 ## 2. Processing
 
 ### 2.1. Plugin must be tested
@@ -72,6 +77,7 @@ A CI service like [Travis] is also recommended for testing code in
 different environments. You should test in (at least) Node.js [active LTS](https://github.com/nodejs/LTS) and current stable version.
 
 [Travis]: https://travis-ci.org/
+
 
 ### 2.2. Use asynchronous methods whenever possible
 
@@ -92,6 +98,7 @@ postcss.plugin('plugin-sprite', opts => {
   }
 })
 ```
+
 
 ### 2.3. Set `node.source` for new nodes
 
@@ -117,6 +124,7 @@ if (decl.prop === 'animation') {
 }
 ```
 
+
 ### 2.4. Use only the public PostCSS API
 
 PostCSS plugins must not rely on undocumented properties or methods,
@@ -124,6 +132,7 @@ which may be subject to change in any minor release. The public API
 is described in [API docs].
 
 [API docs]: http://api.postcss.org/
+
 
 ## 3. Errors
 
@@ -139,6 +148,7 @@ if (typeof mixins[name] === 'undefined') {
 }
 ```
 
+
 ### 3.2. Use `result.warn` for warnings
 
 Do not print warnings with `console.log` or `console.warn`,
@@ -152,6 +162,7 @@ if (outdated(decl.prop)) {
 
 If CSS input is a source of the warning, the plugin must set the `node` option.
 
+
 ## 4. Documentation
 
 ### 4.1. Document your plugin in English
@@ -161,6 +172,7 @@ of your English skills, as the open source community will fix your errors.
 
 Of course, you are welcome to write documentation in other languages;
 just name them appropriately (e.g. `README.ja.md`).
+
 
 ### 4.2. Include input and output examples
 
@@ -173,6 +185,7 @@ See [postcss-opacity](https://github.com/iamvdo/postcss-opacity) for an example.
 Of course, this guideline does not apply if your plugin does not
 transform the CSS.
 
+
 ### 4.3. Maintain a changelog
 
 PostCSS plugins must describe the changes of all their releases
@@ -184,6 +197,7 @@ Of course, you should be using [SemVer].
 [Keep A Changelog]: http://keepachangelog.com/
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
 [SemVer]:           http://semver.org/
+
 
 ### 4.4. Include `postcss-plugin` keyword in `package.json`
 

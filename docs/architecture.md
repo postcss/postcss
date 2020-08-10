@@ -11,6 +11,7 @@ It can be useful for everyone who wishes to contribute to the core or develop a 
   * [Core Structures](#core-structures)
   * [API Reference](#api-reference)
 
+
 ### Overview
 
 > This section describes ideas lying behind PostCSS
@@ -31,6 +32,7 @@ Before diving deeper into the development of PostCSS let's briefly describe what
 - *is a big player in CSS ecosystem*
 
     A Large amount of lovely tools like `Autoprefixer`, `Stylelint`, `CSSnano` were built on PostCSS ecosystem. There is a big chance that you already use it implicitly, just check your `node_modules` :smiley:
+
 
 ### Workflow
 
@@ -63,6 +65,7 @@ But from other side tokens to AST transformation is logically more complex so wi
 Summing it up splitting into two steps improve performance and code readability.
 
 So now let's look more closely on structures that play the main role in PostCSS workflow.
+
 
 ### Core Structures
 
@@ -147,6 +150,7 @@ So now let's look more closely on structures that play the main role in PostCSS 
     The most essential method is [`Stringifier.stringify`](https://github.com/postcss/postcss/blob/master/lib/stringifier.js#L25-L27)
     that accepts initial Node and semicolon indicator.
     You can learn more by checking [stringifier.js](https://github.com/postcss/postcss/blob/master/lib/stringifier.js)
+
 
 ### API Reference
 
