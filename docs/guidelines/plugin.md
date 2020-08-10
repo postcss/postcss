@@ -55,17 +55,38 @@ or using custom at-rules and custom properties.
 [`postcss-mixins`]: https://github.com/postcss/postcss-mixins
 
 
-### 1.4. Create plugin by `postcss.plugin`
+### 1.4. Do not have `postcss` in `dependencies`
 
-By wrapping your function in this method,
-you are hooking into a common plugin API:
+AST can be broken because of different `postcss` version in different plugins.
+Different plugins could use a different node creators (like `postcss.decl()`).
+
+```diff
+- const { list, decl } = require('postcss')
+  module.exports = opts => {
+    postcssPlugin: 'postcss-name',
+-   Root (root) {
++   Root (root, { list, decl }) {
+      // Plugin code
+    }
+  }
+  module.exports.postcss = true
+```
+
+
+### 1.5. Set `plugin.postcssPlugin` with plugin name
+
+Plugin name will be used in error messages and warnings.
 
 ```js
-module.exports = postcss.plugin('plugin-name', opts => {
-  return (root, result) => {
-    // Plugin code
+module.exports = opts => {
+  return {
+    postcssPlugin: 'postcss-name',
+    Root (root) {
+      // Plugin code
+    }
   }
-})
+}
+module.exports.postcss = true
 ```
 
 
@@ -84,19 +105,21 @@ different environments. You should test in (at least) Node.js [active LTS](https
 For example, use `fs.writeFile` instead of `fs.writeFileSync`:
 
 ```js
-postcss.plugin('plugin-sprite', opts => {
-  return (root, result) => {
+let { readFile } = require('fs').promises
 
-    return new Promise((resolve, reject) => {
-      const sprite = makeSprite()
-      fs.writeFile(opts.file, sprite, err => {
-        if (err) return reject(err)
-        resolve()
-      })
-    })
-
+module.exports = opts => {
+  return {
+    postcssPlugin: 'plugin-inline',
+    async Decl (decl) {
+      const imagePath = findImage(decl)
+      if (imagePath) {
+        let imageFile = await readFile(imagePath)
+        decl.value = replaceUrl(decl.value, imageFile)
+      }
+    }
   }
-})
+}
+module.exports.postcss = true
 ```
 
 
@@ -131,7 +154,7 @@ PostCSS plugins must not rely on undocumented properties or methods,
 which may be subject to change in any minor release. The public API
 is described in [API docs].
 
-[API docs]: http://api.postcss.org/
+[API docs]: https://postcss.org/api/
 
 
 ## 3. Errors
@@ -144,7 +167,7 @@ that includes source position:
 
 ```js
 if (typeof mixins[name] === 'undefined') {
-  throw decl.error('Unknown mixin ' + name, { plugin: 'postcss-mixins' })
+  throw node.error('Unknown mixin ' + name)
 }
 ```
 
@@ -155,8 +178,10 @@ Do not print warnings with `console.log` or `console.warn`,
 because some PostCSS runner may not allow console output.
 
 ```js
-if (outdated(decl.prop)) {
-  result.warn(decl.prop + ' is outdated', { node: decl })
+Declaration (decl, { result }) {
+  if (outdated(decl.prop)) {
+    result.warn(decl.prop + ' is outdated', { node: decl })
+  }
 }
 ```
 
