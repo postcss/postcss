@@ -18,9 +18,7 @@ it('adds warning', () => {
       warning = result.warn('test', { node: css.first })
     }
   }
-  let result = postcss([plugin])
-    .process('a{}')
-    .sync()
+  let result = postcss([plugin]).process('a{}').sync()
 
   expect(warning).toEqual(
     new Warning('test', {
@@ -39,9 +37,7 @@ it('allows to override plugin', () => {
       result.warn('test', { plugin: 'test-plugin#one' })
     }
   }
-  let result = postcss([plugin])
-    .process('a{}')
-    .sync()
+  let result = postcss([plugin]).process('a{}').sync()
 
   expect(result.messages[0].plugin).toEqual('test-plugin#one')
 })

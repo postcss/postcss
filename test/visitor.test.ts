@@ -300,16 +300,17 @@ it('walks asynchronously through after all plugins', async () => {
 it('works classic plugin replace-color', async () => {
   let { css } = await postcss([replaceColorGreenClassic]).process(
     '.a{ color: red; } ' + '.b{ will-change: transform; }',
-    { from: 'a.css' }
+    {
+      from: 'a.css'
+    }
   )
   expect(css).toEqual('.a{ color: green; } ' + '.b{ will-change: transform; }')
 })
 
 it('works visitor plugin will-change', async () => {
-  let { css } = postcss([willChangeVisitor]).process(
-    '.foo { will-change: transform; }',
-    { from: 'a.css' }
-  )
+  let { css } = postcss([
+    willChangeVisitor
+  ]).process('.foo { will-change: transform; }', { from: 'a.css' })
   expect(css).toEqual(
     '.foo { backface-visibility: hidden; will-change: transform; }'
   )
@@ -318,7 +319,9 @@ it('works visitor plugin will-change', async () => {
 it('works visitor plugin add-prop', async () => {
   let { css } = await postcss([addPropsVisitor]).process(
     '.a{ color: red; } .b{ will-change: transform; }',
-    { from: 'a.css' }
+    {
+      from: 'a.css'
+    }
   )
   expect(css).toEqual(
     '.a{ will-change: transform; color: red; } ' +
@@ -327,10 +330,10 @@ it('works visitor plugin add-prop', async () => {
 })
 
 it('works with at-rule params', () => {
-  let { css } = postcss([replacePrintToMobile, replaceScreenToPrint]).process(
-    '@media (screen) {}',
-    { from: 'a.css' }
-  )
+  let { css } = postcss([
+    replacePrintToMobile,
+    replaceScreenToPrint
+  ]).process('@media (screen) {}', { from: 'a.css' })
   expect(css).toEqual('@media (mobile) {}')
 })
 
