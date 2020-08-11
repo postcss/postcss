@@ -680,11 +680,11 @@ it('has asynchronous property and at-rule name filters', async () => {
     }
   }
 
-  let css = '@charset "UTF-8"; @media (screen) { color: black; z-index: 1 }'
+  let css = '@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }'
   await postcss([syncPlugin]).process(css, { from: 'a.css' })
 
-  expect(filteredDecls).toEqual(['color'])
-  expect(allDecls).toEqual(['color', 'z-index'])
+  expect(filteredDecls).toEqual(['COLOR'])
+  expect(allDecls).toEqual(['COLOR', 'z-index'])
   expect(filteredAtRules).toEqual(['media'])
   expect(allAtRules).toEqual(['charset', 'media'])
 })
