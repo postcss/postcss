@@ -57,18 +57,30 @@ export type SourceMap = SourceMapGenerator & {
 
 export type Helpers = { result: Result } & Postcss
 
+type RootProcessor = (root: Root, helper: Helpers) => Promise<void> | void
+type DeclarationProcessor = (
+  decl: Declaration,
+  helper: Helpers
+) => Promise<void> | void
+type RuleProcessor = (rule: Rule, helper: Helpers) => Promise<void> | void
+type AtRuleProcessor = (atRule: AtRule, helper: Helpers) => Promise<void> | void
+type CommentProcessor = (
+  comment: Comment,
+  helper: Helpers
+) => Promise<void> | void
+
 export interface Plugin {
   postcssPlugin: string
-  Root?: (root: Root, helper: Helpers) => Promise<void> | void
-  RootExit?: (root: Root, helper: Helpers) => Promise<void> | void
-  Declaration?: (decl: Declaration, helper: Helpers) => Promise<void> | void
-  DeclarationExit?: (decl: Declaration, helper: Helpers) => Promise<void> | void
-  Rule?: (rule: Rule, helper: Helpers) => Promise<void> | void
-  RuleExit?: (rule: Rule, helper: Helpers) => Promise<void> | void
-  AtRule?: (atRule: AtRule, helper: Helpers) => Promise<void> | void
-  AtRuleExit?: (atRule: AtRule, helper: Helpers) => Promise<void> | void
-  Comment?: (comment: Comment, helper: Helpers) => Promise<void> | void
-  CommentExit?: (comment: Comment, helper: Helpers) => Promise<void> | void
+  Root?: RootProcessor
+  RootExit?: RootProcessor
+  Declaration?: DeclarationProcessor
+  DeclarationExit?: DeclarationProcessor
+  Rule?: RuleProcessor
+  RuleExit?: RuleProcessor
+  AtRule?: AtRuleProcessor
+  AtRuleExit?: AtRuleProcessor
+  Comment?: CommentProcessor
+  CommentExit?: CommentProcessor
 }
 
 export interface PluginCreator<PluginOptions> {
