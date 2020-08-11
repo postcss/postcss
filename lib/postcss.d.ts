@@ -73,12 +73,14 @@ export interface Plugin {
   postcssPlugin: string
   Root?: RootProcessor
   RootExit?: RootProcessor
-  Declaration?: DeclarationProcessor
-  DeclarationExit?: DeclarationProcessor
+  Declaration?: DeclarationProcessor | { [prop: string]: DeclarationProcessor }
+  DeclarationExit?:
+    | DeclarationProcessor
+    | { [prop: string]: DeclarationProcessor }
   Rule?: RuleProcessor
   RuleExit?: RuleProcessor
-  AtRule?: AtRuleProcessor
-  AtRuleExit?: AtRuleProcessor
+  AtRule?: AtRuleProcessor | { [name: string]: AtRuleProcessor }
+  AtRuleExit?: AtRuleProcessor | { [name: string]: AtRuleProcessor }
   Comment?: CommentProcessor
   CommentExit?: CommentProcessor
 }

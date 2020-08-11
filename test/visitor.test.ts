@@ -618,3 +618,73 @@ it('passes helpers', async () => {
   postcss([syncPlugin]).process('a{}', { from: 'a.css' }).css
   await postcss([asyncPlugin]).process('a{}', { from: 'a.css' })
 })
+
+it('has synchronous property and at-rule name filters', () => {
+  let filteredDecls: string[] = []
+  let allDecls: string[] = []
+  let filteredAtRules: string[] = []
+  let allAtRules: string[] = []
+
+  let syncPlugin: Plugin = {
+    postcssPlugin: 'test',
+    Declaration: {
+      'color': decl => {
+        filteredDecls.push(decl.prop)
+      },
+      '*': decl => {
+        allDecls.push(decl.prop)
+      }
+    },
+    AtRule: {
+      'media': atRule => {
+        filteredAtRules.push(atRule.name)
+      },
+      '*': atRule => {
+        allAtRules.push(atRule.name)
+      }
+    }
+  }
+
+  let css = '@charset "UTF-8"; @media (screen) { color: black; z-index: 1 }'
+  postcss([syncPlugin]).process(css, { from: 'a.css' }).css
+
+  expect(filteredDecls).toEqual(['color'])
+  expect(allDecls).toEqual(['color', 'z-index'])
+  expect(filteredAtRules).toEqual(['media'])
+  expect(allAtRules).toEqual(['charset', 'media'])
+})
+
+it('has asynchronous property and at-rule name filters', async () => {
+  let filteredDecls: string[] = []
+  let allDecls: string[] = []
+  let filteredAtRules: string[] = []
+  let allAtRules: string[] = []
+
+  let syncPlugin: Plugin = {
+    postcssPlugin: 'test',
+    Declaration: {
+      'color': async decl => {
+        filteredDecls.push(decl.prop)
+      },
+      '*': async decl => {
+        allDecls.push(decl.prop)
+      }
+    },
+    AtRule: {
+      'media': atRule => {
+        filteredAtRules.push(atRule.name)
+      },
+      '*': atRule => {
+        allAtRules.push(atRule.name)
+      }
+    }
+  }
+
+  let css = '@charset "UTF-8"; @media (screen) { color: black; z-index: 1 }'
+  await postcss([syncPlugin]).process(css, { from: 'a.css' })
+
+  expect(filteredDecls).toEqual(['color'])
+  expect(allDecls).toEqual(['color', 'z-index'])
+  expect(filteredAtRules).toEqual(['media'])
+  expect(allAtRules).toEqual(['charset', 'media'])
+})
