@@ -659,6 +659,7 @@ it('has asynchronous property and at-rule name filters', async () => {
   let allDecls: string[] = []
   let filteredAtRules: string[] = []
   let allAtRules: string[] = []
+  let exits: string[] = []
 
   let syncPlugin: Plugin = {
     postcssPlugin: 'test',
@@ -670,6 +671,9 @@ it('has asynchronous property and at-rule name filters', async () => {
         allDecls.push(decl.prop)
       }
     },
+    DeclarationExit (decl) {
+      exits.push(decl.prop)
+    },
     AtRule: {
       'media': atRule => {
         filteredAtRules.push(atRule.name)
@@ -680,11 +684,12 @@ it('has asynchronous property and at-rule name filters', async () => {
     }
   }
 
-  let css = '@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }'
+  let css = '@charset "UTF-8"; @media (screen) { COLOR: black; exit: 1 }'
   await postcss([syncPlugin]).process(css, { from: 'a.css' })
 
   expect(filteredDecls).toEqual(['COLOR'])
-  expect(allDecls).toEqual(['COLOR', 'z-index'])
+  expect(allDecls).toEqual(['COLOR', 'exit'])
+  expect(exits).toEqual(['COLOR', 'exit'])
   expect(filteredAtRules).toEqual(['media'])
   expect(allAtRules).toEqual(['charset', 'media'])
 })
