@@ -122,8 +122,47 @@ module.exports = opts => {
 module.exports.postcss = true
 ```
 
+### 2.3. Use fast node’s scanning
 
-### 2.3. Set `node.source` for new nodes
+Subscribing for specific node type is much faster, than calling `walk*` method:
+
+```diff
+  module.exports = {
+    postcssPlugin: 'postcss-example',
+-   Root (root) {
+-     root.walkDecls(decl => {
+-       // Slow
+-     })
+-   }
++   Declaration (decl) {
++     // Faster
++   }
+  }
+  module.exports.postcss = true
+```
+
+But you can make scanning even faster, if you know, what declaration’s property
+or at-rule’s name do you need:
+
+```diff
+  module.exports = {
+    postcssPlugin: 'postcss-example',
+-   Declaration (decl) {
+-     if (decl.prop === 'color') {
+-       // Faster
+-     }
+-   }
++   Declaration: {
++     color: decl => {
++       // The fastest
++     }
++   }
+  }
+  module.exports.postcss = true
+```
+
+
+### 2.4. Set `node.source` for new nodes
 
 Every node must have a relevant `source` so PostCSS can generate
 an accurate source map.
@@ -148,7 +187,7 @@ if (decl.prop === 'animation') {
 ```
 
 
-### 2.4. Use only the public PostCSS API
+### 2.5. Use only the public PostCSS API
 
 PostCSS plugins must not rely on undocumented properties or methods,
 which may be subject to change in any minor release. The public API
