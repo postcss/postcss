@@ -12,6 +12,7 @@
     },
     "./": "./"
   },
+  "main": "lib/postcss.js",
   "keywords": [
     "css",
     "postcss",
@@ -79,7 +80,6 @@
     "typescript": "^3.9.7",
     "yaspeller-ci": "^1.0.2"
   },
-  "main": "lib/postcss.js",
   "lint-staged": {
     "*.md": "yaspeller",
     "*.js": "eslint --fix",
