@@ -7861,9 +7861,10 @@ postcss-ordered-values@^4.1.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-"postcss-parser-tests@github:postcss/postcss-parser-tests":
-  version "6.5.0"
-  resolved "https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/c9b0639edf36e82cde18b0e1f2a3da11678c959c"
+postcss-parser-tests@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-8.0.0.tgz#8b758b57c62a5b98b193ed849835da3950a94266"
+  integrity sha512-i3TTckZ72ODasv/oBYMandF6tCn/z6fL1NremTwm5w+69vnHobdoahhUinb/eBT9LBOQXh0Kcob3gfnDyPWfNQ==
   dependencies:
     ci-job-number "^1.2.2"
     colorette "^1.2.1"
