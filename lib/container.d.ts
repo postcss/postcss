@@ -255,8 +255,8 @@ export default abstract class Container extends Node {
    * Inserts new nodes to the end of the container.
    *
    * ```js
-   * const decl1 = postcss.decl({ prop: 'color', value: 'black' })
-   * const decl2 = postcss.decl({ prop: 'background-color', value: 'white' })
+   * const decl1 = new Declaration({ prop: 'color', value: 'black' })
+   * const decl2 = new Declaration({ prop: 'background-color', value: 'white' })
    * rule.append(decl1, decl2)
    *
    * root.append({ name: 'charset', params: '"UTF-8"' })  // at-rule
@@ -279,8 +279,8 @@ export default abstract class Container extends Node {
    * Inserts new nodes to the start of the container.
    *
    * ```js
-   * const decl1 = postcss.decl({ prop: 'color', value: 'black' })
-   * const decl2 = postcss.decl({ prop: 'background-color', value: 'white' })
+   * const decl1 = new Declaration({ prop: 'color', value: 'black' })
+   * const decl2 = new Declaration({ prop: 'background-color', value: 'white' })
    * rule.prepend(decl1, decl2)
    *
    * root.append({ name: 'charset', params: '"UTF-8"' })  // at-rule
@@ -303,7 +303,7 @@ export default abstract class Container extends Node {
    * Add child to the end of the node.
    *
    * ```js
-   * rule.push(postcss.decl({ prop: 'color', value: 'black' }}))
+   * rule.push(new Declaration({ prop: 'color', value: 'black' }}))
    * ```
    *
    * @param child New node.

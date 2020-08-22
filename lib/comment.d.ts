@@ -26,10 +26,10 @@ export interface CommentProps extends NodeProps {
  * Represents a comment between declarations or statements (rule and at-rules).
  *
  * ```js
- * let { comment } = require('postcss')
- *
- * let note = comment({ text: 'Note: …' })
- * root.append(note)
+ * Root (root, { Comment }) {
+ *   let note = new Comment({ text: 'Note: …' })
+ *   root.append(note)
+ * }
  * ```
  *
  * Comments inside selectors, at-rule parameters, or declaration values

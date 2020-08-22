@@ -270,21 +270,11 @@ export interface Postcss {
 
   /**
    * Contains the `list` module.
-   *
-   * ```js
-   * let { list } = require('postcss')
-   * list.space('5px calc(10% + 5px)') //=> ['5px', 'calc(10% + 5px)']
-   * ```
    */
   list: List
 
   /**
    * Creates a new `Comment` node.
-   *
-   * ```js
-   * let { comment } = require('postcss')
-   * comment({ text: 'test' })
-   * ```
    *
    * @param defaults Properties for the new node.
    * @return New comment node
@@ -294,11 +284,6 @@ export interface Postcss {
   /**
    * Creates a new `AtRule` node.
    *
-   * ```js
-   * let { atRule } = require('postcss')
-   * atRule({ name: 'charset' }).toString() //=> "@charset"
-   * ```
-   *
    * @param defaults Properties for the new node.
    * @return New at-rule node.
    */
@@ -306,11 +291,6 @@ export interface Postcss {
 
   /**
    * Creates a new `Declaration` node.
-   *
-   * ```js
-   * let { decl } = require('postcss')
-   * decl({ prop: 'color', value: 'red' }).toString() //=> "color: red"
-   * ```
    *
    * @param defaults Properties for the new node.
    * @return New declaration node.
@@ -320,11 +300,6 @@ export interface Postcss {
   /**
    * Creates a new `Rule` node.
    *
-   * ```js
-   * let { rule } = require('postcss')
-   * rule({ selector: 'a' }).toString() //=> "a {\n}"
-   * ```
-   *
    * @param default Properties for the new node.
    * @return New rule node.
    */
@@ -332,11 +307,6 @@ export interface Postcss {
 
   /**
    * Creates a new `Root` node.
-   *
-   * ```js
-   * let { root } = require('postcss')
-   * root({ after: '\n' }).toString() //=> "\n"
-   * ```
    *
    * @param defaults Properties for the new node.
    * @return New root node.

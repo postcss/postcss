@@ -198,8 +198,8 @@ look to children (like [`Container#some`]), remove a node or add a new node insi
 Plugin’s methods will receive node creators in second argument:
 
 ```js
-    Declaration (node, { rule }) {
-      let newRule = rule({ selector: 'a', source: node.source })
+    Declaration (node, { Rule }) {
+      let newRule = new Rule({ selector: 'a', source: node.source })
       node.root().append(newRule)
       newRule.append(node)
     }
@@ -240,7 +240,9 @@ If you find an syntax error (for instance, undefined custom property),
 you can throw a special error:
 
 ```js
-throw node.error('Unknown variable', { plugin: 'postcss-vars' })
+if (!variables[name]) {
+  throw decl.error(`Unknown variable ${name}`, { word: name })
+}
 ```
 
 [`Container#some`]: https://postcss.org/api/#container-some

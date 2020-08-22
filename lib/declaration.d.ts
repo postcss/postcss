@@ -36,9 +36,10 @@ export interface DeclarationProps {
  * Represents a CSS declaration.
  *
  * ```js
- * let { decl } = require('postcss')
- * let color = decl({ prop: 'color', value: 'black' })
- * root.append(color)
+ * Root (root, { Declaration }) {
+ *   let color = new Declaration({ prop: 'color', value: 'black' })
+ *   root.append(color)
+ * }
  * ```
  *
  * ```js

@@ -4,8 +4,9 @@ export type List = {
    * `border-radius`, and other shorthand properties).
    *
    * ```js
-   * let { list } = require('postcss')
-   * list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
+   * Root (root, { list }) {
+   *   list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
+   * }
    * ```
    *
    * @param str Space-separated values.
@@ -18,9 +19,10 @@ export type List = {
    * and `background` properties).
    *
    * ```js
-   * let { list } = require('postcss')
-   * list.comma('black, linear-gradient(white, black)')
-   * //=> ['black', 'linear-gradient(white, black)']
+   * Root (root, { list }) {
+   *   list.comma('black, linear-gradient(white, black)')
+   *   //=> ['black', 'linear-gradient(white, black)']
+   * }
    * ```
    *
    * @param str Comma-separated values.
@@ -29,14 +31,6 @@ export type List = {
   comma(str: string): string[]
 }
 
-/**
- * Contains helpers for safely splitting lists of CSS values,
- * preserving parentheses and quotes.
- *
- * ```js
- * let list = postcss.list
- * ```
- */
 declare const list: List
 
 export default list

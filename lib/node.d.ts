@@ -80,7 +80,7 @@ export default abstract class Node {
    * `rule`, `decl`, or `comment`.
    *
    * ```js
-   * postcss.decl({ prop: 'color', value: 'black' }).type //=> 'decl'
+   * new Declaration({ prop: 'color', value: 'black' }).type //=> 'decl'
    * ```
    */
   type: string
@@ -185,7 +185,7 @@ export default abstract class Node {
    *
    * ```js
    * if (!variables[name]) {
-   *   throw decl.error('Unknown variable ' + name, { word: name })
+   *   throw decl.error(`Unknown variable ${name}`, { word: name })
    *   // CssSyntaxError: postcss-vars:a.sass:4:3: Unknown variable $black
    *   //   color: $black
    *   // a
@@ -205,10 +205,10 @@ export default abstract class Node {
    * This method is provided as a convenience wrapper for `Result#warn`.
    *
    * ```js
-   *   (root, result) => {
-   *     root.walkDecls('bad', decl => {
+   *   Declaration: {
+   *     bad: (decl, { result }) => {
    *       decl.warn(result, 'Deprecated property bad')
-   *     })
+   *     }
    *   }
    * ```
    *
@@ -238,7 +238,7 @@ export default abstract class Node {
    * Returns a CSS string representing the node.
    *
    * ```js
-   * postcss.rule({ selector: 'a' }).toString() //=> "a {}"
+   * new Rule({ selector: 'a' }).toString() //=> "a {}"
    * ```
    *
    * @param stringifier A syntax to use in string generation.
@@ -291,8 +291,10 @@ export default abstract class Node {
    * Inserts node(s) before the current node and removes the current node.
    *
    * ```js
-   * if (atrule.name === 'mixin') {
-   *   atrule.replaceWith(mixinRules[atrule.params])
+   * AtRule: {
+   *   mixin: atrule => {
+   *     atrule.replaceWith(mixinRules[atrule.params])
+   *   }
    * }
    * ```
    *

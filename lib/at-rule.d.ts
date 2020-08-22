@@ -46,11 +46,11 @@ export interface AtRuleProps extends ContainerProps {
  * Represents an at-rule.
  *
  * ```js
- * let { atRule } = require('postcss')
- *
- * let media = atRule({ name: 'media', params: 'print' })
- * media.append(…)
- * root.append(media)
+ * Root (root, { AtRule }) {
+ *   let media = new AtRule({ name: 'media', params: 'print' })
+ *   media.append(…)
+ *   root.append(media)
+ * }
  * ```
  *
  * If it’s followed in the CSS by a {} block, this node will have
