@@ -69,7 +69,7 @@
     "eslint-plugin-unicorn": "^21.0.0",
     "fs-extra": "^9.0.1",
     "husky": "^4.2.5",
-    "jest": "^26.4.1",
+    "jest": "^26.4.2",
     "jest-ci": "^0.1.1",
     "lint-staged": "^10.2.11",
     "nanodelay": "^1.0.3",
