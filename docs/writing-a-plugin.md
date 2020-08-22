@@ -257,10 +257,10 @@ if (!variables[name]) {
 
 ## Step 5: Fight with frustration
 
-> I hate programming
-> I hate programming
-> I hate programming
-> It works!
+> I hate programming<br />
+> I hate programming<br />
+> I hate programming<br />
+> It works!<br />
 > I love programming
 
 You will have bugs and a minimum of 10 minutes in debugging even a simple plugin.
