@@ -150,6 +150,9 @@ you can use quick search:
       color: decl => {
         // All `color` declarations
       }
+      '*': decl => {
+        // All declarations
+      }
     },
     AtRule: {
       media: atRule => {
