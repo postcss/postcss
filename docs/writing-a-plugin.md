@@ -244,6 +244,24 @@ Plugin’s methods will receive node creators in second argument:
 If you added new nodes, it is important to copy [`Node#source`] to generate
 correct source maps.
 
+Plugins will re-visit all nodes, which you changed or added:
+
+```js
+const plugin = () => {
+  return {
+    Declaration (decl) {
+      console.log(decl.toString())
+      decl.value = 'red'
+    }
+  }
+}
+plugin.postcss = true
+
+await postcss([plugin]).process('a { color: black }', { from })
+// => color: black
+// => color: red
+```
+
 Second argument also have `result` object to add warnings:
 
 ```js
