@@ -318,7 +318,8 @@
       "findable",
       "CSSWG",
       "Sharec",
-      "Stylelint"
+      "Stylelint",
+      "Browserslist"
     ]
   }
 }

@@ -69,8 +69,7 @@ type CommentProcessor = (
   helper: Helpers
 ) => Promise<void> | void
 
-export interface Plugin {
-  postcssPlugin: string
+interface Processors {
   Root?: RootProcessor
   RootExit?: RootProcessor
   Declaration?: DeclarationProcessor | { [prop: string]: DeclarationProcessor }
@@ -83,6 +82,11 @@ export interface Plugin {
   AtRuleExit?: AtRuleProcessor | { [name: string]: AtRuleProcessor }
   Comment?: CommentProcessor
   CommentExit?: CommentProcessor
+}
+
+export interface Plugin extends Processors {
+  postcssPlugin: string
+  prepare?: (result: Result) => Processors
 }
 
 export interface PluginCreator<PluginOptions> {

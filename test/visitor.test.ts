@@ -1,5 +1,5 @@
+import { resolve, basename } from 'path'
 import { delay } from 'nanodelay'
-import { resolve } from 'path'
 
 import postcss, {
   Container,
@@ -706,4 +706,23 @@ it('detects non-changed values', () => {
       from: 'a.css'
     }).css
   ).toEqual('a{ color: red; background: red; }')
+})
+
+it('allow runtime listeners', () => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    prepare (result) {
+      return {
+        Rule (rule) {
+          rule.selector = basename(result.opts.from ?? '')
+        }
+      }
+    },
+    Declaration (decl) {
+      decl.value = 'red'
+    }
+  }
+  expect(
+    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
+  ).toEqual('a.css{ color: red }')
 })

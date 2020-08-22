@@ -189,6 +189,39 @@ if (decl.value.includes('gradient(')) {
 }
 ```
 
+There two types or listeners: enter and exit. `Root`, `AtRule` or `Rule`
+will be called before processing children. `RootExit`, `AtRuleExit`,
+and `RuleExit` after processing all children inside node.
+
+You may want to re-use some data between listeners. You can do with
+runtime-defined listeners:
+
+```js
+module.exports = (opts = {}) => {
+  return {
+    postcssPlugin: 'PLUGIN NAME',
+    prepare (result) {
+      const variables = {}
+      return {
+        Declaration (node) {
+          if (node.variable) {
+            variables[node.prop] = node.value
+          }
+        },
+        RootExit () {
+          console.log(variables)
+        }
+      }
+    }
+  }
+}
+```
+
+You can use `prepare()` to generate listeners dynamically. For instance,
+to use [Browserslist] to get declaration properties.
+
+[Browserslist]: https://github.com/browserslist/browserslist
+
 
 ## Step 4: Change nodes
 
