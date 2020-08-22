@@ -693,3 +693,17 @@ it('has asynchronous property and at-rule name filters', async () => {
   expect(filteredAtRules).toEqual(['media'])
   expect(allAtRules).toEqual(['charset', 'media'])
 })
+
+it('detects non-changed values', () => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    Declaration (decl) {
+      decl.value = 'red'
+    }
+  }
+  expect(
+    postcss([plugin]).process('a{ color: black; background: white; }', {
+      from: 'a.css'
+    }).css
+  ).toEqual('a{ color: red; background: red; }')
+})
