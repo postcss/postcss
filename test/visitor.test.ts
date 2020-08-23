@@ -734,24 +734,39 @@ it('allow runtime listeners', () => {
 
 it('has sync Exit listener', () => {
   let exit = 0
+  let rootExit = 0
 
   let plugin: Plugin = {
     postcssPlugin: 'test',
+    Rule (rule) {
+      rule.remove()
+    },
+    RootExit () {
+      rootExit += 1
+    },
     Exit ({ result }) {
       expect(basename(result.opts.from ?? '')).toEqual('a.css')
       exit += 1
     }
   }
 
-  postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
+  postcss([plugin]).process('a{}', { from: 'a.css' }).css
   expect(exit).toBe(1)
+  expect(rootExit).toBe(2)
 })
 
 it('has async Exit listener', async () => {
   let exit = 0
+  let rootExit = 0
 
   let plugin: Plugin = {
     postcssPlugin: 'test',
+    Rule (rule) {
+      rule.remove()
+    },
+    RootExit () {
+      rootExit += 1
+    },
     async Exit ({ result }) {
       await delay(10)
       expect(basename(result.opts.from ?? '')).toEqual('a.css')
@@ -759,8 +774,9 @@ it('has async Exit listener', async () => {
     }
   }
 
-  await postcss([plugin]).process('a{ color: black }', { from: 'a.css' })
+  await postcss([plugin]).process('a{}', { from: 'a.css' })
   expect(exit).toBe(1)
+  expect(rootExit).toBe(2)
 })
 
 it('throws on Promise in sync Exit', async () => {
