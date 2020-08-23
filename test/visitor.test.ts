@@ -362,7 +362,7 @@ it('wraps node to proxies', () => {
   expect(props).toEqual(['color'])
 })
 
-const cssThree = '.a{ color: red; } ' + '.b{ will-change: transform; }'
+const cssThree = '.a{ color: red; } .b{ will-change: transform; }'
 
 const expectedThree =
   '.a{ ' +
@@ -410,7 +410,7 @@ it('change in node values through props; sequence 2', async () => {
 })
 
 it('works visitor plugin postcss-focus', async () => {
-  let input = '*:focus { outline: 0; }' + '.button:hover { background: red; }'
+  let input = '*:focus { outline: 0; }.button:hover { background: red; }'
   let expected =
     '*:focus { outline: 0; }' +
     '.button:hover, .button:focus { background: red; }'
@@ -709,10 +709,14 @@ it('detects non-changed values', () => {
 })
 
 it('allow runtime listeners', () => {
+  let root = false
   let plugin: Plugin = {
     postcssPlugin: 'test',
     prepare (result) {
       return {
+        Root () {
+          root = true
+        },
         Rule (rule) {
           rule.selector = basename(result.opts.from ?? '')
         }
@@ -725,4 +729,49 @@ it('allow runtime listeners', () => {
   expect(
     postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
   ).toEqual('a.css{ color: red }')
+  expect(root).toBe(true)
+})
+
+it('has sync Exit listener', () => {
+  let exit = 0
+
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    Exit ({ result }) {
+      expect(basename(result.opts.from ?? '')).toEqual('a.css')
+      exit += 1
+    }
+  }
+
+  postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
+  expect(exit).toBe(1)
+})
+
+it('has async Exit listener', async () => {
+  let exit = 0
+
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    async Exit ({ result }) {
+      await delay(10)
+      expect(basename(result.opts.from ?? '')).toEqual('a.css')
+      exit += 1
+    }
+  }
+
+  await postcss([plugin]).process('a{ color: black }', { from: 'a.css' })
+  expect(exit).toBe(1)
+})
+
+it('throws on Promise in sync Exit', async () => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    async Exit () {
+      await delay(10)
+    }
+  }
+
+  expect(() => {
+    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
+  }).toThrow(/work with async plugins/)
 })

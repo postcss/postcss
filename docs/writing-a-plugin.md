@@ -208,7 +208,7 @@ module.exports = (opts = {}) => {
             variables[node.prop] = node.value
           }
         },
-        RootExit () {
+        Exit () {
           console.log(variables)
         }
       }

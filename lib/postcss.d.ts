@@ -82,6 +82,7 @@ interface Processors {
   AtRuleExit?: AtRuleProcessor | { [name: string]: AtRuleProcessor }
   Comment?: CommentProcessor
   CommentExit?: CommentProcessor
+  Exit?: (helper: Helpers) => Promise<void> | void
 }
 
 export interface Plugin extends Processors {

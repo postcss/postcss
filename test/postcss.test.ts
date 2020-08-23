@@ -31,20 +31,6 @@ it('takes plugin from other processor', () => {
   expect(postcss([other, c]).plugins).toEqual([a, b, c])
 })
 
-it('supports injecting additional processors at runtime', async () => {
-  let plugin1: TransformCallback = css => {
-    css.walkDecls(decl => {
-      decl.value = 'world'
-    })
-  }
-  let plugin2: TransformCallback = (css, result) => {
-    result.processor.use(plugin1)
-  }
-
-  let r = await postcss([plugin2]).process('a{hello: bob}', { from: undefined })
-  expect(r.css).toEqual('a{hello: world}')
-})
-
 it('creates plugin', () => {
   jest.spyOn(console, 'warn').mockImplementation(() => true)
   let plugin = (postcss as any).plugin('test', (filter?: string) => {
