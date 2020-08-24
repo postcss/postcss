@@ -55,7 +55,7 @@ export type SourceMap = SourceMapGenerator & {
   toJSON(): RawSourceMap
 }
 
-export type Helpers = { result: Result } & Postcss
+export type Helpers = { result: Result; postcss: Postcss } & Postcss
 
 type RootProcessor = (root: Root, helper: Helpers) => Promise<void> | void
 type DeclarationProcessor = (

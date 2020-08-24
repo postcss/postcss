@@ -586,6 +586,7 @@ it('shows error on sync call async plugins', () => {
 it('passes helpers', async () => {
   function check (node: AnyNode, helpers: Helpers) {
     expect(helpers.result.messages).toEqual([])
+    expect(typeof helpers.postcss).toEqual('function')
     expect(helpers.comment().type).toEqual('comment')
     expect(new helpers.Comment().type).toEqual('comment')
     expect(helpers.list).toBe(postcss.list)
