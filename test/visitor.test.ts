@@ -352,6 +352,7 @@ it('wraps node to proxies', () => {
   if (!root) throw new Error('Nodes were not catched')
   let rule = root.first as Rule
   expect(proxy.proxyOf).toBe(rule)
+  expect(proxy.root().proxyOf).toBe(rule.root())
   expect(proxy.nodes[0].proxyOf).toBe(rule.first)
   expect(proxy.first.proxyOf).toBe(rule.first)
   expect(proxy.unknown).toBeUndefined()
