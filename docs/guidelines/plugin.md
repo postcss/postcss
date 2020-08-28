@@ -55,10 +55,20 @@ or using custom at-rules and custom properties.
 [`postcss-mixins`]: https://github.com/postcss/postcss-mixins
 
 
-### 1.4. Do not have `postcss` in `dependencies`
+### 1.4. Keep `postcss` to `peerDependencies`
 
 AST can be broken because of different `postcss` version in different plugins.
 Different plugins could use a different node creators (like `postcss.decl()`).
+
+```json
+{
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  }
+}
+```
+
+It is better even not to import `postcss`.
 
 ```diff
 - const { list, decl } = require('postcss')

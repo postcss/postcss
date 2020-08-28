@@ -151,3 +151,17 @@ the PostCSS ecosystem.
 
 For packages not published to npm, this is not mandatory, but recommended
 if the package format is allowed to contain keywords.
+
+
+### 4.4. Keep `postcss` to `peerDependencies`
+
+AST can be broken because of different `postcss` version in different plugins.
+Different plugins could use a different node creators (like `postcss.decl()`).
+
+```json
+{
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  }
+}
+```
