@@ -61,22 +61,18 @@ let addPropsVisitor: Plugin = {
 }
 
 let replaceAllButRedToGreen: Plugin = {
-  postcssPlugin: 'not-red-to-green',
+  postcssPlugin: 'replace-not-red-to-green',
   Declaration (node) {
-    if (node.prop !== 'color') return
-    if (node.value === 'red') return
-
-    node.prop = 'color'
-    node.value = 'green'
+    if (node.prop === 'color' && node.value !== 'red') {
+      node.value = 'green'
+    }
   }
 }
 
 let replaceGreenToRed: Plugin = {
   postcssPlugin: 'replace-green-to-red',
   Declaration (node) {
-    if (node.prop !== 'color') return
-    if (node.value === 'green') {
-      node.prop = 'color'
+    if (node.prop === 'color' && node.value === 'green') {
       node.value = 'red'
     }
   }
@@ -238,6 +234,7 @@ it('walks through after all plugins', async () => {
   postcss([postcssVisitor]).process(
     `@media screen {
       body {
+        /* comment */
         background: white;
         padding: 10px;
       }
@@ -251,6 +248,8 @@ it('walks through after all plugins', async () => {
     ['root', '1'],
     ['atrule', 'media'],
     ['rule', 'body'],
+    ['comment', 'comment'],
+    ['commentExit', 'comment'],
     ['decl', 'background'],
     ['declExit', 'background'],
     ['decl', 'padding'],
@@ -270,6 +269,7 @@ it('walks asynchronously through after all plugins', async () => {
   await postcss([postcssVisitor]).process(
     `@media screen {
       body {
+        /* comment */
         background: white;
         padding: 10px;
       }
@@ -283,6 +283,8 @@ it('walks asynchronously through after all plugins', async () => {
     ['root', '1'],
     ['atrule', 'media'],
     ['rule', 'body'],
+    ['comment', 'comment'],
+    ['commentExit', 'comment'],
     ['decl', 'background'],
     ['declExit', 'background'],
     ['decl', 'padding'],
@@ -533,6 +535,24 @@ it('adds plugin to async error', async () => {
   expect(error.stack).toContain('broken.css:1:1')
 })
 
+it('adds sync plugin to async error', async () => {
+  let broken: Plugin = {
+    postcssPlugin: 'broken',
+    Rule (rule) {
+      throw rule.error('test')
+    }
+  }
+  let error
+  try {
+    await postcss([broken]).process('a{}', { from: 'broken.css' })
+  } catch (e) {
+    error = e
+  }
+  expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
+  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.stack).toContain('broken.css:1:1')
+})
+
 it('adds node to error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
@@ -686,12 +706,12 @@ it('has asynchronous property and at-rule name filters', async () => {
     }
   }
 
-  let css = '@charset "UTF-8"; @media (screen) { COLOR: black; exit: 1 }'
+  let css = '@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }'
   await postcss([syncPlugin]).process(css, { from: 'a.css' })
 
   expect(filteredDecls).toEqual(['COLOR'])
-  expect(allDecls).toEqual(['COLOR', 'exit'])
-  expect(exits).toEqual(['COLOR', 'exit'])
+  expect(allDecls).toEqual(['COLOR', 'z-index'])
+  expect(exits).toEqual(['COLOR', 'z-index'])
   expect(filteredAtRules).toEqual(['media'])
   expect(allAtRules).toEqual(['charset', 'media'])
 })
@@ -779,4 +799,35 @@ it('throws on Promise in sync RootExit', async () => {
   expect(() => {
     postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
   }).toThrow(/work with async plugins/)
+})
+
+it('throws error from sync RootExit', async () => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    RootExit () {
+      throw new Error('test rootExit error')
+    }
+  }
+
+  expect(() => {
+    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
+  }).toThrow(/test rootExit error/)
+})
+
+it('throws error from async RootExit', async () => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    async RootExit () {
+      throw new Error('test rootExit error')
+    }
+  }
+
+  let error
+  try {
+    await postcss([plugin]).process('a{ color: black }', { from: 'a.css' })
+  } catch (e) {
+    error = e
+  }
+
+  expect(error.message).toEqual('test rootExit error')
 })
