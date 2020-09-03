@@ -18,13 +18,6 @@ function stringify (node: AnyNode, builder: (str: string) => void) {
   }
 }
 
-it('shows error on wrong constructor types', () => {
-  expect(() => {
-    // @ts-expect-error
-    new Rule('a')
-  }).toThrow('PostCSS nodes constructor accepts object, not "a"')
-})
-
 it('error() generates custom error', () => {
   let file = resolve('a.css')
   let css = parse('a{}', { from: file })
