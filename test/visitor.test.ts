@@ -937,3 +937,19 @@ for (let type of ['sync', 'async']) {
     expect(exit).toBe(1)
   })
 }
+
+it('rescan Root in another processor', () => {
+  let root = postcss([visitor]).process('a{z-index:1}', { from: 'a.css' }).root
+
+  visits = []
+  postcss([visitor]).process(root, { from: 'a.css' }).root
+
+  expect(visits).toEqual([
+    ['Root', '1'],
+    ['Rule', 'a'],
+    ['Declaration', 'z-index: 1'],
+    ['DeclarationExit', 'z-index: 1'],
+    ['RuleExit', 'a'],
+    ['RootExit', '1']
+  ])
+})
