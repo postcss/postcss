@@ -11,12 +11,17 @@ import postcss, {
   AnyNode,
   Helpers
 } from '../lib/postcss.js'
-import { isClean } from '../lib/symbols.js'
 
 function hasAlready (parent: Container | undefined, selector: string) {
   if (typeof parent === 'undefined') return false
   return parent.nodes.some(i => {
     return i.type === 'rule' && i.selectors.includes(selector)
+  })
+}
+
+function addIndex (array: any[][]) {
+  return array.map((i, index) => {
+    return [index, ...i]
   })
 }
 
@@ -619,38 +624,38 @@ it('throws error from async RootExit', async () => {
   expect(error.message).toEqual('test rootExit error')
 })
 
-let visits: [number, string, string][] = []
+let visits: [string, string][] = []
 let visitor: Plugin = {
   postcssPlugin: 'visitor',
   Root (i) {
-    visits.push([visits.length, 'Root', `${i.nodes.length}`])
+    visits.push(['Root', `${i.nodes.length}`])
   },
   RootExit (i) {
-    visits.push([visits.length, 'RootExit', `${i.nodes.length}`])
+    visits.push(['RootExit', `${i.nodes.length}`])
   },
   AtRule (i) {
-    visits.push([visits.length, 'AtRule', i.name])
+    visits.push(['AtRule', i.name])
   },
   AtRuleExit (i) {
-    visits.push([visits.length, 'AtRuleExit', i.name])
+    visits.push(['AtRuleExit', i.name])
   },
   Rule (i) {
-    visits.push([visits.length, 'Rule', i.selector])
+    visits.push(['Rule', i.selector])
   },
   RuleExit (i) {
-    visits.push([visits.length, 'RuleExit', i.selector])
+    visits.push(['RuleExit', i.selector])
   },
   Declaration (i) {
-    visits.push([visits.length, 'Declaration', i.prop + ': ' + i.value])
+    visits.push(['Declaration', i.prop + ': ' + i.value])
   },
   DeclarationExit (i) {
-    visits.push([visits.length, 'DeclarationExit', i.prop + ': ' + i.value])
+    visits.push(['DeclarationExit', i.prop + ': ' + i.value])
   },
   Comment (i) {
-    visits.push([visits.length, 'Comment', i.text])
+    visits.push(['Comment', i.text])
   },
   CommentExit (i) {
-    visits.push([visits.length, 'CommentExit', i.text])
+    visits.push(['CommentExit', i.text])
   }
 }
 
@@ -732,24 +737,26 @@ for (let type of ['sync', 'async']) {
     } else {
       await processor
     }
-    expect(visits).toEqual([
-      [0, 'Root', '1'],
-      [1, 'AtRule', 'media'],
-      [2, 'Rule', 'body'],
-      [3, 'Comment', 'comment'],
-      [4, 'CommentExit', 'comment'],
-      [5, 'Declaration', 'background: white'],
-      [6, 'DeclarationExit', 'background: white'],
-      [7, 'Declaration', 'padding: 10px'],
-      [8, 'DeclarationExit', 'padding: 10px'],
-      [9, 'RuleExit', 'body'],
-      [10, 'Rule', 'a'],
-      [11, 'Declaration', 'color: blue'],
-      [12, 'DeclarationExit', 'color: blue'],
-      [13, 'RuleExit', 'a'],
-      [14, 'AtRuleExit', 'media'],
-      [15, 'RootExit', '1']
-    ])
+    expect(addIndex(visits)).toEqual(
+      addIndex([
+        ['Root', '1'],
+        ['AtRule', 'media'],
+        ['Rule', 'body'],
+        ['Comment', 'comment'],
+        ['CommentExit', 'comment'],
+        ['Declaration', 'background: white'],
+        ['DeclarationExit', 'background: white'],
+        ['Declaration', 'padding: 10px'],
+        ['DeclarationExit', 'padding: 10px'],
+        ['RuleExit', 'body'],
+        ['Rule', 'a'],
+        ['Declaration', 'color: blue'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'a'],
+        ['AtRuleExit', 'media'],
+        ['RootExit', '1']
+      ])
+    )
   })
 
   it(`walks ${type} during transformations`, async () => {
@@ -804,47 +811,49 @@ for (let type of ['sync', 'async']) {
           color: blue;
         }`
     )
-    expect(visits).toEqual([
-      [0, 'Root', '6'],
-      [1, 'Rule', '.first'],
-      [2, 'Declaration', 'color: red'],
-      [3, 'DeclarationExit', 'color: green'],
-      [4, 'RuleExit', '.first'],
-      [5, 'AtRule', 'define-mixin'],
-      [6, 'Rule', 'a'],
-      [7, 'Declaration', 'color: red'],
-      [8, 'DeclarationExit', 'color: green'],
-      [9, 'RuleExit', 'a'],
-      [10, 'AtRule', 'media'],
-      [11, 'AtRule', 'insert-first'],
-      [12, 'AtRuleExit', 'media'],
-      [13, 'Rule', '.foo'],
-      [14, 'Declaration', 'background: red'],
-      [15, 'DeclarationExit', 'background: red'],
-      [16, 'RuleExit', '.bar'],
-      [17, 'AtRule', 'apply-mixin'],
-      [18, 'Declaration', 'color: green'],
-      [19, 'DeclarationExit', 'color: blue'],
-      [20, 'AtRule', 'media'],
-      [21, 'Rule', '.first'],
-      [22, 'Declaration', 'color: green'],
-      [23, 'DeclarationExit', 'color: blue'],
-      [24, 'RuleExit', '.first'],
-      [25, 'AtRuleExit', 'media'],
-      [26, 'Rule', 'b'],
-      [27, 'Declaration', 'color: red'],
-      [28, 'DeclarationExit', 'color: green'],
-      [29, 'RuleExit', 'b'],
-      [30, 'Declaration', 'color: blue'],
-      [31, 'DeclarationExit', 'color: blue'],
-      [32, 'Declaration', 'color: blue'],
-      [33, 'DeclarationExit', 'color: blue'],
-      [34, 'Declaration', 'color: green'],
-      [35, 'DeclarationExit', 'color: blue'],
-      [36, 'Declaration', 'color: blue'],
-      [37, 'DeclarationExit', 'color: blue'],
-      [38, 'RootExit', '4']
-    ])
+    expect(addIndex(visits)).toEqual(
+      addIndex([
+        ['Root', '6'],
+        ['Rule', '.first'],
+        ['Declaration', 'color: red'],
+        ['DeclarationExit', 'color: green'],
+        ['RuleExit', '.first'],
+        ['AtRule', 'define-mixin'],
+        ['Rule', 'a'],
+        ['Declaration', 'color: red'],
+        ['DeclarationExit', 'color: green'],
+        ['RuleExit', 'a'],
+        ['AtRule', 'media'],
+        ['AtRule', 'insert-first'],
+        ['AtRuleExit', 'media'],
+        ['Rule', '.foo'],
+        ['Declaration', 'background: red'],
+        ['DeclarationExit', 'background: red'],
+        ['RuleExit', '.bar'],
+        ['AtRule', 'apply-mixin'],
+        ['Declaration', 'color: green'],
+        ['DeclarationExit', 'color: blue'],
+        ['AtRule', 'media'],
+        ['Rule', '.first'],
+        ['Declaration', 'color: green'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', '.first'],
+        ['AtRuleExit', 'media'],
+        ['Rule', 'b'],
+        ['Declaration', 'color: red'],
+        ['DeclarationExit', 'color: green'],
+        ['RuleExit', 'b'],
+        ['Declaration', 'color: blue'],
+        ['DeclarationExit', 'color: blue'],
+        ['Declaration', 'color: blue'],
+        ['DeclarationExit', 'color: blue'],
+        ['Declaration', 'color: green'],
+        ['DeclarationExit', 'color: blue'],
+        ['Declaration', 'color: blue'],
+        ['DeclarationExit', 'color: blue'],
+        ['RootExit', '4']
+      ])
+    )
   })
 
   it(`has ${type} property and at-rule name filters`, async () => {
