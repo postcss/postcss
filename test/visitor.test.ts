@@ -11,6 +11,7 @@ import postcss, {
   AnyNode,
   Helpers
 } from '../lib/postcss.js'
+import { isClean } from '../lib/symbols.js'
 
 function hasAlready (parent: Container | undefined, selector: string) {
   if (typeof parent === 'undefined') return false
@@ -192,111 +193,6 @@ let postcssAlias = createPlugin(() => {
       }
     }
   }
-})
-
-let visitorEvents: [string, string][] = []
-let postcssVisitor: Plugin = {
-  postcssPlugin: 'visitor',
-  Root (node) {
-    visitorEvents.push(['root', `${node.nodes.length}`])
-  },
-  RootExit (node) {
-    visitorEvents.push(['rootExit', `${node.nodes.length}`])
-  },
-  AtRule (node) {
-    visitorEvents.push(['atrule', node.name])
-  },
-  AtRuleExit (node) {
-    visitorEvents.push(['atruleExit', node.name])
-  },
-  Rule (node) {
-    visitorEvents.push(['rule', node.selector])
-  },
-  RuleExit (node) {
-    visitorEvents.push(['ruleExit', node.selector])
-  },
-  Declaration (node) {
-    visitorEvents.push(['decl', node.prop])
-  },
-  DeclarationExit (node) {
-    visitorEvents.push(['declExit', node.prop])
-  },
-  Comment (node) {
-    visitorEvents.push(['comment', node.text])
-  },
-  CommentExit (node) {
-    visitorEvents.push(['commentExit', node.text])
-  }
-}
-
-it('walks through after all plugins', async () => {
-  visitorEvents = []
-  postcss([postcssVisitor]).process(
-    `@media screen {
-      body {
-        /* comment */
-        background: white;
-        padding: 10px;
-      }
-      a {
-        color: blue;
-      }
-    }`,
-    { from: 'a.css' }
-  ).css
-  expect(visitorEvents).toEqual([
-    ['root', '1'],
-    ['atrule', 'media'],
-    ['rule', 'body'],
-    ['comment', 'comment'],
-    ['commentExit', 'comment'],
-    ['decl', 'background'],
-    ['declExit', 'background'],
-    ['decl', 'padding'],
-    ['declExit', 'padding'],
-    ['ruleExit', 'body'],
-    ['rule', 'a'],
-    ['decl', 'color'],
-    ['declExit', 'color'],
-    ['ruleExit', 'a'],
-    ['atruleExit', 'media'],
-    ['rootExit', '1']
-  ])
-})
-
-it('walks asynchronously through after all plugins', async () => {
-  visitorEvents = []
-  await postcss([postcssVisitor]).process(
-    `@media screen {
-      body {
-        /* comment */
-        background: white;
-        padding: 10px;
-      }
-      a {
-        color: blue;
-      }
-    }`,
-    { from: 'a.css' }
-  )
-  expect(visitorEvents).toEqual([
-    ['root', '1'],
-    ['atrule', 'media'],
-    ['rule', 'body'],
-    ['comment', 'comment'],
-    ['commentExit', 'comment'],
-    ['decl', 'background'],
-    ['declExit', 'background'],
-    ['decl', 'padding'],
-    ['declExit', 'padding'],
-    ['ruleExit', 'body'],
-    ['rule', 'a'],
-    ['decl', 'color'],
-    ['declExit', 'color'],
-    ['ruleExit', 'a'],
-    ['atruleExit', 'media'],
-    ['rootExit', '1']
-  ])
 })
 
 it('works classic plugin replace-color', async () => {
@@ -641,81 +537,6 @@ it('passes helpers', async () => {
   await postcss([asyncPlugin]).process('a{}', { from: 'a.css' })
 })
 
-it('has synchronous property and at-rule name filters', () => {
-  let filteredDecls: string[] = []
-  let allDecls: string[] = []
-  let filteredAtRules: string[] = []
-  let allAtRules: string[] = []
-
-  let syncPlugin: Plugin = {
-    postcssPlugin: 'test',
-    Declaration: {
-      'color': decl => {
-        filteredDecls.push(decl.prop)
-      },
-      '*': decl => {
-        allDecls.push(decl.prop)
-      }
-    },
-    AtRule: {
-      'media': atRule => {
-        filteredAtRules.push(atRule.name)
-      },
-      '*': atRule => {
-        allAtRules.push(atRule.name)
-      }
-    }
-  }
-
-  let css = '@charset "UTF-8"; @media (screen) { color: black; z-index: 1 }'
-  postcss([syncPlugin]).process(css, { from: 'a.css' }).css
-
-  expect(filteredDecls).toEqual(['color'])
-  expect(allDecls).toEqual(['color', 'z-index'])
-  expect(filteredAtRules).toEqual(['media'])
-  expect(allAtRules).toEqual(['charset', 'media'])
-})
-
-it('has asynchronous property and at-rule name filters', async () => {
-  let filteredDecls: string[] = []
-  let allDecls: string[] = []
-  let filteredAtRules: string[] = []
-  let allAtRules: string[] = []
-  let exits: string[] = []
-
-  let syncPlugin: Plugin = {
-    postcssPlugin: 'test',
-    Declaration: {
-      'color': async decl => {
-        filteredDecls.push(decl.prop)
-      },
-      '*': async decl => {
-        allDecls.push(decl.prop)
-      }
-    },
-    DeclarationExit (decl) {
-      exits.push(decl.prop)
-    },
-    AtRule: {
-      'media': atRule => {
-        filteredAtRules.push(atRule.name)
-      },
-      '*': atRule => {
-        allAtRules.push(atRule.name)
-      }
-    }
-  }
-
-  let css = '@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }'
-  await postcss([syncPlugin]).process(css, { from: 'a.css' })
-
-  expect(filteredDecls).toEqual(['COLOR'])
-  expect(allDecls).toEqual(['COLOR', 'z-index'])
-  expect(exits).toEqual(['COLOR', 'z-index'])
-  expect(filteredAtRules).toEqual(['media'])
-  expect(allAtRules).toEqual(['charset', 'media'])
-})
-
 it('detects non-changed values', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
@@ -831,3 +652,256 @@ it('throws error from async RootExit', async () => {
 
   expect(error.message).toEqual('test rootExit error')
 })
+
+let visitorEvents: [string, string][] = []
+let visitor: Plugin = {
+  postcssPlugin: 'visitor',
+  Root (node) {
+    visitorEvents.push(['Root', `${node.nodes.length}`])
+  },
+  RootExit (node) {
+    visitorEvents.push(['RootExit', `${node.nodes.length}`])
+  },
+  AtRule (node) {
+    visitorEvents.push(['AtRule', node.name])
+  },
+  AtRuleExit (node) {
+    visitorEvents.push(['AtRuleExit', node.name])
+  },
+  Rule (node) {
+    visitorEvents.push(['Rule', node.selector])
+  },
+  RuleExit (node) {
+    visitorEvents.push(['RuleExit', node.selector])
+  },
+  Declaration (node) {
+    visitorEvents.push(['Declaration', node.prop + ': ' + node.value])
+  },
+  DeclarationExit (node) {
+    visitorEvents.push(['DeclarationExit', node.prop + ': ' + node.value])
+  },
+  Comment (node) {
+    visitorEvents.push(['Comment', node.text])
+  },
+  CommentExit (node) {
+    visitorEvents.push(['CommentExit', node.text])
+  }
+}
+
+const redToGreen: Plugin = {
+  postcssPlugin: 'redToGreen',
+  Declaration: {
+    color: decl => {
+      if (decl.value === 'red' && decl.parent?.parent?.type === 'root') {
+        decl.value = 'green'
+      }
+    }
+  }
+}
+
+const greenToBlue: Plugin = {
+  postcssPlugin: 'greenToBlue',
+  Declaration (decl) {
+    if (decl.value === 'green') {
+      decl.value = 'blue'
+    }
+  }
+}
+
+const fooToBar: Plugin = {
+  postcssPlugin: 'fooToBar',
+  Rule (rule) {
+    if (rule.selector === '.foo') {
+      rule.selectors = ['.bar']
+    }
+  }
+}
+
+const mixins: Plugin = {
+  postcssPlugin: 'mixin',
+  prepare () {
+    let mixin: AnyNode | undefined
+    return {
+      AtRule: {
+        'define-mixin': atRule => {
+          if (atRule.first) mixin = atRule.first
+          atRule.remove()
+        },
+        'apply-mixin': atRule => {
+          if (mixin) atRule.replaceWith(mixin)
+        }
+      }
+    }
+  }
+}
+
+for (let type of ['sync', 'async']) {
+  it(`walks ${type} through tree`, async () => {
+    visitorEvents = []
+    let processor = postcss([visitor]).process(
+      `@media screen {
+        body {
+          /* comment */
+          background: white;
+          padding: 10px;
+        }
+        a {
+          color: blue;
+        }
+      }`,
+      { from: 'a.css' }
+    )
+    if (type === 'sync') {
+      processor.css
+    } else {
+      await processor
+    }
+    expect(visitorEvents).toEqual([
+      ['Root', '1'],
+      ['AtRule', 'media'],
+      ['Rule', 'body'],
+      ['Comment', 'comment'],
+      ['CommentExit', 'comment'],
+      ['Declaration', 'background: white'],
+      ['DeclarationExit', 'background: white'],
+      ['Declaration', 'padding: 10px'],
+      ['DeclarationExit', 'padding: 10px'],
+      ['RuleExit', 'body'],
+      ['Rule', 'a'],
+      ['Declaration', 'color: blue'],
+      ['DeclarationExit', 'color: blue'],
+      ['RuleExit', 'a'],
+      ['AtRuleExit', 'media'],
+      ['RootExit', '1']
+    ])
+  })
+
+  it(`walks ${type} during transformations`, async () => {
+    visitorEvents = []
+    let processor = postcss([
+      visitor,
+      redToGreen,
+      greenToBlue,
+      mixins,
+      fooToBar
+    ]).process(
+      `@define-mixin {
+        b {
+          color: red;
+        }
+      }
+      a {
+        color: red;
+      }
+      .foo {
+        background: red;
+      }
+      @apply-mixin;`,
+      { from: 'a.css' }
+    )
+    let output
+    if (type === 'sync') {
+      output = processor.css
+    } else {
+      let result = await processor
+      output = result.css
+    }
+    expect(output).toEqual(`a {
+        color: blue;
+      }
+      .bar {
+        background: red;
+      }
+      b {
+          color: blue;
+        }`)
+    expect(visitorEvents).toEqual([
+      ['Root', '4'],
+      ['AtRule', 'define-mixin'],
+      ['Rule', 'b'],
+      ['Declaration', 'color: red'],
+      ['DeclarationExit', 'color: red'],
+      ['RuleExit', 'b'],
+      ['AtRuleExit', 'define-mixin'],
+      ['Rule', 'a'],
+      ['Declaration', 'color: red'],
+      ['DeclarationExit', 'color: green'],
+      ['RuleExit', 'a'],
+      ['Rule', '.foo'],
+      ['Declaration', 'background: red'],
+      ['DeclarationExit', 'background: red'],
+      ['RuleExit', '.bar'],
+      ['AtRule', 'apply-mixin'],
+      ['AtRuleExit', 'apply-mixin'],
+      ['Declaration', 'color: green'],
+      ['DeclarationExit', 'color: blue'],
+      ['Rule', 'b'],
+      ['Declaration', 'color: red'],
+      ['DeclarationExit', 'color: green'],
+      ['RuleExit', 'b'],
+      ['Declaration', 'color: blue'],
+      ['DeclarationExit', 'color: blue'],
+      ['Declaration', 'color: green'],
+      ['DeclarationExit', 'color: blue'],
+      ['Declaration', 'color: blue'],
+      ['DeclarationExit', 'color: blue'],
+      ['RootExit', '3']
+    ])
+  })
+
+  it(`has ${type} property and at-rule name filters`, async () => {
+    let filteredDecls: string[] = []
+    let allDecls: string[] = []
+    let filteredAtRules: string[] = []
+    let allAtRules: string[] = []
+    let allExits: string[] = []
+    let filteredExits: string[] = []
+
+    let scanner: Plugin = {
+      postcssPlugin: 'test',
+      Declaration: {
+        'color': decl => {
+          filteredDecls.push(decl.prop)
+        },
+        '*': decl => {
+          allDecls.push(decl.prop)
+        }
+      },
+      DeclarationExit: {
+        'color': decl => {
+          filteredExits.push(decl.prop)
+        },
+        '*': decl => {
+          allExits.push(decl.prop)
+        }
+      },
+      AtRule: {
+        'media': atRule => {
+          filteredAtRules.push(atRule.name)
+        },
+        '*': atRule => {
+          allAtRules.push(atRule.name)
+        }
+      }
+    }
+
+    let processor = postcss([
+      scanner
+    ]).process(
+      `@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }`,
+      { from: 'a.css' }
+    )
+    if (type === 'sync') {
+      processor.css
+    } else {
+      await processor
+    }
+
+    expect(filteredDecls).toEqual(['COLOR'])
+    expect(allDecls).toEqual(['COLOR', 'z-index'])
+    expect(filteredExits).toEqual(['COLOR'])
+    expect(allExits).toEqual(['COLOR', 'z-index'])
+    expect(filteredAtRules).toEqual(['media'])
+    expect(allAtRules).toEqual(['charset', 'media'])
+  })
+}

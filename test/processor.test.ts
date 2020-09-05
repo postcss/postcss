@@ -1,6 +1,6 @@
 import path from 'path'
 
-import postcss, { Result, Node, Root, parse } from '../lib/postcss.js'
+import postcss, { Plugin, Result, Node, Root, parse } from '../lib/postcss.js'
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'
 
@@ -337,6 +337,39 @@ it('throws a sync call in async running', async () => {
   expect(() => {
     processor.sync()
   }).toThrow(/then/)
+})
+
+it('remembers errors', async () => {
+  let calls = 0
+  let plugin: Plugin = {
+    postcssPlugin: 'plugin',
+    Root () {
+      calls += 1
+      throw new Error('test')
+    }
+  }
+
+  let processing = postcss([plugin]).process('a{}', { from: undefined })
+
+  expect(() => {
+    processing.css
+  }).toThrow('test')
+  expect(() => {
+    processing.css
+  }).toThrow('test')
+  expect(() => {
+    processing.root
+  }).toThrow('test')
+
+  let asyncError
+  try {
+    await processing
+  } catch (e) {
+    asyncError = e
+  }
+  expect(asyncError.message).toEqual('test')
+
+  expect(calls).toEqual(1)
 })
 
 it('checks plugin compatibility', () => {
