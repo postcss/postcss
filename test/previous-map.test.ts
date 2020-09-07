@@ -302,3 +302,28 @@ it('works with non-file sources', () => {
     column: 1
   })
 })
+
+it('works with index map', () => {
+  let root = parse('body {\nwidth:100%;\n}', {
+    from: join(__dirname, 'a.css'),
+    map: {
+      prev: {
+        version: 3,
+        sections: [
+          {
+            offset: { line: 0, column: 0 },
+            map: {
+              version: 3,
+              mappings: 'AAAA;AACA;AACA;',
+              sources: ['b.css'],
+              sourcesContent: ['body {\nwidth:100%;\n}']
+            }
+          }
+        ]
+      }
+    }
+  })
+  expect((root as any).source.input.origin(1, 1).file).toEqual(
+    join(__dirname, 'b.css')
+  )
+})
