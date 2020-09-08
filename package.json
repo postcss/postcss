@@ -73,7 +73,7 @@
     "jest-ci": "^0.1.1",
     "lint-staged": "^10.3.0",
     "nanodelay": "^1.0.3",
-    "postcss-parser-tests": "^8.1.0",
+    "postcss-parser-tests": "^8.2.0",
     "size-limit": "^4.6.0",
     "strip-ansi": "^6.0.0",
     "ts-jest": "^26.3.0",
