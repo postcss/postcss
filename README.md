@@ -2,7 +2,7 @@
 
 <img align="right" width="95" height="95"
      alt="Philosopher’s stone, logo of PostCSS"
-     src="http://postcss.github.io/postcss/logo.svg">
+     src="https://postcss.org/logo.svg">
 
 [chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
 [chat]:     https://gitter.im/postcss/postcss
@@ -23,11 +23,11 @@ e.g., to find errors automatically, or to insert vendor prefixes.
 **Support / Discussion:** [Gitter](https://gitter.im/postcss/postcss)<br>
 **Twitter account:**      [@postcss](https://twitter.com/postcss)<br>
 **VK.com page:**          [postcss](https://vk.com/postcss)<br>
-**中文翻译**:              [`README-cn.md`](./README-cn.md)
+**中文翻译**:              [`docs/README-cn.md`](./docs/README-cn.md)
 
 For PostCSS commercial support (consulting, improving the front-end culture
 of your company, PostCSS plugins), contact [Evil Martians]
-at <surrender@evilmartians.com>.
+at <postcss@evilmartians.com>.
 
 [Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
 [Evil Martians]:        https://evilmartians.com/?utm_source=postcss
@@ -39,6 +39,7 @@ at <surrender@evilmartians.com>.
        alt="Sponsored by Evil Martians" width="236" height="54">
 </a>
 
+
 ## Sponsorship
 
 PostCSS needs your support. We are accepting donations
@@ -48,6 +49,7 @@ PostCSS needs your support. We are accepting donations
   <img src="https://refactoringui.nyc3.cdn.digitaloceanspaces.com/tailwind-logo.svg"
        alt="Sponsored by Tailwind CSS" width="273" height="64">
 </a>
+
 
 ## Plugins
 
@@ -60,6 +62,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 [searchable catalog]: http://postcss.parts
 [plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
+
 
 ### Solve Global CSS Problem
 
@@ -74,10 +77,12 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`cq-prolyfill`] adds container query support, allowing styles that respond
   to the width of the parent.
 
+
 ### Use Future CSS, Today
 
 * [`autoprefixer`] adds vendor prefixes, using data from Can I Use.
 * [`postcss-preset-env`] allows you to use future CSS features today.
+
 
 ### Better CSS Readability
 
@@ -87,6 +92,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`postcss-utilities`] includes the most commonly used shortcuts and helpers.
 * [`short`] adds and extends numerous shorthand properties.
 
+
 ### Images and Fonts
 
 * [`postcss-assets`] inserts image dimensions and inlines files.
@@ -95,6 +101,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`postcss-inline-svg`] allows you to inline SVG and customize its styles.
 * [`postcss-write-svg`] allows you to write simple SVG directly in your CSS.
 
+
 ### Linters
 
 * [`stylelint`] is a modular stylesheet linter.
@@ -102,6 +109,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
   according `stylelint` rules.
 * [`doiuse`] lints CSS for browser support, using data from Can I Use.
 * [`colorguard`] helps you maintain a consistent color palette.
+
 
 ### Other
 
@@ -137,6 +145,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
 [`short`]:                      https://github.com/jonathantneal/postcss-short
 [`lost`]:                       https://github.com/peterramsing/lost
+
 
 ## Syntaxes
 
@@ -177,6 +186,7 @@ you can write a parser and/or stringifier to extend PostCSS.
 [`sugarss`]:             https://github.com/postcss/sugarss
 [`midas`]:               https://github.com/ben-eb/midas
 
+
 ## Articles
 
 * [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong)
@@ -185,9 +195,11 @@ you can write a parser and/or stringifier to extend PostCSS.
 
 More articles and videos you can find on [awesome-postcss](https://github.com/jjaderg/awesome-postcss) list.
 
+
 ## Books
 
 * [Mastering PostCSS for Web Design](https://www.packtpub.com/web-development/mastering-postcss-web-design) by Alex Libby, Packt. (June 2016)
+
 
 ## Usage
 
@@ -197,6 +209,7 @@ You can start using PostCSS in just two steps:
 2. [Select plugins] and add them to your PostCSS process.
 
 [Select plugins]: http://postcss.parts
+
 
 ### CSS-in-JS
 
@@ -233,6 +246,7 @@ module.exports = {
 
 [`astroturf`]: https://github.com/4Catalyzer/astroturf
 
+
 ### Parcel
 
 [Parcel] has built-in PostCSS support. It already uses Autoprefixer
@@ -253,6 +267,7 @@ Parcel will even automatically install these plugins for you.
 > Please, be aware of [the several issues in Version 1](https://github.com/parcel-bundler/parcel/labels/CSS%20Preprocessing). Notice, [Version 2](https://github.com/parcel-bundler/parcel/projects/5) may resolve the issues via [issue #2157](https://github.com/parcel-bundler/parcel/issues/2157).
 
 [Parcel]: https://parceljs.org
+
 
 ### Webpack
 
@@ -298,6 +313,7 @@ module.exports = {
 
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
 
+
 ### Gulp
 
 Use [`gulp-postcss`] and [`gulp-sourcemaps`].
@@ -318,7 +334,8 @@ gulp.task('css', () => {
 [`gulp-sourcemaps`]: https://github.com/floridoo/gulp-sourcemaps
 [`gulp-postcss`]:    https://github.com/postcss/gulp-postcss
 
-### npm run / CLI
+
+### npm Scripts
 
 To use PostCSS from your command-line interface or with npm scripts
 there is [`postcss-cli`].
@@ -328,6 +345,7 @@ postcss --use autoprefixer -c options.json -o main.css css/*.css
 ```
 
 [`postcss-cli`]: https://github.com/postcss/postcss-cli
+
 
 ### Browser
 
@@ -350,6 +368,7 @@ prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-
 [CSS-in-JS]:    https://github.com/MicheleBertoli/css-in-js
 [webpack]:      https://webpack.github.io/
 
+
 ### Runners
 
 * **Grunt**: [`grunt-postcss`](https://github.com/nDmitry/grunt-postcss)
@@ -363,6 +382,7 @@ prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-
 * **Taskr**: [`taskr-postcss`](https://github.com/lukeed/taskr/tree/master/packages/postcss)
 * **Start**: [`start-postcss`](https://github.com/start-runner/postcss)
 * **Connect/Express**: [`postcss-middleware`](https://github.com/jedmao/postcss-middleware)
+
 
 ### JS API
 
@@ -391,7 +411,8 @@ Read the [PostCSS API documentation] for more details about the JS API.
 All PostCSS runners should pass [PostCSS Runner Guidelines].
 
 [PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
-[PostCSS API documentation]: http://api.postcss.org/postcss.html
+[PostCSS API documentation]: https://postcss.org/api/
+
 
 ### Options
 
@@ -409,9 +430,10 @@ Common options:
 * `from`: the input file name (most runners set it automatically).
 * `to`: the output file name (most runners set it automatically).
 
-[source map options]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md
+[source map options]: https://postcss.org/api/#sourcemapoptions
 [Midas]:              https://github.com/ben-eb/midas
 [SCSS]:               https://github.com/postcss/postcss-scss
+
 
 ### Treat Warnings as Errors
 
@@ -430,12 +452,9 @@ module.exports = {
 }
 ```
 
-## Contributing
-
-[Our contributing guidelines](./CONTRIBUTING.md) will help you
-with making pull request to this project.
 
 ## Editors & IDE Integration
+
 
 ### VS Code
 
@@ -444,12 +463,14 @@ with making pull request to this project.
 
 [`csstools.postcss`]: https://marketplace.visualstudio.com/items?itemName=csstools.postcss
 
+
 ### Atom
 
 * [`language-postcss`] adds PostCSS and [SugarSS] highlight.
 * [`source-preview-postcss`] previews your output CSS in a separate, live pane.
 
 [SugarSS]: https://github.com/postcss/sugarss
+
 
 ### Sublime Text
 
@@ -459,11 +480,13 @@ with making pull request to this project.
 [`source-preview-postcss`]:          https://atom.io/packages/source-preview-postcss
 [`language-postcss`]:                https://atom.io/packages/language-postcss
 
+
 ### Vim
 
 * [`postcss.vim`] adds PostCSS highlight.
 
 [`postcss.vim`]: https://github.com/stephenway/postcss.vim
+
 
 ### WebStorm
 

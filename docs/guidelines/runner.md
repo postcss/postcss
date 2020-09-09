@@ -14,6 +14,7 @@ See also [ClojureWerkz’s recommendations] for open source projects.
 [`gulp‑postcss`]:      https://github.com/w0rm/gulp-postcss
 [`postcss-cli`]:       https://github.com/postcss/postcss-cli
 
+
 ## 1. API
 
 ### 1.1. Accept functions in plugin parameters
@@ -33,6 +34,7 @@ module.exports = [
 
 [`postcss-assets`]: https://github.com/borodean/postcss-assets
 
+
 ## 2. Processing
 
 ### 2.1. Set `from` and `to` processing options
@@ -46,6 +48,7 @@ to point to the same file:
 processor.process({ from: file.path, to: file.path })
 ```
 
+
 ### 2.2. Use only the asynchronous API
 
 PostCSS runners must use only the asynchronous API.
@@ -58,13 +61,15 @@ processor.process(opts).then(result => {
 });
 ```
 
+
 ### 2.3. Use only the public PostCSS API
 
 PostCSS runners must not rely on undocumented properties or methods,
 which may be subject to change in any minor release. The public API
 is described in [API docs].
 
-[API docs]: http://api.postcss.org/
+[API docs]: https://postcss.org/api/
+
 
 ## 3. Output
 
@@ -84,6 +89,7 @@ processor.process(opts).catch(error => {
 })
 ```
 
+
 ### 3.2. Display `result.warnings()`
 
 PostCSS runners must output warnings from `result.warnings()`:
@@ -99,6 +105,7 @@ See also [postcss-log-warnings] and [postcss-messages] plugins.
 [postcss-log-warnings]: https://github.com/davidtheclark/postcss-log-warnings
 [postcss-messages]:     https://github.com/postcss/postcss-messages
 
+
 ### 3.3. Allow the user to write source maps to different files
 
 PostCSS by default will inline source maps in the generated file; however,
@@ -111,6 +118,7 @@ if (result.map) {
 }
 ```
 
+
 ## 4. Documentation
 
 ### 4.1. Document your runner in English
@@ -120,6 +128,7 @@ of your English skills, as the open source community will fix your errors.
 
 Of course, you are welcome to write documentation in other languages;
 just name them appropriately (e.g. `README.ja.md`).
+
 
 ### 4.2. Maintain a changelog
 
@@ -133,6 +142,7 @@ Of course, you should use [SemVer].
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
 [SemVer]:           http://semver.org/
 
+
 ### 4.3. `postcss-runner` keyword in `package.json`
 
 PostCSS runners written for npm must have the `postcss-runner` keyword
@@ -141,3 +151,17 @@ the PostCSS ecosystem.
 
 For packages not published to npm, this is not mandatory, but recommended
 if the package format is allowed to contain keywords.
+
+
+### 4.4. Keep `postcss` to `peerDependencies`
+
+AST can be broken because of different `postcss` version in different plugins.
+Different plugins could use a different node creators (like `postcss.decl()`).
+
+```json
+{
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  }
+}
+```

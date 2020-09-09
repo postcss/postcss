@@ -1,14 +1,12 @@
 node_modules/
-npm-debug.log
 yarn-error.log
 yarn.lock
 
-build/
-
+.editorconfig
+coverage/
 test/
 .travis.yml
-appveyor.yml
 
-gulpfile.js
-
-api/
+docs/
+.github/
+tsconfig.json

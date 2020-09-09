@@ -1,10 +1,5 @@
+let { Declaration, AtRule, Node, Root, Rule, parse } = require('..')
 let Stringifier = require('../lib/stringifier')
-let Declaration = require('../lib/declaration')
-let AtRule = require('../lib/at-rule')
-let parse = require('../lib/parse')
-let Node = require('../lib/node')
-let Root = require('../lib/root')
-let Rule = require('../lib/rule')
 
 let str
 beforeAll(() => {
@@ -85,11 +80,9 @@ it('indents by default', () => {
   root.first.append(new Rule({ selector: 'a' }))
   root.first.first.append({ prop: 'color', value: 'black' })
 
-  expect(root.toString()).toEqual('@page {\n' +
-                                  '    a {\n' +
-                                  '        color: black\n' +
-                                  '    }\n' +
-                                  '}')
+  expect(root.toString()).toEqual(
+    '@page {\n' + '    a {\n' + '        color: black\n' + '    }\n' + '}'
+  )
 })
 
 it('clones style', () => {
@@ -100,8 +93,7 @@ it('clones style', () => {
   expect(compress.toString()).toEqual('@page{ a{ color: black } }')
 
   spaces.first.first.append({ prop: 'color', value: 'black' })
-  expect(spaces.toString())
-    .toEqual('@page {\n  a {\n    color: black\n  }\n}')
+  expect(spaces.toString()).toEqual('@page {\n  a {\n    color: black\n  }\n}')
 })
 
 it('clones indent', () => {
@@ -149,7 +141,7 @@ it('clones indent by before and after', () => {
 
 it('clones semicolon only from rules with children', () => {
   let css = parse('a{}b{one:1;}')
-  expect(str.raw(css.first, 'semicolon')).toBeTruthy()
+  expect(str.raw(css.first, 'semicolon')).toBe(true)
 })
 
 it('clones only spaces in before', () => {

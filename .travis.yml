@@ -1,12 +1,13 @@
 language: node_js
-cache: yarn
 node_js:
   - node
   - "12"
   - "10"
-  - "8"
-  - "6"
-git:
-  depth: 5
-install:
- - yarn install --ignore-engines
+matrix:
+  include:
+    os: windows
+    cache: false
+    node_js: node
+    script: npx jest
+    env:
+      - YARN_GPG=no

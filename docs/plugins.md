@@ -30,6 +30,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`postcss-plugin-context`]: https://github.com/postcss/postcss-plugin-context
 [`postcss-use`]:            https://github.com/postcss/postcss-use
 
+
 ## Packs
 
 * [`postcss-utilities`] includes the most commonly used mixins, shortcuts
@@ -61,6 +62,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`oldie`]:              https://github.com/jonathantneal/oldie
 [`atcss`]:              https://github.com/morishitter/atcss
 [`postcss-ui-theme`]:   https://github.com/cleverboy32/postcss-ui-theme
+
 
 ## Future CSS Syntax
 
@@ -112,6 +114,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 See also [`postcss-preset-env`] plugins pack to add future CSS syntax
 by one line of code.
 
+
 ## Fallbacks
 
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
@@ -153,6 +156,7 @@ by one line of code.
 See also [`oldie`] plugins pack.
 
 [`Flexibility polyfill`]: https://github.com/10up/flexibility
+
 
 ## Language Extensions
 
@@ -220,6 +224,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 [Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
 
+
 ## Colors
 
 * [`postcss-ase-colors`] replaces color names with values read
@@ -249,6 +254,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`colorguard`] helps maintain a consistent color palette.
 * [`postcss-get-color`] get the prominent colors from an image.
 * [`postcss-randomcolor`] supports function to use random color.
+
 
 ## Images and Fonts
 
@@ -294,6 +300,7 @@ loosely resembles the original.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
 * [`postcss-font-grabber`] it grabs remote fonts in `@font-face`, download them and update your CSS.
 
+
 ## Grids
 
 * [`postcss-grid`] adds a semantic grid system.
@@ -310,11 +317,12 @@ loosely resembles the original.
 * [`postcss-simple-grid`] create grid with one line.
 * [`lost`] feature-rich `calc()` grid system by Jeet author.
 
+
 ## Optimizations
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
-* [`postcss-remove-nested-calc`] `calc(100vw - calc(20% - 10px))` to `calc(100vw - (20% - 10px))` for ie11 compatibility.  
+* [`postcss-remove-nested-calc`] `calc(100vw - calc(20% - 10px))` to `calc(100vw - (20% - 10px))` for IE 11 compatibility.
 * [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
 * [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
@@ -334,11 +342,13 @@ loosely resembles the original.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
 * [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
 * [`postcss-no-important`] delete declarations !important.
+* [`postcss-deep-scopable`] unified deep scoped style for Vue.js.
 
 See also plugins in modular minifier [`cssnano`].
 
 [@import (reference)]: http://lesscss.org/features/#import-options-reference
 [SVGO]: https://github.com/svg/svgo
+
 
 ## Shortcuts
 
@@ -391,6 +401,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
 * [`postcss-magic-animations`] PostCSS plugin that adds `@keyframes` from Magic Animations.
+
 
 ## Others
 
@@ -461,6 +472,7 @@ See also plugins in modular minifier [`cssnano`].
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
 
+
 ## Analysis
 
 * [`postcss-bem-linter`] lints CSS for conformance to SUIT CSS methodology.
@@ -473,6 +485,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`list-selectors`] lists and categorizes the selectors used in your CSS,
   for code review.
 
+
 ## Reporters
 
 * [`postcss-browser-reporter`] displays warning messages from other plugins
@@ -480,6 +493,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-forced-variables`] provides warnings and errors when specified properties don't use variables.
 * [`postcss-reporter`] logs warnings and other messages from other plugins
   in the console.
+
 
 ## Fun
 
@@ -830,3 +844,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-viewport-height-correction`]:   https://github.com/Faisal-Manzer/postcss-viewport-height-correction
 [`postcss-clamp`]:                        https://github.com/polemius/postcss-clamp
 [`postcss-pseudo-is`]:                    https://github.com/IlyaUpyackovich/postcss-pseudo-is
+[`postcss-deep-scopable`]:                https://github.com/litt1e-p/postcss-deep-scopable

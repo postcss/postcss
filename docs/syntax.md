@@ -12,6 +12,7 @@ There are 3 types of PostCSS syntax packages:
 * **Stringifier** to generate output string by node’s tree.
 * **Syntax** contains both parser and stringifier.
 
+
 ## Syntax
 
 A good example of a custom syntax is [SCSS]. Some users may want to transform
@@ -30,6 +31,7 @@ module.exports = {
 ```
 
 [SCSS]: https://github.com/postcss/postcss-scss
+
 
 ## Parser
 
@@ -51,7 +53,8 @@ module.exports = function parse (css, opts) {
 ```
 
 [Safe Parser]: https://github.com/postcss/postcss-safe-parser
-[`Root`]:      http://api.postcss.org/Root.html
+[`Root`]:      https://postcss.org/api/#root
+
 
 ### Main Theory
 
@@ -67,8 +70,9 @@ The default PostCSS parser contains two steps:
 2. [Parser] which reads the tokens array, creates node instances and
   builds a tree.
 
-[Tokenizer]: https://github.com/postcss/postcss/blob/master/lib/tokenize.es6
-[Parser]:    https://github.com/postcss/postcss/blob/master/lib/parser.es6
+[Tokenizer]: https://github.com/postcss/postcss/blob/master/lib/tokenize.js
+[Parser]:    https://github.com/postcss/postcss/blob/master/lib/parser.js
+
 
 ### Performance
 
@@ -112,8 +116,9 @@ The parser can be a well written class. There is no need in copy-paste and
 hardcore optimization there. You can extend the default [PostCSS parser].
 
 [PostCSS benchmarks]: https://github.com/postcss/benchmark
-[PostCSS tokenizer]:  https://github.com/postcss/postcss/blob/master/lib/tokenize.es6
-[PostCSS parser]:     https://github.com/postcss/postcss/blob/master/lib/parser.es6
+[PostCSS tokenizer]:  https://github.com/postcss/postcss/blob/master/lib/tokenize.js
+[PostCSS parser]:     https://github.com/postcss/postcss/blob/master/lib/parser.js
+
 
 ### Node Source
 
@@ -124,7 +129,8 @@ and `input` property with an [`Input`] instance.
 Your tokenizer should save the original position so that you can propagate
 the values to the parser, to ensure that the source map is correctly updated.
 
-[`Input`]: https://github.com/postcss/postcss/blob/master/lib/input.es6
+[`Input`]: https://github.com/postcss/postcss/blob/master/lib/input.js
+
 
 ### Raw Values
 
@@ -143,6 +149,7 @@ if the node value was not changed.
 
 [SCSS parser]: https://github.com/postcss/postcss-scss
 
+
 ### Tests
 
 Of course, all parsers in the PostCSS ecosystem must have tests.
@@ -151,6 +158,7 @@ If your parser just extends CSS syntax (like [SCSS] or [Safe Parser]),
 you can use the [PostCSS Parser Tests]. It contains unit & integration tests.
 
 [PostCSS Parser Tests]: https://github.com/postcss/postcss-parser-tests
+
 
 ## Stringifier
 
@@ -174,6 +182,7 @@ module.exports = function stringify (root, builder) {
 };
 ```
 
+
 ### Main Theory
 
 PostCSS [default stringifier] is just a class with a method for each node type
@@ -182,8 +191,9 @@ and many methods to detect raw properties.
 In most cases it will be enough just to extend this class,
 like in [SCSS stringifier].
 
-[default stringifier]: https://github.com/postcss/postcss/blob/master/lib/stringifier.es6
-[SCSS stringifier]:    https://github.com/postcss/postcss-scss/blob/master/lib/scss-stringifier.es6
+[default stringifier]: https://github.com/postcss/postcss/blob/master/lib/stringifier.js
+[SCSS stringifier]:    https://github.com/postcss/postcss-scss/blob/master/lib/scss-stringifier.js
+
 
 ### Builder Function
 
@@ -206,6 +216,7 @@ this.builder(rule.selector + '{', rule, 'start')
 this.builder('}', rule, 'end')
 ```
 
+
 ### Raw Values
 
 A good PostCSS custom syntax saves all symbols and provide byte-to-byte equal
@@ -222,6 +233,7 @@ to another parent node.
 This is why the default stringifier has a `raw()` method to autodetect raw
 properties by other nodes. For example, it will look at other nodes to detect
 indent size and them multiply it with the current node depth.
+
 
 ### Tests
 
