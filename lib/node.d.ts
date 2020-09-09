@@ -22,6 +22,11 @@ export type ChildProps =
 
 export interface Position {
   /**
+   * Source offset in file.
+   */
+  offset: number
+
+  /**
    * Source line in file.
    */
   column: number
