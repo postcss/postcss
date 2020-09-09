@@ -120,4 +120,11 @@ export default class Input {
    * @return Position in input source.
    */
   origin (line: number, column: number): FilePosition | false
+
+  /**
+   * Converts source offset to line and column.
+   *
+   * @param offset Source offset.
+   */
+  fromOffset (offset: number): { line: number; col: number } | null
 }
