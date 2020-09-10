@@ -199,7 +199,7 @@ runtime-defined listeners:
 ```js
 module.exports = (opts = {}) => {
   return {
-    postcssPlugin: 'PLUGIN NAME',
+    postcssPlugin: 'vars-collector',
     prepare (result) {
       const variables = {}
       return {
@@ -249,6 +249,7 @@ Plugins will re-visit all nodes, which you changed or added:
 ```js
 const plugin = () => {
   return {
+    postcssPlugin: 'to-red',
     Declaration (decl) {
       console.log(decl.toString())
       decl.value = 'red'
