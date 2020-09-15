@@ -1,8 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.3
+* Fixed client-side bundling support.
+
 ## 8.0.2
-* Fix plugin packs support.
+* Fixed plugin packs support.
 
 ## 8.0.1
 * Updated `Processor#version`.
