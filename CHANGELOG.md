@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.2
+* Fix plugin packs support.
+
 ## 8.0.1
 * Updated `Processor#version`.
 
