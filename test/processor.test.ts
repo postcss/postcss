@@ -517,3 +517,14 @@ it('warns about missed plugins', async () => {
       'on https://www.postcss.parts/ and use them in postcss.config.js.'
   )
 })
+
+it('supports plugins returning processors', () => {
+  jest.spyOn(console, 'warn').mockImplementation(() => {})
+  let a = () => {}
+  let processor = new Processor()
+  let other: any = (postcss as any).plugin('test', () => {
+    return new Processor([a])
+  })
+  processor.use(other)
+  expect(processor.plugins).toEqual([a])
+})
