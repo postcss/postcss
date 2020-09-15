@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.1
+* Updated `Processor#version`.
+
 ## 8.0 “President Ose”
 * Removed support for Node.js 6.x, 8.x, 11.x, and 13.x versions.
 * Removed `postcss.vendor` helpers.
