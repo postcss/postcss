@@ -1,6 +1,37 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0 “President Ose”
+* Removed support for Node.js 6.x, 8.x, 11.x, and 13.x versions.
+* Removed `postcss.vendor` helpers.
+* Deprecated `postcss.plugin()` API.
+* Treats `sourceMap.sources` as URL instead of file path.
+* Plugins and runners must have `postcss` in `peerDependencies`.
+* Prohibited to extend PostCSS AST classes.
+* Moved from JSDoc to TypeDoc.
+* Moved unknown source from counter to random IDs.
+* Added visitor API for plugins (by Alexey Bondarenko).
+* Added ES modules support.
+* Added named exports for public classes `const { Rule } = require('postcss)`.
+* Added `position.url` to `Node#origin()` result.
+* Added `opts.maps.absolute = true` option.
+* Added `opts.maps.annotation = (file, root) => url` option support.
+* Added `Node#source.offset` (by Ayaz Zaynutdinov).
+* Added `Declaration#variable`.
+* Added JSON source map support.
+* Added index source map support.
+* Added `Declaration#value` auto-converting to string.
+* Fixed parsing `{}` in at-rule parameters.
+* Fixed parsing empty Custom Properties. `--foo: ;` will have ` ` value.
+* Fixed building PostCSS with Rollup (by MapGrid).
+* Fixed TypeScript types.
+* Fixed source map relative paths.
+* Fixed calling `replaceWith` with input replaced node (by Joseph Kaptur).
+* Improved “Writing a PostCSS Plugin” docs (by Alexey Bondarenko).
+* Removed Babel from the project’s release process.
+* Removed docs from npm package.
+* Replaced `chalk` to `colorette`.
+
 ## 7.0.32
 * Fix error message (by @admosity).
 
