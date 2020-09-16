@@ -41,6 +41,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Removed docs from npm package.
 * Replaced `chalk` to `colorette`.
 
+## 7.0.33
+* Add error message for PostCSS 8 plugins.
+
 ## 7.0.32
 * Fix error message (by @admosity).
 
