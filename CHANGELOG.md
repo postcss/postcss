@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.4
+* Fixed `Cannot read property 'line' of null` error.
+* Fixed source map support for declarations.
+
 ## 8.0.3
 * Fixed client-side bundling support.
 
