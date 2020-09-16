@@ -112,6 +112,14 @@ class Processor {
   normalize (plugins) {
     let normalized = []
     for (let i of plugins) {
+      if (i.postcss === true) {
+        let plugin = i()
+        throw new Error(
+          'PostCSS plugin ' + plugin.postcssPlugin +
+          ' requires PostCSS 8. Update PostCSS or downgrade this plugin.'
+        )
+      }
+
       if (i.postcss) i = i.postcss
 
       if (typeof i === 'object' && Array.isArray(i.plugins)) {
@@ -126,6 +134,11 @@ class Processor {
             'in your PostCSS runner documentation.'
           )
         }
+      } else if (typeof i === 'object' && i.postcssPlugin) {
+        throw new Error(
+          'PostCSS plugin ' + i.postcssPlugin +
+          ' requires PostCSS 8. Update PostCSS or downgrade this plugin.'
+        )
       } else {
         throw new Error(i + ' is not a PostCSS plugin')
       }
