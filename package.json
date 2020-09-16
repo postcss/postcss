@@ -66,14 +66,14 @@
     "postcss-parser-tests": "6.3.1",
     "run-sequence": "^2.2.1",
     "strip-ansi": "^5.2.0",
-    "yaspeller-ci": "^1.0.2"
+    "yaspeller": "^7.0.0"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
   "lint-staged": {
     "test/*.js": "eslint",
     "lib/*.es6": "eslint",
-    "*.md": "yaspeller-ci"
+    "*.md": "yaspeller"
   },
   "husky": {
     "hooks": {

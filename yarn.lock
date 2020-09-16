@@ -1876,11 +1876,6 @@ ci-job-number@^0.3.0:
   resolved "https://registry.yarnpkg.com/ci-job-number/-/ci-job-number-0.3.0.tgz#34bdd114b0dece1960287bd40a57051041a2a800"
   integrity sha1-NL3RFLDezhlgKHvUClcFEEGiqAA=
 
-ci-job-number@^1.0.0:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/ci-job-number/-/ci-job-number-1.2.2.tgz#f4e5918fcaeeda95b604f214be7d7d4a961fe0c0"
-  integrity sha512-CLOGsVDrVamzv8sXJGaILUVI6dsuAkouJP/n6t+OxLPeeA4DDby7zn9SB6EUpa1H7oIKoE+rMmkW80zYsFfUjA==
-
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
@@ -7454,15 +7449,7 @@ yargs@^7.1.0:
     y18n "^3.2.1"
     yargs-parser "^5.0.0"
 
-yaspeller-ci@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/yaspeller-ci/-/yaspeller-ci-1.0.2.tgz#191fd0b3b1ae3602cac9407948f65fa1e997dd0d"
-  integrity sha512-N0q8riZB4b3ECddohE7ho1O5h8GD7LwWW860hVVTs9qqVvdxRqlJPf+q0WnYEqUDlWK3y7uktTrAske3KrJAEg==
-  dependencies:
-    ci-job-number "^1.0.0"
-    yaspeller ">=6.0.2"
-
-yaspeller@>=6.0.2:
+yaspeller@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/yaspeller/-/yaspeller-7.0.0.tgz#c49af3b5b147edda430996fa1e65b1e577bfb4f4"
   integrity sha512-M8phUfHrL0dGCU5jUK9k85hikCSmjpPFAdjnH/Lg1/E81TEuTI7m8m5jhIWAXHWjfZ+wPEhGBz8HLDuEs4areA==
