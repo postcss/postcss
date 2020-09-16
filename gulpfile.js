@@ -61,14 +61,6 @@ gulp.task('build', gulp.series(
 
 // Tests
 
-gulp.task('integration', gulp.series('build', done => {
-  let postcss = require('./build')
-  let real = require('postcss-parser-tests/real')
-  real(done, css => {
-    return postcss.parse(css).toResult({ map: { annotation: false } })
-  })
-}))
-
 gulp.task('version', () => {
   let Processor = require('./lib/processor')
   let instance = new Processor()
@@ -82,4 +74,4 @@ gulp.task('version', () => {
 
 // Common
 
-gulp.task('default', gulp.series('integration', 'version'))
+gulp.task('default', gulp.series('build', 'version'))

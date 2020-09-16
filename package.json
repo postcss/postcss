@@ -17,11 +17,8 @@
     "transpiler"
   ],
   "scripts": {
-    "lint-staged": "lint-staged",
-    "spell": "yarn docs && yaspeller-ci api/*.html *.md docs/{**/,}*.md",
-    "docs": "jsdoc -c .jsdocrc lib/*.es6",
     "lint": "eslint-ci *.js lib/*.es6 test/*.js",
-    "test": "gulp && jest && yarn lint && yarn spell && size-limit"
+    "test": "gulp && jest && yarn lint"
   },
   "funding": {
     "type": "tidelift",
@@ -70,9 +67,7 @@
     "lint-staged": "^8.1.5",
     "postcss-parser-tests": "6.3.1",
     "run-sequence": "^2.2.1",
-    "size-limit": "^1.0.1",
-    "strip-ansi": "^5.2.0",
-    "yaspeller-ci": "^1.0.0"
+    "strip-ansi": "^5.2.0"
   },
   "main": "lib/postcss",
   "types": "lib/postcss.d.ts",
@@ -112,12 +107,6 @@
       "add-module-exports"
     ]
   },
-  "size-limit": [
-    {
-      "path": "lib/postcss.js",
-      "limit": "28 KB"
-    }
-  ],
   "jest": {
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
