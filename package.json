@@ -87,11 +87,30 @@
     "fs": false
   },
   "browserslist": [
-    "last 2 version",
-    "not dead",
-    "not Explorer 11",
-    "not ExplorerMobile 11",
-    "node 6"
+    "and_chr 71",
+    "and_ff 64",
+    "and_qq 1.2",
+    "and_uc 11.8",
+    "android 67",
+    "android 4.4.3-4.4.4",
+    "baidu 7.12",
+    "chrome 73",
+    "chrome 72",
+    "edge 18",
+    "edge 17",
+    "firefox 66",
+    "firefox 65",
+    "ios_saf 12.0-12.1",
+    "ios_saf 11.3-11.4",
+    "node 6.17.0",
+    "op_mini all",
+    "op_mob 46",
+    "opera 58",
+    "opera 57",
+    "safari 12",
+    "safari 11.1",
+    "samsung 8.2",
+    "samsung 7.2-7.4"
   ],
   "babel": {
     "presets": [
