@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.34
+* Fix compatibility with `postcss-scss` 2.
+
 ## 7.0.33
 * Add error message for PostCSS 8 plugins.
 
