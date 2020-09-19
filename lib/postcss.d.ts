@@ -89,6 +89,16 @@ export interface Plugin extends Processors {
   prepare?: (result: Result) => Processors
 }
 
+export interface PluginClass extends Processors {
+  postcssPlugin: string
+}
+
+export interface PluginConstructor {
+  new (opts: any): PluginClass
+  prototype: PluginClass
+  postcss: boolean
+}
+
 export interface PluginCreator<PluginOptions> {
   (opts?: PluginOptions): Plugin
   postcss: true
@@ -110,6 +120,7 @@ export interface OldPlugin<T> extends Transformer {
 
 export type AcceptedPlugin =
   | Plugin
+  | PluginConstructor
   | PluginCreator<any>
   | OldPlugin<any>
   | TransformCallback

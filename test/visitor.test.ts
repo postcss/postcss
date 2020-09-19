@@ -266,6 +266,35 @@ it('wraps node to proxies', () => {
   expect(props).toEqual(['color'])
 })
 
+it('supports a class plugin', async () => {
+  let didRunConstructor = false
+  let { css } = await postcss([
+    class MyPlugin {
+      constructor () {
+        didRunConstructor = true
+      }
+
+      get postcssPlugin () {
+        return 'do-nothing'
+      }
+
+      Declaration (decl: Declaration) {
+        if (decl.prop === 'color') {
+          decl.value = 'green'
+        }
+      }
+
+      static get postcss () {
+        return true
+      }
+    }
+  ]).process('.a{ color: red; } ' + '.b{ will-change: transform; }', {
+    from: 'a.css'
+  })
+  expect(didRunConstructor).toEqual(true)
+  expect(css).toEqual('.a{ color: green; } ' + '.b{ will-change: transform; }')
+})
+
 const cssThree = '.a{ color: red; } .b{ will-change: transform; }'
 
 const expectedThree =
