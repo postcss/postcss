@@ -93,8 +93,8 @@ export interface PluginClass extends Processors {
   postcssPlugin: string
 }
 
-export interface PluginConstructor {
-  new (opts: any): PluginClass
+export interface PluginConstructor<PluginOptions = any> {
+  new (opts: PluginOptions): PluginClass
   prototype: PluginClass
   postcss: boolean
 }
