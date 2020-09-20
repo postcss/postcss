@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.6
+* Fixed child adding methods in `Container`.
+
 ## 8.0.5
 * Update changelog.
 
