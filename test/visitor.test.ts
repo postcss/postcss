@@ -556,7 +556,7 @@ it('detects non-changed values', () => {
   ).toEqual('a{ color: red; background: red; }')
 })
 
-it('allow runtime listeners', () => {
+it('allows runtime listeners', () => {
   let root = false
   let plugin: Plugin = {
     postcssPlugin: 'test',
@@ -578,6 +578,21 @@ it('allow runtime listeners', () => {
     postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
   ).toEqual('a.css{ color: red }')
   expect(root).toBe(true)
+})
+
+it('works correctly with nodes changes', () => {
+  let root = false
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    Rule (rule) {
+      if (!rule.some(i => i.type === 'decl' && i.prop === 'z-index')) {
+        rule.prepend({ prop: 'z-index', value: '1' })
+      }
+    }
+  }
+  expect(
+    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
+  ).toEqual('a{ z-index: 1; color: black }')
 })
 
 it('throws on Promise in sync RootExit', async () => {
