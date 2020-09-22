@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "spell": "yaspeller-ci *.md docs/{**/,}*.md",
-    "test": "jest-ci --coverage && eslint-ci . && check-dts && ./test/integration.js && npm run spell && size-limit"
+    "test": "jest-ci --coverage && eslint-ci . && ./test/version.js && check-dts && ./test/integration.js && npm run spell && size-limit"
   },
   "funding": {
     "type": "tidelift",
@@ -84,7 +84,8 @@
   "lint-staged": {
     "*.md": "yaspeller",
     "*.js": "eslint --fix",
-    "*.ts": "eslint --fix"
+    "*.ts": "eslint --fix",
+    "package.json": "./test/version.js"
   },
   "husky": {
     "hooks": {
