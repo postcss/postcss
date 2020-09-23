@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.9
+* Replace prototype in PostCSS 7 nodes instead of recreating them.
+* Added missed `Transformer` to exported types (by Pierre-Marie Dartus).
+
 ## 8.0.8
 * Fix `8.0.7` regression on PostCSS 7 nodes converting (by Adam Wathan).
 
