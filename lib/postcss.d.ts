@@ -70,18 +70,85 @@ type CommentProcessor = (
 ) => Promise<void> | void
 
 interface Processors {
+  /**
+   * Will be called on `Root` node.
+   *
+   * Will be called again on node or children changes.
+   */
   Root?: RootProcessor
+
+  /**
+   * Will be called on `Root` node, when all children will be processed.
+   *
+   * Will be called again on node or children changes.
+   */
   RootExit?: RootProcessor
+
+  /**
+   * Will be called on all `Declaration` nodes after listeners
+   * for `Declaration` event.
+   *
+   * Will be called again on node or children changes.
+   */
   Declaration?: DeclarationProcessor | { [prop: string]: DeclarationProcessor }
+
+  /**
+   * Will be called on all `Declaration` nodes.
+   *
+   * Will be called again on node or children changes.
+   */
   DeclarationExit?:
     | DeclarationProcessor
     | { [prop: string]: DeclarationProcessor }
+
+  /**
+   * Will be called on all `Rule` nodes.
+   *
+   * Will be called again on node or children changes.
+   */
   Rule?: RuleProcessor
+
+  /**
+   * Will be called on all `Rule` nodes, when all children will be processed.
+   *
+   * Will be called again on node or children changes.
+   */
   RuleExit?: RuleProcessor
+
+  /**
+   * Will be called on all`AtRule` nodes.
+   *
+   * Will be called again on node or children changes.
+   */
   AtRule?: AtRuleProcessor | { [name: string]: AtRuleProcessor }
+
+  /**
+   * Will be called on all `AtRule` nodes, when all children will be processed.
+   *
+   * Will be called again on node or children changes.
+   */
   AtRuleExit?: AtRuleProcessor | { [name: string]: AtRuleProcessor }
+
+  /**
+   * Will be called on all `Comment` nodes.
+   *
+   * Will be called again on node or children changes.
+   */
   Comment?: CommentProcessor
+
+  /**
+   * Will be called on all `Comment` nodes after listeners
+   * for `Comment` event.
+   *
+   * Will be called again on node or children changes.
+   */
   CommentExit?: CommentProcessor
+
+  /**
+   * Will be called when all other listeners processed the document.
+   *
+   * This listener will not be called again.
+   */
   Exit?: RootProcessor
 }
 
