@@ -94,7 +94,7 @@ export interface PluginCreator<PluginOptions> {
   postcss: true
 }
 
-interface Transformer extends TransformCallback {
+export interface Transformer extends TransformCallback {
   postcssPlugin: string
   postcssVersion: string
 }

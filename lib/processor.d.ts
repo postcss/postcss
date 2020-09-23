@@ -2,6 +2,7 @@ import {
   AcceptedPlugin,
   Plugin,
   ProcessOptions,
+  Transformer,
   TransformCallback
 } from './postcss.js'
 import LazyResult from './lazy-result.js'
