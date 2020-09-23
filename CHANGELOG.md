@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.8
+* Fix `8.0.7` regression on PostCSS 7 nodes converting.
+
 ## 8.0.7
 * Fixed compatibility issue with mixin AST with PostCSS 7 and 8 nodes.
 * Added migration guide translation to Chinese to the warning.
