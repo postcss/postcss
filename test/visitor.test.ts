@@ -595,10 +595,10 @@ it('works correctly with nodes changes', () => {
   ).toEqual('a{ z-index: 1; color: black }')
 })
 
-it('throws on Promise in sync RootExit', async () => {
+it('throws on Promise in sync Exit', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
-    async RootExit () {
+    async Exit () {
       await delay(10)
     }
   }
@@ -606,37 +606,6 @@ it('throws on Promise in sync RootExit', async () => {
   expect(() => {
     postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
   }).toThrow(/work with async plugins/)
-})
-
-it('throws error from sync RootExit', async () => {
-  let plugin: Plugin = {
-    postcssPlugin: 'test',
-    RootExit () {
-      throw new Error('test rootExit error')
-    }
-  }
-
-  expect(() => {
-    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
-  }).toThrow(/test rootExit error/)
-})
-
-it('throws error from async RootExit', async () => {
-  let plugin: Plugin = {
-    postcssPlugin: 'test',
-    async RootExit () {
-      throw new Error('test rootExit error')
-    }
-  }
-
-  let error
-  try {
-    await postcss([plugin]).process('a{ color: black }', { from: 'a.css' })
-  } catch (e) {
-    error = e
-  }
-
-  expect(error.message).toEqual('test rootExit error')
 })
 
 let visits: [string, string][] = []
@@ -671,6 +640,9 @@ let visitor: Plugin = {
   },
   CommentExit (i) {
     visits.push(['CommentExit', i.text])
+  },
+  Exit (i) {
+    visits.push(['Exit', `${i.nodes.length}`])
   }
 }
 
@@ -769,14 +741,15 @@ for (let type of ['sync', 'async']) {
         ['DeclarationExit', 'color: blue'],
         ['RuleExit', 'a'],
         ['AtRuleExit', 'media'],
-        ['RootExit', '1']
+        ['RootExit', '1'],
+        ['Exit', '1']
       ])
     )
   })
 
   it(`walks ${type} during transformations`, async () => {
     visits = []
-    let processor = postcss([
+    let result = postcss([
       visitor,
       redToGreen,
       greenToBlue,
@@ -806,10 +779,9 @@ for (let type of ['sync', 'async']) {
     )
     let output
     if (type === 'sync') {
-      output = processor.css
-    } else {
-      let result = await processor
       output = result.css
+    } else {
+      output = (await result).css
     }
     expect(output).toEqual(
       `a {
@@ -846,6 +818,7 @@ for (let type of ['sync', 'async']) {
         ['DeclarationExit', 'background: red'],
         ['RuleExit', '.bar'],
         ['AtRule', 'apply-mixin'],
+        ['RootExit', '4'],
         ['Declaration', 'color: green'],
         ['DeclarationExit', 'color: blue'],
         ['AtRule', 'media'],
@@ -858,15 +831,18 @@ for (let type of ['sync', 'async']) {
         ['Declaration', 'color: red'],
         ['DeclarationExit', 'color: green'],
         ['RuleExit', 'b'],
+        ['RootExit', '4'],
         ['Declaration', 'color: blue'],
         ['DeclarationExit', 'color: blue'],
         ['Declaration', 'color: blue'],
         ['DeclarationExit', 'color: blue'],
         ['Declaration', 'color: green'],
         ['DeclarationExit', 'color: blue'],
+        ['RootExit', '4'],
         ['Declaration', 'color: blue'],
         ['DeclarationExit', 'color: blue'],
-        ['RootExit', '4']
+        ['RootExit', '4'],
+        ['Exit', '4']
       ])
     )
   })
@@ -907,16 +883,16 @@ for (let type of ['sync', 'async']) {
       }
     }
 
-    let processor = postcss([
+    let result = postcss([
       scanner
     ]).process(
       `@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }`,
       { from: 'a.css' }
     )
     if (type === 'sync') {
-      processor.css
+      result.css
     } else {
-      await processor
+      await result
     }
 
     expect(filteredDecls).toEqual(['COLOR'])
@@ -928,6 +904,7 @@ for (let type of ['sync', 'async']) {
   })
 
   it(`has ${type} Exit listener`, async () => {
+    let rootExit = 0
     let exit = 0
 
     let plugin: Plugin = {
@@ -935,21 +912,50 @@ for (let type of ['sync', 'async']) {
       Rule (rule) {
         rule.remove()
       },
-      RootExit (root, { result }) {
-        expect(basename(result.opts.from ?? '')).toEqual('a.css')
+      RootExit () {
+        rootExit += 1
+      },
+      Exit () {
         exit += 1
       }
     }
 
-    let processor = postcss([plugin]).process('a{}', { from: 'a.css' })
+    let result = postcss([plugin]).process('a{}', { from: 'a.css' })
 
     if (type === 'sync') {
-      processor.css
+      result.css
     } else {
-      await processor
+      await result
     }
 
+    expect(rootExit).toBe(2)
     expect(exit).toBe(1)
+  })
+
+  it('throws error from async RootExit', async () => {
+    let plugin: Plugin = {
+      postcssPlugin: 'test',
+      Exit () {
+        throw new Error('test Exit error')
+      }
+    }
+
+    let result = postcss([plugin]).process('a{ color: black }', {
+      from: 'a.css'
+    })
+
+    let error
+    try {
+      if (type === 'sync') {
+        result.css
+      } else {
+        await result
+      }
+    } catch (e) {
+      error = e
+    }
+
+    expect(error.message).toEqual('test Exit error')
   })
 }
 
@@ -965,6 +971,7 @@ it('rescan Root in another processor', () => {
     ['Declaration', 'z-index: 1'],
     ['DeclarationExit', 'z-index: 1'],
     ['RuleExit', 'a'],
-    ['RootExit', '1']
+    ['RootExit', '1'],
+    ['Exit', '1']
   ])
 })
