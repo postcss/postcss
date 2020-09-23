@@ -71,9 +71,7 @@ type CommentProcessor = (
 
 interface Processors {
   /**
-   * Will be called on `Root` node.
-   *
-   * Will be called again on node or children changes.
+   * Will be called on `Root` node once.
    */
   Root?: RootProcessor
 

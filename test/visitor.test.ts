@@ -819,8 +819,10 @@ for (let type of ['sync', 'async']) {
         ['RuleExit', '.bar'],
         ['AtRule', 'apply-mixin'],
         ['RootExit', '4'],
+        ['Rule', 'a'],
         ['Declaration', 'color: green'],
         ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'a'],
         ['AtRule', 'media'],
         ['Rule', '.first'],
         ['Declaration', 'color: green'],
@@ -832,15 +834,25 @@ for (let type of ['sync', 'async']) {
         ['DeclarationExit', 'color: green'],
         ['RuleExit', 'b'],
         ['RootExit', '4'],
+        ['Rule', 'a'],
         ['Declaration', 'color: blue'],
         ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'a'],
+        ['AtRule', 'media'],
+        ['Rule', '.first'],
         ['Declaration', 'color: blue'],
         ['DeclarationExit', 'color: blue'],
+        ['RuleExit', '.first'],
+        ['AtRuleExit', 'media'],
+        ['Rule', 'b'],
         ['Declaration', 'color: green'],
         ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'b'],
         ['RootExit', '4'],
+        ['Rule', 'b'],
         ['Declaration', 'color: blue'],
         ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'b'],
         ['RootExit', '4'],
         ['Exit', '4']
       ])
@@ -971,6 +983,42 @@ it('rescan Root in another processor', () => {
     ['Declaration', 'z-index: 1'],
     ['DeclarationExit', 'z-index: 1'],
     ['RuleExit', 'a'],
+    ['RootExit', '1'],
+    ['Exit', '1']
+  ])
+})
+
+it('marks cleaned nodes as dirty on moving', () => {
+  let mover: Plugin = {
+    postcssPlugin: 'mover',
+    Rule (rule) {
+      if (rule.selector === 'b') {
+        let a = rule.prev()
+        if (a) rule.append(a)
+      }
+    }
+  }
+
+  visits = []
+  postcss([mover, visitor]).process('a { color: black } b { }', {
+    from: 'a.css'
+  }).root
+
+  expect(visits).toEqual([
+    ['Root', '2'],
+    ['Rule', 'a'],
+    ['Declaration', 'color: black'],
+    ['DeclarationExit', 'color: black'],
+    ['RuleExit', 'a'],
+    ['Rule', 'b'],
+    ['Rule', 'a'],
+    ['Declaration', 'color: black'],
+    ['DeclarationExit', 'color: black'],
+    ['RuleExit', 'a'],
+    ['RuleExit', 'b'],
+    ['RootExit', '1'],
+    ['Rule', 'b'],
+    ['RuleExit', 'b'],
     ['RootExit', '1'],
     ['Exit', '1']
   ])
