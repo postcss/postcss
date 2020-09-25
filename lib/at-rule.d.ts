@@ -46,7 +46,7 @@ export interface AtRuleProps extends ContainerProps {
  * Represents an at-rule.
  *
  * ```js
- * Root (root, { AtRule }) {
+ * Once (root, { AtRule }) {
  *   let media = new AtRule({ name: 'media', params: 'print' })
  *   media.append(…)
  *   root.append(media)

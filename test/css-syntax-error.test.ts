@@ -219,7 +219,7 @@ it('set source plugin', () => {
 it('set source plugin automatically', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test-plugin',
-    Root (css) {
+    Once (css) {
       if (css.first) {
         throw css.first.error('Error')
       }
@@ -238,7 +238,7 @@ it('set source plugin automatically', () => {
 it('set plugin automatically in async', () => {
   let plugin: Plugin = {
     postcssPlugin: 'async-plugin',
-    Root (css) {
+    Once (css) {
       return new Promise((resolve, reject) => {
         if (css.first) {
           reject(css.first.error('Error'))

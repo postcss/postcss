@@ -74,8 +74,8 @@ It is better even not to import `postcss`.
 - const { list, decl } = require('postcss')
   module.exports = opts => {
     postcssPlugin: 'postcss-name',
--   Root (root) {
-+   Root (root, { list, decl }) {
+-   Once (root) {
++   Once (root, { list, decl }) {
       // Plugin code
     }
   }
@@ -91,7 +91,7 @@ Plugin name will be used in error messages and warnings.
 module.exports = opts => {
   return {
     postcssPlugin: 'postcss-name',
-    Root (root) {
+    Once (root) {
       // Plugin code
     }
   }
@@ -139,7 +139,7 @@ Subscribing for specific node type is much faster, than calling `walk*` method:
 ```diff
   module.exports = {
     postcssPlugin: 'postcss-example',
--   Root (root) {
+-   Once (root) {
 -     root.walkDecls(decl => {
 -       // Slow
 -     })

@@ -4,7 +4,7 @@ export type List = {
    * `border-radius`, and other shorthand properties).
    *
    * ```js
-   * Root (root, { list }) {
+   * Once (root, { list }) {
    *   list.space('1px calc(10% + 1px)') //=> ['1px', 'calc(10% + 1px)']
    * }
    * ```
@@ -19,7 +19,7 @@ export type List = {
    * and `background` properties).
    *
    * ```js
-   * Root (root, { list }) {
+   * Once (root, { list }) {
    *   list.comma('black, linear-gradient(white, black)')
    *   //=> ['black', 'linear-gradient(white, black)']
    * }

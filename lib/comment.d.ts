@@ -26,7 +26,7 @@ export interface CommentProps extends NodeProps {
  * Represents a comment between declarations or statements (rule and at-rules).
  *
  * ```js
- * Root (root, { Comment }) {
+ * Once (root, { Comment }) {
  *   let note = new Comment({ text: 'Note: …' })
  *   root.append(note)
  * }

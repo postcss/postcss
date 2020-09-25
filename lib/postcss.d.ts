@@ -73,12 +73,24 @@ interface Processors {
   /**
    * Will be called on `Root` node once.
    */
+  Once?: RootProcessor
+
+  /**
+   * Will be called on `Root` node once, when all children will be processed.
+   */
+  OnceExit?: RootProcessor
+
+  /**
+   * Will be called on `Root` node.
+   *
+   * Will be called again on children changes.
+   */
   Root?: RootProcessor
 
   /**
    * Will be called on `Root` node, when all children will be processed.
    *
-   * Will be called again on node or children changes.
+   * Will be called again on children changes.
    */
   RootExit?: RootProcessor
 

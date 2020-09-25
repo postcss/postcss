@@ -67,7 +67,7 @@ it('warn() attaches a warning to the result object', async () => {
   let warning: any
   let warner: Plugin = {
     postcssPlugin: 'warner',
-    Root (css, { result }) {
+    Once (css, { result }) {
       warning = css.first?.warn(result, 'FIRST!')
     }
   }

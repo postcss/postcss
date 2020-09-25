@@ -36,7 +36,7 @@ export interface DeclarationProps {
  * Represents a CSS declaration.
  *
  * ```js
- * Root (root, { Declaration }) {
+ * Once (root, { Declaration }) {
  *   let color = new Declaration({ prop: 'color', value: 'black' })
  *   root.append(color)
  * }

@@ -27,7 +27,7 @@ function addIndex (array: any[][]) {
 
 let replaceColorGreenClassic: Plugin = {
   postcssPlugin: 'replace-color',
-  Root (root) {
+  Once (root) {
     root.walkDecls('color', decl => {
       decl.value = 'green'
     })
@@ -179,7 +179,7 @@ let postcssAlias = createPlugin(() => {
   let aliases: any = {}
   return {
     postcssPlugin: 'postcss-alias',
-    Root (root) {
+    Once (root) {
       root.walkAtRules('alias', rule => {
         rule.walkDecls(decl => {
           aliases[decl.prop] = decl.value
@@ -245,7 +245,7 @@ it('wraps node to proxies', () => {
   let root: Root | undefined
   postcss({
     postcssPlugin: 'proxyCatcher',
-    Root (node) {
+    Once (node) {
       root = node
     },
     Rule (node) {
@@ -516,15 +516,15 @@ it('passes helpers', async () => {
 
   let syncPlugin: Plugin = {
     postcssPlugin: 'syncPlugin',
-    Root: check,
+    Once: check,
     Rule: check,
     RuleExit: check,
-    RootExit: check
+    OnceExit: check
   }
 
   let asyncPlugin: Plugin = {
     postcssPlugin: 'syncPlugin',
-    async Root (node, helpers) {
+    async Once (node, helpers) {
       await delay(1)
       check(node, helpers)
     },
@@ -532,7 +532,7 @@ it('passes helpers', async () => {
       await delay(1)
       check(node, helpers)
     },
-    async RootExit (node, helpers) {
+    async OnceExit (node, helpers) {
       await delay(1)
       check(node, helpers)
     }
@@ -562,7 +562,7 @@ it('allows runtime listeners', () => {
     postcssPlugin: 'test',
     prepare (result) {
       return {
-        Root () {
+        Once () {
           root = true
         },
         Rule (rule) {
@@ -598,7 +598,7 @@ it('works correctly with nodes changes', () => {
 it('throws on Promise in sync Exit', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
-    async Exit () {
+    async OnceExit () {
       await delay(10)
     }
   }
@@ -611,6 +611,9 @@ it('throws on Promise in sync Exit', async () => {
 let visits: [string, string][] = []
 let visitor: Plugin = {
   postcssPlugin: 'visitor',
+  Once (i) {
+    visits.push(['Once', `${i.nodes.length}`])
+  },
   Root (i) {
     visits.push(['Root', `${i.nodes.length}`])
   },
@@ -641,8 +644,8 @@ let visitor: Plugin = {
   CommentExit (i) {
     visits.push(['CommentExit', i.text])
   },
-  Exit (i) {
-    visits.push(['Exit', `${i.nodes.length}`])
+  OnceExit (i) {
+    visits.push(['OnceExit', `${i.nodes.length}`])
   }
 }
 
@@ -726,6 +729,7 @@ for (let type of ['sync', 'async']) {
     }
     expect(addIndex(visits)).toEqual(
       addIndex([
+        ['Once', '1'],
         ['Root', '1'],
         ['AtRule', 'media'],
         ['Rule', 'body'],
@@ -742,7 +746,7 @@ for (let type of ['sync', 'async']) {
         ['RuleExit', 'a'],
         ['AtRuleExit', 'media'],
         ['RootExit', '1'],
-        ['Exit', '1']
+        ['OnceExit', '1']
       ])
     )
   })
@@ -758,23 +762,23 @@ for (let type of ['sync', 'async']) {
       insertFirst
     ]).process(
       `.first {
-        color: red;
-      }
-      @define-mixin {
-        b {
           color: red;
         }
-      }
-      a {
-        color: red;
-      }
-      @media (screen) {
-        @insert-first;
-      }
-      .foo {
-        background: red;
-      }
-      @apply-mixin;`,
+        @define-mixin {
+          b {
+            color: red;
+          }
+        }
+        a {
+          color: red;
+        }
+        @media (screen) {
+          @insert-first;
+        }
+        .foo {
+          background: red;
+        }
+        @apply-mixin;`,
       { from: 'a.css' }
     )
     let output
@@ -785,21 +789,22 @@ for (let type of ['sync', 'async']) {
     }
     expect(output).toEqual(
       `a {
-        color: blue;
-      }
-      @media (screen) {.first {
-        color: blue;
-      }
-      }
-      .bar {
-        background: red;
-      }
-      b {
           color: blue;
-        }`
+        }
+        @media (screen) {.first {
+          color: blue;
+        }
+        }
+        .bar {
+          background: red;
+        }
+        b {
+            color: blue;
+          }`
     )
     expect(addIndex(visits)).toEqual(
       addIndex([
+        ['Once', '6'],
         ['Root', '6'],
         ['Rule', '.first'],
         ['Declaration', 'color: red'],
@@ -819,6 +824,7 @@ for (let type of ['sync', 'async']) {
         ['RuleExit', '.bar'],
         ['AtRule', 'apply-mixin'],
         ['RootExit', '4'],
+        ['Root', '4'],
         ['Rule', 'a'],
         ['Declaration', 'color: green'],
         ['DeclarationExit', 'color: blue'],
@@ -834,6 +840,7 @@ for (let type of ['sync', 'async']) {
         ['DeclarationExit', 'color: green'],
         ['RuleExit', 'b'],
         ['RootExit', '4'],
+        ['Root', '4'],
         ['Rule', 'a'],
         ['Declaration', 'color: blue'],
         ['DeclarationExit', 'color: blue'],
@@ -849,12 +856,13 @@ for (let type of ['sync', 'async']) {
         ['DeclarationExit', 'color: blue'],
         ['RuleExit', 'b'],
         ['RootExit', '4'],
+        ['Root', '4'],
         ['Rule', 'b'],
         ['Declaration', 'color: blue'],
         ['DeclarationExit', 'color: blue'],
         ['RuleExit', 'b'],
         ['RootExit', '4'],
-        ['Exit', '4']
+        ['OnceExit', '4']
       ])
     )
   })
@@ -915,9 +923,9 @@ for (let type of ['sync', 'async']) {
     expect(allAtRules).toEqual(['charset', 'media'])
   })
 
-  it(`has ${type} Exit listener`, async () => {
+  it(`has ${type} OnceExit listener`, async () => {
     let rootExit = 0
-    let exit = 0
+    let OnceExit = 0
 
     let plugin: Plugin = {
       postcssPlugin: 'test',
@@ -927,8 +935,8 @@ for (let type of ['sync', 'async']) {
       RootExit () {
         rootExit += 1
       },
-      Exit () {
-        exit += 1
+      OnceExit () {
+        OnceExit += 1
       }
     }
 
@@ -941,13 +949,13 @@ for (let type of ['sync', 'async']) {
     }
 
     expect(rootExit).toBe(2)
-    expect(exit).toBe(1)
+    expect(OnceExit).toBe(1)
   })
 
-  it('throws error from async RootExit', async () => {
+  it('throws error from async OnceExit', async () => {
     let plugin: Plugin = {
       postcssPlugin: 'test',
-      Exit () {
+      OnceExit () {
         throw new Error('test Exit error')
       }
     }
@@ -978,13 +986,14 @@ it('rescan Root in another processor', () => {
   postcss([visitor]).process(root, { from: 'a.css' }).root
 
   expect(visits).toEqual([
+    ['Once', '1'],
     ['Root', '1'],
     ['Rule', 'a'],
     ['Declaration', 'z-index: 1'],
     ['DeclarationExit', 'z-index: 1'],
     ['RuleExit', 'a'],
     ['RootExit', '1'],
-    ['Exit', '1']
+    ['OnceExit', '1']
   ])
 })
 
@@ -1005,6 +1014,7 @@ it('marks cleaned nodes as dirty on moving', () => {
   }).root
 
   expect(visits).toEqual([
+    ['Once', '2'],
     ['Root', '2'],
     ['Rule', 'a'],
     ['Declaration', 'color: black'],
@@ -1017,9 +1027,10 @@ it('marks cleaned nodes as dirty on moving', () => {
     ['RuleExit', 'a'],
     ['RuleExit', 'b'],
     ['RootExit', '1'],
+    ['Root', '1'],
     ['Rule', 'b'],
     ['RuleExit', 'b'],
     ['RootExit', '1'],
-    ['Exit', '1']
+    ['OnceExit', '1']
   ])
 })

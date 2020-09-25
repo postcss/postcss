@@ -46,7 +46,7 @@ export interface RuleProps extends ContainerProps {
  * Represents a CSS rule: a selector followed by a declaration block.
  *
  * ```js
- * Root (root, { Rule }) {
+ * Once (root, { Rule }) {
  *   let a = new Rule({ selector: 'a' })
  *   a.append(…)
  *   root.append(a)

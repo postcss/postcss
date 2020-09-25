@@ -30,13 +30,13 @@ There are many fields where writing new PostCSS plugin will help your work:
   queries for dark/light theme switcher.
 * **Preventing popular mistakes:** “if an error happened twice,
   it will happen again.” PostCSS plugin can check your source code for popular
-  mistakes and save your time for unnecessary debugging. The best way to do it is
-  to [write new Stylelint plugin] (Stylelint uses PostCSS inside).
-* **Increasing code maintainability:** [CSS Modules] or [`postcss-autoreset`] are
-  great example how PostCSS can increase code maintainability by isolation.
+  mistakes and save your time for unnecessary debugging. The best way to do it
+  is to [write new Stylelint plugin] (Stylelint uses PostCSS inside).
+* **Increasing code maintainability:** [CSS Modules] or [`postcss-autoreset`]
+  are great example how PostCSS can increase code maintainability by isolation.
 * **Polyfills:** we already have a lot polyfills for CSS drafts
-  in [`postcss-preset-env`]. If you find a new draft, you can add a new plugin and
-  send it to this preset.
+  in [`postcss-preset-env`]. If you find a new draft, you can add a new plugin
+  and send it to this preset.
 * **New CSS syntax:** we recommend avoiding adding new syntax to CSS.
   If you want to add a new feature, it is always better to write a CSS draft
   proposal, send it to [CSSWG] and then implement polyfill.
@@ -80,8 +80,8 @@ For public plugins:
 2. Create a repository on GitHub or GitLab.
 3. Publish your code there.
 
-You can also use [our Sharec config] to keep the best practices up to date. Every
-time when you will update the config, it will update development configs
+You can also use [our Sharec config] to keep the best practices up to date.
+Every time when you will update the config, it will update development configs
 and development tools.
 
 ```js
@@ -131,7 +131,7 @@ You can find all nodes with specific types by adding method to plugin object:
 module.exports = (opts = {}) => {
   return {
     postcssPlugin: 'PLUGIN NAME',
-    Root (root) {
+    Once (root) {
       // Calls once per file, since every file has single Root
     },
     Declaration (decl) {
@@ -189,9 +189,9 @@ if (decl.value.includes('gradient(')) {
 }
 ```
 
-There two types or listeners: enter and exit. `Root`, `AtRule` or `Rule`
-will be called before processing children. `RootExit`, `AtRuleExit`,
-and `RuleExit` after processing all children inside node.
+There two types or listeners: enter and exit. `Once`, `Root`, `AtRule`,
+and `Rule` will be called before processing children. `OnceExit`, `RootExit`,
+`AtRuleExit`, and `RuleExit` after processing all children inside node.
 
 You may want to re-use some data between listeners. You can do with
 runtime-defined listeners:
@@ -208,7 +208,7 @@ module.exports = (opts = {}) => {
             variables[node.prop] = node.value
           }
         },
-        RootExit () {
+        OnceExit () {
           console.log(variables)
         }
       }
@@ -225,11 +225,13 @@ to use [Browserslist] to get declaration properties.
 
 ## Step 4: Change nodes
 
-When you find the right nodes, you will need to change them or to insert/delete other nodes around.
+When you find the right nodes, you will need to change them or to insert/delete
+other nodes around.
 
 PostCSS node has a DOM-like API to transform AST. Check out our [API docs].
 Nodes has methods to travel around (like [`Node#next`] or [`Node#parent`]),
-look to children (like [`Container#some`]), remove a node or add a new node inside.
+look to children (like [`Container#some`]), remove a node
+or add a new node inside.
 
 Plugin’s methods will receive node creators in second argument:
 
@@ -244,12 +246,17 @@ Plugin’s methods will receive node creators in second argument:
 If you added new nodes, it is important to copy [`Node#source`] to generate
 correct source maps.
 
-Plugins will re-visit all nodes, which you changed or added:
+Plugins will re-visit all nodes, which you changed or added. If you will change
+any children, plugin will re-visit parent as well. Only `Once` and
+`OnceExit` will not be called again.
 
 ```js
 const plugin = () => {
   return {
     postcssPlugin: 'to-red',
+    Rule (rule) {
+      console.log(rule.toString())
+    },
     Declaration (decl) {
       console.log(decl.toString())
       decl.value = 'red'
@@ -259,7 +266,9 @@ const plugin = () => {
 plugin.postcss = true
 
 await postcss([plugin]).process('a { color: black }', { from })
+// => a { color: black }
 // => color: black
+// => a { color: red }
 // => color: red
 ```
 

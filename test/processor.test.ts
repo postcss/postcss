@@ -343,7 +343,7 @@ it('remembers errors', async () => {
   let calls = 0
   let plugin: Plugin = {
     postcssPlugin: 'plugin',
-    Root () {
+    Once () {
       calls += 1
       throw new Error('test')
     }
