@@ -581,7 +581,6 @@ it('allows runtime listeners', () => {
 })
 
 it('works correctly with nodes changes', () => {
-  let root = false
   let plugin: Plugin = {
     postcssPlugin: 'test',
     Rule (rule) {
@@ -593,19 +592,6 @@ it('works correctly with nodes changes', () => {
   expect(
     postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
   ).toEqual('a{ z-index: 1; color: black }')
-})
-
-it('throws on Promise in sync Exit', async () => {
-  let plugin: Plugin = {
-    postcssPlugin: 'test',
-    async OnceExit () {
-      await delay(10)
-    }
-  }
-
-  expect(() => {
-    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
-  }).toThrow(/work with async plugins/)
 })
 
 let visits: [string, string][] = []
@@ -951,33 +937,29 @@ for (let type of ['sync', 'async']) {
     expect(rootExit).toBe(2)
     expect(OnceExit).toBe(1)
   })
-
-  it('throws error from async OnceExit', async () => {
-    let plugin: Plugin = {
-      postcssPlugin: 'test',
-      OnceExit () {
-        throw new Error('test Exit error')
-      }
-    }
-
-    let result = postcss([plugin]).process('a{ color: black }', {
-      from: 'a.css'
-    })
-
-    let error
-    try {
-      if (type === 'sync') {
-        result.css
-      } else {
-        await result
-      }
-    } catch (e) {
-      error = e
-    }
-
-    expect(error.message).toEqual('test Exit error')
-  })
 }
+
+it('throws error from async OnceExit', async () => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+    OnceExit () {
+      throw new Error('test Exit error')
+    }
+  }
+
+  let result = postcss([plugin]).process('a{ color: black }', {
+    from: 'a.css'
+  })
+
+  let error
+  try {
+    await result
+  } catch (e) {
+    error = e
+  }
+
+  expect(error.message).toEqual('test Exit error')
+})
 
 it('rescan Root in another processor', () => {
   let root = postcss([visitor]).process('a{z-index:1}', { from: 'a.css' }).root
