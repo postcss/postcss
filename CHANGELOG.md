@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.1 “Duke Gemory”
+* Added `Once` and `OnceExit` events.
+* Fixed `Root` and `RootExit` events re-visiting.
+* Fixed node re-visiting on deep children changes.
+* Added docs for visitor API events.
+
 ## 8.0.9
 * Replace prototype in PostCSS 7 nodes instead of recreating them.
 * Added missed `Transformer` to exported types (by Pierre-Marie Dartus).
