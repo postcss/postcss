@@ -343,6 +343,7 @@ loosely resembles the original.
 * [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
 * [`postcss-no-important`] delete declarations !important.
 * [`postcss-deep-scopable`] unified deep scoped style for Vue.js.
+* [`postcss-deadcss`] helps to find dead CSS in stylesheets.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -845,3 +846,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-clamp`]:                        https://github.com/polemius/postcss-clamp
 [`postcss-pseudo-is`]:                    https://github.com/IlyaUpyackovich/postcss-pseudo-is
 [`postcss-deep-scopable`]:                https://github.com/litt1e-p/postcss-deep-scopable
+[`postcss-deadcss`]:                https://github.com/DenyVeyten/postcss-deadcss
