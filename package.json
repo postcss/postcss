@@ -29,8 +29,8 @@
     "test": "jest-ci --coverage && eslint-ci . && ./test/version.js && check-dts && ./test/integration.js && npm run spell && size-limit"
   },
   "funding": {
-    "type": "tidelift",
-    "url": "https://tidelift.com/funding/github/npm/postcss"
+    "type": "opencollective",
+    "url": "https://opencollective.com/postcss/"
   },
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
