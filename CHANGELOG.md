@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.1.1
+* Update funding link.
+
 ## 8.1 “Duke Gemory”
 * Added `Once` and `OnceExit` events.
 * Fixed `Root` and `RootExit` events re-visiting.
