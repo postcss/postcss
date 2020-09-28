@@ -115,8 +115,9 @@ class Processor {
       if (i.postcss === true) {
         let plugin = i()
         throw new Error(
-          'PostCSS plugin ' + plugin.postcssPlugin +
-          ' requires PostCSS 8. Update PostCSS or downgrade this plugin.'
+          'PostCSS plugin ' + plugin.postcssPlugin + ' requires PostCSS 8.\n' +
+          'Migration guide for end-users:\n' +
+          'https://github.com/postcss/postcss/wiki/PostCSS-8-for-end-users'
         )
       }
 
@@ -136,8 +137,9 @@ class Processor {
         }
       } else if (typeof i === 'object' && i.postcssPlugin) {
         throw new Error(
-          'PostCSS plugin ' + i.postcssPlugin +
-          ' requires PostCSS 8. Update PostCSS or downgrade this plugin.'
+          'PostCSS plugin ' + i.postcssPlugin + ' requires PostCSS 8.\n' +
+          'Migration guide for end-users:\n' +
+          'https://github.com/postcss/postcss/wiki/PostCSS-8-for-end-users'
         )
       } else {
         throw new Error(i + ' is not a PostCSS plugin')
