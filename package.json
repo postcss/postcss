@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "7.0.34",
+  "version": "7.0.35",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": ">=6.0.0"
