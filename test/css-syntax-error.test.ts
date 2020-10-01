@@ -2,7 +2,7 @@ import { red, bold, magenta, yellow, gray, cyan } from 'colorette'
 import { pathToFileURL } from 'url'
 import stripAnsi from 'strip-ansi'
 import Concat from 'concat-with-sourcemaps'
-import path from 'path'
+import { join, resolve as pathResolve } from 'path'
 
 import postcss, {
   ProcessOptions,
@@ -127,25 +127,25 @@ it('misses position without source', () => {
 
 it('uses source map', () => {
   function urlOf (file: string) {
-    return pathToFileURL(path.join(__dirname, file)).toString()
+    return pathToFileURL(join(__dirname, file)).toString()
   }
 
-  let concat = new Concat(true, path.join(__dirname, 'build', 'all.css'))
+  let concat = new Concat(true, join(__dirname, 'build', 'all.css'))
   concat.add(urlOf('a.css'), 'a { }\n')
   concat.add(urlOf('b.css'), '\nb {\n')
 
   let error = parseError(concat.content.toString(), {
-    from: path.join(__dirname, 'build', 'all.css'),
+    from: join(__dirname, 'build', 'all.css'),
     map: { prev: concat.sourceMap }
   })
 
-  expect(error.file).toEqual(path.join(__dirname, 'b.css'))
+  expect(error.file).toEqual(join(__dirname, 'b.css'))
   expect(error.line).toEqual(2)
   expect(error.source).not.toBeDefined()
 
   expect(error.input).toEqual({
-    url: urlOf(path.join('build', 'all.css')),
-    file: path.join(__dirname, 'build', 'all.css'),
+    url: urlOf(join('build', 'all.css')),
+    file: join(__dirname, 'build', 'all.css'),
     line: 3,
     column: 1,
     source: 'a { }\n\nb {\n'
@@ -154,25 +154,25 @@ it('uses source map', () => {
 
 it('works with path in sources', () => {
   function pathOf (file: string) {
-    return path.join(__dirname, file)
+    return join(__dirname, file)
   }
 
-  let concat = new Concat(true, path.join(__dirname, 'build', 'all.css'))
+  let concat = new Concat(true, join(__dirname, 'build', 'all.css'))
   concat.add(pathOf('a.css'), 'a { }\n')
   concat.add(pathOf('b.css'), '\nb {\n')
 
   let error = parseError(concat.content.toString(), {
-    from: path.join(__dirname, 'build', 'all.css'),
+    from: join(__dirname, 'build', 'all.css'),
     map: { prev: concat.sourceMap }
   })
 
-  expect(error.file).toEqual(path.join(__dirname, 'b.css'))
+  expect(error.file).toEqual(join(__dirname, 'b.css'))
   expect(error.line).toEqual(2)
   expect(error.source).not.toBeDefined()
 
   expect(error.input).toEqual({
-    url: pathToFileURL(pathOf(path.join('build', 'all.css'))).toString(),
-    file: path.join(__dirname, 'build', 'all.css'),
+    url: pathToFileURL(pathOf(join('build', 'all.css'))).toString(),
+    file: join(__dirname, 'build', 'all.css'),
     line: 3,
     column: 1,
     source: 'a { }\n\nb {\n'
@@ -204,7 +204,7 @@ it('does not uses wrong source map', () => {
       }
     }
   })
-  expect(error.file).toEqual(path.resolve('build/all.css'))
+  expect(error.file).toEqual(pathResolve('build/all.css'))
 })
 
 it('set source plugin', () => {

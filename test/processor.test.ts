@@ -1,4 +1,4 @@
-import path from 'path'
+import { resolve as pathResolve } from 'path'
 
 import postcss, { Plugin, Result, Node, Root, parse } from '../lib/postcss.js'
 import LazyResult from '../lib/lazy-result.js'
@@ -137,7 +137,7 @@ it('throws with file name', () => {
     }
   }
 
-  expect(error.file).toEqual(path.resolve('a.css'))
+  expect(error.file).toEqual(pathResolve('a.css'))
   expect(error.message).toMatch(/a.css:1:1: Unclosed block$/)
 })
 
