@@ -1,5 +1,5 @@
+import postcss, { Root } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
-import postcss, { Root, TransformCallback } from '../lib/postcss.js'
 
 afterEach(() => {
   jest.resetAllMocks()

@@ -1,6 +1,6 @@
 import { SourceMapConsumer, SourceMapGenerator } from 'source-map'
 import { removeSync, outputFileSync } from 'fs-extra'
-import { join, resolve, sep } from 'path'
+import { join, resolve } from 'path'
 import { existsSync } from 'fs'
 
 import postcss, { SourceMap, Rule, Root } from '../lib/postcss.js'
