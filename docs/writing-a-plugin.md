@@ -142,6 +142,8 @@ module.exports = (opts = {}) => {
 module.exports.postcss = true
 ```
 
+Here is the full list of [plugin’s events](https://postcss.org/api/#plugin).
+
 If you need declaration or at-rule with specific names,
 you can use quick search:
 
