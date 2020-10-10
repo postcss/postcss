@@ -191,37 +191,6 @@ if (decl.value.includes('gradient(')) {
 }
 ```
 
-Also you can use `Symbol()` to store some meta information, to make plugin faster, more efficient and well tested. For example, mark rule as `skipped`, to prevent unnecessary tasks and add counter for test `skipped` is working correctly:
-
-```js
-module.exports = (opts = {}) => {
-  let rule = decl.parent;
-
-  let skipped = Symbol('isSkipped')
-  let counter = Symbol('skippedCounter')
-
-  function makeRuleOverflowTouch(decl) {
-    rule[counter] = Number.isInteger(rule[counter]) ? rule[counter] : 0;
-
-    if (!rule[skipped]) {
-      // do some work
-      rule[skipped] = true
-      rule[counter]++
-    }
-  }
-
-  return {
-    postcssPlugin: 'postcss-momentum-scrolling',
-    Declaration: {
-      'overflow': decl => makeRuleOverflowTouch(decl),
-      'overflow-x': decl => makeRuleOverflowTouch(decl),
-      'overflow-y': decl => makeRuleOverflowTouch(decl),
-    }
-  }
-}
-```
-Full [plugin](https://github.com/yunusga/postcss-momentum-scrolling/blob/master/index.js) and [test](https://github.com/yunusga/postcss-momentum-scrolling/blob/master/index.test.js#L15) example with `Symbol()` usage.
-
 There two types or listeners: enter and exit. `Once`, `Root`, `AtRule`,
 and `Rule` will be called before processing children. `OnceExit`, `RootExit`,
 `AtRuleExit`, and `RuleExit` after processing all children inside node.
@@ -303,6 +272,39 @@ await postcss([plugin]).process('a { color: black }', { from })
 // => color: black
 // => a { color: red }
 // => color: red
+```
+
+Since visitors will re-visit node on any changes, just adding children will
+cause an infinite loop. To prevent it, you need to check
+that you already processed this node:
+
+```js
+    Declaration: {
+      'will-change': decl => {
+        if (decl.parent.some(decl => decl.prop === 'transform')) {
+          decl.cloneBefore({ prop: 'transform', value: 'translate3d(0, 0, 0)' })
+        }
+      }
+    }
+```
+
+You can also use `Symbol` to mark processed nodes:
+
+```js
+const processed = Symbol('processed')
+
+const plugin = () => {
+  return {
+    postcssPlugin: 'example',
+    Rule (rule) {
+      if (!rule[processed]) {
+        process(rule)
+        rule[processed] = true
+      }
+    }
+  }
+}
+plugin.postcss = true
 ```
 
 Second argument also have `result` object to add warnings:
