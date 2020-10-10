@@ -191,6 +191,37 @@ if (decl.value.includes('gradient(')) {
 }
 ```
 
+Also you can use `Symbol()` to store some meta information, to make plugin faster, more efficient and well tested. For example, mark rule as `skipped`, to prevent unnecessary tasks and add counter for test `skipped` is working correctly:
+
+```js
+module.exports = (opts = {}) => {
+  let rule = decl.parent;
+
+  let skipped = Symbol('isSkipped')
+  let counter = Symbol('skippedCounter')
+
+  function makeRuleOverflowTouch(decl) {
+    rule[counter] = Number.isInteger(rule[counter]) ? rule[counter] : 0;
+
+    if (!rule[skipped]) {
+      // do some work
+      rule[skipped] = true
+      rule[counter]++
+    }
+  }
+
+  return {
+    postcssPlugin: 'postcss-momentum-scrolling',
+    Declaration: {
+      'overflow': decl => makeRuleOverflowTouch(decl),
+      'overflow-x': decl => makeRuleOverflowTouch(decl),
+      'overflow-y': decl => makeRuleOverflowTouch(decl),
+    }
+  }
+}
+```
+Full [plugin](https://github.com/yunusga/postcss-momentum-scrolling/blob/master/index.js) and [test](https://github.com/yunusga/postcss-momentum-scrolling/blob/master/index.test.js#L15) example with `Symbol()` usage.
+
 There two types or listeners: enter and exit. `Once`, `Root`, `AtRule`,
 and `Rule` will be called before processing children. `OnceExit`, `RootExit`,
 `AtRuleExit`, and `RuleExit` after processing all children inside node.
