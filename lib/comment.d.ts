@@ -14,7 +14,7 @@ interface CommentRaws {
   /**
    * The space symbols between the comment’s text.
    */
-  right?: boolean
+  right?: string
 }
 
 export interface CommentProps extends NodeProps {
