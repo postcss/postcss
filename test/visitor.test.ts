@@ -25,6 +25,50 @@ function addIndex (array: any[][]) {
   })
 }
 
+function buildVisitor (): [[string, string][], Plugin] {
+  let visits: [string, string][] = []
+  let visitor: Plugin = {
+    postcssPlugin: 'visitor',
+    Once (i) {
+      visits.push(['Once', `${i.nodes.length}`])
+    },
+    Root (i) {
+      visits.push(['Root', `${i.nodes.length}`])
+    },
+    RootExit (i) {
+      visits.push(['RootExit', `${i.nodes.length}`])
+    },
+    AtRule (i) {
+      visits.push(['AtRule', i.name])
+    },
+    AtRuleExit (i) {
+      visits.push(['AtRuleExit', i.name])
+    },
+    Rule (i) {
+      visits.push(['Rule', i.selector])
+    },
+    RuleExit (i) {
+      visits.push(['RuleExit', i.selector])
+    },
+    Declaration (i) {
+      visits.push(['Declaration', i.prop + ': ' + i.value])
+    },
+    DeclarationExit (i) {
+      visits.push(['DeclarationExit', i.prop + ': ' + i.value])
+    },
+    Comment (i) {
+      visits.push(['Comment', i.text])
+    },
+    CommentExit (i) {
+      visits.push(['CommentExit', i.text])
+    },
+    OnceExit (i) {
+      visits.push(['OnceExit', `${i.nodes.length}`])
+    }
+  }
+  return [visits, visitor]
+}
+
 let replaceColorGreenClassic: Plugin = {
   postcssPlugin: 'replace-color',
   Once (root) {
@@ -594,47 +638,6 @@ it('works correctly with nodes changes', () => {
   ).toEqual('a{ z-index: 1; color: black }')
 })
 
-let visits: [string, string][] = []
-let visitor: Plugin = {
-  postcssPlugin: 'visitor',
-  Once (i) {
-    visits.push(['Once', `${i.nodes.length}`])
-  },
-  Root (i) {
-    visits.push(['Root', `${i.nodes.length}`])
-  },
-  RootExit (i) {
-    visits.push(['RootExit', `${i.nodes.length}`])
-  },
-  AtRule (i) {
-    visits.push(['AtRule', i.name])
-  },
-  AtRuleExit (i) {
-    visits.push(['AtRuleExit', i.name])
-  },
-  Rule (i) {
-    visits.push(['Rule', i.selector])
-  },
-  RuleExit (i) {
-    visits.push(['RuleExit', i.selector])
-  },
-  Declaration (i) {
-    visits.push(['Declaration', i.prop + ': ' + i.value])
-  },
-  DeclarationExit (i) {
-    visits.push(['DeclarationExit', i.prop + ': ' + i.value])
-  },
-  Comment (i) {
-    visits.push(['Comment', i.text])
-  },
-  CommentExit (i) {
-    visits.push(['CommentExit', i.text])
-  },
-  OnceExit (i) {
-    visits.push(['OnceExit', `${i.nodes.length}`])
-  }
-}
-
 const redToGreen: Plugin = {
   postcssPlugin: 'redToGreen',
   Declaration: {
@@ -694,7 +697,7 @@ const insertFirst: Plugin = {
 
 for (let type of ['sync', 'async']) {
   it(`walks ${type} through tree`, async () => {
-    visits = []
+    let [visits, visitor] = buildVisitor()
     let processor = postcss([visitor]).process(
       `@media screen {
         body {
@@ -738,7 +741,7 @@ for (let type of ['sync', 'async']) {
   })
 
   it(`walks ${type} during transformations`, async () => {
-    visits = []
+    let [visits, visitor] = buildVisitor()
     let result = postcss([
       visitor,
       redToGreen,
@@ -962,9 +965,10 @@ it('throws error from async OnceExit', async () => {
 })
 
 it('rescan Root in another processor', () => {
+  let [visits, visitor] = buildVisitor()
   let root = postcss([visitor]).process('a{z-index:1}', { from: 'a.css' }).root
 
-  visits = []
+  visits.splice(0, visits.length)
   postcss([visitor]).process(root, { from: 'a.css' }).root
 
   expect(visits).toEqual([
@@ -990,7 +994,7 @@ it('marks cleaned nodes as dirty on moving', () => {
     }
   }
 
-  visits = []
+  let [visits, visitor] = buildVisitor()
   postcss([mover, visitor]).process('a { color: black } b { }', {
     from: 'a.css'
   }).root
