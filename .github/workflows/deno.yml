@@ -1,8 +1,9 @@
 name: Deno
 
 on:
-  create:
-    tags
+  push:
+    tags:
+      - "8.*"
 
 jobs:
   build:
