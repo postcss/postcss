@@ -37,6 +37,7 @@ jobs:
           deno test --unstable --allow-read deno/test/*
       
       - name: Commit the changes
+        run: |
           git add deno
           git commit -m "update code"
           git push
