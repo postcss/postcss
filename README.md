@@ -371,7 +371,7 @@ prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-
 
 ### Deno
 
-PostCSS has support for [Deno], the new JavaScript/TypeScript runtime:
+PostCSS has support for [Deno], the new JavaScript/TypeScript runtime.
 
 ```js
 import postcss from "https://deno.land/x/postcss/mod.js";

@@ -44,5 +44,5 @@ jobs:
           git add deno
           git commit -m "update code"
           git push
-          git tag deno/${{ github.ref }}
+          git tag deno/${{ github.event.release.tag_name }}
           git push --tags
