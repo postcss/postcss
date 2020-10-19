@@ -35,3 +35,9 @@ jobs:
           cp postcss/LICENSE deno/
 
           deno test --unstable --allow-read deno/test/*
+      
+      - name: Commit the changes
+          git add deno
+          git commit -m "update code"
+          git push
+
