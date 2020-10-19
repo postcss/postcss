@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "8.1.1",
+  "version": "8.1.2",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": "^10 || ^12 || >=14"
@@ -281,7 +281,8 @@
       "WebStorm",
       "YIQ",
       "TypeDoc",
-      "ES"
+      "ES",
+      "Deno"
     ]
   }
 }

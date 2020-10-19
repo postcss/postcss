@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.1.2
+* Fix API docs (by Arthur Petrie).
+* Improve plugin guide (by Yunus Gaziev).
+* Prepare code base for Deno support (by Oscar Otero).
+
 ## 8.1.1
 * Update funding link.
 
