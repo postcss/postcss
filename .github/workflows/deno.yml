@@ -38,7 +38,8 @@ jobs:
       
       - name: Commit the changes
         run: |
+          git config user.name deno-conversion
+          git config user.email github-actions@github.com
           git add deno
           git commit -m "update code"
           git push
-
