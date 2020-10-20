@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout postcss (deno)
-        uses: actions/checkout@v2
-        with:
-          ref: deno
-
       - name: Setup Deno environment
         uses: denolib/setup-deno@v2.2.0
         with:
           deno-version: v1.x
+
+      - name: Checkout postcss-deno
+        uses: actions/checkout@v2
+        with:
+          repository: postcss/postcss-deno
       
-      - name: Checkout postcss (master)
+      - name: Checkout postcss
         uses: actions/checkout@v2
         with:
           ref: master
@@ -48,5 +48,5 @@ jobs:
           git add deno
           git commit -m "update code"
           git push
-          git tag deno/${{ steps.get_version.outputs.VERSION }}
+          git tag ${{ steps.get_version.outputs.VERSION }}
           git push --tags
