@@ -19,13 +19,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: postcss/postcss-deno
-      
+          token: ${{ secrets.GitHub_PAT }}
+
       - name: Checkout postcss
         uses: actions/checkout@v2
         with:
           ref: master
           path: postcss
-      
+
       - name: Convert the code
         run: |
           rm -rf deno
