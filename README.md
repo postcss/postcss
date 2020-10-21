@@ -357,8 +357,8 @@ To apply PostCSS plugins to React Inline Styles, JSS, Radium
 and other [CSS-in-JS], you can use [`postcss-js`] and transforms style objects.
 
 ```js
-var postcss  = require('postcss-js')
-var prefixer = postcss.sync([ require('autoprefixer') ])
+const postcss  = require('postcss-js')
+const prefixer = postcss.sync([ require('autoprefixer') ])
 
 prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }
 ```
@@ -371,16 +371,17 @@ prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-
 
 ### Deno
 
-PostCSS also supports [Deno], the new JavaScript/TypeScript runtime.
+PostCSS also supports [Deno]:
 
 ```js
-import postcss from "https://deno.land/x/postcss/mod.js";
-import autoprefixer from "https://dev.jspm.io/autoprefixer";
+import postcss from 'https://deno.land/x/postcss/mod.js'
+import autoprefixer from 'https://dev.jspm.io/autoprefixer'
 
-const result = await postcss([autoprefixer]).process(css);
+const result = await postcss([autoprefixer]).process(css)
 ```
 
 [Deno]: https://deno.land/
+
 
 ### Runners
 
