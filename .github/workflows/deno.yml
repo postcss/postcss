@@ -21,7 +21,7 @@ jobs:
           repository: postcss/postcss-deno
           token: ${{ secrets.PAT }}
 
-      - name: Checkout postcss
+      - name: Checkout sources
         uses: actions/checkout@v2
         with:
           ref: master
