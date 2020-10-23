@@ -409,8 +409,10 @@ export interface Postcss {
 }
 
 export const stringify: Stringifier
-export const atRule: Postcss['atRule']
 export const parse: Parser
+
+export const comment: Postcss['comment']
+export const atRule: Postcss['atRule']
 export const decl: Postcss['decl']
 export const rule: Postcss['rule']
 export const root: Postcss['root']
