@@ -8,11 +8,13 @@
   "exports": {
     ".": {
       "require": "./lib/postcss.js",
-      "import": "./lib/postcss.mjs"
+      "import": "./lib/postcss.mjs",
+      "types": "./lib/postcss.d.ts"
     },
     "./": "./"
   },
-  "main": "lib/postcss.js",
+  "main": "./lib/postcss.js",
+  "types": "./lib/postcss.d.ts",
   "keywords": [
     "css",
     "postcss",
@@ -39,15 +41,15 @@
   "dependencies": {
     "colorette": "^1.2.1",
     "line-column": "^1.0.2",
-    "nanoid": "^3.1.12",
+    "nanoid": "^3.1.15",
     "source-map": "^0.6.1"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^41.0.1",
-    "@size-limit/preset-small-lib": "^4.6.0",
+    "@logux/eslint-config": "^41.0.2",
+    "@size-limit/preset-small-lib": "^4.6.2",
     "@types/fs-extra": "^9.0.2",
     "@types/jest": "^26.0.15",
-    "@types/node": "^14.14.0",
+    "@types/node": "^14.14.2",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "check-dts": "^0.3.3",
@@ -58,7 +60,7 @@
     "documentation-theme-light": "^1.1.1",
     "eslint": "^7.11.0",
     "eslint-ci": "^1.0.0",
-    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard": "^15.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-node": "^11.1.0",
@@ -66,16 +68,16 @@
     "eslint-plugin-prettierx": "^0.14.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.2",
     "eslint-plugin-unicorn": "^23.0.0",
     "fs-extra": "^9.0.1",
     "husky": "^4.3.0",
     "jest": "^26.6.0",
     "jest-ci": "^0.1.1",
     "lint-staged": "^10.4.2",
-    "nanodelay": "^1.0.4",
+    "nanodelay": "^1.0.6",
     "postcss-parser-tests": "^8.3.1",
-    "size-limit": "^4.6.0",
+    "size-limit": "^4.6.2",
     "strip-ansi": "^6.0.0",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3",
