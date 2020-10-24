@@ -2,7 +2,7 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 8.1.4
-* Fix TypeScript definition (by Arthur Petrie).
+* Fixed TypeScript definition (by Arthur Petrie).
 
 ## 8.1.3
 * Added `package.types`.
