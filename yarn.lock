@@ -8490,10 +8490,10 @@ postcss-ordered-values@^4.1.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-postcss-parser-tests@^8.3.1:
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-8.3.1.tgz#36f6bb31c398038760913baf6a17e1cb0e8e2f86"
-  integrity sha512-DzfZeU4WMr5+JbJPTGQwuLIT9NHG6DId1F8aYbnzZEmV4yHAD14Mb7Zhw86IaKyAt3hVdVIrU6MJNkwnWf3VDg==
+postcss-parser-tests@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/postcss-parser-tests/-/postcss-parser-tests-8.3.2.tgz#e51b23882db6951c9a4a60ed6df9d7a7608ce658"
+  integrity sha512-EXL/M4dVkboUryQ6gMFJh7duY6etrXQisZiDQuFdJtaDnYliYbZzD8CK4l3/K/0E/HHNkbJxe0PH5CJQUNdLOA==
   dependencies:
     ci-job-number "^1.2.2"
     colorette "^1.2.1"
