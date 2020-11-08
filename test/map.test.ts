@@ -570,9 +570,11 @@ it('uses absolute path on request', () => {
     to: '/dir/b.css',
     map: { inline: false, absolute: true }
   })
-  expect(result.map.toJSON().sources).toEqual([
-    `file://${parse(process.cwd()).root}dir/a.css`
-  ])
+  let root = '/'
+  if (process.platform === 'win32') {
+    root = '/' + parse(process.cwd()).root.replace(/\\/g, '/')
+  }
+  expect(result.map.toJSON().sources).toEqual([`file://${root}dir/a.css`])
 })
 
 it('preserves absolute urls in sources from previous map', () => {
