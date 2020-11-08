@@ -52,6 +52,6 @@ jobs:
         with:
           node-version: 14
       - name: Install dependencies
-        uses: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
       - name: Run unit tests
         run: npx jest
