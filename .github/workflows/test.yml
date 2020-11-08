@@ -1,0 +1,57 @@
+name: Test
+on:
+  push:
+  pull_request:
+env:
+  FORCE_COLOR: 2
+jobs:
+  full:
+    name: Node.js 15 Full
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 15
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+      - name: Run tests
+        run: yarn test
+  short:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 14
+          - 12
+          - 10
+    name: Node.js ${{ matrix.node-version }} Quick
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+      - name: Run unit tests
+        run: npx jest
+  windows:
+    runs-on: windows-latest
+    name: Windows Quick
+    env:
+      YARN_GPG: "no"
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Install Node.js LTS
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 14
+      - name: Install dependencies
+        uses: yarn install --frozen-lockfile
+      - name: Run unit tests
+        run: npx jest

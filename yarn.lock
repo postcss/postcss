@@ -2784,12 +2784,7 @@ ci-info@2.0.0, ci-info@^2.0.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
 
-ci-job-number@^0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ci-job-number/-/ci-job-number-0.3.1.tgz#4354e45bb3ed5a7301f09358d2876d510d4a570e"
-  integrity sha512-OfY2Cg+mTqZz7lWOxONGbAXVZNNWPSiyGtOpAjYHEVTXIae8lGCOg3cDfJpPh8zcl+2CqItOsxbvH6ueV+QOmw==
-
-ci-job-number@^1.0.0, ci-job-number@^1.2.2:
+ci-job-number@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/ci-job-number/-/ci-job-number-1.2.2.tgz#f4e5918fcaeeda95b604f214be7d7d4a961fe0c0"
   integrity sha512-CLOGsVDrVamzv8sXJGaILUVI6dsuAkouJP/n6t+OxLPeeA4DDby7zn9SB6EUpa1H7oIKoE+rMmkW80zYsFfUjA==
@@ -4232,13 +4227,6 @@ eslint-ast-utils@^1.1.0:
   dependencies:
     lodash.get "^4.4.2"
     lodash.zip "^4.2.0"
-
-eslint-ci@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-ci/-/eslint-ci-1.0.0.tgz#6bcb238c45d2bf522fad50ad190bc00a206fe2df"
-  integrity sha512-8Itb/739gpX11nqvWg6kkpge7NwS1o+SkhfFAItfvH9/i5IoY6NLKKKzIagHakT2WmMdnq4HfcymYh/0NGvAVA==
-  dependencies:
-    ci-job-number "^0.3.0"
 
 eslint-config-prettier@~6.11.0:
   version "6.11.0"
@@ -6146,13 +6134,6 @@ jest-changed-files@^26.6.2:
     "@jest/types" "^26.6.2"
     execa "^4.0.0"
     throat "^5.0.0"
-
-jest-ci@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/jest-ci/-/jest-ci-0.1.1.tgz#059dea3f53bdf6cf4f143a3e68913e7b07794478"
-  integrity sha512-DqTzVLKoBUIzEY3L3aR0jI6F5YU78IDyRjARfo10ScYluBjFAe2UKF5bg1W1gwO05gggQNWhCMqYjcC1Y3RtRA==
-  dependencies:
-    ci-job-number "^1.0.0"
 
 jest-cli@^26.6.3:
   version "26.6.3"
@@ -11562,15 +11543,7 @@ yargs@^15.3.1, yargs@^15.4.1:
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
 
-yaspeller-ci@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/yaspeller-ci/-/yaspeller-ci-1.0.2.tgz#191fd0b3b1ae3602cac9407948f65fa1e997dd0d"
-  integrity sha512-N0q8riZB4b3ECddohE7ho1O5h8GD7LwWW860hVVTs9qqVvdxRqlJPf+q0WnYEqUDlWK3y7uktTrAske3KrJAEg==
-  dependencies:
-    ci-job-number "^1.0.0"
-    yaspeller ">=6.0.2"
-
-yaspeller@>=6.0.2:
+yaspeller@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/yaspeller/-/yaspeller-7.0.0.tgz#c49af3b5b147edda430996fa1e65b1e577bfb4f4"
   integrity sha512-M8phUfHrL0dGCU5jUK9k85hikCSmjpPFAdjnH/Lg1/E81TEuTI7m8m5jhIWAXHWjfZ+wPEhGBz8HLDuEs4areA==
