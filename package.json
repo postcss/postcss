@@ -11,6 +11,7 @@
       "import": "./lib/postcss.mjs",
       "types": "./lib/postcss.d.ts"
     },
+    "./*": "./*",
     "./": "./"
   },
   "main": "./lib/postcss.js",
