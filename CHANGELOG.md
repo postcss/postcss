@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.1.7
+* Fix `import` support in TypeScript (by Remco Haszing).
+
 ## 8.1.6
 * Reverted `package.exports` Node.js 15 fix.
 
