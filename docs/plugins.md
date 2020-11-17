@@ -55,7 +55,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`postcss-utilities`]:  https://github.com/ismamz/postcss-utilities
 [`postcss-hamster`]:    https://github.com/h0tc0d3/postcss-hamster
 [`stylelint`]:          https://github.com/stylelint/stylelint
-[`rucksack`]:           https://simplaio.github.io/rucksack
+[`rucksack`]:           https://github.com/seaneking/rucksack
 [`cssnano`]:            https://cssnano.co/
 [`level4`]:             https://github.com/stephenway/level4
 [`precss`]:             https://github.com/jonathantneal/precss
@@ -218,7 +218,6 @@ for targeting all button elements.
   selector.
 * [`csstyle`] adds components workflow to your styles.
 * [`postcss-percentage`] support Sass-like `percentage()` function.
-* [`postcss-state-selector`] write CSS based on component's state.
 
 See also [`precss`] plugins pack to add them by one line of code.
 
@@ -417,7 +416,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-eol`] replaces EOL of files.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
-* [`postcss-filter-stream`] blacklist files / folders that you don't want
+* [`postcss-filter-stream`] blacklist files / folders that you don’t want
   to process with a PostCSS plugin.
 * [`postcss-flexbox`] easy way to understand and start using CSS3 Flexbox.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
@@ -616,7 +615,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-css-variables`]:                https://github.com/MadLittleMods/postcss-css-variables
 [`postcss-discard-empty`]:                https://github.com/ben-eb/postcss-discard-empty
 [`postcss-extract-value`]:                https://github.com/lutien/postcss-extract-value
-[`postcss-filter-stream`]:                https://github.com/tsm91/postcss-filter-stream
+[`postcss-filter-stream`]:                https://www.npmjs.com/package/postcss-filter-stream
 [`postcss-gradientfixer`]:                https://github.com/hallvors/postcss-gradientfixer
 [`postcss-image-inliner`]:                https://github.com/bezoerb/postcss-image-inliner
 [`postcss-modular-scale`]:                https://github.com/kristoferjoseph/postcss-modular-scale
@@ -816,7 +815,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-percentage`]:                   https://github.com/creeperyang/postcss-percentage
 [`postcss-start-to-end`]:                 https://github.com/sandrina-p/postcss-start-to-end
 [`postcss-autocorrect`]:                  https://github.com/DimitrisNL/postcss-autocorrect
-[`postcss-state-selector`]:               https://github.com/binjospookie/postcss-state-selector
 [`postcss-html-filter`]:                  https://github.com/mapbox/postcss-html-filter
 [`postcss-hash`]:                         https://github.com/dacodekid/postcss-hash
 [`postcss-light-text`]:                   https://github.com/jdsteinbach/postcss-light-text
