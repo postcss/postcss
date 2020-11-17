@@ -7,7 +7,7 @@ The rules below are *mandatory* for all PostCSS plugins.
 
 See also [ClojureWerkz’s recommendations] for open source projects.
 
-[ClojureWerkz’s recommendations]:  http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
+[ClojureWerkz’s recommendations]: http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
 
 
 ## 1. API
@@ -268,9 +268,9 @@ Visit [Keep A Changelog] for more information about how to write one of these.
 
 Of course, you should be using [SemVer].
 
-[Keep A Changelog]: http://keepachangelog.com/
+[Keep A Changelog]: https://keepachangelog.com/
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
-[SemVer]:           http://semver.org/
+[SemVer]:           https://semver.org/
 
 
 ### 4.4. Include `postcss-plugin` keyword in `package.json`

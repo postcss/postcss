@@ -60,7 +60,7 @@ on top of PostCSS.
 
 If you have any new ideas, [PostCSS plugin development] is really easy.
 
-[searchable catalog]: http://postcss.parts
+[searchable catalog]: https://www.postcss.parts/
 [plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
 
 
@@ -139,7 +139,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                  https://github.com/stylelint/stylelint
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
-[`cssnano`]:                    http://cssnano.co
+[`cssnano`]:                    https://cssnano.co/
 [`precss`]:                     https://github.com/jonathantneal/precss
 [`doiuse`]:                     https://github.com/anandthakker/doiuse
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
@@ -190,8 +190,8 @@ you can write a parser and/or stringifier to extend PostCSS.
 ## Articles
 
 * [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong)
-* [What PostCSS Really Is; What It Really Does](http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss)
-* [PostCSS Guides](http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)
+* [What PostCSS Really Is; What It Really Does](https://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/)
+* [PostCSS Guides](https://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)
 
 More articles and videos you can find on [awesome-postcss](https://github.com/jjaderg/awesome-postcss) list.
 
@@ -208,7 +208,7 @@ You can start using PostCSS in just two steps:
 1. Find and add PostCSS extensions for your build tool.
 2. [Select plugins] and add them to your PostCSS process.
 
-[Select plugins]: http://postcss.parts
+[Select plugins]: https://www.postcss.parts/
 
 
 ### CSS-in-JS

@@ -9,7 +9,7 @@ these rules are not mandatory but are highly recommended.
 
 See also [ClojureWerkz’s recommendations] for open source projects.
 
-[ClojureWerkz’s recommendations]:  http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
+[ClojureWerkz’s recommendations]: http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/
 [`gulp-autoprefixer`]: https://github.com/sindresorhus/gulp-autoprefixer
 [`gulp‑postcss`]:      https://github.com/w0rm/gulp-postcss
 [`postcss-cli`]:       https://github.com/postcss/postcss-cli
@@ -138,9 +138,9 @@ Visit [Keep A Changelog] for more information on how to write one of these.
 
 Of course, you should use [SemVer].
 
-[Keep A Changelog]: http://keepachangelog.com/
+[Keep A Changelog]: https://keepachangelog.com/
 [GitHub Releases]:  https://help.github.com/articles/creating-releases/
-[SemVer]:           http://semver.org/
+[SemVer]:           https://semver.org/
 
 
 ### 4.3. `postcss-runner` keyword in `package.json`

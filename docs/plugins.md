@@ -55,8 +55,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`postcss-utilities`]:  https://github.com/ismamz/postcss-utilities
 [`postcss-hamster`]:    https://github.com/h0tc0d3/postcss-hamster
 [`stylelint`]:          https://github.com/stylelint/stylelint
-[`rucksack`]:           http://simplaio.github.io/rucksack
-[`cssnano`]:            http://cssnano.co/
+[`rucksack`]:           https://simplaio.github.io/rucksack
+[`cssnano`]:            https://cssnano.co/
 [`level4`]:             https://github.com/stephenway/level4
 [`precss`]:             https://github.com/jonathantneal/precss
 [`oldie`]:              https://github.com/jonathantneal/oldie
@@ -329,7 +329,7 @@ loosely resembles the original.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
 * [`postcss-nested-import`] inlines stylesheets referred to by `@import` rules inside nested rule blocks.
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
-* [`postcss-reference`] emulates Less’s [`@import (reference)`].
+* [`postcss-reference`] emulates Less’s `@import`.
 * [`postcss-remove-root`] removes all instances of `:root` from a stylesheet.
 * [`postcss-single-charset`] ensures that there is one and only one
   `@charset` rule at the top of file.
@@ -347,7 +347,6 @@ loosely resembles the original.
 
 See also plugins in modular minifier [`cssnano`].
 
-[@import (reference)]: http://lesscss.org/features/#import-options-reference
 [SVGO]: https://github.com/svg/svgo
 
 
