@@ -13,7 +13,7 @@ import Root from './root.js'
  * const lazy = postcss([autoprefixer]).process(css)
  * ```
  */
-export default class LazyResult {
+export default class LazyResult implements Promise<Result> {
   /**
    * Processes input CSS through synchronous and asynchronous plugins
    * and calls `onFulfilled` with a Result instance. If a plugin throws
@@ -65,6 +65,12 @@ export default class LazyResult {
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
   constructor (processor: Processor, css: string, opts: ResultOptions)
+
+  /**
+   * Returns the default string description of an object.
+   * Required to implement the Promise interface.
+   */
+  get [Symbol.toStringTag] (): string
 
   /**
    * Returns a `Processor` instance, which will be used
