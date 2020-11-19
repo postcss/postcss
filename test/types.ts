@@ -14,19 +14,12 @@ const plugin: PluginCreator<string> = prop => {
 
 plugin.postcss = true
 
-interface StyleCompileResults {
-  code: string
-  map: SourceMap | undefined
-}
-
 const processResult: Promise<Result> | Result = postcss([
   plugin
 ]).process('h1{color: black;}', { from: undefined })
-const processed:
-  | StyleCompileResults
-  | Promise<StyleCompileResults> = processResult.then(result => ({
-  code: result.css,
-  map: result.map
-}))
+
+processResult.then((result: Result) => {
+  console.log(result.css)
+})
 
 export default plugin
