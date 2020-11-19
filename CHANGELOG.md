@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.1.8
+* Fix `LazyResult` type compatibility with `Promise` (by Ludovico Fischer).
+* Use HTTPS links in documentation.
+
 ## 8.1.7
 * Fix `import` support in TypeScript (by Remco Haszing).
 
