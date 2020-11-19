@@ -57,3 +57,8 @@ it('executes on finally callback', () => {
     .finally(mockCallback)
     .then(() => expect(mockCallback).toHaveBeenCalledTimes(1))
 })
+
+it('prints its object type', () => {
+  let result = new LazyResult(processor, 'a {}', {})
+  expect(Object.prototype.toString.call(result)).toEqual('[object LazyResult]')
+})
