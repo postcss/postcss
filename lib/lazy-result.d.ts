@@ -70,18 +70,18 @@ export default class LazyResult implements Promise<Result> {
    * Returns the default string description of an object.
    * Required to implement the Promise interface.
    */
-  get [Symbol.toStringTag] (): string
+  readonly [Symbol.toStringTag]: string
 
   /**
    * Returns a `Processor` instance, which will be used
    * for CSS transformations.
    */
-  get processor (): Processor
+  readonly processor: Processor
 
   /**
    * Options from the `Processor#process` call.
    */
-  get opts (): ResultOptions
+  readonly opts: ResultOptions
 
   /**
    * Processes input CSS through synchronous plugins, converts `Root`
@@ -92,7 +92,7 @@ export default class LazyResult implements Promise<Result> {
    * it will throw an error. This is why this method is only
    * for debug purpose, you should always use `LazyResult#then`.
    */
-  get css (): string
+  readonly css: string
 
   /**
    * An alias for the `css` property. Use it with syntaxes
@@ -103,7 +103,7 @@ export default class LazyResult implements Promise<Result> {
    * it will throw an error. This is why this method is only
    * for debug purpose, you should always use `LazyResult#then`.
    */
-  get content (): string
+  readonly content: string
 
   /**
    * Processes input CSS through synchronous plugins
@@ -114,7 +114,7 @@ export default class LazyResult implements Promise<Result> {
    * it will throw an error. This is why this method is only
    * for debug purpose, you should always use `LazyResult#then`.
    */
-  get map (): SourceMap
+  readonly map: SourceMap
 
   /**
    * Processes input CSS through synchronous plugins
@@ -126,7 +126,7 @@ export default class LazyResult implements Promise<Result> {
    * This is why this method is only for debug purpose,
    * you should always use `LazyResult#then`.
    */
-  get root (): Root
+  readonly root: Root
 
   /**
    * Processes input CSS through synchronous plugins
@@ -138,7 +138,7 @@ export default class LazyResult implements Promise<Result> {
    * This is why this method is only for debug purpose,
    * you should always use `LazyResult#then`.
    */
-  get messages (): Message[]
+  readonly messages: Message[]
 
   /**
    * Processes input CSS through synchronous plugins

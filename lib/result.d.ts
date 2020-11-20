@@ -151,7 +151,7 @@ export default class Result {
    * result.css === result.content
    * ```
    */
-  get content (): string
+  readonly content: string
 
   /**
    * Returns for `Result#css` content.

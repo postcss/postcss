@@ -103,7 +103,7 @@ export default class Input {
    * root.source.input.from //=> "<input css 1>"
    * ```
    */
-  get from (): string
+  readonly from: string
 
   /**
    * Reads the input source map and returns a symbol position

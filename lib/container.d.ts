@@ -47,7 +47,7 @@ export default abstract class Container extends Node {
    * rule.first === rules.nodes[0]
    * ```
    */
-  get first (): ChildNode | undefined
+  readonly first: ChildNode | undefined
 
   /**
    * The container’s last child.
@@ -56,7 +56,7 @@ export default abstract class Container extends Node {
    * rule.last === rule.nodes[rule.nodes.length - 1]
    * ```
    */
-  get last (): ChildNode | undefined
+  readonly last: ChildNode | undefined
 
   /**
    * Iterates through the container’s immediate children,
