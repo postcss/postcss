@@ -126,5 +126,7 @@ export default class Input {
    *
    * @param offset Source offset.
    */
-  fromOffset (offset: number): { line: number; col: number } | null
+  fromOffset (
+    offset: number
+  ): { offset?: number; line?: number; column?: number }
 }

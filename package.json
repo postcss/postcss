@@ -39,9 +39,9 @@
   "repository": "postcss/postcss",
   "dependencies": {
     "colorette": "^1.2.1",
-    "line-column": "^1.0.2",
     "nanoid": "^3.1.16",
-    "source-map": "^0.6.1"
+    "source-map": "^0.6.1",
+    "vfile-location": "^3.2.0"
   },
   "devDependencies": {
     "@logux/eslint-config": "^42.2.2",
