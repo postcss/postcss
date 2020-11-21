@@ -275,7 +275,7 @@ it('supports async errors', () => {
       reject(error)
     })
   }
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     let result = new Processor([async]).process('', { from: undefined })
     result
       .then(() => {
@@ -296,7 +296,7 @@ it('supports sync errors in async mode', () => {
   let async = () => {
     throw error
   }
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     new Processor([async])
       .process('', { from: undefined })
       .then(() => {
