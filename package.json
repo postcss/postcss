@@ -51,7 +51,7 @@
     "@types/node": "^14.14.9",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
-    "check-dts": "^0.4.0",
+    "check-dts": "^0.4.1",
     "ci-job-number": "^1.2.2",
     "clean-publish": "^1.1.8",
     "concat-with-sourcemaps": "^1.1.0",
