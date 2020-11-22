@@ -419,9 +419,11 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-filter-stream`] blacklist files / folders that you don’t want
   to process with a PostCSS plugin.
 * [`postcss-flexbox`] easy way to understand and start using CSS3 Flexbox.
+* [`postcss-flexbox-reset`] resets Flexbox to avoid issues in responsive layouts.
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
+* [`postcss-grid-reset`] resets CSS Grid to avoid issues in responsive layouts.
 * [`postcss-hash`] replaces output file names with hash algorithms
   for cache busting.
 * [`postcss-ie8`] strips out unsupported properties and media queries for IE8.
@@ -844,3 +846,5 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pseudo-is`]:                    https://github.com/IlyaUpyackovich/postcss-pseudo-is
 [`postcss-deep-scopable`]:                https://github.com/litt1e-p/postcss-deep-scopable
 [`postcss-deadcss`]:                https://github.com/DenyVeyten/postcss-deadcss
+[`postcss-flexbox-reset`]:                 https://github.com/AndrejGajdos/postcss-flexbox-reset
+[`postcss-grid-reset`]:                    https://github.com/AndrejGajdos/postcss-grid-reset
