@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.1.10
+* Fixed `LazyResult` type export (by Evan You).
+* Fixed `LazyResult` type compatibility with `Promise` (by Anton Kastritskiy).
+
 ## 8.1.9
 * Reduced dependencies number (by Bogdan Chadkin).
 
