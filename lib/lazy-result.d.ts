@@ -13,7 +13,7 @@ import Root from './root.js'
  * const lazy = postcss([autoprefixer]).process(css)
  * ```
  */
-export default class LazyResult implements Promise<Result> {
+export default class LazyResult implements PromiseLike<Result> {
   /**
    * Processes input CSS through synchronous and asynchronous plugins
    * and calls `onFulfilled` with a Result instance. If a plugin throws
