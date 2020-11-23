@@ -13,6 +13,7 @@ import Root, { RootProps } from './root.js'
 import Comment, { CommentProps } from './comment.js'
 import AtRule, { AtRuleProps } from './at-rule.js'
 import Result, { Message } from './result.js'
+import LazyResult from './lazy-result.js'
 import Rule, { RuleProps } from './rule.js'
 import Container, { ContainerProps } from './container.js'
 import Warning, { WarningOptions } from './warning.js'
@@ -48,6 +49,7 @@ export {
   Rule,
   Root,
   Result,
+  LazyResult,
   Input
 }
 
