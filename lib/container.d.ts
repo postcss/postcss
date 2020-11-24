@@ -453,5 +453,5 @@ export default abstract class Container extends Node {
    * @param child Child of the current container.
    * @return Child index.
    */
-  index (child: ChildNode | number): number
+  index (child?: ChildNode | number): number
 }
