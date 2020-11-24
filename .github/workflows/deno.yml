@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Setup Deno environment
-        uses: denolib/setup-deno@v2.2.0
+        uses: denolib/setup-deno@v2.3.0
         with:
           deno-version: v1.x
 
@@ -32,10 +32,6 @@ jobs:
           rm -rf deno
           deno run --unstable --allow-write --allow-read to_deno.js
           deno fmt deno
-          cp postcss/README.md deno/
-          cp postcss/CHANGELOG.md deno/
-          cp postcss/LICENSE deno/
-
           deno test --unstable --allow-read deno/test/*
 
       - name: Get the tag name
