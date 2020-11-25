@@ -341,7 +341,7 @@ To use PostCSS from your command-line interface or with npm scripts
 there is [`postcss-cli`].
 
 ```sh
-postcss --use autoprefixer -c options.json -o main.css css/*.css
+postcss --use autoprefixer -o main.css css/*.css
 ```
 
 [`postcss-cli`]: https://github.com/postcss/postcss-cli
