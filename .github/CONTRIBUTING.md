@@ -19,7 +19,7 @@ be familiar with.
 If you created or found a plugin and want to add it to the PostCSS plugins list
 follow these simple steps:
 
-PRs should not change plugins defined in README — it only contains favorite plugins
+PR should not change plugins defined in README — it only contains favorite plugins
 moderated by the PostCSS author.
 
 Plugins submitted by the community are located in [`docs/plugins`].
@@ -46,8 +46,8 @@ Plugins submitted by the community are located in [`docs/plugins`].
     Make sure your pull request description contains a link to the plugin
     you want to add.
 
-[`docs/plugins`]: https://github.com/postcss/postcss/blob/master/docs/plugins.md
-[guidelines]:     https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md
+[`docs/plugins`]: https://github.com/postcss/postcss/blob/main/docs/plugins.md
+[guidelines]:     https://github.com/postcss/postcss/blob/main/docs/guidelines/plugin.md
 
 
 ## TypeScript Declaration Improvements
@@ -75,4 +75,4 @@ If you want to add new features or fix existing issues
 
     For a gentle intro to PostCSS architecture look through our [guide].
 
-[guide]: https://github.com/postcss/postcss/blob/master/docs/architecture.md
+[guide]: https://github.com/postcss/postcss/blob/main/docs/architecture.md

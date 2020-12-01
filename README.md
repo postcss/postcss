@@ -61,7 +61,7 @@ on top of PostCSS.
 If you have any new ideas, [PostCSS plugin development] is really easy.
 
 [searchable catalog]: https://www.postcss.parts/
-[plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
+[plugins list]:       https://github.com/postcss/postcss/blob/main/docs/plugins.md
 
 
 ### Solve Global CSS Problem
@@ -118,7 +118,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
 
-[PostCSS plugin development]:   https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
+[PostCSS plugin development]:   https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md
 [`postcss-inline-svg`]:         https://github.com/TrySound/postcss-inline-svg
 [`postcss-preset-env`]:         https://github.com/jonathantneal/postcss-preset-env
 [`react-css-modules`]:          https://github.com/gajus/react-css-modules
@@ -424,7 +424,7 @@ Read the [PostCSS API documentation] for more details about the JS API.
 
 All PostCSS runners should pass [PostCSS Runner Guidelines].
 
-[PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
+[PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/main/docs/guidelines/runner.md
 [PostCSS API documentation]: https://postcss.org/api/
 
 

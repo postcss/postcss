@@ -25,7 +25,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 [抽象语法树]:     https://zh.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9
 [Autoprefixer]: https://github.com/postcss/autoprefixer
-[插件]:          https://github.com/postcss/postcss/blob/master/README-cn.md#%E6%8F%92%E4%BB%B6
+[插件]:          https://github.com/postcss/postcss/blob/main/README-cn.md#%E6%8F%92%E4%BB%B6
 
 <a href="https://evilmartians.com/?utm_source=postcss">
   <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
@@ -40,7 +40,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 如果你有任何新的想法，[开发 PostCSS 插件] 非常简单易上手。
 
 [搜索目录]: http://postcss.parts
-[插件列表]: https://github.com/postcss/postcss/blob/master/docs/plugins.md
+[插件列表]: https://github.com/postcss/postcss/blob/main/docs/plugins.md
 
 ### 解决全局 CSS 的问题
 
@@ -95,7 +95,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 [`postcss-modules`]:            https://github.com/outpunk/postcss-modules
 [`postcss-sorting`]:            https://github.com/hudochenkov/postcss-sorting
 [`postcss-assets`]:             https://github.com/assetsjs/postcss-assets
-[开发 PostCSS 插件]:             https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md
+[开发 PostCSS 插件]:             https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md
 [`font-magician`]:              https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:               https://github.com/postcss/autoprefixer
 [`cq-prolyfill`]:               https://github.com/ausi/cq-prolyfill
@@ -298,7 +298,7 @@ fs.readFile('src/app.css', (err, css) => {
 
 所有的 PostCSS 运行器应当通过 [PostCSS 运行器指南]。
 
-[PostCSS 运行器指南]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md
+[PostCSS 运行器指南]: https://github.com/postcss/postcss/blob/main/docs/guidelines/runner.md
 [PostCSS API 文档]:  https://postcss.org/api/
 
 ### 配置选项

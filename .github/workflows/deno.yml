@@ -24,7 +24,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
           path: postcss
 
       - name: Convert the code

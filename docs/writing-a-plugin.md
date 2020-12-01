@@ -5,7 +5,7 @@
 Documentation:
 
 * [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
-* [Plugin Guidelines](https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md)
+* [Plugin Guidelines](https://github.com/postcss/postcss/blob/main/docs/guidelines/plugin.md)
 * [PostCSS API](https://postcss.org/api/)
 * [AST playground](https://astexplorer.net/#/2uBU1BLuJ1)
 
@@ -97,7 +97,7 @@ module.exports.postcss = true
 
 [PostCSS plugin boilerplate]: https://github.com/postcss/postcss-plugin-boilerplate/
 [our Sharec config]: https://github.com/postcss/postcss-sharec-config
-[plugin template]: https://github.com/postcss/postcss-plugin-boilerplate/blob/master/index.js
+[plugin template]: https://github.com/postcss/postcss-plugin-boilerplate/blob/main/index.js
 
 
 ## Step 3: Find nodes
