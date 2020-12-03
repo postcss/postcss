@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.1.11
+* Added PostCSS update suggestion on unknown event in plugin.
+
 ## 8.1.10
 * Fixed `LazyResult` type export (by Evan You).
 * Fixed `LazyResult` type compatibility with `Promise` (by Anton Kastritskiy).
