@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.1.12
+* Fixed Autoprefixer regression.
+
 ## 8.1.11
 * Added PostCSS update suggestion on unknown event in plugin.
 
