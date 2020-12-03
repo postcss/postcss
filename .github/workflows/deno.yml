@@ -32,7 +32,7 @@ jobs:
           rm -rf deno
           deno run --unstable --allow-write --allow-read to_deno.js
           deno fmt deno
-          deno test --unstable --allow-read deno/test/*
+          deno test --unstable --allow-read --allow-env deno/test/*
 
       - name: Get the tag name
         id: get_version
