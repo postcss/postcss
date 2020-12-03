@@ -638,6 +638,16 @@ it('works correctly with nodes changes', () => {
   ).toEqual('a{ z-index: 1; color: black }')
 })
 
+it('throws error on unknown plugin property', () => {
+  let plugin: any = {
+    postcssPlugin: 'test',
+    NO: true
+  }
+  expect(() => {
+    postcss([plugin]).process('').css
+  }).toThrow(/Unknown event NO in test\. Try to update PostCSS \(\d/)
+})
+
 const redToGreen: Plugin = {
   postcssPlugin: 'redToGreen',
   Declaration: {
