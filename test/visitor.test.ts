@@ -648,7 +648,23 @@ it('throws error on unknown plugin property', () => {
   }).toThrow(/Unknown event NO in test\. Try to update PostCSS \(\d/)
 })
 
-const redToGreen: Plugin = {
+it('unwraps nodes on inserting', () => {
+  let moveNode: Plugin = {
+    postcssPlugin: 'moveNode',
+    Declaration: {
+      color: decl => {
+        if (decl.parent?.type !== 'root') {
+          decl.root().append(decl)
+        }
+      }
+    }
+  }
+
+  let root = postcss([moveNode]).process('a{color:red}').root
+  expect((root.last as any).proxyOf).toBe(root.last)
+})
+
+let redToGreen: Plugin = {
   postcssPlugin: 'redToGreen',
   Declaration: {
     color: decl => {
@@ -659,7 +675,7 @@ const redToGreen: Plugin = {
   }
 }
 
-const greenToBlue: Plugin = {
+let greenToBlue: Plugin = {
   postcssPlugin: 'greenToBlue',
   Declaration (decl) {
     if (decl.value === 'green') {
@@ -668,7 +684,7 @@ const greenToBlue: Plugin = {
   }
 }
 
-const fooToBar: Plugin = {
+let fooToBar: Plugin = {
   postcssPlugin: 'fooToBar',
   Rule (rule) {
     if (rule.selector === '.foo') {
@@ -677,7 +693,7 @@ const fooToBar: Plugin = {
   }
 }
 
-const mixins: Plugin = {
+let mixins: Plugin = {
   postcssPlugin: 'mixin',
   prepare () {
     let mixin: AnyNode | undefined
@@ -695,7 +711,7 @@ const mixins: Plugin = {
   }
 }
 
-const insertFirst: Plugin = {
+let insertFirst: Plugin = {
   postcssPlugin: 'insertFirst',
   AtRule: {
     'insert-first': atRule => {
