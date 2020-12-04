@@ -40,8 +40,7 @@
   "dependencies": {
     "colorette": "^1.2.1",
     "nanoid": "^3.1.20",
-    "source-map": "^0.6.1",
-    "vfile-location": "^3.2.0"
+    "source-map": "^0.6.1"
   },
   "devDependencies": {
     "@logux/eslint-config": "^42.3.0",
