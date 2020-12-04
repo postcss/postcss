@@ -397,6 +397,12 @@ export interface Postcss {
    */
   root(defaults?: RootProps): Root
 
+  /**
+   * Rehydrate a JSON AST (from Node#toJSON) back into the corresponding node.
+   * @param data A JSON AST.
+   */
+  fromJSON(data: object): Node
+
   CssSyntaxError: typeof CssSyntaxError
   Declaration: typeof Declaration
   Container: typeof Container
@@ -412,6 +418,7 @@ export interface Postcss {
 
 export const stringify: Stringifier
 export const parse: Parser
+export const fromJSON: Postcss['fromJSON']
 
 export const comment: Postcss['comment']
 export const atRule: Postcss['atRule']
