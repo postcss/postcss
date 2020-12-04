@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.1.14
+* Fixed parser performance regression.
+
 ## 8.1.13
 * Fixed broken AST after moving nodes in visitor API.
 
