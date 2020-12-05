@@ -213,6 +213,10 @@ export interface Stringifier {
   (node: AnyNode, builder: Builder): void
 }
 
+export interface JSONHydrator {
+  (data: object): Node
+}
+
 export interface Syntax {
   /**
    * Function to generate AST by string.
@@ -353,6 +357,17 @@ export interface Postcss {
   parse: Parser
 
   /**
+   * Rehydrate a JSON AST (from Node#toJSON) back into the corresponding node.
+   *
+   * ```js
+   * const json = root.toJSON();
+   * // ...
+   * const rehydrated  = postcss.fromJSON(json);
+   * ```
+   */
+  fromJSON: JSONHydrator
+
+  /**
    * Contains the `list` module.
    */
   list: List
@@ -397,12 +412,6 @@ export interface Postcss {
    */
   root(defaults?: RootProps): Root
 
-  /**
-   * Rehydrate a JSON AST (from Node#toJSON) back into the corresponding node.
-   * @param data A JSON AST.
-   */
-  fromJSON(data: object): Node
-
   CssSyntaxError: typeof CssSyntaxError
   Declaration: typeof Declaration
   Container: typeof Container
@@ -418,7 +427,7 @@ export interface Postcss {
 
 export const stringify: Stringifier
 export const parse: Parser
-export const fromJSON: Postcss['fromJSON']
+export const fromJSON: JSONHydrator
 
 export const comment: Postcss['comment']
 export const atRule: Postcss['atRule']
