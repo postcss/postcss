@@ -1,6 +1,13 @@
 import { resolve as pathResolve } from 'path'
 
-import postcss, { Plugin, Result, Node, Root, parse } from '../lib/postcss.js'
+import postcss, {
+  Plugin,
+  Result,
+  Node,
+  Root,
+  parse,
+  PluginCreator
+} from '../lib/postcss.js'
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'
 
@@ -525,6 +532,17 @@ it('supports plugins returning processors', () => {
   let other: any = (postcss as any).plugin('test', () => {
     return new Processor([a])
   })
+  processor.use(other)
+  expect(processor.plugins).toEqual([a])
+})
+
+it('supports plugin creators returning processors', () => {
+  let a = () => {}
+  let processor = new Processor()
+  let other = (() => {
+    return new Processor([a])
+  }) as PluginCreator<void>
+  other.postcss = true
   processor.use(other)
   expect(processor.plugins).toEqual([a])
 })
