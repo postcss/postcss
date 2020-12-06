@@ -357,12 +357,12 @@ export interface Postcss {
   parse: Parser
 
   /**
-   * Rehydrate a JSON AST (from Node#toJSON) back into the corresponding node.
+   * Rehydrate a JSON AST (from `Node#toJSON`) back into the AST classes.
    *
    * ```js
-   * const json = root.toJSON();
-   * // ...
-   * const rehydrated  = postcss.fromJSON(json);
+   * const json = root.toJSON()
+   * // save to file, send by network, etc
+   * const root2  = postcss.fromJSON(json)
    * ```
    */
   fromJSON: JSONHydrator
