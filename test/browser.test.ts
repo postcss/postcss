@@ -65,9 +65,6 @@ it('generates source map without fs', () => {
   expect(
     postcss([() => {}]).process('a{}', { from: 'a.css', map: true }).css
   ).toEqual(
-    'a{}\n/*# sourceMappingURL=data:application/json;base64,' +
-      'eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImEuY3NzIl0sIm5hbWVzIjpbXSw' +
-      'ibWFwcGluZ3MiOiJBQUFBLEVBQUUiLCJmaWxlIjoiYS5jc3MiLCJzb3VyY2' +
-      'VzQ29udGVudCI6WyJhe30iXX0= */'
+    'a{}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImEuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLEVBQUU7QTtBIiwiZmlsZSI6ImEuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYXt9Il19 */\n'
   )
 })

@@ -131,7 +131,7 @@ it('adds source map annotation', () => {
     map: { inline: false }
   })
 
-  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=b.css.map */')
+  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=b.css.map */\n')
 })
 
 it('misses source map annotation, if user ask', () => {
@@ -170,7 +170,7 @@ it('uses user path in annotation, relative to options.to', () => {
     map: { annotation: 'maps/b.map' }
   })
 
-  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=maps/b.map */')
+  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=maps/b.map */\n')
   let map = consumer(result.map)
 
   expect(map.file).toEqual(join('..', 'b.css'))
@@ -198,8 +198,9 @@ it('generates inline map', () => {
   })
 
   let base64 = Buffer.from(separated.map.toString()).toString('base64')
-  let end = inline.css.slice(-base64.length - 3)
-  expect(end).toEqual(base64 + ' */')
+  let suffix = ' */\n'
+  let end = inline.css.slice(-(base64.length + suffix.length))
+  expect(end).toEqual(base64 + suffix)
 })
 
 it('generates inline map by default', () => {
@@ -451,7 +452,7 @@ it('detects input file name from map', () => {
 it('works without file names', () => {
   let step1 = doubler.process('a { }', { map: true })
   let step2 = doubler.process(step1.css)
-  expect(step2.css).toMatch(/a { }\n\/\*/)
+  expect(step2.css).toMatch(/a { }\n\n\/\*/)
 })
 
 it('supports UTF-8', () => {
@@ -505,7 +506,7 @@ it('supports annotation comment in any place', () => {
     map: { inline: false }
   })
 
-  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=b.css.map */')
+  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=b.css.map */\n')
 })
 
 it('does not update annotation on request', () => {
@@ -603,7 +604,7 @@ it('allows dynamic annotations', () => {
       }
     }
   })
-  expect(result.css).toEqual('a{}\n/*# sourceMappingURL=out.css-a.map */')
+  expect(result.css).toEqual('a{}\n/*# sourceMappingURL=out.css-a.map */\n')
 })
 
 it('uses URLs in sources', () => {
