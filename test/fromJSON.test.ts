@@ -34,7 +34,7 @@ it('rehydrates a JSON AST', () => {
       stringifier: postcss.stringify
     }).css
   ).toBe(`/* abc */ @media (width: 60em) { }
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInguY3NzIiwiPG5vIHNvdXJjZT4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQXNDLFNDQXRDLENEQWdELHdCQ0FoRCIsImZpbGUiOiJ0by5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZDsgZm9udC1zaXplOiAxMnB0OyB9IC8qIGFiYyAqLyBAbWVkaWEgKHdpZHRoOiA2MGVtKSB7IH0iLG51bGxdfQ== */`)
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInguY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFzQyxRQUFRLEVBQUUsdUJBQXVCIiwiZmlsZSI6InRvLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb28geyBjb2xvcjogcmVkOyBmb250LXNpemU6IDEycHQ7IH0gLyogYWJjICovIEBtZWRpYSAod2lkdGg6IDYwZW0pIHsgfSJdfQ== */`)
 })
 
 it('throws when rehydrating an invalid JSON AST', () => {
