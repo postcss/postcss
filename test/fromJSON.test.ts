@@ -6,7 +6,7 @@ it('rehydrates a JSON AST', () => {
   let cssWithMap = postcss().process(
     '.foo { color: red; font-size: 12pt; } /* abc */ @media (width: 60em) { }',
     {
-      from: undefined,
+      from: 'x.css',
       map: {
         inline: true
       },
@@ -24,6 +24,17 @@ it('rehydrates a JSON AST', () => {
   rehydrated.nodes[0].remove()
 
   expect(rehydrated.nodes).toHaveLength(3)
+
+  expect(
+    postcss().process(rehydrated, {
+      from: undefined,
+      map: {
+        inline: true
+      },
+      stringifier: postcss.stringify
+    }).css
+  ).toBe(`/* abc */ @media (width: 60em) { }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInguY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFzQyxRQUFRLEVBQUUsdUJBQXVCIiwiZmlsZSI6InRvLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb28geyBjb2xvcjogcmVkOyBmb250LXNpemU6IDEycHQ7IH0gLyogYWJjICovIEBtZWRpYSAod2lkdGg6IDYwZW0pIHsgfSJdfQ== */`)
 })
 
 it('throws when rehydrating an invalid JSON AST', () => {
