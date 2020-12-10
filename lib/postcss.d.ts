@@ -170,7 +170,7 @@ export interface Plugin extends Processors {
 }
 
 export interface PluginCreator<PluginOptions> {
-  (opts?: PluginOptions): Plugin
+  (opts?: PluginOptions): Plugin | Processor
   postcss: true
 }
 

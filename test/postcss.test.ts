@@ -1,4 +1,4 @@
-import postcss, { Root } from '../lib/postcss.js'
+import postcss, { Root, PluginCreator } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 
 afterEach(() => {
@@ -28,6 +28,16 @@ it('takes plugin from other processor', () => {
   let b = () => {}
   let c = () => {}
   let other = postcss([a, b])
+  expect(postcss([other, c]).plugins).toEqual([a, b, c])
+})
+
+it('takes plugins from a a plugin returning a processor', () => {
+  let a = () => {}
+  let b = () => {}
+  let c = () => {}
+  let other = postcss([a, b])
+  let meta = (() => other) as PluginCreator<void>
+  meta.postcss = true
   expect(postcss([other, c]).plugins).toEqual([a, b, c])
 })
 
