@@ -279,7 +279,8 @@
       "YIQ",
       "TypeDoc",
       "ES",
-      "Deno"
+      "Deno",
+      "AVIF"
     ]
   }
 }
