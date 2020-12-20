@@ -100,7 +100,8 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-inline-svg`] allows you to inline SVG and customize its styles.
 * [`postcss-write-svg`] allows you to write simple SVG directly in your CSS.
-
+* [`webp-in-css`] to use WebP image format in CSS background.
+* [`avif-in-css`] to use AVIF image format in CSS background.
 
 ### Linters
 
@@ -136,6 +137,8 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-rtl`]:                https://github.com/vkalinichev/postcss-rtl
 [`postcss-use`]:                https://github.com/postcss/postcss-use
 [`css-modules`]:                https://github.com/css-modules/css-modules
+[`webp-in-css`]:                https://github.com/ai/webp-in-css
+[`avif-in-css`]:                https://github.com/nucliweb/avif-in-css
 [`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                  https://github.com/stylelint/stylelint
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
@@ -145,7 +148,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
 [`short`]:                      https://github.com/jonathantneal/postcss-short
 [`lost`]:                       https://github.com/peterramsing/lost
-
 
 ## Syntaxes
 
