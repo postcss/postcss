@@ -257,6 +257,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 
 ## Images and Fonts
 
+* [`avif-in-css`] to use AVIF image format in CSS background.
 * [`postcss-assets`] allows you to simplify URLs, insert image dimensions,
   and inline files.
 * [`postcss-assets-rebase`] rebases assets from `url()`.
@@ -280,6 +281,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   configured font packs.
 * [`postcss-fontsize`] generates `rem` unit `font-size` and `line-height` with `px` fallbacks.
 * [`postcss-fontpath`] adds font links for different browsers.
+* [`postcss-font-grabber`] it grabs remote fonts in `@font-face`, download them and update your CSS.
 * [`postcss-lazyimagecss`] adds image width and height automatically.
 * [`postcss-lazysprite`] generates sprites from the directory of images.
 * [`postcss-placehold`] makes it easy to drop in placeholder images.
@@ -297,8 +299,7 @@ loosely resembles the original.
 * [`postcss-write-svg`] write inline SVGs in CSS.
 * [`postcss-inline-svg`] inline SVG images and customize their styles.
 * [`webpcss`] adds URLs for WebP images for browsers that support WebP.
-* [`postcss-font-grabber`] it grabs remote fonts in `@font-face`, download them and update your CSS.
-
+* [`webp-in-css`] to use WebP image format in CSS background.
 
 ## Grids
 
@@ -845,6 +846,8 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-clamp`]:                        https://github.com/polemius/postcss-clamp
 [`postcss-pseudo-is`]:                    https://github.com/IlyaUpyackovich/postcss-pseudo-is
 [`postcss-deep-scopable`]:                https://github.com/litt1e-p/postcss-deep-scopable
-[`postcss-deadcss`]:                https://github.com/DenyVeyten/postcss-deadcss
-[`postcss-flexbox-reset`]:                 https://github.com/AndrejGajdos/postcss-flexbox-reset
-[`postcss-grid-reset`]:                    https://github.com/AndrejGajdos/postcss-grid-reset
+[`postcss-deadcss`]:                      https://github.com/DenyVeyten/postcss-deadcss
+[`postcss-flexbox-reset`]:                https://github.com/AndrejGajdos/postcss-flexbox-reset
+[`postcss-grid-reset`]:                   https://github.com/AndrejGajdos/postcss-grid-reset
+[`webp-in-css`]:                          https://github.com/ai/webp-in-css
+[`avif-in-css`]:                          https://github.com/nucliweb/avif-in-css
