@@ -177,7 +177,7 @@ export default class Result {
    * @param opts Warning options.
    * @return Created warning.
    */
-  warn (message: string, options?: WarningOptions): void
+  warn (message: string, options?: WarningOptions): Warning
 
   /**
    * Returns warnings from plugins. Filters `Warning` instances
