@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.2.2
+* Fixed CSS-in-JS support (by James Garbutt).
+* Fixed plugin types (by Ludovico Fischer).
+* Fixed `Result#warn()` types.
+
 ## 8.2.1
 * Fixed `Node#toJSON()` and `postcss.fromJSON()` (by Niklas Mischkulnig).
 
