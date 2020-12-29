@@ -91,8 +91,9 @@ export default abstract class Container extends Node {
    * @param callback Iterator receives each node and index.
    * @return Returns `false` if iteration was broke.
    */
-  each (callback: (node: ChildNode, index: number) => void): void
-  each (callback: (node: ChildNode, index: number) => false): false
+  each (
+    callback: (node: ChildNode, index: number) => false | void
+  ): false | undefined
 
   /**
    * Traverses the container’s descendant nodes, calling callback
@@ -113,8 +114,9 @@ export default abstract class Container extends Node {
    * @param callback Iterator receives each node and index.
    * @return  Returns `false` if iteration was broke.
    */
-  walk (callback: (node: ChildNode, index: number) => void): void
-  walk (callback: (node: ChildNode, index: number) => false): false
+  walk (
+    callback: (node: ChildNode, index: number) => false | void
+  ): false | undefined
 
   /**
    * Traverses the container’s descendant nodes, calling callback
@@ -147,14 +149,11 @@ export default abstract class Container extends Node {
    */
   walkDecls (
     propFilter: string | RegExp,
-    callback: (decl: Declaration, index: number) => void
-  ): void
-  walkDecls (callback: (decl: Declaration, index: number) => void): void
+    callback: (decl: Declaration, index: number) => false | void
+  ): false | undefined
   walkDecls (
-    propFilter: string | RegExp,
-    callback: (decl: Declaration, index: number) => false
-  ): false
-  walkDecls (callback: (decl: Declaration, index: number) => false): false
+    callback: (decl: Declaration, index: number) => false | void
+  ): false | undefined
 
   /**
    * Traverses the container’s descendant nodes, calling callback
@@ -180,14 +179,11 @@ export default abstract class Container extends Node {
    */
   walkRules (
     selectorFilter: string | RegExp,
-    callback: (atRule: Rule, index: number) => void
-  ): void
-  walkRules (callback: (atRule: Rule, index: number) => void): void
+    callback: (atRule: Rule, index: number) => false | void
+  ): false | undefined
   walkRules (
-    selectorFilter: string | RegExp,
-    callback: (atRule: Rule, index: number) => false
-  ): false
-  walkRules (callback: (atRule: Rule, index: number) => false): false
+    callback: (atRule: Rule, index: number) => false | void
+  ): false | undefined
 
   /**
    * Traverses the container’s descendant nodes, calling callback
@@ -220,14 +216,11 @@ export default abstract class Container extends Node {
    */
   walkAtRules (
     nameFilter: string | RegExp,
-    callback: (atRule: AtRule, index: number) => void
-  ): void
-  walkAtRules (callback: (atRule: AtRule, index: number) => void): void
+    callback: (atRule: AtRule, index: number) => false | void
+  ): false | undefined
   walkAtRules (
-    nameFilter: string | RegExp,
-    callback: (atRule: AtRule, index: number) => false
-  ): false
-  walkAtRules (callback: (atRule: AtRule, index: number) => false): false
+    callback: (atRule: AtRule, index: number) => false | void
+  ): false | undefined
 
   /**
    * Traverses the container’s descendant nodes, calling callback
@@ -246,10 +239,12 @@ export default abstract class Container extends Node {
    * @return Returns `false` if iteration was broke.
    */
 
-  walkComments (callback: (comment: Comment, indexed: number) => void): void
   walkComments (
-    callback: (comment: Comment, indexed: number) => boolean
-  ): boolean
+    callback: (comment: Comment, indexed: number) => false | void
+  ): false | undefined
+  walkComments (
+    callback: (comment: Comment, indexed: number) => false | void
+  ): false | undefined
 
   /**
    * Inserts new nodes to the end of the container.
