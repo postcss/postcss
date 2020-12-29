@@ -163,3 +163,12 @@ it('uses optional raws.indent', () => {
   rule.append({ prop: 'color', value: 'black' })
   expect(rule.toString()).toEqual('a {\n color: black\n}')
 })
+
+it('handles nested roots', () => {
+  let root = new Root()
+  let subRoot = new Root()
+  subRoot.append(new AtRule({ name: 'foo' }))
+  root.append(subRoot)
+
+  expect(root.toString()).toEqual('@foo')
+})
