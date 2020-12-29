@@ -14,7 +14,7 @@ import postcss, {
 
 function stringify (node: AnyNode, builder: (str: string) => void) {
   if (node.type === 'rule') {
-    return builder(node.selector)
+    builder(node.selector)
   }
 }
 

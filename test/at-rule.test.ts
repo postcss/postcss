@@ -11,7 +11,9 @@ it('initializes with properties', () => {
 
 it('does not fall on childless at-rule', () => {
   let rule = new AtRule()
-  expect(rule.each(i => i)).not.toBeDefined()
+  rule.each(() => {
+    throw new Error('AtRule has no children')
+  })
 })
 
 it('creates nodes property on prepend()', () => {

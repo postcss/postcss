@@ -18,7 +18,9 @@ function read (result: { css: string }): any {
 let dir = join(__dirname, 'map-fixtures')
 
 let doubler = postcss((css: Root) => {
-  css.walkDecls(decl => decl.parent?.prepend(decl.clone()))
+  css.walkDecls(decl => {
+    decl.parent?.prepend(decl.clone())
+  })
 })
 let lighter = postcss((css: Root) => {
   css.walkDecls(decl => {

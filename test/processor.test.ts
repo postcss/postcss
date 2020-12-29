@@ -186,7 +186,9 @@ it('calls all plugins once', async () => {
 it('parses, converts and stringifies CSS', () => {
   expect(
     typeof new Processor([
-      (css: Root) => expect(css instanceof Root).toBe(true)
+      (css: Root) => {
+        expect(css instanceof Root).toBe(true)
+      }
     ]).process('a {}').css
   ).toEqual('string')
 })
@@ -328,7 +330,9 @@ it('throws parse error in async', async () => {
 
 it('throws error on sync method to async plugin', () => {
   let async = () => {
-    return new Promise<void>(resolve => resolve())
+    return new Promise<void>(resolve => {
+      resolve()
+    })
   }
   expect(() => {
     new Processor([async]).process('a{}').css

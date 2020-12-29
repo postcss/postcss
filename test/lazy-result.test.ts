@@ -55,7 +55,9 @@ it('executes on finally callback', () => {
   let mockCallback = jest.fn()
   return new LazyResult(processor, 'a {}', {})
     .finally(mockCallback)
-    .then(() => expect(mockCallback).toHaveBeenCalledTimes(1))
+    .then(() => {
+      expect(mockCallback).toHaveBeenCalledTimes(1)
+    })
 })
 
 it('prints its object type', () => {

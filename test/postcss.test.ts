@@ -45,7 +45,9 @@ it('creates plugin', () => {
   jest.spyOn(console, 'warn').mockImplementation(() => true)
   let plugin = (postcss as any).plugin('test', (filter?: string) => {
     return (root: Root) => {
-      root.walkDecls(filter ?? 'two', i => i.remove())
+      root.walkDecls(filter ?? 'two', i => {
+        i.remove()
+      })
     }
   })
   expect(console.warn).toHaveBeenCalledTimes(1)
