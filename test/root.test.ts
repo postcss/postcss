@@ -1,9 +1,5 @@
 import { Result, parse } from '../lib/postcss.js'
 
-function privateMethods (obj: object): any {
-  return obj
-}
-
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
   css.prepend({ selector: 'em' })

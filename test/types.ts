@@ -1,4 +1,4 @@
-import postcss, { Result, PluginCreator, SourceMap } from '../lib/postcss.js'
+import postcss, { Result, PluginCreator } from '../lib/postcss.js'
 
 const plugin: PluginCreator<string> = prop => {
   return {
