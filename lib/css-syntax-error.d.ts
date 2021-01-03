@@ -1,4 +1,4 @@
-import Input, { FilePosition } from './input.js'
+import { FilePosition } from './input.js'
 
 /**
  * The CSS parser throws this error for broken CSS.
