@@ -471,7 +471,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-px-to-viewport`] generates viewport units (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
 * [`postcss-viewport-height-correction`] solves the popular problem when `100vh`
   doesn’t fit the mobile browser screen.
-* [`postcss-auto-rem`] compiles pixel units to `rem` without configuration that combined with smart-rem will be a perfect rem solution.
+* [`postcss-auto-rem`] compiles pixel units to `rem` without configuration.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
