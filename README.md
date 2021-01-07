@@ -416,7 +416,7 @@ fs.readFile('src/app.css', (err, css) => {
     .then(result => {
       fs.writeFile('dest/app.css', result.css, () => true)
       if ( result.map ) {
-        fs.writeFile('dest/app.css.map', result.map, () => true)
+        fs.writeFile('dest/app.css.map', result.map.toString(), () => true)
       }
     })
 })
