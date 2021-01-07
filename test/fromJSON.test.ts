@@ -1,6 +1,6 @@
 import v8 from 'v8'
 
-import postcss, { Root, Declaration } from '../lib/postcss.js'
+import postcss, { Root, Declaration, Input } from '../lib/postcss.js'
 
 it('rehydrates a JSON AST', () => {
   let cssWithMap = postcss().process(
@@ -38,19 +38,16 @@ it('rehydrates a JSON AST', () => {
 })
 
 it('rehydrates an array of Nodes via JSON.stringify', () => {
-  let root = postcss.parse(`
-  .cls {
-    color: orange;
-  }`)
+  let root = postcss.parse('.cls { color: orange; }')
 
   // @ts-ignore
   let json = JSON.stringify(root.nodes[0].nodes)
   let rehydrated = (postcss.fromJSON(
     JSON.parse(json)
   ) as unknown) as Declaration[]
-  expect(rehydrated[0].constructor).toBe(postcss.Declaration)
+  expect(rehydrated[0]).toBeInstanceOf(Declaration)
   // @ts-ignore
-  expect(rehydrated[0].source.input.constructor).toBe(postcss.Input)
+  expect(rehydrated[0].source.input).toBeInstanceOf(postcss.Input)
 })
 
 it('throws when rehydrating an invalid JSON AST', () => {
