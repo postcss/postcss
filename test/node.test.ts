@@ -274,7 +274,7 @@ it('toJSON() cleans parents inside', () => {
   expect(JSON.stringify(rule)).toEqual(
     '{"raws":{},"selector":"a","type":"rule","nodes":[' +
       '{"raws":{},"prop":"color","value":"b","type":"decl"}' +
-      ']}'
+      '],"inputs":[]}'
   )
 })
 

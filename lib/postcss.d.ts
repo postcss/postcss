@@ -214,6 +214,7 @@ export interface Stringifier {
 }
 
 export interface JSONHydrator {
+  (data: object[]): Node[]
   (data: object): Node
 }
 
