@@ -2,7 +2,7 @@
 This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## 8.2.3
-* FIx `JSON.stringify(Node[])` support (by Niklas Mischkulnig).
+* Fixed `JSON.stringify(Node[])` support (by Niklas Mischkulnig).
 
 ## 8.2.2
 * Fixed CSS-in-JS support (by James Garbutt).
