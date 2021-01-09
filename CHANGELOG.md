@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.2.4
+* Added plugin name to `postcss.plugin()` warning (by Tom Williams).
+* Fixed docs (by Bill Columbia).
+
 ## 8.2.3
 * Fixed `JSON.stringify(Node[])` support (by Niklas Mischkulnig).
 
