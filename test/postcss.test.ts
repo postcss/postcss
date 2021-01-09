@@ -51,6 +51,7 @@ it('creates plugin', () => {
     }
   })
   expect(console.warn).toHaveBeenCalledTimes(1)
+  expect(console.warn).toHaveBeenCalledWith(expect.stringMatching(/test/))
 
   let func1: any = postcss(plugin).plugins[0]
   expect(func1.postcssPlugin).toEqual('test')
