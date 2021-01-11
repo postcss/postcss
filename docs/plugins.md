@@ -218,6 +218,7 @@ for targeting all button elements.
   selector.
 * [`csstyle`] adds components workflow to your styles.
 * [`postcss-percentage`] support Sass-like `percentage()` function.
+* [`postcss-custom-css-units`] Define custom css units and convert them to CSS variables.
 
 See also [`precss`] plugins pack to add them by one line of code.
 
@@ -853,3 +854,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-grid-reset`]:                   https://github.com/AndrejGajdos/postcss-grid-reset
 [`webp-in-css`]:                          https://github.com/ai/webp-in-css
 [`avif-in-css`]:                          https://github.com/nucliweb/avif-in-css
+[`postcss-custom-css-units`]:             https://github.com/joe223/postcss-custom-css-units
