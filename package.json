@@ -40,7 +40,7 @@
   "dependencies": {
     "colorette": "^1.2.1",
     "nanoid": "^3.1.20",
-    "source-map": "^0.6.1"
+    "source-map": "7rulnik/source-map#03378502bc3d8c8a71ada20ef199b2f469fae514"
   },
   "devDependencies": {
     "@logux/eslint-config": "^44.0.2",
