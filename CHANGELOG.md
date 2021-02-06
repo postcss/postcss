@@ -2,7 +2,7 @@
 This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## 8.2.5
-* Fixed escaped characters handling in `list.parse` (by Natalie Weizenbaum).
+* Fixed escaped characters handling in `list.split` (by Natalie Weizenbaum).
 
 ## 8.2.4
 * Added plugin name to `postcss.plugin()` warning (by Tom Williams).
