@@ -16,7 +16,7 @@ it('space() checks functions', () => {
   expect(list.space('f( )) a( () )')).toEqual(['f( ))', 'a( () )'])
 })
 
-it('space() doesn\'t split on escaped spaces', () => {
+it('space() does not split on escaped spaces', () => {
   expect(list.space('a\\ b')).toEqual(['a\\ b'])
 })
 
@@ -41,7 +41,7 @@ it('comma() checks functions', () => {
   expect(list.comma('f(,)), a(,(),)')).toEqual(['f(,))', 'a(,(),)'])
 })
 
-it('comma() doesn\'t split on escaped commas', () => {
+it('comma() does not split on escaped commas', () => {
   expect(list.comma('a\\, b')).toEqual(['a\\, b'])
 })
 
