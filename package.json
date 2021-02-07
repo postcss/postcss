@@ -97,7 +97,7 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "33 KB"
+      "limit": "34 KB"
     }
   ],
   "jest": {
