@@ -1,5 +1,5 @@
 import { removeSync, outputFileSync } from 'fs-extra'
-import { SourceMapConsumer } from 'source-map'
+import { SourceMapConsumer } from 'source-map-js'
 import { pathToFileURL } from 'url'
 import { existsSync } from 'fs'
 import { join } from 'path'
