@@ -1,4 +1,4 @@
-import { SourceMapConsumer, SourceMapGenerator } from 'source-map'
+import { SourceMapConsumer, SourceMapGenerator } from 'source-map-js'
 import { removeSync, outputFileSync } from 'fs-extra'
 import { join, resolve, parse } from 'path'
 import { existsSync } from 'fs'
