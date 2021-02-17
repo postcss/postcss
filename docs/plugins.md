@@ -523,6 +523,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 * [`postcss-nope`] lets you write `nope` instead of `none`.
 * [`postcss-glitch`] add glitch effect to your text.
+* [`postcss-khaleesi`] translate CSS values and properties to `khaleesi meme` language.
 
 [`postcss-background-image-auto-size`]:   https://github.com/JustClear/postcss-background-image-auto-size
 [`postcss-letter-tracking`]:              https://github.com/letsjaam/postcss-letter-tracking
@@ -855,3 +856,4 @@ See also plugins in modular minifier [`cssnano`].
 [`webp-in-css`]:                          https://github.com/ai/webp-in-css
 [`avif-in-css`]:                          https://github.com/nucliweb/avif-in-css
 [`postcss-custom-css-units`]:             https://github.com/joe223/postcss-custom-css-units
+[`postcss-khaleesi`]:                     https://github.com/Hugoer/postcss-khaleesi
