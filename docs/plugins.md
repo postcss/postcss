@@ -473,6 +473,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-viewport-height-correction`] solves the popular problem when `100vh`
   doesn’t fit the mobile browser screen.
 * [`postcss-auto-rem`] compiles pixel units to `rem` without configuration.
+* [`postcss-add-root-selector`] intelligently wraps all rules in a custom selector.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
