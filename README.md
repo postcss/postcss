@@ -47,7 +47,7 @@ PostCSS needs your support. We are accepting donations
 
 <a href="https://tailwindcss.com/">
   <img src="https://refactoringui.nyc3.cdn.digitaloceanspaces.com/tailwind-logo.svg"
-       alt="Sponsored by Tailwind CSS" width="273" height="64">
+       alt="Sponsored by Tailwind CSS" width="213" height="50">
 </a>
 
 <a href="https://themeisle.com/">
