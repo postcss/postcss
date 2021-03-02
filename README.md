@@ -50,6 +50,11 @@ PostCSS needs your support. We are accepting donations
        alt="Sponsored by Tailwind CSS" width="273" height="64">
 </a>
 
+<a href="https://themeisle.com/">
+  <img src="https://mllj2j8xvfl0.i.optimole.com/d0cOXWA.3970~373ad/w:auto/h:auto/q:90/https://s30246.pcdn.co/wp-content/uploads/2019/03/logo.png"
+       alt="Sponsored by ThemeIsle" width="171" height="56">
+</a>
+
 
 ## Plugins
 
