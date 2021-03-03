@@ -92,7 +92,8 @@
   "browser": {
     "./lib/terminal-highlight": false,
     "colorette": false,
-    "fs": false
+    "fs": false,
+    "path": false
   },
   "size-limit": [
     {
