@@ -12,7 +12,7 @@ import postcss, {
   Plugin
 } from '../lib/postcss.js'
 
-function stringify (node: AnyNode, builder: (str: string) => void) {
+function stringify (node: AnyNode, builder: (str: string) => void): void {
   if (node.type === 'rule') {
     builder(node.selector)
   }
@@ -80,7 +80,7 @@ it('warn() attaches a warning to the result object', async () => {
 })
 
 it('warn() accepts options', () => {
-  let warner = (css: Root, result: Result) => {
+  let warner = (css: Root, result: Result): void => {
     css.first?.warn(result, 'FIRST!', { index: 1 })
   }
 

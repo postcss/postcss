@@ -47,6 +47,8 @@ export default class CssSyntaxError {
     plugin?: string
   )
 
+  stack: string
+
   /**
    * Always equal to `'CssSyntaxError'`. You should always check error type
    * by `error.name === 'CssSyntaxError'`

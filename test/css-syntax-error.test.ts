@@ -11,7 +11,10 @@ import postcss, {
   Rule
 } from '../lib/postcss.js'
 
-function parseError (css: string, opts?: Pick<ProcessOptions, 'map' | 'from'>) {
+function parseError (
+  css: string,
+  opts?: Pick<ProcessOptions, 'map' | 'from'>
+): CssSyntaxError {
   let error
   try {
     postcss.parse(css, opts)
@@ -113,7 +116,7 @@ it('prints with highlight', () => {
 
 it('misses highlights without source content', () => {
   let error = parseError('a {')
-  error.source = null
+  error.source = undefined
   expect(error.toString()).toEqual(
     'CssSyntaxError: <css input>:1:1: Unclosed block'
   )
@@ -126,7 +129,7 @@ it('misses position without source', () => {
 })
 
 it('uses source map', () => {
-  function urlOf (file: string) {
+  function urlOf (file: string): string {
     return pathToFileURL(join(__dirname, file)).toString()
   }
 
@@ -153,7 +156,7 @@ it('uses source map', () => {
 })
 
 it('works with path in sources', () => {
-  function pathOf (file: string) {
+  function pathOf (file: string): string {
     return join(__dirname, file)
   }
 

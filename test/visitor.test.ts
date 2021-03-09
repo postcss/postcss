@@ -12,14 +12,14 @@ import postcss, {
   Helpers
 } from '../lib/postcss.js'
 
-function hasAlready (parent: Container | undefined, selector: string) {
+function hasAlready (parent: Container | undefined, selector: string): boolean {
   if (typeof parent === 'undefined') return false
   return parent.nodes.some(i => {
     return i.type === 'rule' && i.selectors.includes(selector)
   })
 }
 
-function addIndex (array: any[][]) {
+function addIndex (array: any[][]): any[][] {
   return array.map((i, index) => {
     return [index, ...i]
   })
@@ -550,7 +550,7 @@ it('shows error on sync call async plugins', () => {
 })
 
 it('passes helpers', async () => {
-  function check (node: AnyNode, helpers: Helpers) {
+  function check (node: AnyNode, helpers: Helpers): void {
     expect(helpers.result.messages).toEqual([])
     expect(typeof helpers.postcss).toEqual('function')
     expect(helpers.comment().type).toEqual('comment')
