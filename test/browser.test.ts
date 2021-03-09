@@ -1,17 +1,18 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { options, bold, red, gray, yellow } from 'colorette'
 
 beforeEach(() => {
-  jest.resetModules();
+  jest.resetModules()
   jest.doMock('fs', () => ({}))
   jest.doMock('colorette', () => ({ options, bold, red, gray, yellow }))
-});
+})
 
 afterEach(() => {
   options.enabled = true
 })
 
 it('shows code with colors (default)', () => {
-  let postcss = require('../lib/postcss.js');
+  let postcss = require('../lib/postcss.js')
 
   let error
   try {
@@ -35,7 +36,7 @@ it('shows code with colors (default)', () => {
 })
 
 it('shows code without colors (default)', () => {
-  let postcss = require('../lib/postcss.js');
+  let postcss = require('../lib/postcss.js')
 
   let error
   options.enabled = false
@@ -53,7 +54,7 @@ it('shows code without colors (default)', () => {
 })
 
 it('shows code without colors (setting)', () => {
-  let postcss = require('../lib/postcss.js');
+  let postcss = require('../lib/postcss.js')
 
   let error
   try {
@@ -69,7 +70,7 @@ it('shows code without colors (setting)', () => {
 })
 
 it('generates source map without fs', () => {
-  let postcss = require('../lib/postcss.js');
+  let postcss = require('../lib/postcss.js')
 
   expect(
     postcss([() => {}]).process('a{}', { from: 'a.css', map: true }).css
@@ -82,8 +83,8 @@ it('generates source map without fs', () => {
 })
 
 it(`doesn't throw error without path`, () => {
-  jest.doMock('path', () => ({}));
-  let postcss = require('../lib/postcss.js');
+  jest.doMock('path', () => ({}))
+  let postcss = require('../lib/postcss.js')
 
   expect(
     postcss([() => {}]).process('a{}', { from: 'a.css', map: true }).css
