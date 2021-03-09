@@ -1,15 +1,18 @@
 import { options, bold, red, gray, yellow } from 'colorette'
 
-import postcss from '../lib/postcss.js'
-
-jest.doMock('fs', () => ({}))
-jest.doMock('colorette', () => ({ options, bold, red, gray, yellow }))
+beforeEach(() => {
+  jest.resetModules();
+  jest.doMock('fs', () => ({}))
+  jest.doMock('colorette', () => ({ options, bold, red, gray, yellow }))
+});
 
 afterEach(() => {
   options.enabled = true
 })
 
 it('shows code with colors (default)', () => {
+  let postcss = require('../lib/postcss.js');
+
   let error
   try {
     postcss.parse('a{')
@@ -32,6 +35,8 @@ it('shows code with colors (default)', () => {
 })
 
 it('shows code without colors (default)', () => {
+  let postcss = require('../lib/postcss.js');
+
   let error
   options.enabled = false
 
@@ -48,6 +53,8 @@ it('shows code without colors (default)', () => {
 })
 
 it('shows code without colors (setting)', () => {
+  let postcss = require('../lib/postcss.js');
+
   let error
   try {
     postcss.parse('a{')
@@ -62,6 +69,8 @@ it('shows code without colors (setting)', () => {
 })
 
 it('generates source map without fs', () => {
+  let postcss = require('../lib/postcss.js');
+
   expect(
     postcss([() => {}]).process('a{}', { from: 'a.css', map: true }).css
   ).toEqual(
@@ -70,4 +79,13 @@ it('generates source map without fs', () => {
       'ibWFwcGluZ3MiOiJBQUFBLEVBQUUiLCJmaWxlIjoiYS5jc3MiLCJzb3VyY2' +
       'VzQ29udGVudCI6WyJhe30iXX0= */'
   )
+})
+
+it(`doesn't throw error without path`, () => {
+  jest.doMock('path', () => ({}));
+  let postcss = require('../lib/postcss.js');
+
+  expect(
+    postcss([() => {}]).process('a{}', { from: 'a.css', map: true }).css
+  ).toEqual('a{}')
 })
