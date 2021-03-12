@@ -32,7 +32,7 @@ export default class Root extends Container {
   parent: undefined
   raws: RootRaws
 
-  constructor (defaults?: RootProps)
+  constructor(defaults?: RootProps)
 
   /**
    * Returns a `Result` instance representing the root’s CSS.
@@ -47,5 +47,5 @@ export default class Root extends Container {
    * @param opts Options.
    * @return Result with current root’s CSS.
    */
-  toResult (options?: ProcessOptions): Result
+  toResult(options?: ProcessOptions): Result
 }

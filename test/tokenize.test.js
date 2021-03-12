@@ -1,7 +1,7 @@
 let tokenizer = require('../lib/tokenize')
 let { Input } = require('..')
 
-function tokenize (css, opts) {
+function tokenize(css, opts) {
   let processor = tokenizer(new Input(css), opts)
   let tokens = []
   while (!processor.endOfFile()) {
@@ -10,7 +10,7 @@ function tokenize (css, opts) {
   return tokens
 }
 
-function run (css, tokens, opts) {
+function run(css, tokens, opts) {
   expect(tokenize(css, opts)).toEqual(tokens)
 }
 
@@ -289,7 +289,7 @@ it('tokenizes hexadecimal escape', () => {
 })
 
 it('ignore unclosed per token request', () => {
-  function tokn (css, opts) {
+  function tokn(css, opts) {
     let processor = tokenizer(new Input(css), opts)
     let tokens = []
     while (!processor.endOfFile()) {

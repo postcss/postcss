@@ -89,7 +89,7 @@ export default class Input {
    * @param css  Input CSS source.
    * @param opts Process options.
    */
-  constructor (css: string, opts?: ProcessOptions)
+  constructor(css: string, opts?: ProcessOptions)
 
   /**
    * The CSS source identifier. Contains `Input#file` if the user
@@ -103,7 +103,7 @@ export default class Input {
    * root.source.input.from //=> "<input css 1>"
    * ```
    */
-  get from (): string
+  get from(): string
 
   /**
    * Reads the input source map and returns a symbol position
@@ -119,12 +119,12 @@ export default class Input {
    *
    * @return Position in input source.
    */
-  origin (line: number, column: number): FilePosition | false
+  origin(line: number, column: number): FilePosition | false
 
   /**
    * Converts source offset to line and column.
    *
    * @param offset Source offset.
    */
-  fromOffset (offset: number): { line: number; col: number } | null
+  fromOffset(offset: number): { line: number; col: number } | null
 }

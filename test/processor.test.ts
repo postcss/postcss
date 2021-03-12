@@ -15,15 +15,15 @@ afterEach(() => {
   jest.resetAllMocks()
 })
 
-function prs (): Root {
+function prs(): Root {
   return new Root({ raws: { after: 'ok' } })
 }
 
-function str (node: Node, builder: (s: string) => void): void {
+function str(node: Node, builder: (s: string) => void): void {
   builder(`${node.raws.after}!`)
 }
 
-function getCalls (func: any): any {
+function getCalls(func: any): any {
   return func.mock.calls
 }
 
@@ -355,7 +355,7 @@ it('remembers errors', async () => {
   let calls = 0
   let plugin: Plugin = {
     postcssPlugin: 'plugin',
-    Once () {
+    Once() {
       calls += 1
       throw new Error('test')
     }
@@ -395,7 +395,7 @@ it('checks plugin compatibility', () => {
   let func = plugin()
   func.postcssVersion = '2.1.5'
 
-  function processBy (version: string): void {
+  function processBy(version: string): void {
     let processor = new Processor([func])
     processor.version = version
     processor.process('a{}').css
@@ -500,7 +500,7 @@ it('throws on syntax as plugin', () => {
   expect(() => {
     processor.use({
       // @ts-expect-error
-      parse () {}
+      parse() {}
     })
   }).toThrow(/syntax/)
 })

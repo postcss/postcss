@@ -12,7 +12,7 @@ import postcss, {
   Plugin
 } from '../lib/postcss.js'
 
-function stringify (node: AnyNode, builder: (str: string) => void): void {
+function stringify(node: AnyNode, builder: (str: string) => void): void {
   if (node.type === 'rule') {
     builder(node.selector)
   }
@@ -67,7 +67,7 @@ it('warn() attaches a warning to the result object', async () => {
   let warning: any
   let warner: Plugin = {
     postcssPlugin: 'warner',
-    Once (css, { result }) {
+    Once(css, { result }) {
       warning = css.first?.warn(result, 'FIRST!')
     }
   }
@@ -282,7 +282,7 @@ it('toJSON() converts custom properties', () => {
   let root = new Root() as any
   root._cache = [1]
   root._hack = {
-    toJSON () {
+    toJSON() {
       return 'hack'
     }
   }

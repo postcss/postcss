@@ -109,8 +109,8 @@ export default class Declaration extends Node {
    */
   variable: boolean
 
-  constructor (defaults?: DeclarationProps)
-  clone (overrides?: Partial<DeclarationProps>): this
-  cloneBefore (overrides?: Partial<DeclarationProps>): this
-  cloneAfter (overrides?: Partial<DeclarationProps>): this
+  constructor(defaults?: DeclarationProps)
+  clone(overrides?: Partial<DeclarationProps>): this
+  cloneBefore(overrides?: Partial<DeclarationProps>): this
+  cloneAfter(overrides?: Partial<DeclarationProps>): this
 }

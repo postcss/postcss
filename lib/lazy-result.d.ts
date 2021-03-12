@@ -64,24 +64,24 @@ export default class LazyResult implements PromiseLike<Result> {
    * @param css       CSS to parse and transform.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
-  constructor (processor: Processor, css: string, opts: ResultOptions)
+  constructor(processor: Processor, css: string, opts: ResultOptions)
 
   /**
    * Returns the default string description of an object.
    * Required to implement the Promise interface.
    */
-  get [Symbol.toStringTag] (): string
+  get [Symbol.toStringTag](): string
 
   /**
    * Returns a `Processor` instance, which will be used
    * for CSS transformations.
    */
-  get processor (): Processor
+  get processor(): Processor
 
   /**
    * Options from the `Processor#process` call.
    */
-  get opts (): ResultOptions
+  get opts(): ResultOptions
 
   /**
    * Processes input CSS through synchronous plugins, converts `Root`
@@ -92,7 +92,7 @@ export default class LazyResult implements PromiseLike<Result> {
    * it will throw an error. This is why this method is only
    * for debug purpose, you should always use `LazyResult#then`.
    */
-  get css (): string
+  get css(): string
 
   /**
    * An alias for the `css` property. Use it with syntaxes
@@ -103,7 +103,7 @@ export default class LazyResult implements PromiseLike<Result> {
    * it will throw an error. This is why this method is only
    * for debug purpose, you should always use `LazyResult#then`.
    */
-  get content (): string
+  get content(): string
 
   /**
    * Processes input CSS through synchronous plugins
@@ -114,7 +114,7 @@ export default class LazyResult implements PromiseLike<Result> {
    * it will throw an error. This is why this method is only
    * for debug purpose, you should always use `LazyResult#then`.
    */
-  get map (): SourceMap
+  get map(): SourceMap
 
   /**
    * Processes input CSS through synchronous plugins
@@ -126,7 +126,7 @@ export default class LazyResult implements PromiseLike<Result> {
    * This is why this method is only for debug purpose,
    * you should always use `LazyResult#then`.
    */
-  get root (): Root
+  get root(): Root
 
   /**
    * Processes input CSS through synchronous plugins
@@ -138,7 +138,7 @@ export default class LazyResult implements PromiseLike<Result> {
    * This is why this method is only for debug purpose,
    * you should always use `LazyResult#then`.
    */
-  get messages (): Message[]
+  get messages(): Message[]
 
   /**
    * Processes input CSS through synchronous plugins
@@ -146,7 +146,7 @@ export default class LazyResult implements PromiseLike<Result> {
    *
    * @return Warnings from plugins.
    */
-  warnings (): Warning[]
+  warnings(): Warning[]
 
   /**
    * Alias for the `LazyResult#css` property.
@@ -157,19 +157,19 @@ export default class LazyResult implements PromiseLike<Result> {
    *
    * @return Output CSS.
    */
-  toString (): string
+  toString(): string
 
   /**
    * Run plugin in sync way and return `Result`.
    *
    * @return Result with output content.
    */
-  sync (): Result
+  sync(): Result
 
   /**
    * Run plugin in async way and return `Result`.
    *
    * @return Result with output content.
    */
-  async (): Promise<Result>
+  async(): Promise<Result>
 }

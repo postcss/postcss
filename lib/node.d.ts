@@ -175,7 +175,7 @@ export default abstract class Node {
   /**
    * @param defaults Value for node properties.
    */
-  constructor (defaults?: object)
+  constructor(defaults?: object)
 
   /**
    * Returns a `CssSyntaxError` instance containing the original position
@@ -204,7 +204,7 @@ export default abstract class Node {
    *
    * @return Error object to throw it.
    */
-  error (message: string, options?: NodeErrorOptions): CssSyntaxError
+  error(message: string, options?: NodeErrorOptions): CssSyntaxError
 
   /**
    * This method is provided as a convenience wrapper for `Result#warn`.
@@ -223,7 +223,7 @@ export default abstract class Node {
    *
    * @return Created warning object.
    */
-  warn (result: Result, text: string, opts?: WarningOptions): void
+  warn(result: Result, text: string, opts?: WarningOptions): void
 
   /**
    * Removes the node from its parent and cleans the parent properties
@@ -237,7 +237,7 @@ export default abstract class Node {
    *
    * @return Node to make calls chain.
    */
-  remove (): this
+  remove(): this
 
   /**
    * Returns a CSS string representing the node.
@@ -249,7 +249,7 @@ export default abstract class Node {
    * @param stringifier A syntax to use in string generation.
    * @return CSS string of this node.
    */
-  toString (stringifier?: Stringifier | Syntax): string
+  toString(stringifier?: Stringifier | Syntax): string
 
   /**
    * Returns an exact clone of the node.
@@ -267,7 +267,7 @@ export default abstract class Node {
    * @param overrides New properties to override in the clone.
    * @return Clone of the node.
    */
-  clone (overrides?: object): this
+  clone(overrides?: object): this
 
   /**
    * Shortcut to clone the node and insert the resulting cloned node
@@ -281,7 +281,7 @@ export default abstract class Node {
    *
    * @return New node
    */
-  cloneBefore (overrides?: object): this
+  cloneBefore(overrides?: object): this
 
   /**
    * Shortcut to clone the node and insert the resulting cloned node
@@ -290,7 +290,7 @@ export default abstract class Node {
    * @param overrides New properties to override in the clone.
    * @return New node.
    */
-  cloneAfter (overrides?: object): this
+  cloneAfter(overrides?: object): this
 
   /**
    * Inserts node(s) before the current node and removes the current node.
@@ -306,7 +306,7 @@ export default abstract class Node {
    * @param nodes Mode(s) to replace current one.
    * @return Current node to methods chain.
    */
-  replaceWith (
+  replaceWith(
     ...nodes: (ChildNode | ChildProps | ChildNode[] | ChildProps[])[]
   ): this
 
@@ -325,7 +325,7 @@ export default abstract class Node {
    *
    * @return Next node.
    */
-  next (): ChildNode | undefined
+  next(): ChildNode | undefined
 
   /**
    * Returns the previous child of the node’s parent.
@@ -340,7 +340,7 @@ export default abstract class Node {
    *
    * @return Previous node.
    */
-  prev (): ChildNode | undefined
+  prev(): ChildNode | undefined
 
   /**
    * Insert new node before current node to current node’s parent.
@@ -354,7 +354,7 @@ export default abstract class Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  before (newNode: Node | ChildProps | string | Node[]): this
+  before(newNode: Node | ChildProps | string | Node[]): this
 
   /**
    * Insert new node after current node to current node’s parent.
@@ -368,7 +368,7 @@ export default abstract class Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  after (newNode: Node | ChildProps | string | Node[]): this
+  after(newNode: Node | ChildProps | string | Node[]): this
 
   /**
    * Finds the Root instance of the node’s tree.
@@ -379,7 +379,7 @@ export default abstract class Node {
    *
    * @return Root parent.
    */
-  root (): Root
+  root(): Root
 
   /**
    * Returns a `Node#raws` value. If the node is missing
@@ -399,7 +399,7 @@ export default abstract class Node {
    *                    if the value is the same as prop.
    * @return {string} Code style value.
    */
-  raw (prop: string, defaultType?: string): string
+  raw(prop: string, defaultType?: string): string
 
   /**
    * Clear the code style properties for the node and its children.
@@ -412,14 +412,14 @@ export default abstract class Node {
    *
    * @param keepBetween Keep the `raws.between` symbols.
    */
-  cleanRaws (keepBetween?: boolean): void
+  cleanRaws(keepBetween?: boolean): void
 
   /**
    * Fix circular links on `JSON.stringify()`.
    *
    * @return Cleaned object.
    */
-  toJSON (): object
+  toJSON(): object
 
   /**
    * Convert string index to line/column.
@@ -427,5 +427,5 @@ export default abstract class Node {
    * @param index The symbol number in the node’s string.
    * @return Symbol position in file.
    */
-  positionInside (index: number): Position
+  positionInside(index: number): Position
 }

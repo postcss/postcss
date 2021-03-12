@@ -38,7 +38,7 @@ export default class CssSyntaxError {
    * @param file    Absolute path to the broken file.
    * @param plugin  PostCSS plugin name, if error came from plugin.
    */
-  constructor (
+  constructor(
     message: string,
     line?: number,
     column?: number,
@@ -165,7 +165,7 @@ export default class CssSyntaxError {
    *
    * @return Error position, message and source code.
    */
-  toString (): string
+  toString(): string
 
   /**
    * Returns a few lines of CSS source that caused the error.
@@ -188,5 +188,5 @@ export default class CssSyntaxError {
    *              and `process.env.NODE_DISABLE_COLORS`.
    * @return Few lines of CSS source that caused the error.
    */
-  showSourceCode (color?: boolean): string
+  showSourceCode(color?: boolean): string
 }

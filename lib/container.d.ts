@@ -47,7 +47,7 @@ export default abstract class Container extends Node {
    * rule.first === rules.nodes[0]
    * ```
    */
-  get first (): ChildNode | undefined
+  get first(): ChildNode | undefined
 
   /**
    * The container’s last child.
@@ -56,7 +56,7 @@ export default abstract class Container extends Node {
    * rule.last === rule.nodes[rule.nodes.length - 1]
    * ```
    */
-  get last (): ChildNode | undefined
+  get last(): ChildNode | undefined
 
   /**
    * Iterates through the container’s immediate children,
@@ -91,7 +91,7 @@ export default abstract class Container extends Node {
    * @param callback Iterator receives each node and index.
    * @return Returns `false` if iteration was broke.
    */
-  each (
+  each(
     callback: (node: ChildNode, index: number) => false | void
   ): false | undefined
 
@@ -114,7 +114,7 @@ export default abstract class Container extends Node {
    * @param callback Iterator receives each node and index.
    * @return  Returns `false` if iteration was broke.
    */
-  walk (
+  walk(
     callback: (node: ChildNode, index: number) => false | void
   ): false | undefined
 
@@ -147,11 +147,11 @@ export default abstract class Container extends Node {
    * @param callback Iterator receives each node and index.
    * @return Returns `false` if iteration was broke.
    */
-  walkDecls (
+  walkDecls(
     propFilter: string | RegExp,
     callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
-  walkDecls (
+  walkDecls(
     callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
 
@@ -177,11 +177,11 @@ export default abstract class Container extends Node {
    * @param callback Iterator receives each node and index.
    * @return Returns `false` if iteration was broke.
    */
-  walkRules (
+  walkRules(
     selectorFilter: string | RegExp,
     callback: (atRule: Rule, index: number) => false | void
   ): false | undefined
-  walkRules (
+  walkRules(
     callback: (atRule: Rule, index: number) => false | void
   ): false | undefined
 
@@ -214,11 +214,11 @@ export default abstract class Container extends Node {
    * @param callback Iterator receives each node and index.
    * @return Returns `false` if iteration was broke.
    */
-  walkAtRules (
+  walkAtRules(
     nameFilter: string | RegExp,
     callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
-  walkAtRules (
+  walkAtRules(
     callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
 
@@ -239,10 +239,10 @@ export default abstract class Container extends Node {
    * @return Returns `false` if iteration was broke.
    */
 
-  walkComments (
+  walkComments(
     callback: (comment: Comment, indexed: number) => false | void
   ): false | undefined
-  walkComments (
+  walkComments(
     callback: (comment: Comment, indexed: number) => false | void
   ): false | undefined
 
@@ -266,7 +266,7 @@ export default abstract class Container extends Node {
    * @param nodes New nodes.
    * @return This node for methods chain.
    */
-  append (
+  append(
     ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
   ): this
 
@@ -290,7 +290,7 @@ export default abstract class Container extends Node {
    * @param nodes New nodes.
    * @return This node for methods chain.
    */
-  prepend (
+  prepend(
     ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
   ): this
 
@@ -304,7 +304,7 @@ export default abstract class Container extends Node {
    * @param child New node.
    * @return This node for methods chain.
    */
-  push (child: ChildNode): this
+  push(child: ChildNode): this
 
   /**
    * Insert new node before old node within the container.
@@ -317,7 +317,7 @@ export default abstract class Container extends Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  insertBefore (
+  insertBefore(
     oldNode: ChildNode | number,
     newNode:
       | ChildNode
@@ -335,7 +335,7 @@ export default abstract class Container extends Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  insertAfter (
+  insertAfter(
     oldNode: ChildNode | number,
     newNode:
       | ChildNode
@@ -360,7 +360,7 @@ export default abstract class Container extends Node {
    * @param child Child or child’s index.
    * @return This node for methods chain.
    */
-  removeChild (child: ChildNode | number): this
+  removeChild(child: ChildNode | number): this
 
   /**
    * Removes all children from the container
@@ -373,7 +373,7 @@ export default abstract class Container extends Node {
    *
    * @return This node for methods chain.
    */
-  removeAll (): this
+  removeAll(): this
 
   /**
    * Passes all declaration values within the container that match pattern
@@ -398,12 +398,12 @@ export default abstract class Container extends Node {
    *                                     of `String#replace`.
    * @return This node for methods chain.
    */
-  replaceValues (
+  replaceValues(
     pattern: string | RegExp,
     options: ValueOptions,
     replaced: string | { (substring: string, ...args: any[]): string }
   ): this
-  replaceValues (
+  replaceValues(
     pattern: string | RegExp,
     replaced: string | { (substring: string, ...args: any[]): string }
   ): this
@@ -419,7 +419,7 @@ export default abstract class Container extends Node {
    * @param condition Iterator returns true or false.
    * @return Is every child pass condition.
    */
-  every (
+  every(
     condition: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean
   ): boolean
 
@@ -434,7 +434,7 @@ export default abstract class Container extends Node {
    * @param condition Iterator returns true or false.
    * @return Is some child pass condition.
    */
-  some (
+  some(
     condition: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean
   ): boolean
 
@@ -448,5 +448,5 @@ export default abstract class Container extends Node {
    * @param child Child of the current container.
    * @return Child index.
    */
-  index (child: ChildNode | number): number
+  index(child: ChildNode | number): number
 }

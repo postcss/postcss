@@ -11,7 +11,7 @@ import postcss, {
   Rule
 } from '../lib/postcss.js'
 
-function parseError (
+function parseError(
   css: string,
   opts?: Pick<ProcessOptions, 'map' | 'from'>
 ): CssSyntaxError {
@@ -129,7 +129,7 @@ it('misses position without source', () => {
 })
 
 it('uses source map', () => {
-  function urlOf (file: string): string {
+  function urlOf(file: string): string {
     return pathToFileURL(join(__dirname, file)).toString()
   }
 
@@ -156,7 +156,7 @@ it('uses source map', () => {
 })
 
 it('works with path in sources', () => {
-  function pathOf (file: string): string {
+  function pathOf(file: string): string {
     return join(__dirname, file)
   }
 
@@ -222,7 +222,7 @@ it('set source plugin', () => {
 it('set source plugin automatically', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test-plugin',
-    Once (css) {
+    Once(css) {
       if (css.first) {
         throw css.first.error('Error')
       }
@@ -241,7 +241,7 @@ it('set source plugin automatically', () => {
 it('set plugin automatically in async', () => {
   let plugin: Plugin = {
     postcssPlugin: 'async-plugin',
-    Once (css) {
+    Once(css) {
       return new Promise((resolve, reject) => {
         if (css.first) {
           reject(css.first.error('Error'))

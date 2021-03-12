@@ -89,7 +89,7 @@ export default class Warning {
    * @param text Warning message.
    * @param opts Warning options.
    */
-  constructor (text: string, opts?: WarningOptions)
+  constructor(text: string, opts?: WarningOptions)
 
   /**
    * Returns a warning position and message.
@@ -100,5 +100,5 @@ export default class Warning {
    *
    * @return Warning position and message.
    */
-  toString (): string
+  toString(): string
 }
