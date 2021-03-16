@@ -474,6 +474,7 @@ See also plugins in modular minifier [`cssnano`].
   doesn’t fit the mobile browser screen.
 * [`postcss-auto-rem`] compiles pixel units to `rem` without configuration.
 * [`postcss-add-root-selector`] intelligently wraps all rules in a custom selector.
+* [`postcss-blurry-gradient-workaround`] adds a workaround for blurry CSS gradients with too many explicit end-stops.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -858,3 +859,4 @@ See also plugins in modular minifier [`cssnano`].
 [`avif-in-css`]:                          https://github.com/nucliweb/avif-in-css
 [`postcss-custom-css-units`]:             https://github.com/joe223/postcss-custom-css-units
 [`postcss-khaleesi`]:                     https://github.com/Hugoer/postcss-khaleesi
+[`postcss-blurry-gradient-workaround`]:   https://github.com/strarsis/postcss-blurry-gradient-workaround
