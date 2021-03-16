@@ -406,11 +406,14 @@ See also plugins in modular minifier [`cssnano`].
 
 ## Others
 
+* [`postcss-add-root-selector`] intelligently wraps all rules in a custom selector.
 * [`postcss-alter-property-value`] alters your CSS declarations from a rule based configuration.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
+* [`postcss-auto-rem`] compiles pixel units to `rem` without configuration.
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-bem-to-js`] creates a JavaScript definition file for BEM-style CSS.
 * [`postcss-bom`] adds a UTF-8 BOM to files.
+* [`postcss-blurry-gradient-workaround`] fixes blurry CSS gradients with too many explicit end-stops.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-classes-to-mixins`] converts classes to Sass, Less and Stylus mixins
@@ -472,9 +475,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-px-to-viewport`] generates viewport units (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
 * [`postcss-viewport-height-correction`] solves the popular problem when `100vh`
   doesn’t fit the mobile browser screen.
-* [`postcss-auto-rem`] compiles pixel units to `rem` without configuration.
-* [`postcss-add-root-selector`] intelligently wraps all rules in a custom selector.
-* [`postcss-blurry-gradient-workaround`] adds a workaround for blurry CSS gradients with too many explicit end-stops.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
