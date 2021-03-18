@@ -418,6 +418,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-classes-to-mixins`] converts classes to Sass, Less and Stylus mixins
 * [`postcss-currency`] replaces name of currency with symbols.
+* [`postcss-d-ts`] generates `.d.ts` declaration for TypeScript `import` from used CSS classes and ids 
 * [`postcss-eol`] replaces EOL of files.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
@@ -860,3 +861,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-custom-css-units`]:             https://github.com/joe223/postcss-custom-css-units
 [`postcss-khaleesi`]:                     https://github.com/Hugoer/postcss-khaleesi
 [`postcss-blurry-gradient-workaround`]:   https://github.com/strarsis/postcss-blurry-gradient-workaround
+[`postcss-d-ts`]:                         https://github.com/askirmas/postcss-d-ts
