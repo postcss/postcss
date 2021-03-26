@@ -68,6 +68,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 * [`postcss-apply`] supports custom properties sets references.
 * [`postcss-attribute-case-insensitive`] supports case insensitive attributes.
+* [`postcss-bidirection`] generate left-to-right and right-to-left styles with single syntax.
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
@@ -99,9 +100,11 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to clean inherit styles.
 * [`postcss-logical-properties`] transforms `start` and `end` properties
   to `left` and `right` depending on the writing direction of the document.
-* [`postcss-bidirection`] generate left-to-right and right-to-left styles with single syntax.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
+* [`postcss-multi-value-display`] transforms `inline flex` and `block flow`
+  to `inline-flex` and `block`
 * [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
+* [`postcss-pseudo-is`] transforms `:is()` to more compatible CSS.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`postcss-selector-matches`] transforms CSS4 `:matches()`
   to more compatible CSS.
@@ -109,7 +112,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   through logical rather than direction / physical rules.
 * [`postcss-subgrid`] provides a basic shim for the CSS `display: subgrid` spec.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
-* [`postcss-pseudo-is`] transforms `:is()` to more compatible CSS.
 
 See also [`postcss-preset-env`] plugins pack to add future CSS syntax
 by one line of code.
@@ -862,3 +864,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-khaleesi`]:                     https://github.com/Hugoer/postcss-khaleesi
 [`postcss-blurry-gradient-workaround`]:   https://github.com/strarsis/postcss-blurry-gradient-workaround
 [`postcss-d-ts`]:                         https://github.com/askirmas/postcss-d-ts
+[`postcss-multi-value-display`]:          https://github.com/jake-low/postcss-multi-value-display
