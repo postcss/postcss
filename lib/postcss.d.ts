@@ -4,6 +4,7 @@ import Node, {
   Position,
   Source,
   ChildNode,
+  NodeErrorOptions,
   NodeProps,
   ChildProps,
   AnyNode
@@ -30,6 +31,7 @@ export {
   ChildNode,
   AnyNode,
   Message,
+  NodeErrorOptions,
   NodeProps,
   DeclarationProps,
   ContainerProps,
