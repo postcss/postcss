@@ -380,7 +380,7 @@ PostCSS also supports [Deno]:
 
 ```js
 import postcss from 'https://deno.land/x/postcss/mod.js'
-import autoprefixer from 'https://dev.jspm.io/autoprefixer'
+import autoprefixer from 'https://jspm.dev/autoprefixer'
 
 const result = await postcss([autoprefixer]).process(css)
 ```
