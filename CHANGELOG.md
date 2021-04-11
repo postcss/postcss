@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.2.10
+* Fixed ReDoS vulnerabilities in source map parsing.
+* Fixed webpack 5 support (by Barak Igal).
+* Fixed docs (by Roeland Moors).
+
 ## 8.2.9
 * Exported `NodeErrorOptions` type (by Rouven Weßling).
 
