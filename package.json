@@ -103,7 +103,8 @@
     "./lib/terminal-highlight": false,
     "colorette": false,
     "fs": false,
-    "path": false
+    "path": false,
+    "url": false
   },
   "size-limit": [
     {
