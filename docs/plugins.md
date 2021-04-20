@@ -221,6 +221,7 @@ for targeting all button elements.
 * [`csstyle`] adds components workflow to your styles.
 * [`postcss-percentage`] support Sass-like `percentage()` function.
 * [`postcss-custom-css-units`] Define custom css units and convert them to CSS variables.
+* [`postcss-easy-z`] lets you organize z-indices by declaring relations between them.
 
 See also [`precss`] plugins pack to add them by one line of code.
 
@@ -865,3 +866,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-blurry-gradient-workaround`]:   https://github.com/strarsis/postcss-blurry-gradient-workaround
 [`postcss-d-ts`]:                         https://github.com/askirmas/postcss-d-ts
 [`postcss-multi-value-display`]:          https://github.com/jake-low/postcss-multi-value-display
+[`postcss-easy-z`]:                       https://github.com/CSSSR/postcss-easy-z
