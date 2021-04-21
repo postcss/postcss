@@ -126,7 +126,7 @@ export default class CssSyntaxError {
    *
    * ```js
    * error.source       //=> 'a { b {} }'
-   * error.input.column //=> 'a b { }'
+   * error.input.source //=> 'a b { }'
    * ```
    */
   source?: string
