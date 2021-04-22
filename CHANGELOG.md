@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.2.12
+* Fixed `package.json` exports.
+
 ## 8.2.11
 * Fixed `DEP0148` warning in Node.js 16.
 * Fixed docs (by @semiromid).
