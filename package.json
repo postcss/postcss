@@ -36,7 +36,8 @@
     "./lib/terminal-highlight": "./lib/terminal-highlight.js",
     "./lib/tokenize": "./lib/tokenize.js",
     "./lib/warn-once": "./lib/warn-once.js",
-    "./lib/warning": "./lib/warning.js"
+    "./lib/warning": "./lib/warning.js",
+    "./package.json": "./package.json"
   },
   "main": "./lib/postcss.js",
   "types": "./lib/postcss.d.ts",
