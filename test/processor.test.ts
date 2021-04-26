@@ -1,4 +1,5 @@
 import { resolve as pathResolve } from 'path'
+import { delay } from 'nanodelay'
 
 import postcss, {
   Plugin,
@@ -25,6 +26,15 @@ function str(node: Node, builder: (s: string) => void): void {
 
 function getCalls(func: any): any {
   return func.mock.calls
+}
+
+async function catchError(cb: () => Promise<any>): Promise<Error> {
+  try {
+    await cb()
+  } catch (e) {
+    return e
+  }
+  throw new Error('Error was not thrown')
 }
 
 let beforeFix = new Processor([
@@ -277,54 +287,40 @@ it('runs async plugin only once', async () => {
   expect(calls).toEqual(1)
 })
 
-it('supports async errors', () => {
+it('supports async errors', async () => {
   let error = new Error('Async')
   let async = (): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
       reject(error)
     })
   }
-  return new Promise<void>((resolve, reject) => {
-    let result = new Processor([async]).process('', { from: undefined })
-    result
-      .then(() => {
-        reject(new Error('Called .then in failed processing'))
-      })
-      .catch(err => {
-        expect(err).toEqual(error)
-        return result.catch(err2 => {
-          expect(err2).toEqual(error)
-          resolve()
-        })
-      })
+  let result = new Processor([async]).process('', { from: undefined })
+  let err1 = await catchError(async () => await result)
+  expect(err1).toEqual(error)
+
+  let err2: Error | undefined
+  result.catch(catched => {
+    err2 = catched
   })
+  await delay(10)
+  expect(err2).toEqual(error)
 })
 
-it('supports sync errors in async mode', () => {
+it('supports sync errors in async mode', async () => {
   let error = new Error('Async')
   let async = (): void => {
     throw error
   }
-  return new Promise<void>((resolve, reject) => {
-    new Processor([async])
-      .process('', { from: undefined })
-      .then(() => {
-        reject(new Error('Called .then in failed processing'))
-      })
-      .catch(err => {
-        expect(err).toEqual(error)
-        resolve()
-      })
-  })
+  let err = await catchError(() =>
+    new Processor([async]).process('', { from: undefined })
+  )
+  expect(err).toEqual(error)
 })
 
 it('throws parse error in async', async () => {
-  let err
-  try {
-    await new Processor([() => {}]).process('a{', { from: undefined })
-  } catch (e) {
-    err = e
-  }
+  let err = await catchError(() =>
+    new Processor([() => {}]).process('a{', { from: undefined })
+  )
   expect(err.message).toEqual('<css input>:1:1: Unclosed block')
 })
 

@@ -11,6 +11,16 @@ import postcss, {
   Rule
 } from '../lib/postcss.js'
 
+async function catchError(cb: () => Promise<any>): Promise<CssSyntaxError> {
+  try {
+    await cb()
+  } catch (e) {
+    if (e.name !== 'CssSyntaxError') throw e
+    return e
+  }
+  throw new Error('Error was not thrown')
+}
+
 function parseError(
   css: string,
   opts?: Pick<ProcessOptions, 'map' | 'from'>
@@ -219,7 +229,7 @@ it('set source plugin', () => {
   )
 })
 
-it('set source plugin automatically', () => {
+it('set source plugin automatically', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'test-plugin',
     Once(css) {
@@ -229,16 +239,14 @@ it('set source plugin automatically', () => {
     }
   }
 
-  return postcss([plugin])
-    .process('a{}')
-    .catch(error => {
-      if (error.name !== 'CssSyntaxError') throw error
-      expect(error.plugin).toEqual('test-plugin')
-      expect(error.toString()).toMatch(/test-plugin/)
-    })
+  let error = await catchError(() =>
+    postcss([plugin]).process('a{}', { from: undefined })
+  )
+  expect(error.plugin).toEqual('test-plugin')
+  expect(error.toString()).toMatch(/test-plugin/)
 })
 
-it('set plugin automatically in async', () => {
+it('set plugin automatically in async', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'async-plugin',
     Once(css) {
@@ -250,10 +258,8 @@ it('set plugin automatically in async', () => {
     }
   }
 
-  return postcss([plugin])
-    .process('a{}')
-    .catch(error => {
-      if (error.name !== 'CssSyntaxError') throw error
-      expect(error.plugin).toEqual('async-plugin')
-    })
+  let error = await catchError(() =>
+    postcss([plugin]).process('a{}', { from: undefined })
+  )
+  expect(error.plugin).toEqual('async-plugin')
 })
