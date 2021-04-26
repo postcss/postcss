@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.2.13
+* Fixed ReDoS vulnerabilities in source map parsing (by Yeting Li).
+
 ## 8.2.12
 * Fixed `package.json` exports.
 
