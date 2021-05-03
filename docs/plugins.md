@@ -274,6 +274,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-easysprites`] combine images to sprites, based on their
   image.png`#hash` and aspect ratio (`@2x`).
+* [`postcss-icon-blender`] create custom SVG icon sets from over 80,000 free and open-source icons 
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
@@ -867,3 +868,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-d-ts`]:                         https://github.com/askirmas/postcss-d-ts
 [`postcss-multi-value-display`]:          https://github.com/jake-low/postcss-multi-value-display
 [`postcss-easy-z`]:                       https://github.com/CSSSR/postcss-easy-z
+[`postcss-icon-blender`]:                 https://github.com/icon-blender/postcss-icon-blender
