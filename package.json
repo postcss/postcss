@@ -130,12 +130,13 @@
     "colorette": false,
     "fs": false,
     "path": false,
-    "url": false
+    "url": false,
+    "source-map": false
   },
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "30 KB"
+      "limit": "23 KB"
     }
   ],
   "jest": {
