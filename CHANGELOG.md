@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.2.14
+* Removed `source-map` from client-side bundle (by Barak Igal).
+
 ## 8.2.13
 * Fixed ReDoS vulnerabilities in source map parsing (by Yeting Li).
 
