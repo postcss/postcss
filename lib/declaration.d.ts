@@ -32,7 +32,7 @@ export interface DeclarationProps {
   /** Value of the declaration. */
   value: string
   /** Whether the declaration has an `!important` annotation. */
-  important: boolean
+  important?: boolean
   /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
   raws?: DeclarationRaws
 }
