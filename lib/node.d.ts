@@ -252,6 +252,18 @@ export default abstract class Node {
   toString(stringifier?: Stringifier | Syntax): string
 
   /**
+   * Assigns properties to the current node.
+   *
+   * ```js
+   * decl.assign({ prop: 'word-wrap', value: 'break-word' })
+   * ```
+   *
+   * @param overrides New properties to override the node.
+   * @return Current node to methods chain.
+   */
+  assign(overrides: object): this
+
+  /**
    * Returns an exact clone of the node.
    *
    * The resulting cloned node and its (cloned) children will retain
