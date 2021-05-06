@@ -37,8 +37,11 @@ interface RuleRaws {
 }
 
 export interface RuleProps extends ContainerProps {
+  /** Selector or selectors of the rule. */
   selector?: string
+  /** Selectors of the rule represented as an array of strings. */
   selectors?: string[]
+  /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
   raws?: RuleRaws
 }
 
@@ -93,6 +96,7 @@ export default class Rule extends Container {
   selectors: string[]
 
   constructor(defaults?: RuleProps)
+  assign(overrides: object | RuleProps): this
   clone(overrides?: Partial<RuleProps>): this
   cloneBefore(overrides?: Partial<RuleProps>): this
   cloneAfter(overrides?: Partial<RuleProps>): this
