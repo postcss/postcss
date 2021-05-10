@@ -89,7 +89,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^32.0.1",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "jest": "^26.6.3",
     "lint-staged": "^11.0.0",
     "nanodelay": "^1.0.8",
