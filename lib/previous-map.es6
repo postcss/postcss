@@ -78,7 +78,8 @@ class PreviousMap {
   }
 
   loadAnnotation (css) {
-    let annotations = css.match(/\/\*\s*# sourceMappingURL=(?:(?!sourceMappingURL=).)*\*\//gm)
+    let annotations = css
+      .match(/\/\*\s*# sourceMappingURL=(?:(?!sourceMappingURL=).)*\*\//gm)
 
     if (annotations && annotations.length > 0) {
       // Locate the last sourceMappingURL to avoid picking up
