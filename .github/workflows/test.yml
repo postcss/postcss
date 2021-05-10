@@ -37,6 +37,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        with:
+          install-command: yarn --frozen-lockfile --ignore-engines
       - name: Run unit tests
         run: npx jest
   windows:
