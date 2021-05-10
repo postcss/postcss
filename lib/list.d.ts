@@ -1,5 +1,20 @@
 export type List = {
   /**
+   * Safely splits values.
+   *
+   * ```js
+   * Once (root, { list }) {
+   *   list.split('1px calc(10% + 1px)', [' ', '\n', '\t']) //=> ['1px', 'calc(10% + 1px)']
+   * }
+   * ```
+   *
+   * @param string separated values.
+   * @param separators array of separators.
+   * @param last boolean indicator.
+   * @return Split values.
+   */
+  split(string: string, separators: string[], last: boolean): string[]
+  /**
    * Safely splits space-separated values (such as those for `background`,
    * `border-radius`, and other shorthand properties).
    *
