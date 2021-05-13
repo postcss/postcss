@@ -77,7 +77,7 @@ is described in [API docs].
 
 PostCSS plugins may declare file or directory dependencies by attaching
 messages to the `result`. Runners should watch these and ensure that the
-CSS is rebuilt when they change.
+CSS is rebuilt when they change. Directories should be watched recursively.
 
 ```js
 for (let message of result.messages) {

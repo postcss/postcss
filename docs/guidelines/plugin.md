@@ -208,9 +208,9 @@ is described in [API docs].
 
 ## 3. Dependencies
 
-### 3.1. Use the `dependency` message type for file dependencies
+### 3.1. Use messages to specify dependencies
 
-If a plugin depends on another file, it should be declared by attaching
+If a plugin depends on another file, it should be specified by attaching
 a `dependency` message to the `result`:
 
 ```js
@@ -222,17 +222,13 @@ result.messages.push({
 })
 ```
 
-
-### 3.2. Use the `dir-dependency` message type for directory dependencies
-
-If a plugin depends on the contents of a directory it should be declared
-by attaching a `dir-dependency` message to the `result`:
+Specify recursive directory dependencies using the `dir-dependency` message type:
 
 ```js
 result.messages.push({
   type: 'dir-dependency',
   plugin: 'postcss-import',
-  dir: '/js',
+  dir: '/imported',
   parent: result.opts.from
 })
 ```
