@@ -217,7 +217,7 @@ a `dependency` message to the `result`:
 result.messages.push({
   type: 'dependency',
   plugin: 'postcss-import',
-  file: '/js/example.js',
+  file: '/imported/file.css',
   parent: result.opts.from
 })
 ```
