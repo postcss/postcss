@@ -80,7 +80,7 @@ messages to the `result`. Runners should watch these and ensure that the
 CSS is rebuilt when they change.
 
 ```js
-for (let message in result.messages) {
+for (let message of result.messages) {
   if (message.type === 'dependency') {
     watcher.addFile(message.file)
   } else if (message.type === 'dir-dependency') {
