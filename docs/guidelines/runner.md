@@ -90,20 +90,6 @@ for (let message in result.messages) {
 ```
 
 
-### 3.2. Declare support
-
-PostCSS runners must specify which message types they support using the
-`messageTypes` option, so that plugins know which types are available:
-
-```js
-processor.process({
-  from: file.path,
-  to: file.path,
-  messageTypes: ['dependency', 'dir-dependency']
-})
-```
-
-
 ## 4. Output
 
 ### 4.1. Don’t show JS stack for `CssSyntaxError`

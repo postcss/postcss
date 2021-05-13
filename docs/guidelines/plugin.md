@@ -238,19 +238,6 @@ result.messages.push({
 ```
 
 
-### 3.3. Detect available dependency types
-
-PostCSS runners may declare which message types they support using the
-`messageTypes` option. Plugins can use this to check that the types it
-requires are available:
-
-```js
-let supportsDirDependencies = result.opts.messageTypes.includes('dir-dependency')
-```
-
-Note that if a runner does not declare `messageTypes` then it is generally
-safe to assume that the runner only supports the `dependency` type.
-
 ## 4. Errors
 
 ### 4.1. Use `node.error` on CSS relevant errors
