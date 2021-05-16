@@ -4,6 +4,11 @@ import Result from './result.js'
 
 interface RootRaws {
   /**
+   * The symbols before the first child to the start of file.
+   */
+  before?: string
+
+  /**
    * The space symbols after the last child to the end of file.
    */
   after?: string
@@ -29,7 +34,7 @@ export interface RootProps extends ContainerProps {
  */
 export default class Root extends Container {
   type: 'root'
-  parent: undefined
+  // parent: Document | undefined
   raws: RootRaws
 
   constructor(defaults?: RootProps)

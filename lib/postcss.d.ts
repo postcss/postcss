@@ -11,6 +11,7 @@ import Node, {
 } from './node.js'
 import Declaration, { DeclarationProps } from './declaration.js'
 import Root, { RootProps } from './root.js'
+import Document, { DocumentProps } from './document.js'
 import Comment, { CommentProps } from './comment.js'
 import AtRule, { AtRuleProps } from './at-rule.js'
 import Result, { Message } from './result.js'
@@ -50,6 +51,7 @@ export {
   AtRule,
   Rule,
   Root,
+  Document,
   Result,
   LazyResult,
   Input
@@ -74,6 +76,20 @@ type CommentProcessor = (
 ) => Promise<void> | void
 
 interface Processors {
+  /**
+   * Will be called on `Document` node.
+   *
+   * Will be called again on children changes.
+   */
+  Document?: RootProcessor
+
+  /**
+   * Will be called on `Document` node, when all children will be processed.
+   *
+   * Will be called again on children changes.
+   */
+  DocumentExit?: RootProcessor
+
   /**
    * Will be called on `Root` node once.
    */
@@ -347,7 +363,7 @@ export interface Postcss {
   stringify: Stringifier
 
   /**
-   * Parses source css and returns a new `Root` node,
+   * Parses source css and returns a new `Root` or `Document` node,
    * which contains the source CSS nodes.
    *
    * ```js
@@ -414,6 +430,14 @@ export interface Postcss {
    * @return New root node.
    */
   root(defaults?: RootProps): Root
+
+  /**
+   * Creates a new `Document` node.
+   *
+   * @param defaults Properties for the new node.
+   * @return New document node.
+   */
+  document(defaults?: DocumentProps): Document
 
   CssSyntaxError: typeof CssSyntaxError
   Declaration: typeof Declaration

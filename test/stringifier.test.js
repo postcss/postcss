@@ -1,4 +1,4 @@
-let { Declaration, AtRule, Node, Root, Rule, parse } = require('..')
+let { Declaration, AtRule, Node, Root, Rule, Document, parse } = require('..')
 let Stringifier = require('../lib/stringifier')
 
 let str
@@ -171,4 +171,116 @@ it('handles nested roots', () => {
   root.append(subRoot)
 
   expect(root.toString()).toEqual('@foo')
+})
+
+it('handles root', () => {
+  let root = new Root()
+  root.append(new AtRule({ name: 'foo' }))
+
+  let s = root.toString()
+
+  expect(s).toEqual('@foo')
+})
+
+it('handles root with after', () => {
+  let root = new Root({ raws: { after: '   ' } })
+  root.append(new AtRule({ name: 'foo' }))
+
+  let s = root.toString()
+
+  expect(s).toEqual('@foo   ')
+})
+
+it('pass nodes to document', () => {
+  let root = new Root()
+  let document = new Document({ nodes: [root] })
+
+  expect(document.toString()).toEqual('')
+})
+
+it('handles document with one root', () => {
+  let root = new Root()
+  root.append(new AtRule({ name: 'foo' }))
+
+  let document = new Document()
+  document.append(root)
+
+  let s = document.toString()
+
+  expect(s).toEqual('@foo')
+})
+
+it('handles document with one root and after raw', () => {
+  let document = new Document()
+  let root = new Root({ raws: { after: '   ' } })
+  root.append(new AtRule({ name: 'foo' }))
+  document.append(root)
+
+  let s = document.toString()
+
+  expect(s).toEqual('@foo   ')
+})
+
+it('handles document with one root and before raw', () => {
+  let document = new Document()
+  let root = new Root({ raws: { before: '   ' } })
+  root.append(new AtRule({ name: 'foo' }))
+  document.append(root)
+
+  let s = document.toString()
+
+  expect(s).toEqual('   @foo')
+})
+
+it('handles document with one root and before and after', () => {
+  let document = new Document()
+  let root = new Root({ raws: { before: 'BEFORE', after: 'AFTER' } })
+  root.append(new AtRule({ name: 'foo' }))
+  document.append(root)
+
+  let s = document.toString()
+
+  expect(s).toEqual('BEFORE@fooAFTER')
+})
+
+it('handles document with three roots without raws', () => {
+  let root1 = new Root()
+  root1.append(new AtRule({ name: 'foo' }))
+
+  let root2 = new Root()
+  root2.append(new Rule({ selector: 'a' }))
+
+  let root3 = new Root()
+  root3.append(new Declaration({ prop: 'color', value: 'black' }))
+
+  let document = new Document()
+  document.append(root1)
+  document.append(root2)
+  document.append(root3)
+
+  let s = document.toString()
+
+  expect(s).toEqual('@fooa {}color: black')
+})
+
+it('handles document with three roots, with before and after raws', () => {
+  let root1 = new Root({ raws: { before: 'BEFORE_ONE', after: 'AFTER_ONE' } })
+  root1.append(new Rule({ selector: 'a.one' }))
+
+  let root2 = new Root({ raws: { after: 'AFTER_TWO' } })
+  root2.append(new Rule({ selector: 'a.two' }))
+
+  let root3 = new Root({ raws: { after: 'AFTER_THREE' } })
+  root3.append(new Rule({ selector: 'a.three' }))
+
+  let document = new Document()
+  document.append(root1)
+  document.append(root2)
+  document.append(root3)
+
+  let s = document.toString()
+
+  expect(s).toEqual(
+    'BEFORE_ONEa.one {}AFTER_ONEa.two {}AFTER_TWOa.three {}AFTER_THREE'
+  )
 })

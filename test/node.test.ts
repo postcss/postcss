@@ -9,7 +9,8 @@ import postcss, {
   Declaration,
   parse,
   Result,
-  Plugin
+  Plugin,
+  Document
 } from '../lib/postcss.js'
 
 function stringify(node: AnyNode, builder: (str: string) => void): void {
@@ -319,6 +320,49 @@ it('root() returns parent of parents', () => {
 it('root() returns self on root', () => {
   let rule = new Rule({ selector: 'a' })
   expect(rule.root()).toBe(rule)
+})
+
+it('root() returns root in document', () => {
+  let css = new Document({ nodes: [parse('@page{a{color:black}}')] })
+
+  let root = css.first as Root
+  let page = root.first as AtRule
+  let a = page.first as Rule
+  let color = a.first as Declaration
+  expect(color.root()).toBe(root)
+})
+
+it('root() on root in document returns same root', () => {
+  let document = new Document()
+  let root = new Root()
+  document.append(root)
+
+  expect(document.first?.root()).toBe(root)
+})
+
+it('root() returns self on document', () => {
+  let document = new Document()
+  expect(document.root()).toBe(document)
+})
+
+it('document() returns document', () => {
+  let css = new Document({ nodes: [parse('@page{a{color:black}}')] })
+
+  let root = css.first as Root
+  let page = root.first as AtRule
+  let a = page.first as Rule
+  let color = a.first as Declaration
+  expect(color.document()).toBe(css)
+})
+
+it('document() returns self on root', () => {
+  let rule = new Rule({ selector: 'a' })
+  expect(rule.document()).toBe(rule)
+})
+
+it('document() returns self on document', () => {
+  let document = new Document()
+  expect(document.document()).toBe(document)
 })
 
 it('cleanRaws() cleans style recursivelly', () => {

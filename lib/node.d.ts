@@ -9,6 +9,7 @@ import Container from './container.js'
 import Result from './result.js'
 import Input from './input.js'
 import Root from './root.js'
+import Document from './document.js'
 
 export type ChildNode = AtRule | Rule | Declaration | Comment
 
@@ -380,6 +381,17 @@ export default abstract class Node {
    * @return Root parent.
    */
   root(): Root
+
+  /**
+   * Finds the Document instance of the node’s tree.
+   *
+   * ```js
+   * document.nodes[0].nodes[0].document() === document
+   * ```
+   *
+   * @return Document parent.
+   */
+  document(): Document
 
   /**
    * Returns a `Node#raws` value. If the node is missing
