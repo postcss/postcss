@@ -22,6 +22,7 @@ type ChildProps = RootProps
 export default class Document extends Container {
   type: 'document'
   parent: undefined
+  nodes: Root[]
 
   constructor(defaults?: DocumentProps)
 
@@ -41,19 +42,6 @@ export default class Document extends Container {
    * @return Result with current document’s CSS.
    */
   toResult(options?: ProcessOptions): Result
-
-  /**
-   * An array containing the container’s children.
-   *
-   * ```js
-   * const root = postcss.parse('a { color: black }')
-   * root.nodes.length           //=> 1
-   * root.nodes[0].selector      //=> 'a'
-   * root.nodes[0].nodes[0].prop //=> 'color'
-   * ```
-   */
-  // @ts-expect-error
-  nodes: Root[]
 
   /**
    * The container’s first child.

@@ -3,6 +3,7 @@ import Declaration from './declaration.js'
 import Comment from './comment.js'
 import AtRule from './at-rule.js'
 import Rule from './rule.js'
+import Root from './root.js'
 
 interface ValueOptions {
   /**
@@ -38,7 +39,7 @@ export default abstract class Container extends Node {
    * root.nodes[0].nodes[0].prop //=> 'color'
    * ```
    */
-  nodes: ChildNode[]
+  nodes: (ChildNode | Root)[]
 
   /**
    * The container’s first child.

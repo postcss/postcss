@@ -1,4 +1,5 @@
 import Container, { ContainerProps } from './container.js'
+import { ChildNode } from './node.js'
 import { ProcessOptions } from './postcss.js'
 import Result from './result.js'
 
@@ -36,6 +37,7 @@ export default class Root extends Container {
   type: 'root'
   // parent: Document | undefined
   raws: RootRaws
+  nodes: ChildNode[]
 
   constructor(defaults?: RootProps)
 
