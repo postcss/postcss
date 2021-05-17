@@ -13,6 +13,8 @@ type ChildProps = RootProps
 /**
  * Represents a file and contains all its parsed nodes.
  *
+ * **Experimental!** Some aspects of this node could change within minor or patch version releases.
+ *
  * ```js
  * const document = postcss.parse('<html><style>a{color:black}</style><style>b{z-index:2}</style>')
  * document.type         //=> 'document'
