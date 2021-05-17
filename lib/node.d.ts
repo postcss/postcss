@@ -9,6 +9,7 @@ import Result from './result.js'
 import Input from './input.js'
 import Root from './root.js'
 import Document from './document.js'
+import Container from './container.js'
 
 export type ChildNode = AtRule | Rule | Declaration | Comment
 
@@ -97,7 +98,7 @@ export default abstract class Node {
    * root.nodes[0].parent === root
    * ```
    */
-  parent: any
+  parent: Document | Container | undefined
 
   /**
    * The input source of the node.
