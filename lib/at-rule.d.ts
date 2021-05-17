@@ -1,5 +1,4 @@
 import Container, { ContainerProps } from './container.js'
-import { ChildNode } from './node.js'
 
 interface AtRuleRaws {
   /**
@@ -72,7 +71,6 @@ export default class AtRule extends Container {
   type: 'atrule'
   parent: Container | undefined
   raws: AtRuleRaws
-  nodes: ChildNode[]
 
   /**
    * The at-rule’s name immediately follows the `@`.

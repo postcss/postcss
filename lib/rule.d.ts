@@ -1,5 +1,4 @@
 import Container, { ContainerProps } from './container.js'
-import { ChildNode } from './node.js'
 
 interface RuleRaws {
   /**
@@ -65,7 +64,6 @@ export default class Rule extends Container {
   type: 'rule'
   parent: Container | undefined
   raws: RuleRaws
-  nodes: ChildNode[]
 
   /**
    * The rule’s full selector represented as a string.
