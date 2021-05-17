@@ -68,6 +68,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 * [`postcss-apply`] supports custom properties sets references.
 * [`postcss-attribute-case-insensitive`] supports case insensitive attributes.
+* [`postcss-bidirection`] generate left-to-right and right-to-left styles with single syntax.
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
@@ -99,9 +100,11 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   to clean inherit styles.
 * [`postcss-logical-properties`] transforms `start` and `end` properties
   to `left` and `right` depending on the writing direction of the document.
-* [`postcss-bidirection`] generate left-to-right and right-to-left styles with single syntax.
 * [`postcss-media-minmax`] adds `<=` and `=>` statements to media queries.
+* [`postcss-multi-value-display`] transforms `inline flex` and `block flow`
+  to `inline-flex` and `block`
 * [`postcss-pseudo-class-any-link`] adds `:any-link` pseudo-class.
+* [`postcss-pseudo-is`] transforms `:is()` to more compatible CSS.
 * [`postcss-selector-not`] transforms CSS4 `:not()` to CSS3 `:not()`.
 * [`postcss-selector-matches`] transforms CSS4 `:matches()`
   to more compatible CSS.
@@ -109,7 +112,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
   through logical rather than direction / physical rules.
 * [`postcss-subgrid`] provides a basic shim for the CSS `display: subgrid` spec.
 * [`mq4-hover-shim`] supports the `@media (hover)` feature.
-* [`postcss-pseudo-is`] transforms `:is()` to more compatible CSS.
 
 See also [`postcss-preset-env`] plugins pack to add future CSS syntax
 by one line of code.
@@ -219,6 +221,7 @@ for targeting all button elements.
 * [`csstyle`] adds components workflow to your styles.
 * [`postcss-percentage`] support Sass-like `percentage()` function.
 * [`postcss-custom-css-units`] Define custom css units and convert them to CSS variables.
+* [`postcss-easy-z`] lets you organize z-indices by declaring relations between them.
 
 See also [`precss`] plugins pack to add them by one line of code.
 
@@ -271,6 +274,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-easysprites`] combine images to sprites, based on their
   image.png`#hash` and aspect ratio (`@2x`).
+* [`postcss-icon-blender`] create custom SVG icon sets from over 80,000 free and open-source icons 
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
@@ -406,15 +410,19 @@ See also plugins in modular minifier [`cssnano`].
 
 ## Others
 
+* [`postcss-add-root-selector`] intelligently wraps all rules in a custom selector.
 * [`postcss-alter-property-value`] alters your CSS declarations from a rule based configuration.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
+* [`postcss-auto-rem`] compiles pixel units to `rem` without configuration.
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-bem-to-js`] creates a JavaScript definition file for BEM-style CSS.
 * [`postcss-bom`] adds a UTF-8 BOM to files.
+* [`postcss-blurry-gradient-workaround`] fixes blurry CSS gradients with too many explicit end-stops.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-classes-to-mixins`] converts classes to Sass, Less and Stylus mixins
 * [`postcss-currency`] replaces name of currency with symbols.
+* [`postcss-d-ts`] generates `.d.ts` declaration for TypeScript `import` from used CSS classes and ids 
 * [`postcss-eol`] replaces EOL of files.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
@@ -472,7 +480,6 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-px-to-viewport`] generates viewport units (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
 * [`postcss-viewport-height-correction`] solves the popular problem when `100vh`
   doesn’t fit the mobile browser screen.
-* [`postcss-auto-rem`] compiles pixel units to `rem` without configuration.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -523,6 +530,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 * [`postcss-nope`] lets you write `nope` instead of `none`.
 * [`postcss-glitch`] add glitch effect to your text.
+* [`postcss-khaleesi`] translate CSS values and properties to `khaleesi meme` language.
 
 [`postcss-background-image-auto-size`]:   https://github.com/JustClear/postcss-background-image-auto-size
 [`postcss-letter-tracking`]:              https://github.com/letsjaam/postcss-letter-tracking
@@ -855,3 +863,9 @@ See also plugins in modular minifier [`cssnano`].
 [`webp-in-css`]:                          https://github.com/ai/webp-in-css
 [`avif-in-css`]:                          https://github.com/nucliweb/avif-in-css
 [`postcss-custom-css-units`]:             https://github.com/joe223/postcss-custom-css-units
+[`postcss-khaleesi`]:                     https://github.com/Hugoer/postcss-khaleesi
+[`postcss-blurry-gradient-workaround`]:   https://github.com/strarsis/postcss-blurry-gradient-workaround
+[`postcss-d-ts`]:                         https://github.com/askirmas/postcss-d-ts
+[`postcss-multi-value-display`]:          https://github.com/jake-low/postcss-multi-value-display
+[`postcss-easy-z`]:                       https://github.com/CSSSR/postcss-easy-z
+[`postcss-icon-blender`]:                 https://github.com/icon-blender/postcss-icon-blender

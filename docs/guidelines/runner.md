@@ -71,9 +71,28 @@ is described in [API docs].
 [API docs]: https://postcss.org/api/
 
 
-## 3. Output
+## 3. Dependencies
 
-### 3.1. Don’t show JS stack for `CssSyntaxError`
+### 3.1. Rebuild when dependencies change
+
+PostCSS plugins may declare file or directory dependencies by attaching
+messages to the `result`. Runners should watch these and ensure that the
+CSS is rebuilt when they change. Directories should be watched recursively.
+
+```js
+for (let message of result.messages) {
+  if (message.type === 'dependency') {
+    watcher.addFile(message.file)
+  } else if (message.type === 'dir-dependency') {
+    watcher.addDir(message.dir)
+  }
+}
+```
+
+
+## 4. Output
+
+### 4.1. Don’t show JS stack for `CssSyntaxError`
 
 PostCSS runners must not show a stack trace for CSS syntax errors,
 as the runner can be used by developers who are not familiar with JavaScript.
@@ -90,7 +109,7 @@ processor.process(opts).catch(error => {
 ```
 
 
-### 3.2. Display `result.warnings()`
+### 4.2. Display `result.warnings()`
 
 PostCSS runners must output warnings from `result.warnings()`:
 
@@ -106,7 +125,7 @@ See also [postcss-log-warnings] and [postcss-messages] plugins.
 [postcss-messages]:     https://github.com/postcss/postcss-messages
 
 
-### 3.3. Allow the user to write source maps to different files
+### 4.3. Allow the user to write source maps to different files
 
 PostCSS by default will inline source maps in the generated file; however,
 PostCSS runners must provide an option to save the source map in a different
@@ -119,9 +138,9 @@ if (result.map) {
 ```
 
 
-## 4. Documentation
+## 5. Documentation
 
-### 4.1. Document your runner in English
+### 5.1. Document your runner in English
 
 PostCSS runners must have their `README.md` wrote in English. Do not be afraid
 of your English skills, as the open source community will fix your errors.
@@ -130,7 +149,7 @@ Of course, you are welcome to write documentation in other languages;
 just name them appropriately (e.g. `README.ja.md`).
 
 
-### 4.2. Maintain a changelog
+### 5.2. Maintain a changelog
 
 PostCSS runners must describe changes of all releases in a separate file,
 such as `ChangeLog.md`, `History.md`, or with [GitHub Releases].
@@ -143,7 +162,7 @@ Of course, you should use [SemVer].
 [SemVer]:           https://semver.org/
 
 
-### 4.3. `postcss-runner` keyword in `package.json`
+### 5.3. `postcss-runner` keyword in `package.json`
 
 PostCSS runners written for npm must have the `postcss-runner` keyword
 in their `package.json`. This special keyword will be useful for feedback about
@@ -153,7 +172,7 @@ For packages not published to npm, this is not mandatory, but recommended
 if the package format is allowed to contain keywords.
 
 
-### 4.4. Keep `postcss` to `peerDependencies`
+### 5.4. Keep `postcss` to `peerDependencies`
 
 AST can be broken because of different `postcss` version in different plugins.
 Different plugins could use a different node creators (like `postcss.decl()`).

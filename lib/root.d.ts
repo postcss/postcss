@@ -15,6 +15,7 @@ interface RootRaws {
 }
 
 export interface RootProps extends ContainerProps {
+  /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
   raws?: RootRaws
 }
 
@@ -32,8 +33,6 @@ export default class Root extends Container {
   parent: undefined
   raws: RootRaws
 
-  constructor (defaults?: RootProps)
-
   /**
    * Returns a `Result` instance representing the root’s CSS.
    *
@@ -47,5 +46,8 @@ export default class Root extends Container {
    * @param opts Options.
    * @return Result with current root’s CSS.
    */
-  toResult (options?: ProcessOptions): Result
+  toResult(options?: ProcessOptions): Result
+
+  constructor(defaults?: RootProps)
+  assign(overrides: object | RootProps): this
 }

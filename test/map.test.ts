@@ -6,11 +6,11 @@ import { existsSync } from 'fs'
 import postcss, { SourceMap, Rule, Root } from '../lib/postcss.js'
 import PreviousMap from '../lib/previous-map.js'
 
-function consumer (map: SourceMap): any {
+function consumer(map: SourceMap): any {
   return (SourceMapConsumer as any).fromSourceMap(map)
 }
 
-function read (result: { css: string }): any {
+function read(result: { css: string }): any {
   let prev = new PreviousMap(result.css, {})
   return prev.consumer()
 }
@@ -599,7 +599,7 @@ it('allows dynamic annotations', () => {
   let result = postcss([() => {}]).process('a{}', {
     to: 'out.css',
     map: {
-      annotation (to, root) {
+      annotation(to, root) {
         let rule = root.first as Rule
         return to + '-' + rule.selector + '.map'
       }

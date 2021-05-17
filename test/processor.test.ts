@@ -1,4 +1,5 @@
 import { resolve as pathResolve } from 'path'
+import { delay } from 'nanodelay'
 
 import postcss, {
   Plugin,
@@ -15,16 +16,25 @@ afterEach(() => {
   jest.resetAllMocks()
 })
 
-function prs () {
+function prs(): Root {
   return new Root({ raws: { after: 'ok' } })
 }
 
-function str (node: Node, builder: (s: string) => void) {
+function str(node: Node, builder: (s: string) => void): void {
   builder(`${node.raws.after}!`)
 }
 
-function getCalls (func: any) {
+function getCalls(func: any): any {
   return func.mock.calls
+}
+
+async function catchError(cb: () => Promise<any>): Promise<Error> {
+  try {
+    await cb()
+  } catch (e) {
+    return e
+  }
+  throw new Error('Error was not thrown')
 }
 
 let beforeFix = new Processor([
@@ -39,21 +49,21 @@ let beforeFix = new Processor([
 ])
 
 it('adds new plugins', () => {
-  let a = () => {}
+  let a = (): void => {}
   let processor = new Processor()
   processor.use(a)
   expect(processor.plugins).toEqual([a])
 })
 
 it('adds new plugin by object', () => {
-  let a = () => {}
+  let a = (): void => {}
   let processor = new Processor()
   processor.use({ postcss: a })
   expect(processor.plugins).toEqual([a])
 })
 
 it('adds new plugin by object-function', () => {
-  let a = () => {}
+  let a = (): void => {}
   let obj: any = () => {}
   obj.postcss = a
   let processor = new Processor()
@@ -62,7 +72,7 @@ it('adds new plugin by object-function', () => {
 })
 
 it('adds new processors of another postcss instance', () => {
-  let a = () => {}
+  let a = (): void => {}
   let processor = new Processor()
   let other = new Processor([a])
   processor.use(other)
@@ -70,7 +80,7 @@ it('adds new processors of another postcss instance', () => {
 })
 
 it('adds new processors from object', () => {
-  let a = () => {}
+  let a = (): void => {}
   let processor = new Processor()
   let other = new Processor([a])
   processor.use({ postcss: other })
@@ -78,8 +88,8 @@ it('adds new processors from object', () => {
 })
 
 it('returns itself', () => {
-  let a = () => {}
-  let b = () => {}
+  let a = (): void => {}
+  let b = (): void => {}
   let processor = new Processor()
   expect(processor.use(a).use(b).plugins).toEqual([a, b])
 })
@@ -168,10 +178,10 @@ it('calls all plugins once', async () => {
   expect.assertions(1)
 
   let calls = ''
-  let a = () => {
+  let a = (): void => {
     calls += 'a'
   }
-  let b = () => {
+  let b = (): void => {
     calls += 'b'
   }
 
@@ -223,7 +233,7 @@ it('accepts source map from PostCSS', () => {
 it('supports async plugins', async () => {
   let starts = 0
   let finish = 0
-  let async1 = (css: Root) =>
+  let async1 = (css: Root): Promise<void> =>
     new Promise<void>(resolve => {
       starts += 1
       setTimeout(() => {
@@ -234,7 +244,7 @@ it('supports async plugins', async () => {
         resolve()
       }, 1)
     })
-  let async2 = (css: Root) =>
+  let async2 = (css: Root): Promise<void> =>
     new Promise<void>(resolve => {
       expect(starts).toEqual(1)
       expect(finish).toEqual(1)
@@ -261,7 +271,7 @@ it('runs async plugin only once', async () => {
   expect.assertions(1)
 
   let calls = 0
-  let async = () => {
+  let async = (): Promise<void> => {
     return new Promise<void>(resolve => {
       setTimeout(() => {
         calls += 1
@@ -277,59 +287,45 @@ it('runs async plugin only once', async () => {
   expect(calls).toEqual(1)
 })
 
-it('supports async errors', () => {
+it('supports async errors', async () => {
   let error = new Error('Async')
-  let async = () => {
+  let async = (): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
       reject(error)
     })
   }
-  return new Promise<void>((resolve, reject) => {
-    let result = new Processor([async]).process('', { from: undefined })
-    result
-      .then(() => {
-        reject(new Error('Called .then in failed processing'))
-      })
-      .catch(err => {
-        expect(err).toEqual(error)
-        return result.catch(err2 => {
-          expect(err2).toEqual(error)
-          resolve()
-        })
-      })
+  let result = new Processor([async]).process('', { from: undefined })
+  let err1 = await catchError(async () => await result)
+  expect(err1).toEqual(error)
+
+  let err2: Error | undefined
+  result.catch(catched => {
+    err2 = catched
   })
+  await delay(10)
+  expect(err2).toEqual(error)
 })
 
-it('supports sync errors in async mode', () => {
+it('supports sync errors in async mode', async () => {
   let error = new Error('Async')
-  let async = () => {
+  let async = (): void => {
     throw error
   }
-  return new Promise<void>((resolve, reject) => {
-    new Processor([async])
-      .process('', { from: undefined })
-      .then(() => {
-        reject(new Error('Called .then in failed processing'))
-      })
-      .catch(err => {
-        expect(err).toEqual(error)
-        resolve()
-      })
-  })
+  let err = await catchError(() =>
+    new Processor([async]).process('', { from: undefined })
+  )
+  expect(err).toEqual(error)
 })
 
 it('throws parse error in async', async () => {
-  let err
-  try {
-    await new Processor([() => {}]).process('a{', { from: undefined })
-  } catch (e) {
-    err = e
-  }
+  let err = await catchError(() =>
+    new Processor([() => {}]).process('a{', { from: undefined })
+  )
   expect(err.message).toEqual('<css input>:1:1: Unclosed block')
 })
 
 it('throws error on sync method to async plugin', () => {
-  let async = () => {
+  let async = (): Promise<void> => {
     return new Promise<void>(resolve => {
       resolve()
     })
@@ -340,7 +336,8 @@ it('throws error on sync method to async plugin', () => {
 })
 
 it('throws a sync call in async running', async () => {
-  let async = () => new Promise<void>(resolve => setTimeout(resolve, 1))
+  let async = (): Promise<void> =>
+    new Promise<void>(resolve => setTimeout(resolve, 1))
 
   let processor = new Processor([async]).process('a{}', { from: 'a.css' })
   processor.async()
@@ -354,7 +351,7 @@ it('remembers errors', async () => {
   let calls = 0
   let plugin: Plugin = {
     postcssPlugin: 'plugin',
-    Once () {
+    Once() {
       calls += 1
       throw new Error('test')
     }
@@ -394,7 +391,7 @@ it('checks plugin compatibility', () => {
   let func = plugin()
   func.postcssVersion = '2.1.5'
 
-  function processBy (version: string) {
+  function processBy(version: string): void {
     let processor = new Processor([func])
     processor.version = version
     processor.process('a{}').css
@@ -429,10 +426,10 @@ it('checks plugin compatibility', () => {
 })
 
 it('sets last plugin to result', async () => {
-  let plugin1 = function (css: Root, result: Result) {
+  let plugin1 = (css: Root, result: Result): void => {
     expect(result.lastPlugin).toBe(plugin1)
   }
-  let plugin2 = function (css: Root, result: Result) {
+  let plugin2 = (css: Root, result: Result): void => {
     expect(result.lastPlugin).toBe(plugin2)
   }
 
@@ -499,7 +496,7 @@ it('throws on syntax as plugin', () => {
   expect(() => {
     processor.use({
       // @ts-expect-error
-      parse () {}
+      parse() {}
     })
   }).toThrow(/syntax/)
 })
@@ -531,7 +528,7 @@ it('warns about missed plugins', async () => {
 
 it('supports plugins returning processors', () => {
   jest.spyOn(console, 'warn').mockImplementation(() => {})
-  let a = () => {}
+  let a = (): void => {}
   let processor = new Processor()
   let other: any = (postcss as any).plugin('test', () => {
     return new Processor([a])
@@ -541,7 +538,7 @@ it('supports plugins returning processors', () => {
 })
 
 it('supports plugin creators returning processors', () => {
-  let a = () => {}
+  let a = (): void => {}
   let processor = new Processor()
   let other = (() => {
     return new Processor([a])

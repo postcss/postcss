@@ -12,7 +12,7 @@ import postcss, {
   Plugin
 } from '../lib/postcss.js'
 
-function stringify (node: AnyNode, builder: (str: string) => void) {
+function stringify(node: AnyNode, builder: (str: string) => void): void {
   if (node.type === 'rule') {
     builder(node.selector)
   }
@@ -67,7 +67,7 @@ it('warn() attaches a warning to the result object', async () => {
   let warning: any
   let warner: Plugin = {
     postcssPlugin: 'warner',
-    Once (css, { result }) {
+    Once(css, { result }) {
       warning = css.first?.warn(result, 'FIRST!')
     }
   }
@@ -80,7 +80,7 @@ it('warn() attaches a warning to the result object', async () => {
 })
 
 it('warn() accepts options', () => {
-  let warner = (css: Root, result: Result) => {
+  let warner = (css: Root, result: Result): void => {
     css.first?.warn(result, 'FIRST!', { index: 1 })
   }
 
@@ -160,6 +160,18 @@ it('toString() accepts custom stringifier', () => {
 
 it('toString() accepts custom syntax', () => {
   expect(new Rule({ selector: 'a' }).toString({ stringify })).toEqual('a')
+})
+
+it('assign() assigns to node', () => {
+  let decl = new Declaration({ prop: 'white-space', value: 'overflow-wrap' })
+
+  expect(decl.prop).toBe('white-space')
+  expect(decl.value).toBe('overflow-wrap')
+
+  decl.assign({ prop: 'word-wrap', value: 'break-word' })
+
+  expect(decl.prop).toBe('word-wrap')
+  expect(decl.value).toBe('break-word')
 })
 
 it('clone() clones nodes', () => {
@@ -282,7 +294,7 @@ it('toJSON() converts custom properties', () => {
   let root = new Root() as any
   root._cache = [1]
   root._hack = {
-    toJSON () {
+    toJSON() {
       return 'hack'
     }
   }

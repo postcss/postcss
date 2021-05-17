@@ -47,7 +47,10 @@ PostCSS needs your support. We are accepting donations
 
 <a href="https://tailwindcss.com/">
   <img src="https://refactoringui.nyc3.cdn.digitaloceanspaces.com/tailwind-logo.svg"
-       alt="Sponsored by Tailwind CSS" width="273" height="64">
+       alt="Sponsored by Tailwind CSS" width="213" height="50">
+</a>      <a href="https://themeisle.com/">
+  <img src="https://mllj2j8xvfl0.i.optimole.com/d0cOXWA.3970~373ad/w:auto/h:auto/q:90/https://s30246.pcdn.co/wp-content/uploads/2019/03/logo.png"
+       alt="Sponsored by ThemeIsle" width="171" height="56">
 </a>
 
 
@@ -377,7 +380,7 @@ PostCSS also supports [Deno]:
 
 ```js
 import postcss from 'https://deno.land/x/postcss/mod.js'
-import autoprefixer from 'https://dev.jspm.io/autoprefixer'
+import autoprefixer from 'https://jspm.dev/autoprefixer'
 
 const result = await postcss([autoprefixer]).process(css)
 ```

@@ -50,7 +50,7 @@ export default class PreviousMap {
    * @param css  Input CSS source.
    * @param opts Process options.
    */
-  constructor (css: string, opts?: ProcessOptions)
+  constructor(css: string, opts?: ProcessOptions)
 
   /**
    * Create a instance of `SourceMapGenerator` class
@@ -61,12 +61,12 @@ export default class PreviousMap {
    *
    * @return Object with source map information.
    */
-  consumer (): SourceMapConsumer
+  consumer(): SourceMapConsumer
 
   /**
    * Does source map contains `sourcesContent` with input source text.
    *
    * @return Is `sourcesContent` present.
    */
-  withContent (): boolean
+  withContent(): boolean
 }

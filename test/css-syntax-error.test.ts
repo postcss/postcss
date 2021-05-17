@@ -11,7 +11,20 @@ import postcss, {
   Rule
 } from '../lib/postcss.js'
 
-function parseError (css: string, opts?: Pick<ProcessOptions, 'map' | 'from'>) {
+async function catchError(cb: () => Promise<any>): Promise<CssSyntaxError> {
+  try {
+    await cb()
+  } catch (e) {
+    if (e.name !== 'CssSyntaxError') throw e
+    return e
+  }
+  throw new Error('Error was not thrown')
+}
+
+function parseError(
+  css: string,
+  opts?: Pick<ProcessOptions, 'map' | 'from'>
+): CssSyntaxError {
   let error
   try {
     postcss.parse(css, opts)
@@ -113,7 +126,7 @@ it('prints with highlight', () => {
 
 it('misses highlights without source content', () => {
   let error = parseError('a {')
-  error.source = null
+  error.source = undefined
   expect(error.toString()).toEqual(
     'CssSyntaxError: <css input>:1:1: Unclosed block'
   )
@@ -126,7 +139,7 @@ it('misses position without source', () => {
 })
 
 it('uses source map', () => {
-  function urlOf (file: string) {
+  function urlOf(file: string): string {
     return pathToFileURL(join(__dirname, file)).toString()
   }
 
@@ -153,7 +166,7 @@ it('uses source map', () => {
 })
 
 it('works with path in sources', () => {
-  function pathOf (file: string) {
+  function pathOf(file: string): string {
     return join(__dirname, file)
   }
 
@@ -216,29 +229,27 @@ it('set source plugin', () => {
   )
 })
 
-it('set source plugin automatically', () => {
+it('set source plugin automatically', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'test-plugin',
-    Once (css) {
+    Once(css) {
       if (css.first) {
         throw css.first.error('Error')
       }
     }
   }
 
-  return postcss([plugin])
-    .process('a{}')
-    .catch(error => {
-      if (error.name !== 'CssSyntaxError') throw error
-      expect(error.plugin).toEqual('test-plugin')
-      expect(error.toString()).toMatch(/test-plugin/)
-    })
+  let error = await catchError(() =>
+    postcss([plugin]).process('a{}', { from: undefined })
+  )
+  expect(error.plugin).toEqual('test-plugin')
+  expect(error.toString()).toMatch(/test-plugin/)
 })
 
-it('set plugin automatically in async', () => {
+it('set plugin automatically in async', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'async-plugin',
-    Once (css) {
+    Once(css) {
       return new Promise((resolve, reject) => {
         if (css.first) {
           reject(css.first.error('Error'))
@@ -247,10 +258,8 @@ it('set plugin automatically in async', () => {
     }
   }
 
-  return postcss([plugin])
-    .process('a{}')
-    .catch(error => {
-      if (error.name !== 'CssSyntaxError') throw error
-      expect(error.plugin).toEqual('async-plugin')
-    })
+  let error = await catchError(() =>
+    postcss([plugin]).process('a{}', { from: undefined })
+  )
+  expect(error.plugin).toEqual('async-plugin')
 })

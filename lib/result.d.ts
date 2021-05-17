@@ -141,7 +141,7 @@ export default class Result {
    * @param root      Root node after all transformations.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
-  constructor (processor: Processor, root: Root, opts: ResultOptions)
+  constructor(processor: Processor, root: Root, opts: ResultOptions)
 
   /**
    * An alias for the `Result#css` property.
@@ -151,7 +151,7 @@ export default class Result {
    * result.css === result.content
    * ```
    */
-  get content (): string
+  get content(): string
 
   /**
    * Returns for `Result#css` content.
@@ -162,7 +162,7 @@ export default class Result {
    *
    * @return String representing of `Result#root`.
    */
-  toString (): string
+  toString(): string
 
   /**
    * Creates an instance of `Warning` and adds it to `Result#messages`.
@@ -177,7 +177,7 @@ export default class Result {
    * @param opts Warning options.
    * @return Created warning.
    */
-  warn (message: string, options?: WarningOptions): Warning
+  warn(message: string, options?: WarningOptions): Warning
 
   /**
    * Returns warnings from plugins. Filters `Warning` instances
@@ -191,5 +191,5 @@ export default class Result {
    *
    * @return Warnings from plugins.
    */
-  warnings (): Warning[]
+  warnings(): Warning[]
 }

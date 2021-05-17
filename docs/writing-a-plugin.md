@@ -317,9 +317,9 @@ Second argument also have `result` object to add warnings:
     }
 ```
 
-If your plugin load another file, you can use `result` to add message, that
-webpack/Gulp should add this file to a watching list
-(and rebuild CSS on file changes):
+If your plugin depends on another file, you can attach a message to `result`
+to signify to runners (webpack, Gulp etc.) that they should rebuild the CSS
+when this file changes:
 
 ```js
     AtRule: {
@@ -333,6 +333,18 @@ webpack/Gulp should add this file to a watching list
         })
       }
     }
+```
+
+If the dependency is a directory you should use the `dir-dependency`
+message type instead:
+
+```js
+result.messages.push({
+  type: 'dir-dependency',
+  plugin: 'postcss-import',
+  dir: importedDir,
+  parent: result.opts.from
+})
 ```
 
 If you find an syntax error (for instance, undefined custom property),

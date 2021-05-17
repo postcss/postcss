@@ -1,6 +1,43 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.2.15
+* Fixed `list` type definitions (by @n19htz).
+
+## 8.2.14
+* Removed `source-map` from client-side bundle (by Barak Igal).
+
+## 8.2.13
+* Fixed ReDoS vulnerabilities in source map parsing (by Yeting Li).
+
+## 8.2.12
+* Fixed `package.json` exports.
+
+## 8.2.11
+* Fixed `DEP0148` warning in Node.js 16.
+* Fixed docs (by @semiromid).
+
+## 8.2.10
+* Fixed ReDoS vulnerabilities in source map parsing.
+* Fixed webpack 5 support (by Barak Igal).
+* Fixed docs (by Roeland Moors).
+
+## 8.2.9
+* Exported `NodeErrorOptions` type (by Rouven Weßling).
+
+## 8.2.8
+* Fixed browser builds in webpack 4 (by Matt Jones).
+
+## 8.2.7
+* Fixed browser builds in webpack 5 (by Matt Jones).
+
+## 8.2.6
+* Fixed `Maximum call stack size exceeded` in `Node#toJSON`.
+* Fixed docs (by inokawa).
+
+## 8.2.5
+* Fixed escaped characters handling in `list.split` (by Natalie Weizenbaum).
+
 ## 8.2.4
 * Added plugin name to `postcss.plugin()` warning (by Tom Williams).
 * Fixed docs (by Bill Columbia).

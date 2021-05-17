@@ -12,29 +12,29 @@ it('creates plugins list', () => {
 })
 
 it('saves plugins list', () => {
-  let a = () => {}
-  let b = () => {}
+  let a = (): void => {}
+  let b = (): void => {}
   expect(postcss(a, b).plugins).toEqual([a, b])
 })
 
 it('saves plugins list as array', () => {
-  let a = () => {}
-  let b = () => {}
+  let a = (): void => {}
+  let b = (): void => {}
   expect(postcss([a, b]).plugins).toEqual([a, b])
 })
 
 it('takes plugin from other processor', () => {
-  let a = () => {}
-  let b = () => {}
-  let c = () => {}
+  let a = (): void => {}
+  let b = (): void => {}
+  let c = (): void => {}
   let other = postcss([a, b])
   expect(postcss([other, c]).plugins).toEqual([a, b, c])
 })
 
 it('takes plugins from a a plugin returning a processor', () => {
-  let a = () => {}
-  let b = () => {}
-  let c = () => {}
+  let a = (): void => {}
+  let b = (): void => {}
+  let c = (): void => {}
   let other = postcss([a, b])
   let meta = (() => other) as PluginCreator<void>
   meta.postcss = true

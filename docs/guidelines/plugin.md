@@ -206,9 +206,37 @@ is described in [API docs].
 [API docs]: https://postcss.org/api/
 
 
-## 3. Errors
+## 3. Dependencies
 
-### 3.1. Use `node.error` on CSS relevant errors
+### 3.1. Use messages to specify dependencies
+
+If a plugin depends on another file, it should be specified by attaching
+a `dependency` message to the `result`:
+
+```js
+result.messages.push({
+  type: 'dependency',
+  plugin: 'postcss-import',
+  file: '/imported/file.css',
+  parent: result.opts.from
+})
+```
+
+Specify recursive directory dependencies using the `dir-dependency` message type:
+
+```js
+result.messages.push({
+  type: 'dir-dependency',
+  plugin: 'postcss-import',
+  dir: '/imported',
+  parent: result.opts.from
+})
+```
+
+
+## 4. Errors
+
+### 4.1. Use `node.error` on CSS relevant errors
 
 If you have an error because of input CSS (like an unknown name
 in a mixin plugin) you should use `node.error` to create an error
@@ -221,7 +249,7 @@ if (typeof mixins[name] === 'undefined') {
 ```
 
 
-### 3.2. Use `result.warn` for warnings
+### 4.2. Use `result.warn` for warnings
 
 Do not print warnings with `console.log` or `console.warn`,
 because some PostCSS runner may not allow console output.
@@ -237,9 +265,9 @@ Declaration (decl, { result }) {
 If CSS input is a source of the warning, the plugin must set the `node` option.
 
 
-## 4. Documentation
+## 5. Documentation
 
-### 4.1. Document your plugin in English
+### 5.1. Document your plugin in English
 
 PostCSS plugins must have their `README.md` wrote in English. Do not be afraid
 of your English skills, as the open source community will fix your errors.
@@ -248,7 +276,7 @@ Of course, you are welcome to write documentation in other languages;
 just name them appropriately (e.g. `README.ja.md`).
 
 
-### 4.2. Include input and output examples
+### 5.2. Include input and output examples
 
 The plugin's `README.md` must contain example input and output CSS.
 A clear example is the best way to describe how your plugin works.
@@ -260,7 +288,7 @@ Of course, this guideline does not apply if your plugin does not
 transform the CSS.
 
 
-### 4.3. Maintain a changelog
+### 5.3. Maintain a changelog
 
 PostCSS plugins must describe the changes of all their releases
 in a separate file, such as `CHANGELOG.md`, `History.md`, or [GitHub Releases].
@@ -273,7 +301,7 @@ Of course, you should be using [SemVer].
 [SemVer]:           https://semver.org/
 
 
-### 4.4. Include `postcss-plugin` keyword in `package.json`
+### 5.4. Include `postcss-plugin` keyword in `package.json`
 
 PostCSS plugins written for npm must have the `postcss-plugin` keyword
 in their `package.json`. This special keyword will be useful for feedback about

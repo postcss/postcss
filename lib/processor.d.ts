@@ -44,7 +44,7 @@ export default class Processor {
   /**
    * @param plugins PostCSS plugins
    */
-  constructor (plugins?: AcceptedPlugin[])
+  constructor(plugins?: AcceptedPlugin[])
 
   /**
    * Adds a plugin to be used as a CSS processor.
@@ -73,7 +73,7 @@ export default class Processor {
    * @param plugin PostCSS plugin or `Processor` with plugins.
    * @return {Processes} Current processor to make methods chain.
    */
-  use (plugin: AcceptedPlugin): this
+  use(plugin: AcceptedPlugin): this
 
   /**
    * Parses source CSS and returns a `LazyResult` Promise proxy.
@@ -94,7 +94,7 @@ export default class Processor {
    * @param opts Options.
    * @return Promise proxy.
    */
-  process (
+  process(
     css: string | { toString(): string } | Result | LazyResult | Root,
     options?: ProcessOptions
   ): LazyResult

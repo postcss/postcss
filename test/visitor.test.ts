@@ -12,57 +12,57 @@ import postcss, {
   Helpers
 } from '../lib/postcss.js'
 
-function hasAlready (parent: Container | undefined, selector: string) {
+function hasAlready(parent: Container | undefined, selector: string): boolean {
   if (typeof parent === 'undefined') return false
   return parent.nodes.some(i => {
     return i.type === 'rule' && i.selectors.includes(selector)
   })
 }
 
-function addIndex (array: any[][]) {
+function addIndex(array: any[][]): any[][] {
   return array.map((i, index) => {
     return [index, ...i]
   })
 }
 
-function buildVisitor (): [[string, string][], Plugin] {
+function buildVisitor(): [[string, string][], Plugin] {
   let visits: [string, string][] = []
   let visitor: Plugin = {
     postcssPlugin: 'visitor',
-    Once (i) {
+    Once(i) {
       visits.push(['Once', `${i.nodes.length}`])
     },
-    Root (i) {
+    Root(i) {
       visits.push(['Root', `${i.nodes.length}`])
     },
-    RootExit (i) {
+    RootExit(i) {
       visits.push(['RootExit', `${i.nodes.length}`])
     },
-    AtRule (i) {
+    AtRule(i) {
       visits.push(['AtRule', i.name])
     },
-    AtRuleExit (i) {
+    AtRuleExit(i) {
       visits.push(['AtRuleExit', i.name])
     },
-    Rule (i) {
+    Rule(i) {
       visits.push(['Rule', i.selector])
     },
-    RuleExit (i) {
+    RuleExit(i) {
       visits.push(['RuleExit', i.selector])
     },
-    Declaration (i) {
+    Declaration(i) {
       visits.push(['Declaration', i.prop + ': ' + i.value])
     },
-    DeclarationExit (i) {
+    DeclarationExit(i) {
       visits.push(['DeclarationExit', i.prop + ': ' + i.value])
     },
-    Comment (i) {
+    Comment(i) {
       visits.push(['Comment', i.text])
     },
-    CommentExit (i) {
+    CommentExit(i) {
       visits.push(['CommentExit', i.text])
     },
-    OnceExit (i) {
+    OnceExit(i) {
       visits.push(['OnceExit', `${i.nodes.length}`])
     }
   }
@@ -71,7 +71,7 @@ function buildVisitor (): [[string, string][], Plugin] {
 
 let replaceColorGreenClassic: Plugin = {
   postcssPlugin: 'replace-color',
-  Once (root) {
+  Once(root) {
     root.walkDecls('color', decl => {
       decl.value = 'green'
     })
@@ -80,7 +80,7 @@ let replaceColorGreenClassic: Plugin = {
 
 let willChangeVisitor: Plugin = {
   postcssPlugin: 'will-change',
-  Declaration (node) {
+  Declaration(node) {
     if (node.prop !== 'will-change') return
     if (!node.parent) return
 
@@ -95,7 +95,7 @@ let willChangeVisitor: Plugin = {
 
 let addPropsVisitor: Plugin = {
   postcssPlugin: 'add-props',
-  Declaration (node) {
+  Declaration(node) {
     if (node.prop !== 'will-change') return
 
     node.root().walkDecls('color', decl => {
@@ -112,7 +112,7 @@ let addPropsVisitor: Plugin = {
 
 let replaceAllButRedToGreen: Plugin = {
   postcssPlugin: 'replace-not-red-to-green',
-  Declaration (node) {
+  Declaration(node) {
     if (node.prop === 'color' && node.value !== 'red') {
       node.value = 'green'
     }
@@ -121,7 +121,7 @@ let replaceAllButRedToGreen: Plugin = {
 
 let replaceGreenToRed: Plugin = {
   postcssPlugin: 'replace-green-to-red',
-  Declaration (node) {
+  Declaration(node) {
     if (node.prop === 'color' && node.value === 'green') {
       node.value = 'red'
     }
@@ -130,7 +130,7 @@ let replaceGreenToRed: Plugin = {
 
 let replacePrintToMobile: Plugin = {
   postcssPlugin: 'replace-to-mobile',
-  AtRule (node) {
+  AtRule(node) {
     if (node.params === '(print)') {
       node.params = '(mobile)'
     }
@@ -139,7 +139,7 @@ let replacePrintToMobile: Plugin = {
 
 let replaceScreenToPrint: Plugin = {
   postcssPlugin: 'replace-to-print',
-  AtRule (node) {
+  AtRule(node) {
     if (node.params === '(screen)') {
       node.params = '(print)'
     }
@@ -148,7 +148,7 @@ let replaceScreenToPrint: Plugin = {
 
 let postcssFocus: Plugin = {
   postcssPlugin: 'postcss-focus',
-  Rule (rule) {
+  Rule(rule) {
     if (rule.selector.includes(':hover')) {
       let focuses: string[] = []
       rule.selectors.forEach(selector => {
@@ -168,7 +168,7 @@ let postcssFocus: Plugin = {
 
 let hidden: Plugin = {
   postcssPlugin: 'hidden',
-  Declaration (decl) {
+  Declaration(decl) {
     if (decl.prop !== 'display') return
 
     let value = decl.value
@@ -213,7 +213,7 @@ let hidden: Plugin = {
   }
 }
 
-function createPlugin (creator: () => Plugin): PluginCreator<void> {
+function createPlugin(creator: () => Plugin): PluginCreator<void> {
   let result = creator as PluginCreator<void>
   result.postcss = true
   return result
@@ -223,7 +223,7 @@ let postcssAlias = createPlugin(() => {
   let aliases: any = {}
   return {
     postcssPlugin: 'postcss-alias',
-    Once (root) {
+    Once(root) {
       root.walkAtRules('alias', rule => {
         rule.walkDecls(decl => {
           aliases[decl.prop] = decl.value
@@ -231,7 +231,7 @@ let postcssAlias = createPlugin(() => {
         rule.remove()
       })
     },
-    Declaration (decl) {
+    Declaration(decl) {
       let value = aliases[decl.prop]
       if (value !== undefined) {
         decl.replaceWith({
@@ -289,10 +289,10 @@ it('wraps node to proxies', () => {
   let root: Root | undefined
   postcss({
     postcssPlugin: 'proxyCatcher',
-    Once (node) {
+    Once(node) {
       root = node
     },
-    Rule (node) {
+    Rule(node) {
       proxy = node
     }
   }).process('a{color:black}', { from: 'a.css' }).css
@@ -446,7 +446,7 @@ it('works visitor plugin postcss-alias', async () => {
 it('adds plugin to error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    Rule (rule) {
+    Rule(rule) {
       throw rule.error('test')
     }
   }
@@ -464,7 +464,7 @@ it('adds plugin to error', async () => {
 it('adds plugin to async error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    async Rule (rule) {
+    async Rule(rule) {
       await delay(1)
       throw rule.error('test')
     }
@@ -483,7 +483,7 @@ it('adds plugin to async error', async () => {
 it('adds sync plugin to async error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    Rule (rule) {
+    Rule(rule) {
       throw rule.error('test')
     }
   }
@@ -501,7 +501,7 @@ it('adds sync plugin to async error', async () => {
 it('adds node to error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    Rule () {
+    Rule() {
       throw new Error('test')
     }
   }
@@ -519,7 +519,7 @@ it('adds node to error', async () => {
 it('adds node to async error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
-    async Rule () {
+    async Rule() {
       await delay(1)
       throw new Error('test')
     }
@@ -538,7 +538,7 @@ it('adds node to async error', async () => {
 it('shows error on sync call async plugins', () => {
   let asyncPlugin: Plugin = {
     postcssPlugin: 'asyncPlugin',
-    async Rule () {}
+    async Rule() {}
   }
   let error
   try {
@@ -550,7 +550,7 @@ it('shows error on sync call async plugins', () => {
 })
 
 it('passes helpers', async () => {
-  function check (node: AnyNode, helpers: Helpers) {
+  function check(node: AnyNode, helpers: Helpers): void {
     expect(helpers.result.messages).toEqual([])
     expect(typeof helpers.postcss).toEqual('function')
     expect(helpers.comment().type).toEqual('comment')
@@ -568,15 +568,15 @@ it('passes helpers', async () => {
 
   let asyncPlugin: Plugin = {
     postcssPlugin: 'syncPlugin',
-    async Once (node, helpers) {
+    async Once(node, helpers) {
       await delay(1)
       check(node, helpers)
     },
-    async Rule (node, helpers) {
+    async Rule(node, helpers) {
       await delay(1)
       check(node, helpers)
     },
-    async OnceExit (node, helpers) {
+    async OnceExit(node, helpers) {
       await delay(1)
       check(node, helpers)
     }
@@ -589,7 +589,7 @@ it('passes helpers', async () => {
 it('detects non-changed values', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
-    Declaration (decl) {
+    Declaration(decl) {
       decl.value = 'red'
     }
   }
@@ -604,17 +604,17 @@ it('allows runtime listeners', () => {
   let root = false
   let plugin: Plugin = {
     postcssPlugin: 'test',
-    prepare (result) {
+    prepare(result) {
       return {
-        Once () {
+        Once() {
           root = true
         },
-        Rule (rule) {
+        Rule(rule) {
           rule.selector = basename(result.opts.from ?? '')
         }
       }
     },
-    Declaration (decl) {
+    Declaration(decl) {
       decl.value = 'red'
     }
   }
@@ -627,7 +627,7 @@ it('allows runtime listeners', () => {
 it('works correctly with nodes changes', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
-    Rule (rule) {
+    Rule(rule) {
       if (!rule.some(i => i.type === 'decl' && i.prop === 'z-index')) {
         rule.prepend({ prop: 'z-index', value: '1' })
       }
@@ -677,7 +677,7 @@ let redToGreen: Plugin = {
 
 let greenToBlue: Plugin = {
   postcssPlugin: 'greenToBlue',
-  Declaration (decl) {
+  Declaration(decl) {
     if (decl.value === 'green') {
       decl.value = 'blue'
     }
@@ -686,7 +686,7 @@ let greenToBlue: Plugin = {
 
 let fooToBar: Plugin = {
   postcssPlugin: 'fooToBar',
-  Rule (rule) {
+  Rule(rule) {
     if (rule.selector === '.foo') {
       rule.selectors = ['.bar']
     }
@@ -695,7 +695,7 @@ let fooToBar: Plugin = {
 
 let mixins: Plugin = {
   postcssPlugin: 'mixin',
-  prepare () {
+  prepare() {
     let mixin: AnyNode | undefined
     return {
       AtRule: {
@@ -944,13 +944,13 @@ for (let type of ['sync', 'async']) {
 
     let plugin: Plugin = {
       postcssPlugin: 'test',
-      Rule (rule) {
+      Rule(rule) {
         rule.remove()
       },
-      RootExit () {
+      RootExit() {
         rootExit += 1
       },
-      OnceExit () {
+      OnceExit() {
         OnceExit += 1
       }
     }
@@ -971,7 +971,7 @@ for (let type of ['sync', 'async']) {
 it('throws error from async OnceExit', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
-    OnceExit () {
+    OnceExit() {
       throw new Error('test Exit error')
     }
   }
@@ -1012,7 +1012,7 @@ it('rescan Root in another processor', () => {
 it('marks cleaned nodes as dirty on moving', () => {
   let mover: Plugin = {
     postcssPlugin: 'mover',
-    Rule (rule) {
+    Rule(rule) {
       if (rule.selector === 'b') {
         let a = rule.prev()
         if (a) rule.append(a)
