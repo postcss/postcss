@@ -127,11 +127,11 @@
   },
   "browser": {
     "./lib/terminal-highlight": false,
+    "source-map-js": false,
     "colorette": false,
-    "fs": false,
     "path": false,
     "url": false,
-    "source-map": false
+    "fs": false
   },
   "size-limit": [
     {
