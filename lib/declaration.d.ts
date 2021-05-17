@@ -1,3 +1,4 @@
+import Container from './container.js'
 import Node from './node.js'
 
 interface DeclarationRaws {
@@ -51,6 +52,7 @@ export interface DeclarationProps {
  */
 export default class Declaration extends Node {
   type: 'decl'
+  parent: Container | undefined
   raws: DeclarationRaws
 
   /**

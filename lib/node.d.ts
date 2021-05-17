@@ -5,7 +5,6 @@ import AtRule, { AtRuleProps } from './at-rule.js'
 import Rule, { RuleProps } from './rule.js'
 import { WarningOptions } from './warning.js'
 import CssSyntaxError from './css-syntax-error.js'
-import Container from './container.js'
 import Result from './result.js'
 import Input from './input.js'
 import Root from './root.js'
@@ -98,7 +97,7 @@ export default abstract class Node {
    * root.nodes[0].parent === root
    * ```
    */
-  parent: Container | undefined
+  parent: any
 
   /**
    * The input source of the node.

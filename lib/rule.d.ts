@@ -63,6 +63,7 @@ export interface RuleProps extends ContainerProps {
  */
 export default class Rule extends Container {
   type: 'rule'
+  parent: Container | undefined
   raws: RuleRaws
   nodes: ChildNode[]
 
