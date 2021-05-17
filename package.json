@@ -69,11 +69,11 @@
     "source-map": "^0.6.1"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^45.4.2",
+    "@logux/eslint-config": "^45.4.3",
     "@size-limit/preset-small-lib": "^4.10.2",
     "@types/fs-extra": "^9.0.11",
     "@types/jest": "^26.0.23",
-    "@types/node": "^15.0.2",
+    "@types/node": "^15.3.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "check-dts": "^0.4.4",
@@ -82,7 +82,7 @@
     "concat-with-sourcemaps": "^1.1.0",
     "eslint": "^7.26.0",
     "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.23.2",
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^1.1.0",
