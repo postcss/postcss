@@ -41,6 +41,7 @@ export {
   ChildProps,
   AtRuleProps,
   RootProps,
+  DocumentProps,
   Warning,
   CssSyntaxError,
   Node,
@@ -63,6 +64,10 @@ export type SourceMap = SourceMapGenerator & {
 
 export type Helpers = { result: Result; postcss: Postcss } & Postcss
 
+type DocumentProcessor = (
+  document: Document,
+  helper: Helpers
+) => Promise<void> | void
 type RootProcessor = (root: Root, helper: Helpers) => Promise<void> | void
 type DeclarationProcessor = (
   decl: Declaration,
@@ -81,14 +86,14 @@ interface Processors {
    *
    * Will be called again on children changes.
    */
-  Document?: RootProcessor
+  Document?: DocumentProcessor
 
   /**
    * Will be called on `Document` node, when all children will be processed.
    *
    * Will be called again on children changes.
    */
-  DocumentExit?: RootProcessor
+  DocumentExit?: DocumentProcessor
 
   /**
    * Will be called on `Root` node once.
