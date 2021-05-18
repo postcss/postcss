@@ -221,11 +221,11 @@ export type AcceptedPlugin =
     }
   | Processor
 
-export interface Parser {
+export interface Parser<RootNode = Root> {
   (
     css: string | { toString(): string },
     opts?: Pick<ProcessOptions, 'map' | 'from'>
-  ): Root
+  ): RootNode
 }
 
 export interface Builder {
@@ -245,7 +245,7 @@ export interface Syntax {
   /**
    * Function to generate AST by string.
    */
-  parse?: Parser
+  parse?: Parser<Root | Document>
 
   /**
    * Class to generate string by AST.

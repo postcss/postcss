@@ -553,8 +553,7 @@ it('supports plugin creators returning processors', () => {
 })
 
 it('uses custom syntax for document', async () => {
-  // @ts-expect-error
-  let customParser: Parser = () => {
+  let customParser: Parser<Document> = () => {
     return new Document({
       nodes: [
         new Root({
