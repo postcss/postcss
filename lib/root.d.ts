@@ -3,7 +3,7 @@ import Document from './document.js'
 import { ProcessOptions } from './postcss.js'
 import Result from './result.js'
 
-interface RootRaws {
+interface RootRaws extends Record<string, any> {
   /**
    * The space symbols after the last child to the end of file.
    */

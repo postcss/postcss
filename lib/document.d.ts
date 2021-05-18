@@ -5,6 +5,14 @@ import Root, { RootProps } from './root.js'
 
 export interface DocumentProps extends ContainerProps {
   nodes?: Root[]
+
+  /**
+   * Information to generate byte-to-byte equal node string as it was
+   * in the origin input.
+   *
+   * Every parser saves its own properties.
+   */
+  raws?: Record<string, any>
 }
 
 type ChildNode = Root

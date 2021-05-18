@@ -13,7 +13,7 @@ import Container from './container.js'
 
 export type ChildNode = AtRule | Rule | Declaration | Comment
 
-export type AnyNode = AtRule | Rule | Declaration | Comment | Root
+export type AnyNode = AtRule | Rule | Declaration | Comment | Root | Document
 
 export type ChildProps =
   | AtRuleProps

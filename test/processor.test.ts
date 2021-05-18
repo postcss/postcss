@@ -7,10 +7,14 @@ import postcss, {
   Node,
   Root,
   parse,
-  PluginCreator
+  PluginCreator,
+  Document,
+  Parser,
+  Stringifier
 } from '../lib/postcss.js'
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'
+import Rule from '../lib/rule.js'
 
 afterEach(() => {
   jest.resetAllMocks()
@@ -546,4 +550,62 @@ it('supports plugin creators returning processors', () => {
   other.postcss = true
   processor.use(other)
   expect(processor.plugins).toEqual([a])
+})
+
+it('uses custom syntax for document', async () => {
+  // @ts-expect-error
+  let customParser: Parser = () => {
+    return new Document({
+      nodes: [
+        new Root({
+          raws: {
+            markupBefore: '<html>\n<head>\n<style id="id1">',
+            after: '\n\n\n'
+          },
+          nodes: [new Rule({ selector: 'a' })]
+        }),
+        new Root({
+          raws: {
+            markupBefore: '</style>\n<style id="id2">',
+            after: '\n',
+            markupAfter: '</style>\n</head>'
+          },
+          nodes: [new Rule({ selector: 'b' })]
+        })
+      ]
+    })
+  }
+
+  let customStringifier: Stringifier = (doc, builder) => {
+    if (doc.type === 'document') {
+      for (let root of doc.nodes) {
+        if (root.raws.markupBefore) {
+          builder(root.raws.markupBefore, root)
+        }
+
+        builder(root.toString(), root)
+
+        if (root.raws.markupAfter) {
+          builder(root.raws.markupAfter, root)
+        }
+      }
+    }
+  }
+
+  let processor = new Processor([() => {}])
+  let result = await processor.process('a{}', {
+    syntax: {
+      parse: customParser,
+      stringify: customStringifier
+    },
+    from: undefined
+  })
+
+  expect(result.css).toEqual(
+    '<html>\n<head>\n<style id="id1">' +
+      'a {}\n\n\n' +
+      '</style>\n<style id="id2">' +
+      'b {}\n' +
+      '</style>\n</head>'
+  )
 })
