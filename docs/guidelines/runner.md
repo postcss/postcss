@@ -89,6 +89,19 @@ for (let message of result.messages) {
 }
 ```
 
+### 3.2. Specify supported dependency types
+
+PostCSS runners must specify which dependency types they support using the
+`supportedDependencyTypes` option, so that plugins know which types are available:
+
+```js
+processor.process({
+  from: file.path,
+  to: file.path,
+  supportedDependencyTypes: ['dependency', 'dir-dependency']
+})
+```
+
 
 ## 4. Output
 

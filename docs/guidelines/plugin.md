@@ -233,6 +233,24 @@ result.messages.push({
 })
 ```
 
+### 3.2. Detect available dependency types
+
+PostCSS runners may specify which dependency types they support using the
+`supportedDependencyTypes` option. This is an array of supported types.
+Plugins can use this to check that the required types are available:
+
+```js
+if (result.opts.supportedDependencyTypes.includes('dir-dependency')) {
+  // register directory dependency
+} else {
+  throw Error('Runner does not support the required dependency types.')
+}
+```
+
+Note that if a runner does not specify `supportedDependencyTypes` then
+it is generally safe to assume that the runner only supports the
+`dependency` type.
+
 
 ## 4. Errors
 
