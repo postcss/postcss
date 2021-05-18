@@ -221,26 +221,15 @@ it('handles document with one root and after raw', () => {
   expect(s).toEqual('@foo   ')
 })
 
-it('handles document with one root and before raw', () => {
-  let document = new Document()
-  let root = new Root({ raws: { before: '   ' } })
-  root.append(new AtRule({ name: 'foo' }))
-  document.append(root)
-
-  let s = document.toString()
-
-  expect(s).toEqual('   @foo')
-})
-
 it('handles document with one root and before and after', () => {
   let document = new Document()
-  let root = new Root({ raws: { before: 'BEFORE', after: 'AFTER' } })
+  let root = new Root({ raws: { after: 'AFTER' } })
   root.append(new AtRule({ name: 'foo' }))
   document.append(root)
 
   let s = document.toString()
 
-  expect(s).toEqual('BEFORE@fooAFTER')
+  expect(s).toEqual('@fooAFTER')
 })
 
 it('handles document with three roots without raws', () => {
@@ -264,7 +253,7 @@ it('handles document with three roots without raws', () => {
 })
 
 it('handles document with three roots, with before and after raws', () => {
-  let root1 = new Root({ raws: { before: 'BEFORE_ONE', after: 'AFTER_ONE' } })
+  let root1 = new Root({ raws: { after: 'AFTER_ONE' } })
   root1.append(new Rule({ selector: 'a.one' }))
 
   let root2 = new Root({ raws: { after: 'AFTER_TWO' } })
@@ -280,7 +269,5 @@ it('handles document with three roots, with before and after raws', () => {
 
   let s = document.toString()
 
-  expect(s).toEqual(
-    'BEFORE_ONEa.one {}AFTER_ONEa.two {}AFTER_TWOa.three {}AFTER_THREE'
-  )
+  expect(s).toEqual('a.one {}AFTER_ONEa.two {}AFTER_TWOa.three {}AFTER_THREE')
 })
