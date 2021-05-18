@@ -383,17 +383,6 @@ export default abstract class Node {
   root(): Root
 
   /**
-   * Finds the Document instance of the node’s tree.
-   *
-   * ```js
-   * document.nodes[0].nodes[0].document() === document
-   * ```
-   *
-   * @return Document parent.
-   */
-  document(): Document
-
-  /**
    * Returns a `Node#raws` value. If the node is missing
    * the code style property (because the node was manually built or cloned),
    * PostCSS will try to autodetect the code style property by looking

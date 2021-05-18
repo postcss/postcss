@@ -345,26 +345,6 @@ it('root() returns self on document', () => {
   expect(document.root()).toBe(document)
 })
 
-it('document() returns document', () => {
-  let css = new Document({ nodes: [parse('@page{a{color:black}}')] })
-
-  let root = css.first as Root
-  let page = root.first as AtRule
-  let a = page.first as Rule
-  let color = a.first as Declaration
-  expect(color.document()).toBe(css)
-})
-
-it('document() returns self on root', () => {
-  let rule = new Rule({ selector: 'a' })
-  expect(rule.document()).toBe(rule)
-})
-
-it('document() returns self on document', () => {
-  let document = new Document()
-  expect(document.document()).toBe(document)
-})
-
 it('cleanRaws() cleans style recursivelly', () => {
   let css = parse('@page{a{color:black}}')
   css.cleanRaws()
