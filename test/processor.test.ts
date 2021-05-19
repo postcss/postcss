@@ -558,16 +558,16 @@ it('uses custom syntax for document', async () => {
       nodes: [
         new Root({
           raws: {
-            markupBefore: '<html>\n<head>\n<style id="id1">',
+            codeBefore: '<html>\n<head>\n<style id="id1">',
             after: '\n\n\n'
           },
           nodes: [new Rule({ selector: 'a' })]
         }),
         new Root({
           raws: {
-            markupBefore: '</style>\n<style id="id2">',
+            codeBefore: '</style>\n<style id="id2">',
             after: '\n',
-            markupAfter: '</style>\n</head>'
+            codeAfter: '</style>\n</head>'
           },
           nodes: [new Rule({ selector: 'b' })]
         })
@@ -578,14 +578,14 @@ it('uses custom syntax for document', async () => {
   let customStringifier: Stringifier = (doc, builder) => {
     if (doc.type === 'document') {
       for (let root of doc.nodes) {
-        if (root.raws.markupBefore) {
-          builder(root.raws.markupBefore, root)
+        if (root.raws.codeBefore) {
+          builder(root.raws.codeBefore, root)
         }
 
         builder(root.toString(), root)
 
-        if (root.raws.markupAfter) {
-          builder(root.raws.markupAfter, root)
+        if (root.raws.codeAfter) {
+          builder(root.raws.codeAfter, root)
         }
       }
     }

@@ -10,13 +10,32 @@ interface RootRaws extends Record<string, any> {
   after?: string
 
   /**
+   * Non-CSS code before `Root`, when `Root` is inside `Document`.
+   *
+   * **Experimental:** some aspects of this node could change within minor
+   * or patch version releases.
+   */
+  codeBefore?: string
+
+  /**
+   * Non-CSS code after `Root`, when `Root` is inside `Document`.
+   *
+   * **Experimental:** some aspects of this node could change within minor
+   * or patch version releases.
+   */
+  codeAfter?: string
+
+  /**
    * Is the last child has an (optional) semicolon.
    */
   semicolon?: boolean
 }
 
 export interface RootProps extends ContainerProps {
-  /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
+  /**
+   * Information used to generate byte-to-byte equal node string
+   * as it was in the origin input.
+   * */
   raws?: RootRaws
 }
 
