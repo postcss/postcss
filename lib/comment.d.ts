@@ -1,3 +1,4 @@
+import Container from './container.js'
 import Node, { NodeProps } from './node.js'
 
 interface CommentRaws {
@@ -39,6 +40,7 @@ export interface CommentProps extends NodeProps {
  */
 export default class Comment extends Node {
   type: 'comment'
+  parent: Container | undefined
   raws: CommentRaws
 
   /**

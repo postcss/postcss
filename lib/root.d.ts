@@ -1,8 +1,9 @@
 import Container, { ContainerProps } from './container.js'
+import Document from './document.js'
 import { ProcessOptions } from './postcss.js'
 import Result from './result.js'
 
-interface RootRaws {
+interface RootRaws extends Record<string, any> {
   /**
    * The space symbols after the last child to the end of file.
    */
@@ -30,7 +31,7 @@ export interface RootProps extends ContainerProps {
  */
 export default class Root extends Container {
   type: 'root'
-  parent: undefined
+  parent: Document | undefined
   raws: RootRaws
 
   /**

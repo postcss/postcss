@@ -72,6 +72,7 @@ export interface AtRuleProps extends ContainerProps {
  */
 export default class AtRule extends Container {
   type: 'atrule'
+  parent: Container | undefined
   raws: AtRuleRaws
 
   /**

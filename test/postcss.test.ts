@@ -135,6 +135,30 @@ it('allows to build own CSS', () => {
   )
 })
 
+it('allows to build own CSS with Document', () => {
+  let document = postcss.document()
+  let root = postcss.root({ raws: { after: '\n' } })
+  let comment = postcss.comment({ text: 'Example' })
+  let media = postcss.atRule({ name: 'media', params: 'screen' })
+  let rule = postcss.rule({ selector: 'a' })
+  let decl = postcss.decl({ prop: 'color', value: 'black' })
+
+  root.append(comment)
+  rule.append(decl)
+  media.append(rule)
+  root.append(media)
+  document.append(root)
+
+  expect(document.toString()).toEqual(
+    '/* Example */\n' +
+      '@media screen {\n' +
+      '    a {\n' +
+      '        color: black\n' +
+      '    }\n' +
+      '}\n'
+  )
+})
+
 it('contains list module', () => {
   expect(postcss.list.space('a b')).toEqual(['a', 'b'])
 })

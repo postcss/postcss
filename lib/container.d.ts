@@ -27,7 +27,9 @@ export interface ContainerProps extends NodeProps {
  * Note that all containers can store any content. If you write a rule inside
  * a rule, PostCSS will parse it.
  */
-export default abstract class Container extends Node {
+export default abstract class Container<
+  Child extends Node = ChildNode
+> extends Node {
   /**
    * An array containing the container’s children.
    *
@@ -38,7 +40,7 @@ export default abstract class Container extends Node {
    * root.nodes[0].nodes[0].prop //=> 'color'
    * ```
    */
-  nodes: ChildNode[]
+  nodes: Child[]
 
   /**
    * The container’s first child.
@@ -47,7 +49,7 @@ export default abstract class Container extends Node {
    * rule.first === rules.nodes[0]
    * ```
    */
-  get first(): ChildNode | undefined
+  get first(): Child | undefined
 
   /**
    * The container’s last child.
@@ -56,7 +58,7 @@ export default abstract class Container extends Node {
    * rule.last === rule.nodes[rule.nodes.length - 1]
    * ```
    */
-  get last(): ChildNode | undefined
+  get last(): Child | undefined
 
   /**
    * Iterates through the container’s immediate children,
@@ -92,7 +94,7 @@ export default abstract class Container extends Node {
    * @return Returns `false` if iteration was broke.
    */
   each(
-    callback: (node: ChildNode, index: number) => false | void
+    callback: (node: Child, index: number) => false | void
   ): false | undefined
 
   /**
@@ -304,7 +306,7 @@ export default abstract class Container extends Node {
    * @param child New node.
    * @return This node for methods chain.
    */
-  push(child: ChildNode): this
+  push(child: Child): this
 
   /**
    * Insert new node before old node within the container.
@@ -318,14 +320,8 @@ export default abstract class Container extends Node {
    * @return This node for methods chain.
    */
   insertBefore(
-    oldNode: ChildNode | number,
-    newNode:
-      | ChildNode
-      | ChildProps
-      | string
-      | ChildNode[]
-      | ChildProps[]
-      | string[]
+    oldNode: Child | number,
+    newNode: Child | ChildProps | string | Child[] | ChildProps[] | string[]
   ): this
 
   /**
@@ -336,14 +332,8 @@ export default abstract class Container extends Node {
    * @return This node for methods chain.
    */
   insertAfter(
-    oldNode: ChildNode | number,
-    newNode:
-      | ChildNode
-      | ChildProps
-      | string
-      | ChildNode[]
-      | ChildProps[]
-      | string[]
+    oldNode: Child | number,
+    newNode: Child | ChildProps | string | Child[] | ChildProps[] | string[]
   ): this
 
   /**
@@ -360,7 +350,7 @@ export default abstract class Container extends Node {
    * @param child Child or child’s index.
    * @return This node for methods chain.
    */
-  removeChild(child: ChildNode | number): this
+  removeChild(child: Child | number): this
 
   /**
    * Removes all children from the container
@@ -420,7 +410,7 @@ export default abstract class Container extends Node {
    * @return Is every child pass condition.
    */
   every(
-    condition: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean
+    condition: (node: Child, index: number, nodes: Child[]) => boolean
   ): boolean
 
   /**
@@ -435,7 +425,7 @@ export default abstract class Container extends Node {
    * @return Is some child pass condition.
    */
   some(
-    condition: (node: ChildNode, index: number, nodes: ChildNode[]) => boolean
+    condition: (node: Child, index: number, nodes: Child[]) => boolean
   ): boolean
 
   /**
@@ -448,5 +438,5 @@ export default abstract class Container extends Node {
    * @param child Child of the current container.
    * @return Child index.
    */
-  index(child: ChildNode | number): number
+  index(child: Child | number): number
 }

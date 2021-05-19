@@ -11,6 +11,7 @@ import Node, {
 } from './node.js'
 import Declaration, { DeclarationProps } from './declaration.js'
 import Root, { RootProps } from './root.js'
+import Document, { DocumentProps } from './document.js'
 import Comment, { CommentProps } from './comment.js'
 import AtRule, { AtRuleProps } from './at-rule.js'
 import Result, { Message } from './result.js'
@@ -40,6 +41,7 @@ export {
   ChildProps,
   AtRuleProps,
   RootProps,
+  DocumentProps,
   Warning,
   CssSyntaxError,
   Node,
@@ -50,6 +52,7 @@ export {
   AtRule,
   Rule,
   Root,
+  Document,
   Result,
   LazyResult,
   Input
@@ -61,6 +64,10 @@ export type SourceMap = SourceMapGenerator & {
 
 export type Helpers = { result: Result; postcss: Postcss } & Postcss
 
+type DocumentProcessor = (
+  document: Document,
+  helper: Helpers
+) => Promise<void> | void
 type RootProcessor = (root: Root, helper: Helpers) => Promise<void> | void
 type DeclarationProcessor = (
   decl: Declaration,
@@ -74,6 +81,20 @@ type CommentProcessor = (
 ) => Promise<void> | void
 
 interface Processors {
+  /**
+   * Will be called on `Document` node.
+   *
+   * Will be called again on children changes.
+   */
+  Document?: DocumentProcessor
+
+  /**
+   * Will be called on `Document` node, when all children will be processed.
+   *
+   * Will be called again on children changes.
+   */
+  DocumentExit?: DocumentProcessor
+
   /**
    * Will be called on `Root` node once.
    */
@@ -200,11 +221,11 @@ export type AcceptedPlugin =
     }
   | Processor
 
-export interface Parser {
+export interface Parser<RootNode = Root> {
   (
     css: string | { toString(): string },
     opts?: Pick<ProcessOptions, 'map' | 'from'>
-  ): Root
+  ): RootNode
 }
 
 export interface Builder {
@@ -224,7 +245,7 @@ export interface Syntax {
   /**
    * Function to generate AST by string.
    */
-  parse?: Parser
+  parse?: Parser<Root | Document>
 
   /**
    * Class to generate string by AST.
@@ -347,7 +368,7 @@ export interface Postcss {
   stringify: Stringifier
 
   /**
-   * Parses source css and returns a new `Root` node,
+   * Parses source css and returns a new `Root` or `Document` node,
    * which contains the source CSS nodes.
    *
    * ```js
@@ -414,6 +435,14 @@ export interface Postcss {
    * @return New root node.
    */
   root(defaults?: RootProps): Root
+
+  /**
+   * Creates a new `Document` node.
+   *
+   * @param defaults Properties for the new node.
+   * @return New document node.
+   */
+  document(defaults?: DocumentProps): Document
 
   CssSyntaxError: typeof CssSyntaxError
   Declaration: typeof Declaration

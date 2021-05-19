@@ -29,6 +29,9 @@ function buildVisitor(): [[string, string][], Plugin] {
   let visits: [string, string][] = []
   let visitor: Plugin = {
     postcssPlugin: 'visitor',
+    Document(i) {
+      visits.push(['Document', `${i.nodes.length}`])
+    },
     Once(i) {
       visits.push(['Once', `${i.nodes.length}`])
     },
@@ -64,6 +67,9 @@ function buildVisitor(): [[string, string][], Plugin] {
     },
     OnceExit(i) {
       visits.push(['OnceExit', `${i.nodes.length}`])
+    },
+    DocumentExit(i) {
+      visits.push(['DocumentExit', `${i.nodes.length}`])
     }
   }
   return [visits, visitor]
@@ -255,9 +261,10 @@ it('works classic plugin replace-color', async () => {
 })
 
 it('works visitor plugin will-change', async () => {
-  let { css } = postcss([
-    willChangeVisitor
-  ]).process('.foo { will-change: transform; }', { from: 'a.css' })
+  let { css } = postcss([willChangeVisitor]).process(
+    '.foo { will-change: transform; }',
+    { from: 'a.css' }
+  )
   expect(css).toEqual(
     '.foo { backface-visibility: hidden; will-change: transform; }'
   )
@@ -276,11 +283,39 @@ it('works visitor plugin add-prop', async () => {
   )
 })
 
+it('works visitor plugin add-prop in document with single root', async () => {
+  let document = postcss.document({
+    nodes: [postcss.parse('.a{ color: red; } .b{ will-change: transform; }')]
+  })
+
+  let { css } = await postcss([addPropsVisitor]).process(document, {
+    from: 'a.css'
+  })
+  expect(css).toEqual(
+    '.a{ will-change: transform; color: red; } ' +
+      '.b{ will-change: transform; }'
+  )
+})
+
+it('works visitor plugin add-prop in document with two roots', async () => {
+  let document = postcss.document({
+    nodes: [
+      postcss.parse('.a{ color: red; }'),
+      postcss.parse('.b{ will-change: transform; }')
+    ]
+  })
+
+  let { css } = await postcss([addPropsVisitor]).process(document, {
+    from: 'a.css'
+  })
+  expect(css).toEqual('.a{ color: red; }' + '.b{ will-change: transform; }')
+})
+
 it('works with at-rule params', () => {
-  let { css } = postcss([
-    replacePrintToMobile,
-    replaceScreenToPrint
-  ]).process('@media (screen) {}', { from: 'a.css' })
+  let { css } = postcss([replacePrintToMobile, replaceScreenToPrint]).process(
+    '@media (screen) {}',
+    { from: 'a.css' }
+  )
   expect(css).toEqual('@media (mobile) {}')
 })
 
@@ -336,6 +371,35 @@ it('work of three plug-ins; sequence 2', async () => {
     willChangeVisitor
   ]).process(cssThree, { from: 'a.css' })
   expect(css).toEqual(expectedThree)
+})
+
+const cssThreeDocument = postcss.document({
+  nodes: [
+    postcss.parse('.a{ color: red; }'),
+    postcss.parse('.b{ will-change: transform; }')
+  ]
+})
+
+const expectedThreeDocument =
+  '.a{ color: green; }' +
+  '.b{ backface-visibility: hidden; will-change: transform; }'
+
+it('work of three plug-ins in a document; sequence 1', async () => {
+  let { css } = await postcss([
+    replaceColorGreenClassic,
+    willChangeVisitor,
+    addPropsVisitor
+  ]).process(cssThreeDocument, { from: 'a.css' })
+  expect(css).toEqual(expectedThreeDocument)
+})
+
+it('work of three plug-ins in a document; sequence 2', async () => {
+  let { css } = await postcss([
+    addPropsVisitor,
+    replaceColorGreenClassic,
+    willChangeVisitor
+  ]).process(cssThreeDocument, { from: 'a.css' })
+  expect(css).toEqual(expectedThreeDocument)
 })
 
 const cssThroughProps = '.a{color: yellow;}'
@@ -586,6 +650,49 @@ it('passes helpers', async () => {
   await postcss([asyncPlugin]).process('a{}', { from: 'a.css' })
 })
 
+it('passes helpers in a document', async () => {
+  function check(node: AnyNode, helpers: Helpers): void {
+    expect(helpers.result.messages).toEqual([])
+    expect(typeof helpers.postcss).toEqual('function')
+    expect(helpers.comment().type).toEqual('comment')
+    expect(new helpers.Comment().type).toEqual('comment')
+    expect(helpers.list).toBe(postcss.list)
+  }
+
+  let syncPlugin: Plugin = {
+    postcssPlugin: 'syncPlugin',
+    Once: check,
+    Rule: check,
+    RuleExit: check,
+    OnceExit: check
+  }
+
+  let asyncPlugin: Plugin = {
+    postcssPlugin: 'syncPlugin',
+    async Once(node, helpers) {
+      await delay(1)
+      check(node, helpers)
+    },
+    async Rule(node, helpers) {
+      await delay(1)
+      check(node, helpers)
+    },
+    async OnceExit(node, helpers) {
+      await delay(1)
+      check(node, helpers)
+    }
+  }
+
+  postcss([syncPlugin]).process(
+    postcss.document({ nodes: [postcss.parse('a{}')] }),
+    { from: 'a.css' }
+  ).css
+  await postcss([asyncPlugin]).process(
+    postcss.document({ nodes: [postcss.parse('a{}')] }),
+    { from: 'a.css' }
+  )
+})
+
 it('detects non-changed values', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
@@ -766,6 +873,56 @@ for (let type of ['sync', 'async']) {
     )
   })
 
+  it(`walks ${type} through tree in a document`, async () => {
+    let document = postcss.document({
+      nodes: [
+        postcss.parse(`@media screen {
+          body {
+            /* comment */
+            background: white;
+            padding: 10px;
+          }
+          a {
+            color: blue;
+          }
+        }`)
+      ]
+    })
+
+    let [visits, visitor] = buildVisitor()
+    let processor = postcss([visitor]).process(document, { from: 'a.css' })
+    if (type === 'sync') {
+      processor.css
+    } else {
+      await processor
+    }
+
+    expect(addIndex(visits)).toEqual(
+      addIndex([
+        ['Once', '1'],
+        ['Document', '1'],
+        ['Root', '1'],
+        ['AtRule', 'media'],
+        ['Rule', 'body'],
+        ['Comment', 'comment'],
+        ['CommentExit', 'comment'],
+        ['Declaration', 'background: white'],
+        ['DeclarationExit', 'background: white'],
+        ['Declaration', 'padding: 10px'],
+        ['DeclarationExit', 'padding: 10px'],
+        ['RuleExit', 'body'],
+        ['Rule', 'a'],
+        ['Declaration', 'color: blue'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'a'],
+        ['AtRuleExit', 'media'],
+        ['RootExit', '1'],
+        ['DocumentExit', '1'],
+        ['OnceExit', '1']
+      ])
+    )
+  })
+
   it(`walks ${type} during transformations`, async () => {
     let [visits, visitor] = buildVisitor()
     let result = postcss([
@@ -882,6 +1039,136 @@ for (let type of ['sync', 'async']) {
     )
   })
 
+  it(`walks ${type} during transformations in a document`, async () => {
+    let document = postcss.document({
+      nodes: [
+        postcss.parse(
+          `.first {
+            color: red;
+          }
+          @define-mixin {
+            b {
+              color: red;
+            }
+          }
+          a {
+            color: red;
+          }
+          @media (screen) {
+            @insert-first;
+          }
+          .foo {
+            background: red;
+          }
+          @apply-mixin;`
+        )
+      ]
+    })
+
+    let [visits, visitor] = buildVisitor()
+    let result = postcss([
+      visitor,
+      redToGreen,
+      greenToBlue,
+      mixins,
+      fooToBar,
+      insertFirst
+    ]).process(document, { from: 'a.css' })
+    let output
+    if (type === 'sync') {
+      output = result.css
+    } else {
+      output = (await result).css
+    }
+
+    expect(output).toEqual(
+      `a {
+            color: blue;
+          }
+          @media (screen) {.first {
+            color: blue;
+          }
+          }
+          .bar {
+            background: red;
+          }
+          b {
+              color: blue;
+            }`
+    )
+    expect(addIndex(visits)).toEqual(
+      addIndex([
+        ['Once', '6'],
+        ['Document', '1'],
+        ['Root', '6'],
+        ['Rule', '.first'],
+        ['Declaration', 'color: red'],
+        ['DeclarationExit', 'color: green'],
+        ['RuleExit', '.first'],
+        ['AtRule', 'define-mixin'],
+        ['Rule', 'a'],
+        ['Declaration', 'color: red'],
+        ['DeclarationExit', 'color: green'],
+        ['RuleExit', 'a'],
+        ['AtRule', 'media'],
+        ['AtRule', 'insert-first'],
+        ['AtRuleExit', 'media'],
+        ['Rule', '.foo'],
+        ['Declaration', 'background: red'],
+        ['DeclarationExit', 'background: red'],
+        ['RuleExit', '.bar'],
+        ['AtRule', 'apply-mixin'],
+        ['RootExit', '4'],
+        ['DocumentExit', '1'],
+        ['Document', '1'],
+        ['Root', '4'],
+        ['Rule', 'a'],
+        ['Declaration', 'color: green'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'a'],
+        ['AtRule', 'media'],
+        ['Rule', '.first'],
+        ['Declaration', 'color: green'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', '.first'],
+        ['AtRuleExit', 'media'],
+        ['Rule', 'b'],
+        ['Declaration', 'color: red'],
+        ['DeclarationExit', 'color: green'],
+        ['RuleExit', 'b'],
+        ['RootExit', '4'],
+        ['DocumentExit', '1'],
+        ['Document', '1'],
+        ['Root', '4'],
+        ['Rule', 'a'],
+        ['Declaration', 'color: blue'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'a'],
+        ['AtRule', 'media'],
+        ['Rule', '.first'],
+        ['Declaration', 'color: blue'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', '.first'],
+        ['AtRuleExit', 'media'],
+        ['Rule', 'b'],
+        ['Declaration', 'color: green'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'b'],
+        ['RootExit', '4'],
+        ['DocumentExit', '1'],
+        ['Document', '1'],
+        ['Root', '4'],
+        ['Rule', 'b'],
+        ['Declaration', 'color: blue'],
+        ['DeclarationExit', 'color: blue'],
+        ['RuleExit', 'b'],
+        ['RootExit', '4'],
+        ['DocumentExit', '1'],
+        ['OnceExit', '4']
+      ])
+    )
+  })
+
   it(`has ${type} property and at-rule name filters`, async () => {
     let filteredDecls: string[] = []
     let allDecls: string[] = []
@@ -918,12 +1205,69 @@ for (let type of ['sync', 'async']) {
       }
     }
 
-    let result = postcss([
-      scanner
-    ]).process(
+    let result = postcss([scanner]).process(
       `@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }`,
       { from: 'a.css' }
     )
+    if (type === 'sync') {
+      result.css
+    } else {
+      await result
+    }
+
+    expect(filteredDecls).toEqual(['COLOR'])
+    expect(allDecls).toEqual(['COLOR', 'z-index'])
+    expect(filteredExits).toEqual(['COLOR'])
+    expect(allExits).toEqual(['COLOR', 'z-index'])
+    expect(filteredAtRules).toEqual(['media'])
+    expect(allAtRules).toEqual(['charset', 'media'])
+  })
+
+  it(`has ${type} property and at-rule name filters in a document`, async () => {
+    let filteredDecls: string[] = []
+    let allDecls: string[] = []
+    let filteredAtRules: string[] = []
+    let allAtRules: string[] = []
+    let allExits: string[] = []
+    let filteredExits: string[] = []
+
+    let scanner: Plugin = {
+      postcssPlugin: 'test',
+      Declaration: {
+        'color': decl => {
+          filteredDecls.push(decl.prop)
+        },
+        '*': decl => {
+          allDecls.push(decl.prop)
+        }
+      },
+      DeclarationExit: {
+        'color': decl => {
+          filteredExits.push(decl.prop)
+        },
+        '*': decl => {
+          allExits.push(decl.prop)
+        }
+      },
+      AtRule: {
+        'media': atRule => {
+          filteredAtRules.push(atRule.name)
+        },
+        '*': atRule => {
+          allAtRules.push(atRule.name)
+        }
+      }
+    }
+
+    let document = postcss.document({
+      nodes: [
+        postcss.parse(
+          `@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }`
+        )
+      ]
+    })
+
+    let result = postcss([scanner]).process(document, { from: 'a.css' })
     if (type === 'sync') {
       result.css
     } else {
@@ -965,6 +1309,82 @@ for (let type of ['sync', 'async']) {
 
     expect(rootExit).toBe(2)
     expect(OnceExit).toBe(1)
+  })
+
+  it(`has ${type} OnceExit listener in a document with one root`, async () => {
+    let RootExit = 0
+    let OnceExit = 0
+    let DocumentExit = 0
+
+    let plugin: Plugin = {
+      postcssPlugin: 'test',
+      Rule(rule) {
+        rule.remove()
+      },
+      RootExit() {
+        RootExit += 1
+      },
+      DocumentExit() {
+        DocumentExit += 1
+      },
+      OnceExit() {
+        OnceExit += 1
+      }
+    }
+
+    let document = postcss.document({
+      nodes: [postcss.parse('a{}')]
+    })
+
+    let result = postcss([plugin]).process(document, { from: 'a.css' })
+
+    if (type === 'sync') {
+      result.css
+    } else {
+      await result
+    }
+
+    expect(RootExit).toBe(2)
+    expect(DocumentExit).toBe(2)
+    expect(OnceExit).toBe(1)
+  })
+
+  it(`has ${type} OnceExit listener in a document with two roots`, async () => {
+    let RootExit = 0
+    let OnceExit = 0
+    let DocumentExit = 0
+
+    let plugin: Plugin = {
+      postcssPlugin: 'test',
+      Rule(rule) {
+        rule.remove()
+      },
+      RootExit() {
+        RootExit += 1
+      },
+      DocumentExit() {
+        DocumentExit += 1
+      },
+      OnceExit() {
+        OnceExit += 1
+      }
+    }
+
+    let document = postcss.document({
+      nodes: [postcss.parse('a{}'), postcss.parse('b{}')]
+    })
+
+    let result = postcss([plugin]).process(document, { from: 'a.css' })
+
+    if (type === 'sync') {
+      result.css
+    } else {
+      await result
+    }
+
+    expect(RootExit).toBe(4)
+    expect(DocumentExit).toBe(2)
+    expect(OnceExit).toBe(2) // 2 roots === 2 OnceExit
   })
 }
 
@@ -1009,6 +1429,28 @@ it('rescan Root in another processor', () => {
   ])
 })
 
+it('rescan Root in another processor in a document', () => {
+  let [visits, visitor] = buildVisitor()
+  let root = postcss([visitor]).process('a{z-index:1}', { from: 'a.css' }).root
+  let document = postcss.document({ nodes: [root] })
+
+  visits.splice(0, visits.length)
+  postcss([visitor]).process(document, { from: 'a.css' }).root
+
+  expect(visits).toEqual([
+    ['Once', '1'],
+    ['Document', '1'],
+    ['Root', '1'],
+    ['Rule', 'a'],
+    ['Declaration', 'z-index: 1'],
+    ['DeclarationExit', 'z-index: 1'],
+    ['RuleExit', 'a'],
+    ['RootExit', '1'],
+    ['DocumentExit', '1'],
+    ['OnceExit', '1']
+  ])
+})
+
 it('marks cleaned nodes as dirty on moving', () => {
   let mover: Plugin = {
     postcssPlugin: 'mover',
@@ -1043,6 +1485,52 @@ it('marks cleaned nodes as dirty on moving', () => {
     ['Rule', 'b'],
     ['RuleExit', 'b'],
     ['RootExit', '1'],
+    ['OnceExit', '1']
+  ])
+})
+
+it('marks cleaned nodes as dirty on moving in a document', () => {
+  let mover: Plugin = {
+    postcssPlugin: 'mover',
+    Rule(rule) {
+      if (rule.selector === 'b') {
+        let a = rule.prev()
+        if (a) rule.append(a)
+      }
+    }
+  }
+  let [visits, visitor] = buildVisitor()
+
+  let document = postcss.document({
+    nodes: [postcss.parse('a { color: black } b { }')]
+  })
+
+  postcss([mover, visitor]).process(document, {
+    from: 'a.css'
+  }).root
+
+  expect(visits).toEqual([
+    ['Once', '2'],
+    ['Document', '1'],
+    ['Root', '2'],
+    ['Rule', 'a'],
+    ['Declaration', 'color: black'],
+    ['DeclarationExit', 'color: black'],
+    ['RuleExit', 'a'],
+    ['Rule', 'b'],
+    ['Rule', 'a'],
+    ['Declaration', 'color: black'],
+    ['DeclarationExit', 'color: black'],
+    ['RuleExit', 'a'],
+    ['RuleExit', 'b'],
+    ['RootExit', '1'],
+    ['DocumentExit', '1'],
+    ['Document', '1'],
+    ['Root', '1'],
+    ['Rule', 'b'],
+    ['RuleExit', 'b'],
+    ['RootExit', '1'],
+    ['DocumentExit', '1'],
     ['OnceExit', '1']
   ])
 })
