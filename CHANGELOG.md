@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.3 “Duke Murmur”
+* Added `Node#assign()` shortcut (by Jonathan Neal).
+* Added experimental `Document` node to AST (by Aleks Hudochenkov).
+* Moved to faster fork of `source-map` (by Valentin Semirulnik).
+
 ## 8.2.15
 * Fixed `list` type definitions (by @n19htz).
 
