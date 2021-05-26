@@ -53,7 +53,8 @@
     "transpiler"
   ],
   "scripts": {
-    "test": "jest --coverage && eslint . && ./test/version.js && check-dts && ./test/integration.js && yaspeller *.md docs/{**/,}*.md && size-limit"
+    "test": "jest --coverage && eslint . && ./test/version.js && check-dts && ./test/integration.js && yaspeller *.md docs/{**/,}*.md && size-limit",
+    "semantic-release": "semantic-release --dry-run"
   },
   "funding": {
     "type": "opencollective",
@@ -70,6 +71,12 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^45.4.3",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.3",
+    "@semantic-release/npm": "^7.1.3",
+    "@semantic-release/release-notes-generator": "^9.0.2",
     "@size-limit/preset-small-lib": "^4.10.3",
     "@types/fs-extra": "^9.0.11",
     "@types/jest": "^26.0.23",
@@ -95,6 +102,7 @@
     "nanodelay": "^1.0.8",
     "postcss-parser-tests": "^8.3.5",
     "prettier": "^2.3.0",
+    "semantic-release": "^17.4.3",
     "simple-git-hooks": "^2.4.1",
     "size-limit": "^4.10.3",
     "strip-ansi": "^6.0.0",
