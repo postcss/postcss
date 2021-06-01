@@ -77,7 +77,7 @@ is described in [API docs].
 
 PostCSS plugins may declare file or directory dependencies by attaching
 messages to the `result`. Runners should watch these and ensure that the
-CSS is rebuilt when they change. Directories should be watched recursively.
+CSS is rebuilt when they change.
 
 ```js
 for (let message of result.messages) {
@@ -88,6 +88,12 @@ for (let message of result.messages) {
   }
 }
 ```
+
+Directories should be watched recursively by default, but `dir-dependency`
+messages may contain an optional `glob` property indicating which files
+within the directory are depended on (e.g. `**/*.css`). If `glob` is
+specified then runners should only watch files matching the glob pattern,
+where possible.
 
 
 ## 4. Output
