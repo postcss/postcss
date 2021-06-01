@@ -222,13 +222,17 @@ result.messages.push({
 })
 ```
 
-Specify recursive directory dependencies using the `dir-dependency` message type:
+Directory dependencies should be specified using the `dir-dependency` message
+type. By default all files within the directory (recursively) are considered
+dependencies. An optional `glob` property can be used to indicate that only
+files matching a specific glob pattern should be considered.
 
 ```js
 result.messages.push({
   type: 'dir-dependency',
   plugin: 'postcss-import',
   dir: '/imported',
+  glob: '**/*.css', // optional
   parent: result.opts.from
 })
 ```
