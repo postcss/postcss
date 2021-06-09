@@ -466,9 +466,11 @@ it('uses custom stringifier', async () => {
 })
 
 it('uses custom stringifier from object', async () => {
+  jest.spyOn(console, 'warn').mockImplementation(() => {})
   let processor = new Processor([])
   let syntax = { parse: prs, stringify: str }
   let result = await processor.process('', { stringifier: syntax, from: 'a' })
+  expect(console.warn).not.toHaveBeenCalled()
   expect(result.css).toEqual('!')
 })
 
@@ -483,11 +485,13 @@ it('uses custom stringifier with source maps', async () => {
 })
 
 it('uses custom syntax', async () => {
+  jest.spyOn(console, 'warn').mockImplementation(() => {})
   let processor = new Processor([() => {}])
   let result = await processor.process('a{}', {
     syntax: { parse: prs, stringify: str },
     from: undefined
   })
+  expect(console.warn).not.toHaveBeenCalled()
   expect(result.css).toEqual('ok!')
 })
 
