@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "7.0.35",
+  "version": "7.0.36",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": ">=6.0.0"
@@ -436,7 +436,9 @@
       "Solovev",
       "VS",
       "iOS",
-      "maintainers"
+      "maintainers",
+      "Backport",
+      "ReDoS"
     ]
   }
 }

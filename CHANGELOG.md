@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.36
+* Backport ReDoS vulnerabilities from PostCSS 8.
+
 ## 7.0.35
 * Add migration guide link to PostCSS 8 error text.
 
