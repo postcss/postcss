@@ -39,8 +39,9 @@ A good example of a parser is [Safe Parser], which parses malformed/broken CSS.
 Because there is no point to generate broken output, this package only provides
 a parser.
 
-The parser API is a function which receives a string & returns a [`Root`] or [`Document`] node.
-The second argument is a function which receives an object with PostCSS options.
+The parser API is a function which receives a string & returns a [`Root`]
+or [`Document`] node. The second argument is a function which receives
+an object with PostCSS options.
 
 ```js
 const postcss = require('postcss')
@@ -51,6 +52,9 @@ module.exports = function parse (css, opts) {
   return root
 }
 ```
+
+For open source parser npm package must have `postcss` in `peerDependencies`,
+not in direct `dependencies`.
 
 [Safe Parser]: https://github.com/postcss/postcss-safe-parser
 [`Root`]:      https://postcss.org/api/#root
