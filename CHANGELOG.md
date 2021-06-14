@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.3.4
+* Fixed broken AST detection.
+
 ## 8.3.3
 * Fixed broken AST on `postcss` dependency duplication in custom parsers.
 
