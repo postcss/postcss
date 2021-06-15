@@ -870,4 +870,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-multi-value-display`]:          https://github.com/jake-low/postcss-multi-value-display
 [`postcss-easy-z`]:                       https://github.com/CSSSR/postcss-easy-z
 [`postcss-icon-blender`]:                 https://github.com/icon-blender/postcss-icon-blender
-[`postcss-variable-compress`];            https://github.com/navanshu/postcss-variable-compress
+[`postcss-variable-compress`]:            https://github.com/navanshu/postcss-variable-compress
