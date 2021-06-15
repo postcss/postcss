@@ -349,6 +349,7 @@ loosely resembles the original.
 * [`postcss-no-important`] delete declarations !important.
 * [`postcss-deep-scopable`] unified deep scoped style for Vue.js.
 * [`postcss-deadcss`] helps to find dead CSS in stylesheets.
+* [`postcss-variable-compress`] minifies css variables and saves you space.
 
 See also plugins in modular minifier [`cssnano`].
 
@@ -869,3 +870,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-multi-value-display`]:          https://github.com/jake-low/postcss-multi-value-display
 [`postcss-easy-z`]:                       https://github.com/CSSSR/postcss-easy-z
 [`postcss-icon-blender`]:                 https://github.com/icon-blender/postcss-icon-blender
+[`postcss-variable-compress`];            https://github.com/navanshu/postcss-variable-compress
