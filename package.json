@@ -74,8 +74,8 @@
     "@types/fs-extra": "^9.0.11",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.2",
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "@typescript-eslint/parser": "^4.26.1",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
     "check-dts": "^0.4.4",
     "ci-job-number": "^1.2.2",
     "clean-publish": "^2.2.0",
@@ -99,7 +99,7 @@
     "size-limit": "^4.12.0",
     "strip-ansi": "^6.0.0",
     "ts-jest": "^27.0.3",
-    "typescript": "^4.3.2",
+    "typescript": "^4.3.3",
     "yaspeller": "^7.0.0"
   },
   "lint-staged": {
