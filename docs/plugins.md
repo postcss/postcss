@@ -481,6 +481,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-px-to-viewport`] generates viewport units (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
 * [`postcss-viewport-height-correction`] solves the popular problem when `100vh`
   doesn’t fit the mobile browser screen.
+* [`postcss-unit-processor`] flexible processing of CSS units.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -871,3 +872,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-easy-z`]:                       https://github.com/CSSSR/postcss-easy-z
 [`postcss-icon-blender`]:                 https://github.com/icon-blender/postcss-icon-blender
 [`postcss-variable-compress`]:            https://github.com/navanshu/postcss-variable-compress
+[`postcss-unit-processor`]:               https://github.com/hex-ci/postcss-unit-processor
