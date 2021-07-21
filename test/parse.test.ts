@@ -203,3 +203,23 @@ it('suggests postcss-less for Less sources', () => {
     parse('.@{my-selector} { }', { from: 'app.less' })
   }).toThrow(/postcss-less/)
 })
+
+it('should give the correct column of missed semicolon with !important', () => {
+  let error
+  try {
+    parse('a { \n    color: red !important\n    background-color: black;\n}')
+  } catch (e) {
+    error = e
+  }
+  expect(error.message).toMatch(/2:26: Missed semicolon/)
+})
+
+it('should give the correct column of missed semicolon without !important', () => {
+  let error
+  try {
+    parse('a { \n    color: red\n    background-color: black;\n}')
+  } catch (e) {
+    error = e
+  }
+  expect(error.message).toMatch(/2:15: Missed semicolon/)
+})
