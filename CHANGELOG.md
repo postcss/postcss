@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.3.6
+* Fixed column of `missed semicolon` error (by @Gusted).
+
+## 8.3.5
+* Fixed broken AST detection.
+
 ## 8.3.4
 * Fixed broken AST detection.
 
