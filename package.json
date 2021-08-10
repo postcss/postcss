@@ -63,6 +63,9 @@
   "license": "MIT",
   "homepage": "https://postcss.org/",
   "repository": "postcss/postcss",
+  "bugs": {
+    "url": "https://github.com/postcss/postcss/issues"
+  },
   "dependencies": {
     "colorette": "^1.2.2",
     "nanoid": "^3.1.23",
