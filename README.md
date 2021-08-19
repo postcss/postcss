@@ -89,8 +89,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 ### Better CSS Readability
 
-* [`precss`] contains plugins for Sass-like features, like variables, nesting,
-  and mixins.
+* [`postcss-nested`] unwraps nested rules the way Sass does.
 * [`postcss-sorting`] sorts the content of rules and at-rules.
 * [`postcss-utilities`] includes the most commonly used shortcuts and helpers.
 * [`short`] adds and extends numerous shorthand properties.
@@ -146,7 +145,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`stylelint`]:                  https://github.com/stylelint/stylelint
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
 [`cssnano`]:                    https://cssnano.co/
-[`precss`]:                     https://github.com/jonathantneal/precss
+[`postcss-nested`]:             https://github.com/postcss/postcss-nested
 [`doiuse`]:                     https://github.com/anandthakker/doiuse
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
 [`short`]:                      https://github.com/jonathantneal/postcss-short
@@ -310,8 +309,8 @@ Then create `postcss.config.js`:
 ```js
 module.exports = {
   plugins: [
-    require('precss'),
-    require('autoprefixer')
+    require('autoprefixer'),
+    require('postcss-nested')
   ]
 }
 ```
@@ -330,7 +329,7 @@ gulp.task('css', () => {
 
   return gulp.src('src/**/*.css')
     .pipe( sourcemaps.init() )
-    .pipe( postcss([ require('precss'), require('autoprefixer') ]) )
+    .pipe( postcss([ require('autoprefixer'), require('postcss-nested') ]) )
     .pipe( sourcemaps.write('.') )
     .pipe( gulp.dest('build/') )
 })
@@ -410,11 +409,11 @@ For other environments, you can use the JS API:
 ```js
 const autoprefixer = require('autoprefixer')
 const postcss = require('postcss')
-const precss = require('precss')
+const postcssNested = require('postcss-nested')
 const fs = require('fs')
 
 fs.readFile('src/app.css', (err, css) => {
-  postcss([precss, autoprefixer])
+  postcss([autoprefixer, postcssNested])
     .process(css, { from: 'src/app.css', to: 'dest/app.css' })
     .then(result => {
       fs.writeFile('dest/app.css', result.css, () => true)
