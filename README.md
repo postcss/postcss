@@ -242,7 +242,8 @@ Then create `postcss.config.js`:
 ```js
 module.exports = {
   plugins: [
-    require('autoprefixer')
+    require('autoprefixer'),
+    require('postcss-nested')
   ]
 }
 ```
@@ -259,7 +260,8 @@ in project’s root:
 ```js
 module.exports = {
   plugins: [
-    require('autoprefixer')
+    require('autoprefixer'),
+    require('postcss-nested')
   ]
 }
 ```
@@ -307,8 +309,8 @@ Then create `postcss.config.js`:
 ```js
 module.exports = {
   plugins: [
-    require('postcss-nested'),
-    require('autoprefixer')
+    require('autoprefixer'),
+    require('postcss-nested')
   ]
 }
 ```
@@ -327,7 +329,7 @@ gulp.task('css', () => {
 
   return gulp.src('src/**/*.css')
     .pipe( sourcemaps.init() )
-    .pipe( postcss([ require('autoprefixer') ]) )
+    .pipe( postcss([ require('autoprefixer'), require('postcss-nested') ]) )
     .pipe( sourcemaps.write('.') )
     .pipe( gulp.dest('build/') )
 })
@@ -411,7 +413,7 @@ const postcssNested = require('postcss-nested')
 const fs = require('fs')
 
 fs.readFile('src/app.css', (err, css) => {
-  postcss([postcssNested, autoprefixer])
+  postcss([autoprefixer, postcssNested])
     .process(css, { from: 'src/app.css', to: 'dest/app.css' })
     .then(result => {
       fs.writeFile('dest/app.css', result.css, () => true)
