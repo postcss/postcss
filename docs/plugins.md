@@ -274,7 +274,7 @@ See also [`precss`] plugins pack to add them by one line of code.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-easysprites`] combine images to sprites, based on their
   image.png`#hash` and aspect ratio (`@2x`).
-* [`postcss-icon-blender`] create custom SVG icon sets from over 80,000 free and open-source icons 
+* [`postcss-icon-blender`] create custom SVG icon sets from over 80,000 free and open-source icons
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
@@ -423,7 +423,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-classes-to-mixins`] converts classes to Sass, Less and Stylus mixins
 * [`postcss-currency`] replaces name of currency with symbols.
-* [`postcss-d-ts`] generates `.d.ts` declaration for TypeScript `import` from used CSS classes and ids 
+* [`postcss-d-ts`] generates `.d.ts` declaration for TypeScript `import` from used CSS classes and ids
 * [`postcss-eol`] replaces EOL of files.
 * [`postcss-extract-value`] extracts values from css properties and puts them into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
@@ -452,7 +452,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-node-modules-replacer`] replaces path than includes `node_modules`
   to `~`.
 * [`postcss-plugin-namespace`] add a css selector to all rules, so that css file don't affect other element.
-* [`postcss-prefix-hover`] add a prefixed selector to any selection containing `:hover` e.g. changing `.foo a:hover {}` to `.using-mouse .foo a:hover {}`
+* [`postcss-prefix-hover`] adds a prefixed to any selector containing `:hover`.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
