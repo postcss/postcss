@@ -452,6 +452,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-node-modules-replacer`] replaces path than includes `node_modules`
   to `~`.
 * [`postcss-plugin-namespace`] add a css selector to all rules, so that css file don't affect other element.
+* [`postcss-prefix-hover`] add a prefixed selector to any selection containing `:hover` e.g. changing `.foo a:hover {}` to `.using-mouse .foo a:hover {}`
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
 * [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
@@ -873,3 +874,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-icon-blender`]:                 https://github.com/icon-blender/postcss-icon-blender
 [`postcss-variable-compress`]:            https://github.com/navanshu/postcss-variable-compress
 [`postcss-unit-processor`]:               https://github.com/hex-ci/postcss-unit-processor
+[`postcss-prefix-hover`]:                 https://github.com/larsmunkholm/postcss-prefix-hover
