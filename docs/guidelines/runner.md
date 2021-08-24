@@ -150,7 +150,7 @@ if (result.map) {
 
 ### 5.1. Document your runner in English
 
-PostCSS runners must have their `README.md` wrote in English. Do not be afraid
+PostCSS runners must have their `README.md` written in English. Do not be afraid
 of your English skills, as the open source community will fix your errors.
 
 Of course, you are welcome to write documentation in other languages;
