@@ -1,17 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { options, bold, red, gray, yellow } from 'colorette'
+import { bold, red, gray, yellow } from 'nanocolors'
 
 beforeEach(() => {
   jest.resetModules()
   jest.doMock('fs', () => ({}))
-  jest.doMock('colorette', () => ({ options, bold, red, gray, yellow }))
+  jest.doMock('nanocolors', () => ({ bold, red, gray, yellow }))
 })
 
-afterEach(() => {
-  options.enabled = true
-})
-
-it('shows code with colors (default)', () => {
+it('shows code with colors', () => {
   let postcss = require('../lib/postcss.js')
 
   let error
@@ -24,7 +20,7 @@ it('shows code with colors (default)', () => {
       throw e
     }
   }
-  expect(error.showSourceCode()).toEqual(
+  expect(error.showSourceCode(true)).toEqual(
     bold(red('>')) +
       gray(' 1 | ') +
       'a' +
@@ -35,25 +31,7 @@ it('shows code with colors (default)', () => {
   )
 })
 
-it('shows code without colors (default)', () => {
-  let postcss = require('../lib/postcss.js')
-
-  let error
-  options.enabled = false
-
-  try {
-    postcss.parse('a{')
-  } catch (e) {
-    if (e.name === 'CssSyntaxError') {
-      error = e
-    } else {
-      throw e
-    }
-  }
-  expect(error.showSourceCode()).toEqual('> 1 | a{\n' + '    | ^')
-})
-
-it('shows code without colors (setting)', () => {
+it('shows code without colors', () => {
   let postcss = require('../lib/postcss.js')
 
   let error

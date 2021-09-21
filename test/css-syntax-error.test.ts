@@ -1,4 +1,4 @@
-import { red, bold, magenta, yellow, gray, cyan } from 'colorette'
+import { red, bold, magenta, yellow, gray, cyan } from 'nanocolors'
 import { join, resolve as pathResolve } from 'path'
 import { pathToFileURL } from 'url'
 import stripAnsi from 'strip-ansi'
