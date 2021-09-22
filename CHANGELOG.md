@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.3.7
+* Replaced `colorette` to `nanocolors`.
+* Added bug field to `package.json` (by Christian Oliff).
+* Improved docs (by Paul Shryock).
+
 ## 8.3.6
 * Fixed column in `missed semicolon` error (by @Gusted).
 
