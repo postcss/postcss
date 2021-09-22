@@ -3,6 +3,10 @@ import { bold, red, gray, yellow } from 'nanocolors'
 
 import CssSyntaxError from '../lib/css-syntax-error.js'
 
+function isSyntaxError(e: unknown): e is CssSyntaxError {
+  return e instanceof Error && e.name === 'CssSyntaxError'
+}
+
 beforeEach(() => {
   jest.resetModules()
   jest.doMock('fs', () => ({}))
@@ -16,7 +20,7 @@ it('shows code with colors', () => {
   try {
     postcss.parse('a{')
   } catch (e) {
-    if (e instanceof CssSyntaxError) {
+    if (isSyntaxError(e)) {
       error = e
     } else {
       throw e
@@ -40,7 +44,7 @@ it('shows code without colors', () => {
   try {
     postcss.parse('a{')
   } catch (e) {
-    if (e instanceof CssSyntaxError) {
+    if (isSyntaxError(e)) {
       error = e
     } else {
       throw e
