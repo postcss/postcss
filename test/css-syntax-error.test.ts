@@ -11,12 +11,19 @@ import postcss, {
   Rule
 } from '../lib/postcss.js'
 
+function isSyntaxError(e: unknown): e is CssSyntaxError {
+  return e instanceof Error && e.name === 'CssSyntaxError'
+}
+
 async function catchError(cb: () => Promise<any>): Promise<CssSyntaxError> {
   try {
     await cb()
   } catch (e) {
-    if (e.name !== 'CssSyntaxError') throw e
-    return e
+    if (isSyntaxError(e)) {
+      return e
+    } else {
+      throw e
+    }
   }
   throw new Error('Error was not thrown')
 }
@@ -25,17 +32,16 @@ function parseError(
   css: string,
   opts?: Pick<ProcessOptions, 'map' | 'from'>
 ): CssSyntaxError {
-  let error
   try {
     postcss.parse(css, opts)
   } catch (e) {
-    if (e.name === 'CssSyntaxError') {
-      error = e
+    if (isSyntaxError(e)) {
+      return e
     } else {
       throw e
     }
   }
-  return error
+  throw new Error('Error was not thrown')
 }
 
 it('saves source', () => {

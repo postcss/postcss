@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { bold, red, gray, yellow } from 'nanocolors'
 
+import CssSyntaxError from '../lib/css-syntax-error.js'
+
 beforeEach(() => {
   jest.resetModules()
   jest.doMock('fs', () => ({}))
@@ -10,17 +12,17 @@ beforeEach(() => {
 it('shows code with colors', () => {
   let postcss = require('../lib/postcss.js')
 
-  let error
+  let error: CssSyntaxError | undefined
   try {
     postcss.parse('a{')
   } catch (e) {
-    if (e.name === 'CssSyntaxError') {
+    if (e instanceof CssSyntaxError) {
       error = e
     } else {
       throw e
     }
   }
-  expect(error.showSourceCode(true)).toEqual(
+  expect(error?.showSourceCode(true)).toEqual(
     bold(red('>')) +
       gray(' 1 | ') +
       'a' +
@@ -34,17 +36,17 @@ it('shows code with colors', () => {
 it('shows code without colors', () => {
   let postcss = require('../lib/postcss.js')
 
-  let error
+  let error: CssSyntaxError | undefined
   try {
     postcss.parse('a{')
   } catch (e) {
-    if (e.name === 'CssSyntaxError') {
+    if (e instanceof CssSyntaxError) {
       error = e
     } else {
       throw e
     }
   }
-  expect(error.showSourceCode(false)).toEqual('> 1 | a{\n' + '    | ^')
+  expect(error?.showSourceCode(false)).toEqual('> 1 | a{\n' + '    | ^')
 })
 
 it('generates source map without fs', () => {

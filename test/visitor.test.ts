@@ -514,7 +514,7 @@ it('adds plugin to error', async () => {
       throw rule.error('test')
     }
   }
-  let error
+  let error: any
   try {
     postcss([broken]).process('a{}', { from: 'broken.css' }).css
   } catch (e) {
@@ -533,7 +533,7 @@ it('adds plugin to async error', async () => {
       throw rule.error('test')
     }
   }
-  let error
+  let error: any
   try {
     await postcss([broken]).process('a{}', { from: 'broken.css' })
   } catch (e) {
@@ -551,7 +551,7 @@ it('adds sync plugin to async error', async () => {
       throw rule.error('test')
     }
   }
-  let error
+  let error: any
   try {
     await postcss([broken]).process('a{}', { from: 'broken.css' })
   } catch (e) {
@@ -569,7 +569,7 @@ it('adds node to error', async () => {
       throw new Error('test')
     }
   }
-  let error
+  let error: any
   try {
     postcss([broken]).process('a{}', { from: 'broken.css' }).css
   } catch (e) {
@@ -588,7 +588,7 @@ it('adds node to async error', async () => {
       throw new Error('test')
     }
   }
-  let error
+  let error: any
   try {
     await postcss([broken]).process('a{}', { from: 'broken.css' })
   } catch (e) {
@@ -604,7 +604,7 @@ it('shows error on sync call async plugins', () => {
     postcssPlugin: 'asyncPlugin',
     async Rule() {}
   }
-  let error
+  let error: any
   try {
     postcss([asyncPlugin]).process('a{}', { from: 'broken.css' }).css
   } catch (e) {
@@ -1400,7 +1400,7 @@ it('throws error from async OnceExit', async () => {
     from: 'a.css'
   })
 
-  let error
+  let error: any
   try {
     await result
   } catch (e) {

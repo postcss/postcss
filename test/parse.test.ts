@@ -177,7 +177,7 @@ it('throws on just colon', () => {
 })
 
 it('does not suggest different parsers for CSS', () => {
-  let error
+  let error: any
   try {
     parse('a { one:: 1 }', { from: 'app.css' })
   } catch (e) {
@@ -205,7 +205,7 @@ it('suggests postcss-less for Less sources', () => {
 })
 
 it('should give the correct column of missed semicolon with !important', () => {
-  let error
+  let error: any
   try {
     parse('a { \n    color: red !important\n    background-color: black;\n}')
   } catch (e) {
@@ -215,7 +215,7 @@ it('should give the correct column of missed semicolon with !important', () => {
 })
 
 it('should give the correct column of missed semicolon without !important', () => {
-  let error
+  let error: any
   try {
     parse('a { \n    color: red\n    background-color: black;\n}')
   } catch (e) {

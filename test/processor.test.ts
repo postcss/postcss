@@ -12,6 +12,7 @@ import postcss, {
   Parser,
   Stringifier
 } from '../lib/postcss.js'
+import CssSyntaxError from '../lib/css-syntax-error.js'
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'
 import Rule from '../lib/rule.js'
@@ -36,7 +37,7 @@ async function catchError(cb: () => Promise<any>): Promise<Error> {
   try {
     await cb()
   } catch (e) {
-    return e
+    if (e instanceof Error) return e
   }
   throw new Error('Error was not thrown')
 }
@@ -147,19 +148,19 @@ it('inlines maps from previous result', () => {
 })
 
 it('throws with file name', () => {
-  let error
+  let error: CssSyntaxError | undefined
   try {
     new Processor([() => {}]).process('a {', { from: 'a.css' }).css
   } catch (e) {
-    if (e.name === 'CssSyntaxError') {
+    if (e instanceof CssSyntaxError) {
       error = e
     } else {
       throw e
     }
   }
 
-  expect(error.file).toEqual(pathResolve('a.css'))
-  expect(error.message).toMatch(/a.css:1:1: Unclosed block$/)
+  expect(error?.file).toEqual(pathResolve('a.css'))
+  expect(error?.message).toMatch(/a.css:1:1: Unclosed block$/)
 })
 
 it('allows to replace Root', () => {
@@ -373,7 +374,7 @@ it('remembers errors', async () => {
     processing.root
   }).toThrow('test')
 
-  let asyncError
+  let asyncError: any
   try {
     await processing
   } catch (e) {

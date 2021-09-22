@@ -200,7 +200,7 @@ it('walk() adds CSS position to error stack', () => {
   let error = new Error('T')
   error.stack = 'Error: T\n    at b (b.js:2:4)\n    at a (a.js:2:1)'
   let root = parse(example, { from: '/c.css' })
-  let catched
+  let catched: any
   try {
     root.walk(() => {
       throw error
