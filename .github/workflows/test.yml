@@ -41,6 +41,8 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           install-command: yarn --frozen-lockfile --ignore-engines
+      - name: Compile project
+        run: npx gulp compile
       - name: Run unit tests
         run: npx jest
   windows:
@@ -57,5 +59,7 @@ jobs:
           node-version: 16
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      - name: Compile project
+        run: npx gulp compile
       - name: Run unit tests
         run: npx jest
