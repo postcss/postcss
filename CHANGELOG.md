@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.3.8
+* Update `nanocolors`.
+
 ## 8.3.7
 * Replaced `colorette` to `nanocolors`.
 * Added bug field to `package.json` (by Christian Oliff).
