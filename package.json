@@ -67,7 +67,7 @@
     "url": "https://github.com/postcss/postcss/issues"
   },
   "dependencies": {
-    "nanocolors": "^0.1.5",
+    "nanocolors": "^0.2.2",
     "nanoid": "^3.1.25",
     "source-map-js": "^0.6.2"
   },
