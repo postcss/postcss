@@ -197,6 +197,9 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 * Removed docs from npm package.
 * Replaced `chalk` to `colorette`.
 
+## 7.0.38
+* Update `Processor#version`.
+
 ## 7.0.37
 * Backport `chalk` to `nanocolors` migration.
 
