@@ -17,7 +17,7 @@
     "transpiler"
   ],
   "scripts": {
-    "lint": "eslint-ci *.js lib/*.es6 test/*.js",
+    "lint": "eslint *.js lib/*.es6 test/*.js",
     "test": "gulp && jest && yarn lint"
   },
   "funding": {
@@ -41,7 +41,6 @@
     "concat-with-sourcemaps": "^1.1.0",
     "del": "^4.1.0",
     "eslint": "^5.16.0",
-    "eslint-ci": "^1.0.0",
     "eslint-config-postcss": "^3.0.7",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
