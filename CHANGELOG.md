@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.38
+* Update `Processor#version`.
+
 ## 7.0.37
 * Backport `chalk` to `nanocolors` migration.
 
