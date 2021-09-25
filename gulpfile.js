@@ -37,6 +37,8 @@ gulp.task('build:package', () => {
       delete json['lint-staged']
       delete json.yaspeller
       delete json.devDependencies
+      delete json.browserslist
+      delete json.husky
       return json
     }))
     .pipe(gulp.dest('build'))
