@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.37
+* Backport `chalk` to `nanocolors` migration.
+
 ## 7.0.36
 * Backport ReDoS vulnerabilities from PostCSS 8.
 
