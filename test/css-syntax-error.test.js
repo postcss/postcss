@@ -1,6 +1,6 @@
+let nanocolors = require('nanocolors')
 let stripAnsi = require('strip-ansi')
 let Concat = require('concat-with-sourcemaps')
-let chalk = require('chalk')
 let path = require('path')
 
 let CssSyntaxError = require('../lib/css-syntax-error')
@@ -39,65 +39,77 @@ it('saves source', () => {
 })
 
 it('has stack trace', () => {
-  expect(parseError('a {\n  content: "\n}').stack)
-    .toMatch(/css-syntax-error\.test\.js/)
+  expect(parseError('a {\n  content: "\n}').stack).toMatch(
+    /css-syntax-error\.test\.js/
+  )
 })
 
 it('highlights broken line with colors', () => {
-  let c = chalk
+  let c = nanocolors
   expect(parseError('#a .b {').showSourceCode(true)).toEqual(
-    c.red.bold('>') + c.gray(' 1 | ') +
-    c.magenta('#a') + ' ' + c.yellow('.b') + ' ' +
-    c.yellow('{') + '\n ' +
-    c.gray('   | ') + c.red.bold('^'))
+    c.red(c.bold('>')) +
+      c.gray(' 1 | ') +
+      c.magenta('#a') +
+      ' ' +
+      c.yellow('.b') +
+      ' ' +
+      c.yellow('{') +
+      '\n ' +
+      c.gray('   | ') +
+      c.red(c.bold('^'))
+  )
 })
 
 it('highlights broken line', () => {
-  expect(parseError('a {\n  content: "\n}').showSourceCode(false))
-    .toEqual('  1 | a {\n' +
-             '> 2 |   content: "\n' +
-             '    |            ^\n' +
-             '  3 | }')
+  expect(parseError('a {\n  content: "\n}').showSourceCode(false)).toEqual(
+    '  1 | a {\n' + '> 2 |   content: "\n' + '    |            ^\n' + '  3 | }'
+  )
 })
 
 it('highlights broken line, when indented with tabs', () => {
-  expect(parseError('a {\n\t \t  content:\t"\n}').showSourceCode(false))
-    .toEqual('  1 | a {\n' +
-             '> 2 | \t \t  content:\t"\n' +
-             '    | \t \t          \t^\n' +
-             '  3 | }')
+  expect(
+    parseError('a {\n\t \t  content:\t"\n}').showSourceCode(false)
+  ).toEqual(
+    '  1 | a {\n' +
+      '> 2 | \t \t  content:\t"\n' +
+      '    | \t \t          \t^\n' +
+      '  3 | }'
+  )
 })
 
 it('highlights small code example', () => {
-  expect(parseError('a {').showSourceCode(false))
-    .toEqual('> 1 | a {\n' +
-             '    | ^')
+  expect(parseError('a {').showSourceCode(false)).toEqual(
+    '> 1 | a {\n' + '    | ^'
+  )
 })
 
 it('add leading space for line numbers', () => {
   let css = '\n\n\n\n\n\n\na {\n  content: "\n}\n\n\n'
-  expect(parseError(css).showSourceCode(false))
-    .toEqual('   7 | \n' +
-             '   8 | a {\n' +
-             '>  9 |   content: "\n' +
-             '     |            ^\n' +
-             '  10 | }\n' +
-             '  11 | ')
+  expect(parseError(css).showSourceCode(false)).toEqual(
+    '   7 | \n' +
+      '   8 | a {\n' +
+      '>  9 |   content: "\n' +
+      '     |            ^\n' +
+      '  10 | }\n' +
+      '  11 | '
+  )
 })
 
 it('prints with highlight', () => {
-  expect(stripAnsi(parseError('a {').toString()))
-    .toEqual('CssSyntaxError: <css input>:1:1: Unclosed block\n' +
-             '\n' +
-             '> 1 | a {\n' +
-             '    | ^\n')
+  expect(stripAnsi(parseError('a {').toString())).toEqual(
+    'CssSyntaxError: <css input>:1:1: Unclosed block\n' +
+      '\n' +
+      '> 1 | a {\n' +
+      '    | ^\n'
+  )
 })
 
 it('misses highlights without source content', () => {
   let error = parseError('a {')
   error.source = null
-  expect(error.toString())
-    .toEqual('CssSyntaxError: <css input>:1:1: Unclosed block')
+  expect(error.toString()).toEqual(
+    'CssSyntaxError: <css input>:1:1: Unclosed block'
+  )
 })
 
 it('misses position without source', () => {
@@ -160,8 +172,9 @@ it('does not uses wrong source map', () => {
 it('set source plugin', () => {
   let error = postcss.parse('a{}').first.error('Error', { plugin: 'PL' })
   expect(error.plugin).toEqual('PL')
-  expect(error.toString())
-    .toMatch(/^CssSyntaxError: PL: <css input>:1:1: Error/)
+  expect(error.toString()).toMatch(
+    /^CssSyntaxError: PL: <css input>:1:1: Error/
+  )
 })
 
 it('set source plugin automatically', () => {
@@ -171,11 +184,13 @@ it('set source plugin automatically', () => {
     }
   })
 
-  return postcss([plugin]).process('a{}').catch(error => {
-    if (error.name !== 'CssSyntaxError') throw error
-    expect(error.plugin).toEqual('test-plugin')
-    expect(error.toString()).toMatch(/test-plugin/)
-  })
+  return postcss([plugin])
+    .process('a{}')
+    .catch(error => {
+      if (error.name !== 'CssSyntaxError') throw error
+      expect(error.plugin).toEqual('test-plugin')
+      expect(error.toString()).toMatch(/test-plugin/)
+    })
 })
 
 it('set plugin automatically in async', () => {
@@ -187,8 +202,10 @@ it('set plugin automatically in async', () => {
     }
   })
 
-  return postcss([plugin]).process('a{}').catch(error => {
-    if (error.name !== 'CssSyntaxError') throw error
-    expect(error.plugin).toEqual('async-plugin')
-  })
+  return postcss([plugin])
+    .process('a{}')
+    .catch(error => {
+      if (error.name !== 'CssSyntaxError') throw error
+      expect(error.plugin).toEqual('async-plugin')
+    })
 })

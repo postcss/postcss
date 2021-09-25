@@ -1,5 +1,4 @@
-import supportsColor from 'supports-color'
-import chalk from 'chalk'
+import nanocolors from 'nanocolors'
 
 import terminalHighlight from './terminal-highlight'
 
@@ -175,7 +174,7 @@ class CssSyntaxError extends Error {
 
     let css = this.source
     if (terminalHighlight) {
-      if (typeof color === 'undefined') color = supportsColor.stdout
+      if (typeof color === 'undefined') color = nanocolors.isColorSupported
       if (color) css = terminalHighlight(css)
     }
 
@@ -186,28 +185,32 @@ class CssSyntaxError extends Error {
     let maxWidth = String(end).length
 
     function mark (text) {
-      if (color && chalk.red) {
-        return chalk.red.bold(text)
+      if (color && nanocolors.red) {
+        return nanocolors.red(nanocolors.bold(text))
       }
       return text
     }
     function aside (text) {
-      if (color && chalk.gray) {
-        return chalk.gray(text)
+      if (color && nanocolors.gray) {
+        return nanocolors.gray(text)
       }
       return text
     }
 
-    return lines.slice(start, end).map((line, index) => {
-      let number = start + 1 + index
-      let gutter = ' ' + (' ' + number).slice(-maxWidth) + ' | '
-      if (number === this.line) {
-        let spacing = aside(gutter.replace(/\d/g, ' ')) +
-          line.slice(0, this.column - 1).replace(/[^\t]/g, ' ')
-        return mark('>') + aside(gutter) + line + '\n ' + spacing + mark('^')
-      }
-      return ' ' + aside(gutter) + line
-    }).join('\n')
+    return lines
+      .slice(start, end)
+      .map((line, index) => {
+        let number = start + 1 + index
+        let gutter = ' ' + (' ' + number).slice(-maxWidth) + ' | '
+        if (number === this.line) {
+          let spacing =
+            aside(gutter.replace(/\d/g, ' ')) +
+            line.slice(0, this.column - 1).replace(/[^\t]/g, ' ')
+          return mark('>') + aside(gutter) + line + '\n ' + spacing + mark('^')
+        }
+        return ' ' + aside(gutter) + line
+      })
+      .join('\n')
   }
 
   /**

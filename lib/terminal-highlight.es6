@@ -1,24 +1,24 @@
-import chalk from 'chalk'
+import nanocolors from 'nanocolors'
 
 import tokenizer from './tokenize'
 import Input from './input'
 
 const HIGHLIGHT_THEME = {
-  'brackets': chalk.cyan,
-  'at-word': chalk.cyan,
-  'comment': chalk.gray,
-  'string': chalk.green,
-  'class': chalk.yellow,
-  'call': chalk.cyan,
-  'hash': chalk.magenta,
-  '(': chalk.cyan,
-  ')': chalk.cyan,
-  '{': chalk.yellow,
-  '}': chalk.yellow,
-  '[': chalk.yellow,
-  ']': chalk.yellow,
-  ':': chalk.yellow,
-  ';': chalk.yellow
+  brackets: nanocolors.cyan,
+  'at-word': nanocolors.cyan,
+  comment: nanocolors.gray,
+  string: nanocolors.green,
+  class: nanocolors.yellow,
+  call: nanocolors.cyan,
+  hash: nanocolors.magenta,
+  '(': nanocolors.cyan,
+  ')': nanocolors.cyan,
+  '{': nanocolors.yellow,
+  '}': nanocolors.yellow,
+  '[': nanocolors.yellow,
+  ']': nanocolors.yellow,
+  ':': nanocolors.yellow,
+  ';': nanocolors.yellow
 }
 
 function getTokenType ([type, value], processor) {
@@ -47,7 +47,8 @@ function terminalHighlight (css) {
     let token = processor.nextToken()
     let color = HIGHLIGHT_THEME[getTokenType(token, processor)]
     if (color) {
-      result += token[1].split(/\r?\n/)
+      result += token[1]
+        .split(/\r?\n/)
         .map(i => color(i))
         .join('\n')
     } else {
