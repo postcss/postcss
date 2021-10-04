@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.39
+* Reduce package size.
+* Backport `nanocolors` to `picocolors` migration.
+
 ## 7.0.38
 * Update `Processor#version`.
 
