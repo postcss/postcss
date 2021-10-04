@@ -1,24 +1,24 @@
-import nanocolors from 'nanocolors'
+import pico from 'picocolors'
 
 import tokenizer from './tokenize'
 import Input from './input'
 
 const HIGHLIGHT_THEME = {
-  brackets: nanocolors.cyan,
-  'at-word': nanocolors.cyan,
-  comment: nanocolors.gray,
-  string: nanocolors.green,
-  class: nanocolors.yellow,
-  call: nanocolors.cyan,
-  hash: nanocolors.magenta,
-  '(': nanocolors.cyan,
-  ')': nanocolors.cyan,
-  '{': nanocolors.yellow,
-  '}': nanocolors.yellow,
-  '[': nanocolors.yellow,
-  ']': nanocolors.yellow,
-  ':': nanocolors.yellow,
-  ';': nanocolors.yellow
+  brackets: pico.cyan,
+  'at-word': pico.cyan,
+  comment: pico.gray,
+  string: pico.green,
+  class: pico.yellow,
+  call: pico.cyan,
+  hash: pico.magenta,
+  '(': pico.cyan,
+  ')': pico.cyan,
+  '{': pico.yellow,
+  '}': pico.yellow,
+  '[': pico.yellow,
+  ']': pico.yellow,
+  ':': pico.yellow,
+  ';': pico.yellow
 }
 
 function getTokenType ([type, value], processor) {

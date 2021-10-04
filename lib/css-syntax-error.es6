@@ -1,4 +1,4 @@
-import nanocolors from 'nanocolors'
+import pico from 'picocolors'
 
 import terminalHighlight from './terminal-highlight'
 
@@ -174,7 +174,7 @@ class CssSyntaxError extends Error {
 
     let css = this.source
     if (terminalHighlight) {
-      if (typeof color === 'undefined') color = nanocolors.isColorSupported
+      if (typeof color === 'undefined') color = pico.isColorSupported
       if (color) css = terminalHighlight(css)
     }
 
@@ -185,14 +185,14 @@ class CssSyntaxError extends Error {
     let maxWidth = String(end).length
 
     function mark (text) {
-      if (color && nanocolors.red) {
-        return nanocolors.red(nanocolors.bold(text))
+      if (color && pico.red) {
+        return pico.red(pico.bold(text))
       }
       return text
     }
     function aside (text) {
-      if (color && nanocolors.gray) {
-        return nanocolors.gray(text)
+      if (color && pico.gray) {
+        return pico.gray(text)
       }
       return text
     }

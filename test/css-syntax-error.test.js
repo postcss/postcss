@@ -1,6 +1,6 @@
-let nanocolors = require('nanocolors')
 let stripAnsi = require('strip-ansi')
 let Concat = require('concat-with-sourcemaps')
+let pico = require('picocolors')
 let path = require('path')
 
 let CssSyntaxError = require('../lib/css-syntax-error')
@@ -45,7 +45,7 @@ it('has stack trace', () => {
 })
 
 it('highlights broken line with colors', () => {
-  let c = nanocolors
+  let c = pico
   expect(parseError('#a .b {').showSourceCode(true)).toEqual(
     c.red(c.bold('>')) +
       c.gray(' 1 | ') +

@@ -1,5 +1,5 @@
 jest.doMock('fs', () => ({}))
-jest.doMock('nanocolors', () => require('nanocolors/index.browser.cjs'))
+jest.doMock('picocolors', () => require('picocolors/picocolors.browser.js'))
 
 let postcss = require('..')
 

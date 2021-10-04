@@ -29,7 +29,7 @@
   "homepage": "https://postcss.org/",
   "repository": "postcss/postcss",
   "dependencies": {
-    "nanocolors": "^0.2.2",
+    "picocolors": "^0.2.1",
     "source-map": "^0.6.1"
   },
   "devDependencies": {
