@@ -49,7 +49,7 @@ gulp.task('build:docs', () => {
     .trim().split(/\n+/)
     .concat([
       'package.json', '.npmignore', 'lib/*', 'test/*', 'CONTRIBUTING.md',
-      'node_modules/**/*', 'docs/api.md', 'docs/plugins.md', '*-cn.md',
+      'node_modules/**/*', 'docs/**/*', '*-cn.md',
       'docs/writing-a-plugin.md', 'coverage', 'coverage/*', 'coverage/**/*'
     ]).map(i => '!' + i)
   return gulp.src(['**/*'].concat(ignore))
