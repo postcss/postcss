@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { bold, red, gray, yellow } from 'nanocolors'
+import pico from 'picocolors'
 
 import CssSyntaxError from '../lib/css-syntax-error.js'
 
@@ -7,10 +7,11 @@ function isSyntaxError(e: unknown): e is CssSyntaxError {
   return e instanceof Error && e.name === 'CssSyntaxError'
 }
 
+let { bold, red, gray, yellow } = pico.createColors(true)
+
 beforeEach(() => {
   jest.resetModules()
   jest.doMock('fs', () => ({}))
-  jest.doMock('nanocolors', () => ({ bold, red, gray, yellow }))
 })
 
 it('shows code with colors', () => {

@@ -1,4 +1,4 @@
-import { red, bold, magenta, yellow, gray, cyan } from 'nanocolors'
+import pico from 'picocolors'
 import { join, resolve as pathResolve } from 'path'
 import { pathToFileURL } from 'url'
 import stripAnsi from 'strip-ansi'
@@ -70,19 +70,19 @@ it('has stack trace', () => {
 
 it('highlights broken line with colors', () => {
   expect(parseError('#a .b c() {').showSourceCode(true)).toEqual(
-    bold(red('>')) +
-      gray(' 1 | ') +
-      magenta('#a') +
+    pico.bold(pico.red('>')) +
+      pico.gray(' 1 | ') +
+      pico.magenta('#a') +
       ' ' +
-      yellow('.b') +
+      pico.yellow('.b') +
       ' ' +
-      cyan('c') +
-      cyan('()') +
+      pico.cyan('c') +
+      pico.cyan('()') +
       ' ' +
-      yellow('{') +
+      pico.yellow('{') +
       '\n ' +
-      gray('   | ') +
-      bold(red('^'))
+      pico.gray('   | ') +
+      pico.bold(pico.red('^'))
   )
 })
 
