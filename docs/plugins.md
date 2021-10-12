@@ -249,6 +249,7 @@ See also [`precss`] plugins pack to add them by one line of code.
   colorblindness.
 * [`postcss-contrast`] checks background-color and gives either white or black.
 * [`postcss-dark-theme-class`] to force dark or light theme by custom switcher.
+* [`postcss-theme-colors`] add dark and light theme with color groups.
 * [`postcss-hexrgba`] adds shorthand hex `rgba(hex, alpha)` method.
 * [`postcss-rgb-plz`] converts 3 or 6 digit hex values to `rgb`.
 * [`postcss-rgba-hex`] converts `rgba` values to `hex` analogues.
@@ -590,6 +591,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-selector-matches`]:             https://github.com/postcss/postcss-selector-matches
 [`postcss-shorthand-expand`]:             https://github.com/johnotander/postcss-shorthand-expand
 [`postcss-dark-theme-class`]:             https://github.com/postcss/postcss-dark-theme-class
+[`postcss-theme-colors`]:                 https://github.com/ambar/postcss-theme-colors
 [`postcss-all-link-colors`]:              https://github.com/jedmao/postcss-all-link-colors
 [`postcss-border-shortcut`]:              https://github.com/michelemazzucco/postcss-border-shortcut
 [`postcss-color-hex-alpha`]:              https://github.com/postcss/postcss-color-hex-alpha
