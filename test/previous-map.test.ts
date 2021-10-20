@@ -21,7 +21,7 @@ afterEach(() => {
 })
 
 it('misses property if no map', () => {
-  expect(parse('a{}').source?.input.map).not.toBeDefined()
+  expect(parse('a{}').source?.input.map).toBeUndefined()
 })
 
 it('creates property if map present', () => {
@@ -38,10 +38,10 @@ it('sets annotation property', () => {
   let mapOpts = { map: { prev: map } }
 
   let root1 = parse('a{}', mapOpts)
-  expect(root1.source?.input.map.annotation).not.toBeDefined()
+  expect(root1.source?.input.map.annotation).toBeUndefined()
 
   let root2 = parse('a{}/*# sourceMappingURL=a.css.map */', mapOpts)
-  expect(root2.source?.input.map.annotation).toEqual('a.css.map')
+  expect(root2.source?.input.map.annotation).toBe('a.css.map')
 })
 
 it('checks previous sources content', () => {
@@ -124,7 +124,7 @@ it('removes map on request', () => {
   let css = `a{}\n/*# sourceMappingURL=${uri} */`
 
   let input = parse(css, { map: { prev: false } }).source?.input
-  expect(input?.map).not.toBeDefined()
+  expect(input?.map).toBeUndefined()
 })
 
 it('raises on unknown inline encoding', () => {
@@ -207,7 +207,7 @@ it('accepts a function', () => {
   }
   let root = parse(css, opts)
   expect(root.source?.input.map.text).toEqual(map)
-  expect(root.source?.input.map.annotation).toEqual('a.map')
+  expect(root.source?.input.map.annotation).toBe('a.map')
 })
 
 it('calls function with opts.from', () => {
@@ -220,7 +220,7 @@ it('calls function with opts.from', () => {
     from: 'a.css',
     map: {
       prev: from => {
-        expect(from).toEqual('a.css')
+        expect(from).toBe('a.css')
         return file
       }
     }

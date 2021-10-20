@@ -48,12 +48,12 @@ it('saves source', () => {
   let error = parseError('a {\n  content: "\n}')
 
   expect(error instanceof CssSyntaxError).toBe(true)
-  expect(error.name).toEqual('CssSyntaxError')
-  expect(error.message).toEqual('<css input>:2:12: Unclosed string')
-  expect(error.reason).toEqual('Unclosed string')
-  expect(error.line).toEqual(2)
-  expect(error.column).toEqual(12)
-  expect(error.source).toEqual('a {\n  content: "\n}')
+  expect(error.name).toBe('CssSyntaxError')
+  expect(error.message).toBe('<css input>:2:12: Unclosed string')
+  expect(error.reason).toBe('Unclosed string')
+  expect(error.line).toBe(2)
+  expect(error.column).toBe(12)
+  expect(error.source).toBe('a {\n  content: "\n}')
 
   expect(error.input).toEqual({
     line: error.line,
@@ -133,7 +133,7 @@ it('prints with highlight', () => {
 it('misses highlights without source content', () => {
   let error = parseError('a {')
   error.source = undefined
-  expect(error.toString()).toEqual(
+  expect(error.toString()).toBe(
     'CssSyntaxError: <css input>:1:1: Unclosed block'
   )
 })
@@ -141,7 +141,7 @@ it('misses highlights without source content', () => {
 it('misses position without source', () => {
   let decl = postcss.decl({ prop: 'color', value: 'black' })
   let error = decl.error('Test')
-  expect(error.toString()).toEqual('CssSyntaxError: <css input>: Test')
+  expect(error.toString()).toBe('CssSyntaxError: <css input>: Test')
 })
 
 it('uses source map', () => {
@@ -159,8 +159,8 @@ it('uses source map', () => {
   })
 
   expect(error.file).toEqual(join(__dirname, 'b.css'))
-  expect(error.line).toEqual(2)
-  expect(error.source).not.toBeDefined()
+  expect(error.line).toBe(2)
+  expect(error.source).toBeUndefined()
 
   expect(error.input).toEqual({
     url: urlOf(join('build', 'all.css')),
@@ -186,8 +186,8 @@ it('works with path in sources', () => {
   })
 
   expect(error.file).toEqual(join(__dirname, 'b.css'))
-  expect(error.line).toEqual(2)
-  expect(error.source).not.toBeDefined()
+  expect(error.line).toBe(2)
+  expect(error.source).toBeUndefined()
 
   expect(error.input).toEqual({
     url: pathToFileURL(pathOf(join('build', 'all.css'))).toString(),
@@ -208,7 +208,7 @@ it('shows origin source', () => {
     from: '/b.css',
     map: { prev: input.map }
   })
-  expect(error.source).toEqual('a{}')
+  expect(error.source).toBe('a{}')
 })
 
 it('does not uses wrong source map', () => {
@@ -229,7 +229,7 @@ it('does not uses wrong source map', () => {
 it('set source plugin', () => {
   let a = postcss.parse('a{}').first as Rule
   let error = a.error('Error', { plugin: 'PL' })
-  expect(error.plugin).toEqual('PL')
+  expect(error.plugin).toBe('PL')
   expect(error.toString()).toMatch(
     /^CssSyntaxError: PL: <css input>:1:1: Error/
   )
@@ -248,7 +248,7 @@ it('set source plugin automatically', async () => {
   let error = await catchError(() =>
     postcss([plugin]).process('a{}', { from: undefined })
   )
-  expect(error.plugin).toEqual('test-plugin')
+  expect(error.plugin).toBe('test-plugin')
   expect(error.toString()).toMatch(/test-plugin/)
 })
 
@@ -267,5 +267,5 @@ it('set plugin automatically in async', async () => {
   let error = await catchError(() =>
     postcss([plugin]).process('a{}', { from: undefined })
   )
-  expect(error.plugin).toEqual('async-plugin')
+  expect(error.plugin).toBe('async-plugin')
 })

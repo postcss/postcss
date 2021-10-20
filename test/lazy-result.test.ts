@@ -7,12 +7,12 @@ let processor = new Processor()
 
 it('contains AST', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(result.root.type).toEqual('root')
+  expect(result.root.type).toBe('root')
 })
 
 it('will stringify css', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(result.css).toEqual('a {}')
+  expect(result.css).toBe('a {}')
 })
 
 it('stringifies css', () => {
@@ -22,15 +22,15 @@ it('stringifies css', () => {
 
 it('has content alias for css', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(result.content).toEqual('a {}')
+  expect(result.content).toBe('a {}')
 })
 
 it('has map only if necessary', () => {
   let result1 = new LazyResult(processor, '', {})
-  expect(result1.map).not.toBeDefined()
+  expect(result1.map).toBeUndefined()
 
   let result2 = new LazyResult(processor, '', {})
-  expect(result2.map).not.toBeDefined()
+  expect(result2.map).toBeUndefined()
 
   let result3 = new LazyResult(processor, '', { map: { inline: false } })
   expect(result3.map instanceof mozilla.SourceMapGenerator).toBe(true)
@@ -62,5 +62,5 @@ it('executes on finally callback', () => {
 
 it('prints its object type', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(Object.prototype.toString.call(result)).toEqual('[object LazyResult]')
+  expect(Object.prototype.toString.call(result)).toBe('[object LazyResult]')
 })

@@ -3,25 +3,25 @@ import { Result, parse } from '../lib/postcss.js'
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
   css.prepend({ selector: 'em' })
-  expect(css.toString()).toEqual('em {} a {} b {}')
+  expect(css.toString()).toBe('em {} a {} b {}')
 })
 
 it('prepend() fixes spaces on multiple inserts before first', () => {
   let css = parse('a {} b {}')
   css.prepend({ selector: 'em' }, { selector: 'strong' })
-  expect(css.toString()).toEqual('em {} strong {} a {} b {}')
+  expect(css.toString()).toBe('em {} strong {} a {} b {}')
 })
 
 it('prepend() uses default spaces on only first', () => {
   let css = parse('a {}')
   css.prepend({ selector: 'em' })
-  expect(css.toString()).toEqual('em {}\na {}')
+  expect(css.toString()).toBe('em {}\na {}')
 })
 
 it('append() sets new line between rules in multiline files', () => {
   let a = parse('a {}\n\na {}\n')
   let b = parse('b {}\n')
-  expect(a.append(b).toString()).toEqual('a {}\n\na {}\n\nb {}\n')
+  expect(a.append(b).toString()).toBe('a {}\n\na {}\n\nb {}\n')
 })
 
 it('insertAfter() does not use before of first rule', () => {
@@ -29,16 +29,16 @@ it('insertAfter() does not use before of first rule', () => {
   css.insertAfter(0, { selector: '.a' })
   css.insertAfter(2, { selector: '.b' })
 
-  expect(css.nodes[1].raws.before).not.toBeDefined()
-  expect(css.nodes[3].raws.before).toEqual(' ')
-  expect(css.toString()).toEqual('a{} .a{} b{} .b{}')
+  expect(css.nodes[1].raws.before).toBeUndefined()
+  expect(css.nodes[3].raws.before).toBe(' ')
+  expect(css.toString()).toBe('a{} .a{} b{} .b{}')
 })
 
 it('fixes spaces on removing first rule', () => {
   let css = parse('a{}\nb{}\n')
   if (!css.first) throw new Error('No nodes were parsed')
   css.first.remove()
-  expect(css.toString()).toEqual('b{}\n')
+  expect(css.toString()).toBe('b{}\n')
 })
 
 it('keeps spaces on moving root', () => {
@@ -46,11 +46,11 @@ it('keeps spaces on moving root', () => {
 
   let css2 = parse('')
   css2.append(css1)
-  expect(css2.toString()).toEqual('a{}\nb{}')
+  expect(css2.toString()).toBe('a{}\nb{}')
 
   let css3 = parse('\n')
   css3.append(css2.nodes)
-  expect(css3.toString()).toEqual('a{}\nb{}\n')
+  expect(css3.toString()).toBe('a{}\nb{}\n')
 })
 
 it('generates result with map', () => {

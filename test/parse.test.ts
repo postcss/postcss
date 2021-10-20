@@ -19,7 +19,7 @@ eachTest((name, css, json) => {
 
 it('parses UTF-8 BOM', () => {
   let css = parse('\uFEFF@host { a {\f} }')
-  expect(css.nodes[0].raws.before).toEqual('')
+  expect(css.nodes[0].raws.before).toBe('')
 })
 
 it('should has true at `hasBOM` property', () => {
@@ -34,15 +34,15 @@ it('should has false at `hasBOM` property', () => {
 
 it('saves source file', () => {
   let css = parse('a {}', { from: 'a.css' })
-  expect(css.first?.source?.input.css).toEqual('a {}')
+  expect(css.first?.source?.input.css).toBe('a {}')
   expect(css.first?.source?.input.file).toEqual(resolve('a.css'))
   expect(css.first?.source?.input.from).toEqual(resolve('a.css'))
 })
 
 it('keeps absolute path in source', () => {
   let css = parse('a {}', { from: 'http://example.com/a.css' })
-  expect(css.first?.source?.input.file).toEqual('http://example.com/a.css')
-  expect(css.first?.source?.input.from).toEqual('http://example.com/a.css')
+  expect(css.first?.source?.input.file).toBe('http://example.com/a.css')
+  expect(css.first?.source?.input.from).toBe('http://example.com/a.css')
 })
 
 it('saves source file on previous map', () => {
@@ -79,25 +79,25 @@ it('ignores wrong close bracket', () => {
   let root = parse('a { p: ()) }')
   let a = root.first as Rule
   let decl = a.first as Declaration
-  expect(decl.value).toEqual('())')
+  expect(decl.value).toBe('())')
 })
 
 it('parses unofficial --mixins', () => {
   let root = parse(':root { --x { color: pink; }; }')
   let rule = root.first as Rule
   let prop = rule.first as Rule
-  expect(prop.selector).toEqual('--x')
+  expect(prop.selector).toBe('--x')
 })
 
 it('ignores symbols before declaration', () => {
   let root = parse('a { :one: 1 }')
   let a = root.first as Rule
   let prop = a.first as Declaration
-  expect(prop.raws.before).toEqual(' :')
+  expect(prop.raws.before).toBe(' :')
 })
 
 it('parses double semicolon after rule', () => {
-  expect(parse('a { };;').toString()).toEqual('a { };;')
+  expect(parse('a { };;').toString()).toBe('a { };;')
 })
 
 it('throws on unclosed blocks', () => {

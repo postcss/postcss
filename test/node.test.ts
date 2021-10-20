@@ -31,7 +31,7 @@ it('error() generates custom error', () => {
 it('error() generates custom error for nodes without source', () => {
   let rule = new Rule({ selector: 'a' })
   let error = rule.error('Test')
-  expect(error.message).toEqual('<css input>: Test')
+  expect(error.message).toBe('<css input>: Test')
 })
 
 it('error() highlights index', () => {
@@ -74,9 +74,9 @@ it('warn() attaches a warning to the result object', async () => {
   }
 
   let result = await postcss([warner]).process('a{}', { from: undefined })
-  expect(warning.type).toEqual('warning')
-  expect(warning.text).toEqual('FIRST!')
-  expect(warning.plugin).toEqual('warner')
+  expect(warning.type).toBe('warning')
+  expect(warning.text).toBe('FIRST!')
+  expect(warning.plugin).toBe('warner')
   expect(result.warnings()).toEqual([warning])
 })
 
@@ -88,7 +88,7 @@ it('warn() accepts options', () => {
   let result = postcss([warner]).process('a{}')
   expect(result.warnings()).toHaveLength(1)
   let warning = result.warnings()[0] as any
-  expect(warning.index).toEqual(1)
+  expect(warning.index).toBe(1)
 })
 
 it('remove() removes node from parent', () => {
@@ -98,7 +98,7 @@ it('remove() removes node from parent', () => {
 
   decl.remove()
   expect(rule.nodes).toHaveLength(0)
-  expect(decl.parent).not.toBeDefined()
+  expect(decl.parent).toBeUndefined()
 })
 
 it('replaceWith() inserts new node', () => {
@@ -130,7 +130,7 @@ it('replaceWith() inserts new root', () => {
   a.append(new Rule({ selector: 'b' }))
 
   root.first?.replaceWith(a)
-  expect(root.toString()).toEqual('a {}\nb {}')
+  expect(root.toString()).toBe('a {}\nb {}')
 })
 
 it('replaceWith() replaces node', () => {
@@ -139,9 +139,9 @@ it('replaceWith() replaces node', () => {
   let one = a.first as Declaration
   let result = one.replaceWith({ prop: 'fix', value: 'fixed' })
 
-  expect(result.prop).toEqual('one')
-  expect(result.parent).not.toBeDefined()
-  expect(css.toString()).toEqual('a{fix:fixed;two:2}')
+  expect(result.prop).toBe('one')
+  expect(result.parent).toBeUndefined()
+  expect(css.toString()).toBe('a{fix:fixed;two:2}')
 })
 
 it('replaceWith() can include itself', () => {
@@ -152,15 +152,15 @@ it('replaceWith() can include itself', () => {
   let afterDecl = { prop: 'fix2', value: 'fixedTwo' }
   one.replaceWith(beforeDecl, one, afterDecl)
 
-  expect(css.toString()).toEqual('a{fix1:fixedOne;one:1;fix2:fixedTwo;two:2}')
+  expect(css.toString()).toBe('a{fix1:fixedOne;one:1;fix2:fixedTwo;two:2}')
 })
 
 it('toString() accepts custom stringifier', () => {
-  expect(new Rule({ selector: 'a' }).toString(stringify)).toEqual('a')
+  expect(new Rule({ selector: 'a' }).toString(stringify)).toBe('a')
 })
 
 it('toString() accepts custom syntax', () => {
-  expect(new Rule({ selector: 'a' }).toString({ stringify })).toEqual('a')
+  expect(new Rule({ selector: 'a' }).toString({ stringify })).toBe('a')
 })
 
 it('assign() assigns to node', () => {
@@ -181,7 +181,7 @@ it('clone() clones nodes', () => {
 
   let clone = rule.clone()
 
-  expect(clone.parent).not.toBeDefined()
+  expect(clone.parent).toBeUndefined()
 
   expect(rule.first?.parent).toBe(rule)
   expect(clone.first?.parent).toBe(clone)
@@ -193,12 +193,12 @@ it('clone() clones nodes', () => {
 it('clone() overrides properties', () => {
   let rule = new Rule({ selector: 'a' })
   let clone = rule.clone({ selector: 'b' })
-  expect(clone.selector).toEqual('b')
+  expect(clone.selector).toBe('b')
 })
 
 it('clone() keeps code style', () => {
   let css = parse('@page 1{a{color:black;}}')
-  expect(css.clone().toString()).toEqual('@page 1{a{color:black;}}')
+  expect(css.clone().toString()).toBe('@page 1{a{color:black;}}')
 })
 
 it('clone() works with null in raws', () => {
@@ -219,7 +219,7 @@ it('cloneBefore() clones and insert before current node', () => {
   let result = rule.first?.cloneBefore({ value: '2' })
 
   expect(result).toBe(rule.first)
-  expect(rule.toString()).toEqual('a {z-index: 2;z-index: 1}')
+  expect(rule.toString()).toBe('a {z-index: 2;z-index: 1}')
 })
 
 it('cloneAfter() clones and insert after current node', () => {
@@ -229,7 +229,7 @@ it('cloneAfter() clones and insert after current node', () => {
   let result = rule.first?.cloneAfter({ value: '2' })
 
   expect(result).toBe(rule.last)
-  expect(rule.toString()).toEqual('a {z-index: 1;z-index: 2}')
+  expect(rule.toString()).toBe('a {z-index: 1;z-index: 2}')
 })
 
 it('before() insert before current node', () => {
@@ -239,7 +239,7 @@ it('before() insert before current node', () => {
   let result = rule.first?.before('color: black')
 
   expect(result).toBe(rule.last)
-  expect(rule.toString()).toEqual('a {color: black;z-index: 1}')
+  expect(rule.toString()).toBe('a {color: black;z-index: 1}')
 })
 
 it('after() insert after current node', () => {
@@ -249,31 +249,31 @@ it('after() insert after current node', () => {
   let result = rule.first?.after('color: black')
 
   expect(result).toBe(rule.first)
-  expect(rule.toString()).toEqual('a {z-index: 1;color: black}')
+  expect(rule.toString()).toBe('a {z-index: 1;color: black}')
 })
 
 it('next() returns next node', () => {
   let css = parse('a{one:1;two:2}')
   let a = css.first as Rule
   expect(a.first?.next()).toBe(a.last)
-  expect(a.last?.next()).not.toBeDefined()
+  expect(a.last?.next()).toBeUndefined()
 })
 
 it('next() returns undefined on no parent', () => {
   let css = parse('')
-  expect(css.next()).not.toBeDefined()
+  expect(css.next()).toBeUndefined()
 })
 
 it('prev() returns previous node', () => {
   let css = parse('a{one:1;two:2}')
   let a = css.first as Rule
   expect(a.last?.prev()).toBe(a.first)
-  expect(a.first?.prev()).not.toBeDefined()
+  expect(a.first?.prev()).toBeUndefined()
 })
 
 it('prev() returns undefined on no parent', () => {
   let css = parse('')
-  expect(css.prev()).not.toBeDefined()
+  expect(css.prev()).toBeUndefined()
 })
 
 it('toJSON() cleans parents inside', () => {
@@ -281,8 +281,8 @@ it('toJSON() cleans parents inside', () => {
   rule.append({ prop: 'color', value: 'b' })
 
   let json = rule.toJSON() as any
-  expect(json.parent).not.toBeDefined()
-  expect(json.nodes[0].parent).not.toBeDefined()
+  expect(json.parent).toBeUndefined()
+  expect(json.nodes[0].parent).toBeUndefined()
 
   expect(JSON.stringify(rule)).toEqual(
     '{"raws":{},"selector":"a","type":"rule","nodes":[' +
@@ -312,7 +312,7 @@ it('toJSON() converts custom properties', () => {
 
 it('raw() has shortcut to stringifier', () => {
   let rule = new Rule({ selector: 'a' })
-  expect(rule.raw('before')).toEqual('')
+  expect(rule.raw('before')).toBe('')
 })
 
 it('root() returns root', () => {
@@ -361,34 +361,32 @@ it('cleanRaws() cleans style recursivelly', () => {
   let css = parse('@page{a{color:black}}')
   css.cleanRaws()
 
-  expect(css.toString()).toEqual(
+  expect(css.toString()).toBe(
     '@page {\n    a {\n        color: black\n    }\n}'
   )
   let page = css.first as AtRule
   let a = page.first as Rule
   let color = a.first as Declaration
-  expect(page.raws.before).not.toBeDefined()
-  expect(color.raws.before).not.toBeDefined()
-  expect(page.raws.between).not.toBeDefined()
-  expect(color.raws.between).not.toBeDefined()
-  expect(page.raws.after).not.toBeDefined()
+  expect(page.raws.before).toBeUndefined()
+  expect(color.raws.before).toBeUndefined()
+  expect(page.raws.between).toBeUndefined()
+  expect(color.raws.between).toBeUndefined()
+  expect(page.raws.after).toBeUndefined()
 })
 
 it('cleanRaws() keeps between on request', () => {
   let css = parse('@page{a{color:black}}')
   css.cleanRaws(true)
 
-  expect(css.toString()).toEqual(
-    '@page{\n    a{\n        color:black\n    }\n}'
-  )
+  expect(css.toString()).toBe('@page{\n    a{\n        color:black\n    }\n}')
   let page = css.first as AtRule
   let a = page.first as Rule
   let color = a.first as Declaration
   expect(page.raws.between).toBeDefined()
   expect(color.raws.between).toBeDefined()
-  expect(page.raws.before).not.toBeDefined()
-  expect(color.raws.before).not.toBeDefined()
-  expect(page.raws.after).not.toBeDefined()
+  expect(page.raws.before).toBeUndefined()
+  expect(color.raws.before).toBeUndefined()
+  expect(page.raws.after).toBeUndefined()
 })
 
 it('positionInside() returns position when node starts mid-line', () => {

@@ -39,7 +39,7 @@ it('allows to override plugin', () => {
   }
   let result = postcss([plugin]).process('a{}').sync()
 
-  expect(result.messages[0].plugin).toEqual('test-plugin#one')
+  expect(result.messages[0].plugin).toBe('test-plugin#one')
 })
 
 it('allows Root', () => {
@@ -47,7 +47,7 @@ it('allows Root', () => {
   let result = new Result(processor, css, {})
   result.warn('TT', { node: css.first })
 
-  expect(result.messages[0].toString()).toEqual('<css input>:1:1: TT')
+  expect(result.messages[0].toString()).toBe('<css input>:1:1: TT')
 })
 
 it('returns only warnings', () => {

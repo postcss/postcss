@@ -265,7 +265,7 @@ it('works visitor plugin will-change', async () => {
     '.foo { will-change: transform; }',
     { from: 'a.css' }
   )
-  expect(css).toEqual(
+  expect(css).toBe(
     '.foo { backface-visibility: hidden; will-change: transform; }'
   )
 })
@@ -316,7 +316,7 @@ it('works with at-rule params', () => {
     '@media (screen) {}',
     { from: 'a.css' }
   )
-  expect(css).toEqual('@media (mobile) {}')
+  expect(css).toBe('@media (mobile) {}')
 })
 
 it('wraps node to proxies', () => {
@@ -521,7 +521,7 @@ it('adds plugin to error', async () => {
     error = e
   }
   expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
-  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.postcssNode.toString()).toBe('a{}')
   expect(error.stack).toContain('broken.css:1:1')
 })
 
@@ -540,7 +540,7 @@ it('adds plugin to async error', async () => {
     error = e
   }
   expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
-  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.postcssNode.toString()).toBe('a{}')
   expect(error.stack).toContain('broken.css:1:1')
 })
 
@@ -558,7 +558,7 @@ it('adds sync plugin to async error', async () => {
     error = e
   }
   expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
-  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.postcssNode.toString()).toBe('a{}')
   expect(error.stack).toContain('broken.css:1:1')
 })
 
@@ -575,8 +575,8 @@ it('adds node to error', async () => {
   } catch (e) {
     error = e
   }
-  expect(error.message).toEqual('test')
-  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.message).toBe('test')
+  expect(error.postcssNode.toString()).toBe('a{}')
   expect(error.stack).toContain('broken.css:1:1')
 })
 
@@ -594,8 +594,8 @@ it('adds node to async error', async () => {
   } catch (e) {
     error = e
   }
-  expect(error.message).toEqual('test')
-  expect(error.postcssNode.toString()).toEqual('a{}')
+  expect(error.message).toBe('test')
+  expect(error.postcssNode.toString()).toBe('a{}')
   expect(error.stack).toContain('broken.css:1:1')
 })
 
@@ -616,9 +616,9 @@ it('shows error on sync call async plugins', () => {
 it('passes helpers', async () => {
   function check(node: AnyNode, helpers: Helpers): void {
     expect(helpers.result.messages).toEqual([])
-    expect(typeof helpers.postcss).toEqual('function')
-    expect(helpers.comment().type).toEqual('comment')
-    expect(new helpers.Comment().type).toEqual('comment')
+    expect(typeof helpers.postcss).toBe('function')
+    expect(helpers.comment().type).toBe('comment')
+    expect(new helpers.Comment().type).toBe('comment')
     expect(helpers.list).toBe(postcss.list)
   }
 
@@ -653,9 +653,9 @@ it('passes helpers', async () => {
 it('passes helpers in a document', async () => {
   function check(node: AnyNode, helpers: Helpers): void {
     expect(helpers.result.messages).toEqual([])
-    expect(typeof helpers.postcss).toEqual('function')
-    expect(helpers.comment().type).toEqual('comment')
-    expect(new helpers.Comment().type).toEqual('comment')
+    expect(typeof helpers.postcss).toBe('function')
+    expect(helpers.comment().type).toBe('comment')
+    expect(new helpers.Comment().type).toBe('comment')
     expect(helpers.list).toBe(postcss.list)
   }
 
@@ -704,7 +704,7 @@ it('detects non-changed values', () => {
     postcss([plugin]).process('a{ color: black; background: white; }', {
       from: 'a.css'
     }).css
-  ).toEqual('a{ color: red; background: red; }')
+  ).toBe('a{ color: red; background: red; }')
 })
 
 it('allows runtime listeners', () => {
@@ -727,7 +727,7 @@ it('allows runtime listeners', () => {
   }
   expect(
     postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
-  ).toEqual('a.css{ color: red }')
+  ).toBe('a.css{ color: red }')
   expect(root).toBe(true)
 })
 
@@ -742,7 +742,7 @@ it('works correctly with nodes changes', () => {
   }
   expect(
     postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
-  ).toEqual('a{ z-index: 1; color: black }')
+  ).toBe('a{ z-index: 1; color: black }')
 })
 
 it('throws error on unknown plugin property', () => {
@@ -1407,7 +1407,7 @@ it('throws error from async OnceExit', async () => {
     error = e
   }
 
-  expect(error.message).toEqual('test Exit error')
+  expect(error.message).toBe('test Exit error')
 })
 
 it('rescan Root in another processor', () => {

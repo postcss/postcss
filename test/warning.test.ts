@@ -4,18 +4,18 @@ import { Warning, parse, decl } from '../lib/postcss.js'
 
 it('outputs simple warning', () => {
   let warning = new Warning('text')
-  expect(warning.toString()).toEqual('text')
+  expect(warning.toString()).toBe('text')
 })
 
 it('outputs warning with plugin', () => {
   let warning = new Warning('text', { plugin: 'plugin' })
-  expect(warning.toString()).toEqual('plugin: text')
+  expect(warning.toString()).toBe('plugin: text')
 })
 
 it('outputs warning with position', () => {
   let root = parse('a{}')
   let warning = new Warning('text', { node: root.first })
-  expect(warning.toString()).toEqual('<css input>:1:1: text')
+  expect(warning.toString()).toBe('<css input>:1:1: text')
 })
 
 it('outputs warning with plugin and node', () => {
@@ -53,32 +53,32 @@ it('outputs warning with word', () => {
 it('generates warning without source', () => {
   let node = decl({ prop: 'color', value: 'black' })
   let warning = new Warning('text', { node })
-  expect(warning.toString()).toEqual('<css input>: text')
+  expect(warning.toString()).toBe('<css input>: text')
 })
 
 it('has line and column is undefined by default', () => {
   let warning = new Warning('text')
-  expect(warning.line).not.toBeDefined()
-  expect(warning.column).not.toBeDefined()
+  expect(warning.line).toBeUndefined()
+  expect(warning.column).toBeUndefined()
 })
 
 it('gets position from node', () => {
   let root = parse('a{}')
   let warning = new Warning('text', { node: root.first })
-  expect(warning.line).toEqual(1)
-  expect(warning.column).toEqual(1)
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(1)
 })
 
 it('gets position from word', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { node: root.first, word: 'b' })
-  expect(warning.line).toEqual(1)
-  expect(warning.column).toEqual(3)
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(3)
 })
 
 it('gets position from index', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { node: root.first, index: 2 })
-  expect(warning.line).toEqual(1)
-  expect(warning.column).toEqual(3)
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(3)
 })

@@ -33,7 +33,7 @@ afterEach(() => {
 })
 
 it('adds map field only on request', () => {
-  expect(postcss([() => {}]).process('a {}').map).not.toBeDefined()
+  expect(postcss([() => {}]).process('a {}').map).toBeUndefined()
 })
 
 it('return map generator', () => {
@@ -61,7 +61,7 @@ it('generate right source map', () => {
   })
   let map = read(result)
 
-  expect(map.file).toEqual('b.css')
+  expect(map.file).toBe('b.css')
 
   expect(map.originalPositionFor({ line: 1, column: 0 })).toEqual({
     source: 'a.css',
@@ -133,7 +133,7 @@ it('adds source map annotation', () => {
     map: { inline: false }
   })
 
-  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=b.css.map */')
+  expect(result.css).toBe('a { }\n/*# sourceMappingURL=b.css.map */')
 })
 
 it('misses source map annotation, if user ask', () => {
@@ -172,11 +172,11 @@ it('uses user path in annotation, relative to options.to', () => {
     map: { annotation: 'maps/b.map' }
   })
 
-  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=maps/b.map */')
+  expect(result.css).toBe('a { }\n/*# sourceMappingURL=maps/b.map */')
   let map = consumer(result.map)
 
   expect(map.file).toEqual(join('..', 'b.css'))
-  expect(map.originalPositionFor({ line: 1, column: 0 }).source).toEqual(
+  expect(map.originalPositionFor({ line: 1, column: 0 }).source).toBe(
     '../../source/a.css'
   )
 })
@@ -190,7 +190,7 @@ it('generates inline map', () => {
     map: { inline: true }
   })
 
-  expect(inline.map).not.toBeDefined()
+  expect(inline.map).toBeUndefined()
   expect(inline.css).toMatch(/# sourceMappingURL=data:/)
 
   let separated = postcss([() => {}]).process(css, {
@@ -225,7 +225,7 @@ it('generates separated map if previous map was not inlined', () => {
     map: { prev: step1.map }
   })
 
-  expect(typeof step2.map).toEqual('object')
+  expect(typeof step2.map).toBe('object')
 })
 
 it('generates separated map on annotation option', () => {
@@ -235,7 +235,7 @@ it('generates separated map on annotation option', () => {
     map: { annotation: false }
   })
 
-  expect(typeof result.map).toEqual('object')
+  expect(typeof result.map).toBe('object')
 })
 
 it('allows change map type', () => {
@@ -251,7 +251,7 @@ it('allows change map type', () => {
     map: { inline: false }
   })
 
-  expect(typeof step2.map).toEqual('object')
+  expect(typeof step2.map).toBe('object')
   expect(step2.css).toMatch(/# sourceMappingURL=c\.css\.map/)
 })
 
@@ -271,7 +271,7 @@ it('misses check files on requires', () => {
     map: false
   })
 
-  expect(step2.map).not.toBeDefined()
+  expect(step2.map).toBeUndefined()
 })
 
 it('works in subdirs', () => {
@@ -284,7 +284,7 @@ it('works in subdirs', () => {
   expect(result.css).toMatch(/sourceMappingURL=b.css.map/)
 
   let map = consumer(result.map)
-  expect(map.file).toEqual('b.css')
+  expect(map.file).toBe('b.css')
   expect(map.sources).toEqual(['../from/a.css'])
 })
 
@@ -301,9 +301,11 @@ it('uses map from subdir', () => {
     map: { prev: step1.map }
   })
 
-  let source = consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
-    .source
-  expect(source).toEqual('../../a.css')
+  let source = consumer(step2.map).originalPositionFor({
+    line: 1,
+    column: 0
+  }).source
+  expect(source).toBe('../../a.css')
 
   let step3 = doubler.process(step2.css, {
     from: 'c.css',
@@ -311,9 +313,11 @@ it('uses map from subdir', () => {
     map: { prev: step2.map }
   })
 
-  source = consumer(step3.map).originalPositionFor({ line: 1, column: 0 })
-    .source
-  expect(source).toEqual('../../a.css')
+  source = consumer(step3.map).originalPositionFor({
+    line: 1,
+    column: 0
+  }).source
+  expect(source).toBe('../../a.css')
 })
 
 it('uses map from subdir if it inlined', () => {
@@ -329,9 +333,11 @@ it('uses map from subdir if it inlined', () => {
     map: { inline: false }
   })
 
-  let source = consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
-    .source
-  expect(source).toEqual('../../a.css')
+  let source = consumer(step2.map).originalPositionFor({
+    line: 1,
+    column: 0
+  }).source
+  expect(source).toBe('../../a.css')
 })
 
 it('uses map from subdir if it written as a file', () => {
@@ -341,9 +347,11 @@ it('uses map from subdir if it written as a file', () => {
     map: { annotation: 'maps/b.css.map', inline: false }
   })
 
-  let source = consumer(step1.map).originalPositionFor({ line: 1, column: 0 })
-    .source
-  expect(source).toEqual('../../source/a.css')
+  let source = consumer(step1.map).originalPositionFor({
+    line: 1,
+    column: 0
+  }).source
+  expect(source).toBe('../../source/a.css')
 
   let file = join(dir, 'one', 'maps', 'b.css.map')
   outputFileSync(file, step1.map.toString())
@@ -354,9 +362,11 @@ it('uses map from subdir if it written as a file', () => {
     map: true
   })
 
-  source = consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
-    .source
-  expect(source).toEqual('../source/a.css')
+  source = consumer(step2.map).originalPositionFor({
+    line: 1,
+    column: 0
+  }).source
+  expect(source).toBe('../source/a.css')
 })
 
 it('works with different types of maps', () => {
@@ -375,9 +385,11 @@ it('works with different types of maps', () => {
       to: 'c.css',
       map: { prev: i }
     })
-    let source = consumer(step2.map).originalPositionFor({ line: 1, column: 0 })
-      .source
-    expect(source).toEqual('a.css')
+    let source = consumer(step2.map).originalPositionFor({
+      line: 1,
+      column: 0
+    }).source
+    expect(source).toBe('a.css')
   }
 })
 
@@ -388,7 +400,7 @@ it('sets source content by default', () => {
     map: true
   })
 
-  expect(read(result).sourceContentFor('../a.css')).toEqual('a { }')
+  expect(read(result).sourceContentFor('../a.css')).toBe('a { }')
 })
 
 it('misses source content on request', () => {
@@ -467,7 +479,7 @@ it('supports UTF-8', () => {
     to: 'выход.css'
   })
 
-  expect(read(step2).file).toEqual('выход.css')
+  expect(read(step2).file).toBe('выход.css')
 })
 
 it('generates map for node created manually', () => {
@@ -491,12 +503,12 @@ it('uses input file name as output file name', () => {
     from: 'a.css',
     map: { inline: false }
   })
-  expect(result.map.toJSON().file).toEqual('a.css')
+  expect(result.map.toJSON().file).toBe('a.css')
 })
 
 it('uses to.css as default output name', () => {
   let result = doubler.process('a{}', { map: { inline: false } })
-  expect(result.map.toJSON().file).toEqual('to.css')
+  expect(result.map.toJSON().file).toBe('to.css')
 })
 
 it('supports annotation comment in any place', () => {
@@ -507,7 +519,7 @@ it('supports annotation comment in any place', () => {
     map: { inline: false }
   })
 
-  expect(result.css).toEqual('a { }\n/*# sourceMappingURL=b.css.map */')
+  expect(result.css).toBe('a { }\n/*# sourceMappingURL=b.css.map */')
 })
 
 it('does not update annotation on request', () => {
@@ -518,7 +530,7 @@ it('does not update annotation on request', () => {
     map: { annotation: false, inline: false }
   })
 
-  expect(result.css).toEqual('a { }/*# sourceMappingURL=a.css.map */')
+  expect(result.css).toBe('a { }/*# sourceMappingURL=a.css.map */')
 })
 
 it('clears source map', () => {
@@ -554,7 +566,7 @@ it('preserves absolute urls in `to`', () => {
     to: 'http://example.com/a.css',
     map: { inline: false }
   })
-  expect(result.map.toJSON().file).toEqual('http://example.com/a.css')
+  expect(result.map.toJSON().file).toBe('http://example.com/a.css')
 })
 
 it('preserves absolute urls in sources', () => {
@@ -591,7 +603,7 @@ it('preserves absolute urls in sources from previous map', () => {
       inline: false
     }
   })
-  expect(result2.root.source?.input.file).toEqual('http://example.com/b.css')
+  expect(result2.root.source?.input.file).toBe('http://example.com/b.css')
   expect(result2.map.toJSON().sources).toEqual(['http://example.com/a.css'])
 })
 
@@ -605,7 +617,7 @@ it('allows dynamic annotations', () => {
       }
     }
   })
-  expect(result.css).toEqual('a{}\n/*# sourceMappingURL=out.css-a.map */')
+  expect(result.css).toBe('a{}\n/*# sourceMappingURL=out.css-a.map */')
 })
 
 it('uses URLs in sources', () => {

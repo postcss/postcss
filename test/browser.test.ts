@@ -73,5 +73,5 @@ it(`doesn't throw error without path`, () => {
 
   expect(
     postcss([() => {}]).process('a{}', { from: 'a.css', map: true }).css
-  ).toEqual('a{}')
+  ).toBe('a{}')
 })

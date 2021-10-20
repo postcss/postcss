@@ -109,19 +109,19 @@ it('throws on wrong format', () => {
 
 it('processes CSS', () => {
   let result = beforeFix.process('a::before{top:0}')
-  expect(result.css).toEqual('a::before{content:"";top:0}')
+  expect(result.css).toBe('a::before{content:"";top:0}')
 })
 
 it('processes parsed AST', () => {
   let root = parse('a::before{top:0}')
   let result = beforeFix.process(root)
-  expect(result.css).toEqual('a::before{content:"";top:0}')
+  expect(result.css).toBe('a::before{content:"";top:0}')
 })
 
 it('processes previous result', () => {
   let result = new Processor([() => {}]).process('a::before{top:0}')
   result = beforeFix.process(result)
-  expect(result.css).toEqual('a::before{content:"";top:0}')
+  expect(result.css).toBe('a::before{content:"";top:0}')
 })
 
 it('takes maps from previous result', () => {
@@ -144,7 +144,7 @@ it('inlines maps from previous result', () => {
     to: 'c.css',
     map: { inline: true }
   })
-  expect(two.map).not.toBeDefined()
+  expect(two.map).toBeUndefined()
 })
 
 it('throws with file name', () => {
@@ -169,14 +169,14 @@ it('allows to replace Root', () => {
       result.root = new Root()
     }
   ])
-  expect(processor.process('a {}').css).toEqual('')
+  expect(processor.process('a {}').css).toBe('')
 })
 
 it('returns LazyResult object', () => {
   let result = new Processor([() => {}]).process('a{}')
   expect(result instanceof LazyResult).toBe(true)
-  expect(result.css).toEqual('a{}')
-  expect(result.toString()).toEqual('a{}')
+  expect(result.css).toBe('a{}')
+  expect(result.toString()).toBe('a{}')
 })
 
 it('calls all plugins once', async () => {
@@ -195,7 +195,7 @@ it('calls all plugins once', async () => {
   result.map
   result.root
   await result
-  expect(calls).toEqual('ab')
+  expect(calls).toBe('ab')
 })
 
 it('parses, converts and stringifies CSS', () => {
@@ -205,7 +205,7 @@ it('parses, converts and stringifies CSS', () => {
         expect(css instanceof Root).toBe(true)
       }
     ]).process('a {}').css
-  ).toEqual('string')
+  ).toBe('string')
 })
 
 it('send result to plugins', () => {
@@ -242,7 +242,7 @@ it('supports async plugins', async () => {
     new Promise<void>(resolve => {
       starts += 1
       setTimeout(() => {
-        expect(starts).toEqual(1)
+        expect(starts).toBe(1)
 
         css.append('a {}')
         finish += 1
@@ -251,8 +251,8 @@ it('supports async plugins', async () => {
     })
   let async2 = (css: Root): Promise<void> =>
     new Promise<void>(resolve => {
-      expect(starts).toEqual(1)
-      expect(finish).toEqual(1)
+      expect(starts).toBe(1)
+      expect(finish).toBe(1)
 
       starts += 1
       setTimeout(() => {
@@ -262,14 +262,14 @@ it('supports async plugins', async () => {
       }, 1)
     })
   let r = await new Processor([async1, async2]).process('', { from: 'a' })
-  expect(starts).toEqual(2)
-  expect(finish).toEqual(2)
-  expect(r.css).toEqual('a {}b {}')
+  expect(starts).toBe(2)
+  expect(finish).toBe(2)
+  expect(r.css).toBe('a {}b {}')
 })
 
 it('works async without plugins', async () => {
   let r = await new Processor([() => {}]).process('a {}', { from: 'a' })
-  expect(r.css).toEqual('a {}')
+  expect(r.css).toBe('a {}')
 })
 
 it('runs async plugin only once', async () => {
@@ -289,7 +289,7 @@ it('runs async plugin only once', async () => {
   result.then(() => {})
   await result
   await result
-  expect(calls).toEqual(1)
+  expect(calls).toBe(1)
 })
 
 it('supports async errors', async () => {
@@ -326,7 +326,7 @@ it('throws parse error in async', async () => {
   let err = await catchError(() =>
     new Processor([() => {}]).process('a{', { from: undefined })
   )
-  expect(err.message).toEqual('<css input>:1:1: Unclosed block')
+  expect(err.message).toBe('<css input>:1:1: Unclosed block')
 })
 
 it('throws error on sync method to async plugin', () => {
@@ -380,9 +380,9 @@ it('remembers errors', async () => {
   } catch (e) {
     asyncError = e
   }
-  expect(asyncError.message).toEqual('test')
+  expect(asyncError.message).toBe('test')
 
-  expect(calls).toEqual(1)
+  expect(calls).toBe(1)
 })
 
 it('checks plugin compatibility', () => {
@@ -448,14 +448,14 @@ it('uses custom parsers', async () => {
   let processor = new Processor([])
   let result = await processor.process('a{}', { parser: prs, from: undefined })
   expect(console.warn).not.toHaveBeenCalled()
-  expect(result.css).toEqual('ok')
+  expect(result.css).toBe('ok')
 })
 
 it('uses custom parsers from object', async () => {
   let processor = new Processor([])
   let syntax = { parse: prs, stringify: str }
   let result = await processor.process('a{}', { parser: syntax, from: 'a' })
-  expect(result.css).toEqual('ok')
+  expect(result.css).toBe('ok')
 })
 
 it('uses custom stringifier', async () => {
@@ -463,7 +463,7 @@ it('uses custom stringifier', async () => {
   let processor = new Processor([])
   let result = await processor.process('a{}', { stringifier: str, from: 'a' })
   expect(console.warn).not.toHaveBeenCalled()
-  expect(result.css).toEqual('!')
+  expect(result.css).toBe('!')
 })
 
 it('uses custom stringifier from object', async () => {
@@ -472,7 +472,7 @@ it('uses custom stringifier from object', async () => {
   let syntax = { parse: prs, stringify: str }
   let result = await processor.process('', { stringifier: syntax, from: 'a' })
   expect(console.warn).not.toHaveBeenCalled()
-  expect(result.css).toEqual('!')
+  expect(result.css).toBe('!')
 })
 
 it('uses custom stringifier with source maps', async () => {
@@ -493,7 +493,7 @@ it('uses custom syntax', async () => {
     from: undefined
   })
   expect(console.warn).not.toHaveBeenCalled()
-  expect(result.css).toEqual('ok!')
+  expect(result.css).toBe('ok!')
 })
 
 it('contains PostCSS version', () => {

@@ -54,7 +54,7 @@ it('creates plugin', () => {
   expect(console.warn).toHaveBeenCalledWith(expect.stringMatching(/test/))
 
   let func1: any = postcss(plugin).plugins[0]
-  expect(func1.postcssPlugin).toEqual('test')
+  expect(func1.postcssPlugin).toBe('test')
   expect(func1.postcssVersion).toMatch(/\d+.\d+.\d+/)
 
   let func2: any = postcss(plugin()).plugins[0]
@@ -62,10 +62,10 @@ it('creates plugin', () => {
   expect(func2.postcssVersion).toEqual(func1.postcssVersion)
 
   let result1 = postcss(plugin('one')).process('a{ one: 1; two: 2 }')
-  expect(result1.css).toEqual('a{ two: 2 }')
+  expect(result1.css).toBe('a{ two: 2 }')
 
   let result2 = postcss(plugin).process('a{ one: 1; two: 2 }')
-  expect(result2.css).toEqual('a{ one: 1 }')
+  expect(result2.css).toBe('a{ one: 1 }')
 })
 
 it('does not call plugin constructor', () => {
@@ -95,22 +95,22 @@ it('creates a shortcut to process css', async () => {
   })
 
   let result1 = plugin.process('a{value:foo}')
-  expect(result1.css).toEqual('a{value:bar}')
+  expect(result1.css).toBe('a{value:bar}')
 
   let result2 = plugin.process('a{value:foo}', {}, 'baz')
-  expect(result2.css).toEqual('a{value:baz}')
+  expect(result2.css).toBe('a{value:baz}')
 
   let result = await plugin.process('a{value:foo}', { from: 'a' }, 'baz')
   expect(result.opts).toEqual({ from: 'a' })
-  expect(result.css).toEqual('a{value:baz}')
+  expect(result.css).toBe('a{value:baz}')
 })
 
 it('contains parser', () => {
-  expect(postcss.parse('').type).toEqual('root')
+  expect(postcss.parse('').type).toBe('root')
 })
 
 it('contains stringifier', () => {
-  expect(typeof postcss.stringify).toEqual('function')
+  expect(typeof postcss.stringify).toBe('function')
 })
 
 it('allows to build own CSS', () => {

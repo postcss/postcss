@@ -2,7 +2,7 @@ import { Comment, parse } from '../lib/postcss.js'
 
 it('toString() inserts default spaces', () => {
   let comment = new Comment({ text: 'hi' })
-  expect(comment.toString()).toEqual('/* hi */')
+  expect(comment.toString()).toBe('/* hi */')
 })
 
 it('toString() clones spaces from another comment', () => {
@@ -10,5 +10,5 @@ it('toString() clones spaces from another comment', () => {
   let comment = new Comment({ text: 'world' })
   root.append(comment)
 
-  expect(root.toString()).toEqual('a{} /*hello*/ /*world*/')
+  expect(root.toString()).toBe('a{} /*hello*/ /*world*/')
 })
