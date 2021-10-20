@@ -2,8 +2,6 @@ name: Test
 on:
   push:
   pull_request:
-env:
-  FORCE_COLOR: 2
 jobs:
   full:
     name: Node.js 16 Full
@@ -14,16 +12,20 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 17
+          cache: yarn
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: yarn --frozen-lockfile
       - name: Run tests
         run: yarn test
+        env:
+          FORCE_COLOR: 2
   short:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version:
+          - 16
           - 14
           - 12
           - 10
@@ -35,12 +37,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+          cache: yarn
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: yarn --frozen-lockfile --ignore-engines
+        run: yarn --frozen-lockfile --ignore-engines
       - name: Run unit tests
         run: npx jest
+        env:
+          FORCE_COLOR: 2
   windows:
     runs-on: windows-latest
     name: Windows Quick
@@ -52,8 +55,11 @@ jobs:
       - name: Install Node.js LTS
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
+          cache: yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Run unit tests
         run: npx jest
+        env:
+          FORCE_COLOR: 2
