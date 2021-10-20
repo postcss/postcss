@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.3.10
+* Fixed `Maximum call stack` issue of some source maps (by Yeting Li).
+
 ## 8.3.9
 * Replaced `nanocolors` to `picocolors`.
 * Reduced package size.
