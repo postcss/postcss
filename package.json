@@ -160,8 +160,7 @@
     "rules": {
       "@typescript-eslint/no-explicit-any": "off",
       "consistent-return": "off",
-      "global-require": "off",
-      "no-console": "off"
+      "global-require": "off"
     },
     "overrides": [
       {
@@ -170,6 +169,7 @@
         ],
         "rules": {
           "no-unused-expressions": "off",
+          "no-console": "off",
           "func-style": "off"
         }
       },
@@ -179,6 +179,7 @@
         ],
         "rules": {
           "@typescript-eslint/no-unused-expressions": "off",
+          "no-console": "off",
           "func-style": "off"
         }
       }
