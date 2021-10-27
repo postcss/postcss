@@ -14,6 +14,7 @@ import postcss, {
 } from '../lib/postcss.js'
 import CssSyntaxError from '../lib/css-syntax-error.js'
 import LazyResult from '../lib/lazy-result.js'
+import NoWork from '../lib/no-work.js'
 import Processor from '../lib/processor.js'
 import Rule from '../lib/rule.js'
 
@@ -525,14 +526,12 @@ it('warns about missed from', async () => {
   )
 })
 
-it('warns about missed plugins', async () => {
+it('returns NoWork object', async () => {
   jest.spyOn(console, 'warn').mockImplementation(() => {})
-  await new Processor().process('a{}')
-  expect(console.warn).toHaveBeenCalledWith(
-    'You did not set any plugins, parser, or stringifier. ' +
-      'Right now, PostCSS does nothing. Pick plugins for your case ' +
-      'on https://www.postcss.parts/ and use them in postcss.config.js.'
-  )
+  let result = await new Processor().process('a{}')
+  expect(result instanceof NoWork).toBe(false)
+  expect(result.css).toBe('a{}')
+  expect(result.toString()).toBe('a{}')
 })
 
 it('supports plugins returning processors', () => {

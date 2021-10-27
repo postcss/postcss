@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "8.3.11",
+  "version": "8.3.12",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": "^10 || ^12 || >=14"
@@ -19,6 +19,7 @@
     "./lib/fromJSON": "./lib/fromJSON.js",
     "./lib/input": "./lib/input.js",
     "./lib/lazy-result": "./lib/lazy-result.js",
+    "./lib/no-work": "./lib/no-work.js",
     "./lib/list": "./lib/list.js",
     "./lib/map-generator": "./lib/map-generator.js",
     "./lib/node": "./lib/node.js",
