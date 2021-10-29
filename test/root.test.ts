@@ -1,4 +1,6 @@
-import { Result, parse } from '../lib/postcss.js'
+import LazyResult from '../lib/lazy-result.js'
+import NoWork from '../lib/no-work.js'
+import { Result, parse, Stringifier } from '../lib/postcss.js'
 
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
@@ -59,4 +61,30 @@ it('generates result with map', () => {
 
   expect(result instanceof Result).toBe(true)
   expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
+})
+
+it('uses NoWork inside if no plugins, stringifier or parsers defined', () => {
+  let spy = jest.spyOn(NoWork.prototype, 'sync')
+  let root = parse('a {}')
+
+  root.toResult({})
+
+  // eslint-disable-next-line
+  expect(spy).toHaveBeenCalled()
+  spy.mockRestore()
+})
+
+it('uses LazyWorkResult inside if stringifier defined', () => {
+  let spy = jest.spyOn(LazyResult.prototype, 'sync')
+  let root = parse('a {}')
+
+  let customStringifier: Stringifier = doc => {
+    doc.toString()
+  }
+
+  root.toResult({ stringifier: customStringifier })
+
+  // eslint-disable-next-line
+  expect(spy).toHaveBeenCalled()
+  spy.mockRestore()
 })
