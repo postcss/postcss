@@ -1,4 +1,12 @@
-import { Result, parse } from '../lib/postcss.js'
+import { Result, parse, Root } from '../lib/postcss.js'
+
+function prs(): Root {
+  return new Root({ raws: { after: 'ok' } })
+}
+
+function str(node: Node, builder: (s: string) => void): void {
+  builder(`${node.raws.after}!`)
+}
 
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
@@ -59,4 +67,15 @@ it('generates result with map', () => {
 
   expect(result instanceof Result).toBe(true)
   expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
+})
+
+it('generates result with undefined stringifier', () => {
+  let root = parse('a {}')
+  let result = root.toResult({
+    syntax: { parse: prs, stringify: str },
+    from: undefined
+  })
+
+  expect(result instanceof Result).toBe(true)
+  expect(result.css).toMatch('!')
 })

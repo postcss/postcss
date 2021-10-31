@@ -174,10 +174,13 @@ it('allows to replace Root', () => {
 })
 
 it('returns LazyResult object', () => {
-  let result = new Processor([() => {}]).process('a{}')
+  let result = new Processor([() => {}]).process('a{}', {
+    syntax: { parse: prs, stringify: str },
+    from: undefined
+  })
   expect(result instanceof LazyResult).toBe(true)
-  expect(result.css).toBe('a{}')
-  expect(result.toString()).toBe('a{}')
+  expect(result.css).toBe('ok!')
+  expect(result.toString()).toBe('ok!')
 })
 
 it('calls all plugins once', async () => {
@@ -529,7 +532,7 @@ it('warns about missed from', async () => {
 it('returns NoWork object', async () => {
   jest.spyOn(console, 'warn').mockImplementation(() => {})
   let result = await new Processor().process('a{}')
-  expect(result instanceof NoWork).toBe(false)
+  expect(result instanceof NoWork).toBe(true)
   expect(result.css).toBe('a{}')
   expect(result.toString()).toBe('a{}')
 })

@@ -6,6 +6,7 @@ import {
   TransformCallback
 } from './postcss.js'
 import LazyResult from './lazy-result.js'
+import NoWork from './no-work.js'
 import Result from './result.js'
 import Root from './root.js'
 
@@ -97,5 +98,5 @@ export default class Processor {
   process(
     css: string | { toString(): string } | Result | LazyResult | Root,
     options?: ProcessOptions
-  ): LazyResult
+  ): LazyResult | NoWork
 }

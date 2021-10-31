@@ -51,13 +51,6 @@ it('contains messages', () => {
   expect(result.messages).toEqual([])
 })
 
-it('executes on finally callback', () => {
-  let mockCallback = jest.fn()
-  return new NoWork(processor, 'a {}', {}).finally(mockCallback).then(() => {
-    expect(mockCallback).toHaveBeenCalledTimes(1)
-  })
-})
-
 it('prints its object type', () => {
   let result = new NoWork(processor, 'a {}', {})
   expect(Object.prototype.toString.call(result)).toBe('[object NoWork]')
