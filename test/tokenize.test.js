@@ -289,7 +289,7 @@ it('tokenizes hexadecimal escape', () => {
 })
 
 it('ignore unclosed per token request', () => {
-  function tokn(css, opts) {
+  function token(css, opts) {
     let processor = tokenizer(new Input(css), opts)
     let tokens = []
     while (!processor.endOfFile()) {
@@ -299,7 +299,7 @@ it('ignore unclosed per token request', () => {
   }
 
   let css = "How's it going ("
-  let tokens = tokn(css, {})
+  let tokens = token(css, {})
   let expected = [
     ['word', 'How', 0, 2],
     ['string', "'s", 3, 4],
