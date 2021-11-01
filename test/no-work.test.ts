@@ -5,7 +5,13 @@ import Processor from '../lib/processor.js'
 
 let processor = new Processor()
 
-it('contains AST', () => {
+it('does not contain result if not processed', () => {
+  let noWork = new NoWork(processor, 'a {}', {})
+  // @ts-ignore
+  expect(noWork.result).toBeUndefined()
+})
+
+it('contains AST if root is accessed', () => {
   let result = new NoWork(processor, 'a {}', {})
   expect(result.root.type).toBe('root')
 })

@@ -1,5 +1,11 @@
+
+import { Result, Stringifier, parse } from '../lib/postcss.js'
+
 import { Result, parse, Root } from '../lib/postcss.js'
+
 import Document from '../lib/document.js'
+import NoWork from '../lib/no-work.js'
+import LazyResult from '../lib/lazy-result.js'
 
 function prs(): Root {
   return new Root({ raws: { after: 'ok' } })
@@ -46,4 +52,34 @@ it('generates result with map', () => {
 
   expect(result instanceof Result).toBe(true)
   expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
+})
+
+it('uses NoWork inside if no plugins, stringifier or parsers defined', () => {
+  let spy = jest.spyOn(NoWork.prototype, 'sync')
+  let root = parse('a {}')
+  let document = new Document()
+
+  document.append(root)
+
+  document.toResult({})
+
+  spy.mockRestore()
+})
+
+it('uses LazyWorkResult inside if stringifier defined', () => {
+  let spy = jest.spyOn(LazyResult.prototype, 'sync')
+  let root = parse('a {}')
+  let document = new Document()
+
+  document.append(root)
+
+  let customStringifier: Stringifier = doc => {
+    doc.toString()
+  }
+
+  document.toResult({ stringifier: customStringifier })
+
+  // eslint-disable-next-line
+  expect(spy).toHaveBeenCalledWith()
+  spy.mockRestore()
 })

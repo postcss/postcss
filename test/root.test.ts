@@ -1,12 +1,9 @@
+
+import LazyResult from '../lib/lazy-result.js'
+import NoWork from '../lib/no-work.js'
+import { Result, parse, Stringifier } from '../lib/postcss.js'
+
 import { Result, parse, Root } from '../lib/postcss.js'
-
-function prs(): Root {
-  return new Root({ raws: { after: 'ok' } })
-}
-
-function str(node: Node, builder: (s: string) => void): void {
-  builder(`${node.raws.after}!`)
-}
 
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
@@ -69,6 +66,31 @@ it('generates result with map', () => {
   expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
 })
 
+it('uses NoWork inside if no plugins, stringifier or parsers defined', () => {
+  let spy = jest.spyOn(NoWork.prototype, 'sync')
+  let root = parse('a {}')
+
+  root.toResult({})
+
+  // eslint-disable-next-line
+  expect(spy).toHaveBeenCalled()
+  spy.mockRestore()
+})
+
+it('uses LazyWorkResult inside if stringifier defined', () => {
+  let spy = jest.spyOn(LazyResult.prototype, 'sync')
+  let root = parse('a {}')
+
+  let customStringifier: Stringifier = doc => {
+    doc.toString()
+  }
+
+  root.toResult({ stringifier: customStringifier })
+
+  // eslint-disable-next-line
+  expect(spy).toHaveBeenCalled()
+  spy.mockRestore()
+
 it('generates result with undefined stringifier', () => {
   let root = parse('a {}')
   let result = root.toResult({
@@ -78,4 +100,3 @@ it('generates result with undefined stringifier', () => {
 
   expect(result instanceof Result).toBe(true)
   expect(result.css).toMatch('!')
-})
