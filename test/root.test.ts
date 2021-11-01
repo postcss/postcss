@@ -1,6 +1,9 @@
+
 import LazyResult from '../lib/lazy-result.js'
 import NoWork from '../lib/no-work.js'
 import { Result, parse, Stringifier } from '../lib/postcss.js'
+
+import { Result, parse, Root } from '../lib/postcss.js'
 
 it('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
@@ -87,4 +90,13 @@ it('uses LazyWorkResult inside if stringifier defined', () => {
   // eslint-disable-next-line
   expect(spy).toHaveBeenCalled()
   spy.mockRestore()
-})
+
+it('generates result with undefined stringifier', () => {
+  let root = parse('a {}')
+  let result = root.toResult({
+    syntax: { parse: prs, stringify: str },
+    from: undefined
+  })
+
+  expect(result instanceof Result).toBe(true)
+  expect(result.css).toMatch('!')
