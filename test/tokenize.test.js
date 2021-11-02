@@ -327,3 +327,11 @@ it('provides correct position', () => {
   processor.nextToken()
   expect(processor.position()).toBe(12)
 })
+
+it('expect to not fail', () => {
+  let css = 'url(foo)('
+  let processor = tokenizer(new Input(css, { ignoreUnclosed: false }))
+  while (!processor.endOfFile()) {
+    processor.nextToken(false)
+  }
+})
