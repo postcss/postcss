@@ -6,14 +6,17 @@ import Root from './root.js'
 
 /**
  * A Promise proxy for the result of PostCSS transformations.
- *
- * A `NoWork` instance is returned by `Processor#process`.
+ * This lazy result instance doesn't parse css unless `NoWorkResult#root` or `Result#root`
+ * are accessed. See the example below for details.
+ * A `NoWork` instance is returned by `Processor#process` ONLY when no plugins defined.
  *
  * ```js
- * const noWork = postcss([autoprefixer]).process(css)
+ * const noWorkResult = postcss().process(css) // No plugins are defined.
+ *                                             // CSS is not parsed
+ * let root = noWorkResult.root // now css is parsed because we accessed the root
  * ```
  */
-export default class NoWork implements PromiseLike<Result> {
+export default class NoWorkResult implements PromiseLike<Result> {
   /**
    * Processes input CSS through synchronous and asynchronous plugins
    * and calls `onFulfilled` with a Result instance. If a plugin throws
