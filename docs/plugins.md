@@ -40,7 +40,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
 * [`oldie`] contains plugins that transform your CSS
   for older Internet Explorer compatibility.
-* [`precss`] contains plugins that allow you to use Sass-like CSS.
 * [`rucksack`] contains plugins to speed up CSS development
   with new features and shortcuts.
 * [`level4`] contains only plugins that let you write CSS4 without
