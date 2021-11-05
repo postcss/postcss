@@ -546,11 +546,11 @@ it('parses CSS only on root access when no plugins are specified', async () => {
 // @NOTE: couldn't spy on console.warn because warnOnce was triggered before
 // in other tests. Spying on async() instead
 it('warns about missed from with empty processor', async () => {
-  // @ts-ignore
+  let processor = new Processor()
+  let r = new Result(processor, new Root({}), {})
   let spy = jest
     .spyOn(NoWorkResult.prototype, 'async')
-    .mockImplementation(() => Promise.resolve())
-  let processor = new Processor()
+    .mockImplementation(() => Promise.resolve(r))
 
   processor.process('a{}').css
   expect(spy).not.toHaveBeenCalled()

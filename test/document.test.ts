@@ -21,5 +21,6 @@ it('generates result with map', () => {
 
   let result = document.toResult({ map: true })
 
+  expect(result instanceof Result).toBe(true)
   expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
 })
