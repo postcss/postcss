@@ -8,6 +8,7 @@ import {
 import LazyResult from './lazy-result.js'
 import Result from './result.js'
 import Root from './root.js'
+import NoWorkResult from './no-work-result.js'
 
 /**
  * Contains plugins to process CSS. Create one `Processor` instance,
@@ -97,5 +98,5 @@ export default class Processor {
   process(
     css: string | { toString(): string } | Result | LazyResult | Root,
     options?: ProcessOptions
-  ): LazyResult
+  ): LazyResult | NoWorkResult
 }
