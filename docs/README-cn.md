@@ -105,7 +105,6 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 [`stylelint`]:                  https://github.com/stylelint/stylelint
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
 [`cssnano`]:                    http://cssnano.co
-[`precss`]:                     https://github.com/jonathantneal/precss
 [`doiuse`]:                     https://github.com/anandthakker/doiuse
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
 [`short`]:                      https://github.com/jonathantneal/postcss-short
@@ -201,8 +200,8 @@ module.exports = {
 ```js
 module.exports = {
   plugins: [
-    require('precss'),
-    require('autoprefixer')
+    require('autoprefixer'),
+    require('postcss-nested')
   ]
 }
 ```
@@ -220,7 +219,7 @@ gulp.task('css', () => {
 
   return gulp.src('src/**/*.css')
     .pipe( sourcemaps.init() )
-    .pipe( postcss([ require('precss'), require('autoprefixer') ]) )
+    .pipe( postcss([ require('postcss-nested'), require('autoprefixer') ]) )
     .pipe( sourcemaps.write('.') )
     .pipe( gulp.dest('build/') )
 })
@@ -278,13 +277,13 @@ prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-
 对于其它的应用环境，你可以使用 JS API：
 
 ```js
+const postcssNested = require('postcss-nested')
 const autoprefixer = require('autoprefixer')
 const postcss = require('postcss')
-const precss = require('precss')
 const fs = require('fs')
 
 fs.readFile('src/app.css', (err, css) => {
-  postcss([precss, autoprefixer])
+  postcss([postcssNested, autoprefixer])
     .process(css, { from: 'src/app.css', to: 'dest/app.css' })
     .then(result => {
       fs.writeFile('dest/app.css', result.css)
