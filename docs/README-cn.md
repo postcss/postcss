@@ -57,7 +57,6 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 ### 更佳的 CSS 可读性
 
-* [`precss`] 囊括了许多插件来支持类似 Sass 的特性，比如 CSS 变量，套嵌，mixins 等。
 * [`postcss-sorting`] 给规则的内容以及@规则排序。
 * [`postcss-utilities`] 囊括了最常用的简写方式和书写帮助。
 * [`short`] 添加并拓展了大量的缩写属性。
