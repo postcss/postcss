@@ -14,7 +14,7 @@ import postcss, {
 } from '../lib/postcss.js'
 import CssSyntaxError from '../lib/css-syntax-error.js'
 import LazyResult from '../lib/lazy-result.js'
-import NoWork from '../lib/no-work.js'
+import NoWorkResult from '../lib/no-work-result.js'
 import Processor from '../lib/processor.js'
 import Rule from '../lib/rule.js'
 
@@ -526,12 +526,50 @@ it('warns about missed from', async () => {
   )
 })
 
-it('returns NoWork object', async () => {
-  jest.spyOn(console, 'warn').mockImplementation(() => {})
-  let result = await new Processor().process('a{}')
-  expect(result instanceof NoWork).toBe(false)
-  expect(result.css).toBe('a{}')
-  expect(result.toString()).toBe('a{}')
+it('returns NoWorkResult object', async () => {
+  let noWorkResult = new Processor().process('a{}')
+
+  expect(noWorkResult).toBeInstanceOf(NoWorkResult)
+})
+
+it('parses CSS only on root access when no plugins are specified', async () => {
+  let noWorkResult = new Processor().process('a{}')
+  let result = await noWorkResult
+  // @ts-ignore
+  expect(noWorkResult._root).toBeUndefined()
+  expect(result.root.nodes).toHaveLength(1)
+  // @ts-ignore
+  expect(noWorkResult._root).toBeDefined()
+  expect(noWorkResult.root.nodes).toHaveLength(1)
+})
+
+// @NOTE: couldn't spy on console.warn because warnOnce was triggered before
+// in other tests. Spying on async() instead
+it('warns about missed from with empty processor', async () => {
+  // @ts-ignore
+  let spy = jest
+    .spyOn(NoWorkResult.prototype, 'async')
+    .mockImplementation(() => Promise.resolve())
+  let processor = new Processor()
+
+  processor.process('a{}').css
+  expect(spy).not.toHaveBeenCalled()
+
+  await processor.process('a{}')
+  expect(spy).toHaveBeenCalledTimes(1)
+  spy.mockRestore()
+})
+
+it('catches error with empty processor', async () => {
+  let noWorkResult = new Processor().process('a {}')
+
+  // @ts-ignore
+  noWorkResult.error = new CssSyntaxError('error')
+
+  noWorkResult.catch(err => {
+    // eslint-disable-next-line jest/no-conditional-expect
+    expect(err).toBeInstanceOf(CssSyntaxError)
+  })
 })
 
 it('supports plugins returning processors', () => {
