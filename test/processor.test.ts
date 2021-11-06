@@ -567,7 +567,6 @@ it('catches error with empty processor', async () => {
   noWorkResult.error = new CssSyntaxError('error')
 
   noWorkResult.catch(err => {
-    // eslint-disable-next-line jest/no-conditional-expect
     expect(err).toBeInstanceOf(CssSyntaxError)
   })
 })
