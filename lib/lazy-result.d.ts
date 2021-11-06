@@ -89,8 +89,9 @@ export default class LazyResult implements PromiseLike<Result> {
    *
    * This property will only work with synchronous plugins.
    * If the processor contains any asynchronous plugins
-   * it will throw an error. This is why this method is only
-   * for debug purpose, you should always use `LazyResult#then`.
+   * it will throw an error.
+   *
+   * PostCSS runners should always use `LazyResult#then`.
    */
   get css(): string
 
@@ -100,8 +101,9 @@ export default class LazyResult implements PromiseLike<Result> {
    *
    * This property will only work with synchronous plugins.
    * If the processor contains any asynchronous plugins
-   * it will throw an error. This is why this method is only
-   * for debug purpose, you should always use `LazyResult#then`.
+   * it will throw an error.
+   *
+   * PostCSS runners should always use `LazyResult#then`.
    */
   get content(): string
 
@@ -111,8 +113,9 @@ export default class LazyResult implements PromiseLike<Result> {
    *
    * This property will only work with synchronous plugins.
    * If the processor contains any asynchronous plugins
-   * it will throw an error. This is why this method is only
-   * for debug purpose, you should always use `LazyResult#then`.
+   * it will throw an error.
+   *
+   * PostCSS runners should always use `LazyResult#then`.
    */
   get map(): SourceMap
 
@@ -123,8 +126,7 @@ export default class LazyResult implements PromiseLike<Result> {
    * This property will only work with synchronous plugins. If the processor
    * contains any asynchronous plugins it will throw an error.
    *
-   * This is why this method is only for debug purpose,
-   * you should always use `LazyResult#then`.
+   * PostCSS runners should always use `LazyResult#then`.
    */
   get root(): Root
 
@@ -135,8 +137,7 @@ export default class LazyResult implements PromiseLike<Result> {
    * This property will only work with synchronous plugins. If the processor
    * contains any asynchronous plugins it will throw an error.
    *
-   * This is why this method is only for debug purpose,
-   * you should always use `LazyResult#then`.
+   * PostCSS runners should always use `LazyResult#then`.
    */
   get messages(): Message[]
 

@@ -40,7 +40,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`cssnano`] contains plugins that optimize CSS size for use in production.
 * [`oldie`] contains plugins that transform your CSS
   for older Internet Explorer compatibility.
-* [`precss`] contains plugins that allow you to use Sass-like CSS.
 * [`rucksack`] contains plugins to speed up CSS development
   with new features and shortcuts.
 * [`level4`] contains only plugins that let you write CSS4 without
@@ -58,7 +57,6 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`rucksack`]:           https://github.com/seaneking/rucksack
 [`cssnano`]:            https://cssnano.co/
 [`level4`]:             https://github.com/stephenway/level4
-[`precss`]:             https://github.com/jonathantneal/precss
 [`oldie`]:              https://github.com/jonathantneal/oldie
 [`atcss`]:              https://github.com/morishitter/atcss
 [`postcss-ui-theme`]:   https://github.com/cleverboy32/postcss-ui-theme
@@ -222,8 +220,6 @@ for targeting all button elements.
 * [`postcss-percentage`] support Sass-like `percentage()` function.
 * [`postcss-custom-css-units`] Define custom css units and convert them to CSS variables.
 * [`postcss-easy-z`] lets you organize z-indices by declaring relations between them.
-
-See also [`precss`] plugins pack to add them by one line of code.
 
 [Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
 

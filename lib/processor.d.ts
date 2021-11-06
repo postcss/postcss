@@ -15,7 +15,7 @@ import NoWorkResult from './no-work-result.js'
  * initialize its plugins, and then use that instance on numerous CSS files.
  *
  * ```js
- * const processor = postcss([autoprefixer, precss])
+ * const processor = postcss([autoprefixer, postcssNested])
  * processor.process(css1).then(result => console.log(result.css))
  * processor.process(css2).then(result => console.log(result.css))
  * ```
@@ -36,7 +36,7 @@ export default class Processor {
    * Plugins added to this processor.
    *
    * ```js
-   * const processor = postcss([autoprefixer, precss])
+   * const processor = postcss([autoprefixer, postcssNested])
    * processor.plugins.length //=> 2
    * ```
    */
@@ -68,7 +68,7 @@ export default class Processor {
    * ```js
    * const processor = postcss()
    *   .use(autoprefixer)
-   *   .use(precss)
+   *   .use(postcssNested)
    * ```
    *
    * @param plugin PostCSS plugin or `Processor` with plugins.
