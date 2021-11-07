@@ -561,14 +561,13 @@ it('warns about missed from with empty processor', async () => {
 })
 
 it('catches error with empty processor', async () => {
-  let noWorkResult = new Processor().process('a {}')
+  let noWorkResult = new Processor().process('a {')
 
-  // @ts-ignore
-  noWorkResult.error = new CssSyntaxError('error')
+  noWorkResult.root
 
-  noWorkResult.catch(err => {
-    expect(err).toBeInstanceOf(CssSyntaxError)
-  })
+  let err = await catchError(async () => await noWorkResult)
+
+  expect(err).toBeInstanceOf(CssSyntaxError)
 })
 
 it('supports plugins returning processors', () => {
