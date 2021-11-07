@@ -630,7 +630,7 @@ it('uses URLs in sources', () => {
   expect(result.map.toJSON().sources).toEqual(['../a%20b.css'])
 })
 
-it('generates inline map with empty processor', () => {
+it('generates correct inline map with empty processor', () => {
   let processor = new Processor()
   let result = postcss(processor).process('a {} /*hello world*/', {
     map: true
@@ -638,6 +638,18 @@ it('generates inline map with empty processor', () => {
 
   expect(result.css).toMatch(
     /a {} \/\*hello world\*\/\n\/\*# sourceMappingURL=/
+  )
+})
+
+it('generates correct inline map with empty processor and multiple comments', () => {
+  let css = 'a {}\n/*# sourceMappingURL=a.css.map */\nb {}\n/*# sourceMappingURL=b.css.map */'
+  let processor = new Processor()
+  let result = postcss(processor).process(css, {
+    map: true
+  })
+
+  expect(result.css).toMatch(
+    /a {}\s\nb {}\s\n\/\*# sourceMappingURL=/
   )
 })
 
