@@ -567,6 +567,10 @@ it('catches error with empty processor', async () => {
 
   let err = await catchError(async () => await noWorkResult)
 
+  noWorkResult.catch(e => {
+    expect(e).toBeInstanceOf(CssSyntaxError)
+  })
+
   expect(err).toBeInstanceOf(CssSyntaxError)
 })
 
