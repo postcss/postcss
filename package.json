@@ -99,6 +99,13 @@
     "typescript": "^4.4.4",
     "uvu": "^0.5.2"
   },
+  "c8": {
+    "exclude": [
+      "**/*.test.*"
+    ],
+    "lines": 100,
+    "check-coverage": true
+  },
   "simple-git-hooks": {
     "pre-commit": "./test/version.js"
   },
