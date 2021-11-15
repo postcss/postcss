@@ -54,7 +54,8 @@
   ],
   "scripts": {
     "test": "c8 yarn unit && eslint . && ./test/version.js && check-dts && ./test/integration.js && size-limit",
-    "unit": "uvu -r tsm test '\\.test\\.(ts|js)$'"
+    "unit": "uvu -r tsm test '\\.test\\.(ts|js)$'",
+    "unit:win": "uvu -r tsm test ^.*test.([tj]s)"
   },
   "funding": {
     "type": "opencollective",
