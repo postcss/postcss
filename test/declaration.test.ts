@@ -1,43 +1,48 @@
+import { test } from 'uvu'
+import { is } from 'uvu/assert'
+
 import { Declaration, parse, Rule } from '../lib/postcss.js'
 
-it('initializes with properties', () => {
+test('initializes with properties', () => {
   let decl = new Declaration({ prop: 'color', value: 'black' })
-  expect(decl.prop).toBe('color')
-  expect(decl.value).toBe('black')
+  is(decl.prop, 'color')
+  is(decl.value, 'black')
 })
 
-it('returns boolean important', () => {
+test('returns boolean important', () => {
   let decl = new Declaration({ prop: 'color', value: 'black' })
   decl.important = true
-  expect(decl.toString()).toBe('color: black !important')
+  is(decl.toString(), 'color: black !important')
 })
 
-it('inserts default spaces', () => {
+test('inserts default spaces', () => {
   let decl = new Declaration({ prop: 'color', value: 'black' })
   let rule = new Rule({ selector: 'a' })
   rule.append(decl)
-  expect(rule.toString()).toBe('a {\n    color: black\n}')
+  is(rule.toString(), 'a {\n    color: black\n}')
 })
 
-it('clones spaces from another declaration', () => {
+test('clones spaces from another declaration', () => {
   let root = parse('a{color:black}')
   let rule = root.first as Rule
   let decl = new Declaration({ prop: 'margin', value: '0' })
   rule.append(decl)
-  expect(root.toString()).toBe('a{color:black;margin:0}')
+  is(root.toString(), 'a{color:black;margin:0}')
 })
 
-it('converts value to string', () => {
+test('converts value to string', () => {
   // @ts-expect-error
   let decl = new Declaration({ prop: 'color', value: 1 })
-  expect(decl.value).toBe('1')
+  is(decl.value, '1')
 })
 
-it('detects variable declarations', () => {
+test('detects variable declarations', () => {
   let prop = new Declaration({ prop: '--color', value: 'black' })
-  expect(prop.variable).toBe(true)
+  is(prop.variable, true)
   let sass = new Declaration({ prop: '$color', value: 'black' })
-  expect(sass.variable).toBe(true)
+  is(sass.variable, true)
   let decl = new Declaration({ prop: 'color', value: 'black' })
-  expect(decl.variable).toBe(false)
+  is(decl.variable, false)
 })
+
+test.run()
