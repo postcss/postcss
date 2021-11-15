@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile --ignore-engines
       - name: Run unit tests
-        run: npx jest
+        run: yarn unit
         env:
           FORCE_COLOR: 2
   windows:
@@ -60,6 +60,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Run unit tests
-        run: npx jest
+        run: yarn unit
         env:
           FORCE_COLOR: 2
