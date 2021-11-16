@@ -4,6 +4,7 @@ import {
   SourceMap,
   TransformCallback,
   Root,
+  Document,
   Node,
   Warning,
   WarningOptions
@@ -94,7 +95,7 @@ export default class Result {
    * root.toResult().root === root
    * ```
    */
-  root: Root
+  root: Root | Document
 
   /**
    * Options from the `Processor#process` or `Root#toResult` call
@@ -141,7 +142,7 @@ export default class Result {
    * @param root      Root node after all transformations.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
-  constructor(processor: Processor, root: Root, opts: ResultOptions)
+  constructor(processor: Processor, root: Root | Document, opts: ResultOptions)
 
   /**
    * An alias for the `Result#css` property.
