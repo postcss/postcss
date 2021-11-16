@@ -70,7 +70,7 @@
   "dependencies": {
     "nanoid": "^3.1.30",
     "picocolors": "^1.0.0",
-    "source-map-js": "^0.6.2"
+    "source-map-js": "^1.0.1"
   },
   "devDependencies": {
     "@logux/eslint-config": "^46.1.0",
@@ -78,12 +78,12 @@
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.6",
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "check-dts": "^0.6.3",
-    "clean-publish": "^3.4.2",
+    "clean-publish": "^3.4.3",
     "concat-with-sourcemaps": "^1.1.0",
-    "eslint": "^8.1.0",
+    "eslint": "^8.2.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",

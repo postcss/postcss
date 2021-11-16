@@ -130,6 +130,8 @@ by one line of code.
 * [`postcss-hash-classname`] append hash string to your css class name.
 * [`postcss-mqwidth-to-class`] converts min/max-width media queries to classes.
 * [`postcss-opacity`] adds opacity filter for IE8.
+* [`postcss-opacity-percentage`] transforms CSS4 percentage-based `opacity`
+  values to float values.
 * [`postcss-page-break`] adds `page-break-` fallback to `break-` properties.
 * [`postcss-pseudoelements`] Convert `::` selectors into `:` selectors
   for IE 8 compatibility.
@@ -739,6 +741,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-initial`]:                      https://github.com/maximkoretskiy/postcss-initial
 [`postcss-modules`]:                      https://github.com/outpunk/postcss-modules
 [`postcss-opacity`]:                      https://github.com/iamvdo/postcss-opacity
+[`postcss-opacity-percentage`]:           https://github.com/Dreamseer/postcss-opacity-percentage
 [`postcss-pointer`]:                      https://github.com/markgoodyear/postcss-pointer
 [`postcss-pxtorem`]:                      https://github.com/cuth/postcss-pxtorem
 [`postcss-rgb-plz`]:                      https://github.com/himynameisdave/postcss-rgb-plz
