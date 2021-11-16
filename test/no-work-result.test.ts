@@ -31,16 +31,13 @@ it('throws error on sync()', () => {
   expect(() => noWorkResult.sync()).toThrow(CssSyntaxError)
 })
 
-it('returns cached root on second access', () => {
+it('returns cached root on second access', async () => {
   let result = new NoWorkResult(processor, 'a {}', {})
 
-  // @ts-ignore
-  expect(result._root).toBeUndefined()
-  expect(result.root.nodes).toHaveLength(1)
+  result.root
 
-  // @ts-ignore
-  expect(result._root).toBeDefined()
   expect(result.root.nodes).toHaveLength(1)
+  expect(() => result.sync()).not.toThrow()
 })
 
 it('contains css syntax errors', () => {
