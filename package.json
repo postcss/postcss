@@ -19,6 +19,7 @@
     "./lib/fromJSON": "./lib/fromJSON.js",
     "./lib/input": "./lib/input.js",
     "./lib/lazy-result": "./lib/lazy-result.js",
+    "./lib/no-work-result": "./lib/no-work-result.js",
     "./lib/list": "./lib/list.js",
     "./lib/map-generator": "./lib/map-generator.js",
     "./lib/node": "./lib/node.js",

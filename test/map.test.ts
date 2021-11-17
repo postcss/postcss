@@ -5,6 +5,7 @@ import { existsSync } from 'fs'
 
 import postcss, { SourceMap, Rule, Root } from '../lib/postcss.js'
 import PreviousMap from '../lib/previous-map.js'
+import Processor from '../lib/processor.js'
 
 function consumer(map: SourceMap): any {
   return (SourceMapConsumer as any).fromSourceMap(map)
@@ -627,4 +628,56 @@ it('uses URLs in sources', () => {
     map: { inline: false }
   })
   expect(result.map.toJSON().sources).toEqual(['../a%20b.css'])
+})
+
+it('generates correct inline map with empty processor', () => {
+  let processor = new Processor()
+  let result = postcss(processor).process('a {} /*hello world*/', {
+    map: true
+  })
+
+  expect(result.css).toMatch(
+    /a {} \/\*hello world\*\/\n\/\*# sourceMappingURL=/
+  )
+})
+
+it('generates correct inline map with empty processor and multiple comments', () => {
+  let css = 'a {}/*# sourceMappingURL=a.css.map */\n/*# sourceMappingURL=b.css.map */\nb {}\n/*# sourceMappingURL=c.css.map */'
+  let processor = new Processor()
+  let result = postcss(processor).process(css, {
+    map: true
+  })
+
+  expect(result.css).toMatch(
+    /a {}\nb {}\n\/\*# sourceMappingURL=/
+  )
+})
+
+it('generates correct sources with empty processor', () => {
+  let processor = new Processor()
+  let result = postcss(processor).process('a {} /*hello world*/', {
+    from: 'a.css',
+    to: 'b.css',
+    map: { inline: false }
+  })
+
+  expect(result.map.toJSON().sources).toEqual(['a.css'])
+})
+
+it('generates map object with empty processor', () => {
+  let processor = new Processor()
+  let result = postcss(processor).process('a {} /*hello world*/', {
+    from: 'a.css',
+    to: 'b.css',
+    map: true
+  })
+
+  let map = read(result)
+
+  expect(map.originalPositionFor({ line: 1, column: 0 })).toEqual({
+    source: 'a.css',
+    line: 1,
+    column: 0,
+    name: null
+  })
 })

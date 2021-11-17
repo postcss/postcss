@@ -14,6 +14,7 @@ import postcss, {
 } from '../lib/postcss.js'
 import CssSyntaxError from '../lib/css-syntax-error.js'
 import LazyResult from '../lib/lazy-result.js'
+import NoWorkResult from '../lib/no-work-result.js'
 import Processor from '../lib/processor.js'
 import Rule from '../lib/rule.js'
 
@@ -525,14 +526,52 @@ it('warns about missed from', async () => {
   )
 })
 
-it('warns about missed plugins', async () => {
-  jest.spyOn(console, 'warn').mockImplementation(() => {})
-  await new Processor().process('a{}')
-  expect(console.warn).toHaveBeenCalledWith(
-    'You did not set any plugins, parser, or stringifier. ' +
-      'Right now, PostCSS does nothing. Pick plugins for your case ' +
-      'on https://www.postcss.parts/ and use them in postcss.config.js.'
-  )
+it('returns NoWorkResult object', async () => {
+  let noWorkResult = new Processor().process('a{}')
+
+  expect(noWorkResult).toBeInstanceOf(NoWorkResult)
+})
+
+it('parses CSS only on root access when no plugins are specified', async () => {
+  let noWorkResult = new Processor().process('a{}')
+  let result = await noWorkResult
+  // @ts-ignore
+  expect(noWorkResult._root).toBeUndefined()
+  expect(result.root.nodes).toHaveLength(1)
+  // @ts-ignore
+  expect(noWorkResult._root).toBeDefined()
+  expect(noWorkResult.root.nodes).toHaveLength(1)
+})
+
+// @NOTE: couldn't spy on console.warn because warnOnce was triggered before
+// in other tests. Spying on async() instead
+it('warns about missed from with empty processor', async () => {
+  let processor = new Processor()
+  let r = new Result(processor, new Root({}), {})
+  let spy = jest
+    .spyOn(NoWorkResult.prototype, 'async')
+    .mockImplementation(() => Promise.resolve(r))
+
+  processor.process('a{}').css
+  expect(spy).not.toHaveBeenCalled()
+
+  await processor.process('a{}')
+  expect(spy).toHaveBeenCalledTimes(1)
+  spy.mockRestore()
+})
+
+it('catches error with empty processor', async () => {
+  let noWorkResult = new Processor().process('a {')
+
+  noWorkResult.root
+
+  let err = await catchError(async () => await noWorkResult)
+
+  noWorkResult.catch(e => {
+    expect(e).toBeInstanceOf(CssSyntaxError)
+  })
+
+  expect(err).toBeInstanceOf(CssSyntaxError)
 })
 
 it('supports plugins returning processors', () => {
