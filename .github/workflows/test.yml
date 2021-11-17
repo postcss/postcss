@@ -60,6 +60,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Run unit tests
-        run: yarn unit:win
+        run: yarn uvu -r tsm test ^.*test.([tj]s)
         env:
           FORCE_COLOR: 2
