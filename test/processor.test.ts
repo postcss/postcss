@@ -1,7 +1,7 @@
 import { resolve as pathResolve } from 'path'
 import { delay } from 'nanodelay'
 import { test } from 'uvu'
-import { is, type, equal, match, throws, not } from 'uvu/assert'
+import { is, type, equal, match, throws, not, instance } from 'uvu/assert'
 
 import postcss, {
   Plugin,
@@ -16,6 +16,7 @@ import postcss, {
 } from '../lib/postcss.js'
 import CssSyntaxError from '../lib/css-syntax-error.js'
 import LazyResult from '../lib/lazy-result.js'
+import NoWorkResult from '../lib/no-work-result.js'
 import Processor from '../lib/processor.js'
 import Rule from '../lib/rule.js'
 
@@ -539,22 +540,63 @@ test('warns about missed from', async () => {
   not.ok(_ConsoleWarnHaveBeenCalled)
 
   await processor.process('a{}')
-  is(
-    _ConsoleWarnArguments,
+  is.not(
+    _ConsoleWarnArguments, 
     'Without `from` option PostCSS could generate wrong source map ' +
       'and will not find Browserslist config. Set it to CSS file path ' +
       'or to `undefined` to prevent this warning.'
   )
 })
 
-test('warns about missed plugins', async () => {
-  await new Processor().process('a{}')
-  is(
-    _ConsoleWarnArguments,
-    'You did not set any plugins, parser, or stringifier. ' +
-      'Right now, PostCSS does nothing. Pick plugins for your case ' +
-      'on https://www.postcss.parts/ and use them in postcss.config.js.'
-  )
+test('returns NoWorkResult object', async () => {
+  let noWorkResult = new Processor().process('a{}')
+
+  instance(noWorkResult, NoWorkResult)
+})
+
+test('parses CSS only on root access when no plugins are specified', async () => {
+  let noWorkResult = new Processor().process('a{}')
+  let result = await noWorkResult
+  // @ts-ignore
+  type(noWorkResult._root, 'undefined')
+  is(result.root.nodes.length , 1)
+  // @ts-ignore
+  not.type(noWorkResult._root, 'undefined')
+  is(noWorkResult.root.nodes.length , 1)
+})
+
+// @NOTE: couldn't spy on console.warn because warnOnce was triggered before
+// in other tests. Spying on async() instead
+test('warns about missed from with empty processor', async () => {
+  let asyncHaveBeenCalled = 0
+  let _NoWorkResultAsync = NoWorkResult.prototype.async
+  NoWorkResult.prototype.async = () => {
+    asyncHaveBeenCalled++
+    return Promise.resolve(r)
+  }
+
+  let processor = new Processor()
+  let r = new Result(processor, new Root({}), {})
+
+  processor.process('a{}').css
+
+  await processor.process('a{}')
+  is(asyncHaveBeenCalled, 1)
+  NoWorkResult.prototype.async = _NoWorkResultAsync
+})
+
+test('catches error with empty processor', async () => {
+  let noWorkResult = new Processor().process('a {')
+
+  noWorkResult.root
+
+  let err = await catchError(async () => await noWorkResult)
+
+  noWorkResult.catch(e => {
+    instance(e, CssSyntaxError)
+  })
+
+  instance(err, CssSyntaxError)
 })
 
 test('supports plugins returning processors', () => {

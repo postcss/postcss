@@ -412,4 +412,38 @@ test('positionInside() returns position when node contains newlines', () => {
   equal(one.positionInside(10), { line: 3, column: 4 })
 })
 
+test('positionBy() returns position for word', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.positionBy({ word: 'one' }), { line: 1, column: 6 })
+})
+
+test('positionBy() returns position for index', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.positionBy({ index: 1 }), { line: 1, column: 7 })
+})
+
+test('rangeBy() returns range for word', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.rangeBy({ word: 'one' }), {
+    start: { line: 1, column: 6 },
+    end: { line: 1, column: 9 }
+  })
+})
+
+test('rangeBy() returns range for index and endIndex', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.rangeBy({ index: 1, endIndex: 3 }), {
+    start: { line: 1, column: 7 },
+    end: { line: 1, column: 9 }
+  })
+})
+
 test.run()

@@ -19,6 +19,7 @@
     "./lib/fromJSON": "./lib/fromJSON.js",
     "./lib/input": "./lib/input.js",
     "./lib/lazy-result": "./lib/lazy-result.js",
+    "./lib/no-work-result": "./lib/no-work-result.js",
     "./lib/list": "./lib/list.js",
     "./lib/map-generator": "./lib/map-generator.js",
     "./lib/node": "./lib/node.js",
@@ -54,8 +55,7 @@
   ],
   "scripts": {
     "test": "c8 yarn unit && eslint . && ./test/version.js && check-dts && ./test/integration.js && size-limit",
-    "unit": "uvu -r tsm test '\\.test\\.(ts|js)$'",
-    "unit:win": "uvu -r tsm test ^.*test.([tj]s)"
+    "unit": "uvu -r tsm test '\\.test\\.(ts|js)$'"
   },
   "funding": {
     "type": "opencollective",
@@ -77,16 +77,16 @@
     "@logux/eslint-config": "^46.1.0",
     "@size-limit/preset-small-lib": "^6.0.4",
     "@types/fs-extra": "^9.0.13",
-    "@types/node": "^16.11.6",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.3.1",
+    "@types/node": "^16.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "c8": "^7.10.0",
     "check-dts": "^0.6.3",
     "clean-publish": "^3.4.3",
     "concat-with-sourcemaps": "^1.1.0",
     "eslint": "^8.2.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^5.1.1",
@@ -128,7 +128,7 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "15 KB"
+      "limit": "16 KB"
     }
   ],
   "eslintConfig": {

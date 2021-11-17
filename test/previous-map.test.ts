@@ -247,18 +247,23 @@ test('uses source map path as a root', () => {
     join(dir, 'maps', 'a.map'),
     JSON.stringify({
       version: 3,
-      mappings: 'AAAA,CAAC;EAAC,CAAC,EAAC,CAAC',
+      file: 'test.css',
       sources: ['../../test.scss'],
-      names: [],
-      file: 'test.css'
+      mappings: 'AACA,CAAC,CACG,GAAG,CAAC;EACF,KAAK,EAAE,GAAI;CACZ',
+      names: []
     })
   )
-  let root = parse('a{}\n/*# sourceMappingURL=maps/a.map */', { from })
-  equal(root.source?.input.origin(1, 1), {
+  let root = parse(
+    '* div {\n  color: red;\n  }\n/*# sourceMappingURL=maps/a.map */',
+    { from }
+  )
+  equal(root.source?.input.origin(1, 3, 1, 5), {
     url: pathToFileURL(join(dir, '..', 'test.scss')).href,
     file: join(dir, '..', 'test.scss'),
-    line: 1,
-    column: 1
+    line: 3,
+    column: 4,
+    endLine: 3,
+    endColumn: 7
   })
 })
 
@@ -279,7 +284,9 @@ test('uses current file path for source map', () => {
     url: pathToFileURL(join(__dirname, 'dir', 'test.scss')).href,
     file: join(__dirname, 'dir', 'test.scss'),
     line: 1,
-    column: 1
+    column: 1,
+    endLine: undefined,
+    endColumn: undefined
   })
 })
 
@@ -299,7 +306,9 @@ test('works with non-file sources', () => {
   equal(root.source?.input.origin(1, 1), {
     url: 'http://example.com/test.scss',
     line: 1,
-    column: 1
+    column: 1,
+    endLine: undefined,
+    endColumn: undefined
   })
 })
 

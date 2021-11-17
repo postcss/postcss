@@ -10,52 +10,53 @@ import Node, {
   AnyNode
 } from './node.js'
 import Declaration, { DeclarationProps } from './declaration.js'
-import Root, { RootProps } from './root.js'
+import Container, { ContainerProps } from './container.js'
 import Document, { DocumentProps } from './document.js'
+import Warning, { WarningOptions } from './warning.js'
 import Comment, { CommentProps } from './comment.js'
 import AtRule, { AtRuleProps } from './at-rule.js'
-import Result, { Message } from './result.js'
-import LazyResult from './lazy-result.js'
-import Rule, { RuleProps } from './rule.js'
-import Container, { ContainerProps } from './container.js'
-import Warning, { WarningOptions } from './warning.js'
 import Input, { FilePosition } from './input.js'
+import Result, { Message } from './result.js'
+import Root, { RootProps } from './root.js'
+import Rule, { RuleProps } from './rule.js'
 import CssSyntaxError from './css-syntax-error.js'
 import list, { List } from './list.js'
+import LazyResult from './lazy-result.js'
 import Processor from './processor.js'
 
 export {
-  WarningOptions,
-  FilePosition,
-  Position,
-  Source,
-  ChildNode,
-  AnyNode,
-  Message,
   NodeErrorOptions,
-  NodeProps,
   DeclarationProps,
-  ContainerProps,
-  CommentProps,
-  RuleProps,
-  ChildProps,
-  AtRuleProps,
-  RootProps,
-  DocumentProps,
-  Warning,
   CssSyntaxError,
-  Node,
-  Container,
-  list,
+  ContainerProps,
+  WarningOptions,
+  DocumentProps,
+  FilePosition,
+  CommentProps,
+  AtRuleProps,
   Declaration,
-  Comment,
-  AtRule,
-  Rule,
-  Root,
-  Document,
-  Result,
+  ChildProps,
   LazyResult,
-  Input
+  ChildNode,
+  NodeProps,
+  Processor,
+  RuleProps,
+  RootProps,
+  Container,
+  Position,
+  Document,
+  AnyNode,
+  Warning,
+  Message,
+  Comment,
+  Source,
+  AtRule,
+  Result,
+  Input,
+  Node,
+  list,
+  Rule,
+  Root
 }
 
 export type SourceMap = SourceMapGenerator & {
@@ -221,7 +222,7 @@ export type AcceptedPlugin =
     }
   | Processor
 
-export interface Parser<RootNode = Root> {
+export interface Parser<RootNode = Root | Document> {
   (
     css: string | { toString(): string },
     opts?: Pick<ProcessOptions, 'map' | 'from'>
@@ -245,7 +246,7 @@ export interface Syntax {
   /**
    * Function to generate AST by string.
    */
-  parse?: Parser<Root | Document>
+  parse?: Parser
 
   /**
    * Class to generate string by AST.
@@ -378,7 +379,7 @@ export interface Postcss {
    * root1.append(root2).toResult().css
    * ```
    */
-  parse: Parser
+  parse: Parser<Root>
 
   /**
    * Rehydrate a JSON AST (from `Node#toJSON`) back into the AST classes.
@@ -458,7 +459,7 @@ export interface Postcss {
 }
 
 export const stringify: Stringifier
-export const parse: Parser
+export const parse: Parser<Root>
 export const fromJSON: JSONHydrator
 
 export const comment: Postcss['comment']

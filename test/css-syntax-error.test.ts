@@ -60,12 +60,82 @@ test('saves source', () => {
   equal(error.input, {
     line: error.line,
     column: error.column,
+    source: error.source,
+    endLine: error.endLine,
+    endColumn: error.endColumn,
+  })
+})
+
+test('saves source with ranges', () => {
+  let error = parseError('badword')
+
+  is(error instanceof CssSyntaxError, true)
+  is(error.name, 'CssSyntaxError')
+  is(error.message, '<css input>:1:1: Unknown word')
+  is(error.reason, 'Unknown word')
+  is(error.line, 1)
+  is(error.column, 1)
+  is(error.endLine, 1)
+  is(error.endColumn, 8)
+  is(error.source, 'badword')
+
+  equal(error.input, {
+    line: error.line,
+    column: error.column,
+    endLine: error.endLine,
+    endColumn: error.endColumn,
     source: error.source
   })
 })
 
 test('has stack trace', () => {
-  match(parseError('a {\n  content: "\n}').stack, /css-syntax-error\.test\.ts/)
+  match(parseError('a {\n  content: "\n}').stack,
+    /css-syntax-error\.test\.ts/
+  )
+})
+
+test('saves source with ranges', () => {
+  let error = parseError('badword')
+
+ is(error instanceof CssSyntaxError, true)
+ is(error.name, 'CssSyntaxError')
+ is(error.message, '<css input>:1:1: Unknown word')
+ is(error.reason, 'Unknown word')
+ is(error.line, 1)
+ is(error.column, 1)
+ is(error.endLine, 1)
+ is(error.endColumn, 8)
+ is(error.source, 'badword')
+
+ equal(error.input, {
+    line: error.line,
+    column: error.column,
+    endLine: error.endLine,
+    endColumn: error.endColumn,
+    source: error.source
+  })
+})
+
+test('saves source with ranges', () => {
+  let error = parseError('badword')
+
+ is(error instanceof CssSyntaxError, true)
+ is(error.name, 'CssSyntaxError')
+ is(error.message, '<css input>:1:1: Unknown word')
+ is(error.reason, 'Unknown word')
+ is(error.line, 1)
+ is(error.column, 1)
+ is(error.endLine, 1)
+ is(error.endColumn, 8)
+ is(error.source, 'badword')
+
+ equal(error.input, {
+    line: error.line,
+    column: error.column,
+    endLine: error.endLine,
+    endColumn: error.endColumn,
+    source: error.source
+  })
 })
 
 test('highlights broken line with colors', () => {
@@ -166,7 +236,9 @@ test('uses source map', () => {
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
     column: 1,
-    source: 'a { }\n\nb {\n'
+    source: 'a { }\n\nb {\n',
+    endLine: error.endLine,
+    endColumn: error.endColumn,
   })
 })
 
@@ -193,7 +265,9 @@ test('works with path in sources', () => {
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
     column: 1,
-    source: 'a { }\n\nb {\n'
+    source: 'a { }\n\nb {\n',
+    endLine: error.endLine,
+    endColumn: error.endColumn,
   })
 })
 

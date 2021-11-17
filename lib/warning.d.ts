@@ -12,9 +12,14 @@ export interface WarningOptions {
   word?: string
 
   /**
-   * Index in CSS node string that caused the warning.
+   * Start index, inclusive, in CSS node string that caused the warning.
    */
   index?: number
+
+  /**
+   * End index, exclusive, in CSS node string that caused the warning.
+   */
+  endIndex?: number
 
   /**
    * Name of the plugin that created this warning. `Result#warn` fills
@@ -68,7 +73,7 @@ export default class Warning {
   node: Node
 
   /**
-   * Line in the input file with this warning’s source.
+   * Line for inclusive start position in the input file with this warning’s source.
    *
    * ```js
    * warning.line //=> 5
@@ -77,13 +82,31 @@ export default class Warning {
   line: number
 
   /**
-   * Column in the input file with this warning’s source.
+   * Column for inclusive start position in the input file with this warning’s source.
    *
    * ```js
    * warning.column //=> 6
    * ```
    */
   column: number
+
+  /**
+   * Line for exclusive end position in the input file with this warning’s source.
+   *
+   * ```js
+   * warning.endLine //=> 6
+   * ```
+   */
+  endLine?: number
+
+  /**
+   * Column for exclusive end position in the input file with this warning’s source.
+   *
+   * ```js
+   * warning.endColumn //=> 4
+   * ```
+   */
+  endColumn?: number
 
   /**
    * @param text Warning message.

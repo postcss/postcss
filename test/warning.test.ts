@@ -71,11 +71,13 @@ test('gets position from node', () => {
   is(warning.column, 1)
 })
 
-test('gets position from word', () => {
+test('gets range from word', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { node: root.first, word: 'b' })
   is(warning.line, 1)
   is(warning.column, 3)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 4)
 })
 
 test('gets position from index', () => {
@@ -83,6 +85,15 @@ test('gets position from index', () => {
   let warning = new Warning('text', { node: root.first, index: 2 })
   is(warning.line, 1)
   is(warning.column, 3)
+})
+
+test('gets range from index and endIndex', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', { node: root.first, index: 2, endIndex: 3 })
+  is(warning.line, 1)
+  is(warning.column, 3)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 4)
 })
 
 test.run()

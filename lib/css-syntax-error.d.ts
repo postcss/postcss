@@ -1,6 +1,21 @@
 import { FilePosition } from './input.js'
 
 /**
+ * A position that is part of a range.
+ */
+export interface RangePosition {
+  /**
+   * The line number in the input.
+   */
+  line: number
+
+  /**
+   * The column number in the input.
+   */
+  column: number
+}
+
+/**
  * The CSS parser throws this error for broken CSS.
  *
  * Custom parsers can throw this error for broken custom syntax using
@@ -31,17 +46,21 @@ import { FilePosition } from './input.js'
  */
 export default class CssSyntaxError {
   /**
-   * @param message Error message.
-   * @param line    Source line of the error.
-   * @param column  Source column of the error.
-   * @param source  Source code of the broken file.
-   * @param file    Absolute path to the broken file.
-   * @param plugin  PostCSS plugin name, if error came from plugin.
+   * Instantiates a CSS syntax error. Can be instantiated for a single position
+   * or for a range.
+   * @param message        Error message.
+   * @param lineOrStartPos If for a single position, the line number, or if for
+   *                       a range, the inclusive start position of the error.
+   * @param columnOrEndPos If for a single position, the column number, or if for
+   *                       a range, the exclusive end position of the error.
+   * @param source         Source code of the broken file.
+   * @param file           Absolute path to the broken file.
+   * @param plugin         PostCSS plugin name, if error came from plugin.
    */
   constructor(
     message: string,
-    line?: number,
-    column?: number,
+    lineOrStartPos?: number | RangePosition,
+    columnOrEndPos?: number | RangePosition,
     source?: string,
     file?: string,
     plugin?: string
@@ -120,6 +139,34 @@ export default class CssSyntaxError {
    * If you need the position in the PostCSS input, use `error.input.column`.
    */
   column?: number
+
+  /**
+   * Source line of the error's end, exclusive. Provided if the error pertains
+   * to a range.
+   *
+   * ```js
+   * error.endLine       //=> 3
+   * error.input.endLine //=> 4
+   * ```
+   *
+   * PostCSS will use the input source map to detect the original location.
+   * If you need the position in the PostCSS input, use `error.input.endLine`.
+   */
+  endLine?: number
+
+  /**
+   * Source column of the error's end, exclusive. Provided if the error pertains
+   * to a range.
+   *
+   * ```js
+   * error.endColumn       //=> 1
+   * error.input.endColumn //=> 4
+   * ```
+   *
+   * PostCSS will use the input source map to detect the original location.
+   * If you need the position in the PostCSS input, use `error.input.endColumn`.
+   */
+  endColumn?: number
 
   /**
    * Source code of the broken file.
