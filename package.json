@@ -74,13 +74,13 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^46.1.0",
-    "@size-limit/preset-small-lib": "^6.0.4",
+    "@size-limit/preset-small-lib": "^7.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "check-dts": "^0.6.3",
+    "check-dts": "^0.6.4",
     "clean-publish": "^3.4.3",
     "concat-with-sourcemaps": "^1.1.0",
     "eslint": "^8.2.0",
@@ -94,10 +94,10 @@
     "nanodelay": "^1.0.8",
     "postcss-parser-tests": "^8.3.7",
     "simple-git-hooks": "^2.7.0",
-    "size-limit": "^6.0.4",
+    "size-limit": "^7.0.0",
     "strip-ansi": "^6.0.0",
     "ts-jest": "^27.0.7",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.2"
   },
   "simple-git-hooks": {
     "pre-commit": "./test/version.js"
