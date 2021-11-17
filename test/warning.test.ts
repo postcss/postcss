@@ -69,11 +69,13 @@ it('gets position from node', () => {
   expect(warning.column).toBe(1)
 })
 
-it('gets position from word', () => {
+it('gets range from word', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { node: root.first, word: 'b' })
   expect(warning.line).toBe(1)
   expect(warning.column).toBe(3)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(4)
 })
 
 it('gets position from index', () => {
@@ -81,4 +83,13 @@ it('gets position from index', () => {
   let warning = new Warning('text', { node: root.first, index: 2 })
   expect(warning.line).toBe(1)
   expect(warning.column).toBe(3)
+})
+
+it('gets range from index and endIndex', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', { node: root.first, index: 2, endIndex: 3 })
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(3)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(4)
 })

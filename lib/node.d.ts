@@ -38,6 +38,18 @@ export interface Position {
   line: number
 }
 
+export interface Range {
+  /**
+   * Start position, inclusive.
+   */
+  start: Position
+
+  /**
+   * End position, exclusive.
+   */
+  end: Position
+}
+
 export interface Source {
   /**
    * The file source of the node.
@@ -72,6 +84,11 @@ interface NodeErrorOptions {
    * of error.
    */
   index?: number
+  /**
+   * An ending index inside a node's string that should be highlighted as
+   * source of error.
+   */
+  endIndex?: number
 }
 
 /**
@@ -441,4 +458,21 @@ export default abstract class Node {
    * @return Symbol position in file.
    */
   positionInside(index: number): Position
+
+  /**
+   * Get the position for a word or an index inside the node.
+   *
+   * @param opts Options.
+   * @return Position.
+   */
+  positionBy(opts?: Pick<WarningOptions, 'word' | 'index'>): Position
+
+  /**
+   * Get the range for a word or start and end index inside the node.
+   * The start index is inclusive; the end index is exclusive.
+   *
+   * @param opts Options.
+   * @return Range.
+   */
+  rangeBy(opts?: Pick<WarningOptions, 'word' | 'index' | 'endIndex'>): Range
 }
