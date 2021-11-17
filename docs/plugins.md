@@ -291,6 +291,7 @@ for targeting all button elements.
 * [`postcss-placehold`] makes it easy to drop in placeholder images.
 * [`postcss-resemble-image`] provides a gradient fallback for an image that
 loosely resembles the original.
+* [`postcss-resolve-urls`] resolves relative urls referenced in `url()`s
 * [`postcss-responsive-images`] adds stylesheets for making
   your images responsive.
 * [`postcss-sprites`] generates CSS sprites from stylesheets.
@@ -876,3 +877,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-variable-compress`]:            https://github.com/navanshu/postcss-variable-compress
 [`postcss-unit-processor`]:               https://github.com/hex-ci/postcss-unit-processor
 [`postcss-prefix-hover`]:                 https://github.com/larsmunkholm/postcss-prefix-hover
+[`postcss-resolve-urls`]:                 https://github.com/bognarlaszlo/postcss-resolve-urls
