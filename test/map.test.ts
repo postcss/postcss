@@ -642,14 +642,14 @@ it('generates correct inline map with empty processor', () => {
 })
 
 it('generates correct inline map with empty processor and multiple comments', () => {
-  let css = 'a {}\n/*# sourceMappingURL=a.css.map */\nb {}\n/*# sourceMappingURL=b.css.map */'
+  let css = 'a {}/*# sourceMappingURL=a.css.map */\n/*# sourceMappingURL=b.css.map */\nb {}\n/*# sourceMappingURL=c.css.map */'
   let processor = new Processor()
   let result = postcss(processor).process(css, {
     map: true
   })
 
   expect(result.css).toMatch(
-    /a {}\s\nb {}\s\n\/\*# sourceMappingURL=/
+    /a {}\nb {}\n\/\*# sourceMappingURL=/
   )
 })
 
