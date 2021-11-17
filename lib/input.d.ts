@@ -13,14 +13,24 @@ export interface FilePosition {
   file?: string
 
   /**
-   * Line in source file.
+   * Line of inclusive start position in source file.
    */
   line: number
 
   /**
-   * Column in source file.
+   * Column of inclusive start position in source file.
    */
   column: number
+
+  /**
+   * Line of exclusive end position in source file.
+   */
+  endLine?: number
+
+  /**
+   * Column of exclusive end position in source file.
+   */
+  endColumn?: number
 
   /**
    * Source code.
@@ -108,18 +118,28 @@ export default class Input {
   /**
    * Reads the input source map and returns a symbol position
    * in the input source (e.g., in a Sass file that was compiled
-   * to CSS before being passed to PostCSS).
+   * to CSS before being passed to PostCSS). Optionally takes an
+   * end position, exclusive.
    *
    * ```js
    * root.source.input.origin(1, 1) //=> { file: 'a.css', line: 3, column: 1 }
+   * root.source.input.origin(1, 1, 1, 4)
+   * //=> { file: 'a.css', line: 3, column: 1, endLine: 3, endColumn: 4 }
    * ```
    *
-   * @param line   Line in input CSS.
-   * @param column Column in input CSS.
+   * @param line      Line for inclusive start position in input CSS.
+   * @param column    Column for inclusive start position in input CSS.
+   * @param endLine   Line for exclusive end position in input CSS.
+   * @param endColumn Column for exclusive end position in input CSS.
    *
    * @return Position in input source.
    */
-  origin(line: number, column: number): FilePosition | false
+  origin(
+    line: number,
+    column: number,
+    endLine?: number,
+    endColumn?: number
+  ): FilePosition | false
 
   /**
    * Converts source offset to line and column.

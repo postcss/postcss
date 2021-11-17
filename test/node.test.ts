@@ -409,3 +409,37 @@ it('positionInside() returns position when node contains newlines', () => {
   let one = a.first as Declaration
   expect(one.positionInside(10)).toEqual({ line: 3, column: 4 })
 })
+
+it('positionBy() returns position for word', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  expect(one.positionBy({ word: 'one' })).toEqual({ line: 1, column: 6 })
+})
+
+it('positionBy() returns position for index', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  expect(one.positionBy({ index: 1 })).toEqual({ line: 1, column: 7 })
+})
+
+it('rangeBy() returns range for word', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  expect(one.rangeBy({ word: 'one' })).toEqual({
+    start: { line: 1, column: 6 },
+    end: { line: 1, column: 9 }
+  })
+})
+
+it('rangeBy() returns range for index and endIndex', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  expect(one.rangeBy({ index: 1, endIndex: 3 })).toEqual({
+    start: { line: 1, column: 7 },
+    end: { line: 1, column: 9 }
+  })
+})

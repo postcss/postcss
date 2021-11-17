@@ -62,6 +62,28 @@ it('saves source', () => {
   })
 })
 
+it('saves source with ranges', () => {
+  let error = parseError('badword')
+
+  expect(error instanceof CssSyntaxError).toBe(true)
+  expect(error.name).toBe('CssSyntaxError')
+  expect(error.message).toBe('<css input>:1:1: Unknown word')
+  expect(error.reason).toBe('Unknown word')
+  expect(error.line).toBe(1)
+  expect(error.column).toBe(1)
+  expect(error.endLine).toBe(1)
+  expect(error.endColumn).toBe(8)
+  expect(error.source).toBe('badword')
+
+  expect(error.input).toEqual({
+    line: error.line,
+    column: error.column,
+    endLine: error.endLine,
+    endColumn: error.endColumn,
+    source: error.source
+  })
+})
+
 it('has stack trace', () => {
   expect(parseError('a {\n  content: "\n}').stack).toMatch(
     /css-syntax-error\.test\.ts/
