@@ -222,7 +222,7 @@ export type AcceptedPlugin =
     }
   | Processor
 
-export interface Parser<RootNode = Root> {
+export interface Parser<RootNode = Root | Document> {
   (
     css: string | { toString(): string },
     opts?: Pick<ProcessOptions, 'map' | 'from'>
@@ -246,7 +246,7 @@ export interface Syntax {
   /**
    * Function to generate AST by string.
    */
-  parse?: Parser<Root | Document>
+  parse?: Parser
 
   /**
    * Class to generate string by AST.
@@ -379,7 +379,7 @@ export interface Postcss {
    * root1.append(root2).toResult().css
    * ```
    */
-  parse: Parser
+  parse: Parser<Root>
 
   /**
    * Rehydrate a JSON AST (from `Node#toJSON`) back into the AST classes.
@@ -459,7 +459,7 @@ export interface Postcss {
 }
 
 export const stringify: Stringifier
-export const parse: Parser
+export const parse: Parser<Root>
 export const fromJSON: JSONHydrator
 
 export const comment: Postcss['comment']
