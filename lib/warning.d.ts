@@ -22,6 +22,14 @@ export interface WarningOptions {
   endIndex?: number
 
   /**
+   * If true, will try to infer a range for the warning using the node's
+   * start and end positions. If false or undefined, the warning will
+   * only use a range if either `word` or both `index` and `endIndex`
+   * are provided. Otherwise, a single position will be used.
+   */
+  inferRange?: boolean
+
+  /**
    * Name of the plugin that created this warning. `Result#warn` fills
    * this property automatically.
    */
