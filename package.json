@@ -54,8 +54,8 @@
     "transpiler"
   ],
   "scripts": {
-    "test": "c8 yarn unit && eslint . && ./test/version.js && check-dts && ./test/integration.js && size-limit",
-    "unit": "uvu -r tsm test '\\.test\\.(ts|js)$'"
+    "test": "c8 yarn unit && eslint . && node ./test/version.js && check-dts && node ./test/integration.js && size-limit",
+    "unit": "ts-node -T node_modules/uvu/bin.js -r esm test '\\.test\\.(ts|js)$'"
   },
   "funding": {
     "type": "opencollective",
@@ -75,13 +75,13 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^46.1.0",
-    "@size-limit/preset-small-lib": "^6.0.4",
+    "@size-limit/preset-small-lib": "^7.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "c8": "^7.10.0",
-    "check-dts": "^0.6.3",
+    "check-dts": "^0.6.4",
     "clean-publish": "^3.4.3",
     "concat-with-sourcemaps": "^1.1.0",
     "eslint": "^8.2.0",
@@ -90,14 +90,15 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^5.1.1",
+    "esm": "^3.2.25",
     "fs-extra": "^10.0.0",
     "nanodelay": "^1.0.8",
     "postcss-parser-tests": "^8.3.7",
     "simple-git-hooks": "^2.7.0",
-    "size-limit": "^6.0.4",
+    "size-limit": "^7.0.0",
     "strip-ansi": "^6.0.0",
-    "tsm": "^2.1.4",
-    "typescript": "^4.4.4",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2",
     "uvu": "^0.5.2"
   },
   "c8": {
