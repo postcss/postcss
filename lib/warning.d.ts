@@ -1,3 +1,4 @@
+import { RangePosition } from './css-syntax-error.js'
 import Node from './node.js'
 
 export interface WarningOptions {
@@ -22,12 +23,14 @@ export interface WarningOptions {
   endIndex?: number
 
   /**
-   * If true, will try to infer a range for the warning using the node's
-   * start and end positions. If false or undefined, the warning will
-   * only use a range if either `word` or both `index` and `endIndex`
-   * are provided. Otherwise, a single position will be used.
+   * Start position, inclusive, in CSS node string that caused the warning.
    */
-  inferRange?: boolean
+  start?: RangePosition
+
+  /**
+   * End position, exclusive, in CSS node string that caused the warning.
+   */
+  end?: RangePosition
 
   /**
    * Name of the plugin that created this warning. `Result#warn` fills

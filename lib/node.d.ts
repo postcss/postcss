@@ -56,11 +56,11 @@ export interface Source {
    */
   input: Input
   /**
-   * The starting position of the node’s source.
+   * The inclusive starting position of the node’s source.
    */
   start?: Position
   /**
-   * The ending position of the node's source.
+   * The inclusive ending position of the node's source.
    */
   end?: Position
 }

@@ -62,11 +62,13 @@ it('has line and column is undefined by default', () => {
   expect(warning.column).toBeUndefined()
 })
 
-it('gets position from node', () => {
+it('gets range from node', () => {
   let root = parse('a{}')
   let warning = new Warning('text', { node: root.first })
   expect(warning.line).toBe(1)
   expect(warning.column).toBe(1)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(4)
 })
 
 it('gets range from word', () => {
@@ -78,16 +80,73 @@ it('gets range from word', () => {
   expect(warning.endColumn).toBe(4)
 })
 
-it('gets position from index', () => {
+it('gets range from index', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { node: root.first, index: 2 })
   expect(warning.line).toBe(1)
   expect(warning.column).toBe(3)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(4)
 })
 
 it('gets range from index and endIndex', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { node: root.first, index: 2, endIndex: 3 })
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(3)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(4)
+})
+
+it('gets range from start', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', {
+    node: root.first,
+    start: { line: 1, column: 3 }
+  })
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(3)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(6)
+})
+
+it('gets range from end', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', {
+    node: root.first,
+    end: { line: 1, column: 3 }
+  })
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(1)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(3)
+})
+
+it('gets range from start and end', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', {
+    node: root.first,
+    start: { line: 1, column: 3 },
+    end: { line: 1, column: 4 }
+  })
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(3)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(4)
+})
+
+it('always returns exclusive ends', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', { node: root.first, index: 1, endIndex: 1 })
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(2)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(3)
+})
+
+it('always returns valid ranges', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', { node: root.first, index: 2, endIndex: 1 })
   expect(warning.line).toBe(1)
   expect(warning.column).toBe(3)
   expect(warning.endLine).toBe(1)
