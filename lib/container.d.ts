@@ -181,10 +181,10 @@ export default abstract class Container<
    */
   walkRules(
     selectorFilter: string | RegExp,
-    callback: (atRule: Rule, index: number) => false | void
+    callback: (rule: Rule, index: number) => false | void
   ): false | undefined
   walkRules(
-    callback: (atRule: Rule, index: number) => false | void
+    callback: (rule: Rule, index: number) => false | void
   ): false | undefined
 
   /**
