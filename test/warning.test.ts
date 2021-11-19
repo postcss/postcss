@@ -60,6 +60,8 @@ it('has line and column is undefined by default', () => {
   let warning = new Warning('text')
   expect(warning.line).toBeUndefined()
   expect(warning.column).toBeUndefined()
+  expect(warning.endLine).toBeUndefined()
+  expect(warning.endColumn).toBeUndefined()
 })
 
 it('gets range from node', () => {
@@ -69,6 +71,16 @@ it('gets range from node', () => {
   expect(warning.column).toBe(1)
   expect(warning.endLine).toBe(1)
   expect(warning.endColumn).toBe(4)
+})
+
+it('gets range from node without end', () => {
+  let root = parse('a{}')
+  root.first!.source!.end = undefined
+  let warning = new Warning('text', { node: root.first })
+  expect(warning.line).toBe(1)
+  expect(warning.column).toBe(1)
+  expect(warning.endLine).toBe(1)
+  expect(warning.endColumn).toBe(2)
 })
 
 it('gets range from word', () => {
