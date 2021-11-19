@@ -54,7 +54,7 @@
     "transpiler"
   ],
   "scripts": {
-    "test": "jest --coverage && eslint . && ./test/version.js && check-dts && ./test/integration.js && size-limit"
+    "test": "jest --coverage && eslint . && node ./test/version.js && check-dts && node ./test/integration.js && size-limit"
   },
   "funding": {
     "type": "opencollective",
