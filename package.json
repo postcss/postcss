@@ -55,7 +55,7 @@
   ],
   "scripts": {
     "test": "c8 yarn unit && eslint . && node ./test/version.js && check-dts && node ./test/integration.js && size-limit",
-    "unit": "ts-node -T node_modules/uvu/bin.js -r esm test '\\.test\\.(ts|js)$'"
+    "unit": "uvu -r ts-node/register/transpile-only test '\\.test\\.(ts|js)$'"
   },
   "funding": {
     "type": "opencollective",
@@ -90,7 +90,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^5.1.1",
-    "esm": "^3.2.25",
     "fs-extra": "^10.0.0",
     "nanodelay": "^1.0.8",
     "postcss-parser-tests": "^8.3.7",
