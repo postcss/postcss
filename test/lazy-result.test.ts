@@ -1,66 +1,73 @@
 import mozilla from 'source-map-js'
+import { test } from 'uvu'
+import { is, equal, type } from 'uvu/assert'
 
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'
 
 let processor = new Processor()
 
-it('contains AST', () => {
+test('contains AST', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(result.root.type).toBe('root')
+  is(result.root.type, 'root')
 })
 
-it('will stringify css', () => {
+test('will stringify css', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(result.css).toBe('a {}')
+  is(result.css, 'a {}')
 })
 
-it('stringifies css', () => {
+test('stringifies css', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(`${result}`).toEqual(result.css)
+  is(`${result}`, result.css)
 })
 
-it('has content alias for css', () => {
+test('has content alias for css', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(result.content).toBe('a {}')
+  is(result.content, 'a {}')
 })
 
-it('has map only if necessary', () => {
+test('has map only if necessary', () => {
   let result1 = new LazyResult(processor, '', {})
-  expect(result1.map).toBeUndefined()
+  type(result1.map, 'undefined')
 
   let result2 = new LazyResult(processor, '', {})
-  expect(result2.map).toBeUndefined()
+  type(result2.map, 'undefined')
 
   let result3 = new LazyResult(processor, '', { map: { inline: false } })
-  expect(result3.map instanceof mozilla.SourceMapGenerator).toBe(true)
+  is(result3.map instanceof mozilla.SourceMapGenerator, true)
 })
 
-it('contains options', () => {
+test('contains options', () => {
   let result = new LazyResult(processor, 'a {}', { to: 'a.css' })
-  expect(result.opts).toEqual({ to: 'a.css' })
+  equal(result.opts, { to: 'a.css' })
 })
 
-it('contains warnings', () => {
+test('contains warnings', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(result.warnings()).toEqual([])
+  equal(result.warnings(), [])
 })
 
-it('contains messages', () => {
+test('contains messages', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(result.messages).toEqual([])
+  equal(result.messages, [])
 })
 
-it('executes on finally callback', () => {
-  let mockCallback = jest.fn()
+test('executes on finally callback', () => {
+  let callbackHaveBeenCalled = 0
+  let mockCallback = (): void => {
+    callbackHaveBeenCalled++
+  }
   return new LazyResult(processor, 'a {}', {})
     .finally(mockCallback)
     .then(() => {
-      expect(mockCallback).toHaveBeenCalledTimes(1)
+      is(callbackHaveBeenCalled, 1)
     })
 })
 
-it('prints its object type', () => {
+test('prints its object type', () => {
   let result = new LazyResult(processor, 'a {}', {})
-  expect(Object.prototype.toString.call(result)).toBe('[object LazyResult]')
+  is(Object.prototype.toString.call(result), '[object LazyResult]')
 })
+
+test.run()

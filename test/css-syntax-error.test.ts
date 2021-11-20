@@ -3,6 +3,8 @@ import { join, resolve as pathResolve } from 'path'
 import { pathToFileURL } from 'url'
 import stripAnsi from 'strip-ansi'
 import Concat from 'concat-with-sourcemaps'
+import { test } from 'uvu'
+import { is, equal, match, type } from 'uvu/assert'
 
 import postcss, {
   ProcessOptions,
@@ -44,38 +46,40 @@ function parseError(
   throw new Error('Error was not thrown')
 }
 
-it('saves source', () => {
+test('saves source', () => {
   let error = parseError('a {\n  content: "\n}')
 
-  expect(error instanceof CssSyntaxError).toBe(true)
-  expect(error.name).toBe('CssSyntaxError')
-  expect(error.message).toBe('<css input>:2:12: Unclosed string')
-  expect(error.reason).toBe('Unclosed string')
-  expect(error.line).toBe(2)
-  expect(error.column).toBe(12)
-  expect(error.source).toBe('a {\n  content: "\n}')
+  is(error instanceof CssSyntaxError, true)
+  is(error.name, 'CssSyntaxError')
+  is(error.message, '<css input>:2:12: Unclosed string')
+  is(error.reason, 'Unclosed string')
+  is(error.line, 2)
+  is(error.column, 12)
+  is(error.source, 'a {\n  content: "\n}')
 
-  expect(error.input).toEqual({
+  equal(error.input, {
     line: error.line,
     column: error.column,
-    source: error.source
+    source: error.source,
+    endLine: error.endLine,
+    endColumn: error.endColumn,
   })
 })
 
-it('saves source with ranges', () => {
+test('saves source with ranges', () => {
   let error = parseError('badword')
 
-  expect(error instanceof CssSyntaxError).toBe(true)
-  expect(error.name).toBe('CssSyntaxError')
-  expect(error.message).toBe('<css input>:1:1: Unknown word')
-  expect(error.reason).toBe('Unknown word')
-  expect(error.line).toBe(1)
-  expect(error.column).toBe(1)
-  expect(error.endLine).toBe(1)
-  expect(error.endColumn).toBe(8)
-  expect(error.source).toBe('badword')
+  is(error instanceof CssSyntaxError, true)
+  is(error.name, 'CssSyntaxError')
+  is(error.message, '<css input>:1:1: Unknown word')
+  is(error.reason, 'Unknown word')
+  is(error.line, 1)
+  is(error.column, 1)
+  is(error.endLine, 1)
+  is(error.endColumn, 8)
+  is(error.source, 'badword')
 
-  expect(error.input).toEqual({
+  equal(error.input, {
     line: error.line,
     column: error.column,
     endLine: error.endLine,
@@ -84,14 +88,59 @@ it('saves source with ranges', () => {
   })
 })
 
-it('has stack trace', () => {
-  expect(parseError('a {\n  content: "\n}').stack).toMatch(
+test('has stack trace', () => {
+  match(parseError('a {\n  content: "\n}').stack,
     /css-syntax-error\.test\.ts/
   )
 })
 
-it('highlights broken line with colors', () => {
-  expect(parseError('#a .b c() {').showSourceCode(true)).toEqual(
+test('saves source with ranges', () => {
+  let error = parseError('badword')
+
+ is(error instanceof CssSyntaxError, true)
+ is(error.name, 'CssSyntaxError')
+ is(error.message, '<css input>:1:1: Unknown word')
+ is(error.reason, 'Unknown word')
+ is(error.line, 1)
+ is(error.column, 1)
+ is(error.endLine, 1)
+ is(error.endColumn, 8)
+ is(error.source, 'badword')
+
+ equal(error.input, {
+    line: error.line,
+    column: error.column,
+    endLine: error.endLine,
+    endColumn: error.endColumn,
+    source: error.source
+  })
+})
+
+test('saves source with ranges', () => {
+  let error = parseError('badword')
+
+ is(error instanceof CssSyntaxError, true)
+ is(error.name, 'CssSyntaxError')
+ is(error.message, '<css input>:1:1: Unknown word')
+ is(error.reason, 'Unknown word')
+ is(error.line, 1)
+ is(error.column, 1)
+ is(error.endLine, 1)
+ is(error.endColumn, 8)
+ is(error.source, 'badword')
+
+ equal(error.input, {
+    line: error.line,
+    column: error.column,
+    endLine: error.endLine,
+    endColumn: error.endColumn,
+    source: error.source
+  })
+})
+
+test('highlights broken line with colors', () => {
+  is(
+    parseError('#a .b c() {').showSourceCode(true),
     pico.bold(pico.red('>')) +
       pico.gray(' 1 | ') +
       pico.magenta('#a') +
@@ -108,16 +157,16 @@ it('highlights broken line with colors', () => {
   )
 })
 
-it('highlights broken line', () => {
-  expect(parseError('a {\n  content: "\n}').showSourceCode(false)).toEqual(
+test('highlights broken line', () => {
+  is(
+    parseError('a {\n  content: "\n}').showSourceCode(false),
     '  1 | a {\n' + '> 2 |   content: "\n' + '    |            ^\n' + '  3 | }'
   )
 })
 
-it('highlights broken line, when indented with tabs', () => {
-  expect(
-    parseError('a {\n\t \t  content:\t"\n}').showSourceCode(false)
-  ).toEqual(
+test('highlights broken line, when indented with tabs', () => {
+  is(
+    parseError('a {\n\t \t  content:\t"\n}').showSourceCode(false),
     '  1 | a {\n' +
       '> 2 | \t \t  content:\t"\n' +
       '    | \t \t          \t^\n' +
@@ -125,15 +174,14 @@ it('highlights broken line, when indented with tabs', () => {
   )
 })
 
-it('highlights small code example', () => {
-  expect(parseError('a {').showSourceCode(false)).toEqual(
-    '> 1 | a {\n' + '    | ^'
-  )
+test('highlights small code example', () => {
+  is(parseError('a {').showSourceCode(false), '> 1 | a {\n' + '    | ^')
 })
 
-it('add leading space for line numbers', () => {
+test('add leading space for line numbers', () => {
   let css = '\n\n\n\n\n\n\na {\n  content: "\n}\n\n\n'
-  expect(parseError(css).showSourceCode(false)).toEqual(
+  is(
+    parseError(css).showSourceCode(false),
     '   7 | \n' +
       '   8 | a {\n' +
       '>  9 |   content: "\n' +
@@ -143,8 +191,9 @@ it('add leading space for line numbers', () => {
   )
 })
 
-it('prints with highlight', () => {
-  expect(stripAnsi(parseError('a {').toString())).toEqual(
+test('prints with highlight', () => {
+  is(
+    stripAnsi(parseError('a {').toString()),
     'CssSyntaxError: <css input>:1:1: Unclosed block\n' +
       '\n' +
       '> 1 | a {\n' +
@@ -152,21 +201,19 @@ it('prints with highlight', () => {
   )
 })
 
-it('misses highlights without source content', () => {
+test('misses highlights without source content', () => {
   let error = parseError('a {')
   error.source = undefined
-  expect(error.toString()).toBe(
-    'CssSyntaxError: <css input>:1:1: Unclosed block'
-  )
+  is(error.toString(), 'CssSyntaxError: <css input>:1:1: Unclosed block')
 })
 
-it('misses position without source', () => {
+test('misses position without source', () => {
   let decl = postcss.decl({ prop: 'color', value: 'black' })
   let error = decl.error('Test')
-  expect(error.toString()).toBe('CssSyntaxError: <css input>: Test')
+  is(error.toString(), 'CssSyntaxError: <css input>: Test')
 })
 
-it('uses source map', () => {
+test('uses source map', () => {
   function urlOf(file: string): string {
     return pathToFileURL(join(__dirname, file)).toString()
   }
@@ -180,20 +227,22 @@ it('uses source map', () => {
     map: { prev: concat.sourceMap }
   })
 
-  expect(error.file).toEqual(join(__dirname, 'b.css'))
-  expect(error.line).toBe(2)
-  expect(error.source).toBeUndefined()
+  is(error.file, join(__dirname, 'b.css'))
+  is(error.line, 2)
+  type(error.source, 'undefined')
 
-  expect(error.input).toEqual({
+  equal(error.input, {
     url: urlOf(join('build', 'all.css')),
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
     column: 1,
-    source: 'a { }\n\nb {\n'
+    source: 'a { }\n\nb {\n',
+    endLine: error.endLine,
+    endColumn: error.endColumn,
   })
 })
 
-it('works with path in sources', () => {
+test('works with path in sources', () => {
   function pathOf(file: string): string {
     return join(__dirname, file)
   }
@@ -207,20 +256,22 @@ it('works with path in sources', () => {
     map: { prev: concat.sourceMap }
   })
 
-  expect(error.file).toEqual(join(__dirname, 'b.css'))
-  expect(error.line).toBe(2)
-  expect(error.source).toBeUndefined()
+  is(error.file, join(__dirname, 'b.css'))
+  is(error.line, 2)
+  type(error.source, 'undefined')
 
-  expect(error.input).toEqual({
+  equal(error.input, {
     url: pathToFileURL(pathOf(join('build', 'all.css'))).toString(),
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
     column: 1,
-    source: 'a { }\n\nb {\n'
+    source: 'a { }\n\nb {\n',
+    endLine: error.endLine,
+    endColumn: error.endColumn,
   })
 })
 
-it('shows origin source', () => {
+test('shows origin source', () => {
   let input = postcss([() => {}]).process('a{}', {
     from: '/a.css',
     to: '/b.css',
@@ -230,10 +281,10 @@ it('shows origin source', () => {
     from: '/b.css',
     map: { prev: input.map }
   })
-  expect(error.source).toBe('a{}')
+  is(error.source, 'a{}')
 })
 
-it('does not uses wrong source map', () => {
+test('does not uses wrong source map', () => {
   let error = parseError('a { }\nb {', {
     from: 'build/all.css',
     map: {
@@ -245,19 +296,17 @@ it('does not uses wrong source map', () => {
       }
     }
   })
-  expect(error.file).toEqual(pathResolve('build/all.css'))
+  is(error.file, pathResolve('build/all.css'))
 })
 
-it('set source plugin', () => {
+test('set source plugin', () => {
   let a = postcss.parse('a{}').first as Rule
   let error = a.error('Error', { plugin: 'PL' })
-  expect(error.plugin).toBe('PL')
-  expect(error.toString()).toMatch(
-    /^CssSyntaxError: PL: <css input>:1:1: Error/
-  )
+  is(error.plugin, 'PL')
+  match(error.toString(), /^CssSyntaxError: PL: <css input>:1:1: Error/)
 })
 
-it('set source plugin automatically', async () => {
+test('set source plugin automatically', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'test-plugin',
     Once(css) {
@@ -270,11 +319,11 @@ it('set source plugin automatically', async () => {
   let error = await catchError(() =>
     postcss([plugin]).process('a{}', { from: undefined })
   )
-  expect(error.plugin).toBe('test-plugin')
-  expect(error.toString()).toMatch(/test-plugin/)
+  is(error.plugin, 'test-plugin')
+  match(error.toString(), /test-plugin/)
 })
 
-it('set plugin automatically in async', async () => {
+test('set plugin automatically in async', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'async-plugin',
     Once(css) {
@@ -289,5 +338,7 @@ it('set plugin automatically in async', async () => {
   let error = await catchError(() =>
     postcss([plugin]).process('a{}', { from: undefined })
   )
-  expect(error.plugin).toBe('async-plugin')
+  is(error.plugin, 'async-plugin')
 })
+
+test.run()

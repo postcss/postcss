@@ -1,5 +1,7 @@
 import { resolve, basename } from 'path'
 import { delay } from 'nanodelay'
+import { test } from 'uvu'
+import { is, type, equal, throws } from 'uvu/assert'
 
 import postcss, {
   Container,
@@ -250,40 +252,39 @@ let postcssAlias = createPlugin(() => {
   }
 })
 
-it('works classic plugin replace-color', async () => {
+test('works classic plugin replace-color', async () => {
   let { css } = await postcss([replaceColorGreenClassic]).process(
     '.a{ color: red; } ' + '.b{ will-change: transform; }',
     {
       from: 'a.css'
     }
   )
-  expect(css).toEqual('.a{ color: green; } ' + '.b{ will-change: transform; }')
+  is(css, '.a{ color: green; } ' + '.b{ will-change: transform; }')
 })
 
-it('works visitor plugin will-change', async () => {
+test('works visitor plugin will-change', async () => {
   let { css } = postcss([willChangeVisitor]).process(
     '.foo { will-change: transform; }',
     { from: 'a.css' }
   )
-  expect(css).toBe(
-    '.foo { backface-visibility: hidden; will-change: transform; }'
-  )
+  is(css, '.foo { backface-visibility: hidden; will-change: transform; }')
 })
 
-it('works visitor plugin add-prop', async () => {
+test('works visitor plugin add-prop', async () => {
   let { css } = await postcss([addPropsVisitor]).process(
     '.a{ color: red; } .b{ will-change: transform; }',
     {
       from: 'a.css'
     }
   )
-  expect(css).toEqual(
+  is(
+    css,
     '.a{ will-change: transform; color: red; } ' +
       '.b{ will-change: transform; }'
   )
 })
 
-it('works visitor plugin add-prop in document with single root', async () => {
+test('works visitor plugin add-prop in document with single root', async () => {
   let document = postcss.document({
     nodes: [postcss.parse('.a{ color: red; } .b{ will-change: transform; }')]
   })
@@ -291,13 +292,14 @@ it('works visitor plugin add-prop in document with single root', async () => {
   let { css } = await postcss([addPropsVisitor]).process(document, {
     from: 'a.css'
   })
-  expect(css).toEqual(
+  is(
+    css,
     '.a{ will-change: transform; color: red; } ' +
       '.b{ will-change: transform; }'
   )
 })
 
-it('works visitor plugin add-prop in document with two roots', async () => {
+test('works visitor plugin add-prop in document with two roots', async () => {
   let document = postcss.document({
     nodes: [
       postcss.parse('.a{ color: red; }'),
@@ -308,18 +310,18 @@ it('works visitor plugin add-prop in document with two roots', async () => {
   let { css } = await postcss([addPropsVisitor]).process(document, {
     from: 'a.css'
   })
-  expect(css).toEqual('.a{ color: red; }' + '.b{ will-change: transform; }')
+  is(css, '.a{ color: red; }' + '.b{ will-change: transform; }')
 })
 
-it('works with at-rule params', () => {
+test('works with at-rule params', () => {
   let { css } = postcss([replacePrintToMobile, replaceScreenToPrint]).process(
     '@media (screen) {}',
     { from: 'a.css' }
   )
-  expect(css).toBe('@media (mobile) {}')
+  is(css, '@media (mobile) {}')
 })
 
-it('wraps node to proxies', () => {
+test('wraps node to proxies', () => {
   let proxy: any
   let root: Root | undefined
   postcss({
@@ -333,16 +335,22 @@ it('wraps node to proxies', () => {
   }).process('a{color:black}', { from: 'a.css' }).css
   if (!root) throw new Error('Nodes were not catched')
   let rule = root.first as Rule
-  expect(proxy.proxyOf).toBe(rule)
-  expect(proxy.root().proxyOf).toBe(rule.root())
-  expect(proxy.nodes[0].proxyOf).toBe(rule.first)
-  expect(proxy.first.proxyOf).toBe(rule.first)
-  expect(proxy.unknown).toBeUndefined()
-  expect(proxy.some((decl: Declaration) => decl.prop === 'color')).toBe(true)
-  expect(proxy.every((decl: Declaration) => decl.prop === 'color')).toBe(true)
+  equal(proxy.proxyOf, rule)
+  equal(proxy.root().proxyOf, rule.root())
+  equal(proxy.nodes[0].proxyOf, rule.first)
+  equal(proxy.first.proxyOf, rule.first)
+  type(proxy.unknown, 'undefined')
+  is(
+    proxy.some((decl: Declaration) => decl.prop === 'color'),
+    true
+  )
+  is(
+    proxy.every((decl: Declaration) => decl.prop === 'color'),
+    true
+  )
   let props: string[] = []
   proxy.walkDecls((decl: Declaration) => props.push(decl.prop))
-  expect(props).toEqual(['color'])
+  equal(props, ['color'])
 })
 
 const cssThree = '.a{ color: red; } .b{ will-change: transform; }'
@@ -355,22 +363,22 @@ const expectedThree =
   '} ' +
   '.b{ backface-visibility: hidden; will-change: transform; }'
 
-it('work of three plug-ins; sequence 1', async () => {
+test('work of three plug-ins; sequence 1', async () => {
   let { css } = await postcss([
     replaceColorGreenClassic,
     willChangeVisitor,
     addPropsVisitor
   ]).process(cssThree, { from: 'a.css' })
-  expect(css).toEqual(expectedThree)
+  is(css, expectedThree)
 })
 
-it('work of three plug-ins; sequence 2', async () => {
+test('work of three plug-ins; sequence 2', async () => {
   let { css } = await postcss([
     addPropsVisitor,
     replaceColorGreenClassic,
     willChangeVisitor
   ]).process(cssThree, { from: 'a.css' })
-  expect(css).toEqual(expectedThree)
+  is(css, expectedThree)
 })
 
 const cssThreeDocument = postcss.document({
@@ -384,53 +392,53 @@ const expectedThreeDocument =
   '.a{ color: green; }' +
   '.b{ backface-visibility: hidden; will-change: transform; }'
 
-it('work of three plug-ins in a document; sequence 1', async () => {
+test('work of three plug-ins in a document; sequence 1', async () => {
   let { css } = await postcss([
     replaceColorGreenClassic,
     willChangeVisitor,
     addPropsVisitor
   ]).process(cssThreeDocument, { from: 'a.css' })
-  expect(css).toEqual(expectedThreeDocument)
+  is(css, expectedThreeDocument)
 })
 
-it('work of three plug-ins in a document; sequence 2', async () => {
+test('work of three plug-ins in a document; sequence 2', async () => {
   let { css } = await postcss([
     addPropsVisitor,
     replaceColorGreenClassic,
     willChangeVisitor
   ]).process(cssThreeDocument, { from: 'a.css' })
-  expect(css).toEqual(expectedThreeDocument)
+  is(css, expectedThreeDocument)
 })
 
 const cssThroughProps = '.a{color: yellow;}'
 const expectedThroughProps = '.a{color: red;}'
 
-it('change in node values through props; sequence 1', async () => {
+test('change in node values through props; sequence 1', async () => {
   let { css } = await postcss([
     replaceGreenToRed,
     replaceAllButRedToGreen
   ]).process(cssThroughProps, { from: 'a.css' })
-  expect(css).toEqual(expectedThroughProps)
+  is(css, expectedThroughProps)
 })
 
-it('change in node values through props; sequence 2', async () => {
+test('change in node values through props; sequence 2', async () => {
   let { css } = await postcss([
     replaceAllButRedToGreen,
     replaceGreenToRed
   ]).process(cssThroughProps, { from: 'a.css' })
-  expect(css).toEqual(expectedThroughProps)
+  is(css, expectedThroughProps)
 })
 
-it('works visitor plugin postcss-focus', async () => {
+test('works visitor plugin postcss-focus', async () => {
   let input = '*:focus { outline: 0; }.button:hover { background: red; }'
   let expected =
     '*:focus { outline: 0; }' +
     '.button:hover, .button:focus { background: red; }'
   let { css } = await postcss([postcssFocus]).process(input, { from: 'a.css' })
-  expect(css).toEqual(expected)
+  is(css, expected)
 })
 
-it('works visitor plugin hidden', async () => {
+test('works visitor plugin hidden', async () => {
   let input = 'h2{' + 'display: hidden;' + '}'
 
   let expected =
@@ -452,7 +460,7 @@ it('works visitor plugin hidden', async () => {
     '}'
 
   let { css } = await postcss([hidden]).process(input, { from: 'a.css' })
-  expect(css).toEqual(expected)
+  is(css, expected)
 })
 
 let cssFocusHidden =
@@ -484,30 +492,30 @@ let expectedFocusHidden =
   'clear: both;' +
   '}'
 
-it('works visitor plugins postcss-focus and hidden; sequence 1', async () => {
+test('works visitor plugins postcss-focus and hidden; sequence 1', async () => {
   let { css } = await postcss([hidden, postcssFocus]).process(cssFocusHidden, {
     from: 'a.css'
   })
-  expect(css).toEqual(expectedFocusHidden)
+  is(css, expectedFocusHidden)
 })
 
-it('works visitor plugins postcss-focus and hidden; sequence 2', async () => {
+test('works visitor plugins postcss-focus and hidden; sequence 2', async () => {
   let { css } = await postcss([postcssFocus, hidden]).process(cssFocusHidden, {
     from: 'a.css'
   })
-  expect(css).toEqual(expectedFocusHidden)
+  is(css, expectedFocusHidden)
 })
 
-it('works visitor plugin postcss-alias', async () => {
+test('works visitor plugin postcss-alias', async () => {
   let input =
     '@alias { fs: font-size; bg: background; }' +
     '.aliased { fs: 16px; bg: white; }'
   let expected = '.aliased { font-size: 16px; background: white; }'
   let { css } = postcss([postcssAlias]).process(input, { from: 'a.css' })
-  expect(css).toEqual(expected)
+  is(css, expected)
 })
 
-it('adds plugin to error', async () => {
+test('adds plugin to error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
     Rule(rule) {
@@ -520,12 +528,12 @@ it('adds plugin to error', async () => {
   } catch (e) {
     error = e
   }
-  expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
-  expect(error.postcssNode.toString()).toBe('a{}')
-  expect(error.stack).toContain('broken.css:1:1')
+  is(error.message, `broken: ${resolve('broken.css')}:1:1: test`)
+  is(error.postcssNode.toString(), 'a{}')
+  is(error.stack.includes('broken.css:1:1'), true)
 })
 
-it('adds plugin to async error', async () => {
+test('adds plugin to async error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
     async Rule(rule) {
@@ -539,12 +547,12 @@ it('adds plugin to async error', async () => {
   } catch (e) {
     error = e
   }
-  expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
-  expect(error.postcssNode.toString()).toBe('a{}')
-  expect(error.stack).toContain('broken.css:1:1')
+  is(error.message, `broken: ${resolve('broken.css')}:1:1: test`)
+  is(error.postcssNode.toString(), 'a{}')
+  is(error.stack.includes('broken.css:1:1'), true)
 })
 
-it('adds sync plugin to async error', async () => {
+test('adds sync plugin to async error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
     Rule(rule) {
@@ -557,12 +565,12 @@ it('adds sync plugin to async error', async () => {
   } catch (e) {
     error = e
   }
-  expect(error.message).toEqual(`broken: ${resolve('broken.css')}:1:1: test`)
-  expect(error.postcssNode.toString()).toBe('a{}')
-  expect(error.stack).toContain('broken.css:1:1')
+  is(error.message, `broken: ${resolve('broken.css')}:1:1: test`)
+  is(error.postcssNode.toString(), 'a{}')
+  is(error.stack.includes('broken.css:1:1'), true)
 })
 
-it('adds node to error', async () => {
+test('adds node to error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
     Rule() {
@@ -575,12 +583,12 @@ it('adds node to error', async () => {
   } catch (e) {
     error = e
   }
-  expect(error.message).toBe('test')
-  expect(error.postcssNode.toString()).toBe('a{}')
-  expect(error.stack).toContain('broken.css:1:1')
+  is(error.message, 'test')
+  is(error.postcssNode.toString(), 'a{}')
+  is(error.stack.includes('broken.css:1:1'), true)
 })
 
-it('adds node to async error', async () => {
+test('adds node to async error', async () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
     async Rule() {
@@ -594,12 +602,12 @@ it('adds node to async error', async () => {
   } catch (e) {
     error = e
   }
-  expect(error.message).toBe('test')
-  expect(error.postcssNode.toString()).toBe('a{}')
-  expect(error.stack).toContain('broken.css:1:1')
+  is(error.message, 'test')
+  is(error.postcssNode.toString(), 'a{}')
+  is(error.stack.includes('broken.css:1:1'), true)
 })
 
-it('shows error on sync call async plugins', () => {
+test('shows error on sync call async plugins', () => {
   let asyncPlugin: Plugin = {
     postcssPlugin: 'asyncPlugin',
     async Rule() {}
@@ -610,16 +618,16 @@ it('shows error on sync call async plugins', () => {
   } catch (e) {
     error = e
   }
-  expect(error.message).toContain('work with async plugins')
+  is(error.message.includes('work with async plugins'), true)
 })
 
-it('passes helpers', async () => {
+test('passes helpers', async () => {
   function check(node: AnyNode, helpers: Helpers): void {
-    expect(helpers.result.messages).toEqual([])
-    expect(typeof helpers.postcss).toBe('function')
-    expect(helpers.comment().type).toBe('comment')
-    expect(new helpers.Comment().type).toBe('comment')
-    expect(helpers.list).toBe(postcss.list)
+    equal(helpers.result.messages, [])
+    is(typeof helpers.postcss, 'function')
+    is(helpers.comment().type, 'comment')
+    is(new helpers.Comment().type, 'comment')
+    equal(helpers.list, postcss.list)
   }
 
   let syncPlugin: Plugin = {
@@ -650,13 +658,13 @@ it('passes helpers', async () => {
   await postcss([asyncPlugin]).process('a{}', { from: 'a.css' })
 })
 
-it('passes helpers in a document', async () => {
+test('passes helpers in a document', async () => {
   function check(node: AnyNode, helpers: Helpers): void {
-    expect(helpers.result.messages).toEqual([])
-    expect(typeof helpers.postcss).toBe('function')
-    expect(helpers.comment().type).toBe('comment')
-    expect(new helpers.Comment().type).toBe('comment')
-    expect(helpers.list).toBe(postcss.list)
+    equal(helpers.result.messages, [])
+    type(helpers.postcss, 'function')
+    is(helpers.comment().type, 'comment')
+    is(new helpers.Comment().type, 'comment')
+    equal(helpers.list, postcss.list)
   }
 
   let syncPlugin: Plugin = {
@@ -693,21 +701,22 @@ it('passes helpers in a document', async () => {
   )
 })
 
-it('detects non-changed values', () => {
+test('detects non-changed values', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
     Declaration(decl) {
       decl.value = 'red'
     }
   }
-  expect(
+  is(
     postcss([plugin]).process('a{ color: black; background: white; }', {
       from: 'a.css'
-    }).css
-  ).toBe('a{ color: red; background: red; }')
+    }).css,
+    'a{ color: red; background: red; }'
+  )
 })
 
-it('allows runtime listeners', () => {
+test('allows runtime listeners', () => {
   let root = false
   let plugin: Plugin = {
     postcssPlugin: 'test',
@@ -725,13 +734,14 @@ it('allows runtime listeners', () => {
       decl.value = 'red'
     }
   }
-  expect(
-    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
-  ).toBe('a.css{ color: red }')
-  expect(root).toBe(true)
+  is(
+    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css,
+    'a.css{ color: red }'
+  )
+  is(root, true)
 })
 
-it('works correctly with nodes changes', () => {
+test('works correctly with nodes changes', () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
     Rule(rule) {
@@ -740,22 +750,23 @@ it('works correctly with nodes changes', () => {
       }
     }
   }
-  expect(
-    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css
-  ).toBe('a{ z-index: 1; color: black }')
+  is(
+    postcss([plugin]).process('a{ color: black }', { from: 'a.css' }).css,
+    'a{ z-index: 1; color: black }'
+  )
 })
 
-it('throws error on unknown plugin property', () => {
+test('throws error on unknown plugin property', () => {
   let plugin: any = {
     postcssPlugin: 'test',
     NO: true
   }
-  expect(() => {
+  throws(() => {
     postcss([plugin]).process('').css
-  }).toThrow(/Unknown event NO in test\. Try to update PostCSS \(\d/)
+  }, /Unknown event NO in test\. Try to update PostCSS \(\d/)
 })
 
-it('unwraps nodes on inserting', () => {
+test('unwraps nodes on inserting', () => {
   let moveNode: Plugin = {
     postcssPlugin: 'moveNode',
     Declaration: {
@@ -768,7 +779,7 @@ it('unwraps nodes on inserting', () => {
   }
 
   let root = postcss([moveNode]).process('a{color:red}').root
-  expect((root.last as any).proxyOf).toBe(root.last)
+  equal((root.last as any).proxyOf, root.last)
 })
 
 let redToGreen: Plugin = {
@@ -828,8 +839,8 @@ let insertFirst: Plugin = {
   }
 }
 
-for (let type of ['sync', 'async']) {
-  it(`walks ${type} through tree`, async () => {
+for (let funcType of ['sync', 'async']) {
+  test(`walks ${funcType} through tree`, async () => {
     let [visits, visitor] = buildVisitor()
     let processor = postcss([visitor]).process(
       `@media screen {
@@ -844,12 +855,13 @@ for (let type of ['sync', 'async']) {
       }`,
       { from: 'a.css' }
     )
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       processor.css
     } else {
       await processor
     }
-    expect(addIndex(visits)).toEqual(
+    equal(
+      addIndex(visits),
       addIndex([
         ['Once', '1'],
         ['Root', '1'],
@@ -873,7 +885,7 @@ for (let type of ['sync', 'async']) {
     )
   })
 
-  it(`walks ${type} through tree in a document`, async () => {
+  test(`walks ${funcType} through tree in a document`, async () => {
     let document = postcss.document({
       nodes: [
         postcss.parse(`@media screen {
@@ -891,13 +903,14 @@ for (let type of ['sync', 'async']) {
 
     let [visits, visitor] = buildVisitor()
     let processor = postcss([visitor]).process(document, { from: 'a.css' })
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       processor.css
     } else {
       await processor
     }
 
-    expect(addIndex(visits)).toEqual(
+    equal(
+      addIndex(visits),
       addIndex([
         ['Once', '1'],
         ['Document', '1'],
@@ -923,7 +936,7 @@ for (let type of ['sync', 'async']) {
     )
   })
 
-  it(`walks ${type} during transformations`, async () => {
+  test(`walks ${funcType} during transformations`, async () => {
     let [visits, visitor] = buildVisitor()
     let result = postcss([
       visitor,
@@ -954,12 +967,13 @@ for (let type of ['sync', 'async']) {
       { from: 'a.css' }
     )
     let output
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       output = result.css
     } else {
       output = (await result).css
     }
-    expect(output).toEqual(
+    is(
+      output,
       `a {
           color: blue;
         }
@@ -974,7 +988,8 @@ for (let type of ['sync', 'async']) {
             color: blue;
           }`
     )
-    expect(addIndex(visits)).toEqual(
+    equal(
+      addIndex(visits),
       addIndex([
         ['Once', '6'],
         ['Root', '6'],
@@ -1039,7 +1054,7 @@ for (let type of ['sync', 'async']) {
     )
   })
 
-  it(`walks ${type} during transformations in a document`, async () => {
+  test(`walks ${funcType} during transformations in a document`, async () => {
     let document = postcss.document({
       nodes: [
         postcss.parse(
@@ -1075,13 +1090,14 @@ for (let type of ['sync', 'async']) {
       insertFirst
     ]).process(document, { from: 'a.css' })
     let output
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       output = result.css
     } else {
       output = (await result).css
     }
 
-    expect(output).toEqual(
+    is(
+      output,
       `a {
             color: blue;
           }
@@ -1096,7 +1112,8 @@ for (let type of ['sync', 'async']) {
               color: blue;
             }`
     )
-    expect(addIndex(visits)).toEqual(
+    equal(
+      addIndex(visits),
       addIndex([
         ['Once', '6'],
         ['Document', '1'],
@@ -1169,7 +1186,7 @@ for (let type of ['sync', 'async']) {
     )
   })
 
-  it(`has ${type} property and at-rule name filters`, async () => {
+  test(`has ${funcType} property and at-rule name filters`, async () => {
     let filteredDecls: string[] = []
     let allDecls: string[] = []
     let filteredAtRules: string[] = []
@@ -1209,21 +1226,21 @@ for (let type of ['sync', 'async']) {
       `@charset "UTF-8"; @media (screen) { COLOR: black; z-index: 1 }`,
       { from: 'a.css' }
     )
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       result.css
     } else {
       await result
     }
 
-    expect(filteredDecls).toEqual(['COLOR'])
-    expect(allDecls).toEqual(['COLOR', 'z-index'])
-    expect(filteredExits).toEqual(['COLOR'])
-    expect(allExits).toEqual(['COLOR', 'z-index'])
-    expect(filteredAtRules).toEqual(['media'])
-    expect(allAtRules).toEqual(['charset', 'media'])
+    equal(filteredDecls, ['COLOR'])
+    equal(allDecls, ['COLOR', 'z-index'])
+    equal(filteredExits, ['COLOR'])
+    equal(allExits, ['COLOR', 'z-index'])
+    equal(filteredAtRules, ['media'])
+    equal(allAtRules, ['charset', 'media'])
   })
 
-  it(`has ${type} property and at-rule name filters in a document`, async () => {
+  test(`has ${funcType} property and at-rule name filters in a document`, async () => {
     let filteredDecls: string[] = []
     let allDecls: string[] = []
     let filteredAtRules: string[] = []
@@ -1268,21 +1285,21 @@ for (let type of ['sync', 'async']) {
     })
 
     let result = postcss([scanner]).process(document, { from: 'a.css' })
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       result.css
     } else {
       await result
     }
 
-    expect(filteredDecls).toEqual(['COLOR'])
-    expect(allDecls).toEqual(['COLOR', 'z-index'])
-    expect(filteredExits).toEqual(['COLOR'])
-    expect(allExits).toEqual(['COLOR', 'z-index'])
-    expect(filteredAtRules).toEqual(['media'])
-    expect(allAtRules).toEqual(['charset', 'media'])
+    equal(filteredDecls, ['COLOR'])
+    equal(allDecls, ['COLOR', 'z-index'])
+    equal(filteredExits, ['COLOR'])
+    equal(allExits, ['COLOR', 'z-index'])
+    equal(filteredAtRules, ['media'])
+    equal(allAtRules, ['charset', 'media'])
   })
 
-  it(`has ${type} OnceExit listener`, async () => {
+  test(`has ${funcType} OnceExit listener`, async () => {
     let rootExit = 0
     let OnceExit = 0
 
@@ -1301,17 +1318,17 @@ for (let type of ['sync', 'async']) {
 
     let result = postcss([plugin]).process('a{}', { from: 'a.css' })
 
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       result.css
     } else {
       await result
     }
 
-    expect(rootExit).toBe(2)
-    expect(OnceExit).toBe(1)
+    is(rootExit, 2)
+    is(OnceExit, 1)
   })
 
-  it(`has ${type} OnceExit listener in a document with one root`, async () => {
+  test(`has ${funcType} OnceExit listener in a document with one root`, async () => {
     let RootExit = 0
     let OnceExit = 0
     let DocumentExit = 0
@@ -1338,18 +1355,18 @@ for (let type of ['sync', 'async']) {
 
     let result = postcss([plugin]).process(document, { from: 'a.css' })
 
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       result.css
     } else {
       await result
     }
 
-    expect(RootExit).toBe(2)
-    expect(DocumentExit).toBe(2)
-    expect(OnceExit).toBe(1)
+    is(RootExit, 2)
+    is(DocumentExit, 2)
+    is(OnceExit, 1)
   })
 
-  it(`has ${type} OnceExit listener in a document with two roots`, async () => {
+  test(`has ${funcType} OnceExit listener in a document with two roots`, async () => {
     let RootExit = 0
     let OnceExit = 0
     let DocumentExit = 0
@@ -1376,19 +1393,19 @@ for (let type of ['sync', 'async']) {
 
     let result = postcss([plugin]).process(document, { from: 'a.css' })
 
-    if (type === 'sync') {
+    if (funcType === 'sync') {
       result.css
     } else {
       await result
     }
 
-    expect(RootExit).toBe(4)
-    expect(DocumentExit).toBe(2)
-    expect(OnceExit).toBe(2) // 2 roots === 2 OnceExit
+    is(RootExit, 4)
+    is(DocumentExit, 2)
+    is(OnceExit, 2) // 2 roots === 2 OnceExit
   })
 }
 
-it('throws error from async OnceExit', async () => {
+test('throws error from async OnceExit', async () => {
   let plugin: Plugin = {
     postcssPlugin: 'test',
     OnceExit() {
@@ -1407,17 +1424,17 @@ it('throws error from async OnceExit', async () => {
     error = e
   }
 
-  expect(error.message).toBe('test Exit error')
+  is(error.message, 'test Exit error')
 })
 
-it('rescan Root in another processor', () => {
+test('rescan Root in another processor', () => {
   let [visits, visitor] = buildVisitor()
   let root = postcss([visitor]).process('a{z-index:1}', { from: 'a.css' }).root
 
   visits.splice(0, visits.length)
   postcss([visitor]).process(root, { from: 'a.css' }).root
 
-  expect(visits).toEqual([
+  equal(visits, [
     ['Once', '1'],
     ['Root', '1'],
     ['Rule', 'a'],
@@ -1429,7 +1446,7 @@ it('rescan Root in another processor', () => {
   ])
 })
 
-it('rescan Root in another processor in a document', () => {
+test('rescan Root in another processor in a document', () => {
   let [visits, visitor] = buildVisitor()
   let root = postcss([visitor]).process('a{z-index:1}', { from: 'a.css' }).root
   let document = postcss.document({ nodes: [root] })
@@ -1437,7 +1454,7 @@ it('rescan Root in another processor in a document', () => {
   visits.splice(0, visits.length)
   postcss([visitor]).process(document, { from: 'a.css' }).root
 
-  expect(visits).toEqual([
+  equal(visits, [
     ['Once', '1'],
     ['Document', '1'],
     ['Root', '1'],
@@ -1451,7 +1468,7 @@ it('rescan Root in another processor in a document', () => {
   ])
 })
 
-it('marks cleaned nodes as dirty on moving', () => {
+test('marks cleaned nodes as dirty on moving', () => {
   let mover: Plugin = {
     postcssPlugin: 'mover',
     Rule(rule) {
@@ -1467,7 +1484,7 @@ it('marks cleaned nodes as dirty on moving', () => {
     from: 'a.css'
   }).root
 
-  expect(visits).toEqual([
+  equal(visits, [
     ['Once', '2'],
     ['Root', '2'],
     ['Rule', 'a'],
@@ -1489,7 +1506,7 @@ it('marks cleaned nodes as dirty on moving', () => {
   ])
 })
 
-it('marks cleaned nodes as dirty on moving in a document', () => {
+test('marks cleaned nodes as dirty on moving in a document', () => {
   let mover: Plugin = {
     postcssPlugin: 'mover',
     Rule(rule) {
@@ -1509,7 +1526,7 @@ it('marks cleaned nodes as dirty on moving in a document', () => {
     from: 'a.css'
   }).root
 
-  expect(visits).toEqual([
+  equal(visits, [
     ['Once', '2'],
     ['Document', '1'],
     ['Root', '2'],
@@ -1534,3 +1551,5 @@ it('marks cleaned nodes as dirty on moving in a document', () => {
     ['OnceExit', '1']
   ])
 })
+
+test.run()
