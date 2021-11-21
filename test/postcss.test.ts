@@ -1,91 +1,48 @@
+import { test, suite } from 'uvu'
+import { is, type, equal, match, throws } from 'uvu/assert'
+
 import postcss, { Root, PluginCreator } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 
-afterEach(() => {
-  jest.resetAllMocks()
-})
+const postcssSuite = suite('postcss suite')
 
-it('creates plugins list', () => {
+test('creates plugins list', () => {
   let processor = postcss()
-  expect(processor instanceof Processor).toBe(true)
-  expect(processor.plugins).toEqual([])
+  is(processor instanceof Processor, true)
+  equal(processor.plugins, [])
 })
 
-it('saves plugins list', () => {
+test('saves plugins list', () => {
   let a = (): void => {}
   let b = (): void => {}
-  expect(postcss(a, b).plugins).toEqual([a, b])
+  equal(postcss(a, b).plugins, [a, b])
 })
 
-it('saves plugins list as array', () => {
+test('saves plugins list as array', () => {
   let a = (): void => {}
   let b = (): void => {}
-  expect(postcss([a, b]).plugins).toEqual([a, b])
+  equal(postcss([a, b]).plugins, [a, b])
 })
 
-it('takes plugin from other processor', () => {
+test('takes plugin from other processor', () => {
   let a = (): void => {}
   let b = (): void => {}
   let c = (): void => {}
   let other = postcss([a, b])
-  expect(postcss([other, c]).plugins).toEqual([a, b, c])
+  equal(postcss([other, c]).plugins, [a, b, c])
 })
 
-it('takes plugins from a a plugin returning a processor', () => {
+test('takes plugins from a a plugin returning a processor', () => {
   let a = (): void => {}
   let b = (): void => {}
   let c = (): void => {}
   let other = postcss([a, b])
   let meta = (() => other) as PluginCreator<void>
   meta.postcss = true
-  expect(postcss([other, c]).plugins).toEqual([a, b, c])
+  equal(postcss([other, c]).plugins, [a, b, c])
 })
 
-it('creates plugin', () => {
-  jest.spyOn(console, 'warn').mockImplementation(() => true)
-  let plugin = (postcss as any).plugin('test', (filter?: string) => {
-    return (root: Root) => {
-      root.walkDecls(filter ?? 'two', i => {
-        i.remove()
-      })
-    }
-  })
-  expect(console.warn).toHaveBeenCalledTimes(1)
-  expect(console.warn).toHaveBeenCalledWith(expect.stringMatching(/test/))
-
-  let func1: any = postcss(plugin).plugins[0]
-  expect(func1.postcssPlugin).toBe('test')
-  expect(func1.postcssVersion).toMatch(/\d+.\d+.\d+/)
-
-  let func2: any = postcss(plugin()).plugins[0]
-  expect(func2.postcssPlugin).toEqual(func1.postcssPlugin)
-  expect(func2.postcssVersion).toEqual(func1.postcssVersion)
-
-  let result1 = postcss(plugin('one')).process('a{ one: 1; two: 2 }')
-  expect(result1.css).toBe('a{ two: 2 }')
-
-  let result2 = postcss(plugin).process('a{ one: 1; two: 2 }')
-  expect(result2.css).toBe('a{ one: 1 }')
-})
-
-it('does not call plugin constructor', () => {
-  jest.spyOn(console, 'warn').mockImplementation(() => true)
-  let calls = 0
-  let plugin = (postcss as any).plugin('test', () => {
-    calls += 1
-    return () => {}
-  })
-  expect(calls).toBe(0)
-  expect(console.warn).toHaveBeenCalledTimes(1)
-
-  postcss(plugin).process('a{}')
-  expect(calls).toBe(1)
-
-  postcss(plugin()).process('a{}')
-  expect(calls).toBe(2)
-})
-
-it('creates a shortcut to process css', async () => {
+test('creates a shortcut to process css', async () => {
   let plugin = (postcss as any).plugin('test', (str?: string) => {
     return (root: Root) => {
       root.walkDecls(i => {
@@ -95,25 +52,25 @@ it('creates a shortcut to process css', async () => {
   })
 
   let result1 = plugin.process('a{value:foo}')
-  expect(result1.css).toBe('a{value:bar}')
+  is(result1.css, 'a{value:bar}')
 
   let result2 = plugin.process('a{value:foo}', {}, 'baz')
-  expect(result2.css).toBe('a{value:baz}')
+  is(result2.css, 'a{value:baz}')
 
   let result = await plugin.process('a{value:foo}', { from: 'a' }, 'baz')
-  expect(result.opts).toEqual({ from: 'a' })
-  expect(result.css).toBe('a{value:baz}')
+  equal(result.opts, { from: 'a' })
+  is(result.css, 'a{value:baz}')
 })
 
-it('contains parser', () => {
-  expect(postcss.parse('').type).toBe('root')
+test('contains parser', () => {
+  is(postcss.parse('').type, 'root')
 })
 
-it('contains stringifier', () => {
-  expect(typeof postcss.stringify).toBe('function')
+test('contains stringifier', () => {
+  type(postcss.stringify, 'function')
 })
 
-it('allows to build own CSS', () => {
+test('allows to build own CSS', () => {
   let root = postcss.root({ raws: { after: '\n' } })
   let comment = postcss.comment({ text: 'Example' })
   let media = postcss.atRule({ name: 'media', params: 'screen' })
@@ -125,7 +82,8 @@ it('allows to build own CSS', () => {
   media.append(rule)
   root.append(media)
 
-  expect(root.toString()).toEqual(
+  is(
+    root.toString(),
     '/* Example */\n' +
       '@media screen {\n' +
       '    a {\n' +
@@ -135,7 +93,7 @@ it('allows to build own CSS', () => {
   )
 })
 
-it('allows to build own CSS with Document', () => {
+test('allows to build own CSS with Document', () => {
   let document = postcss.document()
   let root = postcss.root({ raws: { after: '\n' } })
   let comment = postcss.comment({ text: 'Example' })
@@ -149,7 +107,8 @@ it('allows to build own CSS with Document', () => {
   root.append(media)
   document.append(root)
 
-  expect(document.toString()).toEqual(
+  is(
+    document.toString(),
     '/* Example */\n' +
       '@media screen {\n' +
       '    a {\n' +
@@ -159,13 +118,83 @@ it('allows to build own CSS with Document', () => {
   )
 })
 
-it('contains list module', () => {
-  expect(postcss.list.space('a b')).toEqual(['a', 'b'])
+test('contains list module', () => {
+  equal(postcss.list.space('a b'), ['a', 'b'])
 })
 
-it('works with null', () => {
-  expect(() => {
+test('works with null', () => {
+  throws(() => {
     // @ts-expect-error
     postcss([() => {}]).process(null).css
-  }).toThrow(/PostCSS received null instead of CSS string/)
+  }, /PostCSS received null instead of CSS string/)
 })
+
+test.run()
+
+let _Warn: typeof global.console.warn
+let _WarnArguments: any
+let _WarnHaveBeenCalled: number
+
+postcssSuite.before(() => {
+  _Warn = global.console.warn
+  _WarnHaveBeenCalled = 0
+  _WarnArguments = ''
+  global.console.warn = (...args) => {
+    _WarnArguments = args[0]
+    _WarnHaveBeenCalled++
+  }
+})
+
+postcssSuite.after.each(() => {
+  _WarnHaveBeenCalled = 0
+  _WarnArguments = ''
+})
+
+postcssSuite.after(() => {
+  global.console.warn = _Warn
+})
+
+postcssSuite.only('creates plugin', () => {
+  let plugin = (postcss as any).plugin('test', (filter?: string) => {
+    return (root: Root) => {
+      root.walkDecls(filter ?? 'two', i => {
+        i.remove()
+      })
+    }
+  })
+  is(_WarnHaveBeenCalled, 1)
+  match(_WarnArguments, /test/)
+
+  let func1: any = postcss(plugin).plugins[0]
+  is(func1.postcssPlugin, 'test')
+  match(func1.postcssVersion, /\d+.\d+.\d+/)
+
+  let func2: any = postcss(plugin()).plugins[0]
+  equal(func2.postcssPlugin, func1.postcssPlugin)
+  equal(func2.postcssVersion, func1.postcssVersion)
+
+  let result1 = postcss(plugin('one')).process('a{ one: 1; two: 2 }')
+  is(result1.css, 'a{ two: 2 }')
+
+  let result2 = postcss(plugin).process('a{ one: 1; two: 2 }')
+  is(result2.css, 'a{ one: 1 }')
+})
+
+postcssSuite.only('does not call plugin constructor', () => {
+  global.console.warn
+  let calls = 0
+  let plugin = (postcss as any).plugin('test', () => {
+    calls += 1
+    return () => {}
+  })
+  is(calls, 0)
+  is(_WarnHaveBeenCalled, 1)
+
+  postcss(plugin).process('a{}')
+  is(calls, 1)
+
+  postcss(plugin()).process('a{}')
+  is(calls, 2)
+})
+
+postcssSuite.run()

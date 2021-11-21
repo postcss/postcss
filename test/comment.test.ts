@@ -1,14 +1,19 @@
+import { test } from 'uvu'
+import { is } from 'uvu/assert'
+
 import { Comment, parse } from '../lib/postcss.js'
 
-it('toString() inserts default spaces', () => {
+test('toString() inserts default spaces', () => {
   let comment = new Comment({ text: 'hi' })
-  expect(comment.toString()).toBe('/* hi */')
+  is(comment.toString(), '/* hi */')
 })
 
-it('toString() clones spaces from another comment', () => {
+test('toString() clones spaces from another comment', () => {
   let root = parse('a{} /*hello*/')
   let comment = new Comment({ text: 'world' })
   root.append(comment)
 
-  expect(root.toString()).toBe('a{} /*hello*/ /*world*/')
+  is(root.toString(), 'a{} /*hello*/ /*world*/')
 })
+
+test.run()

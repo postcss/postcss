@@ -1,46 +1,51 @@
+import { test } from 'uvu'
+import { is, type } from 'uvu/assert'
+
 import { AtRule, parse } from '../lib/postcss.js'
 
-it('initializes with properties', () => {
+test('initializes with properties', () => {
   let rule = new AtRule({ name: 'encoding', params: '"utf-8"' })
 
-  expect(rule.name).toBe('encoding')
-  expect(rule.params).toBe('"utf-8"')
+  is(rule.name, 'encoding')
+  is(rule.params, '"utf-8"')
 
-  expect(rule.toString()).toBe('@encoding "utf-8"')
+  is(rule.toString(), '@encoding "utf-8"')
 })
 
-it('does not fall on childless at-rule', () => {
+test('does not fall on childless at-rule', () => {
   let rule = new AtRule()
   rule.each(() => {
     throw new Error('AtRule has no children')
   })
 })
 
-it('creates nodes property on prepend()', () => {
+test('creates nodes property on prepend()', () => {
   let rule = new AtRule()
-  expect(rule.nodes).toBeUndefined()
+  type(rule.nodes, 'undefined')
 
   rule.prepend('color: black')
-  expect(rule.nodes).toHaveLength(1)
+  is(rule.nodes.length, 1)
 })
 
-it('creates nodes property on append()', () => {
+test('creates nodes property on append()', () => {
   let rule = new AtRule()
-  expect(rule.nodes).toBeUndefined()
+  type(rule.nodes, 'undefined')
 
   rule.append('color: black')
-  expect(rule.nodes).toHaveLength(1)
+  is(rule.nodes.length, 1)
 })
 
-it('inserts default spaces', () => {
+test('inserts default spaces', () => {
   let rule = new AtRule({ name: 'page', params: 1, nodes: [] })
-  expect(rule.toString()).toBe('@page 1 {}')
+  is(rule.toString(), '@page 1 {}')
 })
 
-it('clone spaces from another at-rule', () => {
+test('clone spaces from another at-rule', () => {
   let root = parse('@page{}a{}')
   let rule = new AtRule({ name: 'page', params: 1, nodes: [] })
   root.append(rule)
 
-  expect(rule.toString()).toBe('@page 1{}')
+  is(rule.toString(), '@page 1{}')
 })
+
+test.run()

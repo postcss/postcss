@@ -1,4 +1,6 @@
 import mozilla from 'source-map-js'
+import { test } from 'uvu'
+import { is, type, equal, throws, not, instance } from 'uvu/assert'
 
 import NoWorkResult from '../lib/no-work-result.js'
 import { CssSyntaxError } from '../lib/postcss.js'
@@ -6,103 +8,107 @@ import Processor from '../lib/processor.js'
 
 let processor = new Processor()
 
-it('contains AST on root access', () => {
+test('contains AST on root access', () => {
   let result = new NoWorkResult(processor, 'a {}', {})
-  expect(result.root.nodes).toHaveLength(1)
+  is(result.root.nodes.length, 1)
 })
 
-it('has async() method', async () => {
+test('has async() method', async () => {
   let noWorkResult = new NoWorkResult(processor, 'a {}', {})
   let result1 = await noWorkResult
   let result2 = await noWorkResult
-  expect(result1).toEqual(result2)
+  equal(result1, result2)
 })
 
-it('has sync() method', () => {
+test('has sync() method', () => {
   let result = new NoWorkResult(processor, 'a {}', {}).sync()
-  expect(result.root.nodes).toHaveLength(1)
+  is(result.root.nodes.length, 1)
 })
 
-it('throws error on sync()', () => {
+test('throws error on sync()', () => {
   let noWorkResult = new NoWorkResult(processor, 'a {', {})
 
   noWorkResult.root // process AST
 
-  expect(() => noWorkResult.sync()).toThrow(CssSyntaxError)
+  throws(() => noWorkResult.sync())
 })
 
-it('returns cached root on second access', async () => {
+test('returns cached root on second access', async () => {
   let result = new NoWorkResult(processor, 'a {}', {})
 
   result.root
 
-  expect(result.root.nodes).toHaveLength(1)
-  expect(() => result.sync()).not.toThrow()
+  is(result.root.nodes.length, 1)
+  not.throws(() => result.sync())
 })
 
-it('contains css syntax errors', () => {
+test('contains css syntax errors', () => {
   let result = new NoWorkResult(processor, 'a {', {})
   result.root
   // @ts-ignore
-  expect(result.error).toBeInstanceOf(CssSyntaxError)
+  instance(result.error, CssSyntaxError)
 })
 
-it('contains css', () => {
+test('contains css', () => {
   let result = new NoWorkResult(processor, 'a {}', {})
-  expect(result.css).toBe('a {}')
+  is(result.css, 'a {}')
 })
 
-it('stringifies css', () => {
+test('stringifies css', () => {
   let result = new NoWorkResult(processor, 'a {}', {})
-  expect(`${result}`).toEqual(result.css)
+  equal(`${result}`, result.css)
 })
 
-it('has content alias for css', () => {
+test('has content alias for css', () => {
   let result = new NoWorkResult(processor, 'a {}', {})
-  expect(result.content).toBe('a {}')
+  is(result.content, 'a {}')
 })
 
-it('has map only if necessary', () => {
+test('has map only if necessary', () => {
   let result1 = new NoWorkResult(processor, '', {})
-  expect(result1.map).toBeUndefined()
+  type(result1.map, 'undefined')
 
   let result2 = new NoWorkResult(processor, '', {})
-  expect(result2.map).toBeUndefined()
+  type(result2.map, 'undefined')
 
   let result3 = new NoWorkResult(processor, '', { map: { inline: false } })
-  expect(result3.map instanceof mozilla.SourceMapGenerator).toBe(true)
+  is(result3.map instanceof mozilla.SourceMapGenerator, true)
 })
 
-it('contains processor', () => {
+test('contains processor', () => {
   let result = new NoWorkResult(processor, 'a {}', { to: 'a.css' })
-  expect(result.processor).toBeInstanceOf(Processor)
+  instance(result.processor, Processor)
 })
 
-it('contains options', () => {
+test('contains options', () => {
   let result = new NoWorkResult(processor, 'a {}', { to: 'a.css' })
-  expect(result.opts).toEqual({ to: 'a.css' })
+  equal(result.opts, { to: 'a.css' })
 })
 
-it('contains warnings', () => {
+test('contains warnings', () => {
   let result = new NoWorkResult(processor, 'a {}', {})
-  expect(result.warnings()).toEqual([])
+  equal(result.warnings(), [])
 })
 
-it('contains messages', () => {
+test('contains messages', () => {
   let result = new NoWorkResult(processor, 'a {}', {})
-  expect(result.messages).toEqual([])
+  equal(result.messages, [])
 })
 
-it('executes on finally callback', () => {
-  let mockCallback = jest.fn()
+test('executes on finally callback', () => {
+  let mockCallbackHaveBeenCalled = 0
+  let mockCallback = (): void => {
+    mockCallbackHaveBeenCalled++
+    
+  }
   return new NoWorkResult(processor, 'a {}', {})
     .finally(mockCallback)
     .then(() => {
-      expect(mockCallback).toHaveBeenCalledTimes(1)
+      is(mockCallbackHaveBeenCalled, 1)
     })
 })
 
-it('prints its object type', () => {
+test('prints its object type', () => {
   let result = new NoWorkResult(processor, 'a {}', {})
-  expect(Object.prototype.toString.call(result)).toBe('[object NoWorkResult]')
+  is(Object.prototype.toString.call(result), '[object NoWorkResult]')
 })

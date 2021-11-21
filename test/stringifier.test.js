@@ -1,109 +1,122 @@
-let { Declaration, AtRule, Node, Root, Rule, Document, parse } = require('..')
+let { test } = require('uvu')
+let { is } = require('uvu/assert')
+
+let {
+  Declaration,
+  AtRule,
+  Node,
+  Root,
+  Rule,
+  Document,
+  parse
+} = require('../lib/postcss')
 let Stringifier = require('../lib/stringifier')
 
 let str
-beforeAll(() => {
+
+test.before.each(() => {
   str = new Stringifier()
 })
 
-it('creates trimmed/raw property', () => {
+test('creates trimmed/raw property', () => {
   let b = new Node({ one: 'trim' })
   b.raws.one = { value: 'trim', raw: 'raw' }
-  expect(str.rawValue(b, 'one')).toBe('raw')
+  is(str.rawValue(b, 'one'), 'raw')
 
   b.one = 'trim1'
-  expect(str.rawValue(b, 'one')).toBe('trim1')
+  is(str.rawValue(b, 'one'), 'trim1')
 })
 
-it('works without rawValue magic', () => {
+test('works without rawValue magic', () => {
   let b = new Node()
   b.one = '1'
-  expect(b.one).toBe('1')
-  expect(str.rawValue(b, 'one')).toBe('1')
+  is(b.one, '1')
+  is(str.rawValue(b, 'one'), '1')
 })
 
-it('uses node raw', () => {
+test('uses node raw', () => {
   let rule = new Rule({ selector: 'a', raws: { between: '\n' } })
-  expect(str.raw(rule, 'between', 'beforeOpen')).toBe('\n')
+  is(str.raw(rule, 'between', 'beforeOpen'), '\n')
 })
 
-it('hacks before for nodes without parent', () => {
+test('hacks before for nodes without parent', () => {
   let rule = new Rule({ selector: 'a' })
-  expect(str.raw(rule, 'before')).toBe('')
+  is(str.raw(rule, 'before'), '')
 })
 
-it('hacks before for first node', () => {
+test('hacks before for first node', () => {
   let root = new Root()
   root.append(new Rule({ selector: 'a' }))
-  expect(str.raw(root.first, 'before')).toBe('')
+  is(str.raw(root.first, 'before'), '')
 })
 
-it('hacks before for first decl', () => {
+test('hacks before for first decl', () => {
   let decl = new Declaration({ prop: 'color', value: 'black' })
-  expect(str.raw(decl, 'before')).toBe('')
+  is(str.raw(decl, 'before'), '')
 
   let rule = new Rule({ selector: 'a' })
   rule.append(decl)
-  expect(str.raw(decl, 'before')).toBe('\n    ')
+  is(str.raw(decl, 'before'), '\n    ')
 })
 
-it('detects after raw', () => {
+test('detects after raw', () => {
   let root = new Root()
   root.append({ selector: 'a', raws: { after: ' ' } })
   root.first.append({ prop: 'color', value: 'black' })
   root.append({ selector: 'a' })
-  expect(str.raw(root.last, 'after')).toBe(' ')
+  is(str.raw(root.last, 'after'), ' ')
 })
 
-it('uses defaults without parent', () => {
+test('uses defaults without parent', () => {
   let rule = new Rule({ selector: 'a' })
-  expect(str.raw(rule, 'between', 'beforeOpen')).toBe(' ')
+  is(str.raw(rule, 'between', 'beforeOpen'), ' ')
 })
 
-it('uses defaults for unique node', () => {
+test('uses defaults for unique node', () => {
   let root = new Root()
   root.append(new Rule({ selector: 'a' }))
-  expect(str.raw(root.first, 'between', 'beforeOpen')).toBe(' ')
+  is(str.raw(root.first, 'between', 'beforeOpen'), ' ')
 })
 
-it('clones raw from first node', () => {
+test('clones raw from first node', () => {
   let root = new Root()
   root.append(new Rule({ selector: 'a', raws: { between: '' } }))
   root.append(new Rule({ selector: 'b' }))
 
-  expect(str.raw(root.last, 'between', 'beforeOpen')).toBe('')
+  is(str.raw(root.last, 'between', 'beforeOpen'), '')
 })
 
-it('indents by default', () => {
+test('indents by default', () => {
   let root = new Root()
   root.append(new AtRule({ name: 'page' }))
   root.first.append(new Rule({ selector: 'a' }))
   root.first.first.append({ prop: 'color', value: 'black' })
 
-  expect(root.toString()).toEqual(
+  is(
+    root.toString(),
     '@page {\n' + '    a {\n' + '        color: black\n' + '    }\n' + '}'
   )
 })
 
-it('clones style', () => {
+test('clones style', () => {
   let compress = parse('@page{ a{ } }')
   let spaces = parse('@page {\n  a {\n  }\n}')
 
   compress.first.first.append({ prop: 'color', value: 'black' })
-  expect(compress.toString()).toBe('@page{ a{ color: black } }')
+  is(compress.toString(), '@page{ a{ color: black } }')
 
   spaces.first.first.append({ prop: 'color', value: 'black' })
-  expect(spaces.toString()).toBe('@page {\n  a {\n    color: black\n  }\n}')
+  is(spaces.toString(), '@page {\n  a {\n    color: black\n  }\n}')
 })
 
-it('clones indent', () => {
+test('clones indent', () => {
   let root = parse('a{\n}')
   root.first.append({ text: 'a' })
   root.first.append({ text: 'b', raws: { before: '\n\n ' } })
-  expect(root.toString()).toBe('a{\n\n /* a */\n\n /* b */\n}')
+  is(root.toString(), 'a{\n\n /* a */\n\n /* b */\n}')
 })
 
-it('clones declaration before for comment', () => {
+test('clones declaration before for comment', () => {
   let root = parse('a{\n}')
   root.first.append({ text: 'a' })
   root.first.append({
@@ -111,94 +124,94 @@ it('clones declaration before for comment', () => {
     value: '1',
     raws: { before: '\n\n ' }
   })
-  expect(root.toString()).toBe('a{\n\n /* a */\n\n a: 1\n}')
+  is(root.toString(), 'a{\n\n /* a */\n\n a: 1\n}')
 })
 
-it('clones indent by types', () => {
+test('clones indent by types', () => {
   let css = parse('a {\n  *color: black\n}\n\nb {\n}')
   css.append(new Rule({ selector: 'em' }))
   css.last.append({ prop: 'z-index', value: '1' })
-  expect(css.last.first.raw('before')).toBe('\n  ')
+  is(css.last.first.raw('before'), '\n  ')
 })
 
-it('ignores non-space symbols in indent cloning', () => {
+test('ignores non-space symbols in indent cloning', () => {
   let css = parse('a {\n  color: black\n}\n\nb {\n}')
   css.append(new Rule({ selector: 'em' }))
   css.last.append({ prop: 'z-index', value: '1' })
 
-  expect(css.last.raw('before')).toBe('\n\n')
-  expect(css.last.first.raw('before')).toBe('\n  ')
+  is(css.last.raw('before'), '\n\n')
+  is(css.last.first.raw('before'), '\n  ')
 })
 
-it('clones indent by before and after', () => {
+test('clones indent by before and after', () => {
   let css = parse('@page{\n\n a{\n  color: black}}')
   css.first.append(new Rule({ selector: 'b' }))
   css.first.last.append({ prop: 'z-index', value: '1' })
 
-  expect(css.first.last.raw('before')).toBe('\n\n ')
-  expect(css.first.last.raw('after')).toBe('')
+  is(css.first.last.raw('before'), '\n\n ')
+  is(css.first.last.raw('after'), '')
 })
 
-it('clones semicolon only from rules with children', () => {
+test('clones semicolon only from rules with children', () => {
   let css = parse('a{}b{one:1;}')
-  expect(str.raw(css.first, 'semicolon')).toBe(true)
+  is(str.raw(css.first, 'semicolon'), true)
 })
 
-it('clones only spaces in before', () => {
+test('clones only spaces in before', () => {
   let css = parse('a{*one:1}')
   css.first.append({ prop: 'two', value: '2' })
   css.append({ name: 'keyframes', params: 'a' })
   css.last.append({ selector: 'from' })
-  expect(css.toString()).toBe('a{*one:1;two:2}\n@keyframes a{\nfrom{}}')
+  is(css.toString(), 'a{*one:1;two:2}\n@keyframes a{\nfrom{}}')
 })
 
-it('clones only spaces in between', () => {
+test('clones only spaces in between', () => {
   let css = parse('a{one/**/:1}')
   css.first.append({ prop: 'two', value: '2' })
-  expect(css.toString()).toBe('a{one/**/:1;two:2}')
+  is(css.toString(), 'a{one/**/:1;two:2}')
 })
 
-it('uses optional raws.indent', () => {
+test('uses optional raws.indent', () => {
   let rule = new Rule({ selector: 'a', raws: { indent: ' ' } })
   rule.append({ prop: 'color', value: 'black' })
-  expect(rule.toString()).toBe('a {\n color: black\n}')
+  is(rule.toString(), 'a {\n color: black\n}')
 })
 
-it('handles nested roots', () => {
+test('handles nested roots', () => {
   let root = new Root()
   let subRoot = new Root()
   subRoot.append(new AtRule({ name: 'foo' }))
   root.append(subRoot)
 
-  expect(root.toString()).toBe('@foo')
+  is(root.toString(), '@foo')
 })
 
-it('handles root', () => {
+test('handles root', () => {
   let root = new Root()
   root.append(new AtRule({ name: 'foo' }))
 
   let s = root.toString()
 
-  expect(s).toBe('@foo')
+  is(s, '@foo')
 })
 
-it('handles root with after', () => {
+test('handles root with after', () => {
   let root = new Root({ raws: { after: '   ' } })
   root.append(new AtRule({ name: 'foo' }))
 
   let s = root.toString()
 
-  expect(s).toBe('@foo   ')
+  is(s, '@foo   ')
 })
 
-it('pass nodes to document', () => {
+test('pass nodes to document', () => {
   let root = new Root()
   let document = new Document({ nodes: [root] })
 
-  expect(document.toString()).toBe('')
+  is(document.toString(), '')
 })
 
-it('handles document with one root', () => {
+test('handles document with one root', () => {
   let root = new Root()
   root.append(new AtRule({ name: 'foo' }))
 
@@ -207,10 +220,10 @@ it('handles document with one root', () => {
 
   let s = document.toString()
 
-  expect(s).toBe('@foo')
+  is(s, '@foo')
 })
 
-it('handles document with one root and after raw', () => {
+test('handles document with one root and after raw', () => {
   let document = new Document()
   let root = new Root({ raws: { after: '   ' } })
   root.append(new AtRule({ name: 'foo' }))
@@ -218,10 +231,10 @@ it('handles document with one root and after raw', () => {
 
   let s = document.toString()
 
-  expect(s).toBe('@foo   ')
+  is(s, '@foo   ')
 })
 
-it('handles document with one root and before and after', () => {
+test('handles document with one root and before and after', () => {
   let document = new Document()
   let root = new Root({ raws: { after: 'AFTER' } })
   root.append(new AtRule({ name: 'foo' }))
@@ -229,10 +242,10 @@ it('handles document with one root and before and after', () => {
 
   let s = document.toString()
 
-  expect(s).toBe('@fooAFTER')
+  is(s, '@fooAFTER')
 })
 
-it('handles document with three roots without raws', () => {
+test('handles document with three roots without raws', () => {
   let root1 = new Root()
   root1.append(new AtRule({ name: 'foo' }))
 
@@ -249,10 +262,10 @@ it('handles document with three roots without raws', () => {
 
   let s = document.toString()
 
-  expect(s).toBe('@fooa {}color: black')
+  is(s, '@fooa {}color: black')
 })
 
-it('handles document with three roots, with before and after raws', () => {
+test('handles document with three roots, with before and after raws', () => {
   let root1 = new Root({ raws: { after: 'AFTER_ONE' } })
   root1.append(new Rule({ selector: 'a.one' }))
 
@@ -269,5 +282,7 @@ it('handles document with three roots, with before and after raws', () => {
 
   let s = document.toString()
 
-  expect(s).toBe('a.one {}AFTER_ONEa.two {}AFTER_TWOa.three {}AFTER_THREE')
+  is(s, 'a.one {}AFTER_ONEa.two {}AFTER_TWOa.three {}AFTER_THREE')
 })
+
+test.run()

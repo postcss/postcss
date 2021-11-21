@@ -1,7 +1,10 @@
+import { test } from 'uvu'
+import { is, match } from 'uvu/assert'
+
 import { Result, parse } from '../lib/postcss.js'
 import Document from '../lib/document.js'
 
-it('generates result without map', () => {
+test('generates result without map', () => {
   let root = parse('a {}')
   let document = new Document()
 
@@ -9,11 +12,11 @@ it('generates result without map', () => {
 
   let result = document.toResult()
 
-  expect(result instanceof Result).toBe(true)
-  expect(result.css).toBe('a {}')
+  is(result instanceof Result, true)
+  is(result.css, 'a {}')
 })
 
-it('generates result with map', () => {
+test('generates result with map', () => {
   let root = parse('a {}')
   let document = new Document()
 
@@ -21,6 +24,8 @@ it('generates result with map', () => {
 
   let result = document.toResult({ map: true })
 
-  expect(result instanceof Result).toBe(true)
-  expect(result.css).toMatch(/a {}\n\/\*# sourceMappingURL=/)
+  is(result instanceof Result, true)
+  match(result.css, /a {}\n\/\*# sourceMappingURL=/)
 })
+
+test.run()
