@@ -141,32 +141,13 @@
     "overrides": [
       {
         "files": [
-          "*.test.js"
-        ],
-        "rules": {
-          "no-unused-expressions": "off",
-          "no-console": "off",
-          "func-style": "off"
-        }
-      },
-      {
-        "files": [
-          "*.test.ts"
+          "*.test.*"
         ],
         "rules": {
           "@typescript-eslint/no-unused-expressions": "off",
+          "no-unused-expressions": "off",
           "no-console": "off",
           "func-style": "off"
-        }
-      },
-      {
-        "files": [
-          "*.test.*"
-        ],
-        "globals": {
-          "it": "readonly",
-          "expect": "readonly",
-          "beforeAll": "readonly"
         }
       }
     ]
