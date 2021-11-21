@@ -48,7 +48,7 @@ jobs:
     runs-on: windows-latest
     name: Windows Quick
     env:
-      YARN_GPG: "no"
+      YARN_GPG: 'no'
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -60,6 +60,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Run unit tests
-        run: yarn uvu -r ts-node/register/transpile-only test "^.*test.([tj]s)"
+        run: yarn unit
         env:
           FORCE_COLOR: 2
