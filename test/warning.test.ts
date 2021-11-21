@@ -166,3 +166,5 @@ test('always returns valid ranges', () => {
   is(warning.endLine, 1)
   is(warning.endColumn, 4)
 })
+
+test.run()
