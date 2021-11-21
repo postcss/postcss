@@ -84,7 +84,7 @@
     "check-dts": "^0.6.4",
     "clean-publish": "^3.4.3",
     "concat-with-sourcemaps": "^1.1.0",
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
