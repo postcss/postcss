@@ -1,3 +1,4 @@
+import { RangePosition } from './css-syntax-error.js'
 import Node from './node.js'
 
 export interface WarningOptions {
@@ -20,6 +21,16 @@ export interface WarningOptions {
    * End index, exclusive, in CSS node string that caused the warning.
    */
   endIndex?: number
+
+  /**
+   * Start position, inclusive, in CSS node string that caused the warning.
+   */
+  start?: RangePosition
+
+  /**
+   * End position, exclusive, in CSS node string that caused the warning.
+   */
+  end?: RangePosition
 
   /**
    * Name of the plugin that created this warning. `Result#warn` fills

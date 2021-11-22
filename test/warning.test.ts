@@ -62,13 +62,27 @@ test('has line and column is undefined by default', () => {
   let warning = new Warning('text')
   type(warning.line, 'undefined')
   type(warning.column, 'undefined')
+  type(warning.endLine, 'undefined')
+  type(warning.endColumn, 'undefined')
 })
 
-test('gets position from node', () => {
+test('gets range from node', () => {
   let root = parse('a{}')
   let warning = new Warning('text', { node: root.first })
   is(warning.line, 1)
   is(warning.column, 1)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 4)
+})
+
+test('gets range from node without end', () => {
+  let root = parse('a{}')
+  root.first!.source!.end = undefined
+  let warning = new Warning('text', { node: root.first })
+  is(warning.line, 1)
+  is(warning.column, 1)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 2)
 })
 
 test('gets range from word', () => {
@@ -80,16 +94,73 @@ test('gets range from word', () => {
   is(warning.endColumn, 4)
 })
 
-test('gets position from index', () => {
+test('gets range from index', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { node: root.first, index: 2 })
   is(warning.line, 1)
   is(warning.column, 3)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 4)
 })
 
 test('gets range from index and endIndex', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { node: root.first, index: 2, endIndex: 3 })
+  is(warning.line, 1)
+  is(warning.column, 3)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 4)
+})
+
+test('gets range from start', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', {
+    node: root.first,
+    start: { line: 1, column: 3 }
+  })
+  is(warning.line, 1)
+  is(warning.column, 3)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 6)
+})
+
+test('gets range from end', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', {
+    node: root.first,
+    end: { line: 1, column: 3 }
+  })
+  is(warning.line, 1)
+  is(warning.column, 1)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 3)
+})
+
+test('gets range from start and end', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', {
+    node: root.first,
+    start: { line: 1, column: 3 },
+    end: { line: 1, column: 4 }
+  })
+  is(warning.line, 1)
+  is(warning.column, 3)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 4)
+})
+
+test('always returns exclusive ends', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', { node: root.first, index: 1, endIndex: 1 })
+  is(warning.line, 1)
+  is(warning.column, 2)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 3)
+})
+
+test('always returns valid ranges', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', { node: root.first, index: 2, endIndex: 1 })
   is(warning.line, 1)
   is(warning.column, 3)
   is(warning.endLine, 1)
