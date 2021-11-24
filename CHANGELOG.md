@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4 “President Camio”
+* Added ranges for errors and warnings (by Adaline Valentina Simonian).
+* Added `Stringifier` types (by James Garbutt).
+* Added `Processor` types.
+* Removed `PostCSS does nothing` warning by lazy parser (Bogdan Dolin).
+* Fixed `Node#walkRules()` types (by Aleks Hudochenkov).
+* Fixed types `Root` and `Document` in result values (by James Garbutt).
+* Reduced npm install size by 0.5 MB.
+* Moved tests from Jest to `uvu` (by Andrey Kim).
+* Fixed docs (by Paul Shryock).
+
 ## 8.3.11
 * Remove debugging code.
 
