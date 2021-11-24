@@ -478,8 +478,10 @@ module.exports = {
 
 * [`csstools.postcss`] adds support for PostCSS, `postcss-preset-env`
   and CSS Modules.
+* [`mhmadhamster.postcss-language`] is a more modern alternative.
 
-[`csstools.postcss`]: https://marketplace.visualstudio.com/items?itemName=mhmadhamster.postcss-language
+[`mhmadhamster.postcss-language`]: https://marketplace.visualstudio.com/items?itemName=mhmadhamster.postcss-language
+[`csstools.postcss`]: https://marketplace.visualstudio.com/items?itemName=csstools.postcss
 
 
 ### Atom
