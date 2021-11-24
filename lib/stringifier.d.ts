@@ -10,7 +10,8 @@ import {
   Container
 } from './postcss.js'
 
-export class Stringifier {
+export default class Stringifier {
+  builder: Builder
   constructor(builder: Builder)
   stringify(node: AnyNode, semicolon?: boolean): void
   document(node: Document): void
