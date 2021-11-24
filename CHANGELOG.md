@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.1
+* Fixed `Stringifier` types (by James Garbutt).
+
 ## 8.4 “President Camio”
 * Added ranges for errors and warnings (by Adaline Valentina Simonian).
 * Added `Stringifier` types (by James Garbutt).
