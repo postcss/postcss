@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.2
+* Fixed previous source map support in zero plugins mode.
+
 ## 8.4.1
 * Fixed `Stringifier` types (by James Garbutt).
 
