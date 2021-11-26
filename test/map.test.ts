@@ -1,13 +1,12 @@
 import { SourceMapConsumer, SourceMapGenerator } from 'source-map-js'
 import { removeSync, outputFileSync } from 'fs-extra'
+import { is, type, equal, match } from 'uvu/assert'
 import { join, resolve, parse } from 'path'
 import { existsSync } from 'fs'
 import { test } from 'uvu'
-import { is, type, equal, match } from 'uvu/assert'
 
 import postcss, { SourceMap, Rule, Root } from '../lib/postcss.js'
 import PreviousMap from '../lib/previous-map.js'
-import Processor from '../lib/processor.js'
 
 function consumer(map: SourceMap): any {
   return (SourceMapConsumer as any).fromSourceMap(map)
@@ -634,22 +633,19 @@ test('uses URLs in sources', () => {
 })
 
 test('generates correct inline map with empty processor', () => {
-  let processor = new Processor()
-  let result = postcss(processor).process('a {} /*hello world*/', {
+  let result = postcss().process('a {} /*hello world*/', {
     map: true
   })
 
-  match(result.css,
-    /a {} \/\*hello world\*\/\n\/\*# sourceMappingURL=/
-  )
+  match(result.css, /a {} \/\*hello world\*\/\n\/\*# sourceMappingURL=/)
 })
 
 test('generates correct inline map and multiple comments', () => {
   let css =
     'a {}/*# sourceMappingURL=a.css.map */\n' +
-    '/*# sourceMappingURL=b.css.map */\nb {}\n/*# sourceMappingURL=c.css.map */'
-  let processor = new Processor()
-  let result = postcss(processor).process(css, {
+    '/*# sourceMappingURL=b.css.map */\n' +
+    'b {}\n/*# sourceMappingURL=c.css.map */'
+  let result = postcss().process(css, {
     map: true
   })
 
@@ -657,8 +653,7 @@ test('generates correct inline map and multiple comments', () => {
 })
 
 test('generates correct sources with empty processor', () => {
-  let processor = new Processor()
-  let result = postcss(processor).process('a {} /*hello world*/', {
+  let result = postcss().process('a {} /*hello world*/', {
     from: 'a.css',
     to: 'b.css',
     map: { inline: false }
@@ -668,8 +663,7 @@ test('generates correct sources with empty processor', () => {
 })
 
 test('generates map object with empty processor', () => {
-  let processor = new Processor()
-  let result = postcss(processor).process('a {} /*hello world*/', {
+  let result = postcss().process('a {} /*hello world*/', {
     from: 'a.css',
     to: 'b.css',
     map: true
@@ -683,6 +677,42 @@ test('generates map object with empty processor', () => {
     column: 0,
     name: null
   })
+})
+
+test('supports previous map with empty processor', () => {
+  let result1 = postcss().process('a{}', {
+    from: 'a.css',
+    to: 'b.css',
+    map: {
+      sourcesContent: true,
+      inline: false
+    }
+  })
+  equal(result1.map.toJSON().sourcesContent, ['a{}'])
+
+  let result2 = postcss().process(result1.css, {
+    from: 'b.css',
+    to: 'c.css',
+    map: {
+      prev: result1.map
+    }
+  })
+  equal(result2.map.toJSON().sources, ['a.css'])
+  equal(result2.map.toJSON().sourcesContent, ['a{}'])
+})
+
+test('supports previous inline map with empty processor', () => {
+  let result1 = postcss().process('a{}', {
+    from: '/a.css',
+    to: '/b.css',
+    map: true
+  })
+  let result2 = postcss().process(result1.css, {
+    from: '/b.css',
+    to: '/c.css'
+  })
+  let root3 = postcss.parse(result2.css, { from: '/c.css' })
+  equal((root3.source?.input.origin(1, 0) as any).file, '/a.css')
 })
 
 test.run()

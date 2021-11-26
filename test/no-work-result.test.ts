@@ -3,7 +3,7 @@ import { test } from 'uvu'
 import mozilla from 'source-map-js'
 import { spy } from 'nanospy'
 
-import postcss, { CssSyntaxError } from '../lib/postcss.js'
+import { CssSyntaxError } from '../lib/postcss.js'
 import NoWorkResult from '../lib/no-work-result.js'
 import Processor from '../lib/processor.js'
 
@@ -77,28 +77,6 @@ test('has map only if necessary', () => {
     map: { inline: false }
   })
   is(result3.map instanceof mozilla.SourceMapGenerator, true)
-})
-
-test('supports previous map', () => {
-  let result1 = postcss().process('a{}', {
-    from: 'a.css',
-    to: 'b.css',
-    map: {
-      sourcesContent: true,
-      inline: false
-    }
-  })
-  equal(result1.map.toJSON().sourcesContent, ['a{}'])
-
-  let result2 = postcss().process(result1.css, {
-    from: 'b.css',
-    to: 'c.css',
-    map: {
-      prev: result1.map
-    }
-  })
-  equal(result2.map.toJSON().sources, ['a.css'])
-  equal(result2.map.toJSON().sourcesContent, ['a{}'])
 })
 
 test('contains simple properties', () => {

@@ -518,9 +518,8 @@ test('warns about missed from', async () => {
 })
 
 test('returns NoWorkResult object', async () => {
-  let noWorkResult = new Processor().process('a{}')
-
-  instance(noWorkResult, NoWorkResult)
+  let result = new Processor().process('a{}')
+  instance(result, NoWorkResult)
 })
 
 test('without plugins parses CSS only on root access', async () => {
