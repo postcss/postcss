@@ -639,21 +639,21 @@ test('generates correct inline map with empty processor', () => {
     map: true
   })
 
-  match(result.css, 
+  match(result.css,
     /a {} \/\*hello world\*\/\n\/\*# sourceMappingURL=/
   )
 })
 
-test('generates correct inline map with empty processor and multiple comments', () => {
-  let css = 'a {}/*# sourceMappingURL=a.css.map */\n/*# sourceMappingURL=b.css.map */\nb {}\n/*# sourceMappingURL=c.css.map */'
+test('generates correct inline map and multiple comments', () => {
+  let css =
+    'a {}/*# sourceMappingURL=a.css.map */\n' +
+    '/*# sourceMappingURL=b.css.map */\nb {}\n/*# sourceMappingURL=c.css.map */'
   let processor = new Processor()
   let result = postcss(processor).process(css, {
     map: true
   })
 
-  match(result.css, 
-    /a {}\nb {}\n\/\*# sourceMappingURL=/
-  )
+  match(result.css, /a {}\nb {}\n\/\*# sourceMappingURL=/)
 })
 
 test('generates correct sources with empty processor', () => {
