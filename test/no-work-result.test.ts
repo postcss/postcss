@@ -99,7 +99,6 @@ test('executes on finally callback', () => {
   let mockCallbackHaveBeenCalled = 0
   let mockCallback = (): void => {
     mockCallbackHaveBeenCalled++
-    
   }
   return new NoWorkResult(processor, 'a {}', {})
     .finally(mockCallback)
@@ -112,3 +111,5 @@ test('prints its object type', () => {
   let result = new NoWorkResult(processor, 'a {}', {})
   is(Object.prototype.toString.call(result), '[object NoWorkResult]')
 })
+
+test.run()
