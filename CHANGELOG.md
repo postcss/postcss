@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.3
+* Fix `this.css.replace is not a function` error.
+
 ## 8.4.2
 * Fixed previous source map support in zero plugins mode.
 
