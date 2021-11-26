@@ -1,10 +1,13 @@
-import { test, suite } from 'uvu'
 import { is, type, equal, match, throws } from 'uvu/assert'
+import { spyOn, restoreAll } from 'nanospy'
+import { test } from 'uvu'
 
 import postcss, { Root, PluginCreator } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 
-const postcssSuite = suite('postcss suite')
+test.after.each(() => {
+  restoreAll()
+})
 
 test('creates plugins list', () => {
   let processor = postcss()
@@ -40,26 +43,6 @@ test('takes plugins from a a plugin returning a processor', () => {
   let meta = (() => other) as PluginCreator<void>
   meta.postcss = true
   equal(postcss([other, c]).plugins, [a, b, c])
-})
-
-test('creates a shortcut to process css', async () => {
-  let plugin = (postcss as any).plugin('test', (str?: string) => {
-    return (root: Root) => {
-      root.walkDecls(i => {
-        i.value = str ?? 'bar'
-      })
-    }
-  })
-
-  let result1 = plugin.process('a{value:foo}')
-  is(result1.css, 'a{value:bar}')
-
-  let result2 = plugin.process('a{value:foo}', {}, 'baz')
-  is(result2.css, 'a{value:baz}')
-
-  let result = await plugin.process('a{value:foo}', { from: 'a' }, 'baz')
-  equal(result.opts, { from: 'a' })
-  is(result.css, 'a{value:baz}')
 })
 
 test('contains parser', () => {
@@ -129,32 +112,8 @@ test('works with null', () => {
   }, /PostCSS received null instead of CSS string/)
 })
 
-test.run()
-
-let _Warn: typeof global.console.warn
-let _WarnArguments: any
-let _WarnHaveBeenCalled: number
-
-postcssSuite.before(() => {
-  _Warn = global.console.warn
-  _WarnHaveBeenCalled = 0
-  _WarnArguments = ''
-  global.console.warn = (...args) => {
-    _WarnArguments = args[0]
-    _WarnHaveBeenCalled++
-  }
-})
-
-postcssSuite.after.each(() => {
-  _WarnHaveBeenCalled = 0
-  _WarnArguments = ''
-})
-
-postcssSuite.after(() => {
-  global.console.warn = _Warn
-})
-
-postcssSuite.only('creates plugin', () => {
+test('has deprecated method to creat plugins', () => {
+  let warn = spyOn(console, 'warn', () => {})
   let plugin = (postcss as any).plugin('test', (filter?: string) => {
     return (root: Root) => {
       root.walkDecls(filter ?? 'two', i => {
@@ -162,8 +121,8 @@ postcssSuite.only('creates plugin', () => {
       })
     }
   })
-  is(_WarnHaveBeenCalled, 1)
-  match(_WarnArguments, /test/)
+  equal(warn.callCount, 1)
+  match(warn.calls[0][0], /postcss\.plugin was deprecated/)
 
   let func1: any = postcss(plugin).plugins[0]
   is(func1.postcssPlugin, 'test')
@@ -180,15 +139,37 @@ postcssSuite.only('creates plugin', () => {
   is(result2.css, 'a{ one: 1 }')
 })
 
-postcssSuite.only('does not call plugin constructor', () => {
-  global.console.warn
+test('creates a shortcut to process css', async () => {
+  let warn = spyOn(console, 'warn', () => {})
+  let plugin = (postcss as any).plugin('test', (str?: string) => {
+    return (root: Root) => {
+      root.walkDecls(i => {
+        i.value = str ?? 'bar'
+      })
+    }
+  })
+  equal(warn.callCount, 1)
+
+  let result1 = plugin.process('a{value:foo}')
+  is(result1.css, 'a{value:bar}')
+
+  let result2 = plugin.process('a{value:foo}', {}, 'baz')
+  is(result2.css, 'a{value:baz}')
+
+  let result = await plugin.process('a{value:foo}', { from: 'a' }, 'baz')
+  equal(result.opts, { from: 'a' })
+  is(result.css, 'a{value:baz}')
+})
+
+test('does not call plugin constructor', () => {
+  let warn = spyOn(console, 'warn', () => {})
   let calls = 0
   let plugin = (postcss as any).plugin('test', () => {
     calls += 1
     return () => {}
   })
   is(calls, 0)
-  is(_WarnHaveBeenCalled, 1)
+  equal(warn.callCount, 1)
 
   postcss(plugin).process('a{}')
   is(calls, 1)
@@ -197,4 +178,4 @@ postcssSuite.only('does not call plugin constructor', () => {
   is(calls, 2)
 })
 
-postcssSuite.run()
+test.run()

@@ -1,7 +1,8 @@
+import { is, type, equal, match, throws, not, instance } from 'uvu/assert'
 import { resolve as pathResolve } from 'path'
+import { spyOn, restoreAll } from 'nanospy'
 import { delay } from 'nanodelay'
 import { test } from 'uvu'
-import { is, type, equal, match, throws, not, instance } from 'uvu/assert'
 
 import postcss, {
   Plugin,
@@ -20,42 +21,8 @@ import NoWorkResult from '../lib/no-work-result.js'
 import Processor from '../lib/processor.js'
 import Rule from '../lib/rule.js'
 
-let _ConsoleWarn: typeof global.console.warn
-let _ConsoleError: typeof global.console.error
-let _ConsoleWarnArguments: any
-let _ConsoleErrorArguments: any
-let _ConsoleWarnHaveBeenCalled: number
-let _ConsoleErrorHaveBeenCalled: number
-
-test.before(() => {
-  _ConsoleWarn = global.console.warn
-  _ConsoleError = global.console.error
-  _ConsoleWarnArguments = ''
-  _ConsoleErrorArguments = ''
-  _ConsoleWarnHaveBeenCalled = 0
-  _ConsoleErrorHaveBeenCalled = 0
-
-  global.console.warn = (...args) => {
-    _ConsoleWarnArguments = args[0]
-    _ConsoleWarnHaveBeenCalled++
-  }
-
-  global.console.error = (...args) => {
-    _ConsoleErrorArguments = args[0]
-    _ConsoleErrorHaveBeenCalled++
-  }
-})
-
-test.before.each(() => {
-  _ConsoleWarnArguments = ''
-  _ConsoleErrorArguments = ''
-  _ConsoleWarnHaveBeenCalled = 0
-  _ConsoleErrorHaveBeenCalled = 0
-})
-
-test.after(() => {
-  global.console.warn = _ConsoleWarn
-  global.console.error = _ConsoleError
+test.after.each(() => {
+  restoreAll()
 })
 
 function prs(): Root {
@@ -415,12 +382,15 @@ test('remembers errors', async () => {
 })
 
 test('checks plugin compatibility', () => {
+  let error = spyOn(console, 'error', () => {})
+  let warn = spyOn(console, 'warn', () => {})
+
   let plugin = (postcss as any).plugin('test', () => {
     return () => {
       throw new Error('Er')
     }
   })
-  is(_ConsoleWarnHaveBeenCalled, 1)
+  equal(warn.callCount, 1)
   let func = plugin()
   func.postcssVersion = '2.1.5'
 
@@ -433,28 +403,29 @@ test('checks plugin compatibility', () => {
   throws(() => {
     processBy('1.0.0')
   }, 'Er')
-  is(_ConsoleErrorHaveBeenCalled, 1)
-  is(
-    _ConsoleErrorArguments,
-    'Unknown error from PostCSS plugin. ' +
-      'Your current PostCSS version is 1.0.0, but test uses 2.1.5. ' +
-      'Perhaps this is the source of the error below.'
-  )
+  equal(error.callCount, 1)
+  equal(error.calls, [
+    [
+      'Unknown error from PostCSS plugin. ' +
+        'Your current PostCSS version is 1.0.0, but test uses 2.1.5. ' +
+        'Perhaps this is the source of the error below.'
+    ]
+  ])
 
   throws(() => {
     processBy('3.0.0')
   }, 'Er')
-  is(_ConsoleErrorHaveBeenCalled, 2)
+  equal(error.callCount, 2)
 
   throws(() => {
     processBy('2.0.0')
   }, 'Er')
-  is(_ConsoleErrorHaveBeenCalled, 3)
+  equal(error.callCount, 3)
 
   throws(() => {
     processBy('2.1.0')
   }, 'Er')
-  is(_ConsoleErrorHaveBeenCalled, 3)
+  equal(error.callCount, 3)
 })
 
 test('sets last plugin to result', async () => {
@@ -473,7 +444,6 @@ test('sets last plugin to result', async () => {
 test('uses custom parsers', async () => {
   let processor = new Processor([])
   let result = await processor.process('a{}', { parser: prs, from: undefined })
-  not.ok(_ConsoleWarnHaveBeenCalled)
   is(result.css, 'ok')
 })
 
@@ -487,7 +457,6 @@ test('uses custom parsers from object', async () => {
 test('uses custom stringifier', async () => {
   let processor = new Processor([])
   let result = await processor.process('a{}', { stringifier: str, from: 'a' })
-  not.ok(_ConsoleWarnHaveBeenCalled)
   is(result.css, '!')
 })
 
@@ -495,7 +464,6 @@ test('uses custom stringifier from object', async () => {
   let processor = new Processor([])
   let syntax = { parse: prs, stringify: str }
   let result = await processor.process('', { stringifier: syntax, from: 'a' })
-  not.ok(_ConsoleWarnHaveBeenCalled)
   is(result.css, '!')
 })
 
@@ -515,7 +483,6 @@ test('uses custom syntax', async () => {
     syntax: { parse: prs, stringify: str },
     from: undefined
   })
-  not.ok(_ConsoleWarnHaveBeenCalled)
   is(result.css, 'ok!')
 })
 
@@ -534,18 +501,20 @@ test('throws on syntax as plugin', () => {
 })
 
 test('warns about missed from', async () => {
+  let warn = spyOn(console, 'warn', () => {})
   let processor = new Processor([() => {}])
 
   processor.process('a{}').css
-  not.ok(_ConsoleWarnHaveBeenCalled)
+  equal(warn.calls, [])
 
   await processor.process('a{}')
-  is.not(
-    _ConsoleWarnArguments, 
-    'Without `from` option PostCSS could generate wrong source map ' +
-      'and will not find Browserslist config. Set it to CSS file path ' +
-      'or to `undefined` to prevent this warning.'
-  )
+  equal(warn.calls, [
+    [
+      'Without `from` option PostCSS could generate wrong source map ' +
+        'and will not find Browserslist config. Set it to CSS file path ' +
+        'or to `undefined` to prevent this warning.'
+    ]
+  ])
 })
 
 test('returns NoWorkResult object', async () => {
@@ -554,35 +523,15 @@ test('returns NoWorkResult object', async () => {
   instance(noWorkResult, NoWorkResult)
 })
 
-test('parses CSS only on root access when no plugins are specified', async () => {
+test('without plugins parses CSS only on root access', async () => {
   let noWorkResult = new Processor().process('a{}')
   let result = await noWorkResult
-  // @ts-ignore
+  // @ts-expect-error
   type(noWorkResult._root, 'undefined')
-  is(result.root.nodes.length , 1)
-  // @ts-ignore
+  is(result.root.nodes.length, 1)
+  // @ts-expect-error
   not.type(noWorkResult._root, 'undefined')
-  is(noWorkResult.root.nodes.length , 1)
-})
-
-// @NOTE: couldn't spy on console.warn because warnOnce was triggered before
-// in other tests. Spying on async() instead
-test('warns about missed from with empty processor', async () => {
-  let asyncHaveBeenCalled = 0
-  let _NoWorkResultAsync = NoWorkResult.prototype.async
-  NoWorkResult.prototype.async = () => {
-    asyncHaveBeenCalled++
-    return Promise.resolve(r)
-  }
-
-  let processor = new Processor()
-  let r = new Result(processor, new Root({}), {})
-
-  processor.process('a{}').css
-
-  await processor.process('a{}')
-  is(asyncHaveBeenCalled, 1)
-  NoWorkResult.prototype.async = _NoWorkResultAsync
+  is(noWorkResult.root.nodes.length, 1)
 })
 
 test('catches error with empty processor', async () => {
@@ -600,11 +549,13 @@ test('catches error with empty processor', async () => {
 })
 
 test('supports plugins returning processors', () => {
+  let warn = spyOn(console, 'warn', () => {})
   let a = (): void => {}
   let processor = new Processor()
   let other: any = (postcss as any).plugin('test', () => {
     return new Processor([a])
   })
+  equal(warn.callCount, 1)
   processor.use(other)
   equal(processor.plugins, [a])
 })

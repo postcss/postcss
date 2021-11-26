@@ -1,6 +1,7 @@
+import { is, type, equal, throws, not, instance } from 'uvu/assert'
 import mozilla from 'source-map-js'
 import { test } from 'uvu'
-import { is, type, equal, throws, not, instance } from 'uvu/assert'
+import { spy } from 'nanospy'
 
 import NoWorkResult from '../lib/no-work-result.js'
 import { CssSyntaxError } from '../lib/postcss.js'
@@ -9,32 +10,32 @@ import Processor from '../lib/processor.js'
 let processor = new Processor()
 
 test('contains AST on root access', () => {
-  let result = new NoWorkResult(processor, 'a {}', {})
+  let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
   is(result.root.nodes.length, 1)
 })
 
 test('has async() method', async () => {
-  let noWorkResult = new NoWorkResult(processor, 'a {}', {})
+  let noWorkResult = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
   let result1 = await noWorkResult
   let result2 = await noWorkResult
   equal(result1, result2)
 })
 
 test('has sync() method', () => {
-  let result = new NoWorkResult(processor, 'a {}', {}).sync()
+  let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' }).sync()
   is(result.root.nodes.length, 1)
 })
 
 test('throws error on sync()', () => {
-  let noWorkResult = new NoWorkResult(processor, 'a {', {})
+  let noWorkResult = new NoWorkResult(processor, 'a {', { from: '/a.css' })
 
-  noWorkResult.root // process AST
+  noWorkResult.root
 
-  throws(() => noWorkResult.sync())
+  throws(() => noWorkResult.sync(), 'AAA')
 })
 
 test('returns cached root on second access', async () => {
-  let result = new NoWorkResult(processor, 'a {}', {})
+  let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
 
   result.root
 
@@ -43,72 +44,63 @@ test('returns cached root on second access', async () => {
 })
 
 test('contains css syntax errors', () => {
-  let result = new NoWorkResult(processor, 'a {', {})
+  let result = new NoWorkResult(processor, 'a {', { from: '/a.css' })
   result.root
-  // @ts-ignore
+  // @ts-expect-error
   instance(result.error, CssSyntaxError)
 })
 
 test('contains css', () => {
-  let result = new NoWorkResult(processor, 'a {}', {})
+  let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
   is(result.css, 'a {}')
 })
 
 test('stringifies css', () => {
-  let result = new NoWorkResult(processor, 'a {}', {})
+  let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
   equal(`${result}`, result.css)
 })
 
 test('has content alias for css', () => {
-  let result = new NoWorkResult(processor, 'a {}', {})
+  let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
   is(result.content, 'a {}')
 })
 
 test('has map only if necessary', () => {
-  let result1 = new NoWorkResult(processor, '', {})
+  let result1 = new NoWorkResult(processor, '', { from: '/a.css' })
   type(result1.map, 'undefined')
 
-  let result2 = new NoWorkResult(processor, '', {})
+  let result2 = new NoWorkResult(processor, '', { from: '/a.css' })
   type(result2.map, 'undefined')
 
-  let result3 = new NoWorkResult(processor, '', { map: { inline: false } })
+  let result3 = new NoWorkResult(processor, '', {
+    from: '/a.css',
+    map: { inline: false }
+  })
   is(result3.map instanceof mozilla.SourceMapGenerator, true)
 })
 
-test('contains processor', () => {
-  let result = new NoWorkResult(processor, 'a {}', { to: 'a.css' })
+test('contains simple properties', () => {
+  let result = new NoWorkResult(processor, 'a {}', {
+    from: '/a.css',
+    to: 'a.css'
+  })
   instance(result.processor, Processor)
-})
-
-test('contains options', () => {
-  let result = new NoWorkResult(processor, 'a {}', { to: 'a.css' })
-  equal(result.opts, { to: 'a.css' })
-})
-
-test('contains warnings', () => {
-  let result = new NoWorkResult(processor, 'a {}', {})
+  equal(result.opts, { from: '/a.css', to: 'a.css' })
+  equal(result.messages, [])
   equal(result.warnings(), [])
 })
 
-test('contains messages', () => {
-  let result = new NoWorkResult(processor, 'a {}', {})
-  equal(result.messages, [])
-})
-
 test('executes on finally callback', () => {
-  let mockCallbackHaveBeenCalled = 0
-  let mockCallback = (): void => {
-    mockCallbackHaveBeenCalled++
-  }
-  return new NoWorkResult(processor, 'a {}', {})
-    .finally(mockCallback)
+  let cb = spy()
+  return new NoWorkResult(processor, 'a {}', { from: '/a.css' })
+    .finally(cb)
     .then(() => {
-      is(mockCallbackHaveBeenCalled, 1)
+      equal(cb.callCount, 1)
     })
 })
 
 test('prints its object type', () => {
-  let result = new NoWorkResult(processor, 'a {}', {})
+  let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
   is(Object.prototype.toString.call(result), '[object NoWorkResult]')
 })
 
