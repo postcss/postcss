@@ -103,7 +103,8 @@
   },
   "c8": {
     "exclude": [
-      "**/*.test.*"
+      "**/*.test.*",
+      "lib/map-generator.js"
     ],
     "lines": 100,
     "check-coverage": true
