@@ -681,18 +681,25 @@ test('generates map object with empty processor', () => {
 
 test('supports previous map with empty processor', () => {
   let result1 = postcss().process('a{}', {
-    from: 'a.css',
-    to: 'b.css',
+    from: '/a.css',
+    to: '/b.css',
     map: {
       sourcesContent: true,
       inline: false
     }
   })
-  equal(result1.map.toJSON().sourcesContent, ['a{}'])
+  equal(result1.map.toJSON(), {
+    version: 3,
+    sources: ['a.css'],
+    names: [],
+    mappings: 'AAAA',
+    file: 'b.css',
+    sourcesContent: ['a{}']
+  })
 
   let result2 = postcss().process(result1.css, {
-    from: 'b.css',
-    to: 'c.css',
+    from: '/b.css',
+    to: '/c.css',
     map: {
       prev: result1.map
     }
