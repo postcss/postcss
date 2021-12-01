@@ -402,6 +402,11 @@ const result = await postcss([autoprefixer]).process(css)
 * **Connect/Express**: [`postcss-middleware`](https://github.com/jedmao/postcss-middleware)
 
 
+### Preprocessors
+
+* **Svelte**: [`svelte-preprocess`](https://github.com/sveltejs/svelte-preprocess/blob/main/docs/preprocessing.md#postcss-sugarss)
+
+
 ### JS API
 
 For other environments, you can use the JS API:
