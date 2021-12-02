@@ -400,6 +400,7 @@ const result = await postcss([autoprefixer]).process(css)
 * **Taskr**: [`taskr-postcss`](https://github.com/lukeed/taskr/tree/master/packages/postcss)
 * **Start**: [`start-postcss`](https://github.com/start-runner/postcss)
 * **Connect/Express**: [`postcss-middleware`](https://github.com/jedmao/postcss-middleware)
+* **Svelte Preprocessor**: [`svelte-preprocess`](https://github.com/sveltejs/svelte-preprocess/blob/main/docs/preprocessing.md#postcss-sugarss)
 
 
 ### JS API
