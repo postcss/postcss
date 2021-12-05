@@ -463,7 +463,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched
   by other plugins.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
-* [`postcss-rtlcss`] creates left-to-right (LTR) and right-to-left (RTL) rules in a single CSS file
+* [`postcss-rtlcss`] creates left-to-right and right-to-left rules in a single CSS file.
 * [`postcss-safe-important`] adds `!important` to style declarations safely.
 * [`postcss-sanitize`] remove properties and values using rules (css sanitization).
 * [`postcss-scopify`] adds a user input scope to each selector.
