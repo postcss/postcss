@@ -1,6 +1,6 @@
 import Container, { ContainerProps } from './container.js'
 
-interface RuleRaws {
+interface RuleRaws extends Record<string, unknown> {
   /**
    * The space symbols before the node. It also stores `*`
    * and `_` symbols before the declaration (IE hack).

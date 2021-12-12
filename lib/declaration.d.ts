@@ -1,7 +1,7 @@
 import Container from './container.js'
 import Node from './node.js'
 
-interface DeclarationRaws {
+interface DeclarationRaws extends Record<string, unknown> {
   /**
    * The space symbols before the node. It also stores `*`
    * and `_` symbols before the declaration (IE hack).
