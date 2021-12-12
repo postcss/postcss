@@ -9,15 +9,19 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.23.6
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 17
-          cache: yarn
+          cache: pnpm
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: pnpm install --frozen-lockfile
       - name: Run tests
-        run: yarn test
+        run: pnpm test
         env:
           FORCE_COLOR: 2
   short:
@@ -28,38 +32,69 @@ jobs:
           - 16
           - 14
           - 12
+    name: Node.js ${{ matrix.node-version }} Quick
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.23.6
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Run unit tests
+        run: pnpm unit
+        env:
+          FORCE_COLOR: 2
+  old:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
           - 10
     name: Node.js ${{ matrix.node-version }} Quick
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v1
+        with:
+          version: 3.8.1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: Install Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: yarn
       - name: Install dependencies
-        run: yarn --frozen-lockfile --ignore-engines
+        run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Run unit tests
-        run: yarn unit
+        run: pnpm unit
         env:
           FORCE_COLOR: 2
   windows:
     runs-on: windows-latest
     name: Windows Quick
-    env:
-      YARN_GPG: 'no'
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.23.6
       - name: Install Node.js LTS
         uses: actions/setup-node@v2
         with:
           node-version: 16
-          cache: yarn
+          cache: pnpm
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Run unit tests
-        run: yarn unit
+        run: pnpm unit
         env:
           FORCE_COLOR: 2
