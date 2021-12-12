@@ -19,7 +19,7 @@ jobs:
           node-version: 17
           cache: pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Run tests
         run: pnpm test
         env:
