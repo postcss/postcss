@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.5
+* Fixed `raws` types to make object extendable (by James Garbutt).
+* Moved from Yarn 1 to pnpm.
+
 ## 8.4.4
 * Fixed absolute path in source map on zero plugins mode.
 
