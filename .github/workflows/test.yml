@@ -64,7 +64,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v1
         with:
-          version: latest
+          version: 3
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: Install Node.js ${{ matrix.node-version }}
