@@ -12,7 +12,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 6.24.0
+          version: latest
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
@@ -39,7 +39,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 6.24.0
+          version: latest
       - name: Install Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -64,7 +64,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v1
         with:
-          version: 3.8.1
+          version: latest
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: Install Node.js ${{ matrix.node-version }}
@@ -86,7 +86,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 6.24.0
+          version: latest
       - name: Install Node.js LTS
         uses: actions/setup-node@v2
         with:
