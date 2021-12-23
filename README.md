@@ -508,10 +508,9 @@ module.exports = {
 
 ### WebStorm
 
-WebStorm 2016.3 [has] built-in PostCSS support.
+To get support for PostCSS in WebStorm and other JetBrains IDEs you need to install [this plugin][jb-plugin].
 
-[has]: https://blog.jetbrains.com/webstorm/2016/08/webstorm-2016-3-early-access-preview/
-
+[jb-plugin]: https://plugins.jetbrains.com/plugin/8578-postcss
 
 ## Security Contact
 
