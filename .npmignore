@@ -1,10 +1,8 @@
-node_modules/
 pnpm-lock.yaml
 
 .editorconfig
 coverage/
 test/
-.travis.yml
 
 docs/
 .github/
