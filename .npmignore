@@ -1,9 +1,5 @@
-pnpm-lock.yaml
-
-.editorconfig
 coverage/
 test/
 
 docs/
-.github/
 tsconfig.json
