@@ -69,7 +69,7 @@
     "url": "https://github.com/postcss/postcss/issues"
   },
   "dependencies": {
-    "nanoid": "^3.1.30",
+    "nanoid": "^3.2.0",
     "picocolors": "^1.0.0",
     "source-map-js": "^1.0.1"
   },
@@ -77,14 +77,14 @@
     "@logux/eslint-config": "^46.1.1",
     "@size-limit/preset-small-lib": "^7.0.5",
     "@types/fs-extra": "^9.0.13",
-    "@types/node": "^17.0.8",
-    "@typescript-eslint/eslint-plugin": "^5.9.0",
-    "@typescript-eslint/parser": "^5.9.0",
+    "@types/node": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
     "c8": "^7.11.0",
     "check-dts": "^0.6.6",
     "clean-publish": "^3.4.5",
     "concat-with-sourcemaps": "^1.1.0",
-    "eslint": "^8.6.0",
+    "eslint": "^8.7.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
