@@ -107,6 +107,7 @@
       "lib/map-generator.js"
     ],
     "lines": 100,
+    "reporter": "lcov",
     "check-coverage": true
   },
   "simple-git-hooks": {
