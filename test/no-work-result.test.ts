@@ -3,7 +3,6 @@ import { test } from 'uvu'
 import mozilla from 'source-map-js'
 import { spy } from 'nanospy'
 
-import { CssSyntaxError } from '../lib/postcss.js'
 import NoWorkResult from '../lib/no-work-result.js'
 import Processor from '../lib/processor.js'
 
@@ -29,7 +28,9 @@ test('has sync() method', () => {
 test('throws error on sync()', () => {
   let noWorkResult = new NoWorkResult(processor, 'a {', { from: '/a.css' })
 
-  noWorkResult.root
+  try {
+    noWorkResult.root
+  } catch {}
 
   throws(() => noWorkResult.sync(), 'AAA')
 })
@@ -41,13 +42,6 @@ test('returns cached root on second access', async () => {
 
   is(result.root.nodes.length, 1)
   not.throws(() => result.sync())
-})
-
-test('contains css syntax errors', () => {
-  let result = new NoWorkResult(processor, 'a {', { from: '/a.css' })
-  result.root
-  // @ts-expect-error
-  instance(result.error, CssSyntaxError)
 })
 
 test('contains css', () => {

@@ -1,6 +1,6 @@
-import mozilla from 'source-map-js'
-import { test } from 'uvu'
 import { is, equal, type } from 'uvu/assert'
+import { test } from 'uvu'
+import mozilla from 'source-map-js'
 
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'

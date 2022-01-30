@@ -536,7 +536,9 @@ test('without plugins parses CSS only on root access', async () => {
 test('catches error with empty processor', async () => {
   let noWorkResult = new Processor().process('a {')
 
-  noWorkResult.root
+  try {
+    noWorkResult.root
+  } catch {}
 
   let err = await catchError(async () => await noWorkResult)
 
@@ -545,6 +547,12 @@ test('catches error with empty processor', async () => {
   })
 
   instance(err, CssSyntaxError)
+})
+
+test('throws an error on root access on no plugins mode', () => {
+  throws(() => {
+    postcss().process('// invalid', { from: 'a' }).root
+  }, 'Unknown word')
 })
 
 test('supports plugins returning processors', () => {
