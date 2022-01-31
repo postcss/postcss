@@ -1,8 +1,8 @@
+import { equal, is, match, not, throws } from 'uvu/assert'
 import { testPath, jsonify, eachTest } from 'postcss-parser-tests'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import { test } from 'uvu'
-import { equal, is, match, not, throws } from 'uvu/assert'
 
 import { Declaration, AtRule, parse, Root, Rule } from '../lib/postcss.js'
 
@@ -21,15 +21,15 @@ eachTest((name, css, json) => {
 
 test('parses UTF-8 BOM', () => {
   let css = parse('\uFEFF@host { a {\f} }')
-  is(css.nodes[0].raws.before, '')
+  equal(css.nodes[0].raws.before, '')
 })
 
-test('should has true at `hasBOM` property', () => {
+test('should has true at hasBOM property', () => {
   let css = parse('\uFEFF@host { a {\f} }')
   is(css.first?.source?.input.hasBOM, true)
 })
 
-test('should has false at `hasBOM` property', () => {
+test('should has false at hasBOM property', () => {
   let css = parse('@host { a {\f} }')
   is(css.first?.source?.input.hasBOM, false)
 })
