@@ -22,7 +22,7 @@ specifiers:
   nanoid: ^3.2.0
   nanospy: ^0.4.0
   picocolors: ^1.0.0
-  postcss-parser-tests: postcss/postcss-parser-tests
+  postcss-parser-tests: github:postcss/postcss-parser-tests
   simple-git-hooks: ^2.7.0
   size-limit: ^7.0.5
   source-map-js: ^1.0.2
@@ -56,7 +56,7 @@ devDependencies:
   fs-extra: 10.0.0
   nanodelay: 1.0.8
   nanospy: 0.4.0
-  postcss-parser-tests: github.com/postcss/postcss-parser-tests/657dce203667e6be1effcbfa776b5efc709660af
+  postcss-parser-tests: github.com/postcss/postcss-parser-tests/d4ba86c442a321f39bab897e0e047038527633d3
   simple-git-hooks: 2.7.0
   size-limit: 7.0.5
   strip-ansi: 6.0.1
@@ -2315,8 +2315,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/postcss/postcss-parser-tests/657dce203667e6be1effcbfa776b5efc709660af:
-    resolution: {tarball: https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/657dce203667e6be1effcbfa776b5efc709660af}
+  github.com/postcss/postcss-parser-tests/d4ba86c442a321f39bab897e0e047038527633d3:
+    resolution: {tarball: https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/d4ba86c442a321f39bab897e0e047038527633d3}
     name: postcss-parser-tests
     version: 8.3.7
     dependencies:
