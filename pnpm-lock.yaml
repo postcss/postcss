@@ -22,7 +22,7 @@ specifiers:
   nanoid: ^3.2.0
   nanospy: ^0.4.0
   picocolors: ^1.0.0
-  postcss-parser-tests: ^8.3.7
+  postcss-parser-tests: postcss/postcss-parser-tests
   simple-git-hooks: ^2.7.0
   size-limit: ^7.0.5
   source-map-js: ^1.0.2
@@ -56,7 +56,7 @@ devDependencies:
   fs-extra: 10.0.0
   nanodelay: 1.0.8
   nanospy: 0.4.0
-  postcss-parser-tests: 8.3.7
+  postcss-parser-tests: github.com/postcss/postcss-parser-tests/657dce203667e6be1effcbfa776b5efc709660af
   simple-git-hooks: 2.7.0
   size-limit: 7.0.5
   strip-ansi: 6.0.1
@@ -1839,13 +1839,6 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /postcss-parser-tests/8.3.7:
-    resolution: {integrity: sha512-Y7AKzPFgxJb3ayi2/YT2hyAPdLsQ9pj3G4Il4Y6P/pPonISoSpkKFTgJOqL6bqjGfNep/zvUnfW9KoMGwxFc+Q==}
-    dependencies:
-      picocolors: 1.0.0
-      spinnies: 0.5.1
-    dev: true
-
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
@@ -2320,4 +2313,13 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  github.com/postcss/postcss-parser-tests/657dce203667e6be1effcbfa776b5efc709660af:
+    resolution: {tarball: https://codeload.github.com/postcss/postcss-parser-tests/tar.gz/657dce203667e6be1effcbfa776b5efc709660af}
+    name: postcss-parser-tests
+    version: 8.3.7
+    dependencies:
+      picocolors: 1.0.0
+      spinnies: 0.5.1
     dev: true
