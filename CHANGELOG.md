@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.6
+* Prevented comment removing when it change meaning of CSS.
+* Fixed parsing space in last semicolon-less CSS Custom Properties.
+* Fixed comment cleaning in CSS Custom Properties with space.
+* Fixed throwing an error on `.root` access for plugin-less case.
+
 ## 8.4.5
 * Fixed `raws` types to make object extendable (by James Garbutt).
 * Moved from Yarn 1 to pnpm.
