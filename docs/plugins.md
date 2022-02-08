@@ -485,6 +485,7 @@ See also plugins in modular minifier [`cssnano`].
   doesn’t fit the mobile browser screen.
 * [`postcss-unit-processor`] flexible processing of CSS units.
 * [`postcss-rem-to-px`] converts `rem` values to `px` values.
+* [`postcss-design-tokens`] provides a function to retrieve design tokens expressed in JS or JSON, within CSS.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -882,3 +883,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-rem-to-px`]:                    https://github.com/TheDutchCoder/postcss-rem-to-px
 [`postcss-prefix-hover`]:                 https://github.com/larsmunkholm/postcss-prefix-hover
 [`postcss-resolve-urls`]:                 https://github.com/bognarlaszlo/postcss-resolve-urls
+[`postcss-design-tokens`]:                https://github.com/jptaranto/postcss-design-tokens
