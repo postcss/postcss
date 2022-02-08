@@ -47,7 +47,9 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`short`] adds and extends numerous shorthand properties.
 * [`stylelint`] contains plugins that lint your stylesheets.
 * [`postcss-hamster`] for vertical rhythm, typography, modular scale functions.
-* [`postcss-preset-env`] lets you convert modern CSS into something most browsers can understand, determining the polyfills you need based on your targeted browsers or runtime environments.
+* [`postcss-preset-env`] lets you convert modern CSS into something most
+  browsers can understand, determining the polyfills you need based
+  on your targeted browsers or runtime environments.
 * [`postcss-ui-theme`] gives you syntax sugar and allow you change theme.
 
 [`postcss-preset-env`]: https://github.com/jonathantneal/postcss-preset-env/
@@ -66,7 +68,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 
 * [`postcss-apply`] supports custom properties sets references.
 * [`postcss-attribute-case-insensitive`] supports case insensitive attributes.
-* [`postcss-bidirection`] generate left-to-right and right-to-left styles with single syntax.
+* [`postcss-bidirection`] generate left-to-right and right-to-left styles
+  with single syntax.
 * [`postcss-color-function`] supports functions to transform colors.
 * [`postcss-color-gray`] supports the `gray()` function.
 * [`postcss-color-hex-alpha`] supports `#rrggbbaa` and `#rgba` notation.
@@ -90,7 +93,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-font-normalize`] to normalize font, especially `font-family`.
 * [`postcss-font-variant`] transpiles human-readable `font-variant`
   to more widely supported CSS.
-* [`postcss-font-family-system-ui`] transforms W3C CSS `font-family: system-ui` to a practical font list.
+* [`postcss-font-family-system-ui`] transforms W3C CSS `font-family: system-ui`
+  to a practical font list.
 * [`postcss-font-display`] add `font-display` css rule.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
@@ -151,7 +155,8 @@ by one line of code.
   and other old browsers.
 * [`pixrem`] generates pixel fallbacks for `rem` units.
 * [`postcss-fixie`] adds easy and painless IE hacks
-* [`postcss-safe-area`] adds browser fallbacks for `safe-area-inset` `env` variables.
+* [`postcss-safe-area`] adds browser fallbacks for `safe-area-inset` `env`
+  variables.
 * [`webp-in-css`] to use WebP background images in CSS.
 * [`postcss-clamp`] transform `clamp()` to combination of `min/max`
 
@@ -165,7 +170,8 @@ See also [`oldie`] plugins pack.
 * [`postcss-aspect-ratio`] fix an element's dimensions to an aspect ratio.
 * [`postcss-atroot`] place rules directly at the root node.
 * [`postcss-bem-fix`] adds at-rules for BEM and SUIT style classes.
-* [`postcss-click`] allows to use the `:click` pseudo class and implement it in JavaScript.
+* [`postcss-click`] allows to use the `:click` pseudo class and implement
+  it in JavaScript.
 * [`postcss-compact-mq`] provides compact syntax for media queries based
   on viewport width.
 * [`postcss-conditionals`] adds `@if` statements.
@@ -220,8 +226,10 @@ for targeting all button elements.
   selector.
 * [`csstyle`] adds components workflow to your styles.
 * [`postcss-percentage`] support Sass-like `percentage()` function.
-* [`postcss-custom-css-units`] Define custom css units and convert them to CSS variables.
-* [`postcss-easy-z`] lets you organize z-indices by declaring relations between them.
+* [`postcss-custom-css-units`] Define custom css units and convert them
+  to CSS variables.
+* [`postcss-easy-z`] lets you organize z-indices by declaring relations
+  between them.
 
 [Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
 
@@ -265,27 +273,33 @@ for targeting all button elements.
   and inline files.
 * [`postcss-assets-rebase`] rebases assets from `url()`.
 * [`postcss-at2x`] handles retina background images via use of `at-2x` keyword.
-* [`postcss-background-image-auto-size`] generates CSS rules `width` and `height` for `background-image` automatically.
-* [`postcss-border-9-patch`] generates 9-patch like border styles via a custom rule.
+* [`postcss-background-image-auto-size`] generates CSS rules `width`
+  and `height` for `background-image` automatically.
+* [`postcss-border-9-patch`] generates 9-patch like border styles
+  via a custom rule.
 * [`postcss-cachebuster`] adds version parameter to images and fonts
 * [`postcss-copy-assets`] copies assets referenced by relative `url()`s
   into a build directory.
 * [`postcss-data-packer`] moves embedded Base64 data to a separate file.
 * [`postcss-easysprites`] combine images to sprites, based on their
   image.png`#hash` and aspect ratio (`@2x`).
-* [`postcss-icon-blender`] create custom SVG icon sets from over 80,000 free and open-source icons
+* [`postcss-icon-blender`] create custom SVG icon sets from over 80,000 free
+  and open-source icons
 * [`postcss-image-set`] adds `background-image` with first image
   for `image-set()`.
 * [`postcss-image-inliner`] inlines local and remote images.
 * [`postcss-instagram`] adds Instagram filters to `filter`.
 * [`postcss-filter-tint`] adds tint filter to elements such as images.
-* [`postcss-foft-classes`] adds guarding classes to blocks using web fonts for better font loading strategies.
+* [`postcss-foft-classes`] adds guarding classes to blocks using web fonts
+  for better font loading strategies.
 * [`postcss-font-awesome`] adds an easy shortcut to font-awesome unicode codes
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
-* [`postcss-fontsize`] generates `rem` unit `font-size` and `line-height` with `px` fallbacks.
+* [`postcss-fontsize`] generates `rem` unit `font-size` and `line-height`
+  with `px` fallbacks.
 * [`postcss-fontpath`] adds font links for different browsers.
-* [`postcss-font-grabber`] it grabs remote fonts in `@font-face`, download them and update your CSS.
+* [`postcss-font-grabber`] it grabs remote fonts in `@font-face`,
+  download them and update your CSS.
 * [`postcss-lazyimagecss`] adds image width and height automatically.
 * [`postcss-lazysprite`] generates sprites from the directory of images.
 * [`postcss-placehold`] makes it easy to drop in placeholder images.
@@ -298,7 +312,8 @@ loosely resembles the original.
 * [`postcss-svg`] insert inline SVG to CSS and allows to manage it colors.
 * [`postcss-svg-fallback`] converts SVG in your CSS to PNG files for IE 8.
 * [`postcss-svgo`] processes inline SVG through [SVGO].
-* [`postcss-unicode-characters`] makes it easier to write `unicode-range` descriptors.
+* [`postcss-unicode-characters`] makes it easier to write `unicode-range`
+  descriptors.
 * [`postcss-url`] rebases or inlines `url()`s.
 * [`postcss-urlrev`] adds MD5 hash strings to `url()`s.
 * [`postcss-write-svg`] write inline SVGs in CSS.
@@ -327,12 +342,16 @@ loosely resembles the original.
 
 * [`postcss-calc`] reduces `calc()` to values
   (when expressions involve the same units).
-* [`postcss-remove-nested-calc`] `calc(100vw - calc(20% - 10px))` to `calc(100vw - (20% - 10px))` for IE 11 compatibility.
-* [`postcss-class-name-shortener`] shortens CSS class names to optimize website performance.
-* [`postcss-combine-duplicated-selectors`] automatically join identical css selectors.
+* [`postcss-remove-nested-calc`] `calc(100vw - calc(20% - 10px))` to
+  `calc(100vw - (20% - 10px))` for IE 11 compatibility.
+* [`postcss-class-name-shortener`] shortens CSS class names to optimize
+  website performance.
+* [`postcss-combine-duplicated-selectors`] automatically join identical
+  selectors.
 * [`postcss-filter-mq`] Filter all matching or non-matching media queries.
 * [`postcss-import`] inlines the stylesheets referred to by `@import` rules.
-* [`postcss-nested-import`] inlines stylesheets referred to by `@import` rules inside nested rule blocks.
+* [`postcss-nested-import`] inlines stylesheets referred to by `@import` rules
+  inside nested rule blocks.
 * [`postcss-partial-import`] inlines standard imports and Sass-like partials.
 * [`postcss-reference`] emulates Less’s `@import`.
 * [`postcss-remove-root`] removes all instances of `:root` from a stylesheet.
@@ -345,7 +364,8 @@ loosely resembles the original.
 * [`stylehacks`] removes CSS hacks based on browser support.
 * [`postcss-mq-optimize`] removes invalid media queries or its expressions.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
-* [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
+* [`postcss-html-filter`] filters out CSS that does not apply to the HTML
+  you provide.
 * [`postcss-no-important`] delete declarations !important.
 * [`postcss-deep-scopable`] unified deep scoped style for Vue.js.
 * [`postcss-deadcss`] helps to find dead CSS in stylesheets.
@@ -363,7 +383,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-all-link-colors`] insert colors for link-related pseudo-classes.
 * [`postcss-border`] adds shorthand for width and color of all borders
   in `border` property.
-* [`postcss-border-shortcut`] PostCSS plugin for assign default `border` type if not expressed.
+* [`postcss-border-shortcut`] PostCSS plugin for assign default `border` type
+  if not expressed.
 * [`postcss-button`] creates buttons.
 * [`postcss-center`] centers elements.
 * [`postcss-circle`] inserts a circle with color.
@@ -380,12 +401,15 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-hidden`] allows for easy ways to hide elements.
 * [`postcss-input-style`] adds new pseudo-elements for cross-browser styling
   of inputs.
-* [`postcss-nested-ancestors`] reference any parent/ancestor selector in nested CSS.
-* [`postcss-parent-selector`] adds a parent selector to the beginning of all rules.
+* [`postcss-nested-ancestors`] reference any parent/ancestor selector
+  in nested CSS.
+* [`postcss-parent-selector`] adds a parent selector to the beginning
+  of all rules.
 * [`postcss-position`] adds shorthand declarations for position attributes.
 * [`postcss-property-lookup`] allows referencing property values without
   a variable.
-* [`postcss-range-value`] range value with a max and min value between two screen sizes.
+* [`postcss-range-value`] range value with a max and min value between
+  two screen sizes.
 * [`postcss-responsive-type`] changes `font-size` depends on screen size.
 * [`postcss-scrib`] define your own aliases/shortcuts for properties or values.
 * [`postcss-short-font-size`] extends `font-size` to define line-height
@@ -406,26 +430,32 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-verthorz`] adds vertical and horizontal spacing declarations.
 * [`font-magician`] generates all the `@font-face` rules needed in CSS.
 * [`postcss-animation`] PostCSS plugin that adds `@keyframes` from animate.css.
-* [`postcss-magic-animations`] PostCSS plugin that adds `@keyframes` from Magic Animations.
+* [`postcss-magic-animations`] PostCSS plugin that adds `@keyframes`
+  from Magic Animations.
 
 
 ## Others
 
-* [`postcss-add-root-selector`] intelligently wraps all rules in a custom selector.
-* [`postcss-alter-property-value`] alters your CSS declarations from a rule based configuration.
+* [`postcss-add-root-selector`] intelligently wraps all rules
+  in a custom selector.
+* [`postcss-alter-property-value`] alters your CSS declarations
+  from a rule based configuration.
 * [`postcss-attribute-selector-prefix`] adds a prefix to attribute selectors
 * [`postcss-auto-rem`] compiles pixel units to `rem` without configuration.
 * [`postcss-autoreset`]  automatically adds reset styles.
 * [`postcss-bem-to-js`] creates a JavaScript definition file for BEM-style CSS.
 * [`postcss-bom`] adds a UTF-8 BOM to files.
-* [`postcss-blurry-gradient-workaround`] fixes blurry CSS gradients with too many explicit end-stops.
+* [`postcss-blurry-gradient-workaround`] fixes blurry CSS gradients
+  with too many explicit end-stops.
 * [`postcss-camelcaser`] transforms selectors to CamelCase.
 * [`postcss-class-prefix`] adds a prefix/namespace to class selectors.
 * [`postcss-classes-to-mixins`] converts classes to Sass, Less and Stylus mixins
 * [`postcss-currency`] replaces name of currency with symbols.
-* [`postcss-d-ts`] generates `.d.ts` declaration for TypeScript `import` from used CSS classes and ids
+* [`postcss-d-ts`] generates `.d.ts` declaration for TypeScript `import`
+  from used CSS classes and ids
 * [`postcss-eol`] replaces EOL of files.
-* [`postcss-extract-value`] extracts values from css properties and puts them into variables.
+* [`postcss-extract-value`] extracts values from css properties and puts them
+  into variables.
 * [`postcss-fakeid`] transforms `#foo` IDs to attribute selectors `[id="foo"]`.
 * [`postcss-filter-stream`] blacklist files / folders that you don’t want
   to process with a PostCSS plugin.
@@ -442,37 +472,45 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-inline-rtl`] converts your CSS to right-to-left,
   but inline (adding just what you need).
 * [`postcss-join-transitions`] joins conflicting transition declarations.
-* [`postcss-letter-tracking`] generates relative, Photoshop-compatible letter tracking for improved letter spacing.
+* [`postcss-letter-tracking`] generates relative, Photoshop-compatible
+  letter tracking for improved letter spacing.
 * [`postcss-light-text`]  adds `-webkit-` antialiasing for light text.
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
-* [`postcss-momentum-scrolling`] adding momentum style scrolling behavior (`-webkit-overflow-scrolling:touch`) for elements with overflow (scroll, auto) on iOS.
+* [`postcss-momentum-scrolling`] adding momentum style scrolling behavior
+  (`-webkit-overflow-scrolling:touch`) for elements with overflow on iOS.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
-* [`postcss-mq-last`] gives media query rules precedence by moving them to the end of the file.
+* [`postcss-mq-last`] gives media query rules precedence by moving them
+  to the end of the file.
 * [`postcss-node-modules-replacer`] replaces path than includes `node_modules`
   to `~`.
-* [`postcss-plugin-namespace`] add a css selector to all rules, so that css file don't affect other element.
+* [`postcss-plugin-namespace`] add a css selector to all rules,
+  so that CSS file don’t affect other element.
 * [`postcss-prefix-hover`] adds a prefixed to any selector containing `:hover`.
 * [`postcss-pseudo-content-insert`] adds `content: ''` to `:before` and `:after`
   if it is missing.
-* [`postcss-pseudo-element-cases`] converts `.style::BEFORE` into `.style::before` and vice versa.
-* [`postcss-pseudo-element-colons`] converts `.style:before` into `.style::before` and vice versa.
+* [`postcss-pseudo-element-cases`] converts `.style::BEFORE`
+  into `.style::before` and vice versa.
+* [`postcss-pseudo-element-colons`] converts `.style:before`
+  into `.style::before` and vice versa.
 * [`postcss-pseudo-elements-content`] adds `content: ''` to `:before-c`
   and `:after-c`.
 * [`postcss-pxtorem`] converts pixel units to `rem`.
 * [`postcss-raw`] protects nodes inside `@raw` at-rules from being touched
   by other plugins.
 * [`postcss-remove-prefixes`] removes vendor prefixes.
-* [`postcss-rtlcss`] creates left-to-right and right-to-left rules in a single CSS file.
+* [`postcss-rtlcss`] creates left-to-right and right-to-left rules
+  in a single CSS file.
 * [`postcss-safe-important`] adds `!important` to style declarations safely.
-* [`postcss-sanitize`] remove properties and values using rules (css sanitization).
+* [`postcss-sanitize`] remove properties and values using rules.
 * [`postcss-scopify`] adds a user input scope to each selector.
 * [`postcss-select`] select rules based off a selector list.
 * [`postcss-selector-prefixer`] adds a prefix to css selectors.
 * [`postcss-shorthand-expand`] expands shorthand properties.
 * [`postcss-simple-trig`] calculate trigonometric functions: sin/cos/tan.
 * [`postcss-sorting`] sort rules content with specified order.
-* [`postcss-sort-media-queries`] combine and sort CSS media queries with mobile first or desktop first methods
+* [`postcss-sort-media-queries`] combine and sort CSS media queries
+  with mobile first or desktop first methods.
 * [`postcss-style-guide`] generates a style guide automatically.
 * [`css-declaration-sorter`] sorts CSS declarations fast and automatically
   in a certain order.
@@ -480,12 +518,14 @@ See also plugins in modular minifier [`cssnano`].
 * [`rtlcss`] mirrors styles for right-to-left locales.
 * [`stylefmt`] modern CSS formatter that works well with `stylelint`.
 * [`postcss-autocorrect`] corrects typos and notifies in the console.
-* [`postcss-px-to-viewport`] generates viewport units (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
+* [`postcss-px-to-viewport`] generates viewport units
+  (`vw`, `vh`, `vmin`, `vmax`) from `px` units.
 * [`postcss-viewport-height-correction`] solves the popular problem when `100vh`
   doesn’t fit the mobile browser screen.
 * [`postcss-unit-processor`] flexible processing of CSS units.
 * [`postcss-rem-to-px`] converts `rem` values to `px` values.
-* [`postcss-design-tokens`] provides a function to retrieve design tokens expressed in JS or JSON, within CSS.
+* [`postcss-design-tokens`] provides a function to retrieve design tokens
+  expressed in JS or JSON, within CSS.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -508,7 +548,8 @@ See also plugins in modular minifier [`cssnano`].
 
 * [`postcss-browser-reporter`] displays warning messages from other plugins
   right in your browser.
-* [`postcss-forced-variables`] provides warnings and errors when specified properties don't use variables.
+* [`postcss-forced-variables`] provides warnings and errors when specified
+  properties don’t use variables.
 * [`postcss-reporter`] logs warnings and other messages from other plugins
   in the console.
 
@@ -536,7 +577,8 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 * [`postcss-nope`] lets you write `nope` instead of `none`.
 * [`postcss-glitch`] add glitch effect to your text.
-* [`postcss-khaleesi`] translate CSS values and properties to `khaleesi meme` language.
+* [`postcss-khaleesi`] translate CSS values and properties to
+  `khaleesi meme` language.
 
 [`postcss-background-image-auto-size`]:   https://github.com/JustClear/postcss-background-image-auto-size
 [`postcss-letter-tracking`]:              https://github.com/letsjaam/postcss-letter-tracking
