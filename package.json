@@ -93,7 +93,7 @@
     "fs-extra": "^10.0.0",
     "nanodelay": "^1.0.8",
     "nanospy": "^0.5.0",
-    "postcss-parser-tests": "^8.4.0",
+    "postcss-parser-tests": "^8.5.0",
     "simple-git-hooks": "^2.7.0",
     "size-limit": "^7.0.8",
     "strip-ansi": "^6.0.1",
