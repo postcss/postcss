@@ -131,7 +131,7 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "16 KB"
+      "limit": "17 KB"
     }
   ],
   "eslintConfig": {
