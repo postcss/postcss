@@ -4,7 +4,7 @@ specifiers:
   '@logux/eslint-config': ^46.1.1
   '@size-limit/preset-small-lib': ^7.0.8
   '@types/fs-extra': ^9.0.13
-  '@types/node': ^17.0.19
+  '@types/node': ^17.0.21
   '@typescript-eslint/eslint-plugin': ^5.12.1
   '@typescript-eslint/parser': ^5.12.1
   c8: ^7.11.0
@@ -40,7 +40,7 @@ devDependencies:
   '@logux/eslint-config': 46.1.1_cd7f45d1cba51a736d2df3e99513a1a4
   '@size-limit/preset-small-lib': 7.0.8_size-limit@7.0.8
   '@types/fs-extra': 9.0.13
-  '@types/node': 17.0.19
+  '@types/node': 17.0.21
   '@typescript-eslint/eslint-plugin': 5.12.1_aa3af6382115a42a71cc388b7b2c30b3
   '@typescript-eslint/parser': 5.12.1_eslint@8.9.0+typescript@4.5.5
   c8: 7.11.0
@@ -60,7 +60,7 @@ devDependencies:
   simple-git-hooks: 2.7.0
   size-limit: 7.0.8
   strip-ansi: 6.0.1
-  ts-node: 10.5.0_003c8a6da24af261bf8b8ce51aec1adf
+  ts-node: 10.5.0_99a448058f874aec2a353d0e974167cc
   typescript: 4.5.5
   uvu: 0.5.3
 
@@ -99,8 +99,8 @@ packages:
       - supports-color
     dev: true
 
-  /@humanwhocodes/config-array/0.9.3:
-    resolution: {integrity: sha512-3xSMlXHh03hCcCmFc0rbKp3Ivt2PFEJnQUJDDMTJQ2wkECZWdq4GePs2ctc5H8zV+cHPaq8k2vU8mrQjA6iHdQ==}
+  /@humanwhocodes/config-array/0.9.5:
+    resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}
     engines: {node: '>=10.10.0'}
     dependencies:
       '@humanwhocodes/object-schema': 1.2.1
@@ -209,7 +209,7 @@ packages:
   /@types/fs-extra/9.0.13:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
-      '@types/node': 17.0.19
+      '@types/node': 17.0.21
     dev: true
 
   /@types/istanbul-lib-coverage/2.0.4:
@@ -224,8 +224,8 @@ packages:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
     dev: true
 
-  /@types/node/17.0.19:
-    resolution: {integrity: sha512-PfeQhvcMR4cPFVuYfBN4ifG7p9c+Dlh3yUZR6k+5yQK7wX3gDgVxBly4/WkBRs9x4dmcy1TVl08SY67wwtEvmA==}
+  /@types/node/17.0.21:
+    resolution: {integrity: sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==}
     dev: true
 
   /@types/unist/2.0.6:
@@ -1062,7 +1062,7 @@ packages:
     hasBin: true
     dependencies:
       '@eslint/eslintrc': 1.1.0
-      '@humanwhocodes/config-array': 0.9.3
+      '@humanwhocodes/config-array': 0.9.5
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.3
@@ -2049,7 +2049,7 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /ts-node/10.5.0_003c8a6da24af261bf8b8ce51aec1adf:
+  /ts-node/10.5.0_99a448058f874aec2a353d0e974167cc:
     resolution: {integrity: sha512-6kEJKwVxAJ35W4akuiysfKwKmjkbYxwQMTBaAxo9KKAx/Yd26mPUyhGz3ji+EsJoAgrLqVsYHNuuYwQe22lbtw==}
     hasBin: true
     peerDependencies:
@@ -2068,7 +2068,7 @@ packages:
       '@tsconfig/node12': 1.0.9
       '@tsconfig/node14': 1.0.1
       '@tsconfig/node16': 1.0.2
-      '@types/node': 17.0.19
+      '@types/node': 17.0.21
       acorn: 8.7.0
       acorn-walk: 8.2.0
       arg: 4.1.3
