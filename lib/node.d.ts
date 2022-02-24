@@ -3,7 +3,7 @@ import Comment, { CommentProps } from './comment.js'
 import { Stringifier, Syntax } from './postcss.js'
 import AtRule, { AtRuleProps } from './at-rule.js'
 import Rule, { RuleProps } from './rule.js'
-import { WarningOptions } from './warning.js'
+import Warning, { WarningOptions } from './warning.js'
 import CssSyntaxError from './css-syntax-error.js'
 import Result from './result.js'
 import Input from './input.js'
@@ -241,7 +241,7 @@ export default abstract class Node {
    *
    * @return Created warning object.
    */
-  warn(result: Result, text: string, opts?: WarningOptions): void
+  warn(result: Result, text: string, opts?: WarningOptions): Warning
 
   /**
    * Removes the node from its parent and cleans the parent properties
