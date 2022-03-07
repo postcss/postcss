@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.8
+* Fixed end position in empty Custom Properties.
+
 ## 8.4.7
 * Fixed `Node#warn()` type (by Masafumi Koba).
 * Fixed comment removal in values after `,`.
