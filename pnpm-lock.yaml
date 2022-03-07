@@ -22,7 +22,7 @@ specifiers:
   nanoid: ^3.3.1
   nanospy: ^0.5.0
   picocolors: ^1.0.0
-  postcss-parser-tests: ^8.5.0
+  postcss-parser-tests: ^8.5.1
   simple-git-hooks: ^2.7.0
   size-limit: ^7.0.8
   source-map-js: ^1.0.2
@@ -56,7 +56,7 @@ devDependencies:
   fs-extra: 10.0.1
   nanodelay: 1.0.8
   nanospy: 0.5.0
-  postcss-parser-tests: 8.5.0
+  postcss-parser-tests: 8.5.1
   simple-git-hooks: 2.7.0
   size-limit: 7.0.8
   strip-ansi: 6.0.1
@@ -1824,8 +1824,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /postcss-parser-tests/8.5.0:
-    resolution: {integrity: sha512-ORK9KdLgDZf/klNO3u1i6GRBQo+vPsJUjOARETXgVcE872/I7OT8A2gMB+8XPZT2nO0DKVXIaCZJESlT03BI3g==}
+  /postcss-parser-tests/8.5.1:
+    resolution: {integrity: sha512-gENBfgBSdVl3Bu+6iCcgGb1W0YrCizwBgrbnG8UW9AyB46dHuUxqG92Q8Ug5XkesXdpSoRahdNvSKwhipbNV1g==}
     dependencies:
       picocolors: 1.0.0
     dev: true
