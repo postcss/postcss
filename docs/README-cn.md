@@ -164,6 +164,55 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 
 [选择插件]: http://postcss.parts
 
+### CSS-in-JS
+
+同时使用 PostCSS 与 CSS-in-JS 的最好方式是 [`astroturf`](https://github.com/4Catalyzer/astroturf)，将它的 loader 添加到 `webpack.config.js` 中：
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'postcss-loader'],
+      },
+      {
+        test: /\.jsx?$/,
+        use: ['babel-loader', 'astroturf/loader'],
+      }
+    ]
+  }
+}
+```
+
+然后创建 `postcss.config.js`：
+
+```js
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-nested')
+  ]
+}
+```
+
+### Parcel
+
+[Parcel](https://parceljs.org/) 有内建的 PostCSS 支持，并已经使用 Autoprefixer 和 cssnano。如果你想更换插件，请在项目根目录中创建 `postcss.config.js`：
+
+```js
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-nested')
+  ]
+}
+```
+
+Parcel 甚至会自动地帮你安装这些插件。
+
+> 请注意[第 1 版中存在的几个问题](https://github.com/parcel-bundler/parcel/labels/CSS%20Preprocessing)，第 2 版通过 [issue #2157](https://github.com/parcel-bundler/parcel/projects/5) 解决了这些问题。
+
 ### Webpack
 
 在 `webpack.config.js` 里使用 [`postcss-loader`] :
