@@ -21,7 +21,7 @@ interface DeclarationRaws extends Record<string, unknown> {
   /**
    * Declaration value with comments.
    */
-  value: {
+  value?: {
     value: string
     raw: string
   }
