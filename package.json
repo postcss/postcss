@@ -57,10 +57,16 @@
     "test": "c8 pnpm unit && eslint . && node ./test/version.js && check-dts && node ./test/integration.js && size-limit",
     "unit": "uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\""
   },
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/postcss/"
-  },
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/postcss/"
+    },
+    {
+      "type": "tidelift",
+      "url": "https://tidelift.com/funding/github/npm/postcss"
+    }
+  ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "homepage": "https://postcss.org/",
