@@ -60,7 +60,7 @@
   "funding": [
     {
       "type": "opencollective",
-      "url": "https://opencollective.com/postcss/"
+      "url": "https://opencollective.com/postcss"
     },
     {
       "type": "tidelift",
