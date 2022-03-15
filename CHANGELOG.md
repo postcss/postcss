@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.9
+* Fixed `package.funding` (by Álvaro Mondéjar).
+
 ## 8.4.8
 * Fixed end position in empty Custom Properties.
 
