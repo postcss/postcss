@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.12
+* Fixed `package.funding` to have same value between all PostCSS packages.
+
 ## 8.4.11
 * Fixed `Declaration#raws.value` type.
 
