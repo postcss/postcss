@@ -72,7 +72,7 @@ export default class Processor {
    * ```
    *
    * @param plugin PostCSS plugin or `Processor` with plugins.
-   * @return {Processes} Current processor to make methods chain.
+   * @return Current processor to make methods chain.
    */
   use(plugin: AcceptedPlugin): this
 
