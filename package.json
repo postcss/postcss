@@ -80,7 +80,7 @@
     "source-map-js": "^1.0.2"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^47.0.0",
+    "@logux/eslint-config": "^47.2.0",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^17.0.25",
@@ -90,7 +90,7 @@
     "check-dts": "^0.6.6",
     "clean-publish": "^4.0.0",
     "concat-with-sourcemaps": "^1.1.0",
-    "eslint": "^8.13.0",
+    "eslint": "^8.14.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.1.0",
@@ -154,7 +154,6 @@
         ],
         "rules": {
           "@typescript-eslint/no-unused-expressions": "off",
-          "n/no-unsupported-features/es-syntax": "off",
           "no-unused-expressions": "off",
           "no-console": "off",
           "func-style": "off"
