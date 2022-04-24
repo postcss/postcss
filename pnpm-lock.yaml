@@ -8,7 +8,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.20.0
   '@typescript-eslint/parser': ^5.20.0
   c8: ^7.11.2
-  check-dts: ^0.6.6
+  check-dts: ^0.6.7
   clean-publish: ^4.0.0
   concat-with-sourcemaps: ^1.1.0
   eslint: ^8.14.0
@@ -44,7 +44,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.20.0_81f0d1a74f014d44d273bd1612c85fd9
   '@typescript-eslint/parser': 5.20.0_eslint@8.14.0+typescript@4.6.3
   c8: 7.11.2
-  check-dts: 0.6.6_typescript@4.6.3
+  check-dts: 0.6.7_typescript@4.6.3
   clean-publish: 4.0.0
   concat-with-sourcemaps: 1.1.0
   eslint: 8.14.0
@@ -529,15 +529,15 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /check-dts/0.6.6_typescript@4.6.3:
-    resolution: {integrity: sha512-2KzynoH1f8wVhZXUeqxeW2dOOFliktitYlyyOsLfZBk5K5n1U1B3uzJLFiJfwqlwoT1Ug7RNbi8xmMpUKKmwhg==}
+  /check-dts/0.6.7_typescript@4.6.3:
+    resolution: {integrity: sha512-OmULnQcJ06C5TuQJcjWi/iaPN9LPc3NNtgE/AXFHXtDBadTRxIbTbl+3vVsy6A0ToULzI2jYY/pM1GOmEJJGWg==}
     engines: {node: '>=12.16.0'}
     hasBin: true
     peerDependencies:
       typescript: '>=4.0.0'
     dependencies:
       fast-glob: 3.2.11
-      nanospinner: 0.6.0
+      nanospinner: 1.1.0
       picocolors: 1.0.0
       typescript: 4.6.3
       vfile-location: 4.0.1
@@ -1709,12 +1709,6 @@ packages:
     resolution: {integrity: sha512-p1sjXuopFs0xg+fPASzQ28agW1oHD7xDsd9Xkf3T15H3c/cifrFHVwrh74PdoklAPi+i7MdRsE47vm2r6JoB+w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-
-  /nanospinner/0.6.0:
-    resolution: {integrity: sha512-G2QQwVJListXbtsBW5r5kJs8WXybsO9/SQxzcvSmPRSIOQOeR0v/ETI9hncOna0tzWscdjjcCZUVCJoR4eJlag==}
-    dependencies:
-      picocolors: 1.0.0
-    dev: true
 
   /nanospinner/1.1.0:
     resolution: {integrity: sha512-yFvNYMig4AthKYfHFl1sLj7B2nkHL4lzdig4osvl9/LdGbXwrdFRoqBS98gsEsOakr0yH+r5NZ/1Y9gdVB8trA==}
