@@ -7,6 +7,7 @@ import postcss, {
   Container,
   Root,
   Rule,
+  AtRule,
   Declaration,
   Plugin,
   PluginCreator,
@@ -1550,6 +1551,52 @@ test('marks cleaned nodes as dirty on moving in a document', () => {
     ['DocumentExit', '1'],
     ['OnceExit', '1']
   ])
+})
+
+test('append works after reassigning nodes through .parent', async () => {
+  let plugin: Plugin = {
+    postcssPlugin: 'test',
+
+    Rule(rule) {
+      if (
+        !(
+          rule.selector === '.nested' &&
+          rule.nodes.length === 1 &&
+          rule.nodes[0].type === 'atrule'
+        )
+      ) {
+        return
+      }
+
+      let atrule = rule.nodes[0]
+
+      atrule.append(rule.clone({ nodes: [] }).append(...atrule.nodes))
+
+      rule.after(atrule)
+      rule.remove()
+    },
+
+    OnceExit(root) {
+      let firstNode = root.nodes[0] as AtRule
+      let secondNode = root.nodes[1] as AtRule
+      let rule2 = secondNode.nodes[0]
+      rule2.parent!.nodes = rule2.parent!.nodes
+      firstNode.append(...secondNode.nodes)
+      secondNode.remove()
+    }
+  }
+
+  let { css } = await postcss([plugin]).process(
+    postcss.parse(
+      `@media (min-width: 640px) { .page { width: auto; } } .nested { @media (min-width: 640px) { width: auto; } }`
+    ),
+    { from: 'whatever' }
+  )
+
+  is(
+    css,
+    '@media (min-width: 640px) { .page { width: auto; } .nested { width: auto } }'
+  )
 })
 
 test.run()
