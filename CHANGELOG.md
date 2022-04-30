@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.13
+* Fixed `append()` error after using `.parent` (by Jordan Pittman).
+
 ## 8.4.12
 * Fixed `package.funding` to have same value between all PostCSS packages.
 
