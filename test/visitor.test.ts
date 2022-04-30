@@ -1588,14 +1588,15 @@ test('append works after reassigning nodes through .parent', async () => {
 
   let { css } = await postcss([plugin]).process(
     postcss.parse(
-      `@media (min-width: 640px) { .page { width: auto; } } .nested { @media (min-width: 640px) { width: auto; } }`
+      `@media (min-width:640px) { .page { width: auto; } } ` +
+        `.nested { @media (min-width:640px) { width: auto; } }`
     ),
     { from: 'whatever' }
   )
 
   is(
     css,
-    '@media (min-width: 640px) { .page { width: auto; } .nested { width: auto } }'
+    '@media (min-width:640px) { .page { width: auto; } .nested { width: auto } }'
   )
 })
 
