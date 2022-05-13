@@ -390,8 +390,8 @@ test('checks plugin compatibility', () => {
       throw new Error('Er')
     }
   })
-  equal(warn.callCount, 1)
   let func = plugin()
+  equal(warn.callCount, 1)
   func.postcssVersion = '2.1.5'
 
   function processBy(version: string): void {
@@ -562,9 +562,9 @@ test('supports plugins returning processors', () => {
   let other: any = (postcss as any).plugin('test', () => {
     return new Processor([a])
   })
-  equal(warn.callCount, 1)
   processor.use(other)
   equal(processor.plugins, [a])
+  equal(warn.callCount, 1)
 })
 
 test('supports plugin creators returning processors', () => {
