@@ -33,7 +33,6 @@ jobs:
         node-version:
           - 16
           - 14
-          - 12
     name: Node.js ${{ matrix.node-version }} Quick
     steps:
       - name: Checkout the repository
@@ -55,7 +54,11 @@ jobs:
           FORCE_COLOR: 2
   old:
     runs-on: ubuntu-latest
-    name: Node.js 10 Quick
+    strategy:
+      matrix:
+        node-version:
+          - 12
+    name: Node.js ${{ matrix.node-version }} Quick
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -65,10 +68,10 @@ jobs:
           version: 3
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      - name: Install Node.js 10
+      - name: Install Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 10
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Run unit tests
