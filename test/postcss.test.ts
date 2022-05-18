@@ -121,12 +121,13 @@ test('has deprecated method to creat plugins', () => {
       })
     }
   })
-  equal(warn.callCount, 1)
-  match(warn.calls[0][0], /postcss\.plugin was deprecated/)
+
+  equal(warn.callCount, 0)
 
   let func1: any = postcss(plugin).plugins[0]
   is(func1.postcssPlugin, 'test')
   match(func1.postcssVersion, /\d+.\d+.\d+/)
+  equal(warn.callCount, 1)
 
   let func2: any = postcss(plugin()).plugins[0]
   equal(func2.postcssPlugin, func1.postcssPlugin)
@@ -137,6 +138,9 @@ test('has deprecated method to creat plugins', () => {
 
   let result2 = postcss(plugin).process('a{ one: 1; two: 2 }')
   is(result2.css, 'a{ one: 1 }')
+
+  equal(warn.callCount, 1)
+  match(warn.calls[0][0], /postcss\.plugin was deprecated/)
 })
 
 test('creates a shortcut to process css', async () => {
@@ -148,7 +152,6 @@ test('creates a shortcut to process css', async () => {
       })
     }
   })
-  equal(warn.callCount, 1)
 
   let result1 = plugin.process('a{value:foo}')
   is(result1.css, 'a{value:bar}')
@@ -159,6 +162,8 @@ test('creates a shortcut to process css', async () => {
   let result = await plugin.process('a{value:foo}', { from: 'a' }, 'baz')
   equal(result.opts, { from: 'a' })
   is(result.css, 'a{value:baz}')
+
+  equal(warn.callCount, 1)
 })
 
 test('does not call plugin constructor', () => {
@@ -169,13 +174,14 @@ test('does not call plugin constructor', () => {
     return () => {}
   })
   is(calls, 0)
-  equal(warn.callCount, 1)
 
   postcss(plugin).process('a{}')
   is(calls, 1)
 
   postcss(plugin()).process('a{}')
   is(calls, 2)
+
+  equal(warn.callCount, 1)
 })
 
 test.run()
