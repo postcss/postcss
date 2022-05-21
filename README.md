@@ -116,7 +116,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 
 ### Other
 
-* [`postcss-rtlcss`] postcss plugin to build CSS files with LTR and RTL rules.
 * [`cssnano`] is a modular CSS minifier.
 * [`lost`] is a feature-rich `calc()` grid system.
 * [`rtlcss`] mirrors styles for right-to-left locales.
@@ -135,7 +134,6 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`font-magician`]:              https://github.com/jonathantneal/postcss-font-magician
 [`autoprefixer`]:               https://github.com/postcss/autoprefixer
 [`cq-prolyfill`]:               https://github.com/ausi/cq-prolyfill
-[`postcss-rtlcss`]:             https://github.com/elchininet/postcss-rtlcss
 [`postcss-url`]:                https://github.com/postcss/postcss-url
 [`postcss-use`]:                https://github.com/postcss/postcss-use
 [`css-modules`]:                https://github.com/css-modules/css-modules
