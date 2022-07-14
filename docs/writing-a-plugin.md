@@ -97,7 +97,7 @@ module.exports.postcss = true
 
 [PostCSS plugin boilerplate]: https://github.com/postcss/postcss-plugin-boilerplate/
 [our Sharec config]: https://github.com/postcss/postcss-sharec-config
-[plugin template]: https://github.com/postcss/postcss-plugin-boilerplate/blob/main/index.js
+[plugin template]: https://github.com/postcss/postcss-plugin-boilerplate/blob/main/template/index.t.js
 
 
 ## Step 3: Find nodes
