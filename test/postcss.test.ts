@@ -112,7 +112,7 @@ test('works with null', () => {
   }, /PostCSS received null instead of CSS string/)
 })
 
-test('has deprecated method to creat plugins', () => {
+test('has deprecated method to create plugins', () => {
   let warn = spyOn(console, 'warn', () => {})
   let plugin = (postcss as any).plugin('test', (filter?: string) => {
     return (root: Root) => {
