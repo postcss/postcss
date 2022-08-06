@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.16
+* Fixed `Root` AST migration.
+
 ## 8.4.15
 * Fixed AST normalization after using custom parser with old PostCSS AST.
 
