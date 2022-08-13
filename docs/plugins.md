@@ -529,7 +529,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-design-tokens`] provides a function to retrieve design tokens
   expressed in JS or JSON, within CSS.
 * [`postcss-pixel-to-remvw`] converting px to both of rem and vw, also one of them
-* [`postcss-easy-import`] inline @import rules content with extra features.
+* [`postcss-easy-import`] inline `@import` rules content with extra features.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
