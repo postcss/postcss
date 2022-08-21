@@ -226,4 +226,24 @@ test('should give the correct column of missed semicolon without !important', ()
   match(error.message, /2:15: Missed semicolon/)
 })
 
+test('throws on empty custom prop name', () => {
+  let error: any
+  try {
+    parse(':root { \n    --: red\n}')
+  } catch (e) {
+    error = e
+  }
+  match(error.message, /2:6: Invalid custom prop name/)
+})
+
+test('throws on invalid custom prop name', () => {
+  let error: any
+  try {
+    parse(':root { \n    --.invalid-name : red\n}')
+  } catch (e) {
+    error = e
+  }
+  match(error.message, /2:7: Invalid custom prop name/)
+})
+
 test.run()
