@@ -578,6 +578,14 @@ test('supports plugin creators returning processors', () => {
   equal(processor.plugins, [a])
 })
 
+test('supports default ESM export wrap for plugins', () => {
+  let a = (): void => {}
+  let mod = { __esModule: true, default: a } as any
+  let processor = new Processor()
+  processor.use(mod)
+  equal(processor.plugins, [a])
+})
+
 test('uses custom syntax for document', async () => {
   let customParser: Parser<Document> = () => {
     return new Document({
