@@ -1,10 +1,10 @@
 name: Deno
-
 on:
   push:
     tags:
       - "8.*"
-
+permissions:
+  contents: read
 jobs:
   build:
     runs-on: ubuntu-latest
