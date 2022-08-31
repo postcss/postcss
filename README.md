@@ -371,20 +371,6 @@ prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-
 [webpack]:      https://webpack.github.io/
 
 
-### Deno
-
-PostCSS also supports [Deno]:
-
-```js
-import postcss from 'https://deno.land/x/postcss/mod.js'
-import autoprefixer from 'https://jspm.dev/autoprefixer'
-
-const result = await postcss([autoprefixer]).process(css)
-```
-
-[Deno]: https://deno.land/
-
-
 ### Runners
 
 * **Grunt**: [`@lodder/grunt-postcss`](https://github.com/C-Lodder/grunt-postcss)
