@@ -85,14 +85,16 @@ Every time when you will update the config, it will update development configs
 and development tools.
 
 ```js
-module.exports = (opts = {}) => {
+const plugin = (opts = {}) => {
   // Plugin creator to check options or prepare caches
   return {
     postcssPlugin: 'PLUGIN NAME'
     // Plugin listeners
   }
 }
-module.exports.postcss = true
+plugin.postcss = true
+
+module.exports = plugin
 ```
 
 [PostCSS plugin boilerplate]: https://github.com/postcss/postcss-plugin-boilerplate/
@@ -128,7 +130,7 @@ how PostCSS convert different CSS to AST.
 You can find all nodes with specific types by adding method to plugin object:
 
 ```js
-module.exports = (opts = {}) => {
+const plugin = (opts = {}) => {
   return {
     postcssPlugin: 'PLUGIN NAME',
     Once (root) {
@@ -139,7 +141,7 @@ module.exports = (opts = {}) => {
     }
   }
 }
-module.exports.postcss = true
+plugin.postcss = true
 ```
 
 Here is the full list of [plugin’s events](https://postcss.org/api/#plugin).
@@ -199,7 +201,7 @@ You may want to re-use some data between listeners. You can do with
 runtime-defined listeners:
 
 ```js
-module.exports = (opts = {}) => {
+const plugin = (opts = {}) => {
   return {
     postcssPlugin: 'vars-collector',
     prepare (result) {
@@ -217,6 +219,7 @@ module.exports = (opts = {}) => {
     }
   }
 }
+plugin.postcss = true
 ```
 
 You can use `prepare()` to generate listeners dynamically. For instance,

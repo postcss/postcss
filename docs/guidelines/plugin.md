@@ -72,14 +72,15 @@ It is better even not to import `postcss`.
 
 ```diff
 - const { list, decl } = require('postcss')
-  module.exports = opts => {
+  const plugin = opts => {
     postcssPlugin: 'postcss-name',
 -   Once (root) {
 +   Once (root, { list, decl }) {
       // Plugin code
     }
   }
-  module.exports.postcss = true
+  plugin.postcss = true
+  module.exports = plugin
 ```
 
 
@@ -88,7 +89,7 @@ It is better even not to import `postcss`.
 Plugin name will be used in error messages and warnings.
 
 ```js
-module.exports = opts => {
+const plugin = opts => {
   return {
     postcssPlugin: 'postcss-name',
     Once (root) {
@@ -96,7 +97,7 @@ module.exports = opts => {
     }
   }
 }
-module.exports.postcss = true
+plugin.postcss = true
 ```
 
 
@@ -117,7 +118,7 @@ For example, use `fs.writeFile` instead of `fs.writeFileSync`:
 ```js
 let { readFile } = require('fs').promises
 
-module.exports = opts => {
+const plugin = opts => {
   return {
     postcssPlugin: 'plugin-inline',
     async Decl (decl) {
@@ -129,7 +130,7 @@ module.exports = opts => {
     }
   }
 }
-module.exports.postcss = true
+plugin.postcss = true
 ```
 
 ### 2.3. Use fast node’s scanning
@@ -137,7 +138,7 @@ module.exports.postcss = true
 Subscribing for specific node type is much faster, than calling `walk*` method:
 
 ```diff
-  module.exports = {
+  const plugin = () => ({
     postcssPlugin: 'postcss-example',
 -   Once (root) {
 -     root.walkDecls(decl => {
@@ -147,15 +148,15 @@ Subscribing for specific node type is much faster, than calling `walk*` method:
 +   Declaration (decl) {
 +     // Faster
 +   }
-  }
-  module.exports.postcss = true
+  })
+  plugin.postcss = true
 ```
 
 But you can make scanning even faster, if you know, what declaration’s property
 or at-rule’s name do you need:
 
 ```diff
-  module.exports = {
+  const plugin = () => ({
     postcssPlugin: 'postcss-example',
 -   Declaration (decl) {
 -     if (decl.prop === 'color') {
@@ -167,8 +168,8 @@ or at-rule’s name do you need:
 +       // The fastest
 +     }
 +   }
-  }
-  module.exports.postcss = true
+  })
+  plugin.postcss = true
 ```
 
 
