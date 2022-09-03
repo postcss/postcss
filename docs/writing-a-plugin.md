@@ -80,10 +80,6 @@ For public plugins:
 2. Create a repository on GitHub or GitLab.
 3. Publish your code there.
 
-You can also use [our Sharec config] to keep the best practices up to date.
-Every time when you will update the config, it will update development configs
-and development tools.
-
 ```js
 const plugin = (opts = {}) => {
   // Plugin creator to check options or prepare caches
@@ -98,7 +94,6 @@ module.exports = plugin
 ```
 
 [PostCSS plugin boilerplate]: https://github.com/postcss/postcss-plugin-boilerplate/
-[our Sharec config]: https://github.com/postcss/postcss-sharec-config
 [plugin template]: https://github.com/postcss/postcss-plugin-boilerplate/blob/main/template/index.t.js
 
 
