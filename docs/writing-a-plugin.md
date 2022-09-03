@@ -93,6 +93,12 @@ plugin.postcss = true
 module.exports = plugin
 ```
 
+For ESM project replace last line with:
+
+```js
+export default plugin
+```
+
 [PostCSS plugin boilerplate]: https://github.com/postcss/postcss-plugin-boilerplate/
 [plugin template]: https://github.com/postcss/postcss-plugin-boilerplate/blob/main/template/index.t.js
 
