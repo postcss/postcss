@@ -50,7 +50,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-preset-env`] lets you convert modern CSS into something most
   browsers can understand, determining the polyfills you need based
   on your targeted browsers or runtime environments.
-* [`postcss-ui-theme`] gives you syntax sugar and allow you change theme.
+* [`postcss-ui-theme`] gives you syntax sugar and allows you to change theme.
 
 [`postcss-preset-env`]: https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env
 [`postcss-utilities`]:  https://github.com/ismamz/postcss-utilities
