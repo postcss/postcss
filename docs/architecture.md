@@ -56,7 +56,7 @@ That being said, there are few ways to write a parser.
     A lot of parsers like [`@babel/parser` (parser behind Babel)](https://github.com/babel/babel/tree/master/packages/babel-parser), [`CSSTree`](https://github.com/csstree/csstree) were written in such way.
     The main reasons to separate tokenization from parsing steps are performance and abstracting complexity.
 
-Let think about why the second way is better for our needs.
+Let's think about why the second way is better for our needs.
 
 First of all, because string to tokens step takes more time than parsing step. We operate on large source string and process it char by char, this is why it is very inefficient operation in terms of performance and we should perform it only once.
 
