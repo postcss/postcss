@@ -75,7 +75,6 @@
     * [2.1. Set `from` and `to` processing options](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#21-set-from-and-to-processing-options)
     * [2.2. Use only the asynchronous API](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#22-use-only-the-asynchronous-api)
     * [2.3. Use only the public PostCSS API](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#23-use-only-the-public-postcss-api)
-  * [Dependencies](https)
     * [3.1. Rebuild when dependencies change](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#31-rebuild-when-dependencies-change)
   * [Output](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#4-output)
     * [4.1. Don’t show JS stack for `CssSyntaxError`](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#41-dont-show-js-stack-for-csssyntaxerror)
