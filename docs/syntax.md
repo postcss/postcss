@@ -1,5 +1,17 @@
 # How to Write Custom Syntax
 
+PostCSS can transform styles in any syntax, and is not limited to just CSS.
+By writing a custom syntax, you can transform styles in any desired format.
+
+Writing a custom syntax is much harder than writing a PostCSS plugin, but
+it is an awesome adventure.
+
+There are 3 types of PostCSS syntax packages:
+
+* **Parser** to parse input string to node’s tree.
+* **Stringifier** to generate output string by node’s tree.
+* **Syntax** contains both parser and stringifier.
+
 **Table of Contents**
 
 * [How to Write Custom Syntax](#how-to-write-custom-syntax)
@@ -15,19 +27,6 @@
     * [Builder Function](#builder-function)
     * [Raw Values](#raw-values-1)
     * [Tests](#tests-1)
-
-PostCSS can transform styles in any syntax, and is not limited to just CSS.
-By writing a custom syntax, you can transform styles in any desired format.
-
-Writing a custom syntax is much harder than writing a PostCSS plugin, but
-it is an awesome adventure.
-
-There are 3 types of PostCSS syntax packages:
-
-* **Parser** to parse input string to node’s tree.
-* **Stringifier** to generate output string by node’s tree.
-* **Syntax** contains both parser and stringifier.
-
 
 ## Syntax
 
