@@ -42,6 +42,7 @@
   * [Step 4: Change nodes](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-4-change-nodes)
   * [Step 5: Fight with frustration](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-5-fight-with-frustration)
   * [Step 6: Make it public](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-6-make-it-public)
+
 **Guidlines**
 * [PostCSS Plugin Guidelines](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/plugin.md#postcss-plugin-guidelines)
   * [API](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/plugin.md#1-api)
@@ -67,7 +68,7 @@
     * [5.3. Maintain a changelog](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/plugin.md#53-maintain-a-changelog)
     * [5.4. Include `postcss-plugin` keyword in `package.json`](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/plugin.md#54-include-postcss-plugin-keyword-in-packagejson)
 
- [PostCSS Runner Guidelines](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#postcss-runner-guidelines)
+* [PostCSS Runner Guidelines](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#postcss-runner-guidelines)
   * [API](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#1-api)
     * [1.1. Accept functions in plugin parameters](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#11-accept-functions-in-plugin-parameters)
   * [Processing](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#21-set-from-and-to-processing-options)
