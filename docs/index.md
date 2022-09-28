@@ -1,4 +1,5 @@
-**Index**
+# Documentation
+
 * [PostCSS Architecture](https://github.com/postcss/postcss/blob/main/docs/architecture.md#postcss-architecture)
   * [Overview](https://github.com/postcss/postcss/blob/main/docs/architecture.md#overview)
   * [Workflow](https://github.com/postcss/postcss/blob/main/docs/architecture.md#workflow)
