@@ -1,5 +1,7 @@
 # How to Write Custom Syntax
 
+**Table of Contents**
+
 * [How to Write Custom Syntax](#how-to-write-custom-syntax)
   * [Syntax](#syntax)
   * [Parser](#parser)
