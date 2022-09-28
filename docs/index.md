@@ -5,6 +5,7 @@
   * [Core Structures](https://github.com/postcss/postcss/blob/main/docs/architecture.md#core-structures)
   * [API Reference](https://github.com/postcss/postcss/blob/main/docs/architecture.md#api-reference)
 
+
 * [PostCSS Plugins](https://github.com/postcss/postcss/blob/main/docs/plugins.md#postcss-plugins)
   * [Control](https://github.com/postcss/postcss/blob/main/docs/plugins.md#control)
   * [Packs](https://github.com/postcss/postcss/blob/main/docs/plugins.md#packs)
@@ -21,7 +22,9 @@
   * [Reporters](https://github.com/postcss/postcss/blob/main/docs/plugins.md#reporters)
   * [Fun](https://github.com/postcss/postcss/blob/main/docs/plugins.md#fun)
 
+
 * [PostCSS and Source Maps](https://github.com/postcss/postcss/blob/main/docs/source-maps.md#postcss-and-source-maps)
+
 
 * [How to Write Custom Syntax](https://github.com/postcss/postcss/blob/main/docs/syntax.md#how-to-write-custom-syntax)
   * [Syntax](https://github.com/postcss/postcss/blob/main/docs/syntax.md#syntax)
@@ -32,16 +35,16 @@
     * [Raw Values](https://github.com/postcss/postcss/blob/main/docs/syntax.md#raw-values)
     * [Tests](https://github.com/postcss/postcss/blob/main/docs/syntax.md#tests)
    * [Stringifier](https://github.com/postcss/postcss/blob/main/docs/syntax.md#stringifier)
-    * [Main Theory](https://github.com/postcss/postcss/blob/main/docs/syntax.md#main-theory-1)
-    * [Builder Function](https://github.com/postcss/postcss/blob/main/docs/syntax.md#builder-function)
-    * [Raw Values](https://github.com/postcss/postcss/blob/main/docs/syntax.md#raw-values-1)
-    * [Tests](https://github.com/postcss/postcss/blob/main/docs/syntax.md#tests-1)
+     * [Main Theory](https://github.com/postcss/postcss/blob/main/docs/syntax.md#main-theory-1)
+     * [Builder Function](https://github.com/postcss/postcss/blob/main/docs/syntax.md#builder-function)
+     * [Raw Values](https://github.com/postcss/postcss/blob/main/docs/syntax.md#raw-values-1)
+     * [Tests](https://github.com/postcss/postcss/blob/main/docs/syntax.md#tests-1)
 
 * [Writing a PostCSS Plugin](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#writing-a-postcss-plugin)
- * [Links](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#links)
- * [Step 1: Create an idea](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-1-create-an-idea)
- * [Step 2: Create a project](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-2-create-a-project)
- * [Step 3: Find nodes](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-3-find-nodes)
- * [Step 4: Change nodes](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-4-change-nodes)
- * [Step 5: Fight with frustration](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-5-fight-with-frustration)
- * [Step 6: Make it public](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-6-make-it-public)
+  * [Links](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#links)
+  * [Step 1: Create an idea](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-1-create-an-idea)
+  * [Step 2: Create a project](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-2-create-a-project)
+  * [Step 3: Find nodes](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-3-find-nodes)
+  * [Step 4: Change nodes](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-4-change-nodes)
+  * [Step 5: Fight with frustration](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-5-fight-with-frustration)
+  * [Step 6: Make it public](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-6-make-it-public)
