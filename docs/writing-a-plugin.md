@@ -1,5 +1,6 @@
 
 **Table of Contents**
+
 * [Links](#links)
 * [Step 1: Create an idea](#step-1-create-an-idea)
 * [Step 2: Create a project](#step-2-create-a-project)
