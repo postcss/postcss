@@ -1,3 +1,14 @@
+
+**Table of Contents**
+
+* [Links](#links)
+* [Step 1: Create an idea](#step-1-create-an-idea)
+* [Step 2: Create a project](#step-2-create-a-project)
+* [Step 3: Find nodes](#step-3-find-nodes)
+* [Step 4: Change nodes](#step-4-change-nodes)
+* [Step 5: Fight with frustration](#step-5-fight-with-frustration)
+* [Step 6: Make it public](#step-6-make-it-public)
+
 # Writing a PostCSS Plugin
 
 ## Links

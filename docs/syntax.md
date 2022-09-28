@@ -12,6 +12,20 @@ There are 3 types of PostCSS syntax packages:
 * **Stringifier** to generate output string by node’s tree.
 * **Syntax** contains both parser and stringifier.
 
+**Table of Contents**
+
+* [Syntax](#syntax)
+* [Parser](#parser)
+  * [Main Theory](#main-theory)
+  * [Performance](#performance))
+  * [Node Source](#node-source)
+  * [Raw Values](#raw-values)
+  * [Tests](#tests)
+* [Stringifier](#stringifier)
+  * [Main Theory](#main-theory-1)
+  * [Builder Function](#builder-function)
+  * [Raw Values](#raw-values-1)
+  * [Tests](#tests-1)
 
 ## Syntax
 

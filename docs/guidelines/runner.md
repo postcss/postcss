@@ -14,6 +14,24 @@ See also [ClojureWerkz’s recommendations] for open source projects.
 [`gulp‑postcss`]:      https://github.com/w0rm/gulp-postcss
 [`postcss-cli`]:       https://github.com/postcss/postcss-cli
 
+**Table of Contents**
+
+* [API](#1-api)
+  * [1.1. Accept functions in plugin parameters](#11-accept-functions-in-plugin-parameters)
+* [Processing](#21-set-from-and-to-processing-options)
+  * [2.1. Set `from` and `to` processing options](#21-set-from-and-to-processing-options)
+  * [2.2. Use only the asynchronous API](#22-use-only-the-asynchronous-api)
+  * [2.3. Use only the public PostCSS API](#23-use-only-the-public-postcss-api)
+  * [3.1. Rebuild when dependencies change](#31-rebuild-when-dependencies-change)
+* [Output](#4-output)
+  * [4.1. Don’t show JS stack for `CssSyntaxError`](#41-dont-show-js-stack-for-csssyntaxerror)
+  * [4.2. Display `result.warnings()`](#42-display-resultwarnings)
+  * [4.3. Allow the user to write source maps to different files](#43-allow-the-user-to-write-source-maps-to-different-files)
+* [Documentation](#5-output)
+  * [5.1. Document your runner in English](#51-document-your-runner-in-english)
+  * [5.2. Maintain a changelog](#52-maintain-a-changelog)
+  * [5.3. `postcss-runner` keyword in `package.json`](#53-postcss-runner-keyword-in-packagejson)
+  * [5.4. Keep postcss to peerDependencies](#54-keep-postcss-to-peerdependencies)
 
 ## 1. API
 
