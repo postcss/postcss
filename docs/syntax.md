@@ -14,19 +14,18 @@ There are 3 types of PostCSS syntax packages:
 
 **Table of Contents**
 
-* [How to Write Custom Syntax](#how-to-write-custom-syntax)
-  * [Syntax](#syntax)
-  * [Parser](#parser)
-    * [Main Theory](#main-theory)
-    * [Performance](#performance))
-    * [Node Source](#node-source)
-    * [Raw Values](#raw-values)
-    * [Tests](#tests)
-  * [Stringifier](#stringifier)
-    * [Main Theory](#main-theory-1)
-    * [Builder Function](#builder-function)
-    * [Raw Values](#raw-values-1)
-    * [Tests](#tests-1)
+* [Syntax](#syntax)
+* [Parser](#parser)
+  * [Main Theory](#main-theory)
+  * [Performance](#performance))
+  * [Node Source](#node-source)
+  * [Raw Values](#raw-values)
+  * [Tests](#tests)
+* [Stringifier](#stringifier)
+  * [Main Theory](#main-theory-1)
+  * [Builder Function](#builder-function)
+  * [Raw Values](#raw-values-1)
+  * [Tests](#tests-1)
 
 ## Syntax
 
