@@ -1,5 +1,19 @@
 # How to Write Custom Syntax
 
+* [How to Write Custom Syntax](#how-to-write-custom-syntax)
+  * [Syntax](#syntax)
+  * [Parser](#parser)
+    * [Main Theory](#main-theory)
+    * [Performance](#performance))
+    * [Node Source](#node-source)
+    * [Raw Values](#raw-values)
+    * [Tests](#tests)
+  * [Stringifier](#stringifier)
+    * [Main Theory](#main-theory-1)
+    * [Builder Function](#builder-function)
+    * [Raw Values](#raw-values-1)
+    * [Tests](#tests-1)
+
 PostCSS can transform styles in any syntax, and is not limited to just CSS.
 By writing a custom syntax, you can transform styles in any desired format.
 
