@@ -4,8 +4,6 @@ General overview of the PostCSS architecture.
 It can be useful for everyone who wishes to contribute to the core or develop a better understanding of the tool.
 
 **Table of Contents**
-
-* [PostCSS Architecture](#postcss-architecture)
   * [Overview](#overview)
   * [Workflow](#workflow)
   * [Core Structures](#core-structures)
