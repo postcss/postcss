@@ -3,7 +3,7 @@
   * [Overview](https://github.com/postcss/postcss/blob/main/docs/architecture.md#overview)
   * [Workflow](https://github.com/postcss/postcss/blob/main/docs/architecture.md#workflow)
   * [Core Structures](https://github.com/postcss/postcss/blob/main/docs/architecture.md#core-structures)
-  * [API Reference](https://github.com/postcss/postcss/blob/main/docs/architecture.md#api-reference
+  * [API Reference](https://github.com/postcss/postcss/blob/main/docs/architecture.md#api-reference)
 
 * [PostCSS Plugins](https://github.com/postcss/postcss/blob/main/docs/plugins.md#postcss-plugins)
   * [Control](https://github.com/postcss/postcss/blob/main/docs/plugins.md#control)
@@ -37,7 +37,7 @@
     * [Raw Values](https://github.com/postcss/postcss/blob/main/docs/syntax.md#raw-values-1)
     * [Tests](https://github.com/postcss/postcss/blob/main/docs/syntax.md#tests-1)
 
-* [Writing a PostCSS Plugin]
+* [Writing a PostCSS Plugin](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#writing-a-postcss-plugin)
  * [Links](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#links)
  * [Step 1: Create an idea](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-1-create-an-idea)
  * [Step 2: Create a project](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-2-create-a-project)
