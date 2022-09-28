@@ -80,7 +80,7 @@
     * [4.1. Don’t show JS stack for `CssSyntaxError`](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#41-dont-show-js-stack-for-csssyntaxerror)
     * [4.2. Display `result.warnings()`](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#42-display-resultwarnings)
     * [4.3. Allow the user to write source maps to different files](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#43-allow-the-user-to-write-source-maps-to-different-files)
-  * [Documentation](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#4-output)
+  * [Documentation](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#5-documentation)
     * [5.1. Document your runner in English](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#51-document-your-runner-in-english)
     * [5.2. Maintain a changelog](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#52-maintain-a-changelog)
     * [5.3. `postcss-runner` keyword in `package.json`](https://github.com/muddv/postcss/blob/docs-index/docs/guidelines/runner.md#53-postcss-runner-keyword-in-packagejson)
