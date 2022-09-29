@@ -814,4 +814,31 @@ test('allows to clone nodes', () => {
   is(root2.toString(), 'a { color: black; z-index: 1 } b {}')
 })
 
+test('container.nodes can be sorted', () => {
+  let root = parse('@b; @c; @a;')
+  let b = root.nodes[0];
+
+  root.nodes.sort((x, y) => {
+    return (x as AtRule).name.localeCompare((y as AtRule).name)
+  })
+
+  // Sorted nodes are reflected in "toString".
+  is(root.toString(), ' @a;@b; @c;')
+
+  // Sorted nodes are reflected in "walk".
+  let result: string[] = [];
+  root.walkAtRules((atRule) => {
+    result.push(atRule.name.trim())
+  });
+
+  is(result.join(' '), 'a b c')
+
+  // Sorted nodes have the corect "index".
+  is(root.index(b), 1)
+
+  // Inserting after a sorted node results in the correct order.
+  b.after('@d;');
+  is(root.toString(), ' @a;@b;@d; @c;')
+})
+
 test.run()
