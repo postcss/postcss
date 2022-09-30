@@ -636,6 +636,24 @@ test('insertBefore() receives array', () => {
   is(a.toString(), 'a{ color: red; width: 1; height: 2; z-index: 1 }')
 })
 
+test('insertBefore() receives pre-existing child node - a', () => {
+  let a = parse('a{ align-items: start; color: red; z-index: 1 }')
+  let declA = (a.first as Rule).nodes[0];
+  let declC = (a.first as Rule).nodes[2];
+  declC.before(declA);
+
+  is(a.toString(), 'a{ color: red; align-items: start; z-index: 1 }')
+})
+
+test('insertBefore() receives pre-existing child node - b', () => {
+  let a = parse('a{ align-items: start; color: red; z-index: 1 }')
+  let declA = (a.first as Rule).nodes[0];
+  let declC = (a.first as Rule).nodes[2];
+  declA.before(declC);
+
+  is(a.toString(), 'a{ z-index: 1; align-items: start; color: red }')
+})
+
 test('insertAfter() inserts child', () => {
   let rule = parse('a { a: 1; b: 2 }').first as Rule
   rule.insertAfter(0, { prop: 'c', value: '3' })
@@ -664,6 +682,24 @@ test('insertAfter() receives array', () => {
 
   aRule.insertAfter(0, bRule.nodes)
   is(a.toString(), 'a{ color: red; width: 1; height: 2; z-index: 1 }')
+})
+
+test('insertAfter() receives pre-existing child node - a', () => {
+  let a = parse('a{ align-items: start; color: red; z-index: 1 }')
+  let declA = (a.first as Rule).nodes[0];
+  let declC = (a.first as Rule).nodes[2];
+  declC.after(declA);
+
+  is(a.toString(), 'a{ color: red; z-index: 1; align-items: start }')
+})
+
+test('insertAfter() receives pre-existing child node - b', () => {
+  let a = parse('a{ align-items: start; color: red; z-index: 1 }')
+  let declA = (a.first as Rule).nodes[0];
+  let declC = (a.first as Rule).nodes[2];
+  declA.after(declC);
+
+  is(a.toString(), 'a{ align-items: start; z-index: 1; color: red }')
 })
 
 test('removeChild() removes by index', () => {
