@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.17
+* Fixed `Node.before()` unexpected behavior (by Romain Menke).
+* Added TOC to docs (by Mikhail Dedov).
+
 ## 8.4.16
 * Fixed `Root` AST migration.
 
