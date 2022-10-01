@@ -17,7 +17,7 @@ There are 3 types of PostCSS syntax packages:
 * [Syntax](#syntax)
 * [Parser](#parser)
   * [Main Theory](#main-theory)
-  * [Performance](#performance))
+  * [Performance](#performance)
   * [Node Source](#node-source)
   * [Raw Values](#raw-values)
   * [Tests](#tests)
