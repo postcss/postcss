@@ -10,8 +10,6 @@
 * [Step 5: Fight with frustration](#step-5-fight-with-frustration)
 * [Step 6: Make it public](#step-6-make-it-public)
 
-# Writing a PostCSS Plugin
-
 ## Links
 
 Documentation:
