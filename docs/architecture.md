@@ -1,4 +1,4 @@
-## PostCSS Architecture
+# PostCSS Architecture
 
 General overview of the PostCSS architecture.
 It can be useful for everyone who wishes to contribute to the core or develop a better understanding of the tool.
