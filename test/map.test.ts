@@ -722,4 +722,15 @@ test('supports previous inline map with empty processor', () => {
   match((root3.source?.input.origin(1, 0) as any).file, 'a.css')
 })
 
+test('absolute sourcemaps have source contents', () => {
+  let result = postcss([() => {}]).process('a{}', {
+    from: '/dir/to/a.css',
+    map: {
+      inline: false,
+      absolute: true
+    }
+  })
+  equal(result.map.toJSON().sourcesContent, ['a{}'])
+})
+
 test.run()
