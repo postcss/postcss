@@ -2,6 +2,7 @@ import { SourceMapConsumer, SourceMapGenerator } from 'source-map-js'
 import { removeSync, outputFileSync } from 'fs-extra'
 import { is, type, equal, match } from 'uvu/assert'
 import { join, resolve, parse } from 'path'
+import { pathToFileURL } from 'url'
 import { existsSync } from 'fs'
 import { test } from 'uvu'
 
@@ -720,6 +721,20 @@ test('supports previous inline map with empty processor', () => {
   })
   let root3 = postcss.parse(result2.css, { from: '/c.css' })
   match((root3.source?.input.origin(1, 0) as any).file, 'a.css')
+})
+
+test('absolute sourcemaps have source contents', () => {
+  let result = postcss([() => {}]).process('a{}', {
+    from: '/dir/to/a.css',
+    map: {
+      inline: false,
+      absolute: true
+    }
+  })
+  equal(result.map.toJSON().sources, [
+    pathToFileURL('/dir/to/a.css').toString()
+  ])
+  equal(result.map.toJSON().sourcesContent, ['a{}'])
 })
 
 test.run()
