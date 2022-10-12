@@ -2,6 +2,7 @@ import { SourceMapConsumer, SourceMapGenerator } from 'source-map-js'
 import { removeSync, outputFileSync } from 'fs-extra'
 import { is, type, equal, match } from 'uvu/assert'
 import { join, resolve, parse } from 'path'
+import { pathToFileURL } from 'url'
 import { existsSync } from 'fs'
 import { test } from 'uvu'
 
@@ -730,6 +731,9 @@ test('absolute sourcemaps have source contents', () => {
       absolute: true
     }
   })
+  equal(result.map.toJSON().sources, [
+    pathToFileURL('/dir/to/a.css').toString()
+  ])
   equal(result.map.toJSON().sourcesContent, ['a{}'])
 })
 
