@@ -949,4 +949,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-design-tokens`]:                https://github.com/jptaranto/postcss-design-tokens
 [`postcss-pixel-to-remvw`]:               https://github.com/ben-lau/postcss-pixel-to-remvw
 [`@csstools/postcss-design-tokens`]:      https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-design-tokens
-[`postcss-easy-import`]:                  https://https://github.com/TrySound/postcss-easy-import
+[`postcss-easy-import`]:                  https://github.com/TrySound/postcss-easy-import
