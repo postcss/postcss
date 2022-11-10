@@ -654,6 +654,28 @@ test('insertBefore() receives pre-existing child node - b', () => {
   is(a.toString(), 'a{ z-index: 1; align-items: start; color: red }')
 })
 
+test('insertBefore() has defined way of adding newlines', () => {
+  let root = parse('a {}')
+  root.insertBefore(root.first as Rule, 'b {}')
+  root.insertBefore(root.first as Rule, 'c {}')
+  is(root.toString(), 'c {}\nb {}\na {}')
+
+  root = parse('other {}a {}')
+  root.insertBefore(root.first as Rule, 'b {}')
+  root.insertBefore(root.first as Rule, 'c {}')
+  is(root.toString(), 'c {}b {}other {}a {}')
+
+  root = parse('other {}\na {}')
+  root.insertBefore(root.nodes[1] as Rule, 'b {}')
+  root.insertBefore(root.nodes[1] as Rule, 'c {}')
+  is(root.toString(), 'other {}\nc {}\nb {}\na {}')
+
+  root = parse('other {}a {}')
+  root.insertBefore(root.nodes[1] as Rule, 'b {}')
+  root.insertBefore(root.nodes[1] as Rule, 'c {}')
+  is(root.toString(), 'other {}c {}b {}a {}')
+})
+
 test('insertAfter() inserts child', () => {
   let rule = parse('a { a: 1; b: 2 }').first as Rule
   rule.insertAfter(0, { prop: 'c', value: '3' })
