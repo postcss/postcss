@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.19
+* Fixed whitespace preserving after AST transformations (by Romain Menke).
+
 ## 8.4.18
 * Fixed an error on `absolute: true` with empty `sourceContent` (by Rene Haas).
 
