@@ -5,6 +5,7 @@
     "allowJs": true,
     "strict": true,
     "noEmit": true,
+    "skipLibCheck": true,
     "esModuleInterop": true
   }
 }

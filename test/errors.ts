@@ -1,7 +1,7 @@
 import { PluginCreator } from '../lib/postcss.js'
 
 const plugin: PluginCreator<{ a: number }> = opts => {
-  // THROWS Object is possibly 'undefined'
+  // THROWS 'opts' is possibly 'undefined'
   console.log(opts.a)
   // THROWS Property 'b' does not exist on type '{ a: number; }'
   console.log(opts?.b)
