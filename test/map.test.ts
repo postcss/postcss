@@ -104,6 +104,21 @@ test('generate right source map', () => {
   })
 })
 
+test('generate right source map for at layer', () => {
+  let css = '@layer extensions {\n  @layer one, two\n}'
+  let processor = postcss(() => {
+    /* noop */
+  })
+
+  let result = processor.process(css, {
+    from: 'a.css',
+    to: 'b.css',
+    map: true
+  })
+
+  read(result)
+})
+
 test('changes previous source map', () => {
   let css = 'a { color: black }'
 
