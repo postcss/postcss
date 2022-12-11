@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.20
+* Fixed source map generation for childless at-rules like `@layer`.
+
 ## 8.4.19
 * Fixed whitespace preserving after AST transformations (by Romain Menke).
 
