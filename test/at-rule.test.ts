@@ -48,4 +48,32 @@ test('clone spaces from another at-rule', () => {
   is(rule.toString(), '@page 1{}')
 })
 
+test('at layer', () => {
+  let root = parse(`@layer foo {\n  @layer one, two\n}`)
+  let layer1 = root.nodes[0] as AtRule;
+  let layer2 = layer1.nodes[0] as AtRule;
+
+  is(root.source?.start?.offset, 0)
+  is(root.source?.start?.line, 1)
+  is(root.source?.start?.column, 1)
+
+  is(layer1.source?.start?.offset, 0)
+  is(layer1.source?.start?.line, 1)
+  is(layer1.source?.start?.column, 1)
+
+  is(layer1.source?.end?.offset, 31)
+  is(layer1.source?.end?.line, 3)
+  is(layer1.source?.end?.column, 1)
+
+  is(layer2.source?.start?.offset, 15)
+  is(layer2.source?.start?.line, 2)
+  is(layer2.source?.start?.column, 3)
+
+  is(layer2.source?.end?.offset, 29)
+  is(layer2.source?.end?.line, 2)
+  is(layer2.source?.end?.column, 17)
+
+  is(root.toString(), '@layer foo {\n  @layer one, two\n}')
+})
+
 test.run()
