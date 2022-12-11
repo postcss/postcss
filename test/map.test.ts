@@ -104,7 +104,7 @@ test('generate right source map', () => {
   })
 })
 
-test('generate right source map for at layer', () => {
+test('generates right source map for @layer', () => {
   let css = '@layer extensions {\n  @layer one, two\n}'
   let processor = postcss(() => {
     /* noop */
