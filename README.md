@@ -177,8 +177,8 @@ you can write a parser and/or stringifier to extend PostCSS.
 [`postcss-less-engine`]: https://github.com/Crunch/postcss-less
 [`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser
 [`postcss-syntax`]:      https://github.com/gucong3000/postcss-syntax
-[`postcss-html`]:        https://github.com/gucong3000/postcss-html
-[`postcss-markdown`]:    https://github.com/gucong3000/postcss-markdown
+[`postcss-html`]:        https://github.com/ota-meshi/postcss-html
+[`postcss-markdown`]:    https://github.com/ota-meshi/postcss-markdown
 [`postcss-jsx`]:         https://github.com/gucong3000/postcss-jsx
 [`postcss-styled`]:      https://github.com/gucong3000/postcss-styled
 [`postcss-scss`]:        https://github.com/postcss/postcss-scss
