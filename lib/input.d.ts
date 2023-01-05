@@ -1,4 +1,4 @@
-import { ProcessOptions } from './postcss.js'
+import { CssSyntaxError, ProcessOptions } from './postcss.js'
 import PreviousMap from './previous-map.js'
 
 export interface FilePosition {
@@ -147,4 +147,32 @@ export default class Input {
    * @param offset Source offset.
    */
   fromOffset(offset: number): { line: number; col: number } | null
+
+  /**
+   * Returns `CssSyntaxError` with information about the error and its position
+   *
+   * @param message Error message.
+   * @param line The line number in the input or a position that is part of a range.
+   * @param column The column number in the input or a position that is part of a range.
+   * @param opts Object contains `plugin` key with PostCSS plugin name, if error came from a plugin.
+   * @return `CssSyntaxError`
+   */
+  error(
+    message: string,
+    line:
+      | number
+      | {
+          offset?: number
+          line: number
+          column: number
+        },
+    column?:
+      | number
+      | {
+          offset?: number
+          line: number
+          column: number
+        },
+    opts?: { plugin?: CssSyntaxError['plugin'] }
+  ): CssSyntaxError
 }
