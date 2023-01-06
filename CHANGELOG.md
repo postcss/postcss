@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.21
+* Fixed `Input#error` types (by Aleks Hudochenkov).
+
 ## 8.4.20
 * Fixed source map generation for childless at-rules like `@layer`.
 
