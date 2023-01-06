@@ -149,27 +149,34 @@ export default class Input {
   fromOffset(offset: number): { line: number; col: number } | null
 
   /**
-   * Returns `CssSyntaxError` with information about the error and its position
-   *
-   * @param message Error message.
-   * @param line The line number in the input or a position that is part of a range.
-   * @param column The column number in the input or a position that is part of a range.
-   * @param opts Object contains `plugin` key with PostCSS plugin name, if error came from a plugin.
-   * @return `CssSyntaxError`
+   * Returns `CssSyntaxError` with information about the error and its position.
    */
   error(
     message: string,
-    line:
-      | number
+    line: number,
+    column: number,
+    opts?: { plugin?: CssSyntaxError['plugin'] }
+  ): CssSyntaxError
+  error(
+    message: string,
+    offset: number,
+    opts?: { plugin?: CssSyntaxError['plugin'] }
+  ): CssSyntaxError
+  error(
+    message: string,
+    start:
       | {
-          offset?: number
+          offset: number
+        }
+      | {
           line: number
           column: number
         },
-    column?:
-      | number
+    end:
       | {
-          offset?: number
+          offset: number
+        }
+      | {
           line: number
           column: number
         },
