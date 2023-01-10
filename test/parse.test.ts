@@ -141,11 +141,13 @@ test('throws on property without value', () => {
   }, /:1:5: Unknown word/)
 })
 
-// TODO : this is just a delim token and not an error
-// Do we make it an error?
 test('throws on nameless at-rule', () => {
   throws(() => {
     parse('@')
+  }, /:1:1: At-rule without name/)
+
+  throws(() => {
+    parse('@ {}')
   }, /:1:1: At-rule without name/)
 })
 
