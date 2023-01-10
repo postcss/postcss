@@ -129,7 +129,7 @@ test('throws on unclosed quote', () => {
 test('throws on unclosed bracket', () => {
   throws(() => {
     parse(':not(one() { }')
-  }, /:1:5: Unclosed bracket/)
+  }, /:1:2: Unclosed bracket/)
 })
 
 test('throws on property without value', () => {
@@ -141,6 +141,8 @@ test('throws on property without value', () => {
   }, /:1:5: Unknown word/)
 })
 
+// TODO : this is just a delim token and not an error
+// Do we make it an error?
 test('throws on nameless at-rule', () => {
   throws(() => {
     parse('@')

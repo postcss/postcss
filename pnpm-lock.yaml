@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@csstools/css-tokenizer': 1.0.0
   '@logux/eslint-config': ^48.0.0
   '@size-limit/preset-small-lib': ^8.1.0
   '@types/fs-extra': ^9.0.13
@@ -32,6 +33,7 @@ specifiers:
   uvu: ^0.5.6
 
 dependencies:
+  '@csstools/css-tokenizer': 1.0.0
   nanoid: 3.3.4
   picocolors: 1.0.0
   source-map-js: 1.0.2
@@ -76,6 +78,11 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
+
+  /@csstools/css-tokenizer/1.0.0:
+    resolution: {integrity: sha512-xdFjdQ+zqqkOsmee+kYRieZD9Cqh4hr01YBQ2/8NtTkMMxbtRX18MC50LX6cMrtaLryqmIdZHN9e16/l0QqnQw==}
+    engines: {node: ^14 || ^16 || >=18}
+    dev: false
 
   /@esbuild/android-arm/0.15.18:
     resolution: {integrity: sha512-5GT+kcs2WVGjVs7+boataCkO5Fg0y4kCjzkB5bAip7H4jfnOS3dA6KPiww9W1OEKTKeAcUVhdZGvgI65OXmUnw==}
