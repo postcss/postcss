@@ -139,6 +139,8 @@ test('saves source with ranges', () => {
 })
 
 test('highlights broken line with colors', () => {
+  console.log(parseError('#a .b c() {'))
+
   is(
     parseError('#a .b c() {').showSourceCode(true),
     pico.bold(pico.red('>')) +
