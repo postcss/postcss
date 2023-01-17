@@ -12,6 +12,10 @@ test('works with file reads', () => {
 })
 
 eachTest((name, css, json) => {
+  if (name === 'custom-properties.css') {
+    // https://github.com/postcss/postcss-parser-tests/issues/23
+    return;
+  }
   test(`parses ${name}`, () => {
     css = css.replace(/\r\n/g, '\n')
     let parsed = jsonify(parse(css, { from: name }))
