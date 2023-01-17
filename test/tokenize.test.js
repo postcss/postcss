@@ -1,5 +1,6 @@
 let { test } = require('uvu')
 let { equal, throws, is } = require('uvu/assert')
+let { testCorpus } = require('@rmenke/css-tokenizer-tests')
 
 let tokenizer = require('../lib/tokenize')
 let { Input } = require('../lib/postcss')
@@ -15,6 +16,28 @@ function tokenize(css, opts) {
 
 function run(css, tokens, opts) {
   equal(tokenize(css, opts), tokens)
+}
+
+for (let testCase in testCorpus) {
+  equal(
+    tokenize(testCorpus[testCase].css, { ignoreErrors: true }).map((token) => {
+      let universal = {
+        type: token[0],
+        raw: token[1],
+        startIndex: token[2],
+        endIndex: token[3] + 1,
+        structured: null,
+      };
+
+      if (token[4]) {
+        universal.structured = token[4]
+      }
+
+      return universal
+    }),
+    testCorpus[testCase].tokens,
+    `css-tokenizer-tests: ${testCase}`,
+  );
 }
 
 test('tokenizes empty file', () => {
@@ -151,8 +174,7 @@ test('tokenizes at-word end', () => {
 
 test('tokenizes urls', () => {
   run('url(/*\\))', [
-    ['url-token', 'url(/*\\)', 0, 7, { value: '/*\\' }],
-    [')-token', ')', 8, 8, undefined]
+    ['url-token', 'url(/*\\))', 0, 8, { value: '/*)' }],
   ])
 })
 

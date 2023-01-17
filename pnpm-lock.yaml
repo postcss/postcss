@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@csstools/css-tokenizer': 1.0.0
   '@logux/eslint-config': ^48.0.0
+  '@rmenke/css-tokenizer-tests': ^1.0.6
   '@size-limit/preset-small-lib': ^8.1.0
   '@types/fs-extra': ^9.0.13
   '@types/node': ^18.11.18
@@ -33,13 +33,13 @@ specifiers:
   uvu: ^0.5.6
 
 dependencies:
-  '@csstools/css-tokenizer': 1.0.0
   nanoid: 3.3.4
   picocolors: 1.0.0
   source-map-js: 1.0.2
 
 devDependencies:
   '@logux/eslint-config': 48.0.0_zbj4stg4r3rgea5xburtqyzu7q
+  '@rmenke/css-tokenizer-tests': 1.0.6
   '@size-limit/preset-small-lib': 8.1.0_size-limit@8.1.0
   '@types/fs-extra': 9.0.13
   '@types/node': 18.11.18
@@ -78,11 +78,6 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
-
-  /@csstools/css-tokenizer/1.0.0:
-    resolution: {integrity: sha512-xdFjdQ+zqqkOsmee+kYRieZD9Cqh4hr01YBQ2/8NtTkMMxbtRX18MC50LX6cMrtaLryqmIdZHN9e16/l0QqnQw==}
-    engines: {node: ^14 || ^16 || >=18}
-    dev: false
 
   /@esbuild/android-arm/0.15.18:
     resolution: {integrity: sha512-5GT+kcs2WVGjVs7+boataCkO5Fg0y4kCjzkB5bAip7H4jfnOS3dA6KPiww9W1OEKTKeAcUVhdZGvgI65OXmUnw==}
@@ -205,6 +200,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: true
+
+  /@rmenke/css-tokenizer-tests/1.0.6:
+    resolution: {integrity: sha512-t4Vr7gBu4LCNVnq3RZ0EJ5gAQMlwh1w3PYY+2XB9wiHUHjvDrQgzmdg2IYoW3xDj+JIbBceCxFpfyzQzoOJFxQ==}
     dev: true
 
   /@size-limit/esbuild/8.1.0_size-limit@8.1.0:

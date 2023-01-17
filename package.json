@@ -55,6 +55,7 @@
   ],
   "scripts": {
     "test": "c8 pnpm unit && eslint . && node ./test/version.js && check-dts && node ./test/integration.js && size-limit",
+    "coverage": "c8 uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\"",
     "unit": "uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\""
   },
   "funding": [
@@ -77,11 +78,11 @@
   "dependencies": {
     "nanoid": "^3.3.4",
     "picocolors": "^1.0.0",
-    "source-map-js": "^1.0.2",
-    "@csstools/css-tokenizer": "1.0.0"
+    "source-map-js": "^1.0.2"
   },
   "devDependencies": {
     "@logux/eslint-config": "^48.0.0",
+    "@rmenke/css-tokenizer-tests": "^1.0.6",
     "@size-limit/preset-small-lib": "^8.1.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.11.18",
@@ -114,7 +115,7 @@
       "lib/map-generator.js"
     ],
     "lines": 100,
-    "reporter": "lcov",
+    "reporter": "text",
     "check-coverage": true
   },
   "simple-git-hooks": {
