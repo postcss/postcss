@@ -278,6 +278,12 @@ test('throws error on unclosed comment', () => {
   }, /:1:2: Unclosed comment/)
 })
 
+test('throws error on unclosed comment', () => {
+  throws(() => {
+    tokenize(' /* *')
+  }, /:1:2: Unclosed comment/)
+})
+
 test('throws error on unclosed url', () => {
   throws(() => {
     tokenize('url(')
@@ -288,6 +294,36 @@ test('throws error on unclosed url (with content)', () => {
   throws(() => {
     tokenize('url(foo')
   }, /:1:1: Unclosed url/)
+})
+
+test('throws error on unclosed url (with content and whitespace)', () => {
+  throws(() => {
+    tokenize('url( foo ')
+  }, /:1:1: Unclosed url/)
+})
+
+test('throws error on invalid escaping in a url', () => {
+  throws(() => {
+    tokenize('url(foo\\\n)')
+  }, /:1:1: Invalid character escaping in url/)
+})
+
+test('throws error on invalid characters in a url', () => {
+  throws(() => {
+    tokenize('url(foo")')
+  }, /:1:1: Unexpected characters in url/)
+})
+
+test('throws error on invalid escape (EOF)', () => {
+  throws(() => {
+    tokenize('\\')
+  }, /:1:1: Invalid character escape/)
+})
+
+test('throws error on invalid escape (new line)', () => {
+  throws(() => {
+    tokenize('\\\n')
+  }, /:1:1: Invalid character escape/)
 })
 
 test('ignores unclosing string on request', () => {

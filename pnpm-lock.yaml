@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@logux/eslint-config': ^48.0.0
-  '@rmenke/css-tokenizer-tests': ^1.0.6
+  '@rmenke/css-tokenizer-tests': ^1.0.9
   '@size-limit/preset-small-lib': ^8.1.0
   '@types/fs-extra': ^9.0.13
   '@types/node': ^18.11.18
@@ -39,7 +39,7 @@ dependencies:
 
 devDependencies:
   '@logux/eslint-config': 48.0.0_zbj4stg4r3rgea5xburtqyzu7q
-  '@rmenke/css-tokenizer-tests': 1.0.6
+  '@rmenke/css-tokenizer-tests': 1.0.9
   '@size-limit/preset-small-lib': 8.1.0_size-limit@8.1.0
   '@types/fs-extra': 9.0.13
   '@types/node': 18.11.18
@@ -202,8 +202,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@rmenke/css-tokenizer-tests/1.0.6:
-    resolution: {integrity: sha512-t4Vr7gBu4LCNVnq3RZ0EJ5gAQMlwh1w3PYY+2XB9wiHUHjvDrQgzmdg2IYoW3xDj+JIbBceCxFpfyzQzoOJFxQ==}
+  /@rmenke/css-tokenizer-tests/1.0.9:
+    resolution: {integrity: sha512-rZpgA+Im2uKbDaoVa8dxQRDUIUmFgnaNfZKgjjv7FGz3cHkmZsfahfakQ4NDsLTFhL25CmmQrY0iz1dK74JREg==}
     dev: true
 
   /@size-limit/esbuild/8.1.0_size-limit@8.1.0:

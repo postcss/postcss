@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^48.0.0",
-    "@rmenke/css-tokenizer-tests": "^1.0.6",
+    "@rmenke/css-tokenizer-tests": "^1.0.9",
     "@size-limit/preset-small-lib": "^8.1.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.11.18",
