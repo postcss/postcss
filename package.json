@@ -77,11 +77,11 @@
   "dependencies": {
     "nanoid": "^3.3.4",
     "picocolors": "^1.0.0",
-    "source-map-js": "^1.0.2",
-    "@csstools/css-tokenizer": "1.0.0"
+    "source-map-js": "^1.0.2"
   },
   "devDependencies": {
     "@logux/eslint-config": "^48.0.0",
+    "@rmenke/css-tokenizer-tests": "^1.0.10",
     "@size-limit/preset-small-lib": "^8.1.2",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.11.18",
@@ -138,7 +138,7 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "17 KB"
+      "limit": "18 KB"
     }
   ],
   "eslintConfig": {

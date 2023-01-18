@@ -145,10 +145,11 @@ test('highlights broken line with colors', () => {
       pico.gray(' 1 | ') +
       pico.magenta('#a') +
       ' ' +
-      pico.yellow('.b') +
+      pico.yellow('.') +
+      pico.yellow('b') +
       ' ' +
-      pico.cyan('c') +
-      pico.cyan('()') +
+      pico.cyan('c(') +
+      pico.cyan(')') +
       ' ' +
       pico.yellow('{') +
       '\n ' +
