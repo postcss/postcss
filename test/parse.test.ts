@@ -106,6 +106,58 @@ test('parses double semicolon after rule', () => {
   is(parse('a { };;').toString(), 'a { };;')
 })
 
+test('functions (at-rule)', () => {
+  let root = parse('@supports selector(.foo) {}')
+  let a = root.first as AtRule
+  is(a.params, 'selector(.foo)')
+})
+
+test('functions (selector)', () => {
+  let root = parse(':is(.foo) {}')
+  let a = root.first as Rule
+  is(a.selector, ':is(.foo)')
+})
+
+test('functions (declaration prop)', () => {
+  let root = parse('.foo { color(dark): rgb(0, 0, 0) }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+  // TODO : this throws in current PostCSS.
+  // Must it throw?
+  is(b.prop, 'color(dark)')
+})
+
+test('functions (declaration prop)', () => {
+  let root = parse('.foo { color(dark): rgb(0, 0, 0) {} }')
+  let a = root.first as Rule
+  let b = a.first as Rule
+
+  is(b.selector, 'color(dark): rgb(0, 0, 0)')
+})
+
+test('functions (declaration prop)', () => {
+  let root = parse('.foo { color(dark): rgb(0, 0, {bar}) {} }')
+  let a = root.first as Rule
+  let b = a.first as Rule
+
+  is(b.selector, 'color(dark): rgb(0, 0, {bar})')
+})
+
+test('functions (declaration prop)', () => {
+  let root = parse('.foo { color+: rgb(0, 0, 0) }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, 'color+')
+})
+
+test('functions (declaration value)', () => {
+  let root = parse('.foo { color: rgb(0, 0, 0) }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+  is(b.value, 'rgb(0, 0, 0)')
+})
+
 test('throws on unclosed blocks', () => {
   throws(() => {
     parse('\na {\n')
