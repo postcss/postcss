@@ -122,6 +122,78 @@ test('parses a functional tagname', () => {
   is(b.selector, 'b(c): d')
 })
 
+test('parses a property with a url token', () => {
+  let root = parse('a { url(b): c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, 'url(b)')
+})
+
+test('parses a property with a bad url token', () => {
+  let root = parse('a { url(b b): c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, 'url(b b)')
+})
+
+test('parses a property with a comma token', () => {
+  let root = parse('a { ,right: c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, ',right')
+})
+
+test('parses a property with a number token', () => {
+  let root = parse('a { 10: c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, '10')
+})
+
+test('parses a property with a percentage token', () => {
+  let root = parse('a { 10%: c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, '10%')
+})
+
+test('parses a property with a dimension token', () => {
+  let root = parse('a { 10px: c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, '10px')
+})
+
+test('parses a property with a hash token', () => {
+  let root = parse('a { #b: c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, '#b')
+})
+
+test('parses a property with a CDO token', () => {
+  let root = parse('a { <!--: c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, '<!--')
+})
+
+test('parses a property with a CDC token', () => {
+  let root = parse('a { -->: c; }')
+  let a = root.first as Rule
+  let b = a.first as Declaration
+
+  is(b.prop, '-->')
+})
+
 test('throws on unclosed blocks', () => {
   throws(() => {
     parse('\na {\n')

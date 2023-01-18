@@ -55,7 +55,6 @@
   ],
   "scripts": {
     "test": "c8 pnpm unit && eslint . && node ./test/version.js && check-dts && node ./test/integration.js && size-limit",
-    "coverage": "c8 uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\"",
     "unit": "uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\""
   },
   "funding": [
@@ -115,7 +114,7 @@
       "lib/map-generator.js"
     ],
     "lines": 100,
-    "reporter": "text",
+    "reporter": "lcov",
     "check-coverage": true
   },
   "simple-git-hooks": {
