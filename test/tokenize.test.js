@@ -178,11 +178,31 @@ test('tokenizes urls', () => {
   ])
 })
 
+test('tokenizes urls (case insensitive)', () => {
+  run('url(a)Url(b)uRl(c)urL(D)', [
+    ['url-token', 'url(a)', 0, 5, { value: 'a' }],
+    ['url-token', 'Url(b)', 6, 11, { value: 'b' }],
+    ['url-token', 'uRl(c)', 12, 17, { value: 'c' }],
+    ['url-token', 'urL(D)', 18, 23, { value: 'D' }],
+  ])
+})
+
 test('tokenizes quoted urls', () => {
   run('url(")")', [
     ['function-token', 'url(', 0, 3, { value: 'url' }],
     ['string-token', '")"', 4, 6, { value: ')' }],
     [')-token', ')', 7, 7, undefined]
+  ])
+})
+
+test('tokenizes functions that start with "u"', () => {
+  run('uul(a)uri(b)', [
+    ['function-token', 'uul(', 0, 3, { value: 'uul' }],
+    ['ident-token', 'a', 4, 4, { value: 'a' }],
+    [')-token', ')', 5, 5, undefined],
+    ['function-token', 'uri(', 6, 9, { value: 'uri' }],
+    ['ident-token', 'b', 10, 10, { value: 'b' }],
+    [')-token', ')', 11, 11, undefined],
   ])
 })
 
