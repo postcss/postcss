@@ -8,8 +8,7 @@
   "exports": {
     ".": {
       "require": "./lib/postcss.js",
-      "import": "./lib/postcss.mjs",
-      "types": "./lib/postcss.d.ts"
+      "import": "./lib/postcss.mjs"
     },
     "./lib/at-rule": "./lib/at-rule.js",
     "./lib/comment": "./lib/comment.js",
@@ -41,7 +40,6 @@
     "./package.json": "./package.json"
   },
   "main": "./lib/postcss.js",
-  "types": "./lib/postcss.d.ts",
   "keywords": [
     "css",
     "postcss",
