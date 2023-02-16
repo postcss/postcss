@@ -14,7 +14,7 @@ import { ProcessOptions } from './postcss.js'
  * root.input.map //=> PreviousMap
  * ```
  */
-export default class PreviousMap {
+declare class PreviousMap {
   /**
    * Was source map inlined by data-uri to input CSS.
    */
@@ -70,3 +70,5 @@ export default class PreviousMap {
    */
   withContent(): boolean
 }
+
+export = PreviousMap

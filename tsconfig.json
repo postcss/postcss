@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
+    "lib": ["es2018"],
     "target": "es2018",
     "module": "commonjs",
-    "allowJs": true,
+    "moduleResolution": "node16",
     "strict": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true
+    "noEmit": true
   }
 }

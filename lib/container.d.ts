@@ -1,8 +1,8 @@
-import Node, { ChildNode, NodeProps, ChildProps } from './node.js'
-import Declaration from './declaration.js'
-import Comment from './comment.js'
-import AtRule from './at-rule.js'
-import Rule from './rule.js'
+import Node = require('./node.js')
+import Declaration = require('./declaration.js')
+import Comment = require('./comment.js')
+import AtRule = require('./at-rule.js')
+import Rule = require('./rule.js')
 
 interface ValueOptions {
   /**
@@ -16,8 +16,10 @@ interface ValueOptions {
   fast?: string
 }
 
-export interface ContainerProps extends NodeProps {
-  nodes?: (ChildNode | ChildProps)[]
+declare namespace Container {
+  interface ContainerProps extends Node.NodeProps {
+    nodes?: (Node.ChildNode | Node.ChildProps)[]
+  }
 }
 
 /**
@@ -27,8 +29,8 @@ export interface ContainerProps extends NodeProps {
  * Note that all containers can store any content. If you write a rule inside
  * a rule, PostCSS will parse it.
  */
-export default abstract class Container<
-  Child extends Node = ChildNode
+declare abstract class Container<
+  Child extends Node = Node.ChildNode
 > extends Node {
   /**
    * An array containing the container’s children.
@@ -117,7 +119,7 @@ export default abstract class Container<
    * @return  Returns `false` if iteration was broke.
    */
   walk(
-    callback: (node: ChildNode, index: number) => false | void
+    callback: (node: Node.ChildNode, index: number) => false | void
   ): false | undefined
 
   /**
@@ -269,7 +271,7 @@ export default abstract class Container<
    * @return This node for methods chain.
    */
   append(
-    ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
+    ...nodes: (Node | Node[] | Node.ChildProps | Node.ChildProps[] | string | string[])[]
   ): this
 
   /**
@@ -293,7 +295,7 @@ export default abstract class Container<
    * @return This node for methods chain.
    */
   prepend(
-    ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
+    ...nodes: (Node | Node[] | Node.ChildProps | Node.ChildProps[] | string | string[])[]
   ): this
 
   /**
@@ -321,7 +323,7 @@ export default abstract class Container<
    */
   insertBefore(
     oldNode: Child | number,
-    newNode: Child | ChildProps | string | Child[] | ChildProps[] | string[]
+    newNode: Child | Node.ChildProps | string | Child[] | Node.ChildProps[] | string[]
   ): this
 
   /**
@@ -333,7 +335,7 @@ export default abstract class Container<
    */
   insertAfter(
     oldNode: Child | number,
-    newNode: Child | ChildProps | string | Child[] | ChildProps[] | string[]
+    newNode: Child | Node.ChildProps | string | Child[] | Node.ChildProps[] | string[]
   ): this
 
   /**
@@ -440,3 +442,5 @@ export default abstract class Container<
    */
   index(child: Child | number): number
 }
+
+export = Container

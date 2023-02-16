@@ -5,10 +5,10 @@ import {
   Transformer,
   TransformCallback
 } from './postcss.js'
-import LazyResult from './lazy-result.js'
-import Result from './result.js'
-import Root from './root.js'
-import NoWorkResult from './no-work-result.js'
+import LazyResult = require('./lazy-result.js')
+import Result = require('./result.js')
+import Root = require('./root.js')
+import NoWorkResult = require('./no-work-result.js')
 
 /**
  * Contains plugins to process CSS. Create one `Processor` instance,
@@ -20,7 +20,7 @@ import NoWorkResult from './no-work-result.js'
  * processor.process(css2).then(result => console.log(result.css))
  * ```
  */
-export default class Processor {
+declare class Processor {
   /**
    * Current PostCSS version.
    *
@@ -100,3 +100,5 @@ export default class Processor {
     options?: ProcessOptions
   ): LazyResult | NoWorkResult
 }
+
+export = Processor

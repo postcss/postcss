@@ -6,8 +6,9 @@ import { pathToFileURL } from 'url'
 import { existsSync } from 'fs'
 import { test } from 'uvu'
 
-import postcss, { SourceMap, Rule, Root } from '../lib/postcss.js'
-import PreviousMap from '../lib/previous-map.js'
+import postcss = require('../lib/postcss.js')
+import { FilePosition, SourceMap, Rule, Root } from '../lib/postcss.js'
+import PreviousMap = require('../lib/previous-map.js')
 
 function consumer(map: SourceMap): any {
   return (SourceMapConsumer as any).fromSourceMap(map)
@@ -735,7 +736,7 @@ test('supports previous inline map with empty processor', () => {
     to: '/c.css'
   })
   let root3 = postcss.parse(result2.css, { from: '/c.css' })
-  match((root3.source?.input.origin(1, 0) as any).file, 'a.css')
+  match((root3.source?.input!.origin(1, 0) as FilePosition).file!, 'a.css')
 })
 
 test('absolute sourcemaps have source contents', () => {

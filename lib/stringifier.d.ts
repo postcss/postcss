@@ -10,7 +10,7 @@ import {
   Container
 } from './postcss.js'
 
-export default class Stringifier {
+declare class Stringifier {
   builder: Builder
   constructor(builder: Builder)
   stringify(node: AnyNode, semicolon?: boolean): void
@@ -35,3 +35,5 @@ export default class Stringifier {
   beforeAfter(node: AnyNode, detect: 'before' | 'after'): string
   rawValue(node: AnyNode, prop: string): string
 }
+
+export = Stringifier

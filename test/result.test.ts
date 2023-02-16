@@ -1,8 +1,9 @@
 import { test } from 'uvu'
 import { is, equal } from 'uvu/assert'
 
-import postcss, { Warning, Result, Root, Plugin } from '../lib/postcss.js'
-import Processor from '../lib/processor.js'
+import postcss = require('../lib/postcss.js')
+import { Warning, Result, Root, Plugin } from '../lib/postcss.js'
+import Processor = require('../lib/processor.js')
 
 let processor = new Processor()
 let root = new Root()

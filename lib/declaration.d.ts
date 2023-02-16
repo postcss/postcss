@@ -1,5 +1,5 @@
-import Container from './container.js'
-import Node from './node.js'
+import Container = require('./container.js')
+import Node = require('./node.js')
 
 interface DeclarationRaws extends Record<string, unknown> {
   /**
@@ -27,15 +27,17 @@ interface DeclarationRaws extends Record<string, unknown> {
   }
 }
 
-export interface DeclarationProps {
-  /** Name of the declaration. */
-  prop: string
-  /** Value of the declaration. */
-  value: string
-  /** Whether the declaration has an `!important` annotation. */
-  important?: boolean
-  /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
-  raws?: DeclarationRaws
+declare namespace Declaration {
+  interface DeclarationProps {
+    /** Name of the declaration. */
+    prop: string
+    /** Value of the declaration. */
+    value: string
+    /** Whether the declaration has an `!important` annotation. */
+    important?: boolean
+    /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
+    raws?: DeclarationRaws
+  }
 }
 
 /**
@@ -55,7 +57,7 @@ export interface DeclarationProps {
  * decl.toString() //=> ' color: black'
  * ```
  */
-export default class Declaration extends Node {
+declare class Declaration extends Node {
   type: 'decl'
   parent: Container | undefined
   raws: DeclarationRaws
@@ -116,9 +118,11 @@ export default class Declaration extends Node {
    */
   variable: boolean
 
-  constructor(defaults?: DeclarationProps)
-  assign(overrides: object | DeclarationProps): this
-  clone(overrides?: Partial<DeclarationProps>): this
-  cloneBefore(overrides?: Partial<DeclarationProps>): this
-  cloneAfter(overrides?: Partial<DeclarationProps>): this
+  constructor(defaults?: Declaration.DeclarationProps)
+  assign(overrides: object | Declaration.DeclarationProps): this
+  clone(overrides?: Partial<Declaration.DeclarationProps>): this
+  cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): this
+  cloneAfter(overrides?: Partial<Declaration.DeclarationProps>): this
 }
+
+export = Declaration

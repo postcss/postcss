@@ -1,10 +1,12 @@
 import { is, type, equal, match, throws, not, instance } from 'uvu/assert'
 import { resolve as pathResolve } from 'path'
 import { spyOn, restoreAll } from 'nanospy'
+// @ts-expect-error type definitions for nanodelay@1 are wrong.
 import { delay } from 'nanodelay'
 import { test } from 'uvu'
 
-import postcss, {
+import postcss = require('../lib/postcss.js')
+import {
   Plugin,
   Result,
   Node,
@@ -15,11 +17,11 @@ import postcss, {
   Parser,
   Stringifier
 } from '../lib/postcss.js'
-import CssSyntaxError from '../lib/css-syntax-error.js'
-import LazyResult from '../lib/lazy-result.js'
-import NoWorkResult from '../lib/no-work-result.js'
-import Processor from '../lib/processor.js'
-import Rule from '../lib/rule.js'
+import CssSyntaxError = require('../lib/css-syntax-error.js')
+import LazyResult = require('../lib/lazy-result.js')
+import NoWorkResult = require('../lib/no-work-result.js')
+import Processor = require('../lib/processor.js')
+import Rule = require('../lib/rule.js')
 
 test.after.each(() => {
   restoreAll()

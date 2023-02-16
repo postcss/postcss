@@ -2,7 +2,8 @@ import { resolve } from 'path'
 import { test } from 'uvu'
 import { is, equal, type, not } from 'uvu/assert'
 
-import postcss, {
+import postcss = require('../lib/postcss.js')
+import {
   AnyNode,
   AtRule,
   Root,

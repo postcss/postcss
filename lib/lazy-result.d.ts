@@ -1,8 +1,8 @@
-import Result, { Message, ResultOptions } from './result.js'
+import Result = require('./result.js')
 import { SourceMap } from './postcss.js'
-import Processor from './processor.js'
-import Warning from './warning.js'
-import Root from './root.js'
+import Processor = require('./processor.js')
+import Warning = require('./warning.js')
+import Root = require('./root.js')
 
 /**
  * A Promise proxy for the result of PostCSS transformations.
@@ -13,7 +13,7 @@ import Root from './root.js'
  * const lazy = postcss([autoprefixer]).process(css)
  * ```
  */
-export default class LazyResult implements PromiseLike<Result> {
+declare class LazyResult implements PromiseLike<Result> {
   /**
    * Processes input CSS through synchronous and asynchronous plugins
    * and calls `onFulfilled` with a Result instance. If a plugin throws
@@ -64,7 +64,7 @@ export default class LazyResult implements PromiseLike<Result> {
    * @param css       CSS to parse and transform.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
-  constructor(processor: Processor, css: string, opts: ResultOptions)
+  constructor(processor: Processor, css: string, opts: Result.ResultOptions)
 
   /**
    * Returns the default string description of an object.
@@ -81,7 +81,7 @@ export default class LazyResult implements PromiseLike<Result> {
   /**
    * Options from the `Processor#process` call.
    */
-  get opts(): ResultOptions
+  get opts(): Result.ResultOptions
 
   /**
    * Processes input CSS through synchronous plugins, converts `Root`
@@ -139,7 +139,7 @@ export default class LazyResult implements PromiseLike<Result> {
    *
    * PostCSS runners should always use `LazyResult#then`.
    */
-  get messages(): Message[]
+  get messages(): Result.Message[]
 
   /**
    * Processes input CSS through synchronous plugins
@@ -174,3 +174,5 @@ export default class LazyResult implements PromiseLike<Result> {
    */
   async(): Promise<Result>
 }
+
+export = LazyResult

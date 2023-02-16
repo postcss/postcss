@@ -1,4 +1,5 @@
-import postcss, { Result, PluginCreator } from '../lib/postcss.js'
+import postcss = require('../lib/postcss.js')
+import { Result, PluginCreator } from '../lib/postcss.js'
 
 const plugin: PluginCreator<string> = prop => {
   return {

@@ -1,4 +1,4 @@
-import Container, { ContainerProps } from './container.js'
+import Container = require('./container.js')
 
 interface AtRuleRaws extends Record<string, unknown> {
   /**
@@ -36,13 +36,15 @@ interface AtRuleRaws extends Record<string, unknown> {
   }
 }
 
-export interface AtRuleProps extends ContainerProps {
-  /** Name of the at-rule. */
-  name: string
-  /** Parameters following the name of the at-rule. */
-  params?: string | number
-  /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
-  raws?: AtRuleRaws
+declare namespace AtRule {
+  interface AtRuleProps extends Container.ContainerProps {
+    /** Name of the at-rule. */
+    name: string
+    /** Parameters following the name of the at-rule. */
+    params?: string | number
+    /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
+    raws?: AtRuleRaws
+  }
 }
 
 /**
@@ -70,7 +72,7 @@ export interface AtRuleProps extends ContainerProps {
  * media.nodes   //=> []
  * ```
  */
-export default class AtRule extends Container {
+declare class AtRule extends Container {
   type: 'atrule'
   parent: Container | undefined
   raws: AtRuleRaws
@@ -98,9 +100,11 @@ export default class AtRule extends Container {
    */
   params: string
 
-  constructor(defaults?: AtRuleProps)
-  assign(overrides: object | AtRuleProps): this
-  clone(overrides?: Partial<AtRuleProps>): this
-  cloneBefore(overrides?: Partial<AtRuleProps>): this
-  cloneAfter(overrides?: Partial<AtRuleProps>): this
+  constructor(defaults?: AtRule.AtRuleProps)
+  assign(overrides: object | AtRule.AtRuleProps): this
+  clone(overrides?: Partial<AtRule.AtRuleProps>): this
+  cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): this
+  cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): this
 }
+
+export = AtRule

@@ -1,5 +1,5 @@
-import Container from './container.js'
-import Node, { NodeProps } from './node.js'
+import Container = require('./container.js')
+import Node = require('./node.js')
 
 interface CommentRaws extends Record<string, unknown> {
   /**
@@ -18,11 +18,13 @@ interface CommentRaws extends Record<string, unknown> {
   right?: string
 }
 
-export interface CommentProps extends NodeProps {
-  /** Content of the comment. */
-  text: string
-  /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
-  raws?: CommentRaws
+declare namespace Comment {
+  interface CommentProps extends Node.NodeProps {
+    /** Content of the comment. */
+    text: string
+    /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
+    raws?: CommentRaws
+  }
 }
 
 /**
@@ -38,7 +40,7 @@ export interface CommentProps extends NodeProps {
  * Comments inside selectors, at-rule parameters, or declaration values
  * will be stored in the `raws` properties explained above.
  */
-export default class Comment extends Node {
+declare class Comment extends Node {
   type: 'comment'
   parent: Container | undefined
   raws: CommentRaws
@@ -48,9 +50,11 @@ export default class Comment extends Node {
    */
   text: string
 
-  constructor(defaults?: CommentProps)
-  assign(overrides: object | CommentProps): this
-  clone(overrides?: Partial<CommentProps>): this
-  cloneBefore(overrides?: Partial<CommentProps>): this
-  cloneAfter(overrides?: Partial<CommentProps>): this
+  constructor(defaults?: Comment.CommentProps)
+  assign(overrides: object | Comment.CommentProps): this
+  clone(overrides?: Partial<Comment.CommentProps>): this
+  cloneBefore(overrides?: Partial<Comment.CommentProps>): this
+  cloneAfter(overrides?: Partial<Comment.CommentProps>): this
 }
+
+export = Comment

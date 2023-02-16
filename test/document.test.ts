@@ -2,7 +2,7 @@ import { test } from 'uvu'
 import { is, match } from 'uvu/assert'
 
 import { Result, parse } from '../lib/postcss.js'
-import Document from '../lib/document.js'
+import Document = require('../lib/document.js')
 
 test('generates result without map', () => {
   let root = parse('a {}')
