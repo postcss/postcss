@@ -1,5 +1,9 @@
 import { Stringifier } from './postcss.js'
 
-declare const stringify: Stringifier
+interface Stringify extends Stringifier {
+  default: Stringify
+}
+
+declare const stringify: Stringify
 
 export = stringify

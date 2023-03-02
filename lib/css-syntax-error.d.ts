@@ -47,6 +47,8 @@ declare namespace CssSyntaxError {
  * ```
  */
 declare class CssSyntaxError {
+  static default: typeof CssSyntaxError
+
   /**
    * Instantiates a CSS syntax error. Can be instantiated for a single position
    * or for a range.

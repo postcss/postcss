@@ -18,6 +18,8 @@ import LazyResult = require('./lazy-result.js')
  * ```
  */
 declare class NoWorkResult implements LazyResult {
+  static default: typeof NoWorkResult
+
   then: Promise<Result>['then']
   catch: Promise<Result>['catch']
   finally: Promise<Result>['finally']

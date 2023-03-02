@@ -11,6 +11,8 @@ import {
 } from './postcss.js'
 
 declare class Stringifier {
+  static default: typeof Stringifier
+
   builder: Builder
   constructor(builder: Builder)
   stringify(node: AnyNode, semicolon?: boolean): void

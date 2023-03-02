@@ -41,6 +41,8 @@ declare namespace Comment {
  * will be stored in the `raws` properties explained above.
  */
 declare class Comment extends Node {
+  static default: typeof Comment
+
   type: 'comment'
   parent: Container | undefined
   raws: CommentRaws

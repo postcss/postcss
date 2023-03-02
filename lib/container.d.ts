@@ -32,6 +32,8 @@ declare namespace Container {
 declare abstract class Container<
   Child extends Node = Node.ChildNode
 > extends Node {
+  static default: typeof Container
+
   /**
    * An array containing the container’s children.
    *

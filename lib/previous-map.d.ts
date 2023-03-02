@@ -15,6 +15,8 @@ import { ProcessOptions } from './postcss.js'
  * ```
  */
 declare class PreviousMap {
+  static default: typeof PreviousMap
+
   /**
    * Was source map inlined by data-uri to input CSS.
    */

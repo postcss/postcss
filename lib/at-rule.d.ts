@@ -47,6 +47,12 @@ declare namespace AtRule {
   }
 }
 
+interface AtRuleCtor {
+  default: AtRuleCtor
+
+  new (defaults?: AtRule.AtRuleProps): AtRule
+}
+
 /**
  * Represents an at-rule.
  *
@@ -72,7 +78,7 @@ declare namespace AtRule {
  * media.nodes   //=> []
  * ```
  */
-declare class AtRule extends Container {
+interface AtRule extends Container {
   type: 'atrule'
   parent: Container | undefined
   raws: AtRuleRaws
@@ -100,11 +106,12 @@ declare class AtRule extends Container {
    */
   params: string
 
-  constructor(defaults?: AtRule.AtRuleProps)
   assign(overrides: object | AtRule.AtRuleProps): this
   clone(overrides?: Partial<AtRule.AtRuleProps>): this
   cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): this
   cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): this
 }
+
+declare const AtRule: AtRuleCtor
 
 export = AtRule

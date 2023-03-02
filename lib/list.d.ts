@@ -1,5 +1,7 @@
 declare namespace list {
   type List = {
+    default: List
+
     /**
      * Safely splits values.
      *
@@ -15,6 +17,7 @@ declare namespace list {
      * @return Split values.
      */
     split(string: string, separators: string[], last: boolean): string[]
+
     /**
      * Safely splits space-separated values (such as those for `background`,
      * `border-radius`, and other shorthand properties).

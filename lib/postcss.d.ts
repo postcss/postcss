@@ -1,53 +1,34 @@
 import { SourceMapGenerator, RawSourceMap } from 'source-map-js'
 
-import Node = require('./node.js')
-import {
-  Position,
-  Source,
-  ChildNode,
-  NodeErrorOptions,
-  NodeProps,
-  ChildProps,
-  AnyNode
-} from './node.js'
-import Declaration = require('./declaration.js')
-import { DeclarationProps } from './declaration.js'
-import Container = require('./container.js')
-import { ContainerProps } from './container.js'
-import Document = require('./document.js')
-import { DocumentProps } from './document.js'
-import Warning = require('./warning.js')
-import { WarningOptions } from './warning.js'
-import Comment = require('./comment.js')
-import { CommentProps } from './comment.js'
-import AtRule = require('./at-rule.js')
-import { AtRuleProps } from './at-rule.js'
-import Input = require('./input.js')
-import { FilePosition } from './input.js'
-import Result = require('./result.js')
-import { Message } from './result.js'
-import Root = require('./root.js')
-import { RootProps } from './root.js'
-import Rule = require('./rule.js')
-import { RuleProps } from './rule.js'
-import CssSyntaxError = require('./css-syntax-error.js')
+import Node_ = require('./node.js')
+import Declaration_ = require('./declaration.js')
+import Container_ = require('./container.js')
+import Document_ = require('./document.js')
+import Warning_ = require('./warning.js')
+import Comment_ = require('./comment.js')
+import AtRule_ = require('./at-rule.js')
+import Input_ = require('./input.js')
+import Result_ = require('./result.js')
+import Root_ = require('./root.js')
+import Rule_ = require('./rule.js')
+import CssSyntaxError_ = require('./css-syntax-error.js')
 import list = require('./list.js')
-import LazyResult = require('./lazy-result.js')
-import Processor = require('./processor.js')
+import LazyResult_ = require('./lazy-result.js')
+import Processor_ = require('./processor.js')
 
 type DocumentProcessor = (
-  document: Document,
+  document: postcss.Document,
   helper: postcss.Helpers
 ) => Promise<void> | void
-type RootProcessor = (root: Root, helper: postcss.Helpers) => Promise<void> | void
+type RootProcessor = (root: postcss.Root, helper: postcss.Helpers) => Promise<void> | void
 type DeclarationProcessor = (
-  decl: Declaration,
+  decl: postcss.Declaration,
   helper: postcss.Helpers
 ) => Promise<void> | void
-type RuleProcessor = (rule: Rule, helper: postcss.Helpers) => Promise<void> | void
-type AtRuleProcessor = (atRule: AtRule, helper: postcss.Helpers) => Promise<void> | void
+type RuleProcessor = (rule: postcss.Rule, helper: postcss.Helpers) => Promise<void> | void
+type AtRuleProcessor = (atRule: postcss.AtRule, helper: postcss.Helpers) => Promise<void> | void
 type CommentProcessor = (
-  comment: Comment,
+  comment: postcss.Comment,
   helper: postcss.Helpers
 ) => Promise<void> | void
 
@@ -159,72 +140,69 @@ interface Processors {
 }
 
 declare namespace postcss {
-  export {
-    NodeErrorOptions,
-    DeclarationProps,
-    CssSyntaxError,
-    ContainerProps,
-    WarningOptions,
-    DocumentProps,
-    FilePosition,
-    CommentProps,
-    AtRuleProps,
-    Declaration,
-    ChildProps,
-    LazyResult,
-    ChildNode,
-    NodeProps,
-    Processor,
-    RuleProps,
-    RootProps,
-    Container,
-    Position,
-    Document,
-    AnyNode,
-    Warning,
-    Message,
-    Comment,
-    Source,
-    AtRule,
-    Result,
-    Input,
-    Node,
-    list,
-    Rule,
-    Root
-  }
+  type NodeErrorOptions = Node_.NodeErrorOptions
+  type DeclarationProps = Declaration_.DeclarationProps
+  type ContainerProps = Container_.ContainerProps
+  type WarningOptions = Warning_.WarningOptions
+  type DocumentProps = Document_.DocumentProps
+  type FilePosition = Input_.FilePosition
+  type CommentProps = Comment_.CommentProps
+  type AtRuleProps = AtRule_.AtRuleProps
+  type ChildProps = Node_.ChildProps
+  type LazyResult = LazyResult_
+  type ChildNode = Node_.ChildNode
+  type NodeProps = Node_.NodeProps
+  type RuleProps = Rule_.RuleProps
+  type RootProps = Root_.RootProps
+  type Position = Node_.Position
+  type AnyNode = Node_.AnyNode
+  type Message = Result_.Message
+  type Source = Node_.Source
+  type CssSyntaxError = CssSyntaxError_
+  type Declaration = Declaration_
+  type Processor = Processor_
+  type Container = Container_
+  type Document = Document_
+  type Warning = Warning_
+  type Comment = Comment_
+  type AtRule = AtRule_
+  type Result = Result_
+  type Input = Input_
+  type Node = Node_
+  type Rule = Rule_
+  type Root = Root_
 
-  export type SourceMap = SourceMapGenerator & {
+  type SourceMap = SourceMapGenerator & {
     toJSON(): RawSourceMap
   }
 
-  export type Helpers = { result: Result; postcss: Postcss } & Postcss
+  type Helpers = { result: Result; postcss: Postcss } & Postcss
 
-  export interface Plugin extends Processors {
+  interface Plugin extends Processors {
     postcssPlugin: string
     prepare?: (result: Result) => Processors
   }
 
-  export interface PluginCreator<PluginOptions> {
+  interface PluginCreator<PluginOptions> {
     (opts?: PluginOptions): Plugin | Processor
     postcss: true
   }
 
-  export interface Transformer extends TransformCallback {
+  interface Transformer extends TransformCallback {
     postcssPlugin: string
     postcssVersion: string
   }
 
-  export interface TransformCallback {
+  interface TransformCallback {
     (root: Root, result: Result): Promise<void> | void
   }
 
-  export interface OldPlugin<T> extends Transformer {
+  interface OldPlugin<T> extends Transformer {
     (opts?: T): Transformer
     postcss: Transformer
   }
 
-  export type AcceptedPlugin =
+  type AcceptedPlugin =
     | Plugin
     | PluginCreator<any>
     | OldPlugin<any>
@@ -234,27 +212,27 @@ declare namespace postcss {
       }
     | Processor
 
-  export interface Parser<RootNode = Root | Document> {
+  interface Parser<RootNode = Root | Document> {
     (
       css: string | { toString(): string },
       opts?: Pick<ProcessOptions, 'map' | 'from'>
     ): RootNode
   }
 
-  export interface Builder {
+  interface Builder {
     (part: string, node?: AnyNode, type?: 'start' | 'end'): void
   }
 
-  export interface Stringifier {
+  interface Stringifier {
     (node: AnyNode, builder: Builder): void
   }
 
-  export interface JSONHydrator {
+  interface JSONHydrator {
     (data: object[]): Node[]
     (data: object): Node
   }
 
-  export interface Syntax {
+  interface Syntax {
     /**
      * Function to generate AST by string.
      */
@@ -266,7 +244,7 @@ declare namespace postcss {
     stringify?: Stringifier
   }
 
-  export interface SourceMapOptions {
+  interface SourceMapOptions {
     /**
      * Indicates that the source map should be embedded in the output CSS
      * as a Base64-encoded comment. By default, it is `true`.
@@ -322,7 +300,7 @@ declare namespace postcss {
     absolute?: boolean
   }
 
-  export interface ProcessOptions {
+  interface ProcessOptions {
     /**
      * The path of the CSS source file. You should always set `from`,
      * because it is used in source map generation and syntax error messages.
@@ -356,102 +334,121 @@ declare namespace postcss {
     map?: SourceMapOptions | boolean
   }
 
-  export type Postcss = typeof postcss
+  interface Postcss {
+    default: Postcss
 
-  /**
-   * Default function to convert a node tree into a CSS string.
-   */
-  export let stringify: Stringifier
+    /**
+     * Create a new `Processor` instance that will apply `plugins`
+     * as CSS processors.
+     *
+     * ```js
+     * let postcss = require('postcss')
+     *
+     * postcss(plugins).process(css, { from, to }).then(result => {
+     *   console.log(result.css)
+     * })
+     * ```
+     *
+     * @param plugins PostCSS plugins.
+     * @return Processor to process multiple CSS.
+     */
+    (plugins?: postcss.AcceptedPlugin[]): Processor
+    (...plugins: postcss.AcceptedPlugin[]): Processor
 
-  /**
-   * Parses source css and returns a new `Root` or `Document` node,
-   * which contains the source CSS nodes.
-   *
-   * ```js
-   * // Simple CSS concatenation with source map support
-   * const root1 = postcss.parse(css1, { from: file1 })
-   * const root2 = postcss.parse(css2, { from: file2 })
-   * root1.append(root2).toResult().css
-   * ```
-   */
-  export let parse: Parser<Root>
+    /**
+     * Default function to convert a node tree into a CSS string.
+     */
+    stringify: Stringifier
 
-  /**
-   * Rehydrate a JSON AST (from `Node#toJSON`) back into the AST classes.
-   *
-   * ```js
-   * const json = root.toJSON()
-   * // save to file, send by network, etc
-   * const root2  = postcss.fromJSON(json)
-   * ```
-   */
-  export let fromJSON: JSONHydrator
+    /**
+     * Parses source css and returns a new `Root` or `Document` node,
+     * which contains the source CSS nodes.
+     *
+     * ```js
+     * // Simple CSS concatenation with source map support
+     * const root1 = postcss.parse(css1, { from: file1 })
+     * const root2 = postcss.parse(css2, { from: file2 })
+     * root1.append(root2).toResult().css
+     * ```
+     */
+    parse: Parser<Root>
 
-  /**
-   * Creates a new `Comment` node.
-   *
-   * @param defaults Properties for the new node.
-   * @return New comment node
-   */
-  export function comment(defaults?: CommentProps): Comment
+    /**
+     * Rehydrate a JSON AST (from `Node#toJSON`) back into the AST classes.
+     *
+     * ```js
+     * const json = root.toJSON()
+     * // save to file, send by network, etc
+     * const root2  = postcss.fromJSON(json)
+     * ```
+     */
+    fromJSON: JSONHydrator
 
-  /**
-   * Creates a new `AtRule` node.
-   *
-   * @param defaults Properties for the new node.
-   * @return New at-rule node.
-   */
-  export function atRule(defaults?: AtRuleProps): AtRule
+    /**
+     * Creates a new `Comment` node.
+     *
+     * @param defaults Properties for the new node.
+     * @return New comment node
+     */
+    comment(defaults?: CommentProps): Comment
 
-  /**
-   * Creates a new `Declaration` node.
-   *
-   * @param defaults Properties for the new node.
-   * @return New declaration node.
-   */
-  export function decl(defaults?: DeclarationProps): Declaration
+    /**
+     * Creates a new `AtRule` node.
+     *
+     * @param defaults Properties for the new node.
+     * @return New at-rule node.
+     */
+    atRule(defaults?: AtRuleProps): AtRule
 
-  /**
-   * Creates a new `Rule` node.
-   *
-   * @param default Properties for the new node.
-   * @return New rule node.
-   */
-  export function rule(defaults?: RuleProps): Rule
+    /**
+     * Creates a new `Declaration` node.
+     *
+     * @param defaults Properties for the new node.
+     * @return New declaration node.
+     */
+    decl(defaults?: DeclarationProps): Declaration
 
-  /**
-   * Creates a new `Root` node.
-   *
-   * @param defaults Properties for the new node.
-   * @return New root node.
-   */
-  export function root(defaults?: RootProps): Root
+    /**
+     * Creates a new `Rule` node.
+     *
+     * @param default Properties for the new node.
+     * @return New rule node.
+     */
+    rule(defaults?: RuleProps): Rule
 
-  /**
-   * Creates a new `Document` node.
-   *
-   * @param defaults Properties for the new node.
-   * @return New document node.
-   */
-  export function document(defaults?: DocumentProps): Document
+    /**
+     * Creates a new `Root` node.
+     *
+     * @param defaults Properties for the new node.
+     * @return New root node.
+     */
+    root(defaults?: RootProps): Root
+
+    /**
+     * Creates a new `Document` node.
+     *
+     * @param defaults Properties for the new node.
+     * @return New document node.
+     */
+    document(defaults?: DocumentProps): Document
+
+    CssSyntaxError: typeof CssSyntaxError_
+    Declaration: typeof Declaration_
+    Processor: typeof Processor_
+    Container: typeof Container_
+    Document: typeof Document_
+    Warning: typeof Warning_
+    Comment: typeof Comment_
+    AtRule: typeof AtRule_
+    Result: typeof Result_
+    Input: typeof Input_
+    Node: typeof Node_
+    list: typeof list
+    Rule: typeof Rule_
+    Root: typeof Root_
+  }
 }
 
-/**
- * Create a new `Processor` instance that will apply `plugins`
- * as CSS processors.
- *
- * ```js
- * let postcss = require('postcss')
- *
- * postcss(plugins).process(css, { from, to }).then(result => {
- *   console.log(result.css)
- * })
- * ```
- *
- * @param plugins PostCSS plugins.
- * @return Processor to process multiple CSS.
- */
-declare function postcss(plugins?: postcss.AcceptedPlugin[]): Processor
-declare function postcss(...plugins: postcss.AcceptedPlugin[]): Processor
+declare const postcss: postcss.Postcss
 
 export = postcss

@@ -41,6 +41,12 @@ declare namespace Root {
   }
 }
 
+interface RootCtor {
+  default: RootCtor
+
+  new (defaults?: Root.RootProps): Root
+}
+
 /**
  * Represents a CSS file and contains all its parsed nodes.
  *
@@ -50,7 +56,7 @@ declare namespace Root {
  * root.nodes.length //=> 2
  * ```
  */
-declare class Root extends Container {
+interface Root extends Container {
   type: 'root'
   parent: Document | undefined
   raws: RootRaws
@@ -70,8 +76,9 @@ declare class Root extends Container {
    */
   toResult(options?: ProcessOptions): Result
 
-  constructor(defaults?: Root.RootProps)
   assign(overrides: object | Root.RootProps): this
 }
+
+declare const Root: RootCtor
 
 export = Root

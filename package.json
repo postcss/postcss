@@ -149,6 +149,14 @@
     "overrides": [
       {
         "files": [
+          "*.d.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/no-redeclare": "off"
+        }
+      },
+      {
+        "files": [
           "*.test.*"
         ],
         "rules": {

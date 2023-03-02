@@ -57,6 +57,8 @@ declare namespace Result {
  * ```
  */
 declare class Result {
+  static default: typeof Result
+
   /**
    * The Processor instance used for this transformation.
    *

@@ -51,6 +51,8 @@ declare namespace Warning {
  * ```
  */
 declare class Warning {
+  static default: Warning
+
   /**
    * Type to filter warnings from `Result#messages`.
    * Always equal to `"warning"`.

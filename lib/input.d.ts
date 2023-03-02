@@ -49,6 +49,8 @@ declare namespace Input {
  * ```
  */
 declare class Input {
+  static default: typeof Input
+
   /**
    * Input CSS source.
    *

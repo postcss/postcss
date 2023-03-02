@@ -100,6 +100,8 @@ declare namespace Node {
  * parser.
  */
 declare abstract class Node {
+  static default: typeof Node
+
   /**
    * tring representing the node’s type. Possible values are `root`, `atrule`,
    * `rule`, `decl`, or `comment`.

@@ -21,6 +21,8 @@ import NoWorkResult = require('./no-work-result.js')
  * ```
  */
 declare class Processor {
+  static default: typeof Processor
+
   /**
    * Current PostCSS version.
    *

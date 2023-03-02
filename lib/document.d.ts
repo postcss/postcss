@@ -17,6 +17,12 @@ declare namespace Document {
   }
 }
 
+interface DocumentCtor {
+  default: DocumentCtor
+
+  new (defaults?: Document.DocumentProps): Document
+}
+
 /**
  * Represents a file and contains all its parsed nodes.
  *
@@ -31,11 +37,9 @@ declare namespace Document {
  * document.nodes.length //=> 2
  * ```
  */
-declare class Document extends Container<Root> {
+interface Document extends Container<Root> {
   type: 'document'
   parent: undefined
-
-  constructor(defaults?: Document.DocumentProps)
 
   /**
    * Returns a `Result` instance representing the document’s CSS roots.
@@ -54,5 +58,7 @@ declare class Document extends Container<Root> {
    */
   toResult(options?: ProcessOptions): Result
 }
+
+declare const Document: DocumentCtor
 
 export = Document

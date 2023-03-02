@@ -47,6 +47,12 @@ declare namespace Rule {
   }
 }
 
+interface RuleCtor {
+  default: RuleCtor
+
+  new (defaults?: Rule.RuleProps): Rule
+}
+
 /**
  * Represents a CSS rule: a selector followed by a declaration block.
  *
@@ -65,7 +71,7 @@ declare namespace Rule {
  * rule.toString() //=> 'a{}'
  * ```
  */
-declare class Rule extends Container {
+interface Rule extends Container {
   type: 'rule'
   parent: Container | undefined
   raws: RuleRaws
@@ -98,11 +104,12 @@ declare class Rule extends Container {
    */
   selectors: string[]
 
-  constructor(defaults?: Rule.RuleProps)
   assign(overrides: object | Rule.RuleProps): this
   clone(overrides?: Partial<Rule.RuleProps>): this
   cloneBefore(overrides?: Partial<Rule.RuleProps>): this
   cloneAfter(overrides?: Partial<Rule.RuleProps>): this
 }
+
+declare const Rule: RuleCtor
 
 export = Rule
