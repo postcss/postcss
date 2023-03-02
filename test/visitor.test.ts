@@ -1,5 +1,5 @@
 import { resolve, basename } from 'path'
-// @ts-expect-error type definitions for nanodelay@1 are wrong.
+// @ts-ignore type definitions for nanodelay@1 are wrong.
 import { delay } from 'nanodelay'
 import { test } from 'uvu'
 import { is, type, equal, throws } from 'uvu/assert'

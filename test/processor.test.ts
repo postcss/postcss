@@ -1,7 +1,7 @@
 import { is, type, equal, match, throws, not, instance } from 'uvu/assert'
 import { resolve as pathResolve } from 'path'
 import { spyOn, restoreAll } from 'nanospy'
-// @ts-expect-error type definitions for nanodelay@1 are wrong.
+// @ts-ignore type definitions for nanodelay@1 are wrong.
 import { delay } from 'nanodelay'
 import { test } from 'uvu'
 
