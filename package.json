@@ -86,7 +86,7 @@
   "devDependencies": {
     "@logux/eslint-config": "^49.0.0",
     "@size-limit/preset-small-lib": "^8.2.4",
-    "@types/fs-extra": "^11.0.1",
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.15.10",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
