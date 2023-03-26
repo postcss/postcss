@@ -5,7 +5,6 @@
     "module": "commonjs",
     "moduleResolution": "node16",
     "strict": true,
-    "noEmit": true,
-    "skipLibCheck": true
+    "noEmit": true
   }
 }
