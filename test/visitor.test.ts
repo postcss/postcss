@@ -4,8 +4,7 @@ import { delay } from 'nanodelay'
 import { test } from 'uvu'
 import { is, type, equal, throws } from 'uvu/assert'
 
-import postcss = require('../lib/postcss.js')
-import {
+import postcss, {
   Container,
   Root,
   Rule,

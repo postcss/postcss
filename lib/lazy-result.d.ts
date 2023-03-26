@@ -14,7 +14,7 @@ import Root = require('./root.js')
  * ```
  */
 declare class LazyResult implements PromiseLike<Result> {
-  static LazyResult: typeof LazyResult
+  static default: typeof LazyResult
 
   /**
    * Processes input CSS through synchronous and asynchronous plugins

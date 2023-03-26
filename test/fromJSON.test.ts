@@ -2,8 +2,7 @@ import * as v8 from 'v8'
 import { test } from 'uvu'
 import { is, instance, throws } from 'uvu/assert'
 
-import postcss = require('../lib/postcss.js')
-import { Root, Declaration, Input, Rule } from '../lib/postcss.js'
+import postcss, { Root, Declaration, Input, Rule } from '../lib/postcss.js'
 
 test('rehydrates a JSON AST', () => {
   let cssWithMap = postcss().process(

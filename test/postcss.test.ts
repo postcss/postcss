@@ -2,9 +2,8 @@ import { is, type, equal, match, throws } from 'uvu/assert'
 import { spyOn, restoreAll } from 'nanospy'
 import { test } from 'uvu'
 
-import postcss = require('../lib/postcss.js')
-import { Root, PluginCreator } from '../lib/postcss.js'
-import Processor = require('../lib/processor.js')
+import postcss, { Root, PluginCreator } from '../lib/postcss.js'
+import Processor from '../lib/processor.js'
 
 test.after.each(() => {
   restoreAll()

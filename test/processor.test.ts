@@ -5,8 +5,7 @@ import { spyOn, restoreAll } from 'nanospy'
 import { delay } from 'nanodelay'
 import { test } from 'uvu'
 
-import postcss = require('../lib/postcss.js')
-import {
+import postcss, {
   Plugin,
   Result,
   Node,
@@ -17,11 +16,11 @@ import {
   Parser,
   Stringifier
 } from '../lib/postcss.js'
-import CssSyntaxError = require('../lib/css-syntax-error.js')
-import LazyResult = require('../lib/lazy-result.js')
-import NoWorkResult = require('../lib/no-work-result.js')
-import Processor = require('../lib/processor.js')
-import Rule = require('../lib/rule.js')
+import CssSyntaxError from '../lib/css-syntax-error.js'
+import LazyResult from '../lib/lazy-result.js'
+import NoWorkResult from '../lib/no-work-result.js'
+import Processor from '../lib/processor.js'
+import Rule from '../lib/rule.js'
 
 test.after.each(() => {
   restoreAll()
