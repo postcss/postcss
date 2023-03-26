@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@logux/eslint-config': ^49.0.0
   '@size-limit/preset-small-lib': ^8.2.4
-  '@types/fs-extra': ^9.0.13
+  '@types/fs-extra': ^11.0.1
   '@types/node': ^18.15.10
   '@typescript-eslint/eslint-plugin': ^5.56.0
   '@typescript-eslint/parser': ^5.56.0
@@ -39,7 +39,7 @@ dependencies:
 devDependencies:
   '@logux/eslint-config': 49.0.0_fmuk6hllkjhbc4efjnhs5ftdfa
   '@size-limit/preset-small-lib': 8.2.4_size-limit@8.2.4
-  '@types/fs-extra': 9.0.13
+  '@types/fs-extra': 11.0.1
   '@types/node': 18.15.10
   '@typescript-eslint/eslint-plugin': 5.56.0_2hcjazgfnbtq42tcc73br2vup4
   '@typescript-eslint/parser': 5.56.0_j4766f7ecgqbon3u7zlxn5zszu
@@ -447,9 +447,10 @@ packages:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
 
-  /@types/fs-extra/9.0.13:
-    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+  /@types/fs-extra/11.0.1:
+    resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
     dependencies:
+      '@types/jsonfile': 6.1.1
       '@types/node': 18.15.10
     dev: true
 
@@ -463,6 +464,12 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/jsonfile/6.1.1:
+    resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
+    dependencies:
+      '@types/node': 18.15.10
     dev: true
 
   /@types/node/18.15.10:
