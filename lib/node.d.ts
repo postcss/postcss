@@ -12,17 +12,17 @@ import Document = require('./document.js')
 import Container = require('./container.js')
 
 declare namespace Node {
-  type ChildNode = AtRule | Rule | Declaration | Comment
+  export type ChildNode = AtRule | Rule | Declaration | Comment
 
-  type AnyNode = AtRule | Rule | Declaration | Comment | Root | Document
+  export type AnyNode = AtRule | Rule | Declaration | Comment | Root | Document
 
-  type ChildProps =
+  export type ChildProps =
     | AtRule.AtRuleProps
     | Rule.RuleProps
     | Declaration.DeclarationProps
     | Comment.CommentProps
 
-  interface Position {
+  export interface Position {
     /**
      * Source offset in file. It starts from 0.
      */
@@ -39,7 +39,7 @@ declare namespace Node {
     line: number
   }
 
-  interface Range {
+  export interface Range {
     /**
      * Start position, inclusive.
      */
@@ -51,7 +51,7 @@ declare namespace Node {
     end: Position
   }
 
-  interface Source {
+  export interface Source {
     /**
      * The file source of the node.
      */
@@ -66,11 +66,11 @@ declare namespace Node {
     end?: Position
   }
 
-  interface NodeProps {
+  export interface NodeProps {
     source?: Source
   }
 
-  interface NodeErrorOptions {
+  export interface NodeErrorOptions {
     /**
      * Plugin name that created this error. PostCSS will set it automatically.
      */
@@ -91,6 +91,10 @@ declare namespace Node {
      */
     endIndex?: number
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Node extends Node_ {}
+  export { Node as default }
 }
 
 /**
@@ -99,9 +103,7 @@ declare namespace Node {
  * You should not extend this classes to create AST for selector or value
  * parser.
  */
-declare abstract class Node {
-  static default: typeof Node
-
+declare abstract class Node_ {
   /**
    * tring representing the node’s type. Possible values are `root`, `atrule`,
    * `rule`, `decl`, or `comment`.
@@ -480,5 +482,7 @@ declare abstract class Node {
    */
   rangeBy(opts?: Pick<Warning.WarningOptions, 'word' | 'index' | 'endIndex'>): Node.Range
 }
+
+declare class Node extends Node_ {}
 
 export = Node

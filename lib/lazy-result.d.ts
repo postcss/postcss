@@ -4,6 +4,12 @@ import Processor = require('./processor.js')
 import Warning = require('./warning.js')
 import Root = require('./root.js')
 
+declare namespace LazyResult {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class LazyResult extends LazyResult_ {}
+  export { LazyResult as default }
+}
+
 /**
  * A Promise proxy for the result of PostCSS transformations.
  *
@@ -13,9 +19,7 @@ import Root = require('./root.js')
  * const lazy = postcss([autoprefixer]).process(css)
  * ```
  */
-declare class LazyResult implements PromiseLike<Result> {
-  static default: typeof LazyResult
-
+declare class LazyResult_ implements PromiseLike<Result> {
   /**
    * Processes input CSS through synchronous and asynchronous plugins
    * and calls `onFulfilled` with a Result instance. If a plugin throws
@@ -176,5 +180,7 @@ declare class LazyResult implements PromiseLike<Result> {
    */
   async(): Promise<Result>
 }
+
+declare class LazyResult extends LazyResult_ {}
 
 export = LazyResult

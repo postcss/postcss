@@ -37,7 +37,7 @@ interface AtRuleRaws extends Record<string, unknown> {
 }
 
 declare namespace AtRule {
-  interface AtRuleProps extends Container.ContainerProps {
+  export interface AtRuleProps extends Container.ContainerProps {
     /** Name of the at-rule. */
     name: string
     /** Parameters following the name of the at-rule. */
@@ -45,12 +45,10 @@ declare namespace AtRule {
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
     raws?: AtRuleRaws
   }
-}
 
-interface AtRuleCtor {
-  default: AtRuleCtor
-
-  new (defaults?: AtRule.AtRuleProps): AtRule
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class AtRule extends AtRule_ {}
+  export { AtRule as default }
 }
 
 /**
@@ -78,7 +76,7 @@ interface AtRuleCtor {
  * media.nodes   //=> []
  * ```
  */
-interface AtRule extends Container {
+declare class AtRule_ extends Container.default {
   type: 'atrule'
   parent: Container | undefined
   raws: AtRuleRaws
@@ -112,6 +110,6 @@ interface AtRule extends Container {
   cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): this
 }
 
-declare const AtRule: AtRuleCtor
+declare class AtRule extends AtRule_ {}
 
 export = AtRule

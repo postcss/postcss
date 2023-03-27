@@ -12,7 +12,7 @@ import {
 import Processor = require('./processor.js')
 
 declare namespace Result {
-  interface Message {
+  export interface Message {
     /**
      * Message type.
      */
@@ -26,7 +26,7 @@ declare namespace Result {
     [others: string]: any
   }
 
-  interface ResultOptions extends ProcessOptions {
+  export interface ResultOptions extends ProcessOptions {
     /**
      * The CSS node that was the source of the warning.
      */
@@ -38,6 +38,11 @@ declare namespace Result {
      */
     plugin?: string
   }
+
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Result extends Result_ {}
+  export { Result as default }
 }
 
 /**
@@ -56,9 +61,7 @@ declare namespace Result {
  * const result2 = postcss.parse(css).toResult()
  * ```
  */
-declare class Result {
-  static default: typeof Result
-
+declare class Result_ {
   /**
    * The Processor instance used for this transformation.
    *
@@ -198,5 +201,7 @@ declare class Result {
    */
   warnings(): Warning[]
 }
+
+declare class Result extends Result_ {}
 
 export = Result

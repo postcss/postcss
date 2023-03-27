@@ -4,7 +4,7 @@ import Result = require('./result.js')
 import Root = require('./root.js')
 
 declare namespace Document {
-  interface DocumentProps extends Container.ContainerProps {
+  export interface DocumentProps extends Container.ContainerProps {
     nodes?: Root[]
 
     /**
@@ -15,12 +15,10 @@ declare namespace Document {
      */
     raws?: Record<string, any>
   }
-}
 
-interface DocumentCtor {
-  default: DocumentCtor
-
-  new (defaults?: Document.DocumentProps): Document
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Document extends Document_ {}
+  export { Document as default }
 }
 
 /**
@@ -37,7 +35,9 @@ interface DocumentCtor {
  * document.nodes.length //=> 2
  * ```
  */
-interface Document extends Container<Root> {
+declare class Document_ extends Container.default<Root> {
+  constructor(defaults?: Document.DocumentProps)
+
   type: 'document'
   parent: undefined
 
@@ -59,6 +59,6 @@ interface Document extends Container<Root> {
   toResult(options?: ProcessOptions): Result
 }
 
-declare const Document: DocumentCtor
+declare class Document extends Document_ {}
 
 export = Document

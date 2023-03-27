@@ -19,12 +19,16 @@ interface CommentRaws extends Record<string, unknown> {
 }
 
 declare namespace Comment {
-  interface CommentProps extends Node.NodeProps {
+  export interface CommentProps extends Node.NodeProps {
     /** Content of the comment. */
     text: string
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
     raws?: CommentRaws
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Comment extends Comment_ {}
+  export { Comment as default }
 }
 
 /**
@@ -40,9 +44,7 @@ declare namespace Comment {
  * Comments inside selectors, at-rule parameters, or declaration values
  * will be stored in the `raws` properties explained above.
  */
-declare class Comment extends Node {
-  static default: typeof Comment
-
+declare class Comment_ extends Node {
   type: 'comment'
   parent: Container | undefined
   raws: CommentRaws
@@ -58,5 +60,7 @@ declare class Comment extends Node {
   cloneBefore(overrides?: Partial<Comment.CommentProps>): this
   cloneAfter(overrides?: Partial<Comment.CommentProps>): this
 }
+
+declare class Comment extends Comment_ {}
 
 export = Comment

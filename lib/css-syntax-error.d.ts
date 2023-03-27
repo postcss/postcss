@@ -4,7 +4,7 @@ declare namespace CssSyntaxError {
   /**
    * A position that is part of a range.
    */
-  interface RangePosition {
+  export interface RangePosition {
     /**
      * The line number in the input.
      */
@@ -15,6 +15,10 @@ declare namespace CssSyntaxError {
      */
     column: number
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class CssSyntaxError extends CssSyntaxError_ {}
+  export { CssSyntaxError as default }
 }
 
 /**
@@ -46,9 +50,7 @@ declare namespace CssSyntaxError {
  * }
  * ```
  */
-declare class CssSyntaxError {
-  static default: typeof CssSyntaxError
-
+declare class CssSyntaxError_ {
   /**
    * Instantiates a CSS syntax error. Can be instantiated for a single position
    * or for a range.
@@ -241,5 +243,7 @@ declare class CssSyntaxError {
    */
   showSourceCode(color?: boolean): string
 }
+
+declare class CssSyntaxError extends CssSyntaxError_ {}
 
 export = CssSyntaxError

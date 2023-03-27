@@ -37,7 +37,7 @@ interface RuleRaws extends Record<string, unknown> {
 }
 
 declare namespace Rule {
-  interface RuleProps extends Container.ContainerProps {
+  export interface RuleProps extends Container.ContainerProps {
     /** Selector or selectors of the rule. */
     selector?: string
     /** Selectors of the rule represented as an array of strings. */
@@ -45,12 +45,10 @@ declare namespace Rule {
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
     raws?: RuleRaws
   }
-}
 
-interface RuleCtor {
-  default: RuleCtor
-
-  new (defaults?: Rule.RuleProps): Rule
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Rule extends Rule_ {}
+  export { Rule as default }
 }
 
 /**
@@ -71,7 +69,8 @@ interface RuleCtor {
  * rule.toString() //=> 'a{}'
  * ```
  */
-interface Rule extends Container {
+declare class Rule_ extends Container.default {
+  constructor(defaults?: Rule.RuleProps)
   type: 'rule'
   parent: Container | undefined
   raws: RuleRaws
@@ -110,6 +109,6 @@ interface Rule extends Container {
   cloneAfter(overrides?: Partial<Rule.RuleProps>): this
 }
 
-declare const Rule: RuleCtor
+declare class Rule extends Rule_ {}
 
 export = Rule

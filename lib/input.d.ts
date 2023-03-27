@@ -2,7 +2,7 @@ import { CssSyntaxError, ProcessOptions } from './postcss.js'
 import PreviousMap = require('./previous-map.js')
 
 declare namespace Input {
-  interface FilePosition {
+  export interface FilePosition {
     /**
      * URL for the source file.
      */
@@ -38,6 +38,10 @@ declare namespace Input {
      */
     source?: string
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Input extends Input_ {}
+  export { Input as default }
 }
 
 /**
@@ -48,9 +52,7 @@ declare namespace Input {
  * const input = root.source.input
  * ```
  */
-declare class Input {
-  static default: typeof Input
-
+declare class Input_ {
   /**
    * Input CSS source.
    *
@@ -187,5 +189,7 @@ declare class Input {
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
 }
+
+declare class Input extends Input_ {}
 
 export = Input

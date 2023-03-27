@@ -17,9 +17,13 @@ interface ValueOptions {
 }
 
 declare namespace Container {
-  interface ContainerProps extends Node.NodeProps {
+  export interface ContainerProps extends Node.NodeProps {
     nodes?: (Node.ChildNode | Node.ChildProps)[]
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Container<Child extends Node = Node.ChildNode> extends Container_<Child> {}
+  export { Container as default }
 }
 
 /**
@@ -29,11 +33,9 @@ declare namespace Container {
  * Note that all containers can store any content. If you write a rule inside
  * a rule, PostCSS will parse it.
  */
-declare abstract class Container<
+declare abstract class Container_<
   Child extends Node = Node.ChildNode
 > extends Node {
-  static default: typeof Container
-
   /**
    * An array containing the container’s children.
    *
@@ -444,5 +446,7 @@ declare abstract class Container<
    */
   index(child: Child | number): number
 }
+
+declare class Container<Child extends Node = Node.ChildNode> extends Container_<Child> {}
 
 export = Container

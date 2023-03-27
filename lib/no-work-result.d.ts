@@ -5,6 +5,12 @@ import Warning = require('./warning.js')
 import Root = require('./root.js')
 import LazyResult = require('./lazy-result.js')
 
+declare namespace NoWorkResult {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class NoWorkResult extends NoWorkResult_ {}
+  export { NoWorkResult as default }
+}
+
 /**
  * A Promise proxy for the result of PostCSS transformations.
  * This lazy result instance doesn't parse css unless `NoWorkResult#root` or `Result#root`
@@ -17,9 +23,7 @@ import LazyResult = require('./lazy-result.js')
  * let root = noWorkResult.root // now css is parsed because we accessed the root
  * ```
  */
-declare class NoWorkResult implements LazyResult {
-  static default: typeof NoWorkResult
-
+declare class NoWorkResult_ implements LazyResult {
   then: Promise<Result>['then']
   catch: Promise<Result>['catch']
   finally: Promise<Result>['finally']
@@ -37,5 +41,7 @@ declare class NoWorkResult implements LazyResult {
   sync(): Result
   async(): Promise<Result>
 }
+
+declare class NoWorkResult extends NoWorkResult_ {}
 
 export = NoWorkResult

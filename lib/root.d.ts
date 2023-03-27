@@ -32,19 +32,17 @@ interface RootRaws extends Record<string, any> {
 }
 
 declare namespace Root {
-  interface RootProps extends Container.ContainerProps {
+  export interface RootProps extends Container.ContainerProps {
     /**
      * Information used to generate byte-to-byte equal node string
      * as it was in the origin input.
      * */
     raws?: RootRaws
   }
-}
 
-interface RootCtor {
-  default: RootCtor
-
-  new (defaults?: Root.RootProps): Root
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Root extends Root_ {}
+  export { Root as default }
 }
 
 /**
@@ -56,7 +54,8 @@ interface RootCtor {
  * root.nodes.length //=> 2
  * ```
  */
-interface Root extends Container {
+declare class Root_ extends Container.default {
+  constructor(defaults?: Root.RootProps)
   type: 'root'
   parent: Document | undefined
   raws: RootRaws
@@ -79,6 +78,6 @@ interface Root extends Container {
   assign(overrides: object | Root.RootProps): this
 }
 
-declare const Root: RootCtor
+declare class Root extends Root_ {}
 
 export = Root

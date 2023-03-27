@@ -2,7 +2,7 @@ import { RangePosition } from './css-syntax-error.js'
 import Node = require('./node.js')
 
 declare namespace Warning {
-  interface WarningOptions {
+  export interface WarningOptions {
     /**
      * CSS node that caused the warning.
      */
@@ -39,6 +39,10 @@ declare namespace Warning {
      */
     plugin?: string
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Warning extends Warning_ {}
+  export { Warning as default }
 }
 
 /**
@@ -50,9 +54,7 @@ declare namespace Warning {
  * }
  * ```
  */
-declare class Warning {
-  static default: Warning
-
+declare class Warning_ {
   /**
    * Type to filter warnings from `Result#messages`.
    * Always equal to `"warning"`.
@@ -140,5 +142,7 @@ declare class Warning {
    */
   toString(): string
 }
+
+declare class Warning extends Warning_ {}
 
 export = Warning

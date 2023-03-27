@@ -28,7 +28,7 @@ interface DeclarationRaws extends Record<string, unknown> {
 }
 
 declare namespace Declaration {
-  interface DeclarationProps {
+  export interface DeclarationProps {
     /** Name of the declaration. */
     prop: string
     /** Value of the declaration. */
@@ -38,6 +38,10 @@ declare namespace Declaration {
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
     raws?: DeclarationRaws
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Declaration extends Declaration_ {}
+  export { Declaration as default }
 }
 
 /**
@@ -57,7 +61,7 @@ declare namespace Declaration {
  * decl.toString() //=> ' color: black'
  * ```
  */
-declare class Declaration extends Node {
+declare class Declaration_ extends Node {
   static default: typeof Declaration
 
   type: 'decl'
@@ -126,5 +130,7 @@ declare class Declaration extends Node {
   cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): this
   cloneAfter(overrides?: Partial<Declaration.DeclarationProps>): this
 }
+
+declare class Declaration extends Declaration_ {}
 
 export = Declaration
