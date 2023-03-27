@@ -241,12 +241,15 @@ module.exports = {
 Then create `postcss.config.js`:
 
 ```js
-module.exports = {
+/** @type {import('postcss-load-config').Config} */
+const config = {
   plugins: [
     require('autoprefixer'),
     require('postcss-nested')
   ]
 }
+
+module.exports = config
 ```
 
 [`astroturf`]: https://github.com/4Catalyzer/astroturf
