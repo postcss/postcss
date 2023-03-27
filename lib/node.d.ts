@@ -1,26 +1,27 @@
-import Declaration = require('./declaration.js')
-import Comment = require('./comment.js')
+import Declaration, { DeclarationProps } from './declaration.js'
+import Comment, { CommentProps } from './comment.js'
 import { Stringifier, Syntax } from './postcss.js'
 import AtRule = require('./at-rule.js')
-import Rule = require('./rule.js')
-import Warning = require('./warning.js')
-import CssSyntaxError = require('./css-syntax-error.js')
-import Result = require('./result.js')
-import Input = require('./input.js')
-import Root = require('./root.js')
-import Document = require('./document.js')
-import Container = require('./container.js')
+import { AtRuleProps } from './at-rule.js'
+import Rule, { RuleProps } from './rule.js'
+import Warning, { WarningOptions } from './warning.js'
+import CssSyntaxError from './css-syntax-error.js'
+import Result from './result.js'
+import Input from './input.js'
+import Root from './root.js'
+import Document from './document.js'
+import Container from './container.js'
 
 declare namespace Node {
-  export type ChildNode = AtRule | Rule | Declaration | Comment
+  export type ChildNode = AtRule.default | Rule | Declaration | Comment
 
-  export type AnyNode = AtRule | Rule | Declaration | Comment | Root | Document
+  export type AnyNode = AtRule.default | Rule | Declaration | Comment | Root | Document
 
   export type ChildProps =
-    | AtRule.AtRuleProps
-    | Rule.RuleProps
-    | Declaration.DeclarationProps
-    | Comment.CommentProps
+    | AtRuleProps
+    | RuleProps
+    | DeclarationProps
+    | CommentProps
 
   export interface Position {
     /**
@@ -247,7 +248,7 @@ declare abstract class Node_ {
    *
    * @return Created warning object.
    */
-  warn(result: Result, text: string, opts?: Warning.WarningOptions): Warning
+  warn(result: Result, text: string, opts?: WarningOptions): Warning
 
   /**
    * Removes the node from its parent and cleans the parent properties
@@ -471,7 +472,7 @@ declare abstract class Node_ {
    * @param opts Options.
    * @return Position.
    */
-  positionBy(opts?: Pick<Warning.WarningOptions, 'word' | 'index'>): Node.Position
+  positionBy(opts?: Pick<WarningOptions, 'word' | 'index'>): Node.Position
 
   /**
    * Get the range for a word or start and end index inside the node.
@@ -480,7 +481,7 @@ declare abstract class Node_ {
    * @param opts Options.
    * @return Range.
    */
-  rangeBy(opts?: Pick<Warning.WarningOptions, 'word' | 'index' | 'endIndex'>): Node.Range
+  rangeBy(opts?: Pick<WarningOptions, 'word' | 'index' | 'endIndex'>): Node.Range
 }
 
 declare class Node extends Node_ {}

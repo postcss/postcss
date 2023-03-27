@@ -1,5 +1,5 @@
-import Container = require('./container.js')
-import Node = require('./node.js')
+import Container from './container.js'
+import Node, { NodeProps } from './node.js'
 
 interface CommentRaws extends Record<string, unknown> {
   /**
@@ -19,7 +19,7 @@ interface CommentRaws extends Record<string, unknown> {
 }
 
 declare namespace Comment {
-  export interface CommentProps extends Node.NodeProps {
+  export interface CommentProps extends NodeProps {
     /** Content of the comment. */
     text: string
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */

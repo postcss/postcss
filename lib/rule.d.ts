@@ -1,4 +1,4 @@
-import Container = require('./container.js')
+import Container, { ContainerProps } from './container.js'
 
 interface RuleRaws extends Record<string, unknown> {
   /**
@@ -37,7 +37,7 @@ interface RuleRaws extends Record<string, unknown> {
 }
 
 declare namespace Rule {
-  export interface RuleProps extends Container.ContainerProps {
+  export interface RuleProps extends ContainerProps {
     /** Selector or selectors of the rule. */
     selector?: string
     /** Selectors of the rule represented as an array of strings. */
@@ -69,7 +69,7 @@ declare namespace Rule {
  * rule.toString() //=> 'a{}'
  * ```
  */
-declare class Rule_ extends Container.default {
+declare class Rule_ extends Container {
   constructor(defaults?: Rule.RuleProps)
   type: 'rule'
   parent: Container | undefined

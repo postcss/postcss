@@ -1,4 +1,4 @@
-import Container = require('./container.js')
+import Container, { ContainerProps } from './container.js'
 
 interface AtRuleRaws extends Record<string, unknown> {
   /**
@@ -37,7 +37,7 @@ interface AtRuleRaws extends Record<string, unknown> {
 }
 
 declare namespace AtRule {
-  export interface AtRuleProps extends Container.ContainerProps {
+  export interface AtRuleProps extends ContainerProps {
     /** Name of the at-rule. */
     name: string
     /** Parameters following the name of the at-rule. */
@@ -76,7 +76,7 @@ declare namespace AtRule {
  * media.nodes   //=> []
  * ```
  */
-declare class AtRule_ extends Container.default {
+declare class AtRule_ extends Container {
   type: 'atrule'
   parent: Container | undefined
   raws: AtRuleRaws

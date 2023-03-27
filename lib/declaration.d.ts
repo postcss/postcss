@@ -1,5 +1,5 @@
-import Container = require('./container.js')
-import Node = require('./node.js')
+import Container from './container.js'
+import Node from './node.js'
 
 interface DeclarationRaws extends Record<string, unknown> {
   /**

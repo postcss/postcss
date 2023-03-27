@@ -1,7 +1,7 @@
-import Container = require('./container.js')
-import Document = require('./document.js')
+import Container, { ContainerProps } from './container.js'
+import Document from './document.js'
 import { ProcessOptions } from './postcss.js'
-import Result = require('./result.js')
+import Result from './result.js'
 
 interface RootRaws extends Record<string, any> {
   /**
@@ -32,7 +32,7 @@ interface RootRaws extends Record<string, any> {
 }
 
 declare namespace Root {
-  export interface RootProps extends Container.ContainerProps {
+  export interface RootProps extends ContainerProps {
     /**
      * Information used to generate byte-to-byte equal node string
      * as it was in the origin input.
@@ -54,7 +54,7 @@ declare namespace Root {
  * root.nodes.length //=> 2
  * ```
  */
-declare class Root_ extends Container.default {
+declare class Root_ extends Container {
   constructor(defaults?: Root.RootProps)
   type: 'root'
   parent: Document | undefined

@@ -1,5 +1,5 @@
 import { RangePosition } from './css-syntax-error.js'
-import Node = require('./node.js')
+import Node from './node.js'
 
 declare namespace Warning {
   export interface WarningOptions {

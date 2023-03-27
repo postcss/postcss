@@ -9,7 +9,7 @@ import {
   Warning,
   WarningOptions
 } from './postcss.js'
-import Processor = require('./processor.js')
+import Processor from './processor.js'
 
 declare namespace Result {
   export interface Message {

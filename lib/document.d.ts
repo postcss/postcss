@@ -1,10 +1,10 @@
-import Container = require('./container.js')
+import Container, { ContainerProps } from './container.js'
 import { ProcessOptions } from './postcss.js'
-import Result = require('./result.js')
-import Root = require('./root.js')
+import Result from './result.js'
+import Root from './root.js'
 
 declare namespace Document {
-  export interface DocumentProps extends Container.ContainerProps {
+  export interface DocumentProps extends ContainerProps {
     nodes?: Root[]
 
     /**
@@ -35,7 +35,7 @@ declare namespace Document {
  * document.nodes.length //=> 2
  * ```
  */
-declare class Document_ extends Container.default<Root> {
+declare class Document_ extends Container<Root> {
   constructor(defaults?: Document.DocumentProps)
 
   type: 'document'

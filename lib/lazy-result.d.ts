@@ -1,8 +1,8 @@
-import Result = require('./result.js')
+import Result, { Message, ResultOptions } from './result.js'
 import { SourceMap } from './postcss.js'
-import Processor = require('./processor.js')
-import Warning = require('./warning.js')
-import Root = require('./root.js')
+import Processor from './processor.js'
+import Warning from './warning.js'
+import Root from './root.js'
 
 declare namespace LazyResult {
   // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -70,7 +70,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
    * @param css       CSS to parse and transform.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
-  constructor(processor: Processor, css: string, opts: Result.ResultOptions)
+  constructor(processor: Processor, css: string, opts: ResultOptions)
 
   /**
    * Returns the default string description of an object.
@@ -87,7 +87,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
   /**
    * Options from the `Processor#process` call.
    */
-  get opts(): Result.ResultOptions
+  get opts(): ResultOptions
 
   /**
    * Processes input CSS through synchronous plugins, converts `Root`
@@ -145,7 +145,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
    *
    * PostCSS runners should always use `LazyResult#then`.
    */
-  get messages(): Result.Message[]
+  get messages(): Message[]
 
   /**
    * Processes input CSS through synchronous plugins

@@ -1,8 +1,8 @@
-import Node = require('./node.js')
-import Declaration = require('./declaration.js')
-import Comment = require('./comment.js')
-import AtRule = require('./at-rule.js')
-import Rule = require('./rule.js')
+import Node, { ChildNode, NodeProps, ChildProps } from './node.js'
+import Declaration from './declaration.js'
+import Comment from './comment.js'
+import AtRule from './at-rule.js'
+import Rule from './rule.js'
 
 interface ValueOptions {
   /**
@@ -17,12 +17,12 @@ interface ValueOptions {
 }
 
 declare namespace Container {
-  export interface ContainerProps extends Node.NodeProps {
-    nodes?: (Node.ChildNode | Node.ChildProps)[]
+  export interface ContainerProps extends NodeProps {
+    nodes?: (ChildNode | ChildProps)[]
   }
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Container<Child extends Node = Node.ChildNode> extends Container_<Child> {}
+  class Container<Child extends Node = ChildNode> extends Container_<Child> {}
   export { Container as default }
 }
 
@@ -34,7 +34,7 @@ declare namespace Container {
  * a rule, PostCSS will parse it.
  */
 declare abstract class Container_<
-  Child extends Node = Node.ChildNode
+  Child extends Node = ChildNode
 > extends Node {
   /**
    * An array containing the container’s children.
@@ -123,7 +123,7 @@ declare abstract class Container_<
    * @return  Returns `false` if iteration was broke.
    */
   walk(
-    callback: (node: Node.ChildNode, index: number) => false | void
+    callback: (node: ChildNode, index: number) => false | void
   ): false | undefined
 
   /**
@@ -275,7 +275,7 @@ declare abstract class Container_<
    * @return This node for methods chain.
    */
   append(
-    ...nodes: (Node | Node[] | Node.ChildProps | Node.ChildProps[] | string | string[])[]
+    ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
   ): this
 
   /**
@@ -299,7 +299,7 @@ declare abstract class Container_<
    * @return This node for methods chain.
    */
   prepend(
-    ...nodes: (Node | Node[] | Node.ChildProps | Node.ChildProps[] | string | string[])[]
+    ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
   ): this
 
   /**
@@ -327,7 +327,7 @@ declare abstract class Container_<
    */
   insertBefore(
     oldNode: Child | number,
-    newNode: Child | Node.ChildProps | string | Child[] | Node.ChildProps[] | string[]
+    newNode: Child | ChildProps | string | Child[] | ChildProps[] | string[]
   ): this
 
   /**
@@ -339,7 +339,7 @@ declare abstract class Container_<
    */
   insertAfter(
     oldNode: Child | number,
-    newNode: Child | Node.ChildProps | string | Child[] | Node.ChildProps[] | string[]
+    newNode: Child | ChildProps | string | Child[] | ChildProps[] | string[]
   ): this
 
   /**
@@ -447,6 +447,6 @@ declare abstract class Container_<
   index(child: Child | number): number
 }
 
-declare class Container<Child extends Node = Node.ChildNode> extends Container_<Child> {}
+declare class Container<Child extends Node = ChildNode> extends Container_<Child> {}
 
 export = Container

@@ -5,10 +5,10 @@ import {
   Transformer,
   TransformCallback
 } from './postcss.js'
-import LazyResult = require('./lazy-result.js')
-import Result = require('./result.js')
-import Root = require('./root.js')
-import NoWorkResult = require('./no-work-result.js')
+import LazyResult from './lazy-result.js'
+import Result from './result.js'
+import Root from './root.js'
+import NoWorkResult from './no-work-result.js'
 
 declare namespace Processor {
   // eslint-disable-next-line @typescript-eslint/no-shadow

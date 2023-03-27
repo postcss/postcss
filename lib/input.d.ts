@@ -1,5 +1,5 @@
 import { CssSyntaxError, ProcessOptions } from './postcss.js'
-import PreviousMap = require('./previous-map.js')
+import PreviousMap from './previous-map.js'
 
 declare namespace Input {
   export interface FilePosition {
