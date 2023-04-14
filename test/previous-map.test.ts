@@ -1,10 +1,17 @@
-import { removeSync, outputFileSync } from 'fs-extra'
+import {
+  writeFileSync,
+  readdirSync,
+  existsSync,
+  unlinkSync,
+  lstatSync,
+  rmdirSync,
+  mkdirSync
+} from 'fs'
+import { is, type, equal, match, throws, not } from 'uvu/assert'
 import { SourceMapConsumer } from 'source-map-js'
 import { pathToFileURL } from 'url'
-import { existsSync } from 'fs'
 import { join } from 'path'
 import { test } from 'uvu'
-import { is, type, equal, match, throws, not } from 'uvu/assert'
 
 import { parse } from '../lib/postcss.js'
 
@@ -18,8 +25,22 @@ let mapObj = {
 }
 let map = JSON.stringify(mapObj)
 
+function deleteDir(path: string): void {
+  if (existsSync(path)) {
+    readdirSync(path).forEach(i => {
+      let file = join(path, i)
+      if (lstatSync(file).isDirectory()) {
+        deleteDir(file)
+      } else {
+        unlinkSync(file)
+      }
+    })
+    rmdirSync(path)
+  }
+}
+
 test.after.each(() => {
-  if (existsSync(dir)) removeSync(dir)
+  deleteDir(dir)
 })
 
 test('misses property if no map', () => {
@@ -148,7 +169,8 @@ test('raises on unknown map format', () => {
 
 test('reads map from annotation', () => {
   let file = join(dir, 'a.map')
-  outputFileSync(file, map)
+  mkdirSync(dir)
+  writeFileSync(file, map)
   let root = parse('a{}\n/*# sourceMappingURL=a.map */', { from: file })
 
   is(root.source?.input.map.text, map)
@@ -157,7 +179,8 @@ test('reads map from annotation', () => {
 
 test('reads only the last map from annotation', () => {
   let file = join(dir, 'c.map')
-  outputFileSync(file, map)
+  mkdirSync(dir)
+  writeFileSync(file, map)
   let root = parse(
     'a{}' +
       '\n/*# sourceMappingURL=a.map */' +
@@ -201,7 +224,8 @@ test('accepts an empty mappings string', () => {
 test('accepts a function', () => {
   let css = 'body{}\n/*# sourceMappingURL=a.map */'
   let file = join(dir, 'previous-sourcemap-function.map')
-  outputFileSync(file, map)
+  mkdirSync(dir)
+  writeFileSync(file, map)
   let opts = {
     map: {
       prev: () => file
@@ -215,7 +239,8 @@ test('accepts a function', () => {
 test('calls function with opts.from', () => {
   let css = 'body{}\n/*# sourceMappingURL=a.map */'
   let file = join(dir, 'previous-sourcemap-function.map')
-  outputFileSync(file, map)
+  mkdirSync(dir)
+  writeFileSync(file, map)
   parse(css, {
     from: 'a.css',
     map: {
@@ -243,7 +268,9 @@ test('raises when function returns invalid path', () => {
 
 test('uses source map path as a root', () => {
   let from = join(dir, 'a.css')
-  outputFileSync(
+  mkdirSync(dir)
+  mkdirSync(join(dir, 'maps'))
+  writeFileSync(
     join(dir, 'maps', 'a.map'),
     JSON.stringify({
       version: 3,

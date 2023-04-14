@@ -1,9 +1,16 @@
+import {
+  writeFileSync,
+  readdirSync,
+  unlinkSync,
+  existsSync,
+  lstatSync,
+  rmdirSync,
+  mkdirSync
+} from 'fs'
 import { SourceMapConsumer, SourceMapGenerator } from 'source-map-js'
-import { removeSync, outputFileSync } from 'fs-extra'
 import { is, type, equal, match } from 'uvu/assert'
 import { join, resolve, parse } from 'path'
 import { pathToFileURL } from 'url'
-import { existsSync } from 'fs'
 import { test } from 'uvu'
 
 import postcss, { SourceMap, Rule, Root } from '../lib/postcss.js'
@@ -31,8 +38,22 @@ let lighter = postcss((css: Root) => {
   })
 })
 
+function deleteDir(path: string): void {
+  if (existsSync(path)) {
+    readdirSync(path).forEach(i => {
+      let file = join(path, i)
+      if (lstatSync(file).isDirectory()) {
+        deleteDir(file)
+      } else {
+        unlinkSync(file)
+      }
+    })
+    rmdirSync(path)
+  }
+}
+
 test.after.each(() => {
-  if (existsSync(dir)) removeSync(dir)
+  deleteDir(dir)
 })
 
 test('adds map field only on request', () => {
@@ -275,6 +296,7 @@ test('allows change map type', () => {
 })
 
 test('misses check files on requires', () => {
+  mkdirSync(dir)
   let file = join(dir, 'a.css')
 
   let step1 = doubler.process('a { }', {
@@ -283,7 +305,7 @@ test('misses check files on requires', () => {
     map: { inline: false }
   })
 
-  outputFileSync(file + '.map', step1.map.toString())
+  writeFileSync(file + '.map', step1.map.toString())
   let step2 = lighter.process(step1.css, {
     from: file,
     to: 'b.css',
@@ -373,7 +395,10 @@ test('uses map from subdir if it written as a file', () => {
   is(source, '../../source/a.css')
 
   let file = join(dir, 'one', 'maps', 'b.css.map')
-  outputFileSync(file, step1.map.toString())
+  mkdirSync(dir)
+  mkdirSync(join(dir, 'one'))
+  mkdirSync(join(dir, 'one', 'maps'))
+  writeFileSync(file, step1.map.toString())
 
   let step2 = doubler.process(step1.css, {
     from: join(dir, 'one', 'b.css'),

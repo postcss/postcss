@@ -241,12 +241,15 @@ module.exports = {
 Then create `postcss.config.js`:
 
 ```js
-module.exports = {
+/** @type {import('postcss-load-config').Config} */
+const config = {
   plugins: [
     require('autoprefixer'),
     require('postcss-nested')
   ]
 }
+
+module.exports = config
 ```
 
 [`astroturf`]: https://github.com/4Catalyzer/astroturf
@@ -259,12 +262,15 @@ and cssnano. If you want to change plugins, create `postcss.config.js`
 in project’s root:
 
 ```js
-module.exports = {
+/** @type {import('postcss-load-config').Config} */
+const config = {
   plugins: [
     require('autoprefixer'),
     require('postcss-nested')
   ]
 }
+
+module.exports = config
 ```
 
 Parcel will even automatically install these plugins for you.
@@ -308,12 +314,15 @@ module.exports = {
 Then create `postcss.config.js`:
 
 ```js
-module.exports = {
+/** @type {import('postcss-load-config').Config} */
+const config = {
   plugins: [
     require('autoprefixer'),
     require('postcss-nested')
   ]
 }
+
+module.exports = config
 ```
 
 [`postcss-loader`]: https://github.com/postcss/postcss-loader
