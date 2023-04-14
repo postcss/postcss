@@ -1,42 +1,42 @@
 import Container, { ContainerProps } from './container.js'
 
-interface RuleRaws extends Record<string, unknown> {
-  /**
-   * The space symbols before the node. It also stores `*`
-   * and `_` symbols before the declaration (IE hack).
-   */
-  before?: string
-
-  /**
-   * The space symbols after the last child of the node to the end of the node.
-   */
-  after?: string
-
-  /**
-   * The symbols between the selector and `{` for rules.
-   */
-  between?: string
-
-  /**
-   * Contains `true` if the last child has an (optional) semicolon.
-   */
-  semicolon?: boolean
-
-  /**
-   * Contains `true` if there is semicolon after rule.
-   */
-  ownSemicolon?: string
-
-  /**
-   * The rule’s selector with comments.
-   */
-  selector?: {
-    value: string
-    raw: string
-  }
-}
-
 declare namespace Rule {
+  export interface RuleRaws extends Record<string, unknown> {
+    /**
+     * The space symbols before the node. It also stores `*`
+     * and `_` symbols before the declaration (IE hack).
+     */
+    before?: string
+
+    /**
+     * The space symbols after the last child of the node to the end of the node.
+     */
+    after?: string
+
+    /**
+     * The symbols between the selector and `{` for rules.
+     */
+    between?: string
+
+    /**
+     * Contains `true` if the last child has an (optional) semicolon.
+     */
+    semicolon?: boolean
+
+    /**
+     * Contains `true` if there is semicolon after rule.
+     */
+    ownSemicolon?: string
+
+    /**
+     * The rule’s selector with comments.
+     */
+    selector?: {
+      value: string
+      raw: string
+    }
+  }
+
   export interface RuleProps extends ContainerProps {
     /** Selector or selectors of the rule. */
     selector?: string
@@ -73,7 +73,7 @@ declare class Rule_ extends Container {
   constructor(defaults?: Rule.RuleProps)
   type: 'rule'
   parent: Container | undefined
-  raws: RuleRaws
+  raws: Rule.RuleRaws
 
   /**
    * The rule’s full selector represented as a string.

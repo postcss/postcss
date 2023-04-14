@@ -1,24 +1,24 @@
 import Container from './container.js'
 import Node, { NodeProps } from './node.js'
 
-interface CommentRaws extends Record<string, unknown> {
-  /**
-   * The space symbols before the node.
-   */
-  before?: string
-
-  /**
-   * The space symbols between `/*` and the comment’s text.
-   */
-  left?: string
-
-  /**
-   * The space symbols between the comment’s text.
-   */
-  right?: string
-}
-
 declare namespace Comment {
+  export interface CommentRaws extends Record<string, unknown> {
+    /**
+     * The space symbols before the node.
+     */
+    before?: string
+
+    /**
+     * The space symbols between `/*` and the comment’s text.
+     */
+    left?: string
+
+    /**
+     * The space symbols between the comment’s text.
+     */
+    right?: string
+  }
+
   export interface CommentProps extends NodeProps {
     /** Content of the comment. */
     text: string
@@ -47,7 +47,7 @@ declare namespace Comment {
 declare class Comment_ extends Node {
   type: 'comment'
   parent: Container | undefined
-  raws: CommentRaws
+  raws: Comment.CommentRaws
 
   /**
    * The comment's text.

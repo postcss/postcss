@@ -1,33 +1,33 @@
 import Container from './container.js'
 import Node from './node.js'
 
-interface DeclarationRaws extends Record<string, unknown> {
-  /**
-   * The space symbols before the node. It also stores `*`
-   * and `_` symbols before the declaration (IE hack).
-   */
-  before?: string
-
-  /**
-   * The symbols between the property and value for declarations.
-   */
-  between?: string
-
-  /**
-   * The content of the important statement, if it is not just `!important`.
-   */
-  important?: string
-
-  /**
-   * Declaration value with comments.
-   */
-  value?: {
-    value: string
-    raw: string
-  }
-}
-
 declare namespace Declaration {
+  export interface DeclarationRaws extends Record<string, unknown> {
+    /**
+     * The space symbols before the node. It also stores `*`
+     * and `_` symbols before the declaration (IE hack).
+     */
+    before?: string
+
+    /**
+     * The symbols between the property and value for declarations.
+     */
+    between?: string
+
+    /**
+     * The content of the important statement, if it is not just `!important`.
+     */
+    important?: string
+
+    /**
+     * Declaration value with comments.
+     */
+    value?: {
+      value: string
+      raw: string
+    }
+  }
+
   export interface DeclarationProps {
     /** Name of the declaration. */
     prop: string
@@ -66,7 +66,7 @@ declare class Declaration_ extends Node {
 
   type: 'decl'
   parent: Container | undefined
-  raws: DeclarationRaws
+  raws: Declaration.DeclarationRaws
 
   /**
    * The declaration's property name.

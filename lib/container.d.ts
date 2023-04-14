@@ -4,19 +4,19 @@ import Comment from './comment.js'
 import AtRule from './at-rule.js'
 import Rule from './rule.js'
 
-interface ValueOptions {
-  /**
-   * An array of property names.
-   */
-  props?: string[]
-
-  /**
-   * String that’s used to narrow down values and speed up the regexp search.
-   */
-  fast?: string
-}
-
 declare namespace Container {
+  export interface ValueOptions {
+    /**
+     * An array of property names.
+     */
+    props?: string[]
+
+    /**
+     * String that’s used to narrow down values and speed up the regexp search.
+     */
+    fast?: string
+  }
+
   export interface ContainerProps extends NodeProps {
     nodes?: (ChildNode | ChildProps)[]
   }
@@ -396,7 +396,7 @@ declare abstract class Container_<
    */
   replaceValues(
     pattern: string | RegExp,
-    options: ValueOptions,
+    options: Container.ValueOptions,
     replaced: string | { (substring: string, ...args: any[]): string }
   ): this
   replaceValues(

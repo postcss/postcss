@@ -1,42 +1,42 @@
 import Container, { ContainerProps } from './container.js'
 
-interface AtRuleRaws extends Record<string, unknown> {
-  /**
-   * The space symbols before the node. It also stores `*`
-   * and `_` symbols before the declaration (IE hack).
-   */
-  before?: string
-
-  /**
-   * The space symbols after the last child of the node to the end of the node.
-   */
-  after?: string
-
-  /**
-   * The space between the at-rule name and its parameters.
-   */
-  afterName?: string
-
-  /**
-   * The symbols between the last parameter and `{` for rules.
-   */
-  between?: string
-
-  /**
-   * Contains `true` if the last child has an (optional) semicolon.
-   */
-  semicolon?: boolean
-
-  /**
-   * The rule’s selector with comments.
-   */
-  params?: {
-    value: string
-    raw: string
-  }
-}
-
 declare namespace AtRule {
+  export interface AtRuleRaws extends Record<string, unknown> {
+    /**
+     * The space symbols before the node. It also stores `*`
+     * and `_` symbols before the declaration (IE hack).
+     */
+    before?: string
+
+    /**
+     * The space symbols after the last child of the node to the end of the node.
+     */
+    after?: string
+
+    /**
+     * The space between the at-rule name and its parameters.
+     */
+    afterName?: string
+
+    /**
+     * The symbols between the last parameter and `{` for rules.
+     */
+    between?: string
+
+    /**
+     * Contains `true` if the last child has an (optional) semicolon.
+     */
+    semicolon?: boolean
+
+    /**
+     * The rule’s selector with comments.
+     */
+    params?: {
+      value: string
+      raw: string
+    }
+  }
+
   export interface AtRuleProps extends ContainerProps {
     /** Name of the at-rule. */
     name: string
@@ -79,7 +79,7 @@ declare namespace AtRule {
 declare class AtRule_ extends Container {
   type: 'atrule'
   parent: Container | undefined
-  raws: AtRuleRaws
+  raws: AtRule.AtRuleRaws
 
   /**
    * The at-rule’s name immediately follows the `@`.
