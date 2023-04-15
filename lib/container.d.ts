@@ -21,9 +21,8 @@ declare namespace Container {
     nodes?: (ChildNode | ChildProps)[]
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Container<Child extends Node = ChildNode> extends Container_<Child> {}
-  export { Container as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Container_ as default }
 }
 
 /**

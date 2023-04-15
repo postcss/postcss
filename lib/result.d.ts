@@ -40,9 +40,8 @@ declare namespace Result {
   }
 
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Result extends Result_ {}
-  export { Result as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Result_ as default }
 }
 
 /**

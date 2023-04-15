@@ -11,9 +11,8 @@ import {
 } from './postcss.js'
 
 declare namespace Stringifier {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Stringifier extends Stringifier_ {}
-  export { Stringifier as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Stringifier_ as default }
 }
 
 declare class Stringifier_ {

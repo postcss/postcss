@@ -26,9 +26,8 @@ declare namespace Comment {
     raws?: CommentRaws
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Comment extends Comment_ {}
-  export { Comment as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Comment_ as default }
 }
 
 /**

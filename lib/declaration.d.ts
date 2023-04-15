@@ -39,9 +39,8 @@ declare namespace Declaration {
     raws?: DeclarationRaws
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Declaration extends Declaration_ {}
-  export { Declaration as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Declaration_ as default }
 }
 
 /**

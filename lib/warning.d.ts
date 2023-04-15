@@ -40,9 +40,8 @@ declare namespace Warning {
     plugin?: string
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Warning extends Warning_ {}
-  export { Warning as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Warning_ as default }
 }
 
 /**

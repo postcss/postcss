@@ -16,9 +16,8 @@ declare namespace Document {
     raws?: Record<string, any>
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Document extends Document_ {}
-  export { Document as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Document_ as default }
 }
 
 /**

@@ -46,9 +46,8 @@ declare namespace Rule {
     raws?: RuleRaws
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Rule extends Rule_ {}
-  export { Rule as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Rule_ as default }
 }
 
 /**

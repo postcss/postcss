@@ -3,9 +3,8 @@ import { SourceMapConsumer } from 'source-map-js'
 import { ProcessOptions } from './postcss.js'
 
 declare namespace PreviousMap {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class PreviousMap extends PreviousMap_ {}
-  export { PreviousMap as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { PreviousMap_ as default }
 }
 
 /**

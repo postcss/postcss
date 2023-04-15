@@ -11,9 +11,8 @@ import Root from './root.js'
 import NoWorkResult from './no-work-result.js'
 
 declare namespace Processor {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Processor extends Processor_ {}
-  export { Processor as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Processor_ as default }
 }
 
 /**

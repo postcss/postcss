@@ -16,9 +16,8 @@ declare namespace CssSyntaxError {
     column: number
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class CssSyntaxError extends CssSyntaxError_ {}
-  export { CssSyntaxError as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { CssSyntaxError_ as default }
 }
 
 /**

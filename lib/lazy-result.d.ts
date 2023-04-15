@@ -5,9 +5,8 @@ import Warning from './warning.js'
 import Root from './root.js'
 
 declare namespace LazyResult {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class LazyResult extends LazyResult_ {}
-  export { LazyResult as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { LazyResult_ as default }
 }
 
 /**

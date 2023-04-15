@@ -39,9 +39,8 @@ declare namespace Input {
     source?: string
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  class Input extends Input_ {}
-  export { Input as default }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Input_ as default }
 }
 
 /**
