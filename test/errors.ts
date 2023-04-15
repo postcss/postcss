@@ -9,9 +9,9 @@ const plugin: PluginCreator<{ a: number }> = opts => {
     postcssPlugin: 'remover',
     // THROWS Property 'Decl' does not exist on type 'Helpers'.
     Comment(decl, { Decl }) {
-      // THROWS Property 'prop' does not exist on type 'Comment'
+      // THROWS Property 'prop' does not exist on type 'Comment_'
       console.log(decl.prop)
-      // THROWS Property 'removeChild' does not exist on type 'Comment'
+      // THROWS Property 'removeChild' does not exist on type 'Comment_'
       decl.removeChild(1)
     }
   }

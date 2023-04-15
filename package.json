@@ -8,8 +8,7 @@
   "exports": {
     ".": {
       "require": "./lib/postcss.js",
-      "import": "./lib/postcss.mjs",
-      "types": "./lib/postcss.d.ts"
+      "import": "./lib/postcss.mjs"
     },
     "./lib/at-rule": "./lib/at-rule.js",
     "./lib/comment": "./lib/comment.js",
@@ -151,6 +150,14 @@
       "global-require": "off"
     },
     "overrides": [
+      {
+        "files": [
+          "*.d.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/no-redeclare": "off"
+        }
+      },
       {
         "files": [
           "*.test.*"

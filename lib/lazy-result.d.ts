@@ -4,6 +4,11 @@ import Processor from './processor.js'
 import Warning from './warning.js'
 import Root from './root.js'
 
+declare namespace LazyResult {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { LazyResult_ as default }
+}
+
 /**
  * A Promise proxy for the result of PostCSS transformations.
  *
@@ -13,7 +18,7 @@ import Root from './root.js'
  * const lazy = postcss([autoprefixer]).process(css)
  * ```
  */
-export default class LazyResult implements PromiseLike<Result> {
+declare class LazyResult_ implements PromiseLike<Result> {
   /**
    * Processes input CSS through synchronous and asynchronous plugins
    * and calls `onFulfilled` with a Result instance. If a plugin throws
@@ -174,3 +179,7 @@ export default class LazyResult implements PromiseLike<Result> {
    */
   async(): Promise<Result>
 }
+
+declare class LazyResult extends LazyResult_ {}
+
+export = LazyResult

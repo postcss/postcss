@@ -1,5 +1,9 @@
 import { JSONHydrator } from './postcss.js'
 
-declare const fromJSON: JSONHydrator
+interface FromJSON extends JSONHydrator {
+  default: FromJSON
+}
 
-export default fromJSON
+declare const fromJSON: FromJSON
+
+export = fromJSON

@@ -1,41 +1,46 @@
 import { CssSyntaxError, ProcessOptions } from './postcss.js'
 import PreviousMap from './previous-map.js'
 
-export interface FilePosition {
-  /**
-   * URL for the source file.
-   */
-  url: string
+declare namespace Input {
+  export interface FilePosition {
+    /**
+     * URL for the source file.
+     */
+    url: string
 
-  /**
-   * Absolute path to the source file.
-   */
-  file?: string
+    /**
+     * Absolute path to the source file.
+     */
+    file?: string
 
-  /**
-   * Line of inclusive start position in source file.
-   */
-  line: number
+    /**
+     * Line of inclusive start position in source file.
+     */
+    line: number
 
-  /**
-   * Column of inclusive start position in source file.
-   */
-  column: number
+    /**
+     * Column of inclusive start position in source file.
+     */
+    column: number
 
-  /**
-   * Line of exclusive end position in source file.
-   */
-  endLine?: number
+    /**
+     * Line of exclusive end position in source file.
+     */
+    endLine?: number
 
-  /**
-   * Column of exclusive end position in source file.
-   */
-  endColumn?: number
+    /**
+     * Column of exclusive end position in source file.
+     */
+    endColumn?: number
 
-  /**
-   * Source code.
-   */
-  source?: string
+    /**
+     * Source code.
+     */
+    source?: string
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Input_ as default }
 }
 
 /**
@@ -46,7 +51,7 @@ export interface FilePosition {
  * const input = root.source.input
  * ```
  */
-export default class Input {
+declare class Input_ {
   /**
    * Input CSS source.
    *
@@ -139,7 +144,7 @@ export default class Input {
     column: number,
     endLine?: number,
     endColumn?: number
-  ): FilePosition | false
+  ): Input.FilePosition | false
 
   /**
    * Converts source offset to line and column.
@@ -183,3 +188,7 @@ export default class Input {
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
 }
+
+declare class Input extends Input_ {}
+
+export = Input

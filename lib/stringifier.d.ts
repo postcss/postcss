@@ -10,7 +10,12 @@ import {
   Container
 } from './postcss.js'
 
-export default class Stringifier {
+declare namespace Stringifier {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Stringifier_ as default }
+}
+
+declare class Stringifier_ {
   builder: Builder
   constructor(builder: Builder)
   stringify(node: AnyNode, semicolon?: boolean): void
@@ -35,3 +40,7 @@ export default class Stringifier {
   beforeAfter(node: AnyNode, detect: 'before' | 'after'): string
   rawValue(node: AnyNode, prop: string): string
 }
+
+declare class Stringifier extends Stringifier_ {}
+
+export = Stringifier

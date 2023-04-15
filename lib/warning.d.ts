@@ -1,42 +1,47 @@
 import { RangePosition } from './css-syntax-error.js'
 import Node from './node.js'
 
-export interface WarningOptions {
-  /**
-   * CSS node that caused the warning.
-   */
-  node?: Node
+declare namespace Warning {
+  export interface WarningOptions {
+    /**
+     * CSS node that caused the warning.
+     */
+    node?: Node
 
-  /**
-   * Word in CSS source that caused the warning.
-   */
-  word?: string
+    /**
+     * Word in CSS source that caused the warning.
+     */
+    word?: string
 
-  /**
-   * Start index, inclusive, in CSS node string that caused the warning.
-   */
-  index?: number
+    /**
+     * Start index, inclusive, in CSS node string that caused the warning.
+     */
+    index?: number
 
-  /**
-   * End index, exclusive, in CSS node string that caused the warning.
-   */
-  endIndex?: number
+    /**
+     * End index, exclusive, in CSS node string that caused the warning.
+     */
+    endIndex?: number
 
-  /**
-   * Start position, inclusive, in CSS node string that caused the warning.
-   */
-  start?: RangePosition
+    /**
+     * Start position, inclusive, in CSS node string that caused the warning.
+     */
+    start?: RangePosition
 
-  /**
-   * End position, exclusive, in CSS node string that caused the warning.
-   */
-  end?: RangePosition
+    /**
+     * End position, exclusive, in CSS node string that caused the warning.
+     */
+    end?: RangePosition
 
-  /**
-   * Name of the plugin that created this warning. `Result#warn` fills
-   * this property automatically.
-   */
-  plugin?: string
+    /**
+     * Name of the plugin that created this warning. `Result#warn` fills
+     * this property automatically.
+     */
+    plugin?: string
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Warning_ as default }
 }
 
 /**
@@ -48,7 +53,7 @@ export interface WarningOptions {
  * }
  * ```
  */
-export default class Warning {
+declare class Warning_ {
   /**
    * Type to filter warnings from `Result#messages`.
    * Always equal to `"warning"`.
@@ -123,7 +128,7 @@ export default class Warning {
    * @param text Warning message.
    * @param opts Warning options.
    */
-  constructor(text: string, opts?: WarningOptions)
+  constructor(text: string, opts?: Warning.WarningOptions)
 
   /**
    * Returns a warning position and message.
@@ -136,3 +141,7 @@ export default class Warning {
    */
   toString(): string
 }
+
+declare class Warning extends Warning_ {}
+
+export = Warning

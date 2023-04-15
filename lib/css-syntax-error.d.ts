@@ -1,18 +1,23 @@
 import { FilePosition } from './input.js'
 
-/**
- * A position that is part of a range.
- */
-export interface RangePosition {
+declare namespace CssSyntaxError {
   /**
-   * The line number in the input.
+   * A position that is part of a range.
    */
-  line: number
+  export interface RangePosition {
+    /**
+     * The line number in the input.
+     */
+    line: number
 
-  /**
-   * The column number in the input.
-   */
-  column: number
+    /**
+     * The column number in the input.
+     */
+    column: number
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { CssSyntaxError_ as default }
 }
 
 /**
@@ -44,7 +49,7 @@ export interface RangePosition {
  * }
  * ```
  */
-export default class CssSyntaxError {
+declare class CssSyntaxError_ {
   /**
    * Instantiates a CSS syntax error. Can be instantiated for a single position
    * or for a range.
@@ -59,8 +64,8 @@ export default class CssSyntaxError {
    */
   constructor(
     message: string,
-    lineOrStartPos?: number | RangePosition,
-    columnOrEndPos?: number | RangePosition,
+    lineOrStartPos?: number | CssSyntaxError.RangePosition,
+    columnOrEndPos?: number | CssSyntaxError.RangePosition,
     source?: string,
     file?: string,
     plugin?: string
@@ -237,3 +242,7 @@ export default class CssSyntaxError {
    */
   showSourceCode(color?: boolean): string
 }
+
+declare class CssSyntaxError extends CssSyntaxError_ {}
+
+export = CssSyntaxError

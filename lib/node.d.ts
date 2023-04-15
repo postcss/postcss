@@ -1,7 +1,8 @@
 import Declaration, { DeclarationProps } from './declaration.js'
 import Comment, { CommentProps } from './comment.js'
 import { Stringifier, Syntax } from './postcss.js'
-import AtRule, { AtRuleProps } from './at-rule.js'
+import AtRule = require('./at-rule.js')
+import { AtRuleProps } from './at-rule.js'
 import Rule, { RuleProps } from './rule.js'
 import Warning, { WarningOptions } from './warning.js'
 import CssSyntaxError from './css-syntax-error.js'
@@ -11,84 +12,90 @@ import Root from './root.js'
 import Document from './document.js'
 import Container from './container.js'
 
-export type ChildNode = AtRule | Rule | Declaration | Comment
+declare namespace Node {
+  export type ChildNode = AtRule.default | Rule | Declaration | Comment
 
-export type AnyNode = AtRule | Rule | Declaration | Comment | Root | Document
+  export type AnyNode = AtRule.default | Rule | Declaration | Comment | Root | Document
 
-export type ChildProps =
-  | AtRuleProps
-  | RuleProps
-  | DeclarationProps
-  | CommentProps
+  export type ChildProps =
+    | AtRuleProps
+    | RuleProps
+    | DeclarationProps
+    | CommentProps
 
-export interface Position {
-  /**
-   * Source offset in file. It starts from 0.
-   */
-  offset: number
+  export interface Position {
+    /**
+     * Source offset in file. It starts from 0.
+     */
+    offset: number
 
-  /**
-   * Source line in file. In contrast to `offset` it starts from 1.
-   */
-  column: number
+    /**
+     * Source line in file. In contrast to `offset` it starts from 1.
+     */
+    column: number
 
-  /**
-   * Source column in file.
-   */
-  line: number
-}
+    /**
+     * Source column in file.
+     */
+    line: number
+  }
 
-export interface Range {
-  /**
-   * Start position, inclusive.
-   */
-  start: Position
+  export interface Range {
+    /**
+     * Start position, inclusive.
+     */
+    start: Position
 
-  /**
-   * End position, exclusive.
-   */
-  end: Position
-}
+    /**
+     * End position, exclusive.
+     */
+    end: Position
+  }
 
-export interface Source {
-  /**
-   * The file source of the node.
-   */
-  input: Input
-  /**
-   * The inclusive starting position of the node’s source.
-   */
-  start?: Position
-  /**
-   * The inclusive ending position of the node's source.
-   */
-  end?: Position
-}
+  export interface Source {
+    /**
+     * The file source of the node.
+     */
+    input: Input
+    /**
+     * The inclusive starting position of the node’s source.
+     */
+    start?: Position
+    /**
+     * The inclusive ending position of the node's source.
+     */
+    end?: Position
+  }
 
-export interface NodeProps {
-  source?: Source
-}
+  export interface NodeProps {
+    source?: Source
+  }
 
-interface NodeErrorOptions {
-  /**
-   * Plugin name that created this error. PostCSS will set it automatically.
-   */
-  plugin?: string
-  /**
-   * A word inside a node's string, that should be highlighted as source
-   * of error.
-   */
-  word?: string
-  /**
-   * An index inside a node's string that should be highlighted as source
-   * of error.
-   */
-  index?: number
-  /**
-   * An ending index inside a node's string that should be highlighted as
-   * source of error.
-   */
-  endIndex?: number
+  export interface NodeErrorOptions {
+    /**
+     * Plugin name that created this error. PostCSS will set it automatically.
+     */
+    plugin?: string
+    /**
+     * A word inside a node's string, that should be highlighted as source
+     * of error.
+     */
+    word?: string
+    /**
+     * An index inside a node's string that should be highlighted as source
+     * of error.
+     */
+    index?: number
+    /**
+     * An ending index inside a node's string that should be highlighted as
+     * source of error.
+     */
+    endIndex?: number
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  class Node extends Node_ {}
+  export { Node as default }
 }
 
 /**
@@ -97,7 +104,7 @@ interface NodeErrorOptions {
  * You should not extend this classes to create AST for selector or value
  * parser.
  */
-export default abstract class Node {
+declare abstract class Node_ {
   /**
    * tring representing the node’s type. Possible values are `root`, `atrule`,
    * `rule`, `decl`, or `comment`.
@@ -153,7 +160,7 @@ export default abstract class Node {
    * }
    * ```
    */
-  source?: Source
+  source?: Node.Source
 
   /**
    * Information to generate byte-to-byte equal node string as it was
@@ -222,7 +229,7 @@ export default abstract class Node {
    *
    * @return Error object to throw it.
    */
-  error(message: string, options?: NodeErrorOptions): CssSyntaxError
+  error(message: string, options?: Node.NodeErrorOptions): CssSyntaxError
 
   /**
    * This method is provided as a convenience wrapper for `Result#warn`.
@@ -337,7 +344,7 @@ export default abstract class Node {
    * @return Current node to methods chain.
    */
   replaceWith(
-    ...nodes: (ChildNode | ChildProps | ChildNode[] | ChildProps[])[]
+    ...nodes: (Node.ChildNode | Node.ChildProps | Node.ChildNode[] | Node.ChildProps[])[]
   ): this
 
   /**
@@ -355,7 +362,7 @@ export default abstract class Node {
    *
    * @return Next node.
    */
-  next(): ChildNode | undefined
+  next(): Node.ChildNode | undefined
 
   /**
    * Returns the previous child of the node’s parent.
@@ -370,7 +377,7 @@ export default abstract class Node {
    *
    * @return Previous node.
    */
-  prev(): ChildNode | undefined
+  prev(): Node.ChildNode | undefined
 
   /**
    * Insert new node before current node to current node’s parent.
@@ -384,7 +391,7 @@ export default abstract class Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  before(newNode: Node | ChildProps | string | Node[]): this
+  before(newNode: Node | Node.ChildProps | string | Node[]): this
 
   /**
    * Insert new node after current node to current node’s parent.
@@ -398,7 +405,7 @@ export default abstract class Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  after(newNode: Node | ChildProps | string | Node[]): this
+  after(newNode: Node | Node.ChildProps | string | Node[]): this
 
   /**
    * Finds the Root instance of the node’s tree.
@@ -457,7 +464,7 @@ export default abstract class Node {
    * @param index The symbol number in the node’s string.
    * @return Symbol position in file.
    */
-  positionInside(index: number): Position
+  positionInside(index: number): Node.Position
 
   /**
    * Get the position for a word or an index inside the node.
@@ -465,7 +472,7 @@ export default abstract class Node {
    * @param opts Options.
    * @return Position.
    */
-  positionBy(opts?: Pick<WarningOptions, 'word' | 'index'>): Position
+  positionBy(opts?: Pick<WarningOptions, 'word' | 'index'>): Node.Position
 
   /**
    * Get the range for a word or start and end index inside the node.
@@ -474,5 +481,9 @@ export default abstract class Node {
    * @param opts Options.
    * @return Range.
    */
-  rangeBy(opts?: Pick<WarningOptions, 'word' | 'index' | 'endIndex'>): Range
+  rangeBy(opts?: Pick<WarningOptions, 'word' | 'index' | 'endIndex'>): Node.Range
 }
+
+declare class Node extends Node_ {}
+
+export = Node

@@ -11,31 +11,37 @@ import {
 } from './postcss.js'
 import Processor from './processor.js'
 
-export interface Message {
-  /**
-   * Message type.
-   */
-  type: string
+declare namespace Result {
+  export interface Message {
+    /**
+     * Message type.
+     */
+    type: string
 
-  /**
-   * Source PostCSS plugin name.
-   */
-  plugin?: string
+    /**
+     * Source PostCSS plugin name.
+     */
+    plugin?: string
 
-  [others: string]: any
-}
+    [others: string]: any
+  }
 
-export interface ResultOptions extends ProcessOptions {
-  /**
-   * The CSS node that was the source of the warning.
-   */
-  node?: Node
+  export interface ResultOptions extends ProcessOptions {
+    /**
+     * The CSS node that was the source of the warning.
+     */
+    node?: Node
 
-  /**
-   * Name of plugin that created this warning. `Result#warn` will fill it
-   * automatically with `Plugin#postcssPlugin` value.
-   */
-  plugin?: string
+    /**
+     * Name of plugin that created this warning. `Result#warn` will fill it
+     * automatically with `Plugin#postcssPlugin` value.
+     */
+    plugin?: string
+  }
+
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Result_ as default }
 }
 
 /**
@@ -54,7 +60,7 @@ export interface ResultOptions extends ProcessOptions {
  * const result2 = postcss.parse(css).toResult()
  * ```
  */
-export default class Result {
+declare class Result_ {
   /**
    * The Processor instance used for this transformation.
    *
@@ -86,7 +92,7 @@ export default class Result {
    * }
    * ```
    */
-  messages: Message[]
+  messages: Result.Message[]
 
   /**
    * Root node after all transformations.
@@ -105,7 +111,7 @@ export default class Result {
    * root.toResult(opts).opts === opts
    * ```
    */
-  opts: ResultOptions
+  opts: Result.ResultOptions
 
   /**
    * A CSS string representing of `Result#root`.
@@ -142,7 +148,7 @@ export default class Result {
    * @param root      Root node after all transformations.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
-  constructor(processor: Processor, root: Root | Document, opts: ResultOptions)
+  constructor(processor: Processor, root: Root | Document, opts: Result.ResultOptions)
 
   /**
    * An alias for the `Result#css` property.
@@ -194,3 +200,7 @@ export default class Result {
    */
   warnings(): Warning[]
 }
+
+declare class Result extends Result_ {}
+
+export = Result

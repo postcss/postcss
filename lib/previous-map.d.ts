@@ -2,6 +2,11 @@ import { SourceMapConsumer } from 'source-map-js'
 
 import { ProcessOptions } from './postcss.js'
 
+declare namespace PreviousMap {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { PreviousMap_ as default }
+}
+
 /**
  * Source map information from input CSS.
  * For example, source map after Sass compiler.
@@ -14,7 +19,7 @@ import { ProcessOptions } from './postcss.js'
  * root.input.map //=> PreviousMap
  * ```
  */
-export default class PreviousMap {
+declare class PreviousMap_ {
   /**
    * Was source map inlined by data-uri to input CSS.
    */
@@ -70,3 +75,7 @@ export default class PreviousMap {
    */
   withContent(): boolean
 }
+
+declare class PreviousMap extends PreviousMap_ {}
+
+export = PreviousMap

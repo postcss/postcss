@@ -1,41 +1,46 @@
 import Container from './container.js'
 import Node from './node.js'
 
-interface DeclarationRaws extends Record<string, unknown> {
-  /**
-   * The space symbols before the node. It also stores `*`
-   * and `_` symbols before the declaration (IE hack).
-   */
-  before?: string
+declare namespace Declaration {
+  export interface DeclarationRaws extends Record<string, unknown> {
+    /**
+     * The space symbols before the node. It also stores `*`
+     * and `_` symbols before the declaration (IE hack).
+     */
+    before?: string
 
-  /**
-   * The symbols between the property and value for declarations.
-   */
-  between?: string
+    /**
+     * The symbols between the property and value for declarations.
+     */
+    between?: string
 
-  /**
-   * The content of the important statement, if it is not just `!important`.
-   */
-  important?: string
+    /**
+     * The content of the important statement, if it is not just `!important`.
+     */
+    important?: string
 
-  /**
-   * Declaration value with comments.
-   */
-  value?: {
-    value: string
-    raw: string
+    /**
+     * Declaration value with comments.
+     */
+    value?: {
+      value: string
+      raw: string
+    }
   }
-}
 
-export interface DeclarationProps {
-  /** Name of the declaration. */
-  prop: string
-  /** Value of the declaration. */
-  value: string
-  /** Whether the declaration has an `!important` annotation. */
-  important?: boolean
-  /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
-  raws?: DeclarationRaws
+  export interface DeclarationProps {
+    /** Name of the declaration. */
+    prop: string
+    /** Value of the declaration. */
+    value: string
+    /** Whether the declaration has an `!important` annotation. */
+    important?: boolean
+    /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
+    raws?: DeclarationRaws
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Declaration_ as default }
 }
 
 /**
@@ -55,10 +60,10 @@ export interface DeclarationProps {
  * decl.toString() //=> ' color: black'
  * ```
  */
-export default class Declaration extends Node {
+declare class Declaration_ extends Node {
   type: 'decl'
   parent: Container | undefined
-  raws: DeclarationRaws
+  raws: Declaration.DeclarationRaws
 
   /**
    * The declaration's property name.
@@ -116,9 +121,13 @@ export default class Declaration extends Node {
    */
   variable: boolean
 
-  constructor(defaults?: DeclarationProps)
-  assign(overrides: object | DeclarationProps): this
-  clone(overrides?: Partial<DeclarationProps>): this
-  cloneBefore(overrides?: Partial<DeclarationProps>): this
-  cloneAfter(overrides?: Partial<DeclarationProps>): this
+  constructor(defaults?: Declaration.DeclarationProps)
+  assign(overrides: object | Declaration.DeclarationProps): this
+  clone(overrides?: Partial<Declaration.DeclarationProps>): this
+  cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): this
+  cloneAfter(overrides?: Partial<Declaration.DeclarationProps>): this
 }
+
+declare class Declaration extends Declaration_ {}
+
+export = Declaration

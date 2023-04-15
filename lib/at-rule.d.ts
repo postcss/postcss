@@ -1,48 +1,53 @@
 import Container, { ContainerProps } from './container.js'
 
-interface AtRuleRaws extends Record<string, unknown> {
-  /**
-   * The space symbols before the node. It also stores `*`
-   * and `_` symbols before the declaration (IE hack).
-   */
-  before?: string
+declare namespace AtRule {
+  export interface AtRuleRaws extends Record<string, unknown> {
+    /**
+     * The space symbols before the node. It also stores `*`
+     * and `_` symbols before the declaration (IE hack).
+     */
+    before?: string
 
-  /**
-   * The space symbols after the last child of the node to the end of the node.
-   */
-  after?: string
+    /**
+     * The space symbols after the last child of the node to the end of the node.
+     */
+    after?: string
 
-  /**
-   * The space between the at-rule name and its parameters.
-   */
-  afterName?: string
+    /**
+     * The space between the at-rule name and its parameters.
+     */
+    afterName?: string
 
-  /**
-   * The symbols between the last parameter and `{` for rules.
-   */
-  between?: string
+    /**
+     * The symbols between the last parameter and `{` for rules.
+     */
+    between?: string
 
-  /**
-   * Contains `true` if the last child has an (optional) semicolon.
-   */
-  semicolon?: boolean
+    /**
+     * Contains `true` if the last child has an (optional) semicolon.
+     */
+    semicolon?: boolean
 
-  /**
-   * The rule’s selector with comments.
-   */
-  params?: {
-    value: string
-    raw: string
+    /**
+     * The rule’s selector with comments.
+     */
+    params?: {
+      value: string
+      raw: string
+    }
   }
-}
 
-export interface AtRuleProps extends ContainerProps {
-  /** Name of the at-rule. */
-  name: string
-  /** Parameters following the name of the at-rule. */
-  params?: string | number
-  /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
-  raws?: AtRuleRaws
+  export interface AtRuleProps extends ContainerProps {
+    /** Name of the at-rule. */
+    name: string
+    /** Parameters following the name of the at-rule. */
+    params?: string | number
+    /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
+    raws?: AtRuleRaws
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { AtRule_ as default }
 }
 
 /**
@@ -70,10 +75,10 @@ export interface AtRuleProps extends ContainerProps {
  * media.nodes   //=> []
  * ```
  */
-export default class AtRule extends Container {
+declare class AtRule_ extends Container {
   type: 'atrule'
   parent: Container | undefined
-  raws: AtRuleRaws
+  raws: AtRule.AtRuleRaws
 
   /**
    * The at-rule’s name immediately follows the `@`.
@@ -98,9 +103,13 @@ export default class AtRule extends Container {
    */
   params: string
 
-  constructor(defaults?: AtRuleProps)
-  assign(overrides: object | AtRuleProps): this
-  clone(overrides?: Partial<AtRuleProps>): this
-  cloneBefore(overrides?: Partial<AtRuleProps>): this
-  cloneAfter(overrides?: Partial<AtRuleProps>): this
+  constructor(defaults?: AtRule.AtRuleProps)
+  assign(overrides: object | AtRule.AtRuleProps): this
+  clone(overrides?: Partial<AtRule.AtRuleProps>): this
+  cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): this
+  cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): this
 }
+
+declare class AtRule extends AtRule_ {}
+
+export = AtRule

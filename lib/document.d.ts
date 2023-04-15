@@ -1,22 +1,24 @@
 import Container, { ContainerProps } from './container.js'
 import { ProcessOptions } from './postcss.js'
 import Result from './result.js'
-import Root, { RootProps } from './root.js'
+import Root from './root.js'
 
-export interface DocumentProps extends ContainerProps {
-  nodes?: Root[]
+declare namespace Document {
+  export interface DocumentProps extends ContainerProps {
+    nodes?: Root[]
 
-  /**
-   * Information to generate byte-to-byte equal node string as it was
-   * in the origin input.
-   *
-   * Every parser saves its own properties.
-   */
-  raws?: Record<string, any>
+    /**
+     * Information to generate byte-to-byte equal node string as it was
+     * in the origin input.
+     *
+     * Every parser saves its own properties.
+     */
+    raws?: Record<string, any>
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Document_ as default }
 }
-
-type ChildNode = Root
-type ChildProps = RootProps
 
 /**
  * Represents a file and contains all its parsed nodes.
@@ -32,11 +34,11 @@ type ChildProps = RootProps
  * document.nodes.length //=> 2
  * ```
  */
-export default class Document extends Container<Root> {
+declare class Document_ extends Container<Root> {
   type: 'document'
   parent: undefined
 
-  constructor(defaults?: DocumentProps)
+  constructor(defaults?: Document.DocumentProps)
 
   /**
    * Returns a `Result` instance representing the document’s CSS roots.
@@ -55,3 +57,7 @@ export default class Document extends Container<Root> {
    */
   toResult(options?: ProcessOptions): Result
 }
+
+declare class Document extends Document_ {}
+
+export = Document

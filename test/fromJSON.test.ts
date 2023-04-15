@@ -1,4 +1,4 @@
-import v8 from 'v8'
+import * as v8 from 'v8'
 import { test } from 'uvu'
 import { is, instance, throws } from 'uvu/assert'
 

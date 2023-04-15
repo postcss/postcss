@@ -2,11 +2,16 @@ import { is, type, equal, match, throws } from 'uvu/assert'
 import { spyOn, restoreAll } from 'nanospy'
 import { test } from 'uvu'
 
-import postcss, { Root, PluginCreator } from '../lib/postcss.js'
+import postcss = require('../lib/postcss.js')
+import postcssDefault, { Root, PluginCreator } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 
 test.after.each(() => {
   restoreAll()
+})
+
+test('default matches module.exports', () => {
+  is(postcss, postcssDefault)
 })
 
 test('creates plugins list', () => {

@@ -1,7 +1,7 @@
-import pico from 'picocolors'
+import * as pico from 'picocolors'
 import { join, resolve as pathResolve } from 'path'
 import { pathToFileURL } from 'url'
-import stripAnsi from 'strip-ansi'
+import stripAnsi = require('strip-ansi')
 import Concat from 'concat-with-sourcemaps'
 import { test } from 'uvu'
 import { is, equal, match, type } from 'uvu/assert'

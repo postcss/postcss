@@ -4,20 +4,25 @@ import Comment from './comment.js'
 import AtRule from './at-rule.js'
 import Rule from './rule.js'
 
-interface ValueOptions {
-  /**
-   * An array of property names.
-   */
-  props?: string[]
+declare namespace Container {
+  export interface ValueOptions {
+    /**
+     * An array of property names.
+     */
+    props?: string[]
 
-  /**
-   * String that’s used to narrow down values and speed up the regexp search.
-   */
-  fast?: string
-}
+    /**
+     * String that’s used to narrow down values and speed up the regexp search.
+     */
+    fast?: string
+  }
 
-export interface ContainerProps extends NodeProps {
-  nodes?: (ChildNode | ChildProps)[]
+  export interface ContainerProps extends NodeProps {
+    nodes?: (ChildNode | ChildProps)[]
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Container_ as default }
 }
 
 /**
@@ -27,7 +32,7 @@ export interface ContainerProps extends NodeProps {
  * Note that all containers can store any content. If you write a rule inside
  * a rule, PostCSS will parse it.
  */
-export default abstract class Container<
+declare abstract class Container_<
   Child extends Node = ChildNode
 > extends Node {
   /**
@@ -390,7 +395,7 @@ export default abstract class Container<
    */
   replaceValues(
     pattern: string | RegExp,
-    options: ValueOptions,
+    options: Container.ValueOptions,
     replaced: string | { (substring: string, ...args: any[]): string }
   ): this
   replaceValues(
@@ -440,3 +445,7 @@ export default abstract class Container<
    */
   index(child: Child | number): number
 }
+
+declare class Container<Child extends Node = ChildNode> extends Container_<Child> {}
+
+export = Container

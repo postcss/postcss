@@ -10,6 +10,11 @@ import Result from './result.js'
 import Root from './root.js'
 import NoWorkResult from './no-work-result.js'
 
+declare namespace Processor {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export { Processor_ as default }
+}
+
 /**
  * Contains plugins to process CSS. Create one `Processor` instance,
  * initialize its plugins, and then use that instance on numerous CSS files.
@@ -20,7 +25,7 @@ import NoWorkResult from './no-work-result.js'
  * processor.process(css2).then(result => console.log(result.css))
  * ```
  */
-export default class Processor {
+declare class Processor_ {
   /**
    * Current PostCSS version.
    *
@@ -100,3 +105,7 @@ export default class Processor {
     options?: ProcessOptions
   ): LazyResult | NoWorkResult
 }
+
+declare class Processor extends Processor_ {}
+
+export = Processor
