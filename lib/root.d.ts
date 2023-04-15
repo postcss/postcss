@@ -54,7 +54,6 @@ declare namespace Root {
  * ```
  */
 declare class Root_ extends Container {
-  constructor(defaults?: Root.RootProps)
   type: 'root'
   parent: Document | undefined
   raws: Root.RootRaws
@@ -72,8 +71,9 @@ declare class Root_ extends Container {
    * @param opts Options.
    * @return Result with current root’s CSS.
    */
-  toResult(options?: ProcessOptions): Result
+ toResult(options?: ProcessOptions): Result
 
+  constructor(defaults?: Root.RootProps)
   assign(overrides: object | Root.RootProps): this
 }
 

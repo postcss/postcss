@@ -35,10 +35,10 @@ declare namespace Document {
  * ```
  */
 declare class Document_ extends Container<Root> {
-  constructor(defaults?: Document.DocumentProps)
-
   type: 'document'
   parent: undefined
+
+  constructor(defaults?: Document.DocumentProps)
 
   /**
    * Returns a `Result` instance representing the document’s CSS roots.

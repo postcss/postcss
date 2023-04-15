@@ -69,7 +69,6 @@ declare namespace Rule {
  * ```
  */
 declare class Rule_ extends Container {
-  constructor(defaults?: Rule.RuleProps)
   type: 'rule'
   parent: Container | undefined
   raws: Rule.RuleRaws
@@ -102,6 +101,7 @@ declare class Rule_ extends Container {
    */
   selectors: string[]
 
+  constructor(defaults?: Rule.RuleProps)
   assign(overrides: object | Rule.RuleProps): this
   clone(overrides?: Partial<Rule.RuleProps>): this
   cloneBefore(overrides?: Partial<Rule.RuleProps>): this

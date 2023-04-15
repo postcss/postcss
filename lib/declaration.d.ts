@@ -61,8 +61,6 @@ declare namespace Declaration {
  * ```
  */
 declare class Declaration_ extends Node {
-  static default: typeof Declaration
-
   type: 'decl'
   parent: Container | undefined
   raws: Declaration.DeclarationRaws
