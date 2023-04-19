@@ -59,7 +59,7 @@ declare class Processor_ {
    * * A plugin in `Plugin` format.
    * * A plugin creator function with `pluginCreator.postcss = true`.
    *   PostCSS will call this function without argument to get plugin.
-   * * A function. PostCSS will pass the function a @{link Root}
+   * * A function. PostCSS will pass the function a {@link Root}
    *   as the first argument and current `Result` instance
    *   as the second.
    * * Another `Processor` instance. PostCSS will copy plugins
@@ -95,7 +95,7 @@ declare class Processor_ {
    * ```
    *
    * @param css String with input CSS or any object with a `toString()` method,
-   *            like a Buffer. Optionally, senda `Result` instance
+   *            like a Buffer. Optionally, send a `Result` instance
    *            and the processor will take the `Root` from it.
    * @param opts Options.
    * @return Promise proxy.

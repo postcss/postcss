@@ -61,7 +61,7 @@ declare namespace AtRule {
  * }
  * ```
  *
- * If it’s followed in the CSS by a {} block, this node will have
+ * If it’s followed in the CSS by a `{}` block, this node will have
  * a nodes property representing its children.
  *
  * ```js
@@ -93,7 +93,7 @@ declare class AtRule_ extends Container {
 
   /**
    * The at-rule’s parameters, the values that follow the at-rule’s name
-   * but precede any {} block.
+   * but precede any `{}` block.
    *
    * ```js
    * const root  = postcss.parse('@media print, screen {}')
