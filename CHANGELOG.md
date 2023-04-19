@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.23
+* Fixed warnings in TypeDoc.
+
 ## 8.4.22
 * Fixed TypeScript support with `node16` (by Remco Haszing).
 
