@@ -194,7 +194,7 @@ you can write a parser and/or stringifier to extend PostCSS.
 
 ## Articles
 
-* [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong)
+* [Some things you may think about PostCSS… and you might be wrong](https://www.julian.io/articles/postcss.html)
 * [What PostCSS Really Is; What It Really Does](https://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/)
 * [PostCSS Guides](https://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)
 
@@ -378,7 +378,7 @@ prefixer({ display: 'flex' }) //=> { display: ['-webkit-box', '-webkit-flex', '-
 ```
 
 [`postcss-js`]: https://github.com/postcss/postcss-js
-[Browserify]:   http://browserify.org/
+[Browserify]:   https://browserify.org/
 [CSS-in-JS]:    https://github.com/MicheleBertoli/css-in-js
 [webpack]:      https://webpack.github.io/
 
