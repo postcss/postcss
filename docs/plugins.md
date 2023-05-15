@@ -176,6 +176,7 @@ by one line of code.
   variables.
 * [`webp-in-css`] to use WebP background images in CSS.
 * [`postcss-clamp`] transform `clamp()` to combination of `min/max`
+* [`postcss-spring-easing`] replaces `spring()` with a resulting `linear()` function and add a `--spring-duration` css variable
 
 See also [`oldie`] plugins pack.
 
@@ -950,3 +951,4 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-pixel-to-remvw`]:               https://github.com/ben-lau/postcss-pixel-to-remvw
 [`@csstools/postcss-design-tokens`]:      https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-design-tokens
 [`postcss-easy-import`]:                  https://github.com/TrySound/postcss-easy-import
+[`postcss-spring-easing`]:                https://github.com/okikio/postcss-spring-easing
