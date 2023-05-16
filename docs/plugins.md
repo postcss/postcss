@@ -16,7 +16,7 @@
 * [Analysis](#analysis)
 * [Reporters](#reporters)
 * [Fun](#fun)
- 
+
 ## Control
 
 There are two ways to make PostCSS magic more explicit.
@@ -176,7 +176,8 @@ by one line of code.
   variables.
 * [`webp-in-css`] to use WebP background images in CSS.
 * [`postcss-clamp`] transform `clamp()` to combination of `min/max`
-* [`postcss-spring-easing`] replaces `spring()` with a resulting `linear()` function and add a `--spring-duration` css variable
+* [`postcss-spring-easing`] replaces `spring()` with a resulting `linear()`
+  function and add a `--spring-duration` css variable.
 
 See also [`oldie`] plugins pack.
 
