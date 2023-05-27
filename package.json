@@ -84,19 +84,19 @@
     "source-map-js": "^1.0.2"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^49.0.0",
+    "@logux/eslint-config": "^50.0.0",
     "@size-limit/preset-small-lib": "^8.2.4",
-    "@types/node": "^20.1.5",
-    "@typescript-eslint/eslint-plugin": "^5.59.6",
-    "@typescript-eslint/parser": "^5.59.6",
+    "@types/node": "^20.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
     "c8": "^7.13.0",
     "check-dts": "^0.7.2",
     "clean-publish": "^4.2.0",
     "concat-with-sourcemaps": "^1.1.0",
-    "eslint": "^8.40.0",
+    "eslint": "^8.41.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.1.1",
     "nanodelay": "^1.0.8",
@@ -145,6 +145,7 @@
   "eslintConfig": {
     "extends": "@logux/eslint-config/ts",
     "rules": {
+      "@typescript-eslint/consistent-type-imports": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "consistent-return": "off",
       "global-require": "off"
