@@ -138,13 +138,6 @@ interface Processors {
    * Will be called again on node or children changes.
    */
   CommentExit?: CommentProcessor
-
-  /**
-   * Will be called when all other listeners processed the document.
-   *
-   * This listener will not be called again.
-   */
-  Exit?: RootProcessor
 }
 
 declare namespace postcss {
