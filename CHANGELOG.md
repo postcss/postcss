@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.24
+* Fixed `Plugin` types.
+
 ## 8.4.23
 * Fixed warnings in TypeDoc.
 
