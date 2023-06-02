@@ -4,7 +4,6 @@
 
 * [Control](#control)
 * [Packs](#packs)
-* [Control](#control)
 * [Future CSS Syntax](#future-css-syntax)
 * [Fallbacks](#fallbacks)
 * [Language Extensions](#language-extensions)
