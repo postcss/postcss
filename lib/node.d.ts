@@ -184,7 +184,7 @@ declare abstract class Node_ {
    *
    *  atrule.parent.insertBefore(atrule, rule);
    * }
-   *  ```
+   * ```
    */
   source?: Node.Source
 
