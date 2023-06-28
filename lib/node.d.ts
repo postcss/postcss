@@ -59,7 +59,7 @@ declare namespace Node {
   export interface Source {
     /**
      * The source file from where a node has originated.
-     * 
+     *
      * @type {Input}
      */
     input: Input
@@ -67,15 +67,15 @@ declare namespace Node {
     /**
      * The inclusive starting position for the source
      * code of a node.
-     * 
+     *
      * @type {Position}
      */
     start?: Position
 
     /**
-     * The inclusive ending position  for the source
+     * The inclusive ending position for the source
      * code of a node.
-     * 
+     *
      * @type {Position}
      */
     end?: Position
