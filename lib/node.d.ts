@@ -180,7 +180,7 @@ declare abstract class Node_ {
    *   const rule = postcss.rule({
    *     selector: 'a',
    *     source: atrule.source
-   *   });
+   *   })
    *
    *  atrule.parent.insertBefore(atrule, rule)
    * }
