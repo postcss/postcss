@@ -124,10 +124,10 @@ declare abstract class Node_ {
    * ```js
    * const declaration = new Declaration({
    *   prop: 'color',
-   *   value: 'black',
-   * });
+   *   value: 'black'
+   * })
    *
-   * console.log(declaration.type); //=> 'decl'
+   * console.log(declaration.type) //=> 'decl'
    * ```
    */
   type: string
@@ -137,7 +137,7 @@ declare abstract class Node_ {
    * current node.
    *
    * ```js
-   * console.log(root.nodes[0].parent === root); //=> true
+   * console.log(root.nodes[0].parent === root) //=> true
    * ```
    */
   parent: Document | Container | undefined
@@ -157,32 +157,32 @@ declare abstract class Node_ {
    * source to a node created manually.
    *
    * ```js
-   * console.log(decl.source.input.from); //=> '/home/ai/source.css'
-   * console.log(decl.source.start);      //=> { line: 10, column: 2 }
-   * console.log(decl.source.end);        //=> { line: 10, column: 12 }
+   * console.log(decl.source.input.from) //=> '/home/ai/source.css'
+   * console.log(decl.source.start)      //=> { line: 10, column: 2 }
+   * console.log(decl.source.end)        //=> { line: 10, column: 12 }
    * ```
    *
    * ```js
    * // Incorrect method, source not specified!
    * const prefixed = postcss.decl({
    *   prop: '-moz-' + decl.prop,
-   *   value: decl.value,
-   * });
+   *   value: decl.value
+   * })
    *
    * // Correct method, source is inherited when duplicating.
    * const prefixed = decl.clone({
-   *   prop: '-moz-' + decl.prop,
-   * });
+   *   prop: '-moz-' + decl.prop
+   * })
    * ```
    *
    * ```js
    * if (atrule.name === 'add-link') {
    *   const rule = postcss.rule({
    *     selector: 'a',
-   *     source: atrule.source,
+   *     source: atrule.source
    *   });
    *
-   *  atrule.parent.insertBefore(atrule, rule);
+   *  atrule.parent.insertBefore(atrule, rule)
    * }
    * ```
    */
