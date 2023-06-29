@@ -52,17 +52,25 @@ declare namespace Node {
     end: Position
   }
 
+  /**
+   * Source represents an interface for the {@linkcode Node.source}
+   * property.
+   */
   export interface Source {
     /**
-     * The file source of the node.
+     * The source file from where a node has originated.
      */
     input: Input
+
     /**
-     * The inclusive starting position of the node’s source.
+     * The inclusive starting position for the source
+     * code of a node.
      */
     start?: Position
+
     /**
-     * The inclusive ending position of the node's source.
+     * The inclusive ending position for the source
+     * code of a node.
      */
     end?: Position
   }
@@ -99,75 +107,96 @@ declare namespace Node {
 }
 
 /**
- * All node classes inherit the following common methods.
+ * `Node` represents an abstract class that handles common
+ * methods for other CSS abstract syntax tree nodes.
  *
- * You should not extend this classes to create AST for selector or value
- * parser.
+ * Any node that represents CSS selector or value should
+ * not extend the `Node` class.
  */
 declare abstract class Node_ {
   /**
-   * tring representing the node’s type. Possible values are `root`, `atrule`,
-   * `rule`, `decl`, or `comment`.
+   * The property `type` represents type of a node in
+   * an abstract syntax tree.
+   *
+   * A type of node helps in identification of a node
+   * and perform operation based on it's type.
    *
    * ```js
-   * new Declaration({ prop: 'color', value: 'black' }).type //=> 'decl'
+   * const declaration = new Declaration({
+   *   prop: 'color',
+   *   value: 'black'
+   * })
+   *
+   * console.log(declaration.type) //=> 'decl'
    * ```
    */
   type: string
 
   /**
-   * The node’s parent node.
+   * The property `parent` represents parent of the
+   * current node.
    *
    * ```js
-   * root.nodes[0].parent === root
+   * console.log(root.nodes[0].parent === root) //=> true
    * ```
    */
   parent: Document | Container | undefined
 
   /**
-   * The input source of the node.
+   * The property `source` represents information related
+   * to origin of a node and is required for generating
+   * source maps.
    *
-   * The property is used in source map generation.
+   * The nodes that are created manually using the public APIs
+   * provided by PostCSS will have `source` undefined and
+   * will be absent in the source map.
    *
-   * If you create a node manually (e.g., with `postcss.decl()`),
-   * that node will not have a `source` property and will be absent
-   * from the source map. For this reason, the plugin developer should
-   * consider cloning nodes to create new ones (in which case the new node’s
-   * source will reference the original, cloned node) or setting
-   * the `source` property manually.
+   * For this reason, the plugin developer should consider
+   * duplicating nodes as the duplicate node will have the
+   * same source as the original node by default or assign
+   * source to a node created manually.
    *
    * ```js
-   * decl.source.input.from //=> '/home/ai/a.sass'
-   * decl.source.start      //=> { line: 10, column: 2 }
-   * decl.source.end        //=> { line: 10, column: 12 }
+   * console.log(decl.source.input.from) //=> '/home/ai/source.css'
+   * console.log(decl.source.start)      //=> { line: 10, column: 2 }
+   * console.log(decl.source.end)        //=> { line: 10, column: 12 }
    * ```
    *
    * ```js
-   * // Bad
+   * // Incorrect method, source not specified!
    * const prefixed = postcss.decl({
    *   prop: '-moz-' + decl.prop,
    *   value: decl.value
    * })
    *
-   * // Good
-   * const prefixed = decl.clone({ prop: '-moz-' + decl.prop })
+   * // Correct method, source is inherited when duplicating.
+   * const prefixed = decl.clone({
+   *   prop: '-moz-' + decl.prop
+   * })
    * ```
    *
    * ```js
    * if (atrule.name === 'add-link') {
-   *   const rule = postcss.rule({ selector: 'a', source: atrule.source })
-   *   atrule.parent.insertBefore(atrule, rule)
+   *   const rule = postcss.rule({
+   *     selector: 'a',
+   *     source: atrule.source
+   *   })
+   *
+   *  atrule.parent.insertBefore(atrule, rule)
    * }
    * ```
    */
   source?: Node.Source
 
   /**
+   * The property `raws` represents unnecessary whitespace
+   * and characters present in the css source code.
+   *
    * Information to generate byte-to-byte equal node string as it was
    * in the origin input.
    *
-   * Every parser saves its own properties,
-   * but the default CSS parser uses:
+   * The properties of the raws object are decided by parser,
+   * the default parser uses the following properties:
    *
    * * `before`: the space symbols before the node. It also stores `*`
    *   and `_` symbols before the declaration (IE hack).
@@ -182,24 +211,19 @@ declare abstract class Node_ {
    * * `left`: the space symbols between `/*` and the comment’s text.
    * * `right`: the space symbols between the comment’s text
    *   and <code>*&#47;</code>.
-   * * `important`: the content of the important statement,
+   * - `important`: the content of the important statement,
    *   if it is not just `!important`.
    *
-   * PostCSS cleans selectors, declaration values and at-rule parameters
-   * from comments and extra spaces, but it stores origin content in raws
-   * properties. As such, if you don’t change a declaration’s value,
-   * PostCSS will use the raw value with comments.
+   * PostCSS filters out the comments inside selectors, declaration values
+   * and at-rule parameters but it stores the origin content in raws.
    *
    * ```js
    * const root = postcss.parse('a {\n  color:black\n}')
-   * root.first.first.raws //=> { before: '\n  ', between: ':' }
+   * console.log(root.first.first.raws); //=> { before: '\n  ', between: ':' }
    * ```
    */
   raws: any
 
-  /**
-   * @param defaults Value for node properties.
-   */
   constructor(defaults?: object)
 
   /**
@@ -484,6 +508,6 @@ declare abstract class Node_ {
   rangeBy(opts?: Pick<WarningOptions, 'word' | 'index' | 'endIndex'>): Node.Range
 }
 
-declare class Node extends Node_ {}
+declare class Node extends Node_ { }
 
 export = Node
