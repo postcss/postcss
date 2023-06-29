@@ -15,7 +15,13 @@ import Container from './container.js'
 declare namespace Node {
   export type ChildNode = AtRule.default | Rule | Declaration | Comment
 
-  export type AnyNode = AtRule.default | Rule | Declaration | Comment | Root | Document
+  export type AnyNode =
+    | AtRule.default
+    | Rule
+    | Declaration
+    | Comment
+    | Root
+    | Document
 
   export type ChildProps =
     | AtRuleProps
@@ -53,8 +59,7 @@ declare namespace Node {
   }
 
   /**
-   * Source represents an interface for the {@linkcode Node.source}
-   * property.
+   * Source represents an interface for the {@link Node.source} property.
    */
   export interface Source {
     /**
@@ -219,7 +224,7 @@ declare abstract class Node_ {
    *
    * ```js
    * const root = postcss.parse('a {\n  color:black\n}')
-   * console.log(root.first.first.raws); //=> { before: '\n  ', between: ':' }
+   * console.log(root.first.first.raws) //=> { before: '\n  ', between: ':' }
    * ```
    */
   raws: any
@@ -368,7 +373,12 @@ declare abstract class Node_ {
    * @return Current node to methods chain.
    */
   replaceWith(
-    ...nodes: (Node.ChildNode | Node.ChildProps | Node.ChildNode[] | Node.ChildProps[])[]
+    ...nodes: (
+      | Node.ChildNode
+      | Node.ChildProps
+      | Node.ChildNode[]
+      | Node.ChildProps[]
+    )[]
   ): this
 
   /**
@@ -505,7 +515,9 @@ declare abstract class Node_ {
    * @param opts Options.
    * @return Range.
    */
-  rangeBy(opts?: Pick<WarningOptions, 'word' | 'index' | 'endIndex'>): Node.Range
+  rangeBy(
+    opts?: Pick<WarningOptions, 'word' | 'index' | 'endIndex'>
+  ): Node.Range
 }
 
 declare class Node extends Node_ { }
