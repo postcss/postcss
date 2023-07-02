@@ -273,7 +273,7 @@ declare abstract class Node_ {
   error(message: string, options?: Node.NodeErrorOptions): CssSyntaxError
 
   /**
-   * The Node.warn method is a wrapper for Result#warn,
+   * The `warn` method is a wrapper for Result#warn,
    * providing convenient way of generating warnings.
    *
    * ```js
