@@ -30,7 +30,6 @@ declare namespace Comment {
   export { Comment_ as default }
 }
 
-
 /**
  * It represents a class that handles
  * [CSS comments](https://developer.mozilla.org/en-US/docs/Web/CSS/Comments)
