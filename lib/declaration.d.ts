@@ -99,10 +99,11 @@ declare class Declaration_ extends Node {
   value: string
 
   /**
-   * The `important` property represents a boolean value. If true,
-   * the CSS declaration will have
+   * It represents a specificity of the declaration.
+   *
+   * If true, the CSS declaration will have an
    * [important](https://developer.mozilla.org/en-US/docs/Web/CSS/important)
-   * specifier
+   * specifier.
    *
    * ```js
    * const root = postcss.parse('a { color: black !important; color: red }')
