@@ -44,20 +44,24 @@ declare namespace Declaration {
 }
 
 /**
- * Represents a CSS declaration.
+ * `Declaration` represents a class that handles CSS declarations.
+ *
+ * For more information about CSS declarations, please visit:
+ * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#css_declarations}
  *
  * ```js
  * Once (root, { Declaration }) {
- *   let color = new Declaration({ prop: 'color', value: 'black' })
+ *   const color = new Declaration({ prop: 'color', value: 'black' })
  *   root.append(color)
  * }
  * ```
  *
  * ```js
  * const root = postcss.parse('a { color: black }')
- * const decl = root.first.first
- * decl.type       //=> 'decl'
- * decl.toString() //=> ' color: black'
+ * const decl = root.first?.first
+ *
+ * console.log(decl.type)       //=> 'decl'
+ * console.log(decl.toString()) //=> ' color: black'
  * ```
  */
 declare class Declaration_ extends Node {
@@ -66,57 +70,74 @@ declare class Declaration_ extends Node {
   raws: Declaration.DeclarationRaws
 
   /**
-   * The declaration's property name.
+   * The `prop` property represents name of
+   * a CSS declaration.
    *
    * ```js
    * const root = postcss.parse('a { color: black }')
-   * const decl = root.first.first
-   * decl.prop //=> 'color'
+   * const decl = root.first?.first
+   *
+   * console.log(decl.prop) //=> 'color'
    * ```
    */
   prop: string
 
   /**
-   * The declaration’s value.
+   * The `value` property represents value of
+   * a CSS declaration.
    *
-   * This value will be cleaned of comments. If the source value contained
-   * comments, those comments will be available in the `raws` property.
-   * If you have not changed the value, the result of `decl.toString()`
-   * will include the original raws value (comments and all).
+   * Any CSS comments inside the value string will be filtered out.
+   * CSS comments present in the source value will be available in
+   * the `raws` property.
+   *
+   * Assigning new `value` would ignore the comments in `raws`
+   * property while compiling node to string.
    *
    * ```js
    * const root = postcss.parse('a { color: black }')
-   * const decl = root.first.first
-   * decl.value //=> 'black'
+   * const decl = root.first?.first
+   *
+   * console.log(decl.value) //=> 'black'
    * ```
    */
   value: string
 
   /**
-   * `true` if the declaration has an `!important` annotation.
+   * The `important` property represents a boolean value. If true,
+   * the CSS declaration will have important specifier.
+   *
+   * For more information about CSS important specifier, please visit:
+   * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/important}
+   *
+   * For more information about CSS Specificity, please visit:
+   * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity}
    *
    * ```js
    * const root = postcss.parse('a { color: black !important; color: red }')
-   * root.first.first.important //=> true
-   * root.first.last.important  //=> undefined
+   *
+   * console.log(root.first?.first?.important) //=> true
+   * console.log(root.first?.last?.important)  //=> undefined
    * ```
    */
   important: boolean
 
   /**
-   * `true` if declaration is declaration of CSS Custom Property
-   * or Sass variable.
+   * The `variable` method represents a getter that returns true
+   * if a declaration starts with `--` or `$`, which are used to
+   * declare variables in CSS and SASS/SCSS.
    *
    * ```js
    * const root = postcss.parse(':root { --one: 1 }')
-   * let one = root.first.first
-   * one.variable //=> true
+   * const one = root.first?.first
+   *
+   * console.log(one?.variable) //=> true
    * ```
    *
    * ```js
    * const root = postcss.parse('$one: 1')
-   * let one = root.first
-   * one.variable //=> true
+   * const one = root.first
+   *
+   * console.log(one?.variable) //=> true
    * ```
    */
   variable: boolean
