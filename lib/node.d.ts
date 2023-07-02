@@ -293,7 +293,7 @@ declare abstract class Node_ {
   warn(result: Result, message: string, options?: WarningOptions): Warning
 
   /**
-   * The `Node.remove` method removes the node from its parent
+   * The `remove` method removes the node from its parent
    * and deletes its parent property.
    *
    * ```js
@@ -307,7 +307,7 @@ declare abstract class Node_ {
   remove(): this
 
   /**
-   * The `Node.toString()` method compiles the node to
+   * The `toString` method compiles the node to
    * browser readable cascading style sheets string
    * depending on it's type.
    *
@@ -321,7 +321,7 @@ declare abstract class Node_ {
   toString(stringifier?: Stringifier | Syntax): string
 
   /**
-   * The `Node.assign` method assigns properties to an existing
+   * The `assign` method assigns properties to an existing
    * node instance.
    *
    * ```js
@@ -335,7 +335,7 @@ declare abstract class Node_ {
   assign(overrides: object): this
 
   /**
-   * The `Node.clone` method creates clone of an existing node,
+   * The `clone` method creates clone of an existing node,
    * which includes all the properties and their values, that
    * includes `raws` but not `type`.
    *
@@ -470,7 +470,7 @@ declare abstract class Node_ {
   root(): Root
 
   /**
-   * Returns a `Node.raws` value. If the node is missing
+   * Returns a `raws` value. If the node is missing
    * the code style property (because the node was manually built or cloned),
    * PostCSS will try to autodetect the code style property by looking
    * at other nodes in the tree.
