@@ -44,7 +44,7 @@ declare namespace Declaration {
 }
 
 /**
- * `Declaration` represents a class that handles CSS declarations.
+ * It represents a class that handles CSS declarations.
  *
  * For more information about CSS declarations, please visit:
  * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#css_declarations}

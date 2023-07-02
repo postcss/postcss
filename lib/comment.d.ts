@@ -32,7 +32,7 @@ declare namespace Comment {
 
 
 /**
- * `Comment` represents a class that handles CSS comments.
+ * It represents a class that handles CSS comments.
  *
  * For more information about CSS comments, please visit:
  * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Comments}

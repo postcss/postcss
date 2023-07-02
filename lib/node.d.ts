@@ -116,7 +116,7 @@ declare namespace Node {
 }
 
 /**
- * `Node` represents an abstract class that handles common
+ * It represents an abstract class that handles common
  * methods for other CSS abstract syntax tree nodes.
  *
  * Any node that represents CSS selector or value should
