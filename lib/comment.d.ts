@@ -44,9 +44,9 @@ declare namespace Comment {
  * }
  * ```
  *
- * NOTE: CSS comments inside selectors, at-rule parameters, or
- * declaration values will be stored in the `raws`
- * properties explained above.
+ * Remember that CSS comments inside selectors, at-rule parameters,
+ * or declaration values will be stored in the `raws` properties
+ * explained above.
  */
 declare class Comment_ extends Node {
   type: 'comment'
