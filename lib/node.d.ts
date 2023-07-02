@@ -75,6 +75,10 @@ declare namespace Node {
     end?: Position
   }
 
+  /**
+   * NodeProps represents an interface for an object received
+   * as parameter by Node class constructor.
+   */
   export interface NodeProps {
     source?: Source
   }
@@ -326,10 +330,9 @@ declare abstract class Node_ {
   assign(overrides: object): this
 
   /**
-   * Returns an exact clone of the node.
-   *
-   * The resulting cloned node and its (cloned) children will retain
-   * code style properties.
+   * The Node#clone method creates clone of an existing node,
+   * which includes all the properties and their values, that
+   * includes `raws` but not `type`.
    *
    * ```js
    * decl.raws.before    //=> "\n  "
@@ -339,9 +342,10 @@ declare abstract class Node_ {
    * ```
    *
    * @param overrides New properties to override in the clone.
-   * @return Clone of the node.
+   *
+   * @return Duplicate of the node instance.
    */
-  clone(overrides?: object): this
+  clone(overrides?: object): Node_
 
   /**
    * Shortcut to clone the node and insert the resulting cloned node
