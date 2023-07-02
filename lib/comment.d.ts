@@ -30,18 +30,23 @@ declare namespace Comment {
   export { Comment_ as default }
 }
 
+
 /**
- * Represents a comment between declarations or statements (rule and at-rules).
+ * `Comment` represents a class that handles CSS comments.
+ *
+ * For more information about CSS comments, please visit:
+ * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/Comments}
  *
  * ```js
  * Once (root, { Comment }) {
- *   let note = new Comment({ text: 'Note: …' })
+ *   const note = new Comment({ text: 'Note: …' })
  *   root.append(note)
  * }
  * ```
  *
- * Comments inside selectors, at-rule parameters, or declaration values
- * will be stored in the `raws` properties explained above.
+ * NOTE: CSS comments inside selectors, at-rule parameters, or
+ * declaration values will be stored in the `raws`
+ * properties explained above.
  */
 declare class Comment_ extends Node {
   type: 'comment'
