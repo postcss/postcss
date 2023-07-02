@@ -70,8 +70,7 @@ declare class Declaration_ extends Node {
   raws: Declaration.DeclarationRaws
 
   /**
-   * The `prop` property represents name of
-   * a CSS declaration.
+   * The property name for a CSS declaration.
    *
    * ```js
    * const root = postcss.parse('a { color: black }')
@@ -83,8 +82,7 @@ declare class Declaration_ extends Node {
   prop: string
 
   /**
-   * The `value` property represents value of
-   * a CSS declaration.
+   * The property value for a CSS declaration.
    *
    * Any CSS comments inside the value string will be filtered out.
    * CSS comments present in the source value will be available in
