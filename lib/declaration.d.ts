@@ -44,10 +44,8 @@ declare namespace Declaration {
 }
 
 /**
- * It represents a class that handles CSS declarations.
- *
- * Learn more about CSS Specificity
- * [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#css_declarations)
+ * It represents a class that handles
+ * [CSS declarations](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#css_declarations)
  *
  * ```js
  * Once (root, { Declaration }) {
@@ -102,10 +100,9 @@ declare class Declaration_ extends Node {
 
   /**
    * The `important` property represents a boolean value. If true,
-   * the CSS declaration will have important specifier.
-   *
-   * Learn more about CSS Specificity
-   * [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax#css_declarations)
+   * the CSS declaration will have
+   * [important](https://developer.mozilla.org/en-US/docs/Web/CSS/important)
+   * specifier
    *
    * ```js
    * const root = postcss.parse('a { color: black !important; color: red }')

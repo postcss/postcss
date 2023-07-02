@@ -32,10 +32,8 @@ declare namespace Comment {
 
 
 /**
- * It represents a class that handles CSS comments.
- *
-   * Learn more about CSS Specificity
-   * [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Comments)
+ * It represents a class that handles
+ * [CSS comments](https://developer.mozilla.org/en-US/docs/Web/CSS/Comments)
  *
  * ```js
  * Once (root, { Comment }) {
