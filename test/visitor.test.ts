@@ -1,19 +1,19 @@
-import { resolve, basename } from 'path'
 // @ts-ignore type definitions for nanodelay@1 are wrong.
 import { delay } from 'nanodelay'
+import { basename, resolve } from 'path'
 import { test } from 'uvu'
-import { is, type, equal, throws } from 'uvu/assert'
+import { equal, is, throws, type } from 'uvu/assert'
 
 import postcss, {
-  Container,
-  Root,
-  Rule,
+  AnyNode,
   AtRule,
+  Container,
   Declaration,
+  Helpers,
   Plugin,
   PluginCreator,
-  AnyNode,
-  Helpers
+  Root,
+  Rule
 } from '../lib/postcss.js'
 
 function hasAlready(parent: Container | undefined, selector: string): boolean {
@@ -32,36 +32,11 @@ function addIndex(array: any[][]): any[][] {
 function buildVisitor(): [[string, string][], Plugin] {
   let visits: [string, string][] = []
   let visitor: Plugin = {
-    postcssPlugin: 'visitor',
-    Document(i) {
-      visits.push(['Document', `${i.nodes.length}`])
-    },
-    Once(i) {
-      visits.push(['Once', `${i.nodes.length}`])
-    },
-    Root(i) {
-      visits.push(['Root', `${i.nodes.length}`])
-    },
-    RootExit(i) {
-      visits.push(['RootExit', `${i.nodes.length}`])
-    },
     AtRule(i) {
       visits.push(['AtRule', i.name])
     },
     AtRuleExit(i) {
       visits.push(['AtRuleExit', i.name])
-    },
-    Rule(i) {
-      visits.push(['Rule', i.selector])
-    },
-    RuleExit(i) {
-      visits.push(['RuleExit', i.selector])
-    },
-    Declaration(i) {
-      visits.push(['Declaration', i.prop + ': ' + i.value])
-    },
-    DeclarationExit(i) {
-      visits.push(['DeclarationExit', i.prop + ': ' + i.value])
     },
     Comment(i) {
       visits.push(['Comment', i.text])
@@ -69,27 +44,51 @@ function buildVisitor(): [[string, string][], Plugin] {
     CommentExit(i) {
       visits.push(['CommentExit', i.text])
     },
-    OnceExit(i) {
-      visits.push(['OnceExit', `${i.nodes.length}`])
+    Declaration(i) {
+      visits.push(['Declaration', i.prop + ': ' + i.value])
+    },
+    DeclarationExit(i) {
+      visits.push(['DeclarationExit', i.prop + ': ' + i.value])
+    },
+    Document(i) {
+      visits.push(['Document', `${i.nodes.length}`])
     },
     DocumentExit(i) {
       visits.push(['DocumentExit', `${i.nodes.length}`])
+    },
+    Once(i) {
+      visits.push(['Once', `${i.nodes.length}`])
+    },
+    OnceExit(i) {
+      visits.push(['OnceExit', `${i.nodes.length}`])
+    },
+    postcssPlugin: 'visitor',
+    Root(i) {
+      visits.push(['Root', `${i.nodes.length}`])
+    },
+    RootExit(i) {
+      visits.push(['RootExit', `${i.nodes.length}`])
+    },
+    Rule(i) {
+      visits.push(['Rule', i.selector])
+    },
+    RuleExit(i) {
+      visits.push(['RuleExit', i.selector])
     }
   }
   return [visits, visitor]
 }
 
 let replaceColorGreenClassic: Plugin = {
-  postcssPlugin: 'replace-color',
   Once(root) {
     root.walkDecls('color', decl => {
       decl.value = 'green'
     })
-  }
+  },
+  postcssPlugin: 'replace-color'
 }
 
 let willChangeVisitor: Plugin = {
-  postcssPlugin: 'will-change',
   Declaration(node) {
     if (node.prop !== 'will-change') return
     if (!node.parent) return
@@ -100,11 +99,11 @@ let willChangeVisitor: Plugin = {
     if (already) return
 
     node.cloneBefore({ prop: 'backface-visibility', value: 'hidden' })
-  }
+  },
+  postcssPlugin: 'will-change'
 }
 
 let addPropsVisitor: Plugin = {
-  postcssPlugin: 'add-props',
   Declaration(node) {
     if (node.prop !== 'will-change') return
 
@@ -117,43 +116,44 @@ let addPropsVisitor: Plugin = {
 
       decl.cloneBefore({ prop: 'will-change', value: 'transform' })
     })
-  }
+  },
+  postcssPlugin: 'add-props'
 }
 
 let replaceAllButRedToGreen: Plugin = {
-  postcssPlugin: 'replace-not-red-to-green',
   Declaration(node) {
     if (node.prop === 'color' && node.value !== 'red') {
       node.value = 'green'
     }
-  }
+  },
+  postcssPlugin: 'replace-not-red-to-green'
 }
 
 let replaceGreenToRed: Plugin = {
-  postcssPlugin: 'replace-green-to-red',
   Declaration(node) {
     if (node.prop === 'color' && node.value === 'green') {
       node.value = 'red'
     }
-  }
+  },
+  postcssPlugin: 'replace-green-to-red'
 }
 
 let replacePrintToMobile: Plugin = {
-  postcssPlugin: 'replace-to-mobile',
   AtRule(node) {
     if (node.params === '(print)') {
       node.params = '(mobile)'
     }
-  }
+  },
+  postcssPlugin: 'replace-to-mobile'
 }
 
 let replaceScreenToPrint: Plugin = {
-  postcssPlugin: 'replace-to-print',
   AtRule(node) {
     if (node.params === '(screen)') {
       node.params = '(print)'
     }
-  }
+  },
+  postcssPlugin: 'replace-to-print'
 }
 
 let postcssFocus: Plugin = {
@@ -177,7 +177,6 @@ let postcssFocus: Plugin = {
 }
 
 let hidden: Plugin = {
-  postcssPlugin: 'hidden',
   Declaration(decl) {
     if (decl.prop !== 'display') return
 
@@ -220,7 +219,8 @@ let hidden: Plugin = {
       decl.cloneBefore({ prop: 'visibility', value: 'hidden' })
       decl.remove()
     }
-  }
+  },
+  postcssPlugin: 'hidden'
 }
 
 function createPlugin(creator: () => Plugin): PluginCreator<void> {
@@ -232,7 +232,16 @@ function createPlugin(creator: () => Plugin): PluginCreator<void> {
 let postcssAlias = createPlugin(() => {
   let aliases: any = {}
   return {
-    postcssPlugin: 'postcss-alias',
+    Declaration(decl) {
+      let value = aliases[decl.prop]
+      if (value !== undefined) {
+        decl.replaceWith({
+          important: decl.important,
+          prop: value,
+          value: decl.value
+        })
+      }
+    },
     Once(root) {
       root.walkAtRules('alias', rule => {
         rule.walkDecls(decl => {
@@ -241,16 +250,7 @@ let postcssAlias = createPlugin(() => {
         rule.remove()
       })
     },
-    Declaration(decl) {
-      let value = aliases[decl.prop]
-      if (value !== undefined) {
-        decl.replaceWith({
-          prop: value,
-          value: decl.value,
-          important: decl.important
-        })
-      }
-    }
+    postcssPlugin: 'postcss-alias'
   }
 })
 
@@ -327,10 +327,10 @@ test('wraps node to proxies', () => {
   let proxy: any
   let root: Root | undefined
   postcss({
-    postcssPlugin: 'proxyCatcher',
     Once(node) {
       root = node
     },
+    postcssPlugin: 'proxyCatcher',
     Rule(node) {
       proxy = node
     }
@@ -633,24 +633,24 @@ test('passes helpers', async () => {
   }
 
   let syncPlugin: Plugin = {
-    postcssPlugin: 'syncPlugin',
     Once: check,
+    OnceExit: check,
+    postcssPlugin: 'syncPlugin',
     Rule: check,
-    RuleExit: check,
-    OnceExit: check
+    RuleExit: check
   }
 
   let asyncPlugin: Plugin = {
-    postcssPlugin: 'syncPlugin',
     async Once(node, helpers) {
       await delay(1)
       check(node, helpers)
     },
-    async Rule(node, helpers) {
+    async OnceExit(node, helpers) {
       await delay(1)
       check(node, helpers)
     },
-    async OnceExit(node, helpers) {
+    postcssPlugin: 'syncPlugin',
+    async Rule(node, helpers) {
       await delay(1)
       check(node, helpers)
     }
@@ -670,24 +670,24 @@ test('passes helpers in a document', async () => {
   }
 
   let syncPlugin: Plugin = {
-    postcssPlugin: 'syncPlugin',
     Once: check,
+    OnceExit: check,
+    postcssPlugin: 'syncPlugin',
     Rule: check,
-    RuleExit: check,
-    OnceExit: check
+    RuleExit: check
   }
 
   let asyncPlugin: Plugin = {
-    postcssPlugin: 'syncPlugin',
     async Once(node, helpers) {
       await delay(1)
       check(node, helpers)
     },
-    async Rule(node, helpers) {
+    async OnceExit(node, helpers) {
       await delay(1)
       check(node, helpers)
     },
-    async OnceExit(node, helpers) {
+    postcssPlugin: 'syncPlugin',
+    async Rule(node, helpers) {
       await delay(1)
       check(node, helpers)
     }
@@ -705,10 +705,10 @@ test('passes helpers in a document', async () => {
 
 test('detects non-changed values', () => {
   let plugin: Plugin = {
-    postcssPlugin: 'test',
     Declaration(decl) {
       decl.value = 'red'
-    }
+    },
+    postcssPlugin: 'test'
   }
   is(
     postcss([plugin]).process('a{ color: black; background: white; }', {
@@ -721,6 +721,9 @@ test('detects non-changed values', () => {
 test('allows runtime listeners', () => {
   let root = false
   let plugin: Plugin = {
+    Declaration(decl) {
+      decl.value = 'red'
+    },
     postcssPlugin: 'test',
     prepare(result) {
       return {
@@ -731,9 +734,6 @@ test('allows runtime listeners', () => {
           rule.selector = basename(result.opts.from ?? '')
         }
       }
-    },
-    Declaration(decl) {
-      decl.value = 'red'
     }
   }
   is(
@@ -760,8 +760,8 @@ test('works correctly with nodes changes', () => {
 
 test('throws error on unknown plugin property', () => {
   let plugin: any = {
-    postcssPlugin: 'test',
-    NO: true
+    NO: true,
+    postcssPlugin: 'test'
   }
   throws(() => {
     postcss([plugin]).process('').css
@@ -770,14 +770,14 @@ test('throws error on unknown plugin property', () => {
 
 test('unwraps nodes on inserting', () => {
   let moveNode: Plugin = {
-    postcssPlugin: 'moveNode',
     Declaration: {
       color: decl => {
         if (decl.parent?.type !== 'root') {
           decl.root().append(decl)
         }
       }
-    }
+    },
+    postcssPlugin: 'moveNode'
   }
 
   let root = postcss([moveNode]).process('a{color:red}').root
@@ -785,23 +785,23 @@ test('unwraps nodes on inserting', () => {
 })
 
 let redToGreen: Plugin = {
-  postcssPlugin: 'redToGreen',
   Declaration: {
     color: decl => {
       if (decl.value === 'red') {
         decl.value = 'green'
       }
     }
-  }
+  },
+  postcssPlugin: 'redToGreen'
 }
 
 let greenToBlue: Plugin = {
-  postcssPlugin: 'greenToBlue',
   Declaration(decl) {
     if (decl.value === 'green') {
       decl.value = 'blue'
     }
-  }
+  },
+  postcssPlugin: 'greenToBlue'
 }
 
 let fooToBar: Plugin = {
@@ -819,12 +819,12 @@ let mixins: Plugin = {
     let mixin: AnyNode | undefined
     return {
       AtRule: {
+        'apply-mixin': atRule => {
+          if (mixin) atRule.replaceWith(mixin)
+        },
         'define-mixin': atRule => {
           if (atRule.first) mixin = atRule.first
           atRule.remove()
-        },
-        'apply-mixin': atRule => {
-          if (mixin) atRule.replaceWith(mixin)
         }
       }
     }
@@ -832,13 +832,13 @@ let mixins: Plugin = {
 }
 
 let insertFirst: Plugin = {
-  postcssPlugin: 'insertFirst',
   AtRule: {
     'insert-first': atRule => {
       let first = atRule.root().first
       if (first) atRule.replaceWith(first)
     }
-  }
+  },
+  postcssPlugin: 'insertFirst'
 }
 
 for (let funcType of ['sync', 'async']) {
@@ -1197,31 +1197,31 @@ for (let funcType of ['sync', 'async']) {
     let filteredExits: string[] = []
 
     let scanner: Plugin = {
-      postcssPlugin: 'test',
-      Declaration: {
-        'color': decl => {
-          filteredDecls.push(decl.prop)
+      AtRule: {
+        '*': atRule => {
+          allAtRules.push(atRule.name)
         },
+        'media': atRule => {
+          filteredAtRules.push(atRule.name)
+        }
+      },
+      Declaration: {
         '*': decl => {
           allDecls.push(decl.prop)
+        },
+        'color': decl => {
+          filteredDecls.push(decl.prop)
         }
       },
       DeclarationExit: {
-        'color': decl => {
-          filteredExits.push(decl.prop)
-        },
         '*': decl => {
           allExits.push(decl.prop)
+        },
+        'color': decl => {
+          filteredExits.push(decl.prop)
         }
       },
-      AtRule: {
-        'media': atRule => {
-          filteredAtRules.push(atRule.name)
-        },
-        '*': atRule => {
-          allAtRules.push(atRule.name)
-        }
-      }
+      postcssPlugin: 'test'
     }
 
     let result = postcss([scanner]).process(
@@ -1251,31 +1251,31 @@ for (let funcType of ['sync', 'async']) {
     let filteredExits: string[] = []
 
     let scanner: Plugin = {
-      postcssPlugin: 'test',
-      Declaration: {
-        'color': decl => {
-          filteredDecls.push(decl.prop)
+      AtRule: {
+        '*': atRule => {
+          allAtRules.push(atRule.name)
         },
+        'media': atRule => {
+          filteredAtRules.push(atRule.name)
+        }
+      },
+      Declaration: {
         '*': decl => {
           allDecls.push(decl.prop)
+        },
+        'color': decl => {
+          filteredDecls.push(decl.prop)
         }
       },
       DeclarationExit: {
-        'color': decl => {
-          filteredExits.push(decl.prop)
-        },
         '*': decl => {
           allExits.push(decl.prop)
+        },
+        'color': decl => {
+          filteredExits.push(decl.prop)
         }
       },
-      AtRule: {
-        'media': atRule => {
-          filteredAtRules.push(atRule.name)
-        },
-        '*': atRule => {
-          allAtRules.push(atRule.name)
-        }
-      }
+      postcssPlugin: 'test'
     }
 
     let document = postcss.document({
@@ -1306,15 +1306,15 @@ for (let funcType of ['sync', 'async']) {
     let OnceExit = 0
 
     let plugin: Plugin = {
-      postcssPlugin: 'test',
-      Rule(rule) {
-        rule.remove()
+      OnceExit() {
+        OnceExit += 1
       },
+      postcssPlugin: 'test',
       RootExit() {
         rootExit += 1
       },
-      OnceExit() {
-        OnceExit += 1
+      Rule(rule) {
+        rule.remove()
       }
     }
 
@@ -1336,18 +1336,18 @@ for (let funcType of ['sync', 'async']) {
     let DocumentExit = 0
 
     let plugin: Plugin = {
-      postcssPlugin: 'test',
-      Rule(rule) {
-        rule.remove()
-      },
-      RootExit() {
-        RootExit += 1
-      },
       DocumentExit() {
         DocumentExit += 1
       },
       OnceExit() {
         OnceExit += 1
+      },
+      postcssPlugin: 'test',
+      RootExit() {
+        RootExit += 1
+      },
+      Rule(rule) {
+        rule.remove()
       }
     }
 
@@ -1374,18 +1374,18 @@ for (let funcType of ['sync', 'async']) {
     let DocumentExit = 0
 
     let plugin: Plugin = {
-      postcssPlugin: 'test',
-      Rule(rule) {
-        rule.remove()
-      },
-      RootExit() {
-        RootExit += 1
-      },
       DocumentExit() {
         DocumentExit += 1
       },
       OnceExit() {
         OnceExit += 1
+      },
+      postcssPlugin: 'test',
+      RootExit() {
+        RootExit += 1
+      },
+      Rule(rule) {
+        rule.remove()
       }
     }
 
@@ -1409,10 +1409,10 @@ for (let funcType of ['sync', 'async']) {
 
 test('throws error from async OnceExit', async () => {
   let plugin: Plugin = {
-    postcssPlugin: 'test',
     OnceExit() {
       throw new Error('test Exit error')
-    }
+    },
+    postcssPlugin: 'test'
   }
 
   let result = postcss([plugin]).process('a{ color: black }', {
@@ -1556,6 +1556,15 @@ test('marks cleaned nodes as dirty on moving in a document', () => {
 
 test('append works after reassigning nodes through .parent', async () => {
   let plugin: Plugin = {
+    OnceExit(root) {
+      let firstNode = root.nodes[0] as AtRule
+      let secondNode = root.nodes[1] as AtRule
+      let rule2 = secondNode.nodes[0]
+      rule2.parent!.nodes = rule2.parent!.nodes
+      firstNode.append(...secondNode.nodes)
+      secondNode.remove()
+    },
+
     postcssPlugin: 'test',
 
     Rule(rule) {
@@ -1575,15 +1584,6 @@ test('append works after reassigning nodes through .parent', async () => {
 
       rule.after(atrule)
       rule.remove()
-    },
-
-    OnceExit(root) {
-      let firstNode = root.nodes[0] as AtRule
-      let secondNode = root.nodes[1] as AtRule
-      let rule2 = secondNode.nodes[0]
-      rule2.parent!.nodes = rule2.parent!.nodes
-      firstNode.append(...secondNode.nodes)
-      secondNode.remove()
     }
   }
 

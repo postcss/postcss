@@ -1,15 +1,15 @@
-import * as pico from 'picocolors'
-import { join, resolve as pathResolve } from 'path'
-import { pathToFileURL } from 'url'
-import stripAnsi = require('strip-ansi')
 import Concat from 'concat-with-sourcemaps'
+import { join, resolve as pathResolve } from 'path'
+import * as pico from 'picocolors'
+import stripAnsi = require('strip-ansi')
+import { pathToFileURL } from 'url'
 import { test } from 'uvu'
-import { is, equal, match, type } from 'uvu/assert'
+import { equal, is, match, type } from 'uvu/assert'
 
 import postcss, {
-  ProcessOptions,
   CssSyntaxError,
   Plugin,
+  ProcessOptions,
   Rule
 } from '../lib/postcss.js'
 
@@ -32,7 +32,7 @@ async function catchError(cb: () => Promise<any>): Promise<CssSyntaxError> {
 
 function parseError(
   css: string,
-  opts?: Pick<ProcessOptions, 'map' | 'from'>
+  opts?: Pick<ProcessOptions, 'from' | 'map'>
 ): CssSyntaxError {
   try {
     postcss.parse(css, opts)
@@ -58,11 +58,11 @@ test('saves source', () => {
   is(error.source, 'a {\n  content: "\n}')
 
   equal(error.input, {
-    line: error.line,
     column: error.column,
-    source: error.source,
-    endLine: error.endLine,
     endColumn: error.endColumn,
+    endLine: error.endLine,
+    line: error.line,
+    source: error.source,
   })
 })
 
@@ -80,10 +80,10 @@ test('saves source with ranges', () => {
   is(error.source, 'badword')
 
   equal(error.input, {
-    line: error.line,
     column: error.column,
-    endLine: error.endLine,
     endColumn: error.endColumn,
+    endLine: error.endLine,
+    line: error.line,
     source: error.source
   })
 })
@@ -108,10 +108,10 @@ test('saves source with ranges', () => {
  is(error.source, 'badword')
 
  equal(error.input, {
-    line: error.line,
     column: error.column,
-    endLine: error.endLine,
     endColumn: error.endColumn,
+    endLine: error.endLine,
+    line: error.line,
     source: error.source
   })
 })
@@ -130,10 +130,10 @@ test('saves source with ranges', () => {
  is(error.source, 'badword')
 
  equal(error.input, {
-    line: error.line,
     column: error.column,
-    endLine: error.endLine,
     endColumn: error.endColumn,
+    endLine: error.endLine,
+    line: error.line,
     source: error.source
   })
 })
@@ -232,13 +232,13 @@ test('uses source map', () => {
   type(error.source, 'undefined')
 
   equal(error.input, {
-    url: urlOf(join('build', 'all.css')),
+    column: 1,
+    endColumn: error.endColumn,
+    endLine: error.endLine,
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
-    column: 1,
     source: 'a { }\n\nb {\n',
-    endLine: error.endLine,
-    endColumn: error.endColumn,
+    url: urlOf(join('build', 'all.css')),
   })
 })
 
@@ -261,21 +261,21 @@ test('works with path in sources', () => {
   type(error.source, 'undefined')
 
   equal(error.input, {
-    url: pathToFileURL(pathOf(join('build', 'all.css'))).toString(),
+    column: 1,
+    endColumn: error.endColumn,
+    endLine: error.endLine,
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
-    column: 1,
     source: 'a { }\n\nb {\n',
-    endLine: error.endLine,
-    endColumn: error.endColumn,
+    url: pathToFileURL(pathOf(join('build', 'all.css'))).toString(),
   })
 })
 
 test('shows origin source', () => {
   let input = postcss([() => {}]).process('a{}', {
     from: '/a.css',
-    to: '/b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: '/b.css'
   })
   let error = parseError('a{', {
     from: '/b.css',
@@ -289,10 +289,10 @@ test('does not uses wrong source map', () => {
     from: 'build/all.css',
     map: {
       prev: {
-        version: 3,
         file: 'build/all.css',
+        mappings: 'A',
         sources: ['a.css', 'b.css'],
-        mappings: 'A'
+        version: 3
       }
     }
   })
@@ -308,12 +308,12 @@ test('set source plugin', () => {
 
 test('set source plugin automatically', async () => {
   let plugin: Plugin = {
-    postcssPlugin: 'test-plugin',
     Once(css) {
       if (css.first) {
         throw css.first.error('Error')
       }
-    }
+    },
+    postcssPlugin: 'test-plugin'
   }
 
   let error = await catchError(() =>
@@ -325,14 +325,14 @@ test('set source plugin automatically', async () => {
 
 test('set plugin automatically in async', async () => {
   let plugin: Plugin = {
-    postcssPlugin: 'async-plugin',
     Once(css) {
       return new Promise((resolve, reject) => {
         if (css.first) {
           reject(css.first.error('Error'))
         }
       })
-    }
+    },
+    postcssPlugin: 'async-plugin'
   }
 
   let error = await catchError(() =>

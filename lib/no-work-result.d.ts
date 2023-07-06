@@ -1,9 +1,9 @@
-import Result, { Message, ResultOptions } from './result.js'
+import LazyResult from './lazy-result.js'
 import { SourceMap } from './postcss.js'
 import Processor from './processor.js'
-import Warning from './warning.js'
+import Result, { Message, ResultOptions } from './result.js'
 import Root from './root.js'
-import LazyResult from './lazy-result.js'
+import Warning from './warning.js'
 
 declare namespace NoWorkResult {
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -23,22 +23,22 @@ declare namespace NoWorkResult {
  * ```
  */
 declare class NoWorkResult_ implements LazyResult {
-  then: Promise<Result>['then']
   catch: Promise<Result>['catch']
   finally: Promise<Result>['finally']
+  then: Promise<Result>['then']
   constructor(processor: Processor, css: string, opts: ResultOptions)
-  get [Symbol.toStringTag](): string
-  get processor(): Processor
-  get opts(): ResultOptions
-  get css(): string
-  get content(): string
-  get map(): SourceMap
-  get root(): Root
-  get messages(): Message[]
-  warnings(): Warning[]
-  toString(): string
-  sync(): Result
   async(): Promise<Result>
+  get content(): string
+  get css(): string
+  get map(): SourceMap
+  get messages(): Message[]
+  get opts(): ResultOptions
+  get processor(): Processor
+  get root(): Root
+  get [Symbol.toStringTag](): string
+  sync(): Result
+  toString(): string
+  warnings(): Warning[]
 }
 
 declare class NoWorkResult extends NoWorkResult_ {}

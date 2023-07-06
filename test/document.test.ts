@@ -1,8 +1,8 @@
 import { test } from 'uvu'
 import { is, match } from 'uvu/assert'
 
-import { Result, parse } from '../lib/postcss.js'
 import Document from '../lib/document.js'
+import { parse, Result } from '../lib/postcss.js'
 
 test('generates result without map', () => {
   let root = parse('a {}')

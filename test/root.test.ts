@@ -1,7 +1,7 @@
 import { test } from 'uvu'
-import { is, type, match } from 'uvu/assert'
+import { is, match, type } from 'uvu/assert'
 
-import { Result, parse } from '../lib/postcss.js'
+import { parse, Result } from '../lib/postcss.js'
 
 test('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')

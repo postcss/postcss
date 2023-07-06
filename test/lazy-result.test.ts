@@ -1,6 +1,6 @@
-import { is, equal, type } from 'uvu/assert'
-import { test } from 'uvu'
 import { SourceMapGenerator } from 'source-map-js'
+import { test } from 'uvu'
+import { equal, is, type } from 'uvu/assert'
 
 import LazyResult from '../lib/lazy-result.js'
 import Processor from '../lib/processor.js'

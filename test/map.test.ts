@@ -1,19 +1,19 @@
 import {
-  writeFileSync,
-  readdirSync,
-  unlinkSync,
   existsSync,
   lstatSync,
+  mkdirSync,
+  readdirSync,
   rmdirSync,
-  mkdirSync
+  unlinkSync,
+  writeFileSync
 } from 'fs'
+import { join, parse, resolve } from 'path'
 import { SourceMapConsumer, SourceMapGenerator } from 'source-map-js'
-import { is, type, equal, match } from 'uvu/assert'
-import { join, resolve, parse } from 'path'
 import { pathToFileURL } from 'url'
 import { test } from 'uvu'
+import { equal, is, match, type } from 'uvu/assert'
 
-import postcss, { SourceMap, Rule, Root } from '../lib/postcss.js'
+import postcss, { Root, Rule, SourceMap } from '../lib/postcss.js'
 import PreviousMap from '../lib/previous-map.js'
 
 function consumer(map: SourceMap): any {
@@ -80,48 +80,48 @@ test('generate right source map', () => {
 
   let result = processor.process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: true
+    map: true,
+    to: 'b.css'
   })
   let map = read(result)
 
   is(map.file, 'b.css')
 
-  equal(map.originalPositionFor({ line: 1, column: 0 }), {
-    source: 'a.css',
-    line: 1,
+  equal(map.originalPositionFor({ column: 0, line: 1 }), {
     column: 0,
-    name: null
-  })
-  equal(map.originalPositionFor({ line: 1, column: 2 }), {
-    source: 'a.css',
     line: 1,
+    name: null,
+    source: 'a.css'
+  })
+  equal(map.originalPositionFor({ column: 2, line: 1 }), {
     column: 0,
-    name: null
+    line: 1,
+    name: null,
+    source: 'a.css'
   })
-  equal(map.originalPositionFor({ line: 2, column: 2 }), {
-    source: 'a.css',
-    line: 2,
+  equal(map.originalPositionFor({ column: 2, line: 2 }), {
     column: 2,
-    name: null
-  })
-  equal(map.originalPositionFor({ line: 3, column: 2 }), {
-    source: 'a.css',
     line: 2,
+    name: null,
+    source: 'a.css'
+  })
+  equal(map.originalPositionFor({ column: 2, line: 3 }), {
     column: 2,
-    name: null
-  })
-  equal(map.originalPositionFor({ line: 3, column: 14 }), {
-    source: 'a.css',
     line: 2,
+    name: null,
+    source: 'a.css'
+  })
+  equal(map.originalPositionFor({ column: 14, line: 3 }), {
     column: 14,
-    name: null
+    line: 2,
+    name: null,
+    source: 'a.css'
   })
-  equal(map.originalPositionFor({ line: 4, column: 2 }), {
-    source: 'a.css',
-    line: 3,
+  equal(map.originalPositionFor({ column: 2, line: 4 }), {
     column: 2,
-    name: null
+    line: 3,
+    name: null,
+    source: 'a.css'
   })
 })
 
@@ -133,8 +133,8 @@ test('generates right source map for @layer', () => {
 
   let result = processor.process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: true
+    map: true,
+    to: 'b.css'
   })
 
   read(result)
@@ -145,22 +145,22 @@ test('changes previous source map', () => {
 
   let doubled = doubler.process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
 
   let lighted = lighter.process(doubled.css, {
     from: 'b.css',
-    to: 'c.css',
-    map: { prev: doubled.map }
+    map: { prev: doubled.map },
+    to: 'c.css'
   })
 
   let map = consumer(lighted.map)
-  equal(map.originalPositionFor({ line: 1, column: 18 }), {
-    source: 'a.css',
-    line: 1,
+  equal(map.originalPositionFor({ column: 18, line: 1 }), {
     column: 4,
-    name: null
+    line: 1,
+    name: null,
+    source: 'a.css'
   })
 })
 
@@ -168,8 +168,8 @@ test('adds source map annotation', () => {
   let css = 'a { }/*# sourceMappingURL=a.css.map */'
   let result = postcss([() => {}]).process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
 
   is(result.css, 'a { }\n/*# sourceMappingURL=b.css.map */')
@@ -179,8 +179,8 @@ test('misses source map annotation, if user ask', () => {
   let css = 'a { }'
   let result = postcss([() => {}]).process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: { annotation: false }
+    map: { annotation: false },
+    to: 'b.css'
   })
 
   is(result.css, css)
@@ -191,14 +191,14 @@ test('misses source map annotation, if previous map missed it', () => {
 
   let step1 = postcss([() => {}]).process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: { annotation: false }
+    map: { annotation: false },
+    to: 'b.css'
   })
 
   let step2 = postcss([() => {}]).process(step1.css, {
     from: 'b.css',
-    to: 'c.css',
-    map: { prev: step1.map }
+    map: { prev: step1.map },
+    to: 'c.css'
   })
 
   is(step2.css, css)
@@ -207,8 +207,8 @@ test('misses source map annotation, if previous map missed it', () => {
 test('uses user path in annotation, relative to options.to', () => {
   let result = postcss([() => {}]).process('a { }', {
     from: 'source/a.css',
-    to: 'build/b.css',
-    map: { annotation: 'maps/b.map' }
+    map: { annotation: 'maps/b.map' },
+    to: 'build/b.css'
   })
 
   is(result.css, 'a { }\n/*# sourceMappingURL=maps/b.map */')
@@ -216,7 +216,7 @@ test('uses user path in annotation, relative to options.to', () => {
 
   is(map.file, join('..', 'b.css'))
   is(
-    map.originalPositionFor({ line: 1, column: 0 }).source,
+    map.originalPositionFor({ column: 0, line: 1 }).source,
     '../../source/a.css'
   )
 })
@@ -226,8 +226,8 @@ test('generates inline map', () => {
 
   let inline = postcss([() => {}]).process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: true }
+    map: { inline: true },
+    to: 'b.css'
   })
 
   type(inline.map, 'undefined')
@@ -235,8 +235,8 @@ test('generates inline map', () => {
 
   let separated = postcss([() => {}]).process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
 
   let base64 = Buffer.from(separated.map.toString()).toString('base64')
@@ -247,8 +247,8 @@ test('generates inline map', () => {
 test('generates inline map by default', () => {
   let inline = postcss([() => {}]).process('a { }', {
     from: 'a.css',
-    to: 'b.css',
-    map: true
+    map: true,
+    to: 'b.css'
   })
   match(inline.css, /# sourceMappingURL=data:/)
 })
@@ -256,13 +256,13 @@ test('generates inline map by default', () => {
 test('generates separated map if previous map was not inlined', () => {
   let step1 = doubler.process('a { color: black }', {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
   let step2 = lighter.process(step1.css, {
     from: 'b.css',
-    to: 'c.css',
-    map: { prev: step1.map }
+    map: { prev: step1.map },
+    to: 'c.css'
   })
 
   type(step2.map, 'object')
@@ -271,8 +271,8 @@ test('generates separated map if previous map was not inlined', () => {
 test('generates separated map on annotation option', () => {
   let result = postcss([() => {}]).process('a { }', {
     from: 'a.css',
-    to: 'b.css',
-    map: { annotation: false }
+    map: { annotation: false },
+    to: 'b.css'
   })
 
   type(result.map, 'object')
@@ -281,14 +281,14 @@ test('generates separated map on annotation option', () => {
 test('allows change map type', () => {
   let step1 = postcss([() => {}]).process('a { }', {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: true }
+    map: { inline: true },
+    to: 'b.css'
   })
 
   let step2 = postcss([() => {}]).process(step1.css, {
     from: 'b.css',
-    to: 'c.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'c.css'
   })
 
   type(step2.map, 'object')
@@ -301,15 +301,15 @@ test('misses check files on requires', () => {
 
   let step1 = doubler.process('a { }', {
     from: 'a.css',
-    to: file,
-    map: { inline: false }
+    map: { inline: false },
+    to: file
   })
 
   writeFileSync(file + '.map', step1.map.toString())
   let step2 = lighter.process(step1.css, {
     from: file,
-    to: 'b.css',
-    map: false
+    map: false,
+    to: 'b.css'
   })
 
   type(step2.map, 'undefined')
@@ -318,8 +318,8 @@ test('misses check files on requires', () => {
 test('works in subdirs', () => {
   let result = doubler.process('a { }', {
     from: 'from/a.css',
-    to: 'out/b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'out/b.css'
   })
 
   match(result.css, /sourceMappingURL=b.css.map/)
@@ -332,31 +332,31 @@ test('works in subdirs', () => {
 test('uses map from subdir', () => {
   let step1 = doubler.process('a { }', {
     from: 'a.css',
-    to: 'out/b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'out/b.css'
   })
 
   let step2 = doubler.process(step1.css, {
     from: 'out/b.css',
-    to: 'out/two/c.css',
-    map: { prev: step1.map }
+    map: { prev: step1.map },
+    to: 'out/two/c.css'
   })
 
   let source = consumer(step2.map).originalPositionFor({
-    line: 1,
-    column: 0
+    column: 0,
+    line: 1
   }).source
   is(source, '../../a.css')
 
   let step3 = doubler.process(step2.css, {
     from: 'c.css',
-    to: 'd.css',
-    map: { prev: step2.map }
+    map: { prev: step2.map },
+    to: 'd.css'
   })
 
   source = consumer(step3.map).originalPositionFor({
-    line: 1,
-    column: 0
+    column: 0,
+    line: 1
   }).source
   is(source, '../../a.css')
 })
@@ -364,19 +364,19 @@ test('uses map from subdir', () => {
 test('uses map from subdir if it inlined', () => {
   let step1 = doubler.process('a { }', {
     from: 'a.css',
-    to: 'out/b.css',
-    map: true
+    map: true,
+    to: 'out/b.css'
   })
 
   let step2 = doubler.process(step1.css, {
     from: 'out/b.css',
-    to: 'out/two/c.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'out/two/c.css'
   })
 
   let source = consumer(step2.map).originalPositionFor({
-    line: 1,
-    column: 0
+    column: 0,
+    line: 1
   }).source
   is(source, '../../a.css')
 })
@@ -384,13 +384,13 @@ test('uses map from subdir if it inlined', () => {
 test('uses map from subdir if it written as a file', () => {
   let step1 = doubler.process('a { }', {
     from: 'source/a.css',
-    to: 'one/b.css',
-    map: { annotation: 'maps/b.css.map', inline: false }
+    map: { annotation: 'maps/b.css.map', inline: false },
+    to: 'one/b.css'
   })
 
   let source = consumer(step1.map).originalPositionFor({
-    line: 1,
-    column: 0
+    column: 0,
+    line: 1
   }).source
   is(source, '../../source/a.css')
 
@@ -402,13 +402,13 @@ test('uses map from subdir if it written as a file', () => {
 
   let step2 = doubler.process(step1.css, {
     from: join(dir, 'one', 'b.css'),
-    to: join(dir, 'two', 'c.css'),
-    map: true
+    map: true,
+    to: join(dir, 'two', 'c.css')
   })
 
   source = consumer(step2.map).originalPositionFor({
-    line: 1,
-    column: 0
+    column: 0,
+    line: 1
   }).source
   is(source, '../source/a.css')
 })
@@ -416,8 +416,8 @@ test('uses map from subdir if it written as a file', () => {
 test('works with different types of maps', () => {
   let step1 = doubler.process('a { }', {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
 
   let map = step1.map
@@ -426,12 +426,12 @@ test('works with different types of maps', () => {
   for (let i of maps) {
     let step2 = doubler.process(step1.css, {
       from: 'b.css',
-      to: 'c.css',
-      map: { prev: i }
+      map: { prev: i },
+      to: 'c.css'
     })
     let source = consumer(step2.map).originalPositionFor({
-      line: 1,
-      column: 0
+      column: 0,
+      line: 1
     }).source
     is(source, 'a.css')
   }
@@ -440,8 +440,8 @@ test('works with different types of maps', () => {
 test('sets source content by default', () => {
   let result = doubler.process('a { }', {
     from: 'a.css',
-    to: 'out/b.css',
-    map: true
+    map: true,
+    to: 'out/b.css'
   })
 
   is(read(result).sourceContentFor('../a.css'), 'a { }')
@@ -450,8 +450,8 @@ test('sets source content by default', () => {
 test('misses source content on request', () => {
   let result = doubler.process('a { }', {
     from: 'a.css',
-    to: 'out/b.css',
-    map: { sourcesContent: false }
+    map: { sourcesContent: false },
+    to: 'out/b.css'
   })
 
   is(read(result).sourceContentFor('../a.css'), null)
@@ -460,8 +460,8 @@ test('misses source content on request', () => {
 test('misses source content if previous not have', () => {
   let step1 = doubler.process('a { }', {
     from: 'a.css',
-    to: 'out/a.css',
-    map: { sourcesContent: false }
+    map: { sourcesContent: false },
+    to: 'out/a.css'
   })
 
   let file1 = postcss.parse(step1.css, {
@@ -471,7 +471,7 @@ test('misses source content if previous not have', () => {
   let file2 = postcss.parse('b { }', { from: 'b.css', map: true })
 
   if (file1.first) file2.append(file1.first.clone())
-  let step2 = file2.toResult({ to: 'c.css', map: true })
+  let step2 = file2.toResult({ map: true, to: 'c.css' })
 
   is(read(step2).sourceContentFor('b.css'), null)
 })
@@ -479,8 +479,8 @@ test('misses source content if previous not have', () => {
 test('misses source content on request in multiple steps', () => {
   let step1 = doubler.process('a { }', {
     from: 'a.css',
-    to: 'out/a.css',
-    map: { sourcesContent: true }
+    map: { sourcesContent: true },
+    to: 'out/a.css'
   })
 
   let file1 = postcss.parse(step1.css, {
@@ -491,8 +491,8 @@ test('misses source content on request in multiple steps', () => {
 
   if (file1.first) file2.append(file1.first.clone())
   let step2 = file2.toResult({
-    to: 'c.css',
-    map: { sourcesContent: false }
+    map: { sourcesContent: false },
+    to: 'c.css'
   })
 
   let map = read(step2)
@@ -501,7 +501,7 @@ test('misses source content on request in multiple steps', () => {
 })
 
 test('detects input file name from map', () => {
-  let one = doubler.process('a { }', { to: 'a.css', map: true })
+  let one = doubler.process('a { }', { map: true, to: 'a.css' })
   let two = doubler.process(one.css, { map: { prev: one.map } })
   is(two.root.first?.source?.input.file, resolve('a.css'))
 })
@@ -515,8 +515,8 @@ test('works without file names', () => {
 test('supports UTF-8', () => {
   let step1 = doubler.process('a { }', {
     from: 'вход.css',
-    to: 'шаг1.css',
-    map: true
+    map: true,
+    to: 'шаг1.css'
   })
   let step2 = doubler.process(step1.css, {
     from: 'шаг1.css',
@@ -534,11 +534,11 @@ test('generates map for node created manually', () => {
   })
   let result = contenter.process('a:after{\n}', { map: true })
   let map = read(result)
-  equal(map.originalPositionFor({ line: 2, column: 5 }), {
-    source: '<no source>',
+  equal(map.originalPositionFor({ column: 5, line: 2 }), {
     column: 0,
     line: 1,
-    name: null
+    name: null,
+    source: '<no source>'
   })
 })
 
@@ -559,8 +559,8 @@ test('supports annotation comment in any place', () => {
   let css = '/*# sourceMappingURL=a.css.map */a { }'
   let result = postcss([() => {}]).process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
 
   is(result.css, 'a { }\n/*# sourceMappingURL=b.css.map */')
@@ -570,8 +570,8 @@ test('does not update annotation on request', () => {
   let css = 'a { }/*# sourceMappingURL=a.css.map */'
   let result = postcss([() => {}]).process(css, {
     from: 'a.css',
-    to: 'b.css',
-    map: { annotation: false, inline: false }
+    map: { annotation: false, inline: false },
+    to: 'b.css'
   })
 
   is(result.css, 'a { }/*# sourceMappingURL=a.css.map */')
@@ -597,8 +597,8 @@ test('uses Windows line separation too', () => {
 test('`map.from` should override the source map sources', () => {
   let result = postcss([() => {}]).process('a{}', {
     map: {
-      inline: false,
-      from: 'file:///dir/a.css'
+      from: 'file:///dir/a.css',
+      inline: false
     }
   })
   equal(result.map.toJSON().sources, ['file:///dir/a.css'])
@@ -607,8 +607,8 @@ test('`map.from` should override the source map sources', () => {
 test('preserves absolute urls in `to`', () => {
   let result = postcss([() => {}]).process('a{}', {
     from: '/dir/to/a.css',
-    to: 'http://example.com/a.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'http://example.com/a.css'
   })
   is(result.map.toJSON().file, 'http://example.com/a.css')
 })
@@ -616,8 +616,8 @@ test('preserves absolute urls in `to`', () => {
 test('preserves absolute urls in sources', () => {
   let result = postcss([() => {}]).process('a{}', {
     from: 'file:///dir/a.css',
-    to: 'http://example.com/a.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'http://example.com/a.css'
   })
   equal(result.map.toJSON().sources, ['file:///dir/a.css'])
 })
@@ -625,8 +625,8 @@ test('preserves absolute urls in sources', () => {
 test('uses absolute path on request', () => {
   let result = postcss([() => {}]).process('a{}', {
     from: '/dir/a.css',
-    to: '/dir/b.css',
-    map: { inline: false, absolute: true }
+    map: { absolute: true, inline: false },
+    to: '/dir/b.css'
   })
   let root = '/'
   if (process.platform === 'win32') {
@@ -638,14 +638,14 @@ test('uses absolute path on request', () => {
 test('preserves absolute urls in sources from previous map', () => {
   let result1 = postcss([() => {}]).process('a{}', {
     from: 'http://example.com/a.css',
-    to: 'http://example.com/b.css',
-    map: true
+    map: true,
+    to: 'http://example.com/b.css'
   })
   let result2 = postcss([() => {}]).process(result1.css, {
-    to: 'http://example.com/c.css',
     map: {
       inline: false
-    }
+    },
+    to: 'http://example.com/c.css'
   })
   is(result2.root.source?.input.file, 'http://example.com/b.css')
   equal(result2.map.toJSON().sources, ['http://example.com/a.css'])
@@ -653,13 +653,13 @@ test('preserves absolute urls in sources from previous map', () => {
 
 test('allows dynamic annotations', () => {
   let result = postcss([() => {}]).process('a{}', {
-    to: 'out.css',
     map: {
       annotation(to, root) {
         let rule = root.first as Rule
         return to + '-' + rule.selector + '.map'
       }
-    }
+    },
+    to: 'out.css'
   })
   is(result.css, 'a{}\n/*# sourceMappingURL=out.css-a.map */')
 })
@@ -667,8 +667,8 @@ test('allows dynamic annotations', () => {
 test('uses URLs in sources', () => {
   let result = postcss([() => {}]).process('a{}', {
     from: 'a b.css',
-    to: 'dir/b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'dir/b.css'
   })
   equal(result.map.toJSON().sources, ['../a%20b.css'])
 })
@@ -696,8 +696,8 @@ test('generates correct inline map and multiple comments', () => {
 test('generates correct sources with empty processor', () => {
   let result = postcss().process('a {} /*hello world*/', {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
 
   equal(result.map.toJSON().sources, ['a.css'])
@@ -706,44 +706,44 @@ test('generates correct sources with empty processor', () => {
 test('generates map object with empty processor', () => {
   let result = postcss().process('a {} /*hello world*/', {
     from: 'a.css',
-    to: 'b.css',
-    map: true
+    map: true,
+    to: 'b.css'
   })
 
   let map = read(result)
 
-  equal(map.originalPositionFor({ line: 1, column: 0 }), {
-    source: 'a.css',
-    line: 1,
+  equal(map.originalPositionFor({ column: 0, line: 1 }), {
     column: 0,
-    name: null
+    line: 1,
+    name: null,
+    source: 'a.css'
   })
 })
 
 test('supports previous map with empty processor', () => {
   let result1 = postcss().process('a{}', {
     from: '/a.css',
-    to: '/b.css',
     map: {
-      sourcesContent: true,
-      inline: false
-    }
+      inline: false,
+      sourcesContent: true
+    },
+    to: '/b.css'
   })
   equal(result1.map.toJSON(), {
-    version: 3,
-    sources: ['a.css'],
-    names: [],
-    mappings: 'AAAA',
     file: 'b.css',
-    sourcesContent: ['a{}']
+    mappings: 'AAAA',
+    names: [],
+    sources: ['a.css'],
+    sourcesContent: ['a{}'],
+    version: 3
   })
 
   let result2 = postcss().process(result1.css, {
     from: '/b.css',
-    to: '/c.css',
     map: {
       prev: result1.map
-    }
+    },
+    to: '/c.css'
   })
   equal(result2.map.toJSON().sources, ['a.css'])
   equal(result2.map.toJSON().sourcesContent, ['a{}'])
@@ -752,8 +752,8 @@ test('supports previous map with empty processor', () => {
 test('supports previous inline map with empty processor', () => {
   let result1 = postcss().process('a{}', {
     from: '/a.css',
-    to: '/b.css',
-    map: true
+    map: true,
+    to: '/b.css'
   })
   let result2 = postcss().process(result1.css, {
     from: '/b.css',
@@ -767,8 +767,8 @@ test('absolute sourcemaps have source contents', () => {
   let result = postcss([() => {}]).process('a{}', {
     from: '/dir/to/a.css',
     map: {
-      inline: false,
-      absolute: true
+      absolute: true,
+      inline: false
     }
   })
   equal(result.map.toJSON().sources, [

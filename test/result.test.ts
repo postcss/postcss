@@ -1,7 +1,7 @@
 import { test } from 'uvu'
-import { is, equal } from 'uvu/assert'
+import { equal, is } from 'uvu/assert'
 
-import postcss, { Warning, Result, Root, Plugin } from '../lib/postcss.js'
+import postcss, { Plugin, Result, Root, Warning } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 
 let processor = new Processor()
@@ -16,18 +16,18 @@ test('stringifies', () => {
 test('adds warning', () => {
   let warning
   let plugin: Plugin = {
-    postcssPlugin: 'test-plugin',
     Once(css, { result }) {
       warning = result.warn('test', { node: css.first })
-    }
+    },
+    postcssPlugin: 'test-plugin'
   }
   let result = postcss([plugin]).process('a{}').sync()
 
   equal(
     warning,
     new Warning('test', {
-      plugin: 'test-plugin',
-      node: result.root.first
+      node: result.root.first,
+      plugin: 'test-plugin'
     })
   )
 
@@ -36,10 +36,10 @@ test('adds warning', () => {
 
 test('allows to override plugin', () => {
   let plugin: Plugin = {
-    postcssPlugin: 'test-plugin',
     Once(css, { result }) {
       result.warn('test', { plugin: 'test-plugin#one' })
-    }
+    },
+    postcssPlugin: 'test-plugin'
   }
   let result = postcss([plugin]).process('a{}').sync()
 
@@ -57,13 +57,13 @@ test('allows Root', () => {
 test('returns only warnings', () => {
   let result = new Result(processor, root, {})
   result.messages = [
-    { type: 'warning', text: 'a' },
+    { text: 'a', type: 'warning' },
     { type: 'custom' },
-    { type: 'warning', text: 'b' }
+    { text: 'b', type: 'warning' }
   ]
   equal(result.warnings(), [
-    { type: 'warning', text: 'a' },
-    { type: 'warning', text: 'b' }
+    { text: 'a', type: 'warning' },
+    { text: 'b', type: 'warning' }
   ])
 })
 

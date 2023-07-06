@@ -4,19 +4,9 @@ import Node from './node.js'
 declare namespace Warning {
   export interface WarningOptions {
     /**
-     * CSS node that caused the warning.
+     * End position, exclusive, in CSS node string that caused the warning.
      */
-    node?: Node
-
-    /**
-     * Word in CSS source that caused the warning.
-     */
-    word?: string
-
-    /**
-     * Start index, inclusive, in CSS node string that caused the warning.
-     */
-    index?: number
+    end?: RangePosition
 
     /**
      * End index, exclusive, in CSS node string that caused the warning.
@@ -24,20 +14,30 @@ declare namespace Warning {
     endIndex?: number
 
     /**
-     * Start position, inclusive, in CSS node string that caused the warning.
+     * Start index, inclusive, in CSS node string that caused the warning.
      */
-    start?: RangePosition
+    index?: number
 
     /**
-     * End position, exclusive, in CSS node string that caused the warning.
+     * CSS node that caused the warning.
      */
-    end?: RangePosition
+    node?: Node
 
     /**
      * Name of the plugin that created this warning. `Result#warn` fills
      * this property automatically.
      */
     plugin?: string
+
+    /**
+     * Start position, inclusive, in CSS node string that caused the warning.
+     */
+    start?: RangePosition
+
+    /**
+     * Word in CSS source that caused the warning.
+     */
+    word?: string
   }
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -55,19 +55,49 @@ declare namespace Warning {
  */
 declare class Warning_ {
   /**
-   * Type to filter warnings from `Result#messages`.
-   * Always equal to `"warning"`.
-   */
-  type: 'warning'
-
-  /**
-   * The warning message.
+   * Column for inclusive start position in the input file with this warning’s source.
    *
    * ```js
-   * warning.text //=> 'Try to avoid !important'
+   * warning.column //=> 6
    * ```
    */
-  text: string
+  column: number
+
+  /**
+   * Column for exclusive end position in the input file with this warning’s source.
+   *
+   * ```js
+   * warning.endColumn //=> 4
+   * ```
+   */
+  endColumn?: number
+
+  /**
+   * Line for exclusive end position in the input file with this warning’s source.
+   *
+   * ```js
+   * warning.endLine //=> 6
+   * ```
+   */
+  endLine?: number
+
+  /**
+   * Line for inclusive start position in the input file with this warning’s source.
+   *
+   * ```js
+   * warning.line //=> 5
+   * ```
+   */
+  line: number
+
+  /**
+   * Contains the CSS node that caused the warning.
+   *
+   * ```js
+   * warning.node.toString() //=> 'color: white !important'
+   * ```
+   */
+  node: Node
 
   /**
    * The name of the plugin that created this warning.
@@ -80,49 +110,19 @@ declare class Warning_ {
   plugin: string
 
   /**
-   * Contains the CSS node that caused the warning.
+   * The warning message.
    *
    * ```js
-   * warning.node.toString() //=> 'color: white !important'
+   * warning.text //=> 'Try to avoid !important'
    * ```
    */
-  node: Node
+  text: string
 
   /**
-   * Line for inclusive start position in the input file with this warning’s source.
-   *
-   * ```js
-   * warning.line //=> 5
-   * ```
+   * Type to filter warnings from `Result#messages`.
+   * Always equal to `"warning"`.
    */
-  line: number
-
-  /**
-   * Column for inclusive start position in the input file with this warning’s source.
-   *
-   * ```js
-   * warning.column //=> 6
-   * ```
-   */
-  column: number
-
-  /**
-   * Line for exclusive end position in the input file with this warning’s source.
-   *
-   * ```js
-   * warning.endLine //=> 6
-   * ```
-   */
-  endLine?: number
-
-  /**
-   * Column for exclusive end position in the input file with this warning’s source.
-   *
-   * ```js
-   * warning.endColumn //=> 4
-   * ```
-   */
-  endColumn?: number
+  type: 'warning'
 
   /**
    * @param text Warning message.

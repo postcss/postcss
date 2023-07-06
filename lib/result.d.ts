@@ -1,11 +1,11 @@
 import {
-  ProcessOptions,
-  Plugin,
-  SourceMap,
-  TransformCallback,
-  Root,
   Document,
   Node,
+  Plugin,
+  ProcessOptions,
+  Root,
+  SourceMap,
+  TransformCallback,
   Warning,
   WarningOptions
 } from './postcss.js'
@@ -13,17 +13,17 @@ import Processor from './processor.js'
 
 declare namespace Result {
   export interface Message {
-    /**
-     * Message type.
-     */
-    type: string
+    [others: string]: any
 
     /**
      * Source PostCSS plugin name.
      */
     plugin?: string
 
-    [others: string]: any
+    /**
+     * Message type.
+     */
+    type: string
   }
 
   export interface ResultOptions extends ProcessOptions {
@@ -62,17 +62,34 @@ declare namespace Result {
  */
 declare class Result_ {
   /**
-   * The Processor instance used for this transformation.
+   * A CSS string representing of `Result#root`.
    *
    * ```js
-   * for (const plugin of result.processor.plugins) {
-   *   if (plugin.postcssPlugin === 'postcss-bad') {
-   *     throw 'postcss-good is incompatible with postcss-bad'
-   *   }
-   * })
+   * postcss.parse('a{}').toResult().css //=> "a{}"
    * ```
    */
-  processor: Processor
+  css: string
+
+  /**
+   * Last runned PostCSS plugin.
+   */
+  lastPlugin: Plugin | TransformCallback
+
+  /**
+   * An instance of `SourceMapGenerator` class from the `source-map` library,
+   * representing changes to the `Result#root` instance.
+   *
+   * ```js
+   * result.map.toJSON() //=> { version: 3, file: 'a.css', … }
+   * ```
+   *
+   * ```js
+   * if (result.map) {
+   *   fs.writeFileSync(result.opts.to + '.map', result.map.toString())
+   * }
+   * ```
+   */
+  map: SourceMap
 
   /**
    * Contains messages from plugins (e.g., warnings or custom messages).
@@ -95,15 +112,6 @@ declare class Result_ {
   messages: Result.Message[]
 
   /**
-   * Root node after all transformations.
-   *
-   * ```js
-   * root.toResult().root === root
-   * ```
-   */
-  root: Root | Document
-
-  /**
    * Options from the `Processor#process` or `Root#toResult` call
    * that produced this Result instance.]
    *
@@ -114,41 +122,33 @@ declare class Result_ {
   opts: Result.ResultOptions
 
   /**
-   * A CSS string representing of `Result#root`.
+   * The Processor instance used for this transformation.
    *
    * ```js
-   * postcss.parse('a{}').toResult().css //=> "a{}"
+   * for (const plugin of result.processor.plugins) {
+   *   if (plugin.postcssPlugin === 'postcss-bad') {
+   *     throw 'postcss-good is incompatible with postcss-bad'
+   *   }
+   * })
    * ```
    */
-  css: string
+  processor: Processor
 
   /**
-   * An instance of `SourceMapGenerator` class from the `source-map` library,
-   * representing changes to the `Result#root` instance.
+   * Root node after all transformations.
    *
    * ```js
-   * result.map.toJSON() //=> { version: 3, file: 'a.css', … }
-   * ```
-   *
-   * ```js
-   * if (result.map) {
-   *   fs.writeFileSync(result.opts.to + '.map', result.map.toString())
-   * }
+   * root.toResult().root === root
    * ```
    */
-  map: SourceMap
-
-  /**
-   * Last runned PostCSS plugin.
-   */
-  lastPlugin: Plugin | TransformCallback
+  root: Document | Root
 
   /**
    * @param processor Processor used for this transformation.
    * @param root      Root node after all transformations.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
-  constructor(processor: Processor, root: Root | Document, opts: Result.ResultOptions)
+  constructor(processor: Processor, root: Document | Root, opts: Result.ResultOptions)
 
   /**
    * An alias for the `Result#css` property.

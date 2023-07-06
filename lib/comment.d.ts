@@ -20,10 +20,10 @@ declare namespace Comment {
   }
 
   export interface CommentProps extends NodeProps {
-    /** Content of the comment. */
-    text: string
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
     raws?: CommentRaws
+    /** Content of the comment. */
+    text: string
   }
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -46,20 +46,20 @@ declare namespace Comment {
  * explained above.
  */
 declare class Comment_ extends Node {
-  type: 'comment'
   parent: Container | undefined
   raws: Comment.CommentRaws
-
   /**
    * The comment's text.
    */
   text: string
 
+  type: 'comment'
+
   constructor(defaults?: Comment.CommentProps)
-  assign(overrides: object | Comment.CommentProps): this
+  assign(overrides: Comment.CommentProps | object): this
   clone(overrides?: Partial<Comment.CommentProps>): this
-  cloneBefore(overrides?: Partial<Comment.CommentProps>): this
   cloneAfter(overrides?: Partial<Comment.CommentProps>): this
+  cloneBefore(overrides?: Partial<Comment.CommentProps>): this
 }
 
 declare class Comment extends Comment_ {}

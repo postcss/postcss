@@ -1,18 +1,18 @@
 import { resolve } from 'path'
 import { test } from 'uvu'
-import { is, equal, type, not } from 'uvu/assert'
+import { equal, is, not, type } from 'uvu/assert'
 
 import postcss, {
   AnyNode,
   AtRule,
-  Root,
-  Rule,
   CssSyntaxError,
   Declaration,
+  Document,
   parse,
-  Result,
   Plugin,
-  Document
+  Result,
+  Root,
+  Rule
 } from '../lib/postcss.js'
 
 function stringify(node: AnyNode, builder: (str: string) => void): void {
@@ -69,10 +69,10 @@ test('error() highlights word in multiline string', () => {
 test('warn() attaches a warning to the result object', async () => {
   let warning: any
   let warner: Plugin = {
-    postcssPlugin: 'warner',
     Once(css, { result }) {
       warning = css.first?.warn(result, 'FIRST!')
-    }
+    },
+    postcssPlugin: 'warner'
   }
 
   let result = await postcss([warner]).process('a{}', { from: undefined })
@@ -207,17 +207,17 @@ test('clone() keeps code style', () => {
 test('clone() works with null in raws', () => {
   let decl = new Declaration({
     prop: 'color',
-    value: 'black',
     // @ts-expect-error
-    raws: { value: null }
+    raws: { value: null },
+    value: 'black'
   })
   let clone = decl.clone()
   equal(Object.keys(clone.raws), ['value'])
 })
 
 test('cloneBefore() clones and insert before current node', () => {
-  let rule = new Rule({ selector: 'a', raws: { after: '' } })
-  rule.append({ prop: 'z-index', value: '1', raws: { before: '' } })
+  let rule = new Rule({ raws: { after: '' }, selector: 'a' })
+  rule.append({ prop: 'z-index', raws: { before: '' }, value: '1' })
 
   let result = rule.first?.cloneBefore({ value: '2' })
 
@@ -226,8 +226,8 @@ test('cloneBefore() clones and insert before current node', () => {
 })
 
 test('cloneAfter() clones and insert after current node', () => {
-  let rule = new Rule({ selector: 'a', raws: { after: '' } })
-  rule.append({ prop: 'z-index', value: '1', raws: { before: '' } })
+  let rule = new Rule({ raws: { after: '' }, selector: 'a' })
+  rule.append({ prop: 'z-index', raws: { before: '' }, value: '1' })
 
   let result = rule.first?.cloneAfter({ value: '2' })
 
@@ -236,8 +236,8 @@ test('cloneAfter() clones and insert after current node', () => {
 })
 
 test('before() insert before current node', () => {
-  let rule = new Rule({ selector: 'a', raws: { after: '' } })
-  rule.append({ prop: 'z-index', value: '1', raws: { before: '' } })
+  let rule = new Rule({ raws: { after: '' }, selector: 'a' })
+  rule.append({ prop: 'z-index', raws: { before: '' }, value: '1' })
 
   let result = rule.first?.before('color: black')
 
@@ -246,8 +246,8 @@ test('before() insert before current node', () => {
 })
 
 test('after() insert after current node', () => {
-  let rule = new Rule({ selector: 'a', raws: { after: '' } })
-  rule.append({ prop: 'z-index', value: '1', raws: { before: '' } })
+  let rule = new Rule({ raws: { after: '' }, selector: 'a' })
+  rule.append({ prop: 'z-index', raws: { before: '' }, value: '1' })
 
   let result = rule.first?.after('color: black')
 
@@ -305,12 +305,12 @@ test('toJSON() converts custom properties', () => {
   }
 
   equal(root.toJSON(), {
-    type: 'root',
-    nodes: [],
-    raws: {},
+    _cache: [1],
     _hack: 'hack',
     inputs: [],
-    _cache: [1]
+    nodes: [],
+    raws: {},
+    type: 'root'
   })
 })
 
@@ -395,35 +395,35 @@ test('positionInside() returns position when node starts mid-line', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionInside(6), { line: 1, column: 12 })
+  equal(one.positionInside(6), { column: 12, line: 1 })
 })
 
 test('positionInside() returns position when before contains newline', () => {
   let css = parse('a {\n  one: X}')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionInside(6), { line: 2, column: 9 })
+  equal(one.positionInside(6), { column: 9, line: 2 })
 })
 
 test('positionInside() returns position when node contains newlines', () => {
   let css = parse('a {\n\tone: 1\n\t\tX\n3}')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionInside(10), { line: 3, column: 4 })
+  equal(one.positionInside(10), { column: 4, line: 3 })
 })
 
 test('positionBy() returns position for word', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionBy({ word: 'one' }), { line: 1, column: 6 })
+  equal(one.positionBy({ word: 'one' }), { column: 6, line: 1 })
 })
 
 test('positionBy() returns position for index', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionBy({ index: 1 }), { line: 1, column: 7 })
+  equal(one.positionBy({ index: 1 }), { column: 7, line: 1 })
 })
 
 test('rangeBy() returns range for word', () => {
@@ -431,8 +431,8 @@ test('rangeBy() returns range for word', () => {
   let a = css.first as Rule
   let one = a.first as Declaration
   equal(one.rangeBy({ word: 'one' }), {
-    start: { line: 1, column: 6 },
-    end: { line: 1, column: 9 }
+    end: { column: 9, line: 1 },
+    start: { column: 6, line: 1 }
   })
 })
 
@@ -440,9 +440,9 @@ test('rangeBy() returns range for index and endIndex', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.rangeBy({ index: 1, endIndex: 3 }), {
-    start: { line: 1, column: 7 },
-    end: { line: 1, column: 9 }
+  equal(one.rangeBy({ endIndex: 3, index: 1 }), {
+    end: { column: 9, line: 1 },
+    start: { column: 7, line: 1 }
   })
 })
 

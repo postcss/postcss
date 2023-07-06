@@ -1,20 +1,20 @@
-import Node, { ChildNode, NodeProps, ChildProps } from './node.js'
-import Declaration from './declaration.js'
-import Comment from './comment.js'
 import AtRule from './at-rule.js'
+import Comment from './comment.js'
+import Declaration from './declaration.js'
+import Node, { ChildNode, ChildProps, NodeProps } from './node.js'
 import Rule from './rule.js'
 
 declare namespace Container {
   export interface ValueOptions {
     /**
-     * An array of property names.
-     */
-    props?: string[]
-
-    /**
      * String that’s used to narrow down values and speed up the regexp search.
      */
     fast?: string
+
+    /**
+     * An array of property names.
+     */
+    props?: string[]
   }
 
   export interface ContainerProps extends NodeProps {
@@ -48,22 +48,28 @@ declare abstract class Container_<
   nodes: Child[]
 
   /**
-   * The container’s first child.
+   * Inserts new nodes to the end of the container.
    *
    * ```js
-   * rule.first === rules.nodes[0]
-   * ```
-   */
-  get first(): Child | undefined
-
-  /**
-   * The container’s last child.
+   * const decl1 = new Declaration({ prop: 'color', value: 'black' })
+   * const decl2 = new Declaration({ prop: 'background-color', value: 'white' })
+   * rule.append(decl1, decl2)
    *
-   * ```js
-   * rule.last === rule.nodes[rule.nodes.length - 1]
+   * root.append({ name: 'charset', params: '"UTF-8"' })  // at-rule
+   * root.append({ selector: 'a' })                       // rule
+   * rule.append({ prop: 'color', value: 'black' })       // declaration
+   * rule.append({ text: 'Comment' })                     // comment
+   *
+   * root.append('a {}')
+   * root.first.append('color: black; z-index: 1')
    * ```
+   *
+   * @param nodes New nodes.
+   * @return This node for methods chain.
    */
-  get last(): Child | undefined
+  append(
+    ...nodes: (ChildProps | ChildProps[] | Node | Node[] | string | string[])[]
+  ): this
 
   /**
    * Iterates through the container’s immediate children,
@@ -103,6 +109,206 @@ declare abstract class Container_<
   ): false | undefined
 
   /**
+   * Returns `true` if callback returns `true`
+   * for all of the container’s children.
+   *
+   * ```js
+   * const noPrefixes = rule.every(i => i.prop[0] !== '-')
+   * ```
+   *
+   * @param condition Iterator returns true or false.
+   * @return Is every child pass condition.
+   */
+  every(
+    condition: (node: Child, index: number, nodes: Child[]) => boolean
+  ): boolean
+
+  /**
+   * The container’s first child.
+   *
+   * ```js
+   * rule.first === rules.nodes[0]
+   * ```
+   */
+  get first(): Child | undefined
+
+  /**
+   * Returns a `child`’s index within the `Container#nodes` array.
+   *
+   * ```js
+   * rule.index( rule.nodes[2] ) //=> 2
+   * ```
+   *
+   * @param child Child of the current container.
+   * @return Child index.
+   */
+  index(child: Child | number): number
+  /**
+   * Insert new node after old node within the container.
+   *
+   * @param oldNode Child or child’s index.
+   * @param newNode New node.
+   * @return This node for methods chain.
+   */
+  insertAfter(
+    oldNode: Child | number,
+    newNode: Child | Child[] | ChildProps | ChildProps[] | string | string[]
+  ): this
+
+  /**
+   * Insert new node before old node within the container.
+   *
+   * ```js
+   * rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }))
+   * ```
+   *
+   * @param oldNode Child or child’s index.
+   * @param newNode New node.
+   * @return This node for methods chain.
+   */
+  insertBefore(
+    oldNode: Child | number,
+    newNode: Child | Child[] | ChildProps | ChildProps[] | string | string[]
+  ): this
+  /**
+   * The container’s last child.
+   *
+   * ```js
+   * rule.last === rule.nodes[rule.nodes.length - 1]
+   * ```
+   */
+  get last(): Child | undefined
+
+  /**
+   * Inserts new nodes to the start of the container.
+   *
+   * ```js
+   * const decl1 = new Declaration({ prop: 'color', value: 'black' })
+   * const decl2 = new Declaration({ prop: 'background-color', value: 'white' })
+   * rule.prepend(decl1, decl2)
+   *
+   * root.append({ name: 'charset', params: '"UTF-8"' })  // at-rule
+   * root.append({ selector: 'a' })                       // rule
+   * rule.append({ prop: 'color', value: 'black' })       // declaration
+   * rule.append({ text: 'Comment' })                     // comment
+   *
+   * root.append('a {}')
+   * root.first.append('color: black; z-index: 1')
+   * ```
+   *
+   * @param nodes New nodes.
+   * @return This node for methods chain.
+   */
+  prepend(
+    ...nodes: (ChildProps | ChildProps[] | Node | Node[] | string | string[])[]
+  ): this
+  /**
+   * Add child to the end of the node.
+   *
+   * ```js
+   * rule.push(new Declaration({ prop: 'color', value: 'black' }))
+   * ```
+   *
+   * @param child New node.
+   * @return This node for methods chain.
+   */
+  push(child: Child): this
+
+  /**
+   * Traverses the container’s descendant nodes, calling callback
+   * for each comment node.
+   *
+   * Like `Container#each`, this method is safe
+   * to use if you are mutating arrays during iteration.
+   *
+   * ```js
+   * root.walkComments(comment => {
+   *   comment.remove()
+   * })
+   * ```
+   *
+   * @param callback Iterator receives each node and index.
+   * @return Returns `false` if iteration was broke.
+   */
+
+  /**
+   * Removes all children from the container
+   * and cleans their parent properties.
+   *
+   * ```js
+   * rule.removeAll()
+   * rule.nodes.length //=> 0
+   * ```
+   *
+   * @return This node for methods chain.
+   */
+  removeAll(): this
+  /**
+   * Removes node from the container and cleans the parent properties
+   * from the node and its children.
+   *
+   * ```js
+   * rule.nodes.length  //=> 5
+   * rule.removeChild(decl)
+   * rule.nodes.length  //=> 4
+   * decl.parent        //=> undefined
+   * ```
+   *
+   * @param child Child or child’s index.
+   * @return This node for methods chain.
+   */
+  removeChild(child: Child | number): this
+
+  /**
+   * Passes all declaration values within the container that match pattern
+   * through callback, replacing those values with the returned result
+   * of callback.
+   *
+   * This method is useful if you are using a custom unit or function
+   * and need to iterate through all values.
+   *
+   * ```js
+   * root.replaceValues(/\d+rem/, { fast: 'rem' }, string => {
+   *   return 15 * parseInt(string) + 'px'
+   * })
+   * ```
+   *
+   * @param pattern      Replace pattern.
+   * @param {object} opts                Options to speed up the search.
+   * @param callback   String to replace pattern or callback
+   *                                     that returns a new value. The callback
+   *                                     will receive the same arguments
+   *                                     as those passed to a function parameter
+   *                                     of `String#replace`.
+   * @return This node for methods chain.
+   */
+  replaceValues(
+    pattern: RegExp | string,
+    options: Container.ValueOptions,
+    replaced: { (substring: string, ...args: any[]): string } | string
+  ): this
+
+  replaceValues(
+    pattern: RegExp | string,
+    replaced: { (substring: string, ...args: any[]): string } | string
+  ): this
+
+  /**
+   * Returns `true` if callback returns `true` for (at least) one
+   * of the container’s children.
+   *
+   * ```js
+   * const hasPrefix = rule.some(i => i.prop[0] === '-')
+   * ```
+   *
+   * @param condition Iterator returns true or false.
+   * @return Is some child pass condition.
+   */
+  some(
+    condition: (node: Child, index: number, nodes: Child[]) => boolean
+  ): boolean
+
+  /**
    * Traverses the container’s descendant nodes, calling callback
    * for each node.
    *
@@ -125,71 +331,8 @@ declare abstract class Container_<
     callback: (node: ChildNode, index: number) => false | void
   ): false | undefined
 
-  /**
-   * Traverses the container’s descendant nodes, calling callback
-   * for each declaration node.
-   *
-   * If you pass a filter, iteration will only happen over declarations
-   * with matching properties.
-   *
-   * ```js
-   * root.walkDecls(decl => {
-   *   checkPropertySupport(decl.prop)
-   * })
-   *
-   * root.walkDecls('border-radius', decl => {
-   *   decl.remove()
-   * })
-   *
-   * root.walkDecls(/^background/, decl => {
-   *   decl.value = takeFirstColorFromGradient(decl.value)
-   * })
-   * ```
-   *
-   * Like `Container#each`, this method is safe
-   * to use if you are mutating arrays during iteration.
-   *
-   * @param prop     String or regular expression to filter declarations
-   *                 by property name.
-   * @param callback Iterator receives each node and index.
-   * @return Returns `false` if iteration was broke.
-   */
-  walkDecls(
-    propFilter: string | RegExp,
-    callback: (decl: Declaration, index: number) => false | void
-  ): false | undefined
-  walkDecls(
-    callback: (decl: Declaration, index: number) => false | void
-  ): false | undefined
-
-  /**
-   * Traverses the container’s descendant nodes, calling callback
-   * for each rule node.
-   *
-   * If you pass a filter, iteration will only happen over rules
-   * with matching selectors.
-   *
-   * Like `Container#each`, this method is safe
-   * to use if you are mutating arrays during iteration.
-   *
-   * ```js
-   * const selectors = []
-   * root.walkRules(rule => {
-   *   selectors.push(rule.selector)
-   * })
-   * console.log(`Your CSS uses ${ selectors.length } selectors`)
-   * ```
-   *
-   * @param selector String or regular expression to filter rules by selector.
-   * @param callback Iterator receives each node and index.
-   * @return Returns `false` if iteration was broke.
-   */
-  walkRules(
-    selectorFilter: string | RegExp,
-    callback: (rule: Rule, index: number) => false | void
-  ): false | undefined
-  walkRules(
-    callback: (rule: Rule, index: number) => false | void
+  walkAtRules(
+    callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
 
   /**
@@ -222,228 +365,85 @@ declare abstract class Container_<
    * @return Returns `false` if iteration was broke.
    */
   walkAtRules(
-    nameFilter: string | RegExp,
+    nameFilter: RegExp | string,
     callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
-  walkAtRules(
-    callback: (atRule: AtRule, index: number) => false | void
+
+  walkComments(
+    callback: (comment: Comment, indexed: number) => false | void
+  ): false | undefined
+
+  walkComments(
+    callback: (comment: Comment, indexed: number) => false | void
+  ): false | undefined
+  walkDecls(
+    callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
 
   /**
    * Traverses the container’s descendant nodes, calling callback
-   * for each comment node.
+   * for each declaration node.
+   *
+   * If you pass a filter, iteration will only happen over declarations
+   * with matching properties.
+   *
+   * ```js
+   * root.walkDecls(decl => {
+   *   checkPropertySupport(decl.prop)
+   * })
+   *
+   * root.walkDecls('border-radius', decl => {
+   *   decl.remove()
+   * })
+   *
+   * root.walkDecls(/^background/, decl => {
+   *   decl.value = takeFirstColorFromGradient(decl.value)
+   * })
+   * ```
+   *
+   * Like `Container#each`, this method is safe
+   * to use if you are mutating arrays during iteration.
+   *
+   * @param prop     String or regular expression to filter declarations
+   *                 by property name.
+   * @param callback Iterator receives each node and index.
+   * @return Returns `false` if iteration was broke.
+   */
+  walkDecls(
+    propFilter: RegExp | string,
+    callback: (decl: Declaration, index: number) => false | void
+  ): false | undefined
+
+  walkRules(
+    callback: (rule: Rule, index: number) => false | void
+  ): false | undefined
+
+  /**
+   * Traverses the container’s descendant nodes, calling callback
+   * for each rule node.
+   *
+   * If you pass a filter, iteration will only happen over rules
+   * with matching selectors.
    *
    * Like `Container#each`, this method is safe
    * to use if you are mutating arrays during iteration.
    *
    * ```js
-   * root.walkComments(comment => {
-   *   comment.remove()
+   * const selectors = []
+   * root.walkRules(rule => {
+   *   selectors.push(rule.selector)
    * })
+   * console.log(`Your CSS uses ${ selectors.length } selectors`)
    * ```
    *
+   * @param selector String or regular expression to filter rules by selector.
    * @param callback Iterator receives each node and index.
    * @return Returns `false` if iteration was broke.
    */
-
-  walkComments(
-    callback: (comment: Comment, indexed: number) => false | void
+  walkRules(
+    selectorFilter: RegExp | string,
+    callback: (rule: Rule, index: number) => false | void
   ): false | undefined
-  walkComments(
-    callback: (comment: Comment, indexed: number) => false | void
-  ): false | undefined
-
-  /**
-   * Inserts new nodes to the end of the container.
-   *
-   * ```js
-   * const decl1 = new Declaration({ prop: 'color', value: 'black' })
-   * const decl2 = new Declaration({ prop: 'background-color', value: 'white' })
-   * rule.append(decl1, decl2)
-   *
-   * root.append({ name: 'charset', params: '"UTF-8"' })  // at-rule
-   * root.append({ selector: 'a' })                       // rule
-   * rule.append({ prop: 'color', value: 'black' })       // declaration
-   * rule.append({ text: 'Comment' })                     // comment
-   *
-   * root.append('a {}')
-   * root.first.append('color: black; z-index: 1')
-   * ```
-   *
-   * @param nodes New nodes.
-   * @return This node for methods chain.
-   */
-  append(
-    ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
-  ): this
-
-  /**
-   * Inserts new nodes to the start of the container.
-   *
-   * ```js
-   * const decl1 = new Declaration({ prop: 'color', value: 'black' })
-   * const decl2 = new Declaration({ prop: 'background-color', value: 'white' })
-   * rule.prepend(decl1, decl2)
-   *
-   * root.append({ name: 'charset', params: '"UTF-8"' })  // at-rule
-   * root.append({ selector: 'a' })                       // rule
-   * rule.append({ prop: 'color', value: 'black' })       // declaration
-   * rule.append({ text: 'Comment' })                     // comment
-   *
-   * root.append('a {}')
-   * root.first.append('color: black; z-index: 1')
-   * ```
-   *
-   * @param nodes New nodes.
-   * @return This node for methods chain.
-   */
-  prepend(
-    ...nodes: (Node | Node[] | ChildProps | ChildProps[] | string | string[])[]
-  ): this
-
-  /**
-   * Add child to the end of the node.
-   *
-   * ```js
-   * rule.push(new Declaration({ prop: 'color', value: 'black' }))
-   * ```
-   *
-   * @param child New node.
-   * @return This node for methods chain.
-   */
-  push(child: Child): this
-
-  /**
-   * Insert new node before old node within the container.
-   *
-   * ```js
-   * rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }))
-   * ```
-   *
-   * @param oldNode Child or child’s index.
-   * @param newNode New node.
-   * @return This node for methods chain.
-   */
-  insertBefore(
-    oldNode: Child | number,
-    newNode: Child | ChildProps | string | Child[] | ChildProps[] | string[]
-  ): this
-
-  /**
-   * Insert new node after old node within the container.
-   *
-   * @param oldNode Child or child’s index.
-   * @param newNode New node.
-   * @return This node for methods chain.
-   */
-  insertAfter(
-    oldNode: Child | number,
-    newNode: Child | ChildProps | string | Child[] | ChildProps[] | string[]
-  ): this
-
-  /**
-   * Removes node from the container and cleans the parent properties
-   * from the node and its children.
-   *
-   * ```js
-   * rule.nodes.length  //=> 5
-   * rule.removeChild(decl)
-   * rule.nodes.length  //=> 4
-   * decl.parent        //=> undefined
-   * ```
-   *
-   * @param child Child or child’s index.
-   * @return This node for methods chain.
-   */
-  removeChild(child: Child | number): this
-
-  /**
-   * Removes all children from the container
-   * and cleans their parent properties.
-   *
-   * ```js
-   * rule.removeAll()
-   * rule.nodes.length //=> 0
-   * ```
-   *
-   * @return This node for methods chain.
-   */
-  removeAll(): this
-
-  /**
-   * Passes all declaration values within the container that match pattern
-   * through callback, replacing those values with the returned result
-   * of callback.
-   *
-   * This method is useful if you are using a custom unit or function
-   * and need to iterate through all values.
-   *
-   * ```js
-   * root.replaceValues(/\d+rem/, { fast: 'rem' }, string => {
-   *   return 15 * parseInt(string) + 'px'
-   * })
-   * ```
-   *
-   * @param pattern      Replace pattern.
-   * @param {object} opts                Options to speed up the search.
-   * @param callback   String to replace pattern or callback
-   *                                     that returns a new value. The callback
-   *                                     will receive the same arguments
-   *                                     as those passed to a function parameter
-   *                                     of `String#replace`.
-   * @return This node for methods chain.
-   */
-  replaceValues(
-    pattern: string | RegExp,
-    options: Container.ValueOptions,
-    replaced: string | { (substring: string, ...args: any[]): string }
-  ): this
-  replaceValues(
-    pattern: string | RegExp,
-    replaced: string | { (substring: string, ...args: any[]): string }
-  ): this
-
-  /**
-   * Returns `true` if callback returns `true`
-   * for all of the container’s children.
-   *
-   * ```js
-   * const noPrefixes = rule.every(i => i.prop[0] !== '-')
-   * ```
-   *
-   * @param condition Iterator returns true or false.
-   * @return Is every child pass condition.
-   */
-  every(
-    condition: (node: Child, index: number, nodes: Child[]) => boolean
-  ): boolean
-
-  /**
-   * Returns `true` if callback returns `true` for (at least) one
-   * of the container’s children.
-   *
-   * ```js
-   * const hasPrefix = rule.some(i => i.prop[0] === '-')
-   * ```
-   *
-   * @param condition Iterator returns true or false.
-   * @return Is some child pass condition.
-   */
-  some(
-    condition: (node: Child, index: number, nodes: Child[]) => boolean
-  ): boolean
-
-  /**
-   * Returns a `child`’s index within the `Container#nodes` array.
-   *
-   * ```js
-   * rule.index( rule.nodes[2] ) //=> 2
-   * ```
-   *
-   * @param child Child of the current container.
-   * @return Child index.
-   */
-  index(child: Child | number): number
 }
 
 declare class Container<Child extends Node = ChildNode> extends Container_<Child> {}

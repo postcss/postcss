@@ -3,25 +3,20 @@ import Container, { ContainerProps } from './container.js'
 declare namespace Rule {
   export interface RuleRaws extends Record<string, unknown> {
     /**
+     * The space symbols after the last child of the node to the end of the node.
+     */
+    after?: string
+
+    /**
      * The space symbols before the node. It also stores `*`
      * and `_` symbols before the declaration (IE hack).
      */
     before?: string
 
     /**
-     * The space symbols after the last child of the node to the end of the node.
-     */
-    after?: string
-
-    /**
      * The symbols between the selector and `{` for rules.
      */
     between?: string
-
-    /**
-     * Contains `true` if the last child has an (optional) semicolon.
-     */
-    semicolon?: boolean
 
     /**
      * Contains `true` if there is semicolon after rule.
@@ -32,18 +27,23 @@ declare namespace Rule {
      * The rule’s selector with comments.
      */
     selector?: {
-      value: string
       raw: string
+      value: string
     }
+
+    /**
+     * Contains `true` if the last child has an (optional) semicolon.
+     */
+    semicolon?: boolean
   }
 
   export interface RuleProps extends ContainerProps {
+    /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
+    raws?: RuleRaws
     /** Selector or selectors of the rule. */
     selector?: string
     /** Selectors of the rule represented as an array of strings. */
     selectors?: string[]
-    /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
-    raws?: RuleRaws
   }
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -69,10 +69,8 @@ declare namespace Rule {
  * ```
  */
 declare class Rule_ extends Container {
-  type: 'rule'
   parent: Container | undefined
   raws: Rule.RuleRaws
-
   /**
    * The rule’s full selector represented as a string.
    *
@@ -101,11 +99,13 @@ declare class Rule_ extends Container {
    */
   selectors: string[]
 
+  type: 'rule'
+
   constructor(defaults?: Rule.RuleProps)
   assign(overrides: object | Rule.RuleProps): this
   clone(overrides?: Partial<Rule.RuleProps>): this
-  cloneBefore(overrides?: Partial<Rule.RuleProps>): this
   cloneAfter(overrides?: Partial<Rule.RuleProps>): this
+  cloneBefore(overrides?: Partial<Rule.RuleProps>): this
 }
 
 declare class Rule extends Rule_ {}

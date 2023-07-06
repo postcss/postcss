@@ -1,7 +1,7 @@
 import { test } from 'uvu'
-import { is, equal, throws, type, match } from 'uvu/assert'
+import { equal, is, match, throws, type } from 'uvu/assert'
 
-import { Declaration, Root, Rule, AtRule, parse } from '../lib/postcss.js'
+import { AtRule, Declaration, parse, Root, Rule } from '../lib/postcss.js'
 
 let example =
   'a { a: 1; b: 2 }' +
@@ -837,7 +837,7 @@ test('returns last child', () => {
 
 test('normalize() does not normalize new children with exists before', () => {
   let rule = parse('a { a: 1; b: 2 }').first as Rule
-  rule.append({ prop: 'c', value: '3', raws: { before: '\n ' } })
+  rule.append({ prop: 'c', raws: { before: '\n ' }, value: '3' })
   is(rule.toString(), 'a { a: 1; b: 2;\n c: 3 }')
 })
 
@@ -857,8 +857,8 @@ test('updates parent in overrides.nodes in constructor', () => {
   equal(a.parent, root)
 
   root.append({
-    selector: 'b',
-    nodes: [{ prop: 'color', value: 'black' }]
+    nodes: [{ prop: 'color', value: 'black' }],
+    selector: 'b'
   })
   let b = root.last as Rule
   let color = b.first as Declaration

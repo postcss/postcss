@@ -21,24 +21,9 @@ declare namespace PreviousMap {
  */
 declare class PreviousMap_ {
   /**
-   * Was source map inlined by data-uri to input CSS.
-   */
-  inline: boolean
-
-  /**
    * `sourceMappingURL` content.
    */
   annotation?: string
-
-  /**
-   * Source map file content.
-   */
-  text?: string
-
-  /**
-   * The directory with source map file, if source map is in separated file.
-   */
-  root?: string
 
   /**
    * The CSS source identifier. Contains `Input#file` if the user
@@ -47,9 +32,24 @@ declare class PreviousMap_ {
   file?: string
 
   /**
+   * Was source map inlined by data-uri to input CSS.
+   */
+  inline: boolean
+
+  /**
    * Path to source map file.
    */
   mapFile?: string
+
+  /**
+   * The directory with source map file, if source map is in separated file.
+   */
+  root?: string
+
+  /**
+   * Source map file content.
+   */
+  text?: string
 
   /**
    * @param css  Input CSS source.

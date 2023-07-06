@@ -1,40 +1,36 @@
-import Declaration, { DeclarationProps } from './declaration.js'
-import Comment, { CommentProps } from './comment.js'
-import { Stringifier, Syntax } from './postcss.js'
 import AtRule = require('./at-rule.js')
+
 import { AtRuleProps } from './at-rule.js'
+import Comment, { CommentProps } from './comment.js'
+import Container from './container.js'
+import CssSyntaxError from './css-syntax-error.js'
+import Declaration, { DeclarationProps } from './declaration.js'
+import Document from './document.js'
+import Input from './input.js'
+import { Stringifier, Syntax } from './postcss.js'
+import Result from './result.js'
+import Root from './root.js'
 import Rule, { RuleProps } from './rule.js'
 import Warning, { WarningOptions } from './warning.js'
-import CssSyntaxError from './css-syntax-error.js'
-import Result from './result.js'
-import Input from './input.js'
-import Root from './root.js'
-import Document from './document.js'
-import Container from './container.js'
 
 declare namespace Node {
-  export type ChildNode = AtRule.default | Rule | Declaration | Comment
+  export type ChildNode = AtRule.default | Comment | Declaration | Rule
 
   export type AnyNode =
     | AtRule.default
-    | Rule
-    | Declaration
     | Comment
-    | Root
+    | Declaration
     | Document
+    | Root
+    | Rule
 
   export type ChildProps =
     | AtRuleProps
-    | RuleProps
-    | DeclarationProps
     | CommentProps
+    | DeclarationProps
+    | RuleProps
 
   export interface Position {
-    /**
-     * Source offset in file. It starts from 0.
-     */
-    offset: number
-
     /**
      * Source line in file. In contrast to `offset` it starts from 1.
      */
@@ -44,24 +40,35 @@ declare namespace Node {
      * Source column in file.
      */
     line: number
+
+    /**
+     * Source offset in file. It starts from 0.
+     */
+    offset: number
   }
 
   export interface Range {
     /**
-     * Start position, inclusive.
-     */
-    start: Position
-
-    /**
      * End position, exclusive.
      */
     end: Position
+
+    /**
+     * Start position, inclusive.
+     */
+    start: Position
   }
 
   /**
    * Source represents an interface for the {@link Node.source} property.
    */
   export interface Source {
+    /**
+     * The inclusive ending position for the source
+     * code of a node.
+     */
+    end?: Position
+
     /**
      * The source file from where a node has originated.
      */
@@ -72,12 +79,6 @@ declare namespace Node {
      * code of a node.
      */
     start?: Position
-
-    /**
-     * The inclusive ending position for the source
-     * code of a node.
-     */
-    end?: Position
   }
 
   /**
@@ -90,6 +91,16 @@ declare namespace Node {
 
   export interface NodeErrorOptions {
     /**
+     * An ending index inside a node's string that should be highlighted as
+     * source of error.
+     */
+    endIndex?: number
+    /**
+     * An index inside a node's string that should be highlighted as source
+     * of error.
+     */
+    index?: number
+    /**
      * Plugin name that created this error. PostCSS will set it automatically.
      */
     plugin?: string
@@ -98,16 +109,6 @@ declare namespace Node {
      * of error.
      */
     word?: string
-    /**
-     * An index inside a node's string that should be highlighted as source
-     * of error.
-     */
-    index?: number
-    /**
-     * An ending index inside a node's string that should be highlighted as
-     * source of error.
-     */
-    endIndex?: number
   }
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -124,31 +125,49 @@ declare namespace Node {
  */
 declare abstract class Node_ {
   /**
-   * It represents type of a node in
-   * an abstract syntax tree.
-   *
-   * A type of node helps in identification of a node
-   * and perform operation based on it's type.
-   *
-   * ```js
-   * const declaration = new Declaration({
-   *   prop: 'color',
-   *   value: 'black'
-   * })
-   *
-   * console.log(declaration.type) //=> 'decl'
-   * ```
-   */
-  type: string
-
-  /**
    * It represents parent of the current node.
    *
    * ```js
    * console.log(root.nodes[0].parent === root) //=> true
    * ```
    */
-  parent: Document | Container | undefined
+  parent: Container | Document | undefined
+
+  /**
+   * It represents unnecessary whitespace and characters present
+   * in the css source code.
+   *
+   * Information to generate byte-to-byte equal node string as it was
+   * in the origin input.
+   *
+   * The properties of the raws object are decided by parser,
+   * the default parser uses the following properties:
+   *
+   * * `before`: the space symbols before the node. It also stores `*`
+   *   and `_` symbols before the declaration (IE hack).
+   * * `after`: the space symbols after the last child of the node
+   *   to the end of the node.
+   * * `between`: the symbols between the property and value
+   *   for declarations, selector and `{` for rules, or last parameter
+   *   and `{` for at-rules.
+   * * `semicolon`: contains true if the last child has
+   *   an (optional) semicolon.
+   * * `afterName`: the space between the at-rule name and its parameters.
+   * * `left`: the space symbols between `/*` and the comment’s text.
+   * * `right`: the space symbols between the comment’s text
+   *   and <code>*&#47;</code>.
+   * - `important`: the content of the important statement,
+   *   if it is not just `!important`.
+   *
+   * PostCSS filters out the comments inside selectors, declaration values
+   * and at-rule parameters but it stores the origin content in raws.
+   *
+   * ```js
+   * const root = postcss.parse('a {\n  color:black\n}')
+   * console.log(root.first.first.raws) //=> { before: '\n  ', between: ':' }
+   * ```
+   */
+  raws: any
 
   /**
    * It represents information related to origin of a node and is required
@@ -196,42 +215,118 @@ declare abstract class Node_ {
   source?: Node.Source
 
   /**
-   * It represents unnecessary whitespace and characters present
-   * in the css source code.
+   * It represents type of a node in
+   * an abstract syntax tree.
    *
-   * Information to generate byte-to-byte equal node string as it was
-   * in the origin input.
-   *
-   * The properties of the raws object are decided by parser,
-   * the default parser uses the following properties:
-   *
-   * * `before`: the space symbols before the node. It also stores `*`
-   *   and `_` symbols before the declaration (IE hack).
-   * * `after`: the space symbols after the last child of the node
-   *   to the end of the node.
-   * * `between`: the symbols between the property and value
-   *   for declarations, selector and `{` for rules, or last parameter
-   *   and `{` for at-rules.
-   * * `semicolon`: contains true if the last child has
-   *   an (optional) semicolon.
-   * * `afterName`: the space between the at-rule name and its parameters.
-   * * `left`: the space symbols between `/*` and the comment’s text.
-   * * `right`: the space symbols between the comment’s text
-   *   and <code>*&#47;</code>.
-   * - `important`: the content of the important statement,
-   *   if it is not just `!important`.
-   *
-   * PostCSS filters out the comments inside selectors, declaration values
-   * and at-rule parameters but it stores the origin content in raws.
+   * A type of node helps in identification of a node
+   * and perform operation based on it's type.
    *
    * ```js
-   * const root = postcss.parse('a {\n  color:black\n}')
-   * console.log(root.first.first.raws) //=> { before: '\n  ', between: ':' }
+   * const declaration = new Declaration({
+   *   prop: 'color',
+   *   value: 'black'
+   * })
+   *
+   * console.log(declaration.type) //=> 'decl'
    * ```
    */
-  raws: any
+  type: string
 
   constructor(defaults?: object)
+
+  /**
+   * Insert new node after current node to current node’s parent.
+   *
+   * Just alias for `node.parent.insertAfter(node, add)`.
+   *
+   * ```js
+   * decl.after('color: black')
+   * ```
+   *
+   * @param newNode New node.
+   * @return This node for methods chain.
+   */
+  after(newNode: Node | Node.ChildProps | Node[] | string): this
+
+  /**
+   * It assigns properties to an existing node instance.
+   *
+   * ```js
+   * decl.assign({ prop: 'word-wrap', value: 'break-word' })
+   * ```
+   *
+   * @param overrides New properties to override the node.
+   *
+   * @return `this` for method chaining.
+   */
+  assign(overrides: object): this
+
+  /**
+   * Insert new node before current node to current node’s parent.
+   *
+   * Just alias for `node.parent.insertBefore(node, add)`.
+   *
+   * ```js
+   * decl.before('content: ""')
+   * ```
+   *
+   * @param newNode New node.
+   * @return This node for methods chain.
+   */
+  before(newNode: Node | Node.ChildProps | Node[] | string): this
+
+  /**
+   * Clear the code style properties for the node and its children.
+   *
+   * ```js
+   * node.raws.before  //=> ' '
+   * node.cleanRaws()
+   * node.raws.before  //=> undefined
+   * ```
+   *
+   * @param keepBetween Keep the `raws.between` symbols.
+   */
+  cleanRaws(keepBetween?: boolean): void
+
+  /**
+   * It creates clone of an existing node, which includes all the properties
+   * and their values, that includes `raws` but not `type`.
+   *
+   * ```js
+   * decl.raws.before    //=> "\n  "
+   * const cloned = decl.clone({ prop: '-moz-' + decl.prop })
+   * cloned.raws.before  //=> "\n  "
+   * cloned.toString()   //=> -moz-transform: scale(0)
+   * ```
+   *
+   * @param overrides New properties to override in the clone.
+   *
+   * @return Duplicate of the node instance.
+   */
+  clone(overrides?: object): Node_
+
+  /**
+   * Shortcut to clone the node and insert the resulting cloned node
+   * after the current node.
+   *
+   * @param overrides New properties to override in the clone.
+   * @return New node.
+   */
+  cloneAfter(overrides?: object): this
+
+  /**
+   * Shortcut to clone the node and insert the resulting cloned node
+   * before the current node.
+   *
+   * ```js
+   * decl.cloneBefore({ prop: '-moz-' + decl.prop })
+   * ```
+   *
+   * @param overrides Mew properties to override in the clone.
+   *
+   * @return New node
+   */
+  cloneBefore(overrides?: object): this
 
   /**
    * It creates an instance of the class `CssSyntaxError` and parameters passed
@@ -270,128 +365,6 @@ declare abstract class Node_ {
   error(message: string, options?: Node.NodeErrorOptions): CssSyntaxError
 
   /**
-   * It is a wrapper for {@link Result#warn}, providing convenient
-   * way of generating warnings.
-   *
-   * ```js
-   *   Declaration: {
-   *     bad: (decl, { result }) => {
-   *       decl.warn(result, 'Deprecated property: bad')
-   *     }
-   *   }
-   * ```
-   *
-   * @param result The `Result` instance that will receive the warning.
-   * @param message Description for the warning.
-   * @param options Options for the warning.
-   *
-   * @return `Warning` instance is returned
-   */
-  warn(result: Result, message: string, options?: WarningOptions): Warning
-
-  /**
-   * It removes the node from its parent and deletes its parent property.
-   *
-   * ```js
-   * if (decl.prop.match(/^-webkit-/)) {
-   *   decl.remove()
-   * }
-   * ```
-   *
-   * @return `this` for method chaining.
-   */
-  remove(): this
-
-  /**
-   * It compiles the node to browser readable cascading style sheets string
-   * depending on it's type.
-   *
-   * ```js
-   * console.log(new Rule({ selector: 'a' }).toString()) //=> "a {}"
-   * ```
-   *
-   * @param stringifier A syntax to use in string generation.
-   * @return CSS string of this node.
-   */
-  toString(stringifier?: Stringifier | Syntax): string
-
-  /**
-   * It assigns properties to an existing node instance.
-   *
-   * ```js
-   * decl.assign({ prop: 'word-wrap', value: 'break-word' })
-   * ```
-   *
-   * @param overrides New properties to override the node.
-   *
-   * @return `this` for method chaining.
-   */
-  assign(overrides: object): this
-
-  /**
-   * It creates clone of an existing node, which includes all the properties
-   * and their values, that includes `raws` but not `type`.
-   *
-   * ```js
-   * decl.raws.before    //=> "\n  "
-   * const cloned = decl.clone({ prop: '-moz-' + decl.prop })
-   * cloned.raws.before  //=> "\n  "
-   * cloned.toString()   //=> -moz-transform: scale(0)
-   * ```
-   *
-   * @param overrides New properties to override in the clone.
-   *
-   * @return Duplicate of the node instance.
-   */
-  clone(overrides?: object): Node_
-
-  /**
-   * Shortcut to clone the node and insert the resulting cloned node
-   * before the current node.
-   *
-   * ```js
-   * decl.cloneBefore({ prop: '-moz-' + decl.prop })
-   * ```
-   *
-   * @param overrides Mew properties to override in the clone.
-   *
-   * @return New node
-   */
-  cloneBefore(overrides?: object): this
-
-  /**
-   * Shortcut to clone the node and insert the resulting cloned node
-   * after the current node.
-   *
-   * @param overrides New properties to override in the clone.
-   * @return New node.
-   */
-  cloneAfter(overrides?: object): this
-
-  /**
-   * Inserts node(s) before the current node and removes the current node.
-   *
-   * ```js
-   * AtRule: {
-   *   mixin: atrule => {
-   *     atrule.replaceWith(mixinRules[atrule.params])
-   *   }
-   * }
-   * ```
-   *
-   * @param nodes Mode(s) to replace current one.
-   * @return Current node to methods chain.
-   */
-  replaceWith(
-    ...nodes: (
-      | Node.ChildNode
-      | Node.ChildProps
-      | Node.ChildNode[]
-      | Node.ChildProps[]
-    )[]
-  ): this
-
-  /**
    * Returns the next child of the node’s parent.
    * Returns `undefined` if the current node is the last child.
    *
@@ -409,6 +382,22 @@ declare abstract class Node_ {
   next(): Node.ChildNode | undefined
 
   /**
+   * Get the position for a word or an index inside the node.
+   *
+   * @param opts Options.
+   * @return Position.
+   */
+  positionBy(opts?: Pick<WarningOptions, 'index' | 'word'>): Node.Position
+
+  /**
+   * Convert string index to line/column.
+   *
+   * @param index The symbol number in the node’s string.
+   * @return Symbol position in file.
+   */
+  positionInside(index: number): Node.Position
+
+  /**
    * Returns the previous child of the node’s parent.
    * Returns `undefined` if the current node is the first child.
    *
@@ -424,43 +413,15 @@ declare abstract class Node_ {
   prev(): Node.ChildNode | undefined
 
   /**
-   * Insert new node before current node to current node’s parent.
+   * Get the range for a word or start and end index inside the node.
+   * The start index is inclusive; the end index is exclusive.
    *
-   * Just alias for `node.parent.insertBefore(node, add)`.
-   *
-   * ```js
-   * decl.before('content: ""')
-   * ```
-   *
-   * @param newNode New node.
-   * @return This node for methods chain.
+   * @param opts Options.
+   * @return Range.
    */
-  before(newNode: Node | Node.ChildProps | string | Node[]): this
-
-  /**
-   * Insert new node after current node to current node’s parent.
-   *
-   * Just alias for `node.parent.insertAfter(node, add)`.
-   *
-   * ```js
-   * decl.after('color: black')
-   * ```
-   *
-   * @param newNode New node.
-   * @return This node for methods chain.
-   */
-  after(newNode: Node | Node.ChildProps | string | Node[]): this
-
-  /**
-   * Finds the Root instance of the node’s tree.
-   *
-   * ```js
-   * root.nodes[0].nodes[0].root() === root
-   * ```
-   *
-   * @return Root parent.
-   */
-  root(): Root
+  rangeBy(
+    opts?: Pick<WarningOptions, 'endIndex' | 'index' | 'word'>
+  ): Node.Range
 
   /**
    * Returns a `raws` value. If the node is missing
@@ -483,17 +444,51 @@ declare abstract class Node_ {
   raw(prop: string, defaultType?: string): string
 
   /**
-   * Clear the code style properties for the node and its children.
+   * It removes the node from its parent and deletes its parent property.
    *
    * ```js
-   * node.raws.before  //=> ' '
-   * node.cleanRaws()
-   * node.raws.before  //=> undefined
+   * if (decl.prop.match(/^-webkit-/)) {
+   *   decl.remove()
+   * }
    * ```
    *
-   * @param keepBetween Keep the `raws.between` symbols.
+   * @return `this` for method chaining.
    */
-  cleanRaws(keepBetween?: boolean): void
+  remove(): this
+
+  /**
+   * Inserts node(s) before the current node and removes the current node.
+   *
+   * ```js
+   * AtRule: {
+   *   mixin: atrule => {
+   *     atrule.replaceWith(mixinRules[atrule.params])
+   *   }
+   * }
+   * ```
+   *
+   * @param nodes Mode(s) to replace current one.
+   * @return Current node to methods chain.
+   */
+  replaceWith(
+    ...nodes: (
+      | Node.ChildNode
+      | Node.ChildNode[]
+      | Node.ChildProps
+      | Node.ChildProps[]
+    )[]
+  ): this
+
+  /**
+   * Finds the Root instance of the node’s tree.
+   *
+   * ```js
+   * root.nodes[0].nodes[0].root() === root
+   * ```
+   *
+   * @return Root parent.
+   */
+  root(): Root
 
   /**
    * Fix circular links on `JSON.stringify()`.
@@ -503,31 +498,37 @@ declare abstract class Node_ {
   toJSON(): object
 
   /**
-   * Convert string index to line/column.
+   * It compiles the node to browser readable cascading style sheets string
+   * depending on it's type.
    *
-   * @param index The symbol number in the node’s string.
-   * @return Symbol position in file.
+   * ```js
+   * console.log(new Rule({ selector: 'a' }).toString()) //=> "a {}"
+   * ```
+   *
+   * @param stringifier A syntax to use in string generation.
+   * @return CSS string of this node.
    */
-  positionInside(index: number): Node.Position
+  toString(stringifier?: Stringifier | Syntax): string
 
   /**
-   * Get the position for a word or an index inside the node.
+   * It is a wrapper for {@link Result#warn}, providing convenient
+   * way of generating warnings.
    *
-   * @param opts Options.
-   * @return Position.
-   */
-  positionBy(opts?: Pick<WarningOptions, 'word' | 'index'>): Node.Position
-
-  /**
-   * Get the range for a word or start and end index inside the node.
-   * The start index is inclusive; the end index is exclusive.
+   * ```js
+   *   Declaration: {
+   *     bad: (decl, { result }) => {
+   *       decl.warn(result, 'Deprecated property: bad')
+   *     }
+   *   }
+   * ```
    *
-   * @param opts Options.
-   * @return Range.
+   * @param result The `Result` instance that will receive the warning.
+   * @param message Description for the warning.
+   * @param options Options for the warning.
+   *
+   * @return `Warning` instance is returned
    */
-  rangeBy(
-    opts?: Pick<WarningOptions, 'word' | 'index' | 'endIndex'>
-  ): Node.Range
+  warn(result: Result, message: string, options?: WarningOptions): Warning
 }
 
 declare class Node extends Node_ { }

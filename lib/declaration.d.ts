@@ -23,20 +23,20 @@ declare namespace Declaration {
      * Declaration value with comments.
      */
     value?: {
-      value: string
       raw: string
+      value: string
     }
   }
 
   export interface DeclarationProps {
-    /** Name of the declaration. */
-    prop: string
-    /** Value of the declaration. */
-    value: string
     /** Whether the declaration has an `!important` annotation. */
     important?: boolean
+    /** Name of the declaration. */
+    prop: string
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
     raws?: DeclarationRaws
+    /** Value of the declaration. */
+    value: string
   }
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -63,10 +63,22 @@ declare namespace Declaration {
  * ```
  */
 declare class Declaration_ extends Node {
-  type: 'decl'
+  /**
+   * It represents a specificity of the declaration.
+   *
+   * If true, the CSS declaration will have an
+   * [important](https://developer.mozilla.org/en-US/docs/Web/CSS/important)
+   * specifier.
+   *
+   * ```js
+   * const root = postcss.parse('a { color: black !important; color: red }')
+   *
+   * console.log(root.first?.first?.important) //=> true
+   * console.log(root.first?.last?.important)  //=> undefined
+   * ```
+   */
+  important: boolean
   parent: Container | undefined
-  raws: Declaration.DeclarationRaws
-
   /**
    * The property name for a CSS declaration.
    *
@@ -78,6 +90,10 @@ declare class Declaration_ extends Node {
    * ```
    */
   prop: string
+
+  raws: Declaration.DeclarationRaws
+
+  type: 'decl'
 
   /**
    * The property value for a CSS declaration.
@@ -97,22 +113,6 @@ declare class Declaration_ extends Node {
    * ```
    */
   value: string
-
-  /**
-   * It represents a specificity of the declaration.
-   *
-   * If true, the CSS declaration will have an
-   * [important](https://developer.mozilla.org/en-US/docs/Web/CSS/important)
-   * specifier.
-   *
-   * ```js
-   * const root = postcss.parse('a { color: black !important; color: red }')
-   *
-   * console.log(root.first?.first?.important) //=> true
-   * console.log(root.first?.last?.important)  //=> undefined
-   * ```
-   */
-  important: boolean
 
   /**
    * It represents a getter that returns `true` if a declaration starts with
@@ -135,10 +135,10 @@ declare class Declaration_ extends Node {
   variable: boolean
 
   constructor(defaults?: Declaration.DeclarationProps)
-  assign(overrides: object | Declaration.DeclarationProps): this
+  assign(overrides: Declaration.DeclarationProps | object): this
   clone(overrides?: Partial<Declaration.DeclarationProps>): this
-  cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): this
   cloneAfter(overrides?: Partial<Declaration.DeclarationProps>): this
+  cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): this
 }
 
 declare class Declaration extends Declaration_ {}

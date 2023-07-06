@@ -1,10 +1,10 @@
-import { equal, is, match, not, throws } from 'uvu/assert'
-import { testPath, jsonify, eachTest } from 'postcss-parser-tests'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
+import { eachTest, jsonify, testPath } from 'postcss-parser-tests'
 import { test } from 'uvu'
+import { equal, is, match, not, throws } from 'uvu/assert'
 
-import { Declaration, AtRule, parse, Root, Rule } from '../lib/postcss.js'
+import { AtRule, Declaration, parse, Root, Rule } from '../lib/postcss.js'
 
 test('works with file reads', () => {
   let stream = readFileSync(testPath('atrule-empty.css'))

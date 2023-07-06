@@ -1,8 +1,8 @@
-import * as v8 from 'v8'
 import { test } from 'uvu'
-import { is, instance, throws } from 'uvu/assert'
+import { instance, is, throws } from 'uvu/assert'
+import * as v8 from 'v8'
 
-import postcss, { Root, Declaration, Input, Rule } from '../lib/postcss.js'
+import postcss, { Declaration, Input, Root, Rule } from '../lib/postcss.js'
 
 test('rehydrates a JSON AST', () => {
   let cssWithMap = postcss().process(
@@ -45,7 +45,7 @@ test('rehydrates an array of Nodes via JSON.stringify', () => {
 
   let rule = root.first as Rule
   let json = JSON.stringify(rule.nodes)
-  let rehydrated = postcss.fromJSON(JSON.parse(json) as object[])
+  let rehydrated = postcss.fromJSON(JSON.parse(json)) as any
   instance(rehydrated[0], Declaration)
   instance(rehydrated[0].source?.input, Input)
 })

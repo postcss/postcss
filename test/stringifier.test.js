@@ -2,13 +2,13 @@ let { test } = require('uvu')
 let { is } = require('uvu/assert')
 
 let {
-  Declaration,
   AtRule,
-  Node,
-  Root,
-  Rule,
+  Declaration,
   Document,
-  parse
+  Node,
+  parse,
+  Root,
+  Rule
 } = require('../lib/postcss')
 let Stringifier = require('../lib/stringifier')
 
@@ -20,7 +20,7 @@ test.before.each(() => {
 
 test('creates trimmed/raw property', () => {
   let b = new Node({ one: 'trim' })
-  b.raws.one = { value: 'trim', raw: 'raw' }
+  b.raws.one = { raw: 'raw', value: 'trim' }
   is(str.rawValue(b, 'one'), 'raw')
 
   b.one = 'trim1'
@@ -35,7 +35,7 @@ test('works without rawValue magic', () => {
 })
 
 test('uses node raw', () => {
-  let rule = new Rule({ selector: 'a', raws: { between: '\n' } })
+  let rule = new Rule({ raws: { between: '\n' }, selector: 'a' })
   is(str.raw(rule, 'between', 'beforeOpen'), '\n')
 })
 
@@ -61,7 +61,7 @@ test('hacks before for first decl', () => {
 
 test('detects after raw', () => {
   let root = new Root()
-  root.append({ selector: 'a', raws: { after: ' ' } })
+  root.append({ raws: { after: ' ' }, selector: 'a' })
   root.first.append({ prop: 'color', value: 'black' })
   root.append({ selector: 'a' })
   is(str.raw(root.last, 'after'), ' ')
@@ -80,7 +80,7 @@ test('uses defaults for unique node', () => {
 
 test('clones raw from first node', () => {
   let root = new Root()
-  root.append(new Rule({ selector: 'a', raws: { between: '' } }))
+  root.append(new Rule({ raws: { between: '' }, selector: 'a' }))
   root.append(new Rule({ selector: 'b' }))
 
   is(str.raw(root.last, 'between', 'beforeOpen'), '')
@@ -112,7 +112,7 @@ test('clones style', () => {
 test('clones indent', () => {
   let root = parse('a{\n}')
   root.first.append({ text: 'a' })
-  root.first.append({ text: 'b', raws: { before: '\n\n ' } })
+  root.first.append({ raws: { before: '\n\n ' }, text: 'b' })
   is(root.toString(), 'a{\n\n /* a */\n\n /* b */\n}')
 })
 
@@ -121,8 +121,8 @@ test('clones declaration before for comment', () => {
   root.first.append({ text: 'a' })
   root.first.append({
     prop: 'a',
-    value: '1',
-    raws: { before: '\n\n ' }
+    raws: { before: '\n\n ' },
+    value: '1'
   })
   is(root.toString(), 'a{\n\n /* a */\n\n a: 1\n}')
 })
@@ -172,7 +172,7 @@ test('clones only spaces in between', () => {
 })
 
 test('uses optional raws.indent', () => {
-  let rule = new Rule({ selector: 'a', raws: { indent: ' ' } })
+  let rule = new Rule({ raws: { indent: ' ' }, selector: 'a' })
   rule.append({ prop: 'color', value: 'black' })
   is(rule.toString(), 'a {\n color: black\n}')
 })

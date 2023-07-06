@@ -1,24 +1,24 @@
-import { is, type, equal, match, throws, not, instance } from 'uvu/assert'
-import { resolve as pathResolve } from 'path'
-import { spyOn, restoreAll } from 'nanospy'
 // @ts-ignore type definitions for nanodelay@1 are wrong.
 import { delay } from 'nanodelay'
+import { restoreAll, spyOn } from 'nanospy'
+import { resolve as pathResolve } from 'path'
 import { test } from 'uvu'
+import { equal, instance, is, match, not, throws, type } from 'uvu/assert'
 
-import postcss, {
-  Plugin,
-  Result,
-  Node,
-  Root,
-  parse,
-  PluginCreator,
-  Document,
-  Parser,
-  Stringifier
-} from '../lib/postcss.js'
 import CssSyntaxError from '../lib/css-syntax-error.js'
 import LazyResult from '../lib/lazy-result.js'
 import NoWorkResult from '../lib/no-work-result.js'
+import postcss, {
+  Document,
+  Node,
+  parse,
+  Parser,
+  Plugin,
+  PluginCreator,
+  Result,
+  Root,
+  Stringifier
+} from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 import Rule from '../lib/rule.js'
 
@@ -128,8 +128,8 @@ test('processes previous result', () => {
 test('takes maps from previous result', () => {
   let one = new Processor([() => {}]).process('a{}', {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
   let two = new Processor([() => {}]).process(one, { to: 'c.css' })
   equal(two.map.toJSON().sources, ['a.css'])
@@ -138,12 +138,12 @@ test('takes maps from previous result', () => {
 test('inlines maps from previous result', () => {
   let one = new Processor([() => {}]).process('a{}', {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
   let two = new Processor([() => {}]).process(one, {
-    to: 'c.css',
-    map: { inline: true }
+    map: { inline: true },
+    to: 'c.css'
   })
   type(two.map, 'undefined')
 })
@@ -217,19 +217,19 @@ test('send result to plugins', () => {
       equal(result.opts, { map: true })
       equal(result.root, css)
     })
-    .process('a {}', { map: true, from: undefined })
+    .process('a {}', { from: undefined, map: true })
 })
 
 test('accepts source map from PostCSS', () => {
   let one = new Processor([() => {}]).process('a{}', {
     from: 'a.css',
-    to: 'b.css',
-    map: { inline: false }
+    map: { inline: false },
+    to: 'b.css'
   })
   let two = new Processor([() => {}]).process(one.css, {
     from: 'b.css',
-    to: 'c.css',
-    map: { prev: one.map, inline: false }
+    map: { inline: false, prev: one.map },
+    to: 'c.css'
   })
   equal(two.map.toJSON().sources, ['a.css'])
 })
@@ -352,11 +352,11 @@ test('throws a sync call in async running', async () => {
 test('remembers errors', async () => {
   let calls = 0
   let plugin: Plugin = {
-    postcssPlugin: 'plugin',
     Once() {
       calls += 1
       throw new Error('test')
-    }
+    },
+    postcssPlugin: 'plugin'
   }
 
   let processing = postcss([plugin]).process('a{}', { from: undefined })
@@ -444,36 +444,36 @@ test('sets last plugin to result', async () => {
 
 test('uses custom parsers', async () => {
   let processor = new Processor([])
-  let result = await processor.process('a{}', { parser: prs, from: undefined })
+  let result = await processor.process('a{}', { from: undefined, parser: prs })
   is(result.css, 'ok')
 })
 
 test('uses custom parsers from object', async () => {
   let processor = new Processor([])
   let syntax = { parse: prs, stringify: str }
-  let result = await processor.process('a{}', { parser: syntax, from: 'a' })
+  let result = await processor.process('a{}', { from: 'a', parser: syntax })
   equal(result.css, 'ok')
 })
 
 test('uses custom stringifier', async () => {
   let processor = new Processor([])
-  let result = await processor.process('a{}', { stringifier: str, from: 'a' })
+  let result = await processor.process('a{}', { from: 'a', stringifier: str })
   is(result.css, '!')
 })
 
 test('uses custom stringifier from object', async () => {
   let processor = new Processor([])
   let syntax = { parse: prs, stringify: str }
-  let result = await processor.process('', { stringifier: syntax, from: 'a' })
+  let result = await processor.process('', { from: 'a', stringifier: syntax })
   is(result.css, '!')
 })
 
 test('uses custom stringifier with source maps', async () => {
   let processor = new Processor([])
   let result = await processor.process('a{}', {
+    from: undefined,
     map: true,
-    stringifier: str,
-    from: undefined
+    stringifier: str
   })
   match(result.css, /!\n\/\*# sourceMap/)
 })
@@ -481,8 +481,8 @@ test('uses custom stringifier with source maps', async () => {
 test('uses custom syntax', async () => {
   let processor = new Processor([() => {}])
   let result = await processor.process('a{}', {
-    syntax: { parse: prs, stringify: str },
-    from: undefined
+    from: undefined,
+    syntax: { parse: prs, stringify: str }
   })
   is(result.css, 'ok!')
 })
@@ -584,19 +584,19 @@ test('uses custom syntax for document', async () => {
     return new Document({
       nodes: [
         new Root({
+          nodes: [new Rule({ selector: 'a' })],
           raws: {
-            codeBefore: '<html>\n<head>\n<style id="id1">',
-            after: '\n\n\n'
-          },
-          nodes: [new Rule({ selector: 'a' })]
+            after: '\n\n\n',
+            codeBefore: '<html>\n<head>\n<style id="id1">'
+          }
         }),
         new Root({
+          nodes: [new Rule({ selector: 'b' })],
           raws: {
-            codeBefore: '</style>\n<style id="id2">',
             after: '\n',
-            codeAfter: '</style>\n</head>'
-          },
-          nodes: [new Rule({ selector: 'b' })]
+            codeAfter: '</style>\n</head>',
+            codeBefore: '</style>\n<style id="id2">'
+          }
         })
       ]
     })
@@ -620,11 +620,11 @@ test('uses custom syntax for document', async () => {
 
   let processor = new Processor([() => {}])
   let result = await processor.process('a{}', {
+    from: undefined,
     syntax: {
       parse: customParser,
       stringify: customStringifier
-    },
-    from: undefined
+    }
   })
 
   is(

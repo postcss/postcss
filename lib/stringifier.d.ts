@@ -1,13 +1,13 @@
 import {
+  AnyNode,
+  AtRule,
+  Builder,
+  Comment,
+  Container,
+  Declaration,
   Document,
   Root,
-  Comment,
-  Declaration,
-  Builder,
-  AnyNode,
-  Rule,
-  AtRule,
-  Container
+  Rule
 } from './postcss.js'
 
 declare namespace Stringifier {
@@ -18,27 +18,27 @@ declare namespace Stringifier {
 declare class Stringifier_ {
   builder: Builder
   constructor(builder: Builder)
-  stringify(node: AnyNode, semicolon?: boolean): void
-  document(node: Document): void
-  root(node: Root): void
+  atrule(node: AtRule, semicolon?: boolean): void
+  beforeAfter(node: AnyNode, detect: 'after' | 'before'): string
+  block(node: AnyNode, start: string): void
+  body(node: Container): void
   comment(node: Comment): void
   decl(node: Declaration, semicolon?: boolean): void
-  rule(node: Rule): void
-  atrule(node: AtRule, semicolon?: boolean): void
-  body(node: Container): void
-  block(node: AnyNode, start: string): void
-  raw(node: AnyNode, own: string | null, detect?: string): string
-  rawSemicolon(root: Root): boolean | undefined
-  rawEmptyBody(root: Root): string | undefined
-  rawIndent(root: Root): string | undefined
+  document(node: Document): void
+  raw(node: AnyNode, own: null | string, detect?: string): string
+  rawBeforeClose(root: Root): string | undefined
   rawBeforeComment(root: Root, node: Comment): string | undefined
   rawBeforeDecl(root: Root, node: Declaration): string | undefined
-  rawBeforeRule(root: Root): string | undefined
-  rawBeforeClose(root: Root): string | undefined
   rawBeforeOpen(root: Root): string | undefined
+  rawBeforeRule(root: Root): string | undefined
   rawColon(root: Root): string | undefined
-  beforeAfter(node: AnyNode, detect: 'before' | 'after'): string
+  rawEmptyBody(root: Root): string | undefined
+  rawIndent(root: Root): string | undefined
+  rawSemicolon(root: Root): boolean | undefined
   rawValue(node: AnyNode, prop: string): string
+  root(node: Root): void
+  rule(node: Rule): void
+  stringify(node: AnyNode, semicolon?: boolean): void
 }
 
 declare class Stringifier extends Stringifier_ {}

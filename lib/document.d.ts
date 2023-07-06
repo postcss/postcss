@@ -35,8 +35,8 @@ declare namespace Document {
  * ```
  */
 declare class Document_ extends Container<Root> {
-  type: 'document'
   parent: undefined
+  type: 'document'
 
   constructor(defaults?: Document.DocumentProps)
 

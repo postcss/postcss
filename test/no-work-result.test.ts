@@ -1,7 +1,7 @@
-import { is, type, equal, throws, not, instance } from 'uvu/assert'
-import { test } from 'uvu'
-import { SourceMapGenerator } from 'source-map-js'
 import { spy } from 'nanospy'
+import { SourceMapGenerator } from 'source-map-js'
+import { test } from 'uvu'
+import { equal, instance, is, not, throws, type } from 'uvu/assert'
 
 import NoWorkResult from '../lib/no-work-result.js'
 import Processor from '../lib/processor.js'

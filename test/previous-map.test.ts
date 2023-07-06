@@ -1,27 +1,27 @@
 import {
-  writeFileSync,
-  readdirSync,
   existsSync,
-  unlinkSync,
   lstatSync,
+  mkdirSync,
+  readdirSync,
   rmdirSync,
-  mkdirSync
+  unlinkSync,
+  writeFileSync
 } from 'fs'
-import { is, type, equal, match, throws, not } from 'uvu/assert'
+import { join } from 'path'
 import { SourceMapConsumer } from 'source-map-js'
 import { pathToFileURL } from 'url'
-import { join } from 'path'
 import { test } from 'uvu'
+import { equal, is, match, not, throws, type } from 'uvu/assert'
 
 import { parse } from '../lib/postcss.js'
 
 let dir = join(__dirname, 'prevmap-fixtures')
 let mapObj = {
-  version: 3,
   file: null,
-  sources: [],
+  mappings: '',
   names: [],
-  mappings: ''
+  sources: [],
+  version: 3
 }
 let map = JSON.stringify(mapObj)
 
@@ -69,11 +69,11 @@ test('sets annotation property', () => {
 
 test('checks previous sources content', () => {
   let map2: any = {
-    version: 3,
     file: 'b',
-    sources: ['a'],
+    mappings: '',
     names: [],
-    mappings: ''
+    sources: ['a'],
+    version: 3
   }
 
   let opts = { map: { prev: map2 } }
@@ -195,10 +195,10 @@ test('reads only the last map from annotation', () => {
 
 test('sets unique name for inline map', () => {
   let map2 = {
-    version: 3,
-    sources: ['a'],
+    mappings: '',
     names: [],
-    mappings: ''
+    sources: ['a'],
+    version: 3
   }
 
   let opts = { map: { prev: map2 } }
@@ -212,10 +212,10 @@ test('sets unique name for inline map', () => {
 test('accepts an empty mappings string', () => {
   not.throws(() => {
     let emptyMap = {
-      version: 3,
-      sources: [],
+      mappings: '',
       names: [],
-      mappings: ''
+      sources: [],
+      version: 3
     }
     parse('body{}', { map: { prev: emptyMap } })
   })
@@ -273,11 +273,11 @@ test('uses source map path as a root', () => {
   writeFileSync(
     join(dir, 'maps', 'a.map'),
     JSON.stringify({
-      version: 3,
       file: 'test.css',
-      sources: ['../../test.scss'],
       mappings: 'AACA,CAAC,CACG,GAAG,CAAC;EACF,KAAK,EAAE,GAAI;CACZ',
-      names: []
+      names: [],
+      sources: ['../../test.scss'],
+      version: 3
     })
   )
   let root = parse(
@@ -285,12 +285,12 @@ test('uses source map path as a root', () => {
     { from }
   )
   equal(root.source?.input.origin(1, 3, 1, 5), {
-    url: pathToFileURL(join(dir, '..', 'test.scss')).href,
+    column: 4,
+    endColumn: 7,
+    endLine: 3,
     file: join(dir, '..', 'test.scss'),
     line: 3,
-    column: 4,
-    endLine: 3,
-    endColumn: 7
+    url: pathToFileURL(join(dir, '..', 'test.scss')).href
   })
 })
 
@@ -299,21 +299,21 @@ test('uses current file path for source map', () => {
     from: join(__dirname, 'dir', 'subdir', 'a.css'),
     map: {
       prev: {
-        version: 3,
+        file: 'test.css',
         mappings: 'AAAA,CAAC;EAAC,CAAC,EAAC,CAAC',
-        sources: ['../test.scss'],
         names: [],
-        file: 'test.css'
+        sources: ['../test.scss'],
+        version: 3
       }
     }
   })
   equal(root.source?.input.origin(1, 1), {
-    url: pathToFileURL(join(__dirname, 'dir', 'test.scss')).href,
+    column: 1,
+    endColumn: undefined,
+    endLine: undefined,
     file: join(__dirname, 'dir', 'test.scss'),
     line: 1,
-    column: 1,
-    endLine: undefined,
-    endColumn: undefined
+    url: pathToFileURL(join(__dirname, 'dir', 'test.scss')).href
   })
 })
 
@@ -322,20 +322,20 @@ test('works with non-file sources', () => {
     from: join(__dirname, 'dir', 'subdir', 'a.css'),
     map: {
       prev: {
-        version: 3,
+        file: 'test.css',
         mappings: 'AAAA,CAAC;EAAC,CAAC,EAAC,CAAC',
-        sources: ['http://example.com/test.scss'],
         names: [],
-        file: 'test.css'
+        sources: ['http://example.com/test.scss'],
+        version: 3
       }
     }
   })
   equal(root.source?.input.origin(1, 1), {
-    url: 'http://example.com/test.scss',
-    line: 1,
     column: 1,
+    endColumn: undefined,
     endLine: undefined,
-    endColumn: undefined
+    line: 1,
+    url: 'http://example.com/test.scss'
   })
 })
 
@@ -344,18 +344,18 @@ test('works with index map', () => {
     from: join(__dirname, 'a.css'),
     map: {
       prev: {
-        version: 3,
         sections: [
           {
-            offset: { line: 0, column: 0 },
             map: {
-              version: 3,
               mappings: 'AAAA;AACA;AACA;',
               sources: ['b.css'],
-              sourcesContent: ['body {\nwidth:100%;\n}']
-            }
+              sourcesContent: ['body {\nwidth:100%;\n}'],
+              version: 3
+            },
+            offset: { column: 0, line: 0 }
           }
-        ]
+        ],
+        version: 3
       }
     }
   })

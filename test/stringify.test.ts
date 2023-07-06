@@ -2,7 +2,7 @@ import { eachTest } from 'postcss-parser-tests'
 import { test } from 'uvu'
 import { is } from 'uvu/assert'
 
-import { stringify, parse } from '../lib/postcss.js'
+import { parse, stringify } from '../lib/postcss.js'
 
 eachTest((name, css) => {
   if (name === 'bom.css') return

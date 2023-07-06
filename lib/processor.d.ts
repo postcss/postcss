@@ -1,14 +1,14 @@
+import LazyResult from './lazy-result.js'
+import NoWorkResult from './no-work-result.js'
 import {
   AcceptedPlugin,
   Plugin,
   ProcessOptions,
-  Transformer,
-  TransformCallback
+  TransformCallback,
+  Transformer
 } from './postcss.js'
-import LazyResult from './lazy-result.js'
 import Result from './result.js'
 import Root from './root.js'
-import NoWorkResult from './no-work-result.js'
 
 declare namespace Processor {
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -27,6 +27,16 @@ declare namespace Processor {
  */
 declare class Processor_ {
   /**
+   * Plugins added to this processor.
+   *
+   * ```js
+   * const processor = postcss([autoprefixer, postcssNested])
+   * processor.plugins.length //=> 2
+   * ```
+   */
+  plugins: (Plugin | TransformCallback | Transformer)[]
+
+  /**
    * Current PostCSS version.
    *
    * ```js
@@ -38,19 +48,33 @@ declare class Processor_ {
   version: string
 
   /**
-   * Plugins added to this processor.
-   *
-   * ```js
-   * const processor = postcss([autoprefixer, postcssNested])
-   * processor.plugins.length //=> 2
-   * ```
-   */
-  plugins: (Plugin | Transformer | TransformCallback)[]
-
-  /**
    * @param plugins PostCSS plugins
    */
   constructor(plugins?: AcceptedPlugin[])
+
+  /**
+   * Parses source CSS and returns a `LazyResult` Promise proxy.
+   * Because some plugins can be asynchronous it doesn’t make
+   * any transformations. Transformations will be applied
+   * in the `LazyResult` methods.
+   *
+   * ```js
+   * processor.process(css, { from: 'a.css', to: 'a.out.css' })
+   *   .then(result => {
+   *      console.log(result.css)
+   *   })
+   * ```
+   *
+   * @param css String with input CSS or any object with a `toString()` method,
+   *            like a Buffer. Optionally, send a `Result` instance
+   *            and the processor will take the `Root` from it.
+   * @param opts Options.
+   * @return Promise proxy.
+   */
+  process(
+    css: { toString(): string } | LazyResult | Result | Root | string,
+    options?: ProcessOptions
+  ): LazyResult | NoWorkResult
 
   /**
    * Adds a plugin to be used as a CSS processor.
@@ -80,30 +104,6 @@ declare class Processor_ {
    * @return Current processor to make methods chain.
    */
   use(plugin: AcceptedPlugin): this
-
-  /**
-   * Parses source CSS and returns a `LazyResult` Promise proxy.
-   * Because some plugins can be asynchronous it doesn’t make
-   * any transformations. Transformations will be applied
-   * in the `LazyResult` methods.
-   *
-   * ```js
-   * processor.process(css, { from: 'a.css', to: 'a.out.css' })
-   *   .then(result => {
-   *      console.log(result.css)
-   *   })
-   * ```
-   *
-   * @param css String with input CSS or any object with a `toString()` method,
-   *            like a Buffer. Optionally, send a `Result` instance
-   *            and the processor will take the `Root` from it.
-   * @param opts Options.
-   * @return Promise proxy.
-   */
-  process(
-    css: string | { toString(): string } | Result | LazyResult | Root,
-    options?: ProcessOptions
-  ): LazyResult | NoWorkResult
 }
 
 declare class Processor extends Processor_ {}

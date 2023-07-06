@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { test } from 'uvu'
 import { is, type } from 'uvu/assert'
 
-import { Warning, parse, decl } from '../lib/postcss.js'
+import { decl, parse, Warning } from '../lib/postcss.js'
 
 test('outputs simple warning', () => {
   let warning = new Warning('text')
@@ -24,8 +24,8 @@ test('outputs warning with plugin and node', () => {
   let file = resolve('a.css')
   let root = parse('a{}', { from: file })
   let warning = new Warning('text', {
-    plugin: 'plugin',
-    node: root.first
+    node: root.first,
+    plugin: 'plugin'
   })
   is(warning.toString(), `plugin: ${file}:1:1: text`)
 })
@@ -34,9 +34,9 @@ test('outputs warning with index', () => {
   let file = resolve('a.css')
   let root = parse('@rule param {}', { from: file })
   let warning = new Warning('text', {
-    plugin: 'plugin',
+    index: 7,
     node: root.first,
-    index: 7
+    plugin: 'plugin'
   })
   is(warning.toString(), `plugin: ${file}:1:8: text`)
 })
@@ -45,8 +45,8 @@ test('outputs warning with word', () => {
   let file = resolve('a.css')
   let root = parse('@rule param {}', { from: file })
   let warning = new Warning('text', {
-    plugin: 'plugin',
     node: root.first,
+    plugin: 'plugin',
     word: 'am'
   })
   is(warning.toString(), `plugin: ${file}:1:10: text`)
@@ -96,7 +96,7 @@ test('gets range from word', () => {
 
 test('gets range from index', () => {
   let root = parse('a b{}')
-  let warning = new Warning('text', { node: root.first, index: 2 })
+  let warning = new Warning('text', { index: 2, node: root.first })
   is(warning.line, 1)
   is(warning.column, 3)
   is(warning.endLine, 1)
@@ -105,7 +105,7 @@ test('gets range from index', () => {
 
 test('gets range from index and endIndex', () => {
   let root = parse('a b{}')
-  let warning = new Warning('text', { node: root.first, index: 2, endIndex: 3 })
+  let warning = new Warning('text', { endIndex: 3, index: 2, node: root.first })
   is(warning.line, 1)
   is(warning.column, 3)
   is(warning.endLine, 1)
@@ -116,7 +116,7 @@ test('gets range from start', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', {
     node: root.first,
-    start: { line: 1, column: 3 }
+    start: { column: 3, line: 1 }
   })
   is(warning.line, 1)
   is(warning.column, 3)
@@ -127,8 +127,8 @@ test('gets range from start', () => {
 test('gets range from end', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', {
-    node: root.first,
-    end: { line: 1, column: 3 }
+    end: { column: 3, line: 1 },
+    node: root.first
   })
   is(warning.line, 1)
   is(warning.column, 1)
@@ -139,9 +139,9 @@ test('gets range from end', () => {
 test('gets range from start and end', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', {
+    end: { column: 4, line: 1 },
     node: root.first,
-    start: { line: 1, column: 3 },
-    end: { line: 1, column: 4 }
+    start: { column: 3, line: 1 }
   })
   is(warning.line, 1)
   is(warning.column, 3)
@@ -151,7 +151,7 @@ test('gets range from start and end', () => {
 
 test('always returns exclusive ends', () => {
   let root = parse('a b{}')
-  let warning = new Warning('text', { node: root.first, index: 1, endIndex: 1 })
+  let warning = new Warning('text', { endIndex: 1, index: 1, node: root.first })
   is(warning.line, 1)
   is(warning.column, 2)
   is(warning.endLine, 1)
@@ -160,7 +160,7 @@ test('always returns exclusive ends', () => {
 
 test('always returns valid ranges', () => {
   let root = parse('a b{}')
-  let warning = new Warning('text', { node: root.first, index: 2, endIndex: 1 })
+  let warning = new Warning('text', { endIndex: 1, index: 2, node: root.first })
   is(warning.line, 1)
   is(warning.column, 3)
   is(warning.endLine, 1)

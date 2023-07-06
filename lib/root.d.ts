@@ -11,20 +11,20 @@ declare namespace Root {
     after?: string
 
     /**
-     * Non-CSS code before `Root`, when `Root` is inside `Document`.
-     *
-     * **Experimental:** some aspects of this node could change within minor
-     * or patch version releases.
-     */
-    codeBefore?: string
-
-    /**
      * Non-CSS code after `Root`, when `Root` is inside `Document`.
      *
      * **Experimental:** some aspects of this node could change within minor
      * or patch version releases.
      */
     codeAfter?: string
+
+    /**
+     * Non-CSS code before `Root`, when `Root` is inside `Document`.
+     *
+     * **Experimental:** some aspects of this node could change within minor
+     * or patch version releases.
+     */
+    codeBefore?: string
 
     /**
      * Is the last child has an (optional) semicolon.
@@ -54,10 +54,13 @@ declare namespace Root {
  * ```
  */
 declare class Root_ extends Container {
-  type: 'root'
   parent: Document | undefined
   raws: Root.RootRaws
+  type: 'root'
 
+  constructor(defaults?: Root.RootProps)
+
+  assign(overrides: object | Root.RootProps): this
   /**
    * Returns a `Result` instance representing the root’s CSS.
    *
@@ -72,9 +75,6 @@ declare class Root_ extends Container {
    * @return Result with current root’s CSS.
    */
  toResult(options?: ProcessOptions): Result
-
-  constructor(defaults?: Root.RootProps)
-  assign(overrides: object | Root.RootProps): this
 }
 
 declare class Root extends Root_ {}

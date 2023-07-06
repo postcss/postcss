@@ -1,5 +1,5 @@
 let { test } = require('uvu')
-let { equal, throws, is } = require('uvu/assert')
+let { equal, is, throws } = require('uvu/assert')
 
 let tokenizer = require('../lib/tokenize')
 let { Input } = require('../lib/postcss')

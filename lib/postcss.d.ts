@@ -1,28 +1,28 @@
-import { SourceMapGenerator, RawSourceMap } from 'source-map-js'
+import { RawSourceMap, SourceMapGenerator } from 'source-map-js'
 
+import AtRule, { AtRuleProps } from './at-rule.js'
+import Comment, { CommentProps } from './comment.js'
+import Container, { ContainerProps } from './container.js'
+import CssSyntaxError from './css-syntax-error.js'
+import Declaration, { DeclarationProps } from './declaration.js'
+import Document, { DocumentProps } from './document.js'
+import Input, { FilePosition } from './input.js'
+import LazyResult from './lazy-result.js'
+import list from './list.js'
 import Node, {
-  Position,
-  Source,
+  AnyNode,
   ChildNode,
+  ChildProps,
   NodeErrorOptions,
   NodeProps,
-  ChildProps,
-  AnyNode
+  Position,
+  Source
 } from './node.js'
-import Declaration, { DeclarationProps } from './declaration.js'
-import Container, { ContainerProps } from './container.js'
-import Document, { DocumentProps } from './document.js'
-import Warning, { WarningOptions } from './warning.js'
-import Comment, { CommentProps } from './comment.js'
-import AtRule, { AtRuleProps } from './at-rule.js'
-import Input, { FilePosition } from './input.js'
+import Processor from './processor.js'
 import Result, { Message } from './result.js'
 import Root, { RootProps } from './root.js'
 import Rule, { RuleProps } from './rule.js'
-import CssSyntaxError from './css-syntax-error.js'
-import list from './list.js'
-import LazyResult from './lazy-result.js'
-import Processor from './processor.js'
+import Warning, { WarningOptions } from './warning.js'
 
 type DocumentProcessor = (
   document: Document,
@@ -41,6 +41,52 @@ type CommentProcessor = (
 ) => Promise<void> | void
 
 interface Processors {
+  /**
+   * Will be called on all`AtRule` nodes.
+   *
+   * Will be called again on node or children changes.
+   */
+  AtRule?: { [name: string]: AtRuleProcessor } | AtRuleProcessor
+
+  /**
+   * Will be called on all `AtRule` nodes, when all children will be processed.
+   *
+   * Will be called again on node or children changes.
+   */
+  AtRuleExit?: { [name: string]: AtRuleProcessor } | AtRuleProcessor
+
+  /**
+   * Will be called on all `Comment` nodes.
+   *
+   * Will be called again on node or children changes.
+   */
+  Comment?: CommentProcessor
+
+  /**
+   * Will be called on all `Comment` nodes after listeners
+   * for `Comment` event.
+   *
+   * Will be called again on node or children changes.
+   */
+  CommentExit?: CommentProcessor
+
+  /**
+   * Will be called on all `Declaration` nodes after listeners
+   * for `Declaration` event.
+   *
+   * Will be called again on node or children changes.
+   */
+  Declaration?: { [prop: string]: DeclarationProcessor } | DeclarationProcessor
+
+  /**
+   * Will be called on all `Declaration` nodes.
+   *
+   * Will be called again on node or children changes.
+   */
+  DeclarationExit?:
+    | { [prop: string]: DeclarationProcessor }
+    | DeclarationProcessor
+
   /**
    * Will be called on `Document` node.
    *
@@ -80,23 +126,6 @@ interface Processors {
   RootExit?: RootProcessor
 
   /**
-   * Will be called on all `Declaration` nodes after listeners
-   * for `Declaration` event.
-   *
-   * Will be called again on node or children changes.
-   */
-  Declaration?: DeclarationProcessor | { [prop: string]: DeclarationProcessor }
-
-  /**
-   * Will be called on all `Declaration` nodes.
-   *
-   * Will be called again on node or children changes.
-   */
-  DeclarationExit?:
-    | DeclarationProcessor
-    | { [prop: string]: DeclarationProcessor }
-
-  /**
    * Will be called on all `Rule` nodes.
    *
    * Will be called again on node or children changes.
@@ -109,78 +138,49 @@ interface Processors {
    * Will be called again on node or children changes.
    */
   RuleExit?: RuleProcessor
-
-  /**
-   * Will be called on all`AtRule` nodes.
-   *
-   * Will be called again on node or children changes.
-   */
-  AtRule?: AtRuleProcessor | { [name: string]: AtRuleProcessor }
-
-  /**
-   * Will be called on all `AtRule` nodes, when all children will be processed.
-   *
-   * Will be called again on node or children changes.
-   */
-  AtRuleExit?: AtRuleProcessor | { [name: string]: AtRuleProcessor }
-
-  /**
-   * Will be called on all `Comment` nodes.
-   *
-   * Will be called again on node or children changes.
-   */
-  Comment?: CommentProcessor
-
-  /**
-   * Will be called on all `Comment` nodes after listeners
-   * for `Comment` event.
-   *
-   * Will be called again on node or children changes.
-   */
-  CommentExit?: CommentProcessor
 }
 
 declare namespace postcss {
   export {
-    NodeErrorOptions,
-    DeclarationProps,
-    CssSyntaxError,
+    AnyNode,
+    AtRule,
+    AtRuleProps,
+    ChildNode,
+    ChildProps,
+    Comment,
+    CommentProps,
+    Container,
     ContainerProps,
-    WarningOptions,
+    CssSyntaxError,
+    Declaration,
+    DeclarationProps,
+    Document,
     DocumentProps,
     FilePosition,
-    CommentProps,
-    AtRuleProps,
-    Declaration,
-    ChildProps,
-    LazyResult,
-    ChildNode,
-    NodeProps,
-    Processor,
-    RuleProps,
-    RootProps,
-    Container,
-    Position,
-    Document,
-    AnyNode,
-    Warning,
-    Message,
-    Comment,
-    Source,
-    AtRule,
-    Result,
     Input,
-    Node,
+    LazyResult,
     list,
+    Message,
+    Node,
+    NodeErrorOptions,
+    NodeProps,
+    Position,
+    Processor,
+    Result,
+    Root,
+    RootProps,
     Rule,
-    Root
+    RuleProps,
+    Source,
+    Warning,
+    WarningOptions
   }
 
   export type SourceMap = SourceMapGenerator & {
     toJSON(): RawSourceMap
   }
 
-  export type Helpers = { result: Result; postcss: Postcss } & Postcss
+  export type Helpers = { postcss: Postcss; result: Result } & Postcss
 
   export interface Plugin extends Processors {
     postcssPlugin: string
@@ -207,24 +207,24 @@ declare namespace postcss {
   }
 
   export type AcceptedPlugin =
+    | {
+        postcss: Processor | TransformCallback
+      }
+    | OldPlugin<any>
     | Plugin
     | PluginCreator<any>
-    | OldPlugin<any>
-    | TransformCallback
-    | {
-        postcss: TransformCallback | Processor
-      }
     | Processor
+    | TransformCallback
 
-  export interface Parser<RootNode = Root | Document> {
+  export interface Parser<RootNode = Document | Root> {
     (
-      css: string | { toString(): string },
-      opts?: Pick<ProcessOptions, 'map' | 'from'>
+      css: { toString(): string } | string,
+      opts?: Pick<ProcessOptions, 'from' | 'map'>
     ): RootNode
   }
 
   export interface Builder {
-    (part: string, node?: AnyNode, type?: 'start' | 'end'): void
+    (part: string, node?: AnyNode, type?: 'end' | 'start'): void
   }
 
   export interface Stringifier {
@@ -232,8 +232,8 @@ declare namespace postcss {
   }
 
   export interface JSONHydrator {
-    (data: object[]): Node[]
     (data: object): Node
+    (data: object[]): Node[]
   }
 
   export interface Syntax {
@@ -249,6 +249,30 @@ declare namespace postcss {
   }
 
   export interface SourceMapOptions {
+    /**
+     * Use absolute path in generated source map.
+     */
+    absolute?: boolean
+
+    /**
+     * Indicates that PostCSS should add annotation comments to the CSS.
+     * By default, PostCSS will always add a comment with a path
+     * to the source map. PostCSS will not add annotations to CSS files
+     * that do not contain any comments.
+     *
+     * By default, PostCSS presumes that you want to save the source map as
+     * `opts.to + '.map'` and will use this path in the annotation comment.
+     * A different path can be set by providing a string value for annotation.
+     *
+     * If you have set `inline: true`, annotation cannot be disabled.
+     */
+    annotation?: ((file: string, root: Root) => string) | boolean | string
+
+    /**
+     * Override `from` in map’s sources.
+     */
+    from?: string
+
     /**
      * Indicates that the source map should be embedded in the output CSS
      * as a Base64-encoded comment. By default, it is `true`.
@@ -269,7 +293,7 @@ declare namespace postcss {
      *
      * If desired, you can omit the previous map with prev: `false`.
      */
-    prev?: string | boolean | object | ((file: string) => string)
+    prev?: ((file: string) => string) | boolean | object | string
 
     /**
      * Indicates that PostCSS should set the origin content (e.g., Sass source)
@@ -278,30 +302,6 @@ declare namespace postcss {
      * do not set this option.
      */
     sourcesContent?: boolean
-
-    /**
-     * Indicates that PostCSS should add annotation comments to the CSS.
-     * By default, PostCSS will always add a comment with a path
-     * to the source map. PostCSS will not add annotations to CSS files
-     * that do not contain any comments.
-     *
-     * By default, PostCSS presumes that you want to save the source map as
-     * `opts.to + '.map'` and will use this path in the annotation comment.
-     * A different path can be set by providing a string value for annotation.
-     *
-     * If you have set `inline: true`, annotation cannot be disabled.
-     */
-    annotation?: string | boolean | ((file: string, root: Root) => string)
-
-    /**
-     * Override `from` in map’s sources.
-     */
-    from?: string
-
-    /**
-     * Use absolute path in generated source map.
-     */
-    absolute?: boolean
   }
 
   export interface ProcessOptions {
@@ -312,20 +312,19 @@ declare namespace postcss {
     from?: string
 
     /**
-     * The path where you'll put the output CSS file. You should always set `to`
-     * to generate correct source maps.
+     * Source map options
      */
-    to?: string
+    map?: boolean | SourceMapOptions
 
     /**
      * Function to generate AST by string.
      */
-    parser?: Syntax | Parser
+    parser?: Parser | Syntax
 
     /**
      * Class to generate string by AST.
      */
-    stringifier?: Syntax | Stringifier
+    stringifier?: Stringifier | Syntax
 
     /**
      * Object with parse and stringify.
@@ -333,9 +332,10 @@ declare namespace postcss {
     syntax?: Syntax
 
     /**
-     * Source map options
+     * The path where you'll put the output CSS file. You should always set `to`
+     * to generate correct source maps.
      */
-    map?: SourceMapOptions | boolean
+    to?: string
   }
 
   export type Postcss = typeof postcss

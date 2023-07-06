@@ -36,13 +36,13 @@ test('creates nodes property on append()', () => {
 })
 
 test('inserts default spaces', () => {
-  let rule = new AtRule({ name: 'page', params: 1, nodes: [] })
+  let rule = new AtRule({ name: 'page', nodes: [], params: 1 })
   is(rule.toString(), '@page 1 {}')
 })
 
 test('clone spaces from another at-rule', () => {
   let root = parse('@page{}a{}')
-  let rule = new AtRule({ name: 'page', params: 1, nodes: [] })
+  let rule = new AtRule({ name: 'page', nodes: [], params: 1 })
   root.append(rule)
 
   is(rule.toString(), '@page 1{}')

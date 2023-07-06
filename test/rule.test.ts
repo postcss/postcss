@@ -1,7 +1,7 @@
 import { test } from 'uvu'
-import { is, equal } from 'uvu/assert'
+import { equal, is } from 'uvu/assert'
 
-import { Rule, parse } from '../lib/postcss.js'
+import { parse, Rule } from '../lib/postcss.js'
 
 test('initializes with properties', () => {
   let rule = new Rule({ selector: 'a' })
@@ -38,7 +38,7 @@ test('saves separator in selectors', () => {
 })
 
 test('uses between to detect separator in selectors', () => {
-  let rule = new Rule({ selector: 'b', raws: { between: '' } })
+  let rule = new Rule({ raws: { between: '' }, selector: 'b' })
   rule.selectors = ['b', 'strong']
   is(rule.selector, 'b,strong')
 })

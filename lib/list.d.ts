@@ -1,22 +1,22 @@
 declare namespace list {
   type List = {
-    default: List
-
     /**
-     * Safely splits values.
+     * Safely splits comma-separated values (such as those for `transition-*`
+     * and `background` properties).
      *
      * ```js
      * Once (root, { list }) {
-     *   list.split('1px calc(10% + 1px)', [' ', '\n', '\t']) //=> ['1px', 'calc(10% + 1px)']
+     *   list.comma('black, linear-gradient(white, black)')
+     *   //=> ['black', 'linear-gradient(white, black)']
      * }
      * ```
      *
-     * @param string separated values.
-     * @param separators array of separators.
-     * @param last boolean indicator.
+     * @param str Comma-separated values.
      * @return Split values.
      */
-    split(string: string, separators: string[], last: boolean): string[]
+    comma(str: string): string[]
+
+    default: List
 
     /**
      * Safely splits space-separated values (such as those for `background`,
@@ -34,20 +34,20 @@ declare namespace list {
     space(str: string): string[]
 
     /**
-     * Safely splits comma-separated values (such as those for `transition-*`
-     * and `background` properties).
+     * Safely splits values.
      *
      * ```js
      * Once (root, { list }) {
-     *   list.comma('black, linear-gradient(white, black)')
-     *   //=> ['black', 'linear-gradient(white, black)']
+     *   list.split('1px calc(10% + 1px)', [' ', '\n', '\t']) //=> ['1px', 'calc(10% + 1px)']
      * }
      * ```
      *
-     * @param str Comma-separated values.
+     * @param string separated values.
+     * @param separators array of separators.
+     * @param last boolean indicator.
      * @return Split values.
      */
-    comma(str: string): string[]
+    split(string: string, separators: string[], last: boolean): string[]
   }
 }
 
