@@ -115,9 +115,8 @@ declare class Declaration_ extends Node {
   important: boolean
 
   /**
-   * The `variable` method represents a getter that returns true
-   * if a declaration starts with `--` or `$`, which are used to
-   * declare variables in CSS and SASS/SCSS.
+   * It represents a getter that returns `true` if a declaration starts with
+   * `--` or `$`, which are used to declare variables in CSS and SASS/SCSS.
    *
    * ```js
    * const root = postcss.parse(':root { --one: 1 }')

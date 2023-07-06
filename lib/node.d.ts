@@ -81,7 +81,7 @@ declare namespace Node {
   }
 
   /**
-   * NodeProps represents an interface for an object received
+   * Interface represents an interface for an object received
    * as parameter by Node class constructor.
    */
   export interface NodeProps {
@@ -124,7 +124,7 @@ declare namespace Node {
  */
 declare abstract class Node_ {
   /**
-   * The property `type` represents type of a node in
+   * It represents type of a node in
    * an abstract syntax tree.
    *
    * A type of node helps in identification of a node
@@ -142,8 +142,7 @@ declare abstract class Node_ {
   type: string
 
   /**
-   * The property `parent` represents parent of the
-   * current node.
+   * It represents parent of the current node.
    *
    * ```js
    * console.log(root.nodes[0].parent === root) //=> true
@@ -152,9 +151,8 @@ declare abstract class Node_ {
   parent: Document | Container | undefined
 
   /**
-   * The property `source` represents information related
-   * to origin of a node and is required for generating
-   * source maps.
+   * It represents information related to origin of a node and is required
+   * for generating source maps.
    *
    * The nodes that are created manually using the public APIs
    * provided by PostCSS will have `source` undefined and
@@ -198,8 +196,8 @@ declare abstract class Node_ {
   source?: Node.Source
 
   /**
-   * The property `raws` represents unnecessary whitespace
-   * and characters present in the css source code.
+   * It represents unnecessary whitespace and characters present
+   * in the css source code.
    *
    * Information to generate byte-to-byte equal node string as it was
    * in the origin input.
@@ -236,9 +234,8 @@ declare abstract class Node_ {
   constructor(defaults?: object)
 
   /**
-   * The Node.error method creates an instance of the
-   * class `CssSyntaxError` and parameters passed to
-   * this method are assigned to the error instance.
+   * It creates an instance of the class `CssSyntaxError` and parameters passed
+   * to this method are assigned to the error instance.
    *
    * The error instance will have description for the
    * error, original position of the node in the
@@ -273,8 +270,8 @@ declare abstract class Node_ {
   error(message: string, options?: Node.NodeErrorOptions): CssSyntaxError
 
   /**
-   * The `warn` method is a wrapper for Result#warn,
-   * providing convenient way of generating warnings.
+   * It is a wrapper for {@link Result#warn}, providing convenient
+   * way of generating warnings.
    *
    * ```js
    *   Declaration: {
@@ -293,8 +290,7 @@ declare abstract class Node_ {
   warn(result: Result, message: string, options?: WarningOptions): Warning
 
   /**
-   * The `remove` method removes the node from its parent
-   * and deletes its parent property.
+   * It removes the node from its parent and deletes its parent property.
    *
    * ```js
    * if (decl.prop.match(/^-webkit-/)) {
@@ -307,8 +303,7 @@ declare abstract class Node_ {
   remove(): this
 
   /**
-   * The `toString` method compiles the node to
-   * browser readable cascading style sheets string
+   * It compiles the node to browser readable cascading style sheets string
    * depending on it's type.
    *
    * ```js
@@ -321,8 +316,7 @@ declare abstract class Node_ {
   toString(stringifier?: Stringifier | Syntax): string
 
   /**
-   * The `assign` method assigns properties to an existing
-   * node instance.
+   * It assigns properties to an existing node instance.
    *
    * ```js
    * decl.assign({ prop: 'word-wrap', value: 'break-word' })
@@ -335,9 +329,8 @@ declare abstract class Node_ {
   assign(overrides: object): this
 
   /**
-   * The `clone` method creates clone of an existing node,
-   * which includes all the properties and their values, that
-   * includes `raws` but not `type`.
+   * It creates clone of an existing node, which includes all the properties
+   * and their values, that includes `raws` but not `type`.
    *
    * ```js
    * decl.raws.before    //=> "\n  "
