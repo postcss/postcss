@@ -1,11 +1,8 @@
-# PostCSS [![Gitter][chat-img]][chat]
+# PostCSS
 
 <img align="right" width="95" height="95"
      alt="Philosopher’s stone, logo of PostCSS"
      src="https://postcss.org/logo.svg">
-
-[chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
-[chat]:     https://gitter.im/postcss/postcss
 
 PostCSS is a tool for transforming styles with JS plugins.
 These plugins can lint your CSS, support variables and mixins,
@@ -20,10 +17,8 @@ PostCSS takes a CSS file and provides an API to analyze and modify its rules
 This API can then be used by [plugins] to do a lot of useful things,
 e.g., to find errors automatically, or to insert vendor prefixes.
 
-**Support / Discussion:** [Gitter](https://gitter.im/postcss/postcss)<br>
-**Twitter account:**      [@postcss](https://twitter.com/postcss)<br>
-**VK.com page:**          [postcss](https://vk.com/postcss)<br>
-**中文翻译**:              [`docs/README-cn.md`](./docs/README-cn.md)
+**Twitter account:** [@postcss](https://twitter.com/postcss)<br>
+**中文翻译**:          [`docs/README-cn.md`](./docs/README-cn.md)
 
 For PostCSS commercial support (consulting, improving the front-end culture
 of your company, PostCSS plugins), contact [Evil Martians]
