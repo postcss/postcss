@@ -53,7 +53,12 @@
     "transpiler"
   ],
   "scripts": {
-    "test": "c8 pnpm unit && eslint . && node ./test/version.js && check-dts && node ./test/integration.js && size-limit",
+    "test:types": "check-dts",
+    "test:version": "node ./test/version.js",
+    "test:coverage": "c8 pnpm unit",
+    "test:integration": "node ./test/integration.js",
+    "test:size": "size-limit",
+    "test": "pnpm run /^test:/",
     "unit": "uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\"",
     "old": "uvu -r ../../../../../../../test/old-node.js -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\""
   },
