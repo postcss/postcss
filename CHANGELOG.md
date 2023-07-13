@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.26
+* Fixed clone methods types.
+
 ## 8.4.25
 * Improve stringify performance (by Romain Menke).
 * Fixed docs (by @vikaskaliramna07).
