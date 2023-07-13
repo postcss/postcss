@@ -128,7 +128,7 @@ declare abstract class Node_ {
    * It represents parent of the current node.
    *
    * ```js
-   * console.log(root.nodes[0].parent === root) //=> true
+   * root.nodes[0].parent === root //=> true
    * ```
    */
   parent: Container | Document | undefined
@@ -164,7 +164,7 @@ declare abstract class Node_ {
    *
    * ```js
    * const root = postcss.parse('a {\n  color:black\n}')
-   * console.log(root.first.first.raws) //=> { before: '\n  ', between: ':' }
+   * root.first.first.raws //=> { before: '\n  ', between: ':' }
    * ```
    */
   raws: any
@@ -183,9 +183,9 @@ declare abstract class Node_ {
    * source to a node created manually.
    *
    * ```js
-   * console.log(decl.source.input.from) //=> '/home/ai/source.css'
-   * console.log(decl.source.start)      //=> { line: 10, column: 2 }
-   * console.log(decl.source.end)        //=> { line: 10, column: 12 }
+   * decl.source.input.from //=> '/home/ai/source.css'
+   * decl.source.start      //=> { line: 10, column: 2 }
+   * decl.source.end        //=> { line: 10, column: 12 }
    * ```
    *
    * ```js
@@ -227,7 +227,7 @@ declare abstract class Node_ {
    *   value: 'black'
    * })
    *
-   * console.log(declaration.type) //=> 'decl'
+   * declaration.type //=> 'decl'
    * ```
    */
   type: string
@@ -502,7 +502,7 @@ declare abstract class Node_ {
    * depending on it's type.
    *
    * ```js
-   * console.log(new Rule({ selector: 'a' }).toString()) //=> "a {}"
+   * new Rule({ selector: 'a' }).toString() //=> "a {}"
    * ```
    *
    * @param stringifier A syntax to use in string generation.

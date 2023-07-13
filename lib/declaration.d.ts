@@ -58,8 +58,8 @@ declare namespace Declaration {
  * const root = postcss.parse('a { color: black }')
  * const decl = root.first?.first
  *
- * console.log(decl.type)       //=> 'decl'
- * console.log(decl.toString()) //=> ' color: black'
+ * decl.type       //=> 'decl'
+ * decl.toString() //=> ' color: black'
  * ```
  */
 declare class Declaration_ extends Node {
@@ -73,20 +73,22 @@ declare class Declaration_ extends Node {
    * ```js
    * const root = postcss.parse('a { color: black !important; color: red }')
    *
-   * console.log(root.first?.first?.important) //=> true
-   * console.log(root.first?.last?.important)  //=> undefined
+   * root.first.first.important //=> true
+   * root.first.last.important  //=> undefined
    * ```
    */
   important: boolean
+
   parent: Container | undefined
+
   /**
    * The property name for a CSS declaration.
    *
    * ```js
    * const root = postcss.parse('a { color: black }')
-   * const decl = root.first?.first
+   * const decl = root.first.first
    *
-   * console.log(decl.prop) //=> 'color'
+   * decl.prop //=> 'color'
    * ```
    */
   prop: string
@@ -107,9 +109,9 @@ declare class Declaration_ extends Node {
    *
    * ```js
    * const root = postcss.parse('a { color: black }')
-   * const decl = root.first?.first
+   * const decl = root.first.first
    *
-   * console.log(decl.value) //=> 'black'
+   * decl.value //=> 'black'
    * ```
    */
   value: string
@@ -120,16 +122,16 @@ declare class Declaration_ extends Node {
    *
    * ```js
    * const root = postcss.parse(':root { --one: 1 }')
-   * const one = root.first?.first
+   * const one = root.first.first
    *
-   * console.log(one?.variable) //=> true
+   * one.variable //=> true
    * ```
    *
    * ```js
    * const root = postcss.parse('$one: 1')
    * const one = root.first
    *
-   * console.log(one?.variable) //=> true
+   * one.variable //=> true
    * ```
    */
   variable: boolean
