@@ -61,6 +61,10 @@ declare class Root_ extends Container {
   constructor(defaults?: Root.RootProps)
 
   assign(overrides: object | Root.RootProps): this
+  clone(overrides?: Partial<Root.RootProps>): Root
+  cloneAfter(overrides?: Partial<Root.RootProps>): Root
+  cloneBefore(overrides?: Partial<Root.RootProps>): Root
+
   /**
    * Returns a `Result` instance representing the root’s CSS.
    *
@@ -74,7 +78,7 @@ declare class Root_ extends Container {
    * @param opts Options.
    * @return Result with current root’s CSS.
    */
- toResult(options?: ProcessOptions): Result
+  toResult(options?: ProcessOptions): Result
 }
 
 declare class Root extends Root_ {}

@@ -138,9 +138,9 @@ declare class Declaration_ extends Node {
 
   constructor(defaults?: Declaration.DeclarationProps)
   assign(overrides: Declaration.DeclarationProps | object): this
-  clone(overrides?: Partial<Declaration.DeclarationProps>): this
-  cloneAfter(overrides?: Partial<Declaration.DeclarationProps>): this
-  cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): this
+  clone(overrides?: Partial<Declaration.DeclarationProps>): Declaration
+  cloneAfter(overrides?: Partial<Declaration.DeclarationProps>): Declaration
+  cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): Declaration
 }
 
 declare class Declaration extends Declaration_ {}
