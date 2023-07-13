@@ -303,7 +303,7 @@ declare abstract class Node_ {
    *
    * @return Duplicate of the node instance.
    */
-  clone(overrides?: object): Node_
+  clone(overrides?: object): this
 
   /**
    * Shortcut to clone the node and insert the resulting cloned node
