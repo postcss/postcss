@@ -158,6 +158,125 @@ test('each() allows to change children', () => {
   equal(props, ['a', 'a'])
 })
 
+
+test('forEach() iterates', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let indexes: number[] = []
+
+  let result = rule.forEach((decl, i) => {
+    indexes.push(i)
+    is(decl, rule.nodes[i])
+  })
+
+  type(result, 'undefined')
+  equal(indexes, [0, 1])
+})
+
+test('forEach() iterates with prepend', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let size = 0
+
+  rule.forEach(() => {
+    rule.prepend({ prop: 'color', value: 'aqua' })
+    size += 1
+  })
+
+  is(size, 2)
+})
+
+test('forEach() iterates with prepend insertBefore', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let size = 0
+
+  rule.forEach(decl => {
+    if (decl.type === 'decl' && decl.prop === 'a') {
+      rule.insertBefore(decl, { prop: 'c', value: '3' })
+    }
+    size += 1
+  })
+
+  is(size, 2)
+})
+
+test('forEach() iterates with append insertBefore', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let size = 0
+
+  rule.forEach((decl, i) => {
+    if (decl.type === 'decl' && decl.prop === 'a') {
+      rule.insertBefore(i + 1, { prop: 'c', value: '3' })
+    }
+    size += 1
+  })
+
+  is(size, 2)
+})
+
+test('forEach() iterates with prepend insertAfter', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let size = 0
+
+  rule.forEach((decl, i) => {
+    rule.insertAfter(i - 1, { prop: 'c', value: '3' })
+    size += 1
+  })
+
+  is(size, 2)
+})
+
+test('forEach() iterates with append insertAfter', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let size = 0
+
+  rule.forEach((decl, i) => {
+    if (decl.type === 'decl' && decl.prop === 'a') {
+      rule.insertAfter(i, { prop: 'c', value: '3' })
+    }
+    size += 1
+  })
+
+  is(size, 2)
+})
+
+test('forEach() iterates with remove', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let size = 0
+
+  rule.forEach(() => {
+    rule.removeChild(0)
+    size += 1
+  })
+
+  is(size, 2)
+})
+
+test('forEach() breaks iteration', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let indexes: number[] = []
+
+  let result = rule.forEach((decl, i) => {
+    indexes.push(i)
+    return true; 
+  })
+
+  is(result, true)
+  equal(indexes, [0])
+})
+
+test('forEach() allows to change children', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  let props: string[] = []
+
+  rule.forEach(decl => {
+    if (decl.type === 'decl') {
+      props.push(decl.prop)
+      rule.nodes = [rule.last as any, rule.first as any]
+    }
+  })
+
+  equal(props, ['a', 'b'])
+})
+
 test('walk() iterates', () => {
   let types: string[] = []
   let indexes: number[] = []

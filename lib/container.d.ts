@@ -72,6 +72,15 @@ declare abstract class Container_<
   ): this
 
   /**
+   * Iterates through the container's child nodes.
+   * 
+   * @param callbackFn callback function to execute over nodes
+   */
+  forEach(
+    callbackFn: (node: Child, index: number) => boolean | void
+  ) : boolean | void 
+
+  /**
    * Iterates through the container’s immediate children,
    * calling `callback` for each child.
    *
