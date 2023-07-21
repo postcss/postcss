@@ -70,12 +70,10 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   ): this
 
   assign(overrides: Container.ContainerProps | object): this
+  clone(overrides?: Partial<Container.ContainerProps>): Container<Child>
+  cloneAfter(overrides?: Partial<Container.ContainerProps>): Container<Child>
+  cloneBefore(overrides?: Partial<Container.ContainerProps>): Container<Child>
 
-  clone(overrides?: Partial<Container.ContainerProps>): Container
-
-  cloneAfter(overrides?: Partial<Container.ContainerProps>): Container
-
-  cloneBefore(overrides?: Partial<Container.ContainerProps>): Container
   /**
    * Iterates through the container’s immediate children,
    * calling `callback` for each child.
