@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.27
+* Fixed `Container` clone methods types.
+
 ## 8.4.26
 * Fixed clone methods types.
 
