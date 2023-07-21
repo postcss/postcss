@@ -32,9 +32,7 @@ declare namespace Container {
  * Note that all containers can store any content. If you write a rule inside
  * a rule, PostCSS will parse it.
  */
-declare abstract class Container_<
-  Child extends Node = ChildNode
-> extends Node {
+declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   /**
    * An array containing the container’s children.
    *
@@ -71,6 +69,13 @@ declare abstract class Container_<
     ...nodes: (ChildProps | ChildProps[] | Node | Node[] | string | string[])[]
   ): this
 
+  assign(overrides: Container.ContainerProps | object): this
+
+  clone(overrides?: Partial<Container.ContainerProps>): Container
+
+  cloneAfter(overrides?: Partial<Container.ContainerProps>): Container
+
+  cloneBefore(overrides?: Partial<Container.ContainerProps>): Container
   /**
    * Iterates through the container’s immediate children,
    * calling `callback` for each child.
@@ -122,7 +127,6 @@ declare abstract class Container_<
   every(
     condition: (node: Child, index: number, nodes: Child[]) => boolean
   ): boolean
-
   /**
    * The container’s first child.
    *
@@ -154,6 +158,23 @@ declare abstract class Container_<
     oldNode: Child | number,
     newNode: Child | Child[] | ChildProps | ChildProps[] | string | string[]
   ): this
+
+  /**
+   * Traverses the container’s descendant nodes, calling callback
+   * for each comment node.
+   *
+   * Like `Container#each`, this method is safe
+   * to use if you are mutating arrays during iteration.
+   *
+   * ```js
+   * root.walkComments(comment => {
+   *   comment.remove()
+   * })
+   * ```
+   *
+   * @param callback Iterator receives each node and index.
+   * @return Returns `false` if iteration was broke.
+   */
 
   /**
    * Insert new node before old node within the container.
@@ -202,6 +223,7 @@ declare abstract class Container_<
   prepend(
     ...nodes: (ChildProps | ChildProps[] | Node | Node[] | string | string[])[]
   ): this
+
   /**
    * Add child to the end of the node.
    *
@@ -215,23 +237,6 @@ declare abstract class Container_<
   push(child: Child): this
 
   /**
-   * Traverses the container’s descendant nodes, calling callback
-   * for each comment node.
-   *
-   * Like `Container#each`, this method is safe
-   * to use if you are mutating arrays during iteration.
-   *
-   * ```js
-   * root.walkComments(comment => {
-   *   comment.remove()
-   * })
-   * ```
-   *
-   * @param callback Iterator receives each node and index.
-   * @return Returns `false` if iteration was broke.
-   */
-
-  /**
    * Removes all children from the container
    * and cleans their parent properties.
    *
@@ -243,6 +248,7 @@ declare abstract class Container_<
    * @return This node for methods chain.
    */
   removeAll(): this
+
   /**
    * Removes node from the container and cleans the parent properties
    * from the node and its children.
@@ -258,6 +264,11 @@ declare abstract class Container_<
    * @return This node for methods chain.
    */
   removeChild(child: Child | number): this
+
+  replaceValues(
+    pattern: RegExp | string,
+    replaced: { (substring: string, ...args: any[]): string } | string
+  ): this
 
   /**
    * Passes all declaration values within the container that match pattern
@@ -285,11 +296,6 @@ declare abstract class Container_<
   replaceValues(
     pattern: RegExp | string,
     options: Container.ValueOptions,
-    replaced: { (substring: string, ...args: any[]): string } | string
-  ): this
-
-  replaceValues(
-    pattern: RegExp | string,
     replaced: { (substring: string, ...args: any[]): string } | string
   ): this
 
@@ -330,11 +336,6 @@ declare abstract class Container_<
   walk(
     callback: (node: ChildNode, index: number) => false | void
   ): false | undefined
-
-  walkAtRules(
-    callback: (atRule: AtRule, index: number) => false | void
-  ): false | undefined
-
   /**
    * Traverses the container’s descendant nodes, calling callback
    * for each at-rule node.
@@ -369,15 +370,16 @@ declare abstract class Container_<
     callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
 
+  walkAtRules(
+    callback: (atRule: AtRule, index: number) => false | void
+  ): false | undefined
+
   walkComments(
     callback: (comment: Comment, indexed: number) => false | void
   ): false | undefined
 
   walkComments(
     callback: (comment: Comment, indexed: number) => false | void
-  ): false | undefined
-  walkDecls(
-    callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
 
   /**
@@ -413,11 +415,9 @@ declare abstract class Container_<
     propFilter: RegExp | string,
     callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
-
-  walkRules(
-    callback: (rule: Rule, index: number) => false | void
+  walkDecls(
+    callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
-
   /**
    * Traverses the container’s descendant nodes, calling callback
    * for each rule node.
@@ -442,6 +442,9 @@ declare abstract class Container_<
    */
   walkRules(
     selectorFilter: RegExp | string,
+    callback: (rule: Rule, index: number) => false | void
+  ): false | undefined
+  walkRules(
     callback: (rule: Rule, index: number) => false | void
   ): false | undefined
 }
