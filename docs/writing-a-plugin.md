@@ -380,7 +380,8 @@ You will have bugs and a minimum of 10 minutes in debugging even a simple plugin
 You may found that simple origin idea will not work in real-world and you need
 to change everything.
 
-Don’t worry. Every bug is findable, and finding another solution may make your plugin even better.
+Don’t worry. Every bug is findable, and finding another solution may make your
+plugin even better.
 
 Start from writing tests. Plugin boilerplate has a test template
 in `index.test.js`. Call `npx jest` to test your plugin.
@@ -389,7 +390,7 @@ Use Node.js debugger in your text editor or just `console.log`
 to debug the code.
 
 PostCSS community can help you since we are all experiencing the same problems.
-Don’t afraid to ask in [special Gitter channel](https://gitter.im/postcss/).
+Don’t afraid to ask in [special channel](https://github.com/orgs/postcss/discussions).
 
 
 ## Step 6: Make it public
