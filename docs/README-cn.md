@@ -1,11 +1,8 @@
-# PostCSS [![Gitter][chat-img]][chat]
+# PostCSS
 
 <img align="right" width="95" height="95"
      alt="哲学家的石头 - PostCSS 的 logo"
      src="https://postcss.org/logo.svg">
-
-[chat-img]: https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg
-[chat]:     https://gitter.im/postcss/postcss
 
 PostCSS 是一个允许使用 JS 插件转换样式的工具。
 这些插件可以检查（lint）你的 CSS，支持 CSS Variables 和 Mixins，
@@ -16,8 +13,7 @@ JetBrains。PostCSS 的 [Autoprefixer] 插件是最流行的 CSS 处理工具之
 
 PostCSS 接收一个 CSS 文件并提供了一个 API 来分析、修改它的规则（通过把 CSS 规则转换成一个[抽象语法树]的方式）。在这之后，这个 API 便可被许多[插件]利用来做有用的事情，比如寻错或自动添加 CSS vendor 前缀。
 
-**Twitter 账号:** [@postcss](https://twitter.com/postcss)<br>
-**支持 / 讨论:**   [Gitter](https://gitter.im/postcss/postcss)<br>
+**Twitter 账号:** [@postcss](https://twitter.com/postcss)
 
 如果需要 PostCSS 商业支持（如咨询，提升公司的前端文化，
 PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_source=postcss)

@@ -4,16 +4,6 @@ If you want to contribute to PostCSS, there are a few things that you should
 be familiar with.
 
 
-## In Case You Have Questions About Using PostCSS
-
-* **Ask for help in [the chat]**
-
-    If you're stuck, chances are
-    someone had a similar problem before.
-
-[the chat]: https://gitter.im/postcss/postcss
-
-
 ## Adding Your Plugin to the List
 
 If you created or found a plugin and want to add it to the PostCSS plugins list

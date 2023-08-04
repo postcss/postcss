@@ -21,7 +21,7 @@ Documentation:
 
 Support:
 
-* [Ask questions](https://gitter.im/postcss/postcss)
+* [Ask questions](https://github.com/orgs/postcss/discussions)
 * [PostCSS twitter](https://twitter.com/postcss) with latest updates.
 
 
