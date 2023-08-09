@@ -335,6 +335,7 @@ loosely resembles the original.
 * [`postcss-unicode-characters`] makes it easier to write `unicode-range`
   descriptors.
 * [`postcss-url`] rebases or inlines `url()`s.
+* [`postcss-urlrebase`] rebases `url()`s to a given root URL.
 * [`postcss-urlrev`] adds MD5 hash strings to `url()`s.
 * [`postcss-write-svg`] write inline SVGs in CSS.
 * [`postcss-inline-svg`] inline SVG images and customize their styles.
@@ -835,6 +836,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-nested`]:                       https://github.com/postcss/postcss-nested
 [`postcss-rtlcss`]:                       https://github.com/elchininet/postcss-rtlcss
 [`postcss-select`]:                       https://github.com/johnotander/postcss-select
+[`postcss-urlrebase`]:                    https://github.com/strarsis/postcss-urlrebase
 [`postcss-urlrev`]:                       https://github.com/yuezk/postcss-urlrev
 [`postcss-zindex`]:                       https://github.com/ben-eb/postcss-zindex
 [`list-selectors`]:                       https://github.com/davidtheclark/list-selectors
