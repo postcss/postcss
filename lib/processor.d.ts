@@ -1,3 +1,4 @@
+import Document from './document.js'
 import LazyResult from './lazy-result.js'
 import NoWorkResult from './no-work-result.js'
 import {
@@ -72,9 +73,12 @@ declare class Processor_ {
    * @return Promise proxy.
    */
   process(
-    css: { toString(): string } | LazyResult | Result | Root | string,
-    options?: ProcessOptions
+    css: { toString(): string } | LazyResult | Result | Root | string
   ): LazyResult | NoWorkResult
+  process<RootNode extends Document | Root = Root>(
+    css: { toString(): string } | LazyResult | Result | Root | string,
+    options: ProcessOptions<RootNode>
+  ): LazyResult<RootNode>
 
   /**
    * Adds a plugin to be used as a CSS processor.

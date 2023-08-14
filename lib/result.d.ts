@@ -60,7 +60,7 @@ declare namespace Result {
  * const result2 = postcss.parse(css).toResult()
  * ```
  */
-declare class Result_ {
+declare class Result_<RootNode = Document | Root> {
   /**
    * A CSS string representing of `Result#root`.
    *
@@ -141,14 +141,14 @@ declare class Result_ {
    * root.toResult().root === root
    * ```
    */
-  root: Document | Root
+  root: RootNode
 
   /**
    * @param processor Processor used for this transformation.
    * @param root      Root node after all transformations.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
    */
-  constructor(processor: Processor, root: Document | Root, opts: Result.ResultOptions)
+  constructor(processor: Processor, root: RootNode, opts: Result.ResultOptions)
 
   /**
    * An alias for the `Result#css` property.
@@ -201,6 +201,6 @@ declare class Result_ {
   warnings(): Warning[]
 }
 
-declare class Result extends Result_ {}
+declare class Result<RootNode = Document | Root> extends Result_<RootNode> {}
 
 export = Result

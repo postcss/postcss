@@ -1,3 +1,4 @@
+import Document from './document.js'
 import { SourceMap } from './postcss.js'
 import Processor from './processor.js'
 import Result, { Message, ResultOptions } from './result.js'
@@ -18,7 +19,9 @@ declare namespace LazyResult {
  * const lazy = postcss([autoprefixer]).process(css)
  * ```
  */
-declare class LazyResult_ implements PromiseLike<Result> {
+declare class LazyResult_<RootNode = Document | Root>
+  implements PromiseLike<Result<RootNode>>
+{
   /**
    * Processes input CSS through synchronous and asynchronous plugins
    * and calls onRejected for each error thrown in any plugin.
@@ -33,7 +36,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
    * })
    * ```
    */
-  catch: Promise<Result>['catch']
+  catch: Promise<Result<RootNode>>['catch']
 
   /**
    * Processes input CSS through synchronous and asynchronous plugins
@@ -47,7 +50,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
    * })
    * ```
    */
-  finally: Promise<Result>['finally']
+  finally: Promise<Result<RootNode>>['finally']
 
   /**
    * Processes input CSS through synchronous and asynchronous plugins
@@ -62,7 +65,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
    * })
    * ```
    */
-  then: Promise<Result>['then']
+  then: Promise<Result<RootNode>>['then']
 
   /**
    * @param processor Processor used for this transformation.
@@ -76,7 +79,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
    *
    * @return Result with output content.
    */
-  async(): Promise<Result>
+  async(): Promise<Result<RootNode>>
 
   /**
    * An alias for the `css` property. Use it with syntaxes
@@ -145,7 +148,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
    *
    * PostCSS runners should always use `LazyResult#then`.
    */
-  get root(): Root
+  get root(): RootNode
 
   /**
    * Returns the default string description of an object.
@@ -158,7 +161,7 @@ declare class LazyResult_ implements PromiseLike<Result> {
    *
    * @return Result with output content.
    */
-  sync(): Result
+  sync(): Result<RootNode>
 
   /**
    * Alias for the `LazyResult#css` property.
@@ -180,6 +183,8 @@ declare class LazyResult_ implements PromiseLike<Result> {
   warnings(): Warning[]
 }
 
-declare class LazyResult extends LazyResult_ {}
+declare class LazyResult<
+  RootNode = Document | Root
+> extends LazyResult_<RootNode> {}
 
 export = LazyResult

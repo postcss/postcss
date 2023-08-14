@@ -22,12 +22,12 @@ declare namespace NoWorkResult {
  * let root = noWorkResult.root // now css is parsed because we accessed the root
  * ```
  */
-declare class NoWorkResult_ implements LazyResult {
-  catch: Promise<Result>['catch']
-  finally: Promise<Result>['finally']
-  then: Promise<Result>['then']
+declare class NoWorkResult_ implements LazyResult<Root> {
+  catch: Promise<Result<Root>>['catch']
+  finally: Promise<Result<Root>>['finally']
+  then: Promise<Result<Root>>['then']
   constructor(processor: Processor, css: string, opts: ResultOptions)
-  async(): Promise<Result>
+  async(): Promise<Result<Root>>
   get content(): string
   get css(): string
   get map(): SourceMap
@@ -36,7 +36,7 @@ declare class NoWorkResult_ implements LazyResult {
   get processor(): Processor
   get root(): Root
   get [Symbol.toStringTag](): string
-  sync(): Result
+  sync(): Result<Root>
   toString(): string
   warnings(): Warning[]
 }

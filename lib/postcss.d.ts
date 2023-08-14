@@ -236,11 +236,11 @@ declare namespace postcss {
     (data: object[]): Node[]
   }
 
-  export interface Syntax {
+  export interface Syntax<RootNode = Document | Root> {
     /**
      * Function to generate AST by string.
      */
-    parse?: Parser
+    parse?: Parser<RootNode>
 
     /**
      * Class to generate string by AST.
@@ -304,7 +304,7 @@ declare namespace postcss {
     sourcesContent?: boolean
   }
 
-  export interface ProcessOptions {
+  export interface ProcessOptions<RootNode = Document | Root> {
     /**
      * The path of the CSS source file. You should always set `from`,
      * because it is used in source map generation and syntax error messages.
@@ -319,17 +319,17 @@ declare namespace postcss {
     /**
      * Function to generate AST by string.
      */
-    parser?: Parser | Syntax
+    parser?: Parser<RootNode> | Syntax<RootNode>
 
     /**
      * Class to generate string by AST.
      */
-    stringifier?: Stringifier | Syntax
+    stringifier?: Stringifier | Syntax<RootNode>
 
     /**
      * Object with parse and stringify.
      */
-    syntax?: Syntax
+    syntax?: Syntax<RootNode>
 
     /**
      * The path where you'll put the output CSS file. You should always set `to`
