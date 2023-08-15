@@ -549,6 +549,7 @@ See also plugins in modular minifier [`cssnano`].
   expressed in JS or JSON, within CSS.
 * [`postcss-pixel-to-remvw`] converting px to both of rem and vw, also one of them
 * [`postcss-easy-import`] inline `@import` rules content with extra features.
+* [`postcss-plugin-ignore-file`] ignore file with a top-comment `/* @ignore */`.
 
 
 [flexbox bugs]: https://github.com/philipwalton/flexbugs
@@ -954,3 +955,4 @@ See also plugins in modular minifier [`cssnano`].
 [`@csstools/postcss-design-tokens`]:      https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-design-tokens
 [`postcss-easy-import`]:                  https://github.com/TrySound/postcss-easy-import
 [`postcss-spring-easing`]:                https://github.com/okikio/postcss-spring-easing
+[`postcss-plugin-ignore-file`]:           https://github.com/RiadhAdrani/postcss-plugin-ignore-file
