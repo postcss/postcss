@@ -15,7 +15,7 @@ eachTest((name, css, json) => {
   test(`parses ${name}`, () => {
     css = css.replace(/\r\n/g, '\n')
     let parsed = jsonify(parse(css, { from: name }))
-    equal(JSON.parse(parsed), JSON.parse(json))
+    equal(parsed, json)
   })
 })
 

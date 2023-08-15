@@ -107,7 +107,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "nanodelay": "^1.0.8",
     "nanospy": "^1.0.0",
-    "postcss-parser-tests": "^8.6.0",
+    "postcss-parser-tests": "^8.7.0",
     "simple-git-hooks": "^2.9.0",
     "size-limit": "^8.2.6",
     "strip-ansi": "^6.0.1",

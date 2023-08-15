@@ -71,8 +71,8 @@ devDependencies:
     specifier: ^1.0.0
     version: 1.0.0
   postcss-parser-tests:
-    specifier: ^8.6.0
-    version: 8.6.0
+    specifier: ^8.7.0
+    version: 8.7.0
   simple-git-hooks:
     specifier: ^2.9.0
     version: 2.9.0
@@ -2133,8 +2133,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /postcss-parser-tests@8.6.0:
-    resolution: {integrity: sha512-r5P5I4AsL62mlF9KXA1oL/Oel7+wJnwGfQnOA4fMhA54Lx1Pae+67OLmkgla3dAOIpr0FgNjAJg0zxW0CQlrUg==}
+  /postcss-parser-tests@8.7.0:
+    resolution: {integrity: sha512-RwqGReBOqRhOzWlINCt9iUsyg96sA418MGmqf7rLD2PvdaG0ePkiLFrlAWkrc+vMuBWfnoyFMS+QATT++NWyDA==}
     dependencies:
       picocolors: 1.0.0
     dev: true
