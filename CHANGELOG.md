@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.28
+* Fixed `Root.source.end` for better source map (by Romain Menke).
+* Fixed `Result.root` types when `process()` has no parser.
+
 ## 8.4.27
 * Fixed `Container` clone methods types.
 
