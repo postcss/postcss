@@ -120,13 +120,13 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-preset-env`]:         https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env
 [`react-css-modules`]:          https://github.com/gajus/react-css-modules
 [`postcss-autoreset`]:          https://github.com/maximkoretskiy/postcss-autoreset
-[`postcss-write-svg`]:          https://github.com/jonathantneal/postcss-write-svg
+[`postcss-write-svg`]:          https://github.com/csstools/postcss-write-svg
 [`postcss-utilities`]:          https://github.com/ismamz/postcss-utilities
 [`postcss-initial`]:            https://github.com/maximkoretskiy/postcss-initial
 [`postcss-sprites`]:            https://github.com/2createStudio/postcss-sprites
 [`postcss-modules`]:            https://github.com/outpunk/postcss-modules
 [`postcss-sorting`]:            https://github.com/hudochenkov/postcss-sorting
-[`font-magician`]:              https://github.com/jonathantneal/postcss-font-magician
+[`font-magician`]:              https://github.com/csstools/postcss-font-magician
 [`autoprefixer`]:               https://github.com/postcss/autoprefixer
 [`cq-prolyfill`]:               https://github.com/ausi/cq-prolyfill
 [`postcss-url`]:                https://github.com/postcss/postcss-url
@@ -141,7 +141,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`postcss-nested`]:             https://github.com/postcss/postcss-nested
 [`doiuse`]:                     https://github.com/anandthakker/doiuse
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
-[`short`]:                      https://github.com/jonathantneal/postcss-short
+[`short`]:                      https://github.com/csstools/postcss-short
 [`lost`]:                       https://github.com/peterramsing/lost
 
 ## Syntaxes
@@ -473,21 +473,11 @@ module.exports = {
 [`csstools.postcss`]: https://marketplace.visualstudio.com/items?itemName=csstools.postcss
 
 
-### Atom
-
-* [`language-postcss`] adds PostCSS and [SugarSS] highlight.
-* [`source-preview-postcss`] previews your output CSS in a separate, live pane.
-
-[SugarSS]: https://github.com/postcss/sugarss
-
-
 ### Sublime Text
 
 * [`Syntax-highlighting-for-PostCSS`] adds PostCSS highlight.
 
 [`Syntax-highlighting-for-PostCSS`]: https://github.com/hudochenkov/Syntax-highlighting-for-PostCSS
-[`source-preview-postcss`]:          https://atom.io/packages/source-preview-postcss
-[`language-postcss`]:                https://atom.io/packages/language-postcss
 
 
 ### Vim
