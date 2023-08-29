@@ -3,7 +3,6 @@
     "lib": ["es2018"],
     "target": "es2018",
     "module": "commonjs",
-    "moduleResolution": "node16",
     "strict": true,
     "noEmit": true
   }
