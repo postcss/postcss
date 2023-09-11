@@ -17,12 +17,7 @@ PostCSS takes a CSS file and provides an API to analyze and modify its rules
 This API can then be used by [plugins] to do a lot of useful things,
 e.g., to find errors automatically, or to insert vendor prefixes.
 
-**Twitter account:** [@postcss](https://twitter.com/postcss)<br>
-**中文翻译**:          [`docs/README-cn.md`](./docs/README-cn.md)
-
-For PostCSS commercial support (consulting, improving the front-end culture
-of your company, PostCSS plugins), contact [Evil Martians]
-at <postcss@evilmartians.com>.
+<img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="" width="22" height="16" />  Made in <b><a href="https://evilmartians.com/?utm_source=postcss&utm_campaign=devtools-button&utm_medium=github">Evil Martians</a></b>, product consulting for <b>developer tools</b>.
 
 [Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
 [Evil Martians]:        https://evilmartians.com/?utm_source=postcss
