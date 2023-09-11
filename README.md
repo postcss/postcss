@@ -9,19 +9,19 @@ These plugins can lint your CSS, support variables and mixins,
 transpile future CSS syntax, inline images, and more.
 
 PostCSS is used by industry leaders including Wikipedia, Twitter, Alibaba,
-and JetBrains. The [Autoprefixer] PostCSS plugin is one of the most popular
-CSS processors.
+and JetBrains. The [Autoprefixer] and [Stylelint] PostCSS plugins is one of the most popular CSS tools.
+
+<img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="" width="22" height="16" />  Made in <b><a href="https://evilmartians.com/?utm_source=postcss&utm_campaign=devtools-button&utm_medium=github">Evil Martians</a></b>, product consulting for <b>developer tools</b>.
 
 PostCSS takes a CSS file and provides an API to analyze and modify its rules
 (by transforming them into an [Abstract Syntax Tree]).
 This API can then be used by [plugins] to do a lot of useful things,
 e.g., to find errors automatically, or to insert vendor prefixes.
 
-<img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="" width="22" height="16" />  Made in <b><a href="https://evilmartians.com/?utm_source=postcss&utm_campaign=devtools-button&utm_medium=github">Evil Martians</a></b>, product consulting for <b>developer tools</b>.
-
 [Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
 [Evil Martians]:        https://evilmartians.com/?utm_source=postcss
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
+[Stylelint]:            https://stylelint.io/
 [plugins]:              https://github.com/postcss/postcss#plugins
 
 
