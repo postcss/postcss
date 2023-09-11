@@ -13,11 +13,6 @@ and JetBrains. The [Autoprefixer] and [Stylelint] PostCSS plugins is one of
 
 <img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="" width="22" height="16" />  Made in <b><a href="https://evilmartians.com/?utm_source=postcss&utm_campaign=devtools-button&utm_medium=github">Evil Martians</a></b>, product consulting for <b>developer tools</b>.
 
-PostCSS takes a CSS file and provides an API to analyze and modify its rules
-(by transforming them into an [Abstract Syntax Tree]).
-This API can then be used by [plugins] to do a lot of useful things,
-e.g., to find errors automatically, or to insert vendor prefixes.
-
 [Abstract Syntax Tree]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
 [Evil Martians]:        https://evilmartians.com/?utm_source=postcss
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
@@ -40,6 +35,11 @@ PostCSS needs your support. We are accepting donations
 
 
 ## Plugins
+
+PostCSS takes a CSS file and provides an API to analyze and modify its rules
+(by transforming them into an [Abstract Syntax Tree]).
+This API can then be used by [plugins] to do a lot of useful things,
+e.g., to find errors automatically, or to insert vendor prefixes.
 
 Currently, PostCSS has more than 200 plugins. You can find all of the plugins
 in the [plugins list] or in the [searchable catalog]. Below is a list
