@@ -151,16 +151,6 @@ declare class Result_<RootNode = Document | Root> {
   constructor(processor: Processor, root: RootNode, opts: Result.ResultOptions)
 
   /**
-   * An alias for the `Result#css` property.
-   * Use it with syntaxes that generate non-CSS output.
-   *
-   * ```js
-   * result.css === result.content
-   * ```
-   */
-  get content(): string
-
-  /**
    * Returns for `Result#css` content.
    *
    * ```js
@@ -199,6 +189,16 @@ declare class Result_<RootNode = Document | Root> {
    * @return Warnings from plugins.
    */
   warnings(): Warning[]
+
+  /**
+   * An alias for the `Result#css` property.
+   * Use it with syntaxes that generate non-CSS output.
+   *
+   * ```js
+   * result.css === result.content
+   * ```
+   */
+  get content(): string
 }
 
 declare class Result<RootNode = Document | Root> extends Result_<RootNode> {}

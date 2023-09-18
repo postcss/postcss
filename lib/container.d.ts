@@ -126,15 +126,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     condition: (node: Child, index: number, nodes: Child[]) => boolean
   ): boolean
   /**
-   * The container’s first child.
-   *
-   * ```js
-   * rule.first === rules.nodes[0]
-   * ```
-   */
-  get first(): Child | undefined
-
-  /**
    * Returns a `child`’s index within the `Container#nodes` array.
    *
    * ```js
@@ -145,6 +136,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return Child index.
    */
   index(child: Child | number): number
+
   /**
    * Insert new node after old node within the container.
    *
@@ -153,6 +145,21 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return This node for methods chain.
    */
   insertAfter(
+    oldNode: Child | number,
+    newNode: Child | Child[] | ChildProps | ChildProps[] | string | string[]
+  ): this
+  /**
+   * Insert new node before old node within the container.
+   *
+   * ```js
+   * rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }))
+   * ```
+   *
+   * @param oldNode Child or child’s index.
+   * @param newNode New node.
+   * @return This node for methods chain.
+   */
+  insertBefore(
     oldNode: Child | number,
     newNode: Child | Child[] | ChildProps | ChildProps[] | string | string[]
   ): this
@@ -173,30 +180,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @param callback Iterator receives each node and index.
    * @return Returns `false` if iteration was broke.
    */
-
-  /**
-   * Insert new node before old node within the container.
-   *
-   * ```js
-   * rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }))
-   * ```
-   *
-   * @param oldNode Child or child’s index.
-   * @param newNode New node.
-   * @return This node for methods chain.
-   */
-  insertBefore(
-    oldNode: Child | number,
-    newNode: Child | Child[] | ChildProps | ChildProps[] | string | string[]
-  ): this
-  /**
-   * The container’s last child.
-   *
-   * ```js
-   * rule.last === rule.nodes[rule.nodes.length - 1]
-   * ```
-   */
-  get last(): Child | undefined
 
   /**
    * Inserts new nodes to the start of the container.
@@ -221,7 +204,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   prepend(
     ...nodes: (ChildProps | ChildProps[] | Node | Node[] | string | string[])[]
   ): this
-
   /**
    * Add child to the end of the node.
    *
@@ -334,6 +316,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   walk(
     callback: (node: ChildNode, index: number) => false | void
   ): false | undefined
+
   /**
    * Traverses the container’s descendant nodes, calling callback
    * for each at-rule node.
@@ -371,7 +354,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   walkAtRules(
     callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
-
   walkComments(
     callback: (comment: Comment, indexed: number) => false | void
   ): false | undefined
@@ -413,9 +395,11 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     propFilter: RegExp | string,
     callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
+
   walkDecls(
     callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
+
   /**
    * Traverses the container’s descendant nodes, calling callback
    * for each rule node.
@@ -445,6 +429,22 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   walkRules(
     callback: (rule: Rule, index: number) => false | void
   ): false | undefined
+  /**
+   * The container’s first child.
+   *
+   * ```js
+   * rule.first === rules.nodes[0]
+   * ```
+   */
+  get first(): Child | undefined
+  /**
+   * The container’s last child.
+   *
+   * ```js
+   * rule.last === rule.nodes[rule.nodes.length - 1]
+   * ```
+   */
+  get last(): Child | undefined
 }
 
 declare class Container<Child extends Node = ChildNode> extends Container_<Child> {}
