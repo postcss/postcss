@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.30
+* Improve sourcemap performance (by Romain Menke).
+
 ## 8.4.29
 * Fixed `Node#source.offset` (by Ido Rosenthal).
 * Fixed docs (by Christian Oliff).
