@@ -34,6 +34,12 @@ test('should has false at hasBOM property', () => {
   is(css.first?.source?.input.hasBOM, false)
 })
 
+test('parses carrier return', () => {
+  throws(() => {
+    parse('@font-face{ font:(\r/*);} body { a: "a*/)} a{}"}')
+  }, /:1:46: Unclosed string/)
+})
+
 test('saves source file', () => {
   let css = parse('a {}', { from: 'a.css' })
   is(css.first?.source?.input.css, 'a {}')
