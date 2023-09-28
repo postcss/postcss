@@ -58,7 +58,7 @@
     "test:coverage": "c8 pnpm unit",
     "test:integration": "node ./test/integration.js",
     "test:size": "size-limit",
-    "test": "pnpm run /^test:/",
+    "test": "FORCE_COLOR=1 pnpm run /^test:/",
     "unit": "uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\"",
     "old": "uvu -r ../../../../../../../test/old-node.js -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\""
   },
