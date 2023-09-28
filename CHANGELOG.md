@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.31
+* Fixed `\r` parsing to fix CVE-2023-44270.
+
 ## 8.4.30
 * Improved source map performance (by Romain Menke).
 
