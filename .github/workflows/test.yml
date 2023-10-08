@@ -87,7 +87,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: latest
+          version: 8
       - name: Install Node.js LTS
         uses: actions/setup-node@v3
         with:
