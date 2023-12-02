@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.32
+* Fixed `postcss().process()` types (by Andrew Ferreira).
+
 ## 8.4.31
 * Fixed `\r` parsing to fix CVE-2023-44270.
 
