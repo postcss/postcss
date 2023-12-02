@@ -309,7 +309,7 @@ declare namespace postcss {
      * The path of the CSS source file. You should always set `from`,
      * because it is used in source map generation and syntax error messages.
      */
-    from?: string
+    from?: string | undefined
 
     /**
      * Source map options
