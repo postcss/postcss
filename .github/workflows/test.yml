@@ -20,7 +20,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 21
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
@@ -31,6 +31,7 @@ jobs:
     strategy:
       matrix:
         node-version:
+          - 20
           - 18
           - 16
     name: Node.js ${{ matrix.node-version }} Quick
