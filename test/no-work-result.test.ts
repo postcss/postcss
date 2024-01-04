@@ -1,9 +1,12 @@
+import postcss = require('../lib/postcss.js')
+import stringify = require('../lib/stringify.js')
 import { spy } from 'nanospy'
 import { SourceMapGenerator } from 'source-map-js'
 import { test } from 'uvu'
 import { equal, instance, is, not, throws, type } from 'uvu/assert'
 
 import NoWorkResult from '../lib/no-work-result.js'
+import parse from '../lib/parse.js'
 import Processor from '../lib/processor.js'
 
 let processor = new Processor()
@@ -96,6 +99,77 @@ test('executes on finally callback', () => {
 test('prints its object type', () => {
   let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
   is(Object.prototype.toString.call(result), '[object NoWorkResult]')
+})
+
+test('no work result matches lazy result', async () => {
+  let source = '.foo { color: red }\n';
+
+  let noWorkResult = await postcss([]).process(source, {
+    from: 'foo.css',
+    map: false
+  });
+
+  let lazyResult = await postcss([]).process(source, {
+    from: 'foo.css',
+    map: false,
+    syntax: { parse, stringify }
+  });
+
+  equal(noWorkResult.css, lazyResult.css);
+})
+
+// https://github.com/postcss/postcss/issues/1911
+test('no work result matches lazy result when map is true', async () => {
+  let source = '.foo { color: red }\n';
+
+  let noWorkResult = await postcss([]).process(source, {
+    from: 'foo.css',
+    map: true
+  });
+
+  equal(noWorkResult.css, '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZm9vLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb28geyBjb2xvcjogcmVkIH1cbiJdfQ== */');
+
+  let lazyResult = await postcss([]).process(source, {
+    from: 'foo.css',
+    map: true,
+    syntax: { parse, stringify }
+  });
+
+  equal(lazyResult.css, '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */');
+})
+
+test('no work result matches lazy result when the source contains an inline source map', async () => {
+  let source = '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */\n';
+
+  let noWorkResult = await postcss([]).process(source, {
+    from: 'foo.css',
+    map: false
+  });
+
+  let lazyResult = await postcss([]).process(source, {
+    from: 'foo.css',
+    map: false,
+    syntax: { parse, stringify }
+  });
+
+  equal(noWorkResult.css, lazyResult.css);
+})
+
+test('no work result matches lazy result when map is true and the source contains an inline source map', async () => {
+  let source = '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */\n';
+
+  let lazyResult = await postcss([]).process(source, {
+    from: 'bar.css',
+    map: true,
+    syntax: { parse, stringify }
+  });
+
+  let noWorkResult = await postcss([]).process(source, {
+    from: 'bar.css',
+    map: true
+  });
+
+  equal(noWorkResult.css, lazyResult.css);
 })
 
 test.run()
