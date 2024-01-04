@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.33
+* Fixed `NoWorkResult` behavior difference with normal mode (by Romain Menke).
+* Fixed `NoWorkResult` usage conditions (by @ahmdammarr).
+
 ## 8.4.32
 * Fixed `postcss().process()` types (by Andrew Ferreira).
 
