@@ -103,7 +103,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 * [`colorguard`] helps you maintain a consistent color palette.
 
 
-### Other
+### Any deep
 
 * [`cssnano`] is a modular CSS minifier.
 * [`lost`] is a feature-rich `calc()` grid system.
