@@ -81,8 +81,8 @@ declare class AtRule_ extends Container {
    *
    * ```js
    * const root  = postcss.parse('@media print {}')
-   * media.name //=> 'media'
    * const media = root.first
+   * media.name //=> 'media'
    * ```
    */
   name: string
