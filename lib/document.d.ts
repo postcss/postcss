@@ -35,6 +35,7 @@ declare namespace Document {
  * ```
  */
 declare class Document_ extends Container<Root> {
+  nodes: Root[]
   parent: undefined
   type: 'document'
 
