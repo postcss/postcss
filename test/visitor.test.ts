@@ -18,9 +18,9 @@ import postcss, {
 
 function hasAlready(parent: Container | undefined, selector: string): boolean {
   if (typeof parent === 'undefined') return false
-  return parent.nodes.some(i => {
+  return parent.nodes?.some(i => {
     return i.type === 'rule' && i.selectors.includes(selector)
-  })
+  }) ?? false
 }
 
 function addIndex(array: any[][]): any[][] {
@@ -1559,9 +1559,9 @@ test('append works after reassigning nodes through .parent', async () => {
     OnceExit(root) {
       let firstNode = root.nodes[0] as AtRule
       let secondNode = root.nodes[1] as AtRule
-      let rule2 = secondNode.nodes[0]
+      let rule2 = secondNode.nodes![0]
       rule2.parent!.nodes = rule2.parent!.nodes
-      firstNode.append(...secondNode.nodes)
+      firstNode.append(...secondNode.nodes!)
       secondNode.remove()
     },
 
@@ -1580,7 +1580,7 @@ test('append works after reassigning nodes through .parent', async () => {
 
       let atrule = rule.nodes[0]
 
-      atrule.append(rule.clone({ nodes: [] }).append(...atrule.nodes))
+      atrule.append(rule.clone({ nodes: [] }).append(...atrule.nodes!))
 
       rule.after(atrule)
       rule.remove()
