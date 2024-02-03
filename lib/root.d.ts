@@ -54,6 +54,7 @@ declare namespace Root {
  * ```
  */
 declare class Root_ extends Container {
+  nodes: NonNullable<Container['nodes']>
   parent: Document | undefined
   raws: Root.RootRaws
   type: 'root'

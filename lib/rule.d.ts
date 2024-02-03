@@ -69,6 +69,7 @@ declare namespace Rule {
  * ```
  */
 declare class Rule_ extends Container {
+  nodes: NonNullable<Container['nodes']>
   parent: Container | undefined
   raws: Rule.RuleRaws
   /**
