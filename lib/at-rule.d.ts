@@ -101,7 +101,7 @@ declare class AtRule_ extends Container {
    * ```js
    * const root = postcss.parse('@layer a, b, c;')
    * const layer = root.first
-   * layer.nodes                  //=> undefined
+   * layer.nodes //=> undefined
    * ```
    */
   nodes: Container['nodes']
