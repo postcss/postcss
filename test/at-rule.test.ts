@@ -24,7 +24,7 @@ test('creates nodes property on prepend()', () => {
   type(rule.nodes, 'undefined')
 
   rule.prepend('color: black')
-  is(rule.nodes.length, 1)
+  is(rule.nodes?.length, 1)
 })
 
 test('creates nodes property on append()', () => {
@@ -32,7 +32,7 @@ test('creates nodes property on append()', () => {
   type(rule.nodes, 'undefined')
 
   rule.append('color: black')
-  is(rule.nodes.length, 1)
+  is(rule.nodes?.length, 1)
 })
 
 test('inserts default spaces', () => {
