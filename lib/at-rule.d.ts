@@ -95,9 +95,9 @@ declare class AtRule_ extends Container {
    * layer.nodes.length           //=> 1
    * layer.nodes[0].selector      //=> 'a'
    * ```
-   * 
+   *
    * Can be `undefinded` if the at-rule has no body.
-   * 
+   *
    * ```js
    * const root = postcss.parse('@layer a, b, c;')
    * const layer = root.first
