@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.34
+* Fixed `AtRule#nodes` type (by Tim Weißenfels).
+* Cleaned up code (by Dmitry Kirillov).
+
 ## 8.4.33
 * Fixed `NoWorkResult` behavior difference with normal mode (by Romain Menke).
 * Fixed `NoWorkResult` usage conditions (by @ahmdammarr).
