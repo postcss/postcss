@@ -91,9 +91,9 @@
   "devDependencies": {
     "@logux/eslint-config": "^52.0.2",
     "@size-limit/preset-small-lib": "^11.0.2",
-    "@types/node": "^20.11.4",
-    "@typescript-eslint/eslint-plugin": "^6.19.0",
-    "@typescript-eslint/parser": "^6.19.0",
+    "@types/node": "^20.11.16",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "c8": "^9.1.0",
     "check-dts": "^0.7.2",
     "clean-publish": "^4.2.0",
