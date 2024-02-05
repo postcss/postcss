@@ -43,7 +43,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * root.nodes[0].nodes[0].prop //=> 'color'
    * ```
    */
-  nodes: Child[]
+  nodes: Child[] | undefined
 
   /**
    * Inserts new nodes to the end of the container.

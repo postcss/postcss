@@ -24,7 +24,7 @@ test('creates nodes property on prepend()', () => {
   type(rule.nodes, 'undefined')
 
   rule.prepend('color: black')
-  is(rule.nodes.length, 1)
+  is(rule.nodes?.length, 1)
 })
 
 test('creates nodes property on append()', () => {
@@ -32,7 +32,7 @@ test('creates nodes property on append()', () => {
   type(rule.nodes, 'undefined')
 
   rule.append('color: black')
-  is(rule.nodes.length, 1)
+  is(rule.nodes?.length, 1)
 })
 
 test('inserts default spaces', () => {
@@ -47,5 +47,11 @@ test('clone spaces from another at-rule', () => {
 
   is(rule.toString(), '@page 1{}')
 })
+
+test('at-rule without body has no nodes property', () => {
+  let root = parse('@layer a, b, c;');
+  let layer = root.first as AtRule
+  type(layer.nodes, 'undefined')
+});
 
 test.run()
