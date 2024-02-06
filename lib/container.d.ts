@@ -5,6 +5,12 @@ import Node, { ChildNode, ChildProps, NodeProps } from './node.js'
 import Rule from './rule.js'
 
 declare namespace Container {
+  export class ContainerWithChildren<
+    Child extends Node = ChildNode
+  > extends Container_<Child> {
+    nodes: Child[]
+  }
+
   export interface ValueOptions {
     /**
      * String that’s used to narrow down values and speed up the regexp search.

@@ -1,4 +1,4 @@
-import Container from './container.js'
+import { ContainerWithChildren } from './container.js'
 import Node from './node.js'
 
 declare namespace Declaration {
@@ -79,7 +79,7 @@ declare class Declaration_ extends Node {
    */
   important: boolean
 
-  parent: Container | undefined
+  parent: ContainerWithChildren | undefined
 
   /**
    * The property name for a CSS declaration.

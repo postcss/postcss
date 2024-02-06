@@ -1,4 +1,7 @@
-import Container, { ContainerProps } from './container.js'
+import Container, {
+  ContainerProps,
+  ContainerWithChildren
+} from './container.js'
 
 declare namespace AtRule {
   export interface AtRuleRaws extends Record<string, unknown> {
@@ -116,7 +119,7 @@ declare class AtRule_ extends Container {
    * ```
    */
   params: string
-  parent: Container | undefined
+  parent: ContainerWithChildren | undefined
 
   raws: AtRule.AtRuleRaws
 
