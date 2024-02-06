@@ -638,18 +638,18 @@ test('insertBefore() receives array', () => {
 
 test('insertBefore() receives pre-existing child node - a', () => {
   let a = parse('a{ align-items: start; color: red; z-index: 1 }')
-  let declA = (a.first as Rule).nodes[0];
-  let declC = (a.first as Rule).nodes[2];
-  declC.before(declA);
+  let declA = (a.first as Rule).nodes[0]
+  let declC = (a.first as Rule).nodes[2]
+  declC.before(declA)
 
   is(a.toString(), 'a{ color: red; align-items: start; z-index: 1 }')
 })
 
 test('insertBefore() receives pre-existing child node - b', () => {
   let a = parse('a{ align-items: start; color: red; z-index: 1 }')
-  let declA = (a.first as Rule).nodes[0];
-  let declC = (a.first as Rule).nodes[2];
-  declA.before(declC);
+  let declA = (a.first as Rule).nodes[0]
+  let declC = (a.first as Rule).nodes[2]
+  declA.before(declC)
 
   is(a.toString(), 'a{ z-index: 1; align-items: start; color: red }')
 })
@@ -708,18 +708,18 @@ test('insertAfter() receives array', () => {
 
 test('insertAfter() receives pre-existing child node - a', () => {
   let a = parse('a{ align-items: start; color: red; z-index: 1 }')
-  let declA = (a.first as Rule).nodes[0];
-  let declC = (a.first as Rule).nodes[2];
-  declC.after(declA);
+  let declA = (a.first as Rule).nodes[0]
+  let declC = (a.first as Rule).nodes[2]
+  declC.after(declA)
 
   is(a.toString(), 'a{ color: red; z-index: 1; align-items: start }')
 })
 
 test('insertAfter() receives pre-existing child node - b', () => {
   let a = parse('a{ align-items: start; color: red; z-index: 1 }')
-  let declA = (a.first as Rule).nodes[0];
-  let declC = (a.first as Rule).nodes[2];
-  declA.after(declC);
+  let declA = (a.first as Rule).nodes[0]
+  let declC = (a.first as Rule).nodes[2]
+  declA.after(declC)
 
   is(a.toString(), 'a{ align-items: start; z-index: 1; color: red }')
 })
@@ -874,7 +874,7 @@ test('allows to clone nodes', () => {
 
 test('container.nodes can be sorted', () => {
   let root = parse('@b; @c; @a;')
-  let b = root.nodes[0];
+  let b = root.nodes[0]
 
   root.nodes.sort((x, y) => {
     return (x as AtRule).name.localeCompare((y as AtRule).name)
@@ -884,10 +884,10 @@ test('container.nodes can be sorted', () => {
   is(root.toString(), ' @a;@b; @c;')
 
   // Sorted nodes are reflected in "walk".
-  let result: string[] = [];
-  root.walkAtRules((atRule) => {
+  let result: string[] = []
+  root.walkAtRules(atRule => {
     result.push(atRule.name.trim())
-  });
+  })
 
   is(result.join(' '), 'a b c')
 
@@ -895,8 +895,19 @@ test('container.nodes can be sorted', () => {
   is(root.index(b), 1)
 
   // Inserting after a sorted node results in the correct order.
-  b.after('@d;');
+  b.after('@d;')
   is(root.toString(), ' @a;@b;@d; @c;')
+})
+
+test('ignores undefined on adding', () => {
+  let rule = parse('a { a: 1; b: 2 }').first as Rule
+  rule.append({ prop: 'c', value: '3' }, undefined)
+  rule.prepend(undefined)
+  rule.insertAfter(0, undefined)
+  rule.insertBefore(0, undefined)
+  rule.after(undefined)
+  rule.before(undefined)
+  is(rule.parent!.toString(), 'a { a: 1; b: 2; c: 3 }')
 })
 
 test.run()

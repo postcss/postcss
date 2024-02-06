@@ -66,7 +66,15 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return This node for methods chain.
    */
   append(
-    ...nodes: (ChildProps | ChildProps[] | Node | Node[] | string | string[])[]
+    ...nodes: (
+      | ChildProps
+      | ChildProps[]
+      | Node
+      | Node[]
+      | string
+      | string[]
+      | undefined
+    )[]
   ): this
 
   assign(overrides: Container.ContainerProps | object): this
@@ -146,7 +154,14 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    */
   insertAfter(
     oldNode: Child | number,
-    newNode: Child | Child[] | ChildProps | ChildProps[] | string | string[]
+    newNode:
+      | Child
+      | Child[]
+      | ChildProps
+      | ChildProps[]
+      | string
+      | string[]
+      | undefined
   ): this
   /**
    * Insert new node before old node within the container.
@@ -161,7 +176,14 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    */
   insertBefore(
     oldNode: Child | number,
-    newNode: Child | Child[] | ChildProps | ChildProps[] | string | string[]
+    newNode:
+      | Child
+      | Child[]
+      | ChildProps
+      | ChildProps[]
+      | string
+      | string[]
+      | undefined
   ): this
 
   /**
@@ -202,7 +224,15 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return This node for methods chain.
    */
   prepend(
-    ...nodes: (ChildProps | ChildProps[] | Node | Node[] | string | string[])[]
+    ...nodes: (
+      | ChildProps
+      | ChildProps[]
+      | Node
+      | Node[]
+      | string
+      | string[]
+      | undefined
+    )[]
   ): this
   /**
    * Add child to the end of the node.
@@ -447,6 +477,8 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   get last(): Child | undefined
 }
 
-declare class Container<Child extends Node = ChildNode> extends Container_<Child> {}
+declare class Container<
+  Child extends Node = ChildNode
+> extends Container_<Child> {}
 
 export = Container

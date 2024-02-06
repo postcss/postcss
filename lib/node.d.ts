@@ -246,7 +246,7 @@ declare abstract class Node_ {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  after(newNode: Node | Node.ChildProps | Node[] | string): this
+  after(newNode: Node | Node.ChildProps | Node[] | string | undefined): this
 
   /**
    * It assigns properties to an existing node instance.
@@ -273,7 +273,7 @@ declare abstract class Node_ {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  before(newNode: Node | Node.ChildProps | Node[] | string): this
+  before(newNode: Node | Node.ChildProps | Node[] | string | undefined): this
 
   /**
    * Clear the code style properties for the node and its children.
@@ -531,6 +531,6 @@ declare abstract class Node_ {
   warn(result: Result, message: string, options?: WarningOptions): Warning
 }
 
-declare class Node extends Node_ { }
+declare class Node extends Node_ {}
 
 export = Node
