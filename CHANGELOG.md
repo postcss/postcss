@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.35
+* Avoid `!` in `node.parent.nodes` type.
+* Allow to pass `undefined` to node adding method to simplify types.
+
 ## 8.4.34
 * Fixed `AtRule#nodes` type (by Tim Weißenfels).
 * Cleaned up code (by Dmitry Kirillov).
