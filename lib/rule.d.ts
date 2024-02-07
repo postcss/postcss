@@ -1,4 +1,7 @@
-import Container, { ContainerProps } from './container.js'
+import Container, {
+  ContainerProps,
+  ContainerWithChildren
+} from './container.js'
 
 declare namespace Rule {
   export interface RuleRaws extends Record<string, unknown> {
@@ -70,7 +73,7 @@ declare namespace Rule {
  */
 declare class Rule_ extends Container {
   nodes: NonNullable<Container['nodes']>
-  parent: Container | undefined
+  parent: ContainerWithChildren | undefined
   raws: Rule.RuleRaws
   /**
    * The rule’s full selector represented as a string.

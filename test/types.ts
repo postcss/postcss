@@ -4,7 +4,7 @@ const plugin: PluginCreator<string> = prop => {
   return {
     Declaration: (decl, { Comment, result }) => {
       if (decl.prop === prop) {
-        decl.warn(result, `${decl.prop} found`)
+        decl.warn(result, `${decl.prop} found in ${decl.parent?.nodes.length}`)
         decl.replaceWith(new Comment({ text: `${decl.prop} removed` }))
       }
     },
