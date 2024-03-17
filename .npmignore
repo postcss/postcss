@@ -3,3 +3,4 @@ test/
 
 docs/
 tsconfig.json
+eslint.config.mjs

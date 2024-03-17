@@ -89,22 +89,14 @@
     "source-map-js": "^1.0.2"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^52.0.2",
+    "@logux/eslint-config": "^53.0.0",
     "@size-limit/preset-small-lib": "^11.1.1",
     "@types/node": "^20.11.28",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
     "c8": "^9.1.0",
     "check-dts": "^0.7.2",
     "clean-publish": "^4.3.0",
     "concat-with-sourcemaps": "^1.1.0",
     "eslint": "^8.57.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-perfectionist": "^2.7.0",
-    "eslint-plugin-prefer-let": "^3.0.1",
-    "eslint-plugin-promise": "^6.1.1",
     "nanodelay": "^1.0.8",
     "nanospy": "^1.0.0",
     "postcss-parser-tests": "^8.8.0",
@@ -147,41 +139,6 @@
       "path": "lib/postcss.js",
       "limit": "15 KB"
     }
-  ],
-  "eslintConfig": {
-    "extends": "@logux/eslint-config/ts",
-    "rules": {
-      "@typescript-eslint/consistent-type-imports": "off",
-      "@typescript-eslint/no-explicit-any": "off",
-      "node-import/prefer-node-protocol": "off",
-      "consistent-return": "off",
-      "global-require": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "*.d.ts"
-        ],
-        "rules": {
-          "@typescript-eslint/no-redeclare": "off"
-        }
-      },
-      {
-        "files": [
-          "*.test.*"
-        ],
-        "rules": {
-          "@typescript-eslint/no-unused-expressions": "off",
-          "no-unused-expressions": "off",
-          "no-console": "off",
-          "func-style": "off"
-        }
-      }
-    ]
-  },
-  "eslintIgnore": [
-    "docs/api/assets/",
-    "errors.ts"
   ],
   "clean-publish": {
     "cleanDocs": true
