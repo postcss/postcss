@@ -12,8 +12,8 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   source-map-js:
-    specifier: ^1.0.2
-    version: 1.0.2
+    specifier: ^1.1.0
+    version: 1.1.0
 
 devDependencies:
   '@logux/eslint-config':
@@ -2601,8 +2601,8 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /source-map-js@1.0.2:
-    resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
+  /source-map-js@1.1.0:
+    resolution: {integrity: sha512-9vC2SfsJzlej6MAaMPLu8HiBSHGdRAJ9hVFYN1ibZoNkeanmDmLUcIrj6G9DGL7XMJ54AKg/G75akXl1/izTOw==}
     engines: {node: '>=0.10.0'}
     dev: false
 
