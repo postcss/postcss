@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.36
+* Fixed `original.column are not numbers` error on broken previous source map.
+
 ## 8.4.35
 * Avoid `!` in `node.parent.nodes` type.
 * Allow to pass `undefined` to node adding method to simplify types.
