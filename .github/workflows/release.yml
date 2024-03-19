@@ -1,0 +1,44 @@
+name: Release
+on:
+  push:
+    tags:
+      - '*'
+permissions:
+  contents: write
+jobs:
+  release:
+    name: Release On Tag
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Extract the changelog
+        id: changelog
+        run: |
+          TAG_NAME=${GITHUB_REF/refs\/tags\//}
+          READ_SECTION=false
+          CHANGELOG=""
+          while IFS= read -r line; do
+            if [[ "$line" =~ ^#+\ +(.*) ]]; then
+              if [[ "${BASH_REMATCH[1]}" == "$TAG_NAME" ]]; then
+                READ_SECTION=true
+              elif [[ "$READ_SECTION" == true ]]; then
+                break
+              fi
+            elif [[ "$READ_SECTION" == true ]]; then
+              CHANGELOG+="$line"$'\n'
+            fi
+          done < "CHANGELOG.md"
+          CHANGELOG=$(echo "$CHANGELOG" | awk '/./ {$1=$1;print}')
+          echo "changelog_content<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Create the release
+        if: steps.changelog.outputs.changelog_content != ''
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ github.ref_name }}
+          body: '${{ steps.changelog.outputs.changelog_content }}'
+          draft: false
+          prerelease: false
