@@ -644,7 +644,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-custom-properties`]:            https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-properties
 [`postcss-czech-stylesheets`]:            https://github.com/HoBi/postcss-czech-stylesheets
 [`postcss-discard-font-face`]:            https://github.com/ben-eb/postcss-discard-font-face
-[`postcss-responsive-images`]:            https://github.com/azat-io/postcss-responsive-images
+[`postcss-responsive-images`]:            https://www.npmjs.com/package/postcss-responsive-images
 [`postcss-selector-prefixer`]:            https://github.com/amaranter/postcss-selector-prefixer
 [`postcss-tatar-stylesheets`]:            https://github.com/azat-io/postcss-tatar-stylesheets
 [`postcss-browser-reporter`]:             https://github.com/postcss/postcss-browser-reporter
@@ -839,7 +839,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-select`]:                       https://github.com/johnotander/postcss-select
 [`postcss-urlrebase`]:                    https://github.com/strarsis/postcss-urlrebase
 [`postcss-urlrev`]:                       https://github.com/yuezk/postcss-urlrev
-[`postcss-zindex`]:                       https://github.com/ben-eb/postcss-zindex
+[`postcss-zindex`]:                       https://www.npmjs.com/package/postcss-zindex
 [`list-selectors`]:                       https://github.com/davidtheclark/list-selectors
 [`mq4-hover-shim`]:                       https://github.com/twbs/mq4-hover-shim
 [`postcss-alias`]:                        https://github.com/seaneking/postcss-alias
@@ -849,7 +849,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-scrib`]:                        https://github.com/sneakertack/postcss-scrib
 [`css2modernizr`]:                        https://github.com/vovanbo/css2modernizr
 [`font-magician`]:                        https://github.com/csstools/postcss-font-magician
-[`immutable-css`]:                        https://github.com/johnotander/immutable-css
+[`immutable-css`]:                        https://github.com/johno/immutable-css
 [`perfectionist`]:                        https://github.com/ben-eb/perfectionist
 [`postcss-uncss`]:                        https://github.com/RyanZim/postcss-uncss
 [`postcss-click`]:                        https://github.com/ismamz/postcss-click
@@ -865,7 +865,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-neat`]:                         https://github.com/jo-asakura/postcss-neat
 [`postcss-size`]:                         https://github.com/postcss/postcss-size
 [`postcss-size-advanced`]:                https://github.com/jhpratt/postcss-size-advanced
-[`postcss-svgo`]:                         https://github.com/ben-eb/postcss-svgo
+[`postcss-svgo`]:                         https://www.npmjs.com/package/postcss-svgo
 [`postcss-unmq`]:                         https://github.com/csstools/postcss-unmq
 [`postcss-vmin`]:                         https://github.com/iamvdo/postcss-vmin
 [`postcss-nope`]:                         https://github.com/dariopog/postcss-nope
@@ -882,7 +882,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-ref`]:                          https://github.com/morishitter/postcss-ref
 [`colorguard`]:                           https://github.com/SlexAxton/css-colorguard
 [`css-byebye`]:                           https://github.com/AoDev/css-byebye
-[`stylehacks`]:                           https://github.com/ben-eb/stylehacks
+[`stylehacks`]:                           https://www.npmjs.com/package/stylehacks
 [`cssgrace`]:                             https://github.com/cssdream/cssgrace
 [`stylefmt`]:                             https://github.com/morishitter/stylefmt
 [`csstyle`]:                              https://github.com/geddski/csstyle

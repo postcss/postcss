@@ -63,7 +63,7 @@ one for each W3C specification. And [`cssnano`] contains a separate plugin
 for each of its optimization.
 
 [`postcss-preset-env`]: https://preset-env.cssdb.org/
-[`cssnano`]:            https://github.com/ben-eb/cssnano
+[`cssnano`]:            https://github.com/cssnano/cssnano
 
 
 ### 1.3. Do not use mixins
