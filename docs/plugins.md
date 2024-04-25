@@ -73,7 +73,7 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 [`postcss-hamster`]:    https://github.com/h0tc0d3/postcss-hamster
 [`stylelint`]:          https://github.com/stylelint/stylelint
 [`rucksack`]:           https://github.com/seaneking/rucksack
-[`cssnano`]:            https://cssnano.co/
+[`cssnano`]:            https://cssnano.github.io/cssnano/
 [`level4`]:             https://github.com/stephenway/level4
 [`oldie`]:              https://github.com/csstools/oldie
 [`atcss`]:              https://github.com/morishitter/atcss

@@ -100,7 +100,7 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 [`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                  https://github.com/stylelint/stylelint
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
-[`cssnano`]:                    http://cssnano.co
+[`cssnano`]:                    https://cssnano.github.io/cssnano/
 [`doiuse`]:                     https://github.com/anandthakker/doiuse
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
 [`short`]:                      https://github.com/jonathantneal/postcss-short

@@ -131,7 +131,7 @@ If you have any new ideas, [PostCSS plugin development] is really easy.
 [`colorguard`]:                 https://github.com/SlexAxton/css-colorguard
 [`stylelint`]:                  https://github.com/stylelint/stylelint
 [`stylefmt`]:                   https://github.com/morishitter/stylefmt
-[`cssnano`]:                    https://cssnano.co/
+[`cssnano`]:                    https://cssnano.github.io/cssnano/
 [`postcss-nested`]:             https://github.com/postcss/postcss-nested
 [`doiuse`]:                     https://github.com/anandthakker/doiuse
 [`rtlcss`]:                     https://github.com/MohammadYounes/rtlcss
