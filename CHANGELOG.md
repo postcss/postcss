@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.39
+* Fixed `CssSyntaxError` types (by @romainmenke).
+
 ## 8.4.38
 * Fixed `endIndex: 0` in errors and warnings (by @romainmenke).
 
