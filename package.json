@@ -89,14 +89,14 @@
     "source-map-js": "^1.2.0"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^53.2.0",
+    "@logux/eslint-config": "^53.2.1",
     "@size-limit/preset-small-lib": "^11.1.4",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.12",
     "c8": "^10.1.2",
     "check-dts": "^0.8.0",
     "clean-publish": "^5.0.0",
     "concat-with-sourcemaps": "^1.1.0",
-    "eslint": "^9.6.0",
+    "eslint": "^9.7.0",
     "nanodelay": "^1.0.8",
     "nanospy": "^1.0.0",
     "postcss-parser-tests": "^8.8.0",
@@ -104,7 +104,7 @@
     "size-limit": "^11.1.4",
     "strip-ansi": "^6.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.2",
+    "typescript": "^5.5.4",
     "uvu": "^0.5.6"
   },
   "c8": {
