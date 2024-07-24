@@ -77,7 +77,8 @@ declare class Declaration_ extends Node {
    * root.first.last.important  //=> undefined
    * ```
    */
-  important: boolean
+  get important(): boolean
+  set important(value: boolean)
 
   parent: ContainerWithChildren | undefined
 
@@ -91,7 +92,8 @@ declare class Declaration_ extends Node {
    * decl.prop //=> 'color'
    * ```
    */
-  prop: string
+  get prop(): string
+  set prop(value: string)
 
   raws: Declaration.DeclarationRaws
 
@@ -114,7 +116,8 @@ declare class Declaration_ extends Node {
    * decl.value //=> 'black'
    * ```
    */
-  value: string
+  get value(): string
+  set value(value: string)
 
   /**
    * It represents a getter that returns `true` if a declaration starts with
@@ -134,7 +137,8 @@ declare class Declaration_ extends Node {
    * one.variable //=> true
    * ```
    */
-  variable: boolean
+  get variable(): boolean
+  set varaible(value: string)
 
   constructor(defaults?: Declaration.DeclarationProps)
   assign(overrides: Declaration.DeclarationProps | object): this

@@ -88,7 +88,9 @@ declare class AtRule_ extends Container {
    * media.name //=> 'media'
    * ```
    */
-  name: string
+  get name(): string
+  set name(value: string)
+
   /**
    * An array containing the layer’s children.
    *
@@ -118,7 +120,8 @@ declare class AtRule_ extends Container {
    * media.params //=> 'print, screen'
    * ```
    */
-  params: string
+  get params(): string
+  set params(value: string)
   parent: ContainerWithChildren | undefined
 
   raws: AtRule.AtRuleRaws
