@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.40
+* Moved to getter/setter in nodes types to help Sass team (by @nex3).
+
 ## 8.4.39
 * Fixed `CssSyntaxError` types (by @romainmenke).
 
