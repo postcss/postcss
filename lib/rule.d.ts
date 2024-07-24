@@ -84,7 +84,8 @@ declare class Rule_ extends Container {
    * rule.selector //=> 'a, b'
    * ```
    */
-  selector: string
+  get selector(): string
+  set selector(value: string);
 
   /**
    * An array containing the rule’s individual selectors.
@@ -101,7 +102,8 @@ declare class Rule_ extends Container {
    * rule.selector //=> 'a, strong'
    * ```
    */
-  selectors: string[]
+  get selectors(): string[]
+  set selectors(values: string[]);
 
   type: 'rule'
 

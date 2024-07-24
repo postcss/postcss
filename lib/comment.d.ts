@@ -51,7 +51,8 @@ declare class Comment_ extends Node {
   /**
    * The comment's text.
    */
-  text: string
+  get text(): string
+  set text(value: string)
 
   type: 'comment'
 
