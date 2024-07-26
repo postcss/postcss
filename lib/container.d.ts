@@ -23,8 +23,8 @@ declare namespace Container {
     props?: string[]
   }
 
-  export interface ContainerProps extends NodeProps {
-    nodes?: (ChildNode | ChildProps)[]
+  export interface ContainerProps<Child extends Node = ChildNode> extends NodeProps {
+    nodes?: (Child | ChildProps)[]
   }
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -83,10 +83,10 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     )[]
   ): this
 
-  assign(overrides: Container.ContainerProps | object): this
-  clone(overrides?: Partial<Container.ContainerProps>): Container<Child>
-  cloneAfter(overrides?: Partial<Container.ContainerProps>): Container<Child>
-  cloneBefore(overrides?: Partial<Container.ContainerProps>): Container<Child>
+  assign(overrides: Container.ContainerProps<Child> | object): this
+  clone(overrides?: Partial<Container.ContainerProps<Child>>): Container<Child>
+  cloneAfter(overrides?: Partial<Container.ContainerProps<Child>>): Container<Child>
+  cloneBefore(overrides?: Partial<Container.ContainerProps<Child>>): Container<Child>
 
   /**
    * Iterates through the container’s immediate children,
