@@ -4,7 +4,7 @@ import Result from './result.js'
 import Root from './root.js'
 
 declare namespace Document {
-  export interface DocumentProps extends ContainerProps<Root> {
+  export interface DocumentProps extends ContainerProps {
     nodes?: Root[]
 
     /**

@@ -472,8 +472,8 @@ declare abstract class Node_ {
    */
   replaceWith(
     ...nodes: (
-      | Node.ChildNode
-      | Node.ChildNode[]
+      | Node
+      | Node[]
       | Node.ChildProps
       | Node.ChildProps[]
     )[]

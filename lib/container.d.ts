@@ -23,8 +23,8 @@ declare namespace Container {
     props?: string[]
   }
 
-  export interface ContainerProps<Child extends Node = ChildNode> extends NodeProps {
-    nodes?: (Child | ChildProps)[]
+  export interface ContainerProps extends NodeProps {
+    nodes?: (Node | ChildProps)[]
   }
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -83,10 +83,10 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     )[]
   ): this
 
-  assign(overrides: Container.ContainerProps<Child> | object): this
-  clone(overrides?: Partial<Container.ContainerProps<Child>>): Container<Child>
-  cloneAfter(overrides?: Partial<Container.ContainerProps<Child>>): Container<Child>
-  cloneBefore(overrides?: Partial<Container.ContainerProps<Child>>): Container<Child>
+  assign(overrides: Container.ContainerProps | object): this
+  clone(overrides?: Partial<Container.ContainerProps>): Container<Child>
+  cloneAfter(overrides?: Partial<Container.ContainerProps>): Container<Child>
+  cloneBefore(overrides?: Partial<Container.ContainerProps>): Container<Child>
 
   /**
    * Iterates through the container’s immediate children,
@@ -161,8 +161,8 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   insertAfter(
     oldNode: Child | number,
     newNode:
-      | Child
-      | Child[]
+      | Node
+      | Node[]
       | ChildProps
       | ChildProps[]
       | string
@@ -183,8 +183,8 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   insertBefore(
     oldNode: Child | number,
     newNode:
-      | Child
-      | Child[]
+      | Node
+      | Node[]
       | ChildProps
       | ChildProps[]
       | string
@@ -250,7 +250,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @param child New node.
    * @return This node for methods chain.
    */
-  push(child: Child): this
+  push(child: Node): this
 
   /**
    * Removes all children from the container
