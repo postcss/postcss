@@ -58,9 +58,9 @@ declare class Comment_ extends Node {
 
   constructor(defaults?: Comment.CommentProps)
   assign(overrides: Comment.CommentProps | object): this
-  clone(overrides?: Partial<Comment.CommentProps>): Comment
-  cloneAfter(overrides?: Partial<Comment.CommentProps>): Comment
-  cloneBefore(overrides?: Partial<Comment.CommentProps>): Comment
+  clone(overrides?: Partial<Comment.CommentProps>): this
+  cloneAfter(overrides?: Partial<Comment.CommentProps>): this
+  cloneBefore(overrides?: Partial<Comment.CommentProps>): this
 }
 
 declare class Comment extends Comment_ {}

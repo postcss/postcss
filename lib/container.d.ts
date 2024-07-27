@@ -84,9 +84,9 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   ): this
 
   assign(overrides: Container.ContainerProps | object): this
-  clone(overrides?: Partial<Container.ContainerProps>): Container<Child>
-  cloneAfter(overrides?: Partial<Container.ContainerProps>): Container<Child>
-  cloneBefore(overrides?: Partial<Container.ContainerProps>): Container<Child>
+  clone(overrides?: Partial<Container.ContainerProps>): this
+  cloneAfter(overrides?: Partial<Container.ContainerProps>): this
+  cloneBefore(overrides?: Partial<Container.ContainerProps>): this
 
   /**
    * Iterates through the container’s immediate children,
@@ -250,7 +250,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @param child New node.
    * @return This node for methods chain.
    */
-  push(child: Node): this
+  push(child: Child): this
 
   /**
    * Removes all children from the container

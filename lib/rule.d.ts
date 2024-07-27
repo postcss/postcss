@@ -114,9 +114,9 @@ declare class Rule_ extends Container {
 
   constructor(defaults?: Rule.RuleProps)
   assign(overrides: object | Rule.RuleProps): this
-  clone(overrides?: Partial<Rule.RuleProps>): Rule
-  cloneAfter(overrides?: Partial<Rule.RuleProps>): Rule
-  cloneBefore(overrides?: Partial<Rule.RuleProps>): Rule
+  clone(overrides?: Partial<Rule.RuleProps>): this
+  cloneAfter(overrides?: Partial<Rule.RuleProps>): this
+  cloneBefore(overrides?: Partial<Rule.RuleProps>): this
 }
 
 declare class Rule extends Rule_ {}

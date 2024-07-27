@@ -42,9 +42,9 @@ declare class Document_ extends Container<Root> {
   constructor(defaults?: Document.DocumentProps)
 
   assign(overrides: Document.DocumentProps | object): this
-  clone(overrides?: Partial<Document.DocumentProps>): Document
-  cloneAfter(overrides?: Partial<Document.DocumentProps>): Document
-  cloneBefore(overrides?: Partial<Document.DocumentProps>): Document
+  clone(overrides?: Partial<Document.DocumentProps>): this
+  cloneAfter(overrides?: Partial<Document.DocumentProps>): this
+  cloneBefore(overrides?: Partial<Document.DocumentProps>): this
 
   /**
    * Returns a `Result` instance representing the document’s CSS roots.
