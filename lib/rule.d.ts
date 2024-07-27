@@ -47,10 +47,12 @@ declare namespace Rule {
       | {
           /** Selector or selectors of the rule. */
           selector: string
+          selectors?: never
         }
       | {
           /** Selectors of the rule represented as an array of strings. */
           selectors: string[]
+          selector?: never
         }
     )
 
