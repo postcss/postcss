@@ -144,7 +144,7 @@ declare class Declaration_ extends Node {
    * ```
    */
   get variable(): boolean
-  set variable(value: string)
+  set variable(value: boolean)
 }
 
 declare class Declaration extends Declaration_ {}
