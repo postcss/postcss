@@ -138,7 +138,7 @@ declare class Declaration_ extends Node {
    * ```
    */
   get variable(): boolean
-  set varaible(value: string)
+  set variable(value: string)
 
   constructor(defaults?: Declaration.DeclarationProps)
   assign(overrides: Declaration.DeclarationProps | object): this
