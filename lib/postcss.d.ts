@@ -28,13 +28,22 @@ type DocumentProcessor = (
   document: Document,
   helper: postcss.Helpers
 ) => Promise<void> | void
-type RootProcessor = (root: Root, helper: postcss.Helpers) => Promise<void> | void
+type RootProcessor = (
+  root: Root,
+  helper: postcss.Helpers
+) => Promise<void> | void
 type DeclarationProcessor = (
   decl: Declaration,
   helper: postcss.Helpers
 ) => Promise<void> | void
-type RuleProcessor = (rule: Rule, helper: postcss.Helpers) => Promise<void> | void
-type AtRuleProcessor = (atRule: AtRule, helper: postcss.Helpers) => Promise<void> | void
+type RuleProcessor = (
+  rule: Rule,
+  helper: postcss.Helpers
+) => Promise<void> | void
+type AtRuleProcessor = (
+  atRule: AtRule,
+  helper: postcss.Helpers
+) => Promise<void> | void
 type CommentProcessor = (
   comment: Comment,
   helper: postcss.Helpers
@@ -176,9 +185,9 @@ declare namespace postcss {
     WarningOptions
   }
 
-  export type SourceMap = SourceMapGenerator & {
+  export type SourceMap = {
     toJSON(): RawSourceMap
-  }
+  } & SourceMapGenerator
 
   export type Helpers = { postcss: Postcss; result: Result } & Postcss
 

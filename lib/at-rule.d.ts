@@ -80,18 +80,6 @@ declare namespace AtRule {
  */
 declare class AtRule_ extends Container {
   /**
-   * The at-rule’s name immediately follows the `@`.
-   *
-   * ```js
-   * const root  = postcss.parse('@media print {}')
-   * const media = root.first
-   * media.name //=> 'media'
-   * ```
-   */
-  get name(): string
-  set name(value: string)
-
-  /**
    * An array containing the layer’s children.
    *
    * ```js
@@ -110,6 +98,29 @@ declare class AtRule_ extends Container {
    * ```
    */
   nodes: Container['nodes']
+  parent: ContainerWithChildren | undefined
+
+  raws: AtRule.AtRuleRaws
+  type: 'atrule'
+  constructor(defaults?: AtRule.AtRuleProps)
+  assign(overrides: AtRule.AtRuleProps | object): this
+
+  clone(overrides?: Partial<AtRule.AtRuleProps>): AtRule
+
+  cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): AtRule
+
+  cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): AtRule
+  /**
+   * The at-rule’s name immediately follows the `@`.
+   *
+   * ```js
+   * const root  = postcss.parse('@media print {}')
+   * const media = root.first
+   * media.name //=> 'media'
+   * ```
+   */
+  get name(): string
+  set name(value: string)
   /**
    * The at-rule’s parameters, the values that follow the at-rule’s name
    * but precede any `{}` block.
@@ -122,17 +133,6 @@ declare class AtRule_ extends Container {
    */
   get params(): string
   set params(value: string)
-  parent: ContainerWithChildren | undefined
-
-  raws: AtRule.AtRuleRaws
-
-  type: 'atrule'
-
-  constructor(defaults?: AtRule.AtRuleProps)
-  assign(overrides: AtRule.AtRuleProps | object): this
-  clone(overrides?: Partial<AtRule.AtRuleProps>): AtRule
-  cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): AtRule
-  cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): AtRule
 }
 
 declare class AtRule extends AtRule_ {}
