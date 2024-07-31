@@ -30,12 +30,11 @@ PostCSS 插件），请联系 [Evil Martians](https://evilmartians.com/?utm_sou
 
 ## 插件
 
-截止到目前，PostCSS 有 200 多个插件。你可以在 [插件列表] 或 [搜索目录] 找到它们。
+截止到目前，PostCSS 有 200 多个插件。你可以在 [插件列表] 找到它们。
 下方的列表是我们最喜欢的插件 - 它们很好地演示了我们可以用 PostCSS 做些什么。
 
 如果你有任何新的想法，[开发 PostCSS 插件] 非常简单易上手。
 
-[搜索目录]: http://postcss.parts
 [插件列表]: https://github.com/postcss/postcss/blob/main/docs/plugins.md
 
 ### 解决全局 CSS 的问题
@@ -158,7 +157,7 @@ PostCSS 可以转化样式到任意语法，不仅仅是 CSS。
 1. 在你的构建工具中查找并添加 PostCSS 拓展。
 2. [选择插件]并将它们添加到你的 PostCSS 处理队列中。
 
-[选择插件]: http://postcss.parts
+[选择插件]: https://postcss.org/docs/postcss-plugins
 
 ### CSS-in-JS
 
