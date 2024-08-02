@@ -187,6 +187,9 @@ declare class Input_ {
    * ```
    */
   get from(): string
+
+  /** Converts this to a JSON-friendly object representation. */
+  toJSON(): object
 }
 
 declare class Input extends Input_ {}
