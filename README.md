@@ -46,14 +46,12 @@ This API can then be used by [plugins] to do a lot of useful things,
 e.g., to find errors automatically, or to insert vendor prefixes.
 
 Currently, PostCSS has more than 200 plugins. You can find all of the plugins
-in the [plugins list] or in the [searchable catalog]. Below is a list
-of our favorite plugins — the best demonstrations of what can be built
-on top of PostCSS.
+in the [plugins list]. Below is a list of our favorite plugins —
+the best demonstrations of what can be built on top of PostCSS.
 
 If you have any new ideas, [PostCSS plugin development] is really easy.
 
-[searchable catalog]: https://www.postcss.parts/
-[plugins list]:       https://github.com/postcss/postcss/blob/main/docs/plugins.md
+[plugins list]: https://github.com/postcss/postcss/blob/main/docs/plugins.md
 
 
 ### Solve Global CSS Problem
@@ -202,7 +200,7 @@ You can start using PostCSS in just two steps:
 1. Find and add PostCSS extensions for your build tool.
 2. [Select plugins] and add them to your PostCSS process.
 
-[Select plugins]: https://www.postcss.parts/
+[Select plugins]: https://postcss.org/docs/postcss-plugins
 
 
 ### CSS-in-JS

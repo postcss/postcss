@@ -63,6 +63,19 @@ declare namespace Declaration {
  * ```
  */
 declare class Declaration_ extends Node {
+  parent: ContainerWithChildren | undefined
+  raws: Declaration.DeclarationRaws
+
+  type: 'decl'
+
+  constructor(defaults?: Declaration.DeclarationProps)
+  assign(overrides: Declaration.DeclarationProps | object): this
+
+  clone(overrides?: Partial<Declaration.DeclarationProps>): this
+
+  cloneAfter(overrides?: Partial<Declaration.DeclarationProps>): this
+
+  cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): this
   /**
    * It represents a specificity of the declaration.
    *
@@ -78,10 +91,8 @@ declare class Declaration_ extends Node {
    * ```
    */
   get important(): boolean
+
   set important(value: boolean)
-
-  parent: ContainerWithChildren | undefined
-
   /**
    * The property name for a CSS declaration.
    *
@@ -93,12 +104,8 @@ declare class Declaration_ extends Node {
    * ```
    */
   get prop(): string
+
   set prop(value: string)
-
-  raws: Declaration.DeclarationRaws
-
-  type: 'decl'
-
   /**
    * The property value for a CSS declaration.
    *
@@ -118,7 +125,6 @@ declare class Declaration_ extends Node {
    */
   get value(): string
   set value(value: string)
-
   /**
    * It represents a getter that returns `true` if a declaration starts with
    * `--` or `$`, which are used to declare variables in CSS and SASS/SCSS.
@@ -138,13 +144,6 @@ declare class Declaration_ extends Node {
    * ```
    */
   get variable(): boolean
-  set varaible(value: string)
-
-  constructor(defaults?: Declaration.DeclarationProps)
-  assign(overrides: Declaration.DeclarationProps | object): this
-  clone(overrides?: Partial<Declaration.DeclarationProps>): this
-  cloneAfter(overrides?: Partial<Declaration.DeclarationProps>): this
-  cloneBefore(overrides?: Partial<Declaration.DeclarationProps>): this
 }
 
 declare class Declaration extends Declaration_ {}

@@ -51,7 +51,6 @@ declare namespace list {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 declare const list: list.List
 
 export = list
