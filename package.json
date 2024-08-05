@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "8.4.40",
+  "version": "8.4.41",
   "description": "Tool for transforming styles with JS plugins",
   "engines": {
     "node": "^10 || ^12 || >=14"

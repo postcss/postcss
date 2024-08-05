@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.41
+* Fixed types (by @nex3 and @querkmachine).
+* Cleaned up RegExps (by @bluwy).
+
 ## 8.4.40
 * Moved to getter/setter in nodes types to help Sass team (by @nex3).
 
