@@ -105,11 +105,11 @@ declare class AtRule_ extends Container {
   constructor(defaults?: AtRule.AtRuleProps)
   assign(overrides: AtRule.AtRuleProps | object): this
 
-  clone(overrides?: Partial<AtRule.AtRuleProps>): AtRule
+  clone(overrides?: Partial<AtRule.AtRuleProps>): this
 
-  cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): AtRule
+  cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): this
 
-  cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): AtRule
+  cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): this
   /**
    * The at-rule’s name immediately follows the `@`.
    *

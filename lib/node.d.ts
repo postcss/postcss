@@ -303,7 +303,7 @@ declare abstract class Node_ {
    *
    * @return Duplicate of the node instance.
    */
-  clone(overrides?: object): Node
+  clone(overrides?: object): this
 
   /**
    * Shortcut to clone the node and insert the resulting cloned node
@@ -312,7 +312,7 @@ declare abstract class Node_ {
    * @param overrides New properties to override in the clone.
    * @return New node.
    */
-  cloneAfter(overrides?: object): Node
+  cloneAfter(overrides?: object): this
 
   /**
    * Shortcut to clone the node and insert the resulting cloned node
@@ -326,7 +326,7 @@ declare abstract class Node_ {
    *
    * @return New node
    */
-  cloneBefore(overrides?: object): Node
+  cloneBefore(overrides?: object): this
 
   /**
    * It creates an instance of the class `CssSyntaxError` and parameters passed
@@ -472,8 +472,8 @@ declare abstract class Node_ {
    */
   replaceWith(
     ...nodes: (
-      | Node.ChildNode
-      | Node.ChildNode[]
+      | Node
+      | Node[]
       | Node.ChildProps
       | Node.ChildProps[]
     )[]

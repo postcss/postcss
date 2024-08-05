@@ -40,14 +40,21 @@ declare namespace Rule {
     semicolon?: boolean
   }
 
-  export interface RuleProps extends ContainerProps {
+  export type RuleProps = ContainerProps & {
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
     raws?: RuleRaws
-    /** Selector or selectors of the rule. */
-    selector?: string
-    /** Selectors of the rule represented as an array of strings. */
-    selectors?: string[]
-  }
+  } & (
+      | {
+          /** Selector or selectors of the rule. */
+          selector: string
+          selectors?: never
+        }
+      | {
+          /** Selectors of the rule represented as an array of strings. */
+          selectors: string[]
+          selector?: never
+        }
+    )
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   export { Rule_ as default }
@@ -79,11 +86,11 @@ declare class Rule_ extends Container {
   constructor(defaults?: Rule.RuleProps)
 
   assign(overrides: object | Rule.RuleProps): this
-  clone(overrides?: Partial<Rule.RuleProps>): Rule
+  clone(overrides?: Partial<Rule.RuleProps>): this
 
-  cloneAfter(overrides?: Partial<Rule.RuleProps>): Rule
+  cloneAfter(overrides?: Partial<Rule.RuleProps>): this
 
-  cloneBefore(overrides?: Partial<Rule.RuleProps>): Rule
+  cloneBefore(overrides?: Partial<Rule.RuleProps>): this
   /**
    * The rule’s full selector represented as a string.
    *
