@@ -27,6 +27,19 @@ declare namespace Container {
     nodes?: (Node | ChildProps)[]
   }
 
+  /**
+   * All types that can be passed into container methods to create or add a new
+   * child node.
+   */
+  export type NewChild =
+    | ChildProps
+    | ChildProps[]
+    | Node
+    | Node[]
+    | string
+    | string[]
+    | undefined
+
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   export { Container_ as default }
 }
@@ -71,17 +84,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @param nodes New nodes.
    * @return This node for methods chain.
    */
-  append(
-    ...nodes: (
-      | ChildProps
-      | ChildProps[]
-      | Node
-      | Node[]
-      | string
-      | string[]
-      | undefined
-    )[]
-  ): this
+  append(...nodes: Container.NewChild[]): this
 
   assign(overrides: Container.ContainerProps | object): this
   clone(overrides?: Partial<Container.ContainerProps>): this
@@ -158,17 +161,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  insertAfter(
-    oldNode: Child | number,
-    newNode:
-      | Node
-      | Node[]
-      | ChildProps
-      | ChildProps[]
-      | string
-      | string[]
-      | undefined
-  ): this
+  insertAfter(oldNode: Child | number, newNode: Container.NewChild): this
   /**
    * Insert new node before old node within the container.
    *
@@ -180,17 +173,27 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  insertBefore(
-    oldNode: Child | number,
-    newNode:
-      | Node
-      | Node[]
-      | ChildProps
-      | ChildProps[]
-      | string
-      | string[]
-      | undefined
-  ): this
+  insertBefore(oldNode: Child | number, newNode: Container.NewChild): this
+
+  /**
+   * An internal method that converts a {@link NewChild} into a list of actual
+   * child nodes that can then be added to this container.
+   *
+   * This ensures that the nodes' parent is set to this container, that they use
+   * the correct prototype chain, and that they're marked as dirty.
+   *
+   * @param mnodes The new node or nodes to add.
+   * @param sample A node from whose raws the new node's `before` raw should be
+   *               taken.
+   * @param type   This should be set to `'prepend'` if the new nodes will be
+   *               inserted at the beginning of the container.
+   * @hidden
+   */
+  protected normalize(
+    nodes: Container.NewChild,
+    sample: Node | undefined,
+    type?: 'prepend' | false
+  ): Child[]
 
   /**
    * Traverses the container’s descendant nodes, calling callback
@@ -229,17 +232,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @param nodes New nodes.
    * @return This node for methods chain.
    */
-  prepend(
-    ...nodes: (
-      | ChildProps
-      | ChildProps[]
-      | Node
-      | Node[]
-      | string
-      | string[]
-      | undefined
-    )[]
-  ): this
+  prepend(...nodes: Container.NewChild[]): this
   /**
    * Add child to the end of the node.
    *

@@ -2,7 +2,7 @@ import AtRule = require('./at-rule.js')
 
 import { AtRuleProps } from './at-rule.js'
 import Comment, { CommentProps } from './comment.js'
-import Container from './container.js'
+import Container, { NewChild } from './container.js'
 import CssSyntaxError from './css-syntax-error.js'
 import Declaration, { DeclarationProps } from './declaration.js'
 import Document from './document.js'
@@ -470,14 +470,7 @@ declare abstract class Node_ {
    * @param nodes Mode(s) to replace current one.
    * @return Current node to methods chain.
    */
-  replaceWith(
-    ...nodes: (
-      | Node
-      | Node[]
-      | Node.ChildProps
-      | Node.ChildProps[]
-    )[]
-  ): this
+  replaceWith(...nodes: NewChild[]): this
 
   /**
    * Finds the Root instance of the node’s tree.
