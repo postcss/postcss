@@ -365,6 +365,14 @@ declare abstract class Node_ {
   error(message: string, options?: Node.NodeErrorOptions): CssSyntaxError
 
   /**
+   * If this node isn't already dirty, marks it and its ancestors as such. This
+   * indicates to the LazyResult processor that the {@link Root} has been
+   * modified by the current plugin and may need to be processed again by other
+   * plugins.
+   */
+  protected markDirty(): void;
+
+  /**
    * Returns the next child of the node’s parent.
    * Returns `undefined` if the current node is the last child.
    *
