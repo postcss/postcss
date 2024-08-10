@@ -76,7 +76,7 @@ declare class Root_ extends Container {
    * const result = root1.toResult({ to: 'all.css', map: true })
    * ```
    *
-   * @param opts Options.
+   * @param options Options.
    * @return Result with current root’s CSS.
    */
   toResult(options?: ProcessOptions): Result

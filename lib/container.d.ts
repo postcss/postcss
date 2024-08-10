@@ -301,8 +301,8 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * ```
    *
    * @param pattern      Replace pattern.
-   * @param {object} opts                Options to speed up the search.
-   * @param callback   String to replace pattern or callback
+   * @param {object} options             Options to speed up the search.
+   * @param replaced   String to replace pattern or callback
    *                                     that returns a new value. The callback
    *                                     will receive the same arguments
    *                                     as those passed to a function parameter
