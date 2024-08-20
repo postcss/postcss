@@ -246,7 +246,9 @@ declare abstract class Node_ {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  after(newNode: Node | Node.ChildProps | Node[] | string | undefined): this
+  after(
+    newNode: Node | Node.ChildProps | ReadonlyArray<Node> | string | undefined
+  ): this
 
   /**
    * It assigns properties to an existing node instance.
@@ -273,7 +275,9 @@ declare abstract class Node_ {
    * @param newNode New node.
    * @return This node for methods chain.
    */
-  before(newNode: Node | Node.ChildProps | Node[] | string | undefined): this
+  before(
+    newNode: Node | Node.ChildProps | ReadonlyArray<Node> | string | undefined
+  ): this
 
   /**
    * Clear the code style properties for the node and its children.
@@ -370,7 +374,7 @@ declare abstract class Node_ {
    * modified by the current plugin and may need to be processed again by other
    * plugins.
    */
-  protected markDirty(): void;
+  protected markDirty(): void
 
   /**
    * Returns the next child of the node’s parent.

@@ -51,7 +51,7 @@ declare namespace Rule {
         }
       | {
           /** Selectors of the rule represented as an array of strings. */
-          selectors: string[]
+          selectors: ReadonlyArray<string>
           selector?: never
         }
     )

@@ -445,7 +445,9 @@ declare namespace postcss {
  * @param plugins PostCSS plugins.
  * @return Processor to process multiple CSS.
  */
-declare function postcss(plugins?: postcss.AcceptedPlugin[]): Processor
+declare function postcss(
+  plugins?: ReadonlyArray<postcss.AcceptedPlugin>
+): Processor
 declare function postcss(...plugins: postcss.AcceptedPlugin[]): Processor
 
 export = postcss
