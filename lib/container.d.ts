@@ -20,11 +20,11 @@ declare namespace Container {
     /**
      * An array of property names.
      */
-    props?: string[]
+    props?: ReadonlyArray<string>
   }
 
   export interface ContainerProps extends NodeProps {
-    nodes?: (Node | ChildProps)[]
+    nodes?: ReadonlyArray<Node | ChildProps>
   }
 
   /**
@@ -33,11 +33,11 @@ declare namespace Container {
    */
   export type NewChild =
     | ChildProps
-    | ChildProps[]
+    | ReadonlyArray<ChildProps>
     | Node
-    | Node[]
+    | ReadonlyArray<Node>
     | string
-    | string[]
+    | ReadonlyArray<string>
     | undefined
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define

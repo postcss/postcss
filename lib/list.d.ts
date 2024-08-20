@@ -47,7 +47,11 @@ declare namespace list {
      * @param last boolean indicator.
      * @return Split values.
      */
-    split(string: string, separators: string[], last: boolean): string[]
+    split(
+      string: string,
+      separators: ReadonlyArray<string>,
+      last: boolean
+    ): string[]
   }
 }
 
