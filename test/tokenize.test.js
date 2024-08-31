@@ -1,8 +1,8 @@
 let { test } = require('uvu')
 let { equal, is, throws } = require('uvu/assert')
 
-let tokenizer = require('../lib/tokenize')
 let { Input } = require('../lib/postcss')
+let tokenizer = require('../lib/tokenize')
 
 function tokenize(css, opts) {
   let processor = tokenizer(new Input(css), opts)

@@ -49,7 +49,7 @@ declare namespace list {
      */
     split(
       string: string,
-      separators: ReadonlyArray<string>,
+      separators: readonly string[],
       last: boolean
     ): string[]
   }

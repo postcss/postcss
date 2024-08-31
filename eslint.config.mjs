@@ -1,6 +1,5 @@
 import loguxTsConfig from '@logux/eslint-config/ts'
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   { ignores: ['docs/api/assets/', '**/errors.ts'] },
   ...loguxTsConfig,
@@ -10,13 +9,24 @@ export default [
       '@typescript-eslint/no-explicit-any': 'off',
       'consistent-return': 'off',
       'global-require': 'off',
-      'node-import/prefer-node-protocol': 'off'
+      'n/no-unsupported-features/es-syntax': [
+        'error',
+        {
+          ignores: ['hashbang', 'modules']
+        }
+      ],
+      'n/no-unsupported-features/node-builtins': [
+        'error',
+        { ignores: ['url.fileURLToPath', 'url.pathToFileURL', 'btoa', 'atob'] }
+      ],
+      'n/prefer-node-protocol': 'off'
     }
   },
   {
     files: ['**/*.d.ts'],
     rules: {
-      '@typescript-eslint/no-redeclare': 'off'
+      '@typescript-eslint/no-redeclare': 'off',
+      'n/no-unsupported-features/es-syntax': 'off'
     }
   },
   {
@@ -25,6 +35,7 @@ export default [
       '@typescript-eslint/no-unused-expressions': 'off',
       'func-style': 'off',
       'n/no-unsupported-features/es-syntax': 'off',
+      'n/no-unsupported-features/node-builtins': 'off',
       'no-console': 'off',
       'no-unused-expressions': 'off'
     }

@@ -20,11 +20,11 @@ declare namespace Container {
     /**
      * An array of property names.
      */
-    props?: ReadonlyArray<string>
+    props?: readonly string[]
   }
 
   export interface ContainerProps extends NodeProps {
-    nodes?: ReadonlyArray<Node | ChildProps>
+    nodes?: readonly (ChildProps | Node)[]
   }
 
   /**
@@ -33,11 +33,11 @@ declare namespace Container {
    */
   export type NewChild =
     | ChildProps
-    | ReadonlyArray<ChildProps>
     | Node
-    | ReadonlyArray<Node>
+    | readonly ChildProps[]
+    | readonly Node[]
+    | readonly string[]
     | string
-    | ReadonlyArray<string>
     | undefined
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -65,6 +65,26 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   nodes: Child[] | undefined
 
   /**
+   * An internal method that converts a {@link NewChild} into a list of actual
+   * child nodes that can then be added to this container.
+   *
+   * This ensures that the nodes' parent is set to this container, that they use
+   * the correct prototype chain, and that they're marked as dirty.
+   *
+   * @param mnodes The new node or nodes to add.
+   * @param sample A node from whose raws the new node's `before` raw should be
+   *               taken.
+   * @param type   This should be set to `'prepend'` if the new nodes will be
+   *               inserted at the beginning of the container.
+   * @hidden
+   */
+  protected normalize(
+    nodes: Container.NewChild,
+    sample: Node | undefined,
+    type?: 'prepend' | false
+  ): Child[]
+
+  /**
    * Inserts new nodes to the end of the container.
    *
    * ```js
@@ -85,10 +105,10 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return This node for methods chain.
    */
   append(...nodes: Container.NewChild[]): this
-
   assign(overrides: Container.ContainerProps | object): this
   clone(overrides?: Partial<Container.ContainerProps>): this
   cloneAfter(overrides?: Partial<Container.ContainerProps>): this
+
   cloneBefore(overrides?: Partial<Container.ContainerProps>): this
 
   /**
@@ -127,7 +147,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   each(
     callback: (node: Child, index: number) => false | void
   ): false | undefined
-
   /**
    * Returns `true` if callback returns `true`
    * for all of the container’s children.
@@ -142,6 +161,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   every(
     condition: (node: Child, index: number, nodes: Child[]) => boolean
   ): boolean
+
   /**
    * Returns a `child`’s index within the `Container#nodes` array.
    *
@@ -153,7 +173,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return Child index.
    */
   index(child: Child | number): number
-
   /**
    * Insert new node after old node within the container.
    *
@@ -162,6 +181,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return This node for methods chain.
    */
   insertAfter(oldNode: Child | number, newNode: Container.NewChild): this
+
   /**
    * Insert new node before old node within the container.
    *
@@ -174,26 +194,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return This node for methods chain.
    */
   insertBefore(oldNode: Child | number, newNode: Container.NewChild): this
-
-  /**
-   * An internal method that converts a {@link NewChild} into a list of actual
-   * child nodes that can then be added to this container.
-   *
-   * This ensures that the nodes' parent is set to this container, that they use
-   * the correct prototype chain, and that they're marked as dirty.
-   *
-   * @param mnodes The new node or nodes to add.
-   * @param sample A node from whose raws the new node's `before` raw should be
-   *               taken.
-   * @param type   This should be set to `'prepend'` if the new nodes will be
-   *               inserted at the beginning of the container.
-   * @hidden
-   */
-  protected normalize(
-    nodes: Container.NewChild,
-    sample: Node | undefined,
-    type?: 'prepend' | false
-  ): Child[]
 
   /**
    * Traverses the container’s descendant nodes, calling callback

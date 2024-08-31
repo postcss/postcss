@@ -87,7 +87,7 @@ test('gets range from node without end', () => {
 
 test('gets range from node with endIndex 3', () => {
   let root = parse('a{}')
-  let warning = new Warning('text', { node: root.first, index: 0, endIndex: 3 })
+  let warning = new Warning('text', { endIndex: 3, index: 0, node: root.first })
   is(warning.line, 1)
   is(warning.column, 1)
   is(warning.endLine, 1)
@@ -96,7 +96,7 @@ test('gets range from node with endIndex 3', () => {
 
 test('gets range from node with endIndex 0', () => {
   let root = parse('a{}')
-  let warning = new Warning('text', { node: root.first, index: 0, endIndex: 0 })
+  let warning = new Warning('text', { endIndex: 0, index: 0, node: root.first })
   is(warning.line, 1)
   is(warning.column, 1)
   is(warning.endLine, 1)

@@ -446,7 +446,7 @@ declare namespace postcss {
  * @return Processor to process multiple CSS.
  */
 declare function postcss(
-  plugins?: ReadonlyArray<postcss.AcceptedPlugin>
+  plugins?: readonly postcss.AcceptedPlugin[]
 ): Processor
 declare function postcss(...plugins: postcss.AcceptedPlugin[]): Processor
 

@@ -5,7 +5,7 @@ import Root from './root.js'
 
 declare namespace Document {
   export interface DocumentProps extends ContainerProps {
-    nodes?: ReadonlyArray<Root>
+    nodes?: readonly Root[]
 
     /**
      * Information to generate byte-to-byte equal node string as it was

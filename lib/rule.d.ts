@@ -40,7 +40,7 @@ declare namespace Rule {
     semicolon?: boolean
   }
 
-  export type RuleProps = ContainerProps & {
+  export type RuleProps = {
     /** Information used to generate byte-to-byte equal node string as it was in the origin input. */
     raws?: RuleRaws
   } & (
@@ -50,11 +50,11 @@ declare namespace Rule {
           selectors?: never
         }
       | {
-          /** Selectors of the rule represented as an array of strings. */
-          selectors: ReadonlyArray<string>
           selector?: never
+          /** Selectors of the rule represented as an array of strings. */
+          selectors: readonly string[]
         }
-    )
+    ) & ContainerProps
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   export { Rule_ as default }
