@@ -192,30 +192,29 @@ test('add leading space for line numbers', () => {
 })
 
 test('cut minified css', () => {
-  let css = '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;background;text-decoration:none;font-size:100%;}'
+  let css = '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;background;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
   is(
     parseError(css).showSourceCode(false),
-    '>  1 | ,1px);}.b{border:0;background;text-decor\n' +
-    '     |                    ^'
+    '> 1 | ,1px);}.b{border:0;background;text-decor\n' +
+    '    |                    ^'
   )
 })
 
 test('correct mark position on cut minified css', () => {
-  let css = '.a{background;position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;text-decoration:none;font-size:100%;}'
+  let css = '.a{background;position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
   is(
     parseError(css).showSourceCode(false),
-    '>  1 | .a{background;position:a\n' +
-    '     |    ^'
+    '> 1 | .a{background;position:a\n' +
+    '    |    ^'
   )
 })
 
 test('highlight cut minified css with colors', () => {
-  let css = '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;background;text-decoration:none;font-size:100%;}'
-  console.log(parseError(css).showSourceCode(true));
+  let css = '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;background;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
   is(
     parseError(css).showSourceCode(true),
     pico.bold(pico.red('>')) +
-    pico.gray('  1 | ') +
+    pico.gray(' 1 | ') +
     ',1px' +
     pico.cyan(')') +
     pico.yellow(';') +
@@ -229,8 +228,8 @@ test('highlight cut minified css with colors', () => {
     'background' +
     pico.yellow(';') + '' +
     'text-decor' +
-    '\n' +
-    pico.gray('     | ') +
+    '\n ' +
+    pico.gray('   | ') +
     '                   ' +
     pico.bold(pico.red('^'))
   )
