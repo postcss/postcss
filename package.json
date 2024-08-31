@@ -53,6 +53,7 @@
     "transpiler"
   ],
   "scripts": {
+    "test:lint": "eslint .",
     "test:types": "check-dts",
     "test:version": "node ./test/version.js",
     "test:coverage": "c8 pnpm unit",
