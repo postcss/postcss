@@ -191,6 +191,52 @@ test('add leading space for line numbers', () => {
   )
 })
 
+test('cut minified css', () => {
+  let css = '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;background;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
+  is(
+    parseError(css).showSourceCode(false),
+    '> 1 | ,1px);}.b{border:0;background;text-decoration:none\n' +
+    '    |                    ^'
+  )
+})
+
+test('correct mark position on cut minified css', () => {
+  let css = '.a{background;position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
+  is(
+    parseError(css).showSourceCode(false),
+    '> 1 | .a{background;position:absolute!im\n' +
+    '    |    ^'
+  )
+})
+
+test('highlight cut minified css with colors', () => {
+  let css = '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;background;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
+  is(
+    parseError(css).showSourceCode(true),
+    pico.bold(pico.red('>')) +
+    pico.gray(' 1 | ') +
+    ',1px' +
+    pico.cyan(')') +
+    pico.yellow(';') +
+    pico.yellow('}') +
+    pico.yellow('.b') +
+    pico.yellow('{') +
+    'border' +
+    pico.yellow(':') +
+    '0' +
+    pico.yellow(';') +
+    'background' +
+    pico.yellow(';') + '' +
+    'text-decoration' +
+    pico.yellow(':') +
+    'none' +
+    '\n ' +
+    pico.gray('   | ') +
+    '                   ' +
+    pico.bold(pico.red('^'))
+  )
+})
+
 test('prints with highlight', () => {
   is(
     stripAnsi(parseError('a {').toString()),
