@@ -1,8 +1,8 @@
 import Concat from 'concat-with-sourcemaps'
-import { join, resolve as pathResolve } from 'path'
+import { join, resolve as pathResolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import * as pico from 'picocolors'
 import stripAnsi = require('strip-ansi')
-import { pathToFileURL } from 'url'
 import { test } from 'uvu'
 import { equal, is, match, type } from 'uvu/assert'
 
@@ -62,7 +62,7 @@ test('saves source', () => {
     endColumn: error.endColumn,
     endLine: error.endLine,
     line: error.line,
-    source: error.source,
+    source: error.source
   })
 })
 
@@ -89,25 +89,23 @@ test('saves source with ranges', () => {
 })
 
 test('has stack trace', () => {
-  match(parseError('a {\n  content: "\n}').stack,
-    /css-syntax-error\.test\.ts/
-  )
+  match(parseError('a {\n  content: "\n}').stack, /css-syntax-error\.test\.ts/)
 })
 
 test('saves source with ranges', () => {
   let error = parseError('badword')
 
- is(error instanceof CssSyntaxError, true)
- is(error.name, 'CssSyntaxError')
- is(error.message, '<css input>:1:1: Unknown word')
- is(error.reason, 'Unknown word')
- is(error.line, 1)
- is(error.column, 1)
- is(error.endLine, 1)
- is(error.endColumn, 8)
- is(error.source, 'badword')
+  is(error instanceof CssSyntaxError, true)
+  is(error.name, 'CssSyntaxError')
+  is(error.message, '<css input>:1:1: Unknown word')
+  is(error.reason, 'Unknown word')
+  is(error.line, 1)
+  is(error.column, 1)
+  is(error.endLine, 1)
+  is(error.endColumn, 8)
+  is(error.source, 'badword')
 
- equal(error.input, {
+  equal(error.input, {
     column: error.column,
     endColumn: error.endColumn,
     endLine: error.endLine,
@@ -119,17 +117,17 @@ test('saves source with ranges', () => {
 test('saves source with ranges', () => {
   let error = parseError('badword')
 
- is(error instanceof CssSyntaxError, true)
- is(error.name, 'CssSyntaxError')
- is(error.message, '<css input>:1:1: Unknown word')
- is(error.reason, 'Unknown word')
- is(error.line, 1)
- is(error.column, 1)
- is(error.endLine, 1)
- is(error.endColumn, 8)
- is(error.source, 'badword')
+  is(error instanceof CssSyntaxError, true)
+  is(error.name, 'CssSyntaxError')
+  is(error.message, '<css input>:1:1: Unknown word')
+  is(error.reason, 'Unknown word')
+  is(error.line, 1)
+  is(error.column, 1)
+  is(error.endLine, 1)
+  is(error.endColumn, 8)
+  is(error.source, 'badword')
 
- equal(error.input, {
+  equal(error.input, {
     column: error.column,
     endColumn: error.endColumn,
     endLine: error.endLine,
@@ -192,48 +190,60 @@ test('add leading space for line numbers', () => {
 })
 
 test('cut minified css', () => {
-  let css = '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;background;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
+  let css =
+    '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}' +
+    '.b{border:0;background;text-decoration:none;font-size:100%;}' +
+    '.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}' +
+    '.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
   is(
     parseError(css).showSourceCode(false),
     '> 1 | ,1px);}.b{border:0;background;text-decoration:none\n' +
-    '    |                    ^'
+      '    |                    ^'
   )
 })
 
 test('correct mark position on cut minified css', () => {
-  let css = '.a{background;position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
+  let css =
+    '.a{background;position:absolute!important;clip:rect(1px,1px,1px,1px);}' +
+    '.b{border:0;text-decoration:none;font-size:100%;}' +
+    '.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}' +
+    '.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
   is(
     parseError(css).showSourceCode(false),
-    '> 1 | .a{background;position:absolute!im\n' +
-    '    |    ^'
+    '> 1 | .a{background;position:absolute!im\n' + '    |    ^'
   )
 })
 
 test('highlight cut minified css with colors', () => {
-  let css = '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}.b{border:0;background;text-decoration:none;font-size:100%;}.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
+  let css =
+    '.a{position:absolute!important;clip:rect(1px,1px,1px,1px);}' +
+    '.b{border:0;background;text-decoration:none;font-size:100%;}' +
+    '.c{position:absolute!important;clip:rect(1px,1px,1px,1px);}' +
+    '.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
   is(
     parseError(css).showSourceCode(true),
     pico.bold(pico.red('>')) +
-    pico.gray(' 1 | ') +
-    ',1px' +
-    pico.cyan(')') +
-    pico.yellow(';') +
-    pico.yellow('}') +
-    pico.yellow('.b') +
-    pico.yellow('{') +
-    'border' +
-    pico.yellow(':') +
-    '0' +
-    pico.yellow(';') +
-    'background' +
-    pico.yellow(';') + '' +
-    'text-decoration' +
-    pico.yellow(':') +
-    'none' +
-    '\n ' +
-    pico.gray('   | ') +
-    '                   ' +
-    pico.bold(pico.red('^'))
+      pico.gray(' 1 | ') +
+      ',1px' +
+      pico.cyan(')') +
+      pico.yellow(';') +
+      pico.yellow('}') +
+      pico.yellow('.b') +
+      pico.yellow('{') +
+      'border' +
+      pico.yellow(':') +
+      '0' +
+      pico.yellow(';') +
+      'background' +
+      pico.yellow(';') +
+      '' +
+      'text-decoration' +
+      pico.yellow(':') +
+      'none' +
+      '\n ' +
+      pico.gray('   | ') +
+      '                   ' +
+      pico.bold(pico.red('^'))
   )
 })
 
@@ -284,7 +294,7 @@ test('uses source map', () => {
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
     source: 'a { }\n\nb {\n',
-    url: urlOf(join('build', 'all.css')),
+    url: urlOf(join('build', 'all.css'))
   })
 })
 
@@ -313,7 +323,7 @@ test('works with path in sources', () => {
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
     source: 'a { }\n\nb {\n',
-    url: pathToFileURL(pathOf(join('build', 'all.css'))).toString(),
+    url: pathToFileURL(pathOf(join('build', 'all.css'))).toString()
   })
 })
 
