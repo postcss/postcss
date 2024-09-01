@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.43
+* Fixed `markClean is not a function` error.
+
 ## 8.4.42
 * Fixed CSS syntax error on long minified files (by @varpstar).
 
