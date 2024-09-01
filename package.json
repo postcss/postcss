@@ -92,7 +92,7 @@
   "devDependencies": {
     "@logux/eslint-config": "^53.4.0",
     "@size-limit/preset-small-lib": "^11.1.4",
-    "@types/node": "^22.5.1",
+    "@types/node": "^22.5.2",
     "c8": "^10.1.2",
     "check-dts": "^0.8.2",
     "clean-publish": "^5.0.0",
