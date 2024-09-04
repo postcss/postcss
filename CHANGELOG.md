@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.45
+* Removed unnecessary fix which could lead to infinite loop.
+
 ## 8.4.44
 * Another way to fix `markClean is not a function` error.
 
