@@ -64,7 +64,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
       - name: Install pnpm
-        uses: pnpm/action-setup@v1
+        uses: pnpm/action-setup@v4
         with:
           version: 3
         env:
@@ -86,7 +86,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Install Node.js LTS
