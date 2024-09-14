@@ -91,8 +91,8 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^53.4.0",
-    "@size-limit/preset-small-lib": "^11.1.4",
-    "@types/node": "^22.5.4",
+    "@size-limit/preset-small-lib": "^11.1.5",
+    "@types/node": "^22.5.5",
     "c8": "^10.1.2",
     "check-dts": "^0.8.2",
     "clean-publish": "^5.0.0",
@@ -102,10 +102,10 @@
     "nanospy": "^1.0.0",
     "postcss-parser-tests": "^8.8.0",
     "simple-git-hooks": "^2.11.1",
-    "size-limit": "^11.1.4",
+    "size-limit": "^11.1.5",
     "strip-ansi": "^6.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.2",
     "uvu": "^0.5.6"
   },
   "c8": {
