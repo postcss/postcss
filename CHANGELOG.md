@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.47
+* Removed debug code.
+
 ## 8.4.46
 * Fixed `Cannot read properties of undefined (reading 'before')`.
 
