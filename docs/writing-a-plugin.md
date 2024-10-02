@@ -92,7 +92,7 @@ For public plugins:
 
 ```js
 module.exports = (opts = {}) => {
-  // Plugin creator to check options or prepare caches
+  // Plugin creator to check options or prepare shared state
   return {
     postcssPlugin: 'PLUGIN NAME'
     // Plugin listeners
