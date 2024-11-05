@@ -412,11 +412,43 @@ test('positionInside() returns position when node contains newlines', () => {
   equal(one.positionInside(10), { column: 4, line: 3 })
 })
 
+test('positionInside() returns position after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.positionInside(15), { column: 3, line: 3 })
+  equal(two.positionInside(1), { column: 3, line: 3 })
+
+  one.remove()
+
+  equal(a.positionInside(15), { column: 3, line: 3 })
+  equal(two.positionInside(1), { column: 3, line: 3 })
+})
+
 test('positionBy() returns position for word', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
   equal(one.positionBy({ word: 'one' }), { column: 6, line: 1 })
+  equal(one.positionBy({ word: 'X' }), { column: 11, line: 1 })
+  equal(a.positionBy({ word: '}' }), { column: 14, line: 1 })
+})
+
+test('positionBy() returns position for word after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.positionBy({ word: 'two' }), { column: 2, line: 3 })
+  equal(two.positionBy({ word: 'two' }), { column: 2, line: 3 })
+
+  one.remove()
+
+  equal(a.positionBy({ word: 'two' }), { column: 2, line: 3 })
+  equal(two.positionBy({ word: 'two' }), { column: 2, line: 3 })
 })
 
 test('positionBy() returns position for index', () => {
@@ -424,6 +456,21 @@ test('positionBy() returns position for index', () => {
   let a = css.first as Rule
   let one = a.first as Declaration
   equal(one.positionBy({ index: 1 }), { column: 7, line: 1 })
+})
+
+test('positionBy() returns position for index after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.positionBy({ index: 15 }), { column: 3, line: 3 })
+  equal(two.positionBy({ index: 1 }), { column: 3, line: 3 })
+
+  one.remove()
+
+  equal(a.positionBy({ index: 15 }), { column: 3, line: 3 })
+  equal(two.positionBy({ index: 1 }), { column: 3, line: 3 })
 })
 
 test('rangeBy() returns range for word', () => {
@@ -436,6 +483,33 @@ test('rangeBy() returns range for word', () => {
   })
 })
 
+test('rangeBy() returns range for word even after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.rangeBy({ word: 'two' }), {
+    end: { column: 5, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+  equal(two.rangeBy({ word: 'two' }), {
+    end: { column: 5, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+
+  one.remove()
+
+  equal(a.rangeBy({ word: 'two' }), {
+    end: { column: 5, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+  equal(two.rangeBy({ word: 'two' }), {
+    end: { column: 5, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+})
+
 test('rangeBy() returns range for index and endIndex', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
@@ -443,6 +517,33 @@ test('rangeBy() returns range for index and endIndex', () => {
   equal(one.rangeBy({ endIndex: 3, index: 1 }), {
     end: { column: 9, line: 1 },
     start: { column: 7, line: 1 }
+  })
+})
+
+test('rangeBy() returns range for index and endIndex after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.rangeBy({ endIndex: 17, index: 15 }), {
+    end: { column: 5, line: 3 },
+    start: { column: 3, line: 3 }
+  })
+  equal(two.rangeBy({ endIndex: 3, index: 1 }), {
+    end: { column: 5, line: 3 },
+    start: { column: 3, line: 3 }
+  })
+
+  one.remove()
+
+  equal(a.rangeBy({ endIndex: 17, index: 15 }), {
+    end: { column: 5, line: 3 },
+    start: { column: 3, line: 3 }
+  })
+  equal(two.rangeBy({ endIndex: 3, index: 1 }), {
+    end: { column: 5, line: 3 },
+    start: { column: 3, line: 3 }
   })
 })
 
