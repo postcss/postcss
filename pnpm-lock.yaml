@@ -12,8 +12,8 @@ importers:
         specifier: ^3.3.7
         version: 3.3.7
       picocolors:
-        specifier: ^1.1.0
-        version: 1.1.0
+        specifier: ^1.1.1
+        version: 1.1.1
       source-map-js:
         specifier: ^1.2.1
         version: 1.2.1
@@ -1241,8 +1241,8 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
 
-  picocolors@1.1.0:
-    resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
+  picocolors@1.1.1:
+    resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
@@ -2001,7 +2001,7 @@ snapshots:
     dependencies:
       fast-glob: 3.3.2
       nanospinner: 1.1.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
       typescript: 5.6.2
       vfile-location: 5.0.3
 
@@ -2711,7 +2711,7 @@ snapshots:
 
   nanospinner@1.1.0:
     dependencies:
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   nanospy@1.0.0: {}
 
@@ -2785,7 +2785,7 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
-  picocolors@1.1.0: {}
+  picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
 
@@ -2795,7 +2795,7 @@ snapshots:
 
   postcss-parser-tests@8.8.0:
     dependencies:
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   prelude-ls@1.2.1: {}
 
@@ -2895,7 +2895,7 @@ snapshots:
       jiti: 1.21.6
       lilconfig: 3.1.2
       nanospinner: 1.1.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
       tinyglobby: 0.2.6
 
   source-map-js@1.2.1: {}
