@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.4.48
+* Fixed position calculation in error/warnings methods (by @romainmenke).
+
 ## 8.4.47
 * Removed debug code.
 
