@@ -19,7 +19,8 @@ export default [
         'error',
         { ignores: ['url.fileURLToPath', 'url.pathToFileURL', 'btoa', 'atob'] }
       ],
-      'n/prefer-node-protocol': 'off'
+      'n/prefer-node-protocol': 'off',
+      'perfectionist/sort-switch-case': 'off'
     }
   },
   {
