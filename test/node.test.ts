@@ -483,6 +483,22 @@ test('rangeBy() returns range for word', () => {
   })
 })
 
+test('rangeBy() returns range for word when offsets are missing', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+
+  // @ts-expect-error
+  if (one.source?.start) delete one.source.start.offset;
+  // @ts-expect-error
+  if (one.source?.end) delete one.source.end.offset;
+
+  equal(one.rangeBy({ word: 'one' }), {
+    end: { column: 9, line: 1 },
+    start: { column: 6, line: 1 }
+  })
+})
+
 test('rangeBy() returns range for word even after AST mutations', () => {
   let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
   let a = css.first as Rule
@@ -510,10 +526,62 @@ test('rangeBy() returns range for word even after AST mutations', () => {
   })
 })
 
+test('rangeBy() returns range for word even after AST mutations when offsets are missing', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  // @ts-expect-error
+  if (a.source?.start) delete a.source.start.offset;
+  // @ts-expect-error
+  if (a.source?.end) delete a.source.end.offset;
+  // @ts-expect-error
+  if (two.source?.start) delete two.source.start.offset;
+  // @ts-expect-error
+  if (two.source?.end) delete two.source.end.offset;
+
+  equal(a.rangeBy({ word: 'two' }), {
+    end: { column: 5, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+  equal(two.rangeBy({ word: 'two' }), {
+    end: { column: 5, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+
+  one.remove()
+
+  equal(a.rangeBy({ word: 'two' }), {
+    end: { column: 5, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+  equal(two.rangeBy({ word: 'two' }), {
+    end: { column: 5, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+})
+
 test('rangeBy() returns range for index and endIndex', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
+  equal(one.rangeBy({ endIndex: 3, index: 1 }), {
+    end: { column: 9, line: 1 },
+    start: { column: 7, line: 1 }
+  })
+})
+
+test('rangeBy() returns range for index and endIndex when offsets are missing', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+
+  // @ts-expect-error
+  if (one.source?.start) delete one.source.start.offset;
+  // @ts-expect-error
+  if (one.source?.end) delete one.source.end.offset;
+
   equal(one.rangeBy({ endIndex: 3, index: 1 }), {
     end: { column: 9, line: 1 },
     start: { column: 7, line: 1 }
