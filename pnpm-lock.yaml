@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       nanoid:
-        specifier: ^3.3.7
+        specifier: ^3.3.8
         version: 3.3.8
       picocolors:
         specifier: ^1.1.1
