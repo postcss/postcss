@@ -22,7 +22,7 @@ declare namespace Rule {
     between?: string
 
     /**
-     * Contains `true` if there is semicolon after rule.
+     * Contains the text of the semicolon after this rule.
      */
     ownSemicolon?: string
 
