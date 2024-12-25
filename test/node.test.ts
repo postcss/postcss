@@ -427,6 +427,32 @@ test('positionInside() returns position after AST mutations', () => {
   equal(two.positionInside(1), { column: 3, line: 3 })
 })
 
+test('positionInside() supports multi-root documents', () => {
+  let root = parse('a {} b {}', { document: '<style>a {} b {}</style>' })
+  is(root.source?.input.css, 'a {} b {}')
+  is(root.source?.input.document, '<style>a {} b {}</style>')
+
+  let a = root.first as Rule
+
+  // Offset the source location of `a` to mimic syntaxes like `postcss-html`
+  a.source = {
+    end: {
+      column: 12,
+      line: 1,
+      offset: 12
+    },
+    input: a.source!.input,
+    start: {
+      column: 8,
+      line: 1,
+      offset: 7
+    }
+  }
+
+  equal(a.positionInside(0), { column: 8, line: 1 })
+  equal(a.positionInside(1), { column: 9, line: 1 })
+})
+
 test('positionBy() returns position for word', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
@@ -471,6 +497,33 @@ test('positionBy() returns position for index after AST mutations', () => {
 
   equal(a.positionBy({ index: 15 }), { column: 3, line: 3 })
   equal(two.positionBy({ index: 1 }), { column: 3, line: 3 })
+})
+
+test('positionBy() supports multi-root documents', () => {
+  let root = parse('a {} b {}', { document: '<style>a {} b {}</style>' })
+  is(root.source?.input.css, 'a {} b {}')
+  is(root.source?.input.document, '<style>a {} b {}</style>')
+
+  let a = root.first as Rule
+
+  // Offset the source location of `a` to mimic syntaxes like `postcss-html`
+  a.source = {
+    end: {
+      column: 12,
+      line: 1,
+      offset: 12
+    },
+    input: a.source!.input,
+    start: {
+      column: 8,
+      line: 1,
+      offset: 7
+    }
+  }
+
+  equal(a.positionBy({ index: 0 }), { column: 8, line: 1, offset: 7 }) // `offset` is present because the `0` index returns `source.start`
+  equal(a.positionBy({ index: 1 }), { column: 9, line: 1 })
+  equal(a.positionBy({ word: 'a' }), { column: 8, line: 1 })
 })
 
 test('rangeBy() returns range for word', () => {
@@ -612,6 +665,39 @@ test('rangeBy() returns range for index and endIndex after AST mutations', () =>
   equal(two.rangeBy({ endIndex: 3, index: 1 }), {
     end: { column: 5, line: 3 },
     start: { column: 3, line: 3 }
+  })
+})
+
+test('rangeBy() supports multi-root documents', () => {
+  let root = parse('a {} b {}', { document: '<style>a {} b {}</style>' })
+  is(root.source?.input.css, 'a {} b {}')
+  is(root.source?.input.document, '<style>a {} b {}</style>')
+
+  let a = root.first as Rule
+
+  // Offset the source location of `a` to mimic syntaxes like `postcss-html`
+  a.source = {
+    end: {
+      column: 12,
+      line: 1,
+      offset: 12
+    },
+    input: a.source!.input,
+    start: {
+      column: 8,
+      line: 1,
+      offset: 7
+    }
+  }
+
+  equal(a.rangeBy({ endIndex: 1, index: 0 }), {
+    end: { column: 9, line: 1 },
+    start: { column: 8, line: 1 }
+  })
+
+  equal(a.rangeBy({ word: 'a' }), {
+    end: { column: 9, line: 1 },
+    start: { column: 8, line: 1 }
   })
 })
 

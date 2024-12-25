@@ -63,6 +63,16 @@ declare class Input_ {
   css: string
 
   /**
+   * Input source with support for non-CSS documents.
+   *
+   * ```js
+   * const input = postcss.parse('a{}', { from: file }).input
+   * input.document //=> "a{}"
+   * ```
+   */
+  document: string
+
+  /**
    * The absolute path to the CSS source file defined
    * with the `from` option.
    *
