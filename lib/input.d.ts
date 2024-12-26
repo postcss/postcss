@@ -66,8 +66,9 @@ declare class Input_ {
    * Input source with support for non-CSS documents.
    *
    * ```js
-   * const input = postcss.parse('a{}', { from: file }).input
-   * input.document //=> "a{}"
+   * const input = postcss.parse('a{}', { from: file, document: '<style>a {}</style>' }).input
+   * input.document //=> "<style>a {}</style>"
+   * input.css //=> "a{}"
    * ```
    */
   document: string
