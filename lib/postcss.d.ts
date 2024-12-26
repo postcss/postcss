@@ -316,7 +316,7 @@ declare namespace postcss {
 
   export interface ProcessOptions<RootNode = Document | Root> {
     /**
-     * The enclosing document for one or more CSS blocks.
+     * Input file if it is not simple CSS file, but HTML with <style> or JS with CSS-in-JS blocks.
      */
     document?: string
 
