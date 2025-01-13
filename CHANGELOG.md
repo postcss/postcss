@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5 “Duke Alloces”
+* Added `Input#document` for sources like CSS-in-JS or HTML (by @romainmenke).
+
 ## 8.4.49
 * Fixed custom syntax without `source.offset` (by @romainmenke).
 
