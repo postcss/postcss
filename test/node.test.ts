@@ -521,7 +521,8 @@ test('positionBy() supports multi-root documents', () => {
     }
   }
 
-  equal(a.positionBy({ index: 0 }), { column: 8, line: 1, offset: 7 }) // `offset` is present because the `0` index returns `source.start`
+  // `offset` is present because the `0` index returns `source.start`
+  equal(a.positionBy({ index: 0 }), { column: 8, line: 1, offset: 7 })
   equal(a.positionBy({ index: 1 }), { column: 9, line: 1 })
   equal(a.positionBy({ word: 'a' }), { column: 8, line: 1 })
 })
@@ -542,9 +543,9 @@ test('rangeBy() returns range for word when offsets are missing', () => {
   let one = a.first as Declaration
 
   // @ts-expect-error
-  if (one.source?.start) delete one.source.start.offset;
+  if (one.source?.start) delete one.source.start.offset
   // @ts-expect-error
-  if (one.source?.end) delete one.source.end.offset;
+  if (one.source?.end) delete one.source.end.offset
 
   equal(one.rangeBy({ word: 'one' }), {
     end: { column: 9, line: 1 },
@@ -586,13 +587,13 @@ test('rangeBy() returns range for word even after AST mutations when offsets are
   let two = one.next() as Declaration
 
   // @ts-expect-error
-  if (a.source?.start) delete a.source.start.offset;
+  if (a.source?.start) delete a.source.start.offset
   // @ts-expect-error
-  if (a.source?.end) delete a.source.end.offset;
+  if (a.source?.end) delete a.source.end.offset
   // @ts-expect-error
-  if (two.source?.start) delete two.source.start.offset;
+  if (two.source?.start) delete two.source.start.offset
   // @ts-expect-error
-  if (two.source?.end) delete two.source.end.offset;
+  if (two.source?.end) delete two.source.end.offset
 
   equal(a.rangeBy({ word: 'two' }), {
     end: { column: 5, line: 3 },
@@ -631,9 +632,9 @@ test('rangeBy() returns range for index and endIndex when offsets are missing', 
   let one = a.first as Declaration
 
   // @ts-expect-error
-  if (one.source?.start) delete one.source.start.offset;
+  if (one.source?.start) delete one.source.start.offset
   // @ts-expect-error
-  if (one.source?.end) delete one.source.end.offset;
+  if (one.source?.end) delete one.source.end.offset
 
   equal(one.rangeBy({ endIndex: 3, index: 1 }), {
     end: { column: 9, line: 1 },
