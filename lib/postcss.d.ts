@@ -229,7 +229,7 @@ declare namespace postcss {
   export interface Parser<RootNode = Document | Root> {
     (
       css: { toString(): string } | string,
-      opts?: Pick<ProcessOptions, 'from' | 'map'>
+      opts?: Pick<ProcessOptions, 'document' | 'from' | 'map'>
     ): RootNode
   }
 
@@ -315,6 +315,11 @@ declare namespace postcss {
   }
 
   export interface ProcessOptions<RootNode = Document | Root> {
+    /**
+     * Input file if it is not simple CSS file, but HTML with <style> or JS with CSS-in-JS blocks.
+     */
+    document?: string
+
     /**
      * The path of the CSS source file. You should always set `from`,
      * because it is used in source map generation and syntax error messages.
