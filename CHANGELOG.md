@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.1
+* Fixed backwards compatibility for complex cases (by @romainmenke).
+
 ## 8.5 “Duke Alloces”
 * Added `Input#document` for sources like CSS-in-JS or HTML (by @romainmenke).
 
