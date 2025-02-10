@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.2
+* Fixed end position of rules with semicolon (by @romainmenke).
+
 ## 8.5.1
 * Fixed backwards compatibility for complex cases (by @romainmenke).
 
