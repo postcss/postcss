@@ -251,7 +251,7 @@ to another parent node.
 
 This is why the default stringifier has a `raw()` method to autodetect raw
 properties by other nodes. For example, it will look at other nodes to detect
-indent size and them multiply it with the current node depth.
+indent size and then multiply it with the current node depth.
 
 
 ### Tests
