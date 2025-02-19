@@ -207,7 +207,7 @@ test('clone() keeps code style', () => {
 test('clone() works with null in raws', () => {
   let decl = new Declaration({
     prop: 'color',
-    // @ts-expect-error
+    // @ts-expect-error Testing invalid input
     raws: { value: null },
     value: 'black'
   })
@@ -542,9 +542,9 @@ test('rangeBy() returns range for word when offsets are missing', () => {
   let a = css.first as Rule
   let one = a.first as Declaration
 
-  // @ts-expect-error
+  // @ts-expect-error Testing non-standard AST
   if (one.source?.start) delete one.source.start.offset
-  // @ts-expect-error
+  // @ts-expect-error Testing non-standard AST
   if (one.source?.end) delete one.source.end.offset
 
   equal(one.rangeBy({ word: 'one' }), {
@@ -586,13 +586,13 @@ test('rangeBy() returns range for word even after AST mutations when offsets are
   let one = a.first as Declaration
   let two = one.next() as Declaration
 
-  // @ts-expect-error
+  // @ts-expect-error Testing non-standard AST
   if (a.source?.start) delete a.source.start.offset
-  // @ts-expect-error
+  // @ts-expect-error Testing non-standard AST
   if (a.source?.end) delete a.source.end.offset
-  // @ts-expect-error
+  // @ts-expect-error Testing non-standard AST
   if (two.source?.start) delete two.source.start.offset
-  // @ts-expect-error
+  // @ts-expect-error Testing non-standard AST
   if (two.source?.end) delete two.source.end.offset
 
   equal(a.rangeBy({ word: 'two' }), {
@@ -631,9 +631,9 @@ test('rangeBy() returns range for index and endIndex when offsets are missing', 
   let a = css.first as Rule
   let one = a.first as Declaration
 
-  // @ts-expect-error
+  // @ts-expect-error Testing non-standard AST
   if (one.source?.start) delete one.source.start.offset
-  // @ts-expect-error
+  // @ts-expect-error Testing non-standard AST
   if (one.source?.end) delete one.source.end.offset
 
   equal(one.rangeBy({ endIndex: 3, index: 1 }), {

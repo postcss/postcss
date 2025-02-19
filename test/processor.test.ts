@@ -1,4 +1,3 @@
-// @ts-ignore type definitions for nanodelay@1 are wrong.
 import { delay } from 'nanodelay'
 import { restoreAll, spyOn } from 'nanospy'
 import { resolve as pathResolve } from 'path'
@@ -103,7 +102,7 @@ test('returns itself', () => {
 test('throws on wrong format', () => {
   let pr = new Processor()
   throws(() => {
-    // @ts-expect-error
+    // @ts-expect-error Testing invalid API
     pr.use(1)
   }, /1 is not a PostCSS plugin/)
 })
@@ -300,8 +299,8 @@ test('supports async errors', async () => {
   let err1 = await catchError(async () => await result)
   equal(err1, error)
 
-  let err2: Error | undefined
-  result.catch(catched => {
+  let err2: unknown
+  result.catch((catched: unknown) => {
     err2 = catched
   })
   await delay(10)
@@ -337,7 +336,7 @@ test('throws error on sync method to async plugin', () => {
   }, /async/)
 })
 
-test('throws a sync call in async running', async () => {
+test('throws a sync call in async running', () => {
   let async = (): Promise<void> =>
     new Promise<void>(resolve => setTimeout(resolve, 1))
 
@@ -495,7 +494,7 @@ test('throws on syntax as plugin', () => {
   let processor = new Processor([() => {}])
   throws(() => {
     processor.use({
-      // @ts-expect-error
+      // @ts-expect-error Testing invalid API
       parse() {}
     })
   }, /syntax/)
@@ -518,7 +517,7 @@ test('warns about missed from', async () => {
   ])
 })
 
-test('returns NoWorkResult object', async () => {
+test('returns NoWorkResult object', () => {
   let result = new Processor().process('a{}')
   instance(result, NoWorkResult)
 })
@@ -526,10 +525,10 @@ test('returns NoWorkResult object', async () => {
 test('without plugins parses CSS only on root access', async () => {
   let noWorkResult = new Processor().process('a{}')
   let result = await noWorkResult
-  // @ts-expect-error
+  // @ts-expect-error Testing private API
   type(noWorkResult._root, 'undefined')
   is(result.root.nodes.length, 1)
-  // @ts-expect-error
+  // @ts-expect-error Testing private API
   not.type(noWorkResult._root, 'undefined')
   is(noWorkResult.root.nodes.length, 1)
 })
@@ -543,7 +542,7 @@ test('catches error with empty processor', async () => {
 
   let err = await catchError(async () => await noWorkResult)
 
-  noWorkResult.catch(e => {
+  noWorkResult.catch((e: unknown) => {
     instance(e, CssSyntaxError)
   })
 

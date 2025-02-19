@@ -38,7 +38,7 @@ test('throws error on sync()', () => {
   throws(() => noWorkResult.sync(), 'AAA')
 })
 
-test('returns cached root on second access', async () => {
+test('returns cached root on second access', () => {
   let result = new NoWorkResult(processor, 'a {}', { from: '/a.css' })
 
   result.root
@@ -102,74 +102,82 @@ test('prints its object type', () => {
 })
 
 test('no work result matches lazy result', async () => {
-  let source = '.foo { color: red }\n';
+  let source = '.foo { color: red }\n'
 
   let noWorkResult = await postcss([]).process(source, {
     from: 'foo.css',
     map: false
-  });
+  })
 
   let lazyResult = await postcss([]).process(source, {
     from: 'foo.css',
     map: false,
     syntax: { parse, stringify }
-  });
+  })
 
-  equal(noWorkResult.css, lazyResult.css);
+  equal(noWorkResult.css, lazyResult.css)
 })
 
 // https://github.com/postcss/postcss/issues/1911
 test('no work result matches lazy result when map is true', async () => {
-  let source = '.foo { color: red }\n';
+  let source = '.foo { color: red }\n'
 
   let noWorkResult = await postcss([]).process(source, {
     from: 'foo.css',
     map: true
-  });
+  })
 
-  equal(noWorkResult.css, '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZm9vLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb28geyBjb2xvcjogcmVkIH1cbiJdfQ== */');
+  equal(
+    noWorkResult.css,
+    '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZm9vLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb28geyBjb2xvcjogcmVkIH1cbiJdfQ== */'
+  )
 
   let lazyResult = await postcss([]).process(source, {
     from: 'foo.css',
     map: true,
     syntax: { parse, stringify }
-  });
+  })
 
-  equal(lazyResult.css, '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */');
+  equal(
+    lazyResult.css,
+    '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */'
+  )
 })
 
 test('no work result matches lazy result when the source contains an inline source map', async () => {
-  let source = '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */\n';
+  let source =
+    '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */\n'
 
   let noWorkResult = await postcss([]).process(source, {
     from: 'foo.css',
     map: false
-  });
+  })
 
   let lazyResult = await postcss([]).process(source, {
     from: 'foo.css',
     map: false,
     syntax: { parse, stringify }
-  });
+  })
 
-  equal(noWorkResult.css, lazyResult.css);
+  equal(noWorkResult.css, lazyResult.css)
 })
 
 test('no work result matches lazy result when map is true and the source contains an inline source map', async () => {
-  let source = '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */\n';
+  let source =
+    '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */\n'
 
   let lazyResult = await postcss([]).process(source, {
     from: 'bar.css',
     map: true,
     syntax: { parse, stringify }
-  });
+  })
 
   let noWorkResult = await postcss([]).process(source, {
     from: 'bar.css',
     map: true
-  });
+  })
 
-  equal(noWorkResult.css, lazyResult.css);
+  equal(noWorkResult.css, lazyResult.css)
 })
 
 test.run()

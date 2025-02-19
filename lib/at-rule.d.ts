@@ -102,14 +102,6 @@ declare class AtRule_ extends Container {
 
   raws: AtRule.AtRuleRaws
   type: 'atrule'
-  constructor(defaults?: AtRule.AtRuleProps)
-  assign(overrides: AtRule.AtRuleProps | object): this
-
-  clone(overrides?: Partial<AtRule.AtRuleProps>): this
-
-  cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): this
-
-  cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): this
   /**
    * The at-rule’s name immediately follows the `@`.
    *
@@ -121,6 +113,7 @@ declare class AtRule_ extends Container {
    */
   get name(): string
   set name(value: string)
+
   /**
    * The at-rule’s parameters, the values that follow the at-rule’s name
    * but precede any `{}` block.
@@ -132,7 +125,14 @@ declare class AtRule_ extends Container {
    * ```
    */
   get params(): string
+
   set params(value: string)
+
+  constructor(defaults?: AtRule.AtRuleProps)
+  assign(overrides: AtRule.AtRuleProps | object): this
+  clone(overrides?: Partial<AtRule.AtRuleProps>): this
+  cloneAfter(overrides?: Partial<AtRule.AtRuleProps>): this
+  cloneBefore(overrides?: Partial<AtRule.AtRuleProps>): this
 }
 
 declare class AtRule extends AtRule_ {}

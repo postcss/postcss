@@ -162,7 +162,7 @@ test('raises on unknown inline encoding', () => {
 
 test('raises on unknown map format', () => {
   throws(() => {
-    // @ts-expect-error
+    // @ts-expect-error Invalid input
     parse('a{}', { map: { prev: 1 } })
   }, 'Unsupported previous source map format: 1')
 })

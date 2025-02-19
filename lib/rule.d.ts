@@ -83,14 +83,6 @@ declare class Rule_ extends Container {
   parent: ContainerWithChildren | undefined
   raws: Rule.RuleRaws
   type: 'rule'
-  constructor(defaults?: Rule.RuleProps)
-
-  assign(overrides: object | Rule.RuleProps): this
-  clone(overrides?: Partial<Rule.RuleProps>): this
-
-  cloneAfter(overrides?: Partial<Rule.RuleProps>): this
-
-  cloneBefore(overrides?: Partial<Rule.RuleProps>): this
   /**
    * The rule’s full selector represented as a string.
    *
@@ -101,6 +93,7 @@ declare class Rule_ extends Container {
    * ```
    */
   get selector(): string
+
   set selector(value: string)
   /**
    * An array containing the rule’s individual selectors.
@@ -118,7 +111,14 @@ declare class Rule_ extends Container {
    * ```
    */
   get selectors(): string[]
+
   set selectors(values: string[])
+
+  constructor(defaults?: Rule.RuleProps)
+  assign(overrides: object | Rule.RuleProps): this
+  clone(overrides?: Partial<Rule.RuleProps>): this
+  cloneAfter(overrides?: Partial<Rule.RuleProps>): this
+  cloneBefore(overrides?: Partial<Rule.RuleProps>): this
 }
 
 declare class Rule extends Rule_ {}

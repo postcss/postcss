@@ -235,14 +235,6 @@ declare abstract class Node_ {
   constructor(defaults?: object)
 
   /**
-   * If this node isn't already dirty, marks it and its ancestors as such. This
-   * indicates to the LazyResult processor that the {@link Root} has been
-   * modified by the current plugin and may need to be processed again by other
-   * plugins.
-   */
-  protected markDirty(): void
-
-  /**
    * Insert new node after current node to current node’s parent.
    *
    * Just alias for `node.parent.insertAfter(node, add)`.
@@ -534,6 +526,14 @@ declare abstract class Node_ {
    * @return `Warning` instance is returned
    */
   warn(result: Result, message: string, options?: WarningOptions): Warning
+
+  /**
+   * If this node isn't already dirty, marks it and its ancestors as such. This
+   * indicates to the LazyResult processor that the {@link Root} has been
+   * modified by the current plugin and may need to be processed again by other
+   * plugins.
+   */
+  protected markDirty(): void
 }
 
 declare class Node extends Node_ {}

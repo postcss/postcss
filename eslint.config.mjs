@@ -7,6 +7,8 @@ export default [
     rules: {
       '@typescript-eslint/consistent-type-imports': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-this-alias': 'off',
       'consistent-return': 'off',
       'global-require': 'off',
       'n/no-unsupported-features/es-syntax': [
@@ -33,7 +35,11 @@ export default [
   {
     files: ['**/*.test.*', '**/types.ts'],
     rules: {
+      '@typescript-eslint/no-base-to-string': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
+      '@typescript-eslint/restrict-template-expressions': 'off',
+      '@typescript-eslint/unbound-method': 'off',
       'func-style': 'off',
       'n/no-unsupported-features/es-syntax': 'off',
       'n/no-unsupported-features/node-builtins': 'off',

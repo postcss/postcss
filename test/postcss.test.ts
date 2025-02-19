@@ -112,7 +112,7 @@ test('contains list module', () => {
 
 test('works with null', () => {
   throws(() => {
-    // @ts-expect-error
+    // @ts-expect-error Testing invalid input
     postcss([() => {}]).process(null).css
   }, /PostCSS received null instead of CSS string/)
 })

@@ -143,6 +143,16 @@ declare class Result_<RootNode = Document | Root> {
   root: RootNode
 
   /**
+   * An alias for the `Result#css` property.
+   * Use it with syntaxes that generate non-CSS output.
+   *
+   * ```js
+   * result.css === result.content
+   * ```
+   */
+  get content(): string
+
+  /**
    * @param processor Processor used for this transformation.
    * @param root      Root node after all transformations.
    * @param opts      Options from the `Processor#process` or `Root#toResult`.
@@ -188,16 +198,6 @@ declare class Result_<RootNode = Document | Root> {
    * @return Warnings from plugins.
    */
   warnings(): Warning[]
-
-  /**
-   * An alias for the `Result#css` property.
-   * Use it with syntaxes that generate non-CSS output.
-   *
-   * ```js
-   * result.css === result.content
-   * ```
-   */
-  get content(): string
 }
 
 declare class Result<RootNode = Document | Root> extends Result_<RootNode> {}

@@ -20,14 +20,14 @@ let example =
 
 test('throws error on declaration without value', () => {
   throws(() => {
-    // @ts-expect-error
+    // @ts-expect-error Testing invalid API
     new Rule().append({ prop: 'color', vlaue: 'black' })
   }, /Value field is missed/)
 })
 
 test('throws error on unknown node type', () => {
   throws(() => {
-    // @ts-expect-error
+    // @ts-expect-error Testing invalid API
     new Rule().append({ foo: 'bar' })
   }, /Unknown node type/)
 })
@@ -843,7 +843,7 @@ test('normalize() does not normalize new children with exists before', () => {
 
 test('forces Declaration#value to be string', () => {
   let rule = parse('a { a: 1; b: 2 }').first as Rule
-  // @ts-expect-error
+  // @ts-expect-error Testing invalid API
   rule.append({ prop: 'c', value: 3 })
   let aDecl = rule.first as Declaration
   let cDecl = rule.last as Declaration

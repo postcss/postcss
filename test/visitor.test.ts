@@ -1,4 +1,3 @@
-// @ts-ignore type definitions for nanodelay@1 are wrong.
 import { delay } from 'nanodelay'
 import { basename, resolve } from 'path'
 import { test } from 'uvu'
@@ -18,9 +17,11 @@ import postcss, {
 
 function hasAlready(parent: Container | undefined, selector: string): boolean {
   if (typeof parent === 'undefined') return false
-  return parent.nodes?.some(i => {
-    return i.type === 'rule' && i.selectors.includes(selector)
-  }) ?? false
+  return (
+    parent.nodes?.some(i => {
+      return i.type === 'rule' && i.selectors.includes(selector)
+    }) ?? false
+  )
 }
 
 function addIndex(array: any[][]): any[][] {
@@ -264,7 +265,7 @@ test('works classic plugin replace-color', async () => {
   is(css, '.a{ color: green; } ' + '.b{ will-change: transform; }')
 })
 
-test('works visitor plugin will-change', async () => {
+test('works visitor plugin will-change', () => {
   let { css } = postcss([willChangeVisitor]).process(
     '.foo { will-change: transform; }',
     { from: 'a.css' }
@@ -508,7 +509,7 @@ test('works visitor plugins postcss-focus and hidden; sequence 2', async () => {
   is(css, expectedFocusHidden)
 })
 
-test('works visitor plugin postcss-alias', async () => {
+test('works visitor plugin postcss-alias', () => {
   let input =
     '@alias { fs: font-size; bg: background; }' +
     '.aliased { fs: 16px; bg: white; }'
@@ -517,7 +518,7 @@ test('works visitor plugin postcss-alias', async () => {
   is(css, expected)
 })
 
-test('adds plugin to error', async () => {
+test('adds plugin to error', () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
     Rule(rule) {
@@ -572,7 +573,7 @@ test('adds sync plugin to async error', async () => {
   is(error.stack.includes('broken.css:1:1'), true)
 })
 
-test('adds node to error', async () => {
+test('adds node to error', () => {
   let broken: Plugin = {
     postcssPlugin: 'broken',
     Rule() {

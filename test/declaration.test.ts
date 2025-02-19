@@ -31,7 +31,7 @@ test('clones spaces from another declaration', () => {
 })
 
 test('converts value to string', () => {
-  // @ts-expect-error
+  // @ts-expect-error Testing invalid API
   let decl = new Declaration({ prop: 'color', value: 1 })
   is(decl.value, '1')
 })

@@ -112,6 +112,20 @@ declare class Input_ {
   map: PreviousMap
 
   /**
+   * The CSS source identifier. Contains `Input#file` if the user
+   * set the `from` option, or `Input#id` if they did not.
+   *
+   * ```js
+   * const root = postcss.parse(css, { from: 'a.css' })
+   * root.source.input.from //=> "/home/ai/a.css"
+   *
+   * const root = postcss.parse(css)
+   * root.source.input.from //=> "<input css 1>"
+   * ```
+   */
+  get from(): string
+
+  /**
    * @param css  Input CSS source.
    * @param opts Process options.
    */
@@ -137,7 +151,6 @@ declare class Input_ {
         },
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
-
   /**
    * Returns `CssSyntaxError` with information about the error and its position.
    */
@@ -147,13 +160,11 @@ declare class Input_ {
     column: number,
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
-
   error(
     message: string,
     offset: number,
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
-
   /**
    * Converts source offset to line and column.
    *
@@ -185,22 +196,9 @@ declare class Input_ {
     endLine?: number,
     endColumn?: number
   ): false | Input.FilePosition
+
   /** Converts this to a JSON-friendly object representation. */
   toJSON(): object
-
-  /**
-   * The CSS source identifier. Contains `Input#file` if the user
-   * set the `from` option, or `Input#id` if they did not.
-   *
-   * ```js
-   * const root = postcss.parse(css, { from: 'a.css' })
-   * root.source.input.from //=> "/home/ai/a.css"
-   *
-   * const root = postcss.parse(css)
-   * root.source.input.from //=> "<input css 1>"
-   * ```
-   */
-  get from(): string
 }
 
 declare class Input extends Input_ {}

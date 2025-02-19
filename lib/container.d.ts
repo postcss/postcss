@@ -65,25 +65,22 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   nodes: Child[] | undefined
 
   /**
-   * An internal method that converts a {@link NewChild} into a list of actual
-   * child nodes that can then be added to this container.
+   * The container’s first child.
    *
-   * This ensures that the nodes' parent is set to this container, that they use
-   * the correct prototype chain, and that they're marked as dirty.
-   *
-   * @param mnodes The new node or nodes to add.
-   * @param sample A node from whose raws the new node's `before` raw should be
-   *               taken.
-   * @param type   This should be set to `'prepend'` if the new nodes will be
-   *               inserted at the beginning of the container.
-   * @hidden
+   * ```js
+   * rule.first === rules.nodes[0]
+   * ```
    */
-  protected normalize(
-    nodes: Container.NewChild,
-    sample: Node | undefined,
-    type?: 'prepend' | false
-  ): Child[]
+  get first(): Child | undefined
 
+  /**
+   * The container’s last child.
+   *
+   * ```js
+   * rule.last === rule.nodes[rule.nodes.length - 1]
+   * ```
+   */
+  get last(): Child | undefined
   /**
    * Inserts new nodes to the end of the container.
    *
@@ -107,10 +104,10 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   append(...nodes: Container.NewChild[]): this
   assign(overrides: Container.ContainerProps | object): this
   clone(overrides?: Partial<Container.ContainerProps>): this
+
   cloneAfter(overrides?: Partial<Container.ContainerProps>): this
 
   cloneBefore(overrides?: Partial<Container.ContainerProps>): this
-
   /**
    * Iterates through the container’s immediate children,
    * calling `callback` for each child.
@@ -147,6 +144,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   each(
     callback: (node: Child, index: number) => false | void
   ): false | undefined
+
   /**
    * Returns `true` if callback returns `true`
    * for all of the container’s children.
@@ -161,7 +159,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   every(
     condition: (node: Child, index: number, nodes: Child[]) => boolean
   ): boolean
-
   /**
    * Returns a `child`’s index within the `Container#nodes` array.
    *
@@ -173,6 +170,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return Child index.
    */
   index(child: Child | number): number
+
   /**
    * Insert new node after old node within the container.
    *
@@ -181,19 +179,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return This node for methods chain.
    */
   insertAfter(oldNode: Child | number, newNode: Container.NewChild): this
-
-  /**
-   * Insert new node before old node within the container.
-   *
-   * ```js
-   * rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }))
-   * ```
-   *
-   * @param oldNode Child or child’s index.
-   * @param newNode New node.
-   * @return This node for methods chain.
-   */
-  insertBefore(oldNode: Child | number, newNode: Container.NewChild): this
 
   /**
    * Traverses the container’s descendant nodes, calling callback
@@ -212,6 +197,18 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return Returns `false` if iteration was broke.
    */
 
+  /**
+   * Insert new node before old node within the container.
+   *
+   * ```js
+   * rule.insertBefore(decl, decl.clone({ prop: '-webkit-' + decl.prop }))
+   * ```
+   *
+   * @param oldNode Child or child’s index.
+   * @param newNode New node.
+   * @return This node for methods chain.
+   */
+  insertBefore(oldNode: Child | number, newNode: Container.NewChild): this
   /**
    * Inserts new nodes to the start of the container.
    *
@@ -233,6 +230,7 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
    * @return This node for methods chain.
    */
   prepend(...nodes: Container.NewChild[]): this
+
   /**
    * Add child to the end of the node.
    *
@@ -278,7 +276,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     pattern: RegExp | string,
     replaced: { (substring: string, ...args: any[]): string } | string
   ): this
-
   /**
    * Passes all declaration values within the container that match pattern
    * through callback, replacing those values with the returned result
@@ -379,14 +376,13 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     nameFilter: RegExp | string,
     callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
-
   walkAtRules(
     callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
+
   walkComments(
     callback: (comment: Comment, indexed: number) => false | void
   ): false | undefined
-
   walkComments(
     callback: (comment: Comment, indexed: number) => false | void
   ): false | undefined
@@ -424,11 +420,9 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     propFilter: RegExp | string,
     callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
-
   walkDecls(
     callback: (decl: Declaration, index: number) => false | void
   ): false | undefined
-
   /**
    * Traverses the container’s descendant nodes, calling callback
    * for each rule node.
@@ -459,21 +453,24 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     callback: (rule: Rule, index: number) => false | void
   ): false | undefined
   /**
-   * The container’s first child.
+   * An internal method that converts a {@link NewChild} into a list of actual
+   * child nodes that can then be added to this container.
    *
-   * ```js
-   * rule.first === rules.nodes[0]
-   * ```
-   */
-  get first(): Child | undefined
-  /**
-   * The container’s last child.
+   * This ensures that the nodes' parent is set to this container, that they use
+   * the correct prototype chain, and that they're marked as dirty.
    *
-   * ```js
-   * rule.last === rule.nodes[rule.nodes.length - 1]
-   * ```
+   * @param mnodes The new node or nodes to add.
+   * @param sample A node from whose raws the new node's `before` raw should be
+   *               taken.
+   * @param type   This should be set to `'prepend'` if the new nodes will be
+   *               inserted at the beginning of the container.
+   * @hidden
    */
-  get last(): Child | undefined
+  protected normalize(
+    nodes: Container.NewChild,
+    sample: Node | undefined,
+    type?: 'prepend' | false
+  ): Child[]
 }
 
 declare class Container<

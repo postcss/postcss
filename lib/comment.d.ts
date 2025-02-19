@@ -49,18 +49,18 @@ declare class Comment_ extends Node {
   parent: Container | undefined
   raws: Comment.CommentRaws
   type: 'comment'
-  constructor(defaults?: Comment.CommentProps)
-
-  assign(overrides: Comment.CommentProps | object): this
-
-  clone(overrides?: Partial<Comment.CommentProps>): this
-  cloneAfter(overrides?: Partial<Comment.CommentProps>): this
-  cloneBefore(overrides?: Partial<Comment.CommentProps>): this
   /**
    * The comment's text.
    */
   get text(): string
+
   set text(value: string)
+
+  constructor(defaults?: Comment.CommentProps)
+  assign(overrides: Comment.CommentProps | object): this
+  clone(overrides?: Partial<Comment.CommentProps>): this
+  cloneAfter(overrides?: Partial<Comment.CommentProps>): this
+  cloneBefore(overrides?: Partial<Comment.CommentProps>): this
 }
 
 declare class Comment extends Comment_ {}

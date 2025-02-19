@@ -68,46 +68,6 @@ declare class LazyResult_<RootNode = Document | Root>
   then: Promise<Result<RootNode>>['then']
 
   /**
-   * @param processor Processor used for this transformation.
-   * @param css       CSS to parse and transform.
-   * @param opts      Options from the `Processor#process` or `Root#toResult`.
-   */
-  constructor(processor: Processor, css: string, opts: ResultOptions)
-
-  /**
-   * Run plugin in async way and return `Result`.
-   *
-   * @return Result with output content.
-   */
-  async(): Promise<Result<RootNode>>
-
-  /**
-   * Run plugin in sync way and return `Result`.
-   *
-   * @return Result with output content.
-   */
-  sync(): Result<RootNode>
-
-  /**
-   * Alias for the `LazyResult#css` property.
-   *
-   * ```js
-   * lazy + '' === lazy.css
-   * ```
-   *
-   * @return Output CSS.
-   */
-  toString(): string
-
-  /**
-   * Processes input CSS through synchronous plugins
-   * and calls `Result#warnings`.
-   *
-   * @return Warnings from plugins.
-   */
-  warnings(): Warning[]
-
-  /**
    * An alias for the `css` property. Use it with syntaxes
    * that generate non-CSS output.
    *
@@ -181,6 +141,46 @@ declare class LazyResult_<RootNode = Document | Root>
    * Required to implement the Promise interface.
    */
   get [Symbol.toStringTag](): string
+
+  /**
+   * @param processor Processor used for this transformation.
+   * @param css       CSS to parse and transform.
+   * @param opts      Options from the `Processor#process` or `Root#toResult`.
+   */
+  constructor(processor: Processor, css: string, opts: ResultOptions)
+
+  /**
+   * Run plugin in async way and return `Result`.
+   *
+   * @return Result with output content.
+   */
+  async(): Promise<Result<RootNode>>
+
+  /**
+   * Run plugin in sync way and return `Result`.
+   *
+   * @return Result with output content.
+   */
+  sync(): Result<RootNode>
+
+  /**
+   * Alias for the `LazyResult#css` property.
+   *
+   * ```js
+   * lazy + '' === lazy.css
+   * ```
+   *
+   * @return Output CSS.
+   */
+  toString(): string
+
+  /**
+   * Processes input CSS through synchronous plugins
+   * and calls `Result#warnings`.
+   *
+   * @return Warnings from plugins.
+   */
+  warnings(): Warning[]
 }
 
 declare class LazyResult<
