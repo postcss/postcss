@@ -71,8 +71,8 @@ test('saves source with ranges', () => {
 
   is(error instanceof CssSyntaxError, true)
   is(error.name, 'CssSyntaxError')
-  is(error.message, '<css input>:1:1: Unknown word')
-  is(error.reason, 'Unknown word')
+  is(error.message, '<css input>:1:1: Unknown word badword')
+  is(error.reason, 'Unknown word badword')
   is(error.line, 1)
   is(error.column, 1)
   is(error.endLine, 1)
@@ -97,8 +97,8 @@ test('saves source with ranges', () => {
 
   is(error instanceof CssSyntaxError, true)
   is(error.name, 'CssSyntaxError')
-  is(error.message, '<css input>:1:1: Unknown word')
-  is(error.reason, 'Unknown word')
+  is(error.message, '<css input>:1:1: Unknown word badword')
+  is(error.reason, 'Unknown word badword')
   is(error.line, 1)
   is(error.column, 1)
   is(error.endLine, 1)
@@ -119,8 +119,8 @@ test('saves source with ranges', () => {
 
   is(error instanceof CssSyntaxError, true)
   is(error.name, 'CssSyntaxError')
-  is(error.message, '<css input>:1:1: Unknown word')
-  is(error.reason, 'Unknown word')
+  is(error.message, '<css input>:1:1: Unknown word badword')
+  is(error.reason, 'Unknown word badword')
   is(error.line, 1)
   is(error.column, 1)
   is(error.endLine, 1)
