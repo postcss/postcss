@@ -97,7 +97,7 @@ declare class AtRule_ extends Container {
    * layer.nodes //=> undefined
    * ```
    */
-  nodes: Container['nodes']
+  nodes: Container['nodes'] | undefined
   parent: ContainerWithChildren | undefined
 
   raws: AtRule.AtRuleRaws
