@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.3
+* Added more details to `Unknown word` error (by @hiepxanh).
+* Fixed types (by @romainmenke).
+* Fixed docs (by @catnipan).
+
 ## 8.5.2
 * Fixed end position of rules with semicolon (by @romainmenke).
 
