@@ -35,7 +35,7 @@ declare class Stringifier_ {
   rawEmptyBody(root: Root): string | undefined
   rawIndent(root: Root): string | undefined
   rawSemicolon(root: Root): boolean | undefined
-  rawValue(node: AnyNode, prop: string): any
+  rawValue(node: AnyNode, prop: string): number | string
   root(node: Root): void
   rule(node: Rule): void
   stringify(node: AnyNode, semicolon?: boolean): void
