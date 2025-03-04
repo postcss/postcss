@@ -67,7 +67,7 @@ declare class Result_<RootNode = Document | Root> {
    * postcss.parse('a{}').toResult().css //=> "a{}"
    * ```
    */
-  css: string
+  css?: string
 
   /**
    * Last runned PostCSS plugin.
