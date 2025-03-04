@@ -67,7 +67,7 @@ declare class Result_<RootNode = Document | Root> {
    * postcss.parse('a{}').toResult().css //=> "a{}"
    * ```
    */
-  css?: string
+  css: string | undefined
 
   /**
    * Last runned PostCSS plugin.
@@ -168,7 +168,7 @@ declare class Result_<RootNode = Document | Root> {
    *
    * @return String representing of `Result#root`.
    */
-  toString(): string
+  toString(): string | undefined
 
   /**
    * Creates an instance of `Warning` and adds it to `Result#messages`.
