@@ -25,7 +25,7 @@ declare class Stringifier_ {
   comment(node: Comment): void
   decl(node: Declaration, semicolon?: boolean): void
   document(node: Document): void
-  raw(node: AnyNode, own: null | string, detect?: string): string
+  raw(node: AnyNode, own: null | string, detect?: string): boolean | string
   rawBeforeClose(root: Root): string | undefined
   rawBeforeComment(root: Root, node: Comment): string | undefined
   rawBeforeDecl(root: Root, node: Declaration): string | undefined
@@ -35,7 +35,7 @@ declare class Stringifier_ {
   rawEmptyBody(root: Root): string | undefined
   rawIndent(root: Root): string | undefined
   rawSemicolon(root: Root): boolean | undefined
-  rawValue(node: AnyNode, prop: string): string
+  rawValue(node: AnyNode, prop: string): number | string
   root(node: Root): void
   rule(node: Rule): void
   stringify(node: AnyNode, semicolon?: boolean): void
