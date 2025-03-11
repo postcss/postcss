@@ -630,7 +630,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-russian-stylesheets`]:          https://github.com/Semigradsky/postcss-russian-stylesheets
 [`postcss-swedish-stylesheets`]:          https://github.com/johnie/postcss-swedish-stylesheets
 [`postcss-color-rebeccapurple`]:          https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-color-rebeccapurple
-[`postcss-auto-var-fallback`]:          https://github.com/Ch-Valentine/postcss-auto-var-fallback
+[`postcss-auto-var-fallback`]:            https://github.com/Ch-Valentine/postcss-auto-var-fallback
 [`postcss-color-rgba-fallback`]:          https://github.com/postcss/postcss-color-rgba-fallback
 [`postcss-spanish-stylesheets`]:          https://github.com/ismamz/postcss-spanish-stylesheets
 [`postcss-at-rules-variables`]:           https://github.com/GitScrum/postcss-at-rules-variables
