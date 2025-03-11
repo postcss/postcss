@@ -137,6 +137,7 @@ by one line of code.
 
 ## Fallbacks
 
+* [`postcss-auto-var-fallback`] adds var fallbacks by provided files of variables
 * [`postcss-color-rgba-fallback`] transforms `rgba()` to hexadecimal.
 * [`postcss-disabled`] adds a `[disabled]` attribute and/or a `.disabled` class
   when the `:disabled` pseudo class is present.
