@@ -692,6 +692,59 @@ test('rangeBy() returns range for word even after AST mutations when offsets are
   })
 })
 
+test('rangeBy() returns range for start and end', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.rangeBy({ end: { column: 9, line: 1 }, start: { column: 7, line: 1 } }), {
+    end: { column: 9, line: 1 },
+    start: { column: 7, line: 1 }
+  })
+})
+
+test('rangeBy() returns range for start and end when offsets are missing', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.start) delete one.source.start.offset
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.end) delete one.source.end.offset
+
+  equal(one.rangeBy({ end: { column: 9, line: 1 }, start: { column: 7, line: 1 } }), {
+    end: { column: 9, line: 1 },
+    start: { column: 7, line: 1 }
+  })
+})
+
+test('rangeBy() returns range for start and end after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.rangeBy({ end: { column: 5, line: 3 }, start: { column: 3, line: 3 } }), {
+    end: { column: 5, line: 3 },
+    start: { column: 3, line: 3 }
+  })
+  equal(two.rangeBy({ end: { column: 5, line: 3 }, start: { column: 3, line: 3 } }), {
+    end: { column: 5, line: 3 },
+    start: { column: 3, line: 3 }
+  })
+
+  one.remove()
+
+  equal(a.rangeBy({ end: { column: 5, line: 3 }, start: { column: 3, line: 3 } }), {
+    end: { column: 5, line: 3 },
+    start: { column: 3, line: 3 }
+  })
+  equal(two.rangeBy({ end: { column: 5, line: 3 }, start: { column: 3, line: 3 } }), {
+    end: { column: 5, line: 3 },
+    start: { column: 3, line: 3 }
+  })
+})
+
 test('rangeBy() returns range for index and endIndex', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule

@@ -424,7 +424,7 @@ declare abstract class Node_ {
    * @return Range.
    */
   rangeBy(
-    opts?: Pick<WarningOptions, 'endIndex' | 'index' | 'word'>
+    opts?: Pick<WarningOptions, 'end' | 'endIndex' | 'index' | 'start' | 'word'>
   ): Node.Range
 
   /**
