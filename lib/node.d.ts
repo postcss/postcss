@@ -66,6 +66,11 @@ declare namespace Node {
     /**
      * The inclusive ending position for the source
      * code of a node.
+     *
+     * However, only `end.offset` may be an exclusive position.
+     * The offset of `Root` node is the inclusive position,
+     * and the offset of other nodes is the exclusive position.
+     * See https://github.com/postcss/postcss/pull/1879 for details.
      */
     end?: Position
 
