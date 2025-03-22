@@ -55,13 +55,17 @@ test('saves source', () => {
   is(error.reason, 'Unclosed string')
   is(error.line, 2)
   is(error.column, 12)
+  is(error.endLine, undefined)
+  is(error.endColumn, undefined)
   is(error.source, 'a {\n  content: "\n}')
 
   equal(error.input, {
     column: error.column,
     endColumn: error.endColumn,
     endLine: error.endLine,
+    endOffset: undefined,
     line: error.line,
+    offset: 15,
     source: error.source
   })
 })
@@ -83,7 +87,9 @@ test('saves source with ranges', () => {
     column: error.column,
     endColumn: error.endColumn,
     endLine: error.endLine,
+    endOffset: 7,
     line: error.line,
+    offset: 0,
     source: error.source
   })
 })
@@ -109,7 +115,9 @@ test('saves source with ranges', () => {
     column: error.column,
     endColumn: error.endColumn,
     endLine: error.endLine,
+    endOffset: 7,
     line: error.line,
+    offset: 0,
     source: error.source
   })
 })
@@ -131,7 +139,9 @@ test('saves source with ranges', () => {
     column: error.column,
     endColumn: error.endColumn,
     endLine: error.endLine,
+    endOffset: 7,
     line: error.line,
+    offset: 0,
     source: error.source
   })
 })
@@ -285,14 +295,19 @@ test('uses source map', () => {
 
   is(error.file, join(__dirname, 'b.css'))
   is(error.line, 2)
+  is(error.column, 0) // Is this correct?
+  is(error.endLine, undefined)
+  is(error.endColumn, undefined)
   type(error.source, 'undefined')
 
   equal(error.input, {
     column: 1,
     endColumn: error.endColumn,
     endLine: error.endLine,
+    endOffset: undefined,
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
+    offset: 7,
     source: 'a { }\n\nb {\n',
     url: urlOf(join('build', 'all.css'))
   })
@@ -314,14 +329,19 @@ test('works with path in sources', () => {
 
   is(error.file, join(__dirname, 'b.css'))
   is(error.line, 2)
+  is(error.column, 0) // Is this correct?
+  is(error.endLine, undefined)
+  is(error.endColumn, undefined)
   type(error.source, 'undefined')
 
   equal(error.input, {
     column: 1,
     endColumn: error.endColumn,
     endLine: error.endLine,
+    endOffset: undefined,
     file: join(__dirname, 'build', 'all.css'),
     line: 3,
+    offset: 7,
     source: 'a { }\n\nb {\n',
     url: pathToFileURL(pathOf(join('build', 'all.css'))).toString()
   })

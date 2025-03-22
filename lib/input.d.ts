@@ -19,6 +19,11 @@ declare namespace Input {
     endLine?: number
 
     /**
+     * Offset of exclusive end position in source file.
+     */
+    endOffset?: number
+
+    /**
      * Absolute path to the source file.
      */
     file?: string
@@ -27,6 +32,11 @@ declare namespace Input {
      * Line of inclusive start position in source file.
      */
     line: number
+
+    /**
+     * Offset of inclusive start position in source file.
+     */
+    offset: number
 
     /**
      * Source code.
@@ -131,6 +141,9 @@ declare class Input_ {
    */
   constructor(css: string, opts?: ProcessOptions)
 
+  /**
+   * Returns `CssSyntaxError` with information about the error and its position.
+   */
   error(
     message: string,
     start:
@@ -151,9 +164,6 @@ declare class Input_ {
         },
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
-  /**
-   * Returns `CssSyntaxError` with information about the error and its position.
-   */
   error(
     message: string,
     line: number,
@@ -165,12 +175,23 @@ declare class Input_ {
     offset: number,
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
+
+  /**
+   * Converts source line and column to offset.
+   *
+   * @param line   Source line.
+   * @param column Source column.
+   * @return Source offset.
+   */
+  fromLineAndColumn(line: number, column: number): number
+
   /**
    * Converts source offset to line and column.
    *
    * @param offset Source offset.
    */
   fromOffset(offset: number): { col: number; line: number } | null
+
   /**
    * Reads the input source map and returns a symbol position
    * in the input source (e.g., in a Sass file that was compiled
