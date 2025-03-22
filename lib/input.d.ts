@@ -19,6 +19,11 @@ declare namespace Input {
     endLine?: number
 
     /**
+     * Offset of exclusive end position in source file.
+     */
+    endOffset?: number
+
+    /**
      * Absolute path to the source file.
      */
     file?: string
@@ -27,6 +32,11 @@ declare namespace Input {
      * Line of inclusive start position in source file.
      */
     line: number
+
+    /**
+     * Offset of inclusive start position in source file.
+     */
+    offset: number
 
     /**
      * Source code.
