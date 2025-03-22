@@ -55,6 +55,8 @@ test('saves source', () => {
   is(error.reason, 'Unclosed string')
   is(error.line, 2)
   is(error.column, 12)
+  is(error.endLine, undefined)
+  is(error.endColumn, undefined)
   is(error.source, 'a {\n  content: "\n}')
 
   equal(error.input, {
@@ -285,6 +287,9 @@ test('uses source map', () => {
 
   is(error.file, join(__dirname, 'b.css'))
   is(error.line, 2)
+  is(error.column, 0) // Is this correct?
+  is(error.endLine, undefined)
+  is(error.endColumn, undefined)
   type(error.source, 'undefined')
 
   equal(error.input, {
@@ -314,6 +319,9 @@ test('works with path in sources', () => {
 
   is(error.file, join(__dirname, 'b.css'))
   is(error.line, 2)
+  is(error.column, 0) // Is this correct?
+  is(error.endLine, undefined)
+  is(error.endColumn, undefined)
   type(error.source, 'undefined')
 
   equal(error.input, {
