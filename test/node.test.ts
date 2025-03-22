@@ -631,8 +631,8 @@ test('rangeBy() returns range', () => {
   let a = css.first as Rule
   let one = a.first as Declaration
   equal(one.rangeBy(), {
-    end: { column: 12, line: 1 },
-    start: { column: 6, line: 1 }
+    end: { column: 12, line: 1, offset: 11 },
+    start: { column: 6, line: 1, offset: 5 }
   })
 })
 
@@ -647,8 +647,8 @@ test('rangeBy() returns range when offsets are missing', () => {
   if (one.source?.end) delete one.source.end.offset
 
   equal(one.rangeBy(), {
-    end: { column: 12, line: 1 },
-    start: { column: 6, line: 1 }
+    end: { column: 12, line: 1, offset: 11 },
+    start: { column: 6, line: 1, offset: 5 }
   })
 })
 
@@ -659,23 +659,23 @@ test('rangeBy() returns range for empty object even after AST mutations', () => 
   let two = one.next() as Declaration
 
   equal(a.rangeBy(), {
-    end: { column: 10, line: 3 },
-    start: { column: 1, line: 1 }
+    end: { column: 10, line: 3, offset: 22 },
+    start: { column: 1, line: 1, offset: 0 }
   })
   equal(two.rangeBy(), {
-    end: { column: 9, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 9, line: 3, offset: 21 },
+    start: { column: 2, line: 3, offset: 14 }
   })
 
   one.remove()
 
   equal(a.rangeBy(), {
-    end: { column: 10, line: 3 },
-    start: { column: 1, line: 1 }
+    end: { column: 10, line: 3, offset: 22 },
+    start: { column: 1, line: 1, offset: 0 }
   })
   equal(two.rangeBy(), {
-    end: { column: 9, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 9, line: 3, offset: 21 },
+    start: { column: 2, line: 3, offset: 14 }
   })
 })
 
