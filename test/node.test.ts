@@ -476,6 +476,29 @@ test('positionBy() returns position after AST mutations', () => {
   equal(two.positionBy(), { column: 2, line: 3, offset: 14 })
 })
 
+test('positionBy() returns position', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.positionBy(), { column: 6, line: 1, offset: 5 })
+  equal(a.positionBy(), { column: 1, line: 1, offset: 0 })
+})
+
+test('positionBy() returns position after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.positionBy(), { column: 1, line: 1, offset: 0 })
+  equal(two.positionBy(), { column: 2, line: 3, offset: 14 })
+
+  one.remove()
+
+  equal(a.positionBy(), { column: 1, line: 1, offset: 0 })
+  equal(two.positionBy(), { column: 2, line: 3, offset: 14 })
+})
+
 test('positionBy() returns position for word', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
@@ -600,6 +623,59 @@ test('rangeBy() returns range for empty object even after AST mutations', () => 
   equal(two.rangeBy(), {
     end: { column: 9, line: 3, offset: 21 },
     start: { column: 2, line: 3, offset: 14 }
+  })
+})
+
+test('rangeBy() returns range', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.rangeBy(), {
+    end: { column: 12, line: 1 },
+    start: { column: 6, line: 1 }
+  })
+})
+
+test('rangeBy() returns range when offsets are missing', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.start) delete one.source.start.offset
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.end) delete one.source.end.offset
+
+  equal(one.rangeBy(), {
+    end: { column: 12, line: 1 },
+    start: { column: 6, line: 1 }
+  })
+})
+
+test('rangeBy() returns range for empty object even after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.rangeBy(), {
+    end: { column: 10, line: 3 },
+    start: { column: 1, line: 1 }
+  })
+  equal(two.rangeBy(), {
+    end: { column: 9, line: 3 },
+    start: { column: 2, line: 3 }
+  })
+
+  one.remove()
+
+  equal(a.rangeBy(), {
+    end: { column: 10, line: 3 },
+    start: { column: 1, line: 1 }
+  })
+  equal(two.rangeBy(), {
+    end: { column: 9, line: 3 },
+    start: { column: 2, line: 3 }
   })
 })
 
