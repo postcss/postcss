@@ -165,12 +165,23 @@ declare class Input_ {
     offset: number,
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
+
+  /**
+   * Converts source line and column to offset.
+   *
+   * @param line   Source line.
+   * @param column Source column.
+   * @return Source offset.
+   */
+  fromLineAndColumn(line: number, column: number): number
+
   /**
    * Converts source offset to line and column.
    *
    * @param offset Source offset.
    */
   fromOffset(offset: number): { col: number; line: number } | null
+
   /**
    * Reads the input source map and returns a symbol position
    * in the input source (e.g., in a Sass file that was compiled
