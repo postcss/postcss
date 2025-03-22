@@ -395,21 +395,21 @@ test('positionInside() returns position when node starts mid-line', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionInside(6), { column: 12, line: 1 })
+  equal(one.positionInside(6), { column: 12, line: 1, offset: 11 })
 })
 
 test('positionInside() returns position when before contains newline', () => {
   let css = parse('a {\n  one: X}')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionInside(6), { column: 9, line: 2 })
+  equal(one.positionInside(6), { column: 9, line: 2, offset: 12 })
 })
 
 test('positionInside() returns position when node contains newlines', () => {
   let css = parse('a {\n\tone: 1\n\t\tX\n3}')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionInside(10), { column: 4, line: 3 })
+  equal(one.positionInside(10), { column: 4, line: 3, offset: 15 })
 })
 
 test('positionInside() returns position after AST mutations', () => {
@@ -418,13 +418,13 @@ test('positionInside() returns position after AST mutations', () => {
   let one = a.first as Declaration
   let two = one.next() as Declaration
 
-  equal(a.positionInside(15), { column: 3, line: 3 })
-  equal(two.positionInside(1), { column: 3, line: 3 })
+  equal(a.positionInside(15), { column: 3, line: 3, offset: 15 })
+  equal(two.positionInside(1), { column: 3, line: 3, offset: 15 })
 
   one.remove()
 
-  equal(a.positionInside(15), { column: 3, line: 3 })
-  equal(two.positionInside(1), { column: 3, line: 3 })
+  equal(a.positionInside(15), { column: 3, line: 3, offset: 15 })
+  equal(two.positionInside(1), { column: 3, line: 3, offset: 15 })
 })
 
 test('positionInside() supports multi-root documents', () => {
@@ -449,8 +449,31 @@ test('positionInside() supports multi-root documents', () => {
     }
   }
 
-  equal(a.positionInside(0), { column: 8, line: 1 })
-  equal(a.positionInside(1), { column: 9, line: 1 })
+  equal(a.positionInside(0), { column: 8, line: 1, offset: 7 })
+  equal(a.positionInside(1), { column: 9, line: 1, offset: 8 })
+})
+
+test('positionBy() returns position', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.positionBy(), { column: 6, line: 1, offset: 5 })
+  equal(a.positionBy(), { column: 1, line: 1, offset: 0 })
+})
+
+test('positionBy() returns position after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.positionBy(), { column: 1, line: 1, offset: 0 })
+  equal(two.positionBy(), { column: 2, line: 3, offset: 14 })
+
+  one.remove()
+
+  equal(a.positionBy(), { column: 1, line: 1, offset: 0 })
+  equal(two.positionBy(), { column: 2, line: 3, offset: 14 })
 })
 
 test('positionBy() returns position', () => {
@@ -480,9 +503,9 @@ test('positionBy() returns position for word', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionBy({ word: 'one' }), { column: 6, line: 1 })
-  equal(one.positionBy({ word: 'X' }), { column: 11, line: 1 })
-  equal(a.positionBy({ word: '}' }), { column: 14, line: 1 })
+  equal(one.positionBy({ word: 'one' }), { column: 6, line: 1, offset: 5 })
+  equal(one.positionBy({ word: 'X' }), { column: 11, line: 1, offset: 10 })
+  equal(a.positionBy({ word: '}' }), { column: 14, line: 1, offset: 13 })
 })
 
 test('positionBy() returns position for word after AST mutations', () => {
@@ -491,20 +514,20 @@ test('positionBy() returns position for word after AST mutations', () => {
   let one = a.first as Declaration
   let two = one.next() as Declaration
 
-  equal(a.positionBy({ word: 'two' }), { column: 2, line: 3 })
-  equal(two.positionBy({ word: 'two' }), { column: 2, line: 3 })
+  equal(a.positionBy({ word: 'two' }), { column: 2, line: 3, offset: 14 })
+  equal(two.positionBy({ word: 'two' }), { column: 2, line: 3, offset: 14 })
 
   one.remove()
 
-  equal(a.positionBy({ word: 'two' }), { column: 2, line: 3 })
-  equal(two.positionBy({ word: 'two' }), { column: 2, line: 3 })
+  equal(a.positionBy({ word: 'two' }), { column: 2, line: 3, offset: 14 })
+  equal(two.positionBy({ word: 'two' }), { column: 2, line: 3, offset: 14 })
 })
 
 test('positionBy() returns position for index', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
-  equal(one.positionBy({ index: 1 }), { column: 7, line: 1 })
+  equal(one.positionBy({ index: 1 }), { column: 7, line: 1, offset: 6 })
 })
 
 test('positionBy() returns position for index after AST mutations', () => {
@@ -513,13 +536,13 @@ test('positionBy() returns position for index after AST mutations', () => {
   let one = a.first as Declaration
   let two = one.next() as Declaration
 
-  equal(a.positionBy({ index: 15 }), { column: 3, line: 3 })
-  equal(two.positionBy({ index: 1 }), { column: 3, line: 3 })
+  equal(a.positionBy({ index: 15 }), { column: 3, line: 3, offset: 15 })
+  equal(two.positionBy({ index: 1 }), { column: 3, line: 3, offset: 15 })
 
   one.remove()
 
-  equal(a.positionBy({ index: 15 }), { column: 3, line: 3 })
-  equal(two.positionBy({ index: 1 }), { column: 3, line: 3 })
+  equal(a.positionBy({ index: 15 }), { column: 3, line: 3, offset: 15 })
+  equal(two.positionBy({ index: 1 }), { column: 3, line: 3, offset: 15 })
 })
 
 test('positionBy() supports multi-root documents', () => {
@@ -546,8 +569,8 @@ test('positionBy() supports multi-root documents', () => {
 
   // `offset` is present because the `0` index returns `source.start`
   equal(a.positionBy({ index: 0 }), { column: 8, line: 1, offset: 7 })
-  equal(a.positionBy({ index: 1 }), { column: 9, line: 1 })
-  equal(a.positionBy({ word: 'a' }), { column: 8, line: 1 })
+  equal(a.positionBy({ index: 1 }), { column: 9, line: 1, offset: 8 })
+  equal(a.positionBy({ word: 'a' }), { column: 8, line: 1, offset: 7 })
 })
 
 test('rangeBy() returns range', () => {
@@ -555,8 +578,8 @@ test('rangeBy() returns range', () => {
   let a = css.first as Rule
   let one = a.first as Declaration
   equal(one.rangeBy(), {
-    end: { column: 12, line: 1 },
-    start: { column: 6, line: 1 }
+    end: { column: 12, line: 1, offset: 11 },
+    start: { column: 6, line: 1, offset: 5 }
   })
 })
 
@@ -571,8 +594,8 @@ test('rangeBy() returns range when offsets are missing', () => {
   if (one.source?.end) delete one.source.end.offset
 
   equal(one.rangeBy(), {
-    end: { column: 12, line: 1 },
-    start: { column: 6, line: 1 }
+    end: { column: 12, line: 1, offset: 11 },
+    start: { column: 6, line: 1, offset: 5 }
   })
 })
 
@@ -583,23 +606,76 @@ test('rangeBy() returns range for empty object even after AST mutations', () => 
   let two = one.next() as Declaration
 
   equal(a.rangeBy(), {
-    end: { column: 10, line: 3 },
-    start: { column: 1, line: 1 }
+    end: { column: 10, line: 3, offset: 22 },
+    start: { column: 1, line: 1, offset: 0 }
   })
   equal(two.rangeBy(), {
-    end: { column: 9, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 9, line: 3, offset: 21 },
+    start: { column: 2, line: 3, offset: 14 }
   })
 
   one.remove()
 
   equal(a.rangeBy(), {
-    end: { column: 10, line: 3 },
-    start: { column: 1, line: 1 }
+    end: { column: 10, line: 3, offset: 22 },
+    start: { column: 1, line: 1, offset: 0 }
   })
   equal(two.rangeBy(), {
-    end: { column: 9, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 9, line: 3, offset: 21 },
+    start: { column: 2, line: 3, offset: 14 }
+  })
+})
+
+test('rangeBy() returns range', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.rangeBy(), {
+    end: { column: 12, line: 1, offset: 11 },
+    start: { column: 6, line: 1, offset: 5 }
+  })
+})
+
+test('rangeBy() returns range when offsets are missing', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.start) delete one.source.start.offset
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.end) delete one.source.end.offset
+
+  equal(one.rangeBy(), {
+    end: { column: 12, line: 1, offset: 11 },
+    start: { column: 6, line: 1, offset: 5 }
+  })
+})
+
+test('rangeBy() returns range for empty object even after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.rangeBy(), {
+    end: { column: 10, line: 3, offset: 22 },
+    start: { column: 1, line: 1, offset: 0 }
+  })
+  equal(two.rangeBy(), {
+    end: { column: 9, line: 3, offset: 21 },
+    start: { column: 2, line: 3, offset: 14 }
+  })
+
+  one.remove()
+
+  equal(a.rangeBy(), {
+    end: { column: 10, line: 3, offset: 22 },
+    start: { column: 1, line: 1, offset: 0 }
+  })
+  equal(two.rangeBy(), {
+    end: { column: 9, line: 3, offset: 21 },
+    start: { column: 2, line: 3, offset: 14 }
   })
 })
 
@@ -608,8 +684,8 @@ test('rangeBy() returns range for word', () => {
   let a = css.first as Rule
   let one = a.first as Declaration
   equal(one.rangeBy({ word: 'one' }), {
-    end: { column: 9, line: 1 },
-    start: { column: 6, line: 1 }
+    end: { column: 9, line: 1, offset: 8 },
+    start: { column: 6, line: 1, offset: 5 }
   })
 })
 
@@ -624,8 +700,8 @@ test('rangeBy() returns range for word when offsets are missing', () => {
   if (one.source?.end) delete one.source.end.offset
 
   equal(one.rangeBy({ word: 'one' }), {
-    end: { column: 9, line: 1 },
-    start: { column: 6, line: 1 }
+    end: { column: 9, line: 1, offset: 8 },
+    start: { column: 6, line: 1, offset: 5 }
   })
 })
 
@@ -636,23 +712,23 @@ test('rangeBy() returns range for word even after AST mutations', () => {
   let two = one.next() as Declaration
 
   equal(a.rangeBy({ word: 'two' }), {
-    end: { column: 5, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 2, line: 3, offset: 14 }
   })
   equal(two.rangeBy({ word: 'two' }), {
-    end: { column: 5, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 2, line: 3, offset: 14 }
   })
 
   one.remove()
 
   equal(a.rangeBy({ word: 'two' }), {
-    end: { column: 5, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 2, line: 3, offset: 14 }
   })
   equal(two.rangeBy({ word: 'two' }), {
-    end: { column: 5, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 2, line: 3, offset: 14 }
   })
 })
 
@@ -672,23 +748,76 @@ test('rangeBy() returns range for word even after AST mutations when offsets are
   if (two.source?.end) delete two.source.end.offset
 
   equal(a.rangeBy({ word: 'two' }), {
-    end: { column: 5, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 5, line: 3, offset: 17, },
+    start: { column: 2, line: 3, offset: 14 }
   })
   equal(two.rangeBy({ word: 'two' }), {
-    end: { column: 5, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 5, line: 3, offset: 17, },
+    start: { column: 2, line: 3, offset: 14 }
   })
 
   one.remove()
 
   equal(a.rangeBy({ word: 'two' }), {
-    end: { column: 5, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 5, line: 3, offset: 17, },
+    start: { column: 2, line: 3, offset: 14 }
   })
   equal(two.rangeBy({ word: 'two' }), {
-    end: { column: 5, line: 3 },
-    start: { column: 2, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 2, line: 3, offset: 14 }
+  })
+})
+
+test('rangeBy() returns range for start and end', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.rangeBy({ end: { column: 9, line: 1 }, start: { column: 7, line: 1 } }), {
+    end: { column: 9, line: 1, offset: 8 },
+    start: { column: 7, line: 1, offset: 6 }
+  })
+})
+
+test('rangeBy() returns range for start and end when offsets are missing', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.start) delete one.source.start.offset
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.end) delete one.source.end.offset
+
+  equal(one.rangeBy({ end: { column: 9, line: 1 }, start: { column: 7, line: 1 } }), {
+    end: { column: 9, line: 1, offset: 8 },
+    start: { column: 7, line: 1, offset: 6 }
+  })
+})
+
+test('rangeBy() returns range for start and end after AST mutations', () => {
+  let css = parse('a {\n\tone: 1;\n\ttwo: 2;}')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  let two = one.next() as Declaration
+
+  equal(a.rangeBy({ end: { column: 5, line: 3 }, start: { column: 3, line: 3 } }), {
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 3, line: 3, offset: 15 }
+  })
+  equal(two.rangeBy({ end: { column: 5, line: 3 }, start: { column: 3, line: 3 } }), {
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 3, line: 3, offset: 15 }
+  })
+
+  one.remove()
+
+  equal(a.rangeBy({ end: { column: 5, line: 3 }, start: { column: 3, line: 3 } }), {
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 3, line: 3, offset: 15 }
+  })
+  equal(two.rangeBy({ end: { column: 5, line: 3 }, start: { column: 3, line: 3 } }), {
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 3, line: 3, offset: 15 }
   })
 })
 
@@ -697,8 +826,8 @@ test('rangeBy() returns range for index and endIndex', () => {
   let a = css.first as Rule
   let one = a.first as Declaration
   equal(one.rangeBy({ endIndex: 3, index: 1 }), {
-    end: { column: 9, line: 1 },
-    start: { column: 7, line: 1 }
+    end: { column: 9, line: 1, offset: 8 },
+    start: { column: 7, line: 1, offset: 6 }
   })
 })
 
@@ -713,8 +842,8 @@ test('rangeBy() returns range for index and endIndex when offsets are missing', 
   if (one.source?.end) delete one.source.end.offset
 
   equal(one.rangeBy({ endIndex: 3, index: 1 }), {
-    end: { column: 9, line: 1 },
-    start: { column: 7, line: 1 }
+    end: { column: 9, line: 1, offset: 8 },
+    start: { column: 7, line: 1, offset: 6 }
   })
 })
 
@@ -725,23 +854,23 @@ test('rangeBy() returns range for index and endIndex after AST mutations', () =>
   let two = one.next() as Declaration
 
   equal(a.rangeBy({ endIndex: 17, index: 15 }), {
-    end: { column: 5, line: 3 },
-    start: { column: 3, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 3, line: 3, offset: 15 }
   })
   equal(two.rangeBy({ endIndex: 3, index: 1 }), {
-    end: { column: 5, line: 3 },
-    start: { column: 3, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 3, line: 3, offset: 15 }
   })
 
   one.remove()
 
   equal(a.rangeBy({ endIndex: 17, index: 15 }), {
-    end: { column: 5, line: 3 },
-    start: { column: 3, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 3, line: 3, offset: 15 }
   })
   equal(two.rangeBy({ endIndex: 3, index: 1 }), {
-    end: { column: 5, line: 3 },
-    start: { column: 3, line: 3 }
+    end: { column: 5, line: 3, offset: 17 },
+    start: { column: 3, line: 3, offset: 15 }
   })
 })
 
@@ -768,13 +897,13 @@ test('rangeBy() supports multi-root documents', () => {
   }
 
   equal(a.rangeBy({ endIndex: 1, index: 0 }), {
-    end: { column: 9, line: 1 },
-    start: { column: 8, line: 1 }
+    end: { column: 9, line: 1, offset: 8 },
+    start: { column: 8, line: 1, offset: 7 }
   })
 
   equal(a.rangeBy({ word: 'a' }), {
-    end: { column: 9, line: 1 },
-    start: { column: 8, line: 1 }
+    end: { column: 9, line: 1, offset: 8 },
+    start: { column: 8, line: 1, offset: 7 }
   })
 })
 
