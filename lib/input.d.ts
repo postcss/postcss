@@ -131,6 +131,9 @@ declare class Input_ {
    */
   constructor(css: string, opts?: ProcessOptions)
 
+  /**
+   * Returns `CssSyntaxError` with information about the error and its position.
+   */
   error(
     message: string,
     start:
@@ -151,9 +154,6 @@ declare class Input_ {
         },
     opts?: { plugin?: CssSyntaxError['plugin'] }
   ): CssSyntaxError
-  /**
-   * Returns `CssSyntaxError` with information about the error and its position.
-   */
   error(
     message: string,
     line: number,
