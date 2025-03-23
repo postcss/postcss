@@ -67,10 +67,21 @@ declare namespace Node {
      * The inclusive ending position for the source
      * code of a node.
      *
-     * However, only `end.offset` may be an exclusive position.
-     * The offset of `Root` node is the inclusive position,
-     * and the offset of other nodes is the exclusive position.
+     * However, `end.offset` of a non `Root` node is the exclusive position.
      * See https://github.com/postcss/postcss/pull/1879 for details.
+     *
+     * ```js
+     * const root = postcss.parse('a { color: black }')
+     * const a = root.first
+     * const color = a.first
+     *
+     * // The offset of `Root` node is the inclusive position
+     * css.source.end   // { line: 1, column: 19, offset: 18 }
+     *
+     * // The offset of non `Root` node is the exclusive position
+     * a.source.end     // { line: 1, column: 18, offset: 18 }
+     * color.source.end // { line: 1, column: 16, offset: 16 }
+     * ```
      */
     end?: Position
 
