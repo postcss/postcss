@@ -1,7 +1,14 @@
+import Concat from 'concat-with-sourcemaps'
+import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { test } from 'uvu'
 import { equal, is } from 'uvu/assert'
 
 import { Input } from '../lib/postcss.js'
+
+function urlOf(file: string): string {
+  return pathToFileURL(join(__dirname, file)).toString()
+}
 
 test('fromLineAndColumn() returns offset', () => {
   let input = new Input('a {\n}')
@@ -18,3 +25,5 @@ test('fromOffset() returns line and column', () => {
   equal(input.fromOffset(4), { col: 1, line: 2 })
   equal(input.fromOffset(5), { col: 2, line: 2 })
 })
+
+test.run()
