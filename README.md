@@ -344,6 +344,18 @@ there is [`postcss-cli`].
 postcss --use autoprefixer -o main.css css/*.css
 ```
 
+#### New `--dir` and `--ext` options
+
+The `postcss-cli` now supports the `--dir` and `--ext` options to maintain the folder structure of the input files and specify the output file extension.
+
+Example usage:
+
+```sh
+postcss --use autoprefixer --dir out/ --ext .css src/**/*.pcss
+```
+
+This command will process all `*.pcss` files in the `src` directory and output the resulting `*.css` files in the `out` directory, maintaining the folder structure.
+
 [`postcss-cli`]: https://github.com/postcss/postcss-cli
 
 
