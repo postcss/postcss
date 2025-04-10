@@ -460,11 +460,9 @@ module.exports = {
 ### VS Code
 
 * [`csstools.postcss`] adds PostCSS support.
+* [`smallcase.postcssense`] adds Intellisense for global classes
 
 [`csstools.postcss`]: https://marketplace.visualstudio.com/items?itemName=csstools.postcss
-
-- [`smallcase.postcssense`] adds Intellisense for global classes
-
 [`smallcase.postcssense`]: https://marketplace.visualstudio.com/items?itemName=smallcase.postcssense
 
 ### Sublime Text
