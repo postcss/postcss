@@ -16,6 +16,23 @@ function checkOffset(source: string, node: Node, expected: string): void {
   equal(source.slice(start, end), expected)
 }
 
+test('root', () => {
+  let source = '.a{}'
+  let css = parse(source)
+
+  checkOffset(source, css, '.a{}')
+  equal(css.source!.start, {
+    column: 1,
+    line: 1,
+    offset: 0
+  })
+  equal(css.source!.end, {
+    column: 5,
+    line: 1,
+    offset: 4
+  })
+})
+
 test('rule', () => {
   let source = '.a{}'
   let css = parse(source)
