@@ -314,7 +314,7 @@ for targeting all button elements.
 * [`postcss-foft-classes`] adds guarding classes to blocks using web fonts
   for better font loading strategies.
 * [`postcss-font-awesome`] adds an easy shortcut to font-awesome unicode codes
-* [`postcss-font-grabber`] it grabs remote fonts in `@font-face`,
+* [`postcss-font-grabber`] grabs remote fonts in `@font-face`,
   download them and update your CSS.
 * [`postcss-font-pack`] simplifies font declarations and validates they match
   configured font packs.
