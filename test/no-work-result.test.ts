@@ -1,5 +1,3 @@
-import postcss = require('../lib/postcss.js')
-import stringify = require('../lib/stringify.js')
 import { spy } from 'nanospy'
 import { SourceMapGenerator } from 'source-map-js'
 import { test } from 'uvu'
@@ -7,7 +5,9 @@ import { equal, instance, is, not, throws, type } from 'uvu/assert'
 
 import NoWorkResult from '../lib/no-work-result.js'
 import parse from '../lib/parse.js'
+import postcss = require('../lib/postcss.js')
 import Processor from '../lib/processor.js'
+import stringify = require('../lib/stringify.js')
 
 let processor = new Processor()
 

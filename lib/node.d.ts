@@ -1,5 +1,4 @@
 import AtRule = require('./at-rule.js')
-
 import { AtRuleProps } from './at-rule.js'
 import Comment, { CommentProps } from './comment.js'
 import Container, { NewChild } from './container.js'

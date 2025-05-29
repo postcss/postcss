@@ -1,8 +1,8 @@
-import postcss = require('../lib/postcss.js')
 import { restoreAll, spyOn } from 'nanospy'
 import { test } from 'uvu'
 import { equal, is, match, throws, type } from 'uvu/assert'
 
+import postcss = require('../lib/postcss.js')
 import postcssDefault, { PluginCreator, Root } from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 
