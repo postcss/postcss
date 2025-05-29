@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.4
+* Fixed Parcel compatibility issue (by @git-sumitchaudhary).
+
 ## 8.5.3
 * Added more details to `Unknown word` error (by @hiepxanh).
 * Fixed types (by @romainmenke).
