@@ -918,6 +918,10 @@ test('infer node kind by discriminating over its type', () => {
   if (rule?.type !== 'rule') fail('expected rule type')
   let parent = rule.parent
   if (parent?.type === 'atrule') {
+    // At first glance, this test looks obvious and unnecessary. However, this
+    // test is actually a compiler test. This test code ensures that we can
+    // successfully narrow the type of "parent" to "AtRule" without having to
+    // explicitly cast it.
     is(parent.name, 'a')
   } else {
     fail('expected "parent" to be an atrule')
