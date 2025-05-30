@@ -2,14 +2,17 @@ import AtRule from './at-rule.js'
 import Comment from './comment.js'
 import Declaration from './declaration.js'
 import Node, { ChildNode, ChildProps, NodeProps } from './node.js'
+import { Root } from './postcss.js'
 import Rule from './rule.js'
 
 declare namespace Container {
-  export class ContainerWithChildren<
-    Child extends Node = ChildNode
-  > extends Container_<Child> {
+  export type ContainerWithChildren<Child extends Node = ChildNode> = {
     nodes: Child[]
-  }
+  } & (
+    | AtRule
+    | Root
+    | Rule
+  )
 
   export interface ValueOptions {
     /**
