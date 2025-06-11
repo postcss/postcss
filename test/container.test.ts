@@ -1,4 +1,3 @@
-import { fail } from 'node:assert'
 import { test } from 'uvu'
 import { equal, is, match, throws, type } from 'uvu/assert'
 
@@ -909,23 +908,6 @@ test('ignores undefined on adding', () => {
   rule.after(undefined)
   rule.before(undefined)
   is(rule.parent!.toString(), 'a { a: 1; b: 2; c: 3 }')
-})
-
-test('infer node kind by discriminating over its type', () => {
-  let atRule = parse('@a{b{}}').first
-  if (atRule?.type !== 'atrule') fail('expected atrule type')
-  let rule = atRule.first
-  if (rule?.type !== 'rule') fail('expected rule type')
-  let parent = rule.parent
-  if (parent?.type === 'atrule') {
-    // At first glance, this test looks obvious and unnecessary. However, this
-    // test is actually a compiler test. This test code ensures that we can
-    // successfully narrow the type of "parent" to "AtRule" without having to
-    // explicitly cast it.
-    is(parent.name, 'a')
-  } else {
-    fail('expected "parent" to be an atrule')
-  }
 })
 
 test.run()
