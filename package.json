@@ -7,8 +7,8 @@
   },
   "exports": {
     ".": {
-      "require": "./lib/postcss.js",
-      "import": "./lib/postcss.mjs"
+      "import": "./lib/postcss.mjs",
+      "require": "./lib/postcss.js"
     },
     "./lib/at-rule": "./lib/at-rule.js",
     "./lib/comment": "./lib/comment.js",
