@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.5
+* Fixed `package.json`→`exports` compatibility with some tools (by @JounQin).
+
 ## 8.5.4
 * Fixed Parcel compatibility issue (by @git-sumitchaudhary).
 
