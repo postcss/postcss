@@ -1,10 +1,6 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
-## 8.5.5
-* Fixed `ContainerWithChildren` to make it possible to discriminate the node
-  type for `node.parent` (by @goodwine).
-
 ## 8.5.4
 * Fixed Parcel compatibility issue (by @git-sumitchaudhary).
 
