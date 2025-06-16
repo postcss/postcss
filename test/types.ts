@@ -1,4 +1,5 @@
 import postcss, { Document, PluginCreator } from '../lib/postcss.js'
+import { RootRaws } from '../lib/root.js'
 
 const plugin: PluginCreator<string> = prop => {
   return {
@@ -29,5 +30,35 @@ function parseMarkdown(): Document {
 
 let doc = postcss().process('a{}', { parser: parseMarkdown }).root
 console.log(doc.toString())
+
+function parentCanNarrowType(): never | void {
+  let atRule = postcss.parse('@a{b{}}').first
+  if (atRule?.type !== 'atrule') return
+  let rule = atRule.first
+  if (rule?.type !== 'rule') return
+  let parent = rule.parent
+  switch (parent?.type) {
+    case undefined:
+      console.log('ok')
+      break
+    case 'atrule':
+      console.log(parent.params)
+      break
+    case 'root':
+      {
+        let raws: RootRaws = parent.raws
+        console.log(raws)
+      }
+      break
+    case 'rule':
+      console.log(rule.selector)
+      break
+    default: {
+      let exhaustiveCheck: never = parent
+      return exhaustiveCheck
+    }
+  }
+}
+parentCanNarrowType()
 
 export default plugin
