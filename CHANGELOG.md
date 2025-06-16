@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.6
+* Fixed `ContainerWithChildren` type discriminating (by @Goodwine).
+
 ## 8.5.5
 * Fixed `package.json`→`exports` compatibility with some tools (by @JounQin).
 
