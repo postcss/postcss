@@ -112,6 +112,8 @@ Or enable plugins directly in CSS using [`postcss-use`]:
 * [`postcss-font-family-system-ui`] transforms W3C CSS `font-family: system-ui`
   to a practical font list.
 * [`postcss-font-display`] add `font-display` css rule.
+* [`postcss-if-function`] transforms `if()` function for `media()` and
+  `supports()` to `@media` and `@supports` queries.
 * [`postcss-host`] makes the Shadow DOM’s `:host` selector work properly
   with pseudo-classes.
 * [`postcss-initial`] supports `initial` keyword and `all: initial`
@@ -923,6 +925,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-subgrid`]:                      https://github.com/seaneking/postcss-subgrid
 [`postcss-join-transitions`]:             https://github.com/JGJP/postcss-join-transitions
 [`postcss-font-display`]:                 https://github.com/dkrnl/postcss-font-display
+[`postcss-if-function`]:                  https://github.com/mfranzke/css-if-polyfill/tree/main/packages/postcss-if-function
 [`postcss-glitch`]:                       https://github.com/crftd/postcss-glitch
 [`postcss-class-name-shortener`]:         https://github.com/mbrandau/postcss-class-name-shortener
 [`postcss-plugin-namespace`]:             https://github.com/ymrdf/postcss-plugin-namespace
