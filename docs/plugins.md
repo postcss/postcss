@@ -208,6 +208,7 @@ See also [`oldie`] plugins pack.
 * [`postcss-functions`] enables exposure of JavaScript functions.
 * [`postcss-if-media`] inline or nest media queries within
   CSS rules & properties.
+* [`postcss-inline-extract`] extract inline styles from HTML and convert them to CSS rules.
 * [`postcss-inline-media`] inline multiple media queries into CSS property
   values.
 * [`postcss-local-constants`] adds support for localized constants.
@@ -801,6 +802,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-fallback`]:                     https://github.com/MadLittleMods/postcss-fallback
 [`postcss-fontpath`]:                     https://github.com/seaneking/postcss-fontpath
 [`postcss-if-media`]:                     https://github.com/arccoza/postcss-if-media
+[`postcss-inline-extract`]:               https://github.com/knowledgecode/postcss-inline-extract
 [`postcss-imperial`]:                     https://github.com/cbas/postcss-imperial
 [`postcss-position`]:                     https://github.com/seaneking/postcss-position
 [`postcss-reporter`]:                     https://github.com/postcss/postcss-reporter
