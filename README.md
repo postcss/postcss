@@ -30,6 +30,16 @@ and JetBrains. The [Autoprefixer] and [Stylelint] PostCSS plugins are some o
 PostCSS needs your support. We are accepting donations
 [at Open Collective](https://opencollective.com/postcss/).
 
+<div align="center" markdown="1">
+  <a href="https://go.warp.dev/postcss">
+    <img alt="Warp sponsorship" width="400" src="https://github.com/user-attachments/assets/ab8dd143-b0fd-4904-bdc5-dd7ecac94eae">
+  </a>
+
+[Warp is the agentic development environment, built for coding with multiple AI agents](https://go.warp.dev/postcss)
+  <br>
+  <br>
+</div>
+
 <a href="https://tailwindcss.com/">
   <img src="https://refactoringui.nyc3.cdn.digitaloceanspaces.com/tailwind-logo.svg"
        alt="Sponsored by Tailwind CSS" width="213" height="50"></a>      
