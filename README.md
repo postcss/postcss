@@ -35,7 +35,7 @@ PostCSS needs your support. We are accepting donations
     <img alt="Warp sponsorship" width="400" src="https://github.com/user-attachments/assets/ab8dd143-b0fd-4904-bdc5-dd7ecac94eae">
   </a>
 
-[Warp, built for coding with multiple agents.](https://go.warp.dev/postcss)
+[Warp, built for coding with multiple agents](https://go.warp.dev/postcss)
   <br>
   <br>
 </div>
