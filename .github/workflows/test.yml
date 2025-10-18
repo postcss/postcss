@@ -20,7 +20,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: 23
+          node-version: 25
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --ignore-scripts
@@ -31,6 +31,7 @@ jobs:
     strategy:
       matrix:
         node-version:
+          - 24
           - 22
           - 20
           - 18
@@ -93,7 +94,7 @@ jobs:
       - name: Install Node.js LTS
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --ignore-scripts
