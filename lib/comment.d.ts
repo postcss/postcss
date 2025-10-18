@@ -26,7 +26,7 @@ declare namespace Comment {
     text: string
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+   
   export { Comment_ as default }
 }
 

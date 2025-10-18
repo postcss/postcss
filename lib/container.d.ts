@@ -43,7 +43,7 @@ declare namespace Container {
     | string
     | undefined
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+   
   export { Container_ as default }
 }
 

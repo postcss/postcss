@@ -16,7 +16,7 @@ declare namespace Document {
     raws?: Record<string, any>
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+   
   export { Document_ as default }
 }
 

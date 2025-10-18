@@ -246,7 +246,6 @@ test('highlight cut minified css with colors', () => {
       pico.yellow(';') +
       'background' +
       pico.yellow(';') +
-      '' +
       'text-decoration' +
       pico.yellow(':') +
       'none' +

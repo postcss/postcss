@@ -126,7 +126,7 @@ declare namespace Node {
     word?: string
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
+   
   class Node extends Node_ {}
   export { Node as default }
 }

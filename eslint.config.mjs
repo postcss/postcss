@@ -9,6 +9,7 @@ export default [
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-require-imports': 'off',
       '@typescript-eslint/no-this-alias': 'off',
+      '@typescript-eslint/prefer-optional-chain': 'off',
       'consistent-return': 'off',
       'global-require': 'off',
       'n/no-unsupported-features/es-syntax': [
@@ -29,7 +30,9 @@ export default [
     files: ['**/*.d.ts'],
     rules: {
       '@typescript-eslint/no-redeclare': 'off',
-      'n/no-unsupported-features/es-syntax': 'off'
+      'n/no-unsupported-features/es-syntax': 'off',
+      'no-shadow': 'off',
+      'no-use-before-define': 'off'
     }
   },
   {

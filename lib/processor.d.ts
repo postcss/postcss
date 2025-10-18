@@ -12,7 +12,7 @@ import Result from './result.js'
 import Root from './root.js'
 
 declare namespace Processor {
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+   
   export { Processor_ as default }
 }
 

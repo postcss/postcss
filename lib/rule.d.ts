@@ -56,7 +56,7 @@ declare namespace Rule {
         }
     ) & ContainerProps
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+   
   export { Rule_ as default }
 }
 

@@ -16,7 +16,7 @@ declare namespace CssSyntaxError {
     line: number
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+   
   export { CssSyntaxError_ as default }
 }
 

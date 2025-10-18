@@ -40,7 +40,7 @@ declare namespace Warning {
     word?: string
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+   
   export { Warning_ as default }
 }
 

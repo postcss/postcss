@@ -49,7 +49,7 @@ declare namespace AtRule {
     raws?: AtRuleRaws
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+   
   export { AtRule_ as default }
 }
 
