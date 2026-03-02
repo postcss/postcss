@@ -149,6 +149,13 @@
   "pnpm": {
     "patchedDependencies": {
       "yargs@17.7.2": "patches/yargs@17.7.2.patch"
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "esbuild",
+      "unrs-resolver"
+    ],
+    "onlyBuiltDependencies": [
+      "simple-git-hooks"
+    ]
   }
 }
