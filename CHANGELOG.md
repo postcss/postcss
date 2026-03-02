@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.7
+* Improved source map annotation cleaning performance (by CodeAnt AI).
+
 ## 8.5.6
 * Fixed `ContainerWithChildren` type discriminating (by @Goodwine).
 
