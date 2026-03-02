@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  yargs@17.7.2:
+    hash: 34652056801bf0e586b0f2ab1a4f464b352d4d3ce0f5b2d51040d171c31843c3
+    path: patches/yargs@17.7.2.patch
+
 importers:
 
   .:
@@ -1972,7 +1977,7 @@ snapshots:
       istanbul-reports: 3.2.0
       test-exclude: 8.0.0
       v8-to-istanbul: 9.3.0
-      yargs: 17.7.2
+      yargs: 17.7.2(patch_hash=34652056801bf0e586b0f2ab1a4f464b352d4d3ce0f5b2d51040d171c31843c3)
       yargs-parser: 21.1.1
 
   cac@6.7.14: {}
@@ -2759,7 +2764,7 @@ snapshots:
 
   yargs-parser@21.1.1: {}
 
-  yargs@17.7.2:
+  yargs@17.7.2(patch_hash=34652056801bf0e586b0f2ab1a4f464b352d4d3ce0f5b2d51040d171c31843c3):
     dependencies:
       cliui: 8.0.1
       escalade: 3.2.0
