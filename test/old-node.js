@@ -12,6 +12,10 @@ Module.prototype.require = function (request) {
   return originalRequire.call(this, request)
 }
 
+process.env.TS_NODE_COMPILER_OPTIONS = JSON.stringify({
+  moduleResolution: 'node'
+})
+
 require(
   path.join(
     process.cwd(),
