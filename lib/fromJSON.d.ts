@@ -4,6 +4,6 @@ interface FromJSON extends JSONHydrator {
   default: FromJSON
 }
 
-declare const fromJSON: FromJSON
+declare let fromJSON: FromJSON
 
 export = fromJSON

@@ -4,6 +4,6 @@ interface Parse extends Parser {
   default: Parse
 }
 
-declare const parse: Parse
+declare let parse: Parse
 
 export = parse

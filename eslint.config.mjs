@@ -27,6 +27,12 @@ export default [
     }
   },
   {
+    files: ['test/types.ts'],
+    rules: {
+      'prefer-let/prefer-let': 'off'
+    }
+  },
+  {
     files: ['**/*.d.ts'],
     rules: {
       '@typescript-eslint/no-redeclare': 'off',

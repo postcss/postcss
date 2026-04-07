@@ -55,6 +55,6 @@ declare namespace list {
   }
 }
 
-declare const list: list.List
+declare let list: list.List
 
 export = list

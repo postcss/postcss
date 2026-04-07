@@ -4,7 +4,8 @@
     "target": "es2018",
     "module": "commonjs",
     "strict": true,
-    "noEmit": true
+    "noEmit": true,
+    "moduleResolution": "node10"
   },
   "exclude": ["**/errors.ts"]
 }

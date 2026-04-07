@@ -4,6 +4,6 @@ interface Stringify extends Stringifier {
   default: Stringify
 }
 
-declare const stringify: Stringify
+declare let stringify: Stringify
 
 export = stringify

@@ -356,9 +356,9 @@ test('wraps node to proxies', () => {
   equal(props, ['color'])
 })
 
-const cssThree = '.a{ color: red; } .b{ will-change: transform; }'
+let cssThree = '.a{ color: red; } .b{ will-change: transform; }'
 
-const expectedThree =
+let expectedThree =
   '.a{ ' +
   'backface-visibility: hidden; ' +
   'will-change: transform; ' +
@@ -384,14 +384,14 @@ test('work of three plug-ins; sequence 2', async () => {
   is(css, expectedThree)
 })
 
-const cssThreeDocument = postcss.document({
+let cssThreeDocument = postcss.document({
   nodes: [
     postcss.parse('.a{ color: red; }'),
     postcss.parse('.b{ will-change: transform; }')
   ]
 })
 
-const expectedThreeDocument =
+let expectedThreeDocument =
   '.a{ color: green; }' +
   '.b{ backface-visibility: hidden; will-change: transform; }'
 
@@ -413,8 +413,8 @@ test('work of three plug-ins in a document; sequence 2', async () => {
   is(css, expectedThreeDocument)
 })
 
-const cssThroughProps = '.a{color: yellow;}'
-const expectedThroughProps = '.a{color: red;}'
+let cssThroughProps = '.a{color: yellow;}'
+let expectedThroughProps = '.a{color: red;}'
 
 test('change in node values through props; sequence 1', async () => {
   let { css } = await postcss([
