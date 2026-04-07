@@ -16,7 +16,6 @@ declare namespace CssSyntaxError {
     line: number
   }
 
-   
   export { CssSyntaxError_ as default }
 }
 

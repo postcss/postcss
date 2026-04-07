@@ -11,7 +11,6 @@ import {
 } from './postcss.js'
 
 declare namespace Stringifier {
-   
   export { Stringifier_ as default }
 }
 

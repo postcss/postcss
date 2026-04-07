@@ -49,7 +49,6 @@ declare namespace AtRule {
     raws?: AtRuleRaws
   }
 
-   
   export { AtRule_ as default }
 }
 

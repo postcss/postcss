@@ -49,7 +49,6 @@ declare namespace Input {
     url: string
   }
 
-   
   export { Input_ as default }
 }
 

@@ -39,7 +39,6 @@ declare namespace Declaration {
     value: string
   }
 
-   
   export { Declaration_ as default }
 }
 

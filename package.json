@@ -2,9 +2,47 @@
   "name": "postcss",
   "version": "8.5.8",
   "description": "Tool for transforming styles with JS plugins",
-  "engines": {
-    "node": "^10 || ^12 || >=14"
+  "keywords": [
+    "css",
+    "manipulation",
+    "parser",
+    "postcss",
+    "preprocessor",
+    "rework",
+    "source map",
+    "transform",
+    "transpiler"
+  ],
+  "homepage": "https://postcss.org/",
+  "bugs": {
+    "url": "https://github.com/postcss/postcss/issues"
   },
+  "license": "MIT",
+  "author": "Andrey Sitnik <andrey@sitnik.es>",
+  "repository": "postcss/postcss",
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/postcss/"
+    },
+    {
+      "type": "tidelift",
+      "url": "https://tidelift.com/funding/github/npm/postcss"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/ai"
+    }
+  ],
+  "main": "./lib/postcss.js",
+  "browser": {
+    "./lib/terminal-highlight": false,
+    "source-map-js": false,
+    "path": false,
+    "url": false,
+    "fs": false
+  },
+  "types": "./lib/postcss.d.ts",
   "exports": {
     ".": {
       "import": "./lib/postcss.mjs",
@@ -39,19 +77,6 @@
     "./lib/warning": "./lib/warning.js",
     "./package.json": "./package.json"
   },
-  "main": "./lib/postcss.js",
-  "types": "./lib/postcss.d.ts",
-  "keywords": [
-    "css",
-    "postcss",
-    "rework",
-    "preprocessor",
-    "parser",
-    "source map",
-    "transform",
-    "manipulation",
-    "transpiler"
-  ],
   "scripts": {
     "test:lint": "eslint .",
     "test:types": "check-dts",
@@ -63,27 +88,6 @@
     "unit": "uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\"",
     "old": "uvu -r ../../../../../../../test/old-node.js -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\""
   },
-  "funding": [
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/postcss/"
-    },
-    {
-      "type": "tidelift",
-      "url": "https://tidelift.com/funding/github/npm/postcss"
-    },
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/ai"
-    }
-  ],
-  "author": "Andrey Sitnik <andrey@sitnik.es>",
-  "license": "MIT",
-  "homepage": "https://postcss.org/",
-  "repository": "postcss/postcss",
-  "bugs": {
-    "url": "https://github.com/postcss/postcss/issues"
-  },
   "dependencies": {
     "nanoid": "^3.3.11",
     "picocolors": "^1.1.1",
@@ -91,6 +95,7 @@
   },
   "devDependencies": {
     "@logux/eslint-config": "^57.1.0",
+    "@logux/oxc-configs": "^0.2.2",
     "@size-limit/preset-small-lib": "^12.0.1",
     "@types/node": "^25.5.2",
     "actions-up": "^1.12.1",
@@ -102,6 +107,7 @@
     "multiocular": "^0.8.2",
     "nanodelay": "^1.0.8",
     "nanospy": "^1.0.0",
+    "oxfmt": "^0.43.0",
     "postcss-parser-tests": "^8.9.0",
     "simple-git-hooks": "^2.13.1",
     "size-limit": "^12.0.1",
@@ -109,15 +115,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "uvu": "^0.5.6"
-  },
-  "c8": {
-    "exclude": [
-      "**/*.test.*",
-      "lib/map-generator.js"
-    ],
-    "lines": 100,
-    "reporter": "lcov",
-    "check-coverage": true
   },
   "simple-git-hooks": {
     "pre-commit": "./test/version.js"
@@ -130,21 +127,23 @@
     "singleQuote": true,
     "trailingComma": "none"
   },
-  "browser": {
-    "./lib/terminal-highlight": false,
-    "source-map-js": false,
-    "path": false,
-    "url": false,
-    "fs": false
-  },
   "size-limit": [
     {
       "path": "lib/postcss.js",
       "limit": "16 KB"
     }
   ],
-  "clean-publish": {
-    "cleanDocs": true
+  "c8": {
+    "check-coverage": true,
+    "exclude": [
+      "**/*.test.*",
+      "lib/map-generator.js"
+    ],
+    "lines": 100,
+    "reporter": "lcov"
+  },
+  "engines": {
+    "node": "^10 || ^12 || >=14"
   },
   "pnpm": {
     "patchedDependencies": {
@@ -157,5 +156,8 @@
     "onlyBuiltDependencies": [
       "simple-git-hooks"
     ]
+  },
+  "clean-publish": {
+    "cleanDocs": true
   }
 }

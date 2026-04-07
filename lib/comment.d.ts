@@ -26,7 +26,6 @@ declare namespace Comment {
     text: string
   }
 
-   
   export { Comment_ as default }
 }
 

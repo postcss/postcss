@@ -6,7 +6,6 @@ import Root from './root.js'
 import Warning from './warning.js'
 
 declare namespace NoWorkResult {
-   
   export { NoWorkResult_ as default }
 }
 

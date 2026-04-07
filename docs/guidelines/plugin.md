@@ -3,7 +3,7 @@
 A PostCSS plugin is a function that receives and, usually,
 transforms a CSS AST from the PostCSS parser.
 
-The rules below are *mandatory* for all PostCSS plugins.
+The rules below are _mandatory_ for all PostCSS plugins.
 
 See also [ClojureWerkz’s recommendations] for open source projects.
 
@@ -11,28 +11,28 @@ See also [ClojureWerkz’s recommendations] for open source projects.
 
 **Table of Contents**
 
-* [API](#1-api)
-  * [1.1 Clear name with `postcss-` prefix](#11-clear-name-with-postcss--prefix)
-  * [1.2. Do one thing, and do it well](#12-do-one-thing-and-do-it-well)
-  * [1.3. Do not use mixins](#13-do-not-use-mixins)
-  * [1.4. Keep `postcss` to `peerDependencies`](#14-keep-postcss-to-peerdependencies)
-  * [1.5. Set `plugin.postcssPlugin` with plugin name](#15-set-pluginpostcssplugin-with-plugin-name)
-* [Processing](#2-processing)
-  * [2.1. Plugin must be tested](#21-plugin-must-be-tested)
-  * [2.2. Use asynchronous methods whenever possible](#22-use-asynchronous-methods-whenever-possible)
-  * [2.3. Use fast node’s scanning](#23-use-fast-nodes-scanning)
-  * [2.4. Set `node.source` for new nodes](#24-set-nodesource-for-new-nodes)
-  * [2.5. Use only the public PostCSS API](#25-use-only-the-public-postcss-api)
-* [Dependencies](#3-dependencies)
-  * [3.1. Use messages to specify dependencies](#31-use-messages-to-specify-dependencies)
-* [Errors](#4-errors)
-  * [4.1. Use `node.error` on CSS relevant errors](#41-use-nodeerror-on-css-relevant-errors)
-  * [4.2. Use `result.warn` for warnings](#42-use-resultwarn-for-warnings)
-*  [Documentation](#5-documentation)
-  * [5.1. Document your plugin in English](#51-document-your-plugin-in-english)
-  * [5.2. Include input and output examples](#52-include-input-and-output-examples)
-  * [5.3. Maintain a changelog](#53-maintain-a-changelog)
-  * [5.4. Include `postcss-plugin` keyword in `package.json`](#54-include-postcss-plugin-keyword-in-packagejson)
+- [API](#1-api)
+  - [1.1 Clear name with `postcss-` prefix](#11-clear-name-with-postcss--prefix)
+  - [1.2. Do one thing, and do it well](#12-do-one-thing-and-do-it-well)
+  - [1.3. Do not use mixins](#13-do-not-use-mixins)
+  - [1.4. Keep `postcss` to `peerDependencies`](#14-keep-postcss-to-peerdependencies)
+  - [1.5. Set `plugin.postcssPlugin` with plugin name](#15-set-pluginpostcssplugin-with-plugin-name)
+- [Processing](#2-processing)
+  - [2.1. Plugin must be tested](#21-plugin-must-be-tested)
+  - [2.2. Use asynchronous methods whenever possible](#22-use-asynchronous-methods-whenever-possible)
+  - [2.3. Use fast node’s scanning](#23-use-fast-nodes-scanning)
+  - [2.4. Set `node.source` for new nodes](#24-set-nodesource-for-new-nodes)
+  - [2.5. Use only the public PostCSS API](#25-use-only-the-public-postcss-api)
+- [Dependencies](#3-dependencies)
+  - [3.1. Use messages to specify dependencies](#31-use-messages-to-specify-dependencies)
+- [Errors](#4-errors)
+  - [4.1. Use `node.error` on CSS relevant errors](#41-use-nodeerror-on-css-relevant-errors)
+  - [4.2. Use `result.warn` for warnings](#42-use-resultwarn-for-warnings)
+- [Documentation](#5-documentation)
+- [5.1. Document your plugin in English](#51-document-your-plugin-in-english)
+- [5.2. Include input and output examples](#52-include-input-and-output-examples)
+- [5.3. Maintain a changelog](#53-maintain-a-changelog)
+- [5.4. Include `postcss-plugin` keyword in `package.json`](#54-include-postcss-plugin-keyword-in-packagejson)
 
 ## 1. API
 
@@ -50,8 +50,7 @@ without the user necessarily knowing that it is powered by
 PostCSS — for example, [RTLCSS] and [Autoprefixer].
 
 [Autoprefixer]: https://github.com/postcss/autoprefixer
-[RTLCSS]:       https://rtlcss.com/
-
+[RTLCSS]: https://rtlcss.com/
 
 ### 1.2. Do one thing, and do it well
 
@@ -63,8 +62,7 @@ one for each W3C specification. And [`cssnano`] contains a separate plugin
 for each of its optimization.
 
 [`postcss-preset-env`]: https://preset-env.cssdb.org/
-[`cssnano`]:            https://github.com/cssnano/cssnano
-
+[`cssnano`]: https://github.com/cssnano/cssnano
 
 ### 1.3. Do not use mixins
 
@@ -77,7 +75,6 @@ To achieve your goal, consider transforming valid CSS
 or using custom at-rules and custom properties.
 
 [`postcss-mixins`]: https://github.com/postcss/postcss-mixins
-
 
 ### 1.4. Keep `postcss` to `peerDependencies`
 
@@ -106,7 +103,6 @@ It is better even not to import `postcss`.
   module.exports.postcss = true
 ```
 
-
 ### 1.5. Set `plugin.postcssPlugin` with plugin name
 
 Plugin name will be used in error messages and warnings.
@@ -115,14 +111,13 @@ Plugin name will be used in error messages and warnings.
 module.exports = opts => {
   return {
     postcssPlugin: 'postcss-name',
-    Once (root) {
+    Once(root) {
       // Plugin code
     }
   }
 }
 module.exports.postcss = true
 ```
-
 
 ## 2. Processing
 
@@ -132,7 +127,6 @@ A CI service like [Travis] is also recommended for testing code in
 different environments. You should test in (at least) Node.js [active LTS](https://github.com/nodejs/LTS) and current stable version.
 
 [Travis]: https://travis-ci.org/
-
 
 ### 2.2. Use asynchronous methods whenever possible
 
@@ -144,7 +138,7 @@ let { readFile } = require('fs').promises
 module.exports = opts => {
   return {
     postcssPlugin: 'plugin-inline',
-    async Decl (decl) {
+    async Decl(decl) {
       const imagePath = findImage(decl)
       if (imagePath) {
         let imageFile = await readFile(imagePath)
@@ -195,7 +189,6 @@ or at-rule’s name do you need:
   module.exports.postcss = true
 ```
 
-
 ### 2.4. Set `node.source` for new nodes
 
 Every node must have a relevant `source` so PostCSS can generate
@@ -220,7 +213,6 @@ if (decl.prop === 'animation') {
 }
 ```
 
-
 ### 2.5. Use only the public PostCSS API
 
 PostCSS plugins must not rely on undocumented properties or methods,
@@ -228,7 +220,6 @@ which may be subject to change in any minor release. The public API
 is described in [API docs].
 
 [API docs]: https://postcss.org/api/
-
 
 ## 3. Dependencies
 
@@ -261,7 +252,6 @@ result.messages.push({
 })
 ```
 
-
 ## 4. Errors
 
 ### 4.1. Use `node.error` on CSS relevant errors
@@ -275,7 +265,6 @@ if (typeof mixins[name] === 'undefined') {
   throw node.error('Unknown mixin ' + name)
 }
 ```
-
 
 ### 4.2. Use `result.warn` for warnings
 
@@ -292,7 +281,6 @@ Declaration (decl, { result }) {
 
 If CSS input is a source of the warning, the plugin must set the `node` option.
 
-
 ## 5. Documentation
 
 ### 5.1. Document your plugin in English
@@ -302,7 +290,6 @@ of your English skills, as the open source community will fix your errors.
 
 Of course, you are welcome to write documentation in other languages;
 just name them appropriately (e.g. `README.ja.md`).
-
 
 ### 5.2. Include input and output examples
 
@@ -315,7 +302,6 @@ See [postcss-opacity](https://github.com/iamvdo/postcss-opacity) for an example.
 Of course, this guideline does not apply if your plugin does not
 transform the CSS.
 
-
 ### 5.3. Maintain a changelog
 
 PostCSS plugins must describe the changes of all their releases
@@ -325,9 +311,8 @@ Visit [Keep A Changelog] for more information about how to write one of these.
 Of course, you should be using [SemVer].
 
 [Keep A Changelog]: https://keepachangelog.com/
-[GitHub Releases]:  https://help.github.com/articles/creating-releases/
-[SemVer]:           https://semver.org/
-
+[GitHub Releases]: https://help.github.com/articles/creating-releases/
+[SemVer]: https://semver.org/
 
 ### 5.4. Include `postcss-plugin` keyword in `package.json`
 

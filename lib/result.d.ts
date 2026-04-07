@@ -39,7 +39,6 @@ declare namespace Result {
     plugin?: string
   }
 
-   
   export { Result_ as default }
 }
 

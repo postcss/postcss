@@ -12,7 +12,6 @@ import Result from './result.js'
 import Root from './root.js'
 
 declare namespace Processor {
-   
   export { Processor_ as default }
 }
 

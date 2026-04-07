@@ -49,9 +49,9 @@ test('clone spaces from another at-rule', () => {
 })
 
 test('at-rule without body has no nodes property', () => {
-  let root = parse('@layer a, b, c;');
+  let root = parse('@layer a, b, c;')
   let layer = root.first as AtRule
   type(layer.nodes, 'undefined')
-});
+})
 
 test.run()

@@ -40,7 +40,6 @@ declare namespace Root {
     raws?: RootRaws
   }
 
-   
   export { Root_ as default }
 }
 

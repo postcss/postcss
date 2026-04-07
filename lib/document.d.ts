@@ -16,7 +16,6 @@ declare namespace Document {
     raws?: Record<string, any>
   }
 
-   
   export { Document_ as default }
 }
 

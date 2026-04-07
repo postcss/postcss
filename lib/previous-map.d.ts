@@ -3,7 +3,6 @@ import { SourceMapConsumer } from 'source-map-js'
 import { ProcessOptions } from './postcss.js'
 
 declare namespace PreviousMap {
-   
   export { PreviousMap_ as default }
 }
 

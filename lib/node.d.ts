@@ -126,7 +126,6 @@ declare namespace Node {
     word?: string
   }
 
-   
   class Node extends Node_ {}
   export { Node as default }
 }

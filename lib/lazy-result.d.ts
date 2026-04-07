@@ -6,7 +6,6 @@ import Root from './root.js'
 import Warning from './warning.js'
 
 declare namespace LazyResult {
-   
   export { LazyResult_ as default }
 }
 
@@ -19,9 +18,9 @@ declare namespace LazyResult {
  * const lazy = postcss([autoprefixer]).process(css)
  * ```
  */
-declare class LazyResult_<RootNode = Document | Root>
-  implements PromiseLike<Result<RootNode>>
-{
+declare class LazyResult_<RootNode = Document | Root> implements PromiseLike<
+  Result<RootNode>
+> {
   /**
    * Processes input CSS through synchronous and asynchronous plugins
    * and calls onRejected for each error thrown in any plugin.

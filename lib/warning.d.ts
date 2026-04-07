@@ -40,7 +40,6 @@ declare namespace Warning {
     word?: string
   }
 
-   
   export { Warning_ as default }
 }
 

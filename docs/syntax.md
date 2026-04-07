@@ -8,24 +8,24 @@ it is an awesome adventure.
 
 There are 3 types of PostCSS syntax packages:
 
-* **Parser** to parse input string to node’s tree.
-* **Stringifier** to generate output string by node’s tree.
-* **Syntax** contains both parser and stringifier.
+- **Parser** to parse input string to node’s tree.
+- **Stringifier** to generate output string by node’s tree.
+- **Syntax** contains both parser and stringifier.
 
 **Table of Contents**
 
-* [Syntax](#syntax)
-* [Parser](#parser)
-  * [Main Theory](#main-theory)
-  * [Performance](#performance)
-  * [Node Source](#node-source)
-  * [Raw Values](#raw-values)
-  * [Tests](#tests)
-* [Stringifier](#stringifier)
-  * [Main Theory](#main-theory-1)
-  * [Builder Function](#builder-function)
-  * [Raw Values](#raw-values-1)
-  * [Tests](#tests-1)
+- [Syntax](#syntax)
+- [Parser](#parser)
+  - [Main Theory](#main-theory)
+  - [Performance](#performance)
+  - [Node Source](#node-source)
+  - [Raw Values](#raw-values)
+  - [Tests](#tests)
+- [Stringifier](#stringifier)
+  - [Main Theory](#main-theory-1)
+  - [Builder Function](#builder-function)
+  - [Raw Values](#raw-values-1)
+  - [Tests](#tests-1)
 
 ## Syntax
 
@@ -39,13 +39,12 @@ functions:
 
 ```js
 module.exports = {
-  parse:     require('./parse'),
+  parse: require('./parse'),
   stringify: require('./stringify')
 }
 ```
 
 [SCSS]: https://github.com/postcss/postcss-scss
-
 
 ## Parser
 
@@ -60,7 +59,7 @@ an object with PostCSS options.
 ```js
 const postcss = require('postcss')
 
-module.exports = function parse (css, opts) {
+module.exports = function parse(css, opts) {
   const root = postcss.root()
   // Add other nodes to root
   return root
@@ -71,9 +70,8 @@ For open source parser npm package must have `postcss` in `peerDependencies`,
 not in direct `dependencies`.
 
 [Safe Parser]: https://github.com/postcss/postcss-safe-parser
-[`Root`]:      https://postcss.org/api/#root
-[`Document`]:  https://postcss.org/api/#document
-
+[`Root`]: https://postcss.org/api/#root
+[`Document`]: https://postcss.org/api/#document
 
 ### Main Theory
 
@@ -84,14 +82,13 @@ parser.
 The default PostCSS parser contains two steps:
 
 1. [Tokenizer] which reads input string character by character and builds a
-  tokens array. For example, it joins space symbols to a `['space', '\n  ']`
-  token, and detects strings to a `['string', '"\"{"']` token.
+   tokens array. For example, it joins space symbols to a `['space', '\n  ']`
+   token, and detects strings to a `['string', '"\"{"']` token.
 2. [Parser] which reads the tokens array, creates node instances and
-  builds a tree.
+   builds a tree.
 
 [Tokenizer]: https://github.com/postcss/postcss/blob/main/lib/tokenize.js
-[Parser]:    https://github.com/postcss/postcss/blob/main/lib/parser.js
-
+[Parser]: https://github.com/postcss/postcss/blob/main/lib/parser.js
 
 ### Performance
 
@@ -135,9 +132,8 @@ The parser can be a well written class. There is no need in copy-paste and
 hardcore optimization there. You can extend the default [PostCSS parser].
 
 [PostCSS benchmarks]: https://github.com/postcss/benchmark
-[PostCSS tokenizer]:  https://github.com/postcss/postcss/blob/main/lib/tokenize.js
-[PostCSS parser]:     https://github.com/postcss/postcss/blob/main/lib/parser.js
-
+[PostCSS tokenizer]: https://github.com/postcss/postcss/blob/main/lib/tokenize.js
+[PostCSS parser]: https://github.com/postcss/postcss/blob/main/lib/parser.js
 
 ### Node Source
 
@@ -149,7 +145,6 @@ Your tokenizer should save the original position so that you can propagate
 the values to the parser, to ensure that the source map is correctly updated.
 
 [`Input`]: https://github.com/postcss/postcss/blob/main/lib/input.js
-
 
 ### Raw Values
 
@@ -168,7 +163,6 @@ if the node value was not changed.
 
 [SCSS parser]: https://github.com/postcss/postcss-scss
 
-
 ### Tests
 
 Of course, all parsers in the PostCSS ecosystem must have tests.
@@ -177,7 +171,6 @@ If your parser just extends CSS syntax (like [SCSS] or [Safe Parser]),
 you can use the [PostCSS Parser Tests]. It contains unit & integration tests.
 
 [PostCSS Parser Tests]: https://github.com/postcss/postcss-parser-tests
-
 
 ## Stringifier
 
@@ -193,14 +186,13 @@ A Stringifier is a function which receives [`Root`] or [`Document`] node and bui
 Then it calls builder with every node’s string and node instance.
 
 ```js
-module.exports = function stringify (root, builder) {
+module.exports = function stringify(root, builder) {
   // Some magic
   const string = decl.prop + ':' + decl.value + ';'
   builder(string, decl)
   // Some science
-};
+}
 ```
-
 
 ### Main Theory
 
@@ -211,8 +203,7 @@ In most cases it will be enough just to extend this class,
 like in [SCSS stringifier].
 
 [default stringifier]: https://github.com/postcss/postcss/blob/main/lib/stringifier.js
-[SCSS stringifier]:    https://github.com/postcss/postcss-scss/blob/main/lib/scss-stringifier.js
-
+[SCSS stringifier]: https://github.com/postcss/postcss-scss/blob/main/lib/scss-stringifier.js
 
 ### Builder Function
 
@@ -235,7 +226,6 @@ this.builder(rule.selector + '{', rule, 'start')
 this.builder('}', rule, 'end')
 ```
 
-
 ### Raw Values
 
 A good PostCSS custom syntax saves all symbols and provide byte-to-byte equal
@@ -252,7 +242,6 @@ to another parent node.
 This is why the default stringifier has a `raw()` method to autodetect raw
 properties by other nodes. For example, it will look at other nodes to detect
 indent size and then multiply it with the current node depth.
-
 
 ### Tests
 

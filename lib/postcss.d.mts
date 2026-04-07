@@ -1,7 +1,6 @@
 export {
   // Type-only exports
   AcceptedPlugin,
-
   AnyNode,
   atRule,
   AtRule,
@@ -27,7 +26,6 @@ export {
   fromJSON,
   Helpers,
   Input,
-
   JSONHydrator,
   // This is a class, but it’s not re-exported. That’s why it’s exported as type-only here.
   type LazyResult,
@@ -64,6 +62,5 @@ export {
   TransformCallback,
   Transformer,
   Warning,
-
   WarningOptions
 } from './postcss.js'

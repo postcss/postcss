@@ -2,52 +2,51 @@
 
 **Table of Contents**
 
-* [Links](#links)
-* [Step 1: Create an idea](#step-1-create-an-idea)
-* [Step 2: Create a project](#step-2-create-a-project)
-* [Step 3: Find nodes](#step-3-find-nodes)
-* [Step 4: Change nodes](#step-4-change-nodes)
-* [Step 5: Fight with frustration](#step-5-fight-with-frustration)
-* [Step 6: Make it public](#step-6-make-it-public)
+- [Links](#links)
+- [Step 1: Create an idea](#step-1-create-an-idea)
+- [Step 2: Create a project](#step-2-create-a-project)
+- [Step 3: Find nodes](#step-3-find-nodes)
+- [Step 4: Change nodes](#step-4-change-nodes)
+- [Step 5: Fight with frustration](#step-5-fight-with-frustration)
+- [Step 6: Make it public](#step-6-make-it-public)
 
 ## Links
 
 Documentation:
 
-* [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
-* [Plugin Guidelines](https://github.com/postcss/postcss/blob/main/docs/guidelines/plugin.md)
-* [PostCSS API](https://postcss.org/api/)
-* [AST playground](https://astexplorer.net/#/2uBU1BLuJ1)
+- [Plugin Boilerplate](https://github.com/postcss/postcss-plugin-boilerplate)
+- [Plugin Guidelines](https://github.com/postcss/postcss/blob/main/docs/guidelines/plugin.md)
+- [PostCSS API](https://postcss.org/api/)
+- [AST playground](https://astexplorer.net/#/2uBU1BLuJ1)
 
 Support:
 
-* [Ask questions](https://github.com/orgs/postcss/discussions)
-* [PostCSS twitter](https://twitter.com/postcss) with latest updates.
-
+- [Ask questions](https://github.com/orgs/postcss/discussions)
+- [PostCSS twitter](https://twitter.com/postcss) with latest updates.
 
 ## Step 1: Create an idea
 
 There are many fields where writing new PostCSS plugin will help your work:
 
-* **Compatibility fixes:** if you always forget to add hack
+- **Compatibility fixes:** if you always forget to add hack
   for browser compatibility, you can create PostCSS plugin to automatically
   insert this hack for you. [`postcss-flexbugs-fixes`] and [`postcss-100vh-fix`]
   are good examples.
-* **Automate routine operations:** let’s computer do routine operations, free
+- **Automate routine operations:** let’s computer do routine operations, free
   yourself for creative tasks. For instance, PostCSS with [RTLCSS] can
   automatically convert a design to right-to-left languages (like Arabic
   or Hebrew) or with [postcss-dark-theme-class`] can insert media
   queries for dark/light theme switcher.
-* **Preventing popular mistakes:** “if an error happened twice,
+- **Preventing popular mistakes:** “if an error happened twice,
   it will happen again.” PostCSS plugin can check your source code for popular
   mistakes and save your time for unnecessary debugging. The best way to do it
   is to [write new Stylelint plugin] (Stylelint uses PostCSS inside).
-* **Increasing code maintainability:** [CSS Modules] or [`postcss-autoreset`]
+- **Increasing code maintainability:** [CSS Modules] or [`postcss-autoreset`]
   are great example how PostCSS can increase code maintainability by isolation.
-* **Polyfills:** we already have a lot polyfills for CSS drafts
+- **Polyfills:** we already have a lot polyfills for CSS drafts
   in [`postcss-preset-env`]. If you find a new draft, you can add a new plugin
   and send it to this preset.
-* **New CSS syntax:** we recommend avoiding adding new syntax to CSS.
+- **New CSS syntax:** we recommend avoiding adding new syntax to CSS.
   If you want to add a new feature, it is always better to write a CSS draft
   proposal, send it to [CSSWG] and then implement polyfill.
   [`postcss-easing-gradients`] with [this proposal] is a good example.
@@ -68,24 +67,25 @@ There are many fields where writing new PostCSS plugin will help your work:
 [RTLCSS]: https://rtlcss.com/
 [CSSWG]: https://github.com/w3c/csswg-drafts
 
-
 ## Step 2: Create a project
 
 There are two ways to write a plugin:
 
-* Create a **private** plugin. Use this way only if the plugin is related
+- Create a **private** plugin. Use this way only if the plugin is related
   to specific things of projects. For instance, you want to automate a specific
   task for your unique UI library.
-* Publish a **public** plugin. It is always the recommended way. Remember that
+- Publish a **public** plugin. It is always the recommended way. Remember that
   private front-end systems, even in Google, often became unmaintained.
   On the other hand, many popular plugins were created during the work
   on a closed source project.
 
 For private plugin:
+
 1. Create a new file in `postcss/` folder with the name of your plugin.
 2. Copy [plugin template] from our boilerplate.
 
 For public plugins:
+
 1. Use the guide in [PostCSS plugin boilerplate] to create a plugin directory.
 2. Create a repository on GitHub or GitLab.
 3. Publish your code there.
@@ -104,21 +104,22 @@ module.exports.postcss = true
 [PostCSS plugin boilerplate]: https://github.com/postcss/postcss-plugin-boilerplate/
 [plugin template]: https://github.com/postcss/postcss-plugin-boilerplate/blob/main/template/index.t.js
 
-
 ## Step 3: Find nodes
 
 Most of the PostCSS plugins do two things:
+
 1. Find something in CSS (for instance, `will-change` property).
 2. Change found elements (for instance, insert `transform: translateZ(0)` before
    `will-change` as a polyfill for old browsers).
 
 PostCSS parses CSS to the tree of nodes (we call it AST). This tree may content:
-* [`Root`]: node of the top of the tree, which represent CSS file.
-* [`AtRule`]: statements begin with `@` like `@charset "UTF-8"`
+
+- [`Root`]: node of the top of the tree, which represent CSS file.
+- [`AtRule`]: statements begin with `@` like `@charset "UTF-8"`
   or `@media (screen) {}`.
-* [`Rule`]: selector with declaration inside. For instance `input, button {}`.
-* [`Declaration`]: key-value pair like `color: black`;
-* [`Comment`]: stand-alone comment. Comments inside selectors, at-rule
+- [`Rule`]: selector with declaration inside. For instance `input, button {}`.
+- [`Declaration`]: key-value pair like `color: black`;
+- [`Comment`]: stand-alone comment. Comments inside selectors, at-rule
   parameters and values are stored in node’s `raws` property.
 
 You can use [AST Explorer](https://astexplorer.net/#/2uBU1BLuJ1) to learn
@@ -136,10 +137,10 @@ You can find all nodes with specific types by adding method to plugin object:
 module.exports = (opts = {}) => {
   return {
     postcssPlugin: 'PLUGIN NAME',
-    Once (root) {
+    Once(root) {
       // Calls once per file, since every file has single Root
     },
-    Declaration (decl) {
+    Declaration(decl) {
       // All declaration nodes
     }
   }
@@ -170,21 +171,21 @@ you can use quick search:
 
 For other cases, you can use regular expressions or specific parsers:
 
-* [Selector parser](https://github.com/postcss/postcss-selector-parser)
-* [Value parser](https://github.com/TrySound/postcss-value-parser)
-* [Dimension parser](https://github.com/jedmao/parse-css-dimension)
+- [Selector parser](https://github.com/postcss/postcss-selector-parser)
+- [Value parser](https://github.com/TrySound/postcss-value-parser)
+- [Dimension parser](https://github.com/jedmao/parse-css-dimension)
   for `number`, `length` and `percentage`.
-* [Media query parser](https://github.com/dryoma/postcss-media-query-parser)
-* [Font parser](https://github.com/jedmao/parse-css-font)
-* [Sides parser](https://github.com/jedmao/parse-css-sides)
+- [Media query parser](https://github.com/dryoma/postcss-media-query-parser)
+- [Font parser](https://github.com/jedmao/parse-css-font)
+- [Sides parser](https://github.com/jedmao/parse-css-sides)
   for `margin`, `padding` and `border` properties.
 
 Other tools to analyze AST:
 
-* [Property resolver](https://github.com/jedmao/postcss-resolve-prop)
-* [Function resolver](https://github.com/andyjansson/postcss-functions)
-* [Font helpers](https://github.com/jedmao/postcss-font-helpers)
-* [Margin helpers](https://github.com/jedmao/postcss-margin-helpers)
+- [Property resolver](https://github.com/jedmao/postcss-resolve-prop)
+- [Function resolver](https://github.com/andyjansson/postcss-functions)
+- [Font helpers](https://github.com/jedmao/postcss-font-helpers)
+- [Margin helpers](https://github.com/jedmao/postcss-margin-helpers)
 
 Don’t forget that regular expression and parsers are heavy tasks. You can use
 `String#includes()` quick test before check node with heavy tool:
@@ -207,15 +208,15 @@ runtime-defined listeners:
 module.exports = (opts = {}) => {
   return {
     postcssPlugin: 'vars-collector',
-    prepare (result) {
+    prepare(result) {
       const variables = {}
       return {
-        Declaration (node) {
+        Declaration(node) {
           if (node.variable) {
             variables[node.prop] = node.value
           }
         },
-        OnceExit () {
+        OnceExit() {
           console.log(variables)
         }
       }
@@ -228,7 +229,6 @@ You can use `prepare()` to generate listeners dynamically. For instance,
 to use [Browserslist] to get declaration properties.
 
 [Browserslist]: https://github.com/browserslist/browserslist
-
 
 ## Step 4: Change nodes
 
@@ -261,10 +261,10 @@ any children, plugin will re-visit parent as well. Only `Once` and
 const plugin = () => {
   return {
     postcssPlugin: 'to-red',
-    Rule (rule) {
+    Rule(rule) {
       console.log(rule.toString())
     },
-    Declaration (decl) {
+    Declaration(decl) {
       console.log(decl.toString())
       decl.value = 'red'
     }
@@ -301,7 +301,7 @@ const processed = Symbol('processed')
 const plugin = () => {
   return {
     postcssPlugin: 'example',
-    Rule (rule) {
+    Rule(rule) {
       if (!rule[processed]) {
         process(rule)
         rule[processed] = true
@@ -367,7 +367,6 @@ if (!variables[name]) {
 [`Node#next`]: https://postcss.org/api/#node-next
 [API docs]: https://postcss.org/api/
 
-
 ## Step 5: Fight with frustration
 
 > I hate programming<br />
@@ -391,7 +390,6 @@ to debug the code.
 
 PostCSS community can help you since we are all experiencing the same problems.
 Don’t afraid to ask in [special channel](https://github.com/orgs/postcss/discussions).
-
 
 ## Step 6: Make it public
 

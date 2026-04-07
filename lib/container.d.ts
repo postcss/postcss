@@ -8,11 +8,7 @@ import Rule from './rule.js'
 declare namespace Container {
   export type ContainerWithChildren<Child extends Node = ChildNode> = {
     nodes: Child[]
-  } & (
-    | AtRule
-    | Root
-    | Rule
-  )
+  } & (AtRule | Root | Rule)
 
   export interface ValueOptions {
     /**
@@ -43,7 +39,6 @@ declare namespace Container {
     | string
     | undefined
 
-   
   export { Container_ as default }
 }
 
