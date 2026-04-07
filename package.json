@@ -86,7 +86,7 @@
     "test:size": "size-limit",
     "test": "FORCE_COLOR=1 pnpm run /^test:/",
     "unit": "uvu -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\"",
-    "old": "uvu -r ../../../../../../../test/old-node.js -r ts-node/register/transpile-only test \"\\.test\\.(ts|js)$\""
+    "old": "uvu -r ../../../../../../../test/old-node.js test \"\\.test\\.(ts|js)$\""
   },
   "dependencies": {
     "nanoid": "^3.3.11",
