@@ -1,6 +1,6 @@
-# Thread Model
+# Threat Model
 
-What threads we think of when we design our tool and process.
+What threats we think of when we design our tool and process.
 
 ## Stealing maintainer credentials
 
