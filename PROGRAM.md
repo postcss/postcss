@@ -12,8 +12,8 @@ maintainer_github_login: alanzabihi
 auto_approve: true
 assignment_timeout: 24h
 review_timeout: 12h
-min_queue_depth: 5
-max_queue_depth: 10
+min_queue_depth: 10
+max_queue_depth: 15
 
 ## Goal
 
