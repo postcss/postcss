@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.10
+
+- Fixed XSS via unescaped `</style>` in non-bundler cases (by @TharVid).
+
 ## 8.5.9
 
 - Speed up source map encoding paring in case of the error.
