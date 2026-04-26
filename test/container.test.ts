@@ -551,7 +551,7 @@ test('append() move node on insert', () => {
   let a = parse('a{}')
   let b = parse('b{}')
 
-  b.append(a.first as Rule)
+  b.append(a.first)
   let bLast = b.last as Rule
   bLast.selector = 'b a'
 
@@ -666,13 +666,13 @@ test('insertBefore() has defined way of adding newlines', () => {
   is(root.toString(), 'c {}b {}other {}a {}')
 
   root = parse('other {}\na {}')
-  root.insertBefore(root.nodes[1] as Rule, 'b {}')
-  root.insertBefore(root.nodes[1] as Rule, 'c {}')
+  root.insertBefore(root.nodes[1], 'b {}')
+  root.insertBefore(root.nodes[1], 'c {}')
   is(root.toString(), 'other {}\nc {}\nb {}\na {}')
 
   root = parse('other {}a {}')
-  root.insertBefore(root.nodes[1] as Rule, 'b {}')
-  root.insertBefore(root.nodes[1] as Rule, 'c {}')
+  root.insertBefore(root.nodes[1], 'b {}')
+  root.insertBefore(root.nodes[1], 'c {}')
   is(root.toString(), 'other {}c {}b {}a {}')
 })
 
