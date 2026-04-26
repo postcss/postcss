@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.11
+
+- Fixed nested brackets parsing performance.
+
 ## 8.5.10
 
 - Fixed XSS via unescaped `</style>` in non-bundler cases (by @TharVid).
