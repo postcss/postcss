@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.12
+
+- Fixed reading any file via user-generated CSS.
+- Added `opts.unsafeMap` to disable checks.
+
 ## 8.5.11
 
 - Fixed nested brackets parsing performance (by @offset).
