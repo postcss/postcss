@@ -87,7 +87,8 @@ test('tokenizes square brackets', () => {
 test('tokenizes complicated brackets', () => {
   run('(())("")(/**/)(\\\\)(\n)(', [
     ['(', '(', 0],
-    ['brackets', '()', 1, 2],
+    ['(', '(', 1],
+    [')', ')', 2],
     [')', ')', 3],
     ['(', '(', 4],
     ['string', '""', 5, 6],
