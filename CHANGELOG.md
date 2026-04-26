@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## 8.5.11
 
-- Fixed nested brackets parsing performance.
+- Fixed nested brackets parsing performance (by @offset).
 
 ## 8.5.10
 
