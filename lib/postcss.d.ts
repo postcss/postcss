@@ -351,6 +351,11 @@ declare namespace postcss {
      * to generate correct source maps.
      */
     to?: string
+
+    /**
+     * Disable source map file protections.
+     */
+    unsafeMap?: boolean
   }
 
   export type Postcss = typeof postcss
