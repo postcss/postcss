@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.15
+
+- Fixed declaration parsing performance (by @homanp).
+
 ## 8.5.14
 
 - Fixed custom syntax regression (by @43081j).
