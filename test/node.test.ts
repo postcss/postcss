@@ -849,6 +849,16 @@ test('rangeBy() returns range for index and endIndex', () => {
   })
 })
 
+test('rangeBy() returns range for index 0', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+  equal(one.rangeBy({ index: 0 }), {
+    end: { column: 7, line: 1, offset: 6 },
+    start: { column: 6, line: 1, offset: 5 }
+  })
+})
+
 test('rangeBy() returns range for index and endIndex when offsets are missing', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
