@@ -1,7 +1,7 @@
 import { test } from 'uvu'
 import { equal, is, match, throws, type } from 'uvu/assert'
 
-import { AtRule, Declaration, parse, Root, Rule } from '../lib/postcss.js'
+import { AtRule, Comment, Declaration, parse, Root, Rule } from '../lib/postcss.js'
 
 let example =
   'a { a: 1; b: 2 }' +
@@ -839,6 +839,20 @@ test('normalize() does not normalize new children with exists before', () => {
   let rule = parse('a { a: 1; b: 2 }').first as Rule
   rule.append({ prop: 'c', raws: { before: '\n ' }, value: '3' })
   is(rule.toString(), 'a { a: 1; b: 2;\n c: 3 }')
+})
+
+test('normalize() preserves explicit before for root insertions', () => {
+  let root = parse('a {}\n\n/* old */')
+  let comment = root.last as Comment
+  let node = new Comment({
+    raws: { before: '', inline: true, left: ' ', right: '' },
+    text: 'New Comment'
+  })
+
+  comment.before(node)
+
+  is(root.nodes[1], node)
+  is(node.raws.before, '')
 })
 
 test('forces Declaration#value to be string', () => {
