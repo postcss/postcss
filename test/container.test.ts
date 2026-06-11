@@ -841,18 +841,27 @@ test('normalize() does not normalize new children with exists before', () => {
   is(rule.toString(), 'a { a: 1; b: 2;\n c: 3 }')
 })
 
-test('normalize() preserves explicit before for root insertions', () => {
+test('normalize() preserves explicit before for new root nodes', () => {
   let root = parse('a {}\n\n/* old */')
   let comment = root.last as Comment
-  let node = new Comment({
+  let newComment = new Comment({
     raws: { before: '', inline: true, left: ' ', right: '' },
     text: 'New Comment'
   })
 
-  comment.before(node)
+  comment.before(newComment)
 
-  is(root.nodes[1], node)
-  is(node.raws.before, '')
+  is(root.nodes[1], newComment)
+  is(newComment.raws.before, '')
+
+  root = parse('a {}\n\nb {}')
+  let rule = root.last as Rule
+  let newRule = new Rule({ raws: { before: '' }, selector: 'em' })
+
+  rule.before(newRule)
+
+  is(root.nodes[1], newRule)
+  is(newRule.raws.before, '')
 })
 
 test('normalize() updates before for moved root comments', () => {
