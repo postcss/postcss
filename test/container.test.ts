@@ -855,6 +855,18 @@ test('normalize() preserves explicit before for root insertions', () => {
   is(node.raws.before, '')
 })
 
+test('normalize() updates before for moved root comments', () => {
+  let source = parse('a {}\n/* moved */')
+  let target = parse('b {}\n\n/* old */')
+  let moved = source.last as Comment
+  let comment = target.last as Comment
+
+  comment.before(moved)
+
+  is(target.nodes[1], moved)
+  is(moved.raws.before, '\n\n')
+})
+
 test('forces Declaration#value to be string', () => {
   let rule = parse('a { a: 1; b: 2 }').first as Rule
   // @ts-expect-error Testing invalid API
