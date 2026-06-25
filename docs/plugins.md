@@ -219,6 +219,8 @@ See also [`oldie`] plugins pack.
 - [`postcss-nested`] unwraps nested rules.
 - [`postcss-nested-props`] unwraps nested properties.
 - [`postcss-nested-vars`] supports nested Sass-style variables.
+- [`postcss-nth-nested`] adds a `:nth-nested()` pseudo-class for selecting
+  elements by nesting depth.
 - [`postcss-pseudo-class-any-button`] adds `:any-button` pseudo-class
   for targeting all button elements.
 - [`postcss-pseudo-class-enter`] transforms `:enter` into `:hover` and `:focus`.
@@ -744,6 +746,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-merge-rules`]: https://github.com/ben-eb/postcss-merge-rules
 [`postcss-mq-optimize`]: https://github.com/panec/postcss-mq-optimize
 [`postcss-nested-vars`]: https://github.com/jedmao/postcss-nested-vars
+[`postcss-nth-nested`]: https://github.com/georgeadamson/postcss-nth-nested
 [`postcss-remove-root`]: https://github.com/cbracco/postcss-remove-root
 [`postcss-simple-grid`]: https://github.com/admdh/postcss-simple-grid
 [`postcss-simple-trig`]: https://github.com/Rplus/postcss-simple-trig
