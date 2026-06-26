@@ -523,6 +523,17 @@ test('positionBy() returns position for word after AST mutations', () => {
   equal(two.positionBy({ word: 'two' }), { column: 2, line: 3, offset: 14 })
 })
 
+test('positionBy() returns position when offset is missing', () => {
+  let css = parse('a {  one: X  }')
+  let a = css.first as Rule
+  let one = a.first as Declaration
+
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.start) delete one.source.start.offset
+
+  equal(one.positionBy(), { column: 6, line: 1, offset: 5 })
+})
+
 test('positionBy() returns position for index', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
