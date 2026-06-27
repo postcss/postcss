@@ -3,42 +3,34 @@ on:
   push:
     tags:
       - '*'
-permissions:
-  contents: write
 jobs:
-  release:
-    name: Release On Tag
-    if: startsWith(github.ref, 'refs/tags/')
+  publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Extract the changelog
-        id: changelog
-        run: |
-          TAG_NAME=${GITHUB_REF/refs\/tags\//}
-          READ_SECTION=false
-          CHANGELOG=""
-          while IFS= read -r line; do
-            if [[ "$line" =~ ^#+\ +(.*) ]]; then
-              if [[ "${BASH_REMATCH[1]}" == "$TAG_NAME" ]]; then
-                READ_SECTION=true
-              elif [[ "$READ_SECTION" == true ]]; then
-                break
-              fi
-            elif [[ "$READ_SECTION" == true ]]; then
-              CHANGELOG+="$line"$'\n'
-            fi
-          done < "CHANGELOG.md"
-          CHANGELOG=$(echo "$CHANGELOG" | awk '/./ {$1=$1;print}')
-          echo "changelog_content<<EOF" >> $GITHUB_OUTPUT
-          echo "$CHANGELOG" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-      - name: Create the release
-        if: steps.changelog.outputs.changelog_content != ''
-        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: Clean npm package
+        uses: ai/clean-npm-project@29219e611c2da08a07cb0a6a1b965c162e5940a9 # v0.3.0
         with:
-          name: ${{ github.ref_name }}
-          body: '${{ steps.changelog.outputs.changelog_content }}'
-          draft: false
-          prerelease: false
+          clean-docs: true
+      - name: Install Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 26
+      - name: Publish npm package
+        run: npm stage publish
+        working-directory: cleaned-project/
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: Clean npm package
+        uses: ai/copy-changelog-to-release@a6dc825c34575add2da2060796794f7b84894628 # v0.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

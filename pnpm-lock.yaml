@@ -39,9 +39,6 @@ importers:
       check-dts:
         specifier: ^0.9.0
         version: 0.9.0(typescript@5.9.3)
-      clean-publish:
-        specifier: ^7.0.1
-        version: 7.0.1
       concat-with-sourcemaps:
         specifier: ^1.1.0
         version: 1.1.0
@@ -967,11 +964,6 @@ packages:
     peerDependencies:
       typescript: '>=4.0.0'
 
-  clean-publish@7.0.1:
-    resolution: {integrity: sha512-Fr4c1dg6kEG4juBo2IMbft0w8inX0QTsbkRWIy5R0jZGWswQIpgOW0yfqV7bmyxn1F1eQtm9VBy5VDyB3go8WQ==}
-    engines: {node: '>= 22.0.0'}
-    hasBin: true
-
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
@@ -1601,10 +1593,6 @@ packages:
   test-exclude@8.0.0:
     resolution: {integrity: sha512-ZOffsNrXYggvU1mDGHk54I96r26P8SyMjO5slMKSc7+IWmtB/MQKnEC2fP51imB3/pT6YK5cT5E8f+Dd9KdyOQ==}
     engines: {node: 20 || >=22}
-
-  tinyexec@1.1.2:
-    resolution: {integrity: sha512-dAqSqE/RabpBKI8+h26GfLq6Vb3JVXs30XYQjdMjaj/c2tS8IYYMbIzP599KtRj7c57/wYApb3QjgRgXmrCukA==}
-    engines: {node: '>=18'}
 
   tinyglobby@0.2.16:
     resolution: {integrity: sha512-pn99VhoACYR8nFHhxqix+uvsbXineAasWm5ojXoN8xEwK5Kd3/TrhNn1wByuD52UxWRLy8pu+kRMniEi6Eq9Zg==}
@@ -2411,13 +2399,6 @@ snapshots:
       typescript: 5.9.3
       vfile-location: 5.0.3
 
-  clean-publish@7.0.1:
-    dependencies:
-      lilconfig: 3.1.3
-      picomatch: 4.0.4
-      tinyexec: 1.1.2
-      tinyglobby: 0.2.16
-
   cliui@8.0.1:
     dependencies:
       string-width: 4.2.3
@@ -3042,8 +3023,6 @@ snapshots:
       '@istanbuljs/schema': 0.1.6
       glob: 13.0.6
       minimatch: 10.2.5
-
-  tinyexec@1.1.2: {}
 
   tinyglobby@0.2.16:
     dependencies:

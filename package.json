@@ -101,7 +101,6 @@
     "actions-up": "^1.14.1",
     "c8": "^11.0.0",
     "check-dts": "^0.9.0",
-    "clean-publish": "^7.0.1",
     "concat-with-sourcemaps": "^1.1.0",
     "eslint": "^10.4.0",
     "multiocular": "^0.8.3",
