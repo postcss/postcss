@@ -1,0 +1,25 @@
+diff --git a/browser.d.ts b/browser.d.ts
+deleted file mode 100644
+index 21f3fc69190b574ab8456514d3da1972afa53973..0000000000000000000000000000000000000000
+diff --git a/package.json b/package.json
+index 389cc6b064b5f888e7f9d718f5440feabdce57ad..c1ae265542ad386fa2214914b0186ade81dd6ee2 100644
+--- a/package.json
++++ b/package.json
+@@ -20,13 +20,10 @@
+       "import": "./browser.mjs",
+       "types": "./browser.d.ts"
+     },
+-    "./yargs": [
+-      {
+-        "import": "./yargs.mjs",
+-        "require": "./yargs"
+-      },
+-      "./yargs"
+-    ]
++    "./yargs": {
++      "require": "./index.cjs",
++      "import": "./yargs.mjs"
++    }
+   },
+   "type": "module",
+   "module": "./index.mjs",

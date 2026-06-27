@@ -2,6 +2,7 @@ coverage/
 test/
 
 docs/
+patches/
 tsconfig.json
 eslint.config.mjs
 pnpm-workspace.yaml

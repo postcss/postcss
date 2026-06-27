@@ -2,3 +2,6 @@ allowBuilds:
   esbuild: false
   simple-git-hooks: true
   unrs-resolver: false
+
+patchedDependencies:
+  'yargs@17.7.2': 'patches/yargs@17.7.2.patch'
