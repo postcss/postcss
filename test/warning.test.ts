@@ -121,6 +121,15 @@ test('gets range from index', () => {
   is(warning.endColumn, 4)
 })
 
+test('gets range from index 0', () => {
+  let root = parse('a b{}')
+  let warning = new Warning('text', { index: 0, node: root.first })
+  is(warning.line, 1)
+  is(warning.column, 1)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 2)
+})
+
 test('gets range from index and endIndex', () => {
   let root = parse('a b{}')
   let warning = new Warning('text', { endIndex: 3, index: 2, node: root.first })
