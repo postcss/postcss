@@ -340,19 +340,22 @@ test('always calls raw to retrieve raws', () => {
     customStringifier.stringify(node)
   }
   let result = root.toString(stringify)
-  is(result, [
-    '',
-    'RAW(rule, before, undefined)',
-    'a',
-    'RAW(rule, between, beforeOpen)',
-    '{',
-    'RAW(decl, before, undefined)',
-    'color',
-    'RAW(decl, between, colon)',
-    'black;',
-    'RAW(rule, after, undefined)',
-    '}'
-  ].join('\n'))
+  is(
+    result,
+    [
+      '',
+      'RAW(rule, before, undefined)',
+      'a',
+      'RAW(rule, between, beforeOpen)',
+      '{',
+      'RAW(decl, before, undefined)',
+      'color',
+      'RAW(decl, between, colon)',
+      'black;',
+      'RAW(rule, after, undefined)',
+      '}'
+    ].join('\n')
+  )
 })
 
 test.run()
