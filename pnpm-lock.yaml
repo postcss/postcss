@@ -52,8 +52,8 @@ importers:
         specifier: ^0.8.3
         version: 0.8.3
       nanodelay:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^1.0.8
+        version: 1.0.8
       nanospy:
         specifier: ^2.0.2
         version: 2.0.2
@@ -1384,9 +1384,8 @@ packages:
     engines: {node: ^22.16.0 || >=24.0.0}
     hasBin: true
 
-  nanodelay@2.0.2:
-    resolution: {integrity: sha512-6AS5aCSXsjoxq2Jr9CdaAeT60yoYDOTp6po9ziqeOeY6vf6uTEHYSqWql6EFILrM3fEfXgkZ4KqE9L0rTm/wlA==}
-    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+  nanodelay@1.0.8:
+    resolution: {integrity: sha512-mfVn7t26m4mVoUuWdUevZccq0saIh5T4Lu3cAzbZ6j03yc4sIDwM3Dof0LS70YwflPZtGJ92BGhNYV862wXRvg==}
 
   nanoevents@9.1.0:
     resolution: {integrity: sha512-Jd0fILWG44a9luj8v5kED4WI+zfkkgwKyRQKItTtlPfEsh7Lznfi1kr8/iZ+XAIss4Qq5GqRB0qtWbaz9ceO/A==}
@@ -2843,7 +2842,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  nanodelay@2.0.2: {}
+  nanodelay@1.0.8: {}
 
   nanoevents@9.1.0: {}
 
