@@ -40,6 +40,19 @@ test('rehydrates a JSON AST', () => {
   )
 })
 
+test('preserves node raws when rehydrating a JSON AST', () => {
+  let css = 'a {}\nb {}\n\nc {}\n'
+  let root = postcss.parse(css)
+
+  let rehydrated = postcss.fromJSON(
+    JSON.parse(JSON.stringify(root.toJSON()))
+  ) as Root
+
+  is(rehydrated.toString(), css)
+  is(rehydrated.nodes[1].raws.before, '\n')
+  is(rehydrated.nodes[2].raws.before, '\n\n')
+})
+
 test('rehydrates an array of Nodes via JSON.stringify', () => {
   let root = postcss.parse('.cls { color: orange; }')
 
