@@ -294,7 +294,7 @@ test('uses source map', () => {
 
   is(error.file, join(__dirname, 'b.css'))
   is(error.line, 2)
-  is(error.column, 0) // Is this correct?
+  is(error.column, 1)
   is(error.endLine, undefined)
   is(error.endColumn, undefined)
   type(error.source, 'undefined')
@@ -328,7 +328,7 @@ test('works with path in sources', () => {
 
   is(error.file, join(__dirname, 'b.css'))
   is(error.line, 2)
-  is(error.column, 0) // Is this correct?
+  is(error.column, 1)
   is(error.endLine, undefined)
   is(error.endColumn, undefined)
   type(error.source, 'undefined')

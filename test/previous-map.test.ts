@@ -284,9 +284,9 @@ test('uses source map path as a root', () => {
     '* div {\n  color: red;\n  }\n/*# sourceMappingURL=maps/a.map */',
     { from }
   )
-  equal(root.source?.input.origin(1, 3, 1, 5), {
-    column: 4,
-    endColumn: 7,
+  equal(root.source?.input.origin(1, 4, 1, 6), {
+    column: 5,
+    endColumn: 8,
     endLine: 3,
     file: join(dir, '..', 'test.scss'),
     line: 3,
@@ -359,7 +359,7 @@ test('works with index map', () => {
       }
     }
   })
-  is((root as any).source.input.origin(1, 1).file, join(__dirname, 'b.css'))
+  is((root as any).source.input.origin(1, 2).file, join(__dirname, 'b.css'))
 })
 
 test.run()
