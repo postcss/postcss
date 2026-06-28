@@ -872,6 +872,20 @@ test('allows to clone nodes', () => {
   is(root2.toString(), 'a { color: black; z-index: 1 } b {}')
 })
 
+test('adopts root-less nodes in constructor instead of cloning them', () => {
+  let decl = new Declaration({ prop: 'foo', value: 'bar' })
+  let atRule = new AtRule({ name: 'foo', nodes: [decl] })
+
+  // The passed-in instance itself is adopted (its parent is updated), so the
+  // caller's reference stays usable rather than being silently cloned (#1987).
+  equal(decl.parent, atRule)
+  is(atRule.first, decl)
+
+  decl.before(new Declaration({ prop: 'baz', value: 'qux' }))
+  equal(atRule.nodes.length, 2)
+  is(atRule.last, decl)
+})
+
 test('container.nodes can be sorted', () => {
   let root = parse('@b; @c; @a;')
   let b = root.nodes[0]
