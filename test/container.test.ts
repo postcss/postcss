@@ -882,7 +882,7 @@ test('adopts root-less nodes in constructor instead of cloning them', () => {
   is(atRule.first, decl)
 
   decl.before(new Declaration({ prop: 'baz', value: 'qux' }))
-  equal(atRule.nodes.length, 2)
+  equal(atRule.nodes!.length, 2)
   is(atRule.last, decl)
 })
 
