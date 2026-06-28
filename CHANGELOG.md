@@ -2,6 +2,14 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.16
+
+- Fixed `Input#origin()` position (by @mizdra).
+- Fixed `raws` after rehydrating a JSON AST (by @sarathfrancis90).
+- Fixed putting parent-less node in `nodes` of new node (by @MahinAnowar).
+- Fixed computing `offset` in `positionBy()` (by @greymoth-jp).
+- Fixed `rangeBy()` on `index: 0` (by @sarathfrancis90).
+
 ## 8.5.15
 
 - Fixed declaration parsing performance (by @homanp).
