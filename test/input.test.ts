@@ -105,4 +105,32 @@ test('origin() returns source position with source map', () => {
   })
 })
 
+test('origin() does not mix undefined and null when end position is unmapped', () => {
+  // @ts-expect-error source-map-js accepts null, but it's not in the types
+  let node = new SourceNode(null, null, null, [
+    new SourceNode(1, 0, 'a.css', 'a'),
+    new SourceNode(1, 1, 'a.css', ' '),
+    new SourceNode(1, 2, 'a.css', '{'),
+    new SourceNode(1, 3, 'a.css', '}')
+  ])
+  let from = join(__dirname, 'all.css')
+  let codeWithSourceMap = node.toStringWithSourceMap({ file: from })
+  let input = new Input(codeWithSourceMap.code, {
+    from,
+    map: { prev: codeWithSourceMap.map }
+  })
+
+  // The start position (1, 1) is mapped, but the requested end position
+  // (99, 1) is far beyond anything the source map covers, so
+  // `originalPositionFor()` cannot resolve it.
+  equal(input.origin(1, 1, 99, 1), {
+    column: 1,
+    endColumn: undefined,
+    endLine: undefined,
+    file: join(__dirname, 'a.css'),
+    line: 1,
+    url: urlOf('a.css')
+  })
+})
+
 test.run()
