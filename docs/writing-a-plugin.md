@@ -157,7 +157,7 @@ you can use quick search:
     Declaration: {
       color: decl => {
         // All `color` declarations
-      }
+      },
       '*': decl => {
         // All declarations
       }
@@ -316,7 +316,7 @@ Second argument also have `result` object to add warnings:
 
 ```js
     Declaration: {
-      bad: (decl, { result }) {
+      bad: (decl, { result }) => {
         decl.warn(result, 'Deprecated property bad')
       }
     }
@@ -328,7 +328,7 @@ when this file changes:
 
 ```js
     AtRule: {
-      import: (atRule, { result }) {
+      import: (atRule, { result }) => {
         const importedFile = parseImport(atRule)
         result.messages.push({
           type: 'dependency',
