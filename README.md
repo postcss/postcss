@@ -42,15 +42,6 @@ PostCSS needs your support. We are accepting donations
 <i><a href="https://www.atlascloud.ai/?utm_source=github&utm_medium=link&utm_campaign=postcss">Atlas Cloud</a> is a full-modal AI inference platform that gives developers a single AI API to access video generation, image generation, and LLM APIs. Instead of managing multiple vendor integrations, you connect once and get unified access to 300+ curated models across all modalities.
 
 Check out Atlas Cloud's <a href="https://www.atlascloud.ai/console/coding-plan?utm_source=github&utm_medium=link&utm_campaign=postcss">new coding plan promotion</a> for more budget-friendly API access.</i>
-<br><br><br>
-
-<a href="https://tailwindcss.com/">
-  <img src="https://refactoringui.nyc3.cdn.digitaloceanspaces.com/tailwind-logo.svg"
-       alt="Sponsored by Tailwind CSS" width="213" height="50"></a>      
-<a href="https://themeisle.com/">
-  <img src="https://mllj2j8xvfl0.i.optimole.com/d0cOXWA.3970~373ad/w:auto/h:auto/q:90/https://s30246.pcdn.co/wp-content/uploads/2019/03/logo.png"
-       alt="Sponsored by ThemeIsle" width="171" height="56"></a>
-</div>
 
 ## Plugins
 
