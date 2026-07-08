@@ -38,6 +38,7 @@ PostCSS needs your support. We are accepting donations
        alt="Sponsored by Atlas Cloud" width="300" height="48">
   </picture>
 </a>
+</div>
 
 <i><a href="https://www.atlascloud.ai/?utm_source=github&utm_medium=link&utm_campaign=postcss">Atlas Cloud</a> is a full-modal AI inference platform that gives developers a single AI API to access video generation, image generation, and LLM APIs. Instead of managing multiple vendor integrations, you connect once and get unified access to 300+ curated models across all modalities.
 
