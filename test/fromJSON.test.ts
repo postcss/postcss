@@ -1,5 +1,5 @@
 import { test } from 'uvu'
-import { instance, is, throws } from 'uvu/assert'
+import { instance, is, throws, equal } from 'uvu/assert'
 import * as v8 from 'v8'
 
 import postcss, { Declaration, Input, Root, Rule } from '../lib/postcss.js'
@@ -67,6 +67,15 @@ test('throws when rehydrating an invalid JSON AST', () => {
   throws(() => {
     postcss.fromJSON({ type: 'not-a-node-type' })
   }, 'Unknown node type: not-a-node-type')
+})
+
+test('does not allow to change prototype', () => {
+  const node = postcss.fromJSON(
+    JSON.parse(
+      '{"type":"decl","prop":"color","value":"red","__proto__":{"hijacked":true}}'
+    )
+  )
+  equal(typeof node.hijacked, 'undefined')
 })
 
 test.run()
