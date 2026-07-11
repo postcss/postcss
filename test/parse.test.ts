@@ -4,7 +4,14 @@ import { eachTest, jsonify, testPath } from 'postcss-parser-tests'
 import { test } from 'uvu'
 import { equal, is, match, not, throws } from 'uvu/assert'
 
-import { AtRule, Declaration, parse, Root, Rule } from '../lib/postcss.js'
+import {
+  AtRule,
+  Declaration,
+  fromJSON,
+  parse,
+  Root,
+  Rule
+} from '../lib/postcss.js'
 
 test('works with file reads', () => {
   let stream = readFileSync(testPath('atrule-empty.css'))
@@ -249,6 +256,26 @@ test('should give the correct column of missed semicolon without !important', ()
     error = e
   }
   match(error.message, /2:15: Missed semicolon/)
+})
+
+test('does not overflow the stack on deeply nested nodes', () => {
+  let depth = 6000
+  let css = 'a{'.repeat(depth) + 'color:red' + '}'.repeat(depth)
+
+  let root = parse(css)
+  is(root.toString(), css)
+
+  let clone = root.clone()
+  is(clone.toString(), css)
+
+  let json = root.toJSON()
+  is(fromJSON(json).toString(), css)
+
+  let count = 0
+  root.walk(() => {
+    count += 1
+  })
+  is(count, depth + 1)
 })
 
 test.run()

@@ -1602,4 +1602,27 @@ test('append works after reassigning nodes through .parent', async () => {
   )
 })
 
+test('does not overflow the stack on deeply nested nodes', () => {
+  // The recursive sync walking crashed at ~3000 levels of nesting
+  let depth = 6000
+  let css = 'a{'.repeat(depth) + 'color:black' + '}'.repeat(depth)
+
+  let visited = 0
+  let plugin: Plugin = {
+    Declaration(decl) {
+      decl.value = 'red'
+      visited += 1
+    },
+    postcssPlugin: 'deep-changer'
+  }
+
+  let result = postcss([plugin]).process(postcss.parse(css), {
+    from: undefined
+  }).css
+
+  // The changed declaration is revisited on the second pass
+  is(visited, 2)
+  is(result, 'a{'.repeat(depth) + 'color:red' + '}'.repeat(depth))
+})
+
 test.run()

@@ -129,7 +129,7 @@
   "size-limit": [
     {
       "path": "lib/postcss.js",
-      "limit": "16 KB"
+      "limit": "16.5 KB"
     }
   ],
   "c8": {

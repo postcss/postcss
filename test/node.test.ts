@@ -314,6 +314,26 @@ test('toJSON() converts custom properties', () => {
   })
 })
 
+test('toJSON() converts nodes in custom properties', () => {
+  let root = new Root() as any
+  root._cache = [1, { toJSON: () => 'hack' }]
+  root._node = new Rule({ selector: 'a' })
+
+  equal(root.toJSON(), {
+    _cache: [1, 'hack'],
+    _node: {
+      nodes: [],
+      raws: {},
+      selector: 'a',
+      type: 'rule'
+    },
+    inputs: [],
+    nodes: [],
+    raws: {},
+    type: 'root'
+  })
+})
+
 test('raw() has shortcut to stringifier', () => {
   let rule = new Rule({ selector: 'a' })
   is(rule.raw('before'), '')

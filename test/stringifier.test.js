@@ -358,4 +358,20 @@ test('always calls raw to retrieve raws', () => {
   )
 })
 
+test('supports subclasses with overridden traversal methods', () => {
+  class CustomStringifier extends Stringifier {
+    rule(node) {
+      super.rule(node)
+    }
+  }
+
+  let css = 'a{color:black};@media screen{b{}}'
+  let result = ''
+  let custom = new CustomStringifier(i => {
+    result += i
+  })
+  custom.stringify(parse(css))
+  is(result, css)
+})
+
 test.run()
