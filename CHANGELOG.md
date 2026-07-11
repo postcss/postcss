@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.17
+
+- Fixed `Maximum call stack size exceeded` error.
+- Fixed Prototype hijacking for `postcss.fromJSON()`.
+- Fixed `Input#origin()` for unmapped end position (by @chatman-media).
+
 ## 8.5.16
 
 - Fixed `Input#origin()` position (by @mizdra).
