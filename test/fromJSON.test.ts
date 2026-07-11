@@ -75,6 +75,7 @@ test('does not allow to change prototype', () => {
       '{"type":"decl","prop":"color","value":"red","__proto__":{"hijacked":true}}'
     )
   )
+  // @ts-expect-error
   equal(typeof node.hijacked, 'undefined')
 })
 
