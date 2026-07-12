@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.18
+
+- Restricted loading previous source maps file to the `opts.from` folder for security reasons (use `unsafeMap: true` to disable the check).
+
 ## 8.5.17
 
 - Fixed `Maximum call stack size exceeded` error.
