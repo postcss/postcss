@@ -1,7 +1,7 @@
 import { test } from 'uvu'
 import { is, match, type } from 'uvu/assert'
 
-import { parse, Result } from '../lib/postcss.js'
+import postcss, { parse, Result } from '../lib/postcss.js'
 
 test('prepend() fixes spaces on insert before first', () => {
   let css = parse('a {} b {}')
@@ -42,6 +42,23 @@ test('fixes spaces on removing first rule', () => {
   if (!css.first) throw new Error('No nodes were parsed')
   css.first.remove()
   is(css.toString(), 'b{}\n')
+})
+
+test('keeps explicitly set raws.before on inserted node', () => {
+  let css = parse('/*a*/\n\n/*b*/')
+  let node = postcss.comment({ raws: { before: '' }, text: 'new' })
+  if (!css.nodes[1]) throw new Error('No nodes were parsed')
+  css.nodes[1].before(node)
+  is(node.raws.before, '')
+  is(css.toString(), '/*a*//*new*/\n\n/*b*/')
+})
+
+test('updates raws.before on node moved from another root', () => {
+  let css1 = parse('a{}\nb{}')
+  let css2 = parse('em{}\n\n\nstrong{}')
+  if (!css1.nodes[1] || !css2.nodes[1]) throw new Error('No nodes were parsed')
+  css2.nodes[1].before(css1.nodes[1])
+  is(css2.toString(), 'em{}\n\n\nb{}\n\n\nstrong{}')
 })
 
 test('keeps spaces on moving root', () => {

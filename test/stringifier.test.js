@@ -301,7 +301,7 @@ test('escapes </style & <!-- with \\3c CSS escape', () => {
     '\\3c /style> {}\n' +
       '@media \\3c style>;\n' +
       '/* \\3c /style>\\3c !--\\3c style> */\n' +
-      'a {\n' +
+      '\\3c /style>a {\n' +
       '    color: \\3c /style>' +
       '\\3c /style>}'
   )
