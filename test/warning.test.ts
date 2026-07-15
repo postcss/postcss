@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { test } from 'uvu'
 import { is, type } from 'uvu/assert'
 
-import { decl, parse, Warning } from '../lib/postcss.js'
+import { decl, Declaration, parse, Rule, Warning } from '../lib/postcss.js'
 
 test('outputs simple warning', () => {
   let warning = new Warning('text')
@@ -192,6 +192,27 @@ test('always returns valid ranges', () => {
   is(warning.column, 3)
   is(warning.endLine, 1)
   is(warning.endColumn, 4)
+})
+
+test('takes position from node of another PostCSS copy', () => {
+  let root = parse('a { color: black }')
+  let rule = root.first as Rule
+  let parsed = rule.first as Declaration
+  // A node from another PostCSS version in node_modules has no methods
+  // of this copy, so it is a plain object here.
+  let foreign = {
+    prop: parsed.prop,
+    raws: { ...parsed.raws },
+    source: parsed.source,
+    type: 'decl',
+    value: parsed.value
+  } as unknown as Declaration
+
+  let warning = new Warning('text', { node: foreign })
+  is(warning.line, 1)
+  is(warning.column, 5)
+  is(warning.endLine, 1)
+  is(warning.endColumn, 17)
 })
 
 test.run()
