@@ -18,7 +18,7 @@ jobs:
       - name: Install Node.js & pnpm
         uses: pnpm/setup@5d160c5bc68a09337ad0d5654e237e03253b5879 # v1.0.0
         with:
-          version: 11.10.0
+          version: 11.13.1
           runtime: node@26
       - name: Install dependencies
         run: pnpm ci
@@ -40,7 +40,7 @@ jobs:
       - name: Install Node.js & pnpm
         uses: pnpm/setup@5d160c5bc68a09337ad0d5654e237e03253b5879 # v1.0.0
         with:
-          version: 11.10.0
+          version: 11.13.1
           runtime: node@${{ matrix.node }}
       - name: Install dependencies
         run: pnpm ci
@@ -92,7 +92,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
         with:
-          version: 11.10.0
+          version: 11.13.1
       - name: Install Node.js LTS
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
