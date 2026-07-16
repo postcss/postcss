@@ -106,7 +106,7 @@
     "multiocular": "^0.8.3",
     "nanodelay": "^1.0.8",
     "nanospy": "^2.0.2",
-    "oxfmt": "^0.58.0",
+    "oxfmt": "^0.59.0",
     "postcss-parser-tests": "^8.9.0",
     "simple-git-hooks": "^2.13.1",
     "size-limit": "^12.1.0",
