@@ -358,6 +358,26 @@ test('always calls raw to retrieve raws', () => {
   )
 })
 
+test('adds space before params set on an at-rule parsed without them', () => {
+  let root = parse('@layer{a{color:black}}')
+  root.first.params = 'utilities'
+  is(root.toString(), '@layer utilities{a{color:black}}')
+
+  let media = parse('@media;').first
+  media.params = 'print'
+  is(media.toString(), '@media print')
+})
+
+test('keeps params glued to at-rule name when CSS allows it', () => {
+  let root = parse('@media(min-width:0){}')
+  root.first.params = '(min-width:1px)'
+  is(root.toString(), '@media(min-width:1px){}')
+
+  let imported = parse('@import"a.css"').first
+  imported.params = '"b.css"'
+  is(imported.toString(), '@import"b.css"')
+})
+
 test('supports subclasses with overridden traversal methods', () => {
   class CustomStringifier extends Stringifier {
     rule(node) {
