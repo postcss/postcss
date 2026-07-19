@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "8.5.19",
+  "version": "8.5.20",
   "description": "Tool for transforming styles with JS plugins",
   "keywords": [
     "css",

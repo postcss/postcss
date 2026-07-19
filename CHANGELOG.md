@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.20
+
+- Fixed missing space if `AtRule#params` is set after (by @sarathfrancis90).
+- Fixed mixing AST error on warnings (by @MahinAnowar).
+
 ## 8.5.19
 
 - Fixed cleaning `before` for new nodes inserted to `Root` (by @MahinAnowar).
