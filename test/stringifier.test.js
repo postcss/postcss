@@ -3,6 +3,7 @@ let { is } = require('uvu/assert')
 
 let {
   AtRule,
+  Comment,
   Declaration,
   Document,
   Node,
@@ -155,6 +156,36 @@ test('clones indent by before and after', () => {
 test('clones semicolon only from rules with children', () => {
   let css = parse('a{}b{one:1;}')
   is(str.raw(css.first, 'semicolon'), true)
+})
+
+test('terminates childless at-rule followed by a comment', () => {
+  let css = parse('a {}\n/* comment */')
+  css.insertBefore(css.last, new AtRule({ name: 'import', params: '"x.css"' }))
+
+  is(css.toString(), 'a {}\n@import "x.css";\n/* comment */')
+  is(
+    parse(css.toString())
+      .nodes.map(i => i.type)
+      .join(','),
+    'rule,atrule,comment'
+  )
+})
+
+test('terminates nested childless at-rule followed by a comment', () => {
+  let css = parse('@media screen {\n  a {}\n}')
+  css.first.append(new AtRule({ name: 'import', params: '"y.css"' }))
+  css.first.append(new Comment({ text: 'note' }))
+
+  is(
+    css.toString(),
+    '@media screen {\n  a {}\n  @import "y.css";\n  /* note */\n}'
+  )
+  is(
+    parse(css.toString())
+      .first.nodes.map(i => i.type)
+      .join(','),
+    'rule,atrule,comment'
+  )
 })
 
 test('clones only spaces in before', () => {
