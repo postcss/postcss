@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.21
+
+- Fixed childless at-rule losing semicolon before comment (by @sarathfrancis90).
+- Fixed docs (by @isker).
+
 ## 8.5.20
 
 - Fixed missing space if `AtRule#params` is set after (by @sarathfrancis90).
