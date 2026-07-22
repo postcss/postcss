@@ -188,6 +188,32 @@ test('terminates nested childless at-rule followed by a comment', () => {
   )
 })
 
+test('terminates custom property followed by a comment', () => {
+  let css = parse('a{--x:red}')
+  css.first.append(new Comment({ text: 'note' }))
+
+  is(css.toString(), 'a{--x:red;/* note */}')
+  is(
+    parse(css.toString())
+      .first.nodes.map(i => i.type)
+      .join(','),
+    'decl,comment'
+  )
+})
+
+test('terminates custom property with !important before a comment', () => {
+  let css = parse('a{--x:red !important}')
+  css.first.first.after(new Comment({ text: 'note' }))
+
+  is(css.toString(), 'a{--x:red !important;/* note */}')
+  is(
+    parse(css.toString())
+      .first.nodes.map(i => i.type)
+      .join(','),
+    'decl,comment'
+  )
+})
+
 test('clones only spaces in before', () => {
   let css = parse('a{*one:1}')
   css.first.append({ prop: 'two', value: '2' })
