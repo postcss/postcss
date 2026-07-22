@@ -487,7 +487,7 @@ test('uses custom syntax', async () => {
 })
 
 test('contains PostCSS version', () => {
-  match(new Processor().version, /\d+.\d+.\d+/)
+  match(new Processor().version, /^\d+\.\d+$/)
 })
 
 test('throws on syntax as plugin', () => {
