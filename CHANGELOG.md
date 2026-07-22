@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.22
+
+- Fixed custom property losing semicolon before a comment (by @sarathfrancis90).
+
 ## 8.5.21
 
 - Fixed childless at-rule losing semicolon before comment (by @sarathfrancis90).
