@@ -119,6 +119,10 @@ module.exports = opts => {
 module.exports.postcss = true
 ```
 
+For ESM / TypeScript modules, use the same `postcss = true` flag on the
+creator function and `export default plugin` (see
+[Writing a PostCSS Plugin](../writing-a-plugin.md)).
+
 ## 2. Processing
 
 ### 2.1. Plugin must be tested
