@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.24
+
+- Preserve the BOM after the processing (by @hdimer).
+
 ## 8.5.23
 
 - Do not load source map without `opts.from` for security reasons.
