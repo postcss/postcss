@@ -315,11 +315,11 @@ plugin.postcss = true
 Second argument also have `result` object to add warnings:
 
 ```js
-    Declaration: {
-      bad: (decl, { result }) => {
-        decl.warn(result, 'Deprecated property bad')
-      }
-    }
+Declaration: {
+  bad: (decl, { result }) => {
+    decl.warn(result, 'Deprecated property bad')
+  }
+}
 ```
 
 If your plugin depends on another file, you can attach a message to `result`
@@ -393,9 +393,7 @@ Don’t afraid to ask in [special channel](https://github.com/orgs/postcss/discu
 
 ## Step 6: Make it public
 
-When your plugin is ready, call `npx clean-publish` in your repository.
-[`clean-publish`] is a tool to remove development configs from the npm package.
-We added this tool to our plugin boilerplate.
+Publish npm package with your new PostCSS plugin using [our guide](https://evilmartians.com/chronicles/the-secure-way-to-release-an-npm-package) with techniques to protect against supply chain attacks.
 
 Write a tweet about your new plugin (even if it is a small one) with
 [`@postcss`] mention. Or tell about your plugin in [our chat].
