@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.25
+
+- Fixed 8.5.17 visitor regression.
+- Fixed `list.split()` for non-string values (by @amir-rezaei).
+
 ## 8.5.24
 
 - Preserve the BOM after the processing (by @hdimer).
