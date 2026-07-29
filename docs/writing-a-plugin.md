@@ -91,14 +91,32 @@ For public plugins:
 3. Publish your code there.
 
 ```js
-module.exports = (opts = {}) => {
+const plugin = (opts = {}) => {
   // Plugin creator to check options or prepare shared state
   return {
     postcssPlugin: 'PLUGIN NAME'
     // Plugin listeners
   }
 }
-module.exports.postcss = true
+plugin.postcss = true
+
+export default plugin
+```
+
+In TypeScript, type the creator as `PluginCreator` so `postcss = true` is valid:
+
+```ts
+import type { PluginCreator } from 'postcss'
+
+const plugin: PluginCreator<object> = (opts = {}) => {
+  return {
+    postcssPlugin: 'PLUGIN NAME'
+    // Plugin listeners
+  }
+}
+plugin.postcss = true
+
+export default plugin
 ```
 
 [PostCSS plugin boilerplate]: https://github.com/postcss/postcss-plugin-boilerplate/
