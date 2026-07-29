@@ -108,7 +108,7 @@ It is better even not to import `postcss`.
 Plugin name will be used in error messages and warnings.
 
 ```js
-module.exports = opts => {
+const plugin = opts => {
   return {
     postcssPlugin: 'postcss-name',
     Once(root) {
@@ -116,12 +116,10 @@ module.exports = opts => {
     }
   }
 }
-module.exports.postcss = true
-```
+plugin.postcss = true
 
-For ESM / TypeScript modules, use the same `postcss = true` flag on the
-creator function and `export default plugin` (see
-[Writing a PostCSS Plugin](../writing-a-plugin.md)).
+export default plugin
+```
 
 ## 2. Processing
 

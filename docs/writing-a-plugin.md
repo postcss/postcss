@@ -91,19 +91,6 @@ For public plugins:
 3. Publish your code there.
 
 ```js
-module.exports = (opts = {}) => {
-  // Plugin creator to check options or prepare shared state
-  return {
-    postcssPlugin: 'PLUGIN NAME'
-    // Plugin listeners
-  }
-}
-module.exports.postcss = true
-```
-
-For ESM, attach `postcss = true` to the creator function and default-export it:
-
-```js
 const plugin = (opts = {}) => {
   // Plugin creator to check options or prepare shared state
   return {
