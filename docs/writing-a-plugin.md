@@ -108,7 +108,11 @@ In TypeScript, type the creator as `PluginCreator` so `postcss = true` is valid:
 ```ts
 import type { PluginCreator } from 'postcss'
 
-const plugin: PluginCreator<object> = (opts = {}) => {
+export interface PluginNameOptions {
+  // Types for plugin options
+}
+
+const plugin: PluginCreator<PluginNameOptions> = (opts = {}) => {
   return {
     postcssPlugin: 'PLUGIN NAME'
     // Plugin listeners
