@@ -324,6 +324,50 @@ test('works with at-rule params', () => {
   is(css, '@media (mobile) {}')
 })
 
+function trackUnwrap(): [string[], Plugin] {
+  let order: string[] = []
+  let plugin: Plugin = {
+    postcssPlugin: 'unwrap-nested',
+    Rule(rule) {
+      order.push('Rule ' + rule.selector)
+      rule.each(child => {
+        if (child.type === 'rule') {
+          child.selector = rule.selector + ' ' + child.selector
+          rule.after(child)
+        }
+      })
+    },
+    RootExit() {
+      order.push('RootExit')
+    }
+  }
+  return [order, plugin]
+}
+
+test('visits nodes inserted after the current one before exit events', () => {
+  let [order, plugin] = trackUnwrap()
+  postcss([plugin]).process('a { b { c {} } }', { from: 'a.css' }).css
+  equal(order, [
+    'Rule a',
+    'Rule a b',
+    'Rule a b c',
+    'RootExit',
+    'Rule a',
+    'Rule a b',
+    'RootExit'
+  ])
+})
+
+test('visits inserted siblings equally in sync and async walks', async () => {
+  let [syncOrder, syncPlugin] = trackUnwrap()
+  postcss([syncPlugin]).process('a { b { c {} } }', { from: 'a.css' }).css
+
+  let [asyncOrder, asyncPlugin] = trackUnwrap()
+  await postcss([asyncPlugin]).process('a { b { c {} } }', { from: 'a.css' })
+
+  equal(asyncOrder, syncOrder)
+})
+
 test('wraps node to proxies', () => {
   let proxy: any
   let root: Root | undefined
