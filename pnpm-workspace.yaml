@@ -2,3 +2,5 @@ allowBuilds:
   esbuild: false
   simple-git-hooks: true
   unrs-resolver: false
+minimumReleaseAgeExclude:
+  - nanoid@3.3.17
