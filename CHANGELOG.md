@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.26
+
+- Fixed `list.split()` regression (by @lazerg).
+- Track symlinks in path protection in source map loading (by @drengir1).
+
 ## 8.5.25
 
 - Fixed 8.5.17 visitor regression.
