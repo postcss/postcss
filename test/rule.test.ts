@@ -13,6 +13,11 @@ test('returns array in selectors', () => {
   equal(rule.selectors, ['a', 'b'])
 })
 
+test('returns empty selector in selectors', () => {
+  let rule = new Rule({ selector: '' })
+  equal(rule.selectors, [''])
+})
+
 test('trims selectors', () => {
   let rule = new Rule({ selector: '.a\n, .b  , .c' })
   equal(rule.selectors, ['.a', '.b', '.c'])

@@ -36,6 +36,15 @@ test('comma() adds last empty', () => {
   equal(list.comma('a, b,'), ['a', 'b', ''])
 })
 
+test('comma() keeps empty value', () => {
+  equal(list.comma(''), [''])
+})
+
+test('comma() ignores non-string values', () => {
+  // @ts-expect-error Testing invalid API
+  equal(list.comma(undefined), [])
+})
+
 test('comma() checks quotes', () => {
   equal(list.comma('"a,b\\"", \'\''), ['"a,b\\""', "''"])
 })
