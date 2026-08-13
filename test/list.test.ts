@@ -11,6 +11,10 @@ test('space() trims values', () => {
   equal(list.space(' a  b '), ['a', 'b'])
 })
 
+test('space() ignores repeated spaces', () => {
+  equal(list.space('a  b'), ['a', 'b'])
+})
+
 test('space() checks quotes', () => {
   equal(list.space('"a b\\"" \'\''), ['"a b\\""', "''"])
 })
@@ -43,6 +47,22 @@ test('comma() keeps empty value', () => {
 test('comma() ignores non-string values', () => {
   // @ts-expect-error Testing invalid API
   equal(list.comma(undefined), [])
+})
+
+test('comma() keeps first empty', () => {
+  equal(list.comma(', b'), ['', 'b'])
+})
+
+test('comma() keeps empty between values', () => {
+  equal(list.comma('a,, b'), ['a', '', 'b'])
+})
+
+test('comma() keeps empty regardless of spaces', () => {
+  equal(list.comma('a,,b'), list.comma('a, ,b'))
+})
+
+test('comma() keeps every empty value', () => {
+  equal(list.comma(',,'), ['', '', ''])
 })
 
 test('comma() checks quotes', () => {
