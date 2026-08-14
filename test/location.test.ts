@@ -51,6 +51,50 @@ test('rule', () => {
   })
 })
 
+test('rule with own semicolon', () => {
+  let source = '.a{};'
+  let css = parse(source)
+
+  let rule = css.first as Rule
+  checkOffset(source, rule, '.a{};')
+  equal(rule.source!.end, {
+    column: 5,
+    line: 1,
+    offset: 5
+  })
+})
+
+test('rule with own semicolon after spaces', () => {
+  let source = '.a{}  ;'
+  let css = parse(source)
+
+  let rule = css.first as Rule
+  checkOffset(source, rule, '.a{}  ;')
+  equal(rule.source!.end, {
+    column: 7,
+    line: 1,
+    offset: 7
+  })
+})
+
+test('rule with own semicolon on the next line', () => {
+  let source = '.a{}\n;\n\n.b{}'
+  let css = parse(source)
+
+  let rule = css.first as Rule
+  checkOffset(source, rule, '.a{}\n;')
+  equal(rule.source!.end, {
+    column: 1,
+    line: 2,
+    offset: 6
+  })
+  equal((css.last as Rule).source!.start, {
+    column: 1,
+    line: 4,
+    offset: 8
+  })
+})
+
 test('single decl (no semicolon)', () => {
   let source = '.a{b:c}'
   let css = parse(source)
