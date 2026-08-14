@@ -3,4 +3,4 @@ allowBuilds:
   simple-git-hooks: true
   unrs-resolver: false
 minimumReleaseAgeExclude:
-  - nanoid@3.3.17
+  - postcss-parser-tests

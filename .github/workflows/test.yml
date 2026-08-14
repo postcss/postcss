@@ -16,7 +16,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install Node.js & pnpm
-        uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
         with:
           version: 11
           runtime: node@26
@@ -38,7 +38,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install Node.js & pnpm
-        uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
         with:
           version: 11
           runtime: node@${{ matrix.node }}
