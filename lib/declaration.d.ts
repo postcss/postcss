@@ -28,7 +28,7 @@ declare namespace Declaration {
     }
   }
 
-  export interface DeclarationProps {
+  export interface DeclarationProps extends NodeProps {
     /** Whether the declaration has an `!important` annotation. */
     important?: boolean
     /** Name of the declaration. */
