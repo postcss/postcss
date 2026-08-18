@@ -141,7 +141,7 @@
     "reporter": "lcov"
   },
   "engines": {
-    "node": "^10 || ^12 || >=14"
+    "node": ">=22"
   },
   "clean-publish": {
     "cleanDocs": true
