@@ -1,17 +1,23 @@
 import Concat from 'concat-with-sourcemaps'
 import { join, resolve as pathResolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import * as pico from 'picocolors'
 import stripAnsi = require('strip-ansi')
 import { test } from 'uvu'
 import { equal, is, match, type } from 'uvu/assert'
 
+import { createColor } from '../lib/colors.js'
 import postcss, {
   CssSyntaxError,
   Plugin,
   ProcessOptions,
   Rule
 } from '../lib/postcss.js'
+
+let cyan = createColor('cyan')
+let gray = createColor('gray')
+let magenta = createColor('magenta')
+let mark = createColor('bold', 'red')
+let yellow = createColor('yellow')
 
 function isSyntaxError(e: unknown): e is CssSyntaxError {
   return e instanceof Error && e.name === 'CssSyntaxError'
@@ -149,19 +155,19 @@ test('saves source with ranges', () => {
 test('highlights broken line with colors', () => {
   is(
     parseError('#a .b c() {').showSourceCode(true),
-    pico.bold(pico.red('>')) +
-      pico.gray(' 1 | ') +
-      pico.magenta('#a') +
+    mark('>') +
+      gray(' 1 | ') +
+      magenta('#a') +
       ' ' +
-      pico.yellow('.b') +
+      yellow('.b') +
       ' ' +
-      pico.cyan('c') +
-      pico.cyan('()') +
+      cyan('c') +
+      cyan('()') +
       ' ' +
-      pico.yellow('{') +
+      yellow('{') +
       '\n ' +
-      pico.gray('   | ') +
-      pico.bold(pico.red('^'))
+      gray('   | ') +
+      mark('^')
   )
 })
 
@@ -232,27 +238,27 @@ test('highlight cut minified css with colors', () => {
     '.d{position:absolute!important;clip:rect(1px,1px,1px,1px);}'
   is(
     parseError(css).showSourceCode(true),
-    pico.bold(pico.red('>')) +
-      pico.gray(' 1 | ') +
+    mark('>') +
+      gray(' 1 | ') +
       ',1px' +
-      pico.cyan(')') +
-      pico.yellow(';') +
-      pico.yellow('}') +
-      pico.yellow('.b') +
-      pico.yellow('{') +
+      cyan(')') +
+      yellow(';') +
+      yellow('}') +
+      yellow('.b') +
+      yellow('{') +
       'border' +
-      pico.yellow(':') +
+      yellow(':') +
       '0' +
-      pico.yellow(';') +
+      yellow(';') +
       'background' +
-      pico.yellow(';') +
+      yellow(';') +
       'text-decoration' +
-      pico.yellow(':') +
+      yellow(':') +
       'none' +
       '\n ' +
-      pico.gray('   | ') +
+      gray('   | ') +
       '                   ' +
-      pico.bold(pico.red('^'))
+      mark('^')
   )
 })
 
