@@ -27,6 +27,18 @@ test('space() does not split on escaped spaces', () => {
   equal(list.space('a\\ b'), ['a\\ b'])
 })
 
+test('space() ignores whitespace it does not split on', () => {
+  equal(list.space('\r'), [])
+})
+
+test('space() does not add empty values around CRLF line breaks', () => {
+  equal(list.space('"a b"\r\n\r\n"c d"'), ['"a b"', '"c d"'])
+})
+
+test('space() gives the same result for LF and CRLF', () => {
+  equal(list.space('a\r\n\r\nb'), list.space('a\n\nb'))
+})
+
 test('space() works from variable', () => {
   let space = list.space
   equal(space('a b'), ['a', 'b'])
