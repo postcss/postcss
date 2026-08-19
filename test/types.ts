@@ -1,4 +1,8 @@
-import postcss, { Document, PluginCreator } from '../lib/postcss.js'
+import postcss, {
+  plugin as createPlugin,
+  Document,
+  PluginCreator
+} from '../lib/postcss.js'
 import { RootRaws } from '../lib/root.js'
 
 const plugin: PluginCreator<string> = prop => {
@@ -15,7 +19,16 @@ const plugin: PluginCreator<string> = prop => {
 
 plugin.postcss = true
 
-postcss([plugin])
+const createdPlugin = createPlugin<{ prop?: string }>((opts = {}) => {
+  return {
+    Declaration(decl) {
+      if (decl.prop === opts.prop) decl.remove()
+    },
+    postcssPlugin: 'created-plugin'
+  }
+})
+
+postcss([plugin, createdPlugin])
   .process('h1{color: black;}', {
     from: undefined
   })

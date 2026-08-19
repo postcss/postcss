@@ -197,10 +197,36 @@ declare namespace postcss {
     prepare?: (result: Result) => Processors
   }
 
-  export interface PluginCreator<PluginOptions> {
-    (opts?: PluginOptions): Plugin | Processor
+  export interface PluginCreator<
+    PluginOptions,
+    PluginResult extends Plugin | Processor = Plugin | Processor
+  > {
+    (opts?: PluginOptions): PluginResult
     postcss: true
   }
+
+  /**
+   * Marks a function as a PostCSS plugin creator.
+   *
+   * @param creator Function that creates a PostCSS plugin.
+   * @return The same function marked as a PostCSS plugin creator.
+   */
+  export function plugin<
+    PluginOptions,
+    PluginResult extends Plugin | Processor = Plugin | Processor
+  >(
+    creator: (opts?: PluginOptions) => PluginResult
+  ): PluginCreator<PluginOptions, PluginResult>
+
+  /**
+   * Creates a PostCSS 7 compatible plugin.
+   *
+   * Deprecated. Use the one-argument plugin creator helper instead.
+   */
+  export function plugin<PluginOptions>(
+    name: string,
+    initializer: (opts?: PluginOptions) => TransformCallback
+  ): OldPlugin<PluginOptions>
 
   export interface Transformer extends TransformCallback {
     postcssPlugin: string

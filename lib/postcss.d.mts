@@ -37,7 +37,6 @@ export {
   OldPlugin,
   parse,
   Parser,
-  // @ts-expect-error This value exists, but it’s untyped.
   plugin,
   Plugin,
   PluginCreator,

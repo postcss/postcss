@@ -3,7 +3,11 @@ import { test } from 'uvu'
 import { equal, is, match, throws, type } from 'uvu/assert'
 
 import postcss = require('../lib/postcss.js')
-import postcssDefault, { PluginCreator, Root } from '../lib/postcss.js'
+import postcssDefault, {
+  plugin as createPlugin,
+  PluginCreator,
+  Root
+} from '../lib/postcss.js'
 import Processor from '../lib/processor.js'
 
 test.after.each(() => {
@@ -48,6 +52,14 @@ test('takes plugins from a a plugin returning a processor', () => {
   let meta = (() => other) as PluginCreator<void>
   meta.postcss = true
   equal(postcss([other, c]).plugins, [a, b, c])
+})
+
+test('marks modern plugin creators', () => {
+  let creator = createPlugin(() => ({ postcssPlugin: 'test' }))
+
+  is(createPlugin, postcss.plugin)
+  is(creator.postcss, true)
+  is(creator().postcssPlugin, 'test')
 })
 
 test('contains parser', () => {
