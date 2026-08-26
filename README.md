@@ -25,8 +25,8 @@ and JetBrains. The [Autoprefixer] and [Stylelint] PostCSS plugins are some o
 
 ## Sponsorship
 
-PostCSS needs your support. We are accepting donations
-[at Open Collective](https://opencollective.com/postcss/).
+PostCSS needs your support. We are accepting donations at
+[Open Collective](https://opencollective.com/postcss/) and [GitHub Sponsors](https://github.com/ai).
 
 <br>
 <div align="center">
