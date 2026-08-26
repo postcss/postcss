@@ -30,6 +30,21 @@ PostCSS needs your support. We are accepting donations
 
 <br>
 <div align="center">
+<a href="https://coderabbit.link/postcss">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/047cd023-ce78-4e02-b1e0-3e0c6ab4bd72">
+    <img src="https://github.com/user-attachments/assets/93ff9177-1942-4969-80b7-67e3a46ce8b5"
+       alt="Sponsored by CodeRabbit" width="400" height="58">
+  </picture>
+</a>
+<br>
+<i><b><a href="https://coderabbit.link/postcss">CodeRabbit</a>: agentic change management</b><br>
+Review, prioritize, understand & secure your PRs.   let me know if this text is good</i>
+</div>
+
+<br>
+<br>
+<div align="center">
 <a href="https://www.atlascloud.ai/?utm_source=github&utm_medium=link&utm_campaign=postcss">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/fa6789d3-12be-41b9-9d63-9c257bd1a9d7">
