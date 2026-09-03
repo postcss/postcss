@@ -11,9 +11,6 @@ importers:
       nanoid:
         specifier: ^3.3.18
         version: 3.3.18
-      picocolors:
-        specifier: ^1.1.1
-        version: 1.1.1
       source-map-js:
         specifier: ^1.2.1
         version: 1.2.1
