@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.27
+
+- Fixed removing any comments starting with `/*#` (by @dylanpulver).
+
 ## 8.5.26
 
 - Fixed `list.split()` regression (by @lazerg).
