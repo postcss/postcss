@@ -1,5 +1,5 @@
 import { ContainerWithChildren } from './container.js'
-import Node from './node.js'
+import Node, { NodeProps } from './node.js'
 
 declare namespace Declaration {
   export interface DeclarationRaws extends Record<string, unknown> {
