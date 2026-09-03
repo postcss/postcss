@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.28
+
+- Fixes types regression.
+
 ## 8.5.27
 
 - Fixed removing any comments starting with `/*#` (by @dylanpulver).
