@@ -93,4 +93,13 @@ test('uses different spaces for empty rules', () => {
   is(root.toString(), 'a{}\nb{\n a:1\n}\nem{\n top:0\n}')
 })
 
+test('keeps existing comment cleaning in selectors', () => {
+  let root = parse('a,/**/b{}')
+  let rule = root.first as Rule
+
+  is(rule.selector, 'a,b')
+  rule.selector += ',c'
+  is(rule.toString(), 'a,b,c{}')
+})
+
 test.run()
