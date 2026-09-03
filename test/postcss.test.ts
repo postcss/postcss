@@ -131,7 +131,7 @@ test('has deprecated method to create plugins', () => {
 
   let func1: any = postcss(plugin).plugins[0]
   is(func1.postcssPlugin, 'test')
-  match(func1.postcssVersion, /\d+.\d+.\d+/)
+  match(func1.postcssVersion, /^\d+\.\d+$/)
   equal(warn.callCount, 1)
 
   let func2: any = postcss(plugin()).plugins[0]
