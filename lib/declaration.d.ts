@@ -1,5 +1,5 @@
 import { ContainerWithChildren } from './container.js'
-import Node from './node.js'
+import Node, { NodeProps } from './node.js'
 
 declare namespace Declaration {
   export interface DeclarationRaws extends Record<string, unknown> {
@@ -28,7 +28,7 @@ declare namespace Declaration {
     }
   }
 
-  export interface DeclarationProps {
+  export interface DeclarationProps extends NodeProps {
     /** Whether the declaration has an `!important` annotation. */
     important?: boolean
     /** Name of the declaration. */

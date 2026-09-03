@@ -179,23 +179,6 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
   insertAfter(oldNode: Child | number, newNode: Container.NewChild): this
 
   /**
-   * Traverses the container’s descendant nodes, calling callback
-   * for each comment node.
-   *
-   * Like `Container#each`, this method is safe
-   * to use if you are mutating arrays during iteration.
-   *
-   * ```js
-   * root.walkComments(comment => {
-   *   comment.remove()
-   * })
-   * ```
-   *
-   * @param callback Iterator receives each node and index.
-   * @return Returns `false` if iteration was broke.
-   */
-
-  /**
    * Insert new node before old node within the container.
    *
    * ```js
@@ -378,9 +361,22 @@ declare abstract class Container_<Child extends Node = ChildNode> extends Node {
     callback: (atRule: AtRule, index: number) => false | void
   ): false | undefined
 
-  walkComments(
-    callback: (comment: Comment, indexed: number) => false | void
-  ): false | undefined
+  /**
+   * Traverses the container’s descendant nodes, calling callback
+   * for each comment node.
+   *
+   * Like `Container#each`, this method is safe
+   * to use if you are mutating arrays during iteration.
+   *
+   * ```js
+   * root.walkComments(comment => {
+   *   comment.remove()
+   * })
+   * ```
+   *
+   * @param callback Iterator receives each node and index.
+   * @return Returns `false` if iteration was broke.
+   */
   walkComments(
     callback: (comment: Comment, indexed: number) => false | void
   ): false | undefined

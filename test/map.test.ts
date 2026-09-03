@@ -693,6 +693,20 @@ test('generates correct inline map and multiple comments', () => {
   match(result.css, /a {}\nb {}\n\/\*# sourceMappingURL=/)
 })
 
+test('keeps non-annotation comments with empty processor', () => {
+  let css = '/*#region layout */\na {}\n/*#endregion */\n'
+  let result = postcss().process(css, { from: undefined })
+
+  is(result.css, css)
+})
+
+test('clears the annotation but keeps other comments after it', () => {
+  let css = 'a {}\n/*# sourceMappingURL=a.css.map */\n/*#endregion */\n'
+  let result = postcss().process(css, { from: undefined })
+
+  is(result.css, 'a {}\n/*#endregion */\n')
+})
+
 test('generates correct sources with empty processor', () => {
   let result = postcss().process('a {} /*hello world*/', {
     from: 'a.css',

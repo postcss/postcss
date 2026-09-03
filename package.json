@@ -1,6 +1,6 @@
 {
   "name": "postcss",
-  "version": "8.5.26",
+  "version": "8.5.28",
   "description": "Tool for transforming styles with JS plugins",
   "keywords": [
     "css",
@@ -89,7 +89,7 @@
     "old": "node --require ./test/old-node.js ./node_modules/uvu/bin.js -r module test \"\\.test\\.(ts|js)$\""
   },
   "dependencies": {
-    "nanoid": "^3.3.17",
+    "nanoid": "^3.3.18",
     "picocolors": "^1.1.1",
     "source-map-js": "^1.2.1"
   },
@@ -97,17 +97,17 @@
     "@logux/eslint-config": "^57.1.0",
     "@logux/oxc-configs": "^1.1.0",
     "@size-limit/preset-small-lib": "^13.0.3",
-    "@types/node": "^26.1.2",
-    "actions-up": "^1.16.0",
+    "@types/node": "^26.4.1",
+    "actions-up": "^1.18.0",
     "c8": "^12.0.0",
     "check-dts": "^0.9.0",
     "concat-with-sourcemaps": "^1.1.0",
-    "eslint": "^10.8.0",
+    "eslint": "^10.9.1",
     "multiocular": "^0.8.4",
     "nanodelay": "^1.0.8",
     "nanospy": "^2.0.2",
-    "postcss-parser-tests": "^8.9.0",
-    "simple-git-hooks": "^2.13.1",
+    "postcss-parser-tests": "^8.10.0",
+    "simple-git-hooks": "^2.14.0",
     "size-limit": "^13.0.3",
     "strip-ansi": "^6.0.1",
     "ts-node": "^10.9.2",

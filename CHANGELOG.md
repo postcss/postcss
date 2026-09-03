@@ -2,6 +2,20 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.28
+
+- Fixes types regression.
+
+## 8.5.27
+
+- Fixed removing any comments starting with `/*#` (by @dylanpulver).
+- Fixed `*` hack before a comment in Custom Properties (by @Jaybhade).
+- Fixed empty values in the middle of `list.comma()` (by @MahinAnowar).
+- Fixed whitespace-only values in `list.space()` (by @MahinAnowar).
+- Fixed rule’s end position on space before semicolon (by @maximilliangrand).
+- Fixed types (by @romainmenke).
+- Fixed Chinese text in deprecation warning (by @Jesse205).
+
 ## 8.5.26
 
 - Fixed `list.split()` regression (by @lazerg).
