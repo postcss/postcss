@@ -21,6 +21,30 @@ test('tokenizes empty file', () => {
   run('', [])
 })
 
+test('skips stray BOM markers between tokens', () => {
+  run('a{}\uFEFFb{}', [
+    ['word', 'a', 0, 0],
+    ['{', '{', 1],
+    ['}', '}', 2],
+    ['word', 'b', 4, 4],
+    ['{', '{', 5],
+    ['}', '}', 6]
+  ])
+  run('a{}\uFFFEb{}', [
+    ['word', 'a', 0, 0],
+    ['{', '{', 1],
+    ['}', '}', 2],
+    ['word', 'b', 4, 4],
+    ['{', '{', 5],
+    ['}', '}', 6]
+  ])
+  run('a{}\uFEFF', [
+    ['word', 'a', 0, 0],
+    ['{', '{', 1],
+    ['}', '}', 2]
+  ])
+})
+
 test('tokenizes space', () => {
   run('\r\n \f\t', [['space', '\r\n \f\t']])
 })
