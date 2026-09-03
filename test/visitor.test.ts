@@ -328,6 +328,9 @@ function trackUnwrap(): [string[], Plugin] {
   let order: string[] = []
   let plugin: Plugin = {
     postcssPlugin: 'unwrap-nested',
+    RootExit() {
+      order.push('RootExit')
+    },
     Rule(rule) {
       order.push('Rule ' + rule.selector)
       rule.each(child => {
@@ -336,9 +339,6 @@ function trackUnwrap(): [string[], Plugin] {
           rule.after(child)
         }
       })
-    },
-    RootExit() {
-      order.push('RootExit')
     }
   }
   return [order, plugin]
