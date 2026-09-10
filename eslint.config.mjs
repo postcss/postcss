@@ -20,7 +20,15 @@ export default [
       ],
       'n/no-unsupported-features/node-builtins': [
         'error',
-        { ignores: ['url.fileURLToPath', 'url.pathToFileURL', 'btoa', 'atob'] }
+        {
+          ignores: [
+            'url.fileURLToPath',
+            'url.pathToFileURL',
+            'util.styleText',
+            'btoa',
+            'atob'
+          ]
+        }
       ],
       'n/prefer-node-protocol': 'off',
       'perfectionist/sort-switch-case': 'off'
