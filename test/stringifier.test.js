@@ -1,5 +1,5 @@
 let { test } = require('uvu')
-let { is } = require('uvu/assert')
+let { equal, is } = require('uvu/assert')
 
 let {
   AtRule,
@@ -12,6 +12,7 @@ let {
   Rule
 } = require('../lib/postcss')
 let Stringifier = require('../lib/stringifier')
+let defaultStringify = require('../lib/stringify')
 
 let str
 
@@ -403,17 +404,68 @@ test('escapes </style & <!-- with \\3c CSS escape', () => {
   )
 })
 
-test('does not escape Document raws', () => {
+test('escapes </style split between nodes and raws', () => {
+  let payload = ':@x</style><script>alert(1)</script>'
+  is(parse(payload).toString(), ':@x\\3c /style><script>alert(1)</script>')
+  is(
+    parse('.user{color:red;' + payload + '}').toString(),
+    '.user{color:red;:@x\\3c /style><script>alert(1)</script>}'
+  )
+
+  let root = parse('a{}')
+  root.first.raws.before = '</'
+  root.first.selector = 'STYLE><script>alert(1)</script>'
+  is(root.toString(), '\\3c /STYLE><script>alert(1)</script>{}')
+
+  root = new Root()
+  root.append(new Declaration({ prop: 'le>', value: 'a' }))
+  root.first.raws.before = '</sty'
+  root.append(new Declaration({ prop: '-', value: 'b' }))
+  root.last.raws.before = '<!-'
+  is(root.toString(), '\\3c /style>: a;\\3c !--: b')
+})
+
+test('keeps < which does not need escaping', () => {
+  let css = 'a<{b:c<}\n@x<;'
+  is(parse(css).toString(), css)
+})
+
+test('escapes only Root output of the default stringifier', () => {
+  let root = parse(':@x</style>')
+  is(root.first.toString(), '/style>')
+
+  let chunks = []
+  new Stringifier(chunk => chunks.push(chunk)).stringify(root)
+  equal(chunks, [':@x<', '/style>'])
+
+  let custom = (node, builder) => new Stringifier(builder).stringify(node)
+  is(root.toString(custom), ':@x</style>')
+  is(root.toString({ stringify: custom }), ':@x</style>')
+  is(root.toString({ stringify: defaultStringify }), ':@x\\3c /style>')
+})
+
+test('escapes Roots inside Document but not Document raws', () => {
   let document = new Document()
   let root1 = new Root()
   root1.append(new Rule({ selector: 'a' }))
   let root2 = new Root({ raws: { after: '</style>' } })
   root2.raws.before = '</style>'
-  root2.append(new Rule({ selector: 'b' }))
+  root2.append(new Rule({ selector: '</style>' }))
   document.append(root1)
   document.append(root2)
 
-  is(document.toString(), 'a {}</style>b {}</style>')
+  is(document.toString(), 'a {}</style>\\3c /style> {}</style>')
+})
+
+test('does not insert BOM of Root inside Document', () => {
+  let document = new Document()
+  document.append(parse('\uFEFFa{}'))
+  document.append(parse('\uFEFF<!--{}'))
+  is(document.toString(), 'a{}\\3c !--{}')
+
+  let raw = ''
+  new Stringifier(chunk => (raw += chunk)).stringify(document)
+  is(raw, 'a{}<!--{}')
 })
 
 test('always calls raw to retrieve raws', () => {

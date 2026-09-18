@@ -125,6 +125,42 @@ test('generate right source map', () => {
   })
 })
 
+test('escapes </style in output with and without source map', () => {
+  let css = 'a{content:"</style>"}\nb{:@x</style>}'
+  let escaped = 'a{content:"\\3c /style>"}\nb{:@x\\3c /style>}'
+
+  is(postcss([() => {}]).process(css, { from: 'a.css' }).css, escaped)
+
+  let result = postcss([() => {}]).process(css, {
+    from: 'a.css',
+    map: true,
+    to: 'b.css'
+  })
+  is(result.css.split('\n').slice(0, 2).join('\n'), escaped)
+  let map = read(result)
+  equal(map.originalPositionFor({ column: 0, line: 1 }), {
+    column: 0,
+    line: 1,
+    name: null,
+    source: 'a.css'
+  })
+})
+
+test('keeps precise source map when < needs no escaping', () => {
+  let result = postcss([() => {}]).process('a{content:"<"}\nb{color:red}', {
+    from: 'a.css',
+    map: true,
+    to: 'b.css'
+  })
+  is(result.css.split('\n')[1], 'b{color:red}')
+  equal(read(result).originalPositionFor({ column: 2, line: 2 }), {
+    column: 2,
+    line: 2,
+    name: null,
+    source: 'a.css'
+  })
+})
+
 test('generates right source map for @layer', () => {
   let css = '@layer extensions {\n  @layer one, two\n}'
   let processor = postcss(() => {
