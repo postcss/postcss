@@ -743,6 +743,22 @@ test('clears the annotation but keeps other comments after it', () => {
   is(result.css, 'a {}\n/*#endregion */\n')
 })
 
+test('clears all annotations with empty processor', () => {
+  let css =
+    'a{}\n/*# sourceMappingURL=a.map */\nb{}\n\n/*# sourceMappingURL=b.map */\n/* c */'
+  let result = postcss().process(css, { from: undefined })
+
+  is(result.css, 'a{}\nb{}\n/* c */')
+})
+
+test('clears annotations before unclosed one with empty processor', () => {
+  let css =
+    'a{}\n/*# sourceMappingURL=a.map */\nb{}\n/*# sourceMappingURL=b.map'
+  let result = postcss().process(css, { from: undefined })
+
+  is(result.css, 'a{}\nb{}\n/*# sourceMappingURL=b.map')
+})
+
 test('generates correct sources with empty processor', () => {
   let result = postcss().process('a {} /*hello world*/', {
     from: 'a.css',
