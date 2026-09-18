@@ -240,6 +240,19 @@ test('terminates indented custom property followed by a comment', () => {
   )
 })
 
+test('terminates custom property after a free semicolon', () => {
+  let css = parse('a{color:red;;--x:blue}')
+  css.first.append(new Comment({ text: 'note' }))
+
+  is(css.toString(), 'a{color:red;;--x:blue;/* note */}')
+  is(
+    parse(css.toString())
+      .first.nodes.map(i => i.type)
+      .join(','),
+    'decl,decl,comment'
+  )
+})
+
 test('clones only spaces in before', () => {
   let css = parse('a{*one:1}')
   css.first.append({ prop: 'two', value: '2' })
