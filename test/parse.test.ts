@@ -41,6 +41,13 @@ test('should has false at hasBOM property', () => {
   is(css.first?.source?.input.hasBOM, false)
 })
 
+test('collapses multiple leading BOMs to a single marker', () => {
+  let css = parse('\uFEFF\uFEFF@host { a {\f} }')
+  equal(css.nodes[0].raws.before, '')
+  is(css.first?.source?.input.hasBOM, true)
+  is(css.toString(), '\uFEFF@host { a {\f} }')
+})
+
 test('parses carrier return', () => {
   throws(() => {
     parse('@font-face{ font:(\r/*);} body { a: "a*/)} a{}"}')
