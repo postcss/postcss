@@ -23,6 +23,7 @@ export default [
         { ignores: ['url.fileURLToPath', 'url.pathToFileURL', 'btoa', 'atob'] }
       ],
       'n/prefer-node-protocol': 'off',
+      'new-cap': 'off',
       'perfectionist/sort-switch-case': 'off'
     }
   },
