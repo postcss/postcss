@@ -7,6 +7,19 @@ test('space() splits list by spaces', () => {
   equal(list.space('a b'), ['a', 'b'])
 })
 
+test('space() splits list by carriage returns', () => {
+  equal(list.space('1px\r2px'), ['1px', '2px'])
+})
+
+test('space() splits list by form feeds', () => {
+  equal(list.space('1px\f2px'), ['1px', '2px'])
+})
+
+test('space() preserves whitespace inside functions and escaped values', () => {
+  equal(list.space('calc(1px\r+\f2px) auto'), ['calc(1px\r+\f2px)', 'auto'])
+  equal(list.space('a\\\rb a\\\fb'), ['a\\\rb', 'a\\\fb'])
+})
+
 test('space() trims values', () => {
   equal(list.space(' a  b '), ['a', 'b'])
 })
@@ -27,7 +40,7 @@ test('space() does not split on escaped spaces', () => {
   equal(list.space('a\\ b'), ['a\\ b'])
 })
 
-test('space() ignores whitespace it does not split on', () => {
+test('space() ignores whitespace-only input', () => {
   equal(list.space('\r'), [])
 })
 
