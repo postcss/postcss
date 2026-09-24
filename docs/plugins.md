@@ -253,6 +253,8 @@ See also [`oldie`] plugins pack.
 - [`@csstools/postcss-design-tokens`] lets you import and use design tokens
   from CSS.
 - [`postcss-smooth-shadow`] generates more realistic smooth shadow.
+- [`postcss-smooth-corners`] adjusts `border-radius`
+  for `corner-shape: squircle` to keep the same visual size as round corners.
 
 [Rust-style pattern matching]: https://doc.rust-lang.org/book/match.html
 
@@ -699,6 +701,7 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-discard-empty`]: https://github.com/ben-eb/postcss-discard-empty
 [`postcss-extract-value`]: https://github.com/lutien/postcss-extract-value
 [`postcss-smooth-shadow`]: https://github.com/postcss/postcss-smooth-shadow/
+[`postcss-smooth-corners`]: https://github.com/postcss/postcss-smooth-corners
 [`postcss-filter-stream`]: https://www.npmjs.com/package/postcss-filter-stream
 [`postcss-gradientfixer`]: https://github.com/hallvors/postcss-gradientfixer
 [`postcss-image-inliner`]: https://github.com/bezoerb/postcss-image-inliner
