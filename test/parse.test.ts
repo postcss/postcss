@@ -13,6 +13,34 @@ import {
   Rule
 } from '../lib/postcss.js'
 
+function keepCommentsInValues(node: any): void {
+  let prop
+  if (node.type === 'atrule') {
+    prop = 'params'
+  } else if (node.type === 'decl') {
+    prop = 'value'
+  }
+
+  if (prop) {
+    let raw = node.raws?.[prop]
+    if (raw && typeof raw === 'object' && raw.raw.includes('/*')) {
+      let keepTrailing = node.type === 'decl' && node.prop.startsWith('--')
+      let value = keepTrailing ? raw.raw : raw.raw.replace(/\s+$/, '')
+
+      node[prop] = value
+      if (value === raw.raw) {
+        delete node.raws[prop]
+      } else {
+        raw.value = value
+      }
+    }
+  }
+
+  if (node.nodes) {
+    for (let child of node.nodes) keepCommentsInValues(child)
+  }
+}
+
 test('works with file reads', () => {
   let stream = readFileSync(testPath('atrule-empty.css'))
   is(parse(stream) instanceof Root, true)
@@ -21,6 +49,8 @@ test('works with file reads', () => {
 eachTest((name, css, json) => {
   test(`parses ${name}`, () => {
     css = css.replace(/\r\n/g, '\n')
+    // postcss-parser-tests 8 snapshots use the pre-9.0 comment cleaning.
+    keepCommentsInValues(json)
     let parsed = jsonify(parse(css, { from: name }))
     equal(parsed, json)
   })
