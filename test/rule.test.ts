@@ -40,6 +40,11 @@ test('is smart about selectors commas', () => {
   equal(rule.selectors, ["[foo='a, b']", "a:-moz-any(:focus, [href*=','])"])
 })
 
+test('does not split selectors on commas inside comments', () => {
+  let rule = new Rule({ selector: 'a /* , */, b' })
+  equal(rule.selectors, ['a /* , */', 'b'])
+})
+
 test('receive array in selectors', () => {
   let rule = new Rule({ selector: 'i, b' })
   rule.selectors = ['em', 'strong']
