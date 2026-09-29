@@ -44,6 +44,14 @@ test('space() works from variable', () => {
   equal(space('a b'), ['a', 'b'])
 })
 
+test('space() does not split on spaces inside comments', () => {
+  equal(list.space('a /* x y */ b'), ['a', '/* x y */', 'b'])
+})
+
+test('space() ignores parentheses inside comments', () => {
+  equal(list.space('f(/* ) */ a)'), ['f(/* ) */ a)'])
+})
+
 test('comma() splits list by spaces', () => {
   equal(list.comma('a, b'), ['a', 'b'])
 })
@@ -87,6 +95,26 @@ test('comma() checks functions', () => {
 
 test('comma() does not split on escaped commas', () => {
   equal(list.comma('a\\, b'), ['a\\, b'])
+})
+
+test('comma() does not split on commas inside comments', () => {
+  equal(list.comma('a, /* , */ b'), ['a', '/* , */ b'])
+})
+
+test('comma() keeps a comment-only value', () => {
+  equal(list.comma('/* , */'), ['/* , */'])
+})
+
+test('comma() does not treat an unclosed comment as a separator source', () => {
+  equal(list.comma('a, /* , b'), ['a', '/* , b'])
+})
+
+test('comma() does not treat /* inside quotes as a comment', () => {
+  equal(list.comma('"/* , */", b'), ['"/* , */"', 'b'])
+})
+
+test('comma() does not treat an escaped slash as a comment', () => {
+  equal(list.comma('a\\/* , */ b, c'), ['a\\/*', '*/ b', 'c'])
 })
 
 test('comma() works from variable', () => {
