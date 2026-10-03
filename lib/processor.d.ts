@@ -37,7 +37,7 @@ declare class Processor_ {
   plugins: (Plugin | TransformCallback | Transformer)[]
 
   /**
-   * Current PostCSS version.
+   * Current PostCSS version in `major.minor` format.
    *
    * ```js
    * if (result.processor.version.split('.')[0] !== '6') {
