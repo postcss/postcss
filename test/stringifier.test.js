@@ -430,7 +430,7 @@ test('keeps < which does not need escaping', () => {
   is(parse(css).toString(), css)
 })
 
-test('escapes only Root output of the default stringifier', () => {
+test('escapes only output of the default stringifier', () => {
   let root = parse(':@x</style>')
   is(root.first.toString(), '/style>')
 
@@ -442,6 +442,32 @@ test('escapes only Root output of the default stringifier', () => {
   is(root.toString(custom), ':@x</style>')
   is(root.toString({ stringify: custom }), ':@x</style>')
   is(root.toString({ stringify: defaultStringify }), ':@x\\3c /style>')
+})
+
+test('escapes </style in output of every node type', () => {
+  let root = parse(
+    'a{b:"</style>"}@media </style>{c{}}@x <!--;/* </style> */' +
+      '.user{color:red;:@x</style><script>alert(1)</script>}'
+  )
+  let [rule, media, atrule, comment, user] = root.nodes
+
+  is(rule.toString(), 'a{b:"\\3c /style>"}')
+  is(rule.first.toString(), 'b:"\\3c /style>"')
+  is(media.toString(), '@media \\3c /style>{c{}}')
+  is(atrule.toString(), '@x \\3c !--')
+  is(comment.toString(), '/* \\3c /style> */')
+  is(
+    user.toString(),
+    '.user{color:red;:@x\\3c /style><script>alert(1)</script>}'
+  )
+  is(
+    new Declaration({ prop: 'a', value: '</STYLE>' }).toString(),
+    'a: \\3c /STYLE>'
+  )
+
+  let css = ''
+  defaultStringify(rule, chunk => (css += chunk))
+  is(css, 'a{b:"\\3c /style>"}')
 })
 
 test('escapes Roots inside Document but not Document raws', () => {
