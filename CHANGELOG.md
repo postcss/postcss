@@ -4,7 +4,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## 8.5.29
 
-- Fixed escaping `</style>` in output of non-Root nodes (by @choudhryfrompak).
+- Improved `</style>` escaping (by @choudhryfrompak).
+- Fixed comments support in `list.comma()` and `list.space()` (by @00200200).
 - Fixed semicolon and custom property (by @wahidrizka).
 
 ## 8.5.28
