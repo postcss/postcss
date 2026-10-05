@@ -54,4 +54,16 @@ test('at-rule without body has no nodes property', () => {
   type(layer.nodes, 'undefined')
 })
 
+test('keeps comments in params after changes', () => {
+  let root = parse('@media screen /* keep */ and (color){}')
+  let media = root.first as AtRule
+
+  is(media.params, 'screen /* keep */ and (color)')
+  media.params += ' and (width > 1px)'
+  is(
+    media.toString(),
+    '@media screen /* keep */ and (color) and (width > 1px){}'
+  )
+})
+
 test.run()
