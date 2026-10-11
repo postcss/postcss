@@ -7,6 +7,7 @@ import {
   unlinkSync,
   writeFileSync
 } from 'fs'
+import { restoreAll, spyOn } from 'nanospy'
 import { join, parse, resolve } from 'path'
 import { SourceMapConsumer, SourceMapGenerator } from 'source-map-js'
 import { pathToFileURL } from 'url'
@@ -53,6 +54,7 @@ function deleteDir(path: string): void {
 }
 
 test.after.each(() => {
+  restoreAll()
   deleteDir(dir)
 })
 
@@ -144,6 +146,17 @@ test('escapes </style in output with and without source map', () => {
     name: null,
     source: 'a.css'
   })
+})
+
+test('does not add invalid mapping on escaping before new line', () => {
+  let warn = spyOn(console, 'warn', () => {})
+  let result = postcss([() => {}]).process('/* <style> */\na{}\n', {
+    from: 'a.css',
+    map: { inline: false },
+    to: 'b.css'
+  })
+  is(result.css.split('\n').slice(0, 2).join('\n'), '/* \\3c style> */\na{}')
+  equal(warn.calls, [])
 })
 
 test('keeps precise source map when < needs no escaping', () => {
