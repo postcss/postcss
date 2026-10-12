@@ -180,4 +180,47 @@ test('no work result matches lazy result when map is true and the source contain
   equal(noWorkResult.css, lazyResult.css)
 })
 
+// https://github.com/postcss/postcss/pull/1909
+test('no work result stringifies to its css when map is true', () => {
+  let source = '.foo { color: red }\n'
+
+  let noWorkResult = postcss([]).process(source, {
+    from: 'foo.css',
+    map: true
+  })
+
+  is(`${noWorkResult}`, noWorkResult.css)
+})
+
+test('no work result stringifies to its css when the map is not inlined', () => {
+  let source = '.foo { color: red }\n'
+
+  let noWorkResult = postcss([]).process(source, {
+    from: 'foo.css',
+    map: { inline: false },
+    to: 'foo.css'
+  })
+
+  is(`${noWorkResult}`, noWorkResult.css)
+})
+
+test('no work result stringifies to its css when the source contains an inline source map', () => {
+  let source =
+    '.foo { color: red }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvby5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxXQUFXIiwiZmlsZSI6ImZvby5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vIHsgY29sb3I6IHJlZCB9XG4iXX0= */\n'
+
+  let noWorkResult = postcss([]).process(source, {
+    from: 'foo.css',
+    map: false
+  })
+
+  let lazyResult = postcss([]).process(source, {
+    from: 'foo.css',
+    map: false,
+    syntax: { parse, stringify }
+  })
+
+  is(`${noWorkResult}`, noWorkResult.css)
+  is(`${noWorkResult}`, `${lazyResult}`)
+})
+
 test.run()
