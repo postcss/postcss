@@ -924,4 +924,45 @@ test('ignores undefined on adding', () => {
   is(rule.parent!.toString(), 'a { a: 1; b: 2; c: 3 }')
 })
 
+for (let flags of ['g', 'y']) {
+  test(`walkDecls() matches each node with a ${flags} regexp`, () => {
+    let root = parse('a{color:red;color:blue}b{color:green}')
+    let regexp = new RegExp('color', flags)
+    regexp.lastIndex = 3
+    for (let pass = 0; pass < 2; pass++) {
+      let values: string[] = []
+      root.walkDecls(regexp, node => {
+        values.push(node.value)
+      })
+      equal(values, ['red', 'blue', 'green'])
+    }
+  })
+
+  test(`walkRules() matches each node with a ${flags} regexp`, () => {
+    let root = parse('a{}@media all{a{}}a{}')
+    let regexp = new RegExp('^a', flags)
+    regexp.lastIndex = 3
+    for (let pass = 0; pass < 2; pass++) {
+      let values: string[] = []
+      root.walkRules(regexp, node => {
+        values.push(node.selector)
+      })
+      equal(values, ['a', 'a', 'a'])
+    }
+  })
+
+  test(`walkAtRules() matches each node with a ${flags} regexp`, () => {
+    let root = parse('@media a{}@media b{@media c{}}')
+    let regexp = new RegExp('^media', flags)
+    regexp.lastIndex = 3
+    for (let pass = 0; pass < 2; pass++) {
+      let values: string[] = []
+      root.walkAtRules(regexp, node => {
+        values.push(node.name)
+      })
+      equal(values, ['media', 'media', 'media'])
+    }
+  })
+}
+
 test.run()
