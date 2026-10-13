@@ -21,6 +21,33 @@ function stringify(node: AnyNode, builder: (str: string) => void): void {
   }
 }
 
+test('clone() preserves null and primitive array metadata', () => {
+  let node = new Rule({ selector: 'a' })
+  let values = [null, undefined, 1, 'value', false, [null, 2], { value: null }]
+  node.raws.extra = values
+  let cloned = node.clone()
+  let clonedValues = cloned.raws.extra as unknown[]
+  equal(clonedValues, values)
+  is(clonedValues === values, false)
+  is(clonedValues[5] === values[5], false)
+  is(clonedValues[6] === values[6], false)
+})
+
+test('toJSON() preserves null custom properties', () => {
+  let node = new Rule({ selector: 'a' })
+  let metadata = node as { extra: null } & Rule
+  metadata.extra = null
+  equal((node.toJSON() as any).extra, null)
+})
+
+test('toJSON() preserves null custom array entries', () => {
+  let node = new Rule({ selector: 'a' })
+  let metadata = node as { values: unknown[] } & Rule
+  metadata.values = [null, 1, 'value', false]
+  equal((node.toJSON() as any).values, [null, 1, 'value', false])
+  equal(JSON.parse(JSON.stringify(node)).values, [null, 1, 'value', false])
+})
+
 test('error() generates custom error', () => {
   let file = resolve('a.css')
   let css = parse('a{}', { from: file })
