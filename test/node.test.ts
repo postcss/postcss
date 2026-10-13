@@ -519,6 +519,27 @@ test('positionBy() returns position after AST mutations', () => {
   equal(two.positionBy(), { column: 2, line: 3, offset: 14 })
 })
 
+test('positionBy() finds a terminal word without source offsets', () => {
+  let decl = (parse('a{color:red}').first as Rule).first as Declaration
+  // @ts-expect-error Custom syntaxes may omit source offsets.
+  delete decl.source!.start!.offset
+  // @ts-expect-error Custom syntaxes may omit source offsets.
+  delete decl.source!.end!.offset
+  equal(decl.positionBy({ word: 'red' }), { column: 9, line: 1, offset: 8 })
+})
+
+test('rangeBy() highlights a terminal word without source offsets', () => {
+  let decl = (parse('a{color:red}').first as Rule).first as Declaration
+  // @ts-expect-error Custom syntaxes may omit source offsets.
+  delete decl.source!.start!.offset
+  // @ts-expect-error Custom syntaxes may omit source offsets.
+  delete decl.source!.end!.offset
+  equal(decl.rangeBy({ word: 'red' }), {
+    end: { column: 12, line: 1, offset: 11 },
+    start: { column: 9, line: 1, offset: 8 }
+  })
+})
+
 test('positionBy() returns position for word', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
