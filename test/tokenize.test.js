@@ -55,12 +55,20 @@ test('tokenizes control chars', () => {
 
 test('escapes control symbols', () => {
   run('\\(\\{\\"\\@\\\\""', [
-    ['word', '\\(', 0, 1],
-    ['word', '\\{', 2, 3],
-    ['word', '\\"', 4, 5],
-    ['word', '\\@', 6, 7],
-    ['word', '\\\\', 8, 9],
+    ['word', '\\(\\{\\"\\@\\\\', 0, 9],
     ['string', '""', 10, 11]
+  ])
+})
+
+test('keeps escaped punctuation in identifiers', () => {
+  run('C\\(\\#0280ae\\) C\\(brandColor\\) C\\(\\#fff\\)\\:h:hover', [
+    ['word', 'C\\(\\#0280ae\\)', 0, 12],
+    ['space', ' '],
+    ['word', 'C\\(brandColor\\)', 14, 28],
+    ['space', ' '],
+    ['word', 'C\\(\\#fff\\)\\:h', 30, 42],
+    [':', ':', 43],
+    ['word', 'hover', 44, 48]
   ])
 })
 
@@ -285,9 +293,7 @@ test('ignores unclosing function on request', () => {
 
 test('tokenizes hexadecimal escape', () => {
   run('\\0a \\09 \\z ', [
-    ['word', '\\0a ', 0, 3],
-    ['word', '\\09 ', 4, 7],
-    ['word', '\\z', 8, 9],
+    ['word', '\\0a \\09 \\z', 0, 9],
     ['space', ' ']
   ])
 })
