@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.31
+
+- Fix better source map on `</style>` escaping (by @firefoxic).
+
 ## 8.5.30
 
 - Fix broken map on `</style>` escaping (by @Rufflet).
