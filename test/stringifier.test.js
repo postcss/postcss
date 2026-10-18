@@ -470,6 +470,31 @@ test('escapes </style in output of every node type', () => {
   is(css, 'a{b:"\\3c /style>"}')
 })
 
+test('calls the builder with every node when escaping', () => {
+  let root = parse('a{}b{color:red}</style>c{}')
+  let chunks = []
+  defaultStringify(root, (chunk, node, type) => {
+    chunks.push([chunk, node && node.type, type])
+  })
+
+  equal(
+    chunks,
+    [
+      ['a{', 'rule', 'start'],
+      ['}', 'rule', 'end'],
+      ['b{', 'rule', 'start'],
+      ['color:red', 'decl', undefined],
+      ['}', 'rule', 'end'],
+      ['\\3c /style>c{', 'rule', 'start'],
+      ['}', 'rule', 'end']
+    ]
+  )
+  is(
+    chunks.map(chunk => chunk[0]).join(''),
+    root.toString()
+  )
+})
+
 test('escapes Roots inside Document but not Document raws', () => {
   let document = new Document()
   let root1 = new Root()
