@@ -101,7 +101,7 @@
     "c8": "^12.0.0",
     "check-dts": "^0.9.0",
     "concat-with-sourcemaps": "^1.1.0",
-    "eslint": "^10.12.0",
+    "eslint": "^10.13.0",
     "multiocular": "^0.8.4",
     "nanodelay": "^1.0.8",
     "nanospy": "^2.0.2",
