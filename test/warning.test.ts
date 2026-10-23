@@ -41,6 +41,25 @@ test('outputs warning with index', () => {
   is(warning.toString(), `plugin: ${file}:1:8: text`)
 })
 
+for (let { css, start } of [
+  { css: 'a b{}', start: { column: 3, line: 1 } },
+  { css: 'a {\n b: c\n}', start: { column: 2, line: 2 } }
+]) {
+  test(`outputs warning with explicit start ${start.line}:${start.column}`, () => {
+    let file = resolve('a.css')
+    let root = parse(css, { from: file })
+    let warning = new Warning('text', {
+      node: root.first,
+      plugin: 'plugin',
+      start
+    })
+
+    is(warning.line, start.line)
+    is(warning.column, start.column)
+    is(warning.toString(), `plugin: ${file}:${start.line}:${start.column}: text`)
+  })
+}
+
 test('outputs warning with word', () => {
   let file = resolve('a.css')
   let root = parse('@rule param {}', { from: file })
