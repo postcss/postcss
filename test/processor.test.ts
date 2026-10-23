@@ -270,6 +270,37 @@ test('works async without plugins', async () => {
   is(r.css, 'a {}')
 })
 
+for (let [name, processor] of [
+  ['no plugins', new Processor()],
+  ['sync plugin', new Processor([() => {}])],
+  ['async plugin', new Processor([async () => {}])]
+] as const) {
+  test(`finally preserves the result with ${name}`, async () => {
+    let result = processor.process('a {}', { from: undefined })
+    let calls: unknown[][] = []
+    let cleanupFinished = false
+    let actual = await result.finally(async (...args: unknown[]) => {
+      calls.push(args)
+      await Promise.resolve()
+      cleanupFinished = true
+      return 'ignored'
+    })
+
+    is(actual, await result)
+    equal(calls, [[]])
+    is(cleanupFinished, true)
+  })
+
+  test(`finally preserves rejection with ${name}`, async () => {
+    let result = processor.process('a {', { from: undefined })
+    throws(() => result.root, /Unclosed block/)
+    let expected = await catchError(() => result.async())
+    let error = await catchError(() => result.finally(() => 'ignored'))
+
+    is(error, expected)
+  })
+}
+
 test('runs async plugin only once', async () => {
   let calls = 0
   let async = (): Promise<void> => {
