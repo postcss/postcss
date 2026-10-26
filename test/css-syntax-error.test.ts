@@ -346,6 +346,40 @@ test('works with path in sources', () => {
   })
 })
 
+test('works with source map without from', () => {
+  let error = parseError('a { }\nb {', {
+    map: {
+      prev: {
+        mappings: 'AAAA;AACA',
+        sources: ['b.css'],
+        version: 3
+      }
+    }
+  })
+
+  is(error.file, pathResolve('b.css'))
+  is(error.line, 2)
+  is(error.column, 1)
+})
+
+test('works with relative sourceRoot', () => {
+  let error = parseError('a { }\nb {', {
+    from: join(__dirname, 'build', 'all.css'),
+    map: {
+      prev: {
+        mappings: 'AAAA;AACA',
+        sourceRoot: '../src',
+        sources: ['b.css'],
+        version: 3
+      }
+    }
+  })
+
+  is(error.file, join(__dirname, 'src', 'b.css'))
+  is(error.line, 2)
+  is(error.column, 1)
+})
+
 test('shows origin source', () => {
   let input = postcss([() => {}]).process('a{}', {
     from: '/a.css',
