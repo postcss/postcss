@@ -2,6 +2,13 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.32
+
+- Fixed `Input#origin()` without `opts.from` (by @wleeaf).
+- Fixed final-word lookup without source offsets (by @Don-Yin).
+- Fixed explicit `start` in `Warning#toString()` (by @Don-Yin).
+- Fixed `Promise` semantics in `LazyResult#finally()` (by @Don-Yin).
+
 ## 8.5.31
 
 - Fix better source map on `</style>` escaping (by @firefoxic).
