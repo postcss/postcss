@@ -543,15 +543,18 @@ test('positionBy() returns position for word after AST mutations', () => {
   equal(two.positionBy({ word: 'two' }), { column: 2, line: 3, offset: 14 })
 })
 
-test('positionBy() returns position when offset is missing', () => {
+test('positionBy() returns position when offsets are missing', () => {
   let css = parse('a {  one: X  }')
   let a = css.first as Rule
   let one = a.first as Declaration
 
   // @ts-expect-error Testing non-standard AST
   if (one.source?.start) delete one.source.start.offset
+  // @ts-expect-error Testing non-standard AST
+  if (one.source?.end) delete one.source.end.offset
 
   equal(one.positionBy(), { column: 6, line: 1, offset: 5 })
+  equal(one.positionBy({ word: 'X' }), { column: 11, line: 1, offset: 10 })
 })
 
 test('positionBy() returns position for index', () => {
@@ -733,6 +736,10 @@ test('rangeBy() returns range for word when offsets are missing', () => {
   equal(one.rangeBy({ word: 'one' }), {
     end: { column: 9, line: 1, offset: 8 },
     start: { column: 6, line: 1, offset: 5 }
+  })
+  equal(one.rangeBy({ word: 'X' }), {
+    end: { column: 12, line: 1, offset: 11 },
+    start: { column: 11, line: 1, offset: 10 }
   })
 })
 
