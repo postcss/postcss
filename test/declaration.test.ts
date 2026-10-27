@@ -45,4 +45,14 @@ test('detects variable declarations', () => {
   is(decl.variable, false)
 })
 
+test('keeps comments in values after changes', () => {
+  let root = parse('a{border:1px /* keep */ solid}')
+  let rule = root.first as Rule
+  let decl = rule.first as Declaration
+
+  is(decl.value, '1px /* keep */ solid')
+  decl.value += ' red'
+  is(decl.toString(), 'border:1px /* keep */ solid red')
+})
+
 test.run()
