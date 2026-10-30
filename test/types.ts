@@ -31,6 +31,17 @@ function parseMarkdown(): Document {
 let doc = postcss().process('a{}', { parser: parseMarkdown }).root
 console.log(doc.toString())
 
+function importantCanBeUndefined(): void {
+  let root = postcss.parse('a{color:black}')
+  let rule = root.nodes[0]
+  if (rule.type !== 'rule') return
+  let decl = rule.first
+  if (decl?.type !== 'decl') return
+  let important: boolean | undefined = decl.important
+  console.log(important)
+}
+importantCanBeUndefined()
+
 function parentCanNarrowType(): never | void {
   let atRule = postcss.parse('@a{b{}}').first
   if (atRule?.type !== 'atrule') return

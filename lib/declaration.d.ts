@@ -81,8 +81,8 @@ declare class Declaration_ extends Node {
    * root.first.last.important  //=> undefined
    * ```
    */
-  get important(): boolean
-  set important(value: boolean)
+  get important(): boolean | undefined
+  set important(value: boolean | undefined)
 
   /**
    * The property name for a CSS declaration.
