@@ -380,6 +380,26 @@ test('works with relative sourceRoot', () => {
   is(error.column, 1)
 })
 
+test('works with a file URL in from and relative sources', () => {
+  let from = pathToFileURL(join(__dirname, 'build', 'all.css')).toString()
+  let error = parseError('a { }\nb {', {
+    from,
+    map: {
+      prev: {
+        mappings: 'AAAA;AACA',
+        sourceRoot: '../src',
+        sources: ['b.css'],
+        version: 3
+      }
+    }
+  })
+
+  is(error.file, join(__dirname, 'src', 'b.css'))
+  is(error.line, 2)
+  is(error.column, 1)
+  is(error.input?.url, from)
+})
+
 test('shows origin source', () => {
   let input = postcss([() => {}]).process('a{}', {
     from: '/a.css',
