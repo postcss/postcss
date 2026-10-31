@@ -363,8 +363,9 @@ test('works with source map without from', () => {
 })
 
 test('works with relative sourceRoot', () => {
+  let from = join(__dirname, 'build', 'all.css').replace(/\\/g, '//')
   let error = parseError('a { }\nb {', {
-    from: join(__dirname, 'build', 'all.css'),
+    from,
     map: {
       prev: {
         mappings: 'AAAA;AACA',
@@ -378,6 +379,7 @@ test('works with relative sourceRoot', () => {
   is(error.file, join(__dirname, 'src', 'b.css'))
   is(error.line, 2)
   is(error.column, 1)
+  is(error.input?.url, pathToFileURL(from).toString())
 })
 
 test('works with a file URL in from and relative sources', () => {
