@@ -408,6 +408,22 @@ test('does not uses wrong source map', () => {
   is(error.file, pathResolve('build/all.css'))
 })
 
+test('cuts long line for error without range', () => {
+  let css = 'a{b:c}\n' + 'x'.repeat(300) + '{content:"\n'
+  is(
+    parseError(css).showSourceCode(false),
+    '  1 | a{b:c}\n' +
+      '> 2 | ' +
+      'x'.repeat(10) +
+      '{content:"\n' +
+      '    | ' +
+      ' '.repeat(19) +
+      '^' +
+      '\n' +
+      '  3 | '
+  )
+})
+
 test('set source plugin', () => {
   let a = postcss.parse('a{}').first as Rule
   let error = a.error('Error', { plugin: 'PL' })
