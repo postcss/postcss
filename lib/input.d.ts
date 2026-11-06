@@ -135,10 +135,21 @@ declare class Input_ {
   get from(): string
 
   /**
-   * @param css  Input CSS source.
+   * @param css  Input CSS source or a function to generate it on demand.
    * @param opts Process options.
+   *
+   * The function is called when the source or source map is first needed,
+   * and successful initialization is cached.
+   * With `from`, reading `Input#from` does not generate the source.
+   * Without `from`, it may be needed to infer the file from a source map.
+   *
+   * ```js
+   * const input = new Input(() => generateCSS(), { from: 'a.css' })
+   * input.from //=> "/home/ai/a.css"
+   * input.css  // Calls generateCSS() and caches the result.
+   * ```
    */
-  constructor(css: string, opts?: ProcessOptions)
+  constructor(css: (() => string) | string, opts?: ProcessOptions)
 
   /**
    * Returns `CssSyntaxError` with information about the error and its position.
