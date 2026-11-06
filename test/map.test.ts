@@ -764,6 +764,28 @@ test('clears all annotations with empty processor', () => {
   is(result.css, 'a{}\nb{}\n/* c */')
 })
 
+for (let [name, eol] of [
+  ['LF', '\n'],
+  ['CRLF', '\r\n'],
+  ['CR', '\r']
+]) {
+  test(`clears complete ${name} line breaks before an annotation at EOF`, () => {
+    let css = `a{}${eol}/*# sourceMappingURL=a.map */`
+    let result = postcss().process(css, { from: undefined })
+
+    is(result.css, 'a{}')
+  })
+
+  test(`clears complete ${name} line breaks before multiple annotations`, () => {
+    let css =
+      `a{}${eol}/*# sourceMappingURL=a.map */${eol}` +
+      `b{}${eol}${eol}/*# sourceMappingURL=b.map */${eol}/* c */`
+    let result = postcss().process(css, { from: undefined })
+
+    is(result.css, `a{}${eol}b{}${eol}/* c */`)
+  })
+}
+
 test('clears annotations before unclosed one with empty processor', () => {
   let css =
     'a{}\n/*# sourceMappingURL=a.map */\nb{}\n/*# sourceMappingURL=b.map'
