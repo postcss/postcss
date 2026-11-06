@@ -776,6 +776,24 @@ for (let [name, eol] of [
     is(result.css, 'a{}')
   })
 
+  test(`preserves a ${name} selector separator before an annotation`, () => {
+    let css = `a${eol}/*# sourceMappingURL=a.map */b{color:red}`
+    let result = postcss().process(css, { from: undefined, map: false })
+    let rule = postcss.parse(result.css).first as Rule
+
+    is(rule.selector.replace(/\s+/g, ' '), 'a b')
+  })
+
+  test(`preserves a ${name} selector separator before adjacent annotations`, () => {
+    let css =
+      `a${eol}/*# sourceMappingURL=a.map */` +
+      '/*# sourceMappingURL=b.map */b{color:red}'
+    let result = postcss().process(css, { from: undefined, map: false })
+    let rule = postcss.parse(result.css).first as Rule
+
+    is(rule.selector.replace(/\s+/g, ' '), 'a b')
+  })
+
   test(`clears complete ${name} line breaks before multiple annotations`, () => {
     let css =
       `a{}${eol}/*# sourceMappingURL=a.map */${eol}` +
