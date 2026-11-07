@@ -764,6 +764,46 @@ test('clears all annotations with empty processor', () => {
   is(result.css, 'a{}\nb{}\n/* c */')
 })
 
+for (let [name, eol] of [
+  ['LF', '\n'],
+  ['CRLF', '\r\n'],
+  ['CR', '\r']
+]) {
+  test(`clears complete ${name} line breaks before an annotation at EOF`, () => {
+    let css = `a{}${eol}/*# sourceMappingURL=a.map */`
+    let result = postcss().process(css, { from: undefined })
+
+    is(result.css, 'a{}')
+  })
+
+  test(`preserves a ${name} selector separator before an annotation`, () => {
+    let css = `a${eol}/*# sourceMappingURL=a.map */b{color:red}`
+    let result = postcss().process(css, { from: undefined, map: false })
+    let rule = postcss.parse(result.css).first as Rule
+
+    is(rule.selector.replace(/\s+/g, ' '), 'a b')
+  })
+
+  test(`preserves a ${name} selector separator before adjacent annotations`, () => {
+    let css =
+      `a${eol}/*# sourceMappingURL=a.map */` +
+      '/*# sourceMappingURL=b.map */b{color:red}'
+    let result = postcss().process(css, { from: undefined, map: false })
+    let rule = postcss.parse(result.css).first as Rule
+
+    is(rule.selector.replace(/\s+/g, ' '), 'a b')
+  })
+
+  test(`clears complete ${name} line breaks before multiple annotations`, () => {
+    let css =
+      `a{}${eol}/*# sourceMappingURL=a.map */${eol}` +
+      `b{}${eol}${eol}/*# sourceMappingURL=b.map */${eol}/* c */`
+    let result = postcss().process(css, { from: undefined })
+
+    is(result.css, `a{}${eol}b{}${eol}/* c */`)
+  })
+}
+
 test('clears annotations before unclosed one with empty processor', () => {
   let css =
     'a{}\n/*# sourceMappingURL=a.map */\nb{}\n/*# sourceMappingURL=b.map'
