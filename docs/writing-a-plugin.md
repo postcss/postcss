@@ -141,8 +141,8 @@ PostCSS parses CSS to the tree of nodes (we call it AST). This tree may content:
   or `@media (screen) {}`.
 - [`Rule`]: selector with declaration inside. For instance `input, button {}`.
 - [`Declaration`]: key-value pair like `color: black`;
-- [`Comment`]: stand-alone comment. Comments inside selectors, at-rule
-  parameters and values are stored in node’s `raws` property.
+- [`Comment`]: stand-alone comment. Comments inside at-rule parameters
+  and declaration values remain part of the corresponding string.
 
 You can use [AST Explorer](https://astexplorer.net/#/2uBU1BLuJ1) to learn
 how PostCSS convert different CSS to AST.
