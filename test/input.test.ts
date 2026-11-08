@@ -1,3 +1,4 @@
+import { rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { SourceNode } from 'source-map-js'
@@ -131,6 +132,33 @@ test('origin() does not mix undefined and null when end position is unmapped', (
     line: 1,
     url: urlOf('a.css')
   })
+})
+
+test('origin() loads source content from filesystem and caches it', () => {
+  let file = join(__dirname, 'origin-fs-test.css')
+  writeFileSync(file, 'body { color: black; }')
+  try {
+    let input = new Input('body { color: black; }', {
+      from: join(__dirname, 'out.css'),
+      map: {
+        prev: {
+          file: 'out.css',
+          mappings: 'AAAA',
+          sources: ['origin-fs-test.css'],
+          version: 3
+        }
+      }
+    })
+
+    let first = input.origin(1, 1)
+    is(typeof first !== 'boolean' && first.source, 'body { color: black; }')
+
+    // Second call should reuse cache
+    let second = input.origin(1, 1)
+    is(typeof second !== 'boolean' && second.source, 'body { color: black; }')
+  } finally {
+    rmSync(file)
+  }
 })
 
 test.run()

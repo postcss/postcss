@@ -1,4 +1,5 @@
 import Concat from 'concat-with-sourcemaps'
+import { rmSync, writeFileSync } from 'node:fs'
 import { join, resolve as pathResolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import * as pico from 'picocolors'
@@ -391,6 +392,67 @@ test('shows origin source', () => {
     map: { prev: input.map }
   })
   is(error.source, 'a{}')
+})
+
+test('loads upstream source from filesystem when sourcesContent is missing', () => {
+  let scssFile = join(__dirname, 'test-upstream.scss')
+  writeFileSync(scssFile, 'a {\n  color: red;\n  broken\n}\n')
+  try {
+    let error = parseError('a { color: red; broken }', {
+      from: join(__dirname, 'test-upstream.css'),
+      map: {
+        prev: {
+          file: 'test-upstream.css',
+          mappings: 'AAAA,EAAE,CAAC,KAAK,EAAE,GAAG,CAAC,MAAM,CAAE',
+          sources: ['test-upstream.scss'],
+          version: 3
+        }
+      }
+    })
+    is(error.file, scssFile)
+    is(error.source, 'a {\n  color: red;\n  broken\n}\n')
+    match(error.showSourceCode(false), /broken/)
+  } finally {
+    rmSync(scssFile)
+  }
+})
+
+test('loads upstream source with BOM from filesystem', () => {
+  let scssFile = join(__dirname, 'test-upstream-bom.scss')
+  writeFileSync(scssFile, '\uFEFFa {\n  color: red;\n  broken\n}\n')
+  try {
+    let error = parseError('a { color: red; broken }', {
+      from: join(__dirname, 'test-upstream-bom.css'),
+      map: {
+        prev: {
+          file: 'test-upstream-bom.css',
+          mappings: 'AAAA,EAAE,CAAC,KAAK,EAAE,GAAG,CAAC,MAAM,CAAE',
+          sources: ['test-upstream-bom.scss'],
+          version: 3
+        }
+      }
+    })
+    is(error.file, scssFile)
+    is(error.source, 'a {\n  color: red;\n  broken\n}\n')
+  } finally {
+    rmSync(scssFile)
+  }
+})
+
+test('does not throw when upstream file does not exist on filesystem', () => {
+  let error = parseError('a { color: red; broken }', {
+    from: join(__dirname, 'non-existent.css'),
+    map: {
+      prev: {
+        file: 'non-existent.css',
+        mappings: 'AAAA',
+        sources: ['non-existent.scss'],
+        version: 3
+      }
+    }
+  })
+  is(error.file, join(__dirname, 'non-existent.scss'))
+  type(error.source, 'undefined')
 })
 
 test('does not uses wrong source map', () => {
