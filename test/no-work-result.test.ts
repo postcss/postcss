@@ -180,4 +180,52 @@ test('no work result matches lazy result when map is true and the source contain
   equal(noWorkResult.css, lazyResult.css)
 })
 
+test('processes parsed Root AST', () => {
+  let root = parse('a { color: red }')
+  let result = postcss([]).process(root)
+  is(result.root, root)
+  is(result.css, 'a { color: red }')
+})
+
+test('processes Document AST', () => {
+  let doc = postcss.document({
+    nodes: [
+      postcss.parse('a { color: red }'),
+      postcss.parse('b { color: blue }')
+    ]
+  })
+  let result = postcss([]).process(doc)
+  is(result.root, doc)
+  is(result.root.type, 'document')
+  is(result.css, 'a { color: red }b { color: blue }')
+})
+
+test('takes map from previous result', () => {
+  let one = postcss([() => {}]).process('a {}', {
+    from: 'a.css',
+    map: { inline: false },
+    to: 'b.css'
+  })
+  let two = postcss([]).process(one, { to: 'c.css' })
+  is(two.root, one.root)
+  equal(two.map.toJSON().sources, ['a.css'])
+})
+
+test('inlines map from previous result', () => {
+  let one = postcss([() => {}]).process('a {}', {
+    from: 'a.css',
+    map: { inline: false },
+    to: 'b.css'
+  })
+  let two = postcss([]).process(one, {
+    map: { inline: true },
+    to: 'c.css'
+  })
+  type(two.map, 'undefined')
+  is(
+    two.css.includes('/*# sourceMappingURL=data:application/json;base64,'),
+    true
+  )
+})
+
 test.run()
