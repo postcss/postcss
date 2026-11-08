@@ -258,6 +258,12 @@ test('should give the correct column of missed semicolon without !important', ()
   match(error.message, /2:15: Missed semicolon/)
 })
 
+test('parses unquoted url with leading whitespace and wildcard path', () => {
+  let root = parse('a { background: url( https://example.com/*/pic.png ); }')
+  let decl = (root.first as Rule).first as Declaration
+  is(decl.value, 'url( https://example.com/*/pic.png )')
+})
+
 test('does not overflow the stack on deeply nested nodes', () => {
   let depth = 6000
   let css = 'a{'.repeat(depth) + 'color:red' + '}'.repeat(depth)

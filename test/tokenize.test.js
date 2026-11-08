@@ -160,6 +160,19 @@ test('tokenizes case-insensitive urls', () => {
   }
 })
 
+test('tokenizes unquoted urls with leading whitespace', () => {
+  for (let ws of [' ', '\n  ', '\t', '\r\n ']) {
+    run(`url(${ws}/*\\))`, [
+      ['word', 'url', 0, 2],
+      ['brackets', `(${ws}/*\\))`, 3, 3 + ws.length + 5]
+    ])
+    run(`URL(${ws}/*\\))`, [
+      ['word', 'URL', 0, 2],
+      ['brackets', `(${ws}/*\\))`, 3, 3 + ws.length + 5]
+    ])
+  }
+})
+
 test('tokenizes quoted urls', () => {
   run('url(")")', [
     ['word', 'url', 0, 2],
