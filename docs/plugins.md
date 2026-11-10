@@ -524,7 +524,6 @@ See also plugins in modular minifier [`cssnano`].
 - [`postcss-rtlcss`] creates left-to-right and right-to-left rules
   in a single CSS file.
 - [`postcss-safe-important`] adds `!important` to style declarations safely.
-- [`postcss-sanitize`] remove properties and values using rules.
 - [`postcss-scopify`] adds a user input scope to each selector.
 - [`postcss-select`] select rules based off a selector list.
 - [`postcss-selector-prefixer`] adds a prefix to css selectors.
@@ -802,7 +801,6 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-position`]: https://github.com/seaneking/postcss-position
 [`postcss-reporter`]: https://github.com/postcss/postcss-reporter
 [`postcss-rgba-hex`]: https://github.com/XOP/postcss-rgba-hex
-[`postcss-sanitize`]: https://github.com/eramdam/postcss-sanitize
 [`postcss-spiffing`]: https://github.com/HashanP/postcss-spiffing
 [`postcss-triangle`]: https://github.com/jedmao/postcss-triangle
 [`postcss-trolling`]: https://github.com/juanfran/postcss-trolling
