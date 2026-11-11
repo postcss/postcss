@@ -160,6 +160,15 @@ test('tokenizes case-insensitive urls', () => {
   }
 })
 
+test('tokenizes urls after a comma', () => {
+  for (let name of ['url', 'URL']) {
+    run(',' + name + '(/*\\))', [
+      ['word', ',' + name, 0, 3],
+      ['brackets', '(/*\\))', 4, 9]
+    ])
+  }
+})
+
 test('tokenizes quoted urls', () => {
   run('url(")")', [
     ['word', 'url', 0, 2],
