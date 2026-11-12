@@ -2,7 +2,13 @@ import { test } from 'uvu'
 import { equal, instance, is, throws } from 'uvu/assert'
 import * as v8 from 'v8'
 
-import postcss, { Declaration, Input, Root, Rule } from '../lib/postcss.js'
+import postcss, {
+  Declaration,
+  Document,
+  Input,
+  Root,
+  Rule
+} from '../lib/postcss.js'
 
 test('rehydrates a JSON AST', () => {
   let cssWithMap = postcss().process(
@@ -77,6 +83,56 @@ test('does not allow to change prototype', () => {
   )
   // @ts-expect-error
   equal(typeof node.hijacked, 'undefined')
+})
+
+test('rehydrates a document with multiple inputs', () => {
+  let first = postcss.parse('a {}\n\nb {}\n', { from: 'a.css' })
+  let second = postcss.parse('c { color: red }', { from: 'b.css' })
+  first.raws.codeBefore = '<style>'
+  first.raws.codeAfter = '</style>'
+  second.raws.codeBefore = '<style>'
+  second.raws.codeAfter = '</style>'
+  let document = postcss.document({ nodes: [first, second] })
+  let json = JSON.parse(JSON.stringify(document))
+  let rehydrated = postcss.fromJSON(json) as Document
+
+  instance(rehydrated, Document)
+  is(rehydrated.parent, undefined)
+  is(rehydrated.toString(), document.toString())
+  equal(rehydrated.toJSON(), document.toJSON())
+  for (let root of rehydrated.nodes) {
+    instance(root, Root)
+    is(root.parent, rehydrated)
+    instance(root.source?.input, Input)
+    is(root.first?.source?.input, root.source?.input)
+  }
+  is(rehydrated.nodes[0].source?.input.from, first.source?.input.from)
+  is(rehydrated.nodes[1].source?.input.from, second.source?.input.from)
+  is(rehydrated.nodes[0].source?.input === rehydrated.nodes[1].source?.input, false)
+
+  let result = postcss([
+    {
+      postcssPlugin: 'document-roundtrip',
+      Rule(rule) {
+        if (!rule.selector.endsWith(':hover')) rule.selector += ':hover'
+      }
+    }
+  ]).process(rehydrated, { from: undefined }).css
+  is(result, 'a:hover {}\n\nb:hover {}\nc:hover { color: red }')
+})
+
+test('rehydrates empty documents and arrays of documents', () => {
+  let document = postcss.document()
+  let rehydrated = postcss.fromJSON(JSON.parse(JSON.stringify(document))) as Document
+  instance(rehydrated, Document)
+  equal(rehydrated.nodes, [])
+  is(rehydrated.toString(), '')
+
+  let documents = postcss.fromJSON(
+    JSON.parse(JSON.stringify([document]))
+  ) as unknown as Document[]
+  instance(documents[0], Document)
+  equal(documents[0].nodes, [])
 })
 
 test.run()
