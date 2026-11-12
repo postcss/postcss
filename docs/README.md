@@ -44,7 +44,7 @@
   - [Step 5: Fight with frustration](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-5-fight-with-frustration)
   - [Step 6: Make it public](https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md#step-6-make-it-public)
 
-**Guidlines**
+**Guidelines**
 
 - [PostCSS Plugin Guidelines](https://github.com/postcss/postcss/blob/main/docs/guidelines/plugin.md#postcss-plugin-guidelines)
   - [API](https://github.com/postcss/postcss/blob/main/docs/guidelines/plugin.md#1-api)
