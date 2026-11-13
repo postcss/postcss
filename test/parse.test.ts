@@ -147,6 +147,22 @@ test('keeps a space-separated url after a comma as a function', () => {
   is(decl.value, 'foo,url (bar(baz);qux)')
 })
 
+test('parses an unquoted url with spaces', () => {
+  let root = parse('a{background:url( /b/*.png )}')
+  let rule = root.first as Rule
+  let decl = rule.first as Declaration
+
+  is(decl.value, 'url( /b/*.png )')
+})
+
+test('keeps a space-separated url as a function', () => {
+  let root = parse('a{--x:url (bar(baz);qux)}')
+  let rule = root.first as Rule
+  let decl = rule.first as Declaration
+
+  is(decl.value, 'url (bar(baz);qux)')
+})
+
 test('throws on unclosed blocks', () => {
   throws(() => {
     parse('\na {\n')

@@ -195,12 +195,72 @@ test('does not tokenize a comment-separated url after a comma as a url', () => {
   ])
 })
 
+test('tokenizes urls after a slash', () => {
+  run('/url(/*\\))', [
+    ['word', '/url', 0, 3],
+    ['brackets', '(/*\\))', 4, 9]
+  ])
+})
+
+test('tokenizes urls with spaces', () => {
+  run('url( \n/*\\) )', [
+    ['word', 'url', 0, 2],
+    ['brackets', '( \n/*\\) )', 3, 11]
+  ])
+})
+
+test('does not tokenize a space-separated url as a url', () => {
+  run('url (b(c))', [
+    ['word', 'url', 0, 2],
+    ['space', ' '],
+    ['(', '(', 4],
+    ['word', 'b', 5, 5],
+    ['(', '(', 6],
+    ['word', 'c', 7, 7],
+    [')', ')', 8],
+    [')', ')', 9]
+  ])
+})
+
+test('does not tokenize a bracket after another token as a url', () => {
+  run('url[(/**/)]', [
+    ['word', 'url', 0, 2],
+    ['[', '[', 3],
+    ['(', '(', 4],
+    ['comment', '/**/', 5, 8],
+    [')', ')', 9],
+    [']', ']', 10]
+  ])
+})
+
+test('does not tokenize the end of a longer name as a url', () => {
+  for (let name of ['my-url', 'myurl', '.url']) {
+    run(name + '(/**/)', [
+      ['word', name, 0, name.length - 1],
+      ['(', '(', name.length],
+      ['comment', '/**/', name.length + 1, name.length + 4],
+      [')', ')', name.length + 5]
+    ])
+  }
+})
+
 test('tokenizes quoted urls', () => {
   run('url(")")', [
     ['word', 'url', 0, 2],
     ['(', '(', 3],
     ['string', '")"', 4, 6],
     [')', ')', 7]
+  ])
+})
+
+test('tokenizes quoted urls with spaces', () => {
+  run('url( ")" )', [
+    ['word', 'url', 0, 2],
+    ['(', '(', 3],
+    ['space', ' '],
+    ['string', '")"', 5, 7],
+    ['space', ' '],
+    [')', ')', 9]
   ])
 })
 
