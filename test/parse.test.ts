@@ -131,6 +131,22 @@ test('parses a functional tagname', () => {
   is(b.selector, 'b(c): d')
 })
 
+test('parses an unquoted url after a comma', () => {
+  let root = parse('a{background:url(a.png),url(/b/*.png)}')
+  let rule = root.first as Rule
+  let decl = rule.first as Declaration
+
+  is(decl.value, 'url(a.png),url(/b/*.png)')
+})
+
+test('keeps a space-separated url after a comma as a function', () => {
+  let root = parse('a{--x:foo,url (bar(baz);qux)}')
+  let rule = root.first as Rule
+  let decl = rule.first as Declaration
+
+  is(decl.value, 'foo,url (bar(baz);qux)')
+})
+
 test('throws on unclosed blocks', () => {
   throws(() => {
     parse('\na {\n')

@@ -160,6 +160,41 @@ test('tokenizes case-insensitive urls', () => {
   }
 })
 
+test('tokenizes urls after a comma', () => {
+  for (let name of ['url', 'URL']) {
+    run(',' + name + '(/*\\))', [
+      ['word', ',' + name, 0, 3],
+      ['brackets', '(/*\\))', 4, 9]
+    ])
+  }
+})
+
+test('does not tokenize a space-separated url after a comma as a url', () => {
+  run(',url (b(c))', [
+    ['word', ',url', 0, 3],
+    ['space', ' '],
+    ['(', '(', 5],
+    ['word', 'b', 6, 6],
+    ['(', '(', 7],
+    ['word', 'c', 8, 8],
+    [')', ')', 9],
+    [')', ')', 10]
+  ])
+})
+
+test('does not tokenize a comment-separated url after a comma as a url', () => {
+  run(',url/* c */(b(c))', [
+    ['word', ',url', 0, 3],
+    ['comment', '/* c */', 4, 10],
+    ['(', '(', 11],
+    ['word', 'b', 12, 12],
+    ['(', '(', 13],
+    ['word', 'c', 14, 14],
+    [')', ')', 15],
+    [')', ')', 16]
+  ])
+})
+
 test('tokenizes quoted urls', () => {
   run('url(")")', [
     ['word', 'url', 0, 2],
