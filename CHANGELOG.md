@@ -2,6 +2,15 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.33
+
+- Fixed unquoted `url()` with `/*` after a comma (by @MFA-G).
+- Fixed `url (…)` with a space before the bracket being parsed as URL.
+- Fixed unquoted uppercase `URL()` parsing (by @Don-Yin).
+- Fixed empty source in `CssSyntaxError` on long lines (by @simpleqt).
+- Fixed line breaks on source map annotation removal (by @wozhenbang2004).
+- Fixed `Declaration#important` types (by @johnhldiver-beep).
+
 ## 8.5.32
 
 - Fixed `Input#origin()` without `opts.from` (by @wleeaf).
