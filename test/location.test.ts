@@ -292,6 +292,52 @@ test('unclosed at-rule in at-rule', () => {
   })
 })
 
+test('unclosed at-rule without params', () => {
+  let source = '@a'
+  let css = parse(source)
+
+  let atrule = css.first as AtRule
+  checkOffset(source, atrule, '@a')
+  equal(atrule.source!.end, {
+    column: 2,
+    line: 1,
+    offset: 2
+  })
+  equal(atrule.rangeBy().end, {
+    column: 3,
+    line: 1,
+    offset: 2
+  })
+})
+
+test('unclosed at-rule without params and trailing spaces', () => {
+  let source = '@a \n'
+  let css = parse(source)
+
+  let atrule = css.first as AtRule
+  checkOffset(source, atrule, '@a')
+  equal(atrule.source!.end, {
+    column: 2,
+    line: 1,
+    offset: 2
+  })
+})
+
+test('unclosed at-rule without params in at-rule', () => {
+  let source = '@a{@b }'
+  let css = parse(source)
+
+  let atrule = css.first as AtRule
+  let atrule2 = atrule.first as AtRule
+  checkOffset(source, atrule, '@a{@b }')
+  checkOffset(source, atrule2, '@b')
+  equal(atrule2.source!.end, {
+    column: 5,
+    line: 1,
+    offset: 5
+  })
+})
+
 test('at-rule with body', () => {
   let source = '@a{}'
   let css = parse(source)
