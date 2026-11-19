@@ -250,7 +250,7 @@ module.exports = config
 
 Parcel will even automatically install these plugins for you.
 
-> Please, be aware of [the several issues in Version 1](https://github.com/parcel-bundler/parcel/labels/CSS%20Preprocessing). Notice, [Version 2](https://github.com/parcel-bundler/parcel/projects/5) may resolve the issues via [issue #2157](https://github.com/parcel-bundler/parcel/issues/2157).
+> Parcel 1 had [several CSS preprocessing issues](https://github.com/parcel-bundler/parcel/labels/CSS%20Preprocessing). Current Parcel includes built-in PostCSS support; see the [Parcel CSS / PostCSS docs](https://parceljs.org/languages/css/#postcss).
 
 [Parcel]: https://parceljs.org
 
