@@ -200,7 +200,7 @@ module.exports = {
 
 Parcel 甚至会自动地帮你安装这些插件。
 
-> 请注意[第 1 版中存在的几个问题](https://github.com/parcel-bundler/parcel/labels/CSS%20Preprocessing)，第 2 版通过 [issue #2157](https://github.com/parcel-bundler/parcel/projects/5) 解决了这些问题。
+> Parcel 1 有[若干 CSS 预处理问题](https://github.com/parcel-bundler/parcel/labels/CSS%20Preprocessing)。当前 Parcel 已内置 PostCSS 支持，详见 [Parcel 的 CSS / PostCSS 文档](https://parceljs.org/languages/css/#postcss)。
 
 ### Webpack
 
