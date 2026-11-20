@@ -13,7 +13,7 @@ and JetBrains. The [Autoprefixer] and [Stylelint] PostCSS plugins are some o
 
 ---
 
-<img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="" width="22" height="16" />  PostCSS is built by <b><a href="https://evilmartians.com/">Evil Martians</a></b>, an American design and engineering consultancy for startups. Evil Martians do FDE for Decagon, help bolt.new scale, run LLM benchmarks for the Rails Foundation.</b>.
+<img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="" width="22" height="16" />  PostCSS is built by <b><a href="https://evilmartians.com/">Evil Martians</a></b>, an American design and engineering consultancy for startups. Evil Martians do FDE for Decagon, help bolt.new scale, run LLM benchmarks for the Rails Foundation.
 
 ---
 
