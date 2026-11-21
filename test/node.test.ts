@@ -158,6 +158,70 @@ test('replaceWith() can include itself', () => {
   is(css.toString(), 'a{fix1:fixedOne;one:1;fix2:fixedTwo;two:2}')
 })
 
+test('replaceWith() preserves descriptor order around itself', () => {
+  let css = parse('a{one:1;last:6}')
+  let rule = css.first as Rule
+  let one = rule.first as Declaration
+
+  is(
+    one.replaceWith(
+      { prop: 'before1', value: '0' },
+      { prop: 'before2', value: '0' },
+      one,
+      { prop: 'two', value: '2' },
+      { prop: 'three', value: '3' }
+    ),
+    one
+  )
+  is(css.toString(), 'a{before1:0;before2:0;one:1;two:2;three:3;last:6}')
+})
+
+test('replaceWith() preserves normalized string order after itself', () => {
+  let css = parse('a{one:1;last:6}')
+  let one = (css.first as Rule).first as Declaration
+
+  one.replaceWith(one, 'two:2;three:3', 'four:4;five:5')
+
+  is(css.toString(), 'a{one:1;two:2;three:3;four:4;five:5;last:6}')
+})
+
+test('replaceWith() preserves array order after itself', () => {
+  let css = parse('a{one:1}')
+  let one = (css.first as Rule).first as Declaration
+
+  one.replaceWith(
+    one,
+    [
+      new Declaration({ prop: 'two', value: '2' }),
+      new Declaration({ prop: 'three', value: '3' })
+    ],
+    new Declaration({ prop: 'four', value: '4' })
+  )
+
+  is(css.toString(), 'a{one:1;two:2;three:3;four:4}')
+})
+
+test('replaceWith() can include itself more than once', () => {
+  let css = parse('a{one:1}')
+  let one = (css.first as Rule).first as Declaration
+
+  one.replaceWith(one, { prop: 'two', value: '2' }, one, {
+    prop: 'three',
+    value: '3'
+  })
+
+  is(css.toString(), 'a{one:1;two:2;three:3}')
+})
+
+test('replaceWith() can retain itself without replacements', () => {
+  let css = parse('a{one:1}')
+  let one = (css.first as Rule).first as Declaration
+
+  is(one.replaceWith(one), one)
+
+  is(css.toString(), 'a{one:1}')
+})
+
 test('toString() accepts custom stringifier', () => {
   is(new Rule({ selector: 'a' }).toString(stringify), 'a')
 })
