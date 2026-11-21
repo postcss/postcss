@@ -654,6 +654,19 @@ test('insertBefore() receives pre-existing child node - b', () => {
   is(a.toString(), 'a{ z-index: 1; align-items: start; color: red }')
 })
 
+test('insertBefore() moves an existing child before a numeric index', () => {
+  let rule = parse('a { color: red; color: green; color: blue }').first as Rule
+  rule.insertBefore(2, rule.nodes[0])
+  is(rule.toString(), 'a { color: green; color: red; color: blue }')
+})
+
+test('insertBefore() moves existing children before a numeric index', () => {
+  let rule = parse('a { z-index: 1; z-index: 2; z-index: 3; z-index: 4 }')
+    .first as Rule
+  rule.insertBefore(2, [rule.nodes[0], rule.nodes[3]])
+  is(rule.toString(), 'a { z-index: 2; z-index: 1; z-index: 4; z-index: 3 }')
+})
+
 test('insertBefore() has defined way of adding newlines', () => {
   let root = parse('a {}')
   root.insertBefore(root.first as Rule, 'b {}')
@@ -722,6 +735,19 @@ test('insertAfter() receives pre-existing child node - b', () => {
   declA.after(declC)
 
   is(a.toString(), 'a{ align-items: start; z-index: 1; color: red }')
+})
+
+test('insertAfter() moves an existing child after a numeric index', () => {
+  let rule = parse('a { color: red; color: green; color: blue }').first as Rule
+  rule.insertAfter(1, rule.nodes[0])
+  is(rule.toString(), 'a { color: green; color: red; color: blue }')
+})
+
+test('insertAfter() moves existing children after a numeric index', () => {
+  let rule = parse('a { z-index: 1; z-index: 2; z-index: 3; z-index: 4 }')
+    .first as Rule
+  rule.insertAfter(1, [rule.nodes[0], rule.nodes[3]])
+  is(rule.toString(), 'a { z-index: 2; z-index: 1; z-index: 4; z-index: 3 }')
 })
 
 test('removeChild() removes by index', () => {
