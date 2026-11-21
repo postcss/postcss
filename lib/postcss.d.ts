@@ -288,6 +288,8 @@ declare namespace postcss {
      * as a Base64-encoded comment. By default, it is `true`.
      * But if all previous maps are external, not inline, PostCSS will not embed
      * the map even if you do not set this option.
+     * If `annotation` is set to a string, a function or `false`, it is also
+     * `false` by default.
      *
      * If you have an inline source map, the result.map property will be empty,
      * as the source map will be contained within the text of `result.css`.
