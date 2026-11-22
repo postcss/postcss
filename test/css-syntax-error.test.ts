@@ -424,6 +424,113 @@ test('cuts long line for error without range', () => {
   )
 })
 
+test('aligns mark on cut long line with leading tabs outside window', () => {
+  let css = '\t\t' + '.a{color:red}'.repeat(15) + 'badword'
+  is(
+    parseError(css).showSourceCode(false),
+    '> 1 | r:red}.a{color:red}badword\n' + '    | ' + ' '.repeat(19) + '^'
+  )
+})
+
+test('aligns mark on cut long line with tabs inside window', () => {
+  let css = '.a{color:red}'.repeat(15) + '\t\tbadword'
+  is(
+    parseError(css).showSourceCode(false),
+    '> 1 | red}.a{color:red}\t\tbadword\n' +
+      '    | ' +
+      ' '.repeat(17) +
+      '\t\t^'
+  )
+})
+
+test('aligns mark on cut long line with tabs for error without range', () => {
+  let css = '\t' + '.a{color:red}'.repeat(15) + 'a{\tcontent:\t"\n'
+  is(
+    parseError(css).showSourceCode(false),
+    '> 1 | or:red}a{\tcontent:\t"\n' +
+      '    | ' +
+      ' '.repeat(9) +
+      '\t' +
+      ' '.repeat(8) +
+      '\t^\n' +
+      '  2 | '
+  )
+})
+
+test('aligns mark on cut long line at window start boundary with tab', () => {
+  let afterBoundary =
+    '\t.a{color:red}a{b:1}badword;' + '.b{color:blue}'.repeat(12)
+  is(
+    parseError(afterBoundary).showSourceCode(false),
+    '> 1 | .a{color:red}a{b:1}badword;.b{color:blue}.b{col\n' +
+      '    | ' +
+      ' '.repeat(19) +
+      '^'
+  )
+
+  let atBoundary = '\t.a{color:red}a{}  badword;' + '.b{color:blue}'.repeat(12)
+  is(
+    parseError(atBoundary).showSourceCode(false),
+    '> 1 | \t.a{color:red}a{}  badword;.b{color:blue}.b{col\n' +
+      '    | \t' +
+      ' '.repeat(18) +
+      '^'
+  )
+})
+
+test('aligns mark on cut long line near start with tabs', () => {
+  let css = '\t\ta{ badword;}' + '.b{color:blue}'.repeat(12)
+  is(
+    parseError(css).showSourceCode(false),
+    '> 1 | \t\ta{ badword;}.b{color:blue}.b{co\n' + '    | \t\t   ^'
+  )
+})
+
+test('aligns mark on cut long line at column 1', () => {
+  let css = 'badword;' + '.b{color:blue}'.repeat(12)
+  is(
+    parseError(css).showSourceCode(false),
+    '> 1 | badword;.b{color:blue}.b{col\n' + '    | ^'
+  )
+})
+
+test('aligns mark on cut long line at end of line with tabs', () => {
+  let css = '.a{color:red}'.repeat(15) + 'a{\tcolor:\tred\n\twidth: 1px}'
+  is(
+    parseError(css).showSourceCode(false),
+    '> 1 | r:red}a{\tcolor:\tred\n' +
+      '    | ' +
+      ' '.repeat(8) +
+      '\t' +
+      ' '.repeat(6) +
+      '\t   ^\n' +
+      '  2 | \twidth: 1px}'
+  )
+})
+
+test('aligns mark on cut long line with tabs and colors', () => {
+  let css = '.a{color:red}'.repeat(15) + '\t\tbadword'
+  is(
+    parseError(css).showSourceCode(true),
+    pico.bold(pico.red('>')) +
+      pico.gray(' 1 | ') +
+      'red' +
+      pico.yellow('}') +
+      pico.yellow('.a') +
+      pico.yellow('{') +
+      'color' +
+      pico.yellow(':') +
+      'red' +
+      pico.yellow('}') +
+      '\t\tbadword' +
+      '\n ' +
+      pico.gray('   | ') +
+      ' '.repeat(17) +
+      '\t\t' +
+      pico.bold(pico.red('^'))
+  )
+})
+
 test('set source plugin', () => {
   let a = postcss.parse('a{}').first as Rule
   let error = a.error('Error', { plugin: 'PL' })
