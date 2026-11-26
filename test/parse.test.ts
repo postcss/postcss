@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import { eachTest, jsonify, testPath } from 'postcss-parser-tests'
 import { test } from 'uvu'
-import { equal, is, match, not, throws } from 'uvu/assert'
+import { equal, is, match, not, ok, throws } from 'uvu/assert'
 
 import {
   AtRule,
@@ -308,6 +308,17 @@ test('does not overflow the stack on deeply nested nodes', () => {
     count += 1
   })
   is(count, depth + 1)
+})
+
+test('parses a bareword important after a long value in linear time', () => {
+  let value = 'v '.repeat(200000) + 'important'
+  let start = Date.now()
+  let root = parse(`a{p:${value}}`)
+  let rule = root.first as Rule
+  let decl = rule.first as Declaration
+  is(decl.important, undefined)
+  is(decl.value, value)
+  ok(Date.now() - start < 2000)
 })
 
 test.run()
