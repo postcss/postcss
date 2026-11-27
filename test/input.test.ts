@@ -32,7 +32,6 @@ test('origin() returns false without source map', () => {
 })
 
 test('origin() returns source position with source map', () => {
-  // @ts-expect-error source-map-js accepts null, but it's not in the types
   let node = new SourceNode(null, null, null, [
     new SourceNode(1, 0, 'a.css', 'a'),
     new SourceNode(1, 1, 'a.css', ' '),
@@ -106,7 +105,6 @@ test('origin() returns source position with source map', () => {
 })
 
 test('origin() does not mix undefined and null when end position is unmapped', () => {
-  // @ts-expect-error source-map-js accepts null, but it's not in the types
   let node = new SourceNode(null, null, null, [
     new SourceNode(1, 0, 'a.css', 'a'),
     new SourceNode(1, 1, 'a.css', ' '),
