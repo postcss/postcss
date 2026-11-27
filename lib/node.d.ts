@@ -261,7 +261,7 @@ declare abstract class Node_ {
    * @return This node for methods chain.
    */
   after(
-    newNode: Node | Node.ChildProps | readonly Node[] | string | undefined
+    newNode: Node_ | Node.ChildProps | readonly Node_[] | string | undefined
   ): this
 
   /**
@@ -290,7 +290,7 @@ declare abstract class Node_ {
    * @return This node for methods chain.
    */
   before(
-    newNode: Node | Node.ChildProps | readonly Node[] | string | undefined
+    newNode: Node_ | Node.ChildProps | readonly Node_[] | string | undefined
   ): this
 
   /**
