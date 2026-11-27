@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 8.5.34
+
+- Fixed slow parsing of `important` word after a long value (by @g4lb).
+- Fixed caret alignment in `CssSyntaxError` on long lines with tabs (by @hoanle0126).
+- Fixed `Node#after()` and `Node#before()` types.
+
 ## 8.5.33
 
 - Fixed unquoted `url()` with `/*` after a comma (by @MFA-G).
