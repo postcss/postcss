@@ -21,7 +21,8 @@ test('rehydrates a JSON AST', () => {
   let json = root.toJSON()
   let serialized = v8.serialize(json)
   let deserialized = v8.deserialize(serialized)
-  let rehydrated = postcss.fromJSON(deserialized as object) as Root
+  let rehydrated = postcss.fromJSON(deserialized as object)
+  if (!(rehydrated instanceof Root)) throw new Error('Expected Root')
 
   rehydrated.nodes[0].remove()
 
@@ -44,9 +45,8 @@ test('preserves node raws when rehydrating a JSON AST', () => {
   let css = 'a {}\nb {}\n\nc {}\n'
   let root = postcss.parse(css)
 
-  let rehydrated = postcss.fromJSON(
-    JSON.parse(JSON.stringify(root.toJSON()))
-  ) as Root
+  let rehydrated = postcss.fromJSON(JSON.parse(JSON.stringify(root.toJSON())))
+  if (!(rehydrated instanceof Root)) throw new Error('Expected Root')
 
   is(rehydrated.toString(), css)
   is(rehydrated.nodes[1].raws.before, '\n')
